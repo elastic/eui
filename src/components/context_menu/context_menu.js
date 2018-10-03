@@ -103,7 +103,7 @@ export class EuiContextMenu extends Component {
       idToPanelMap: {},
       idToPreviousPanelIdMap: {},
       idAndItemIndexToPanelIdMap: {},
-      idToRenderedItemsMap: {},
+      idToRenderedItemsMap: this.mapIdsToRenderedItems(this.props.panels),
 
       height: undefined,
       outgoingPanelId: undefined,
@@ -115,13 +115,11 @@ export class EuiContextMenu extends Component {
     };
   }
 
-  componentDidMount() {
-    this.mapIdsToRenderedItems(this.props.panels);
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.panels !== this.props.panels) {
-      this.mapIdsToRenderedItems(this.props.panels);
+      this.setState({ // eslint-disable-line react/no-did-update-set-state
+        idToRenderedItemsMap: this.mapIdsToRenderedItems(this.props.panels),
+      });
     }
   }
 
@@ -205,7 +203,7 @@ export class EuiContextMenu extends Component {
       idToRenderedItemsMap[panel.id] = this.renderItems(panel.items);
     });
 
-    this.setState({ idToRenderedItemsMap });
+    return idToRenderedItemsMap;
   };
 
   renderItems(items = []) {

@@ -499,6 +499,32 @@ describe('popover_positioning', () => {
           left: 85
         });
       });
+
+      it('respects forcePosition value', () => {
+        const anchor = document.createElement('div');
+        anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+        const popover = document.createElement('div');
+        popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+        // give the container limited space on both left and right, forcing to top
+        const container = document.createElement('div');
+        container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
+
+        expect(findPopoverPosition({
+          position: 'right',
+          forcePosition: true,
+          anchor,
+          popover,
+          container,
+          offset: 5
+        })).toEqual({
+          fit: 0,
+          position: 'right',
+          top: 85,
+          left: 155
+        });
+      });
     });
 
     describe('placement falls back to second complementary position', () => {
