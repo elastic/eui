@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fix EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
+- Fix EuiAvatar when name is composed entirely of whitespace ([#1231](https://github.com/elastic/eui/pull/1231))
 
 ## [`4.3.0`](https://github.com/elastic/eui/tree/v4.3.0)
 
