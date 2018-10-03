@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.4.1`.
+
+## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
+
 **Bug fixes**
 
 - Fixes TypeScript definitions for `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton` ([#1232](https://github.com/elastic/eui/pull/1232))
