@@ -18,6 +18,12 @@ exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
 />
 `;
 
+exports[`EuiFlexGrid props columns 1 is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--single euiFlexGrid--responsive"
+/>
+`;
+
 exports[`EuiFlexGrid props columns 2 is rendered 1`] = `
 <div
   class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves euiFlexGrid--responsive"

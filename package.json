@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "main": "lib",
   "module": "src",
   "types": "src/index.d.ts",
@@ -9,6 +9,7 @@
   "postcss": {},
   "docker_image": "node:8",
   "scripts": {
+    "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
     "start-chart-playground": "webpack-dev-server --port 8034 --inline --hot --config=src/components/series_chart_v2/playground/webpack.config.js",
     "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test'",
@@ -47,7 +48,7 @@
     "html": "^1.0.0",
     "keymirror": "^0.1.1",
     "konva": "^2.4.0",
-    "lodash": "^4.17.10",
+    "lodash": "npm:@elastic/lodash@3.10.1-kibana1",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.5",
     "numeral": "^2.0.6",

@@ -157,6 +157,7 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
+<<<<<<< HEAD
 "@types/react@*":
   version "16.4.10"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.10.tgz#fb577091034b25a81f829923e7d38258f43e3165"
@@ -167,6 +168,11 @@
 "@types/react@^16.4.12":
   version "16.4.14"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.14.tgz#47c604c8e46ed674bbdf4aabf82b34b9041c6a04"
+=======
+"@types/react@*", "@types/react@^16.0.31":
+  version "16.4.10"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.10.tgz#fb577091034b25a81f829923e7d38258f43e3165"
+>>>>>>> master
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -6428,9 +6434,15 @@ lodash@^4.16.1, lodash@^4.16.6, lodash@^4.8.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
+<<<<<<< HEAD
 lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+=======
+"lodash@npm:@elastic/lodash@3.10.1-kibana1":
+  version "3.10.1-kibana1"
+  resolved "https://registry.yarnpkg.com/@elastic/lodash/-/lodash-3.10.1-kibana1.tgz#9baa52c296ec06a52461f8516bb94172ef53a7fe"
+>>>>>>> master
 
 log-symbols@^1.0.1, log-symbols@^1.0.2:
   version "1.0.2"

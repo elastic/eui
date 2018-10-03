@@ -23,6 +23,8 @@ export {
   rgbToHex,
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
+  colorPalette,
+  palettes,
 } from './color';
 
 export {

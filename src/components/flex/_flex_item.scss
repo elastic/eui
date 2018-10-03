@@ -6,7 +6,7 @@
 .euiFlexItem {
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
-  
+
   @include internetExplorerOnly {
     min-width: 1px; /* 2 */
   }

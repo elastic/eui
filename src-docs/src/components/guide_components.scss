@@ -150,6 +150,21 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   outline: solid 2px purple;
 }
 
+.guideColorPalette__swatch {
+  
+  span {
+    height: $euiSize;
+    width: $euiSizeL;
+  }
+  
+  &:first-child span {
+    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+  }
+
+  &:last-child span {
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+  }
+}
 
 @import "../views/guidelines/index";
 @import "guide_section/index";
@@ -192,5 +207,22 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
   .guidePageContent {
     margin-left: 0;
+  }
+
+  .euiFlexGroup--responsive > .euiFlexItem.guideColorPalette__swatch {
+    margin-bottom: 0 !important;
+
+    span {
+      height: $euiSize;
+      width: $euiSizeL;
+    }
+    
+    &:first-child span {
+      border-radius: $euiBorderRadius $euiBorderRadius 0 0;
+    }
+  
+    &:last-child span {
+      border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+    }
   }
 }

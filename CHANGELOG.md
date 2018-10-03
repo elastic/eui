@@ -1,6 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.2.0`.
+**Bug fixes**
+
+- Fix EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
+
+## [`4.3.0`](https://github.com/elastic/eui/tree/v4.3.0)
+
+- Added a new `colorPalette` service for retrieving and generating color arrays for use in charts ([#1209](https://github.com/elastic/eui/pull/1209))
+- Added `1` as a valid value for the `columns` prop in `EuiFlexGrid` ([#1210](https://github.com/elastic/eui/pull/1210))
+- Make `htmlIdGenerator` only return valid HTML4 ids ([#637](https://github.com/elastic/eui/pull/637))
+- Use `cursor: pointer` to indicate clickable `EuiTable` rows ([#1213](https://github.com/elastic/eui/pull/1213))
+- Add `lockOpen` icon ([#1215](https://github.com/elastic/eui/pull/1215))
 
 ## [`4.2.0`](https://github.com/elastic/eui/tree/v4.2.0)
 
@@ -15,6 +25,7 @@ No public interface changes since `4.2.0`.
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
 - Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
+- Made `EuiBasicTable` rows keyboard-accessibile when they are clickable ([#1206](https://github.com/elastic/eui/pull/1206))
 
 **Bug fixes**
 
@@ -206,6 +217,27 @@ No public interface changes since `4.2.0`.
 **Bug fixes**
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
+
+## [`3.0.7`](https://github.com/elastic/eui/tree/v3.0.6)
+
+**Note: this release is a backport containing changes original made in `3.1.0`**
+
+- Added `EuiMutationObserver` to expose Mutation Observer API to React components ([#966](https://github.com/elastic/eui/pull/966))
+- Added `EuiWrappingPopover` which allows existing non-React elements to be popover anchors ([#966](https://github.com/elastic/eui/pull/966))
+- `EuiPopover` accepts a `container` prop to further restrict popover placement ([#966](https://github.com/elastic/eui/pull/966))
+- `EuiPortal` can inject content at arbitrary DOM locations, added `portalRef` prop ([#966](https://github.com/elastic/eui/pull/966))
+
+**Bug fixes**
+
+- `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
+
+## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.5)
+
+**Note: this release is a backport containing changes original made in `4.0.1`**
+
+**Bug fixes**
+
+- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
