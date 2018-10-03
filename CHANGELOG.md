@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Force `EuiPopover` contents to stick to its initial position when the content changes ([#1199](https://github.com/elastic/eui/pull/1199))
+
 **Bug fixes**
 
 - Fix EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
@@ -218,27 +220,6 @@
 **Bug fixes**
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
-
-## [`3.0.7`](https://github.com/elastic/eui/tree/v3.0.6)
-
-**Note: this release is a backport containing changes original made in `3.1.0`**
-
-- Added `EuiMutationObserver` to expose Mutation Observer API to React components ([#966](https://github.com/elastic/eui/pull/966))
-- Added `EuiWrappingPopover` which allows existing non-React elements to be popover anchors ([#966](https://github.com/elastic/eui/pull/966))
-- `EuiPopover` accepts a `container` prop to further restrict popover placement ([#966](https://github.com/elastic/eui/pull/966))
-- `EuiPortal` can inject content at arbitrary DOM locations, added `portalRef` prop ([#966](https://github.com/elastic/eui/pull/966))
-
-**Bug fixes**
-
-- `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
-
-## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.5)
-
-**Note: this release is a backport containing changes original made in `4.0.1`**
-
-**Bug fixes**
-
-- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
