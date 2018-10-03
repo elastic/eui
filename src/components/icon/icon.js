@@ -505,14 +505,15 @@ export const EuiIcon = ({
     optionalCustomStyles = { fill: color };
   }
 
-  const hasAppSuffix = /.+App$/.test(type);
+  // These icons are a little special and get some extra CSS flexibility
+  const isAppIcon = /.+App$/.test(type) || /ml./.test(type) || (type === 'dataVisualizer');
 
   const classes = classNames(
     'euiIcon',
     sizeToClassNameMap[size],
     optionalColorClass,
     {
-      'euiIcon--app': hasAppSuffix,
+      'euiIcon--app': isAppIcon,
     },
     className,
   );

@@ -1034,7 +1034,7 @@ exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 
 exports[`EuiIcon props type dataVisualizer is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"

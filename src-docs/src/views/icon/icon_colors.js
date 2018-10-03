@@ -19,7 +19,6 @@ const iconColors = [
   'subdued',
   'ghost',
   '#490',
-  '#F98510',
 ];
 
 export default () => (
@@ -54,7 +53,22 @@ export default () => (
           size="xl"
         />
         <EuiText size="s">
-          <p><strong>Special:</strong> the text and primary color can also be applied to the App icons</p>
+          <p><strong>Special:</strong> the text color makes <strong>App</strong> icons fully that color</p>
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem
+      className="guideDemo__icon"
+      style={{ width: '340px' }}
+    >
+      <EuiPanel>
+        <EuiIcon
+          type="gisApp"
+          color="primary"
+          size="xl"
+        />
+        <EuiText size="s">
+          <p><strong>Special:</strong> the primary color makes <strong>App</strong> icons fully that color</p>
         </EuiText>
       </EuiPanel>
     </EuiFlexItem>

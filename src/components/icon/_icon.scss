@@ -21,12 +21,22 @@
   .euiIcon__fillSecondary {
     fill: $euiColorSecondary;
   }
+
+  // Primary icons are mono of that color
+  &.euiIcon--primary {
+    fill: $euiColorPrimary;
+  
+    // Provides a way to make app icons close to our primary
+    .euiIcon__fillSecondary {
+      fill: $euiColorPrimary;
+    }
+  }
 }
 
 .euiIcon--text {
   fill: $euiTextColor;
 
-  // Provides a way to make app icons mono 
+  // Text icons are fully mono
   .euiIcon__fillSecondary {
     fill: $euiTextColor;
   }
@@ -34,11 +44,6 @@
 
 .euiIcon--primary {
   fill: $euiColorPrimary;
-
-  // Provides a way to make app icons close to our primary
-  .euiIcon__fillSecondary {
-    fill: $euiTextColor;
-  }
 }
 
 .euiIcon--subdued {
