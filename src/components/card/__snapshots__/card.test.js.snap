@@ -39,15 +39,15 @@ exports[`EuiCard icon 1`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
+        class="euiIcon__fillSecondary"
         d="M0 3h24v2H0z"
-        fill="#00BFB2"
       />
       <path
         d="M4 11h24v2H4zM4 19h15v2H4z"
       />
       <path
+        class="euiIcon__fillSecondary"
         d="M19 27h13v2H19z"
-        fill="#00BFB2"
       />
     </svg>
   </span>
