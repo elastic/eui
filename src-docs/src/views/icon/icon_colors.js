@@ -70,7 +70,7 @@ export default () => (
             size="xl"
           />
           <EuiText size="s">
-            <p>Default coloring of app icons is two-toned</p>
+            <p>Default coloring of App icons is two-toned</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
