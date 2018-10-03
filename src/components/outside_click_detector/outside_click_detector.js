@@ -1,8 +1,4 @@
-import {
-  Children,
-  cloneElement,
-  Component,
-} from 'react';
+import { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { htmlIdGenerator } from '../../services/accessibility';
 
@@ -11,7 +7,7 @@ export class EuiOutsideClickDetector extends Component {
     children: PropTypes.node.isRequired,
     onOutsideClick: PropTypes.func.isRequired,
     isDisabled: PropTypes.bool,
-  }
+  };
 
   constructor(...args) {
     super(...args);
@@ -36,10 +32,7 @@ export class EuiOutsideClickDetector extends Component {
   }
 
   onClickOutside = event => {
-    const {
-      isDisabled,
-      onOutsideClick,
-    } = this.props;
+    const { isDisabled, onOutsideClick } = this.props;
 
     if (isDisabled) {
       return;
@@ -50,7 +43,7 @@ export class EuiOutsideClickDetector extends Component {
     }
 
     onOutsideClick();
-  }
+  };
 
   componentDidMount() {
     document.addEventListener('click', this.onClickOutside);
@@ -69,12 +62,13 @@ export class EuiOutsideClickDetector extends Component {
       event.nativeEvent.euiGeneratedBy = [this.id];
     }
     if (this.props.onClick) this.props.onClick(event);
-  }
+  };
 
   render() {
-    const props = ({ ...this.props.children.props, ...{
+    const props = {
+      ...this.props.children.props,
       onClick: this.onChildClick,
-    } });
+    };
 
     const child = Children.only(this.props.children);
     return cloneElement(child, props);

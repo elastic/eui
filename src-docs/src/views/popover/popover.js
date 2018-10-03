@@ -1,11 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiPopover,
-  EuiButton,
-} from '../../../../src/components';
+import { EuiPopover, EuiButton } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -30,24 +25,24 @@ export default class extends Component {
 
   render() {
     const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}
-      >
+      <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick.bind(this)}>
         Show popover
       </EuiButton>
     );
 
     return (
-      <EuiPopover
-        id="popover"
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
-      >
-        <div style={{ width: '300px' }}>Popover content that&rsquo;s wider than the default width</div>
-      </EuiPopover>
+      <div>
+        <EuiPopover
+          id="popover"
+          button={button}
+          isOpen={this.state.isPopoverOpen}
+          closePopover={this.closePopover.bind(this)}
+        >
+          <div style={{ width: '300px' }}>
+            Popover content that&rsquo;s wider than the default width
+          </div>
+        </EuiPopover>
+      </div>
     );
   }
 }

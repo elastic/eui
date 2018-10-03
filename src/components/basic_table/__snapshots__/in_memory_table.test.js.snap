@@ -292,17 +292,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       panelPaddingSize="none"
                       withTitle={true}
                     >
-                      <EuiOutsideClickDetector
-                        onOutsideClick={[Function]}
+                      <div
+                        className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
+                        id="customizablePagination"
+                        onKeyDown={[Function]}
                       >
                         <div
-                          className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
-                          id="customizablePagination"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
+                          className="euiPopover__anchor"
                         >
                           <div
-                            className="euiPopover__anchor"
+                            onClick={[Function]}
                           >
                             <EuiButtonEmpty
                               color="text"
@@ -379,7 +378,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             </EuiButtonEmpty>
                           </div>
                         </div>
-                      </EuiOutsideClickDetector>
+                      </div>
                     </EuiPopover>
                   </div>
                 </EuiFlexItem>

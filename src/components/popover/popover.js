@@ -1,30 +1,21 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 import tabbable from 'tabbable';
-
 import { cascadingMenuKeyCodes } from '../../services';
-
 import { EuiOutsideClickDetector } from '../outside_click_detector';
-
 import { EuiScreenReaderOnly } from '../accessibility';
-
 import { EuiPanel, SIZES } from '../panel';
-
 import { EuiPortal } from '../portal';
-
 import { EuiMutationObserver } from '../mutation_observer';
-
 import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
 
 const anchorPositionToPopoverPositionMap = {
-  'up': 'top',
-  'right': 'right',
-  'down': 'bottom',
-  'left': 'left'
+  up: 'top',
+  right: 'right',
+  down: 'bottom',
+  left: 'left',
 };
 export function getPopoverPositionFromAnchorPosition(anchorPosition) {
   // maps the anchor position to the matching popover position
@@ -53,18 +44,18 @@ export function getPopoverAlignFromAnchorPosition(anchorPosition) {
 }
 
 const anchorPositionToClassNameMap = {
-  'upCenter': 'euiPopover--anchorUpCenter',
-  'upLeft': 'euiPopover--anchorUpLeft',
-  'upRight': 'euiPopover--anchorUpRight',
-  'downCenter': 'euiPopover--anchorDownCenter',
-  'downLeft': 'euiPopover--anchorDownLeft',
-  'downRight': 'euiPopover--anchorDownRight',
-  'leftCenter': 'euiPopover--anchorLeftCenter',
-  'leftUp': 'euiPopover--anchorLeftUp',
-  'leftDown': 'euiPopover--anchorLeftDown',
-  'rightCenter': 'euiPopover--anchorRightCenter',
-  'rightUp': 'euiPopover--anchorRightUp',
-  'rightDown': 'euiPopover--anchorRightDown',
+  upCenter: 'euiPopover--anchorUpCenter',
+  upLeft: 'euiPopover--anchorUpLeft',
+  upRight: 'euiPopover--anchorUpRight',
+  downCenter: 'euiPopover--anchorDownCenter',
+  downLeft: 'euiPopover--anchorDownLeft',
+  downRight: 'euiPopover--anchorDownRight',
+  leftCenter: 'euiPopover--anchorLeftCenter',
+  leftUp: 'euiPopover--anchorLeftUp',
+  leftDown: 'euiPopover--anchorLeftDown',
+  rightCenter: 'euiPopover--anchorRightCenter',
+  rightUp: 'euiPopover--anchorRightUp',
+  rightDown: 'euiPopover--anchorRightDown',
 };
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
@@ -88,7 +79,7 @@ export class EuiPopover extends Component {
     if (prevState.prevProps.isOpen && !nextProps.isOpen) {
       return {
         prevProps: {
-          isOpen: nextProps.isOpen
+          isOpen: nextProps.isOpen,
         },
         isClosing: true,
         isOpening: false,
@@ -98,8 +89,8 @@ export class EuiPopover extends Component {
     if (prevState.prevProps.isOpen !== nextProps.isOpen) {
       return {
         prevProps: {
-          isOpen: nextProps.isOpen
-        }
+          isOpen: nextProps.isOpen,
+        },
       };
     }
 
@@ -114,7 +105,7 @@ export class EuiPopover extends Component {
 
     this.state = {
       prevProps: {
-        isOpen: props.isOpen
+        isOpen: props.isOpen,
       },
       suppressingPopover: this.props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
@@ -223,28 +214,25 @@ export class EuiPopover extends Component {
     clearTimeout(this.closingTransitionTimeout);
   }
 
-  onMutation = (records) => {
-    const waitDuration = records.reduce(
-      (waitDuration, record) => {
-        // only check for CSS transition values for ELEMENT nodes
-        if (record.target.nodeType === document.ELEMENT_NODE) {
-          const computedStyle = window.getComputedStyle(record.target);
+  onMutation = records => {
+    const waitDuration = records.reduce((waitDuration, record) => {
+      // only check for CSS transition values for ELEMENT nodes
+      if (record.target.nodeType === document.ELEMENT_NODE) {
+        const computedStyle = window.getComputedStyle(record.target);
 
-          const computedDuration = computedStyle.getPropertyValue('transition-duration');
-          let durationMatch = computedDuration.match(GROUP_NUMERIC);
-          durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
+        const computedDuration = computedStyle.getPropertyValue('transition-duration');
+        let durationMatch = computedDuration.match(GROUP_NUMERIC);
+        durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
 
-          const computedDelay = computedStyle.getPropertyValue('transition-delay');
-          let delayMatch = computedDelay.match(GROUP_NUMERIC);
-          delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
+        const computedDelay = computedStyle.getPropertyValue('transition-delay');
+        let delayMatch = computedDelay.match(GROUP_NUMERIC);
+        delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
 
-          waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
-        }
+        waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
+      }
 
-        return waitDuration;
-      },
-      0
-    );
+      return waitDuration;
+    }, 0);
     this.positionPopover();
 
     if (waitDuration > 0) {
@@ -261,7 +249,7 @@ export class EuiPopover extends Component {
 
       requestAnimationFrame(onFrame);
     }
-  }
+  };
 
   positionPopover = () => {
     if (this.button == null || this.panel == null) return;
@@ -276,7 +264,7 @@ export class EuiPopover extends Component {
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
-      }
+      },
     });
 
     // the popover's z-index must inherit from the button
@@ -295,7 +283,7 @@ export class EuiPopover extends Component {
     const arrowPosition = position;
 
     this.setState({ popoverStyles, arrowStyles, arrowPosition });
-  }
+  };
 
   panelRef = node => {
     this.panel = node;
@@ -315,7 +303,11 @@ export class EuiPopover extends Component {
     }
   };
 
-  buttonRef = node => this.button = node;
+  stopPropagation = e => {
+    e.nativeEvent.stopImmediatePropagation();
+  };
+
+  buttonRef = node => (this.button = node);
 
   render() {
     const {
@@ -344,7 +336,7 @@ export class EuiPopover extends Component {
         'euiPopover-isOpen': this.state.isOpening,
         'euiPopover--withTitle': withTitle,
       },
-      className,
+      className
     );
 
     const panelClasses = classNames(
@@ -356,7 +348,7 @@ export class EuiPopover extends Component {
       panelClassName
     );
 
-    let panel;
+    let panel = <div />;
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex;
@@ -386,63 +378,64 @@ export class EuiPopover extends Component {
         `euiPopover__panelArrow--${this.state.arrowPosition}`
       );
 
+      // wrapping div required because outside click detector component
+      // can't use a Portal as its direct child, because it hijacks onClick
       panel = (
-        <EuiPortal>
-          <FocusTrap
-            active={ownFocus}
-            focusTrapOptions={{
-              clickOutsideDeactivates: true,
-              initialFocus,
-            }}
-          >
-            {focusTrapScreenReaderText}
-            <EuiPanel
-              panelRef={this.panelRef}
-              className={panelClasses}
-              paddingSize={panelPaddingSize}
-              tabIndex={tabIndex}
-              aria-live={ariaLive}
-              style={this.state.popoverStyles}
+        <div>
+          <EuiPortal>
+            <FocusTrap
+              active={ownFocus}
+              focusTrapOptions={{
+                clickOutsideDeactivates: true,
+                initialFocus,
+              }}
             >
-              <div className={arrowClassNames} style={this.state.arrowStyles}/>
-              {
-                children
-                  ? (
-                    <EuiMutationObserver
-                      observerOptions={{
-                        attributes: true, // element attribute changes
-                        childList: true, // added/removed elements
-                        characterData: true, // text changes
-                        subtree: true // watch all child elements
-                      }}
-                      onMutation={this.onMutation}
-                    >
-                      {children}
-                    </EuiMutationObserver>
-                  )
-                  : null
-
-              }
-            </EuiPanel>
-          </FocusTrap>
-        </EuiPortal>
+              {focusTrapScreenReaderText}
+              <EuiPanel
+                panelRef={this.panelRef}
+                className={panelClasses}
+                paddingSize={panelPaddingSize}
+                tabIndex={tabIndex}
+                aria-live={ariaLive}
+                style={this.state.popoverStyles}
+              >
+                <div className={arrowClassNames} style={this.state.arrowStyles} />
+                {children ? (
+                  <EuiMutationObserver
+                    observerOptions={{
+                      attributes: true, // element attribute changes
+                      childList: true, // added/removed elements
+                      characterData: true, // text changes
+                      subtree: true, // watch all child elements
+                    }}
+                    onMutation={this.onMutation}
+                  >
+                    {children}
+                  </EuiMutationObserver>
+                ) : null}
+              </EuiPanel>
+            </FocusTrap>
+          </EuiPortal>
+        </div>
       );
     }
 
+    // 1. The button node is wrapped in a div that stops further propagation of the click event,
+    //    so that the primary button click isn't also interpreted as an outside click.
+    //
+    // 2. Every time the popover opens, the outside click detector is re-mounted, which
+    //    recreates its listeners. When the popover closes, the listeners are removed. This
+    //    avoids the problem of outside clicks opening and then immediately closing the popover,
+    //    etc. It also prevents unnecessary listeners when popovers aren't open.
     return (
-      <EuiOutsideClickDetector onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}
-        >
-          <div className="euiPopover__anchor" ref={this.buttonRef}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
-          {panel}
+      <div className={classes} onKeyDown={this.onKeyDown} ref={popoverRef} {...rest}>
+        <div className="euiPopover__anchor" ref={this.buttonRef}>
+          <div onClick={this.stopPropagation}>{button instanceof HTMLElement ? null : button}</div>
         </div>
-      </EuiOutsideClickDetector>
+        {isOpen || this.state.isClosing ? (
+          <EuiOutsideClickDetector onOutsideClick={closePopover}>{panel}</EuiOutsideClickDetector>
+        ) : null}
+      </div>
     );
   }
 }
@@ -459,10 +452,7 @@ EuiPopover.propTypes = {
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,
   hasArrow: PropTypes.bool,
-  container: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.instanceOf(HTMLElement)
-  ]),
+  container: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(HTMLElement)]),
   /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
   /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
