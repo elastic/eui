@@ -12,6 +12,7 @@ import arrowLeft from './assets/arrow_left.svg';
 import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
+import auditBeatApp from './assets/app_auditbeat.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -19,6 +20,7 @@ import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
+import canvasApp from './assets/app_canvas.svg';
 import check from './assets/check.svg';
 import checkInCircleFilled from './assets/checkInCircleFilled.svg';
 import clock from './assets/clock.svg';
@@ -34,9 +36,10 @@ import createMultiMetricJob from './assets/ml_create_multi_metric_job.svg';
 import createPopulationJob from './assets/ml_create_population_job.svg';
 import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
+import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
 import dashboardApp from './assets/app_dashboard.svg';
-import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
+import database from './assets/database.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
@@ -65,14 +68,17 @@ import eyeClosed from './assets/eye_closed.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
+import filebeatApp from './assets/app_filebeat.svg';
 import filter from './assets/filter.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
+import gisApp from './assets/app_gis.svg';
 import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
+import heartBeatApp from './assets/app_heartbeat.svg';
 import heatmap from './assets/heatmap.svg';
 import help from './assets/help.svg';
 import iInCircle from './assets/iInCircle.svg';
@@ -84,9 +90,10 @@ import indexManagementApp from './assets/app_index_management.svg';
 import indexMapping from './assets/index_mapping.svg';
 import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
+import indexRollupApp from './assets/app_index_rollup.svg';
 import indexSettings from './assets/index_settings.svg';
-import inputOutput from './assets/inputOutput.svg';
 import infraApp from './assets/app_infra.svg';
+import inputOutput from './assets/inputOutput.svg';
 import inspect from './assets/inspect.svg';
 import invert from './assets/invert.svg';
 import kqlField from './assets/kql_field.svg';
@@ -100,10 +107,10 @@ import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
-import logoAerospike from './assets/logo_aerospike.svg';
-import logoApache from './assets/logo_apache.svg';
 import logoAWS from './assets/logo_aws.svg';
 import logoAWSMono from './assets/logo_aws_mono.svg';
+import logoAerospike from './assets/logo_aerospike.svg';
+import logoApache from './assets/logo_apache.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
@@ -112,8 +119,8 @@ import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
-import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
+import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGCP from './assets/logo_gcp.svg';
 import logoGCPMono from './assets/logo_gcp_mono.svg';
@@ -150,12 +157,15 @@ import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
 import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
+import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import monitoringApp from './assets/app_monitoring.svg';
 import node from './assets/node.svg';
+import notebookApp from './assets/app_notebook.svg';
 import number from './assets/number.svg';
 import offline from './assets/offline.svg';
 import online from './assets/online.svg';
+import packetbeatApp from './assets/app_packetbeat.svg';
 import pause from './assets/pause.svg';
 import pencil from './assets/pencil.svg';
 import pin from './assets/pin.svg';
@@ -171,6 +181,7 @@ import savedObjectsApp from './assets/app_saved_objects.svg';
 import scale from './assets/scale.svg';
 import search from './assets/search.svg';
 import searchProfilerApp from './assets/app_search_profiler.svg';
+import securityAnalyticsApp from './assets/app_security_analytics.svg';
 import securityApp from './assets/app_security.svg';
 import shard from './assets/shard.svg';
 import share from './assets/share.svg';
@@ -179,6 +190,7 @@ import sortLeft from './assets/sortLeft.svg';
 import sortRight from './assets/sortRight.svg';
 import sortUp from './assets/sort_up.svg';
 import spacesApp from './assets/app_spaces.svg';
+import sqlApp from './assets/app_sql.svg';
 import starEmpty from './assets/star_empty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
@@ -212,12 +224,11 @@ import visTable from './assets/vis_table.svg';
 import visTagCloud from './assets/vis_tag_cloud.svg';
 import visText from './assets/vis_text.svg';
 import visTimelion from './assets/vis_timelion.svg';
-import visualizeApp from './assets/app_visualize.svg';
 import visVega from './assets/vis_vega.svg';
 import visVisualBuilder from './assets/vis_visual_builder.svg';
+import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
-
 
 const typeToIconMap = {
   addDataApp,
@@ -435,6 +446,18 @@ const typeToIconMap = {
   visVisualBuilder,
   watchesApp,
   wrench,
+  auditBeatApp,
+  canvasApp,
+  crossClusterReplicationApp,
+  filebeatApp,
+  gisApp,
+  heartBeatApp,
+  indexRollupApp,
+  metricbeatApp,
+  notebookApp,
+  packetbeatApp,
+  securityAnalyticsApp,
+  sqlApp,
 };
 
 export const TYPES = Object.keys(typeToIconMap);
@@ -482,10 +505,16 @@ export const EuiIcon = ({
     optionalCustomStyles = { fill: color };
   }
 
+  // These icons are a little special and get some extra CSS flexibility
+  const isAppIcon = /.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer');
+
   const classes = classNames(
     'euiIcon',
     sizeToClassNameMap[size],
     optionalColorClass,
+    {
+      'euiIcon--app': isAppIcon,
+    },
     className,
   );
 
