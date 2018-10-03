@@ -1,6 +1,6 @@
 /// <reference path="../common.d.ts" />
 
-import { HTMLAttributes, MouseEventHandler, ReactNode, SFC } from 'react';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, SFC } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -16,10 +16,10 @@ declare module '@elastic/eui' {
   }
 
   export const EuiKeyPadMenuItemButton: SFC<
-    CommonProps & HTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemCommonProps
+    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemCommonProps
   >;
 
   export const EuiKeyPadMenuItem: SFC<
-    CommonProps & HTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemCommonProps
+    CommonProps & AnchorHTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemCommonProps
   >;
 }
