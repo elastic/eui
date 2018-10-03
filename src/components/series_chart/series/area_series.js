@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { AreaSeries, AbstractSeries, LineSeries } from 'react-vis';
 import { CURVE } from '../utils/chart_utils';
 
-import { VisualizationColorType } from '../utils/visualization_color_type';
-
 // TODO: needs to send a PR to react-vis for incorporate these changes into AreaSeries class for vertical
 // area chart visualizations.
 // class ExtendedAreaSeries extends AreaSeries {
@@ -90,8 +88,8 @@ EuiAreaSeries.propTypes = {
       y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   onSeriesClick: PropTypes.func,
   lineSize: PropTypes.number,

@@ -36,6 +36,9 @@ import WritingGuidelines
 
 // Services
 
+import { ColorPaletteExample }
+  from './views/color_palette/color_palette_example';
+
 import { IsColorDarkExample }
   from './views/is_color_dark/is_color_dark_example';
 
@@ -395,17 +398,18 @@ const navigation = [{
   name: 'Utilities',
   items: [
     AccessibilityExample,
+    ColorPaletteExample,
     CopyExample,
-    ResponsiveExample,
+    UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
     IsColorDarkExample,
+    MutationObserverExample,
     OutsideClickDetectorExample,
     PortalExample,
+    ResponsiveExample,
     ToggleExample,
-    UtilityClassesExample,
-    MutationObserverExample,
     WindowEventExample,
   ].map(example => createExample(example)),
 }, {

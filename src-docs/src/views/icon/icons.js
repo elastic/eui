@@ -87,6 +87,7 @@ const iconTypes = [
   'list',
   'listAdd',
   'lock',
+  'lockOpen',
   'logstashFilter',
   'logstashIf',
   'logstashInput',

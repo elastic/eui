@@ -105,6 +105,7 @@ declare module '@elastic/eui' {
     | 'list'
     | 'listAdd'
     | 'lock'
+    | 'lockOpen'
     | 'loggingApp'
     | 'logoAerospike'
     | 'logoApache'
