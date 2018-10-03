@@ -15,19 +15,11 @@ declare module '@elastic/eui' {
     betaBadgeTooltipContent?: ReactNode;
   }
 
-  export interface EuiKeyPadMenuItemButtonProps extends EuiKeyPadMenuItemCommonProps {
-    onClick: (ev: MouseEventHandler<HTMLButtonElement>) => void;
-  }
-
-  export interface EuiKeyPadMenuItemProps extends EuiKeyPadMenuItemCommonProps {
-    href: string;
-  }
-
   export const EuiKeyPadMenuItemButton: SFC<
-    CommonProps & HTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemButtonProps
+    CommonProps & HTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemCommonProps
   >;
 
   export const EuiKeyPadMenuItem: SFC<
-    CommonProps & HTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemProps
+    CommonProps & HTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemCommonProps
   >;
 }
