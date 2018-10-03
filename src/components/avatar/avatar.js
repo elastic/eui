@@ -56,7 +56,7 @@ export const EuiAvatar = ({
     if (initials) {
       calculatedInitials = initials.substring(0, calculatedInitialsLength);
     } else {
-      if (name.split(' ').length > 1) {
+      if (name.trim() && name.split(' ').length > 1) {
         // B. If there are any spaces in the name, set to first letter of each word
         calculatedInitials = name.match(/\b(\w)/g).join('').substring(0, calculatedInitialsLength);
       } else {
