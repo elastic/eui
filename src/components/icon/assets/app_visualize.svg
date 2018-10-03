@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <g fill="none">
+  <g>
     <path class="euiIcon__fillSecondary" d="M32,32 L4,32 C1.790861,32 2.705415e-16,30.209139 0,28 L0,0 L2,0 L2,28 C2,29.1045695 2.8954305,30 4,30 L32,30 L32,32 Z"/>
     <rect width="2" height="7" x="6" y="20"/>
     <rect width="2" height="15" x="16" y="12"/>
