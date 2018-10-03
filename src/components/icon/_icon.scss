@@ -13,6 +13,16 @@
   }
 }
 
+// App icons are two-toned so get an extra class. This provides the base color.
+.euiIcon--app {
+  fill: $euiTextColor;
+
+  // This provides the default secondary color
+  .euiIcon__fillSecondary {
+    fill: $euiColorSecondary;
+  }
+}
+
 .euiIcon--text {
   fill: $euiTextColor;
 
@@ -22,21 +32,19 @@
   }
 }
 
-.euiIcon--app {
-  fill: $euiTextColor;
-}
+.euiIcon--primary {
+  fill: $euiColorPrimary;
 
-.euiIcon__fillSecondary {
-  fill: $euiColorSecondary;
+  // Provides a way to make app icons close to our primary
+  .euiIcon__fillSecondary {
+    fill: $euiTextColor;
+  }
 }
 
 .euiIcon--subdued {
   fill: $euiColorMediumShade;
 }
 
-.euiIcon--primary {
-  fill: $euiColorPrimary;
-}
 
 .euiIcon--secondary {
   fill: $euiColorSecondary;

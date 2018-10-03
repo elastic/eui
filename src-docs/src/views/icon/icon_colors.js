@@ -54,7 +54,7 @@ export default () => (
           size="xl"
         />
         <EuiText size="s">
-          <p><strong>Special:</strong> the text color can also be applied to the App icons</p>
+          <p><strong>Special:</strong> the text and primary color can also be applied to the App icons</p>
         </EuiText>
       </EuiPanel>
     </EuiFlexItem>
