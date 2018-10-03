@@ -506,7 +506,7 @@ export const EuiIcon = ({
   }
 
   // These icons are a little special and get some extra CSS flexibility
-  const isAppIcon = /.+App$/.test(type) || /ml./.test(type) || (type === 'dataVisualizer');
+  const isAppIcon = /.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer');
 
   const classes = classNames(
     'euiIcon',

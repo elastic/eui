@@ -63,7 +63,7 @@ export default () => (
     >
       <EuiPanel>
         <EuiIcon
-          type="gisApp"
+          type="createAdvancedJob"
           color="primary"
           size="xl"
         />

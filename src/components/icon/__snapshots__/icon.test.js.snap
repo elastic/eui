@@ -890,7 +890,7 @@ exports[`EuiIcon props type copyClipboard is rendered 1`] = `
 
 exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -909,7 +909,7 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 
 exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -928,7 +928,7 @@ exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 
 exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -947,7 +947,7 @@ exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
 
 exports[`EuiIcon props type createSingleMetricJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
