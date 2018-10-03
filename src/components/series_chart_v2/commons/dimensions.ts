@@ -1,7 +1,7 @@
 import { AxisTicksDimensions } from './axes/axis_utils';
 import { AxisId } from './ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from './series/specs';
-import { Theme } from './themes/theme';
+import { ChartConfig } from './themes/theme';
 
 export interface Dimensions {
   top: number;
@@ -24,7 +24,7 @@ export interface Margins {
  */
 export function computeChartDimensions(
   parentDimensions: Dimensions,
-  chartTheme: Theme,
+  chartConfig: ChartConfig,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
   axisSpecs: Map<AxisId, AxisSpec>,
 ): Dimensions {
@@ -32,7 +32,7 @@ export function computeChartDimensions(
   let vRightAxisSpecWidth = 0;
   let hTopAxisSpecHeight = 0;
   let hBottomAxisSpecHeight = 0;
-  const { chartMargins } = chartTheme;
+  const { margins } = chartConfig;
 
   axisDimensions.forEach(({ maxTickWidth = 0, maxTickHeight = 0 }, id) => {
     const axisSpec = axisSpecs.get(id);
@@ -42,38 +42,38 @@ export function computeChartDimensions(
     const { orientation, position, tickSize, tickPadding } = axisSpec;
     if (orientation === AxisOrientation.Horizontal) {
       if (position === AxisPosition.Top) {
-        hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + chartMargins.top;
+        hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + margins.top;
       } else if (position === AxisPosition.Bottom) {
-        hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + chartMargins.bottom;
+        hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + margins.bottom;
       }
     } else {
       if (position === AxisPosition.Left) {
-        vLeftAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.left;
+        vLeftAxisSpecWidth += maxTickWidth + tickSize + tickPadding + margins.left;
       } else if (position === AxisPosition.Right) {
-        vRightAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.right;
+        vRightAxisSpecWidth += maxTickWidth + tickSize + tickPadding + margins.right;
       }
     }
   });
-  // const hMargins = chartMargins.left + chartMargins.right;
+  // const hMargins = margins.left + margins.right;
   const chartWidth = parentDimensions.width - vLeftAxisSpecWidth - vRightAxisSpecWidth;
   const chartHeight = parentDimensions.height - hTopAxisSpecHeight - hBottomAxisSpecHeight;
   let vMargin = 0;
   if (hTopAxisSpecHeight === 0) {
-    vMargin += chartMargins.top;
+    vMargin += margins.top;
   }
   if (hBottomAxisSpecHeight === 0) {
-    vMargin += chartMargins.bottom;
+    vMargin += margins.bottom;
   }
   let hMargin = 0;
   if (vLeftAxisSpecWidth === 0) {
-    hMargin += chartMargins.left;
+    hMargin += margins.left;
   }
   if (vRightAxisSpecWidth === 0) {
-    hMargin += chartMargins.right;
+    hMargin += margins.right;
   }
   return {
-    top: hTopAxisSpecHeight === 0 ? chartMargins.top : hTopAxisSpecHeight,
-    left: vLeftAxisSpecWidth === 0 ? chartMargins.left : vLeftAxisSpecWidth,
+    top: hTopAxisSpecHeight === 0 ? margins.top : hTopAxisSpecHeight,
+    left: vLeftAxisSpecWidth === 0 ? margins.left : vLeftAxisSpecWidth,
     width: chartWidth - hMargin,
     height: chartHeight - vMargin,
   };

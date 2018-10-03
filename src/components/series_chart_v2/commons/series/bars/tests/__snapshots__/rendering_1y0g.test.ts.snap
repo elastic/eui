@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bar rendering 1Y0G should compute the domain 1`] = `
+Object {
+  "colorDomain": Object {
+    "accessors": Array [],
+    "domain": Array [
+      "",
+    ],
+    "scaleType": "ordinal",
+    "yAccessors": undefined,
+  },
+  "xDomains": Array [
+    Object {
+      "accessor": "x",
+      "domain": Array [
+        0,
+        1,
+        2,
+        3,
+      ],
+      "level": 0,
+      "scaleType": "ordinal",
+    },
+  ],
+  "yDomain": Object {
+    "accessor": "y",
+    "domain": Array [
+      0,
+      10,
+    ],
+    "isStacked": false,
+    "level": 0,
+    "scaleType": "linear",
+  },
+}
+`;
+
+exports[`Bar rendering 1Y0G should render the bar series 1`] = `
+Array [
+  Object {
+    "accessor": "x",
+    "data": Object {
+      "x": 0,
+      "y": 1,
+    },
+    "fill": "green",
+    "height": 10,
+    "level": 0,
+    "levelValue": 1,
+    "width": 25,
+    "x": 0,
+    "y": 90,
+  },
+  Object {
+    "accessor": "x",
+    "data": Object {
+      "x": 1,
+      "y": 2,
+    },
+    "fill": "green",
+    "height": 20,
+    "level": 0,
+    "levelValue": 2,
+    "width": 25,
+    "x": 25,
+    "y": 80,
+  },
+  Object {
+    "accessor": "x",
+    "data": Object {
+      "x": 2,
+      "y": 10,
+    },
+    "fill": "green",
+    "height": 100,
+    "level": 0,
+    "levelValue": 10,
+    "width": 25,
+    "x": 50,
+    "y": 0,
+  },
+  Object {
+    "accessor": "x",
+    "data": Object {
+      "x": 3,
+      "y": 6,
+    },
+    "fill": "green",
+    "height": 60,
+    "level": 0,
+    "levelValue": 6,
+    "width": 25,
+    "x": 75,
+    "y": 40,
+  },
+]
+`;

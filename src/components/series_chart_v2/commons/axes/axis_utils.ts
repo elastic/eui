@@ -4,7 +4,7 @@ import { createContinuousScale, createOrdinalScale, ScaleType } from '../data_op
 import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
 import { AxisOrientation, AxisPosition, AxisSpec, Rotation } from '../series/specs';
-import { Theme } from '../themes/theme';
+import { ChartConfig, ScalesConfig } from '../themes/theme';
 import { BBoxCalculator } from './bbox_calculator';
 
 export interface AxisTick {
@@ -34,7 +34,7 @@ export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
   specDomains: SpecDomains,
   bboxCalculator: BBoxCalculator,
-  chartTheme: Theme,
+  scalesConfig: ScalesConfig,
   chartRotation: Rotation,
 ): AxisTicksDimensions {
   let tickValues: string[] | number[];
@@ -45,7 +45,7 @@ export function computeAxisTicksDimensions(
   const verticalDomain = chartRotation === 0 ? specDomains.yDomain : specDomains.xDomains[level];
   const horizontalDomain = chartRotation === 0 ? specDomains.xDomains[level] : specDomains.yDomain;
   const axisDomain = axisSpec.orientation === AxisOrientation.Vertical ? verticalDomain : horizontalDomain;
-  const verticalTicks = computeTicks(axisDomain, axisSpec, chartTheme);
+  const verticalTicks = computeTicks(axisDomain, axisSpec, scalesConfig);
   tickValues = verticalTicks.tickValues;
   tickLabels = verticalTicks.tickLabels;
   axisScaleType = verticalTicks.axisScaleType!;
@@ -79,7 +79,7 @@ export function computeAxisTicksDimensions(
 function computeTicks(
   specDomain: SpecDomain,
   axisSpec: AxisSpec,
-  chartTheme: Theme,
+  scalesConfig: ScalesConfig,
 ): {
   axisScaleType: ScaleType,
   axisScaleDomain: Domain,
@@ -92,7 +92,7 @@ function computeTicks(
   let tickLabels: string[];
 
   if (scaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], 1, 0, chartTheme.scales.ordinal.padding);
+    const scale = createOrdinalScale(domain as string[], 1, 0, scalesConfig.ordinal.padding);
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   } else {
@@ -112,7 +112,7 @@ export function getAvailableTicks(
   chartDimensions: Dimensions,
   axisSpec: AxisSpec,
   axisDimension: AxisTicksDimensions,
-  chartTheme: Theme,
+  scalesConfig: ScalesConfig,
 ) {
   const { width, height } = chartDimensions;
   const { axisScaleType, axisScaleDomain } = axisDimension;
@@ -124,7 +124,7 @@ export function getAvailableTicks(
       axisScaleDomain as string[],
       minRange,
       maxRange,
-      chartTheme.scales.ordinal.padding,
+      scalesConfig.ordinal.padding,
     );
     const ticks = scale.ticks();
     const bandwidth = scale.bandwidth();
@@ -253,11 +253,11 @@ export function getAxisPosition(
 
 export function getAxisTicksPositions(
   chartDimensions: Dimensions,
-  chartTheme: Theme,
+  chartConfig: ChartConfig,
+  scalesConfig: ScalesConfig,
   axisSpecs: Map<AxisId, AxisSpec>,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
 ) {
-  const { chartMargins } = chartTheme;
   const axisPositions: Map<AxisId, Dimensions> = new Map();
   const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
   const axisTicks: Map<AxisId, AxisTick[]> = new Map();
@@ -270,11 +270,11 @@ export function getAxisTicksPositions(
     if (!axisSpec) {
       return;
     }
-    const allTicks = getAvailableTicks(chartDimensions, axisSpec, axisDim, chartTheme);
+    const allTicks = getAvailableTicks(chartDimensions, axisSpec, axisDim, scalesConfig);
     const visibleTicks = getVisibleTicks(allTicks, axisSpec, axisDim, chartDimensions);
     const axisPosition = getAxisPosition(
       chartDimensions,
-      chartMargins,
+      chartConfig.margins,
       axisSpec,
       axisDim,
       cumTopSum,

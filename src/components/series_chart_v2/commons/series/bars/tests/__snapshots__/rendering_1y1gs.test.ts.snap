@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bar rendering 1Y1GS should compute the domain 1`] = `
+Object {
+  "colorDomain": Object {
+    "accessors": Array [
+      "g",
+    ],
+    "domain": Array [
+      "a",
+      "b",
+    ],
+    "scaleType": "ordinal",
+    "yAccessors": undefined,
+  },
+  "xDomains": Array [
+    Object {
+      "accessor": "x",
+      "domain": Array [
+        0,
+        1,
+        2,
+        3,
+      ],
+      "level": 0,
+      "scaleType": "ordinal",
+    },
+  ],
+  "yDomain": Object {
+    "accessor": "y",
+    "domain": Array [
+      0,
+      20,
+    ],
+    "isStacked": true,
+    "level": 0,
+    "scaleType": "linear",
+  },
+}
+`;
+
+exports[`Bar rendering 1Y1GS should render the bar series 1`] = `
+Array [
+  Object {
+    "accessor": "x",
+    "elements": Array [
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "a",
+          "x": 0,
+          "y": 1,
+        },
+        "fill": "color1",
+        "height": 10,
+        "level": 1,
+        "levelValue": 1,
+        "width": 40,
+        "x": 0,
+        "y": 190,
+      },
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "b",
+          "x": 0,
+          "y": 1,
+        },
+        "fill": "color2",
+        "height": 10,
+        "level": 1,
+        "levelValue": 1,
+        "width": 40,
+        "x": 0,
+        "y": 180,
+      },
+    ],
+    "height": 200,
+    "level": 0,
+    "levelValue": "0",
+    "width": 40,
+    "x": 0,
+    "y": 0,
+  },
+  Object {
+    "accessor": "x",
+    "elements": Array [
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "a",
+          "x": 1,
+          "y": 2,
+        },
+        "fill": "color1",
+        "height": 20,
+        "level": 1,
+        "levelValue": 2,
+        "width": 40,
+        "x": 0,
+        "y": 180,
+      },
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "b",
+          "x": 1,
+          "y": 2,
+        },
+        "fill": "color2",
+        "height": 20,
+        "level": 1,
+        "levelValue": 2,
+        "width": 40,
+        "x": 0,
+        "y": 160,
+      },
+    ],
+    "height": 200,
+    "level": 0,
+    "levelValue": "1",
+    "width": 40,
+    "x": 40,
+    "y": 0,
+  },
+  Object {
+    "accessor": "x",
+    "elements": Array [
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "a",
+          "x": 2,
+          "y": 10,
+        },
+        "fill": "color1",
+        "height": 100,
+        "level": 1,
+        "levelValue": 10,
+        "width": 40,
+        "x": 0,
+        "y": 100,
+      },
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "b",
+          "x": 2,
+          "y": 10,
+        },
+        "fill": "color2",
+        "height": 100,
+        "level": 1,
+        "levelValue": 10,
+        "width": 40,
+        "x": 0,
+        "y": 0,
+      },
+    ],
+    "height": 200,
+    "level": 0,
+    "levelValue": "2",
+    "width": 40,
+    "x": 80,
+    "y": 0,
+  },
+  Object {
+    "accessor": "x",
+    "elements": Array [
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "a",
+          "x": 3,
+          "y": 6,
+        },
+        "fill": "color1",
+        "height": 60,
+        "level": 1,
+        "levelValue": 6,
+        "width": 40,
+        "x": 0,
+        "y": 140,
+      },
+      Object {
+        "accessor": "x",
+        "data": Object {
+          "g": "b",
+          "x": 3,
+          "y": 6,
+        },
+        "fill": "color2",
+        "height": 60,
+        "level": 1,
+        "levelValue": 6,
+        "width": 40,
+        "x": 0,
+        "y": 80,
+      },
+    ],
+    "height": 200,
+    "level": 0,
+    "levelValue": "3",
+    "width": 40,
+    "x": 120,
+    "y": 0,
+  },
+]
+`;

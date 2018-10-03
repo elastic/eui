@@ -1,14 +1,14 @@
 import { Accessor } from '../data_ops/accessor';
 import { ColorDomain } from '../data_ops/domain';
-import { Theme } from './theme';
+import { ColorConfig } from './theme';
 
 export interface ColorScales {
   [key: string]: string;
 }
-export function computeColorScales(colorDomain: ColorDomain, theme: Theme): ColorScales {
+export function computeColorScales(colorDomain: ColorDomain, chartColors: ColorConfig): ColorScales {
   return colorDomain.domain.reduce(
     (acc, domainKey, index) => {
-      acc[domainKey] = theme.vizColors[index % theme.vizColors.length];
+      acc[domainKey] = chartColors.vizColors[index % chartColors.vizColors.length];
       return acc;
     },
     {} as ColorScales,
@@ -18,13 +18,13 @@ export function computeColorScales(colorDomain: ColorDomain, theme: Theme): Colo
 export type GetColorFn = (datum: any, yAccessor?: Accessor) => string;
 
 export function getColor(
-  theme: Theme,
+  chartColors: ColorConfig,
   colorScales: ColorScales,
   colorAccessors: Accessor[],
 ): GetColorFn {
   return (datum: any, yAccessor?: Accessor) => {
     const key = getColorKey(datum, colorAccessors, yAccessor);
-    return colorScales[key] || theme.defaultVizColor;
+    return colorScales[key] || chartColors.defaultVizColor;
   };
 }
 

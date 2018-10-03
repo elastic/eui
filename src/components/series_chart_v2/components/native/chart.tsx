@@ -33,7 +33,7 @@ export function initializeChart(div: HTMLDivElement): KonvaCanvas {
 }
 
 export function renderChart(chartStore: ChartStore, canvas: KonvaCanvas) {
-  const { stage, chartLayer } = canvas;
+  const { chartLayer } = canvas;
   const { parentDimensions, chartDimensions, chartRotation, barSeriesSpecs, barSeriesGlyphs, chartTheme } = chartStore;
   // stage.clear();
   resizeLayers(canvas, parentDimensions, chartDimensions, chartRotation);
@@ -108,8 +108,8 @@ function renderBarSeries(chartLayer: Layer, barGlyphs: BarGlyphGroup[], tooltipL
 }
 
 function renderBars(group: Group, glyphs: BarGlyphGroup[], uuidPath: string, tooltipLevel: number, chartTheme: Theme) {
-  return glyphs.map((glyph, i) => {
-    const { x, y, width, height, fill, level, data } = glyph;
+  return glyphs.map((glyph) => {
+    const { x, y, width, height, fill, level } = glyph;
     const hasTooltip = tooltipLevel === level;
     // const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
     const bar = new Rect({

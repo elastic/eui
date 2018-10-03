@@ -4,19 +4,9 @@ import { Domain, SpecDomain, SpecDomains } from '../../data_ops/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data_ops/scales';
 import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor, GetColorFn } from '../../themes/colors';
-import { Theme } from '../../themes/theme';
+import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { BarSeriesSpec, Datum, Rotation } from '../specs';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from './commons';
-
-// export interface BarGlyph {
-//   x: number;
-//   y: number;
-//   width: number;
-//   height: number;
-//   fill?: string;
-//   opacity?: number;
-//   data: Datum;
-// }
 
 export interface BarGlyphGroup {
   level: number;
@@ -46,7 +36,8 @@ export function renderBarSeriesSpec(
   chartDims: Dimensions,
   rotation: Rotation,
   colorScales: ColorScales,
-  theme: Theme,
+  chartColorsConfig: ColorConfig,
+  chartScalesConfig: ScalesConfig,
 ): BarGlyphGroup[] {
   const {
     data,
@@ -62,7 +53,7 @@ export function renderBarSeriesSpec(
     groupingXDomains = domains.xDomains.slice(0, -1);
   }
 
-  const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, theme, rotation);
+  const nestedXScaleConfigs = getNestedXScaleConfigs(domains.xDomains, chartDims, chartScalesConfig, rotation);
   const maxY = rotation === 0 ? chartDims.height : chartDims.width;
   const yScaleConfig = getScale(
     yAccessors[0],
@@ -105,7 +96,7 @@ export function renderBarSeriesSpec(
 
   const leafLevel = groupingXDomains.length;
   const specColorAccessors = colorAccessors.length > 0 ? colorAccessors : [...splitSeriesAccessors];
-  const getColorFn = getColor(theme, colorScales, specColorAccessors);
+  const getColorFn = getColor(chartColorsConfig, colorScales, specColorAccessors);
   const formattedData = reformatData(
     nestedXScaleConfigs,
     yScaleConfig,
@@ -119,7 +110,12 @@ export function renderBarSeriesSpec(
   return formattedData;
 }
 
-function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensions, theme: Theme, rotation: Rotation) {
+function getNestedXScaleConfigs(
+  domains: SpecDomain[],
+  seriesDimensions: Dimensions,
+  chartScalesConfig: ScalesConfig,
+  rotation: Rotation,
+) {
   const maxXWidth = rotation === 0 ? seriesDimensions.width : seriesDimensions.height;
   return domains.reduce(
     (acc, scale) => {
@@ -132,7 +128,7 @@ function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensi
           0,
           maxXWidth,
           false,
-          theme.scales.ordinal.padding,
+          chartScalesConfig.ordinal.padding,
         );
         return [scaleConfig];
       } else {
@@ -144,7 +140,7 @@ function getNestedXScaleConfigs(domains: SpecDomain[], seriesDimensions: Dimensi
           0,
           prevScale.barWidth,
           false,
-          theme.scales.ordinal.padding,
+          chartScalesConfig.ordinal.padding,
         );
         return [...acc, scaleConfig];
       }

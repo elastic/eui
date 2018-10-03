@@ -171,14 +171,16 @@ export class Axis extends React.PureComponent<AxisProps> {
         maxTickWidth,
       },
       chartTheme: {
-        chartMargins,
+        chart: {
+          margins,
+        },
       },
     } = this.props;
 
     const top = height / 2;
     const left = position === AxisPosition.Left
-      ? - (maxTickWidth  + chartMargins.left / 2)
-      : tickSize + tickPadding + maxTickWidth + + chartMargins.right / 2;
+      ? - (maxTickWidth  + margins.left / 2)
+      : tickSize + tickPadding + maxTickWidth + + margins.right / 2;
     const translate = `translate(${left} ${top}) rotate(-90)`;
     return (
       <g className="euiSeriesChartAxis_axisTitle">
@@ -205,13 +207,15 @@ export class Axis extends React.PureComponent<AxisProps> {
         maxTickHeight,
       },
       chartTheme: {
-        chartMargins,
+        chart: {
+          margins,
+        },
       },
     } = this.props;
 
     const top = position === AxisPosition.Top
-    ? - chartMargins.top / 2
-    : maxTickHeight + tickPadding + tickSize + chartMargins.bottom / 2;
+    ? - margins.top / 2
+    : maxTickHeight + tickPadding + tickSize + margins.bottom / 2;
     const left = width / 2;
     const translate = `translate(${left} ${top} )`;
     return (

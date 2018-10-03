@@ -1,4 +1,3 @@
-import { autorun } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { initializeChart, KonvaCanvas, renderChart } from '../components/native/chart';
@@ -21,7 +20,6 @@ class Chart extends React.Component<ReactiveChartProps> {
     this.canvas = initializeChart(this.stageRef.current!);
   }
   public componentDidUpdate() {
-    console.log('updating chart');
     renderChart(this.props.chartStore!, this.canvas!);
   }
 
@@ -30,8 +28,6 @@ class Chart extends React.Component<ReactiveChartProps> {
     console.log('Chart unmounted');
   }
   public render() {
-    const { initialized } = this.props.chartStore!;
-    console.log(initialized.get());
     return (
       <div
         ref={this.stageRef}

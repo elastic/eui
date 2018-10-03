@@ -126,7 +126,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     });
   }
   private renderBars = (glyphs: BarGlyphGroup[], uuidPath: string) => {
-    const { tooltipLevel, chartTheme: { interactions: { hideOpacity } } } = this.props;
+    const { tooltipLevel } = this.props;
     return glyphs.map((glyph, i) => {
       const { x, y, width, height, fill, level, data } = glyph;
       const hasTooltip = tooltipLevel === level;

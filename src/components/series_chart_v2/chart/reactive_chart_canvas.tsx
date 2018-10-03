@@ -77,7 +77,6 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public render() {
-    console.log('rendering');
     const { initialized } = this.props.chartStore!;
     if (!initialized.get()) {
       return null;

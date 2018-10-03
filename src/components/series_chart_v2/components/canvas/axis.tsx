@@ -185,9 +185,11 @@ export class Axis extends React.PureComponent<AxisProps> {
         maxTickHeight,
       },
       chartTheme: {
-        chartMargins,
-        axisTitle: {
-          fontSize,
+        chart: {
+          margins,
+        },
+        axes: {
+          titleFontSize,
         },
       },
     } = this.props;
@@ -196,8 +198,8 @@ export class Axis extends React.PureComponent<AxisProps> {
     }
     const top = height;
     const left = position === AxisPosition.Left
-      ? - (maxTickWidth  + chartMargins.left / 2)
-      : tickSize + tickPadding + maxTickWidth + + chartMargins.right / 2;
+      ? - (maxTickWidth  + margins.left / 2)
+      : tickSize + tickPadding + maxTickWidth + + margins.right / 2;
     return (
       <Group>
         <Text
@@ -210,7 +212,7 @@ export class Axis extends React.PureComponent<AxisProps> {
           width={height}
           rotation={-90}
           fontStyle="bold"
-          fontSize={fontSize}
+          fontSize={titleFontSize}
         />
       </Group>
     );
@@ -230,9 +232,11 @@ export class Axis extends React.PureComponent<AxisProps> {
         maxTickHeight,
       },
       chartTheme: {
-        chartMargins,
-        axisTitle: {
-          fontSize,
+        chart: {
+          margins,
+        },
+        axes: {
+          titleFontSize,
         },
       },
     } = this.props;
@@ -242,8 +246,8 @@ export class Axis extends React.PureComponent<AxisProps> {
     }
 
     const top = position === AxisPosition.Top
-    ? - chartMargins.top / 2
-    : maxTickHeight + tickPadding + tickSize + chartMargins.bottom / 2;
+    ? - margins.top / 2
+    : maxTickHeight + tickPadding + tickSize + margins.bottom / 2;
     const left = width / 2;
     return (
       <Group>
@@ -257,8 +261,7 @@ export class Axis extends React.PureComponent<AxisProps> {
           text={title}
           fill="gray"
           fontStyle="bold"
-          fontSize={fontSize}
-
+          fontSize={titleFontSize}
         ></Text>
       </Group>
     );

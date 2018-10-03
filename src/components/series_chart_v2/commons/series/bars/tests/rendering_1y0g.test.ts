@@ -2,7 +2,7 @@ import { SpecDomains } from '../../../data_ops/domain';
 import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
-import { Theme } from '../../../themes/theme';
+import { ColorConfig, ScalesConfig } from '../../../themes/theme';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';
@@ -25,59 +25,26 @@ const SPEC: BarSeriesSpec = {
   yScaleToDataExtent: false,
 };
 
-const THEME: Theme = {
-  chartMargins: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-  },
-  scales: {
-    ordinal: {
+const chartScalesConfig: ScalesConfig = {
+  ordinal: {
       padding: 0,
     },
-  },
-  axisTitle: {
-    fontSize: 20,
-  },
+  };
+const chartColorsConfig: ColorConfig = {
   vizColors: ['green'],
   defaultVizColor: 'red',
-  interactions: {
-    hideOpacity: 0.1,
-  },
 };
 
 const colorScales = {
   '': 'green',
 };
 
-describe.only('Bar rendering 1Y0G', () => {
+describe('Bar rendering 1Y0G', () => {
   let computedDomains: SpecDomains;
   test('should compute the domain', () => {
     computedDomains = computeDataDomain(SPEC);
-    const expectedDomains: SpecDomains = {
-      xDomains: [
-        {
-          accessor: 'x',
-          level: 0,
-          domain: [0, 1, 2, 3],
-          scaleType: ScaleType.Ordinal,
-        },
-      ],
-      yDomain: {
-        accessor: 'y',
-        level: 0,
-        domain: [0, 10],
-        scaleType: ScaleType.Linear,
-        isStacked: false,
-      },
-      colorDomain: {
-        accessors: [],
-        domain: [''],
-        scaleType: ScaleType.Ordinal,
-      },
-    };
-    expect(computedDomains).toEqual(expectedDomains);
+
+    expect(computedDomains).toMatchSnapshot();
   });
 
   test('should render the bar series', () => {
@@ -87,119 +54,9 @@ describe.only('Bar rendering 1Y0G', () => {
       CHART_DIMS,
       0,
       colorScales,
-      THEME,
+      chartColorsConfig,
+      chartScalesConfig,
     );
-    const expectedRendering = [
-      {
-        accessor: 'x',
-        levelValue: 1,
-        level: 0,
-        data: { x: 0, y: 1 },
-        x: 0,
-        y: 90,
-        width: 25,
-        height: 10,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 2,
-        level: 0,
-        data: { x: 1, y: 2 },
-        x: 25,
-        y: 80,
-        width: 25,
-        height: 20,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 10,
-        level: 0,
-        data: { x: 2, y: 10 },
-        x: 50,
-        y: 0,
-        width: 25,
-        height: 100,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 6,
-        level: 0,
-        data: { x: 3, y: 6 },
-        x: 75,
-        y: 40,
-        width: 25,
-        height: 60,
-        fill: 'green',
-      },
-    ];
-    expect(renderedData).toEqual(expectedRendering);
-  });
-  test('should correctly rotate a simple 1Y0G bar chart', () => {
-    const rotatedSpec = {
-      ...SPEC,
-    };
-    const rotatedChartDimensions = {
-      ...CHART_DIMS,
-      width: 200,
-      height: 100,
-    };
-    const renderedData = renderBarSeriesSpec(
-      rotatedSpec,
-      computedDomains,
-      rotatedChartDimensions,
-      90,
-      colorScales,
-      THEME,
-    );
-    const expectedRendering = [
-      {
-        accessor: 'x',
-        levelValue: 1,
-        level: 0,
-        data: { x: 0, y: 1 },
-        x: 0,
-        y: 180,
-        width: 25,
-        height: 20,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 2,
-        level: 0,
-        data: { x: 1, y: 2 },
-        x: 25,
-        y: 160,
-        width: 25,
-        height: 40,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 10,
-        level: 0,
-        data: { x: 2, y: 10 },
-        x: 50,
-        y: 0,
-        width: 25,
-        height: 200,
-        fill: 'green',
-      },
-      {
-        accessor: 'x',
-        levelValue: 6,
-        level: 0,
-        data: { x: 3, y: 6 },
-        x: 75,
-        y: 80,
-        width: 25,
-        height: 120,
-        fill: 'green',
-      },
-    ];
-    expect(renderedData).toEqual(expectedRendering);
+    expect(renderedData).toMatchSnapshot();
   });
 });

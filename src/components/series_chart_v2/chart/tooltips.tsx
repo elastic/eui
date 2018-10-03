@@ -21,16 +21,12 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
     return tooltip.fold(null, this.renderTooltip);
   }
   private renderTooltip = (tooltipData: TooltipData) => {
-    console.log(tooltipData);
-    const { top, left, right } = tooltipData.position;
     return (
       <div
         className={'euiChartTooltip'}
         style={{
           position: 'absolute',
-          top,
-          left,
-          right,
+          ...tooltipData.position,
         }}
       >
         <p>{tooltipData.specId}</p>
@@ -62,8 +58,8 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
     if (!accessors) {
       return [];
     }
-    return accessors.map((accessor) => {
-      return <span>{accessor} : {datum[accessor]} </span>;
+    return accessors.map((accessor, i) => {
+      return <span key={`${accessor} - ${i}`}>{accessor} : {datum[accessor]} </span>;
     });
   }
 }

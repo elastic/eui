@@ -68,7 +68,7 @@ export class ChartStore {
   //   },
   // }));
 
-  public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
+  public onTooltipOver = action((specId: SpecId, data: Datum[], position: LeftTooltip | RightTooltip) => {
     const tooltip: TooltipData = {
       data,
       specId,
@@ -120,7 +120,7 @@ export class ChartStore {
     this.globalSpecDomains.set(seriesSpec.groupId, dataDomain);
 
     // TODO merge color scales....
-    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme);
+    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
     this.globalColorScales.set(seriesSpec.groupId, colorScales);
     // this.mergeChartScales(seriesSpec.groupId, seriesScales);
     // TODO compute chart only after all series are updated
@@ -167,7 +167,7 @@ export class ChartStore {
           axisSpec,
           groupSeriesScale,
           bboxCalculator,
-          this.chartTheme,
+          this.chartTheme.scales,
           this.chartRotation,
         );
         this.axesTicksDimensions.set(id, dimensions);
@@ -180,7 +180,7 @@ export class ChartStore {
     // compute chart dimensions
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
-      this.chartTheme,
+      this.chartTheme.chart,
       this.axesTicksDimensions,
       this.axesSpecs,
     );
@@ -188,7 +188,8 @@ export class ChartStore {
     // compute visible ticks and their positions
     const axisTicksPositions = getAxisTicksPositions(
       this.chartDimensions,
-      this.chartTheme,
+      this.chartTheme.chart,
+      this.chartTheme.scales,
       this.axesSpecs,
       this.axesTicksDimensions,
     );
@@ -210,7 +211,8 @@ export class ChartStore {
         this.chartDimensions,
         this.chartRotation,
         colorScales!,
-        this.chartTheme,
+        this.chartTheme.colors,
+        this.chartTheme.scales,
       );
       this.barSeriesGlyphs.set(id, renderedGlyphs);
     });
