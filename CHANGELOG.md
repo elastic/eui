@@ -2,7 +2,7 @@
 
 - Added TypeScript typings for `EuiKeyPadMenu` ([#1229](https://github.com/elastic/eui/pull/1229))
 - Forced `EuiPopover` contents to stick to its initial position when the content changes ([#1199](https://github.com/elastic/eui/pull/1199))
-- Updated `EuiIcon` app icon set and allow them to adjust two-toned colorschemes ([#1225](https://github.com/elastic/eui/pull/1225))
+- Updated `EuiIcon` app icon set and allow them to adjust colorschemes ([#1225](https://github.com/elastic/eui/pull/1225))
 
 **Bug fixes**
 
