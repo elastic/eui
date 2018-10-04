@@ -35,7 +35,7 @@ export default class extends Component {
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
       >
-        Show popover
+        Toggle popover
       </EuiButton>
     );
 

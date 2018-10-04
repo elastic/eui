@@ -452,7 +452,7 @@ export class EuiPopover extends Component {
               aria-live={ariaLive}
               style={this.state.popoverStyles}
             >
-              <div className={arrowClassNames} style={this.state.arrowStyles}/>
+              <div className={arrowClassNames} style={this.state.arrowStyles} />
               {
                 children
                   ? (
@@ -477,21 +477,27 @@ export class EuiPopover extends Component {
       );
     }
 
-    return (
-      <EuiOutsideClickDetector onOutsideClick={closePopover}>
-        <div
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          ref={popoverRef}
-          {...rest}
-        >
-          <div className="euiPopover__anchor" ref={this.buttonRef}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
-          {panel}
+    const popover = (
+      <div
+        className={classes}
+        onKeyDown={this.onKeyDown}
+        ref={popoverRef}
+        {...rest}
+      >
+        <div className="euiPopover__anchor" ref={this.buttonRef}>
+          {button instanceof HTMLElement ? null : button}
         </div>
-      </EuiOutsideClickDetector>
+        {panel}
+      </div>
     );
+
+    return (isOpen || this.state.isClosing)
+      ? (
+        <EuiOutsideClickDetector onOutsideClick={closePopover}>
+          {popover}
+        </EuiOutsideClickDetector>
+      )
+      : popover;
   }
 }
 

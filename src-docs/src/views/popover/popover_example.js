@@ -16,6 +16,10 @@ import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
 const popoverHtml = renderToHtml(Popover);
 
+import SecondaryTrigger from './secondary_trigger';
+const secondaryTriggerSource = require('!!raw-loader!./secondary_trigger');
+const secondaryTriggerHtml = renderToHtml(SecondaryTrigger);
+
 import TrapFocus from './trap_focus';
 const trapFocusSource = require('!!raw-loader!./trap_focus');
 const trapFocusHtml = renderToHtml(TrapFocus);
@@ -65,6 +69,29 @@ export const PopoverExample = {
     ),
     props: { EuiPopover },
     demo: <Popover />,
+  }, {
+    title: 'Secondary trigger',
+    source: [
+      {
+        type: GuideSectionTypes.JS,
+        code: secondaryTriggerSource,
+      },
+      {
+        type: GuideSectionTypes.HTML,
+        code: secondaryTriggerHtml,
+      },
+    ],
+    text: (
+      <p>
+        Usually you pass a button node to the popover whose onClick handler
+        will open the popover or toggle the popover open and closed. You can
+        also trigger this behavior from other elements that live outside of
+        the popover element. Note: clicks on these outside elements while
+        a popover is open will <em>always</em> close the popover.
+      </p>
+    ),
+    props: { EuiPopover },
+    demo: <SecondaryTrigger />,
   }, {
     title: 'Trap focus',
     source: [{
