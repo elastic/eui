@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.4.1`.
+**Bug fixes**
+
+- Fixes issue with outside element triggers for a popover where the popover would open
+and then immediately auto-close ([#1233](https://github.com/elastic/eui/pull/1233))
 
 ## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
 
