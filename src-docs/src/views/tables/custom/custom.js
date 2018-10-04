@@ -455,7 +455,6 @@ export default class extends Component {
           return (
             <EuiTableRowCell
               key={column.id}
-              header={column.label}
               textOnly={false}
               hasActions={true}
               align="right"
@@ -527,7 +526,6 @@ export default class extends Component {
         return (
           <EuiTableRowCell
             key={column.id}
-            header={column.label}
             align={column.alignment}
             truncateText={cell && cell.truncateText}
             textOnly={cell ? cell.textOnly : true}
@@ -581,7 +579,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
-            header={column.title}
             align={column.alignment}
           >
             {footer}
@@ -591,7 +588,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            header={column.title}
             align={column.alignment}
           >
             {undefined}

@@ -554,7 +554,6 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.field}`}
-            header={column.name}
             align={column.align}
           >
             {footer}
@@ -566,7 +565,6 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            header={column.name}
             align={column.align}
           >
             {undefined}
@@ -820,8 +818,8 @@ export class EuiBasicTable extends Component {
       render,
       dataType,
       isExpander,
-      name,
       textOnly,
+      name, // eslint-disable-line no-unused-vars
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
@@ -836,7 +834,6 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={name}
         isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}
