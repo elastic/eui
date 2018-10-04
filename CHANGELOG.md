@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.4.1`.
+- `EuiBasicTable` accepts nodes as column headers, for supporting things like tooltips and localized text ([]())
 
 ## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
 

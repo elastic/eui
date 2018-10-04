@@ -98,7 +98,7 @@ export const ActionsColumnType = PropTypes.shape({
 
 export const FieldDataColumnTypeShape = {
   field: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
   description: PropTypes.string,
   dataType: PropTypes.oneOf(DATA_TYPES),
   width: PropTypes.string,
@@ -116,7 +116,7 @@ export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
 export const ComputedColumnType = PropTypes.shape({
   render: PropTypes.func.isRequired, // (record) => PropTypes.node
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string,
   truncateText: PropTypes.bool

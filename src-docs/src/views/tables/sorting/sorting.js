@@ -1,13 +1,16 @@
 import React, {
-  Component
+  Component,
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
-  EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiHealth,
+  EuiIconTip,
+  EuiLink,
 } from '../../../../../src/components';
 
 /*
@@ -100,6 +103,17 @@ export class Table extends Component {
     }, {
       field: 'github',
       name: 'Github',
+      name: (
+        <EuiFlexGroup gutterSize="xs" alignItems="center">
+          <EuiFlexItem>
+            Github
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiIconTip content="Their mascot is the Octokitty" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -107,20 +121,50 @@ export class Table extends Component {
       )
     }, {
       field: 'dateOfBirth',
-      name: 'Date of Birth',
+      name: (
+        <EuiFlexGroup gutterSize="xs" alignItems="center">
+          <EuiFlexItem>
+            Date of Birth
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiIconTip content="Colloquially known as a 'birthday'" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
       dataType: 'date',
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
       field: 'nationality',
-      name: 'Nationality',
+      name: (
+        <EuiFlexGroup gutterSize="xs" alignItems="center">
+          <EuiFlexItem>
+            Nationality
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiIconTip content="The nation in which this person resides" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       }
     }, {
       field: 'online',
-      name: 'Online',
+      name: (
+        <EuiFlexGroup gutterSize="xs" alignItems="center">
+          <EuiFlexItem>
+            Online
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiIconTip content="Free to talk or busy with business" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
       dataType: 'boolean',
       render: (online) => {
         const color = online ? 'success' : 'danger';
