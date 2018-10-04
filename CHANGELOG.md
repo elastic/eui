@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- `EuiBasicTable` accepts nodes as column headers, for supporting things like tooltips and localized text ([]())
+- `EuiBasicTable` accepts nodes as column headers, for supporting things like tooltips and localized text ([#1234](https://github.com/elastic/eui/pull/1234))
 
 ## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
 
