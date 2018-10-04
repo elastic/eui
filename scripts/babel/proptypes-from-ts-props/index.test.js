@@ -462,6 +462,70 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('intersects multiple types together', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface iBar {name: string}
+interface iFoo {age: number}
+interface IFooProps {fizz: iBar & iFoo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  fizz: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired
+  }).isRequired
+};`);
+      });
+
+      it('intersects overlapping types together', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface iBar {name: string}
+interface iFoo {name: string, age: number}
+interface IFooProps {fizz: iBar & iFoo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  fizz: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired
+  }).isRequired
+};`);
+      });
+
     });
 
     describe('union types', () => {
@@ -523,7 +587,7 @@ FooComponent.propTypes = {
     bar: PropTypes.number
   }).isRequired, PropTypes.shape({
     name: PropTypes.string.isRequired,
-    isActive: PropTypes.oneOfType([PropTypes.oneOf([true, false])]).isRequired
+    isActive: PropTypes.oneOf([true, false]).isRequired
   }).isRequired]).isRequired
 };`);
       });
@@ -663,7 +727,7 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.oneOf(["foo", "bar"])]).isRequired).isRequired
+  bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
 };`);
       });
 
@@ -745,10 +809,10 @@ const FooComponent = () => {
   );
 };
 FooComponent.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.shape({
+  bar: PropTypes.arrayOf(PropTypes.shape({
     foo: PropTypes.string.isRequired,
     bar: PropTypes.bool
-  }).isRequired])).isRequired
+  }).isRequired).isRequired
 };`);
       });
 
@@ -836,6 +900,296 @@ FooComponent.propTypes = {
 };`);
       });
 
+      describe('external references', () => {
+
+        describe('non-resolvable', () => {
+
+          it(`doesn't set propTypes if the whole type is un-resolvable`, () => {
+            const result = transform(
+              `
+import React from 'react';
+const FooComponent: React.SFC<SomeThing> = () => {
+  return (<div>Hello World</div>);
+}`,
+              babelOptions
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};`);
+          });
+
+          it('marks un-resolvable types as PropTypes.any', () => {
+            const result = transform(
+              `
+import React from 'react';
+const FooComponent: React.SFC<{foo: Foo, bar?: Bar}> = () => {
+  return (<div>Hello World</div>);
+}`,
+              babelOptions
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.any.isRequired,
+  bar: PropTypes.any
+};`);
+          });
+
+          it('ignores types from node modules', () => {
+            const result = transform(
+              `
+import React, { HTMLAttributes } from 'react';
+const FooComponent: React.SFC<HTMLAttributes<HTMLDivElement>> = () => {
+  return (<div>Hello World</div>);
+}`,
+              babelOptions
+            );
+
+            expect(result.code).toBe(`
+import React, { HTMLAttributes } from 'react';
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};`);
+          });
+
+        });
+
+      });
+
+    });
+
+    describe('supported component declarations', () => {
+
+      it('annotates React.SFC components', () => {
+        const result = transform(
+          `
+import React from 'react';
+const FooComponent: React.SFC<{foo: string, bar?: number}> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('annotates SFC components', () => {
+        const result = transform(
+          `
+import React, { SFC } from 'react';
+const FooComponent: SFC<{foo: string, bar?: number}> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React, { SFC } from 'react';
+import PropTypes from 'prop-types';
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('annotates React.Component components', () => {
+        const result = transform(
+          `
+import React from 'react';
+class FooComponent extends React.Component<{foo: string, bar?: number}> {
+  render() {
+    return (<div>Hello World</div>);
+  }
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+class FooComponent extends React.Component {
+  render() {
+    return React.createElement(
+      'div',
+      null,
+      'Hello World'
+    );
+  }
+}
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('annotates React.PureComponent components', () => {
+        const result = transform(
+          `
+import React from 'react';
+class FooComponent extends React.PureComponent<{foo: string, bar?: number}> {
+  render() {
+    return (<div>Hello World</div>);
+  }
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+class FooComponent extends React.PureComponent {
+  render() {
+    return React.createElement(
+      'div',
+      null,
+      'Hello World'
+    );
+  }
+}
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('annotates Component components', () => {
+        const result = transform(
+          `
+import React, { Component } from 'react';
+class FooComponent extends Component<{foo: string, bar?: number}> {
+  render() {
+    return (<div>Hello World</div>);
+  }
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+class FooComponent extends Component {
+  render() {
+    return React.createElement(
+      'div',
+      null,
+      'Hello World'
+    );
+  }
+}
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('annotates PureComponent components', () => {
+        const result = transform(
+          `
+import React, { PureComponent } from 'react';
+class FooComponent extends PureComponent<{foo: string, bar?: number}> {
+  render() {
+    return (<div>Hello World</div>);
+  }
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+class FooComponent extends PureComponent {
+  render() {
+    return React.createElement(
+      'div',
+      null,
+      'Hello World'
+    );
+  }
+}
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+    });
+
+    it('copies comments from types to proptypes', () =>   {
+      const result = transform(
+        `
+import React, { SFC } from 'react';
+interface FooProps {
+  // this is the foo prop
+  foo: string,
+  /**
+   * this is the optional bar prop
+   */
+  bar?: number
+}
+const FooComponent: SFC<FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+        babelOptions
+      );
+
+      expect(result.code).toBe(`
+import React, { SFC } from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  // this is the foo prop
+  foo: PropTypes.string.isRequired,
+  /**
+     * this is the optional bar prop
+     */bar: PropTypes.number
+};`);
     });
 
   });

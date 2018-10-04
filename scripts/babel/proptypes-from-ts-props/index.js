@@ -61,10 +61,49 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     case 'IntersectionTypeAnnotation':
-      propType =  node.types.reduce(
-        (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, false, state)),
+      const mergedProperties = node.types.reduce(
+        (mergedProperties, node) => {
+          const nodePropTypes = getPropTypesForNode(node, true, state);
+
+          // validate that this resulted in a shape
+          if (!types.isCallExpression(nodePropTypes) ||
+            !types.isMemberExpression(nodePropTypes.callee) ||
+            nodePropTypes.callee.object.name !== 'PropTypes' ||
+            nodePropTypes.callee.property.name !== 'shape'
+          ) {
+            throw new Error('Cannot process an encountered type intersection');
+          }
+
+          const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
+          for (let i = 0; i < typeProperties.length; i++) {
+            const typeProperty = typeProperties[i];
+            mergedProperties[typeProperty.key.name] = typeProperty.value;
+          }
+
+          return mergedProperties;
+        },
         {}
       );
+
+      propType = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('shape')
+        ),
+        [
+          types.objectExpression(Object.keys(mergedProperties).map(
+            propKey => types.objectProperty(
+              types.identifier(propKey),
+              mergedProperties[propKey]
+            )
+          ))
+        ]
+      );
+
+      // propType = node.types.reduce(
+      //   (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, false, state)),
+      //
+      // );
       break;
 
     case 'ObjectTypeAnnotation':
@@ -75,10 +114,16 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.objectExpression(
-            node.properties.map(property => types.objectProperty(
-              types.identifier(property.key.name),
-              getPropTypesForNode(property.value, property.optional, state)
-            ))
+            node.properties.map(property => {
+              const objectProperty = types.objectProperty(
+                types.identifier(property.key.name),
+                getPropTypesForNode(property.value, property.optional, state)
+              );
+              if (property.leadingComments != null) {
+                objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
+              }
+              return objectProperty;
+            })
           )
         ]
       );
@@ -93,7 +138,7 @@ function getPropTypesForNode(node, optional, state) {
       // 3. a mix of value types ("foo" | number)
       // this reduce finds any literal values and groups them into a oneOf node
 
-      const { unionTypes } = tsUnionTypes.reduce(
+      const reducedUnionTypes = tsUnionTypes.reduce(
         (foundTypes, tsUnionType) => {
           if (types.isLiteral(tsUnionType)) {
             if (foundTypes.oneOfPropType == null) {
@@ -124,19 +169,22 @@ function getPropTypesForNode(node, optional, state) {
         }
       );
 
-      const callExpression = types.callExpression(
-        types.memberExpression(
-          types.identifier('PropTypes'),
-          types.identifier('oneOfType'),
-        ),
-        [
-          types.arrayExpression(
-            unionTypes
-          )
-        ]
-      );
-
-      propType = callExpression;
+      if (reducedUnionTypes.unionTypes.length === 1 && reducedUnionTypes.oneOfPropType != null) {
+        // the only proptype is a `oneOf`, use only that
+        propType = reducedUnionTypes.unionTypes[0];
+      } else {
+        propType = types.callExpression(
+          types.memberExpression(
+            types.identifier('PropTypes'),
+            types.identifier('oneOfType'),
+          ),
+          [
+            types.arrayExpression(
+              reducedUnionTypes.unionTypes
+            )
+          ]
+        );
+      }
       break;
 
     case 'StringTypeAnnotation':
@@ -173,6 +221,13 @@ function getPropTypesForNode(node, optional, state) {
     default:
       debugger;
       throw new Error(`Could not generate prop types for node type ${node.type}`);
+  }
+
+  if (propType == null) {
+    propType = types.memberExpression(
+      types.identifier('PropTypes'),
+      types.identifier('any')
+    );
   }
 
   if (optional) {
@@ -214,6 +269,7 @@ const typeDefinitionExtractors = {
 function extractTypeDefinition(node) {
   if (node == null) {
     // TODO when does this happen
+    debugger;
     return null;
   }
   return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node) : null;
@@ -243,6 +299,64 @@ function getPropTypesNodeFromAST(node, types) {
   return node;
 }
 
+function processComponentDeclaration(typeDefinition, path, state) {
+  const { dynamicData: { types } } = state;
+
+  const propTypesAST = getPropTypesForNode(typeDefinition, false, state);
+
+  // if the resulting proptype is PropTypes.any don't bother setting the proptypes
+  if (types.isMemberExpression(propTypesAST.object) && propTypesAST.object.property.name === 'any') return;
+
+  const propTypes = getPropTypesNodeFromAST(
+    // `getPropTypesForNode` returns a PropTypes.shape representing the top-level object, we need to
+    // reach into the shape call expression and use the object literal directly
+    propTypesAST,
+    types
+  );
+
+  const ancestry = path.getAncestry();
+
+  // find the ancestor who lives in the nearest block
+  let blockChildAncestor = ancestry[0];
+  for (let i = 1; i < ancestry.length; i++) {
+    const ancestor = ancestry[i];
+    if (ancestor.isBlockParent()) {
+      // stop here, we want to insert the propTypes assignment into this block,
+      // immediately after the already found `blockChildAncestor`
+      break;
+    }
+    blockChildAncestor = ancestor;
+  }
+
+  blockChildAncestor.insertAfter([
+    buildPropTypes({
+      COMPONENT_NAME: types.identifier(path.node.id.name),
+      PROP_TYPES: propTypes,
+    })
+  ]);
+
+  // import PropTypes library if it isn't already
+  const proptypesBinding = getVariableBinding(path, 'PropTypes');
+  if (proptypesBinding == null) {
+    const reactBinding = getVariableBinding(path, 'React');
+    if (reactBinding == null) {
+      throw new Error('Cannot import PropTypes module, no React namespace import found');
+    }
+    const reactImportDeclaration = reactBinding.path.getAncestry()[1];
+    reactImportDeclaration.insertAfter(
+      types.importDeclaration(
+        [types.importDefaultSpecifier(types.identifier('PropTypes'))],
+        types.stringLiteral('prop-types')
+      )
+    );
+  }
+}
+
+function isVariableFromReact(types, path, variableName) {
+  const identifierBinding = getVariableBinding(path, variableName);
+  return types.isImportDeclaration(identifierBinding.path.parent) && identifierBinding.path.parent.source.value === 'react';
+}
+
 module.exports = function propTypesFromTypeScript({ types }) {
   return {
     visitor: {
@@ -263,74 +377,75 @@ module.exports = function propTypesFromTypeScript({ types }) {
         }
       },
 
+      ClassDeclaration: function visitClassDeclaration(path, state) {
+        const { dynamicData: { types } } = state;
+
+        if (path.node.superClass != null) {
+          let isReactComponent = false;
+
+          if (types.isMemberExpression(path.node.superClass)) {
+            const objectName = path.node.superClass.object.name;
+            const propertyName = path.node.superClass.property.name;
+            if (objectName === 'React' && (propertyName === 'Component' || propertyName === 'PureComponent')) {
+              isReactComponent = true;
+            }
+          } else if (types.isIdentifier(path.node.superClass)) {
+            const identifierName = path.node.superClass.name;
+            if (identifierName === 'Component' || identifierName === 'PureComponent') {
+              if (isVariableFromReact(types, path, identifierName)) {
+                isReactComponent = true;
+              }
+            }
+          }
+
+          if (isReactComponent) {
+            processComponentDeclaration(path.node.superTypeParameters.params[0], path, state);
+
+            // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+            // instead of using the modified AST; to expose our changes to react-docgen
+            // they need to be rendered to a string
+            this.file.code = this.file.generate().code;
+          }
+        }
+      },
+
       VariableDeclarator: function visitVariableDeclarator(path, state) {
         const variableDeclarator = path.node;
         const { id } = variableDeclarator;
         const idTypeAnnotation = id.typeAnnotation;
 
         if (idTypeAnnotation) {
+          let fileCodeNeedsUpdating = false;
+
           if (idTypeAnnotation.typeAnnotation.id.type === 'QualifiedTypeIdentifier') {
             const { qualification, id } = idTypeAnnotation.typeAnnotation.id;
 
             if (qualification.name === 'React') {
               if (id.name === 'SFC') {
-                // @TODO what about multiple params in idTypeAnnotation.typeAnnotation.typeParameters`
-                const propTypes = getPropTypesNodeFromAST(
-                  // `getPropTypesForNode` returns a PropTypes.shape representing the top-level object, we need to
-                  // reach into the shape call expression and use the object literal directly
-                  getPropTypesForNode(idTypeAnnotation.typeAnnotation.typeParameters.params[0], false, state),
-                  types
-                );
-                const ancestry = path.getAncestry();
-
-                // find the ancestor who lives in the nearest block
-                let blockChildAncestor = ancestry[0];
-                for (let i = 1; i < ancestry.length; i++) {
-                  const ancestor = ancestry[i];
-                  if (ancestor.isBlockParent()) {
-                    // stop here, we want to insert the propTypes assignment into this block,
-                    // immediately after the already found `blockChildAncestor`
-                    break;
-                  }
-                  blockChildAncestor = ancestor;
-                }
-
-                blockChildAncestor.insertAfter([
-                  buildPropTypes({
-                    COMPONENT_NAME: types.identifier(variableDeclarator.id.name),
-                    // PROP_TYPES: mapDefsToPropTypes(types, propTypes),
-                    PROP_TYPES: propTypes,
-                  })
-                ]);
-
-                // import PropTypes library if it isn't already
-                const proptypesBinding = getVariableBinding(path, 'PropTypes');
-                if (proptypesBinding == null) {
-                  const reactBinding = getVariableBinding(path, 'React');
-                  if (reactBinding == null) {
-                    throw new Error('Cannot import PropTypes module, no React namespace import found');
-                  }
-                  const reactImportDeclaration = reactBinding.path.getAncestry()[1];
-                  reactImportDeclaration.insertAfter(
-                    types.importDeclaration(
-                      [types.importDefaultSpecifier(types.identifier('PropTypes'))],
-                      types.stringLiteral('prop-types')
-                    )
-                  );
-                }
-
-                // babel-plugin-react-docgen passes `this.file.code` to react-docgen
-                // instead of using the modified AST; to expose our changes to react-docgen
-                // they need to be rendered to a string
-                this.file.code = this.file.generate().code;
+                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], path, state);
+                fileCodeNeedsUpdating = true;
               } else {
                 debugger;
                 throw new Error(`Cannot process annotation id React.${id.name}`);
               }
             }
+          } else if (idTypeAnnotation.typeAnnotation.id.type === 'Identifier') {
+            if (idTypeAnnotation.typeAnnotation.id.name === 'SFC') {
+              if (isVariableFromReact(types, path, 'SFC')) {
+                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], path, state);
+                fileCodeNeedsUpdating = true;
+              }
+            }
           } else {
             debugger;
             throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
+          }
+
+          if (fileCodeNeedsUpdating) {
+            // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+            // instead of using the modified AST; to expose our changes to react-docgen
+            // they need to be rendered to a string
+            this.file.code = this.file.generate().code;
           }
         }
       },
