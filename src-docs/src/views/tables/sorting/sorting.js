@@ -6,11 +6,10 @@ import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiHealth,
-  EuiIconTip,
+  EuiIcon,
   EuiLink,
+  EuiToolTip,
 } from '../../../../../src/components';
 
 /*
@@ -102,17 +101,12 @@ export class Table extends Component {
       )
     }, {
       field: 'github',
-      name: 'Github',
       name: (
-        <EuiFlexGroup gutterSize="xs" alignItems="center">
-          <EuiFlexItem>
-            Github
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiIconTip content="Their mascot is the Octokitty" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiToolTip content="Their mascot is the Octokitty">
+          <span>
+            Github <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
       ),
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
@@ -122,15 +116,11 @@ export class Table extends Component {
     }, {
       field: 'dateOfBirth',
       name: (
-        <EuiFlexGroup gutterSize="xs" alignItems="center">
-          <EuiFlexItem>
-            Date of Birth
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiIconTip content="Colloquially known as a 'birthday'" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiToolTip content="Colloquially known as a 'birthday'">
+          <span>
+            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
       ),
       dataType: 'date',
       render: (date) => formatDate(date, 'dobLong'),
@@ -138,15 +128,11 @@ export class Table extends Component {
     }, {
       field: 'nationality',
       name: (
-        <EuiFlexGroup gutterSize="xs" alignItems="center">
-          <EuiFlexItem>
-            Nationality
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiIconTip content="The nation in which this person resides" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiToolTip content="The nation in which this person resides">
+          <span>
+            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
       ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
@@ -155,15 +141,11 @@ export class Table extends Component {
     }, {
       field: 'online',
       name: (
-        <EuiFlexGroup gutterSize="xs" alignItems="center">
-          <EuiFlexItem>
-            Online
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiIconTip content="Free to talk or busy with business" />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiToolTip content="Free to talk or busy with business">
+          <span>
+            Online <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
       ),
       dataType: 'boolean',
       render: (online) => {
