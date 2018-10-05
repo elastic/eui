@@ -1,11 +1,14 @@
+const path = require('path');
 const { transform } = require('babel-core');
 const babelOptions = {
+  babelrc: false,
   presets: [
     'react',
   ],
   plugins: [
     './scripts/babel/proptypes-from-ts-props',
-  ]
+  ],
+  filename: 'somefile.tsx',
 };
 
 describe('proptypes-from-ts-props', () => {
@@ -461,6 +464,10 @@ FooComponent.propTypes = {
   }).isRequired
 };`);
       });
+
+    });
+
+    describe('intersection types', () => {
 
       it('intersects multiple types together', () => {
         const result = transform(
@@ -972,6 +979,289 @@ const FooComponent = () => {
 };`);
           });
 
+          it('intersection with all unknown types resolves to PropTypes.any', () => {
+            const result = transform(
+              `
+import React from 'react';
+interface IFooProps {fizz: iBar & iFoo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              babelOptions
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  fizz: PropTypes.any.isRequired
+};`);
+          });
+
+          it('intersection with some unknown types resolves to knwon types', () => {
+            const result = transform(
+              `
+import React from 'react';
+interface iBar { name: string, age?: number }
+interface IFooProps {fizz: iBar & iFoo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              babelOptions
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  fizz: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number
+  }).isRequired
+};`);
+          });
+
+        });
+
+        describe('local references', () => {
+
+          it('resolves types from relative imports', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { CommonProps } from '../common';
+const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: () => Buffer.from(`
+                          export interface CommonProps {
+                            className?: string;
+                            'aria-label'?: string;
+                            'data-test-subj'?: string;
+                          }
+                        `)
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from "prop-types";
+import { CommonProps } from '../common';
+const FooComponent = () => {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World"
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.any.isRequired,
+  bar: PropTypes.any,
+  className: PropTypes.string,
+  "aria-label": PropTypes.string,
+  "data-test-subj": PropTypes.string
+};`);
+          });
+
+          it('resolves to directory index files', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { CommonProps } from './common';
+const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                filename: 'foo.ts',
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => true }),
+                        readFileSync: filepath => {
+                          if (filepath !== path.resolve(process.cwd(), 'common/index.ts')) {
+                            throw new Error('Test case should only try to read file unknown/common/index.ts');
+                          }
+
+                          return Buffer.from(`
+                            export interface CommonProps {
+                              className?: string;
+                              'aria-label'?: string;
+                              'data-test-subj'?: string;
+                            }
+                          `);
+                        }
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from "prop-types";
+import { CommonProps } from './common';
+const FooComponent = () => {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World"
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.any.isRequired,
+  bar: PropTypes.any,
+  className: PropTypes.string,
+  "aria-label": PropTypes.string,
+  "data-test-subj": PropTypes.string
+};`);
+          });
+
+          it('loads only exported types', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { CommonProps } from '../common';
+const FooComponent: React.SFC<CommonProps & FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: () => Buffer.from(`
+                          interface FooProps {
+                            foo: string
+                          }
+                          export interface CommonProps {
+                            className?: string;
+                            'aria-label'?: string;
+                            'data-test-subj'?: string;
+                          }
+                        `)
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from "prop-types";
+import { CommonProps } from '../common';
+const FooComponent = () => {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World"
+  );
+};
+FooComponent.propTypes = {
+  className: PropTypes.string,
+  "aria-label": PropTypes.string,
+  "data-test-subj": PropTypes.string
+};`);
+          });
+
+          it('imported types can also import types', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { CommonProps } from './common.ts';
+const FooComponent: React.SFC<CommonProps & FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: filepath => {
+                          if (filepath === path.resolve(process.cwd(), 'common.ts')) {
+                            return Buffer.from(`
+                              import { FooType } from './types.ts';
+                              export interface CommonProps {
+                                className?: string;
+                                'aria-label'?: string;
+                                'data-test-subj'?: string;
+                                foo: FooType;
+                              }
+                            `);
+                          } else if (filepath === path.resolve(process.cwd(), 'types.ts')) {
+                            return Buffer.from(`
+                              export type FooType = "Foo" | "Bar" | "Fizz"; 
+                            `);
+                          }
+                        }
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from "prop-types";
+import { CommonProps } from './common.ts';
+const FooComponent = () => {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World"
+  );
+};
+FooComponent.propTypes = {
+  className: PropTypes.string,
+  "aria-label": PropTypes.string,
+  "data-test-subj": PropTypes.string,
+  foo: PropTypes.oneOf(["Foo", "Bar", "Fizz"]).isRequired
+};`);
+          });
+
         });
 
       });
@@ -1154,9 +1444,11 @@ FooComponent.propTypes = {
 
     });
 
-    it('copies comments from types to proptypes', () =>   {
-      const result = transform(
-        `
+    describe('comments', () => {
+
+      it('copies comments from types to proptypes', () =>   {
+        const result = transform(
+          `
 import React, { SFC } from 'react';
 interface FooProps {
   // this is the foo prop
@@ -1169,10 +1461,10 @@ interface FooProps {
 const FooComponent: SFC<FooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-        babelOptions
-      );
+          babelOptions
+        );
 
-      expect(result.code).toBe(`
+        expect(result.code).toBe(`
 import React, { SFC } from 'react';
 import PropTypes from 'prop-types';
 
@@ -1190,6 +1482,50 @@ FooComponent.propTypes = {
      * this is the optional bar prop
      */bar: PropTypes.number
 };`);
+      });
+
+      it('copies comments from intersected types', () =>   {
+        const result = transform(
+          `
+import React, { SFC } from 'react';
+interface iFoo {
+  // this is the foo prop
+  foo: string
+}
+interface iBar {
+  /* bar's foo */
+  foo: string,
+  /**
+    * this is the optional bar prop
+    */
+  bar?: number
+}
+const FooComponent: SFC<iFoo & iBar> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`
+import React, { SFC } from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  /* bar's foo */ // this is the foo prop
+  foo: PropTypes.string.isRequired,
+  /**
+      * this is the optional bar prop
+      */bar: PropTypes.number
+};`);
+      });
+
     });
 
   });

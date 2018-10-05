@@ -3,8 +3,6 @@ import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
-// console.log(PropTypes, React);
-
 const sizeToClassNameMap = {
   xs: 'euiSpacer--xs',
   s: 'euiSpacer--s',
@@ -18,9 +16,8 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 
 export type SpacerSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
-export type EuiSpacerProps = CommonProps & HTMLAttributes<HTMLDivElement> & {
-  className?: string,
-  size: SpacerSize,
+export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> & CommonProps & {
+  size: SpacerSize
 };
 
 export const EuiSpacer: React.SFC<EuiSpacerProps> = ({

@@ -1,4 +1,6 @@
 /* eslint-disable new-cap */
+const fs = require('fs');
+const path = require('path');
 const babelTemplate = require('babel-template');
 
 function resolveArrayToPropTypes(node, state) {
@@ -54,6 +56,8 @@ function buildPropTypePrimitiveExpression(types, typeName) {
 function getPropTypesForNode(node, optional, state) {
   const { dynamicData: { types } } = state;
 
+  if (node.isAlreadyResolved === true) return node;
+
   let propType;
   switch(node.type) {
     case 'GenericTypeAnnotation':
@@ -65,19 +69,35 @@ function getPropTypesForNode(node, optional, state) {
         (mergedProperties, node) => {
           const nodePropTypes = getPropTypesForNode(node, true, state);
 
+          // if this propType is PropTypes.any there is nothing to do here
+          if (
+            types.isMemberExpression(nodePropTypes) &&
+            nodePropTypes.object.name === 'PropTypes' &&
+            nodePropTypes.property.name === 'any'
+          ) {
+            return mergedProperties;
+          }
+
           // validate that this resulted in a shape
-          if (!types.isCallExpression(nodePropTypes) ||
+          if (
+            !types.isCallExpression(nodePropTypes) ||
             !types.isMemberExpression(nodePropTypes.callee) ||
             nodePropTypes.callee.object.name !== 'PropTypes' ||
             nodePropTypes.callee.property.name !== 'shape'
           ) {
+            debugger;
             throw new Error('Cannot process an encountered type intersection');
           }
 
           const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
           for (let i = 0; i < typeProperties.length; i++) {
             const typeProperty = typeProperties[i];
+            const leadingComments = [
+              ...(typeProperty.leadingComments || []),
+              ...((mergedProperties[typeProperty.key.name] ? mergedProperties[typeProperty.key.name].leadingComments : null) || []),
+            ];
             mergedProperties[typeProperty.key.name] = typeProperty.value;
+            mergedProperties[typeProperty.key.name].leadingComments = leadingComments;
           }
 
           return mergedProperties;
@@ -85,25 +105,37 @@ function getPropTypesForNode(node, optional, state) {
         {}
       );
 
-      propType = types.callExpression(
-        types.memberExpression(
-          types.identifier('PropTypes'),
-          types.identifier('shape')
-        ),
-        [
-          types.objectExpression(Object.keys(mergedProperties).map(
-            propKey => types.objectProperty(
-              types.identifier(propKey),
-              mergedProperties[propKey]
-            )
-          ))
-        ]
-      );
+      const propertyKeys = Object.keys(mergedProperties);
+      if (propertyKeys.length > 0) {
+        // At least one type/interface was resolved to proptypes
+        propType = types.callExpression(
+          types.memberExpression(
+            types.identifier('PropTypes'),
+            types.identifier('shape')
+          ),
+          [
+            types.objectExpression(propertyKeys.map(
+              propKey => {
+                const objectProperty = types.objectProperty(
+                  types.identifier(propKey),
+                  mergedProperties[propKey]
+                );
 
-      // propType = node.types.reduce(
-      //   (propTypes, node) => Object.assign(propTypes, getPropTypesForNode(node, false, state)),
-      //
-      // );
+                objectProperty.leadingComments = mergedProperties[propKey].leadingComments;
+                mergedProperties[propKey].leadingComments = null;
+
+                return objectProperty;
+              }
+            ))
+          ]
+        );
+      } else {
+        // None of the types were resolveable, return with PropTypes.any
+        propType = types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('any')
+        );
+      }
       break;
 
     case 'ObjectTypeAnnotation':
@@ -116,7 +148,7 @@ function getPropTypesForNode(node, optional, state) {
           types.objectExpression(
             node.properties.map(property => {
               const objectProperty = types.objectProperty(
-                types.identifier(property.key.name),
+                types.identifier(property.key.name || `"${property.key.value}"`),
                 getPropTypesForNode(property.value, property.optional, state)
               );
               if (property.leadingComments != null) {
@@ -241,6 +273,90 @@ function getPropTypesForNode(node, optional, state) {
 }
 
 const typeDefinitionExtractors = {
+  ImportDeclaration: (node, extractionOptions) => {
+    const { fs, sourceFilename, parse, state } = extractionOptions;
+    const importPath = node.source.value;
+    const isPathRelative = /\.{1,2}\//.test(importPath);
+
+    if (isPathRelative) {
+      // only process relative imports for typescript definitions
+
+      // find the variable names being imported
+      const importedTypeNames = node.specifiers.map(specifier => {
+        switch (specifier.type) {
+          case 'ImportSpecifier':
+            return specifier.imported.name;
+
+          default:
+            throw new Error(`Unable to process import specifier type ${specifier.type}`);
+        }
+      });
+
+      let resolvedPath = path.resolve(path.dirname(sourceFilename), importPath);
+      if (fs.existsSync(resolvedPath)) {
+        const isDirectory = fs.statSync(resolvedPath).isDirectory();
+        if (isDirectory) {
+          resolvedPath = `${resolvedPath}/index.ts`;
+          if (!fs.existsSync(resolvedPath)) {
+            // no index file to resolve to
+            return [];
+          }
+        }
+      } else if (fs.existsSync(`${resolvedPath}.ts`)) {
+        resolvedPath += '.ts';
+      } else if (fs.existsSync(`${resolvedPath}.tsx`)) {
+        resolvedPath += '.tsx';
+      } else if (!fs.existsSync(resolvedPath)) {
+        // could not resolve this file, skip out
+        return [];
+      }
+      const ast = parse(fs.readFileSync(resolvedPath).toString());
+
+      const definitions = [];
+      for (let i = 0; i < ast.program.body.length; i++) {
+        const bodyNode = ast.program.body[i];
+        Array.prototype.push.apply(definitions, extractTypeDefinition(bodyNode, extractionOptions) || []);
+      }
+
+      // override typeDefinitions so variable scope doesn't bleed between files
+      const localState = {
+        ...state,
+        dynamicData: {
+          ...state.dynamicData,
+          typeDefinitions: definitions.reduce(
+            (typeDefinitions, definition) => {
+              if (definition) {
+                typeDefinitions[definition.name] = definition.definition;
+              }
+
+              return typeDefinitions;
+            },
+            {}
+          )
+        },
+      };
+
+      // for each importedTypeName, fully resolve the type information
+      const importedDefinitions = definitions.reduce(
+        (importedDefinitions, { name, definition }) => {
+          if (importedTypeNames.includes(name)) {
+            // this type declaration imported by the parent script
+            const propTypes = getPropTypesForNode(definition, true, localState);
+            propTypes.isAlreadyResolved = true; // when getPropTypesForNode is called on this node later, tell it to skip processing
+            importedDefinitions.push({ name, definition: propTypes });
+          }
+
+          return importedDefinitions;
+        },
+        []
+      );
+
+      return importedDefinitions;
+    }
+
+    return [];
+  },
+
   InterfaceDeclaration: node => {
     const { id, body } = node;
 
@@ -249,8 +365,7 @@ const typeDefinitionExtractors = {
       throw new Error(`InterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
-    return { name: id.name, definition: body };
-
+    return [{ name: id.name, definition: body }];
   },
 
   TypeAlias: node => {
@@ -261,18 +376,18 @@ const typeDefinitionExtractors = {
       throw new Error(`TypeAlias typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
-    return { name: id.name, definition: right };
+    return [{ name: id.name, definition: right }];
   },
 
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
 };
-function extractTypeDefinition(node) {
+function extractTypeDefinition(node, opts) {
   if (node == null) {
     // TODO when does this happen
     debugger;
     return null;
   }
-  return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node) : null;
+  return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node, opts) : null;
 }
 
 function getVariableBinding(path, variableName) {
@@ -360,46 +475,62 @@ function isVariableFromReact(types, path, variableName) {
 module.exports = function propTypesFromTypeScript({ types }) {
   return {
     visitor: {
-      Program: function visitProgram(path, state) {
-        const { dynamicData } = state;
+      Program: function visitProgram(programPath, state) {
+        // only process typescript files
+        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+
+        const { dynamicData, opts = {} } = state;
         const typeDefinitions = dynamicData.typeDefinitions = {};
         dynamicData.types = types;
 
+        const extractionOptions = {
+          state,
+          sourceFilename: path.resolve(process.cwd(), this.file.opts.filename),
+          fs: opts.fs || fs,
+          parse: (code) => state.file.parse(code),
+        };
+
         // collect named TS type definitions for later reference
-        for (let i = 0; i < path.node.body.length; i++) {
-          const bodyNode = path.node.body[i];
+        for (let i = 0; i < programPath.node.body.length; i++) {
+          const bodyNode = programPath.node.body[i];
 
-          const typeDefinition = extractTypeDefinition(bodyNode);
+          const extractedDefinitions = extractTypeDefinition(bodyNode, extractionOptions) || [];
 
-          if (typeDefinition) {
-            typeDefinitions[typeDefinition.name] = typeDefinition.definition;
+          for (let i = 0; i < extractedDefinitions.length; i++) {
+            const typeDefinition = extractedDefinitions[i];
+            if (typeDefinition) {
+              typeDefinitions[typeDefinition.name] = typeDefinition.definition;
+            }
           }
         }
       },
 
-      ClassDeclaration: function visitClassDeclaration(path, state) {
+      ClassDeclaration: function visitClassDeclaration(nodePath, state) {
+        // only process typescript files
+        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+
         const { dynamicData: { types } } = state;
 
-        if (path.node.superClass != null) {
+        if (nodePath.node.superClass != null) {
           let isReactComponent = false;
 
-          if (types.isMemberExpression(path.node.superClass)) {
-            const objectName = path.node.superClass.object.name;
-            const propertyName = path.node.superClass.property.name;
+          if (types.isMemberExpression(nodePath.node.superClass)) {
+            const objectName = nodePath.node.superClass.object.name;
+            const propertyName = nodePath.node.superClass.property.name;
             if (objectName === 'React' && (propertyName === 'Component' || propertyName === 'PureComponent')) {
               isReactComponent = true;
             }
-          } else if (types.isIdentifier(path.node.superClass)) {
-            const identifierName = path.node.superClass.name;
+          } else if (types.isIdentifier(nodePath.node.superClass)) {
+            const identifierName = nodePath.node.superClass.name;
             if (identifierName === 'Component' || identifierName === 'PureComponent') {
-              if (isVariableFromReact(types, path, identifierName)) {
+              if (isVariableFromReact(types, nodePath, identifierName)) {
                 isReactComponent = true;
               }
             }
           }
 
-          if (isReactComponent) {
-            processComponentDeclaration(path.node.superTypeParameters.params[0], path, state);
+          if (isReactComponent && nodePath.node.superTypeParameters != null) {
+            processComponentDeclaration(nodePath.node.superTypeParameters.params[0], nodePath, state);
 
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
@@ -409,8 +540,11 @@ module.exports = function propTypesFromTypeScript({ types }) {
         }
       },
 
-      VariableDeclarator: function visitVariableDeclarator(path, state) {
-        const variableDeclarator = path.node;
+      VariableDeclarator: function visitVariableDeclarator(nodePath, state) {
+        // only process typescript files
+        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+
+        const variableDeclarator = nodePath.node;
         const { id } = variableDeclarator;
         const idTypeAnnotation = id.typeAnnotation;
 
@@ -422,7 +556,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
 
             if (qualification.name === 'React') {
               if (id.name === 'SFC') {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], path, state);
+                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
               } else {
                 debugger;
@@ -431,8 +565,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
             }
           } else if (idTypeAnnotation.typeAnnotation.id.type === 'Identifier') {
             if (idTypeAnnotation.typeAnnotation.id.name === 'SFC') {
-              if (isVariableFromReact(types, path, 'SFC')) {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], path, state);
+              if (isVariableFromReact(types, nodePath, 'SFC')) {
+                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
               }
             }
