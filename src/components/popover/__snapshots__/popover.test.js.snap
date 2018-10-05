@@ -3,7 +3,7 @@
 exports[`EuiPopover children is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
-  id="1"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -18,7 +18,7 @@ exports[`EuiPopover is rendered 1`] = `
   aria-label="aria-label"
   class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
   data-test-subj="test subject string"
-  id="0"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -28,10 +28,26 @@ exports[`EuiPopover is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiPopover outside click detector is not rendered when closed 1`] = `
+<div
+  aria-label="aria-label"
+  className="euiPopover euiPopover--anchorDownCenter testClass1 testClass2"
+  data-test-subj="test subject string"
+  id="test-id"
+  onKeyDown={[Function]}
+>
+  <div
+    className="euiPopover__anchor"
+  >
+    <button />
+  </div>
+</div>
+`;
+
 exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
-  id="4"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -44,7 +60,7 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownRight"
-  id="6"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -57,7 +73,7 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorLeftCenter"
-  id="5"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -70,7 +86,7 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
-  id="7"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"
@@ -80,11 +96,78 @@ exports[`EuiPopover props isOpen defaults to false 1`] = `
 </div>
 `;
 
+exports[`EuiPopover props isOpen renders outside click detector when open 1`] = `
+<EuiOutsideClickDetector
+  onOutsideClick={[Function]}
+>
+  <div
+    aria-label="aria-label"
+    className="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen testClass1 testClass2"
+    data-test-subj="test subject string"
+    id="test-id"
+    onKeyDown={[Function]}
+  >
+    <div
+      className="euiPopover__anchor"
+    >
+      <button />
+    </div>
+    <EuiPortal>
+      <FocusTrap
+        _createFocusTrap={[Function]}
+        active={false}
+        focusTrapOptions={
+          Object {
+            "clickOutsideDeactivates": true,
+            "initialFocus": undefined,
+          }
+        }
+        paused={false}
+        tag="div"
+      >
+        <EuiPanel
+          aria-live="assertive"
+          className="euiPopover__panel euiPopover__panel--null euiPopover__panel-isOpen"
+          grow={true}
+          hasShadow={false}
+          paddingSize="m"
+          panelRef={[Function]}
+          style={
+            Object {
+              "left": 50,
+              "top": 50,
+            }
+          }
+        >
+          <div
+            className="euiPopover__panelArrow euiPopover__panelArrow--null"
+            style={Object {}}
+          />
+          <EuiMutationObserver
+            observerOptions={
+              Object {
+                "attributes": true,
+                "characterData": true,
+                "childList": true,
+                "subtree": true,
+              }
+            }
+            onMutation={[Function]}
+          >
+            Children
+          </EuiMutationObserver>
+        </EuiPanel>
+      </FocusTrap>
+    </EuiPortal>
+  </div>
+</EuiOutsideClickDetector>
+`;
+
 exports[`EuiPopover props isOpen renders true 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="8"
+    id="test-id"
   >
     <div
       class="euiPopover__anchor"
@@ -111,7 +194,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="9"
+    id="test-id"
   >
     <div
       class="euiPopover__anchor"
@@ -138,7 +221,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="10"
+    id="test-id"
   >
     <div
       class="euiPopover__anchor"
@@ -172,7 +255,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="11"
+    id="test-id"
   >
     <div
       class="euiPopover__anchor"
@@ -199,7 +282,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="12"
+    id="test-id"
   >
     <div
       class="euiPopover__anchor"
@@ -225,7 +308,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 exports[`EuiPopover props withTitle is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter euiPopover--withTitle"
-  id="2"
+  id="test-id"
 >
   <div
     class="euiPopover__anchor"

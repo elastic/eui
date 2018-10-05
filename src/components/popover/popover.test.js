@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { render, mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
@@ -18,16 +18,15 @@ jest.mock(
   })
 );
 
-let id = 0;
-const getId = () => (`${id++}`);
+const testId = 'test-id';
 
 describe('EuiPopover', () => {
   test('is rendered', () => {
     const component = render(
       <EuiPopover
-        id={getId()}
+        id={testId}
         button={<button />}
-        closePopover={() => {}}
+        closePopover={() => { }}
         {...requiredProps}
       />
     );
@@ -39,9 +38,25 @@ describe('EuiPopover', () => {
   test('children is rendered', () => {
     const component = render(
       <EuiPopover
-        id={getId()}
+        id={testId}
         button={<button />}
-        closePopover={() => {}}
+        closePopover={() => { }}
+      >
+        Children
+      </EuiPopover>
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
+  test('outside click detector is not rendered when closed', () => {
+    const component = shallow(
+      <EuiPopover
+        id={testId}
+        button={<button />}
+        closePopover={() => { }}
+        {...requiredProps}
       >
         Children
       </EuiPopover>
@@ -56,10 +71,10 @@ describe('EuiPopover', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
-            id={getId()}
+            id={testId}
             withTitle
             button={<button />}
-            closePopover={() => {}}
+            closePopover={() => { }}
           />
         );
 
@@ -74,7 +89,7 @@ describe('EuiPopover', () => {
 
         const component = mount(
           <EuiPopover
-            id={getId()}
+            id={testId}
             withTitle
             button={<button />}
             closePopover={closePopoverHandler}
@@ -90,9 +105,9 @@ describe('EuiPopover', () => {
       test('defaults to centerDown', () => {
         const component = render(
           <EuiPopover
-            id={getId()}
+            id={testId}
             button={<button />}
-            closePopover={() => {}}
+            closePopover={() => { }}
           />
         );
 
@@ -103,9 +118,9 @@ describe('EuiPopover', () => {
       test('leftCenter is rendered', () => {
         const component = render(
           <EuiPopover
-            id={getId()}
+            id={testId}
             button={<button />}
-            closePopover={() => {}}
+            closePopover={() => { }}
             anchorPosition="leftCenter"
           />
         );
@@ -117,9 +132,9 @@ describe('EuiPopover', () => {
       test('downRight is rendered', () => {
         const component = render(
           <EuiPopover
-            id={getId()}
+            id={testId}
             button={<button />}
-            closePopover={() => {}}
+            closePopover={() => { }}
             anchorPosition="downRight"
           />
         );
@@ -133,9 +148,9 @@ describe('EuiPopover', () => {
       test('defaults to false', () => {
         const component = render(
           <EuiPopover
-            id={getId()}
+            id={testId}
             button={<button />}
-            closePopover={() => {}}
+            closePopover={() => { }}
           />
         );
 
@@ -147,9 +162,9 @@ describe('EuiPopover', () => {
         const component = mount(
           <div>
             <EuiPopover
-              id={getId()}
+              id={testId}
               button={<button />}
-              closePopover={() => {}}
+              closePopover={() => { }}
               isOpen
             />
           </div>
@@ -160,6 +175,23 @@ describe('EuiPopover', () => {
         expect(component.render())
           .toMatchSnapshot();
       });
+
+      test('renders outside click detector when open', () => {
+        const component = shallow(
+          <EuiPopover
+            id={testId}
+            button={<button />}
+            closePopover={() => { }}
+            isOpen={true}
+            {...requiredProps}
+          >
+            Children
+          </EuiPopover>
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
     });
 
     describe('ownFocus', () => {
@@ -167,10 +199,10 @@ describe('EuiPopover', () => {
         const component = mount(
           <div>
             <EuiPopover
-              id={getId()}
+              id={testId}
               isOpen
               button={<button />}
-              closePopover={() => {}}
+              closePopover={() => { }}
             />
           </div>
         );
@@ -183,11 +215,11 @@ describe('EuiPopover', () => {
         const component = mount(
           <div>
             <EuiPopover
-              id={getId()}
+              id={testId}
               isOpen
               ownFocus
               button={<button />}
-              closePopover={() => {}}
+              closePopover={() => { }}
             />
           </div>
         );
@@ -202,9 +234,9 @@ describe('EuiPopover', () => {
         const component = mount(
           <div>
             <EuiPopover
-              id={getId()}
+              id={testId}
               button={<button />}
-              closePopover={() => {}}
+              closePopover={() => { }}
               panelClassName="test"
               isOpen
             />
@@ -221,9 +253,9 @@ describe('EuiPopover', () => {
         const component = mount(
           <div>
             <EuiPopover
-              id={getId()}
+              id={testId}
               button={<button />}
-              closePopover={() => {}}
+              closePopover={() => { }}
               panelPaddingSize="s"
               isOpen
             />
