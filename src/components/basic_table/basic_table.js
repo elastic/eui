@@ -819,7 +819,7 @@ export class EuiBasicTable extends Component {
       dataType,
       isExpander,
       textOnly,
-      name, // eslint-disable-line no-unused-vars
+      name,
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
@@ -834,6 +834,7 @@ export class EuiBasicTable extends Component {
       <EuiTableRowCell
         key={key}
         align={columnAlign}
+        header={name}
         isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}

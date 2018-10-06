@@ -41,6 +41,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               align="left"
               className="customRowClass"
               data-test-subj="cell-1-name"
+              header="Name"
               key="_data_column_name_0_0"
               onClick={[Function]}
               textOnly={true}
@@ -59,6 +60,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               align="left"
               className="customRowClass"
               data-test-subj="cell-2-name"
+              header="Name"
               key="_data_column_name_1_0"
               onClick={[Function]}
               textOnly={true}
@@ -77,6 +79,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
               align="left"
               className="customRowClass"
               data-test-subj="cell-3-name"
+              header="Name"
               key="_data_column_name_2_0"
               onClick={[Function]}
               textOnly={true}
@@ -132,6 +135,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               align="left"
               className="customClass"
               data-test-subj="cell"
+              header="Name"
               key="_data_column_name_0_0"
               onClick={[Function]}
               textOnly={true}
@@ -150,6 +154,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               align="left"
               className="customClass"
               data-test-subj="cell"
+              header="Name"
               key="_data_column_name_1_0"
               onClick={[Function]}
               textOnly={true}
@@ -168,6 +173,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
               align="left"
               className="customClass"
               data-test-subj="cell"
+              header="Name"
               key="_data_column_name_2_0"
               onClick={[Function]}
               textOnly={true}
@@ -388,6 +394,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -395,6 +402,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_1_1"
               textOnly={true}
             >
@@ -402,6 +410,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_1_2"
               textOnly={true}
             >
@@ -417,6 +426,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -424,6 +434,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_2_1"
               textOnly={true}
             >
@@ -431,6 +442,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_2_2"
               textOnly={true}
             >
@@ -446,6 +458,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -453,6 +466,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_3_1"
               textOnly={true}
             >
@@ -460,6 +474,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_3_2"
               textOnly={true}
             >
@@ -578,6 +593,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -585,6 +601,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_1_1"
               textOnly={true}
             >
@@ -592,6 +609,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_1_2"
               textOnly={true}
             >
@@ -623,6 +641,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -630,6 +649,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_2_1"
               textOnly={true}
             >
@@ -637,6 +657,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_2_2"
               textOnly={true}
             >
@@ -668,6 +689,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -675,6 +697,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="ID"
               key="_data_column_id_3_1"
               textOnly={true}
             >
@@ -682,6 +705,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             </EuiTableRowCell>
             <EuiTableRowCell
               align="left"
+              header="Age"
               key="_data_column_age_3_2"
               textOnly={true}
             >
@@ -778,6 +802,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -807,6 +832,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -822,6 +848,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -878,6 +905,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_0_0"
                 textOnly={true}
               >
@@ -898,6 +926,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_1_0"
                 textOnly={true}
               >
@@ -918,6 +947,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_2_0"
                 textOnly={true}
               >
@@ -975,6 +1005,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_0_0"
                 textOnly={true}
               >
@@ -995,6 +1026,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_1_0"
                 textOnly={true}
               >
@@ -1015,6 +1047,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
             >
               <EuiTableRowCell
                 align="left"
+                header="Name"
                 key="_data_column_name_2_0"
                 textOnly={true}
               >
@@ -1068,6 +1101,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -1083,6 +1117,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_4_0"
               textOnly={true}
             >
@@ -1146,6 +1181,7 @@ exports[`EuiBasicTable with pagination 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_0_0"
               textOnly={true}
             >
@@ -1161,6 +1197,7 @@ exports[`EuiBasicTable with pagination 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -1176,6 +1213,7 @@ exports[`EuiBasicTable with pagination 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -1325,6 +1363,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -1356,6 +1395,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -1387,6 +1427,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -1450,6 +1491,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_0_0"
               textOnly={true}
             >
@@ -1465,6 +1507,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -1480,6 +1523,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -1594,6 +1638,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -1625,6 +1670,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -1656,6 +1702,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -1777,6 +1824,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -1837,6 +1885,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -1897,6 +1946,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -2038,6 +2088,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_1_0"
               textOnly={true}
             >
@@ -2069,6 +2120,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_2_0"
               textOnly={true}
             >
@@ -2100,6 +2152,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_3_0"
               textOnly={true}
             >
@@ -2213,6 +2266,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={false}
             >
@@ -2244,6 +2298,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={false}
             >
@@ -2275,6 +2330,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={false}
             >
@@ -2396,6 +2452,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -2462,6 +2519,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -2528,6 +2586,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_3_0"
               textOnly={true}
             >
@@ -2675,6 +2734,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_1_0"
               textOnly={false}
             >
@@ -2706,6 +2766,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_2_0"
               textOnly={false}
             >
@@ -2737,6 +2798,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
               align="right"
+              header="Count"
               key="_data_column_count_3_0"
               textOnly={false}
             >
@@ -2800,6 +2862,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_0_0"
               textOnly={true}
             >
@@ -2815,6 +2878,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -2830,6 +2894,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
@@ -2899,6 +2964,7 @@ exports[`EuiBasicTable with sorting 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_0_0"
               textOnly={true}
             >
@@ -2914,6 +2980,7 @@ exports[`EuiBasicTable with sorting 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_1_0"
               textOnly={true}
             >
@@ -2929,6 +2996,7 @@ exports[`EuiBasicTable with sorting 1`] = `
           >
             <EuiTableRowCell
               align="left"
+              header="Name"
               key="_data_column_name_2_0"
               textOnly={true}
             >
