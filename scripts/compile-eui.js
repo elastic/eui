@@ -11,9 +11,7 @@ function compileLib() {
   console.log('Compiling src/ to lib/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
-  execSync('babel --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src/components/spacer/spacer.tsx');
-
-  return;
+  execSync('babel --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
 
   // Use `tsc` to emit typescript declaration files for .ts files
   execSync('tsc --noEmit false --outDir ./lib --emitDeclarationOnly');
@@ -43,7 +41,11 @@ function compileLib() {
       if (!fs.existsSync(dirPath)) {
         shell.mkdir('-p', dirPath);
       }
-      shell.cp('-f', `${file}`, `lib/${basePath}`);
+
+      const targetFilePath = path.join('lib', basePath);
+      if (!fs.existsSync(targetFilePath)) {
+        shell.cp('-f', file, targetFilePath);
+      }
     });
 
     console.log(chalk.green('✔ Finished copying TS declarations'));

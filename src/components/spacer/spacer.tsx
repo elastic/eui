@@ -39,11 +39,6 @@ export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
   );
 };
 
-// EuiSpacer.propTypes = {
-//   ...commonProps,
-//   size: PropTypes.oneOf(SIZES),
-// };
-
 EuiSpacer.defaultProps = {
   size: 'l',
 };
