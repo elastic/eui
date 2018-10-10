@@ -581,7 +581,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
-            header={column.title}
             align={column.alignment}
           >
             {footer}
@@ -591,7 +590,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            header={column.title}
             align={column.alignment}
           >
             {undefined}

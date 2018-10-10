@@ -22,10 +22,6 @@ export class EuiTableSortMobile extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return JSON.stringify(nextProps) !== JSON.stringify(this.props) || JSON.stringify(nextState) !== JSON.stringify(this.state);
-  }
-
   onButtonClick = () => {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,

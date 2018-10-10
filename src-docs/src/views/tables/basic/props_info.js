@@ -150,7 +150,7 @@ export const propsInfo = {
         name: {
           description: 'The display name of the column',
           required: true,
-          type: { name: 'string' }
+          type: { name: 'PropTypes.node' }
         },
         description: {
           description: 'A description of the column (will be presented as a title over the column header',
@@ -213,7 +213,7 @@ export const propsInfo = {
         name: {
           description: 'The display name of the column',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'PropTypes.node' }
         },
         description: {
           description: 'A description of the column (will be presented as a title over the column header',
@@ -248,7 +248,7 @@ export const propsInfo = {
         name: {
           description: 'The display name of the column',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'PropTypes.node' }
         },
         description: {
           description: 'A description of the column (will be presented as a title over the column header',
