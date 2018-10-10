@@ -467,6 +467,288 @@ FooComponent.propTypes = {
 
     });
 
+    describe('React component & element propTypes', () => {
+
+      describe('element propType', () => {
+
+        it('understands React.Component', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.Component}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands Component', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: Component}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands React.ReactElement', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.ReactElement}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands ReactElement', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: ReactElement}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands React.ComponentClass', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.ComponentClass}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands ComponentClass', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: ComponentClass}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands React.SFC', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.SFC}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+        it('understands SFC', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: SFC}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.element.isRequired
+};`);
+        });
+
+      });
+
+      describe('node propType', () => {
+
+        it('understands React.ReactNode', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: React.ReactNode}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.node.isRequired
+};`);
+        });
+
+        it('understands ReactNode', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {foo: ReactNode}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const FooComponent = () => {
+  return React.createElement(
+    'div',
+    null,
+    'Hello World'
+  );
+};
+FooComponent.propTypes = {
+  foo: PropTypes.node.isRequired
+};`);
+        });
+
+      });
+
+    });
+
     describe('intersection types', () => {
 
       it('intersects multiple types together', () => {

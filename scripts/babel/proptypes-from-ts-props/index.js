@@ -1,4 +1,5 @@
 /* eslint-disable new-cap */
+
 const fs = require('fs');
 const path = require('path');
 const babelTemplate = require('babel-template');
@@ -30,8 +31,33 @@ function resolveArrayToPropTypes(node, state) {
 }
 
 function resolveIdentifierToPropTypes(node, state) {
-  const { dynamicData: { typeDefinitions } } = state;
+  const { dynamicData: { typeDefinitions, types } } = state;
   const identifier = node.id;
+
+  // resolve React.* identifiers
+  if (identifier.type === 'QualifiedTypeIdentifier' && identifier.qualification.name === 'React') {
+    return resolveIdentifierToPropTypes(identifier, state);
+  }
+
+  // React Component
+  switch (identifier.name) {
+    // PropTypes.element
+    case 'Component':
+    case 'ReactElement':
+    case 'ComponentClass':
+    case 'SFC':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('element')
+      );
+
+    // PropTypes.node
+    case 'ReactNode':
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('node')
+      );
+  }
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
 
