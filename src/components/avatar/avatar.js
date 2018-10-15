@@ -20,7 +20,7 @@ const typeToClassNameMap = {
   user: 'euiAvatar--user',
 };
 
-const TYPES = Object.keys(typeToClassNameMap);
+export const TYPES = Object.keys(typeToClassNameMap);
 
 export const EuiAvatar = ({
   className,
