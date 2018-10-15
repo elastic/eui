@@ -502,7 +502,7 @@ exports[`EuiIcon props type asterisk is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type auditBeatApp is rendered 1`] = `
+exports[`EuiIcon props type auditbeatApp is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"
@@ -1801,7 +1801,7 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type heartBeatApp is rendered 1`] = `
+exports[`EuiIcon props type heartbeatApp is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon--app"
   focusable="false"

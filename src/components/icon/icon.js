@@ -12,7 +12,7 @@ import arrowLeft from './assets/arrow_left.svg';
 import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
-import auditBeatApp from './assets/app_auditbeat.svg';
+import auditbeatApp from './assets/app_auditbeat.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -78,7 +78,7 @@ import grab from './assets/grab.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
-import heartBeatApp from './assets/app_heartbeat.svg';
+import heartbeatApp from './assets/app_heartbeat.svg';
 import heatmap from './assets/heatmap.svg';
 import help from './assets/help.svg';
 import iInCircle from './assets/iInCircle.svg';
@@ -446,12 +446,12 @@ const typeToIconMap = {
   visVisualBuilder,
   watchesApp,
   wrench,
-  auditBeatApp,
+  auditbeatApp,
   canvasApp,
   crossClusterReplicationApp,
   filebeatApp,
   gisApp,
-  heartBeatApp,
+  heartbeatApp,
   indexRollupApp,
   metricbeatApp,
   notebookApp,
