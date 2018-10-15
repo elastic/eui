@@ -9,3 +9,4 @@ rules:
   no-default-export: true
   quotemark: [true, "single", "jsx-double", "avoid-template", "avoid-escape"]
   trailing-comma: [true]
+  no-reference: false

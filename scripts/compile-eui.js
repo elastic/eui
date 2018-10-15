@@ -11,38 +11,38 @@ function compileLib() {
   console.log('Compiling src/ to lib/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
-  execSync('babel --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
+  // execSync('babel --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
 
   // Use `tsc` to emit typescript declaration files for .ts files
-  execSync('tsc --noEmit false --outDir ./lib --emitDeclarationOnly');
+  execSync('tsc --noEmit false --outDir ./types --declaration --emitDeclarationOnly');
 
   console.log(chalk.green('✔ Finished compiling src/ to lib/'));
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
-  shell.mkdir('-p', 'lib/components/icon/assets');
+  // shell.mkdir('-p', 'lib/components/icon/assets');
 
-  glob('./src/components/**/*.svg', undefined, (error, files) => {
-    files.forEach(file => {
-      const splitPath = file.split('/');
-      const basePath = splitPath.slice(2, splitPath.length).join('/');
-      shell.cp('-f', `${file}`, `lib/${basePath}`);
-    });
-
-    console.log(chalk.green('✔ Finished copying SVGs'));
-  });
+  // glob('./src/components/**/*.svg', undefined, (error, files) => {
+  //   files.forEach(file => {
+  //     const splitPath = file.split('/');
+  //     const basePath = splitPath.slice(2, splitPath.length).join('/');
+  //     shell.cp('-f', `${file}`, `lib/${basePath}`);
+  //   });
+  //
+  //   console.log(chalk.green('✔ Finished copying SVGs'));
+  // });
 
   // Copy hand-crafted *.d.ts declaration files
-  glob('./src/**/*.d.ts', undefined, (error, files) => {
+  glob('./src/*/**/*.d.ts', undefined, (error, files) => {
     files.forEach(file => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
-      const dirPath = path.dirname(`lib/${basePath}`);
+      const dirPath = path.dirname(`types/${basePath}`);
       if (!fs.existsSync(dirPath)) {
         shell.mkdir('-p', dirPath);
       }
 
-      const targetFilePath = path.join('lib', basePath);
+      const targetFilePath = path.join('types', basePath);
       if (!fs.existsSync(targetFilePath)) {
         shell.cp('-f', file, targetFilePath);
       }

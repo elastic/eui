@@ -4,7 +4,7 @@
   "version": "4.2.0",
   "main": "lib",
   "module": "src",
-  "types": "src/index.d.ts",
+  "types": "types/index.d.ts",
   "jsnext:main": "src",
   "postcss": {},
   "docker_image": "node:8",

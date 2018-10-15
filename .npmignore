@@ -6,6 +6,7 @@ wiki/
 generator-eui/
 test/
 src-docs/
+types/
 .nvmrc
 
 # ignore everything in `scripts` except postinstall.js
