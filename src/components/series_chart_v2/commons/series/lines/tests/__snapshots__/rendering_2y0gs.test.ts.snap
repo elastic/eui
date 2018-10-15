@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Line rendering 2Y0G should compute the domain 1`] = `
+Object {
+  "colorDomain": Object {
+    "accessors": Array [],
+    "domain": Array [
+      "y1",
+      "y2",
+    ],
+    "scaleType": "ordinal",
+    "yAccessors": Array [
+      "y1",
+      "y2",
+    ],
+  },
+  "xDomains": Array [
+    Object {
+      "accessor": "x",
+      "domain": Array [
+        0,
+        1,
+        2,
+        3,
+      ],
+      "level": 0,
+      "scaleType": "ordinal",
+    },
+  ],
+  "yDomain": Object {
+    "accessor": "y",
+    "domain": Array [
+      0,
+      16,
+    ],
+    "isStacked": true,
+    "level": 0,
+    "scaleType": "linear",
+  },
+}
+`;
+
+exports[`Line rendering 2Y0G should render the line series 1`] = `
+Array [
+  Object {
+    "color": "green",
+    "data": Array [],
+    "path": "M5,93.75L165,87.5L325,93.75L485,62.5",
+    "points": Array [
+      Object {
+        "x": 5,
+        "y": 6.25,
+      },
+      Object {
+        "x": 165,
+        "y": 12.5,
+      },
+      Object {
+        "x": 325,
+        "y": 6.25,
+      },
+      Object {
+        "x": 485,
+        "y": 37.5,
+      },
+    ],
+  },
+  Object {
+    "color": "blue",
+    "data": Array [],
+    "path": "M5,75L165,43.75L325,81.25L485,0",
+    "points": Array [
+      Object {
+        "x": 5,
+        "y": 25,
+      },
+      Object {
+        "x": 165,
+        "y": 56.25,
+      },
+      Object {
+        "x": 325,
+        "y": 18.75,
+      },
+      Object {
+        "x": 485,
+        "y": 100,
+      },
+    ],
+  },
+]
+`;

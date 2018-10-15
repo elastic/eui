@@ -4,7 +4,7 @@ import { Chart } from '../../chart/chart';
 import { ScaleType } from '../../commons/data_ops/scales';
 import { getAxisId, getSpecId } from '../../commons/ids';
 import { AxisOrientation, AxisPosition } from '../../commons/series/specs';
-import { Axis, BarSeries } from '../../specs/index';
+import { Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
 import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
@@ -116,6 +116,15 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             data={this.state.barchart_1y1g}
           />
+          <LineSeries
+            id={getSpecId('renderLineChart1y1g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            data={this.state.barchart_1y1g}
+            />
         </Chart>
       </div>
     );
@@ -146,6 +155,18 @@ class App extends Component {
             data={this.state.barchart_1y1g}
             tooltipLevel={0}
           />
+          <LineSeries
+            id={getSpecId('renderLineChart1y1g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            data={this.state.barchart_1y1g}
+            tooltipLevel={0}
+          />
+
         </Chart>
       </div>
     );
@@ -350,6 +371,17 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
+            tooltipLevel={0}
+          />
+          <LineSeries
+            id={getSpecId('renderLineChart2y2g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y1', 'y2']}
+            splitSeriesAccessors={['g1', 'g2']}
+            stackAccessors={['x', 'g1', 'g2']}
+            data={this.state.barchart_2y2g}
             tooltipLevel={1}
           />
         </Chart>
@@ -538,14 +570,60 @@ class App extends Component {
       </div>
     );
   }
+  public renderHighVolumeLineChart = (renderer: 'svg'|'canvas' = 'svg', data: any[]) => {
+    return (
+      <div className="chartContainer">
+        <Chart renderer={renderer}>
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            orientation={AxisOrientation.Horizontal}
+            title="HighVolumeChart stacked"
+          />
+           <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+            title="HighVolumeChart"
+            tickFormat={(tick) => `value: ${tick}`}
+          />
+          <BarSeries
+            id={getSpecId('bars')}
+            data={data}
+            xScaleType={ScaleType.Ordinal}
+            tooltipLevel={0}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+          />
+          <LineSeries
+            id={getSpecId('lines')}
+            data={data}
+            xScaleType={ScaleType.Ordinal}
+            tooltipLevel={0}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+          />
+        </Chart>
+      </div>
+    );
+  }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(100, 3);
+    const randomData = dataGenerator.generateGroupedSeries(30, 3);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
+          {this.renderBarChart1y1g('canvas')}
+          {this.renderBarChart1y1gs('canvas')}
+
+          {this.renderBarChart2y2gs('canvas')}
           {this.renderBarChart1y0g('canvas')}
 
           {this.renderBarChart1y1g('canvas')}
@@ -565,6 +643,7 @@ class App extends Component {
           {this.renderMultipleClusteredBarChart('canvas')}
           {this.renderGitHubIssue('canvas')}
           {this.renderHighVolumeChart('canvas', randomData)}
+          {/* {this.renderHighVolumeLineChart('canvas', randomData)} */}
         </div>
         <div className="chartContainers">
         {/* {this.renderHighVolumeChart('svg', randomData)}

@@ -1,8 +1,8 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Stage } from 'react-konva';
+import { BarSeries, LineSeries } from '../components/canvas';
 import { Axis } from '../components/canvas/axis';
-import { BarSeries } from '../components/canvas/bar_series';
 import { ChartStore } from '../state/chart_state';
 
 interface ReactiveChartProps {
@@ -75,6 +75,23 @@ class Chart extends React.Component<ReactiveChartProps> {
     });
     return bars;
   }
+  public renderLineSeries = () => {
+    const { lineSeriesSpecs, lineSeriesGlyphs } = this.props.chartStore!;
+    const bars: JSX.Element[] = [];
+    lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
+      const spec = lineSeriesSpecs.get(specId);
+      if (spec) {
+        bars.push(
+          <LineSeries
+            key="data bars"
+            specId={specId}
+            glyphs={lineGlyphs}
+          />,
+        );
+      }
+    });
+    return bars;
+  }
 
   public render() {
     const { initialized } = this.props.chartStore!;
@@ -121,6 +138,7 @@ class Chart extends React.Component<ReactiveChartProps> {
             rotation={chartTransform.rotate}
           >
             {this.renderBarSeries()}
+            {this.renderLineSeries()}
           </Layer>
           <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
         </Stage>

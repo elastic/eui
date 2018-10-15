@@ -48,16 +48,18 @@ export interface BarSeriesSpec extends BasicSeriesSpec {
   tooltipLevel?: number;
 }
 
-// export interface LineSeriesSpec extends BasicSeriesSpec {
-//   xAccessor: Accessor;
-//   yAccessor: Accessor;
-//   xScaleType: ScaleType;
-//   yScaleType: ScaleType;
-//   /** if true, the min y value is set to the minimum domain value, 0 otherwise */
-//   yScaleToDataExtent: boolean;
-//   splitSeriesAccessor?: Accessor;
-//   stackAccessor?: Accessor;
-// }
+export interface LineSeriesSpec extends BasicSeriesSpec {
+  xAccessor: Accessor;
+  yAccessors: Accessor[];
+  xScaleType: ScaleType;
+  yScaleType: ScaleType;
+  /** if true, the min y value is set to the minimum domain value, 0 otherwise */
+  yScaleToDataExtent: boolean;
+  splitSeriesAccessors?: Accessor[];
+  stackAccessors?: Accessor[];
+  colorAccessors?: Accessor[];
+  tooltipLevel?: number;
+}
 
 // export interface AreaSeriesSpec extends BasicSeriesSpec {
 //   xAccessor: Accessor;
