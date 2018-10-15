@@ -9,9 +9,9 @@ declare module '@elastic/eui' {
    * @see './text.js'
    * @see './text_color.js'
    */
-  type EuiTextSize = 's' | 'xs';
+  type SIZES = 's' | 'xs';
 
-  type EuiTextColor =
+  type COLORS =
     | 'default'
     | 'subdued'
     | 'secondary'
@@ -22,9 +22,16 @@ declare module '@elastic/eui' {
 
   type EuiTextProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
-      size?: EuiTextSize;
-      color?: EuiTextColor;
+      size?: SIZES;
+      color?: COLORS;
     };
 
+  type EuiTextColorProps = CommonProps &
+    HTMLAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLSpanElement> & {
+    color?: COLORS;
+  };
+
   export const EuiText: SFC<EuiTextProps>;
+  export const EuiTextColor: SFC<EuiTextColorProps>;
 }
