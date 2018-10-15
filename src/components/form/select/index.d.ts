@@ -1,6 +1,6 @@
 /// <reference path="../../common.d.ts" />
 
-import {SFC, ReactNode, Ref, OptionHTMLAttributes} from 'react';
+import {SFC, ReactNode, Ref, OptionHTMLAttributes, SelectHTMLAttributes} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -8,7 +8,7 @@ declare module '@elastic/eui' {
    */
 
   export type EuiSelectProps = CommonProps &
-    OptionHTMLAttributes<HTMLSelectElement> & {
+    SelectHTMLAttributes<HTMLSelectElement> & {
     name?: string;
     id?: string;
     options: Array<{ text: ReactNode } & OptionHTMLAttributes<HTMLOptionElement>>;

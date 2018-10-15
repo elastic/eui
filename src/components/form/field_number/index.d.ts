@@ -1,6 +1,7 @@
 /// <reference path="../../common.d.ts" />
 
 import { ReactNode, SFC, InputHTMLAttributes } from 'react';
+import { IconType } from '@elastic/eui'
 
 declare module '@elastic/eui' {
 
@@ -10,7 +11,7 @@ declare module '@elastic/eui' {
    * @see './field_number.js'
    */
   export interface EuiFieldNumberProps {
-    icon?: string;
+    icon?: IconType;
     isInvalid?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;

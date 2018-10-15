@@ -1,6 +1,6 @@
 /// <reference path="../../common.d.ts" />
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { SFC, ReactNode, LabelHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -8,7 +8,7 @@ declare module '@elastic/eui' {
    */
 
   export type EuiFormLabelProps = CommonProps &
-    HTMLAttributes<HTMLLabelElement> & {
+    LabelHTMLAttributes<HTMLLabelElement> & {
       isFocused?: boolean;
       isInvalid?: boolean;
     };
