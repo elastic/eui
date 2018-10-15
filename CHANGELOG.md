@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.5.1`.
+- Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
 
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 
