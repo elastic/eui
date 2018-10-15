@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.5.0`.
+**Bug fixes**
+
+- Changed names of `*beatApp` types in `EuiIcon` to follow a consistent naming pattern ([#1243](https://github.com/elastic/eui/pull/1238))
 
 ## [`4.5.0`](https://github.com/elastic/eui/tree/v4.5.0)
 
