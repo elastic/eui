@@ -1,7 +1,7 @@
 /// <reference path="../../common.d.ts" />
+/// <reference path="../../icon/index.d.ts" />
 
 import { ReactNode, SFC, InputHTMLAttributes } from 'react';
-import { IconType } from '@elastic/eui'
 
 declare module '@elastic/eui' {
 
