@@ -61,16 +61,18 @@ export interface LineSeriesSpec extends BasicSeriesSpec {
   tooltipLevel?: number;
 }
 
-// export interface AreaSeriesSpec extends BasicSeriesSpec {
-//   xAccessor: Accessor;
-//   yAccessor: Array<Accessor | [Accessor, Accessor]>;
-//   xScaleType: ScaleType;
-//   yScaleType: ScaleType;
-//   /** if true, the area y0 value is set to the minimum domain value, 0 otherwise */
-//   yScaleToDataExtent: boolean;
-//   splitSeriesAccessor?: Accessor;
-//   stackAccessor?: Accessor | Accessor[];
-// }
+export interface AreaSeriesSpec extends BasicSeriesSpec {
+  xAccessor: Accessor;
+  yAccessors: Accessor[];
+  xScaleType: ScaleType;
+  yScaleType: ScaleType;
+  /** if true, the min y value is set to the minimum domain value, 0 otherwise */
+  yScaleToDataExtent: boolean;
+  splitSeriesAccessors?: Accessor[];
+  stackAccessors?: Accessor[];
+  colorAccessors?: Accessor[];
+  tooltipLevel?: number;
+}
 
 export interface AxisSpec {
   id: AxisId;

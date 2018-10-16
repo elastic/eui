@@ -1,4 +1,4 @@
-import { line } from 'd3-shape';
+import { area, line } from 'd3-shape';
 import { Accessor, AccessorFn, getAccessorFn } from '../../data_ops/accessor';
 import { Domain, SpecDomains } from '../../data_ops/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data_ops/scales';
@@ -6,23 +6,24 @@ import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from '../bars/commons';
-import { Datum, LineSeriesSpec, Rotation } from '../specs';
-export interface LineGlyph {
+import { AreaSeriesSpec, Datum, Rotation } from '../specs';
+export interface AreaGlyph {
   data: Datum[];
-  points: Array<{x: number, y: number}>;
+  points: Array<{x: number, y1: number, y0: number}>;
   path: string;
+  linePath: string;
   color?: string;
 }
 
-export function renderLineSeriesSpec(
-  lineSeriesSpec: LineSeriesSpec,
+export function renderAreaSeriesSpec(
+  areaSeriesSpec: AreaSeriesSpec,
   domains: SpecDomains,
   chartDims: Dimensions,
   rotation: Rotation,
   colorScales: ColorScales,
   chartColorsConfig: ColorConfig,
   chartScalesConfig: ScalesConfig,
-): LineGlyph[] {
+): AreaGlyph[] {
   const {
     data,
     yAccessors,
@@ -31,7 +32,7 @@ export function renderLineSeriesSpec(
     splitSeriesAccessors = [],
     stackAccessors = [],
     colorAccessors = [],
-  } = lineSeriesSpec;
+  } = areaSeriesSpec;
 
   if (domains.xDomains.length !== 1) {
     return []; // TODO find a better return value, option maybe?
@@ -69,7 +70,7 @@ export function renderLineSeriesSpec(
   }
   const specColorAccessors = colorAccessors.length > 0 ? colorAccessors : [...splitSeriesAccessors];
   const getColorFn = getColor(chartColorsConfig, colorScales, specColorAccessors);
-  const lineSeries = new Map<string, LineGlyph>();
+  const areaSeries = new Map<string, AreaGlyph>();
   const stackedYValues = new Map<string, number>();
   data.forEach((datum: Datum) => {
     const splitSeriesKey = getSplitSeriesKey(datum, splitSeriesAccessorsFns);
@@ -77,30 +78,41 @@ export function renderLineSeriesSpec(
       const yAccessor = yAccessors[index];
       const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
       const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
-      let y = yScaleConfig.scale(yAccessorFn(datum));
+      let y0 = maxYHeight;
+      const scaledYValue = yScaleConfig.scale(yAccessorFn(datum));
+      let y1 = maxYHeight - scaledYValue;
       if (stackAccessors.length > 0) {
         const stackKey = getStackKey(datum, stackAccessors, '');
-        y = stackedYValues.has(stackKey) ? (stackedYValues.get(stackKey) || 0) + y : y;
-        stackedYValues.set(stackKey, y);
+        if (stackedYValues.has(stackKey)) {
+          y0 = stackedYValues.get(stackKey) || maxYHeight;
+          y1 = y0 - scaledYValue;
+        }
+        stackedYValues.set(stackKey, y1);
       }
-      y = maxYHeight - y;
-      let lineGlyph: LineGlyph;
-      if (lineSeries.has(seriesKey)) {
-        lineGlyph = updateLinePoints(lineSeries.get(seriesKey)!, x, y);
+      // y0 = maxYHeight - y0;
+      let areaGlyph: AreaGlyph;
+      if (areaSeries.has(seriesKey)) {
+        areaGlyph = updateAreaPoints(areaSeries.get(seriesKey)!, x, y0, y1);
       } else {
-        lineGlyph = createLineGlyph(x, y, getColorFn(datum, yAccessors.length > 1 ? yAccessor : undefined));
+        areaGlyph = createAreaGlyph(x, y0, y1, getColorFn(datum, undefined));
       }
-      lineSeries.set(seriesKey, lineGlyph);
+      areaSeries.set(seriesKey, areaGlyph);
     });
   });
-  const pathGenerator = line<{x: number, y: number}>()
+  const pathGenerator = area<{x: number, y1: number, y0: number}>()
       .x((datum: Datum) => datum.x)
-      .y((datum: Datum) => datum.y);
-  const glyphs = Array.from(lineSeries.values()).map((lineGlyph) => {
-    const path = pathGenerator(lineGlyph.points) || '';
+      .y0((datum: Datum) => datum.y0) // the zero
+      .y1((datum: Datum) => datum.y1); // the real value
+  const linePathGenerator = line<{x: number, y1: number}>()
+    .x((datum: Datum) => datum.x)
+    .y((datum: Datum) => datum.y1);
+  const glyphs = Array.from(areaSeries.values()).map((areaGlyph) => {
+    const path = pathGenerator(areaGlyph.points) || '';
+    const linePath = linePathGenerator(areaGlyph.points) || '';
     return {
-      ...lineGlyph,
+      ...areaGlyph,
       path,
+      linePath,
     };
   });
   return glyphs;
@@ -121,22 +133,23 @@ function getSplitSeriesKey(datum: Datum, splitSeriesAccessorFn: AccessorFn[]) {
     return accessorFn(datum);
   }).join('--');
 }
-function updateLinePoints(lineGlyph: LineGlyph  , x: number, y: number): LineGlyph {
+function updateAreaPoints(areaGlyph: AreaGlyph  , x: number, y0: number, y1: number): AreaGlyph {
   return {
-    ...lineGlyph,
+    ...areaGlyph,
     points: [
-      ...lineGlyph.points,
-      { x, y },
+      ...areaGlyph.points,
+      { x, y0, y1 },
     ],
   };
 }
-function createLineGlyph( x: number, y: number, color: string): LineGlyph {
+function createAreaGlyph( x: number, y0: number, y1: number, color: string): AreaGlyph {
   return {
     points: [
-      { x, y },
+      { x, y0, y1 },
     ],
     data: [],
     path: '',
+    linePath: '',
     color,
   };
 }

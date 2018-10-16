@@ -2,6 +2,7 @@ import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Stage } from 'react-konva';
 import { BarSeries, LineSeries } from '../components/canvas';
+import { AreaSeries } from '../components/canvas/area_series';
 import { Axis } from '../components/canvas/axis';
 import { ChartStore } from '../state/chart_state';
 
@@ -77,13 +78,13 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
   public renderLineSeries = () => {
     const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme } = this.props.chartStore!;
-    const bars: JSX.Element[] = [];
+    const lines: JSX.Element[] = [];
     lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
       const spec = lineSeriesSpecs.get(specId);
       if (spec) {
-        bars.push(
+        lines.push(
           <LineSeries
-            key="data bars"
+            key="data lines"
             specId={specId}
             glyphs={lineGlyphs}
             style={chartTheme.chart.styles.lineSeries}
@@ -91,7 +92,25 @@ class Chart extends React.Component<ReactiveChartProps> {
         );
       }
     });
-    return bars;
+    return lines;
+  }
+  public renderAreaSeries = () => {
+    const { areaSeriesSpecs, areaSeriesGlyphs, chartTheme } = this.props.chartStore!;
+    const areas: JSX.Element[] = [];
+    areaSeriesGlyphs.forEach((areaGlyphs, specId) => {
+      const spec = areaSeriesSpecs.get(specId);
+      if (spec) {
+        areas.push(
+          <AreaSeries
+            key="data areas"
+            specId={specId}
+            glyphs={areaGlyphs}
+            style={chartTheme.chart.styles.areaSeries}
+          />,
+        );
+      }
+    });
+    return areas;
   }
 
   public render() {
@@ -138,8 +157,10 @@ class Chart extends React.Component<ReactiveChartProps> {
             y={chartDimensions.top + chartTransform.y}
             rotation={chartTransform.rotate}
           >
+            {this.renderAreaSeries()}
             {this.renderBarSeries()}
             {this.renderLineSeries()}
+
           </Layer>
           <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
         </Stage>

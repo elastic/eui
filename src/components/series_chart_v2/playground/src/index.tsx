@@ -4,7 +4,7 @@ import { Chart } from '../../chart/chart';
 import { ScaleType } from '../../commons/data_ops/scales';
 import { getAxisId, getSpecId } from '../../commons/ids';
 import { AxisOrientation, AxisPosition } from '../../commons/series/specs';
-import { Axis, BarSeries, LineSeries } from '../../specs/index';
+import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
 import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
@@ -87,6 +87,45 @@ class App extends Component {
             yAccessors={['y']}
             data={this.state.barchart_1y0g}
             tooltipLevel={0}
+          />
+        </Chart>
+      </div>
+    );
+  }
+  public renderAreaChart1y0g = (renderer: 'svg'|'canvas' = 'svg') => {
+    return (
+      <div className="chartContainer">
+        <Chart renderer={renderer}>
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            orientation={AxisOrientation.Horizontal}
+            title="[1Y0G] 1 Metric, 1 X Value"
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+          />
+          {/* <BarSeries
+            id={getSpecId('renderBarChart1y0g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            data={this.state.barchart_1y1g}
+          /> */}
+          <AreaSeries
+            id={getSpecId('renderBarCahart1y0g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            data={this.state.barchart_1y1g}
           />
         </Chart>
       </div>
@@ -650,6 +689,9 @@ class App extends Component {
         <div className="chartContainers">
         {
           this.renderLineChart1y0g('canvas')
+        }
+        {
+          this.renderAreaChart1y0g('canvas')
         }
           {this.renderBarChart1y1g('canvas')}
           {this.renderBarChart1y1gs('canvas')}

@@ -39,7 +39,7 @@ Object {
 exports[`Line rendering 1Y0G should render the line series 1`] = `
 Array [
   Object {
-    "color": "red",
+    "color": "green",
     "data": Array [],
     "path": "M12.5,90L37.5,80L62.5,0L87.5,50",
     "points": Array [

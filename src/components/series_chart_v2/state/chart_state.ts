@@ -10,11 +10,13 @@ import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calcu
 import { SpecDomains } from '../commons/data_ops/domain';
 import { computeChartDimensions, Dimensions } from '../commons/dimensions';
 import { AxisId, GroupId, SpecId } from '../commons/ids';
+import { computeDataDomain as areaSeriesComputeDataDomain } from '../commons/series/areas/domains';
+import { AreaGlyph, renderAreaSeriesSpec } from '../commons/series/areas/rendering';
 import { computeDataDomain as barSeriesComputeDataDomain } from '../commons/series/bars/domains';
 import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
 import { computeDataDomain as lineSeriesComputeDataDomain } from '../commons/series/lines/domains';
 import { LineGlyph, renderLineSeriesSpec } from '../commons/series/lines/rendering';
-import { AxisSpec, BarSeriesSpec, Datum, LineSeriesSpec, Rotation } from '../commons/series/specs';
+import { AreaSeriesSpec, AxisSpec, BarSeriesSpec, Datum, LineSeriesSpec, Rotation } from '../commons/series/specs';
 import { ColorScales, computeColorScales } from '../commons/themes/colors';
 import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
 export interface LeftTooltip {
@@ -58,6 +60,8 @@ export class ChartStore {
   public barSeriesGlyphs: Map<SpecId, BarGlyphGroup[]> = new Map();
   public lineSeriesSpecs: Map<SpecId, LineSeriesSpec> = new Map(); // readed from jsx
   public lineSeriesGlyphs: Map<SpecId, LineGlyph[]> = new Map();
+  public areaSeriesSpecs: Map<SpecId, AreaSeriesSpec> = new Map(); // readed from jsx
+  public areaSeriesGlyphs: Map<SpecId, AreaGlyph[]> = new Map();
 
   public seriesSpecDomains: Map<SpecId, SpecDomains> = new Map(); // computed
   public globalSpecDomains: Map<GroupId, SpecDomains> = new Map(); // computed
@@ -163,6 +167,28 @@ export class ChartStore {
     // TODO compute chart only after all series are updated
     // this.computeChart();
   }
+  /**
+   * Add an area series spec to the chart
+   * @param  seriesSpec the series spec to add
+   */
+  public addAreaSeriesSpecs(seriesSpec: LineSeriesSpec) {
+    // store spec into areaSeriesSpecs
+    this.areaSeriesSpecs.set(seriesSpec.id, seriesSpec);
+    // compute all x and y domains
+    const dataDomain = areaSeriesComputeDataDomain(seriesSpec);
+    // save data domains
+    this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
+    // merge to global domains
+    // TODO merge to existing series
+    this.globalSpecDomains.set(seriesSpec.groupId, dataDomain);
+
+    // TODO merge color scales....
+    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
+    this.globalColorScales.set(seriesSpec.groupId, colorScales);
+    // this.mergeChartScales(seriesSpec.groupId, seriesScales);
+    // TODO compute chart only after all series are updated
+    // this.computeChart();
+  }
 
   /**
    * Remove a series spec from the store
@@ -170,6 +196,14 @@ export class ChartStore {
    */
   public removeLineSeriesSpecs(specId: SpecId) {
     this.lineSeriesSpecs.delete(specId);
+    this.seriesSpecDomains.delete(specId);
+  }
+  /**
+   * Remove a series spec from the store
+   * @param specId the id of the spec
+   */
+  public removeAreaSeriesSpecs(specId: SpecId) {
+    this.areaSeriesSpecs.delete(specId);
     this.seriesSpecDomains.delete(specId);
   }
 
@@ -254,7 +288,7 @@ export class ChartStore {
       this.barSeriesGlyphs.set(id, renderedGlyphs);
     });
 
-    // compute bar series glyphs
+    // compute line series glyphs
     this.lineSeriesSpecs.forEach((lineSeriesGlyphs) => {
       const { id, groupId } = lineSeriesGlyphs;
       const specDomain = this.seriesSpecDomains.get(id);
@@ -272,6 +306,26 @@ export class ChartStore {
         this.chartTheme.scales,
       );
       this.lineSeriesGlyphs.set(id, renderedGlyphs);
+    });
+
+    // compute area series glyphs
+    this.areaSeriesSpecs.forEach((areaSeriesGlyphs) => {
+      const { id, groupId } = areaSeriesGlyphs;
+      const specDomain = this.seriesSpecDomains.get(id);
+      if (!specDomain) {
+        throw new Error('Missing spec domain for existing spec');
+      }
+      const colorScales = this.globalColorScales.get(groupId);
+      const renderedGlyphs = renderAreaSeriesSpec(
+        areaSeriesGlyphs,
+        specDomain,
+        this.chartDimensions,
+        this.chartRotation,
+        colorScales!,
+        this.chartTheme.colors,
+        this.chartTheme.scales,
+      );
+      this.areaSeriesGlyphs.set(id, renderedGlyphs);
     });
 
     this.initialized.set(true);

@@ -4,6 +4,7 @@ export interface ChartConfig {
   margins: Margins;
   styles: {
     lineSeries: LineSeriesStyle,
+    areaSeries: AreaSeriesStyle,
   };
 }
 export interface AxisConfig {
@@ -39,6 +40,19 @@ export interface LineSeriesStyle {
   dataPointsRadius: number;
   dataPointsStroke: string;
 }
+export interface AreaSeriesStyle {
+  hideArea: boolean;
+  hideLine: boolean;
+  lineStrokeColor: string;
+  lineWidth: number;
+  hideBorder: boolean;
+  borderStrokeColor: string;
+  borderWidth: number;
+  hideDataPoints: boolean;
+  dataPointsRadius: number;
+  dataPointsStroke: string;
+  dataPointsStrokeWidth: number;
+}
 
 export const DEFAULT_THEME: Theme = {
   chart: {
@@ -58,6 +72,19 @@ export const DEFAULT_THEME: Theme = {
         hideDataPoints: true,
         dataPointsRadius: 3,
         dataPointsStroke: 'gray',
+      },
+      areaSeries: {
+        hideArea: false,
+        hideLine: false,
+        lineWidth: 1,
+        lineStrokeColor: 'white',
+        hideBorder: true,
+        borderWidth: 2,
+        borderStrokeColor: 'gray',
+        hideDataPoints: true,
+        dataPointsRadius: 3,
+        dataPointsStroke: 'gray',
+        dataPointsStrokeWidth: 0,
       },
     },
   },

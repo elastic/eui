@@ -29,13 +29,28 @@ export class LineSeries extends React.Component<LineSeriesDataProps> {
     }
   }
 
+  private renderDataPoints = (
+    dataPoints: Array<{x: number, y: number}>,
+    color: string | undefined,
+    style: LineSeriesStyle,
+    ): JSX.Element[] => {
+    return dataPoints.map((point) => {
+      return (
+        <Circle
+          x={point.x}
+          y={point.y}
+          radius={style.dataPointsRadius}
+          fill={color}
+          stroke={style.dataPointsStroke}
+        />
+      );
+    });
+  }
+
   private renderGlyphs = (glyphs: LineGlyph[], style: LineSeriesStyle): JSX.Element[] => {
     return glyphs.map((glyph, i) => {
       return (
-        <Group
-        key={i}
-        >
-
+        <Group key={i}>
           {
             !style.hideBorder && <Path
               key="border"
@@ -43,20 +58,12 @@ export class LineSeries extends React.Component<LineSeriesDataProps> {
               strokeWidth={style.borderWidth}
               stroke={style.borderStrokeColor}
               listening={false}
+              lineCap="round"
+              lineJoin="round"
             />
           }
           {
-            !style.hideDataPoints && glyph.points.map((point) => {
-              return (
-                <Circle
-                  x={point.x}
-                  y={point.y}
-                  radius={style.dataPointsRadius}
-                  fill={glyph.color}
-                  stroke={style.dataPointsStroke}
-                />
-              );
-            })
+            !style.hideDataPoints && this.renderDataPoints(glyph.points, glyph.color, style)
           }
           {
             !style.hideLine && <Path
@@ -65,10 +72,11 @@ export class LineSeries extends React.Component<LineSeriesDataProps> {
               strokeWidth={style.lineWidth}
               stroke={glyph.color}
               listening={false}
+              lineCap="round"
+              lineJoin="round"
             />
           }
         </Group>
-
       );
     });
   }
