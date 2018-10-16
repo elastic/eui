@@ -64,7 +64,7 @@ export function renderLineSeriesSpec(
   });
   if (splitSeriesAccessorsFns.length === 0) {
     splitSeriesAccessorsFns = [
-      (datum: Datum) => '_', // no need of split by series here
+      () => '_', // no need of split by series here
     ];
   }
   const specColorAccessors = colorAccessors.length > 0 ? colorAccessors : [...splitSeriesAccessors];
@@ -72,33 +72,30 @@ export function renderLineSeriesSpec(
   const lineSeries = new Map<string, LineGlyph>();
   const stackedYValues = new Map<string, number>();
   data.forEach((datum: Datum) => {
-    // splitSeriesAccessorsFns.forEach((splitSeriesAccessorFn) => {
-      // const seriesValue = splitSeriesAccessorFn(datum);
-      const splitSeriesKey = getSplitSeriesKey(datum, splitSeriesAccessorsFns);
-      yAccessorsFns.forEach((yAccessorFn, index) => {
-        const yAccessor = yAccessors[index];
-        const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
-        const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
-        let y = yScaleConfig.scale(yAccessorFn(datum));
-        if (stackAccessors.length > 0) {
-          const stackKey = getStackKey(datum, stackAccessors, '');
-          y = stackedYValues.has(stackKey) ? (stackedYValues.get(stackKey) || 0) + y : y;
-          stackedYValues.set(stackKey, y);
-        }
-
-        let lineGlyph: LineGlyph;
-        if (lineSeries.has(seriesKey)) {
-          lineGlyph = updateLinePoints(lineSeries.get(seriesKey)!, x, y);
-        } else {
-          lineGlyph = createLineGlyph(x, y, getColorFn(datum, yAccessor));
-        }
-        lineSeries.set(seriesKey, lineGlyph);
-      });
-    // });
+    const splitSeriesKey = getSplitSeriesKey(datum, splitSeriesAccessorsFns);
+    yAccessorsFns.forEach((yAccessorFn, index) => {
+      const yAccessor = yAccessors[index];
+      const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
+      const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
+      let y = yScaleConfig.scale(yAccessorFn(datum));
+      if (stackAccessors.length > 0) {
+        const stackKey = getStackKey(datum, stackAccessors, '');
+        y = stackedYValues.has(stackKey) ? (stackedYValues.get(stackKey) || 0) + y : y;
+        stackedYValues.set(stackKey, y);
+      }
+      y = maxYHeight - y;
+      let lineGlyph: LineGlyph;
+      if (lineSeries.has(seriesKey)) {
+        lineGlyph = updateLinePoints(lineSeries.get(seriesKey)!, x, y);
+      } else {
+        lineGlyph = createLineGlyph(x, y, getColorFn(datum, yAccessor));
+      }
+      lineSeries.set(seriesKey, lineGlyph);
+    });
   });
   const pathGenerator = line<{x: number, y: number}>()
       .x((datum: Datum) => datum.x)
-      .y((datum: Datum) => maxYHeight - datum.y);
+      .y((datum: Datum) => datum.y);
   const glyphs = Array.from(lineSeries.values()).map((lineGlyph) => {
     const path = pathGenerator(lineGlyph.points) || '';
     return {

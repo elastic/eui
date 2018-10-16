@@ -76,7 +76,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     return bars;
   }
   public renderLineSeries = () => {
-    const { lineSeriesSpecs, lineSeriesGlyphs } = this.props.chartStore!;
+    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
     lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
       const spec = lineSeriesSpecs.get(specId);
@@ -86,6 +86,7 @@ class Chart extends React.Component<ReactiveChartProps> {
             key="data bars"
             specId={specId}
             glyphs={lineGlyphs}
+            style={chartTheme.chart.styles.lineSeries}
           />,
         );
       }

@@ -217,7 +217,7 @@ export class ChartStore {
     // compute chart dimensions
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
-      this.chartTheme.chart,
+      this.chartTheme.chart.margins,
       this.axesTicksDimensions,
       this.axesSpecs,
     );

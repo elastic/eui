@@ -49,19 +49,19 @@ Array [
     "points": Array [
       Object {
         "x": 20,
-        "y": 10,
+        "y": 90,
       },
       Object {
         "x": 60,
-        "y": 20,
+        "y": 80,
       },
       Object {
         "x": 100,
-        "y": 10,
+        "y": 90,
       },
       Object {
         "x": 140,
-        "y": 60,
+        "y": 40,
       },
     ],
   },
@@ -72,19 +72,19 @@ Array [
     "points": Array [
       Object {
         "x": 20,
-        "y": 30,
-      },
-      Object {
-        "x": 60,
         "y": 70,
       },
       Object {
+        "x": 60,
+        "y": 30,
+      },
+      Object {
         "x": 100,
-        "y": 20,
+        "y": 80,
       },
       Object {
         "x": 140,
-        "y": 100,
+        "y": 0,
       },
     ],
   },

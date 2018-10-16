@@ -2,6 +2,9 @@ import { Margins } from '../dimensions';
 
 export interface ChartConfig {
   margins: Margins;
+  styles: {
+    lineSeries: LineSeriesStyle,
+  };
 }
 export interface AxisConfig {
   titleFontSize: number;
@@ -26,6 +29,16 @@ export interface Theme {
   colors: ColorConfig;
   interactions: InteractionConfig;
 }
+export interface LineSeriesStyle {
+  hideLine: boolean;
+  lineWidth: number;
+  hideBorder: boolean;
+  borderStrokeColor: string;
+  borderWidth: number;
+  hideDataPoints: boolean;
+  dataPointsRadius: number;
+  dataPointsStroke: string;
+}
 
 export const DEFAULT_THEME: Theme = {
   chart: {
@@ -34,6 +47,18 @@ export const DEFAULT_THEME: Theme = {
       right: 30,
       top: 30,
       bottom: 30,
+    },
+    styles: {
+      lineSeries: {
+        hideLine: false,
+        lineWidth: 1,
+        hideBorder: true,
+        borderWidth: 2,
+        borderStrokeColor: 'gray',
+        hideDataPoints: true,
+        dataPointsRadius: 3,
+        dataPointsStroke: 'gray',
+      },
     },
   },
   scales: {

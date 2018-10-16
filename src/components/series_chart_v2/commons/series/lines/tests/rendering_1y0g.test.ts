@@ -39,7 +39,7 @@ const colorScales = {
   '': 'green',
 };
 
-describe('Bar rendering 1Y0G', () => {
+describe('Line rendering 1Y0G', () => {
   let computedDomains: SpecDomains;
   test('should compute the domain', () => {
     computedDomains = computeDataDomain(SPEC);
@@ -47,7 +47,7 @@ describe('Bar rendering 1Y0G', () => {
     expect(computedDomains).toMatchSnapshot();
   });
 
-  test('should render the bar series', () => {
+  test('should render the line series', () => {
     const renderedData = renderLineSeriesSpec(
       SPEC,
       computedDomains,

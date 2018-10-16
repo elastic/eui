@@ -64,6 +64,34 @@ class App extends Component {
       barchart_2y2g: randomizeData(BARCHART_2Y2G, ['y1', 'y2'], uniformRandomizer(1000)),
     });
   }
+  public renderLineChart1y0g = (renderer: 'svg'|'canvas' = 'svg') => {
+    return (
+      <div className="chartContainer">
+        <Chart renderer={renderer}>
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            orientation={AxisOrientation.Horizontal}
+            title="[1Y0G] 1 Metric, 1 X Value"
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+          />
+          <LineSeries
+            id={getSpecId('renderBarChart1y0g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            data={this.state.barchart_1y0g}
+            tooltipLevel={0}
+          />
+        </Chart>
+      </div>
+    );
+  }
   public renderBarChart1y0g = (renderer: 'svg'|'canvas' = 'svg') => {
     return (
       <div className="chartContainer">
@@ -620,6 +648,9 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
+        {
+          this.renderLineChart1y0g('canvas')
+        }
           {this.renderBarChart1y1g('canvas')}
           {this.renderBarChart1y1gs('canvas')}
 

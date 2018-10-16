@@ -1,9 +1,8 @@
 import { AxisTicksDimensions } from './axes/axis_utils';
 import { ScaleType } from './data_ops/scales';
-import { computeChartDimensions } from './dimensions';
+import { computeChartDimensions, Margins } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
 import { AxisOrientation, AxisPosition, AxisSpec } from './series/specs';
-import { ChartConfig } from './themes/theme';
 
 describe('Computed chart dimensions', () => {
   const parentDim = {
@@ -12,13 +11,11 @@ describe('Computed chart dimensions', () => {
     top: 0,
     left: 0,
   };
-  const chartConfig: ChartConfig = {
-    margins: {
-      left: 10,
-      right: 10,
-      top: 10,
-      bottom: 10,
-    },
+  const chartMargins: Margins = {
+    left: 10,
+    right: 10,
+    top: 10,
+    bottom: 10,
   };
 
   const axis1Dims = {
@@ -47,7 +44,7 @@ describe('Computed chart dimensions', () => {
   test('should be equal to parent dimension with no axis minus margins', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
-    const chartDimensions = computeChartDimensions(parentDim, chartConfig, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 10, left: 10, width: 80, height: 80 };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
@@ -56,7 +53,7 @@ describe('Computed chart dimensions', () => {
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), axis1Spec);
-    const chartDimensions = computeChartDimensions(parentDim, chartConfig, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 10, left: 80, width: 10, height: 80 };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
@@ -65,7 +62,7 @@ describe('Computed chart dimensions', () => {
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: AxisPosition.Right });
-    const chartDimensions = computeChartDimensions(parentDim, chartConfig, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 10, left: 10, width: 10, height: 80 };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
@@ -78,7 +75,7 @@ describe('Computed chart dimensions', () => {
       position: AxisPosition.Top,
       orientation: AxisOrientation.Horizontal,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartConfig, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 50, left: 10, width: 80, height: 40 };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });
@@ -91,7 +88,7 @@ describe('Computed chart dimensions', () => {
       position: AxisPosition.Bottom,
       orientation: AxisOrientation.Horizontal,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartConfig, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
     const expectedChartDimensions = { top: 10, left: 10, width: 80, height: 40 };
     expect(chartDimensions).toEqual(expectedChartDimensions);
   });

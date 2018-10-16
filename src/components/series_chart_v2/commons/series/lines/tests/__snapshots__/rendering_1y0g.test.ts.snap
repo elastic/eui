@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bar rendering 1Y0G should compute the domain 1`] = `
+exports[`Line rendering 1Y0G should compute the domain 1`] = `
 Object {
   "colorDomain": Object {
     "accessors": Array [],
@@ -36,7 +36,7 @@ Object {
 }
 `;
 
-exports[`Bar rendering 1Y0G should render the bar series 1`] = `
+exports[`Line rendering 1Y0G should render the line series 1`] = `
 Array [
   Object {
     "color": "red",
@@ -45,15 +45,15 @@ Array [
     "points": Array [
       Object {
         "x": 12.5,
-        "y": 10,
+        "y": 90,
       },
       Object {
         "x": 37.5,
-        "y": 20,
+        "y": 80,
       },
       Object {
         "x": 62.5,
-        "y": 100,
+        "y": 0,
       },
       Object {
         "x": 87.5,
