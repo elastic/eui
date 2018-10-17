@@ -10,7 +10,7 @@ import {
 declare module '@elastic/eui' {
   export type EuiComboBoxOptionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     label: string,
-    isGroupLabelOption: boolean,
+    isGroupLabelOption?: boolean,
   }
 
   export type EuiComboBoxOptionsListPosition = 'top' | 'bottom'
