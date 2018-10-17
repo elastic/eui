@@ -19,6 +19,7 @@ const iconTypes = [
   'bolt',
   'boxesHorizontal',
   'boxesVertical',
+  'branch',
   'broom',
   'brush',
   'bullseye',

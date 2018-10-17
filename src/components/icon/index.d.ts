@@ -23,6 +23,7 @@ declare module '@elastic/eui' {
     | 'bolt'
     | 'boxesHorizontal'
     | 'boxesVertical'
+    | 'branch'
     | 'broom'
     | 'brush'
     | 'bullseye'
