@@ -22,7 +22,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiCheckbox: SFC<
-    CommonProps & InputHTMLAttributes<HTMLDivElement> & EuiCheckboxProps
+    CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiCheckboxProps
   >;
 
   /**
