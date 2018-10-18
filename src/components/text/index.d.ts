@@ -24,6 +24,7 @@ declare module '@elastic/eui' {
     HTMLAttributes<HTMLDivElement> & {
       size?: SIZES;
       color?: COLORS;
+      grow?: boolean;
     };
 
   type EuiTextColorProps = CommonProps &
