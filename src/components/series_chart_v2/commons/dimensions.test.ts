@@ -17,15 +17,21 @@ describe('Computed chart dimensions', () => {
     top: 10,
     bottom: 10,
   };
+  const chartPaddings: Margins = {
+    left: 10,
+    right: 10,
+    top: 10,
+    bottom: 10,
+  };
 
   const axis1Dims = {
     axisScaleType: ScaleType.Linear,
     axisScaleDomain: [0, 1],
     tickValues: [0, 1],
-    ticksDimensions: [{ width: 50, height: 20 }, { width: 50, height: 20 }],
+    ticksDimensions: [{ width: 10, height: 10 }, { width: 10, height: 10 }],
     tickLabels: ['first', 'second'],
-    maxTickWidth: 50,
-    maxTickHeight: 20,
+    maxTickWidth: 10,
+    maxTickHeight: 10,
   };
   const axis1Spec = {
     id: getAxisId('axis_1'),
@@ -44,27 +50,24 @@ describe('Computed chart dimensions', () => {
   test('should be equal to parent dimension with no axis minus margins', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
-    const expectedChartDimensions = { top: 10, left: 10, width: 80, height: 80 };
-    expect(chartDimensions).toEqual(expectedChartDimensions);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a left axis', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), axis1Spec);
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
-    const expectedChartDimensions = { top: 10, left: 80, width: 10, height: 80 };
-    expect(chartDimensions).toEqual(expectedChartDimensions);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a right axis', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: AxisPosition.Right });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
-    const expectedChartDimensions = { top: 10, left: 10, width: 10, height: 80 };
-    expect(chartDimensions).toEqual(expectedChartDimensions);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a top axis', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
@@ -75,9 +78,8 @@ describe('Computed chart dimensions', () => {
       position: AxisPosition.Top,
       orientation: AxisOrientation.Horizontal,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
-    const expectedChartDimensions = { top: 50, left: 10, width: 80, height: 40 };
-    expect(chartDimensions).toEqual(expectedChartDimensions);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a bottom axis', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
@@ -88,8 +90,7 @@ describe('Computed chart dimensions', () => {
       position: AxisPosition.Bottom,
       orientation: AxisOrientation.Horizontal,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, axisDims, axisSpecs);
-    const expectedChartDimensions = { top: 10, left: 10, width: 80, height: 40 };
-    expect(chartDimensions).toEqual(expectedChartDimensions);
+    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    expect(chartDimensions).toMatchSnapshot();
   });
 });

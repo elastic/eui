@@ -24,6 +24,7 @@ export interface Margins {
 export function computeChartDimensions(
   parentDimensions: Dimensions,
   chartMargins: Margins,
+  chartPaddings: Margins,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
   axisSpecs: Map<AxisId, AxisSpec>,
 ): Dimensions {
@@ -70,9 +71,15 @@ export function computeChartDimensions(
     hMargin += chartMargins.right;
   }
   return {
-    top: hTopAxisSpecHeight === 0 ? chartMargins.top : hTopAxisSpecHeight,
-    left: vLeftAxisSpecWidth === 0 ? chartMargins.left : vLeftAxisSpecWidth,
-    width: chartWidth - hMargin,
-    height: chartHeight - vMargin,
+    top: hTopAxisSpecHeight === 0 ? chartMargins.top + chartPaddings.top : hTopAxisSpecHeight + chartPaddings.top,
+    left: vLeftAxisSpecWidth === 0 ? chartMargins.left + chartPaddings.left : vLeftAxisSpecWidth + chartPaddings.left,
+    width: chartWidth - hMargin - chartPaddings.left - chartPaddings.right,
+    height: chartHeight - vMargin - chartPaddings.bottom - chartPaddings.bottom,
   };
+  // return {
+  //   top: hTopAxisSpecHeight === 0 ? chartMargins.top : hTopAxisSpecHeight,
+  //   left: vLeftAxisSpecWidth === 0 ? chartMargins.left : vLeftAxisSpecWidth,
+  //   width: chartWidth - hMargin,
+  //   height: chartHeight - vMargin,
+  // };
 }

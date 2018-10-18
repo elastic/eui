@@ -12,7 +12,7 @@ export function mergeDomains(globalDomains: SpecDomains, specDomains: SpecDomain
     .fold(
       otherLevelGlobalXDomain,
       (expendedDomain) => {
-        return [...otherLevelGlobalXDomain, expendedDomain];
+        return [expendedDomain, ...otherLevelGlobalXDomain];
       },
     );
   const yDomain = extendDomainSpecs(globalDomains.yDomain, specDomains.yDomain)

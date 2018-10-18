@@ -260,6 +260,7 @@ export class ChartStore {
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
       this.chartTheme.chart.margins,
+      this.chartTheme.chart.paddings,
       this.axesTicksDimensions,
       this.axesSpecs,
     );

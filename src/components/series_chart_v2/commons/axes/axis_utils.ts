@@ -265,9 +265,9 @@ export function getAxisTicksPositions(
   const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
   const axisTicks: Map<AxisId, AxisTick[]> = new Map();
   let cumTopSum = 0;
-  let cumBottomSum = 0;
+  let cumBottomSum = chartConfig.paddings.bottom;
   let cumLeftSum = 0;
-  let cumRightSum = 0;
+  let cumRightSum = chartConfig.paddings.right;
   axisDimensions.forEach((axisDim, id) => {
     const axisSpec = axisSpecs.get(id);
     if (!axisSpec) {

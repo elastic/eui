@@ -2,6 +2,7 @@ import { Margins } from '../dimensions';
 
 export interface ChartConfig {
   margins: Margins;
+  paddings: Margins;
   styles: {
     lineSeries: LineSeriesStyle,
     areaSeries: AreaSeriesStyle,
@@ -56,6 +57,12 @@ export interface AreaSeriesStyle {
 
 export const DEFAULT_THEME: Theme = {
   chart: {
+    paddings: {
+      left: 5,
+      right: 5,
+      top: 5,
+      bottom: 5,
+    },
     margins: {
       left: 30,
       right: 30,

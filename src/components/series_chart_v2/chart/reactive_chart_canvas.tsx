@@ -160,7 +160,6 @@ class Chart extends React.Component<ReactiveChartProps> {
             {this.renderAreaSeries()}
             {this.renderBarSeries()}
             {this.renderLineSeries()}
-
           </Layer>
           <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
         </Stage>
