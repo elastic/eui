@@ -9,10 +9,10 @@ You should check out our [living style guide][docs], which contains many example
 
 ## Installation
 
-To install the Elastic UI Framework, use the `npm` CLI.
+To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
 
 ```
-npm install @elastic/eui
+yarn add @elastic/eui
 ```
 
 ## Running Locally

@@ -1,13 +1,15 @@
 import React, {
-  Component
+  Component,
 } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
-  EuiLink,
   EuiHealth,
+  EuiIcon,
+  EuiLink,
+  EuiToolTip,
 } from '../../../../../src/components';
 
 /*
@@ -99,7 +101,13 @@ export class Table extends Component {
       )
     }, {
       field: 'github',
-      name: 'Github',
+      name: (
+        <EuiToolTip content="Their mascot is the Octokitty">
+          <span>
+            Github <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
+      ),
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -107,20 +115,38 @@ export class Table extends Component {
       )
     }, {
       field: 'dateOfBirth',
-      name: 'Date of Birth',
+      name: (
+        <EuiToolTip content="Colloquially known as a 'birthday'">
+          <span>
+            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
+      ),
       dataType: 'date',
       render: (date) => formatDate(date, 'dobLong'),
       sortable: true
     }, {
       field: 'nationality',
-      name: 'Nationality',
+      name: (
+        <EuiToolTip content="The nation in which this person resides">
+          <span>
+            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
+      ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
       }
     }, {
       field: 'online',
-      name: 'Online',
+      name: (
+        <EuiToolTip content="Free to talk or busy with business">
+          <span>
+            Online <EuiIcon size="s" color="subdued" type="questionInCircle" />
+          </span>
+        </EuiToolTip>
+      ),
       dataType: 'boolean',
       render: (online) => {
         const color = online ? 'success' : 'danger';

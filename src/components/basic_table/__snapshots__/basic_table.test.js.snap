@@ -721,7 +721,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         />
         <EuiTableFooterCell
           align="left"
-          header="Name"
           key="footer_name"
         >
           <strong>
@@ -730,14 +729,12 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         </EuiTableFooterCell>
         <EuiTableFooterCell
           align="left"
-          header="ID"
           key="footer_id"
         >
           ID
         </EuiTableFooterCell>
         <EuiTableFooterCell
           align="left"
-          header="Age"
           key="footer_age"
         >
           <strong>

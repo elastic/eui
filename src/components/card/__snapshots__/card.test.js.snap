@@ -31,95 +31,24 @@ exports[`EuiCard icon 1`] = `
     class="euiCard__top"
   >
     <svg
-      class="euiIcon euiIcon--medium myIconClass euiCard__icon"
+      class="euiIcon euiIcon--medium euiIcon--app myIconClass euiCard__icon"
       focusable="false"
       height="32"
       viewBox="0 0 32 32"
       width="32"
-      xlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <defs>
-        <path
-          d="M0 0h32v32H0z"
-          id="app_apm-a"
-        />
-        <path
-          d="M0 0h32v32H0z"
-          id="app_apm-c"
-        />
-        <path
-          d="M0 0h32v32H0z"
-          id="app_apm-e"
-        />
-        <path
-          d="M0 0h32v32H0z"
-          id="app_apm-g"
-        />
-      </defs>
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <mask
-          fill="#fff"
-          id="app_apm-b"
-        >
-          <use
-            href="#app_apm-a"
-          />
-        </mask>
-        <path
-          d="M5.44 9.6h21.12a2.24 2.24 0 0 1 0 4.48H5.44a2.24 2.24 0 1 1 0-4.48z"
-          fill="#13A7DF"
-          fill-rule="nonzero"
-          mask="url(#app_apm-b)"
-        />
-        <mask
-          fill="#fff"
-          id="app_apm-d"
-        >
-          <use
-            href="#app_apm-c"
-          />
-        </mask>
-        <path
-          d="M21.44 26.24h8.32a2.24 2.24 0 0 1 0 4.48h-8.32a2.24 2.24 0 1 1 0-4.48z"
-          fill="#00BFB3"
-          fill-rule="nonzero"
-          mask="url(#app_apm-d)"
-        />
-        <mask
-          fill="#fff"
-          id="app_apm-f"
-        >
-          <use
-            href="#app_apm-e"
-          />
-        </mask>
-        <path
-          d="M2.24 1.28h11.52a2.24 2.24 0 0 1 0 4.48H2.24a2.24 2.24 0 1 1 0-4.48z"
-          fill="#00BFB3"
-          fill-rule="nonzero"
-          mask="url(#app_apm-f)"
-        />
-        <g>
-          <mask
-            fill="#fff"
-            id="app_apm-h"
-          >
-            <use
-              href="#app_apm-g"
-            />
-          </mask>
-          <path
-            d="M5.44 17.92h11.52a2.24 2.24 0 0 1 0 4.48H5.44a2.24 2.24 0 0 1 0-4.48z"
-            fill="#00BFB3"
-            fill-rule="nonzero"
-            mask="url(#app_apm-h)"
-          />
-        </g>
-      </g>
+      <path
+        class="euiIcon__fillSecondary"
+        d="M0 3h24v2H0z"
+      />
+      <path
+        d="M4 11h24v2H4zM4 19h15v2H4z"
+      />
+      <path
+        class="euiIcon__fillSecondary"
+        d="M19 27h13v2H19z"
+      />
     </svg>
   </span>
   <span

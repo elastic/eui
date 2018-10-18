@@ -34,6 +34,7 @@ const positionSubstitutes = {
  * @param anchor {HTMLElement|React.Component} Element to anchor the popover to
  * @param popover {HTMLElement|React.Component} Element containing the popover content
  * @param position {string} Position the user wants. One of ["top", "right", "bottom", "left"]
+ * @param [forcePosition] {boolean} If true, use only the provided `position` value and don't try any other position
  * @param [align] {string} Cross-axis alignment. One of ["top", "right", "bottom", "left"]
  * @param [buffer=16] {number} Minimum distance between the popover and the bounding container
  * @param [offset=0] {number} Distance between the popover and the anchor
@@ -49,6 +50,7 @@ export function findPopoverPosition({
   popover,
   align,
   position,
+  forcePosition,
   buffer = 16,
   offset = 0,
   allowCrossAxis = true,
@@ -95,17 +97,27 @@ export function findPopoverPosition({
    * if position = "right" the order is right, left, top, bottom
    */
 
-  const iterationPositions = [
-    position,                       // Try the user-desired position first.
-    positionComplements[position],  // Try the complementary position.
-  ];
-  const iterationAlignments = [align, align]; // keep user-defined alignment in the original and complementary positions
-  if (allowCrossAxis) {
-    iterationPositions.push(
-      positionSubstitutes[position],                      // Switch to the cross axis.
-      positionComplements[positionSubstitutes[position]]  // Try the complementary position on the cross axis.
-    );
-    iterationAlignments.push(null, null); // discard desired alignment on cross-axis
+  const iterationPositions = [position]; // Try the user-desired position first.
+  const iterationAlignments = [align]; // keep user-defined alignment in the original positions.
+
+  if (forcePosition !== true) {
+    iterationPositions.push(positionComplements[position]); // Try the complementary position.
+    iterationAlignments.push(align); // keep user-defined alignment in the complementary position.
+
+    if (allowCrossAxis) {
+      iterationPositions.push(
+        positionSubstitutes[position],                      // Switch to the cross axis.
+        positionComplements[positionSubstitutes[position]]  // Try the complementary position on the cross axis.
+      );
+      iterationAlignments.push(null, null); // discard desired alignment on cross-axis
+    }
+  } else {
+    // position is forced, if it conficts with the alignment then reset align to `null`
+    // e.g. original placement request for `downLeft` is moved to the `left` side, future calls
+    // will position and align `left`, and `leftLeft` is not a valid placement
+    if (position === align || position === positionComplements[align]) {
+      iterationAlignments[0] = null;
+    }
   }
 
   const {

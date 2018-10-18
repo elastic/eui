@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g>
+    <rect width="9" height="2" x="18" y="6" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="5" y="6" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="5" y="12" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="18" y="12" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="5" y="18" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="18" y="18" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="18" y="24" class="euiIcon__fillSecondary"/>
+    <rect width="9" height="2" x="5" y="24" class="euiIcon__fillSecondary"/>
+    <path d="M29,32 L3,32 C1.34314575,32 2.02906125e-16,30.6568542 0,29 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 L29,0 C30.6568542,1.01453063e-16 32,1.34314575 32,3 L32,29 C32,30.6568542 30.6568542,32 29,32 Z M3,2 C2.44771525,2 2,2.44771525 2,3 L2,29 C2,29.5522847 2.44771525,30 3,30 L29,30 C29.5522847,30 30,29.5522847 30,29 L30,3 C30,2.44771525 29.5522847,2 29,2 L3,2 Z"/>
+  </g>
+</svg>

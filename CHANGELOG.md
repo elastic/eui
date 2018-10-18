@@ -1,8 +1,42 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.5.2`.
+
+## [`4.5.2`](https://github.com/elastic/eui/tree/v4.5.2)
+
 **Bug fixes**
 
-- Fix EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
+* TypeScript definition changes for `EuiAccordion`, `EuiDescriptionList`, `EuiForm`, `EuiFormHelpText` and the accessibility services, plus a number of other TS fixes ([#1247](https://github.com/elastic/eui/pull/1247))
+
+## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
+
+**Bug fixes**
+
+- Changed names of `*beatApp` types in `EuiIcon` to follow a consistent naming pattern ([#1243](https://github.com/elastic/eui/pull/1238))
+
+## [`4.5.0`](https://github.com/elastic/eui/tree/v4.5.0)
+
+- Added export for `TYPES` to `EuiAvatar` ([#1238](https://github.com/elastic/eui/pull/1238))
+- Updated node-sass dependency to support OSX Mojave ([#1238](https://github.com/elastic/eui/pull/1238))
+- Added TypeScript definitions for `EuiFieldNumber, `EuiFormLabel` and `EuiSelect`, and fix the `EuiTextColor` definition. ([#1240](https://github.com/elastic/eui/pull/1240))
+- Added support for nodes as column headers in `EuiBasicTable` for supporting things like tooltips and localized text. ([#1234](https://github.com/elastic/eui/pull/1234))
+
+## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
+
+**Bug fixes**
+
+- Fixes TypeScript definitions for `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton` ([#1232](https://github.com/elastic/eui/pull/1232))
+
+## [`4.4.0`](https://github.com/elastic/eui/tree/v4.4.0)
+
+- Added TypeScript typings for `EuiKeyPadMenu` ([#1229](https://github.com/elastic/eui/pull/1229))
+- Forced `EuiPopover` contents to stick to its initial position when the content changes ([#1199](https://github.com/elastic/eui/pull/1199))
+- Updated `EuiIcon` app icon set and allow them to adjust colorschemes ([#1225](https://github.com/elastic/eui/pull/1225))
+
+**Bug fixes**
+
+- Fixed EuiToolTip to show tooltips on disabled elements ([#1222](https://github.com/elastic/eui/pull/1222))
+- Fixed EuiAvatar when name is composed entirely of whitespace ([#1231](https://github.com/elastic/eui/pull/1231))
 
 ## [`4.3.0`](https://github.com/elastic/eui/tree/v4.3.0)
 
@@ -217,27 +251,6 @@
 **Bug fixes**
 
 - `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
-
-## [`3.0.7`](https://github.com/elastic/eui/tree/v3.0.6)
-
-**Note: this release is a backport containing changes original made in `3.1.0`**
-
-- Added `EuiMutationObserver` to expose Mutation Observer API to React components ([#966](https://github.com/elastic/eui/pull/966))
-- Added `EuiWrappingPopover` which allows existing non-React elements to be popover anchors ([#966](https://github.com/elastic/eui/pull/966))
-- `EuiPopover` accepts a `container` prop to further restrict popover placement ([#966](https://github.com/elastic/eui/pull/966))
-- `EuiPortal` can inject content at arbitrary DOM locations, added `portalRef` prop ([#966](https://github.com/elastic/eui/pull/966))
-
-**Bug fixes**
-
-- `EuiPopover` re-positions with dynamic content (including CSS height/width transitions) ([#966](https://github.com/elastic/eui/pull/966))
-
-## [`3.0.6`](https://github.com/elastic/eui/tree/v3.0.5)
-
-**Note: this release is a backport containing changes original made in `4.0.1`**
-
-**Bug fixes**
-
-- Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
