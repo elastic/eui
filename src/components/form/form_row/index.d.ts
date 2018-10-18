@@ -9,7 +9,7 @@ declare module '@elastic/eui' {
 
   export type EuiFormRowProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
-      error?: string | string[];
+      error?: ReactNode | ReactNode[];
       fullWidth?: boolean;
       hasEmptyLabelSpace?: boolean;
       helpText?: ReactNode;
