@@ -63,7 +63,7 @@ class Chart extends React.Component<ReactiveChartProps> {
         const { tooltipLevel } = spec;
         bars.push(
           <BarSeries
-            key="data bars"
+            key={`barSeries-${specId}`}
             specId={specId}
             glyphs={barGlyphs}
             tooltipLevel={tooltipLevel}
@@ -84,7 +84,7 @@ class Chart extends React.Component<ReactiveChartProps> {
       if (spec) {
         lines.push(
           <LineSeries
-            key="data lines"
+            key={`lineSeries-${specId}`}
             specId={specId}
             glyphs={lineGlyphs}
             style={chartTheme.chart.styles.lineSeries}
@@ -102,7 +102,7 @@ class Chart extends React.Component<ReactiveChartProps> {
       if (spec) {
         areas.push(
           <AreaSeries
-            key="data areas"
+            key={`areaSeries-${specId}`}
             specId={specId}
             glyphs={areaGlyphs}
             style={chartTheme.chart.styles.areaSeries}
