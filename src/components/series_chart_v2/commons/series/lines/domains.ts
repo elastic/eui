@@ -6,16 +6,18 @@ import { ScaleType } from '../../data_ops/scales';
 import { LineSeriesSpec } from '../specs';
 
 /**
- * Compute the domains configuration based for a bar series spec.
- * Depending on groupings and stacking, the resulting domains will reflect
- * the number of group levels required to correctly render data.
- * @param spec the BarSeriesSpec
+ * Compute the domains configuration based for a line series spec.
+ * Grouping/splitting and multiple y accessors will results into
+ * multiple different lines. Stacking option is available and will cause
+ * to stack lines one above the other.
+ * @param spec the LineSeriesSpec
  * @return SpecDomains
  */
 export function computeDataDomain(spec: LineSeriesSpec): SpecDomains {
   // compute x domains
   const {
     data,
+    xScaleType,
     yScaleType,
     xAccessor,
     yAccessors,
@@ -82,8 +84,8 @@ export function computeDataDomain(spec: LineSeriesSpec): SpecDomains {
     {
       accessor: xAccessor,
       level: 0,
-      scaleType: ScaleType.Ordinal,
-      domain: uniq(xDomain as string[]),
+      scaleType: xScaleType,
+      domain: xScaleType === ScaleType.Linear ? extent(xDomain as number[]) : uniq(xDomain as string[]),
     },
   ];
   if (stackAccessors.length > 0) {

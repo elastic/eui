@@ -114,7 +114,8 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
               width={glyph.width}
               height={glyph.height}
               fill={'lightgray'}
-              opacity={this.state.uuid === groupKey ? 0.4 : 0}
+              // opacity={this.state.uuid === groupKey ? 0.4 : 0}
+
               onMouseOver={onMouseOverFn}
               onMouseOut={tooltipLevel === glyph.level ? this.onMouseOut : undefined}
             />
@@ -140,6 +141,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
           height={height}
           fill={fill}
           strokeWidth={0}
+          opacity={0.5}
           listening={hasTooltip}
           // opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : hideOpacity}
           perfectDrawEnabled={false}

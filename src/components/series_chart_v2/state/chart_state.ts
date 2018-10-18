@@ -17,6 +17,7 @@ import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rende
 import { computeDataDomain as lineSeriesComputeDataDomain } from '../commons/series/lines/domains';
 import { LineGlyph, renderLineSeriesSpec } from '../commons/series/lines/rendering';
 import { AreaSeriesSpec, AxisSpec, BarSeriesSpec, Datum, LineSeriesSpec, Rotation } from '../commons/series/specs';
+import { mergeDomains } from '../commons/series/utils/domains_merger';
 import { ColorScales, computeColorScales } from '../commons/themes/colors';
 import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
 export interface LeftTooltip {
@@ -125,8 +126,9 @@ export class ChartStore {
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
-    // TODO merge to existing series
-    this.globalSpecDomains.set(seriesSpec.groupId, dataDomain);
+    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
+    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
+    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
 
     // TODO merge color scales....
     const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
@@ -157,8 +159,9 @@ export class ChartStore {
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
-    // TODO merge to existing series
-    this.globalSpecDomains.set(seriesSpec.groupId, dataDomain);
+    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
+    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
+    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
 
     // TODO merge color scales....
     const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
@@ -179,8 +182,10 @@ export class ChartStore {
     // save data domains
     this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
     // merge to global domains
-    // TODO merge to existing series
-    this.globalSpecDomains.set(seriesSpec.groupId, dataDomain);
+    // merge to global domains
+    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
+    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
+    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
 
     // TODO merge color scales....
     const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
@@ -240,8 +245,11 @@ export class ChartStore {
           bboxCalculator,
           this.chartTheme.scales,
           this.chartRotation,
-        );
-        this.axesTicksDimensions.set(id, dimensions);
+        ).toNullable();
+
+        if (dimensions) {
+          this.axesTicksDimensions.set(id, dimensions);
+        }
       } else {
         throw new Error('Missing group series scale for this axis spec');
       }
@@ -267,18 +275,18 @@ export class ChartStore {
     this.axesPositions = axisTicksPositions.axisPositions;
     this.axesTicks = axisTicksPositions.axisTicks;
     this.axesVisibleTicks = axisTicksPositions.axisVisibleTicks;
-
     // compute bar series glyphs
     this.barSeriesSpecs.forEach((barSeriesSpec) => {
       const { id, groupId } = barSeriesSpec;
       const specDomain = this.seriesSpecDomains.get(id);
+      const globalSpecDomain = this.globalSpecDomains.get(groupId);
       if (!specDomain) {
         throw new Error('Missing spec domain for existing spec');
       }
       const colorScales = this.globalColorScales.get(groupId);
       const renderedGlyphs = renderBarSeriesSpec(
         barSeriesSpec,
-        specDomain,
+        globalSpecDomain!,
         this.chartDimensions,
         this.chartRotation,
         colorScales!,
@@ -292,13 +300,14 @@ export class ChartStore {
     this.lineSeriesSpecs.forEach((lineSeriesGlyphs) => {
       const { id, groupId } = lineSeriesGlyphs;
       const specDomain = this.seriesSpecDomains.get(id);
+      const globalSpecDomain = this.globalSpecDomains.get(groupId);
       if (!specDomain) {
         throw new Error('Missing spec domain for existing spec');
       }
       const colorScales = this.globalColorScales.get(groupId);
       const renderedGlyphs = renderLineSeriesSpec(
         lineSeriesGlyphs,
-        specDomain,
+        globalSpecDomain!,
         this.chartDimensions,
         this.chartRotation,
         colorScales!,
@@ -312,13 +321,14 @@ export class ChartStore {
     this.areaSeriesSpecs.forEach((areaSeriesGlyphs) => {
       const { id, groupId } = areaSeriesGlyphs;
       const specDomain = this.seriesSpecDomains.get(id);
+      const globalSpecDomain = this.globalSpecDomains.get(groupId);
       if (!specDomain) {
         throw new Error('Missing spec domain for existing spec');
       }
       const colorScales = this.globalColorScales.get(groupId);
       const renderedGlyphs = renderAreaSeriesSpec(
         areaSeriesGlyphs,
-        specDomain,
+        globalSpecDomain!, // just to test
         this.chartDimensions,
         this.chartRotation,
         colorScales!,

@@ -10,7 +10,7 @@ import { renderLineSeriesSpec } from '../rendering';
 const CHART_DIMS: Dimensions = {
   top: 0,
   left: 0,
-  width: 160, // to easy compute spaces
+  width: 150, // to easy compute spaces
   height: 100,
 };
 
@@ -41,7 +41,7 @@ const SPEC: LineSeriesSpec = {
   ],
   xAccessor: 'x',
   yAccessors: ['y1', 'y2'],
-  xScaleType: ScaleType.Ordinal,
+  xScaleType: ScaleType.Linear,
   yScaleType: ScaleType.Linear,
   yScaleToDataExtent: false,
 };

@@ -16,6 +16,7 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
   // compute x domains
   const {
     data,
+    xScaleType,
     yScaleType,
     xAccessor,
     yAccessors,
@@ -82,8 +83,8 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
     {
       accessor: xAccessor,
       level: 0,
-      scaleType: ScaleType.Ordinal,
-      domain: uniq(xDomain as string[]),
+      scaleType: xScaleType,
+      domain: xScaleType === ScaleType.Linear ? extent(xDomain as number[]) : uniq(xDomain as string[]),
     },
   ];
   if (stackAccessors.length > 0) {

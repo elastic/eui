@@ -40,6 +40,7 @@ export class AreaSeries extends React.Component<AreaSeriesDataProps> {
           data={glyph.path}
           fill={glyph.color}
           listening={false}
+          opacity={0.5}
         />
       );
     });

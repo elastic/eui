@@ -19,12 +19,10 @@ Object {
       "accessor": "x",
       "domain": Array [
         0,
-        1,
-        2,
         3,
       ],
       "level": 0,
-      "scaleType": "ordinal",
+      "scaleType": "linear",
     },
   ],
   "yDomain": Object {
@@ -45,14 +43,14 @@ Array [
   Object {
     "color": "green",
     "data": Array [],
-    "path": "M20,90L60,80L100,90L140,40",
+    "path": "M0,90L50,80L100,90L150,40",
     "points": Array [
       Object {
-        "x": 20,
+        "x": 0,
         "y": 90,
       },
       Object {
-        "x": 60,
+        "x": 50,
         "y": 80,
       },
       Object {
@@ -60,7 +58,7 @@ Array [
         "y": 90,
       },
       Object {
-        "x": 140,
+        "x": 150,
         "y": 40,
       },
     ],
@@ -68,14 +66,14 @@ Array [
   Object {
     "color": "blue",
     "data": Array [],
-    "path": "M20,70L60,30L100,80L140,0",
+    "path": "M0,70L50,30L100,80L150,0",
     "points": Array [
       Object {
-        "x": 20,
+        "x": 0,
         "y": 70,
       },
       Object {
-        "x": 60,
+        "x": 50,
         "y": 30,
       },
       Object {
@@ -83,7 +81,7 @@ Array [
         "y": 80,
       },
       Object {
-        "x": 140,
+        "x": 150,
         "y": 0,
       },
     ],

@@ -1,4 +1,5 @@
 import { max } from 'd3-array';
+import { none, Option, some } from 'fp-ts/lib/Option';
 import { Domain, SpecDomain, SpecDomains } from '../data_ops/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../data_ops/scales';
 import { Dimensions, Margins } from '../dimensions';
@@ -36,56 +37,58 @@ export function computeAxisTicksDimensions(
   bboxCalculator: BBoxCalculator,
   scalesConfig: ScalesConfig,
   chartRotation: Rotation,
-): AxisTicksDimensions {
+): Option<AxisTicksDimensions> {
   let tickValues: string[] | number[];
   let tickLabels: string[];
   let axisScaleType: ScaleType;
   let axisScaleDomain: Domain;
   const level = axisSpec.groupingLevel ? axisSpec.groupingLevel : 0;
-  const verticalDomain = chartRotation === 0 ? specDomains.yDomain : specDomains.xDomains[level];
-  const horizontalDomain = chartRotation === 0 ? specDomains.xDomains[level] : specDomains.yDomain;
-  const axisDomain = axisSpec.orientation === AxisOrientation.Vertical ? verticalDomain : horizontalDomain;
-  const verticalTicks = computeTicks(axisDomain, axisSpec, scalesConfig);
-  tickValues = verticalTicks.tickValues;
-  tickLabels = verticalTicks.tickLabels;
-  axisScaleType = verticalTicks.axisScaleType!;
-  axisScaleDomain = verticalTicks.axisScaleDomain!;
-  // compute the boundingbox for each formatted label
-  const ticksDimensions = tickLabels
-    .map((tickLabel: string) => {
-      const bbox = bboxCalculator.compute(tickLabel).getOrElse({
-        width: 0,
-        height: 0,
-      });
-      return {
-        width: Math.ceil(bbox.width),
-        height: Math.ceil(bbox.height),
-      };
+  return getAxisDomain(axisSpec.orientation, specDomains, chartRotation, level)
+    .chain((axisDomain) => {
+      return computeTicks(axisDomain, axisSpec, scalesConfig);
     })
-    .filter((d) => d);
-  const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
-  const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
-  return {
-    axisScaleType,
-    axisScaleDomain,
-    ticksDimensions,
-    tickValues,
-    tickLabels,
-    maxTickWidth,
-    maxTickHeight,
-  };
+    .map((verticalTicks) => {
+      tickValues = verticalTicks.tickValues;
+      tickLabels = verticalTicks.tickLabels;
+      axisScaleType = verticalTicks.axisScaleType!;
+      axisScaleDomain = verticalTicks.axisScaleDomain!;
+      // compute the boundingbox for each formatted label
+      const ticksDimensions = tickLabels
+        .map((tickLabel: string) => {
+          const bbox = bboxCalculator.compute(tickLabel).getOrElse({
+            width: 0,
+            height: 0,
+          });
+          return {
+            width: Math.ceil(bbox.width),
+            height: Math.ceil(bbox.height),
+          };
+        })
+        .filter((d) => d);
+      const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
+      const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
+      return {
+        axisScaleType,
+        axisScaleDomain,
+        ticksDimensions,
+        tickValues,
+        tickLabels,
+        maxTickWidth,
+        maxTickHeight,
+      };
+    });
 }
 
 function computeTicks(
   specDomain: SpecDomain,
   axisSpec: AxisSpec,
   scalesConfig: ScalesConfig,
-): {
+): Option<{
   axisScaleType: ScaleType,
   axisScaleDomain: Domain,
   tickValues: any[],
   tickLabels: string[],
-} {
+}> {
   const { domain, scaleType } = specDomain;
 
   let tickValues: string[] | number[];
@@ -100,12 +103,12 @@ function computeTicks(
     tickValues = scale.ticks();
     tickLabels = tickValues.map(axisSpec.tickFormat);
   }
-  return {
+  return some({
     axisScaleType: scaleType,
     axisScaleDomain: domain,
     tickValues,
     tickLabels,
-  };
+  });
 }
 
 export function getAvailableTicks(
@@ -295,4 +298,38 @@ export function getAxisTicksPositions(
     axisTicks,
     axisVisibleTicks,
   };
+}
+
+function getDomainByLevel(domain: SpecDomain[], level: number): Option<SpecDomain> {
+  const domainInLevel = domain.find((d) => d.level === level);
+  return domainInLevel ? some(domainInLevel) : none;
+}
+
+function getVerticalDomain(specDomains: SpecDomains, chartRotation: number, level: number): Option<SpecDomain> {
+  if (chartRotation === 0) {
+    return some(specDomains.yDomain);
+  } else {
+    return getDomainByLevel(specDomains.xDomains, level);
+  }
+}
+function getHorizontalDomain(specDomains: SpecDomains, chartRotation: number, level: number): Option<SpecDomain> {
+  if (chartRotation === 0) {
+    return getDomainByLevel(specDomains.xDomains, level);
+  } else {
+    return some(specDomains.yDomain);
+  }
+}
+
+function getAxisDomain(
+  orientation: AxisOrientation,
+  specDomains: SpecDomains,
+  chartRotation: number,
+  level: number,
+): Option<SpecDomain> {
+  if (orientation === AxisOrientation.Vertical) {
+    return getVerticalDomain(specDomains, chartRotation, level);
+  } else {
+    return getHorizontalDomain(specDomains, chartRotation, level);
+  }
+
 }

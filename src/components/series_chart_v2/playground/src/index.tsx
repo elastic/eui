@@ -80,13 +80,30 @@ class App extends Component {
             orientation={AxisOrientation.Vertical}
           />
           <LineSeries
-            id={getSpecId('renderBarChart1y0g')}
+            id={getSpecId('line1')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
-            data={this.state.barchart_1y0g}
-            tooltipLevel={0}
+            data={[
+              { x: 0, y: 1 },
+              { x: 1, y: 2 },
+              { x: 2, y: 10 },
+              { x: 3, y: 6 },
+            ]}
+          />
+          <LineSeries
+            id={getSpecId('line2')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            data={[
+              { x: 0, y: 3 },
+              { x: 1, y: 3 },
+              { x: 2, y: 1 },
+              { x: 3, y: 3 },
+            ]}
           />
         </Chart>
       </div>
@@ -175,7 +192,57 @@ class App extends Component {
             orientation={AxisOrientation.Vertical}
           />
           <BarSeries
-            id={getSpecId('renderBarChart1y1g')}
+            id={getSpecId('spec1')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            tooltipLevel={0}
+            data={[
+              { x: 0, y: 3 },
+              { x: 1, y: 3 },
+              { x: 2, y: 1 },
+              { x: 7, y: 3 },
+              { x: 17, y: 3 },
+            ]}
+          />
+          <BarSeries
+            id={getSpecId('spec2')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            tooltipLevel={0}
+            data={[
+              { x: 0, y: 1 },
+              { x: 1, y: 2 },
+              { x: 2, y: 3 },
+              { x: 3, y: 2 },
+              { x: 4, y: 1 },
+              { x: 8, y: 1 },
+            ]}
+          />
+        </Chart>
+      </div>
+    );
+  }
+  public render2BarCharts = (renderer: 'svg'|'canvas' = 'svg') => {
+    return (
+      <div className="chartContainer">
+        <Chart renderer={renderer}>
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            orientation={AxisOrientation.Horizontal}
+            title="[1Y1G] 1 Metric, 1 X value, 1 Aggregation"
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+          />
+          <BarSeries
+            id={getSpecId('spec1')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
@@ -183,15 +250,15 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             data={this.state.barchart_1y1g}
           />
-          <LineSeries
-            id={getSpecId('renderLineChart1y1g')}
+          <BarSeries
+            id={getSpecId('spec2')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
             data={this.state.barchart_1y1g}
-            />
+          />
         </Chart>
       </div>
     );
@@ -680,20 +747,21 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(30, 3);
+    // const randomData = dataGenerator.generateGroupedSeries(30, 3);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        {
+        {this.renderBarChart1y1g('canvas')}
+        {/* {
           this.renderLineChart1y0g('canvas')
-        }
-        {
+        } */}
+        {/* {
           this.renderAreaChart1y0g('canvas')
         }
-          {this.renderBarChart1y1g('canvas')}
+
           {this.renderBarChart1y1gs('canvas')}
 
           {this.renderBarChart2y2gs('canvas')}
@@ -715,7 +783,7 @@ class App extends Component {
           {this.renderSimpleClusteredBarChart('canvas')}
           {this.renderMultipleClusteredBarChart('canvas')}
           {this.renderGitHubIssue('canvas')}
-          {this.renderHighVolumeChart('canvas', randomData)}
+          {this.renderHighVolumeChart('canvas', randomData)} */}
           {/* {this.renderHighVolumeLineChart('canvas', randomData)} */}
         </div>
         <div className="chartContainers">

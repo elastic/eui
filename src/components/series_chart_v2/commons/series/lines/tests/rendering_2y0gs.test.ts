@@ -10,7 +10,7 @@ import { renderLineSeriesSpec } from '../rendering';
 const CHART_DIMS: Dimensions = {
   top: 0,
   left: 0,
-  width: 160, // to easy compute spaces
+  width: 150, // to easy compute spaces
   height: 100,
 };
 
@@ -47,7 +47,7 @@ const SPEC: LineSeriesSpec = {
   stackAccessors: ['x'],
 };
 
-describe('Line rendering 2Y0G', () => {
+describe('Line rendering 2Y0GS', () => {
   let computedDomains: SpecDomains;
 
   test('should compute the domain', () => {

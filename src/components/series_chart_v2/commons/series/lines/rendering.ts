@@ -5,7 +5,7 @@ import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data
 import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
-import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from '../bars/commons';
+import { BarScaleFnConfig } from '../bars/commons';
 import { Datum, LineSeriesSpec, Rotation } from '../specs';
 export interface LineGlyph {
   data: Datum[];
@@ -121,7 +121,7 @@ function getSplitSeriesKey(datum: Datum, splitSeriesAccessorFn: AccessorFn[]) {
     return accessorFn(datum);
   }).join('--');
 }
-function updateLinePoints(lineGlyph: LineGlyph  , x: number, y: number): LineGlyph {
+function updateLinePoints(lineGlyph: LineGlyph, x: number, y: number): LineGlyph {
   return {
     ...lineGlyph,
     points: [
@@ -160,7 +160,7 @@ export function getScale(
     };
   } else {
     const scale = createContinuousScale(type, domain as [number, number], min, max, clamp);
-    const barWidth = DEFAULT_BAR_WIDTH;
+    const barWidth = 0;
     return {
       accessor,
       scale,
