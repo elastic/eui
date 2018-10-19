@@ -1,6 +1,6 @@
 /// <reference path="../../common.d.ts" />
 
-import { SFC, InputHTMLAttributes } from 'react';
+import { SFC, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
 
