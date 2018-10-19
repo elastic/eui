@@ -11,7 +11,7 @@ declare module '@elastic/eui' {
    */
   export interface EuiFieldPasswordProps {
     isInvalid?: boolean;
-    inputRef?: (ref: HTMLInputElement) => void;
+    inputRef?: Ref<HTMLInputElement>;
     fullWidth?: boolean;
     isLoading?: boolean;
   }
