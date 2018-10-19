@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
+  
+**Bug fixes**
+
+- Fixed select warning on falsy value in EuiSelect ([#1254](https://github.com/elastic/eui/pull/1254))
 
 ## [`4.5.2`](https://github.com/elastic/eui/tree/v4.5.2)
 
