@@ -14,6 +14,13 @@ declare module '@elastic/eui' {
     fullWidth?: boolean;
     id?: string;
     levels?: Array<{ min?: number; max?: number; color?: EuiRangeLevelColor }>;
+    // `min` and `max` are optional in HTML but required for our component,
+    // so we override them.
+    max: number;
+    min: number;
+    // The spec allows string values for `step` but the component requires
+    // a number.
+    step?: number;
     showInput?: boolean;
     showLabels?: boolean;
     showRange?: boolean;

@@ -1,6 +1,6 @@
 /// <reference path="../../common.d.ts" />
 
-import { SFC, ChangeEventHandler, InputHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import { SFC, ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -30,10 +30,14 @@ declare module '@elastic/eui' {
     autoFocus?: boolean;
     compressed?: boolean;
     label?: ReactNode;
+    name?: string;
+    value?: string;
+    checked?: boolean;
+    disabled?: boolean;
     onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
   }
 
   export const EuiRadio: SFC<
-    CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiRadioProps
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiRadioProps
   >;
 }
