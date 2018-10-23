@@ -138,7 +138,6 @@ export class EuiComboBox extends Component {
   incrementActiveOptionIndex = amount => {
     // If there are no options available, do nothing.
     if (!this.state.matchingOptions.length) {
-      // this.clearActiveOption();
       return;
     }
 
@@ -353,7 +352,6 @@ export class EuiComboBox extends Component {
 
     this.clearActiveOption();
     this.searchInput.focus();
-    // this.focusSearchInput();
   };
 
   onRemoveOption = (removedOption) => {
@@ -361,7 +359,6 @@ export class EuiComboBox extends Component {
     onChange(selectedOptions.filter(option => option !== removedOption));
 
     this.clearActiveOption();
-    // this.focusSearchInput();
   };
 
   clearSelectedOptions = () => {
@@ -551,7 +548,6 @@ export class EuiComboBox extends Component {
             renderOption={renderOption}
             width={width}
             scrollToIndex={activeOptionIndex}
-            // onScroll={this.focusActiveOption}
             rowHeight={rowHeight}
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
