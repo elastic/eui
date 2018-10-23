@@ -2,6 +2,8 @@
 
 No public interface changes since `4.6.0`.
 
+- Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
+
 ## [`4.6.0`](https://github.com/elastic/eui/tree/v4.6.0)
 
 - Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))

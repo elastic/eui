@@ -1,6 +1,7 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="./checkbox/index.d.ts" />
 /// <reference path="./field_number/index.d.ts" />
+/// <reference path="./field_password/index.d.ts" />
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
 /// <reference path="./form_help_text/index.d.ts" />
