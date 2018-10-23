@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
+- Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
+
+**Bug fixes**
+
+- `EuiComboBox` no longer blows up in popovers/modals ([#1258](https://github.com/elastic/eui/pull/1258))
 
 ## [`4.5.2`](https://github.com/elastic/eui/tree/v4.5.2)
 
