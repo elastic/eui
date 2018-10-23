@@ -15,6 +15,7 @@ export class EuiComboBoxOption extends Component {
     onClick: PropTypes.func.isRequired,
     onEnterKey: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
+    isFocused: PropTypes.bool.isRequired,
   }
 
   onClick = () => {
@@ -50,6 +51,7 @@ export class EuiComboBoxOption extends Component {
       onClick, // eslint-disable-line no-unused-vars
       onEnterKey, // eslint-disable-line no-unused-vars
       disabled,
+      isFocused,
       ...rest
     } = this.props;
 
@@ -58,6 +60,7 @@ export class EuiComboBoxOption extends Component {
       className,
       {
         'euiComboBoxOption-isDisabled': disabled,
+        'euiComboBoxOption-isFocused': isFocused,
       },
     );
 

@@ -43,6 +43,7 @@ export class EuiComboBoxOptionsList extends Component {
     onScroll: PropTypes.func,
     rowHeight: PropTypes.number,
     fullWidth: PropTypes.bool,
+    activeOptionIndex: PropTypes.number,
   }
 
   static defaultProps = {
@@ -113,6 +114,7 @@ export class EuiComboBoxOptionsList extends Component {
       rowHeight,
       fullWidth,
       'data-test-subj': dataTestSubj,
+      activeOptionIndex,
       ...rest
     } = this.props;
 
@@ -198,6 +200,7 @@ export class EuiComboBoxOptionsList extends Component {
                 onClick={onOptionClick}
                 onEnterKey={onOptionEnterKey}
                 optionRef={optionRef.bind(this, index)}
+                isFocused={activeOptionIndex === index}
                 {...rest}
               >
                 {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
