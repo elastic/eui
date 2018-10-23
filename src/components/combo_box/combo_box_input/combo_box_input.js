@@ -18,7 +18,6 @@ export class EuiComboBoxInput extends Component {
     onRemoveOption: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func,
     value: PropTypes.string,
     searchValue: PropTypes.string,
@@ -28,6 +27,7 @@ export class EuiComboBoxInput extends Component {
     onClear: PropTypes.func,
     hasSelectedOptions: PropTypes.bool.isRequired,
     isListOpen: PropTypes.bool.isRequired,
+    noIcon: PropTypes.bool.isRequired,
     onOpenListClick: PropTypes.func.isRequired,
     onCloseListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.oneOfType([
@@ -63,8 +63,7 @@ export class EuiComboBoxInput extends Component {
     });
   };
 
-  onBlur = e => {
-    this.props.onBlur(e);
+  onBlur = () => {
     this.setState({
       hasFocus: false,
     });
@@ -101,6 +100,7 @@ export class EuiComboBoxInput extends Component {
       isDisabled,
       toggleButtonRef,
       fullWidth,
+      noIcon,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -172,15 +172,18 @@ export class EuiComboBoxInput extends Component {
       };
     }
 
-    const icon = {
-      type: 'arrowDown',
-      side: 'right',
-      onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
-      ref: toggleButtonRef,
-      'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
-      disabled: isDisabled,
-      'data-test-subj': 'comboBoxToggleListButton',
-    };
+    let icon;
+    if (!noIcon) {
+      icon = {
+        type: 'arrowDown',
+        side: 'right',
+        onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
+        ref: toggleButtonRef,
+        'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
+        disabled: isDisabled,
+        'data-test-subj': 'comboBoxToggleListButton',
+      };
+    }
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
       'euiComboBox__inputWrap--fullWidth': fullWidth,

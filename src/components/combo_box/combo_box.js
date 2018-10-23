@@ -176,7 +176,7 @@ export class EuiComboBox extends Component {
     return false;
   };
 
-  incrementActiveOptionIndex = throttle(amount => {
+  incrementActiveOptionIndex = amount => {
     // If there are no options available, do nothing.
     if (!this.state.matchingOptions.length) {
       // this.clearActiveOption();
@@ -215,7 +215,7 @@ export class EuiComboBox extends Component {
 
       return { activeOptionIndex: nextActiveOptionIndex };
     });
-  }, 200);
+  };
 
   hasActiveOption = () => {
     return this.state.activeOptionIndex != null;
@@ -259,7 +259,7 @@ export class EuiComboBox extends Component {
 
   addCustomOption = () => {
     if (this.doesSearchMatchOnlyOption()) {
-      this.options[0].click();
+      this.onAddOption(this.state.matchingOptions[0]);
       return;
     }
 
@@ -310,8 +310,16 @@ export class EuiComboBox extends Component {
     const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
-    } else {
-      e.preventDefault();
+    }
+
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+  }
+
+  onComboBoxLoseFocus = e => {
+    if (!this.comboBox || !this.comboBox.contains(e.relatedTarget)) {
+      this.closeList();
     }
   }
 
@@ -352,23 +360,37 @@ export class EuiComboBox extends Component {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
         e.preventDefault();
-        this.incrementActiveOptionIndex(-1);
+        e.stopPropagation();
+        if (this.state.isListOpen) {
+          this.incrementActiveOptionIndex(-1);
+        } else {
+          this.openList();
+        }
         break;
 
       case comboBoxKeyCodes.DOWN:
         e.preventDefault();
-        this.incrementActiveOptionIndex(1);
+        e.stopPropagation();
+        if (this.state.isListOpen) {
+          this.incrementActiveOptionIndex(1);
+        } else {
+          this.openList();
+        }
         break;
 
       case BACKSPACE:
+        e.stopPropagation();
         this.removeLastOption();
         break;
 
       case ESCAPE:
+        e.stopPropagation();
         this.closeList();
+        this.searchInput.blur();
         break;
 
       case comboBoxKeyCodes.ENTER:
+        e.stopPropagation();
         if (this.hasActiveOption()) {
           this.onAddOption(this.state.matchingOptions[this.state.activeOptionIndex]);
         } else {
@@ -390,6 +412,11 @@ export class EuiComboBox extends Component {
           e.stopPropagation();
         }
         break;
+
+      default:
+        if (this.props.onKeyDown) {
+          this.props.onKeyDown(e);
+        }
     }
   };
 
@@ -413,10 +440,12 @@ export class EuiComboBox extends Component {
 
     if (singleSelection) {
       this.closeList();
+      this.searchInput.blur();
       return;
     }
 
     this.clearActiveOption();
+    this.searchInput.focus();
     // this.focusSearchInput();
   };
 
@@ -568,7 +597,6 @@ export class EuiComboBox extends Component {
   }
 
   componentWillUnmount() {
-    this.incrementActiveOptionIndex.cancel();
     this._isMounted = false;
     // document.removeEventListener('click', this.onDocumentFocusChange);
     // document.removeEventListener('focusin', this.onDocumentFocusChange);
@@ -651,12 +679,12 @@ export class EuiComboBox extends Component {
 
     return (
       <div
+        {...rest}
         className={classes}
-        // onFocus={this.onComboBoxFocus}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
-        {...rest}
+        onBlur={this.onBlur}
       >
         <EuiComboBoxInput
           id={id}
@@ -666,7 +694,6 @@ export class EuiComboBox extends Component {
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.onFocus}
-          onBlur={this.onBlur}
           value={value}
           searchValue={searchValue}
           autoSizeInputRef={this.autoSizeInputRef}
@@ -681,6 +708,7 @@ export class EuiComboBox extends Component {
           isDisabled={isDisabled}
           toggleButtonRef={this.toggleButtonRef}
           fullWidth={fullWidth}
+          noIcon={!!noSuggestions}
         />
 
         {optionsList}
