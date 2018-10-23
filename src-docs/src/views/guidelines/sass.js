@@ -21,6 +21,7 @@ import {
   EuiTitle,
   EuiLink,
   EuiCode,
+  EuiCodeBlock,
   EuiCallOut,
 } from '../../../../src/components';
 
@@ -133,31 +134,69 @@ function renderShadow(shadow, index) {
 
 console.log(lightColors);
 
+const bemExample = (`// camelCase all selectors
+.euiButton {
+  // Put mixins first before properties
+  @include euiButton;
+  @include euiSlightShadow;
+
+  border-radius: $euiBorderRadius;
+
+
+  // Elements exist within the main block
+  .euiButton__content {
+    padding: 0 ($euiSize - $euiSizeXS);
+  }
+
+  // Modifiers augment existing selectors
+  &.euiButton--primary {
+    background-color: $euiColorPrimary;
+  }
+
+  // States are written with a verb prefix
+  &.euiButton-isLoading {
+    opacity: .5;
+  }
+}
+`);
+
 export default() => (
 
   <GuidePage title="Sass guidelines">
 
     <EuiSpacer size="xl" />
+    <EuiFlexGrid columns={2}>
+      <EuiFlexItem>
+        <EuiText>
+          <h2>BEM syntax with verb states</h2>
+          <p>
+            EUI is written in BEM-style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
+            Below is an example of proper formatting.
+          </p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{bemExample}</EuiCodeBlock>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiText grow={false} className="guideSection__text">
+          <h2>Writing Sass the EUI way</h2>
+          <p>
+            In general, when writing new SCSS in a project that installs EUI as a dependency
+            try to follow these best practices:
+          </p>
+          <ul>
+            <li>Utilize color variables and functions rather than hard-coded values</li>
+            <li>Utilize the sizing variables for padding and margins</li>
+            <li>Utilize the animation variables for animations when possible</li>
+            <li>Utilize the responsive mixins for all screen width calculations</li>
+            <li>Utilize the typography mixins and variables for all font family, weight and sizing</li>
+            <li>Utilize the shadow mixins and z-index variables to manage depth</li>
+            <li>Minimize your overwrites and try to make new Sass additive in nature</li>
+          </ul>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGrid>
 
-    <EuiText grow={false} className="guideSection__text">
-      <h2>Core rules</h2>
-      <p>
-        EUI&apos;s CSS is built with a Sass layer that is themable and comes with a slew
-        of global variables, functions and mixins to help extend the core functionality.
-        In general, when writing new SCSS in a project that installs EUI as a dependency
-        try to follow these best practices:
-      </p>
-      <ul>
-        <li>Write SCSS following BEM syntax with proper prefixing</li>
-        <li>Utilize color variables and functions rather than hard-coded values</li>
-        <li>Utilize the sizing variables for padding and margins</li>
-        <li>Utilize the animation variables for animations when possible</li>
-        <li>Utilize the responsive mixins for all screen width calculations</li>
-        <li>Utilize the typography mixins and variables for all font family, weight and sizing</li>
-        <li>Utilize the shadow mixins and z-index variables to manage depth</li>
-        <li>Minimize your overwrites and try to make new Sass additive in nature</li>
-      </ul>
-    </EuiText>
 
     <EuiSpacer />
 
