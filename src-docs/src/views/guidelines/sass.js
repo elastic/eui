@@ -1,6 +1,4 @@
-import React, {
-  Fragment,
-} from 'react';
+import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import { rgbToHex } from '../../../../src/services';
@@ -21,16 +19,10 @@ import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiTitle,
-  EuiBadge,
-  EuiToolTip,
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
   EuiLink,
   EuiCode,
   EuiCallOut,
 } from '../../../../src/components';
-import { string } from 'prop-types';
 
 const euiColors = [
   'euiColorGhost',
@@ -150,7 +142,7 @@ export default() => (
     <EuiText grow={false} className="guideSection__text">
       <h2>Core rules</h2>
       <p>
-        EUI's CSS is built with a Sass layer that is themable and comes with a slew
+        EUI&apos;s CSS is built with a Sass layer that is themable and comes with a slew
         of global variables, functions and mixins to help extend the core functionality.
         In general, when writing new SCSS in a project that installs EUI as a dependency
         try to follow these best practices:
@@ -204,13 +196,13 @@ export default() => (
 
     <EuiText grow={false} className="guideSection__text">
       <p>
-        For most of your components we recommend using <Link to="">EuiText</Link> or 
+        For most of your components we recommend using <Link to="">EuiText</Link> or
         {' '}<Link to="">EuiTitle</Link> instead of these Sass varaibles.
       </p>
     </EuiText>
 
     <EuiSpacer />
-    <EuiCallOut 
+    <EuiCallOut
       size="s"
       color="warning"
       title={
