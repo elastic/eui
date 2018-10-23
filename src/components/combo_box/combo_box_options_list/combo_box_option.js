@@ -72,11 +72,11 @@ export class EuiComboBoxOption extends Component {
       <button
         role="option"
         type="button"
+        aria-selected={isFocused}
         className={classes}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
         ref={optionRef}
-        tabIndex="-1"
         aria-disabled={disabled}
         title={label}
         {...rest}

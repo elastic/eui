@@ -9,7 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { comboBoxKeyCodes, findPopoverPosition } from '../../services';
+import { comboBoxKeyCodes, findPopoverPosition, htmlIdGenerator } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
 import { EuiPortal } from '../portal';
 import { EuiComboBoxInput } from './combo_box_input';
@@ -70,6 +70,8 @@ export class EuiComboBox extends Component {
       listPosition: 'bottom',
       activeOptionIndex: undefined,
     };
+
+    this.rootId = htmlIdGenerator();
 
     // Refs.
     this.comboBox = undefined;
@@ -478,8 +480,6 @@ export class EuiComboBox extends Component {
     // isn't called after a state change, and we track `searchValue` in state
     // instead we need to react to a change in searchValue here
     this.updateMatchingOptionsIfDifferent(getMatchingOptions(options, selectedOptions, searchValue, this.props.async));
-
-    // this.focusActiveOption();
   }
 
   componentWillUnmount() {
@@ -551,6 +551,7 @@ export class EuiComboBox extends Component {
             rowHeight={rowHeight}
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
+            rootId={this.rootId}
           />
         </EuiPortal>
       );
@@ -564,6 +565,9 @@ export class EuiComboBox extends Component {
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
         onBlur={this.onBlur}
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={isListOpen}
       >
         <EuiComboBoxInput
           id={id}
@@ -588,6 +592,8 @@ export class EuiComboBox extends Component {
           toggleButtonRef={this.toggleButtonRef}
           fullWidth={fullWidth}
           noIcon={!!noSuggestions}
+          rootId={this.rootId}
+          focusedOptionId={this.hasActiveOption() ? this.rootId(`_option-${this.state.activeOptionIndex}`) : null}
         />
 
         {optionsList}

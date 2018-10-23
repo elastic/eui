@@ -39,6 +39,8 @@ export class EuiComboBoxInput extends Component {
     isDisabled: PropTypes.bool,
     toggleButtonRef: PropTypes.func,
     fullWidth: PropTypes.bool,
+    rootId: PropTypes.func.isRequired,
+    focusedOptionId: PropTypes.string,
   }
 
   constructor(props) {
@@ -101,6 +103,8 @@ export class EuiComboBoxInput extends Component {
       toggleButtonRef,
       fullWidth,
       noIcon,
+      rootId,
+      focusedOptionId,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -206,7 +210,9 @@ export class EuiComboBoxInput extends Component {
           {pills}
           {placeholderMessage}
           <AutosizeInput
-            aria-hidden
+            role="textbox"
+            aria-controls={isListOpen ? rootId('listbox') : null}
+            aria-activedescendant={focusedOptionId}
             id={id}
             style={{ fontSize: 14 }}
             className="euiComboBox__input"

@@ -44,6 +44,7 @@ export class EuiComboBoxOptionsList extends Component {
     rowHeight: PropTypes.number,
     fullWidth: PropTypes.bool,
     activeOptionIndex: PropTypes.number,
+    rootId: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -115,6 +116,7 @@ export class EuiComboBoxOptionsList extends Component {
       fullWidth,
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
+      rootId,
       ...rest
     } = this.props;
 
@@ -166,7 +168,8 @@ export class EuiComboBoxOptionsList extends Component {
 
     const optionsList = (
       <List
-        tabIndex={-1}
+        id={rootId('listbox')}
+        role="listbox"
         width={width}
         height={height}
         rowCount={matchingOptions.length}
@@ -193,21 +196,21 @@ export class EuiComboBoxOptionsList extends Component {
           }
 
           return (
-            <div key={key} style={style}>
-              <EuiComboBoxOption
-                option={option}
-                key={option.label.toLowerCase()}
-                onClick={onOptionClick}
-                onEnterKey={onOptionEnterKey}
-                optionRef={optionRef.bind(this, index)}
-                isFocused={activeOptionIndex === index}
-                {...rest}
-              >
-                {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
-                  <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
-                )}
-              </EuiComboBoxOption>
-            </div>
+            <EuiComboBoxOption
+              style={style}
+              option={option}
+              key={option.label.toLowerCase()}
+              onClick={onOptionClick}
+              onEnterKey={onOptionEnterKey}
+              optionRef={optionRef.bind(this, index)}
+              isFocused={activeOptionIndex === index}
+              id={rootId(`_option-${index}`)}
+              {...rest}
+            >
+              {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
+                <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
+              )}
+            </EuiComboBoxOption>
           );
         }}
       />

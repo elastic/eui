@@ -13,6 +13,11 @@ jest.mock(
   })
 );
 
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => { return (suffix) => `htmlid_${suffix}`; },
+}));
+
 const options = [{
   label: 'Titan',
   'data-test-subj': 'titanOption',
