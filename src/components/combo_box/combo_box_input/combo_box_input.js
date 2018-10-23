@@ -192,6 +192,7 @@ export class EuiComboBoxInput extends Component {
     }
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
+      'euiComboBox__inputWrap--compressed': compressed,
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
       'euiComboBox__inputWrap-isClearable': onClear,
