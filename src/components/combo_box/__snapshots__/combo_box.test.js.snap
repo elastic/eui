@@ -82,6 +82,7 @@ exports[`props full width is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={true}
     hasSelectedOptions={true}
@@ -123,6 +124,7 @@ exports[`props isClearable=false disallows user from clearing input when no opti
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={false}
@@ -157,6 +159,7 @@ exports[`props isClearable=false disallows user from clearing input when options
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -200,6 +203,7 @@ exports[`props isDisabled is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -330,6 +334,7 @@ exports[`props selectedOptions are rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -374,6 +379,7 @@ exports[`props singleSelection is rendered 1`] = `
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
+    compressed={false}
     focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}

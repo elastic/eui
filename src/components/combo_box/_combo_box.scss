@@ -72,4 +72,12 @@
       @include euiFormControlDisabledStyle;
     }
   }
+
+  &.euiComboBox--compressed {
+    .euiComboBox__inputWrap {
+      line-height: $euiFormControlCompressedHeight; /* 2 */
+      padding-top: 0; /* 2 */
+      padding-bottom: 0; /* 2 */
+    }
+  }
 }

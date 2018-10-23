@@ -41,6 +41,7 @@ export class EuiComboBoxInput extends Component {
     fullWidth: PropTypes.bool,
     rootId: PropTypes.func.isRequired,
     focusedOptionId: PropTypes.string,
+    compressed: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -105,6 +106,7 @@ export class EuiComboBoxInput extends Component {
       noIcon,
       rootId,
       focusedOptionId,
+      compressed,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -200,6 +202,7 @@ export class EuiComboBoxInput extends Component {
         icon={icon}
         {...clickProps}
         fullWidth={fullWidth}
+        compressed={compressed}
       >
         <div
           className={wrapClasses}

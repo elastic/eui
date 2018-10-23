@@ -46,6 +46,7 @@ export class EuiComboBox extends Component {
     rowHeight: PropTypes.number,
     isClearable: PropTypes.bool,
     fullWidth: PropTypes.bool,
+    compressed: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -54,6 +55,7 @@ export class EuiComboBox extends Component {
     isClearable: true,
     singleSelection: false,
     fullWidth: false,
+    compressed: false,
   }
 
   constructor(props) {
@@ -506,6 +508,7 @@ export class EuiComboBox extends Component {
       rowHeight,
       isClearable,
       fullWidth,
+      compressed,
       'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
@@ -517,6 +520,7 @@ export class EuiComboBox extends Component {
       'euiComboBox-isInvalid': isInvalid,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox--fullWidth': fullWidth,
+      'euiComboBox--compressed': compressed,
     });
 
     const value = selectedOptions.map(selectedOption => selectedOption.label).join(', ');
@@ -594,6 +598,7 @@ export class EuiComboBox extends Component {
           noIcon={!!noSuggestions}
           rootId={this.rootId}
           focusedOptionId={this.hasActiveOption() ? this.rootId(`_option-${this.state.activeOptionIndex}`) : null}
+          compressed={compressed}
         />
 
         {optionsList}
