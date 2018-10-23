@@ -1,17 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
+- Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
 - Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
 
 **Bug fixes**
 
 - `EuiComboBox` no longer blows up in popovers/modals ([#1258](https://github.com/elastic/eui/pull/1258))
 
+## [`4.6.0`](https://github.com/elastic/eui/tree/v4.6.0)
+
+- Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
+  
+**Bug fixes**
+
+- Fixed select warning on falsy value in EuiSelect ([#1254](https://github.com/elastic/eui/pull/1254))
+
+**Bug fixes**
+
+- Add TypeScript definitions for `EuiRange` and `EuiRadio`, and correct the definitions for `EuiRadioGroup` ([#1253](https://github.com/elastic/eui/pull/1253))
+
 ## [`4.5.2`](https://github.com/elastic/eui/tree/v4.5.2)
 
 **Bug fixes**
 
-* TypeScript definition changes for `EuiAccordion`, `EuiDescriptionList`, `EuiForm`, `EuiFormHelpText` and the accessibility services, plus a number of other TS fixes ([#1247](https://github.com/elastic/eui/pull/1247))
+- TypeScript definition changes for `EuiAccordion`, `EuiDescriptionList`, `EuiForm`, `EuiFormHelpText` and the accessibility services, plus a number of other TS fixes ([#1247](https://github.com/elastic/eui/pull/1247))
 
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 
