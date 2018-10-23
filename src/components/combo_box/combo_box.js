@@ -3,13 +3,11 @@
  * from the tab order with tabindex="-1" so that we can control the keyboard navigation interface.
  */
 
-import { throttle } from 'lodash';
 import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import tabbable from 'tabbable';
 
 import { comboBoxKeyCodes, findPopoverPosition } from '../../services';
 import { BACKSPACE, TAB, ESCAPE } from '../../services/key_codes';
@@ -133,49 +131,6 @@ export class EuiComboBox extends Component {
     });
   };
 
-  tabAway = amount => {
-    if (![-1, 1].includes(amount)) {
-      throw new Error(`tabAway expects amount to be -1 or 1, but received ${amount}`);
-    }
-
-    const tabbableItems = tabbable(document);
-
-    if (document.activeElement === this.searchInput) {
-      const searchInputIndex = tabbableItems.indexOf(this.searchInput);
-
-      // Wrap to last tabbable if tabbing backwards.
-      if (amount === -1) {
-        if (searchInputIndex === 0) {
-          tabbableItems[tabbableItems.length - 1].focus();
-          return true;
-        }
-      }
-
-      // Otherwise tab to the next adjacent item.
-      tabbableItems[searchInputIndex + amount].focus();
-      return true;
-    }
-
-    if (document.activeElement === this.toggleButton) {
-      const toggleButtonIndex = tabbableItems.indexOf(this.toggleButton);
-
-      // Wrap to first tabbable if tabbing forwards.
-      if (amount === 1) {
-        if (toggleButtonIndex === tabbableItems.length - 1) {
-          tabbableItems[0].focus();
-          return true;
-        }
-      }
-
-      // Otherwise tab to the next adjacent item.
-      tabbableItems[toggleButtonIndex + amount].focus();
-      return true;
-    }
-
-    // Tab natively.
-    return false;
-  };
-
   incrementActiveOptionIndex = amount => {
     // If there are no options available, do nothing.
     if (!this.state.matchingOptions.length) {
@@ -226,18 +181,6 @@ export class EuiComboBox extends Component {
       activeOptionIndex: undefined,
     });
   };
-
-  // focusActiveOption = () => {
-  //   // If an item is focused, focus it.
-  //   if (this.hasActiveOption() && this.options[this.state.activeOptionIndex]) {
-  //     this.options[this.state.activeOptionIndex].focus();
-  //   }
-  // };
-
-  // focusSearchInput = () => {
-  //   this.clearActiveOption();
-  //   this.searchInput.focus();
-  // };
 
   clearSearchValue = () => {
     this.onSearchChange('');
@@ -323,39 +266,6 @@ export class EuiComboBox extends Component {
     }
   }
 
-  // onFocus = () => {
-  //   document.addEventListener('click', this.onDocumentFocusChange);
-  //   document.addEventListener('focusin', this.onDocumentFocusChange);
-  //   this.openList();
-  // }
-  //
-  // onBlur = () => {
-  //   document.removeEventListener('click', this.onDocumentFocusChange);
-  //   document.removeEventListener('focusin', this.onDocumentFocusChange);
-  //   this.closeList();
-  // }
-  //
-  // onDocumentFocusChange = event => {
-  //   // Close the list if the combo box has lost focus.
-  //   if (
-  //     this.comboBox === event.target
-  //     || this.comboBox.contains(event.target)
-  //     || this.optionsList === event.target
-  //     || this.optionsList && this.optionsList.contains(event.target)
-  //   ) {
-  //     return;
-  //   }
-  //
-  //   // Wait for the DOM to update.
-  //   requestAnimationFrame(() => {
-  //     if (document.activeElement === this.searchInput) {
-  //       return;
-  //     }
-  //
-  //     this.onBlur();
-  //   });
-  // };
-
   onKeyDown = (e) => {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
@@ -401,13 +311,6 @@ export class EuiComboBox extends Component {
       case TAB:
         // Disallow tabbing when the user is navigating the options.
         if (this.hasActiveOption()) {
-          e.preventDefault();
-          e.stopPropagation();
-          break;
-        }
-
-        const amount = e.shiftKey ? -1 : 1;
-        if (this.tabAway(amount)) {
           e.preventDefault();
           e.stopPropagation();
         }
@@ -470,23 +373,6 @@ export class EuiComboBox extends Component {
     // If the user does this from a state in which an option has focus, then we need to clear it.
     this.clearActiveOption();
   };
-
-  // onComboBoxFocus = (e) => {
-  //   // If the user has tabbed to the combo box, open it.
-  //   if (e.target === this.searchInput) {
-  //     this.searchInput.focus();
-  //     return;
-  //   }
-  //
-  //   // If a user clicks on an option without selecting it, then it will take focus
-  //   // and we need to update the index.
-  //   const optionIndex = this.options.indexOf(e.target);
-  //   if (optionIndex !== -1) {
-  //     this.setState({
-  //       activeOptionIndex: optionIndex,
-  //     });
-  //   }
-  // };
 
   onOpenListClick = () => {
     this.searchInput.focus();
@@ -598,8 +484,6 @@ export class EuiComboBox extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    // document.removeEventListener('click', this.onDocumentFocusChange);
-    // document.removeEventListener('focusin', this.onDocumentFocusChange);
   }
 
   render() {
@@ -641,11 +525,6 @@ export class EuiComboBox extends Component {
 
     if (!noSuggestions && isListOpen) {
       const optionsListDataTestSubj = dataTestSubj ? `${dataTestSubj}-optionsList` : undefined;
-
-      // const matchingOptions = this.state.matchingOptions.map((option, optionIdx) => ({
-      //   ...option,
-      //   isFocused: optionIdx === this.state.activeOptionIndex,
-      // }));
 
       optionsList = (
         <EuiPortal>
