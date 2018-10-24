@@ -188,8 +188,8 @@ export default() => (
                     <EuiToolTip
                       title={`Contrast is ${contrast.toFixed(1)}`}
                       content={
-                        <EuiDescriptionList>
-                          <EuiDescriptionListTitle>
+                        <EuiDescriptionList compressed>
+                          <EuiDescriptionListTitle className="guidelineColor__title">
                             Text
                           </EuiDescriptionListTitle>
                           <EuiDescriptionListDescription>
@@ -202,7 +202,7 @@ export default() => (
                               </EuiFlexItem>
                             </EuiFlexGroup>
                           </EuiDescriptionListDescription>
-                          <EuiDescriptionListTitle>
+                          <EuiDescriptionListTitle className="guidelineColor__title">
                             Background
                           </EuiDescriptionListTitle>
                           <EuiDescriptionListDescription>

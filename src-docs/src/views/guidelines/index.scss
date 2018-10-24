@@ -18,3 +18,154 @@
   text-align: center;
   font-size: $euiFontSizeS;
 }
+
+.guidelineColor__title {
+  color: $euiColorMediumShade !important;
+}
+
+.guideColorPalette__swatch {
+  
+  span {
+    height: $euiSize;
+    width: $euiSizeL;
+  }
+  
+  &:first-child span {
+    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+  }
+
+  &:last-child span {
+    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+  }
+}
+.guideSass__swatchItem + .guideSass__swatchItem {
+  margin-top: $euiSize;
+}
+
+.guideSass__swatch {
+  height: $euiSizeL;
+  width: $euiSizeL;
+}
+
+.guideSass__size {
+  background-color: $euiColorFullShade;
+  display: inline-block;
+}
+
+.guideSass__sizeItem {
+  width: $euiSizeXXL;
+  text-align: right;
+}
+
+.guideSass__fontSizeExample + .guideSass__fontSizeExample {
+  margin-top: $euiSizeL;
+}
+
+$fontSizes: (
+  'euiFontSizeXS',
+  'euiFontSizeS',
+  'euiFontSizeM',
+  'euiFontSize',
+  'euiFontSizeL',
+  'euiFontSizeXL',
+);
+
+.guideSass__fontSize {
+  margin-bottom: $euiSizeS;
+}
+
+.guideSass__fontSize--euiFontSizeXS {
+  @include euiFontSizeXS;
+}
+
+.guideSass__fontSize--euiFontSizeS {
+  @include euiFontSizeS;
+}
+
+.guideSass__fontSize--euiFontSizeM {
+  @include euiFontSizeM;
+}
+
+.guideSass__fontSize--euiFontSize {
+  @include euiFontSize;
+}
+
+.guideSass__fontSize--euiFontSizeL {
+  @include euiFontSizeL;
+}
+
+.guideSass__fontSize--euiFontSizeXL {
+  @include euiFontSizeXL;
+}
+
+.guideSass__fontSize--euiFontSizeXXL {
+  @include euiFontSizeXL;
+}
+
+.guideSass__shadow {
+  padding: $euiSize;
+  background: $euiColorEmptyShade;
+
+  & + .guideSass__shadow {
+    margin-top: $euiSizeXL;
+  }
+}
+
+.guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
+.guideSass__shadow--euiBottomShadowSmall { @include euiBottomShadowSmall; }
+.guideSass__shadow--euiBottomShadowMedium { @include euiBottomShadowMedium; }
+.guideSass__shadow--euiBottomShadowFlat { @include euiBottomShadowFlat; }
+.guideSass__shadow--euiBottomShadow { @include euiBottomShadow; }
+.guideSass__shadow--euiBottomShadowLarge { @include euiBottomShadowLarge; }
+.guideSass__shadow--euiOverflowShadowTop { @include euiOverflowShadowTop; }
+.guideSass__shadow--euiOverflowShadowBottom { @include euiOverflowShadowBottom; }
+
+.guideSass__overflowShadows {
+  margin-top: $euiSize;
+  background-image: repeating-linear-gradient(45deg, $euiColorLightShade, $euiColorLightShade $euiSizeS, $euiColorMediumShade $euiSizeS, $euiColorMediumShade $euiSize);
+  border: $euiBorderThin;
+
+  .guideSass__shadow + .guideSass__shadow {
+    margin-top: 100px;
+  }
+}
+
+.guideSass__shadow--color {
+  @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
+}
+
+.guideSass__border {
+  display: flex;
+  padding: $euiSize;
+}
+
+.guideSass__border--radius {
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+}
+
+.guideSass__border--euiBorderThin {
+  border: $euiBorderThin;
+}
+
+.guideSass__border--euiBorderThick {
+  border: $euiBorderThick;
+}
+
+.guideSass__border--euiBorderEditable {
+  border: $euiBorderEditable;
+}
+
+.guideSass__fontFamily {
+  font-size: $euiSizeL;
+  background: $euiColorDarkestShade;
+  text-align: center;
+  width: $euiSizeXL * 2;
+  height: $euiSizeXL;
+  line-height: $euiSizeXL;
+  color: $euiColorEmptyShade;
+
+  &--code {
+    font-family: $euiCodeFontFamily;
+  }
+}
