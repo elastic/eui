@@ -246,7 +246,8 @@ declare module '@elastic/eui' {
     | 'subdued'
     | 'success'
     | 'text'
-    | 'warning';
+    | 'warning'
+    | string;
 
   export interface EuiIconProps {
     type?: IconType;

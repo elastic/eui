@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     inputRef?: Ref<HTMLInputElement>;
     fullWidth?: boolean;
     isLoading?: boolean;
+    compressed?: boolean;
   }
 
   export const EuiFieldPassword: SFC<
