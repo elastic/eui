@@ -259,6 +259,20 @@ $fontSizes: (
   @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
 }
 
+.guideSass__fontFamily {
+  font-size: $euiSizeL;
+  background: $euiColorDarkestShade;
+  text-align: center;
+  width: $euiSizeXL * 2;
+  height: $euiSizeXL;
+  line-height: $euiSizeXL;
+  color: $euiColorEmptyShade;
+
+  &--code {
+    font-family: $euiCodeFontFamily;
+  }
+}
+
 
 @import "../views/guidelines/index";
 @import "guide_section/index";
