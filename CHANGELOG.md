@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
-- Added TypeScript definitions for `EuiConfirmModal`, plus several definition fixes ([#1260](https://github.com/elastic/eui/pull/1260))
+- Added TypeScript definitions for `EuiConfirmModal`, remove `AnyProps`, and several definition fixes ([#1260](https://github.com/elastic/eui/pull/1260))
 
 ## [`4.6.0`](https://github.com/elastic/eui/tree/v4.6.0)
 
