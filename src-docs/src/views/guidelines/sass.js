@@ -1,6 +1,7 @@
 import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
+import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 import { rgbToHex } from '../../../../src/services';
 
 import {
@@ -77,10 +78,18 @@ const euiShadows = [
   'euiBottomShadowLarge',
 ];
 
+const euiBorders = [
+  'euiBorderThin',
+  'euiBorderThick',
+  'euiBorderEditable',
+];
+
 const euiOverFlowShadows = [
   'euiOverflowShadowBottom',
   'euiOverflowShadowTop',
 ];
+
+const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
 function renderPaletteColor(color, index) {
   return (
@@ -127,12 +136,35 @@ function renderFontSize(size, index) {
 function renderShadow(shadow, index) {
   return (
     <div key={index} className={`guideSass__shadow guideSass__shadow--${shadow}`}>
-      <EuiCode language="scss">@include {shadow};</EuiCode>
+      <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>@include {shadow};</EuiCodeBlock>
     </div>
   );
 }
 
-console.log(lightColors);
+function renderBorder(border, index) {
+  return (
+    <EuiFlexItem key={index} className={`guideSass__border guideSass__border--${border}`}>
+      <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>border: ${border}</EuiCodeBlock>
+    </EuiFlexItem>
+  );
+}
+
+function renderBreakpoint(size, index) {
+  return (
+    <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+      <EuiFlexItem grow={false}>
+        <EuiText size="s" className="eui-textRight" style={{ width: 50 }}>
+          <EuiCode>{size}</EuiCode>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiText size="s">
+          {breakpoints.euiBreakpoints[size]}px
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+}
 
 const bemExample = (`// camelCase all selectors
 .euiButton {
@@ -158,6 +190,17 @@ const bemExample = (`// camelCase all selectors
     opacity: .5;
   }
 }
+
+// Put breakpoints at the bottom of the document
+@include euiBreakpoint("xs", "s") {
+  .euiButton {
+    width: 100%;
+  }
+}
+`);
+
+const borderRadiusExample = (`border: $euiBorderThin;
+border-radius: $euiBorderRadius;
 `);
 
 export default() => (
@@ -309,6 +352,38 @@ export default() => (
 
     <EuiSpacer size="xxl"/>
 
+    <GuideRuleTitle>Borders</GuideRuleTitle>
+
+    <EuiSpacer size="xxl"/>
+
+    <EuiText grow={false}>
+      <p>EUI provides some helper variables for setting common border types.</p>
+    </EuiText>
+
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      {euiBorders.map(function (border, index) {
+        return renderBorder(border, index);
+      })}
+    </EuiFlexGrid>
+
+    <EuiSpacer />
+
+    <EuiText grow={false}>
+      <p>In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> to round the corners.</p>
+    </EuiText>
+
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem className="guideSass__border guideSass__border--radius">
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+          {borderRadiusExample}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+    </EuiFlexGrid>
+
     <GuideRuleTitle>Shadow and Depth</GuideRuleTitle>
 
     <EuiFlexGrid columns={2}>
@@ -364,21 +439,84 @@ export default() => (
         <EuiSpacer />
 
         <div className="guideSass__shadow guideSass__shadow--color eui-textBreakAll">
-          <EuiCode language="scss">@include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));</EuiCode>
+          <EuiCodeBlock
+            language="scss"
+            paddingSize="none"
+            transparentBackground
+          >
+              @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
+          </EuiCodeBlock>
         </div>
       </EuiFlexItem>
     </EuiFlexGrid>
 
     <EuiSpacer size="xxl"/>
 
-    <GuideRuleTitle>Media queries</GuideRuleTitle>
+    <GuideRuleTitle>Media queries and breakpoints</GuideRuleTitle>
 
     <EuiText className="guideSection__text">
       <p>
         <Link to="">View the sass code for media queries</Link>.
       </p>
+      <p>
+        Breakpoints in EUI are provided through the use of a sass
+        mixin <EuiCode>@include euiBreapoint()</EuiCode> that
+        accepts an array of sizes.
+      </p>
     </EuiText>
 
+    <EuiSpacer />
+    <EuiFlexGrid columns={2}>
+      <EuiFlexItem>
+        <div>
+          <EuiTitle size="s">
+            <h4>Breakpoint sizing</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          {euiBreakPoints.map(function (size, index) {
+            return renderBreakpoint(size, index);
+          })}
+        </div>
+
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h4>Mixin usage</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        <EuiText><p>Target mobile devices only</p></EuiText>
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+          {'@include euiBreakpoint(\'xs\',\'s\') {...}'}
+        </EuiCodeBlock>
+
+        <EuiSpacer />
+
+        <EuiText><p>Target mobile and tablets</p></EuiText>
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+          {'@include euiBreakpoint(\'xs\', \'s\', \'m\') {...}'}
+        </EuiCodeBlock>
+
+        <EuiSpacer />
+
+        <EuiText><p>Target tablets only</p></EuiText>
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+          {'@include euiBreakpoint(\'m\') {...}'}
+        </EuiCodeBlock>
+
+        <EuiSpacer />
+
+        <EuiText><p>Target very wide displays only</p></EuiText>
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+          {'@include euiBreakpoint(\'xl\') {...}'}
+        </EuiCodeBlock>
+
+        <EuiSpacer />
+      </EuiFlexItem>
+    </EuiFlexGrid>
 
   </GuidePage>
 );
