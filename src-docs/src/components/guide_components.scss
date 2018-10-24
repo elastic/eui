@@ -250,6 +250,8 @@ $fontSizes: (
 .guideSass__overflowShadows {
   margin-top: $euiSize;
   background-image: repeating-linear-gradient(45deg, $euiColorLightShade, $euiColorLightShade $euiSizeS, $euiColorMediumShade $euiSizeS, $euiColorMediumShade $euiSize);
+  border: $euiBorderThin;
+
   .guideSass__shadow + .guideSass__shadow {
     margin-top: 100px;
   }
@@ -257,6 +259,28 @@ $fontSizes: (
 
 .guideSass__shadow--color {
   @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
+}
+
+.guideSass__border {
+  display: flex;
+  padding: $euiSize;
+}
+
+.guideSass__border--radius {
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+}
+
+.guideSass__border--euiBorderThin {
+  border: $euiBorderThin;
+}
+
+.guideSass__border--euiBorderThick {
+  border: $euiBorderThick;
+}
+
+.guideSass__border--euiBorderEditable {
+  border: $euiBorderEditable;
 }
 
 .guideSass__fontFamily {
