@@ -319,11 +319,11 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don&apos;t. Use (s)."
+        text="Don&apos;t. Use (s), a colon after labels, or parenthetical statements."
       >
         <EuiFormRow
           label="Airport(s):"
-          helpText="Separate multiple names with a comma."
+          helpText="Separate multiple names with a comma (other characters are unsupported)."
         >
           <EuiFieldText />
         </EuiFormRow>
@@ -337,19 +337,6 @@ export default () => (
       <GuideRuleExample type="do" text="Do. Remove the ellipsis from Search fields.">
         <EuiFieldSearch defaultValue="Search"/>
       </GuideRuleExample>
-
-      <GuideRuleExample
-        type="dont"
-        text="Don&apos;t. Add parenthetical statements."
-        >
-          <EuiFormRow
-            label="Airports"
-            helpText="Separate multiple names with a comma (other characters are unsupported)"
-        >
-          <EuiFieldText />
-        </EuiFormRow>
-      </GuideRuleExample>
-      </GuideRule>
 
     <GuideRule
       heading=""
@@ -477,7 +464,12 @@ export default () => (
        text="Don't. Hide important information at the end.">
        <GuideRuleWriting>Contact support because you need to increase your subscription limit.</GuideRuleWriting>
      </GuideRuleExample>
+     </GuideRule>
 
+     <GuideRule
+       heading=""
+       description=""
+     >
      <GuideRuleExample
        type="do"
        text="Do. State what went wrong, followed by a clear course of action.">
