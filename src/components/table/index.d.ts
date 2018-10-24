@@ -122,7 +122,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiTableRow: SFC<
-    CommonProps & EuiTableRowProps
+    CommonProps & EuiTableRowProps & HTMLAttributes<HTMLTableRowElement>
   >;
 
   /**
