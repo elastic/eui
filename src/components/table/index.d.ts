@@ -22,6 +22,7 @@ declare module '@elastic/eui' {
 
   export interface EuiTableProps {
     compressed?: boolean;
+    responsive?: boolean;
   }
 
   export const EuiTable: SFC<
@@ -121,9 +122,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiTableRow: SFC<
-    CommonProps &
-      AnyProps & // at least according to the contract of table_row.js
-      EuiTableRowProps
+    CommonProps & EuiTableRowProps & HTMLAttributes<HTMLTableRowElement>
   >;
 
   /**

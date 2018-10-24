@@ -1,13 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.6.0`.
+**Bug fixes**
 
 - Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
+- Added TypeScript definitions for `EuiConfirmModal`, remove `AnyProps`, and several definition fixes ([#1260](https://github.com/elastic/eui/pull/1260))
 
 ## [`4.6.0`](https://github.com/elastic/eui/tree/v4.6.0)
 
 - Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
-  
+
 **Bug fixes**
 
 - Fixed select warning on falsy value in EuiSelect ([#1254](https://github.com/elastic/eui/pull/1254))
