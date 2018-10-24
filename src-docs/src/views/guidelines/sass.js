@@ -198,7 +198,9 @@ export default() => (
     </EuiFlexGrid>
 
 
-    <EuiSpacer />
+    <EuiSpacer size="xxl"/>
+
+    <GuideRuleTitle>Core variables</GuideRuleTitle>
 
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
@@ -255,15 +257,52 @@ export default() => (
     <EuiSpacer />
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
+        <EuiTitle>
+          <h4>Text sizes</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
         {euiFontSizes.map(function (size, index) {
           return renderFontSize(size, index);
         })}
       </EuiFlexItem>
       <EuiFlexItem>
         <div>
+          <EuiTitle>
+            <h4>Text colors</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
           {euiTextColors.map(function (color, index) {
             return renderPaletteColor(color, index);
           })}
+
+          <EuiSpacer />
+
+          <EuiTitle>
+            <h4>Font families</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          <EuiFlexGroup alignItems="center">
+            <EuiFlexItem grow={false} className="guideSass__fontFamily">
+              Abc
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>$euiFontFamily</EuiCode>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+
+          <EuiFlexGroup alignItems="center">
+            <EuiFlexItem grow={false} className="guideSass__fontFamily guideSass__fontFamily--code">
+              Abc
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>$euiCodeFontFamily</EuiCode>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </div>
       </EuiFlexItem>
     </EuiFlexGrid>
@@ -329,6 +368,16 @@ export default() => (
         </div>
       </EuiFlexItem>
     </EuiFlexGrid>
+
+    <EuiSpacer size="xxl"/>
+
+    <GuideRuleTitle>Media queries</GuideRuleTitle>
+
+    <EuiText className="guideSection__text">
+      <p>
+        <Link to="">View the sass code for media queries</Link>.
+      </p>
+    </EuiText>
 
 
   </GuidePage>
