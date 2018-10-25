@@ -9,7 +9,10 @@ import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
 import { GITHUB_DATASET, GROUPED_BAR_CHART, MULTI_GROUPED_BAR_CHART } from './data_example1';
 import { datasetStacked as AREA_STACKED } from './data_example2';
+import { TEMPORAL_DATA1 } from './data_example3';
 
+import { extent } from 'd3-array';
+import { niceTimeFormatter } from '../../utils/data/formatters';
 import {
   BARCHART_1Y0G,
   BARCHART_1Y1G,
@@ -825,15 +828,49 @@ class App extends Component {
       </div>
     );
   }
+  public renderTimeLineChart = (renderer: 'svg'|'canvas' = 'canvas') => {
+    const domain = extent(TEMPORAL_DATA1, (d) => d.x);
+    const formatter = niceTimeFormatter([domain[0]!, domain[1]!]);
+    return (
+      <div className="chartContainer">
+        <Chart renderer={renderer}>
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            orientation={AxisOrientation.Horizontal}
+            title="HighVolumeChart stacked"
+            tickFormat={formatter}
+            showOverlappingTicks={true}
+          />
+           <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+            orientation={AxisOrientation.Vertical}
+            showOverlappingTicks={true}
+
+          />
+          <LineSeries
+            id={getSpecId('lines')}
+            data={TEMPORAL_DATA1}
+            xScaleType={ScaleType.Ordinal}
+            tooltipLevel={0}
+            stackAccessors={['x']}
+
+          />
+        </Chart>
+      </div>
+    );
+  }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(30, 3);
+    // const randomData = dataGenerator.generateGroupedSeries(30, 3);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          {this.renderMultipleBarseriesMultiAxis('canvas')}
+          { this.renderTimeLineChart()}
+          {/* {this.renderMultipleBarseriesMultiAxis('canvas')}
           {this.renderBarChart1y0g('canvas')}
           {this.renderBarChart1y1g('canvas')}
           {this.renderBarChart1y1gs('canvas')}
@@ -852,7 +889,7 @@ class App extends Component {
           {this.renderGitHubIssue('canvas')}
           {this.renderHighVolumeChart('canvas', randomData)}
           {this.renderLineChart1y0g('canvas')}
-          {this.renderAreaChart1y0g('canvas')}
+          {this.renderAreaChart1y0g('canvas')} */}
         </div>
       </div>
     );

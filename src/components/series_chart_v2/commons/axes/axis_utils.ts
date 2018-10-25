@@ -167,7 +167,7 @@ export function getVisibleTicks(
   const { height } = chartDimensions;
   let firstTickPosition;
   if (axisSpec.orientation === AxisOrientation.Vertical) {
-    firstTickPosition = allTicks[allTicks.length - 1].position;
+    firstTickPosition = 0;
   } else {
     firstTickPosition = allTicks[0].position;
   }
