@@ -119,7 +119,7 @@ const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
 function renderPaletteColor(color, index) {
   return (
-    <EuiFlexGroup alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={index}>
       <EuiFlexItem grow={false}>
         <div className="guideSass__swatch" style={{ background: rgbToHex(lightColors[color].rgba).toUpperCase() }} />
       </EuiFlexItem>
@@ -132,7 +132,7 @@ function renderPaletteColor(color, index) {
 
 function renderSize(size, index) {
   return (
-    <EuiFlexGroup alignItems="center" gutterSize="s" key={index} className="guideSass__sizeRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index} className="guideSass__sizeRow">
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
@@ -163,7 +163,7 @@ function renderFontSize(size, index) {
 
 function renderLevel(level, index) {
   return (
-    <EuiFlexGroup alignItems="center" gutterSize="s" key={index}  className="guideSass__levelRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}  className="guideSass__levelRow">
       <EuiFlexItem grow={false}>
         <div className="guideSass__level" style={{ opacity: (1 - (index * .1)) }} />
       </EuiFlexItem>
@@ -201,11 +201,11 @@ function renderAnimationSpeed(speed, index) {
   return (
     <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
       <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
-        <EuiFlexItem grow={false} style={{ width: 50 }}>
-          {animations[speed]}ms
-        </EuiFlexItem>
         <EuiFlexItem grow={false}>
+          {animations[speed]}ms
+          <EuiSpacer size="s" />
           <EuiCodeBlock transparentBackground paddingSize="none" language="scss">animation-duration: ${speed}</EuiCodeBlock>
+          <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
       <div key={index} className={`guideSass__animParent`}>
@@ -220,9 +220,10 @@ function renderAnimationTiming(speed, index) {
     <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
       <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
         <EuiFlexItem grow={false}>
+          {animations[speed]}
+          <EuiSpacer size="s" />
           <EuiCodeBlock transparentBackground paddingSize="none" language="scss">animation-timing-function: ${speed}</EuiCodeBlock>
-          <EuiSpacer size="xs" />
-          {animations[speed]}ms
+          <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
       <div key={index} className={`guideSass__animParent`}>
@@ -234,7 +235,7 @@ function renderAnimationTiming(speed, index) {
 
 function renderBreakpoint(size, index) {
   return (
-    <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}>
       <EuiFlexItem grow={false}>
         <EuiText size="s" className="eui-textRight" style={{ width: 50 }}>
           <EuiCode>{size}</EuiCode>
@@ -471,7 +472,7 @@ export default() => (
 
           <EuiSpacer />
 
-          <EuiFlexGroup alignItems="center">
+          <EuiFlexGroup responsive={false} alignItems="center">
             <EuiFlexItem grow={false} className="guideSass__fontFamily">
               Abc
             </EuiFlexItem>
@@ -480,7 +481,7 @@ export default() => (
             </EuiFlexItem>
           </EuiFlexGroup>
 
-          <EuiFlexGroup alignItems="center">
+          <EuiFlexGroup responsive={false} alignItems="center">
             <EuiFlexItem grow={false} className="guideSass__fontFamily guideSass__fontFamily--code">
               Abc
             </EuiFlexItem>
