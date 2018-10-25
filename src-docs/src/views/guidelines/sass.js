@@ -250,7 +250,7 @@ function renderBreakpoint(size, index) {
   );
 }
 
-const bemExample = (`// camelCase all selectors
+const bemExample = (`// Use camelCase naming
 .euiButton {
   // Put mixins first before properties
   @include euiButton;
@@ -259,12 +259,12 @@ const bemExample = (`// camelCase all selectors
   border-radius: $euiBorderRadius;
 
 
-  // Elements exist within the main block
+  // Elements exist within the component
   .euiButton__content {
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
-  // Modifiers augment existing selectors
+  // Modifiers augment existing components or elements
   &.euiButton--primary {
     background-color: $euiColorPrimary;
   }
@@ -305,9 +305,9 @@ export default() => (
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
         <EuiText>
-          <h2>BEM syntax with verb states</h2>
+          <h2>Component based naming</h2>
           <p>
-            EUI is written in BEM-style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
+            EUI is written in a BEMish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
             Below is an example of proper formatting.
           </p>
         </EuiText>
@@ -423,8 +423,11 @@ export default() => (
 
     <EuiText grow={false} className="guideSection__text">
       <p>
-        For most of your components we recommend using <Link to="">EuiText</Link> or
-        {' '}<Link to="">EuiTitle</Link> instead of these Sass varaibles.
+        View the <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</Link>
+        {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typpography.scss">mixins</Link>
+        {' '}sass code for typography.
+        For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
+        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass varaibles.
       </p>
     </EuiText>
 
@@ -599,7 +602,7 @@ export default() => (
 
     <EuiText className="guideSection__text">
       <p>
-        <Link to="">View the sass code for media queries</Link>.
+        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</Link>.
       </p>
       <p>
         Breakpoints in EUI are provided through the use of a sass
@@ -670,6 +673,9 @@ export default() => (
 
     <GuideRuleTitle>Animation</GuideRuleTitle>
     <EuiText grow={false} className="guideSection__text">
+      <p>
+        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</Link>.
+      </p>
       <p>
         EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.
         That said, animationsa are tricky, and if they aren&apos;t working for your specific application
