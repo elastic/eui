@@ -243,3 +243,58 @@ $fontSizes: (
   transition-timing-function: $euiAnimSlightResistance;
   transition-duration: $euiAnimSpeedSlow;
 }
+
+.guideSass__breakpointExample {
+    padding: $euiSize;
+    color: $euiColorGhost;
+}
+
+@include euiBreakpoint('xl') {
+  .guideSass__breakpointExample {
+    background: $euiColorPrimary;
+
+    &:before {
+      content: "You are currently in the xl breakpoint";
+    }
+  }
+}
+
+@include euiBreakpoint('l') {
+  .guideSass__breakpointExample {
+    background: $euiColorSecondary;
+
+    &:before {
+      content: "You are currently in the l breakpoint";
+    }
+  }
+}
+
+@include euiBreakpoint('m') {
+  .guideSass__breakpointExample {
+    background: $euiColorAccent;
+
+    &:before {
+      content: "You are currently in the m breakpoint";
+    }
+  }
+}
+
+@include euiBreakpoint('s') {
+  .guideSass__breakpointExample {
+    background: $euiColorWarning;
+
+    &:before {
+      content: "You are currently in the s breakpoint";
+    }
+  }
+}
+
+@include euiBreakpoint('xs') {
+  .guideSass__breakpointExample {
+    background: $euiColorDanger;
+
+    &:before {
+      content: "You are currently in the xs breakpoint";
+    }
+  }
+}

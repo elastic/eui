@@ -608,6 +608,9 @@ export default() => (
     </EuiText>
 
     <EuiSpacer />
+    <div className="guideSass__breakpointExample" />
+    <EuiSpacer />
+
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
         <div>
@@ -620,6 +623,8 @@ export default() => (
           {euiBreakPoints.map(function (size, index) {
             return renderBreakpoint(size, index);
           })}
+
+
         </div>
 
       </EuiFlexItem>
