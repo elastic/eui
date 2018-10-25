@@ -122,8 +122,10 @@ function renderSize(size, index) {
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiCode>${size}</EuiCode>
+      <EuiFlexItem grow={false} style={{ width: 184 }}>
+        <div>
+          <EuiCode>${size}</EuiCode>
+        </div>
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiText size="s">
@@ -235,6 +237,16 @@ const borderRadiusExample = (`border: $euiBorderThin;
 border-radius: $euiBorderRadius;
 `);
 
+const importKibanaExample = (`// In Kibana you can add this to the top of your Sass file
+@import 'ui/public/styles/styling_constants';
+`);
+
+const importOutsideExample = (`// In an outside project, import the core variables like so
+@import '@elastic/eui/src/global_styling/functions/index';
+@import '@elastic/eui/src/global_styling/variables/index';
+@import '@elastic/eui/src/global_styling/mixins/index';
+`);
+
 export default() => (
 
   <GuidePage title="Sass guidelines">
@@ -269,6 +281,40 @@ export default() => (
             <li>Minimize your overwrites and try to make new Sass additive in nature</li>
           </ul>
         </EuiText>
+
+        <EuiSpacer />
+
+        <EuiTitle>
+          <h4>Importing EUI global Sass</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        <EuiText grow={false} className="guideSection__text">
+          <p>
+            Most EUI based projects should already import the EUI global
+            scope. For example, Kibana has its own
+            liner that will give you everything on this page.
+          </p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+          {importKibanaExample}
+        </EuiCodeBlock>
+        <EuiSpacer />
+        <EuiText grow={false} className="guideSection__text">
+          <p>
+            If you want to construct your own import, you would just need to
+            import the following core files into a fresh Sass project.
+          </p>
+        </EuiText>
+
+        <EuiSpacer />
+
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+          {importOutsideExample}
+        </EuiCodeBlock>
+
       </EuiFlexItem>
     </EuiFlexGrid>
 
