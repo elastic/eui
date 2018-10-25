@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     | 'advancedSettingsApp'
     | 'alert'
     | 'apmApp'
+    | 'apmTrace'
     | 'apps'
     | 'arrowDown'
     | 'arrowLeft'
@@ -246,7 +247,8 @@ declare module '@elastic/eui' {
     | 'subdued'
     | 'success'
     | 'text'
-    | 'warning';
+    | 'warning'
+    | string;
 
   export interface EuiIconProps {
     type?: IconType;

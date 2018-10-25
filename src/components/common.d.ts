@@ -1,6 +1,4 @@
 declare module '@elastic/eui' {
-  export type AnyProps = { [key: string]: string };
-
   export interface CommonProps {
     className?: string;
     'aria-label'?: string;

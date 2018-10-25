@@ -10,6 +10,7 @@ import {
 
 const iconTypes = [
   'alert',
+  'apmTrace',
   'apps',
   'arrowDown',
   'arrowLeft',
