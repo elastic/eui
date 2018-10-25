@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adding `apmTrace` icon to `EuiIcon`
+
 No public interface changes since `4.6.1`.
 
 ## [`4.6.1`](https://github.com/elastic/eui/tree/v4.6.1)

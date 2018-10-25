@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     | 'advancedSettingsApp'
     | 'alert'
     | 'apmApp'
+    | 'apmTrace'
     | 'apps'
     | 'arrowDown'
     | 'arrowLeft'
