@@ -1,10 +1,10 @@
 import { area, line } from 'd3-shape';
-import { Accessor, AccessorFn, getAccessorFn } from '../../data_ops/accessor';
-import { Domain, SpecDomains } from '../../data_ops/domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data_ops/scales';
 import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
+import { Accessor, AccessorFn, getAccessorFn } from '../../utils/accessor';
+import { Domain, SpecDomains } from '../../utils/domain';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarScaleFnConfig } from '../bars/commons';
 import { AreaSeriesSpec, Datum, Rotation } from '../specs';
 export interface AreaGlyph {

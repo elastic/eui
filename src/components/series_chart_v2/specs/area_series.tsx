@@ -1,8 +1,8 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { ScaleType } from '../commons/data_ops/scales';
 import { getGroupId } from '../commons/ids';
 import { AreaSeriesSpec } from '../commons/series/specs';
+import { ScaleType } from '../commons/utils/scales';
 import { SpecProps } from './specs_parser';
 
 type AreaSpecProps = SpecProps & AreaSeriesSpec;

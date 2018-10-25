@@ -1,11 +1,11 @@
 import { max } from 'd3-array';
 import { none, Option, some } from 'fp-ts/lib/Option';
-import { Domain, SpecDomain, SpecDomains } from '../data_ops/domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../data_ops/scales';
 import { Dimensions, Margins } from '../dimensions';
 import { AxisId } from '../ids';
 import { AxisOrientation, AxisPosition, AxisSpec, Rotation } from '../series/specs';
 import { ChartConfig, ScalesConfig } from '../themes/theme';
+import { Domain, SpecDomain, SpecDomains } from '../utils/domain';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../utils/scales';
 import { BBoxCalculator } from './bbox_calculator';
 
 export interface AxisTick {

@@ -1,10 +1,10 @@
 import { nest } from 'd3-collection';
-import { Accessor, getAccessorFn } from '../../data_ops/accessor';
-import { Domain, SpecDomain, SpecDomains } from '../../data_ops/domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../../data_ops/scales';
 import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor, GetColorFn } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
+import { Accessor, getAccessorFn } from '../../utils/accessor';
+import { Domain, SpecDomain, SpecDomains } from '../../utils/domain';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarSeriesSpec, Datum, Rotation } from '../specs';
 import { BarScaleFnConfig, DEFAULT_BAR_WIDTH } from './commons';
 

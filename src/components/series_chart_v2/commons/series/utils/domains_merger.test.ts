@@ -1,5 +1,5 @@
-import { SpecDomains } from '../../data_ops/domain';
-import { ScaleType } from '../../data_ops/scales';
+import { SpecDomains } from '../../utils/domain';
+import { ScaleType } from '../../utils/scales';
 import { mergeDomains } from './domains_merger';
 
 describe('Domains merger', () => {

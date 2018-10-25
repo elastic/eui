@@ -1,5 +1,5 @@
-import { Accessor } from '../data_ops/accessor';
-import { ColorDomain } from '../data_ops/domain';
+import { Accessor } from '../utils/accessor';
+import { ColorDomain } from '../utils/domain';
 import { ColorConfig } from './theme';
 
 export interface ColorScales {

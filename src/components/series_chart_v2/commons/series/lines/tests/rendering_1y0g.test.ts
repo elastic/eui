@@ -1,8 +1,8 @@
-import { SpecDomains } from '../../../data_ops/domain';
-import { ScaleType } from '../../../data_ops/scales';
 import { Dimensions } from '../../../dimensions';
 import { getGroupId, getSpecId } from '../../../ids';
 import { ColorConfig, ScalesConfig } from '../../../themes/theme';
+import { SpecDomains } from '../../../utils/domain';
+import { ScaleType } from '../../../utils/scales';
 import { LineSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderLineSeriesSpec } from '../rendering';

@@ -1,4 +1,4 @@
-import { Accessor } from '../../data_ops/accessor';
+import { Accessor } from '../../utils/accessor';
 import { Datum } from '../specs';
 import { BarGlyphGroup } from './rendering';
 

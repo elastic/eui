@@ -1,8 +1,8 @@
 import { extent, sum } from 'd3-array';
 import { uniq } from 'lodash';
-import { Accessor, getAccessorFn } from '../../data_ops/accessor';
-import { Domain, SpecDomains } from '../../data_ops/domain';
-import { ScaleType } from '../../data_ops/scales';
+import { Accessor, getAccessorFn } from '../../utils/accessor';
+import { Domain, SpecDomains } from '../../utils/domain';
+import { ScaleType } from '../../utils/scales';
 import { BarSeriesSpec } from '../specs';
 
 /**

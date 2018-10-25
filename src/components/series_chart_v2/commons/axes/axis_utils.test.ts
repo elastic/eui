@@ -1,8 +1,8 @@
-import { SpecDomains } from '../data_ops/domain';
-import { ScaleType } from '../data_ops/scales';
 import { getAxisId, getGroupId } from '../ids';
 import { AxisOrientation, AxisPosition } from '../series/specs';
 import { ScalesConfig } from '../themes/theme';
+import { SpecDomains } from '../utils/domain';
+import { ScaleType } from '../utils/scales';
 import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 

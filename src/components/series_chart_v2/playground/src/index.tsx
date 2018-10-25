@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Chart } from '../../chart/chart';
-import { ScaleType } from '../../commons/data_ops/scales';
 import { getAxisId, getSpecId } from '../../commons/ids';
 import { AxisOrientation, AxisPosition } from '../../commons/series/specs';
+import { ScaleType } from '../../commons/utils/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
