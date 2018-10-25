@@ -7,10 +7,16 @@
    * 2. Don't allow pills to overlap with the caret or clear button.
    * 3. The height on combo can be larger than normal text inputs.
    */
+
+   &--compressed,
+   .euiFormControlLayout--compressed {
+     height: auto;
+   }
+
   .euiComboBox__inputWrap {
-    @include euiFormControlStyle($includeStates: false, $includeSizes: true);
+    @include euiFormControlStyle($includeStates: false, $includeSizes: false);
     @include euiFormControlWithIcon($isIconOptional: true);
-    @include euiFormControlSize();
+    @include euiFormControlSize(auto);
     padding: $euiSizeXS;
     @include euiFormControlLayout__padding(1); /* 2 */
 
@@ -33,7 +39,7 @@
 
   /**
    * 1. Force field height to match other field heights.
-   * 2. Force input height to expand tp fill this element.
+   * 2. Force input height to expand to fill this element.
    * 3. Reset appearance on Safari.
    * 4. Fix react-input-autosize appearance.
    * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
