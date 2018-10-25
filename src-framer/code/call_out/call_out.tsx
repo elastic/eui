@@ -12,7 +12,7 @@ interface Props {
   childText: string;
 }
 
-export class Button extends React.Component<Props> {
+export class CallOut extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {

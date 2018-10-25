@@ -1,69 +1,37 @@
 import { ControlType, PropertyControls } from 'framer';
-import React, { cloneElement, createRef, Fragment, ReactElement, ReactNode } from 'react';
+import React, { Fragment } from 'react';
 
 // Define type of property
 interface Props {
-  theme: string;
+  frame: boolean;
 }
 
 export class FrameSize extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    theme: 'light',
+    frame: true,
   };
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    theme: {
-      type: ControlType.Enum,
-      options: ['light', 'dark'],
-      title: 'Theme',
+    frame: {
+      type: ControlType.boolean,
+      title: '🖍 Fit to frame',
     },
   };
 
-  public state = {
-    height: '',
-    width: '',
-  };
-
-  private childRef = createRef<HTMLDivElement>();
-
-  public componentDidMount() {
-    this.state = {
-      height: `${this.calcHeight()}px`,
-      width: `${this.calcWidth()}px`,
-    };
-  }
-
-  public calcHeight() {
-    const node = this.childRef.current;
-
-    if (node) {
-      return node.clientHeight;
-    }
-    return;
-  }
-
-  public calcWidth() {
-    const node = this.childRef.current;
-
-    if (node) {
-      return node.clientWidth;
-    }
-    return;
-  }
-
-  public renderClone(): ReactNode {
-    return cloneElement(this.props.children as ReactElement<any>, {
-      width: 50,
-      height: 50,
-    });
-  }
-
   public render() {
-    return (
-      this.renderClone()
-    );
+    let optionallyFramedComponent;
+    if (this.props.frame) {
+      optionallyFramedComponent = (
+        <div style={{ display: 'flex', position: 'absolute', height: '100%', width: '100%' }}>
+          {this.props.children}
+        </div>
+      );
+    } else {
+      optionallyFramedComponent = (this.props.children);
+    }
+    return (<Fragment>{optionallyFramedComponent}</Fragment>);
   }
 }
