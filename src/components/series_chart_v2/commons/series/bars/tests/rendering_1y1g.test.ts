@@ -1,7 +1,7 @@
-import { Dimensions } from '../../../dimensions';
-import { getGroupId, getSpecId } from '../../../ids';
 import { ColorConfig, ScalesConfig } from '../../../themes/theme';
+import { Dimensions } from '../../../utils/dimensions';
 import { SpecDomains } from '../../../utils/domain';
+import { getGroupId, getSpecId } from '../../../utils/ids';
 import { ScaleType } from '../../../utils/scales';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Group, Line, Text } from 'react-konva';
 import { AxisTick, AxisTicksDimensions } from '../../commons/axes/axis_utils';
-import { Dimensions } from '../../commons/dimensions';
 import { AxisOrientation, AxisPosition, AxisSpec } from '../../commons/series/specs';
 import { Theme } from '../../commons/themes/theme';
+import { Dimensions } from '../../commons/utils/dimensions';
 
 interface AxisProps {
   chartTheme: Theme;

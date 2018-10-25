@@ -1,7 +1,7 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { getGroupId } from '../commons/ids';
 import { BarSeriesSpec } from '../commons/series/specs';
+import { getGroupId } from '../commons/utils/ids';
 import { ScaleType } from '../commons/utils/scales';
 import { SpecProps } from './specs_parser';
 

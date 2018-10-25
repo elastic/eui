@@ -1,8 +1,8 @@
 import { area, line } from 'd3-shape';
-import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { Accessor, AccessorFn, getAccessorFn } from '../../utils/accessor';
+import { Dimensions } from '../../utils/dimensions';
 import { Domain, SpecDomains } from '../../utils/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarScaleFnConfig } from '../bars/commons';

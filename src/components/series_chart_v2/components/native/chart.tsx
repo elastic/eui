@@ -1,10 +1,10 @@
 import { Group, Layer, Rect, Stage } from 'konva';
-import { Dimensions } from '../../commons/dimensions';
-import { SpecId } from '../../commons/ids';
 import { isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
 import { BarGlyphGroup } from '../../commons/series/bars/rendering';
 import { BarSeriesSpec, Rotation } from '../../commons/series/specs';
 import { Theme } from '../../commons/themes/theme';
+import { Dimensions } from '../../commons/utils/dimensions';
+import { SpecId } from '../../commons/utils/ids';
 import { ChartStore } from '../../state/chart_state';
 
 export interface KonvaCanvas {

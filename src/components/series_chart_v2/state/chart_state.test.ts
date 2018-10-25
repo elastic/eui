@@ -1,5 +1,5 @@
-import { getAxisId, getGroupId, getSpecId } from '../commons/ids';
 import { AxisOrientation, AxisPosition, AxisSpec, BarSeriesSpec } from '../commons/series/specs';
+import { getAxisId, getGroupId, getSpecId } from '../commons/utils/ids';
 import { ScaleType } from '../commons/utils/scales';
 import { ChartStore } from './chart_state';
 

@@ -1,9 +1,9 @@
 import { Group as KonvaGroup } from 'konva';
 import React from 'react';
 import { Circle, Group, Path } from 'react-konva';
-import { SpecId } from '../../commons/ids';
 import { LineGlyph } from '../../commons/series/lines/rendering';
 import { LineSeriesStyle } from '../../commons/themes/theme';
+import { SpecId } from '../../commons/utils/ids';
 interface LineSeriesDataProps {
   specId: SpecId;
   animated?: boolean;

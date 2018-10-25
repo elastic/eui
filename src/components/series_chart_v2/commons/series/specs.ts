@@ -1,5 +1,5 @@
-import { AxisId, GroupId, SpecId } from '../ids';
 import { Accessor } from '../utils/accessor';
+import { AxisId, GroupId, SpecId } from '../utils/ids';
 import { ScaleType } from '../utils/scales';
 
 export type Datum = any;

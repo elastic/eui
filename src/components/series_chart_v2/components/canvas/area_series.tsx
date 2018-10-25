@@ -1,9 +1,9 @@
 import { Group as KonvaGroup } from 'konva';
 import React from 'react';
 import { Circle, Group, Path } from 'react-konva';
-import { SpecId } from '../../commons/ids';
 import { AreaGlyph } from '../../commons/series/areas/rendering';
 import { AreaSeriesStyle } from '../../commons/themes/theme';
+import { SpecId } from '../../commons/utils/ids';
 interface AreaSeriesDataProps {
   specId: SpecId;
   animated?: boolean;

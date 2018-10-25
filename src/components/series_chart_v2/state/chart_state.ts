@@ -7,8 +7,6 @@ import {
   getAxisTicksPositions,
 } from '../commons/axes/axis_utils';
 import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
-import { computeChartDimensions, Dimensions } from '../commons/dimensions';
-import { AxisId, GroupId, SpecId } from '../commons/ids';
 import { computeDataDomain as areaSeriesComputeDataDomain } from '../commons/series/areas/domains';
 import { AreaGlyph, renderAreaSeriesSpec } from '../commons/series/areas/rendering';
 import { computeDataDomain as barSeriesComputeDataDomain } from '../commons/series/bars/domains';
@@ -19,7 +17,9 @@ import { AreaSeriesSpec, AxisSpec, BarSeriesSpec, Datum, LineSeriesSpec, Rotatio
 import { mergeDomains } from '../commons/series/utils/domains_merger';
 import { ColorScales, computeColorScales } from '../commons/themes/colors';
 import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
+import { computeChartDimensions, Dimensions } from '../commons/utils/dimensions';
 import { SpecDomains } from '../commons/utils/domain';
+import { AxisId, GroupId, SpecId } from '../commons/utils/ids';
 export interface LeftTooltip {
   top: number;
   left: number;

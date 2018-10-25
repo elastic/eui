@@ -1,8 +1,8 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { SpecId } from '../commons/ids';
 import { Datum } from '../commons/series/specs';
 import { Accessor } from '../commons/utils/accessor';
+import { SpecId } from '../commons/utils/ids';
 import { ChartStore, TooltipData } from '../state/chart_state';
 
 interface ReactiveChartProps {

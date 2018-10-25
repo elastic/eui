@@ -2,11 +2,11 @@ import { Group as KonvaGroup, Node, Shape } from 'konva';
 import React from 'react';
 import { Group, Rect } from 'react-konva';
 
-import { SpecId } from '../../commons/ids';
 import { getDataFromBarGlyphs, isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
 import { BarGlyphGroup } from '../../commons/series/bars/rendering';
 import { Datum } from '../../commons/series/specs';
 import { Theme } from '../../commons/themes/theme';
+import { SpecId } from '../../commons/utils/ids';
 import { LeftTooltip, RightTooltip } from '../../state/chart_state';
 interface KonvaEventObject<E> {
   target: Shape;

@@ -1,8 +1,8 @@
 import { nest } from 'd3-collection';
-import { Dimensions } from '../../dimensions';
 import { ColorScales, getColor, GetColorFn } from '../../themes/colors';
 import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { Accessor, getAccessorFn } from '../../utils/accessor';
+import { Dimensions } from '../../utils/dimensions';
 import { Domain, SpecDomain, SpecDomains } from '../../utils/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarSeriesSpec, Datum, Rotation } from '../specs';

@@ -1,4 +1,4 @@
-import { Margins } from '../dimensions';
+import { Margins } from '../utils/dimensions';
 
 export interface ChartConfig {
   margins: Margins;
