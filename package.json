@@ -4,7 +4,7 @@
   "version": "4.2.0",
   "main": "lib",
   "module": "src",
-  "types": "types/index.d.ts",
+  "types": "test.d.ts",
   "jsnext:main": "src",
   "postcss": {},
   "docker_image": "node:8",
@@ -40,6 +40,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
+    "dts-generator": "^2.1.0",
     "focus-trap-react": "^3.0.4",
     "highlight.js": "^9.12.0",
     "html": "^1.0.0",
