@@ -1,12 +1,14 @@
 import { EuiPanel, SIZES } from '@elastic/eui/lib/components/panel/panel.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
+import { FrameSize } from '../_framer_helpers/frame_size.tsx';
 
 // Define type of property
 interface Props {
   hasShadow: boolean;
   paddingSize: SIZES;
   betaBadgeLabel: string;
+  fitToFrame: boolean;
 }
 
 export class Panel extends React.Component<Props> {
@@ -15,6 +17,7 @@ export class Panel extends React.Component<Props> {
   public static defaultProps = {
     paddingSize: 'm',
     hasShadow: false,
+    fitToFrame: true,
   };
 
   // Items shown in property panel
@@ -26,11 +29,12 @@ export class Panel extends React.Component<Props> {
       options: SIZES,
       title: 'paddingSize',
     },
+    fitToFrame: { type: ControlType.Boolean, title: 'fitToFrame' },
   };
 
   public render() {
   return (
-    <div style={{ display: 'flex', position: 'absolute', height: '100%', width: '100%' }}>
+    <FrameSize frame={this.fitToFrame}>
       <EuiPanel
         hasShadow={this.props.hasShadow}
         paddingSize={this.props.paddingSize}
@@ -38,7 +42,7 @@ export class Panel extends React.Component<Props> {
       >
         {this.props.children}
       </EuiPanel>
-    </div>
+    </FrameSize>
   );
   }
 }
