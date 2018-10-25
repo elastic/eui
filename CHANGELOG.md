@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `4.6.1`.
+
+## [`4.6.1`](https://github.com/elastic/eui/tree/v4.6.1)
+
 **Bug fixes**
 
 - Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
