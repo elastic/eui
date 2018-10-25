@@ -299,7 +299,6 @@ export class EuiComboBox extends Component {
       case ESCAPE:
         e.stopPropagation();
         this.closeList();
-        this.searchInput.blur();
         break;
 
       case comboBoxKeyCodes.ENTER:
