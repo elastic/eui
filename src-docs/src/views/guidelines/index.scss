@@ -188,3 +188,58 @@ $fontSizes: (
     font-family: $euiCodeFontFamily;
   }
 }
+
+.guideSass__animRow + .guideSass__animRow{
+  margin-top: $euiSizeL;
+}
+
+.guideSass__animParent {
+  background: $euiColorLightestShade;
+  height: $euiSize;
+  margin-top: $euiSizeS;
+  position: relative;
+}
+
+.guideSass__animChild {
+  width: $euiSize;
+  height: $euiSize;
+  background: $euiColorDarkestShade;
+  position: absolute;
+  left: 0;
+}
+
+.guideSass__animRow:hover .guideSass__animChild {
+  transition-property: all;
+  transition-timing-function: linear;
+  left: calc(100% - #{$euiSize});
+}
+
+.guideSass__animRow--euiAnimSpeedExtraFast:hover .guideSass__animChild {
+  transition-duration: $euiAnimSpeedExtraFast;
+}
+
+.guideSass__animRow--euiAnimSpeedFast:hover .guideSass__animChild {
+  transition-duration: $euiAnimSpeedFast;
+}
+
+.guideSass__animRow--euiAnimSpeedNormal:hover .guideSass__animChild {
+  transition-duration: $euiAnimSpeedNormal;
+}
+
+.guideSass__animRow--euiAnimSpeedSlow:hover .guideSass__animChild {
+  transition-duration: $euiAnimSpeedSlow;
+}
+
+.guideSass__animRow--euiAnimSpeedExtraSlow:hover .guideSass__animChild {
+  transition-duration: $euiAnimSpeedExtraSlow;
+}
+
+.guideSass__animRow--euiAnimSlightBounce:hover .guideSass__animChild {
+  transition-timing-function: $euiAnimSlightBounce;
+  transition-duration: $euiAnimSpeedSlow;
+}
+
+.guideSass__animRow--euiAnimSlightResistance:hover .guideSass__animChild {
+  transition-timing-function: $euiAnimSlightResistance;
+  transition-duration: $euiAnimSpeedSlow;
+}

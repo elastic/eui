@@ -2,6 +2,7 @@ import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
+import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_animations.scss';
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 import { rgbToHex } from '../../../../src/services';
 
@@ -96,6 +97,19 @@ const euiLevels = [
   'euiZContent',
 ];
 
+const euiAnimationSpeeds = [
+  'euiAnimSpeedExtraFast',
+  'euiAnimSpeedFast',
+  'euiAnimSpeedNormal',
+  'euiAnimSpeedSlow',
+  'euiAnimSpeedExtraSlow',
+];
+
+const euiAnimationTimings = [
+  'euiAnimSlightBounce',
+  'euiAnimSlightResistance',
+];
+
 const euiOverFlowShadows = [
   'euiOverflowShadowBottom',
   'euiOverflowShadowTop',
@@ -180,6 +194,41 @@ function renderBorder(border, index) {
     <EuiFlexItem key={index} className={`guideSass__border guideSass__border--${border}`}>
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>border: ${border}</EuiCodeBlock>
     </EuiFlexItem>
+  );
+}
+
+function renderAnimationSpeed(speed, index) {
+  return (
+    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+        <EuiFlexItem grow={false} style={{ width: 50 }}>
+          {animations[speed]}ms
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiCodeBlock transparentBackground paddingSize="none" language="scss">animation-duration: ${speed}</EuiCodeBlock>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <div key={index} className={`guideSass__animParent`}>
+        <div className="guideSass__animChild" />
+      </div>
+    </div>
+  );
+}
+
+function renderAnimationTiming(speed, index) {
+  return (
+    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+        <EuiFlexItem grow={false}>
+          <EuiCodeBlock transparentBackground paddingSize="none" language="scss">animation-timing-function: ${speed}</EuiCodeBlock>
+          <EuiSpacer size="xs" />
+          {animations[speed]}ms
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <div key={index} className={`guideSass__animParent`}>
+        <div className="guideSass__animChild" />
+      </div>
+    </div>
   );
 }
 
@@ -271,6 +320,9 @@ export default() => (
             In general, when writing new SCSS in a project that installs EUI as a dependency
             try to follow these best practices:
           </p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiText size="s" grow={false} className="guideSection__text">
           <ul>
             <li>Utilize color variables and functions rather than hard-coded values</li>
             <li>Utilize the sizing variables for padding and margins</li>
@@ -605,6 +657,42 @@ export default() => (
         </EuiCodeBlock>
 
         <EuiSpacer />
+      </EuiFlexItem>
+    </EuiFlexGrid>
+
+    <EuiSpacer size="xxl"/>
+
+    <GuideRuleTitle>Animation</GuideRuleTitle>
+    <EuiText grow={false} className="guideSection__text">
+      <p>
+        EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.
+        That said, animationsa are tricky, and if they aren&apos;t working for your specific application
+        this is the one place where we think it&apos;s OK to come up with your own rules.
+      </p>
+    </EuiText>
+    <EuiSpacer />
+    <EuiFlexGrid columns={2}>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h4>Speed</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        {euiAnimationSpeeds.map(function (speed, index) {
+          return renderAnimationSpeed(speed, index);
+        })}
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h4>Timing</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        {euiAnimationTimings.map(function (speed, index) {
+          return renderAnimationTiming(speed, index);
+        })}
       </EuiFlexItem>
     </EuiFlexGrid>
 
