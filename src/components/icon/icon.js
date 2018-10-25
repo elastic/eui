@@ -6,6 +6,7 @@ import addDataApp from './assets/app_add_data.svg';
 import advancedSettingsApp from './assets/app_advanced_settings.svg';
 import alert from './assets/alert.svg';
 import apmApp from './assets/app_apm.svg';
+import apmTrace from './assets/apm_trace.svg';
 import apps from './assets/apps.svg';
 import arrowDown from './assets/arrow_down.svg';
 import arrowLeft from './assets/arrow_left.svg';
@@ -235,6 +236,7 @@ const typeToIconMap = {
   advancedSettingsApp,
   alert,
   apmApp,
+  apmTrace,
   apps,
   arrowDown,
   arrowLeft,
