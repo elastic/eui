@@ -1,6 +1,7 @@
 import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
+import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 import { rgbToHex } from '../../../../src/services';
 
@@ -84,6 +85,17 @@ const euiBorders = [
   'euiBorderEditable',
 ];
 
+const euiLevels = [
+  'euiZToastList',
+  'euiZComboBox',
+  'euiZModal',
+  'euiZMask',
+  'euiZNavigation',
+  'euiZContentMenu',
+  'euiZHeader',
+  'euiZContent',
+];
+
 const euiOverFlowShadows = [
   'euiOverflowShadowBottom',
   'euiOverflowShadowTop',
@@ -106,7 +118,7 @@ function renderPaletteColor(color, index) {
 
 function renderSize(size, index) {
   return (
-    <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <EuiFlexGroup alignItems="center" gutterSize="s" key={index} className="guideSass__sizeRow">
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
@@ -130,6 +142,26 @@ function renderFontSize(size, index) {
       </div>
       <EuiCode>${size}</EuiCode>
     </div>
+  );
+}
+
+function renderLevel(level, index) {
+  return (
+    <EuiFlexGroup alignItems="center" gutterSize="s" key={index}  className="guideSass__levelRow">
+      <EuiFlexItem grow={false}>
+        <div className="guideSass__level" style={{ opacity: (1 - (index * .1)) }} />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false} style={{ width: 200, paddingLeft: 16 }}>
+        <div>
+          <EuiCode>${level}</EuiCode>
+        </div>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiText size="s">
+          {zindexs[level]}
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 }
 
@@ -247,17 +279,29 @@ export default() => (
 
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
+        <div>
+          <EuiTitle>
+            <h4>Sizing</h4>
+          </EuiTitle>
 
-        <EuiTitle>
-          <h4>Sizing</h4>
-        </EuiTitle>
+          <EuiSpacer />
 
-        <EuiSpacer />
+          {euiSizes.map(function (size, index) {
+            return renderSize(size, index);
+          })}
 
-        {euiSizes.map(function (size, index) {
-          return renderSize(size, index);
-        })}
+          <EuiSpacer />
 
+          <EuiTitle>
+            <h4>Z-index</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          {euiLevels.map(function (level, index) {
+            return renderLevel(level, index);
+          })}
+        </div>
 
       </EuiFlexItem>
       <EuiFlexItem>

@@ -47,6 +47,25 @@
   width: $euiSizeL;
 }
 
+.guideSass__levelRow {
+  padding-left: $euiSizeS;
+}
+
+.guideSass__levelRow + .guideSass__levelRow {
+  margin-top: $euiSizeS;
+}
+
+.guideSass__level {
+  background-color: $euiColorSlightHue;
+  transform: scaleY(.5) rotate(30deg) skew(-30deg, 0deg);
+  width: $euiSize;
+  height: $euiSize;
+}
+
+.guideSass__sizeRow + .guideSass__sizeRow {
+  margin-top: $euiSize;
+}
+
 .guideSass__size {
   background-color: $euiColorFullShade;
   display: inline-block;
