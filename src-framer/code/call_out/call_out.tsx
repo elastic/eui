@@ -2,6 +2,7 @@ import { COLORS, EuiCallOut, SIZES } from '@elastic/eui/lib/components/call_out/
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
+import { FrameSize } from '../_framer_helpers/frame_size.tsx';
 
 // Define type of property
 interface Props {
@@ -55,14 +56,14 @@ export class CallOut extends React.Component<Props> {
 
   public render() {
     return (
-        <EuiCallOut
-          size={this.props.size}
-          color={this.props.color}
-          iconType={this.props.iconType}
-          title={this.props.title}
-        >
-          {this.props.childText}
-        </EuiCallOut>
+      <EuiCallOut
+        size={this.props.size}
+        color={this.props.color}
+        iconType={this.props.iconType}
+        title={this.props.title}
+      >
+        {this.props.childText}
+      </EuiCallOut>
     );
   }
 }
