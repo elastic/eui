@@ -53,25 +53,24 @@
   width: $euiSizeL;
 }
 
-.guideSass__swatch--primary {
-  background: $euiColorPrimary;
+.guideSass__swatch--danger {
+  background: $euiColorDanger;
 }
 
-.guideSass__swatch--primaryTint {
-  background: tint($euiColorPrimary, 30%);
+.guideSass__swatch--dangerTint {
+  background: tint($euiColorDanger, 30%);
 }
 
-.guideSass__swatch--primaryShade {
-  background: shade($euiColorPrimary, 30%);
+.guideSass__swatch--dangerShade {
+  background: shade($euiColorDanger, 30%);
 }
 
-.guideSass__swatch--fullLight {
-  background: #000;
+.guideSass__swatch--primaryLight {
+  background: #0079A5;
 }
 
-.guideSass__swatch--fullDark {
-  background: #FFF;
-  border: $euiBorderThin;
+.guideSass__swatch--primaryDark {
+  background: #4da1c0;
 }
 
 .guideSass__levelRow {
@@ -269,15 +268,19 @@
 
 .guideSass__themedBox {
   padding: $euiSize;
-  color: $euiColorGhost;
+  border-left: $euiBorderThick;
 }
 
 .guideSass__themedBox--light {
-  background: tint($euiColorFullShade, 25%);
+  border-color: #0079A5;
+  background: tint(#0079A5, 90%);
+  color: #333;
 }
 
 .guideSass__themedBox--dark {
-  background: tint($euiColorFullShade, 90%);
+  border-color: #4da1c0;
+  background: shade(#4da1c0, 70%);
+  color: #FFF;
 }
 
 .guideSass__contrastExample {
@@ -286,6 +289,8 @@
   background: $backgroundColor;
   color: makeHighContrastColor($euiColorWarning, $backgroundColor);
   padding: $euiSize;
+  border-left: $euiBorderThick;
+  border-color: $euiColorWarning;
 }
 
 @include euiBreakpoint('xl') {
