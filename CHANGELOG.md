@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+- Added TypeScript definitions for step components, and some checkbox definition fixes ([#1263](https://github.com/elastic/eui/pull/1263))
 
 **Framer X**
 
