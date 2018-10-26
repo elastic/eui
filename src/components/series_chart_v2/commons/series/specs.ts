@@ -4,6 +4,7 @@ import { ScaleType } from '../utils/scales';
 
 export type Datum = any;
 export type Rotation = 0 | 90 | -90 | 180;
+export type Rendering = 'canvas' | 'svg';
 export enum DataSeriesType {
   Bar = 'bar',
   Line = 'line',

@@ -101,7 +101,7 @@ describe('Axis computational utils', () => {
   });
 
   test('should compute available ticks', () => {
-    const axisPositions = getAvailableTicks(chartDim, axis1Spec, axis1Dims, chartScalesConfig);
+    const axisPositions = getAvailableTicks(chartDim, axis1Spec, axis1Dims, chartScalesConfig, 0);
     const expectedAxisPositions = [
       { label: '0', position: 100, value: 0 },
       { label: '0.1', position: 90, value: 0.1 },
@@ -131,7 +131,7 @@ describe('Axis computational utils', () => {
       { label: '0.9', position: 10, value: 0.9 },
       { label: '1', position: 0, value: 1 },
     ];
-    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis1Dims, chartDim);
+    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis1Dims, chartDim, 0);
     const expectedVisibleTicks = [
       { label: '0', position: 100, value: 0 },
       { label: '0.1', position: 90, value: 0.1 },
@@ -182,7 +182,7 @@ describe('Axis computational utils', () => {
       maxTickWidth: 10,
       maxTickHeight: 20,
     };
-    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis2Dims, chartDim);
+    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis2Dims, chartDim, 0);
     const expectedVisibleTicks = [
       { label: '0', position: 100, value: 0 },
       { label: '0.2', position: 80, value: 0.2 },

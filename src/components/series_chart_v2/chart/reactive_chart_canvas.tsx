@@ -132,6 +132,10 @@ class Chart extends React.Component<ReactiveChartProps> {
     } else if (chartRotation === -90) {
       chartTransform.y = chartDimensions.height;
       chartTransform.rotate = -90;
+    } else if (chartRotation === 180) {
+      chartTransform.x = chartDimensions.width;
+      chartTransform.y = chartDimensions.height;
+      chartTransform.rotate = 180;
     }
     return (
       <div

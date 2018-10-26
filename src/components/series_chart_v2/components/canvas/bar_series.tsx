@@ -141,7 +141,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
           fill={fill}
           strokeWidth={0}
           listening={hasTooltip}
-          // opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : hideOpacity}
+          opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : 0.5}
           perfectDrawEnabled={false}
           onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data]) : undefined}
           onMouseOut={hasTooltip ? this.onMouseOut : undefined}

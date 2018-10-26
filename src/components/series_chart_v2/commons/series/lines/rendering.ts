@@ -36,7 +36,7 @@ export function renderLineSeriesSpec(
   if (domains.xDomains.length !== 1) {
     return []; // TODO find a better return value, option maybe?
   }
-  const maxXWidth = rotation === 0 ? chartDims.width : chartDims.height;
+  const maxXWidth = (rotation === 0 || rotation === 180) ? chartDims.width : chartDims.height;
   const xScaleConfig = getScale(
     xAccessor,
     xScaleType,
@@ -47,7 +47,7 @@ export function renderLineSeriesSpec(
     chartScalesConfig.ordinal.padding,
   );
 
-  const maxYHeight = rotation === 0 ? chartDims.height : chartDims.width;
+  const maxYHeight = (rotation === 0 || rotation === 180) ? chartDims.height : chartDims.width;
   const yScaleConfig = getScale(
     yAccessors[0],
     domains.yDomain.scaleType,
