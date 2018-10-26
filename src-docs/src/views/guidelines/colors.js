@@ -1,8 +1,6 @@
-import React, {
-  Fragment,
-} from 'react';
+import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
-import { calculateContrast, rgbToHex, isColorDark } from '../../../../src/services';
+import { calculateContrast, rgbToHex } from '../../../../src/services';
 
 import {
   GuidePage,
@@ -16,12 +14,10 @@ import {
   EuiFlexItem,
   EuiBadge,
   EuiToolTip,
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
   EuiLink,
-  EuiPanel,
   EuiIcon,
+  EuiTitle,
+  EuiCopy,
 } from '../../../../src/components';
 
 const allowedColors = [
@@ -62,15 +58,32 @@ const ratingAA18 = <EuiBadge color="#666">AA18</EuiBadge>;
 function renderPaletteColor(color, index) {
   return (
     <EuiFlexItem key={index}>
-      <div style={{ background: lightColors[color].rgba, height: 24 }} />
-      <div className="guidelineColor__palette">
-        <EuiText size="s">
-          <strong>{color}</strong>
-          <EuiSpacer size="s" />
-          RGB ({lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b})<br/>
-          HEX {rgbToHex(lightColors[color].rgba).toUpperCase()}
-        </EuiText>
-      </div>
+      <EuiFlexGroup responsive={false} alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiCopy beforeMessage="Click to copy color name" textToCopy={color}>
+            {(copy) => (
+              <EuiIcon onClick={copy} size="xl" type="stopFilled" color={rgbToHex(lightColors[color].rgba)} />
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
+            <h3>{color}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText size="s" color="subdued">
+            <p><code>{rgbToHex(lightColors[color].rgba).toUpperCase()}</code></p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText size="s" color="subdued">
+            <p>
+              <code>rgb({lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b})</code>
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
   );
 }
@@ -92,31 +105,11 @@ export default() => (
 
     <EuiSpacer />
 
-    <EuiFlexGrid columns={3}>
+    <EuiFlexGroup direction="column" gutterSize="s">
       {allowedColors.map(function (color, index) {
         return renderPaletteColor(color, index);
       })}
-    </EuiFlexGrid>
-
-    <EuiSpacer size="xxl" />
-
-    <EuiText grow={false} className="guideSection__text">
-      <h2>Qualitative visualization palette</h2>
-      <p>
-        The following colors are color-blind safe and should be used in
-        qualitative visualizations.
-      </p>
-    </EuiText>
-
-
-    <EuiSpacer />
-
-    <EuiFlexGrid columns={3}>
-      {visColors.map(function (color, index) {
-        return renderPaletteColor(color, index);
-      })}
-    </EuiFlexGrid>
-
+    </EuiFlexGroup>
 
     <EuiSpacer size="xxl" />
 
@@ -133,13 +126,13 @@ export default() => (
       <h3>Rating definitions</h3>
       <ul>
         <li>
-          {ratingAAA} Passes with a contrast of 7+
+          <EuiIcon type="checkInCircleFilled" /> : {ratingAA} {ratingAAA} Passes with a contrast of 4.5+ (7+ for AAA)
         </li>
         <li>
-          {ratingAA} Passes with a contrast of 4.5+
+          <EuiIcon type="editorBold" /> : {ratingAA18} Passes with a contrast of 3+, but only if the text is at least 18px or 14px and bold
         </li>
         <li>
-          {ratingAA18} Passes with a contrast of 3+, but only if the text is at least 18px or 14px and bold
+          <EuiIcon type="minusInCircle" /> : Use only for disabled or inconsequential content
         </li>
       </ul>
     </EuiText>
@@ -150,7 +143,8 @@ export default() => (
       {allowedColors.map(function (color, index) {
         return (
           <EuiFlexItem key={index}>
-            <EuiPanel style={{ backgroundColor: lightColors[color].rgba, borderColor: lightColors[color].rgba }}>
+            <EuiText size="xs">
+              <h3>{color}</h3>
               {allowedColors.map(function (color2, index) {
                 const contrast = (
                   calculateContrast(
@@ -160,118 +154,64 @@ export default() => (
                 );
 
                 let contrastRating;
-                if (contrast > 4.4) {
+                let contrastRatingBadge;
+                if (contrast >= 7) {
                   contrastRating = (<EuiIcon type="checkInCircleFilled" />);
-                } else if (contrast >= 2.9) {
+                  contrastRatingBadge = ratingAAA;
+                } else if (contrast >= 4.5) {
+                  contrastRating = (<EuiIcon type="checkInCircleFilled" />);
+                  contrastRatingBadge = ratingAA;
+                } else if (contrast >= 3) {
                   contrastRating = (<EuiIcon type="editorBold" />);
+                  contrastRatingBadge = ratingAA18;
                 } else if (color2.includes('Shade') && contrast >= 2) {
                   contrastRating = (<EuiIcon type="minusInCircle" />);
                 } else {
                   return;
                 }
 
+                const tooltipContent = (
+                  <div>{contrastRatingBadge} Contrast is {contrast.toFixed(1)}</div>
+                );
+
                 return (
-                  <div key={index} style={{ fontSize: 12, color: lightColors[color2].rgba, marginBottom: 12 }} >{contrastRating} &ensp; {color2} </div>
-                )
+                  <EuiToolTip
+                    key={index}
+                    anchorClassName="eui-displayBlock"
+                    content={tooltipContent}
+                  >
+                    <p style={{ backgroundColor: lightColors[color].rgba, color: lightColors[color2].rgba, padding: 6, marginBottom: 2 }} >
+                      {contrastRating} &ensp; {color2}
+                    </p>
+                  </EuiToolTip>
+                );
               })}
-            </EuiPanel>
+            </EuiText>
           </EuiFlexItem>
         );
       })}
     </EuiFlexGrid>
 
-    <div>
-      {allowedColors.map(function (color, index) {
-        return (
-          <Fragment key={index}>
-            <EuiFlexGroup gutterSize="none">
-              {allowedColors.map(function (color2, index) {
-                const contrast = (
-                  calculateContrast(
-                    [lightColors[color].r, lightColors[color].g, lightColors[color].b],
-                    [lightColors[color2].r, lightColors[color2].g, lightColors[color2].b],
-                  )
-                );
+    <EuiSpacer size="xxl" />
 
-                let contrastRating;
-                if (contrast > 7) {
-                  contrastRating = (
-                    <div>
-                      <EuiSpacer size="xs" />
-                      {ratingAAA}
-                    </div>
-                  );
-                } else if (contrast > 4.4) {
-                  contrastRating = (
-                    <div>
-                      <EuiSpacer size="xs" />
-                      {ratingAA}
-                    </div>
-                  );
-                } else if (contrast >= 2.9) {
-                  contrastRating = (
-                    <div>
-                      <EuiSpacer size="xs" />
-                      {ratingAA18}
-                    </div>
-                  );
-                }
+    <EuiText grow={false} className="guideSection__text">
+      <h2>Qualitative visualization palette</h2>
+      <p>
+        The following colors are color-blind safe and should be used in
+        qualitative visualizations.
+      </p>
+      <p>
+        For more visualization palettes and rendering services, go to
+        the <EuiLink href="/#/utilities/color-palettes">Color Palettes</EuiLink> utility page.
+      </p>
+    </EuiText>
 
-                return (
-                  <EuiFlexItem className="guidelineColor__test" key={index}>
-                    <EuiToolTip
-                      title={`Contrast is ${contrast.toFixed(1)}`}
-                      content={
-                        <EuiDescriptionList compressed>
-                          <EuiDescriptionListTitle className="guidelineColor__title">
-                            Text
-                          </EuiDescriptionListTitle>
-                          <EuiDescriptionListDescription>
-                            <EuiFlexGroup alignItems="center" gutterSize="s">
-                              <EuiFlexItem grow={false}>
-                                <div className="guidelineColor__swatch" style={{ background: lightColors[color2].rgba }} />
-                              </EuiFlexItem>
-                              <EuiFlexItem grow={false} style={{ color: 'white' }}>
-                                {color2}
-                              </EuiFlexItem>
-                            </EuiFlexGroup>
-                          </EuiDescriptionListDescription>
-                          <EuiDescriptionListTitle className="guidelineColor__title">
-                            Background
-                          </EuiDescriptionListTitle>
-                          <EuiDescriptionListDescription>
-                            <EuiFlexGroup alignItems="center" gutterSize="s">
-                              <EuiFlexItem grow={false}>
-                                <div className="guidelineColor__swatch" style={{ background: lightColors[color].rgba }} />
-                              </EuiFlexItem>
-                              <EuiFlexItem grow={false} style={{ color: 'white' }}>
-                                {color}
-                              </EuiFlexItem>
-                            </EuiFlexGroup>
-                          </EuiDescriptionListDescription>
-                        </EuiDescriptionList>
-                      }
-                    >
-                      <div>
-                        <div
-                          className="guidelineColor__stripe"
-                          style={{
-                            color: lightColors[color2].rgba, backgroundColor: lightColors[color].rgba
-                          }}
-                        >
-                          <div>Text</div>
-                        </div>
-                        {contrastRating}
-                      </div>
-                    </EuiToolTip>
-                  </EuiFlexItem>
-                );
-              })}
-            </EuiFlexGroup>
-            <EuiSpacer />
-          </Fragment>
-        );
+    <EuiSpacer />
+
+    <EuiFlexGroup direction="column" gutterSize="s">
+      {visColors.map(function (color, index) {
+        return renderPaletteColor(color, index);
       })}
-    </div>
+    </EuiFlexGroup>
   </GuidePage>
 );
