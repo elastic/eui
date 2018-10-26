@@ -136,7 +136,7 @@ function renderSize(size, index) {
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
-      <EuiFlexItem grow={false} style={{ width: 184 }}>
+      <EuiFlexItem grow={false} style={{ minWidth: 184 }}>
         <div>
           <EuiCode>${size}</EuiCode>
         </div>
@@ -167,7 +167,7 @@ function renderLevel(level, index) {
       <EuiFlexItem grow={false}>
         <div className="guideSass__level" style={{ opacity: (1 - (index * .1)) }} />
       </EuiFlexItem>
-      <EuiFlexItem grow={false} style={{ width: 200, paddingLeft: 16 }}>
+      <EuiFlexItem grow={false} style={{ minWidth: 200, paddingLeft: 16 }}>
         <div>
           <EuiCode>${level}</EuiCode>
         </div>
@@ -237,7 +237,7 @@ function renderBreakpoint(size, index) {
   return (
     <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}>
       <EuiFlexItem grow={false}>
-        <EuiText size="s" className="eui-textRight" style={{ width: 50 }}>
+        <EuiText size="s" className="eui-textRight" style={{ minWidth: 50 }}>
           <EuiCode>{size}</EuiCode>
         </EuiText>
       </EuiFlexItem>
@@ -295,6 +295,27 @@ const importOutsideExample = (`// In an outside project, import the core variabl
 @import '@elastic/eui/src/global_styling/functions/index';
 @import '@elastic/eui/src/global_styling/variables/index';
 @import '@elastic/eui/src/global_styling/mixins/index';
+`);
+
+const tintOrShadeExample = (`// tintOrShade() will tint in light mode and shade in dark mode 
+
+// Make the tooltip a dark color for both modes
+.themedBox {
+  color: $euiColorGhost;
+  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+  padding: $euiSize;
+}
+`);
+
+const contrastExample = (`// Make sure text is passes a contrast check
+.contrastBox {
+  $backgroundColor: tintOrShade($euiColorWarning, 90%, 70%);
+  background: $backgroundColor;
+
+  // Given two colors, adjust the first till contrast is 4.5
+  color: makeHighContrastColor($euiColorWarning, $backgroundColor);
+  padding: $euiSize;
+}
 `);
 
 export default() => (
@@ -418,6 +439,146 @@ export default() => (
     </EuiFlexGrid>
 
     <EuiSpacer size="xxl"/>
+
+    <GuideRuleTitle>Going beyond the provided colors</GuideRuleTitle>
+
+    <EuiSpacer size="xxl"/>
+
+    <EuiFlexGrid columns={2}>
+      <EuiFlexItem>
+        <EuiTitle>
+          <h4>Theming patterns</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Often you need to go beyond the provided color set. When doing so <strong>always</strong> use
+            color functions to modify the base set. Here are some examples.
+          </p>
+        </EuiText>
+        <EuiSpacer />
+
+        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <div className="guideSass__swatch guideSass__swatch--primary" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCode>$euiCodePrimary</EuiCode>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <div className="guideSass__swatch guideSass__swatch--primaryTint" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCode>tint($euiCodePrimary, 30%)</EuiCode>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <div className="guideSass__swatch guideSass__swatch--primaryShade" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCode>shade($euiCodePrimary, 30%)</EuiCode>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Remember that EUI provides dark and light mode theming support. Sometimes the traditional
+            color function don&apos;t give enough flexibility for both modes. Utilize the following
+            functions to adjust per theme.
+          </p>
+        </EuiText>
+        <EuiSpacer />
+
+        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <div className="guideSass__swatch guideSass__swatch--fullLight" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCode>$euiCodeFullShade</EuiCode>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
+              <p>
+                is #000 in the light theme
+              </p>
+            </EuiText>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer />
+        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <div className="guideSass__swatch guideSass__swatch--fullDark" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCode>$euiCodeFullShade</EuiCode>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
+              <p>
+                is #FFF in the dark theme
+              </p>
+            </EuiText>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            For example we want our tooltips to always be dark regardless of the theme. This is a way
+            to make them both similar.
+          </p>
+        </EuiText>
+
+        <EuiSpacer />
+
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{tintOrShadeExample}</EuiCodeBlock>
+
+        <EuiSpacer />
+
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            <div className="guideSass__themedBox guideSass__themedBox--light">Light theme</div>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <div className="guideSass__themedBox guideSass__themedBox--light">Dark theme</div>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+
+      </EuiFlexItem>
+
+      <EuiFlexItem>
+        <EuiTitle>
+          <h4>Color contrast patterns</h4>
+        </EuiTitle>
+
+        <EuiText>
+          <p>
+            EUI provides some nifty color functions for auto-adjusting color to pass AA contrast checks.
+            Often this is needed when using the base colors on top of each other. Here is an example
+            similar to our callouts with a pesky yellow.
+          </p>
+        </EuiText>
+
+        <EuiSpacer />
+
+        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{contrastExample}</EuiCodeBlock>
+
+        <EuiSpacer />
+
+        <div className="guideSass__contrastExample">
+          This text now passes a contrast check!
+        </div>
+
+        <EuiSpacer />
+      </EuiFlexItem>
+    </EuiFlexGrid>
 
     <GuideRuleTitle>Typography</GuideRuleTitle>
 

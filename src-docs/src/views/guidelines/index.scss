@@ -1,3 +1,6 @@
+// -------------------------------------
+// Colors guideline page
+// -------------------------------------
 .guidelineColor__palette {
   padding: $euiSize;
   padding-bottom: $euiSizeXL;
@@ -38,6 +41,9 @@
     border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
   }
 }
+// -------------------------------------
+// Sass guideline page
+// -------------------------------------
 .guideSass__swatchItem + .guideSass__swatchItem {
   margin-top: $euiSize;
 }
@@ -45,6 +51,27 @@
 .guideSass__swatch {
   height: $euiSizeL;
   width: $euiSizeL;
+}
+
+.guideSass__swatch--primary {
+  background: $euiColorPrimary;
+}
+
+.guideSass__swatch--primaryTint {
+  background: tint($euiColorPrimary, 30%);
+}
+
+.guideSass__swatch--primaryShade {
+  background: shade($euiColorPrimary, 30%);
+}
+
+.guideSass__swatch--fullLight {
+  background: #000;
+}
+
+.guideSass__swatch--fullDark {
+  background: #FFF;
+  border: $euiBorderThin;
 }
 
 .guideSass__levelRow {
@@ -79,15 +106,6 @@
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
   margin-top: $euiSizeL;
 }
-
-$fontSizes: (
-  'euiFontSizeXS',
-  'euiFontSizeS',
-  'euiFontSizeM',
-  'euiFontSize',
-  'euiFontSizeL',
-  'euiFontSizeXL',
-);
 
 .guideSass__fontSize {
   margin-bottom: $euiSizeS;
@@ -247,6 +265,27 @@ $fontSizes: (
 .guideSass__breakpointExample {
     padding: $euiSize;
     color: $euiColorGhost;
+}
+
+.guideSass__themedBox {
+  padding: $euiSize;
+  color: $euiColorGhost;
+}
+
+.guideSass__themedBox--light {
+  background: tint($euiColorFullShade, 25%);
+}
+
+.guideSass__themedBox--dark {
+  background: tint($euiColorFullShade, 90%);
+}
+
+.guideSass__contrastExample {
+  $backgroundColor: tintOrShade($euiColorWarning, 90%, 70%);
+
+  background: $backgroundColor;
+  color: makeHighContrastColor($euiColorWarning, $backgroundColor);
+  padding: $euiSize;
 }
 
 @include euiBreakpoint('xl') {
