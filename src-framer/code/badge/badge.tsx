@@ -57,7 +57,7 @@ export class Badge extends React.Component<Props> {
   return (
     <EuiBadge
       color={this.props.color}
-      iconType={this.props.iconType}
+      iconType={this.props.showIconProps ? this.props.iconType : null}
       iconSide={this.props.iconSide}
     >
       {this.props.text}

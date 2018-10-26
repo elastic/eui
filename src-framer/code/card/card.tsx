@@ -92,7 +92,10 @@ export class CallOut extends React.Component<Props> {
         <EuiCard
           textAlign={this.props.textAlign}
           layout={this.props.layout}
-          icon={<EuiIcon size={this.props.iconSize} color={this.props.iconColor} type={this.props.icon} />}
+          icon={this.props.showIconProps ?
+            <EuiIcon size={this.props.iconSize} color={this.props.iconColor} type={this.props.icon} />
+            : null
+          }
           image={this.props.image || 'https://source.unsplash.com/400x200/?Nature'}
           title={this.props.title}
           description={this.props.description}
