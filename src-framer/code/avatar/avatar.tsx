@@ -1,17 +1,16 @@
-import { SIZES, TYPES } from '@elastic/eui/lib/components/avatar/avatar.js';
-import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
-import * as React from '@elastic/eui/lib/components/icon/index.js';
-import { VISUALIZATION_COLORS } from '@elastic/eui/lib/services/index.js';
+import { EuiAvatar, SIZES, TYPES } from '@elastic/eui/lib/components/avatar/avatar.js';
 import { ControlType, PropertyControls } from 'framer';
+import React from 'react';
+
+const initialsOptions = [ '1', '2' ];
 
 // Define type of property
 interface Props {
-  color: VISUALIZATION_COLORS;
   size: SIZES;
   imageUrl: string;
   type: TYPES;
   name: string;
-  initialsLength: [ 1, 2 ];
+  initialsLength: initialsOptions;
   initials: string;
 }
 
@@ -20,6 +19,8 @@ export class Avatar extends React.Component<Props> {
   // Set default properties
   public static defaultProps = {
     name: 'Han Solo',
+    height: 32, // To give a decent start with sizing
+    width: 32, // To give a decent start with sizing
   };
 
   // Items shown in property panel
@@ -30,6 +31,7 @@ export class Avatar extends React.Component<Props> {
     },
     initialsLength: {
       type: ControlType.SegmentedEnum,
+      options: initialsOptions,
       title: 'initialsLength',
     },
     initials: {
@@ -40,11 +42,6 @@ export class Avatar extends React.Component<Props> {
       type: ControlType.SegmentedEnum,
       options: SIZES,
       title: 'size',
-    },
-    color: {
-      type: ControlType.Color,
-      options: VISUALIZATION_COLORS,
-      title: 'color',
     },
     type: {
       type: ControlType.SegmentedEnum,
@@ -66,10 +63,7 @@ export class Avatar extends React.Component<Props> {
         type={this.props.type}
         imageUrl={this.props.imageUrl}
         size={this.props.size}
-        color={this.props.color}
-      >
-        {this.props.text}
-      </EuiAvatar>
+      />
     );
   }
 }
