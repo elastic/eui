@@ -20,9 +20,9 @@ export class Facet extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    name: 'Han Solo',
-    height: 300, // To give a decent start with sizing
-    width: 600, // To give a decent start with sizing
+    text: 'Facet button',
+    quantity: 19,
+    height: 40, // To give a decent start with sizing
     showIconProps: false,
   };
 
