@@ -544,7 +544,7 @@ export default() => (
     <EuiSpacer />
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
-        <EuiTitle>
+        <EuiTitle size="s">
           <h4>Text sizes</h4>
         </EuiTitle>
 
@@ -555,7 +555,7 @@ export default() => (
       </EuiFlexItem>
       <EuiFlexItem>
         <div>
-          <EuiTitle>
+          <EuiTitle size="s">
             <h4>Text colors</h4>
           </EuiTitle>
 
@@ -815,7 +815,7 @@ export default() => (
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
         <EuiText>
-          <h2>Component based naming</h2>
+          <h3>Component based naming</h3>
           <p>
             EUI is written in a BEMish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
             Below is an example of proper formatting.
