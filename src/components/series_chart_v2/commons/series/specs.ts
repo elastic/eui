@@ -2,6 +2,7 @@ import { Accessor } from '../utils/accessor';
 import { Domain } from '../utils/domain';
 import { AxisId, GroupId, SpecId } from '../utils/ids';
 import { ScaleType } from '../utils/scales';
+import { CurveType } from './utils/curves';
 
 export type Datum = any;
 export type Rotation = 0 | 90 | -90 | 180;
@@ -63,6 +64,7 @@ export interface LineSeriesSpec extends BasicSeriesSpec {
   stackAccessors?: Accessor[];
   colorAccessors?: Accessor[];
   tooltipLevel?: number;
+  curve?: CurveType;
 }
 
 export interface AreaSeriesSpec extends BasicSeriesSpec {
@@ -76,6 +78,7 @@ export interface AreaSeriesSpec extends BasicSeriesSpec {
   stackAccessors?: Accessor[];
   colorAccessors?: Accessor[];
   tooltipLevel?: number;
+  curve?: CurveType;
 }
 
 export interface AxisSpec {

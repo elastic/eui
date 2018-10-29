@@ -7,6 +7,7 @@ import { Domain, SpecDomains } from '../../utils/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarScaleFnConfig } from '../bars/commons';
 import { Datum, LineSeriesSpec, Rotation } from '../specs';
+import { CurveType, getCurveFactory } from '../utils/curves';
 export interface LineGlyph {
   data: Datum[];
   points: Array<{x: number, y: number}>;
@@ -31,6 +32,7 @@ export function renderLineSeriesSpec(
     splitSeriesAccessors = [],
     stackAccessors = [],
     colorAccessors = [],
+    curve = CurveType.LINEAR,
   } = lineSeriesSpec;
 
   if (domains.xDomains.length !== 1) {
@@ -98,7 +100,8 @@ export function renderLineSeriesSpec(
   });
   const pathGenerator = line<{x: number, y: number}>()
       .x((datum: Datum) => datum.x)
-      .y((datum: Datum) => datum.y);
+      .y((datum: Datum) => datum.y)
+      .curve(getCurveFactory(curve));
   const glyphs = Array.from(lineSeries.values()).map((lineGlyph) => {
     const path = pathGenerator(lineGlyph.points) || '';
     return {

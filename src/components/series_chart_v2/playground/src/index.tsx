@@ -12,6 +12,7 @@ import { datasetStacked as AREA_STACKED } from './data_example2';
 import { TEMPORAL_DATA1 } from './data_example3';
 
 import { extent } from 'd3-array';
+import { CurveType } from '../../commons/series/utils/curves';
 import { Settings } from '../../specs/settings';
 import { niceTimeFormatter } from '../../utils/data/formatters';
 import {
@@ -153,6 +154,7 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
+            curve={CurveType.CURVE_BASIS}
           />
         </Chart>
       </div>
@@ -186,8 +188,9 @@ class App extends Component {
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
             tooltipLevel={0}
-            xDomain={['x0', 'x2', 'x3']}
+            // xDomain={['x0', 'x2', 'x3']}
             yDomain={[-20, 20]}
+            curve={CurveType.CURVE_BASIS}
           />
           {/* <BarSeries
             id={getSpecId('renderBarChart1y0g')}

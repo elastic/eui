@@ -7,6 +7,7 @@ import { Domain, SpecDomains } from '../../utils/domain';
 import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
 import { BarScaleFnConfig } from '../bars/commons';
 import { AreaSeriesSpec, Datum, Rotation } from '../specs';
+import { getCurveFactory } from '../utils/curves';
 export interface AreaGlyph {
   data: Datum[];
   points: Array<{x: number, y1: number, y0: number}>;
@@ -32,6 +33,7 @@ export function renderAreaSeriesSpec(
     splitSeriesAccessors = [],
     stackAccessors = [],
     colorAccessors = [],
+    curve,
   } = areaSeriesSpec;
 
   if (domains.xDomains.length !== 1) {
@@ -101,10 +103,12 @@ export function renderAreaSeriesSpec(
   const pathGenerator = area<{x: number, y1: number, y0: number}>()
       .x((datum: Datum) => datum.x)
       .y0((datum: Datum) => datum.y0) // the zero
-      .y1((datum: Datum) => datum.y1); // the real value
+      .y1((datum: Datum) => datum.y1) // the real value
+      .curve(getCurveFactory(curve));
   const linePathGenerator = line<{x: number, y1: number}>()
     .x((datum: Datum) => datum.x)
-    .y((datum: Datum) => datum.y1);
+    .y((datum: Datum) => datum.y1)
+    .curve(getCurveFactory(curve));
   const glyphs = Array.from(areaSeries.values()).map((areaGlyph) => {
     const path = pathGenerator(areaGlyph.points) || '';
     const linePath = linePathGenerator(areaGlyph.points) || '';
