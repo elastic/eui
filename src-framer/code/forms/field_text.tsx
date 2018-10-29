@@ -35,17 +35,17 @@ export class FieldText extends React.Component<Props> {
     isLoading: { type: ControlType.Boolean, title: 'isLoading' },
     fullWidth: { type: ControlType.Boolean, title: 'fullWidth' },
     compressed: { type: ControlType.Boolean, title: 'compressed' },
-    hasFormRow: { type: ControlType.Boolean, title: '🖍 Form Row?' },
+    hasFormRow: { type: ControlType.Boolean, title: '🧙 Form Row?' },
     formRowLabel: {
       type: ControlType.String,
-      title: 'label',
+      title: '↳ label',
       hidden(props) {
         return props.hasFormRow === false;
       },
     },
     formRowHelpText: {
       type: ControlType.String,
-      title: 'helpText',
+      title: '↳ helpText',
       hidden(props) {
         return props.hasFormRow === false;
       },
@@ -53,7 +53,7 @@ export class FieldText extends React.Component<Props> {
     icon: {
       type: ControlType.Enum,
       options: ICON_TYPES,
-      title: 'icon',
+      title: '↳ icon',
     },
   };
 

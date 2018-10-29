@@ -58,12 +58,12 @@ export class CallOut extends React.Component<Props> {
     },
     showIconProps: {
       type: ControlType.Boolean,
-      title: '🖍 Need icon?',
+      title: '🧙 icon?',
     },
     icon: {
       type: ControlType.Enum,
       options: TYPES,
-      title: 'icon',
+      title: '↳ icon',
       hidden(props) {
         return props.showIconProps === false;
       },
@@ -71,7 +71,7 @@ export class CallOut extends React.Component<Props> {
     iconSize: {
       type: ControlType.Enum,
       options: SIZES,
-      title: 'iconSize',
+      title: '↳ iconSize',
       hidden(props) {
         return props.showIconProps === false;
       },

@@ -33,12 +33,12 @@ export class Badge extends React.Component<Props> {
     },
     showIconProps: {
       type: ControlType.Boolean,
-      title: 'Need icon?',
+      title: '🧙 icon?',
     },
     iconType: {
       type: ControlType.Enum,
       options: ICON_TYPES,
-      title: 'iconType',
+      title: '↳ iconType',
       hidden(props) {
         return props.showIconProps === false;
       },
@@ -46,7 +46,7 @@ export class Badge extends React.Component<Props> {
     iconSide: {
       type: ControlType.SegmentedEnum,
       options: ICON_SIDES,
-      title: 'iconSide',
+      title: '↳ iconSide',
       hidden(props) {
         return props.showIconProps === false;
       },

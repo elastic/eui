@@ -50,12 +50,12 @@ export class Facet extends React.Component<Props> {
     },
     showIconProps: {
       type: ControlType.Boolean,
-      title: '🖍 Need icon?',
+      title: '🧙 icon?',
     },
     iconType: {
       type: ControlType.Enum,
       options: TYPES,
-      title: 'icon',
+      title: '↳ icon',
       hidden(props) {
         return props.showIconProps === false;
       },
@@ -63,7 +63,7 @@ export class Facet extends React.Component<Props> {
     iconSize: {
       type: ControlType.Enum,
       options: SIZES,
-      title: 'iconSize',
+      title: '↳ iconSize',
       hidden(props) {
         return props.showIconProps === false;
       },
@@ -71,7 +71,7 @@ export class Facet extends React.Component<Props> {
     iconColor: {
       type: ControlType.Enum,
       options: COLORS,
-      title: 'iconColor',
+      title: '↳ iconColor',
       hidden(props) {
         return props.showIconProps === false;
       },
