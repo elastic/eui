@@ -96,18 +96,37 @@ export default class extends Component {
     this.levels = [
       {
         min: 0,
-        max: 3,
+        max: 2.8,
         color: 'danger'
       },
       {
-        min: 2,
-        max: 4.5,
+        min: 2.8,
+        max: 4.3,
         color: 'warning'
       },
       {
-        min: 4.5,
+        min: 4.3,
         max: 7,
         color: 'success'
+      }
+    ];
+
+    this.ticks = [
+      {
+        value: 0,
+        label: <EuiBadge color="#eee">ALL</EuiBadge>
+      },
+      {
+        value: 3,
+        label: ratingAA18
+      },
+      {
+        value: 4.5,
+        label: ratingAA
+      },
+      {
+        value: 7,
+        label: ratingAAA
       }
     ];
 
@@ -118,7 +137,7 @@ export default class extends Component {
 
   onChange = e => {
     this.setState({
-      value: e.target.value,
+      value: e.currentTarget.value,
     });
   };
 
@@ -177,19 +196,24 @@ export default class extends Component {
 
         <EuiSpacer size="xxl" />
 
-        <EuiFormRow id="ratingsRange" label="Minimum color contrast combinations to show">
-          <EuiRange
-            min={0}
-            max={7}
-            step={.5}
-            value={value}
-            onChange={this.onChange}
-            // showTicks
-            showValue
-            tickInterval={1}
-            levels={this.levels}
-          />
-        </EuiFormRow>
+        <EuiFlexGroup className="eui-textCenter" justifyContent="center">
+          <EuiFlexItem grow={false}>
+            <EuiFormRow id="ratingsRange" label="Minimum color contrast combinations to show">
+              <EuiRange
+                min={0}
+                max={7}
+                step={.5}
+                value={value}
+                onChange={this.onChange}
+                showTicks
+                showValue
+                levels={this.levels}
+                ticks={this.ticks}
+                valueAppend="+"
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
         <EuiSpacer size="xxl" />
 
