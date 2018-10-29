@@ -2,6 +2,7 @@ import DarkCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_dark.css';
 import LightCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_light.css';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
+import { FrameSize } from './frame_size.tsx';
 
 // Define type of property
 interface Props {
@@ -24,14 +25,19 @@ export class Theme extends React.Component<Props> {
   };
 
   public render() {
+
+    const lightBgColor = '#FFF';
+    const darkBgColor = '#222';
+    const bgColor = (this.props.theme === 'light' ? lightBgColor : darkBgColor);
     return (
-      <div>
-        Theme
-        <style
-          type="text/css"
-          dangerouslySetInnerHTML={{__html: this.props.theme === 'light' ? LightCSS : DarkCSS}}>
-        </style>
-      </div>
+      <FrameSize>
+        <div style={{ background: bgColor, flexGrow: 1, display: 'flex' }}>
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{__html: this.props.theme === 'light' ? LightCSS : DarkCSS}}>
+          </style>
+        </div>
+      </FrameSize>
     );
   }
 }
