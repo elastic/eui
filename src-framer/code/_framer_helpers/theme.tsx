@@ -1,3 +1,5 @@
+import DarkCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_dark.css';
+import LightCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_light.css';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -7,7 +9,6 @@ interface Props {
 }
 
 export class Theme extends React.Component<Props> {
-
   // Set default properties
   public static defaultProps = {
     theme: 'light',
@@ -16,23 +17,21 @@ export class Theme extends React.Component<Props> {
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
     theme: {
-      type: ControlType.Enum,
+      type: ControlType.SegmentedEnum,
       options: ['light', 'dark'],
       title: 'Theme',
     },
   };
 
-  public state = {
-    theme: this.props.theme,
-  };
-
-  public componentWillUpdate() {
-    require(`@elastic/eui/dist/eui_theme_${this.state.theme}.css`);
-  }
-
   public render() {
     return (
-      <div/>
+      <div>
+        Theme
+        <style
+          type="text/css"
+          dangerouslySetInnerHTML={{__html: this.props.theme === 'light' ? LightCSS : DarkCSS}}>
+        </style>
+      </div>
     );
   }
 }
