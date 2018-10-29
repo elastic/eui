@@ -176,15 +176,32 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
           />
-          <BarSeries
+          <AreaSeries
+            id={getSpecId('renderLineChart1y0g')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            data={this.state.barchart_1y1g}
+            tooltipLevel={0}
+            xDomain={['x0', 'x2', 'x3']}
+            yDomain={[-20, 20]}
+          />
+          {/* <BarSeries
             id={getSpecId('renderBarChart1y0g')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
-            data={this.state.barchart_1y0g}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            data={this.state.barchart_1y1g}
             tooltipLevel={0}
-          />
+            // xDomain={[0, 0.5, 1, 1.5, 2, 2.5, 3]}
+            yDomain={[-20, 20]}
+          /> */}
         </Chart>
       </div>
     );
@@ -944,16 +961,17 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(30, 3);
+    // const randomData = dataGenerator.generateGroupedSeries(30, 3);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-          { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) }
-          { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
+        { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
+          {/* { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) } */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))}
+
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
@@ -970,7 +988,7 @@ class App extends Component {
           { [0, 90, -90, 180].map((r) => this.renderGitHubIssue('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderLineChart1y0g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))} */}
         </div>
       </div>
     );

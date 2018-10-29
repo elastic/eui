@@ -112,5 +112,5 @@ function extendLinearDomain(domainA: [number, number], domainB: [number, number]
 }
 
 function extendOrdinalDomain<T>(domainA: T[], domainB: T[]): T[] {
-  return uniq(domainA.concat(domainB)).sort();
+  return uniq(domainA.concat(domainB));
 }

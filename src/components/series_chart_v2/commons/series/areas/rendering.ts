@@ -53,8 +53,8 @@ export function renderAreaSeriesSpec(
     yAccessors[0],
     domains.yDomain.scaleType,
     domains.yDomain.domain,
-    0,
     maxYHeight,
+    0,
   );
   const xAccessorFn = getAccessorFn(domains.xDomains[0].accessor);
   const yAccessorsFns = yAccessors.map((yAccessor) => {
@@ -78,18 +78,17 @@ export function renderAreaSeriesSpec(
       const yAccessor = yAccessors[index];
       const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
       const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
-      let y0 = maxYHeight;
-      const scaledYValue = yScaleConfig.scale(yAccessorFn(datum));
-      let y1 = maxYHeight - scaledYValue;
+      // to be changed to the available y0accessor
+      let y0 = yScaleConfig.scale(0);
+      let y1 = yScaleConfig.scale(yAccessorFn(datum));
       if (stackAccessors.length > 0) {
         const stackKey = getStackKey(datum, stackAccessors, '');
         if (stackedYValues.has(stackKey)) {
-          y0 = stackedYValues.get(stackKey) || maxYHeight;
-          y1 = y0 - scaledYValue;
+          y0 = stackedYValues.get(stackKey) || 0;
+          y1 = (y1 - yScaleConfig.scale(0)) + y0;
         }
         stackedYValues.set(stackKey, y1);
       }
-      // y0 = maxYHeight - y0;
       let areaGlyph: AreaGlyph;
       if (areaSeries.has(seriesKey)) {
         areaGlyph = updateAreaPoints(areaSeries.get(seriesKey)!, x, y0, y1);

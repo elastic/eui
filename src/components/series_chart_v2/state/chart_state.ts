@@ -43,6 +43,7 @@ export interface TooltipData {
 }
 
 export class ChartStore {
+  public debug = true;
   public specsInitialized = observable.box(false);
   public initialized = observable.box(false);
   public parentDimensions: Dimensions = {

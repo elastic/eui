@@ -44,7 +44,9 @@ export function computeOrdinalDataDomain(
 ): string[] | number[] {
   const domain = data.map(accessor);
   const uniqueValues = uniq(domain);
-  return sorted ? uniqueValues.sort() : uniqueValues;
+  return sorted ? uniqueValues.sort((a, b) => {
+    return `${a}`.localeCompare(`${b}`);
+  }) : uniqueValues;
 }
 
 export function computeContinuousDataDomain(

@@ -8,8 +8,8 @@ export const BARCHART_1Y0G = [
 export const BARCHART_1Y1G = [
   { x: 'x0', g: 'a', y: 1 },
   { x: 'x0', g: 'b', y: 1 },
-  { x: 'x1', g: 'a', y: 2 },
-  { x: 'x1', g: 'b', y: 2 },
+  { x: 'x1', g: 'a', y: -2 },
+  { x: 'x1', g: 'b', y: -2 },
   { x: 'x2', g: 'a', y: 10 },
   { x: 'x2', g: 'b', y: 10 },
   { x: 'x3', g: 'a', y: 6 },

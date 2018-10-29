@@ -177,6 +177,9 @@ function reformatData(
       const nextLevelData = level === leafLevel - 1 ? nestedData.value : nestedData.values;
       const currentLevelScale = xScalesFnConfigs[level];
       const x = currentLevelScale.scale(nestedData.key);
+      if (Number.isNaN(x)) {
+        return acc;
+      }
       const levelData: BarGlyphGroup = {
         level,
         accessor: currentLevelXScaleConfig.accessor,
@@ -204,9 +207,15 @@ function formatElements(
   const barWidth = xScalesFnConfig.barWidth;
   return elements.reduce(
     (acc, element) => {
-      const height = yScalesFnConfig.scale(element.y);
+      const scaledYValue = yScalesFnConfig.scale(element.y);
+      const height = scaledYValue - yScalesFnConfig.scale(0);
       const x = isStacked ? 0 : xScalesFnConfig.scale(element.x);
-      let y = maxY - height;
+      // we will hide an element is not available in the x domain
+      // used mainly when explicitly configured a domain via specs.
+      if (Number.isNaN(x)) {
+        return acc;
+      }
+      let y = maxY - scaledYValue;
       if (acc.length > 0 && isStacked) {
         y = acc[acc.length - 1].y - height;
       }

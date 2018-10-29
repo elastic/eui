@@ -48,25 +48,40 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
       return datum[accessor];
     });
     // compute y domain
-    // TODO check this, the y value can be ordinal only when using point series.
-    if (yScaleType === ScaleType.Ordinal) {
-      yDomain = [...yDomain, ...yValues];
+    if (spec.yDomain) {
+      yDomain = spec.yDomain;
     } else {
-      // computing the stack value
-      if (stackAccessors.length > 0) {
-        const stackKey = stackAccessors.map((accessor) => String(datum[accessor])).join('--');
-        if (!stackedData.has(stackKey)) {
-          stackedData.set(stackKey, []);
-        }
-        const prevValues = stackedData.get(stackKey)!;
-        stackedData.set(stackKey, [...prevValues, ...yValues]);
+      // TODO check this, the y value can be ordinal only when using point series.
+      if (yScaleType === ScaleType.Ordinal) {
+        yDomain = [...yDomain, ...yValues];
       } else {
-        const yExtent = extent(yValues);
-        if (yDomain.length === 0) {
-          yDomain = [yExtent[0], yExtent[1]];
+        // computing the stack value
+        if (stackAccessors.length > 0) {
+          const stackKey = stackAccessors.map((accessor) => String(datum[accessor])).join('--');
+          if (!stackedData.has(stackKey)) {
+            stackedData.set(stackKey, []);
+          }
+          const prevValues = stackedData.get(stackKey)!;
+          stackedData.set(stackKey, [...prevValues, ...yValues]);
+        } else {
+          const yExtent = extent(yValues);
+          if (yDomain.length === 0) {
+            yDomain = [yExtent[0], yExtent[1]];
+          }
+          const [min, max] = yDomain;
+          yDomain = [Math.min(min, yExtent[0]), Math.max(max, yExtent[1])];
         }
-        const [min, max] = yDomain;
-        yDomain = [Math.min(min, yExtent[0]), Math.max(max, yExtent[1])];
+      }
+      if (stackAccessors.length > 0) {
+        const stackedDataArray = Array.from(stackedData.values());
+
+        const stackedDomain = stackedDataArray.map((sdaValue) => {
+          return sum(sdaValue);
+        });
+        yDomain = extent(stackedDomain);
+      }
+      if (!spec.yScaleToDataExtent) {
+        yDomain = [0, yDomain[1]];
       }
     }
     const colorKey = configuredColorAccessors.map((accessor) => getAccessorFn(accessor)(datum));
@@ -77,27 +92,22 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
     } else {
       colorKeys.add(colorKey.join('--'));
     }
-
   });
+  let domain: Domain = [];
+  if (spec.xDomain) {
+    domain = spec.xDomain;
+  } else {
+    domain = xScaleType === ScaleType.Linear ? extent(xDomain as number[]) : uniq(xDomain as string[]);
+  }
   const xDomains = [
     {
       accessor: xAccessor,
       level: 0,
       scaleType: xScaleType,
-      domain: xScaleType === ScaleType.Linear ? extent(xDomain as number[]) : uniq(xDomain as string[]),
+      domain,
     },
   ];
-  if (stackAccessors.length > 0) {
-    const stackedDataArray = Array.from(stackedData.values());
 
-    const stackedDomain = stackedDataArray.map((value) => {
-      return sum(value);
-    });
-    yDomain = extent(stackedDomain);
-  }
-  if (!spec.yScaleToDataExtent) {
-    yDomain = [0, yDomain[1]];
-  }
   return {
     xDomains,
     yDomain: {

@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { Layer, Stage } from 'react-konva';
+import { Layer, Rect, Stage } from 'react-konva';
 import { BarSeries, LineSeries } from '../components/canvas';
 import { AreaSeries } from '../components/canvas/area_series';
 import { Axis } from '../components/canvas/axis';
@@ -112,9 +112,8 @@ class Chart extends React.Component<ReactiveChartProps> {
     });
     return areas;
   }
-
   public render() {
-    const { initialized } = this.props.chartStore!;
+    const { initialized, debug } = this.props.chartStore!;
     if (!initialized.get()) {
       return null;
     }
@@ -137,6 +136,14 @@ class Chart extends React.Component<ReactiveChartProps> {
       chartTransform.y = chartDimensions.height;
       chartTransform.rotate = 180;
     }
+    // disable clippings when debugging
+    const clippings = debug ? {} : {
+      clipX: 0,
+      clipY: 0,
+      clipWidth: [90, -90].includes(chartRotation) ? chartDimensions.height : chartDimensions.width,
+      clipHeight: [90, -90].includes(chartRotation) ? chartDimensions.width : chartDimensions.height,
+    };
+
     return (
       <div
         style={{
@@ -159,16 +166,35 @@ class Chart extends React.Component<ReactiveChartProps> {
           <Layer
             x={chartDimensions.left + chartTransform.x}
             y={chartDimensions.top + chartTransform.y}
-            rotation={chartTransform.rotate}
+            rotation={chartRotation}
+            {...clippings}
           >
             {this.renderAreaSeries()}
             {this.renderBarSeries()}
             {this.renderLineSeries()}
+            {this.renderDebugChartBorders()}
           </Layer>
           <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
         </Stage>
       </div>
     );
+  }
+
+   private renderDebugChartBorders = () => {
+    const { debug } = this.props.chartStore!;
+    if (!debug) {
+      return null;
+    }
+    const { chartDimensions, chartRotation } = this.props.chartStore!;
+
+    return <Rect
+      x={0}
+      y={0}
+      width={[90, -90].includes(chartRotation) ? chartDimensions.height : chartDimensions.width}
+      height={[90, -90].includes(chartRotation) ? chartDimensions.width : chartDimensions.height}
+      stroke="red"
+      strokeWidth={0.5}
+      dash={[2, 2]} />;
   }
 }
 

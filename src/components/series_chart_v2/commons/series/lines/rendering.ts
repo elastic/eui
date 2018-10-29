@@ -78,10 +78,13 @@ export function renderLineSeriesSpec(
       const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
       const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
       let y = yScaleConfig.scale(yAccessorFn(datum));
+      const height = y - yScaleConfig.scale(0);
       if (stackAccessors.length > 0) {
         const stackKey = getStackKey(datum, stackAccessors, '');
-        y = stackedYValues.has(stackKey) ? (stackedYValues.get(stackKey) || 0) + y : y;
-        stackedYValues.set(stackKey, y);
+        if (stackedYValues.has(stackKey)) {
+          y = (stackedYValues.get(stackKey) || 0) + y;
+        }
+        stackedYValues.set(stackKey, height);
       }
       y = maxYHeight - y;
       let lineGlyph: LineGlyph;

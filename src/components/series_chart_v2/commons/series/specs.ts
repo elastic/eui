@@ -1,4 +1,5 @@
 import { Accessor } from '../utils/accessor';
+import { Domain } from '../utils/domain';
 import { AxisId, GroupId, SpecId } from '../utils/ids';
 import { ScaleType } from '../utils/scales';
 
@@ -34,6 +35,8 @@ export interface BasicSeriesSpec {
   groupId: GroupId;
   data: Datum[];
   splitChartAccessor?: Accessor | Accessor[];
+  xDomain?: Domain;
+  yDomain?: Domain;
 }
 
 export interface BarSeriesSpec extends BasicSeriesSpec {
