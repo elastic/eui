@@ -6,7 +6,7 @@ import { EuiToken } from './token';
 describe('EuiToken', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiToken type="tokenClass" />
+      <EuiToken iconType="tokenClass" size="s" color="tokenColor01" shape="square" />
     );
 
     expect(component)

@@ -110,8 +110,8 @@ export const IconExample = {
     text: (
       <div>
         <p>
-          Tokens are used in search to help visually classify the results.
-          The tokens included in EUI can be used to identifya number of
+          Tokens are used mostly in search to help visually classify the results.
+          The tokens included in EUI can be used to identify a number of
           code-based search results.
         </p>
         <p>
@@ -120,6 +120,9 @@ export const IconExample = {
           legibility and accessibility. Tokens are also available in three
           different sizes: <EuiCode>small</EuiCode> (16x16),
           <EuiCode>medium</EuiCode> (24x24), and <EuiCode>large</EuiCode> (32x32).
+          They support <EuiCode>circle</EuiCode>, <EuiCode>square</EuiCode>, and
+          <EuiCode>rectangle</EuiCode> shapes. You can also toggle borders and
+          solid colors using <EuiCode>hideBorder</EuiCode> and <EuiCode>isSolidColor</EuiCode>.
         </p>
       </div>
     ),

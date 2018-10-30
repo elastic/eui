@@ -49,8 +49,8 @@ export default () => (
           style={{ width: '200px' }}
         >
           <EuiPanel>
-            <div style={{ margin: '0 auto 8px auto', width: '16px' }}>
-              <EuiToken type={token}/>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+              <EuiToken iconType={token}/>
             </div>
             <EuiText size="s">
               <p>{token}</p>

@@ -231,6 +231,36 @@ import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
 
+// Token Icon Imports
+import tokenClass from './assets/tokens/tokenClass.svg';
+import tokenProperty from './assets/tokens/tokenProperty.svg';
+import tokenEnum from './assets/tokens/tokenEnum.svg';
+import tokenVariable from './assets/tokens/tokenVariable.svg';
+import tokenMethod from './assets/tokens/tokenMethod.svg';
+import tokenAnnotation from './assets/tokens/tokenAnnotation.svg';
+import tokenException from './assets/tokens/tokenException.svg';
+import tokenInterface from './assets/tokens/tokenInterface.svg';
+import tokenParameter from './assets/tokens/tokenParameter.svg';
+import tokenField from './assets/tokens/tokenField.svg';
+import tokenElement from './assets/tokens/tokenElement.svg';
+import tokenFunction from './assets/tokens/tokenFunction.svg';
+import tokenBoolean from './assets/tokens/tokenBoolean.svg';
+import tokenString from './assets/tokens/tokenString.svg';
+import tokenArray from './assets/tokens/tokenArray.svg';
+import tokenNumber from './assets/tokens/tokenNumber.svg';
+import tokenConstant from './assets/tokens/tokenConstant.svg';
+import tokenObject from './assets/tokens/tokenObject.svg';
+import tokenEvent from './assets/tokens/tokenEvent.svg';
+import tokenKey from './assets/tokens/tokenKey.svg';
+import tokenNull from './assets/tokens/tokenNull.svg';
+import tokenStruct from './assets/tokens/tokenStruct.svg';
+import tokenPackage from './assets/tokens/tokenPackage.svg';
+import tokenOperator from './assets/tokens/tokenOperator.svg';
+import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
+import tokenTypeRepo from './assets/tokens/tokenTypeRepo.svg';
+import tokenTypeSymbol from './assets/tokens/tokenTypeSymbol.svg';
+import tokenTypeFile from './assets/tokens/tokenTypeFile.svg';
+
 const typeToIconMap = {
   addDataApp,
   advancedSettingsApp,
@@ -460,6 +490,34 @@ const typeToIconMap = {
   packetbeatApp,
   securityAnalyticsApp,
   sqlApp,
+  tokenClass,
+  tokenProperty,
+  tokenEnum,
+  tokenVariable,
+  tokenMethod,
+  tokenAnnotation,
+  tokenException,
+  tokenInterface,
+  tokenParameter,
+  tokenField,
+  tokenElement,
+  tokenFunction,
+  tokenBoolean,
+  tokenString,
+  tokenArray,
+  tokenNumber,
+  tokenConstant,
+  tokenObject,
+  tokenEvent,
+  tokenKey,
+  tokenNull,
+  tokenStruct,
+  tokenPackage,
+  tokenOperator,
+  tokenEnumMember,
+  tokenTypeRepo,
+  tokenTypeSymbol,
+  tokenTypeFile
 };
 
 export const TYPES = Object.keys(typeToIconMap);
