@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode, SFC } from 'react';
 
 declare module '@elastic/eui' {
-  export type ToolTipPositions = 
+  export type ToolTipPositions =
     | 'top'
     | 'right'
     | 'bottom'
@@ -22,6 +22,7 @@ declare module '@elastic/eui' {
     type?: string;
     size?: string;
     'aria-label'?: string;
+    content: ReactNode;
   }
   export const EuiIconTip: SFC<EuiIconTipProps>;
 }

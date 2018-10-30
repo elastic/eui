@@ -5,6 +5,7 @@ import React, {
 import {
   EuiButton,
   EuiCheckboxGroup,
+  EuiComboBox,
   EuiFieldText,
   EuiForm,
   EuiFormRow,
@@ -49,6 +50,7 @@ export default class extends Component {
         label: 'Option three',
       }],
       radioIdSelected: `${idPrefix}5`,
+      comboBoxSelectionOptions: [],
     };
   }
 
@@ -104,6 +106,21 @@ export default class extends Component {
             compressed
           >
             <EuiFilePicker />
+          </EuiFormRow>
+
+          <EuiFormRow
+            label="Combo box"
+            compressed
+          >
+            <EuiComboBox
+              options={[
+                { label: 'Option one' },
+                { label: 'Option two' },
+                { label: 'Option three' },
+              ]}
+              selectedOptions={this.state.comboBoxSelectionOptions}
+              onChange={comboBoxSelectionOptions => this.setState({ comboBoxSelectionOptions })}
+            />
           </EuiFormRow>
 
           <EuiFormRow

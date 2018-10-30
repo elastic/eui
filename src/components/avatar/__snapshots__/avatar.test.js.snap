@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="background-image:none;background-color:#DB1374;color:#FFFFFF"
+  title="  "
+>
+  <span
+    aria-hidden="true"
+  >
+      
+  </span>
+</div>
+`;
+
 exports[`EuiAvatar is rendered 1`] = `
 <div
   aria-label="aria-label"

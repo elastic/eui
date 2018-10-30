@@ -10,6 +10,7 @@ import {
 
 const iconTypes = [
   'alert',
+  'apmTrace',
   'apps',
   'arrowDown',
   'arrowLeft',
@@ -87,6 +88,7 @@ const iconTypes = [
   'list',
   'listAdd',
   'lock',
+  'lockOpen',
   'logstashFilter',
   'logstashIf',
   'logstashInput',

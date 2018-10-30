@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     | 'advancedSettingsApp'
     | 'alert'
     | 'apmApp'
+    | 'apmTrace'
     | 'apps'
     | 'arrowDown'
     | 'arrowLeft'
@@ -105,6 +106,7 @@ declare module '@elastic/eui' {
     | 'list'
     | 'listAdd'
     | 'lock'
+    | 'lockOpen'
     | 'loggingApp'
     | 'logoAerospike'
     | 'logoApache'
@@ -220,6 +222,18 @@ declare module '@elastic/eui' {
     | 'visVisualBuilder'
     | 'watchesApp'
     | 'wrench'
+    | 'auditbeatApp'
+    | 'canvasApp'
+    | 'crossClusterReplicationApp'
+    | 'filebeatApp'
+    | 'gisApp'
+    | 'heartbeatApp'
+    | 'indexRollupApp'
+    | 'metricbeatApp'
+    | 'notebookApp'
+    | 'packetbeatApp'
+    | 'securityAnalyticsApp'
+    | 'sqlApp'
 
   export type IconSize = 'original' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
@@ -233,7 +247,8 @@ declare module '@elastic/eui' {
     | 'subdued'
     | 'success'
     | 'text'
-    | 'warning';
+    | 'warning'
+    | string;
 
   export interface EuiIconProps {
     type?: IconType;

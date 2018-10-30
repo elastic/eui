@@ -70,6 +70,7 @@ module.exports = {
   devServer: {
     contentBase: 'src-docs/build',
     host: '0.0.0.0',
+    allowedHosts: ['*'],
     port: 8030,
     disableHostCheck: true
   }

@@ -1,6 +1,6 @@
 /// <reference path="../../common.d.ts" />
 
-import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler } from 'react';
+import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -22,7 +22,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiCheckbox: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiCheckboxProps
+    CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiCheckboxProps
   >;
 
   /**

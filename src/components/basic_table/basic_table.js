@@ -98,7 +98,7 @@ export const ActionsColumnType = PropTypes.shape({
 
 export const FieldDataColumnTypeShape = {
   field: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
   description: PropTypes.string,
   dataType: PropTypes.oneOf(DATA_TYPES),
   width: PropTypes.string,
@@ -116,7 +116,7 @@ export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
 export const ComputedColumnType = PropTypes.shape({
   render: PropTypes.func.isRequired, // (record) => PropTypes.node
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string,
   truncateText: PropTypes.bool
@@ -554,7 +554,6 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.field}`}
-            header={column.name}
             align={column.align}
           >
             {footer}
@@ -566,7 +565,6 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            header={column.name}
             align={column.align}
           >
             {undefined}
@@ -820,8 +818,8 @@ export class EuiBasicTable extends Component {
       render,
       dataType,
       isExpander,
-      name,
       textOnly,
+      name,
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars

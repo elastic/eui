@@ -3,23 +3,53 @@
   vertical-align: middle;
   fill: currentColor;
 
+  svg {
+    transform: translate(0,0); // Hack to fix Firefox "softness"
+  }
+
   &:focus {
     opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
     background: $euiFocusBackgroundColor;
   }
 }
 
+// App icons are two-toned so get an extra class. This provides the base color.
+.euiIcon--app {
+  fill: $euiTextColor;
+
+  // This provides the default secondary color
+  .euiIcon__fillSecondary {
+    fill: $euiColorSecondary;
+  }
+
+  // Primary icons are mono of that color
+  &.euiIcon--primary {
+    fill: $euiColorPrimary;
+  
+    // Provides a way to make app icons close to our primary
+    .euiIcon__fillSecondary {
+      fill: $euiColorPrimary;
+    }
+  }
+}
+
 .euiIcon--text {
   fill: $euiTextColor;
+
+  // Text icons are fully mono
+  .euiIcon__fillSecondary {
+    fill: $euiTextColor;
+  }
+}
+
+.euiIcon--primary {
+  fill: $euiColorPrimary;
 }
 
 .euiIcon--subdued {
   fill: $euiColorMediumShade;
 }
 
-.euiIcon--primary {
-  fill: $euiColorPrimary;
-}
 
 .euiIcon--secondary {
   fill: $euiColorSecondary;
