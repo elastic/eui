@@ -16,6 +16,8 @@ interface Props {
   showIconProps: boolean;
   iconSize: SIZES;
   iconColor: COLORS;
+  // Helper prop for providing a unsplash image
+  randomImage: boolean;
 }
 
 export class Card extends React.Component<Props> {
@@ -26,6 +28,7 @@ export class Card extends React.Component<Props> {
     showIconProps: false,
     iconSize: 'xl',
     description: 'I am a witty description for a card',
+    randomImage: false,
   };
 
   // Items shown in property panel
@@ -52,9 +55,16 @@ export class Card extends React.Component<Props> {
       options: LAYOUT_ALIGNMENTS,
       title: 'layout',
     },
+    randomImage: {
+      type: ControlType.Boolean,
+      title: '🧙 random img?',
+    },
     image: {
       type: ControlType.Image,
       title: 'image',
+      hidden(props) {
+        return props.randomImage === true;
+      },
     },
     showIconProps: {
       type: ControlType.Boolean,
@@ -96,7 +106,7 @@ export class Card extends React.Component<Props> {
             <EuiIcon size={this.props.iconSize} color={this.props.iconColor} type={this.props.icon} />
             : null
           }
-          image={this.props.image || 'https://source.unsplash.com/400x200/?Nature'}
+          image={this.props.randomImage ? 'https://source.unsplash.com/400x200/?Nature' : this.props.image }
           title={this.props.title}
           description={this.props.description}
           betaBadgeLabel={this.props.betaBadgeLabel}
