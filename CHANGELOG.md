@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `apmTrace` icon to `EuiIcon` set ([#1263](https://github.com/elastic/eui/pull/1263))
+- Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
 
-No public interface changes since `4.6.1`.
+**Bug fixes**
+
+- `EuiComboBox` no longer throws a _Maximum update depth exceeded_ error when used in popovers/modals ([#1258](https://github.com/elastic/eui/pull/1258))
+- `Escape` key now closes `EuiComboBox` options list ([#1258](https://github.com/elastic/eui/pull/1258))
 
 ## [`4.6.1`](https://github.com/elastic/eui/tree/v4.6.1)
 
