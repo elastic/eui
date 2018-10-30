@@ -1,0 +1,195 @@
+.euiToken {
+  border-radius: 50%;
+  position: relative;
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.euiToken--square {
+  border-radius: 3px;
+}
+
+.euiToken--small {
+  width: 16px;
+  height: 16px;
+}
+
+.euiToken--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.euiToken--large {
+  width: 32px;
+  height: 32px;
+}
+
+.euiToken--type {
+  width: 21.3333px;
+  height: 16px;
+  border-radius: 1px;
+  svg {
+    margin-left: 2.6665px;
+  }
+}
+
+.euiToken--primary {
+  box-shadow: 0 0 0 1px $euiColorPrimary;
+  background-color: tint($euiColorPrimary, 70%);
+  svg {
+    fill: shade($euiColorPrimary, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorPrimary;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--purple {
+  box-shadow: 0 0 0 1px $euiColorVis3;
+  background-color: tint($euiColorVis3, 70%);
+  svg {
+    fill: shade($euiColorVis3, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis3;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--blue {
+  box-shadow: 0 0 0 1px $euiColorVis1;
+  background-color: tint($euiColorVis1, 70%);
+  svg {
+    fill: shade($euiColorVis1, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis1;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--orange {
+  box-shadow: 0 0 0 1px $euiColorVis7;
+  background-color: tint($euiColorVis7, 70%);
+  svg {
+    fill: shade($euiColorVis7, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis7;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--teal {
+  box-shadow: 0 0 0 1px $euiColorVis0;
+  background-color: tint($euiColorVis0, 70%);
+  svg {
+    fill: shade($euiColorVis0, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis0;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--dark-red {
+  box-shadow: 0 0 0 1px $euiColorVis9;
+  background-color: tint($euiColorVis9, 70%);
+  svg {
+    fill: shade($euiColorVis9, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis9;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--pink {
+  box-shadow: 0 0 0 1px #FF00FF;
+  background-color: tint(#FF00FF, 70%);
+  svg {
+    fill: shade(#FF00FF, 30%);
+  }
+  &.euiToken--type {
+    background-color: #FF00FF;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--green {
+  box-shadow: 0 0 0 1px #26AB00;
+  background-color: tint(#26AB00, 70%);
+  svg {
+    fill: shade(#26AB00, 30%);
+  }
+  &.euiToken--type {
+    background-color: #26AB00;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--yellow {
+  box-shadow: 0 0 0 1px $euiColorVis5;
+  background-color: tint($euiColorVis5, 70%);
+  svg {
+    fill: shade($euiColorVis5, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorVis5;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--red {
+  box-shadow: 0 0 0 1px $euiColorAccent;
+  background-color: tint($euiColorAccent, 70%);
+  svg {
+    fill: shade($euiColorAccent, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorAccent;
+    svg {
+      fill: white;
+    }   
+  }
+}
+
+.euiToken--gray {
+  box-shadow: 0 0 0 1px $euiColorMediumShade;
+  background-color: tint($euiColorMediumShade, 70%);
+  svg {
+    fill: shade($euiColorMediumShade, 30%);
+  }
+  &.euiToken--type {
+    background-color: $euiColorMediumShade;
+    svg {
+      fill: white;
+    }   
+  }
+}
+

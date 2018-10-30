@@ -24,6 +24,9 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
 
+import Tokens from './tokens';
+const tokensSource = require('!!raw-loader!./tokens');
+
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
 
@@ -95,6 +98,32 @@ export const IconExample = {
       </p>
     ),
     demo: <Apps />,
+  }, {
+    title: 'Tokens',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: tokensSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: iconsHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Tokens are used in search to help visually classify the results.
+          The tokens included in EUI can be used to identifya number of
+          code-based search results.
+        </p>
+        <p>
+          Tokens utilize the EUI color pallete and <EuiCode>tint</EuiCode>
+          and <EuiCode>shade</EuiCode> SCSS color functions to maintain
+          legibility and accessibility. Tokens are also available in three
+          different sizes: <EuiCode>small</EuiCode> (16x16),
+          <EuiCode>medium</EuiCode> (24x24), and <EuiCode>large</EuiCode> (32x32).
+        </p>
+      </div>
+    ),
+    demo: <Tokens />,
   }, {
     title: 'Machine learning icons',
     source: [{
