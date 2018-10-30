@@ -1,5 +1,7 @@
 import { MutationObserver, MutationNotifier } from '../polyfills/mutation_observer';
 
+Error.stackTraceLimit = Infinity;
+
 // polyfill window.MutationObserver and intersect jsdom's relevant methods
 // from https://github.com/aurelia/pal-nodejs
 // https://github.com/aurelia/pal-nodejs/blob/56396ff7c7693669dbafc8e9e49ee6bc29472f12/src/nodejs-pal-builder.ts#L63

@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "targets": {
         "browsers": [
           "last 2 versions",
@@ -8,13 +8,13 @@
           "Safari 7" // for PhantomJS support
         ]
       },
-      "useBuiltIns": true
+      "useBuiltIns": "usage"
     }],
-    "react"
+    "@babel/react"
   ],
   "plugins": [
-    "pegjs-inline-precompile",
-    "add-module-exports",
+     "pegjs-inline-precompile",
+     "add-module-exports",
     [
       "react-docgen",
       {
@@ -22,10 +22,9 @@
       }
     ],
     // stage 3
-    "transform-async-generator-functions",
-    "transform-object-rest-spread",
+    "@babel/proposal-object-rest-spread",
     // stage 2
-    "transform-class-properties",
+    "@babel/proposal-class-properties",
     [
       "inline-react-svg",
       {
@@ -33,7 +32,7 @@
         "svgo": {
           "plugins": [
             { "cleanupIDs": false },
-            { "removeViewBox": false },
+            { "removeViewBox": false }
           ]
         }
       }
