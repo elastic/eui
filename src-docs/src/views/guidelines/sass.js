@@ -118,6 +118,15 @@ const euiOverFlowShadows = [
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
 function renderPaletteColor(color, index) {
+  let optionalDefault;
+  if (color === 'euiTextColor') {
+    optionalDefault = (
+      <EuiFlexItem grow={false}>
+        <strong>default</strong>
+      </EuiFlexItem>
+    );
+  }
+
   return (
     <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={index}>
       <EuiFlexItem grow={false}>
@@ -126,6 +135,7 @@ function renderPaletteColor(color, index) {
       <EuiFlexItem grow={false}>
         <EuiCode>${color}</EuiCode>
       </EuiFlexItem>
+      {optionalDefault}
     </EuiFlexGroup>
   );
 }
@@ -424,8 +434,11 @@ export default() => (
         <EuiText>
           <p>
             Remember that EUI provides dark and light mode theming support. Sometimes the traditional
-            color function don&apos;t give enough flexibility for both modes. Utilize the following
-            functions to adjust per theme.
+            color functions don&apos;t give enough flexibility for both modes.
+          </p>
+          <p>
+            For example, depending upon what theme you use <EuiCode>$EuiColorPrimary</EuiCode> will be a different
+            hex value.
           </p>
         </EuiText>
         <EuiSpacer />
@@ -704,7 +717,7 @@ export default() => (
       </p>
       <p>
         Breakpoints in EUI are provided through the use of a sass
-        mixin <EuiCode>@include euiBreapoint()</EuiCode> that
+        mixin <EuiCode>@include euiBreakpoint()</EuiCode> that
         accepts an array of sizes.
       </p>
     </EuiText>
@@ -841,6 +854,7 @@ export default() => (
             <li>Utilize the responsive mixins for all screen width calculations</li>
             <li>Utilize the typography mixins and variables for all font family, weight and sizing</li>
             <li>Utilize the shadow mixins and z-index variables to manage depth</li>
+            <li>Utilize the border and border-radius variable to handle border usage</li>
             <li>Minimize your overwrites and try to make new Sass additive in nature</li>
           </ul>
         </EuiText>
