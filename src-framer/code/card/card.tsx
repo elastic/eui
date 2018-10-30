@@ -18,7 +18,7 @@ interface Props {
   iconColor: COLORS;
 }
 
-export class CallOut extends React.Component<Props> {
+export class Card extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {

@@ -16,11 +16,11 @@ interface Props {
   childText: string;
 }
 
-export class Facet extends React.Component<Props> {
+export class FacetButton extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    text: 'Facet button',
+    childText: 'Facet button',
     quantity: 19,
     height: 40, // To give a decent start with sizing
     showIconProps: false,
