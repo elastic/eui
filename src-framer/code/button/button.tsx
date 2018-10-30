@@ -32,7 +32,7 @@ export class Button extends React.Component<Props> {
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    text: {
+    childText: {
       type: ControlType.String,
       title: '🧙 childText',
     },
@@ -45,14 +45,14 @@ export class Button extends React.Component<Props> {
       options: SIZES,
       title: 'size',
     },
-    fullWidth: {
-      type: ControlType.Boolean,
-      title: 'fullWidth',
-    },
     color: {
       type: ControlType.Enum,
       options: COLORS,
       title: 'color',
+    },
+    fullWidth: {
+      type: ControlType.Boolean,
+      title: '🧙‍♀️ fullWidth',
     },
     showIconProps: {
       type: ControlType.Boolean,
@@ -89,7 +89,7 @@ export class Button extends React.Component<Props> {
           width={this.props.width}
           height={this.props.height}
         >
-          {this.props.text}
+          {this.props.childText}
         </EuiButton>
       </FrameSize>
     );
