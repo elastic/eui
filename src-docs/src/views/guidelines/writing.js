@@ -338,10 +338,6 @@ export default () => (
         <EuiFieldSearch defaultValue="Search"/>
       </GuideRuleExample>
 
-    <GuideRule
-      heading=""
-      description=""
-    >
       <GuideRuleExample
         type="do"
         text="Do. Use an ellipsis for truncated text or situations that require waiting."
