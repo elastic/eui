@@ -5,7 +5,7 @@ import { FrameSize } from '../_framer_helpers/frame_size';
 
 // Define type of property
 interface Props {
-  textChild: string;
+  childText: string;
   size: TITLE_SIZES;
   textTransform: TEXT_TRANSFORM;
 }
@@ -14,15 +14,15 @@ export class Title extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    textChild: 'Title text goes here',
+    childText: 'Title text goes here',
     size: 'l',
   };
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    textChild: {
+    childText: {
       type: ControlType.String,
-      title: '🧙 textChild',
+      title: '🧙 childText',
     },
     size: {
       type: ControlType.Enum,
@@ -46,7 +46,7 @@ export class Title extends React.Component<Props> {
           style={{ display: 'block', flexGrow: 1, width: '100%' }}
         >
           <p>
-            {this.props.textChild}
+            {this.props.childText}
           </p>
         </EuiTitle>
       </FrameSize>

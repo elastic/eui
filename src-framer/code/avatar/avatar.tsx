@@ -46,7 +46,7 @@ export class Avatar extends React.Component<Props> {
     type: {
       type: ControlType.SegmentedEnum,
       options: TYPES,
-      title: 'color',
+      title: 'type',
     },
     imageUrl: {
       type: ControlType.Image,

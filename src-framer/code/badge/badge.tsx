@@ -5,27 +5,33 @@ import * as React from 'react';
 
 // Define type of property
 interface Props {
-  text: string;
+  childText: string;
   iconType: ICON_TYPES;
   color: COLORS;
   iconSide: string;
   showIconProps: boolean;
+  height: number;
 }
 
 export class Badge extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    text: 'Hello World!',
+    childText: 'Badge text',
     color: 'primary',
     iconType: null,
     iconSide: 'left',
     showIconProps: false,
+    // Initial height for ease of use in framer
+    height: 20,
   };
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    text: { type: ControlType.String, title: 'text' },
+    childText: {
+      type: ControlType.String,
+      title: '🧙 childText',
+    },
     color: {
       type: ControlType.Enum,
       options: COLORS,
@@ -60,7 +66,7 @@ export class Badge extends React.Component<Props> {
       iconType={this.props.showIconProps ? this.props.iconType : null}
       iconSide={this.props.iconSide}
     >
-      {this.props.text}
+      {this.props.childText}
     </EuiBadge>
   );
   }

@@ -17,6 +17,7 @@ export class icon extends React.Component<Props> {
   public static defaultProps = {
     size: 'xl',
     type: 'logoElasticsearch',
+    // Initial size at 32 for ease of use
     width: 32,
     height: 32,
   };

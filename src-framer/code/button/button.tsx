@@ -6,11 +6,11 @@ import { FrameSize } from '../_framer_helpers/frame_size';
 
 // Define type of property
 interface Props {
-  text: string;
+  childText: string;
   iconType: ICON_TYPES;
   color: COLORS;
   iconSide: string;
-  size: string;
+  size: SIZES;
   showIconProps: boolean;
   fullWidth: boolean;
   fill: boolean;
@@ -22,7 +22,7 @@ export class Button extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    text: 'Hello World!',
+    childText: 'Button text',
     color: 'primary',
     iconType: null,
     iconSide: 'left',
@@ -34,7 +34,7 @@ export class Button extends React.Component<Props> {
   public static propertyControls: PropertyControls = {
     text: {
       type: ControlType.String,
-      title: 'text',
+      title: '🧙 childText',
     },
     fill: {
       type: ControlType.Boolean,

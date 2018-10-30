@@ -10,7 +10,7 @@ interface Props {
   overflowHeight: number;
   paddingSize: PADDING_SIZES;
   transparentBackground: boolean;
-  content: string;
+  childText: string;
 }
 
 export class CodeBlock extends React.Component<Props> {
@@ -46,9 +46,9 @@ export class CodeBlock extends React.Component<Props> {
       type: ControlType.Boolean,
       title: 'transparentBackground',
     },
-    content: {
+    childText: {
       type: ControlType.String,
-      title: 'content',
+      title: '🧙 childText',
     },
   };
 
@@ -61,7 +61,7 @@ export class CodeBlock extends React.Component<Props> {
         paddingSize={this.props.paddingSize}
         transparentBackground={this.props.transparentBackground}
       >
-        {this.props.content}
+        {this.props.childText}
       </EuiCodeBlock>
     );
   }

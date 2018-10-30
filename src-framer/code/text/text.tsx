@@ -7,7 +7,7 @@ import { FrameSize } from '../_framer_helpers/frame_size';
 
 // Define type of property
 interface Props {
-  textChild: string;
+  childText: string;
   size: TEXT_SIZES;
   color: COLORS;
   textAlign: ALIGNMENTS;
@@ -18,14 +18,14 @@ export class Button extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
-    textChild: 'Some text',
+    childText: 'Add your text in the overide',
   };
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
     textChild: {
       type: ControlType.String,
-      title: '🧙 textChild',
+      title: '🧙 childText',
     },
     textAlign: {
       type: ControlType.SegmentedEnum,
@@ -59,7 +59,7 @@ export class Button extends React.Component<Props> {
           // Display block so that the frame size dictates size in Framer
           style={{ display: 'block', flexGrow: 1, width: '100%' }}
         >
-          {this.props.textChild}
+          {this.props.childText}
         </EuiText>
       </FrameSize>
     );

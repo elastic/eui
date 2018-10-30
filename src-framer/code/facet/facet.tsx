@@ -13,7 +13,7 @@ interface Props {
   isLoading: boolean;
   isSelected: boolean;
   quantity: number;
-  text: string;
+  childText: string;
 }
 
 export class Facet extends React.Component<Props> {
@@ -28,9 +28,9 @@ export class Facet extends React.Component<Props> {
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    text: {
+    childText: {
       type: ControlType.String,
-      title: '🖍  text',
+      title: '🧙 childText',
     },
     quantity: {
       type: ControlType.Number,
@@ -91,7 +91,7 @@ export class Facet extends React.Component<Props> {
         isSelected={this.props.isSelected}
         quantity={this.props.quantity}
       >
-        {this.props.text}
+        {this.props.childText}
       </EuiFacetButton>
     );
   }

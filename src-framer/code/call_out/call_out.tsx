@@ -32,7 +32,7 @@ export class CallOut extends React.Component<Props> {
     },
     childText: {
       type: ControlType.String,
-      title: '🖍 child text',
+      title: '🧙 childText',
     },
     size: {
       type: ControlType.SegmentedEnum,
