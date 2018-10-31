@@ -11,7 +11,7 @@ interface Props {
   height: number;
 }
 
-export class icon extends React.Component<Props> {
+export class Icon extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
