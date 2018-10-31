@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { range } from 'lodash';
+import { range, find } from 'lodash';
 
 import { EuiFieldNumber } from '../field_number';
 
@@ -28,9 +28,11 @@ export class EuiRange extends Component {
       showInput,
       showTicks,
       tickInterval,
+      ticks, // eslint-disable-line no-unused-vars
       levels,
       showRange,
       showValue,
+      valueAppend, // eslint-disable-line no-unused-vars
       onChange,
       value,
       style,
@@ -159,7 +161,9 @@ export class EuiRange extends Component {
       disabled,
       onChange,
       showTicks,
-      value
+      ticks,
+      value,
+      max,
     } = this.props;
 
     if (!showTicks) {
@@ -168,29 +172,46 @@ export class EuiRange extends Component {
 
     // Align with item labels across the range by adding
     // left and right negative margins that is half of the tick marks
-    const ticksStyle = { margin: `0 ${tickObject.percentageWidth / -2}%` };
+    const ticksStyle = !!ticks ? undefined : { margin: `0 ${tickObject.percentageWidth / -2}%`, left: 0, right: 0 };
 
     return (
       <div className="euiRange__ticks" style={ticksStyle}>
-        {tickObject.sequence.map((tickValue, index) => {
+        {tickObject.sequence.map((tickValue) => {
+          const tickStyle = {};
+          let customTick;
+          if (ticks) {
+            customTick = find(ticks, function (o) { return o.value === tickValue; });
+
+            if (customTick == null) {
+              return;
+            } else {
+              tickStyle.left = `${(customTick.value / max) * 100}%`;
+            }
+          } else {
+            tickStyle.width = `${tickObject.percentageWidth}%`;
+          }
+
           const tickClasses = classNames(
             'euiRange__tick',
-            { 'euiRange__tick--selected': value === tickValue, }
+            {
+              'euiRange__tick--selected': value === tickValue,
+              'euiRange__tick-isCustom': customTick,
+            }
           );
 
           return (
             <button
               type="button"
               className={tickClasses}
-              key={index}
-              disabled={disabled}
+              key={tickValue}
               value={tickValue}
+              disabled={disabled}
               onClick={onChange}
-              style={{ width: `${tickObject.percentageWidth}%` }}
+              style={tickStyle}
               // Don't allow tabbing and just let the range to do the work for non-sighted users
               tabIndex="-1"
             >
-              {tickValue}
+              {customTick ? customTick.label : tickValue}
             </button>
           );
         })}
@@ -225,6 +246,7 @@ export class EuiRange extends Component {
     const {
       showValue,
       value,
+      valueAppend,
       max,
       min,
       name,
@@ -258,7 +280,7 @@ export class EuiRange extends Component {
     return (
       <div className="euiRange__valueWrapper">
         <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
-          {value}
+          {value}{valueAppend}
         </output>
       </div>
     );
@@ -334,6 +356,15 @@ EuiRange.propTypes = {
    * Modifies the number of tick marks and at what interval
    */
   tickInterval: PropTypes.number,
+  /**
+   * Specified ticks at specified values
+   */
+  ticks: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number.isRequired,
+      label: PropTypes.node.isRequired,
+    }),
+  ),
   onChange: PropTypes.func,
   /**
    * Create colored indicators for certain intervals
@@ -353,6 +384,10 @@ EuiRange.propTypes = {
    * Shows a tooltip styled value
    */
   showValue: PropTypes.bool,
+  /**
+   * Shows a tooltip styled value
+   */
+  valueAppend: PropTypes.node,
 };
 
 EuiRange.defaultProps = {
