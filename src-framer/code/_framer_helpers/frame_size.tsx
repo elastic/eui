@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 
 // Define type of property
 interface Props {
-  frame: boolean;
+  frame?: boolean;
 }
 
 export class FrameSize extends React.Component<Props> {
