@@ -87,11 +87,30 @@
 @function makeHighContrastColor($foreground, $background) {
   $contrast: contrastRatio($foreground, $background);
 
+  // Determine the lightness factor of the background color first to
+  // determine whether to shade or tint the foreground.
+  $brightness: lightness($background);
+
   $highContrastTextColor: $foreground;
 
   @while ($contrast < 4.5) {
-    $highContrastTextColor: shadeOrTint($highContrastTextColor, 5%, 5%);
+    @if ($brightness > 50) {
+      $highContrastTextColor: shade($highContrastTextColor, 5%);
+    } @else {
+      $highContrastTextColor: tint($highContrastTextColor, 5%);
+    }
+
     $contrast: contrastRatio($highContrastTextColor, $background);
+
+    @if (lightness($highContrastTextColor) < 5) {
+      @warn 'High enough contrast could not be determined. Most likely your background color does not adjust for light mode.';
+      @return $highContrastTextColor;
+    }
+
+    @if (lightness($highContrastTextColor) > 95) {
+      @warn 'High enough contrast could not be determined. Most likely your background color does not adjust for dark mode.';
+      @return $highContrastTextColor;
+    }
   }
 
   @return $highContrastTextColor;
