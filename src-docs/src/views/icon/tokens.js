@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiPanel,
   EuiText,
-  EuiToken
+  EuiToken,
+  EuiSpacer,
 } from '../../../../src/components';
 
 const tokens = [
@@ -40,24 +41,68 @@ const tokens = [
 ];
 
 export default () => (
-  <EuiFlexGrid columns={4}>
-    {
-      tokens.map(token => (
-        <EuiFlexItem
-          className="guideDemo__icon"
-          key={token}
-          style={{ width: '200px' }}
-        >
-          <EuiPanel>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
-              <EuiToken iconType={token}/>
-            </div>
-            <EuiText size="s">
-              <p>{token}</p>
-            </EuiText>
-          </EuiPanel>
-        </EuiFlexItem>
-      ))
-    }
-  </EuiFlexGrid>
+  <Fragment>
+    <EuiFlexGrid columns={4}>
+      {
+        tokens.map(token => (
+          <EuiFlexItem
+            className="guideDemo__icon"
+            key={token}
+          >
+            <EuiPanel>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+                <EuiToken iconType={token}/>
+              </div>
+              <EuiText size="s">
+                <p>{token}</p>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlexItem>
+        ))
+      }
+    </EuiFlexGrid>
+
+    <EuiSpacer />
+
+    <EuiFlexGrid columns={4}>
+      <EuiFlexItem
+        className="guideDemo__icon"
+      >
+        <EuiPanel>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <EuiToken
+              iconType="tokenEvent"
+              size="m"
+              displayOptions={{
+                color: 'tokenTint10',
+                shape: 'square',
+                isOpaque: true,
+              }}
+            />
+          </div>
+          <EuiText size="s">
+            <p>A custom token</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem
+        className="guideDemo__icon"
+      >
+        <EuiPanel>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <EuiToken
+              iconType="visMapCoordinate"
+              displayOptions={{
+                color: 'tokenTint05',
+                shape: 'circle',
+              }}
+            />
+          </div>
+          <EuiText size="s">
+            <p>A custom token</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+    </EuiFlexGrid>
+  </Fragment>
 );
