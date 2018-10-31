@@ -3,6 +3,7 @@
 .euiComboBoxPill {
   margin: $euiSizeXS !important;
   line-height: $euiSizeL - 2px;
+  vertical-align: baseline;
 
   &--plainText {
     line-height: $euiSizeL;
