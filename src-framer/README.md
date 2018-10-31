@@ -1,6 +1,6 @@
 ## Using EUI components in Framer X
 
-Install the [Elastic UI framework])https://store.framer.com/package/snide/elastic-ui-temp) package from the Framer store.
+Install the [Elastic UI framework](https://store.framer.com/package/snide/elastic-ui-temp) package from the Framer store.
 
 Once installed, simply drag over the `_framer_helpers/theme` component onto your artboard to load the appropriate CSS. You'll need to do this before loading any other components on the page.
 
