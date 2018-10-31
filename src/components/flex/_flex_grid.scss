@@ -51,3 +51,9 @@ $fractions: (
     }
   }
 }
+@include euiBreakpoint('xs','s') {
+  .euiFlexGrid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

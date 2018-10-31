@@ -190,17 +190,13 @@
 
   pre {
     white-space: pre-wrap;
+    background: $euiCodeBlockBackgroundColor;
+    color: $euiCodeBlockColor;
   }
 
   pre,
   pre code {
     display: block;
-  }
-
-  pre,
-  code {
-    background: $euiCodeBlockBackgroundColor;
-    color: $euiCodeBlockColor;
   }
 
   // unset font-size from euiCodeBlock so it doesn't doubly add 90%
