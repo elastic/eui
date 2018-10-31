@@ -529,6 +529,22 @@ export default() => (
         </div>
 
         <EuiSpacer />
+
+        <EuiTitle size="s">
+          <h4>More on color contrast</h4>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        <EuiText>
+          <p>
+            Consult the larger <Link to="/guidelines/colors">color guidelines</Link> page
+            for a better explanation about passing color contrast.
+          </p>
+        </EuiText>
+
+
+        <EuiSpacer />
       </EuiFlexItem>
     </EuiFlexGrid>
 
