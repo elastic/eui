@@ -449,32 +449,36 @@ export default () => (
       heading="Include critical information first"
       description="Tell the user the most important information first, and less critical information second."
     >
-     <GuideRuleExample
-       type="do"
-       text="Do. Prioritize the contents of the message.">
-       <GuideRuleWriting>You need to increase your subscription limit. Please contact support.</GuideRuleWriting>
-     </GuideRuleExample>
-
-     <GuideRuleExample
-       type="dont"
-       text="Don't. Hide important information at the end.">
-       <GuideRuleWriting>Contact support because you need to increase your subscription limit.</GuideRuleWriting>
-     </GuideRuleExample>
-     </GuideRule>
-
-     <GuideRule
-       heading=""
-       description=""
-     >
-     <GuideRuleExample
-       type="do"
-       text="Do. State what went wrong, followed by a clear course of action.">
-       <GuideRuleWriting>No data sources. Go to Management to define an index pattern.</GuideRuleWriting>
+      <GuideRuleExample
+        type="do"
+        text="Do. Prioritize the contents of the message."
+      >
+        <GuideRuleWriting>You need to increase your subscription limit. Please contact support.</GuideRuleWriting>
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
-        text="Don't. Leave the user guessing about next steps.">
+        text="Don't. Hide important information at the end."
+      >
+        <GuideRuleWriting>Contact support because you need to increase your subscription limit.</GuideRuleWriting>
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading=""
+      description=""
+    >
+      <GuideRuleExample
+        type="do"
+        text="Do. State what went wrong, followed by a clear course of action."
+      >
+        <GuideRuleWriting>No data sources. Go to Management to define an index pattern.</GuideRuleWriting>
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="dont"
+        text="Don't. Leave the user guessing about next steps."
+      >
         <GuideRuleWriting>Oops, no data sources.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
