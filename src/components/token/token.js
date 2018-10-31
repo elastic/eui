@@ -31,10 +31,9 @@ export const EuiToken = ({
   // Check if display options is empty
   const displayOptionsIsEmpty = Object.keys(displayOptions).length === 0 && displayOptions.constructor === Object;
 
-  // Set some defaults for our displayOptions in case they only use some of them
-  let tokenShape = 'square';
-  let tokenColor = 'tokenTint01';
-  let tokenIsOpaque = false;
+  let tokenShape;
+  let tokenColor;
+  let tokenIsOpaque;
 
   // Check if this has a mapping, and doesn't have custom displayOptions
   if ((iconType in TOKEN_MAP) && (displayOptionsIsEmpty)) {
@@ -42,8 +41,9 @@ export const EuiToken = ({
     tokenColor = TOKEN_MAP[iconType].color;
     tokenIsOpaque = (TOKEN_MAP[iconType].isOpaque ? true : false);
   } else {
-    tokenShape = displayOptions.shape;
-    tokenColor = displayOptions.color;
+    // Use the displayOptions passed or use some defaults
+    tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
+    tokenColor = displayOptions.color ? displayOptions.color : 'tokenTint01';
     tokenIsOpaque = displayOptions.isOpaque ? true : false;
   }
 
