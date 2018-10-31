@@ -103,6 +103,26 @@ export default () => (
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
+      <EuiFlexItem
+        className="guideDemo__icon"
+      >
+        <EuiPanel>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <EuiToken
+              iconType="tokenElement"
+              size="l"
+              displayOptions={{
+                color: 'tokenTint07',
+                shape: 'rectangle',
+                hideBorder: true
+              }}
+            />
+          </div>
+          <EuiText size="s">
+            <p>A custom token</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
     </EuiFlexGrid>
   </Fragment>
 );

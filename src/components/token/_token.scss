@@ -23,7 +23,7 @@
   width: $euiSize;
   height: $euiSize;
   &.euiToken--rectangle {
-    padding: 0 $euiSizeXS
+    padding: 0 $euiSizeXS;
   }
 }
 
@@ -31,7 +31,7 @@
   width: $euiSizeL;
   height: $euiSizeL;
   &.euiToken--rectangle {
-    padding: 0 $euiSizeS
+    padding: 0 $euiSizeS;
   }
 }
 
@@ -40,7 +40,7 @@
   height: $euiSizeXL;
 
   &.euiToken--rectangle {
-    padding: 0 $euiSize
+    padding: 0 ($euiSize * .5);
   }
 }
 
@@ -66,7 +66,9 @@ $tokenTypes: (
 @each $tintName, $tintValue in $tokenTypes {
   .euiToken--#{$tintName} {
     box-shadow: 0 0 0 1px $tintValue;
-    background-color: tint($tintValue, 70%);
+
+    $backgroundColor: tintOrShade($tintValue, 70%, 70%);
+    background-color: $backgroundColor;
 
     &.euiToken--no-border {
       box-shadow: none;
@@ -80,7 +82,7 @@ $tokenTypes: (
     }
     
     svg {
-      fill: shade($tintValue, 30%);
+      fill: makeHighContrastColor($tintValue, $backgroundColor);
     }
   }
 }

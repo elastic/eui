@@ -34,17 +34,20 @@ export const EuiToken = ({
   let tokenShape;
   let tokenColor;
   let tokenIsOpaque;
+  let tokenHidesBorder;
 
   // Check if this has a mapping, and doesn't have custom displayOptions
   if ((iconType in TOKEN_MAP) && (displayOptionsIsEmpty)) {
     tokenShape = TOKEN_MAP[iconType].shape;
     tokenColor = TOKEN_MAP[iconType].color;
     tokenIsOpaque = (TOKEN_MAP[iconType].isOpaque ? true : false);
+    tokenHidesBorder = (TOKEN_MAP[iconType].hideBorder ? true : false);
   } else {
     // Use the displayOptions passed or use some defaults
     tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
     tokenColor = displayOptions.color ? displayOptions.color : 'tokenTint01';
     tokenIsOpaque = displayOptions.isOpaque ? true : false;
+    tokenHidesBorder = displayOptions.hideBorder ? true : false;
   }
 
   const classes = classNames(
@@ -54,6 +57,9 @@ export const EuiToken = ({
     sizeToClassMap[size],
     {
       'euiToken--opaque': tokenIsOpaque
+    },
+    {
+      'euiToken--no-border': tokenHidesBorder
     },
     className
   );
@@ -82,11 +88,13 @@ EuiToken.propTypes = {
    * `color`: can be `tokenTint01` thru `tokenTint10`
    * - `shape`: square, circle, rectangle as options
    * - `isOpaque`: makes it a solid color
+   * - `hideBorder`: disables the outer border
    */
   displayOptions: PropTypes.shape({
     color: PropTypes.string,
     shape: PropTypes.string,
     isOpaque: PropTypes.boolean,
+    hideBorder: PropTypes.boolean,
   }),
 };
 
