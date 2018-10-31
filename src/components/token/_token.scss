@@ -16,7 +16,7 @@
 .euiToken--square {
   // These are pretty small elements, the standard size
   // is just slightly too large.
-  border-radius: 3px;
+  border-radius: $euiBorderRadius - 1px;
 }
 
 .euiToken--small {
@@ -38,6 +38,7 @@
 .euiToken--large {
   width: $euiSizeXL;
   height: $euiSizeXL;
+
   &.euiToken--rectangle {
     padding: 0 $euiSize
   }
@@ -71,10 +72,10 @@ $tokenTypes: (
       box-shadow: none;
     }
     
-    &.euiToken--solid-color {
+    &.euiToken--opaque {
       background-color: $tintValue;
       svg {
-        fill: white;
+        fill: $euiColorGhost;
       }
     }
     

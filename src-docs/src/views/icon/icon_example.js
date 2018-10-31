@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiIcon,
+  EuiToken,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -126,6 +127,7 @@ export const IconExample = {
         </p>
       </div>
     ),
+    props: { EuiToken },
     demo: <Tokens />,
   }, {
     title: 'Machine learning icons',
