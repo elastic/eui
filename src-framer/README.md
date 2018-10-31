@@ -14,7 +14,7 @@ Make sure the latest EUI is cloned somewhere on your machine.
 
 1. Create a new brand new Framer project.
 2. Open your terminal to the unpacked Framer folder within `~Library/Autosave Information/Framer-${HASH}/container/`
-3. `yarn add @elastic/eui raw-loader`. These files are required to work on the files.
+3. In the same `container` directory run `yarn add @elastic/eui raw-loader`. These files are required to work on the files.
 4. In the same `container` directory remove the empty `code` directory using `rm -rf code`. We'll be replacing it with the development files contained in this repo.
 5. Rsync the source files with `rsync -r ~/path-to-eui-repo/framer-src/code ./`. This will place the `eui/src-framer/code` directory inside of your `framer/container/` directory.
 6. Reload Framer. Your framer project will now point to the files contained in EUI.
