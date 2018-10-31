@@ -665,7 +665,7 @@ export default() => (
       <EuiFlexItem>
 
         <EuiTitle size="s">
-          <h4>Shadows to hide overflowing content</h4>
+          <h4>Shadows to create graceful overflows</h4>
         </EuiTitle>
 
         <EuiText>
@@ -678,6 +678,24 @@ export default() => (
         <EuiSpacer />
 
         <div className="guideSass__overflowShadows">
+          <EuiText className="guideSass__overflowShadowText" size="s">
+            <p>
+              Minima reprehenderit aperiam at in ea. Veniam nihil quod tempore.
+              Dolores sit quo expedita voluptate libero.
+              Consequuntur atque nulla atque nemo tenetur numquam.
+              Assumenda aspernatur qui aut sit. Aliquam doloribus iure sint id.
+              Possimus dolor qui soluta cum id tempore ea illum.
+              Facilis voluptatem aut aut ut similique ut.
+              Sed repellendus commodi iure officiis exercitationem praesentium
+              dolor. Ratione non ut nulla accusamus et. Optio laboriosam id
+              incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
+              voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
+              tempore sit placeat maxime laudantium.
+              Mollitia tempore minus qui autem modi adipisci ad. Iste reprehenderit
+              accusamus voluptatem velit. Quidem delectus eos veritatis et vitae
+              et nisi. Doloribus ut corrupti voluptates qui exercitationem dolores.
+            </p>
+          </EuiText>
           {euiOverFlowShadows.map(function (shadow, index) {
             return renderShadow(shadow, index);
           })}
@@ -830,7 +848,7 @@ export default() => (
         <EuiText>
           <h3>Component based naming</h3>
           <p>
-            EUI is written in a BEMish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
+            EUI is written in a <EuiLink href="http://getbem.com/introduction/">BEM</EuiLink>ish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
             Below is an example of proper formatting.
           </p>
         </EuiText>

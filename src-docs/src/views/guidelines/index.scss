@@ -158,11 +158,28 @@
 
 .guideSass__overflowShadows {
   margin-top: $euiSize;
-  background-image: repeating-linear-gradient(45deg, $euiColorLightShade, $euiColorLightShade $euiSizeS, $euiColorMediumShade $euiSizeS, $euiColorMediumShade $euiSize);
   border: $euiBorderThin;
+  position: relative;
+  height: 200px;
+
+  .guideSass__overflowShadowText {
+    height: 100px;
+    padding: $euiSize;
+    overflow-y: auto;
+    position: absolute;
+    top: 50px;
+  }
+
+  .guideSass__shadow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
 
   .guideSass__shadow + .guideSass__shadow {
-    margin-top: 100px;
+    bottom: 0;
+    top: auto;
   }
 }
 
