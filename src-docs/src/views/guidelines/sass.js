@@ -307,11 +307,13 @@ const importOutsideExample = (`// In an outside project, import the core variabl
 @import '@elastic/eui/src/global_styling/mixins/index';
 `);
 
-const tintOrShadeExample = (`// tintOrShade() will tint in light mode and shade in dark mode 
+const tintOrShadeExample = (`// tintOrShade(color, tint_percent, shade_percent)
+// will tint the color by % in light themes 
+// and shade the color by % in dark themes 
 .themedBox {
-  background-color: tintOrShade($euiColorSecondary, 90%, 70%);
+  background-color: tintOrShade($euiColorPrimary, 90%, 70%);
   border-left: $euiBorderThick;
-  border-color: $euiColorSecondary;
+  border-color: $euiColorPrimary;
   padding: $euiSize;
   color: $euiTextColor;
 }
