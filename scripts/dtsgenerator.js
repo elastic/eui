@@ -8,7 +8,7 @@ const srcDir = path.resolve(baseDir, 'src');
 dtsGenerator({
   name: '@elastic/eui',
   project: baseDir,
-  out: 'test.d.ts',
+  out: 'eui.d.ts',
   resolveModuleId(params) {
     if (path.basename(params.currentModuleId) === 'index') {
       // this module is exporting from an `index(.d)?.ts` file, declare its exports straight to @elastic/eui module
