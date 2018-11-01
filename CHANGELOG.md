@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Framer X**
+
 - Added Framer component for `EuiDescirptionList` ([#1276](https://github.com/elastic/eui/pull/1276))
 
 ## [`4.7.0`](https://github.com/elastic/eui/tree/v4.7.0)

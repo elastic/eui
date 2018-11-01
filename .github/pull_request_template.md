@@ -13,3 +13,4 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] This was checked for breaking changes and labeled appropriately
 - [ ] Jest tests were updated or added to match the most common scenarios
 - [ ] This was checked against keyboard-only and screenreader scenarios
+- [ ] This required updates to Framer X components
