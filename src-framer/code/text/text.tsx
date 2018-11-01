@@ -23,7 +23,7 @@ export class Text extends React.Component<Props> {
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    textChild: {
+    childText: {
       type: ControlType.String,
       title: '🧙 childText',
     },
