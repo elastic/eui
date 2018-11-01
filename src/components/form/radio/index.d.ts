@@ -1,4 +1,4 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps, Omit } from '../../common';
 
 import { SFC, ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
 

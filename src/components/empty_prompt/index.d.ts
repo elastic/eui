@@ -1,4 +1,4 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps, Omit } from '../common';
 /// <reference path="../icon/index.d.ts" />
 /// <reference path="../title/index.d.ts" />
 

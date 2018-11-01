@@ -1,4 +1,4 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps } from '../../common';
 
 import { SFC, ReactNode, LabelHTMLAttributes } from 'react';
 

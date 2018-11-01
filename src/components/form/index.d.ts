@@ -1,4 +1,4 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
 /// <reference path="./checkbox/index.d.ts" />
 /// <reference path="./field_number/index.d.ts" />
 /// <reference path="./field_password/index.d.ts" />

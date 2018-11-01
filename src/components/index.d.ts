@@ -1,4 +1,3 @@
-/// <reference path="./common.d.ts" />
 /// <reference path="./accordion/index.d.ts" />
 /// <reference path="./avatar/index.d.ts" />
 /// <reference path="./button/index.d.ts" />
@@ -32,3 +31,8 @@
 /// <reference path="./tool_tip/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./key_pad_menu/index.d.ts" />
+
+declare module '@elastic/eui' {
+  // @ts-ignore
+  export * from '@elastic/eui/components/common';
+}

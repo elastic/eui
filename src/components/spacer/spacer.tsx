@@ -28,7 +28,7 @@ export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
   const classes = classNames(
     'euiSpacer',
     size ? sizeToClassNameMap[size] : undefined,
-    className,
+    className
   );
 
   return (

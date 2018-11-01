@@ -26,22 +26,16 @@ dtsGenerator({
       // path to the import target, assuming it's a `.d.ts` file
       const importTargetDTs = `${path.resolve(srcDir, path.dirname(params.currentModuleId), params.importedModuleId)}.d.ts`;
 
-      // if the file doing the import is an `index` file
-      const isModuleIndex = path.basename(params.currentModuleId) === 'index';
-
-      if (!fs.existsSync(importTargetDTs)) {
+      if (fs.existsSync(importTargetDTs)) {
         // the import target is a `.d.ts` file which means it is hand-crafted and already added to the right places, don't modify
         return path.join('@elastic/eui', params.importedModuleId);
-      } else if (isModuleIndex) {
+      } else {
         // the import is originating in an `index` file, point at the module relative to the @elastic/eui namespace
         return path.join(
           '@elastic/eui',
           path.dirname(params.currentModuleId),
           params.importedModuleId
         );
-      } else {
-        // the target is hand-crafted typescript source, assume it's been exported to top-level
-        return '@elastic/eui';
       }
     } else {
       return params.importedModuleId;

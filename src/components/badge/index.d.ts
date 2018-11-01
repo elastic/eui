@@ -1,9 +1,9 @@
 /// <reference path="../icon/index.d.ts" />
 
 import { HTMLAttributes, MouseEventHandler, SFC } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
-
   type IconSide = 'left';
 
   export interface EuiBadgeProps {
@@ -14,7 +14,7 @@ declare module '@elastic/eui' {
     onClick?: MouseEventHandler<HTMLButtonElement>;
     onClickAriaLabel?: string;
     color?: string;
-    closeButtonProps?: Object;
+    closeButtonProps?: object;
   }
 
   export const EuiBadge: SFC<

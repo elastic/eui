@@ -6,7 +6,8 @@
     "rootDir": "./src",
 
     // don't emit any files when type checking; this is overridden by the build script
-    "noEmit": true,
+    // "noEmit": true,
+    "outDir": "types",
 
     // generate declaration files
     "declaration": true,
