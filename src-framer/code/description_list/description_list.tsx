@@ -32,9 +32,9 @@ export class DescriptionList extends React.Component<Props> {
     compressed: false,
     textStyle: 'normal',
     type: 'row',
+    // Framer only props for ease of use below
     titleText: 'Title',
     descText: 'Description',
-    // Decent default for Framer to start with
     height: 40,
   };
 
