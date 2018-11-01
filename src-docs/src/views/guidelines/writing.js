@@ -301,7 +301,8 @@ export default () => (
       heading="Don't use unneccessary punctuation"
       description="Although punctuation can help clarify meaning, it can also
       clutter the UI. Don&apos;t add a colon after a label, an ellipsis (...)
-      at the end of an action, or an (s) at the end of a noun."
+      at the end of an action, an (s) at the end of a noun, or add parenthesis
+      (())."
     >
 
       <GuideRuleExample
@@ -318,11 +319,11 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don&apos;t. Use (s)."
+        text="Don&apos;t. Use (s), a colon after labels, or parenthetical statements."
       >
         <EuiFormRow
           label="Airport(s):"
-          helpText="Separate multiple names with a comma."
+          helpText="Separate multiple names with a comma (other characters are unsupported)."
         >
           <EuiFieldText />
         </EuiFormRow>
@@ -445,13 +446,39 @@ export default () => (
     </GuideRule>
 
     <GuideRule
-      heading="Provide a clear course of action"
-      description="Tell the user what to do next, if applicable."
+      heading="Include critical information first"
+      description="Tell the user the most important information first, and less critical information second."
     >
-      <GuideRuleExample type="do" text="Do. Explain how to resolve the situation.">
+      <GuideRuleExample
+        type="do"
+        text="Do. Prioritize the contents of the message."
+      >
+        <GuideRuleWriting>You need to increase your subscription limit. Please contact support.</GuideRuleWriting>
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="dont"
+        text="Don't. Hide important information at the end."
+      >
+        <GuideRuleWriting>Contact support because you need to increase your subscription limit.</GuideRuleWriting>
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading=""
+      description=""
+    >
+      <GuideRuleExample
+        type="do"
+        text="Do. State what went wrong, followed by a clear course of action."
+      >
         <GuideRuleWriting>No data sources. Go to Management to define an index pattern.</GuideRuleWriting>
       </GuideRuleExample>
-      <GuideRuleExample type="dont" text="Don't. Leave the user guessing about next steps.">
+
+      <GuideRuleExample
+        type="dont"
+        text="Don't. Leave the user guessing about next steps."
+      >
         <GuideRuleWriting>Oops, no data sources.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
@@ -521,8 +548,6 @@ export default () => (
         <GuideRuleWriting>Please wait.</GuideRuleWriting>
       </GuideRuleExample>
     </GuideRule>
-
-    <GuideRuleTitle>Informational text</GuideRuleTitle>
 
     <GuideRule
       heading="Use 1 to 2 simple, short sentences"
