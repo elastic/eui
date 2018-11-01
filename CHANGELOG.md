@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+- Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 **Framer X**
 
