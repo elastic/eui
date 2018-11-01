@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.5.1`.
+No public interface changes since `4.5.1-logos`.
+
+## [`4.5.1-logos`](https://github.com/elastic/eui/tree/v4.5.1-logos)
+
+- Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 

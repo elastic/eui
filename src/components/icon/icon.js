@@ -107,11 +107,14 @@ import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
+import logoAPM from './assets/logo_apm.svg';
 import logoAWS from './assets/logo_aws.svg';
 import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
+import logoAppSearch from './assets/logo_app_search.svg';
 import logoBeats from './assets/logo_beats.svg';
+import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
@@ -121,6 +124,7 @@ import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
+import logoEnterpriseSearch from './assets/logo_enterprise_search.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGCP from './assets/logo_gcp.svg';
 import logoGCPMono from './assets/logo_gcp_mono.svg';
@@ -133,6 +137,7 @@ import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
 import logoMemcached from './assets/logo_memcached.svg';
+import logoMetrics from './assets/logo_metrics.svg';
 import logoMongodb from './assets/logo_mongodb.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
@@ -142,6 +147,7 @@ import logoPostgres from './assets/logo_postgres.svg';
 import logoPrometheus from './assets/logo_prometheus.svg';
 import logoRabbitmq from './assets/logo_rabbitmq.svg';
 import logoRedis from './assets/logo_redis.svg';
+import logoSiteSearch from './assets/logo_site_search.svg';
 import logoSketch from './assets/logo_sketch.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
@@ -329,11 +335,14 @@ const typeToIconMap = {
   lock,
   lockOpen,
   loggingApp,
-  logoAerospike,
-  logoApache,
+  logoAPM,
   logoAWS,
   logoAWSMono,
+  logoAerospike,
+  logoApache,
+  logoAppSearch,
   logoBeats,
+  logoBusinessAnalytics,
   logoCeph,
   logoCloud,
   logoCloudEnterprise,
@@ -341,8 +350,9 @@ const typeToIconMap = {
   logoDocker,
   logoDropwizard,
   logoElastic,
-  logoElasticsearch,
   logoElasticStack,
+  logoElasticsearch,
+  logoEnterpriseSearch,
   logoEtcd,
   logoGCP,
   logoGCPMono,
@@ -355,6 +365,7 @@ const typeToIconMap = {
   logoKubernetes,
   logoLogstash,
   logoMemcached,
+  logoMetrics,
   logoMongodb,
   logoMySQL,
   logoNginx,
@@ -364,6 +375,7 @@ const typeToIconMap = {
   logoPrometheus,
   logoRabbitmq,
   logoRedis,
+  logoSiteSearch,
   logoSketch,
   logoSlack,
   logoWebhook,
