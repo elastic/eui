@@ -14,7 +14,7 @@ interface Props {
   grow: boolean;
 }
 
-export class Button extends React.Component<Props> {
+export class Text extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
