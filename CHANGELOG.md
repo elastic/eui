@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+
 **Framer X**
 
 - Added Framer component for `EuiDescirptionList` ([#1276](https://github.com/elastic/eui/pull/1276))
