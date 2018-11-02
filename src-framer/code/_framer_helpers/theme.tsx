@@ -16,7 +16,7 @@ export class Theme extends React.Component<Props> {
   // Set default properties
   public static defaultProps = {
     theme: 'light',
-    bgColor: 'white',
+    bgColor: 'emptyShade',
   };
 
   // Items shown in property panel
@@ -27,21 +27,17 @@ export class Theme extends React.Component<Props> {
       title: 'Theme',
     },
     bgColor: {
-      type: ControlType.SegmentedEnum,
-      options: ['white', 'offWhite'],
-      title: '↳ 🧙‍♂️ bgColor',
-      hidden(props) {
-      return props.theme === 'dark';
-      },
+      type: ControlType.Enum,
+      options: ['emptyShade', 'lightestShade'],
+      title: '🧙‍♂️ bgColor',
     },
   };
 
   public render() {
 
-    const whiteBgColor = '#FFF';
-    const offWhiteBgColor = '#F5F5F5';
-    const darkBgColor = '#222';
-    const bgColor = (this.props.theme === 'light' && this.props.bgColor === 'white') ? whiteBgColor : (this.props.theme === 'light' && this.props.bgColor === 'offWhite') ? offWhiteBgColor : darkBgColor);
+    const lightBgColor = this.props.bgColor === 'emptyShade' ? '#FFF' : '#F5F5F5';
+    const darkBgColor = this.props.bgColor === 'emptyShade' ? '#222' : '#242424';
+    const bgColor = (this.props.theme === 'light' ? lightBgColor : darkBgColor);
     return (
       <FrameSize>
         <div style={{ background: bgColor, flexGrow: 1, display: 'flex' }}>
