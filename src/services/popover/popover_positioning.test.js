@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { mount } from 'enzyme';
 import {
   findPopoverPosition,
   getAvailableSpace,
@@ -35,23 +33,6 @@ describe('popover_positioning', () => {
       const boundingBox = getElementBoundingBox(div);
       expect(boundingBox).not.toBe(clientRect);
       expect(boundingBox).toEqual(clientRect);
-    });
-
-    it('works for React HTML and Component refs', () => {
-      class App extends Component {
-        render() {
-          const { nested } = this.props;
-          return (
-            <div>
-              <span ref="spanRef"/>
-              {nested ? <App nested={false} ref="appRef"/> : null}
-            </div>
-          );
-        }
-      }
-      const component = mount(<App nested={true}/>);
-      expect(getElementBoundingBox(component.ref('spanRef'))).toEqual(clientRect);
-      expect(getElementBoundingBox(component.ref('appRef'))).toEqual(clientRect);
     });
   });
 
