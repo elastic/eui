@@ -39,7 +39,7 @@ EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://b
 
 ## Using EUI in Kibana
 
-The EUI CSS is included in [Kibana's](https://www..github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
+The EUI CSS is included in [Kibana's](https://www.github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
 
 ## Using EUI in a standalone project
 

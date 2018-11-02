@@ -3,7 +3,7 @@
  */
 
 .euiToolTip {
-  @include euiBottomShadow($color: $euiShadowColor);
+  @include euiBottomShadow($color: #000);
   @include euiFontSizeS();
 
   position: absolute; /* 1 */

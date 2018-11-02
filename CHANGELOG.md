@@ -1,14 +1,58 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Adding a `branch` icon to `EuiIcon`
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 
-No public interface changes since `4.5.2`.
+No public interface changes since `4.7.0`.
+
+- Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+
+**Framer X**
+
+- Added Framer component for `EuiDescirptionList` ([#1276](https://github.com/elastic/eui/pull/1276))
+
+## [`4.7.0`](https://github.com/elastic/eui/tree/v4.7.0)
+
+- Added `apmTrace` icon to `EuiIcon` set ([#1263](https://github.com/elastic/eui/pull/1263))
+- Added [Framer X](http://www.framer.com) component source files under the `src-framer` directory ([#1263](https://github.com/elastic/eui/pull/1263))
+- Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
+- Added guidelines for Sass usage. ([#1257](https://github.com/elastic/eui/pull/1257))
+
+**Bug fixes**
+
+- `EuiComboBox` no longer throws a _Maximum update depth exceeded_ error when used in popovers/modals ([#1258](https://github.com/elastic/eui/pull/1258))
+- `Escape` key now closes `EuiComboBox` options list ([#1258](https://github.com/elastic/eui/pull/1258))
+- Fixed margin issue around `EuiFlexGrid` in mobile displays ([#1257](https://github.com/elastic/eui/pull/1257))
+- Fixed positioning and padding display issue in `EuiRange` ([#1257](https://github.com/elastic/eui/pull/1257))
+- Fixed `highContrastTextColor` SASS function to account for background lightness and exit possible infinite loops ([#1275](https://github.com/elastic/eui/pull/1275))
+
+## [`4.6.1`](https://github.com/elastic/eui/tree/v4.6.1)
+
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiFieldPassword`. ([#1255](https://github.com/elastic/eui/pull/1255))
+- Added TypeScript definitions for `EuiConfirmModal`, remove `AnyProps`, and several definition fixes ([#1260](https://github.com/elastic/eui/pull/1260))
+
+## [`4.6.0`](https://github.com/elastic/eui/tree/v4.6.0)
+
+- Increased default font size of tabs in K6 theme ([#1244](https://github.com/elastic/eui/pull/1244))
+
+**Bug fixes**
+
+- Fixed select warning on falsy value in EuiSelect ([#1254](https://github.com/elastic/eui/pull/1254))
+
+**Bug fixes**
+
+- Add TypeScript definitions for `EuiRange` and `EuiRadio`, and correct the definitions for `EuiRadioGroup` ([#1253](https://github.com/elastic/eui/pull/1253))
 
 ## [`4.5.2`](https://github.com/elastic/eui/tree/v4.5.2)
 
 **Bug fixes**
 
-* TypeScript definition changes for `EuiAccordion`, `EuiDescriptionList`, `EuiForm`, `EuiFormHelpText` and the accessibility services, plus a number of other TS fixes ([#1247](https://github.com/elastic/eui/pull/1247))
+- TypeScript definition changes for `EuiAccordion`, `EuiDescriptionList`, `EuiForm`, `EuiFormHelpText` and the accessibility services, plus a number of other TS fixes ([#1247](https://github.com/elastic/eui/pull/1247))
 
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 

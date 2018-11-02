@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     | 'advancedSettingsApp'
     | 'alert'
     | 'apmApp'
+    | 'apmTrace'
     | 'apps'
     | 'arrowDown'
     | 'arrowLeft'
@@ -110,9 +111,12 @@ declare module '@elastic/eui' {
     | 'loggingApp'
     | 'logoAerospike'
     | 'logoApache'
+    | 'logoAPM'
+    | 'logoAppSearch'
     | 'logoAWS'
     | 'logoAWSMono'
     | 'logoBeats'
+    | 'logoBusinessAnalytics'
     | 'logoCeph'
     | 'logoCloud'
     | 'logoCouchbase'
@@ -121,6 +125,7 @@ declare module '@elastic/eui' {
     | 'logoElastic'
     | 'logoElasticsearch'
     | 'logoElasticStack'
+    | 'logoEnterpriseSearch'
     | 'logoEtcd'
     | 'logoGCP'
     | 'logoGCPMono'
@@ -134,6 +139,7 @@ declare module '@elastic/eui' {
     | 'logoKubernetes'
     | 'logoLogstash'
     | 'logoMemcached'
+    | 'logoMetrics'
     | 'logoMongodb'
     | 'logoMySQL'
     | 'logoNginx'
@@ -143,6 +149,7 @@ declare module '@elastic/eui' {
     | 'logoPrometheus'
     | 'logoRabbitmq'
     | 'logoRedis'
+    | 'logoSiteSearch'
     | 'logoSketch'
     | 'logoSlack'
     | 'logoWebhook'
@@ -247,7 +254,8 @@ declare module '@elastic/eui' {
     | 'subdued'
     | 'success'
     | 'text'
-    | 'warning';
+    | 'warning'
+    | string;
 
   export interface EuiIconProps {
     type?: IconType;

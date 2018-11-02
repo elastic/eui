@@ -13,7 +13,7 @@
 
   &.euiTabs--small {
     .euiTab {
-      @include euiFontSizeS;
+      @include fontSize($euiTabFontSizeS);
       padding: $euiSizeS $euiSizeS;
     }
   }
@@ -27,7 +27,8 @@
 }
 
 .euiTab {
-  @include euiFontSize;
+  @include fontSize($euiTabFontSize);
+  line-height: $euiLineHeight;
 
   position: relative;
   cursor: pointer;
