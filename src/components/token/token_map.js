@@ -109,16 +109,16 @@ export const TOKEN_MAP = {
   tokenTypeRepo: {
     'shape': 'rectangle',
     'color': 'tokenTint05',
-    'isOpaque': true,
+    'fill': true,
   },
   tokenTypeSymbol: {
     'shape': 'rectangle',
     'color': 'tokenTint07',
-    'isOpaque': true,
+    'fill': true,
   },
   tokenTypeFile: {
     'shape': 'rectangle',
     'color': 'tokenTint12',
-    'isOpaque': true,
+    'fill': true,
   },
 };

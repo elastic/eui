@@ -33,20 +33,20 @@ export const EuiToken = ({
 
   let tokenShape;
   let tokenColor;
-  let tokenIsOpaque;
+  let fill;
   let tokenHidesBorder;
 
   // Check if this has a mapping, and doesn't have custom displayOptions
   if ((iconType in TOKEN_MAP) && (displayOptionsIsEmpty)) {
     tokenShape = TOKEN_MAP[iconType].shape;
     tokenColor = TOKEN_MAP[iconType].color;
-    tokenIsOpaque = (TOKEN_MAP[iconType].isOpaque ? true : false);
+    fill = (TOKEN_MAP[iconType].fill ? true : false);
     tokenHidesBorder = (TOKEN_MAP[iconType].hideBorder ? true : false);
   } else {
     // Use the displayOptions passed or use some defaults
     tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
     tokenColor = displayOptions.color ? displayOptions.color : 'tokenTint01';
-    tokenIsOpaque = displayOptions.isOpaque ? true : false;
+    fill = displayOptions.fill ? true : false;
     tokenHidesBorder = displayOptions.hideBorder ? true : false;
   }
 
@@ -56,7 +56,7 @@ export const EuiToken = ({
     `euiToken--${tokenColor}`,
     sizeToClassMap[size],
     {
-      'euiToken--opaque': tokenIsOpaque
+      'euiToken--fill': fill
     },
     {
       'euiToken--no-border': tokenHidesBorder
@@ -87,13 +87,13 @@ EuiToken.propTypes = {
    * By default EUI will auto color tokens. You can can however control it
    * `color`: can be `tokenTint01` thru `tokenTint10`
    * - `shape`: square, circle, rectangle as options
-   * - `isOpaque`: makes it a solid color
+   * - `fill`: makes it a solid color
    * - `hideBorder`: disables the outer border
    */
   displayOptions: PropTypes.shape({
     color: PropTypes.string,
     shape: PropTypes.string,
-    isOpaque: PropTypes.boolean,
+    fill: PropTypes.boolean,
     hideBorder: PropTypes.boolean,
   }),
 };

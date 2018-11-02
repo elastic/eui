@@ -76,7 +76,7 @@ export default () => (
               displayOptions={{
                 color: 'tokenTint10',
                 shape: 'square',
-                isOpaque: true,
+                fill: true,
               }}
             />
           </div>
