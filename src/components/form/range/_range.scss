@@ -70,6 +70,11 @@
     left: calc(50% - #{($euiSizeXS/2)});
   }
 
+  &-isCustom {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
   &:enabled:hover,
   &:focus,
   &--selected {
@@ -124,7 +129,7 @@ $euiRange__levelColors: (
   border: 1px solid transparentize($euiColorDarkestShade, .8);
   position: absolute;
   border-radius: $euiBorderRadius;
-  padding: $euiSizeXS $euiSizeS + 2px;
+  padding: $euiSizeXS/2 $euiSizeS;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorGhost;
   max-width: 256px;
@@ -239,8 +244,8 @@ $euiRange__levelColors: (
 
   .euiRange__ticks {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: ($euiRangeThumbWidth/2);
+    right: ($euiRangeThumbWidth/2);
     top: $euiSizeS;
     display: flex;
     z-index: $euiZLevel1;

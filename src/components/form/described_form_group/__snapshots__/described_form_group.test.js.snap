@@ -26,6 +26,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
+        textTransform="none"
       >
         <h3>
           Title
@@ -83,6 +84,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
+        textTransform="none"
       >
         <h3>
           Title
@@ -132,6 +134,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
+        textTransform="none"
       >
         <h3>
           Title
@@ -190,6 +193,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="xs"
+        textTransform="none"
       >
         <h3>
           Title
@@ -248,6 +252,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
         size="l"
+        textTransform="none"
       >
         <h3>
           Title
@@ -327,6 +332,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
               className="euiDescribedFormGroup__title"
               id="test-id-title"
               size="xs"
+              textTransform="none"
             >
               <h3
                 className="euiTitle euiTitle--xsmall euiDescribedFormGroup__title"

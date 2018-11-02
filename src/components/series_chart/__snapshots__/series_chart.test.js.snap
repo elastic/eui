@@ -41,7 +41,7 @@ exports[`EuiSeriesChart renders an empty chart 1`] = `
         class="euiSpacer euiSpacer--m"
       />
       <div
-        class="euiText"
+        class="euiText euiText--medium"
       >
         <p>
           ~~Empty Chart~~
