@@ -6,6 +6,10 @@ No public interface changes since `4.5.1-logos`.
 
 - Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 
 **Bug fixes**

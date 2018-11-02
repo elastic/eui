@@ -7,10 +7,15 @@ declare module '@elastic/eui' {
     | 'bottom'
     | 'left';
 
+  export type ToolTipDelay =
+    | 'regular'
+    | 'long';
+
   export interface EuiToolTipProps {
     children: ReactElement<any>;
     className?: string;
     content: ReactNode;
+    delay?: ToolTipDelay;
     title?: ReactNode;
     id?: string;
     position?: ToolTipPositions;
