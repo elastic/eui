@@ -2,6 +2,10 @@
 
 - Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+
 **Framer X**
 
 - Added Framer component for `EuiDescirptionList` ([#1276](https://github.com/elastic/eui/pull/1276))
