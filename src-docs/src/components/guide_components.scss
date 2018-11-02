@@ -106,6 +106,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+
 .guideDemo__size {
   background: $euiTextColor;
   display: inline-block;
@@ -150,21 +151,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   outline: solid 2px purple;
 }
 
-.guideColorPalette__swatch {
-  
-  span {
-    height: $euiSize;
-    width: $euiSizeL;
-  }
-  
-  &:first-child span {
-    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
-  }
 
-  &:last-child span {
-    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
-  }
-}
 
 @import "../views/guidelines/index";
 @import "guide_section/index";

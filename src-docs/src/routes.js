@@ -25,6 +25,9 @@ import ColorGuidelines
 import ModalGuidelines
   from './views/guidelines/modals';
 
+import SassGuidelines
+  from './views/guidelines/sass';
+
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
 
@@ -306,6 +309,9 @@ const navigation = [{
   }, {
     name: 'Modals',
     component: ModalGuidelines,
+  }, {
+    name: 'Sass',
+    component: SassGuidelines,
   }, {
     name: 'Text scales',
     component: TextScales,
