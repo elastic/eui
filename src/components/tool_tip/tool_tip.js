@@ -205,7 +205,7 @@ export class EuiToolTip extends Component {
               observerOptions={{ subtree: true, childList: true, characterData: true, attributes: true }}
               onMutation={this.positionToolTip}
             >
-              {content}
+              {mutationRef => <div ref={mutationRef}>{content}</div>}
             </EuiMutationObserver>
           </EuiToolTipPopover>
         </EuiPortal>

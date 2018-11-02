@@ -453,24 +453,17 @@ export class EuiPopover extends Component {
               style={this.state.popoverStyles}
             >
               <div className={arrowClassNames} style={this.state.arrowStyles}/>
-              {
-                children
-                  ? (
-                    <EuiMutationObserver
-                      observerOptions={{
-                        attributes: true, // element attribute changes
-                        childList: true, // added/removed elements
-                        characterData: true, // text changes
-                        subtree: true // watch all child elements
-                      }}
-                      onMutation={this.onMutation}
-                    >
-                      {children}
-                    </EuiMutationObserver>
-                  )
-                  : null
-
-              }
+              <EuiMutationObserver
+                observerOptions={{
+                  attributes: true, // element attribute changes
+                  childList: true, // added/removed elements
+                  characterData: true, // text changes
+                  subtree: true // watch all child elements
+                }}
+                onMutation={this.onMutation}
+              >
+                {mutationRef => <div ref={mutationRef}>{children}</div>}
+              </EuiMutationObserver>
             </EuiPanel>
           </FocusTrap>
         </EuiPortal>
