@@ -257,9 +257,9 @@ import tokenStruct from './assets/tokens/tokenStruct.svg';
 import tokenPackage from './assets/tokens/tokenPackage.svg';
 import tokenOperator from './assets/tokens/tokenOperator.svg';
 import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
-import tokenTypeRepo from './assets/tokens/tokenTypeRepo.svg';
-import tokenTypeSymbol from './assets/tokens/tokenTypeSymbol.svg';
-import tokenTypeFile from './assets/tokens/tokenTypeFile.svg';
+import tokenRepo from './assets/tokens/tokenRepo.svg';
+import tokenSymbol from './assets/tokens/tokenSymbol.svg';
+import tokenFile from './assets/tokens/tokenFile.svg';
 
 const typeToIconMap = {
   addDataApp,
@@ -515,9 +515,9 @@ const typeToIconMap = {
   tokenPackage,
   tokenOperator,
   tokenEnumMember,
-  tokenTypeRepo,
-  tokenTypeSymbol,
-  tokenTypeFile
+  tokenRepo,
+  tokenSymbol,
+  tokenFile
 };
 
 export const TYPES = Object.keys(typeToIconMap);

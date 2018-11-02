@@ -2,9 +2,7 @@
 
 exports[`EuiToken is rendered 1`] = `
 <div
-  class="euiToken euiToken--circle euiToken--tokenTint01 euiToken--small"
-  color="tokenTint01"
-  shape="square"
+  class="euiToken euiToken--square euiToken--tokenTint01 euiToken--small"
 >
   <svg
     class="euiIcon euiIcon--medium"

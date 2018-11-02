@@ -35,9 +35,9 @@ const tokens = [
   'tokenPackage',
   'tokenOperator',
   'tokenEnumMember',
-  'tokenTypeRepo',
-  'tokenTypeSymbol',
-  'tokenTypeFile'
+  'tokenRepo',
+  'tokenSymbol',
+  'tokenFile'
 ];
 
 export default () => (
