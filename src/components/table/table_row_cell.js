@@ -8,7 +8,7 @@ import {
   CENTER_ALIGNMENT
 } from '../../services';
 
-const ALIGNMENT = [
+export const ALIGNMENT = [
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT
