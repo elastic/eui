@@ -1,8 +1,8 @@
-// Sets default displayOptions for EuiTokes based on iconType
+// Sets default displayOptions for EuiTokens based on iconType
 // tokenClass: {
 //   'shape': 'square',
 //   'color': 'tokenTint01',
-//   'isOpaque': false,
+//   'fill': false,
 // },
 
 export const TOKEN_MAP = {
