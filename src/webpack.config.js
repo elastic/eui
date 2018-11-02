@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -12,19 +13,9 @@ const plugins = [
   }),
 ];
 
-if (isProduction) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      }
-    })
-  );
-}
-
 module.exports = {
+  mode: isProduction ? 'production' : 'development',
+
   devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
@@ -47,7 +38,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/
@@ -63,3 +54,14 @@ module.exports = {
 
   plugins
 };
+
+if (isProduction) {
+  const optimization = module.exports.optimization = module.exports.optimization || {};
+  optimization.minimizer = [
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        sourceMap: true,
+      }
+    })
+  ];
+}

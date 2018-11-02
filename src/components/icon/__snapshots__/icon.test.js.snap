@@ -609,6 +609,28 @@ exports[`EuiIcon props type boxesVertical is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type branch is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M4.5 10.038A3.49 3.49 0 0 1 7 8.988h2a2.5 2.5 0 0 0 2.462-2.061 2 2 0 1 1 1.008.017A3.5 3.5 0 0 1 9 9.987H7a2.5 2.5 0 0 0-2.466 2.085 2 2 0 1 1-1.034-.009V3.937a2 2 0 1 1 1 0v6.1zM4 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm8-9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+      id="branch"
+    />
+  </defs>
+  <use
+    href="#branch"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type broom is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"

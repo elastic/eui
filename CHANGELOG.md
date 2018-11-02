@@ -2,6 +2,10 @@
 
 - New `token` component has been created. ([#1270](https://github.com/elastic/eui/pull/1270)) 
 
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
+
+No public interface changes since `4.7.0`.
+
 - Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 **Bug fixes**

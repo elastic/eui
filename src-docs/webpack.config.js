@@ -1,8 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require(`html-webpack-plugin`);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
+  mode: 'development',
+
   devtool: 'source-map',
 
   entry: {
@@ -17,7 +19,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/
