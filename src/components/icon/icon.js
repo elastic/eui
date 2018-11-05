@@ -17,6 +17,7 @@ import auditbeatApp from './assets/app_auditbeat.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
+import branch from './assets/branch.svg';
 import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
@@ -252,6 +253,7 @@ const typeToIconMap = {
   bolt,
   boxesHorizontal,
   boxesVertical,
+  branch,
   broom,
   brush,
   bullseye,

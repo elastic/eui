@@ -4,7 +4,7 @@ import { HTMLAttributes, MouseEventHandler, SFC } from 'react';
 
 declare module '@elastic/eui' {
 
-  type IconSide = 'left';
+  type IconSide = 'left' | 'right';
 
   export interface EuiBadgeProps {
     iconType?: IconType;
