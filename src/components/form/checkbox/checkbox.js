@@ -98,7 +98,7 @@ export class EuiCheckbox extends Component {
 EuiCheckbox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
   label: PropTypes.node,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(TYPES),
