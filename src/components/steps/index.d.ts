@@ -26,7 +26,7 @@ declare module '@elastic/eui' {
    * @see './steps.js'
    */
 
-  export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'headingElement' | 'step'>;
+  export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'step'>;
 
   export interface EuiStepsProps {
     firstStepNumber?: number,
