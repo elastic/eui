@@ -76,3 +76,10 @@
     }
   }
 }
+
+.euiGlobalDatePicker__popoverSection {
+  @include euiScrollBar;
+  max-height: $euiSizeM * 11;
+  overflow: hidden;
+  overflow-y: auto;
+}

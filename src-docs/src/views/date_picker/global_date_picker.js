@@ -29,6 +29,7 @@ import {
   EuiTextColor,
   EuiToolTip,
   EuiFieldText,
+  EuiButtonIcon,
 } from '../../../../src/components';
 
 const commonDates = [
@@ -234,10 +235,14 @@ export default class extends Component {
       isPopoverOpen: false,
       showPrettyFormat: false,
       showNeedsUpdate: false,
+      timerIsOn: false,
       recentlyUsed: [
         ['11/25/2017 00:00 AM', '11/25/2017 11:59 PM'],
         ['3 hours ago', '4 minutes ago'],
         'Last 6 months',
+        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
+        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
+        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
         ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
       ],
     };
@@ -290,6 +295,12 @@ export default class extends Component {
     });
   }
 
+  toggleTimer = () => {
+    this.setState(prevState => ({
+      timerIsOn: !prevState.timerIsOn,
+    }));
+  }
+
 
   render() {
     const quickSelectButton = (
@@ -302,7 +313,7 @@ export default class extends Component {
         iconType="arrowDown"
         iconSide="right"
       >
-        <EuiIcon type="calendar" />
+        <EuiIcon type={this.state.timerIsOn ? 'clock' : 'calendar'} />
       </EuiButtonEmpty>
     );
 
@@ -318,12 +329,14 @@ export default class extends Component {
         anchorPosition="downLeft"
         ownFocus
       >
-        <div style={{ width: '400px' }}>
+        <div style={{ maxWidth: 400 }}>
           {this.renderQuickSelect()}
-          <EuiHorizontalRule />
+          <EuiHorizontalRule margin="s" />
           {commonlyUsed}
-          <EuiHorizontalRule />
+          <EuiHorizontalRule margin="s" />
           {recentlyUsed}
+          <EuiHorizontalRule margin="s" />
+          {this.renderTimer()}
         </div>
       </EuiPopover>
     );
@@ -412,27 +425,41 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <EuiTitle size="xxxs"><span>Quick select</span></EuiTitle>
+        <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+          <EuiFlexItem>
+            <EuiTitle size="xxxs"><span>Quick select</span></EuiTitle>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiToolTip content="Previous time window">
+              <EuiButtonIcon aria-label="Previous time window" iconType="arrowLeft" />
+            </EuiToolTip>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiToolTip content="Next time window">
+              <EuiButtonIcon aria-label="Next time window" iconType="arrowRight" />
+            </EuiToolTip>
+          </EuiFlexItem>
+        </EuiFlexGroup>
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiFormRow>
+            <EuiFormRow compressed>
               <EuiSelect options={firstOptions} />
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow>
+            <EuiFormRow compressed>
               <EuiFieldNumber aria-label="Count of" defaultValue="256" />
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow>
+            <EuiFormRow compressed>
               <EuiSelect options={lastOptions} />
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiFormRow>
-              <EuiButton onClick={this.closePopover} style={{ minWidth: 0 }}>Apply</EuiButton>
+              <EuiButton size="s" onClick={this.closePopover} style={{ minWidth: 0 }}>Apply</EuiButton>
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -451,7 +478,7 @@ export default class extends Component {
       <Fragment>
         <EuiTitle size="xxxs"><span>Commonly used</span></EuiTitle>
         <EuiSpacer size="s" />
-        <EuiText size="s">
+        <EuiText size="s" className="euiGlobalDatePicker__popoverSection">
           <EuiFlexGrid gutterSize="s" columns={2} responsive={false}>
             {links}
           </EuiFlexGrid>
@@ -476,7 +503,7 @@ export default class extends Component {
       <Fragment>
         <EuiTitle size="xxxs"><span>Recently used date ranges</span></EuiTitle>
         <EuiSpacer size="s" />
-        <EuiText size="s">
+        <EuiText size="s" className="euiGlobalDatePicker__popoverSection">
           <EuiFlexGroup gutterSize="s" direction="column">
             {links}
           </EuiFlexGroup>
@@ -484,4 +511,43 @@ export default class extends Component {
       </Fragment>
     );
   }
+
+  renderTimer = () => {
+    const lastOptions = [
+      { value: 'minutes', text: 'minutes' },
+      { value: 'hours', text: 'hours' },
+    ];
+
+    return (
+      <Fragment>
+        <EuiTitle size="xxxs"><span>Refresh every</span></EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiFlexGroup gutterSize="s" responsive={false}>
+          <EuiFlexItem>
+            <EuiFormRow compressed>
+              <EuiFieldNumber aria-label="Count of" defaultValue="256" />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiFormRow compressed>
+              <EuiSelect options={lastOptions} />
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiFormRow>
+              <EuiButton
+                iconType={this.state.timerIsOn ? 'stop' : 'play'}
+                size="s"
+                onClick={this.toggleTimer}
+                style={{ minWidth: 0 }}
+              >
+                {this.state.timerIsOn ? 'Stop' : 'Start'}
+              </EuiButton>
+            </EuiFormRow>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </Fragment>
+    );
+  }
+
 }
