@@ -56,9 +56,7 @@ export const EuiToken = ({
     `euiToken--${tokenColor}`,
     sizeToClassMap[size],
     {
-      'euiToken--fill': fill
-    },
-    {
+      'euiToken--fill': fill,
       'euiToken--no-border': tokenHidesBorder
     },
     className
@@ -85,7 +83,7 @@ EuiToken.propTypes = {
   size: PropTypes.oneOf(SIZES).isRequired,
   /**
    * By default EUI will auto color tokens. You can can however control it
-   * `color`: can be `tokenTint01` thru `tokenTint10`
+   * - `color`: can be `tokenTint01` thru `tokenTint10`
    * - `shape`: square, circle, rectangle as options
    * - `fill`: makes it a solid color
    * - `hideBorder`: disables the outer border

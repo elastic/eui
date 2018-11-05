@@ -1,8 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- New `token` component has been created. ([#1270](https://github.com/elastic/eui/pull/1270)) 
-
-- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
+- Added `EuiToken` component ([#1270](https://github.com/elastic/eui/pull/1270)) 
 
 No public interface changes since `4.7.0`.
 
@@ -22,6 +20,7 @@ No public interface changes since `4.7.0`.
 - Added [Framer X](http://www.framer.com) component source files under the `src-framer` directory ([#1263](https://github.com/elastic/eui/pull/1263))
 - Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
 - Added guidelines for Sass usage. ([#1257](https://github.com/elastic/eui/pull/1257))
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 
 **Bug fixes**
 
