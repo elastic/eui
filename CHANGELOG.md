@@ -1,11 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.8.0`.
-
-## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
-
-- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
-- Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 - Removed calls to deprecated `findDOMNode` ([#1285](https://github.com/elastic/eui/pull/1285))
 
 **Breaking changes**
@@ -13,6 +7,11 @@ No public interface changes since `4.8.0`.
 - Changed `EuiMutationObserver` to a render prop component ([#1285](https://github.com/elastic/eui/pull/1285))
 - `EuiPortal` no longer accepts a React node for `insert.sibling` value ([#1285](https://github.com/elastic/eui/pull/1285))
 - `popover_positioning` service's methods no longer accept React node values ([#1285](https://github.com/elastic/eui/pull/1285))
+
+## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
+
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
+- Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 **Bug fixes**
 
