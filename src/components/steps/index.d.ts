@@ -1,7 +1,7 @@
 /// <reference path="../common.d.ts" />
 
 declare module '@elastic/eui' {
-  import { SFC, ReactNode, HTMLAttributes } from 'react';
+  import { SFC, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
 
   export type EuiStepStatus = 'complete' | 'incomplete' | 'warning' | 'danger' | 'disabled'
 
@@ -17,18 +17,21 @@ declare module '@elastic/eui' {
     headingElement?: string,
   }
 
-  export const EuiStep: SFC<
+  type StandaloneEuiStepProps =
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepProps
-  >;
+
+  export const EuiStep: SFC<StandaloneEuiStepProps>;
 
   /**
    * @see './steps.js'
    */
 
+  export type EuiContainedStepProps = Omit<StandaloneEuiStepProps, 'headingElement' | 'step'>;
+
   export interface EuiStepsProps {
     firstStepNumber?: number,
     headingElement?: string,
-    steps: Array<{ title: string, children?: ReactNode }>,
+    steps: Array<EuiContainedStepProps>,
   }
 
   export const EuiSteps: SFC<
@@ -50,8 +53,21 @@ declare module '@elastic/eui' {
    * @see './steps_horizontal.js'
    */
 
+  // EuiStepHorizontal is not exported by EUI
+  type EuiStepHorizontalProp = CommonProps & HTMLAttributes<HTMLDivElement> & {
+    isSelected?: boolean,
+    isComplete?: boolean,
+    onClick: MouseEventHandler<HTMLDivElement>, // required
+    step: number,
+    title: ReactNode,
+    disabled?: boolean,
+    status?: EuiStepStatus,
+  };
+
+  type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProp, 'step'>;
+
   export interface EuiStepsHorizontalProps {
-    steps: Array<{ isSelected?: boolean, disabled?: boolean, children?: ReactNode }>,
+    steps: Array<ContainedEuiStepHorizontalProps>,
   }
 
   export const EuiStepsHorizontal: SFC<
