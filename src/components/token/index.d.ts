@@ -31,7 +31,7 @@ declare module '@elastic/eui' {
     | 'rectangle'
 
   export interface EuiTokenProps {
-    iconType?: IconType;
+    iconType: IconType;
     color?: TokenColor;
     shape?: TokenShape;
     size?: TokenSize;
