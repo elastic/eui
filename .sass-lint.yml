@@ -3,3 +3,51 @@ files:
     - 'src/**/*.s+(a|c)ss'
     - 'src-docs/**/*.s+(a|c)ss'
 rules:
+  quotes:
+    - 2
+    -
+      style: 'single'
+  brace-style:
+    - 2
+    -
+      style: '1tbs'
+  variable-name-format:
+    - 2
+    -
+      convention: 'camelcase'
+  # Needs regex
+  class-name-format:
+    - 0
+  # Order how you please
+  property-sort-order:
+    - 0
+  hex-notation:
+    - 2
+    -
+      style: 'uppercase'
+  mixin-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: camelcase
+  border-zero:
+    - 2
+    - convention: 'none'
+  force-element-nesting: 0
+  space-before-brace:
+    - 2
+  force-pseudo-nesting: 0
+  indentation: 2
+  function-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: camelcase
+  # No need for double colons
+  pseudo-element: 0
+  space-around-operator: 2
+  # We minify css, so this doesn't apply
+  no-css-comments: 0
+  # We use _ (underscores) for import paths
+  clean-import-paths:
+    - 0

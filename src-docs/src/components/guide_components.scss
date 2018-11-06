@@ -1,4 +1,4 @@
-@import '../../src/global_styling/mixins/_helpers.scss';
+@import '../../src/global_styling/mixins/_helpers';
 
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
@@ -58,25 +58,25 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   div {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
   }
 }
 .guideDemo__highlightSpacer {
   .euiSpacer {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
   }
 }
 
 .guideDemo__highlightGrid {
   .euiFlexItem {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
     padding: 16px;
   }
 }
 
 .guideDemo__highlightGridWrap {
   .euiFlexItem div {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
     padding: 16px;
   }
 }
@@ -136,26 +136,26 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .dpTest__purpleCal {
-  background: purple;
+  background: $euiColorVis3;
 }
 
 .dpTest__purpleInput {
-  outline: solid 2px purple;
+  outline: solid 2px $euiColorVis3;
 }
 
 .dpTest__purpleDay {
-  background: purple;
+  background: $euiColorVis3;
 }
 
 .dpTest__purplePopper {
-  outline: solid 2px purple;
+  outline: solid 2px $euiColorVis3;
 }
 
 
 
-@import "../views/guidelines/index";
-@import "guide_section/index";
-@import "guide_rule/index";
+@import '../views/guidelines/index';
+@import 'guide_section/index';
+@import 'guide_rule/index';
 
 @include euiBreakpoint('xs','s') {
 
@@ -203,11 +203,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
       height: $euiSize;
       width: $euiSizeL;
     }
-    
+
     &:first-child span {
       border-radius: $euiBorderRadius $euiBorderRadius 0 0;
     }
-  
+
     &:last-child span {
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
