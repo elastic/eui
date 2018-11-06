@@ -51,3 +51,22 @@ rules:
   # We use _ (underscores) for import paths
   clean-import-paths:
     - 0
+  # Allows input[type=search]
+  force-attribute-nesting: 0
+  no-qualifying-elements:
+    - 1
+    -
+      # Allows input[type=search]
+      allow-element-with-attribute: 1
+  final-newline: 0
+  # We use some rare duplicate property values for browser variance
+  no-duplicate-properties:
+    - 1
+    -
+      exclude:
+        - font-size
+        - word-break
+  empty-line-between-blocks:
+    - 1
+    -
+      allow-single-line-rulesets: 1

@@ -9,10 +9,6 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guidePage {
   padding: 0;
-
-  @include euiBreakpoint('xs', 's') {
-    display: block; // Fixes IE
-  }
 }
 
 .guideSideNav {
@@ -32,12 +28,13 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guideSideNav__content {
+    @include euiScrollBar;
+
     width: $guideSideNavWidth;
     padding: $euiSize;
     position: absolute;
     bottom: 0;
     top: 132px;
-    @include euiScrollBar;
     overflow-y: auto;
   }
 }
@@ -61,6 +58,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     background: transparentize($euiColorPrimary, .9);
   }
 }
+
 .guideDemo__highlightSpacer {
   .euiSpacer {
     background: transparentize($euiColorPrimary, .9);
@@ -81,12 +79,14 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+// sass-lint:disable no-important
 .guideDemo__textLines {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
   background-size: 100% 8px !important;
   background-position-y: 2px;
 }
 
+// sass-lint:disable no-important
 .guideDemo__textLines--s {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
   background-size: 100% 7px !important;
@@ -157,7 +157,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @import 'guide_section/index';
 @import 'guide_rule/index';
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
 
   .guideBody {
     background: none;
@@ -168,7 +168,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: auto;
 
     // This is a temporary hack till we fix how classes pass into form controls
-    .euiFormControlLayout, input[type=search] {
+    .euiFormControlLayout,
+    input[type='search'] {
       max-width: 100%;
     }
 
@@ -211,5 +212,11 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     &:last-child span {
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .guidePage {
+    display: block; // Fixes IE
   }
 }
