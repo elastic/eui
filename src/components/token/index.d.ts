@@ -1,7 +1,7 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC } from 'react';
+import { SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -24,6 +24,8 @@ declare module '@elastic/eui' {
     | 'tokenTint08'
     | 'tokenTint09'
     | 'tokenTint10'
+    | 'tokenTint11'
+    | 'tokenTint12'
 
   export type TokenShape =
     | 'circle'
@@ -32,11 +34,13 @@ declare module '@elastic/eui' {
 
   export interface EuiTokenProps {
     iconType: IconType;
-    color?: TokenColor;
-    shape?: TokenShape;
     size?: TokenSize;
-    fill?: boolean;
-    hasBorder?: boolean;
+    displayOptions?: {
+      color?: TokenColor;
+      shape?: TokenShape;
+      fill?: boolean;
+      hasBorder?: boolean;
+    };
   }
 
   export const EuiToken: SFC<CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>>;
