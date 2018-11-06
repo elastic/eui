@@ -17,6 +17,7 @@ const iconTypes = [
   'arrowRight',
   'arrowUp',
   'asterisk',
+  'beaker',
   'bolt',
   'boxesHorizontal',
   'boxesVertical',

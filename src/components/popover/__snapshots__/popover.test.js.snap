@@ -101,6 +101,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <div />
       </div>
     </div>
   </div>
@@ -128,6 +129,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <div />
       </div>
     </div>
   </div>
@@ -162,6 +164,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <div />
       </div>
     </div>
   </div>
@@ -189,6 +192,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <div />
       </div>
     </div>
   </div>
@@ -216,6 +220,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
           style="left: 10px; top: 0px;"
         />
+        <div />
       </div>
     </div>
   </div>

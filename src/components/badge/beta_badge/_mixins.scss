@@ -26,6 +26,7 @@
       .#{$selector}__betaBadge {
         overflow: hidden;
         text-overflow: ellipsis;
+        background-color: $euiColorEmptyShade;
       }
     }
   }
