@@ -7,6 +7,6 @@ const baseConfig = json5.parse(fs.readFileSync('.babelrc').toString());
 // set preset-env's `modules` config to commonjs
 baseConfig
   .presets.find(preset => Array.isArray(preset) && preset[0] === '@babel/env')
-  [1].modules = 'commonjs';
+  [1].modules = false;
 
 module.exports = baseConfig;

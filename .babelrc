@@ -9,7 +9,7 @@
         ]
       },
       "useBuiltIns": "usage",
-      "modules": false
+      "modules": "commonjs"
     }],
     "@babel/react"
   ],
