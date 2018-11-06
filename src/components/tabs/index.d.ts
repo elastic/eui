@@ -1,19 +1,17 @@
 /// <reference path="../common.d.ts" />
 
 declare module '@elastic/eui' {
-  import { MouseEventHandler, ReactNode, SFC } from 'react';
+  import { MouseEventHandler, ReactNode, SFC, HTMLAttributes } from 'react';
 
   type TAB_SIZES = 's' | 'm';
 
-  type EuiTabProps = CommonProps & {
+  type EuiTabProps = {
     onClick: MouseEventHandler<HTMLButtonElement>;
     isSelected?: boolean;
-    children?: ReactNode[];
     disabled?: boolean;
   };
 
-  type EuiTabsProps = CommonProps & {
-    children?: ReactNode[];
+  type EuiTabsProps = {
     size?: TAB_SIZES;
     expand?: boolean;
   };
@@ -24,7 +22,7 @@ declare module '@elastic/eui' {
     content: ReactNode;
   }
 
-  type EuiTabbedContentProps = CommonProps & {
+  type EuiTabbedContentProps = {
     tabs: EuiTabbedContentTab[];
     onTabClick?: (tab: EuiTabbedContentTab) => void;
     selectedTab?: EuiTabbedContentTab;
@@ -33,7 +31,7 @@ declare module '@elastic/eui' {
     expand?: boolean;
   }
 
-  export const EuiTab: SFC<EuiTabProps>;
-  export const EuiTabs: SFC<EuiTabsProps>;
-  export const EuiTabbedContent: SFC<EuiTabbedContentProps>;
+  export const EuiTab: SFC<EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiTabs: SFC<EuiTabsProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiTabbedContent: SFC<EuiTabbedContentProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
 }
