@@ -153,7 +153,7 @@ const iconTypes = [
   'visText',
   'visTimelion',
   'visVega',
-  'visVisualBuilder',
+  'visVisualBuilder'
 ];
 
 export default () => (
