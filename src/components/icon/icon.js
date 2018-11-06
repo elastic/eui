@@ -14,6 +14,7 @@ import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
 import auditbeatApp from './assets/app_auditbeat.svg';
+import beaker from './assets/beaker.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -103,7 +104,6 @@ import kqlFunction from './assets/kql_function.svg';
 import kqlOperand from './assets/kql_operand.svg';
 import kqlSelector from './assets/kql_selector.svg';
 import kqlValue from './assets/kql_value.svg';
-import lab from './assets/lab.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
@@ -251,6 +251,7 @@ const typeToIconMap = {
   arrowRight,
   arrowUp,
   asterisk,
+  beaker,
   bolt,
   boxesHorizontal,
   boxesVertical,
@@ -334,7 +335,6 @@ const typeToIconMap = {
   kqlOperand,
   kqlSelector,
   kqlValue,
-  lab,
   link,
   list,
   listAdd,
