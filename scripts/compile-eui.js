@@ -9,10 +9,10 @@ function compileLib() {
   console.log('Compiling src/ to es/ and lib/');
 
   execSync(
-    'babel --quiet --out-dir=es --config-file=./.babelrc.js --ignore "**/webpack.config.js,**/*.test.js" src',
+    'babel --quiet --out-dir=es --ignore "**/webpack.config.js,**/*.test.js" src',
     { env: { ...this.process.env, BABEL_MODULES: false } }
   );
-  execSync('babel --quiet --out-dir=lib --config-file=./.babelrc.js --ignore "**/webpack.config.js,**/*.test.js" src');
+  execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
