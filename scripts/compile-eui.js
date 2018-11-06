@@ -6,11 +6,15 @@ const glob = require('glob');
 function compileLib() {
   shell.mkdir('-p', 'lib/components', 'lib/services', 'lib/test');
 
-  console.log('Compiling src/ to lib/');
+  console.log('Compiling src/ to es/ and lib/');
 
+  execSync(
+    'babel --quiet --out-dir=es --ignore "**/webpack.config.js,**/*.test.js" src',
+    { env: { ...this.process.env, BABEL_MODULES: false } }
+  );
   execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
 
-  console.log(chalk.green('✔ Finished compiling src/ to lib/'));
+  console.log(chalk.green('✔ Finished compiling src/'));
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.

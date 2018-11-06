@@ -3,9 +3,8 @@
   "description": "Elastic UI Component Library",
   "version": "4.8.0",
   "main": "lib",
-  "module": "src",
+  "module": "es",
   "types": "src/index.d.ts",
-  "jsnext:main": "src",
   "postcss": {},
   "docker_image": "node:8",
   "scripts": {

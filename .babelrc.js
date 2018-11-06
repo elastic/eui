@@ -1,4 +1,4 @@
-{
+module.exports = {
   "presets": [
     ["@babel/env", {
       "targets": {
@@ -8,13 +8,14 @@
           "Safari 7" // for PhantomJS support
         ]
       },
-      "useBuiltIns": "usage"
+      "useBuiltIns": "usage",
+      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     "@babel/react"
   ],
   "plugins": [
-     "pegjs-inline-precompile",
-     "add-module-exports",
+    "pegjs-inline-precompile",
+    "add-module-exports",
     [
       "react-docgen",
       {
@@ -38,4 +39,4 @@
       }
     ]
   ]
-}
+};
