@@ -15,18 +15,19 @@ class EuiMutationObserver extends Component {
   }
 
   updateChildNode = ref => {
-    if (this.childNode !== ref) {
-      // if there's an existing observer disconnect it
-      if (this.observer != null) {
-        this.observer.disconnect();
-        this.observer = null;
-      }
+    if (this.childNode === ref) return; // node hasn't changed
 
-      this.childNode = ref;
-      if (this.childNode != null) {
-        this.observer = new MutationObserver(this.onMutation);
-        this.observer.observe(this.childNode, this.props.observerOptions);
-      }
+    this.childNode = ref;
+
+    // if there's an existing observer disconnect it
+    if (this.observer != null) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+
+    if (this.childNode != null) {
+      this.observer = new MutationObserver(this.onMutation);
+      this.observer.observe(this.childNode, this.props.observerOptions);
     }
   }
 
