@@ -80,7 +80,7 @@ EuiToken.propTypes = {
   /**
    * Size of the token
    */
-  size: PropTypes.oneOf(SIZES).isRequired,
+  size: PropTypes.oneOf(SIZES),
   /**
    * By default EUI will auto color tokens. You can can however control it
    * - `color`: can be `tokenTint01` thru `tokenTint10`
