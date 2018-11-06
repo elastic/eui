@@ -2,13 +2,19 @@
 
 - Added `EuiToken` component ([#1270](https://github.com/elastic/eui/pull/1270)) 
 
-No public interface changes since `4.7.0`.
+**Bug fixes**
 
+- Added TypeScript definitions for tab components ([#1288](https://github.com/elastic/eui/pull/1288))
+
+## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
+
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 - Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 **Bug fixes**
 
 - Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+- Added TypeScript definitions for step components, and some checkbox definition fixes ([#1263](https://github.com/elastic/eui/pull/1263))
 
 **Framer X**
 
