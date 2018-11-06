@@ -8,7 +8,8 @@
           "Safari 7" // for PhantomJS support
         ]
       },
-      "useBuiltIns": "usage"
+      "useBuiltIns": "usage",
+      "modules": false
     }],
     "@babel/react"
   ],

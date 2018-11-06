@@ -6,9 +6,10 @@ const glob = require('glob');
 function compileLib() {
   shell.mkdir('-p', 'lib/components', 'lib/services', 'lib/test');
 
-  console.log('Compiling src/ to lib/');
+  console.log('Compiling src/ to es/ and lib/');
 
-  execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
+  execSync('babel --quiet --out-dir=es --config-file=./.babelrc --no-babelrc --ignore "**/webpack.config.js,**/*.test.js" src');
+  execSync('babel --quiet --out-dir=lib --config-file=./.babelrc-lib.js --no-babelrc --ignore "**/webpack.config.js,**/*.test.js" src');
 
   console.log(chalk.green('✔ Finished compiling src/ to lib/'));
 
