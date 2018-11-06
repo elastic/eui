@@ -39,5 +39,5 @@ declare module '@elastic/eui' {
     hasBorder?: boolean;
   }
 
-  export const EuiToken: SFC<CommonProps & EuiTokenProps>;
+  export const EuiToken: SFC<CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>>;
 }
