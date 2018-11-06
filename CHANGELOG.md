@@ -2,6 +2,9 @@
 
 No public interface changes since `4.8.0`.
 
+**Bug fixes**
+- Added TypeScript definitions for tab components ([#1288](https://github.com/elastic/eui/pull/1288))
+
 ## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
 
 - Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
