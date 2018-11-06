@@ -85,6 +85,7 @@ const iconTypes = [
   'kqlValue',
   'kqlFunction',
   'kqlSelector',
+  'lab',
   'link',
   'list',
   'listAdd',

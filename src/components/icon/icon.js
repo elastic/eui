@@ -103,6 +103,7 @@ import kqlFunction from './assets/kql_function.svg';
 import kqlOperand from './assets/kql_operand.svg';
 import kqlSelector from './assets/kql_selector.svg';
 import kqlValue from './assets/kql_value.svg';
+import lab from './assets/lab.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
@@ -333,6 +334,7 @@ const typeToIconMap = {
   kqlOperand,
   kqlSelector,
   kqlValue,
+  lab,
   link,
   list,
   listAdd,
