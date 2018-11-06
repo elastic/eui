@@ -453,24 +453,17 @@ export class EuiPopover extends Component {
               style={this.state.popoverStyles}
             >
               <div className={arrowClassNames} style={this.state.arrowStyles}/>
-              {
-                children
-                  ? (
-                    <EuiMutationObserver
-                      observerOptions={{
-                        attributes: true, // element attribute changes
-                        childList: true, // added/removed elements
-                        characterData: true, // text changes
-                        subtree: true // watch all child elements
-                      }}
-                      onMutation={this.onMutation}
-                    >
-                      {children}
-                    </EuiMutationObserver>
-                  )
-                  : null
-
-              }
+              <EuiMutationObserver
+                observerOptions={{
+                  attributes: true, // element attribute changes
+                  childList: true, // added/removed elements
+                  characterData: true, // text changes
+                  subtree: true // watch all child elements
+                }}
+                onMutation={this.onMutation}
+              >
+                {mutationRef => <div ref={mutationRef}>{children}</div>}
+              </EuiMutationObserver>
             </EuiPanel>
           </FocusTrap>
         </EuiPortal>
@@ -507,10 +500,7 @@ EuiPopover.propTypes = {
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,
   hasArrow: PropTypes.bool,
-  container: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.instanceOf(HTMLElement)
-  ]),
+  container: PropTypes.instanceOf(HTMLElement),
   /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
   /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
