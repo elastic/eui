@@ -1,6 +1,9 @@
 // This file makes use of double quotes to format errors with nested single quotes
+// This file makes use of warn tags to properly announce deprecation
+// The indentation linting freaks out on comments above else statements and is disabled.
 
-// sass-lint:disable quotes
+// sass-lint:disable quotes, no-warn, indentation
+
 @import '../variables/responsive';
 
 // A sem-complicated mixin for breakpoints, that takes any number of
@@ -44,7 +47,7 @@
     // If it's not a known breakpoint, throw a warning
     } @else {
       @warn "euiBreakpoint(): '#{$size}' is not a valid size in $euiBreakpoints.
-             The acceptable values are '#{$euiBreakpointKeys}'";
+        The acceptable values are '#{$euiBreakpointKeys}'";
     }
   }
 }
@@ -61,14 +64,14 @@ $breakpoints: ('xSmall': 575px, 'small': 768px, 'medium': 992px, 'large': 1200px
 @mixin screenXSmall {
   @warn "screenXSmall() has been deprecated. Please use euiBreakpoint('xs','s') instead.";
   @media only screen and (max-width: map-get($breakpoints, 'small')) {
-     @content;
+    @content;
   }
 }
 
 @mixin screenSmall {
   @warn "screenSmall() has been deprecated. Please use euiBreakpoint('m') instead.";
   @media only screen and (min-width: map-get($breakpoints, 'small') + 1) and (max-width: map-get($breakpoints, "medium") - 1) {
-     @content;
+    @content;
   }
 }
 

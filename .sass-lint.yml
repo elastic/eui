@@ -70,7 +70,3 @@ rules:
     - 1
     -
       allow-single-line-rulesets: 1
-  brace-style:
-    - 2
-    -
-      style: '1tbs'
