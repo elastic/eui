@@ -101,6 +101,7 @@ declare module '@elastic/eui' {
     | 'kqlOperand'
     | 'kqlSelector'
     | 'kqlValue'
+    | 'lab'
     | 'link'
     | 'list'
     | 'listAdd'

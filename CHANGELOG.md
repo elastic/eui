@@ -1,14 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.5.1-logos`.
+No public interface changes since `4.5.1-logos-tooltip-betabadge`.
 
-## [`4.5.1-logos`](https://github.com/elastic/eui/tree/v4.5.1-logos)
+## [`4.5.1-logos-tooltip-betabadge`](https://github.com/elastic/eui/tree/v4.5.1-logos-tooltip-betabadge)
 
-- Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+- Added `beaker` icon to `EuiIcon` and updated the `EuiBetaBadge` styling ([#1291](https://github.com/elastic/eui/pull/1291/))
+
+## [`4.5.1-logos-tooltip`](https://github.com/elastic/eui/tree/v4.5.1-logos-tooltip)
 
 **Bug fixes**
 
 - Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+
+## [`4.5.1-logos`](https://github.com/elastic/eui/tree/v4.5.1-logos)
+
+- Added updated and new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 ## [`4.5.1`](https://github.com/elastic/eui/tree/v4.5.1)
 
