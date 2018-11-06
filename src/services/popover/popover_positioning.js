@@ -1,5 +1,3 @@
-import { findDOMNode } from 'react-dom';
-
 const relatedDimension = {
   top: 'height',
   right: 'width',
@@ -31,15 +29,15 @@ const positionSubstitutes = {
 /**
  * Calculates the absolute positioning (relative to document.body) to place a popover element
  *
- * @param anchor {HTMLElement|React.Component} Element to anchor the popover to
- * @param popover {HTMLElement|React.Component} Element containing the popover content
+ * @param anchor {HTMLElement} Element to anchor the popover to
+ * @param popover {HTMLElement} Element containing the popover content
  * @param position {string} Position the user wants. One of ["top", "right", "bottom", "left"]
  * @param [forcePosition] {boolean} If true, use only the provided `position` value and don't try any other position
  * @param [align] {string} Cross-axis alignment. One of ["top", "right", "bottom", "left"]
  * @param [buffer=16] {number} Minimum distance between the popover and the bounding container
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [allowCrossAxis=true] {boolean} Whether to allow the popover to be positioned on the cross-axis
- * @param [container] {HTMLElement|React.Component} Element the popover must be constrained to fit within
+ * @param [container] {HTMLElement} Element the popover must be constrained to fit within
  * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
  *
  * @returns {{top: number, left: number, position: string, fit: number, arrow?: {left: number, top: number}}|null} absolute page coordinates for the popover,
@@ -57,8 +55,6 @@ export function findPopoverPosition({
   container,
   arrowConfig
 }) {
-  container = findDOMNode(container); // resolve any React abstractions
-
   // find the screen-relative bounding boxes of the anchor, popover, and container
   const anchorBoundingBox = getElementBoundingBox(anchor);
   const popoverBoundingBox = getElementBoundingBox(popover);
@@ -446,12 +442,10 @@ function getPrimaryAxisPosition({
  * Finds the client pixel coordinate of each edge for the element's bounding box,
  * and the bounding box's width & height
  *
- * @param {HTMLElement|React.Component} element
+ * @param {HTMLElement} element
  * @returns {{top: number, right: number, bottom: number, left: number, height: number, width: number}}
  */
 export function getElementBoundingBox(element) {
-  element = findDOMNode(element); // resolve any React abstractions
-
   const rect = element.getBoundingClientRect();
   return {
     top: rect.top,
@@ -527,14 +521,11 @@ export function intersectBoundingBoxes(firstBox, secondBox) {
 /**
  * Returns the top-most defined z-index in the element's ancestor hierarchy
  * relative to the `target` element; if no z-index is defined, returns "0"
- * @param element {HTMLElement|React.Component}
- * @param cousin {HTMLElement|React.Component}
+ * @param element {HTMLElement}
+ * @param cousin {HTMLElement}
  * @returns {string}
  */
 export function getElementZIndex(element, cousin) {
-  element = findDOMNode(element);
-  cousin = findDOMNode(cousin);
-
   /**
    * finding the z-index of `element` is not the full story
    * its the CSS stacking context that is important

@@ -5,7 +5,7 @@
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createPortal, findDOMNode } from 'react-dom';
+import { createPortal } from 'react-dom';
 
 export const insertPositions = {
   'after': 'afterend',
@@ -30,7 +30,7 @@ export class EuiPortal extends Component {
       document.body.appendChild(this.portalNode);
     } else {
       // inserting before or after an element
-      findDOMNode(insert.sibling).insertAdjacentElement(
+      insert.sibling.insertAdjacentElement(
         insertPositions[insert.position],
         this.portalNode
       );
@@ -63,13 +63,10 @@ export class EuiPortal extends Component {
 
 EuiPortal.propTypes = {
   children: PropTypes.node,
-  /** `{sibling: ReactNode|HTMLElement, position: 'before'|'after'}` */
+  /** `{sibling: HTMLElement, position: 'before'|'after'}` */
   insert: PropTypes.shape({
-    sibling: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.instanceOf(HTMLElement)
-    ]).isRequired,
-    position: PropTypes.oneOf(INSERT_POSITIONS),
+    sibling: PropTypes.instanceOf(HTMLElement).isRequired,
+    position: PropTypes.oneOf(INSERT_POSITIONS).isRequired,
   }),
   portalRef: PropTypes.func,
 };

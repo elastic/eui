@@ -1,11 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `beaker` icon to `EuiIcon` and updated the `EuiBetaBadge` styling ([#1291](https://github.com/elastic/eui/pull/1291/))
+- Removed calls to deprecated `findDOMNode` ([#1285](https://github.com/elastic/eui/pull/1285))
+
+**Breaking changes**
+
+- Changed `EuiMutationObserver` to a render prop component ([#1285](https://github.com/elastic/eui/pull/1285))
+- `EuiPortal` no longer accepts a React node for `insert.sibling` value ([#1285](https://github.com/elastic/eui/pull/1285))
+- `popover_positioning` service's methods no longer accept React node values ([#1285](https://github.com/elastic/eui/pull/1285))
+
+**Bug fixes**
+- Added TypeScript definitions for tab components ([#1288](https://github.com/elastic/eui/pull/1288))
 
 ## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
 
 - Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 - Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
 
 **Bug fixes**
 
