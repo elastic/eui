@@ -12,7 +12,7 @@ export default () => (
     &emsp;
     <EuiBetaBadge label="Lab" title="Laboratory" tooltipContent="This module is not GA. Please help us by reporting any bugs." />
     &emsp;
-    <EuiBetaBadge label="Lightening" iconType="bolt" />
+    <EuiBetaBadge label="Lab" iconType="beaker" />
 
     <EuiSpacer />
     <EuiTitle>

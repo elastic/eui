@@ -14,6 +14,7 @@ import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
 import auditbeatApp from './assets/app_auditbeat.svg';
+import beaker from './assets/beaker.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -250,6 +251,7 @@ const typeToIconMap = {
   arrowRight,
   arrowUp,
   asterisk,
+  beaker,
   bolt,
   boxesHorizontal,
   boxesVertical,

@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `beaker` icon to `EuiIcon` and updated the `EuiBetaBadge` styling ([#1291](https://github.com/elastic/eui/pull/1291/))
 - Removed calls to deprecated `findDOMNode` ([#1285](https://github.com/elastic/eui/pull/1285))
 
 **Breaking changes**
