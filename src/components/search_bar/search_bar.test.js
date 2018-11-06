@@ -90,8 +90,7 @@ describe('SearchBar', () => {
           box={{ 'data-test-subj': 'searchbar' }}
         />
       );
-
-      console.log(component.find('input[data-test-subj="searchbar"]').debug());
+      
       component.find('input[data-test-subj="searchbar"]').simulate('keyup', { keyCode: ENTER, target: { value: 'status:inactive' } });
 
       expect(onChange).toHaveBeenCalledTimes(1);
