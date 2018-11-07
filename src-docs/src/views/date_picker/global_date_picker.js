@@ -235,6 +235,7 @@ export default class extends Component {
       isPopoverOpen: false,
       showPrettyFormat: false,
       showNeedsUpdate: false,
+      isUpdating: false,
       timerIsOn: false,
       recentlyUsed: [
         ['11/25/2017 00:00 AM', '11/25/2017 11:59 PM'],
@@ -301,12 +302,18 @@ export default class extends Component {
     }));
   }
 
+  toggleIsUpdating = () => {
+    this.setState(prevState => ({
+      isUpdating: !prevState.isUpdating,
+    }));
+  }
+
 
   render() {
     const quickSelectButton = (
       <EuiButtonEmpty
         className="euiFormControlLayout__prepend euiGlobalDatePicker__quickSelectButton"
-        style={{ borderRight: 'none' }}
+        textProps={{ className: 'euiGlobalDatePicker__quickSelectButtonText' }}
         onClick={this.togglePopover}
         aria-label="Date quick select"
         size="xs"
@@ -327,7 +334,6 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
         anchorPosition="downLeft"
-        ownFocus
       >
         <div style={{ maxWidth: 400 }}>
           {this.renderQuickSelect()}
@@ -344,7 +350,8 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiSwitch label="Pretty format" onChange={this.togglePrettyFormat} checked={this.state.showPrettyFormat} /> &nbsp;
-        <EuiSwitch label="Needs update" onChange={this.toggleNeedsUpdate} checked={this.state.showNeedsUpdate} />
+        <EuiSwitch label="Needs update" onChange={this.toggleNeedsUpdate} checked={this.state.showNeedsUpdate} /> &nbsp;
+        <EuiSwitch label="Is Updating" onChange={this.toggleIsUpdating} checked={this.state.isUpdating} />
         <EuiSpacer />
 
         <EuiFlexGroup gutterSize="s" responsive={false}>
@@ -398,11 +405,24 @@ export default class extends Component {
   renderUpdateButton = () => {
     const color = this.state.showNeedsUpdate ? 'secondary' : 'primary';
     const icon = this.state.showNeedsUpdate ? 'kqlFunction' : 'refresh';
-    const text = this.state.showNeedsUpdate ? 'Update' : 'Refresh';
+    let text = this.state.showNeedsUpdate ? 'Update' : 'Refresh';
+
+    if (this.state.isUpdating) {
+      text = 'Updating';
+    }
 
     return (
       <EuiToolTip ref={this.setTootipRef} content={this.state.showNeedsUpdate ? 'Click to apply' : undefined} position="bottom">
-        <EuiButton className="euiGlobalDatePicker__updateButton" color={color} fill iconType={icon}>{text}</EuiButton>
+        <EuiButton
+          isLoading={this.state.isUpdating}
+          className="euiGlobalDatePicker__updateButton"
+          color={color}
+          fill
+          iconType={icon}
+          textProps={{ className: 'euiGlobalDatePicker__updateButtonText' }}
+        >
+          {text}
+        </EuiButton>
       </EuiToolTip>
     );
   }
@@ -539,7 +559,7 @@ export default class extends Component {
                 iconType={this.state.timerIsOn ? 'stop' : 'play'}
                 size="s"
                 onClick={this.toggleTimer}
-                style={{ minWidth: 0 }}
+                style={{ minWidth: 90 }}
               >
                 {this.state.timerIsOn ? 'Stop' : 'Start'}
               </EuiButton>

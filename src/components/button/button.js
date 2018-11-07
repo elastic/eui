@@ -53,6 +53,8 @@ export const EuiButton = ({
   rel,
   type,
   buttonRef,
+  contentProps,
+  textProps,
   ...rest
 }) => {
 
@@ -105,9 +107,9 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content">
+        <span className="euiButton__content" {...contentProps}>
           {buttonIcon}
-          <span className="euiButton__text">{children}</span>
+          <span className="euiButton__text" {...textProps}>{children}</span>
         </span>
       </a>
     );
@@ -120,9 +122,9 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content">
+        <span className="euiButton__content" {...contentProps}>
           {buttonIcon}
-          <span className="euiButton__text">{children}</span>
+          <span className="euiButton__text" {...textProps}>{children}</span>
         </span>
       </button>
     );
@@ -165,6 +167,12 @@ EuiButton.propTypes = {
    */
   type: PropTypes.string,
   buttonRef: PropTypes.func,
+
+  /**
+   * Props passing
+   */
+  contentProps: PropTypes.object,
+  textProps: PropTypes.object,
 };
 
 EuiButton.defaultProps = {

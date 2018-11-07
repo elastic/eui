@@ -13,8 +13,9 @@
   align-items: center;
   padding: 1px; /* 1 */
 
+  // Allow any child to fill entire range container
   > * {
-    flex: 1 1 0%; // All values necessary for IE support
+    flex-grow: 1;
   }
 
   .euiFieldText.euiDatePicker {
@@ -48,7 +49,7 @@
   > .euiDatePickerRange__delimeter {
     line-height: 1 !important;
     flex: 0 0 auto;
-    padding-left: $euiFormControlPadding/2;
-    padding-right: $euiFormControlPadding/2;
+    padding-left: $euiFormControlPadding / 2;
+    padding-right: $euiFormControlPadding / 2;
   }
 }

@@ -1,7 +1,11 @@
 //// GLOBAL Date picker
 
 .euiGlobalDatePicker__quickSelectButton {
-  .euiButtonEmpty__text {
+  // Override prepend border since button already lives inside another prepend
+  border-right: none !important;
+
+  .euiGlobalDatePicker__quickSelectButtonText {
+    // Override specificity from universal and sibiling selectors
     margin-right: $euiSizeXS !important;
   }
 }
@@ -25,13 +29,14 @@
 }
 
 .euiGlobalDatePicker__dateButton {
+  @include euiFormControlText;
   display: block;
   width: 100%;
-  @include euiFormControlText;
   padding: 0 $euiSizeS;
   line-height: $euiFormControlHeight - 2px;
   height: $euiFormControlHeight - 2px;
   word-break: break-all;
+  transition: background $euiAnimSpeedFast ease-in;
 
   $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
   $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
@@ -68,10 +73,13 @@
 }
 
 .euiGlobalDatePicker__updateButton {
+  // Just wide enough for all 3 states
+  min-width: $euiButtonMinWidth + ($euiSizeXS * 1.5);
+
   @include euiBreakpoint('xs', 's') {
     min-width: 0;
 
-    .euiButton__text {
+    .euiGlobalDatePicker__updateButtonText {
       display: none;
     }
   }
