@@ -27,6 +27,14 @@
   @include euiBottomShadowFlat; /* 2 */
 }
 
+.euiSuperSelect__item {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: $euiFocusBackgroundColor;
+  }
+}
+
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {
   border-bottom: $euiBorderThin;
 }

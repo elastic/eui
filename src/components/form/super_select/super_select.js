@@ -47,19 +47,19 @@ export class EuiSuperSelect extends Component {
         null
       );
 
-      // valueOfSelected is optional, and options may not exist yet
-      if (indexOfSelected != null) {
-        // wait for the CSS classes to be applied, removing visibility: hidden
-        requestAnimationFrame(() => {
-          this.focusItemAt(indexOfSelected);
-
-          this.setState({
-            menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
-          });
+      requestAnimationFrame(() => {
+        this.setState({
+          menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
         });
-      } else {
-        requestAnimationFrame(focusSelected);
-      }
+
+        if (this.props.valueOfSelected != null) {
+          if (indexOfSelected != null) {
+            this.focusItemAt(indexOfSelected);
+          } else {
+            focusSelected();
+          }
+        }
+      });
     };
 
     requestAnimationFrame(focusSelected);
