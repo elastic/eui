@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.0.0`.
+
+## [`5.0.0`](https://github.com/elastic/eui/tree/v5.0.0)
+
 - Added `EuiToken` component ([#1270](https://github.com/elastic/eui/pull/1270)) 
 - Added `beaker` icon to `EuiIcon` and updated the `EuiBetaBadge` styling ([#1291](https://github.com/elastic/eui/pull/1291/))
 - Removed calls to deprecated `findDOMNode` ([#1285](https://github.com/elastic/eui/pull/1285))
