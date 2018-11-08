@@ -42,3 +42,5 @@ export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
 EuiSpacer.defaultProps = {
   size: 'l',
 };
+
+EuiSpacer.displayName = 'EuiSpacer';

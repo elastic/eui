@@ -15,7 +15,7 @@ module.exports = {
   ],
   "plugins": [
     "pegjs-inline-precompile",
-    "./scripts/babel/proptypes-from-ts-props",
+    // "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
     [
       "react-docgen",
