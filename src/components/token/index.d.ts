@@ -1,19 +1,19 @@
-/// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
 import { SFC, HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
 
   /**
    * token type defs
-   * 
+   *
    * @see './token.js'
   */
-  
+
   export type TokenSize = 's' | 'm' | 'l';
 
-  export type TokenColor = 
+  export type TokenColor =
     | 'tokenTint01'
     | 'tokenTint02'
     | 'tokenTint03'
