@@ -23,7 +23,7 @@
     right: 0;
     bottom: 0;
     border-radius: $borderRadius;
-    content: "";
+    content: '';
     pointer-events: none;
     border: 1px solid $color;
   }
@@ -31,13 +31,14 @@
 
 // Set scroll bar appearance on Chrome.
 @mixin euiScrollBar {
+  // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-scrollbar {
     width: 16px;
     height: 16px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($euiColorDarkShade, 0.5);
+    background-color: transparentize($euiColorDarkShade, .5);
     border: 6px solid transparent;
     background-clip: content-box;
   }
@@ -51,6 +52,7 @@
 
 // Specifically target IE11, but not Edge.
 @mixin internetExplorerOnly {
+  // sass-lint:disable-block no-vendor-prefixes
   @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
     @content;
   }

@@ -9,25 +9,25 @@
 }
 
 .euiTitle--xxxsmall {
-  @include euiTitle("xxxs");
+  @include euiTitle('xxxs');
 }
 
 .euiTitle--xxsmall {
-  @include euiTitle("xxs");
+  @include euiTitle('xxs');
 }
 
 .euiTitle--xsmall {
-  @include euiTitle("xs");
+  @include euiTitle('xs');
 }
 
 .euiTitle--small {
-  @include euiTitle("s");
+  @include euiTitle('s');
 }
 
 .euiTitle--medium {
-  @include euiTitle("m");
+  @include euiTitle('m');
 }
 
 .euiTitle--large {
-  @include euiTitle("l");
+  @include euiTitle('l');
 }

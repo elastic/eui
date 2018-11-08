@@ -18,12 +18,12 @@
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto);
     padding: $euiSizeXS;
-    @include euiFormControlLayout__padding(1); /* 2 */
+    @include euiFormControlLayoutPadding(1); /* 2 */
 
     display: flex; /* 1 */
 
     &.euiComboBox__inputWrap-isClearable {
-      @include euiFormControlLayout__padding(2); /* 2 */
+      @include euiFormControlLayoutPadding(2); /* 2 */
     }
 
     &:not(.euiComboBox__inputWrap--noWrap) {

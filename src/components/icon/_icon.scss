@@ -4,7 +4,7 @@
   fill: currentColor;
 
   svg {
-    transform: translate(0,0); // Hack to fix Firefox "softness"
+    transform: translate(0, 0); // Hack to fix Firefox "softness"
   }
 
   &:focus {
@@ -25,7 +25,7 @@
   // Primary icons are mono of that color
   &.euiIcon--primary {
     fill: $euiColorPrimary;
-  
+
     // Provides a way to make app icons close to our primary
     .euiIcon__fillSecondary {
       fill: $euiColorPrimary;

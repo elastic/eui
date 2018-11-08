@@ -45,11 +45,11 @@
   @if ($isIconOptional) {
     @at-root {
       #{&}--withIcon {
-        @include euiFormControlLayout__padding(1, $side);
+        @include euiFormControlLayoutPadding(1, $side);
       }
     }
   } @else {
-    @include euiFormControlLayout__padding(1, $side);
+    @include euiFormControlLayoutPadding(1, $side);
   }
 }
 
@@ -57,9 +57,9 @@
   @at-root {
     #{&}-isLoading {
       @if ($isNextToIcon) {
-        @include euiFormControlLayout__padding(2);
+        @include euiFormControlLayoutPadding(2);
       } @else {
-        @include euiFormControlLayout__padding(1);
+        @include euiFormControlLayoutPadding(1);
       }
     }
   }
@@ -195,7 +195,7 @@
               border-color $euiAnimSpeedFast ease-in;
 }
 
-@mixin euiCustomControl--selected($type: null){
+@mixin euiCustomControlSelected($type: null){
   border-color: $euiColorPrimary;
   background-color: $euiColorPrimary;
 
@@ -204,7 +204,7 @@
   }
 }
 
-@mixin euiCustomControl--disabled($type: null){
+@mixin euiCustomControlDisabled($type: null){
   border-color: $euiColorLightShade;
   background-color: $euiColorLightShade;
   box-shadow: none;
@@ -213,7 +213,7 @@
   }
 }
 
-@mixin euiCustomControl--focused(){
+@mixin euiCustomControlFocused(){
   border-color: $euiColorPrimary;
   @include euiFocusRing;
 }

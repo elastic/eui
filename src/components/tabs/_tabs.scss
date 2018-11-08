@@ -1,12 +1,14 @@
 .euiTabs {
+  @include euiScrollBar;
+
   display: flex;
   border-bottom: $euiBorderThin;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
-  @include euiScrollBar;
 
   // Changing height of scrollbar so it sits flush with border
+  // sass-lint:disable no-vendor-prefixes
   &::-webkit-scrollbar {
     height: 3px;
   }
@@ -14,7 +16,7 @@
   &.euiTabs--small {
     .euiTab {
       @include fontSize($euiTabFontSizeS);
-      padding: $euiSizeS $euiSizeS;
+      padding: $euiSizeS;
     }
   }
 
@@ -34,7 +36,7 @@
   cursor: pointer;
   padding: $euiSizeM $euiSize;
   background-color: transparent;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+  transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:hover:not(.euiTab-isSelected) {
     color: $euiTextColor;
@@ -74,22 +76,20 @@
 
 }
 
-
-
-  .euiTab__content {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
-    transform: translateY(0);
-  }
-
+.euiTab__content {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
+  transform: translateY(0);
+}
 
 @keyframes euiTab {
   0% {
     transform: scaleX(0);
   }
+
   100% {
     transform: scaleX(1);
   }

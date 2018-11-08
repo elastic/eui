@@ -24,13 +24,13 @@
 
     &:checked {
       + .euiCheckbox__square {
-        @include euiCustomControl--selected($type: 'check');
+        @include euiCustomControlSelected($type: 'check');
       }
     }
 
     &:indeterminate {
       + .euiCheckbox__square {
-        @include euiCustomControl--selected($type: 'square');
+        @include euiCustomControlSelected($type: 'square');
       }
     }
 
@@ -43,26 +43,26 @@
       }
 
       + .euiCheckbox__square {
-        @include euiCustomControl--disabled();
+        @include euiCustomControlDisabled();
       }
     }
 
     &:checked[disabled] {
       + .euiCheckbox__square {
-        @include euiCustomControl--disabled($type: 'check');
+        @include euiCustomControlDisabled($type: 'check');
       }
     }
 
     &:indeterminate[disabled] {
       + .euiCheckbox__square {
-        @include euiCustomControl--disabled($type: 'dot');
+        @include euiCustomControlDisabled($type: 'dot');
       }
     }
 
     &:focus,
     &:active:not(:disabled) {
       + .euiCheckbox__square {
-        @include euiCustomControl--focused;
+        @include euiCustomControlFocused;
       }
     }
   }

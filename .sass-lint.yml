@@ -2,6 +2,10 @@ files:
   include:
     - 'src/**/*.s+(a|c)ss'
     - 'src-docs/**/*.s+(a|c)ss'
+  ignore:
+    # These are themes of outside libraries we import
+    - 'src/components/series_chart/**/*.s+(a|c)ss'
+    - 'src/components/date_picker/**/*.s+(a|c)ss'
 rules:
   quotes:
     - 2
@@ -70,3 +74,7 @@ rules:
     - 1
     -
       allow-single-line-rulesets: 1
+  # Warns are nice for deprecations and development
+  no-warn: 0
+  # Very hard to use in practice without extraneous sass in some situations
+  no-transition-all: 0

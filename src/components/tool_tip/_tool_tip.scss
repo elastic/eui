@@ -4,7 +4,7 @@
 
 .euiToolTip {
   @include euiBottomShadow($color: #000);
-  @include euiFontSizeS();
+  @include euiFontSizeS;
 
   position: absolute; /* 1 */
   border-radius: $euiBorderRadius;
@@ -27,7 +27,7 @@
   $arrowMinusSize: (($arrowSize/2) - 1px) * -1; /* 1 */
 
   .euiToolTip__arrow {
-    content: "";
+    content: '';
     position: absolute;
     transform-origin: center;
     border-radius: 2px;
@@ -89,6 +89,7 @@
     opacity: 0;
     transform: translateY(-$euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -100,6 +101,7 @@
     opacity: 0;
     transform: translateY($euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -111,6 +113,7 @@
     opacity: 0;
     transform: translateX(-$euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -122,6 +125,7 @@
     opacity: 0;
     transform: translateX($euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

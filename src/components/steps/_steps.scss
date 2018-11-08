@@ -16,13 +16,13 @@
     margin-right: $euiStepNumberMargin;
     vertical-align: top; /* 1 */
 
-    &[class*="complete"],
-    &[class*="warning"],
-    &[class*="danger"] {
+    &[class*='complete'],
+    &[class*='warning'],
+    &[class*='danger'] {
       animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
     }
 
-    &[class*="incomplete"] {
+    &[class*='incomplete'] {
       border-color: $euiColorPrimary;
       animation: none;
     }
@@ -39,9 +39,9 @@
     margin: $euiSizeS 0;
 
     // Align the content's contents with the title
-    padding-left: ($euiStepNumberSize/2) - 1px + $euiStepNumberMargin;
+    padding-left: ($euiStepNumberSize / 2) - 1px + $euiStepNumberMargin;
 
     // Align content border to horizontal center of step number
-    margin-left: ($euiStepNumberSize/2) - 1px;
+    margin-left: ($euiStepNumberSize / 2) - 1px;
   }
 }
