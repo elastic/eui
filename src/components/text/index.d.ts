@@ -9,7 +9,7 @@ declare module '@elastic/eui' {
    * @see './text.js'
    * @see './text_color.js'
    */
-  type SIZES = 's' | 'xs';
+  type TEXT_SIZES = 's' | 'xs';
 
   type COLORS =
     | 'default'
@@ -22,7 +22,7 @@ declare module '@elastic/eui' {
 
   type EuiTextProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
-      size?: SIZES;
+      size?: TEXT_SIZES;
       color?: COLORS;
       grow?: boolean;
     };

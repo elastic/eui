@@ -1,0 +1,477 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiToken is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint01 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint02 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint02 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint03 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint03 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint04 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint04 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint05 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint05 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint06 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint06 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint07 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint07 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint08 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint08 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint09 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint09 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props color tokenTint10 is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint10 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props shape circle is rendered 1`] = `
+<div
+  class="euiToken euiToken--circle euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props shape rectangle is rendered 1`] = `
+<div
+  class="euiToken euiToken--rectangle euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props shape square is rendered 1`] = `
+<div
+  class="euiToken euiToken--square euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props size l is rendered 1`] = `
+<div
+  class="euiToken euiToken--circle euiToken--tokenTint01 euiToken--large"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props size m is rendered 1`] = `
+<div
+  class="euiToken euiToken--circle euiToken--tokenTint01 euiToken--medium"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;
+
+exports[`EuiToken props size s is rendered 1`] = `
+<div
+  class="euiToken euiToken--circle euiToken--tokenTint01 euiToken--small"
+>
+  <svg
+    class="euiIcon euiIcon--medium"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xlink="http://www.w3.org/1999/xlink"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <circle
+        cx="8"
+        cy="8"
+        id="dot-a"
+        r="4"
+      />
+    </defs>
+    <use
+      href="#dot-a"
+    />
+  </svg>
+</div>
+`;

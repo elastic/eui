@@ -21,41 +21,8 @@ describe('EuiMutationObserver', () => {
     function Wrapper({ value }) {
       return (
         <EuiMutationObserver observerOptions={{ attributes: true }} onMutation={onMutation}>
-          <Child value={value}/>
+          {mutationRef => <div ref={mutationRef} data-test-ref={value}>Hello World</div>}
         </EuiMutationObserver>
-      );
-    }
-    function Child({ value }) {
-      return (
-        <div data-test-ref={value}>Hello World</div>
-      );
-    }
-
-    const component = mount(<Wrapper value={5}/>);
-
-    component.setProps({ value: 6 });
-
-    await waitforMutationObserver();
-
-    expect(onMutation).toHaveBeenCalledTimes(1);
-  });
-
-  it('watches for mutation against multiple children', async () => {
-    expect.assertions(1);
-    const onMutation = jest.fn();
-
-    function Wrapper({ value }) {
-      return (
-        <EuiMutationObserver observerOptions={{ attributes: true }} onMutation={onMutation}>
-          <Child value="never-changing"/>
-          <Child value={value}/>
-          <Child value="never-changing"/>
-        </EuiMutationObserver>
-      );
-    }
-    function Child({ value }) {
-      return (
-        <div data-test-ref={value}>Hello World</div>
       );
     }
 

@@ -296,6 +296,10 @@ export {
 } from './table';
 
 export {
+  EuiToken
+} from './token';
+
+export {
   EuiBasicTable,
   EuiInMemoryTable
 } from './basic_table';
