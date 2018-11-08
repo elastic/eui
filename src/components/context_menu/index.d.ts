@@ -94,7 +94,7 @@ declare module '@elastic/eui' {
 
   interface EuiContextMenuPanelDescriptor {
     id: EuiContextMenuPanelId;
-    title: string;
+    title?: string;
     items?: EuiContextMenuPanelItemDescriptor[];
     content?: React.ReactNode;
     width?: number;

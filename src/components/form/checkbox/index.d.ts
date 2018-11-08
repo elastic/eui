@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
 
   export interface EuiCheckboxProps {
     id: string;
-    checked: boolean;
+    checked?: boolean;
     onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
     label?: ReactNode;
     type?: EuiCheckboxType;

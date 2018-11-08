@@ -11,7 +11,6 @@ exports[`CollapsedItemActions render 1`] = `
     >
       <EuiButtonIcon
         aria-label="All actions"
-        className={undefined}
         color="text"
         iconSize="m"
         iconType="boxesHorizontal"
@@ -36,7 +35,6 @@ exports[`CollapsedItemActions render 1`] = `
       Array [
         <EuiContextMenuItem
           disabled={false}
-          icon={undefined}
           layoutAlign="center"
           onClick={[Function]}
           toolTipPosition="right"

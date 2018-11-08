@@ -17,9 +17,11 @@ const iconTypes = [
   'arrowRight',
   'arrowUp',
   'asterisk',
+  'beaker',
   'bolt',
   'boxesHorizontal',
   'boxesVertical',
+  'branch',
   'broom',
   'brush',
   'bullseye',
@@ -151,7 +153,7 @@ const iconTypes = [
   'visText',
   'visTimelion',
   'visVega',
-  'visVisualBuilder',
+  'visVisualBuilder'
 ];
 
 export default () => (

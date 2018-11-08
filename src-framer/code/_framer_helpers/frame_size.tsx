@@ -1,5 +1,5 @@
 import { ControlType, PropertyControls } from 'framer';
-import React, { Fragment } from 'react';
+import * as React from 'react';
 
 // Define type of property
 interface Props {
@@ -32,6 +32,6 @@ export class FrameSize extends React.Component<Props> {
     } else {
       optionallyFramedComponent = (this.props.children);
     }
-    return (<Fragment>{optionallyFramedComponent}</Fragment>);
+    return (<React.Fragment>{optionallyFramedComponent}</React.Fragment>);
   }
 }

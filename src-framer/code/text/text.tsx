@@ -14,7 +14,7 @@ interface Props {
   grow: boolean;
 }
 
-export class Button extends React.Component<Props> {
+export class Text extends React.Component<Props> {
 
   // Set default properties
   public static defaultProps = {
@@ -23,7 +23,7 @@ export class Button extends React.Component<Props> {
 
   // Items shown in property panel
   public static propertyControls: PropertyControls = {
-    textChild: {
+    childText: {
       type: ControlType.String,
       title: '🧙 childText',
     },

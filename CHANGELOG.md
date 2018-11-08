@@ -1,6 +1,43 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `4.7.0`.
+No public interface changes since `5.0.1`.
+
+## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
+
+**Bug fixes**
+
+- Fixed size of `EuiSuperSelect`'s dropdown menu when there is no initial selection ([#1295](https://github.com/elastic/eui/pull/1295))
+- Added TypeScript definitions for `EuiPopoverTitle` and the beta and notification badges. Ensure tab TS definitions are included in the main definition index. Fix typo in icon types ([#1299](https://github.com/elastic/eui/pull/1299))
+
+## [`5.0.0`](https://github.com/elastic/eui/tree/v5.0.0)
+
+- Added `EuiToken` component ([#1270](https://github.com/elastic/eui/pull/1270))
+- Added `beaker` icon to `EuiIcon` and updated the `EuiBetaBadge` styling ([#1291](https://github.com/elastic/eui/pull/1291/))
+- Removed calls to deprecated `findDOMNode` ([#1285](https://github.com/elastic/eui/pull/1285))
+
+**Breaking changes**
+
+- Changed `EuiMutationObserver` to a render prop component ([#1285](https://github.com/elastic/eui/pull/1285))
+- `EuiPortal` no longer accepts a React node for `insert.sibling` value ([#1285](https://github.com/elastic/eui/pull/1285))
+- `popover_positioning` service's methods no longer accept React node values ([#1285](https://github.com/elastic/eui/pull/1285))
+
+**Bug fixes**
+
+- Added TypeScript definitions for tab components ([#1288](https://github.com/elastic/eui/pull/1288))
+
+## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
+
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
+- Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
+
+**Bug fixes**
+
+- Added TypeScript definitions for `EuiToolTip`'s `delay` prop. ([#1284](https://github.com/elastic/eui/pull/1284))
+- Added TypeScript definitions for step components, and some checkbox definition fixes ([#1263](https://github.com/elastic/eui/pull/1263))
+
+**Framer X**
+
+- Added Framer component for `EuiDescirptionList` ([#1276](https://github.com/elastic/eui/pull/1276))
 
 ## [`4.7.0`](https://github.com/elastic/eui/tree/v4.7.0)
 
@@ -8,6 +45,7 @@ No public interface changes since `4.7.0`.
 - Added [Framer X](http://www.framer.com) component source files under the `src-framer` directory ([#1263](https://github.com/elastic/eui/pull/1263))
 - Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
 - Added guidelines for Sass usage. ([#1257](https://github.com/elastic/eui/pull/1257))
+- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 
 **Bug fixes**
 

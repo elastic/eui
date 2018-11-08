@@ -14,9 +14,11 @@ import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
 import auditbeatApp from './assets/app_auditbeat.svg';
+import beaker from './assets/beaker.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
+import branch from './assets/branch.svg';
 import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
@@ -108,11 +110,14 @@ import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
+import logoAPM from './assets/logo_apm.svg';
 import logoAWS from './assets/logo_aws.svg';
 import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
+import logoAppSearch from './assets/logo_app_search.svg';
 import logoBeats from './assets/logo_beats.svg';
+import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
@@ -122,6 +127,7 @@ import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
+import logoEnterpriseSearch from './assets/logo_enterprise_search.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGCP from './assets/logo_gcp.svg';
 import logoGCPMono from './assets/logo_gcp_mono.svg';
@@ -134,6 +140,7 @@ import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
 import logoMemcached from './assets/logo_memcached.svg';
+import logoMetrics from './assets/logo_metrics.svg';
 import logoMongodb from './assets/logo_mongodb.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
@@ -143,6 +150,7 @@ import logoPostgres from './assets/logo_postgres.svg';
 import logoPrometheus from './assets/logo_prometheus.svg';
 import logoRabbitmq from './assets/logo_rabbitmq.svg';
 import logoRedis from './assets/logo_redis.svg';
+import logoSiteSearch from './assets/logo_site_search.svg';
 import logoSketch from './assets/logo_sketch.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
@@ -231,6 +239,36 @@ import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
 
+// Token Icon Imports
+import tokenClass from './assets/tokens/tokenClass.svg';
+import tokenProperty from './assets/tokens/tokenProperty.svg';
+import tokenEnum from './assets/tokens/tokenEnum.svg';
+import tokenVariable from './assets/tokens/tokenVariable.svg';
+import tokenMethod from './assets/tokens/tokenMethod.svg';
+import tokenAnnotation from './assets/tokens/tokenAnnotation.svg';
+import tokenException from './assets/tokens/tokenException.svg';
+import tokenInterface from './assets/tokens/tokenInterface.svg';
+import tokenParameter from './assets/tokens/tokenParameter.svg';
+import tokenField from './assets/tokens/tokenField.svg';
+import tokenElement from './assets/tokens/tokenElement.svg';
+import tokenFunction from './assets/tokens/tokenFunction.svg';
+import tokenBoolean from './assets/tokens/tokenBoolean.svg';
+import tokenString from './assets/tokens/tokenString.svg';
+import tokenArray from './assets/tokens/tokenArray.svg';
+import tokenNumber from './assets/tokens/tokenNumber.svg';
+import tokenConstant from './assets/tokens/tokenConstant.svg';
+import tokenObject from './assets/tokens/tokenObject.svg';
+import tokenEvent from './assets/tokens/tokenEvent.svg';
+import tokenKey from './assets/tokens/tokenKey.svg';
+import tokenNull from './assets/tokens/tokenNull.svg';
+import tokenStruct from './assets/tokens/tokenStruct.svg';
+import tokenPackage from './assets/tokens/tokenPackage.svg';
+import tokenOperator from './assets/tokens/tokenOperator.svg';
+import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
+import tokenRepo from './assets/tokens/tokenRepo.svg';
+import tokenSymbol from './assets/tokens/tokenSymbol.svg';
+import tokenFile from './assets/tokens/tokenFile.svg';
+
 const typeToIconMap = {
   addDataApp,
   advancedSettingsApp,
@@ -243,9 +281,11 @@ const typeToIconMap = {
   arrowRight,
   arrowUp,
   asterisk,
+  beaker,
   bolt,
   boxesHorizontal,
   boxesVertical,
+  branch,
   broom,
   brush,
   bullseye,
@@ -331,11 +371,14 @@ const typeToIconMap = {
   lock,
   lockOpen,
   loggingApp,
-  logoAerospike,
-  logoApache,
+  logoAPM,
   logoAWS,
   logoAWSMono,
+  logoAerospike,
+  logoApache,
+  logoAppSearch,
   logoBeats,
+  logoBusinessAnalytics,
   logoCeph,
   logoCloud,
   logoCloudEnterprise,
@@ -343,8 +386,9 @@ const typeToIconMap = {
   logoDocker,
   logoDropwizard,
   logoElastic,
-  logoElasticsearch,
   logoElasticStack,
+  logoElasticsearch,
+  logoEnterpriseSearch,
   logoEtcd,
   logoGCP,
   logoGCPMono,
@@ -357,6 +401,7 @@ const typeToIconMap = {
   logoKubernetes,
   logoLogstash,
   logoMemcached,
+  logoMetrics,
   logoMongodb,
   logoMySQL,
   logoNginx,
@@ -366,6 +411,7 @@ const typeToIconMap = {
   logoPrometheus,
   logoRabbitmq,
   logoRedis,
+  logoSiteSearch,
   logoSketch,
   logoSlack,
   logoWebhook,
@@ -460,6 +506,34 @@ const typeToIconMap = {
   packetbeatApp,
   securityAnalyticsApp,
   sqlApp,
+  tokenClass,
+  tokenProperty,
+  tokenEnum,
+  tokenVariable,
+  tokenMethod,
+  tokenAnnotation,
+  tokenException,
+  tokenInterface,
+  tokenParameter,
+  tokenField,
+  tokenElement,
+  tokenFunction,
+  tokenBoolean,
+  tokenString,
+  tokenArray,
+  tokenNumber,
+  tokenConstant,
+  tokenObject,
+  tokenEvent,
+  tokenKey,
+  tokenNull,
+  tokenStruct,
+  tokenPackage,
+  tokenOperator,
+  tokenEnumMember,
+  tokenRepo,
+  tokenSymbol,
+  tokenFile
 };
 
 export const TYPES = Object.keys(typeToIconMap);

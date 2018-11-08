@@ -10,6 +10,7 @@ tmp/
 dist/
 lib/
 types/
+es/
 .idea
 .vscode/
 .DS_Store

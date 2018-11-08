@@ -1,12 +1,14 @@
 /**
  * 1. Leave room for caret.
  * 2. Ensure the descenders don't get cut off
+ * 3. Makes sure the height is correct when there's no selection
  */
 
 .euiSuperSelectControl {
   @include euiFormControlStyle;
   @include euiFormControlWithIcon($side: "right"); /* 1 */
   @include euiFormControlIsLoading($isNextToIcon: true);
+  display: block; /* 3 */
   text-align: left;
 
   line-height: $euiFormControlHeight; /* 2 */

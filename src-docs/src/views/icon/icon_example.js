@@ -9,6 +9,7 @@ import {
 import {
   EuiCode,
   EuiIcon,
+  EuiToken,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -23,6 +24,9 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
+
+import Tokens from './tokens';
+const tokensSource = require('!!raw-loader!./tokens');
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
@@ -95,6 +99,37 @@ export const IconExample = {
       </p>
     ),
     demo: <Apps />,
+  }, {
+    title: 'Tokens',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: tokensSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: iconsHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Tokens are most commonly used in search to help visually classify results.
+          The tokens included in EUI can be used to identify a number of code-based
+          search results.
+        </p>
+
+        <p>
+          An <EuiCode>EuiToken</EuiCode> accepts any valid <EuiCode>EuiIcon</EuiCode> as its
+          <EuiCode>iconType</EuiCode> property. However, icons designed specifically for
+          use in the <EuiCode>EuiToken</EuiCode> are prefixed with &quot;token&quot; in their name.
+        </p>
+
+        <p>
+          Multiple variants are available including: <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,
+          <EuiCode>color</EuiCode>, <EuiCode>hideBorder</EuiCode>, and <EuiCode>fill</EuiCode>.
+        </p>
+      </div>
+    ),
+    props: { EuiToken },
+    demo: <Tokens />,
   }, {
     title: 'Machine learning icons',
     source: [{

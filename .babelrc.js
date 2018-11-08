@@ -1,6 +1,6 @@
-{
+module.exports = {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "targets": {
         "browsers": [
           "last 2 versions",
@@ -8,9 +8,10 @@
           "Safari 7" // for PhantomJS support
         ]
       },
-      "useBuiltIns": true
+      "useBuiltIns": "usage",
+      "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
-    "react"
+    "@babel/react"
   ],
   "plugins": [
     "pegjs-inline-precompile",
@@ -23,10 +24,9 @@
       }
     ],
     // stage 3
-    "transform-async-generator-functions",
-    "transform-object-rest-spread",
+    "@babel/proposal-object-rest-spread",
     // stage 2
-    "transform-class-properties",
+    "@babel/proposal-class-properties",
     [
       "inline-react-svg",
       {
@@ -34,10 +34,10 @@
         "svgo": {
           "plugins": [
             { "cleanupIDs": false },
-            { "removeViewBox": false },
+            { "removeViewBox": false }
           ]
         }
       }
     ]
   ]
-}
+};
