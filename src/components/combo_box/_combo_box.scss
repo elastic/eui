@@ -8,17 +8,18 @@
    * 3. The height on combo can be larger than normal text inputs.
    */
 
-   &--compressed,
-   .euiFormControlLayout--compressed {
-     height: auto;
-   }
+  &--compressed,
+  .euiFormControlLayout--compressed {
+    height: auto;
+  }
 
   .euiComboBox__inputWrap {
     @include euiFormControlStyle($includeStates: false, $includeSizes: false);
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto);
     padding: $euiSizeXS;
-    @include euiFormControlLayoutPadding(1); /* 2 */
+    // sass-lint:disable-block mixins-before-declarations
+    @include euiFormControlLayoutPadding(1); /* 2 */ //
 
     display: flex; /* 1 */
 
@@ -45,6 +46,7 @@
    * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
    */
   .euiComboBox__input {
+    // sass-lint:disable-block no-important
     display: inline-flex !important; /* 1 */
     height: 32px; /* 2 */
     overflow: hidden; /* 5 */

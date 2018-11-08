@@ -40,7 +40,7 @@ $callOutTypes: (
  * 3. Apply margin to all but last item in the flex.
  */
 .euiCallOutHeader {
-  @include euiTitle("xs");
+  @include euiTitle('xs');
   font-weight: $euiFontWeightRegular;
   display: flex;
   align-items: baseline; /* 1 */
@@ -55,15 +55,15 @@ $callOutTypes: (
 
   // smaller font size for headers in small callout
   .euiCallOut--small & {
-    @include euiTitle("xxs");
+    @include euiTitle('xxs');
     font-weight: $euiFontWeightRegular;
   }
 }
 
-  /**
-   * 1. Vertically center icon with first line of title.
-   */
-  .euiCallOutHeader__icon {
-    flex: 0 0 auto;
-    transform: translateY(2px); /* 1 */
-  }
+/**
+  * 1. Vertically center icon with first line of title.
+  */
+.euiCallOutHeader__icon {
+  flex: 0 0 auto;
+  transform: translateY(2px); /* 1 */
+}

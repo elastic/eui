@@ -15,11 +15,12 @@
     }
 
     + .euiCheckbox__square {
+      @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
+
       display: inline-block;
       position: absolute;
       left: 0;
-      top: ($euiSizeL - $euiCheckBoxSize)/2 - 1px;
-      @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
+      top: (($euiSizeL - $euiCheckBoxSize) / 2) - 1px;
     }
 
     &:checked {
@@ -35,6 +36,7 @@
     }
 
     &[disabled] {
+      // sass-lint:disable-block no-important
       cursor: not-allowed !important;
 
       ~ .euiCheckbox__label {
@@ -43,7 +45,7 @@
       }
 
       + .euiCheckbox__square {
-        @include euiCustomControlDisabled();
+        @include euiCustomControlDisabled;
       }
     }
 
@@ -82,9 +84,10 @@
     }
 
     .euiCheckbox__input {
+      @include size($euiCheckBoxSize); /* 1 */
+
       position: absolute; /* 1 */
       opacity: 0; /* 1 */
-      @include size($euiCheckBoxSize); /* 1 */
       z-index: 1; /* 1 */
       margin: 0; /* 1 */
       left: 0; /* 1 */

@@ -34,7 +34,7 @@ rules:
     - 2
     -
       allow-leading-underscore: false
-      convention: camelcase
+      convention: 'camelcase'
   # Use none instead of 0 for no border
   border-zero:
     - 2
@@ -50,7 +50,7 @@ rules:
     - 2
     -
       allow-leading-underscore: false
-      convention: camelcase
+      convention: 'camelcase'
   # This removes the need for ::hover
   pseudo-element: 0
   # ($var / 2) rather than ($var/2)
@@ -74,8 +74,8 @@ rules:
     - 1
     -
       exclude:
-        - font-size
-        - word-break
+        - 'font-size'
+        - 'word-break'
   # Put a line-break between sections of CSS, but allow quicky one-liners for legibility
   empty-line-between-blocks:
     - 1
