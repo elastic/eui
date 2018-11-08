@@ -5,7 +5,7 @@ const path = require('path');
 const babelTemplate = require('babel-template');
 
 function resolveArrayToPropTypes(node, state) {
-  const { dynamicData: { types } } = state;
+  const types = state.get('types');
 
   const { typeParameters } = node;
 
@@ -31,8 +31,9 @@ function resolveArrayToPropTypes(node, state) {
 }
 
 function resolveIdentifierToPropTypes(node, state) {
-  const { dynamicData: { typeDefinitions, types } } = state;
-  const identifier = node.id;
+  const typeDefinitions = state.get('typeDefinitions');
+  const types = state.get('types');
+  const identifier = node.typeName;
 
   // resolve React.* identifiers
   if (identifier.type === 'QualifiedTypeIdentifier' && identifier.qualification.name === 'React') {
@@ -80,14 +81,18 @@ function buildPropTypePrimitiveExpression(types, typeName) {
 }
 
 function getPropTypesForNode(node, optional, state) {
-  const { dynamicData: { types } } = state;
+  const types = state.get('types');
 
   if (node.isAlreadyResolved === true) return node;
 
   let propType;
   switch(node.type) {
-    case 'GenericTypeAnnotation':
+    case 'TSTypeReference':
       propType = resolveIdentifierToPropTypes(node, state);
+      break;
+
+    case 'TSTypeAnnotation':
+      propType = getPropTypesForNode(node.typeAnnotation, true, state);
       break;
 
     case 'IntersectionTypeAnnotation':
@@ -164,7 +169,7 @@ function getPropTypesForNode(node, optional, state) {
       }
       break;
 
-    case 'ObjectTypeAnnotation':
+    case 'TSInterfaceBody':
       propType = types.callExpression(
         types.memberExpression(
           types.identifier('PropTypes'),
@@ -172,10 +177,10 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.objectExpression(
-            node.properties.map(property => {
+            node.body.map(property => {
               const objectProperty = types.objectProperty(
                 types.identifier(property.key.name || `"${property.key.value}"`),
-                getPropTypesForNode(property.value, property.optional, state)
+                getPropTypesForNode(property.typeAnnotation, property.optional, state)
               );
               if (property.leadingComments != null) {
                 objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
@@ -245,19 +250,19 @@ function getPropTypesForNode(node, optional, state) {
       }
       break;
 
-    case 'StringTypeAnnotation':
+    case 'TSStringKeyword':
       propType =  buildPropTypePrimitiveExpression(types, 'string');
       break;
 
-    case 'NumberTypeAnnotation':
+    case 'TSNumberKeyword':
       propType =  buildPropTypePrimitiveExpression(types, 'number');
       break;
 
-    case 'BooleanTypeAnnotation':
+    case 'TSBooleanKeyword':
       propType =  buildPropTypePrimitiveExpression(types, 'bool');
       break;
 
-    case 'FunctionTypeAnnotation':
+    case 'TSFunctionType':
       propType =  buildPropTypePrimitiveExpression(types, 'func');
       break;
 
@@ -345,6 +350,7 @@ const typeDefinitionExtractors = {
       }
 
       // override typeDefinitions so variable scope doesn't bleed between files
+      throw new Error('dynamicData no longer exists');
       const localState = {
         ...state,
         dynamicData: {
@@ -383,26 +389,37 @@ const typeDefinitionExtractors = {
     return [];
   },
 
-  InterfaceDeclaration: node => {
+  // InterfaceDeclaration: node => {
+  //   const { id, body } = node;
+  //
+  //   if (id.type !== 'Identifier') {
+  //     debugger;
+  //     throw new Error(`InterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+  //   }
+  //
+  //   return [{ name: id.name, definition: body }];
+  // },
+  //
+  // TypeAlias: node => {
+  //   const { id, right } = node;
+  //
+  //   if (id.type !== 'Identifier') {
+  //     debugger;
+  //     throw new Error(`TypeAlias typeDefinitionExtract could not understand id type ${id.type}`);
+  //   }
+  //
+  //   return [{ name: id.name, definition: right }];
+  // },
+
+  TSInterfaceDeclaration: node => {
     const { id, body } = node;
 
     if (id.type !== 'Identifier') {
       debugger;
-      throw new Error(`InterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+      throw new Error(`TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
     return [{ name: id.name, definition: body }];
-  },
-
-  TypeAlias: node => {
-    const { id, right } = node;
-
-    if (id.type !== 'Identifier') {
-      debugger;
-      throw new Error(`TypeAlias typeDefinitionExtract could not understand id type ${id.type}`);
-    }
-
-    return [{ name: id.name, definition: right }];
   },
 
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
@@ -441,7 +458,7 @@ function getPropTypesNodeFromAST(node, types) {
 }
 
 function processComponentDeclaration(typeDefinition, path, state) {
-  const { dynamicData: { types } } = state;
+  const types = state.get('types');
 
   const propTypesAST = getPropTypesForNode(typeDefinition, false, state);
 
@@ -505,9 +522,10 @@ module.exports = function propTypesFromTypeScript({ types }) {
         // only process typescript files
         if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
 
-        const { dynamicData, opts = {} } = state;
-        const typeDefinitions = dynamicData.typeDefinitions = {};
-        dynamicData.types = types;
+        const { opts = {} } = state;
+        const typeDefinitions = {};
+        state.set('typeDefinitions', typeDefinitions);
+        state.set('types', types);
 
         const extractionOptions = {
           state,
@@ -535,7 +553,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
         // only process typescript files
         if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
 
-        const { dynamicData: { types } } = state;
+        const types = state.get('types');
 
         if (nodePath.node.superClass != null) {
           let isReactComponent = false;
@@ -577,20 +595,20 @@ module.exports = function propTypesFromTypeScript({ types }) {
         if (idTypeAnnotation) {
           let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation.typeAnnotation.id.type === 'QualifiedTypeIdentifier') {
-            const { qualification, id } = idTypeAnnotation.typeAnnotation.id;
+          if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
+            const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
 
-            if (qualification.name === 'React') {
-              if (id.name === 'SFC') {
+            if (left.name === 'React') {
+              if (right.name === 'SFC') {
                 processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
               } else {
                 debugger;
-                throw new Error(`Cannot process annotation id React.${id.name}`);
+                throw new Error(`Cannot process annotation id React.${right.name}`);
               }
             }
-          } else if (idTypeAnnotation.typeAnnotation.id.type === 'Identifier') {
-            if (idTypeAnnotation.typeAnnotation.id.name === 'SFC') {
+          } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
+            if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
               if (isVariableFromReact(types, nodePath, 'SFC')) {
                 processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
@@ -605,7 +623,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = this.file.generate().code;
+            // @TODO: do this
+            // this.file.code = this.file.generate().code;
           }
         }
       },
