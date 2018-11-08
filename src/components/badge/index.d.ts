@@ -31,7 +31,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiBetaBadge: SFC<
-    CommonProps & HTMLAttributes<HTMLSpanElement> & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps
+    CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps
   >;
 
   export interface EuiNotificationBadgeProps {
@@ -43,6 +43,6 @@ declare module '@elastic/eui' {
   }
 
   export const EuiNotificationBadge: SFC<
-    CommonProps & HTMLAttributes<HTMLSpanElement> & HTMLAttributes<HTMLSpanElement>
+    CommonProps & HTMLAttributes<HTMLSpanElement>
   >;
 }
