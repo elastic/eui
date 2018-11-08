@@ -4,7 +4,7 @@ const shell = require('shelljs');
 const glob = require('glob');
 
 function compileLib() {
-  shell.mkdir('-p', 'lib/components', 'lib/services', 'lib/test');
+  shell.mkdir('-p', 'lib/components/icon/assets/tokens', 'lib/services', 'lib/test');
 
   console.log('Compiling src/ to es/ and lib/');
 
@@ -16,15 +16,14 @@ function compileLib() {
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
-  // Also copy over SVGs. Babel has a --copy-files option but that brings over
-  // all kinds of things we don't want into the lib folder.
+  // Also copy over SVGs. Babel has a --copy-files option but that brings over
+  // all kinds of things we don't want into the lib folder.
   shell.mkdir('-p', 'lib/components/icon/assets');
 
   glob('./src/components/**/*.svg', undefined, (error, files) => {
     files.forEach(file => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
-      console.log(basePath)
       shell.cp('-f', `${file}`, `lib/${basePath}`);
     });
 
