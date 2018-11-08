@@ -20,6 +20,23 @@ const shapeToClassMap = {
 
 export const SHAPES = Object.keys(shapeToClassMap);
 
+const colorToClassMap = {
+  tokenTint01: 'eui--tokenTint01',
+  tokenTint02: 'eui--tokenTint02',
+  tokenTint03: 'eui--tokenTint03',
+  tokenTint04: 'eui--tokenTint04',
+  tokenTint05: 'eui--tokenTint05',
+  tokenTint06: 'eui--tokenTint06',
+  tokenTint07: 'eui--tokenTint07',
+  tokenTint08: 'eui--tokenTint08',
+  tokenTint09: 'eui--tokenTint09',
+  tokenTint10: 'eui--tokenTint10',
+  tokenTint11: 'eui--tokenTint11',
+  tokenTint12: 'eui--tokenTint12',
+};
+
+export const COLORS = Object.keys(colorToClassMap);
+
 export const EuiToken = ({
   iconType,
   displayOptions,
@@ -89,8 +106,8 @@ EuiToken.propTypes = {
    * - `hideBorder`: disables the outer border
    */
   displayOptions: PropTypes.shape({
-    color: PropTypes.string,
-    shape: PropTypes.string,
+    color: PropTypes.oneOf(COLORS),
+    shape: PropTypes.oneOf(SHAPES),
     fill: PropTypes.boolean,
     hideBorder: PropTypes.boolean,
   }),
