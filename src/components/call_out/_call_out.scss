@@ -11,14 +11,14 @@
 @each $name, $color in $euiCallOutTypes {
   .euiCallOut--#{$name} {
     border-color: $color;
-    background-color: euiCallOutColor($color, 'background');
+    background-color: euiCallOutColor($name, 'background');
 
     .euiCallOutHeader__icon {
-      fill: euiCallOutColor($color, 'foreground');
+      fill: euiCallOutColor($name, 'foreground');
     }
 
     .euiCallOutHeader__title {
-      color: euiCallOutColor($color, 'foreground');
+      color: euiCallOutColor($name, 'foreground');
     }
   }
 }

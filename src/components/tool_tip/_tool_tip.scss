@@ -3,8 +3,8 @@
  */
 
 .euiToolTip {
-  @include euiTooltipStyle;
-  @include euiTooltipAnimation('top');
+  @include euiToolTipStyle;
+  @include euiToolTipAnimation('top');
   position: absolute;
   opacity: 0;
 
@@ -56,7 +56,7 @@
   }
 
   .euiToolTip__title {
-    @include euiTooltipTitle;
+    @include euiToolTipTitle;
   }
 }
 

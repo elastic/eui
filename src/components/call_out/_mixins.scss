@@ -1,13 +1,18 @@
-@function euiCallOutColor($color: $euiColorPrimary, $returnBackgroundOrForeground: 'background') {
-  $backgroundColor: tintOrShade($color, 90%, 70%);
-  $foregroundColor: makeHighContrastColor($color, $backgroundColor);
+@function euiCallOutColor($type: 'primary', $returnBackgroundOrForeground: 'background') {
+  @if (map-has-key($euiCallOutTypes, $type)) {
+    $color: map-get($euiCallOutTypes, $type);
+    $backgroundColor: tintOrShade($color, 90%, 70%);
+    $foregroundColor: makeHighContrastColor($color, $backgroundColor);
 
-  @if ($returnBackgroundOrForeground == 'background') {
-    @return $backgroundColor;
-  } @else if ($returnBackgroundOrForeground == 'foreground') {
-    @return $foregroundColor;
+    @if ($returnBackgroundOrForeground == 'background') {
+      @return $backgroundColor;
+    } @else if ($returnBackgroundOrForeground == 'foreground') {
+      @return $foregroundColor;
+    } @else {
+      @warn 'Incorrect value provided as $returnBackgroundOrForeground';
+    }
   } @else {
-    @warn 'Incorrect value provided as $returnBackgroundOrForeground';
+    @warn 'Incorrect type of call out provided. See the $euiCallOutTypes map for allowed values.';
   }
 }
 

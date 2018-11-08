@@ -1,21 +1,28 @@
-@mixin euiTooltipStyle {
+@mixin euiToolTipStyle($size: null) {
   @include euiBottomShadow($color: #000);
-  @include euiFontSizeS;
   border-radius: $euiBorderRadius;
-  padding: $euiSizeM;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorGhost;
-  max-width: 256px;
   z-index: $euiZLevel9;
+  max-width: 256px;
+  overflow-wrap: break-word;
+
+  @if ($size == 's') {
+    @include euiFontSizeXS;
+    padding: $euiSizeS;
+  } @else {
+    @include euiFontSizeS;
+    padding: $euiSizeM;
+  }
 }
 
-@mixin euiTooltipTitle {
+@mixin euiToolTipTitle {
   font-weight: $euiFontWeightBold;
   border-bottom: solid 1px tintOrShade($euiColorFullShade, 35%, 80%);
   padding-bottom: $euiSizeXS;
   margin-bottom: $euiSizeXS;
 }
 
-@mixin euiTooltipAnimation($side: 'top', $delay: $euiAnimSpeedNormal) {
+@mixin euiToolTipAnimation($side: 'top', $delay: $euiAnimSpeedNormal) {
   animation: #{map-get($euiTooltipAnimations, $side)} $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
 }
