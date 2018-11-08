@@ -72,17 +72,6 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
           yDomain = [Math.min(min, yExtent[0]), Math.max(max, yExtent[1])];
         }
       }
-      if (stackAccessors.length > 0) {
-        const stackedDataArray = Array.from(stackedData.values());
-
-        const stackedDomain = stackedDataArray.map((sdaValue) => {
-          return sum(sdaValue);
-        });
-        yDomain = extent(stackedDomain);
-      }
-      if (!spec.yScaleToDataExtent) {
-        yDomain = [0, yDomain[1]];
-      }
     }
     const colorKey = configuredColorAccessors.map((accessor) => getAccessorFn(accessor)(datum));
     if (yAccessors.length > 1) {
@@ -93,11 +82,22 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
       colorKeys.add(colorKey.join('--'));
     }
   });
+  if (stackAccessors.length > 0) {
+    const stackedDataArray = Array.from(stackedData.values());
+
+    const stackedDomain = stackedDataArray.map((sdaValue) => {
+      return sum(sdaValue);
+    });
+    yDomain = extent(stackedDomain);
+  }
+  if (!spec.yScaleToDataExtent) {
+    yDomain = [0, yDomain[1]];
+  }
   let domain: Domain = [];
   if (spec.xDomain) {
     domain = spec.xDomain;
   } else {
-    domain = xScaleType === ScaleType.Linear ? extent(xDomain as number[]) : uniq(xDomain as string[]);
+    domain = getDomain(xScaleType, xDomain);
   }
   const xDomains = [
     {
@@ -124,4 +124,12 @@ export function computeDataDomain(spec: AreaSeriesSpec): SpecDomains {
       scaleType: ScaleType.Ordinal,
     },
   };
+}
+
+function getDomain(scaleType: ScaleType, domain: Domain) {
+  if (scaleType === ScaleType.Linear) {
+    return extent(domain as number[]);
+  } else {
+    return uniq(domain as string[]);
+  }
 }

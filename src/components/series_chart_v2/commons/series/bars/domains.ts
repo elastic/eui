@@ -91,17 +91,6 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
           yDomain = [Math.min(min, yExtent[0]), Math.max(max, yExtent[1])];
         }
       }
-      if (stackAccessors.length > 0) {
-        const stackedDataArray = Array.from(stackedData.values());
-
-        const stackedDomain = stackedDataArray.map((value) => {
-          return sum(value);
-        });
-        yDomain = extent(stackedDomain);
-      }
-      if (!spec.yScaleToDataExtent) {
-        yDomain = [0, yDomain[1]];
-      }
     }
 
     const colorKey = configuredColorAccessors.map((accessor) => getAccessorFn(accessor)(datum));
@@ -114,6 +103,17 @@ export function computeDataDomain(spec: BarSeriesSpec): SpecDomains {
     }
 
   });
+  if (stackAccessors.length > 0) {
+    const stackedDataArray = Array.from(stackedData.values());
+
+    const stackedDomain = stackedDataArray.map((value) => {
+      return sum(value);
+    });
+    yDomain = extent(stackedDomain);
+  }
+  if (!spec.yScaleToDataExtent) {
+    yDomain = [0, yDomain[1]];
+  }
   const xDomains = orderedXDomains.map((xDomain, level) => {
     let domainConvertedScale;
     if (orderedXAccessors.length === 1 && yAccessors.length === 1) {
