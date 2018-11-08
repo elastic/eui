@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Fixed size of `EuiSuperSelect`'s dropdown menu when there is no initial selection ([#1295](https://github.com/elastic/eui/pull/1295))
-- Added TypeScript definitions for `EuiPopoverTitle` and the beta and notification badges. Ensure tab TS definitions are included in the main definition index. ([#1299](https://github.com/elastic/eui/pull/1299))
+- Added TypeScript definitions for `EuiPopoverTitle` and the beta and notification badges. Ensure tab TS definitions are included in the main definition index. Fix typo in icon types ([#1299](https://github.com/elastic/eui/pull/1299))
 
 ## [`5.0.0`](https://github.com/elastic/eui/tree/v5.0.0)
 
