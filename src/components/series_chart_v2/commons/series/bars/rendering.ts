@@ -103,7 +103,8 @@ export function renderBarSeriesSpec(
     maxY,
     leafLevel,
     getColorFn,
-    chartDims.height,
+    chartDims,
+    rotation,
     isYStacked,
   )(groupedData, 0);
 
@@ -155,7 +156,8 @@ function reformatData(
   maxY: number,
   leafLevel: number,
   getColorFn: GetColorFn,
-  chartHeight: number,
+  chartDims: Dimensions,
+  chartRotation: Rotation,
   isStacked = false,
 ) {
   return function reformat(data: Datum[] | NestRollupType[], level: number) {
@@ -187,7 +189,7 @@ function reformatData(
         x,
         y: 0,
         width: currentLevelScale.barWidth,
-        height: chartHeight,
+        height: [90, -90].includes(chartRotation) ? chartDims.width : chartDims.height,
         elements: reformat(nextLevelData, level + 1),
       };
       return [...acc, levelData];

@@ -1,6 +1,7 @@
 import { Group as KonvaGroup } from 'konva';
 import React from 'react';
 import { Circle, Group, Path } from 'react-konva';
+import { animated, Spring } from 'react-spring/dist/konva';
 import { LineGlyph } from '../../commons/series/lines/rendering';
 import { LineSeriesStyle } from '../../commons/themes/theme';
 import { SpecId } from '../../commons/utils/ids';
@@ -21,12 +22,8 @@ export class LineSeries extends React.Component<LineSeriesDataProps> {
     this.lineSeriesRef = React.createRef();
   }
   public render() {
-    const { animated, glyphs, style } = this.props;
-    if (animated) {
-      return this.renderAnimatedLines();
-    } else {
-      return <Group ref={this.lineSeriesRef}>{this.renderGlyphs(glyphs, style)}</Group>;
-    }
+    const { glyphs, style } = this.props;
+    return <Group ref={this.lineSeriesRef}>{this.renderGlyphs(glyphs, style)}</Group>;
   }
 
   private renderDataPoints = (
@@ -49,39 +46,61 @@ export class LineSeries extends React.Component<LineSeriesDataProps> {
 
   private renderGlyphs = (glyphs: LineGlyph[], style: LineSeriesStyle): JSX.Element[] => {
     return glyphs.map((glyph, i) => {
-      return (
-        <Group key={i}>
-          {
-            !style.hideBorder && <Path
-              key="border"
-              data={glyph.path}
-              strokeWidth={style.borderWidth}
-              stroke={style.borderStrokeColor}
-              listening={false}
-              lineCap="round"
-              lineJoin="round"
-            />
-          }
-          {
-            !style.hideDataPoints && this.renderDataPoints(glyph.points, glyph.color, style)
-          }
-          {
-            !style.hideLine && <Path
-              key="line"
-              data={glyph.path}
-              strokeWidth={style.lineWidth}
-              stroke={glyph.color}
-              listening={false}
-              lineCap="round"
-              lineJoin="round"
-            />
-          }
-        </Group>
-      );
+      if (this.props.animated) {
+        return (
+          <Spring
+            key={`spring-area${i}`}
+            native
+            from={{ path: glyph.path }}
+            to={{ path: glyph.path }}
+            >
+              {(props: {path: string}) => (
+                this.renderArea(true, `area-${i}`, style, props.path, glyph.points, glyph.color)
+              )}
+          </Spring>
+        );
+      } else {
+        return this.renderArea(false, `area-${i}`, style, glyph.path, glyph.points, glyph.color);
+      }
     });
   }
-
-  private renderAnimatedLines = () => {
-    return null;
+  private renderArea = (
+    isAnimated: boolean,
+    key: string,
+    style: LineSeriesStyle,
+    path: string,
+    points: Array<{x: number, y: number}>,
+    color?: string,
+    ) => {
+      const PathComponent = isAnimated ? animated.Path : Path;
+      return (
+      <Group key={key}>
+        {
+          !style.hideBorder && <PathComponent
+            key="border"
+            data={path}
+            strokeWidth={style.borderWidth}
+            stroke={style.borderStrokeColor}
+            listening={false}
+            lineCap="round"
+            lineJoin="round"
+          />
+        }
+        {
+          !style.hideDataPoints && this.renderDataPoints(points, color, style)
+        }
+        {
+          !style.hideLine && <PathComponent
+            key="line"
+            data={path}
+            strokeWidth={style.lineWidth}
+            stroke={color}
+            listening={false}
+            lineCap="round"
+            lineJoin="round"
+          />
+        }
+      </Group>
+    );
   }
 }

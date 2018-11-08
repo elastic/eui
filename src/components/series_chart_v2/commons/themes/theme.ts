@@ -9,8 +9,12 @@ export interface ChartConfig {
   };
 }
 export interface AxisConfig {
-  titleFontSize: number;
   tickFontSize: number;
+  tickFontFamily: string;
+  tickFontStyle: string;
+  titleFontSize: number;
+  titleFontFamily: string;
+  titleFontStyle: string;
 }
 export interface ScalesConfig {
   ordinal: {
@@ -82,7 +86,7 @@ export const DEFAULT_THEME: Theme = {
       },
       areaSeries: {
         hideArea: false,
-        hideLine: false,
+        hideLine: true,
         lineWidth: 1,
         lineStrokeColor: 'white',
         hideBorder: true,
@@ -101,8 +105,12 @@ export const DEFAULT_THEME: Theme = {
     },
   },
   axes: {
+    tickFontSize: 10,
+    tickFontFamily: "'Open Sans', Helvetica, Arial, sans-serif",
+    tickFontStyle: 'normal',
     titleFontSize: 12,
-    tickFontSize: 12,
+    titleFontStyle: 'bold',
+    titleFontFamily: "'Open Sans', Helvetica, Arial, sans-serif",
   },
   colors: {
     vizColors: [

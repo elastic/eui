@@ -71,7 +71,7 @@ class App extends Component {
   }
   public renderLineChart1y0g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderLineChart1y0g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -119,7 +119,7 @@ class App extends Component {
   }
   public renderAreaChart1y0g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderAreaChart1y0g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -154,7 +154,7 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
-            curve={CurveType.CURVE_BASIS}
+            curve={CurveType.CURVE_MONOTONE_X}
           />
         </Chart>
       </div>
@@ -162,7 +162,7 @@ class App extends Component {
   }
   public renderBarChart1y0g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart1y0g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -178,40 +178,22 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
           />
-          <AreaSeries
-            id={getSpecId('renderLineChart1y0g')}
-            yScaleType={ScaleType.Linear}
-            xScaleType={ScaleType.Ordinal}
-            xAccessor="x"
-            yAccessors={['y']}
-            splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
-            data={this.state.barchart_1y1g}
-            tooltipLevel={0}
-            // xDomain={['x0', 'x2', 'x3']}
-            yDomain={[-20, 20]}
-            curve={CurveType.CURVE_BASIS}
-          />
-          {/* <BarSeries
+          <BarSeries
             id={getSpecId('renderBarChart1y0g')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
-            splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
-            data={this.state.barchart_1y1g}
+            data={this.state.barchart_1y0g}
             tooltipLevel={0}
-            // xDomain={[0, 0.5, 1, 1.5, 2, 2.5, 3]}
-            yDomain={[-20, 20]}
-          /> */}
+          />
         </Chart>
       </div>
     );
   }
   public renderBarChart1y1g = (renderer: 'svg'|'canvas' = 'canvas', rotation: Rotation) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart1y1g-${renderer}-${rotation}`} >
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -238,7 +220,7 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
-            tooltipLevel={0}
+            tooltipLevel={1}
             data={this.state.barchart_1y1g}
           />
         </Chart>
@@ -247,7 +229,7 @@ class App extends Component {
   }
   public renderMultipleBarseriesMultiAxis = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderMultipleBarseriesMultiAxis-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -330,7 +312,7 @@ class App extends Component {
   }
   public render2BarCharts = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`render2BarCharts-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -370,7 +352,7 @@ class App extends Component {
   }
   public renderBarChart1y1gs = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart1y1gs-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -404,7 +386,7 @@ class App extends Component {
   }
   public renderLineChart1y1gs = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderLineChart1y1gs-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -438,7 +420,7 @@ class App extends Component {
   }
   public renderBarChart1y2g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart1y2g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -471,7 +453,7 @@ class App extends Component {
   }
   public renderBarChart1y2gs = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart1y2gs-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -505,7 +487,7 @@ class App extends Component {
 
   public renderBarChart2y0g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart2y0g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -536,7 +518,7 @@ class App extends Component {
 
   public renderBarChart2y1g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart2y1g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -567,7 +549,7 @@ class App extends Component {
   }
   public renderBarChart2y1gs = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart2y1gs-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -599,7 +581,7 @@ class App extends Component {
   }
   public renderBarChart2y2g = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart2y2g-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -632,7 +614,7 @@ class App extends Component {
 
   public renderBarChart2y2gs = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderBarChart2y2gs-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -677,7 +659,7 @@ class App extends Component {
 
   public renderSimpleStackedBarChart = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderSimpleStackedBarChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -710,7 +692,7 @@ class App extends Component {
   }
   public renderSimpleClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderSimpleClusteredBarChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -741,7 +723,7 @@ class App extends Component {
   }
   public renderMultipleClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderMultipleClusteredBarChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -773,7 +755,7 @@ class App extends Component {
   }
   public renderStackedClusteredBarChart = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderStackedClusteredBarChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -805,7 +787,7 @@ class App extends Component {
   }
   public renderGitHubIssue = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderGitHubIssue-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -839,7 +821,7 @@ class App extends Component {
   }
   public renderHighVolumeChart = (renderer: 'svg'|'canvas' = 'svg', data: any[], rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderHighVolumeChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -862,13 +844,13 @@ class App extends Component {
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick) => `value: ${tick}`}
           />
-          <BarSeries
+          <AreaSeries
             id={getSpecId('1000elements')}
             data={data}
             xScaleType={ScaleType.Ordinal}
             tooltipLevel={0}
             splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
+            // stackAccessors={['x']}
           />
         </Chart>
       </div>
@@ -876,7 +858,7 @@ class App extends Component {
   }
   public renderHighVolumeLineChart = (renderer: 'svg'|'canvas' = 'svg', data: any[], rotation: Rotation = 0) => {
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderHighVolumeLineChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
         <Settings
             rotation={rotation}
@@ -923,7 +905,7 @@ class App extends Component {
     const domain = extent(TEMPORAL_DATA1, (d) => d.x);
     const formatter = niceTimeFormatter([domain[0]!, domain[1]!]);
     return (
-      <div className="chartContainer" key={Math.random()}>
+      <div className="chartContainer" key={`renderTimeLineChart-${renderer}-${rotation}`}>
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
@@ -964,19 +946,21 @@ class App extends Component {
     );
   }
   public render() {
-    // const randomData = dataGenerator.generateGroupedSeries(30, 3);
+    const randomData = dataGenerator.generateGroupedSeries(100, 4);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
-          {/* { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) } */}
-          {/* { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))}
+        { [0,  90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))}
+          {/* { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
 
-          { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) }
+          { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))} */}
+          { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y2g('canvas', r as Rotation))}
@@ -984,8 +968,8 @@ class App extends Component {
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y1g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderSimpleStackedBarChart('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderSimpleStackedBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderSimpleClusteredBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderMultipleClusteredBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderGitHubIssue('canvas', r as Rotation))}

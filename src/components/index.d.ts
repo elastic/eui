@@ -33,3 +33,4 @@
 /// <reference path="./tool_tip/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./key_pad_menu/index.d.ts" />
+/// <reference path="./series_chart_v2/index.d.ts" />

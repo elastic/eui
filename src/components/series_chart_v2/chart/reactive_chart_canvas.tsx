@@ -55,7 +55,17 @@ class Chart extends React.Component<ReactiveChartProps> {
   }
 
   public renderBarSeries = () => {
-    const { barSeriesSpecs, barSeriesGlyphs, chartTheme, onTooltipOver, onTooltipOut } = this.props.chartStore!;
+    const {
+      barSeriesSpecs,
+      barSeriesGlyphs,
+      chartTheme,
+      onTooltipOver,
+      onTooltipOut,
+      canDataBeAnimated,
+      chartRotation,
+      chartDimensions,
+      debug,
+    } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
     barSeriesGlyphs.forEach((barGlyphs, specId) => {
       const spec = barSeriesSpecs.get(specId);
@@ -70,6 +80,10 @@ class Chart extends React.Component<ReactiveChartProps> {
             chartTheme={chartTheme}
             onElementOver={onTooltipOver}
             onElementOut={onTooltipOut}
+            animated={canDataBeAnimated}
+            rotation={chartRotation}
+            barMaxHeight={[-90, 90].includes(chartRotation) ? chartDimensions.width : chartDimensions.height}
+            debug={debug}
           />,
         );
       }
@@ -77,7 +91,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     return bars;
   }
   public renderLineSeries = () => {
-    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme } = this.props.chartStore!;
+    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme, canDataBeAnimated } = this.props.chartStore!;
     const lines: JSX.Element[] = [];
     lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
       const spec = lineSeriesSpecs.get(specId);
@@ -88,6 +102,7 @@ class Chart extends React.Component<ReactiveChartProps> {
             specId={specId}
             glyphs={lineGlyphs}
             style={chartTheme.chart.styles.lineSeries}
+            animated={canDataBeAnimated}
           />,
         );
       }
@@ -95,17 +110,21 @@ class Chart extends React.Component<ReactiveChartProps> {
     return lines;
   }
   public renderAreaSeries = () => {
-    const { areaSeriesSpecs, areaSeriesGlyphs, chartTheme } = this.props.chartStore!;
+    const { areaSeriesSpecs, areaSeriesGlyphs, chartTheme, canDataBeAnimated } = this.props.chartStore!;
     const areas: JSX.Element[] = [];
     areaSeriesGlyphs.forEach((areaGlyphs, specId) => {
       const spec = areaSeriesSpecs.get(specId);
+
       if (spec) {
+        const isStacked = spec.stackAccessors && spec.stackAccessors.length > 0;
         areas.push(
           <AreaSeries
             key={`areaSeries-${specId}`}
             specId={specId}
             glyphs={areaGlyphs}
             style={chartTheme.chart.styles.areaSeries}
+            animated={canDataBeAnimated}
+            isStacked={isStacked}
           />,
         );
       }
@@ -172,21 +191,18 @@ class Chart extends React.Component<ReactiveChartProps> {
             {this.renderAreaSeries()}
             {this.renderBarSeries()}
             {this.renderLineSeries()}
-            {this.renderDebugChartBorders()}
+            {debug && this.renderDebugChartBorders()}
           </Layer>
-          <Layer hitGraphEnabled={false}>{this.renderAxes()}</Layer>
+          <Layer hitGraphEnabled={false}>
+            {this.renderAxes()}
+          </Layer>
         </Stage>
       </div>
     );
   }
 
    private renderDebugChartBorders = () => {
-    const { debug } = this.props.chartStore!;
-    if (!debug) {
-      return null;
-    }
     const { chartDimensions, chartRotation } = this.props.chartStore!;
-
     return <Rect
       x={0}
       y={0}
@@ -194,6 +210,7 @@ class Chart extends React.Component<ReactiveChartProps> {
       height={[90, -90].includes(chartRotation) ? chartDimensions.width : chartDimensions.height}
       stroke="red"
       strokeWidth={0.5}
+      listening={false}
       dash={[2, 2]} />;
   }
 }

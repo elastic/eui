@@ -7,24 +7,28 @@ interface SettingSpecProps {
   chartStore?: ChartStore;
   rendering: Rendering;
   rotation: Rotation;
+  animateData: boolean;
 }
 
-type DefaultProps = 'rendering' | 'rotation';
+type DefaultProps = 'rendering' | 'rotation' | 'animateData';
 
 export class SettingsComponent extends React.PureComponent<SettingSpecProps> {
   public static defaultProps: Pick<SettingSpecProps, DefaultProps> = {
     rendering: 'canvas',
     rotation: 0,
+    animateData: true,
   };
   public componentDidMount() {
-    const { chartStore, rotation, rendering } = this.props;
+    const { chartStore, rotation, rendering, animateData } = this.props;
     chartStore!.chartRotation = rotation;
     chartStore!.chartRendering = rendering;
+    chartStore!.animateData = animateData;
   }
   public componentDidUpdate() {
-    const { chartStore, rotation, rendering } = this.props;
+    const { chartStore, rotation, rendering, animateData } = this.props;
     chartStore!.chartRotation = rotation;
     chartStore!.chartRendering = rendering;
+    chartStore!.animateData = animateData;
   }
   public render() {
     return null;

@@ -19,6 +19,13 @@ export class Axis extends React.PureComponent<AxisProps> {
   }
   public renderTickLabel = (tick: AxisTick, i: number) => {
     const {
+      axes: {
+        tickFontFamily,
+        tickFontSize,
+        tickFontStyle,
+      },
+    } = this.props.chartTheme;
+    const {
       axisSpec: {
         tickSize,
         tickPadding,
@@ -62,6 +69,9 @@ export class Axis extends React.PureComponent<AxisProps> {
         // dominantBaseline={textProps.dominantBaseline}
         // transform={transform}
         fill="gray"
+        fontFamily={tickFontFamily}
+        fontSize={tickFontSize}
+        fontStyle={tickFontStyle}
         text={tick.label}
       />
     );
@@ -189,7 +199,9 @@ export class Axis extends React.PureComponent<AxisProps> {
           margins,
         },
         axes: {
+          titleFontFamily,
           titleFontSize,
+          titleFontStyle,
         },
       },
     } = this.props;
@@ -211,7 +223,8 @@ export class Axis extends React.PureComponent<AxisProps> {
           fill="gray"
           width={height}
           rotation={-90}
-          fontStyle="bold"
+          fontFamily={titleFontFamily}
+          fontStyle={titleFontStyle}
           fontSize={titleFontSize}
         />
       </Group>

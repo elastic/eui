@@ -1,13 +1,14 @@
 import { Group as KonvaGroup, Node, Shape } from 'konva';
 import React from 'react';
 import { Group, Rect } from 'react-konva';
+import { animated, Spring } from 'react-spring/dist/konva';
 
 import { getDataFromBarGlyphs, isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
 import { BarGlyphGroup } from '../../commons/series/bars/rendering';
-import { Datum } from '../../commons/series/specs';
+import { Datum, Rotation } from '../../commons/series/specs';
 import { Theme } from '../../commons/themes/theme';
 import { SpecId } from '../../commons/utils/ids';
-import { LeftTooltip, RightTooltip } from '../../state/chart_state';
+import { TooltipPosition } from '../../state/chart_state';
 interface KonvaEventObject<E> {
   target: Shape;
   evt: E;
@@ -20,7 +21,10 @@ interface BarSeriesDataProps {
   tooltipLevel: number;
   glyphs: BarGlyphGroup[];
   chartTheme: Theme;
-  onElementOver?: (specId: SpecId, datum: Datum[], position: LeftTooltip | RightTooltip) => void;
+  barMaxHeight: number;
+  rotation: Rotation;
+  debug: boolean;
+  onElementOver?: (specId: SpecId, datum: Datum[], position: TooltipPosition) => void;
   onElementOut?: () => void;
 }
 interface BarSeriesDataState {
@@ -30,6 +34,7 @@ interface BarSeriesDataState {
 export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesDataState> {
   public static defaultProps: Partial<BarSeriesDataProps> = {
     animated: false,
+    debug: false,
   };
   private readonly barSeriesRef: React.RefObject<KonvaGroup> = React.createRef();
   constructor(props: BarSeriesDataProps) {
@@ -41,50 +46,74 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     this.barSeriesRef = React.createRef();
   }
   public render() {
-    const { animated, glyphs } = this.props;
-    if (animated) {
-      return this.renderAnimatedBars();
-    } else {
-      return <Group ref={this.barSeriesRef} key={'aaa'}>{this.renderGlyphs(glyphs, '')}</Group>;
-    }
+    const { glyphs } = this.props;
+    return <Group ref={this.barSeriesRef} key={'aaa'}>{this.renderGlyphs(glyphs, '')}</Group>;
   }
-
-  private onMouseOver = (uuid: string, data: Datum[]) => (event: KonvaEventObject<MouseEvent>) => {
-    document.body.style.cursor = 'pointer';
-    const stageWidth = event.target.getStage().getWidth();
-    const targetPosition = event.target.getClientRect();
-    if (
-      targetPosition === undefined ||
-      targetPosition.x === undefined ||
-      targetPosition.width === undefined ||
-      targetPosition.y === undefined
-    ) {
+  private isLeftTooltip(x: number, stageWidth: number) {
+    return x < stageWidth / 2;
+  }
+  private isTopTooltip(y: number, height: number, stageHeight: number) {
+    return y + height < stageHeight / 2;
+  }
+  private onMouseOver = (uuid: string, data: Datum[], rotation: Rotation) => (event: KonvaEventObject<MouseEvent>) => {
+    if (!this.props.onElementOver) {
       return;
     }
-    if (targetPosition.x && targetPosition.x < stageWidth / 2) {
-      const position: LeftTooltip = {
-        top: targetPosition.y,
-        left: targetPosition.x + targetPosition.width,
-      };
-      if (this.props.onElementOver) {
-        this.props.onElementOver(this.props.specId, data, position);
-      }
-    } else {
-      const position: RightTooltip = {
-        top: targetPosition.y,
-        right: stageWidth - targetPosition.x,
-      };
-      if (this.props.onElementOver) {
-        this.props.onElementOver(this.props.specId, data, position);
-      }
+    document.body.style.cursor = 'pointer';
+    const stageWidth = event.target.getStage().getWidth();
+    const stageHeight = event.target.getStage().getHeight();
+    const layer = event.target.getLayer();
+
+    const targetPosition = event.target.getClientRect();
+    if (!targetPosition) {
+      return;
     }
-    // console.log(`mouse over ${JSON.stringify(getDataFromBarGlyphs(data), null, 2)}`);
+    const { x, y, width, height } = targetPosition;
+    if (x === undefined || width === undefined || y === undefined || height === undefined) {
+      return;
+    }
+    const tooltipPosition: TooltipPosition = {};
+    // compute common rotation positions
+    switch (rotation) {
+      case 0:
+      case 180:
+        if (this.isLeftTooltip(x, stageWidth)) {
+          tooltipPosition.left = x + width;
+        } else {
+          tooltipPosition.right = stageWidth - x;
+        }
+        break;
+      case -90:
+      case 90:
+        if (this.isTopTooltip(y, height, layer.getHeight())) {
+          tooltipPosition.top = y + height;
+        } else {
+          tooltipPosition.bottom = stageHeight - y;
+        }
+        break;
+    }
+    // compute specific rotation values
+    switch (rotation) {
+      case 0:
+        tooltipPosition.top = y;
+        break;
+      case 180:
+        tooltipPosition.bottom = (stageHeight - y) - height;
+        break;
+      case -90:
+        tooltipPosition.left = layer.getPosition().x;
+        break;
+      case 90:
+        tooltipPosition.right = stageWidth - layer.getPosition().x;
+        break;
+    }
+    this.props.onElementOver(this.props.specId, data, tooltipPosition);
+
     this.setState(() => ({
       uuid,
     }));
   }
   private onMouseOut = () => {
-    // console.log('mouse out');
     document.body.style.cursor = 'default';
     if (this.props.onElementOut) {
       this.props.onElementOut();
@@ -94,7 +123,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     }));
   }
   private renderGlyphs = (glyphs: BarGlyphGroup[], uuidPath: string): JSX.Element[] => {
-    const { tooltipLevel } = this.props;
+    const { tooltipLevel, debug, rotation } = this.props;
     if (isBarGlyphGroupLeaf(glyphs)) {
       return [<Group key={'group-0'}>{this.renderBars(glyphs, uuidPath)}</Group>];
     }
@@ -103,8 +132,9 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
       const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
       if (tooltipLevel === glyph.level && glyph.elements) {
         const data = getDataFromBarGlyphs(glyph.elements);
-        onMouseOverFn = this.onMouseOver(groupKey, data);
+        onMouseOverFn = this.onMouseOver(groupKey, data, rotation);
       }
+      const interactionAreaOpacity = (debug || this.state.uuid === groupKey) ? 0.4 : 0;
       return (
         <Group key={groupKey} x={glyph.x} y={glyph.y}>
           {tooltipLevel === glyph.level && (
@@ -113,8 +143,8 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
               y={0}
               width={glyph.width}
               height={glyph.height}
-              fill={'lightgray'}
-              opacity={this.state.uuid === groupKey ? 0.4 : 0}
+              fill={debug ? 'lightcoral' : 'lightgray'}
+              opacity={interactionAreaOpacity}
               onMouseOver={onMouseOverFn}
               onMouseOut={tooltipLevel === glyph.level ? this.onMouseOut : undefined}
             />
@@ -126,13 +156,62 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
     });
   }
   private renderBars = (glyphs: BarGlyphGroup[], uuidPath: string) => {
-    const { tooltipLevel } = this.props;
+    const { tooltipLevel, rotation, debug, barMaxHeight } = this.props;
     return glyphs.map((glyph, i) => {
       const { x, y, width, height, fill, level, data } = glyph;
       const hasTooltip = tooltipLevel === level;
       const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue, i].join('-');
-      return (
-        <Rect
+      if (this.props.animated) {
+        const opacity = (this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0) ? 1 : 0.5;
+        const interactionAreaOpacity = (
+          debug ||
+          this.state.uuid === undefined ||
+          groupKey.indexOf(this.state.uuid)
+        ) ? 0.4 : 0;
+        return (
+          <Spring
+            key={`spring-bars-${i}`}
+            native
+            from={{ opacity: 1, y: y + height, height: 0 }}
+            to={{ opacity, y, height }}
+            >
+              {(props: {opacity: number, y: number, height: number}) => (
+                <Group key={groupKey}>
+                {
+                    hasTooltip &&
+                    <Rect
+                      key="interactionRect"
+                      x={x}
+                      y={0}
+                      width={glyph.width}
+                      height={barMaxHeight}
+                      fill={debug ? 'lightcoral' : 'lightgray'}
+                      opacity={interactionAreaOpacity}
+                      onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
+                      onMouseOut={hasTooltip ? this.onMouseOut : undefined}
+                    />
+                  }
+                  <animated.Rect
+                    key="animatedRect"
+                    x={x}
+                    y={props.y}
+                    width={width}
+                    height={props.height}
+                    fill={fill}
+                    strokeWidth={0}
+                    listening={false}
+                    opacity={props.opacity}
+                    perfectDrawEnabled={false}
+                    // onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
+                    // onMouseOut={hasTooltip ? this.onMouseOut : undefined}
+                  />
+
+                </Group>
+              )}
+          </Spring>
+        );
+      } else {
+        return <Rect
           key={groupKey}
           x={x}
           y={y}
@@ -143,13 +222,10 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
           listening={hasTooltip}
           opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : 0.5}
           perfectDrawEnabled={false}
-          onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data]) : undefined}
+          onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
           onMouseOut={hasTooltip ? this.onMouseOut : undefined}
-        />
-      );
+        />;
+      }
     });
-  }
-  private renderAnimatedBars = () => {
-    return null;
   }
 }

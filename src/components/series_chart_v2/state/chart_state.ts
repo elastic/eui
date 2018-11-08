@@ -28,19 +28,18 @@ import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
 import { computeChartDimensions, Dimensions } from '../commons/utils/dimensions';
 import { SpecDomains } from '../commons/utils/domain';
 import { AxisId, GroupId, SpecId } from '../commons/utils/ids';
-export interface LeftTooltip {
-  top: number;
-  left: number;
-}
-export interface RightTooltip {
-  top: number;
-  right: number;
+export interface TooltipPosition {
+  top?: number;
+  left?: number;
+  bottom?: number;
+  right?: number;
 }
 export interface TooltipData {
   data: Datum[];
   specId: SpecId;
-  position: LeftTooltip | RightTooltip;
+  position: TooltipPosition;
 }
+const MAX_ANIMATABLE_GLYPHS = 500;
 
 export class ChartStore {
   public debug = true;
@@ -79,6 +78,13 @@ export class ChartStore {
   public globalColorScales: Map<GroupId, ColorScales> = new Map();
 
   public tooltipData = observable.box<Option<TooltipData>>(none);
+
+  public animateData = false;
+  /**
+   * Define if the chart can be animated or not depending
+   * on the global configuration and on the number of elements per series
+   */
+  public canDataBeAnimated = false;
   // public tooltipData = observable.box<Option<TooltipData>>(some({
   //   specId: getSpecId('renderBarChart1y0g'),
   //   data: [{x: 1, y: 2}],
@@ -88,7 +94,7 @@ export class ChartStore {
   //   },
   // }));
 
-  public onTooltipOver = action((specId: SpecId, data: Datum[], position: LeftTooltip | RightTooltip) => {
+  public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
     const tooltip: TooltipData = {
       data,
       specId,
@@ -287,6 +293,7 @@ export class ChartStore {
     this.axesPositions = axisTicksPositions.axisPositions;
     this.axesTicks = axisTicksPositions.axisTicks;
     this.axesVisibleTicks = axisTicksPositions.axisVisibleTicks;
+    let glyphsCount = 0;
     // compute bar series glyphs
     this.barSeriesSpecs.forEach((barSeriesSpec) => {
       const { id, groupId } = barSeriesSpec;
@@ -306,6 +313,7 @@ export class ChartStore {
         this.chartTheme.scales,
       );
       this.barSeriesGlyphs.set(id, renderedGlyphs);
+      glyphsCount += renderedGlyphs.length;
     });
 
     // compute line series glyphs
@@ -327,6 +335,11 @@ export class ChartStore {
         this.chartTheme.scales,
       );
       this.lineSeriesGlyphs.set(id, renderedGlyphs);
+      glyphsCount += renderedGlyphs.reduce((count, glyphs) => {
+        // since paths are less expensive to renders than bars
+        // we are just counting half of their points as animate constraint
+        return count + glyphs.data.length / 2;
+      }, 0);
     });
 
     // compute area series glyphs
@@ -348,8 +361,17 @@ export class ChartStore {
         this.chartTheme.scales,
       );
       this.areaSeriesGlyphs.set(id, renderedGlyphs);
+      glyphsCount += renderedGlyphs.reduce((count, glyphs) => {
+        // since paths are less expensive to renders than bars
+        // we are just counting half of their points as animate constraint
+        return count + glyphs.data.length / 2;
+      }, 0);
     });
-
+    if (glyphsCount > MAX_ANIMATABLE_GLYPHS) {
+      this.canDataBeAnimated = false;
+    } else {
+      this.canDataBeAnimated = this.animateData;
+    }
     this.initialized.set(true);
   }
 
