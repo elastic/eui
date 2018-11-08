@@ -11,6 +11,7 @@ module.exports = {
       "useBuiltIns": "usage",
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
+    "@babel/typescript",
     "@babel/react"
   ],
   "plugins": [
