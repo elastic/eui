@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.0.1`.
+
+## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
+
 **Bug fixes**
 
 - Fixed size of `EuiSuperSelect`'s dropdown menu when there is no initial selection ([#1295](https://github.com/elastic/eui/pull/1295))
