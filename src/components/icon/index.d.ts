@@ -77,7 +77,7 @@ declare module '@elastic/eui' {
     | 'filter'
     | 'fullScreen'
     | 'gear'
-    | 'glob'
+    | 'globe'
     | 'grab'
     | 'graphApp'
     | 'grid'
