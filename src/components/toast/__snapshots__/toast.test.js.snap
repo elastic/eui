@@ -4,7 +4,6 @@ exports[`EuiToast Props color danger is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast euiToast--danger"
-  data-test-subj="euiToast-danger"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -14,6 +13,7 @@ exports[`EuiToast Props color danger is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <span
       className="euiToastHeader__title"
@@ -26,7 +26,6 @@ exports[`EuiToast Props color primary is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast euiToast--primary"
-  data-test-subj="euiToast-primary"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -36,6 +35,7 @@ exports[`EuiToast Props color primary is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <span
       className="euiToastHeader__title"
@@ -48,7 +48,6 @@ exports[`EuiToast Props color success is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast euiToast--success"
-  data-test-subj="euiToast-success"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -58,6 +57,7 @@ exports[`EuiToast Props color success is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <span
       className="euiToastHeader__title"
@@ -70,7 +70,6 @@ exports[`EuiToast Props color warning is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast euiToast--warning"
-  data-test-subj="euiToast-warning"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -80,6 +79,7 @@ exports[`EuiToast Props color warning is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <span
       className="euiToastHeader__title"
@@ -92,7 +92,6 @@ exports[`EuiToast Props iconType is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast"
-  data-test-subj="euiToast-undefined"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -102,6 +101,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <EuiIcon
       aria-hidden="true"
@@ -120,7 +120,6 @@ exports[`EuiToast Props title is rendered 1`] = `
 <div
   aria-live="polite"
   className="euiToast"
-  data-test-subj="euiToast-undefined"
 >
   <EuiScreenReaderOnly>
     <p>
@@ -130,6 +129,7 @@ exports[`EuiToast Props title is rendered 1`] = `
   <div
     aria-label="Notification"
     className="euiToastHeader"
+    data-test-subj="euiToastHeader"
   >
     <span
       className="euiToastHeader__title"
@@ -155,6 +155,7 @@ exports[`EuiToast is rendered 1`] = `
   <div
     aria-label="Notification"
     class="euiToastHeader euiToastHeader--withBody"
+    data-test-subj="euiToastHeader"
   >
     <span
       class="euiToastHeader__title"
