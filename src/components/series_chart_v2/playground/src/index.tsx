@@ -879,7 +879,7 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
             title={`HighVolumeChart Rotation: ${rotation}`}
-            tickFormat={(tick) => `value: ${tick}`}
+            tickFormat={(tick) => `value: ${Number(tick).toFixed(2)}`}
           />
           <BarSeries
             id={getSpecId('bars')}
@@ -889,13 +889,13 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
           />
-          <LineSeries
+          <AreaSeries
             id={getSpecId('lines')}
             data={data}
             xScaleType={ScaleType.Ordinal}
             tooltipLevel={0}
             splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
+            // stackAccessors={['x']}
           />
         </Chart>
       </div>
@@ -953,13 +953,14 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        { [0,  90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))}
+        { this.renderHighVolumeLineChart('canvas', randomData, 0)}
+        {/* { [0,  90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))} */}
           {/* { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
 
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) }
           { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))} */}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))} */} */}
           {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}

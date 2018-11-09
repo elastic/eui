@@ -162,53 +162,47 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
       const hasTooltip = tooltipLevel === level;
       const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue, i].join('-');
       if (this.props.animated) {
-        const opacity = (this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0) ? 1 : 0.5;
-        const interactionAreaOpacity = (
-          debug ||
-          this.state.uuid === undefined ||
-          groupKey.indexOf(this.state.uuid)
-        ) ? 0.4 : 0;
+        const isHover = this.state.uuid !== undefined && groupKey.indexOf(this.state.uuid) === 0;
+        const opacity = (this.state.uuid === undefined || isHover) ? 1 : 0.5;
+        const interactionAreaOpacity = ( debug || isHover ) ? 0.4 : 0;
         return (
-          <Spring
-            key={`spring-bars-${i}`}
-            native
-            from={{ opacity: 1, y: y + height, height: 0 }}
-            to={{ opacity, y, height }}
-            >
-              {(props: {opacity: number, y: number, height: number}) => (
-                <Group key={groupKey}>
-                {
-                    hasTooltip &&
-                    <Rect
-                      key="interactionRect"
+          <Group key={groupKey}>
+            {
+              hasTooltip && <Rect
+                key="interactionRect"
+                x={x}
+                y={0}
+                width={glyph.width}
+                height={barMaxHeight}
+                fill={debug ? 'lightcoral' : 'lightgray'}
+                opacity={interactionAreaOpacity}
+                perfectDrawEnabled={false}
+                onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
+                onMouseOut={hasTooltip ? this.onMouseOut : undefined}
+              />
+            }
+            <Spring
+              key={`spring-bars-${i}`}
+              native
+              from={{ opacity: 1, y: y + height, height: 0 }}
+              to={{ opacity, y, height }}
+              >
+                {(props: {opacity: number, y: number, height: number}) => (
+                    <animated.Rect
+                      key="animatedRect"
                       x={x}
-                      y={0}
-                      width={glyph.width}
-                      height={barMaxHeight}
-                      fill={debug ? 'lightcoral' : 'lightgray'}
-                      opacity={interactionAreaOpacity}
-                      onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
-                      onMouseOut={hasTooltip ? this.onMouseOut : undefined}
+                      y={props.y}
+                      width={width}
+                      height={props.height}
+                      fill={fill}
+                      strokeWidth={0}
+                      listening={false}
+                      opacity={props.opacity}
+                      perfectDrawEnabled={false}
                     />
-                  }
-                  <animated.Rect
-                    key="animatedRect"
-                    x={x}
-                    y={props.y}
-                    width={width}
-                    height={props.height}
-                    fill={fill}
-                    strokeWidth={0}
-                    listening={false}
-                    opacity={props.opacity}
-                    perfectDrawEnabled={false}
-                    // onMouseOver={hasTooltip ? this.onMouseOver(groupKey, [data], rotation) : undefined}
-                    // onMouseOut={hasTooltip ? this.onMouseOut : undefined}
-                  />
-
-                </Group>
-              )}
-          </Spring>
+                )}
+            </Spring>
+          </Group>
         );
       } else {
         return <Rect

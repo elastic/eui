@@ -7,4 +7,5 @@
   opacity: 0.9;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   max-width: 200px;
+  pointer-events: none;
 }
