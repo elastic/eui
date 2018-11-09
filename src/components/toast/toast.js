@@ -75,6 +75,7 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
     <div
       className={classes}
       aria-live="polite"
+      data-test-subj={`euiToast-${color}`}
       {...rest}
     >
       <EuiScreenReaderOnly>
