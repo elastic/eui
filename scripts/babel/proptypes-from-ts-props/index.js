@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const babelTemplate = require('babel-template');
+const babelCore = require('@babel/core');
 
 function resolveArrayToPropTypes(node, state) {
   const types = state.get('types');
@@ -325,7 +326,7 @@ function getPropTypesForNode(node, optional, state) {
   }
 
   if (propType == null) {
-    propType = types.memberExpression(
+      propType = types.memberExpression(
       types.identifier('PropTypes'),
       types.identifier('any')
     );
@@ -387,31 +388,28 @@ const typeDefinitionExtractors = {
         Array.prototype.push.apply(definitions, extractTypeDefinition(bodyNode, extractionOptions) || []);
       }
 
-      // override typeDefinitions so variable scope doesn't bleed between files
-      throw new Error('dynamicData no longer exists');
-      const localState = {
-        ...state,
-        dynamicData: {
-          ...state.dynamicData,
-          typeDefinitions: definitions.reduce(
-            (typeDefinitions, definition) => {
-              if (definition) {
-                typeDefinitions[definition.name] = definition.definition;
-              }
+      // reset typeDefinitions so variable scope doesn't bleed between files
+      const _typeDefinitions = state.get('typeDefinitions');
+      state.set(
+        'typeDefinitions',
+        definitions.reduce(
+          (typeDefinitions, definition) => {
+            if (definition) {
+              typeDefinitions[definition.name] = definition.definition;
+            }
 
-              return typeDefinitions;
-            },
-            {}
-          )
-        },
-      };
+            return typeDefinitions;
+          },
+          {}
+        )
+      );
 
       // for each importedTypeName, fully resolve the type information
       const importedDefinitions = definitions.reduce(
         (importedDefinitions, { name, definition }) => {
           if (importedTypeNames.includes(name)) {
             // this type declaration imported by the parent script
-            const propTypes = getPropTypesForNode(definition, true, localState);
+            const propTypes = getPropTypesForNode(definition, true, state);
             propTypes.isAlreadyResolved = true; // when getPropTypesForNode is called on this node later, tell it to skip processing
             importedDefinitions.push({ name, definition: propTypes });
           }
@@ -420,6 +418,8 @@ const typeDefinitionExtractors = {
         },
         []
       );
+
+      state.set('typeDefinitions', _typeDefinitions);
 
       return importedDefinitions;
     }
@@ -537,17 +537,30 @@ function processComponentDeclaration(typeDefinition, path, state) {
   }
 }
 
-function isVariableFromReact(types, path, variableName) {
-  const identifierBinding = getVariableBinding(path, variableName);
-  return types.isImportDeclaration(identifierBinding.path.parent) && identifierBinding.path.parent.source.value === 'react';
-}
-
 module.exports = function propTypesFromTypeScript({ types }) {
   return {
     visitor: {
       Program: function visitProgram(programPath, state) {
         // only process typescript files
         if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+
+        // Extract any of the imported variables from 'react' (SFC, ReactNode, etc)
+        const importsFromReact = new Set();
+        programPath.traverse(
+          {
+            ImportDeclaration: ({ node }) => {
+              if (node.source.value === 'react') {
+                node.specifiers.forEach(specifier => {
+                  if (specifier.type === 'ImportSpecifier') {
+                    importsFromReact.add(specifier.local.name);
+                  }
+                });
+              }
+            }
+          },
+          state
+        );
+        state.set('importsFromReact', importsFromReact);
 
         const { opts = {} } = state;
         const typeDefinitions = {};
@@ -558,7 +571,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
           state,
           sourceFilename: path.resolve(process.cwd(), this.file.opts.filename),
           fs: opts.fs || fs,
-          parse: (code) => state.file.parse(code),
+          parse: code => babelCore.parse(code, state.file.opts),
         };
 
         // collect named TS type definitions for later reference
@@ -594,7 +607,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
           } else if (types.isIdentifier(nodePath.node.superClass)) {
             const identifierName = nodePath.node.superClass.name;
             if (identifierName === 'Component' || identifierName === 'PureComponent') {
-              if (isVariableFromReact(types, nodePath, identifierName)) {
+              if (state.get('importsFromReact').has(identifierName)) {
                 isReactComponent = true;
               }
             }
@@ -606,7 +619,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = this.file.generate().code;
+            // @TODO: do this
+            // this.file.code = this.file.generate().code;
           }
         }
       },
@@ -636,7 +650,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             }
           } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
             if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
-              if (isVariableFromReact(types, nodePath, 'SFC')) {
+              if (state.get('importsFromReact').has('SFC')) {
                 processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
               }
