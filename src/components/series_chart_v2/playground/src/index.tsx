@@ -881,21 +881,21 @@ class App extends Component {
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick) => `value: ${Number(tick).toFixed(2)}`}
           />
-          <BarSeries
+          {/* <BarSeries
             id={getSpecId('bars')}
             data={data}
             xScaleType={ScaleType.Ordinal}
             tooltipLevel={0}
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
-          />
+          /> */}
           <AreaSeries
             id={getSpecId('lines')}
             data={data}
             xScaleType={ScaleType.Ordinal}
             tooltipLevel={0}
             splitSeriesAccessors={['g']}
-            // stackAccessors={['x']}
+            stackAccessors={['x']}
           />
         </Chart>
       </div>
@@ -946,14 +946,18 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(100, 4);
+    const randomData = dataGenerator.generateGroupedSeries(50, 40);
     return (
       <div className="app">
         <div className="header">
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
+        { this.renderAreaChart1y0g('canvas', 0)}
+        {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)} */}
+        {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)}
         { this.renderHighVolumeLineChart('canvas', randomData, 0)}
+        { this.renderHighVolumeLineChart('canvas', randomData, 0)} */}
         {/* { [0,  90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))} */}
           {/* { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
 

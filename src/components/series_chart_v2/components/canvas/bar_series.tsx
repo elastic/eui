@@ -166,7 +166,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
         const opacity = (this.state.uuid === undefined || isHover) ? 1 : 0.5;
         const interactionAreaOpacity = ( debug || isHover ) ? 0.4 : 0;
         return (
-          <Group key={groupKey}>
+          <Group key={i}>
             {
               hasTooltip && <Rect
                 key="interactionRect"
@@ -182,7 +182,7 @@ export class BarSeries extends React.Component<BarSeriesDataProps, BarSeriesData
               />
             }
             <Spring
-              key={`spring-bars-${i}`}
+              // key={`spring-bars-${i}`}
               native
               from={{ opacity: 1, y: y + height, height: 0 }}
               to={{ opacity, y, height }}

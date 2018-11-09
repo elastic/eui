@@ -22,8 +22,10 @@ export function initializeChart(div: HTMLDivElement): KonvaCanvas {
 
   const chartLayer = new Layer();
   const axisLayer = new Layer();
+  const inteactionLayer = new Layer();
   stage.add(chartLayer);
   stage.add(axisLayer);
+  stage.add(inteactionLayer);
 
   return {
     stage,
