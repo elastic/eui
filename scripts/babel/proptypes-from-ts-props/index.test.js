@@ -236,17 +236,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
+        expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    "div",
-    null,
-    "Hello World"
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   flower: PropTypes.oneOf(["daisy", "daffodil", "dandelion"]).isRequired
 };`);
@@ -263,17 +259,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   prime: PropTypes.oneOf([2, 3, 5, 7, 11, 13]).isRequired
 };`);
@@ -290,17 +282,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   visible: PropTypes.oneOf([true, false]).isRequired
 };`);
@@ -317,17 +305,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
+        expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    "div",
-    null,
-    "Hello World"
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bool: PropTypes.oneOf([true, false, "FileNotFound"]).isRequired
 };`);
@@ -344,17 +328,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
+        expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    "div",
-    null,
-    "Hello World"
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.oneOf(["hello", "world"])
 };`);
@@ -376,17 +356,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   person: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -409,17 +385,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     bar: PropTypes.shape({
@@ -450,17 +422,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -477,17 +445,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -504,17 +468,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -531,17 +491,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -558,17 +514,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -585,17 +537,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -612,17 +560,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -639,17 +583,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.element.isRequired
 };`);
@@ -670,17 +610,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.node.isRequired
 };`);
@@ -697,17 +633,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
             babelOptions
           );
 
-          expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   foo: PropTypes.node.isRequired
 };`);
@@ -732,17 +664,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -764,17 +692,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   fizz: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -798,17 +722,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired
 };`);
@@ -827,17 +747,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   buzz: PropTypes.oneOfType([PropTypes.shape({
     foo: PropTypes.string.isRequired,
@@ -864,17 +780,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };`);
@@ -891,17 +803,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 };`);
@@ -918,17 +826,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
 };`);
@@ -945,17 +849,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
 };`);
@@ -972,17 +872,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
+        expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    "div",
-    null,
-    "Hello World"
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
 };`);
@@ -999,17 +895,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
 };`);
@@ -1026,17 +918,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
 };`);
@@ -1054,17 +942,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.shape({
     foo: PropTypes.string.isRequired,
@@ -1087,16 +971,13 @@ const FooComponent: React.SFC<{bar: string}> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -1113,17 +994,13 @@ const FooComponent: React.SFC<IFooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);
@@ -1141,17 +1018,13 @@ const FooComponent: React.SFC<FooProps> = () => {
           babelOptions
         );
 
-        expect(result.code).toBe(`
-import React from 'react';
-import PropTypes from 'prop-types';
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
 
 const FooComponent = () => {
-  return React.createElement(
-    'div',
-    null,
-    'Hello World'
-  );
+  return <div>Hello World</div>;
 };
+
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
 };`);

@@ -33,11 +33,21 @@ function resolveArrayToPropTypes(node, state) {
 function resolveIdentifierToPropTypes(node, state) {
   const typeDefinitions = state.get('typeDefinitions');
   const types = state.get('types');
-  const identifier = node.typeName;
+
+  let identifier;
+  switch (node.type) {
+    case 'TSTypeReference':
+      identifier = node.typeName;
+      break;
+
+    case 'Identifier':
+      identifier = node;
+      break;
+  }
 
   // resolve React.* identifiers
-  if (identifier.type === 'QualifiedTypeIdentifier' && identifier.qualification.name === 'React') {
-    return resolveIdentifierToPropTypes(identifier, state);
+  if (identifier.type === 'TSQualifiedName' && identifier.left.name === 'React') {
+    return resolveIdentifierToPropTypes(identifier.right, state);
   }
 
   // React Component
@@ -95,7 +105,7 @@ function getPropTypesForNode(node, optional, state) {
       propType = getPropTypesForNode(node.typeAnnotation, true, state);
       break;
 
-    case 'IntersectionTypeAnnotation':
+    case 'TSIntersectionType':
       const mergedProperties = node.types.reduce(
         (mergedProperties, node) => {
           const nodePropTypes = getPropTypesForNode(node, true, state);
@@ -192,8 +202,31 @@ function getPropTypesForNode(node, optional, state) {
       );
       break;
 
-    case 'UnionTypeAnnotation':
-      const tsUnionTypes = node.types.map(node => getPropTypesForNode(node, false, state))
+    case 'TSTypeLiteral':
+      propType = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('shape')
+        ),
+        [
+          types.objectExpression(
+            node.members.map(property => {
+              const objectProperty = types.objectProperty(
+                types.identifier(property.key.name || `"${property.key.value}"`),
+                getPropTypesForNode(property.typeAnnotation, property.optional, state)
+              );
+              if (property.leadingComments != null) {
+                objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
+              }
+              return objectProperty;
+            })
+          )
+        ]
+      );
+      break;
+
+    case 'TSUnionType':
+      const tsUnionTypes = node.types.map(node => getPropTypesForNode(node, false, state));
 
       // `tsUnionTypes` could be:
       // 1. all non-literal values (string | number)
@@ -266,17 +299,22 @@ function getPropTypesForNode(node, optional, state) {
       propType =  buildPropTypePrimitiveExpression(types, 'func');
       break;
 
-    case 'StringLiteralTypeAnnotation':
+    case 'TSLiteralType':
+      propType = getPropTypesForNode(node.literal, true, state);
+      optional = true; // cannot call `.isRequired` on a literal
+      break;
+
+    case 'StringLiteral':
       propType =  types.stringLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a string literal
       break;
 
-    case 'NumericLiteralTypeAnnotation':
+    case 'NumericLiteral':
       propType =  types.numericLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a number literal
       break;
 
-    case 'BooleanLiteralTypeAnnotation':
+    case 'BooleanLiteral':
       propType =  types.booleanLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a boolean literal
       break;
@@ -389,28 +427,6 @@ const typeDefinitionExtractors = {
     return [];
   },
 
-  // InterfaceDeclaration: node => {
-  //   const { id, body } = node;
-  //
-  //   if (id.type !== 'Identifier') {
-  //     debugger;
-  //     throw new Error(`InterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
-  //   }
-  //
-  //   return [{ name: id.name, definition: body }];
-  // },
-  //
-  // TypeAlias: node => {
-  //   const { id, right } = node;
-  //
-  //   if (id.type !== 'Identifier') {
-  //     debugger;
-  //     throw new Error(`TypeAlias typeDefinitionExtract could not understand id type ${id.type}`);
-  //   }
-  //
-  //   return [{ name: id.name, definition: right }];
-  // },
-
   TSInterfaceDeclaration: node => {
     const { id, body } = node;
 
@@ -420,6 +436,17 @@ const typeDefinitionExtractors = {
     }
 
     return [{ name: id.name, definition: body }];
+  },
+
+  TSTypeAliasDeclaration: node => {
+    const { id, typeAnnotation } = node;
+
+    if (id.type !== 'Identifier') {
+      debugger;
+      throw new Error(`TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${id.type}`);
+    }
+
+    return [{ name: id.name, definition: typeAnnotation }];
   },
 
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
