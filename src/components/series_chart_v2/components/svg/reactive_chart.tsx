@@ -1,12 +1,12 @@
 // import { toJS } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import React from 'react';
+// import { LineSeries } from '../components/line_series';
+import { ChartStore } from '../../state/chart_state';
 // import { DataSeriesType } from '../commons/series/specs';
 // import { AreaSeries } from '../components/area_series';
-import { Axis } from '../components/svg/axis';
-import { BarSeries } from '../components/svg/bar_series';
-// import { LineSeries } from '../components/line_series';
-import { ChartStore } from '../state/chart_state';
+import { Axis } from './axis';
+import { BarSeries } from './bar_series';
 // import { AreaSeriesGlyph } from '../utils/area_series_utils';
 // import { BarSeriesGlyph } from '../utils/bar_series_utils';
 // import { LineSeriesGlyph } from '../utils/line_series_utils';

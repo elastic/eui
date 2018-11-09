@@ -2,10 +2,10 @@ import { Group as KonvaGroup } from 'konva';
 import React from 'react';
 import { Circle, Group, Path } from 'react-konva';
 import { animated, Spring } from 'react-spring/dist/konva';
-import { AreaGlyph } from '../../commons/series/areas/rendering';
-import { AreaSeriesStyle } from '../../commons/themes/theme';
+import { AreaGlyph } from '../../lib/series/areas/rendering';
+import { AreaSeriesStyle } from '../../lib/themes/theme';
+import { SpecId } from '../../lib/utils/ids';
 
-import { SpecId } from '../../commons/utils/ids';
 interface AreaSeriesDataProps {
   specId: SpecId;
   animated?: boolean;

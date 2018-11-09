@@ -1,8 +1,8 @@
 import { Rect as KonvaRect } from 'konva';
 import React from 'react';
 import { Rect } from 'react-konva';
-import { BarGlyphGroup } from '../../commons/series/bars/rendering';
-import { Datum } from '../../commons/series/specs';
+import { BarGlyphGroup } from '../../lib/series/bars/rendering';
+import { Datum } from '../../lib/series/specs';
 
 interface BarSeriesDataProps {
   glyph: BarGlyphGroup;

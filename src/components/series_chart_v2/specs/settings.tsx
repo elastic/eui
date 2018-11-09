@@ -1,6 +1,6 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { Rendering, Rotation } from '../commons/series/specs';
+import { Rendering, Rotation } from '../lib/series/specs';
 import { ChartStore } from '../state/chart_state';
 
 interface SettingSpecProps {

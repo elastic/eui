@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { initializeChart, KonvaCanvas, renderChart } from '../components/native/chart';
-import { ChartStore } from '../state/chart_state';
+import { ChartStore } from '../../state/chart_state';
+import { initializeChart, KonvaCanvas, renderChart } from './chart';
 
 interface ReactiveChartProps {
   chartStore?: ChartStore; // FIX until we find a better way on ts mobx

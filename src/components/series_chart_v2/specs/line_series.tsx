@@ -1,8 +1,8 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { LineSeriesSpec } from '../commons/series/specs';
-import { getGroupId } from '../commons/utils/ids';
-import { ScaleType } from '../commons/utils/scales';
+import { LineSeriesSpec } from '../lib/series/specs';
+import { getGroupId } from '../lib/utils/ids';
+import { ScaleType } from '../lib/utils/scales';
 import { SpecProps } from './specs_parser';
 
 type LineSpecProps = SpecProps & LineSeriesSpec;

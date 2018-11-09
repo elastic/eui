@@ -1,10 +1,10 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Rect, Stage } from 'react-konva';
-import { BarSeries, LineSeries } from '../components/canvas';
-import { AreaSeries } from '../components/canvas/area_series';
-import { Axis } from '../components/canvas/axis';
-import { ChartStore } from '../state/chart_state';
+import { BarSeries, LineSeries } from '.';
+import { ChartStore } from '../../state/chart_state';
+import { AreaSeries } from './area_series';
+import { Axis } from './axis';
 
 interface ReactiveChartProps {
   chartStore?: ChartStore; // FIX until we find a better way on ts mobx

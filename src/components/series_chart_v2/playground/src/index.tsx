@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Chart } from '../../chart/chart';
-import { AxisOrientation, AxisPosition, Rotation } from '../../commons/series/specs';
-import { getAxisId, getSpecId } from '../../commons/utils/ids';
-import { ScaleType } from '../../commons/utils/scales';
+import { Chart } from '../../components/chart';
+import { AxisOrientation, AxisPosition, Rotation } from '../../lib/series/specs';
+import { getAxisId, getSpecId } from '../../lib/utils/ids';
+import { ScaleType } from '../../lib/utils/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
@@ -12,7 +12,7 @@ import { datasetStacked as AREA_STACKED } from './data_example2';
 import { TEMPORAL_DATA1 } from './data_example3';
 
 import { extent } from 'd3-array';
-import { CurveType } from '../../commons/series/utils/curves';
+import { CurveType } from '../../lib/series/utils/curves';
 import { Settings } from '../../specs/settings';
 import { niceTimeFormatter } from '../../utils/data/formatters';
 import {
@@ -842,7 +842,7 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
             title={`HighVolumeChart Rotation: ${rotation}`}
-            tickFormat={(tick) => `value: ${tick}`}
+            tickFormat={(tick: any) => `value: ${tick}`}
           />
           <AreaSeries
             id={getSpecId('1000elements')}
@@ -879,7 +879,7 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
             title={`HighVolumeChart Rotation: ${rotation}`}
-            tickFormat={(tick) => `value: ${Number(tick).toFixed(2)}`}
+            tickFormat={(tick: any) => `value: ${Number(tick).toFixed(2)}`}
           />
           {/* <BarSeries
             id={getSpecId('bars')}
@@ -922,7 +922,7 @@ class App extends Component {
             id={getAxisId('left')}
             position={[90, 0, 180].includes(rotation) ? AxisPosition.Left : AxisPosition.Right}
             orientation={AxisOrientation.Vertical}
-            tickFormat={[90, -90].includes(rotation) ? formatter : (d) => d}
+            tickFormat={[90, -90].includes(rotation) ? formatter : (d: any) => d}
             showOverlappingTicks={true}
             showOverlappingLabels={true}
 
@@ -946,7 +946,7 @@ class App extends Component {
     );
   }
   public render() {
-    const randomData = dataGenerator.generateGroupedSeries(50, 40);
+    // const randomData = dataGenerator.generateGroupedSeries(50, 40);
     return (
       <div className="app">
         <div className="header">

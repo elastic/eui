@@ -1,6 +1,6 @@
 import React from 'react';
-import { isBarGlyphGroupLeaf } from '../../commons/series/bars/commons';
-import { BarGlyphGroup } from '../../commons/series/bars/rendering';
+import { isBarGlyphGroupLeaf } from '../../lib/series/bars/commons';
+import { BarGlyphGroup } from '../../lib/series/bars/rendering';
 // import NodeGroup from 'react-move/NodeGroup';
 
 interface BarSeriesDataProps {

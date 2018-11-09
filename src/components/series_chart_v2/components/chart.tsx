@@ -2,9 +2,9 @@ import { Provider } from 'mobx-react';
 import React, { Fragment } from 'react';
 import { SpecsParser } from '../specs/specs_parser';
 import { ChartStore } from '../state/chart_state';
+import { ReactiveChart as CanvasChart } from './canvas/reactive_chart';
 import { ChartResizer } from './chart_resizer';
-import { ReactiveChart as SVGChart } from './reactive_chart';
-import { ReactiveChart as CanvasChart } from './reactive_chart_canvas';
+import { ReactiveChart as SVGChart } from './svg/reactive_chart';
 import { Tooltips } from './tooltips';
 
 interface ChartProps {

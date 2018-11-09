@@ -5,14 +5,14 @@ import {
   AxisTicksDimensions,
   computeAxisTicksDimensions,
   getAxisTicksPositions,
-} from '../commons/axes/axis_utils';
-import { CanvasTextBBoxCalculator } from '../commons/axes/canvas_text_bbox_calculator';
-import { computeDataDomain as areaSeriesComputeDataDomain } from '../commons/series/areas/domains';
-import { AreaGlyph, renderAreaSeriesSpec } from '../commons/series/areas/rendering';
-import { computeDataDomain as barSeriesComputeDataDomain } from '../commons/series/bars/domains';
-import { BarGlyphGroup, renderBarSeriesSpec } from '../commons/series/bars/rendering';
-import { computeDataDomain as lineSeriesComputeDataDomain } from '../commons/series/lines/domains';
-import { LineGlyph, renderLineSeriesSpec } from '../commons/series/lines/rendering';
+} from '../lib/axes/axis_utils';
+import { CanvasTextBBoxCalculator } from '../lib/axes/canvas_text_bbox_calculator';
+import { computeDataDomain as areaSeriesComputeDataDomain } from '../lib/series/areas/domains';
+import { AreaGlyph, renderAreaSeriesSpec } from '../lib/series/areas/rendering';
+import { computeDataDomain as barSeriesComputeDataDomain } from '../lib/series/bars/domains';
+import { BarGlyphGroup, renderBarSeriesSpec } from '../lib/series/bars/rendering';
+import { computeDataDomain as lineSeriesComputeDataDomain } from '../lib/series/lines/domains';
+import { LineGlyph, renderLineSeriesSpec } from '../lib/series/lines/rendering';
 import {
   AreaSeriesSpec,
   AxisSpec,
@@ -21,13 +21,13 @@ import {
   LineSeriesSpec,
   Rendering,
   Rotation,
-} from '../commons/series/specs';
-import { mergeDomains } from '../commons/series/utils/domains_merger';
-import { ColorScales, computeColorScales } from '../commons/themes/colors';
-import { DEFAULT_THEME, Theme } from '../commons/themes/theme';
-import { computeChartDimensions, Dimensions } from '../commons/utils/dimensions';
-import { SpecDomains } from '../commons/utils/domain';
-import { AxisId, GroupId, SpecId } from '../commons/utils/ids';
+} from '../lib/series/specs';
+import { mergeDomains } from '../lib/series/utils/domains_merger';
+import { ColorScales, computeColorScales } from '../lib/themes/colors';
+import { DEFAULT_THEME, Theme } from '../lib/themes/theme';
+import { computeChartDimensions, Dimensions } from '../lib/utils/dimensions';
+import { SpecDomains } from '../lib/utils/domain';
+import { AxisId, GroupId, SpecId } from '../lib/utils/ids';
 export interface TooltipPosition {
   top?: number;
   left?: number;

@@ -1,8 +1,8 @@
 import React, { SVGProps } from 'react';
-import { AxisTick, AxisTicksDimensions } from '../../commons/axes/axis_utils';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../../commons/series/specs';
-import { Theme } from '../../commons/themes/theme';
-import { Dimensions } from '../../commons/utils/dimensions';
+import { AxisTick, AxisTicksDimensions } from '../../lib/axes/axis_utils';
+import { AxisOrientation, AxisPosition, AxisSpec } from '../../lib/series/specs';
+import { Theme } from '../../lib/themes/theme';
+import { Dimensions } from '../../lib/utils/dimensions';
 
 interface AxisProps {
   chartTheme: Theme;
