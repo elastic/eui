@@ -13,6 +13,7 @@
 
   .euiButton__content {
     @include euiButtonContent;
+
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
@@ -68,6 +69,7 @@
     &:hover,
     &:focus {
       @include euiSlightShadow;
+
       text-decoration: none;
     }
   }

@@ -20,12 +20,10 @@ rules:
     - 2
     -
       convention: 'camelcase'
-  # Needs regex
-  class-name-format:
-    - 0
+  # Needs regex, right now we ignore
+  class-name-format: 0
   # Order how you please
-  property-sort-order:
-    - 0
+  property-sort-order: 0
   hex-notation:
     - 2
     -
@@ -58,12 +56,11 @@ rules:
   # We minify css, so this doesn't apply
   no-css-comments: 0
   # We use _ (underscores) for import path that don't directly compile
-  clean-import-paths:
-    - 0
+  clean-import-paths: 0
   # Allows input[type=search]
   force-attribute-nesting: 0
   no-qualifying-elements:
-    - 1
+    - 2
     -
       # Allows input[type=search]
       allow-element-with-attribute: 1
@@ -71,14 +68,14 @@ rules:
   final-newline: 0
   # We use some rare duplicate property values for browser variance
   no-duplicate-properties:
-    - 1
+    - 2
     -
       exclude:
         - 'font-size'
         - 'word-break'
   # Put a line-break between sections of CSS, but allow quicky one-liners for legibility
   empty-line-between-blocks:
-    - 1
+    - 2
     -
       allow-single-line-rulesets: 1
   # Warns are nice for deprecations and development

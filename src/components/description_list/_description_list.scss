@@ -74,7 +74,7 @@
 
     // First two items don't have margin
     > *:first-child,
-    >:nth-child(2) {
+    > :nth-child(2) {
       margin-top: 0;
     }
 
