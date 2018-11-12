@@ -2,6 +2,7 @@ const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const glob = require('glob');
+const path = require('path');
 
 function compileLib() {
   shell.mkdir('-p', 'lib/components/icon/assets/tokens', 'lib/services', 'lib/test');
@@ -15,6 +16,8 @@ function compileLib() {
   execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
 
   console.log(chalk.green('✔ Finished compiling src/'));
+
+  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`);
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
