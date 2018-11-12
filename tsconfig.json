@@ -6,7 +6,6 @@
     "rootDir": "./src",
 
     // don't emit any files when type checking; this is overridden by the build script
-    // "noEmit": true,
     "outDir": "types",
 
     // generate declaration files
@@ -17,10 +16,6 @@
 
     // Enables all strict type checking options.
     "strict": true,
-
-    // When run through babel don't emit any files, only perform type checking
-    // this is disabled via command line when `build` command is run
-    // "noEmit": true,
 
     // Output as ES Modules, webpack will handle further conversion
     "module": "es6",
