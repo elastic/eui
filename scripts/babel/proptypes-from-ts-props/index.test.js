@@ -1,5 +1,5 @@
 const path = require('path');
-const { transform } = require('babel-core');
+const { transform } = require('@babel/core');
 const babelOptions = {
   babelrc: false,
   presets: [

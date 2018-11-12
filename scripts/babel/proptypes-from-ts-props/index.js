@@ -619,8 +619,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            // @TODO: do this
-            // this.file.code = this.file.generate().code;
+            this.file.code = babelCore.transformFromAst(this.file.ast).code;
           }
         }
       },
@@ -664,8 +663,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            // @TODO: do this
-            // this.file.code = this.file.generate().code;
+            this.file.code = babelCore.transformFromAst(this.file.ast).code;
           }
         }
       },
