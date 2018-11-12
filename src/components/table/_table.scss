@@ -13,11 +13,11 @@
 }
 
 // Compressed styles not for mobile
-@include euiBreakpoint('m','l','xl') {
+@include euiBreakpoint('m', 'l', 'xl') {
   .euiTable--compressed {
     .euiTableCellContent {
       @include euiFontSizeXS;
-      padding: $euiTableCellContentPadding--compressed;
+      padding: $euiTableCellContentPaddingCompressed;
     }
   }
 }
@@ -25,7 +25,7 @@
 .euiTableFooterCell,
 .euiTableHeaderCell {
   @include euiTableCell;
-  @include euiTitle("xxs");
+  @include euiTitle('xxs');
   font-weight: $euiFontWeightMedium;
   border-top: none;
 
@@ -46,7 +46,8 @@
   color: inherit;
   width: 100%;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .euiTableCellContent__text {
       text-decoration: underline;
       color: $euiColorPrimary;
@@ -188,9 +189,9 @@
   .euiTableCellContent--showOnHover {
     .euiTableCellContent__hoverItem {
       flex-shrink: 0;
-      opacity: 0.7;
+      opacity: .7;
       filter: grayscale(100%);
-      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+      transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance, filter $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
 
     .expandedItemActions__completelyHide,
@@ -224,6 +225,7 @@
   0% {
     max-height: 0;
   }
+
   100% {
     max-height: 1000px;
   }

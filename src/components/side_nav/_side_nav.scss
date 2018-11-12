@@ -1,6 +1,3 @@
-.euiSideNav {
-}
-
 // These mobile children are hidden in everything but mobile view.
 .euiSideNav__mobileToggle {
   display: none;
@@ -45,7 +42,7 @@
   top: $euiSizeXL;
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   /**
    * 1. Animation doesn't work against height. Need max-height instead.
    *    We set a value larger than what is needed to fake "auto".

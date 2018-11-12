@@ -55,8 +55,8 @@
 }
 
 .euiImage__caption {
-  text-align: center;
   @include euiFontSizeS;
+  text-align: center;
 }
 
 .euiImage__icon {
@@ -92,6 +92,7 @@
     opacity: 0;
     transform: translateY($euiSizeXL * 2);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

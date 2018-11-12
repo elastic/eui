@@ -1,5 +1,5 @@
 .euiDescribedFormGroup {
-  max-width: $euiFormMaxWidth*2;
+  max-width: $euiFormMaxWidth * 2;
 
   + * {
     margin-top: $euiSizeL;
@@ -19,27 +19,15 @@
   }
 
   .euiDescribedFormGroup__fieldPadding {
-    &--xxxsmall {
-      padding-top: $euiFontSizeXS*1.5 - $euiFontSizeXS + 2px;
-    }
-    &--xxsmall {
-      padding-top: $euiFontSizeS*1.5 - $euiFontSizeXS + 2px;
-    }
-    &--xsmall {
-      padding-top: $euiFontSize*1.5 - $euiFontSizeXS + 2px;
-    }
-    &--small {
-      padding-top: $euiFontSizeL*1.5 - $euiFontSizeXS + 2px;
-    }
-    &--medium {
-      padding-top: $euiFontSizeXL*1.5 - $euiFontSizeXS + 2px;
-    }
-    &--large {
-      padding-top: $euiFontSizeXXL*1.5 - $euiFontSizeXS + 2px;
-    }
+    &--xxxsmall {padding-top: ($euiFontSizeXS * 1.5) - $euiFontSizeXS + 2px;}
+    &--xxsmall {padding-top: ($euiFontSizeS * 1.5) - $euiFontSizeXS + 2px;}
+    &--xsmall {padding-top: ($euiFontSize * 1.5) - $euiFontSizeXS + 2px;}
+    &--small {padding-top: ($euiFontSizeL * 1.5) - $euiFontSizeXS + 2px;}
+    &--medium {padding-top: ($euiFontSizeXL * 1.5) - $euiFontSizeXS + 2px;}
+    &--large {padding-top: ($euiFontSizeXXL * 1.5) - $euiFontSizeXS + 2px;}
   }
 
-  @include euiBreakpoint('xs','s') {
+  @include euiBreakpoint('xs', 's') {
     .euiDescribedFormGroup__fields {
       padding-top: 0;
 

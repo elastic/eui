@@ -14,17 +14,18 @@
   }
 }
 
-.euiSuperSelect__popoverPanel[class*="bottom"] { /* 4 */
+.euiSuperSelect__popoverPanel[class*='bottom'] { /* 4 */
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
   border-top-left-radius: 0; /* 2 */
 }
 
-.euiSuperSelect__popoverPanel[class*="top"] { /* 4 */
+.euiSuperSelect__popoverPanel[class*='top'] { /* 4 */
+  @include euiBottomShadowFlat; /* 2 */
+
   border-bottom-color: transparentize($euiBorderColor, .2);
   border-bottom-right-radius: 0; /* 2 */
   border-bottom-left-radius: 0; /* 2 */
-  @include euiBottomShadowFlat; /* 2 */
 }
 
 .euiSuperSelect__item {

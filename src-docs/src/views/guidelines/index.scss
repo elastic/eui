@@ -22,17 +22,18 @@
   font-size: $euiFontSizeS;
 }
 
+// sass-lint:disable no-important
 .guidelineColor__title {
   color: $euiColorMediumShade !important;
 }
 
 .guideColorPalette__swatch {
-  
+
   span {
     height: $euiSize;
     width: $euiSizeL;
   }
-  
+
   &:first-child span {
     border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
   }
@@ -41,6 +42,7 @@
     border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
   }
 }
+
 // -------------------------------------
 // Sass guideline page
 // -------------------------------------
@@ -65,12 +67,14 @@
   background: shade($euiColorDanger, 30%);
 }
 
+// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryLight {
   background: #0079A5;
 }
 
+// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryDark {
-  background: #4da1c0;
+  background: #4DA1C0;
 }
 
 .guideSass__levelRow {
@@ -223,7 +227,7 @@
   }
 }
 
-.guideSass__animRow + .guideSass__animRow{
+.guideSass__animRow + .guideSass__animRow {
   margin-top: $euiSizeL;
 }
 
@@ -243,7 +247,7 @@
 }
 
 .guideSass__animRow:hover .guideSass__animChild {
-  transition-property: all;
+  transition-property: left;
   transition-timing-function: linear;
   left: calc(100% - #{$euiSize});
 }
@@ -279,8 +283,8 @@
 }
 
 .guideSass__breakpointExample {
-    padding: $euiSize;
-    color: $euiColorGhost;
+  padding: $euiSize;
+  color: $euiColorGhost;
 }
 
 .guideSass__themedBox {
@@ -288,15 +292,17 @@
   border-left: $euiBorderThick;
 }
 
+// sass-lint:disable no-color-literals
 .guideSass__themedBox--light {
   border-color: #0079A5;
   background: tint(#0079A5, 90%);
   color: #333;
 }
 
+// sass-lint:disable no-color-literals
 .guideSass__themedBox--dark {
-  border-color: #4da1c0;
-  background: shade(#4da1c0, 70%);
+  border-color: #4DA1C0;
+  background: shade(#4DA1C0, 70%);
   color: #FFF;
 }
 
@@ -315,7 +321,7 @@
     background: $euiColorPrimary;
 
     &:before {
-      content: "You are currently in the xl breakpoint";
+      content: 'You are currently in the xl breakpoint';
     }
   }
 }
@@ -325,7 +331,7 @@
     background: $euiColorSecondary;
 
     &:before {
-      content: "You are currently in the l breakpoint";
+      content: 'You are currently in the l breakpoint';
     }
   }
 }
@@ -335,7 +341,7 @@
     background: $euiColorAccent;
 
     &:before {
-      content: "You are currently in the m breakpoint";
+      content: 'You are currently in the m breakpoint';
     }
   }
 }
@@ -345,7 +351,7 @@
     background: $euiColorWarning;
 
     &:before {
-      content: "You are currently in the s breakpoint";
+      content: 'You are currently in the s breakpoint';
     }
   }
 }
@@ -355,7 +361,7 @@
     background: $euiColorDanger;
 
     &:before {
-      content: "You are currently in the xs breakpoint";
+      content: 'You are currently in the xs breakpoint';
     }
   }
 }

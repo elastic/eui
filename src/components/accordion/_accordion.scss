@@ -24,10 +24,10 @@
   opacity: 0;
   overflow-y: hidden;
   transform: translatez(0);
+  // sass-lint:disable-block indentation
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,
-    opacity $euiAnimSpeedNormal $euiAnimSlightResistance
-  ;
+    opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
 }
 
 

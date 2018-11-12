@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiPageHeader {
     padding: $euiSize 0;
     margin-bottom: 0;

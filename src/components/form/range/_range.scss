@@ -6,7 +6,7 @@
  */
 
 .euiRange__wrapper {
-  @include euiFormControlSize();
+  @include euiFormControlSize;
   display: flex;
   align-items: center;
 
@@ -61,8 +61,9 @@
   padding-top: $euiSize;
 
   &::before {
-    content: "";
     @include size($euiSizeXS);
+
+    content: '';
     background-color: $euiColorDarkShade;
     border-radius: 100%;
     position: absolute;
@@ -96,7 +97,7 @@
   z-index: $euiZLevel0;
 }
 
-[class*="euiRange__level--"] {
+[class*='euiRange__level--'] {
   display: block;
   height: 6px;
   border-radius: 6px;
@@ -104,7 +105,7 @@
 }
 
 // Modifier naming and colors.
-$euiRange__levelColors: (
+$euiRangeLevelColors: (
   primary: $euiColorPrimary,
   success: $euiColorSuccess,
   warning: $euiColorWarning,
@@ -112,7 +113,7 @@ $euiRange__levelColors: (
 );
 
 // Create level modifiers based upon the map.
-@each $name, $color in $euiRange__levelColors {
+@each $name, $color in $euiRangeLevelColors {
   .euiRange__level--#{$name} {
     background-color: transparentize($color, .7);
   }
@@ -125,29 +126,31 @@ $euiRange__levelColors: (
 }
 
 .euiRange__value {
+  // Indentation for legibility in transition
+  // sass-lint:disable-block indentation
   @include euiFontSizeS;
   border: 1px solid transparentize($euiColorDarkestShade, .8);
   position: absolute;
   border-radius: $euiBorderRadius;
-  padding: $euiSizeXS/2 $euiSizeS;
+  padding: ($euiSizeXS / 2) $euiSizeS;
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorGhost;
   max-width: 256px;
   z-index: $euiZLevel4;
-  top: $euiFormControlHeight/2 - 1px;
+  top: ($euiFormControlHeight / 2) - 1px;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
     transform $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   // Custom sizing
   $arrowSize: $euiSizeM;
-  $arrowMinusSize: (($arrowSize/2) - 1px) * -1;
+  $arrowMinusSize: (($arrowSize / 2) - 1px) * -1;
 
   &::after,
   &::before {
-    content: "";
+    content: '';
     position: absolute;
-    bottom: -$arrowSize/2;
+    bottom: -$arrowSize / 2;
     left: 50%;
     transform-origin: center;
     background-color: tintOrShade($euiColorFullShade, 25%, 90%);
@@ -205,7 +208,7 @@ $euiRange__levelColors: (
     position: absolute;
     left: 0;
     right: 0;
-    top: ($euiFormControlHeight/2) + 2px;
+    top: ($euiFormControlHeight / 2) + 2px;
   }
 }
 
@@ -214,7 +217,7 @@ $euiRange__levelColors: (
     position: absolute;
     left: 0;
     width: 100%;
-    top: ($euiFormControlHeight/2) - 2px;
+    top: ($euiFormControlHeight / 2) - 2px;
     z-index: $euiZLevel0;
     overflow: hidden;
   }
@@ -222,20 +225,20 @@ $euiRange__levelColors: (
 
 .euiRange__wrapper--hasTicks {
   .euiRange {
-    height: $euiFormControlHeight/2; /* 3 */
+    height: $euiFormControlHeight / 2; /* 3 */
   }
 
   .euiRange__levels {
-    top: ($euiFormControlHeight/4) + 2px;
+    top: ($euiFormControlHeight / 4) + 2px;
   }
 
   .euiRange__range {
-    top: ($euiFormControlHeight/4) - 2px;
+    top: ($euiFormControlHeight / 4) - 2px;
     left: 0;
   }
 
   .euiRange__value {
-    top: ($euiFormControlHeight/4) - 1px;
+    top: ($euiFormControlHeight / 4) - 1px;
   }
 
   .euiRange__extraInput {
@@ -244,8 +247,8 @@ $euiRange__levelColors: (
 
   .euiRange__ticks {
     position: absolute;
-    left: ($euiRangeThumbWidth/2);
-    right: ($euiRangeThumbWidth/2);
+    left: ($euiRangeThumbWidth / 2);
+    right: ($euiRangeThumbWidth / 2);
     top: $euiSizeS;
     display: flex;
     z-index: $euiZLevel1;
@@ -260,7 +263,7 @@ $euiRange__levelColors: (
   top: 0;
   bottom: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
-  margin-left: $euiRangeThumbWidth/2;
+  margin-left: $euiRangeThumbWidth / 2;
 }
 
 /*
@@ -290,7 +293,8 @@ $euiRange__levelColors: (
   &:disabled {
     cursor: not-allowed;
 
-    @include euiRange__thumb__perBrowser{
+    // sass-lint:disable-block mixins-before-declarations
+    @include euiRangeThumbPerBrowser {
       cursor: not-allowed;
       border-color: $euiRangeThumbBorderColor;
       background-color: $euiRangeThumbBorderColor;
@@ -299,11 +303,11 @@ $euiRange__levelColors: (
   }
 
   &:focus {
-    @include euiRange__thumb__perBrowser{
-      @include euiCustomControl--focused;
+    @include euiRangeThumbPerBrowser {
+      @include euiCustomControlFocused;
     }
 
-    @include euiRange__track__perBrowser{
+    @include euiRangeTrackPerBrowser {
       background-color: $euiColorPrimary;
       border-color: $euiColorPrimary;
     }
@@ -325,17 +329,19 @@ $euiRange__levelColors: (
     }
   }
 
-  @include euiRange__thumb__perBrowser {
-    cursor: pointer;
+  @include euiRangeThumbPerBrowser {
     @include euiCustomControl($type: 'round');
+
+    cursor: pointer;
     border-color: $euiRangeThumbBorderColor;
     padding: 0;
     height: $euiRangeThumbHeight;
     width: $euiRangeThumbWidth;
   }
 
-  @include euiRange__track__perBrowser {
-    @include euiRange__trackSize;
+  @include euiRangeTrackPerBrowser {
+    @include euiRangeTrackSize;
+
     background: $euiRangeTrackColor;
     border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
     border-radius: $euiRangeTrackRadius;
@@ -343,6 +349,8 @@ $euiRange__levelColors: (
 
   // Resets
 
+  // Disable linter for these very unique vendor controls
+  // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     margin-top: ((-$euiRangeTrackBorderWidth * 2 + $euiRangeTrackHeight) / 2) - ($euiRangeThumbHeight / 2);
@@ -353,7 +361,8 @@ $euiRange__levelColors: (
   }
 
   &::-ms-track {
-    @include euiRange__trackSize;
+    @include euiRangeTrackSize;
+
     background: transparent;
     border-color: transparent;
     border-width: ($euiRangeThumbHeight / 2) 0;
@@ -363,7 +372,7 @@ $euiRange__levelColors: (
 
 .euiRange__wrapper--hasRange .euiRange,
 .euiRange__wrapper--hasTicks .euiRange {
-  @include euiRange__track__perBrowser {
+  @include euiRangeTrackPerBrowser {
     background-color: transparentize($euiRangeTrackColor, .6);
     border-color: transparentize($euiRangeTrackBorderColor, .6);
   }

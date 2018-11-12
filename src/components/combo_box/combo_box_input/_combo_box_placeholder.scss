@@ -4,5 +4,5 @@
   padding: 0 $euiSizeXS;
   line-height: $euiSizeXL;
   color: $euiColorMediumShade;
-  margin-bottom: 0 !important;
+  margin-bottom: 0 !important; // sass-lint:disable-line no-important
 }

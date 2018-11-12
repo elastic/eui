@@ -6,25 +6,24 @@
 
 .euiSuperSelectControl {
   @include euiFormControlStyle;
-  @include euiFormControlWithIcon($side: "right"); /* 1 */
+  @include euiFormControlWithIcon($side: 'right'); /* 1 */
   @include euiFormControlIsLoading($isNextToIcon: true);
+
   display: block; /* 3 */
   text-align: left;
-
   line-height: $euiFormControlHeight; /* 2 */
   padding-top: 0; /* 2 */
   padding-bottom: 0; /* 2 */
+  // Truncate the text
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &--compressed {
     line-height: $euiFormControlCompressedHeight; /* 2 */
     padding-top: 0; /* 2 */
     padding-bottom: 0; /* 2 */
   }
-
-  // Truncate the text
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   &.euiSuperSelect--isOpen__button { // since this is a button, we also want the visual indicator of active when options are shown
     @include euiFormControlFocusStyle;

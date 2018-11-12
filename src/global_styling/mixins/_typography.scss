@@ -15,29 +15,29 @@
   font-weight: $euiFontWeightRegular;
 }
 
-@mixin euiTitle($size: "m") {
+@mixin euiTitle($size: 'm') {
   color: $euiTitleColor;
 
-  @if $size == "xxxs" {
+  @if $size == 'xxxs' {
     @include euiFontSizeXS;
-    font-weight: $euiFontWeightBold;
     @include lineHeightFromBaseline(3);
-  } @else if $size == "xxs" {
+    font-weight: $euiFontWeightBold;
+  } @else if $size == 'xxs' {
     @include euiFontSizeS;
+    @include lineHeightFromBaseline(3);
     font-weight: $euiFontWeightBold;
-    @include lineHeightFromBaseline(3);
-  } @else if $size == "xs" {
+  } @else if $size == 'xs' {
     @include euiFontSize;
-    font-weight: $euiFontWeightMedium;
     @include lineHeightFromBaseline(3);
-  } @else if $size == "s" {
-    @include euiFontSizeL;
     font-weight: $euiFontWeightMedium;
+  } @else if $size == 's' {
+    @include euiFontSizeL;
     @include lineHeightFromBaseline(4);
-  } @else if $size == "m" {
+    font-weight: $euiFontWeightMedium;
+  } @else if $size == 'm' {
     @include euiFontSizeXL;
     @include lineHeightFromBaseline(5);
-  } @else if $size == "l" {
+  } @else if $size == 'l' {
     @include euiFontSizeXXL;
     @include lineHeightFromBaseline(6);
   } @else {
@@ -96,6 +96,7 @@
 //    nodes.
 
 @mixin euiTextTruncate {
+  // sass-lint:disable-block no-important
   max-width: 100%; /* 1 */
   overflow: hidden !important;
   text-overflow: ellipsis !important;

@@ -4,12 +4,12 @@
  *    not cause weird wrapping issues.
  */
 .euiFlexItem {
-  display: flex; /* 1 */
-  flex-direction: column; /* 1 */
-
   @include internetExplorerOnly {
     min-width: 1px; /* 2 */
   }
+
+  display: flex; /* 1 */
+  flex-direction: column; /* 1 */
 
   /*
    * 1. We need the extra specificity here to override the FlexGroup > FlexItem styles.
@@ -28,9 +28,10 @@
 }
 
 // On mobile we force them to stack and act the same.
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiFlexGroup--responsive > .euiFlexItem,
   .euiFlexGrid--responsive > .euiFlexItem {
+    // sass-lint:disable-block no-important
     width: 100% !important;
     flex-basis: 100% !important;
     margin-left: 0 !important;
