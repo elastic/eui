@@ -49,6 +49,15 @@
   }
 }
 
+// Hiding elements offscreen to only be read by screen reader
+@mixin euiScreenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
 // Specifically target IE11, but not Edge.
 @mixin internetExplorerOnly {
