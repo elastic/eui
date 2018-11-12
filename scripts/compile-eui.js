@@ -2,7 +2,6 @@ const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
-const fs = require('fs');
 const glob = require('glob');
 
 function compileLib() {
@@ -20,7 +19,6 @@ function compileLib() {
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files
-  // execSync('tsc --noEmit false --outDir ./types --declaration --emitDeclarationOnly');
   console.log('Generating typescript definitions file');
   execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`);
   console.log(chalk.green('✔ Finished generating definitions'));
@@ -38,25 +36,6 @@ function compileLib() {
 
     console.log(chalk.green('✔ Finished copying SVGs'));
   });
-
-  // Copy hand-crafted *.d.ts declaration files
-  // glob('./src/*/**/*.d.ts', undefined, (error, files) => {
-  //   files.forEach(file => {
-  //     const splitPath = file.split('/');
-  //     const basePath = splitPath.slice(2, splitPath.length).join('/');
-  //     const dirPath = path.dirname(`types/${basePath}`);
-  //     if (!fs.existsSync(dirPath)) {
-  //       shell.mkdir('-p', dirPath);
-  //     }
-  //
-  //     const targetFilePath = path.join('types', basePath);
-  //     if (!fs.existsSync(targetFilePath)) {
-  //       shell.cp('-f', file, targetFilePath);
-  //     }
-  //   });
-  //
-  //   console.log(chalk.green('✔ Finished copying TS declarations'));
-  // });
 }
 
 function compileBundle() {
