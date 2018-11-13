@@ -1,8 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - `EuiToken` now exports enumerated constants for `SHAPES` and `COLORS` ([#1301](https://github.com/elastic/eui/pull/1301))
-
-No public interface changes since `5.0.1`.
+- Added mixins for `EuiCallOut` coloring and `EuiTooltip` styles ([#1305](https://github.com/elastic/eui/pull/1305))
 
 ## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
 
@@ -29,7 +28,7 @@ No public interface changes since `5.0.1`.
 
 ## [`4.8.0`](https://github.com/elastic/eui/tree/v4.8.0)
 
-- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
+- Added `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 - Added and updated new product logos to `EuiIcon` ([#1279](https://github.com/elastic/eui/pull/1279))
 
 **Bug fixes**
@@ -47,7 +46,6 @@ No public interface changes since `5.0.1`.
 - Added [Framer X](http://www.framer.com) component source files under the `src-framer` directory ([#1263](https://github.com/elastic/eui/pull/1263))
 - Added `compressed` prop to `EuiComboBox` ([#1258](https://github.com/elastic/eui/pull/1258))
 - Added guidelines for Sass usage. ([#1257](https://github.com/elastic/eui/pull/1257))
-- Adding a `branch` icon to `EuiIcon` ([#1249](https://github.com/elastic/eui/pull/1249/))
 
 **Bug fixes**
 
