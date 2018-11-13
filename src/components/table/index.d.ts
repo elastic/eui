@@ -132,9 +132,16 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableRowCellProps {
-    truncateText?: boolean;
     align?: HorizontalAlignment;
+    hasActions?: boolean;
+    header?: string;
+    hideForMobile?: boolean;
+    isExpander?: boolean;
+    isMobileFullWidth?: boolean;
+    isMobileHeader?: boolean;
+    showOnHover?: boolean;
     textOnly?: boolean;
+    truncateText?: boolean;
   }
 
   export const EuiTableRowCell: SFC<
