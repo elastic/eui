@@ -6,7 +6,6 @@ wiki/
 generator-eui/
 test/
 types/
-src/
 src-docs/
 src-framer/
 .nvmrc
