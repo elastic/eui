@@ -139,63 +139,65 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
       />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
-      >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
-      <div
-        role="listbox"
-      >
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="1"
-          role="option"
-          type="button"
+      <div>
+        <p
+          class="euiScreenReaderOnly"
+          role="alert"
         >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Custom Display #1
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="2"
-          role="option"
-          type="button"
+          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+        </p>
+        <div
+          role="listbox"
         >
-          <span
-            class="euiContextMenu__itemLayout"
+          <button
+            class="euiContextMenuItem euiSuperSelect__item"
+            id="1"
+            role="option"
+            type="button"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
             <span
-              class="euiContextMenuItem__text"
+              class="euiContextMenu__itemLayout"
             >
-              Custom Display #2
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Custom Display #1
+              </span>
             </span>
-          </span>
-        </button>
+          </button>
+          <button
+            class="euiContextMenuItem euiSuperSelect__item"
+            id="2"
+            role="option"
+            type="button"
+          >
+            <span
+              class="euiContextMenu__itemLayout"
+            >
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Custom Display #2
+              </span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -276,70 +278,72 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
       />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
-      >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
-      <div
-        aria-activedescendant="1"
-        role="listbox"
-      >
-        <button
-          class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
-          disabled=""
-          id="1"
-          role="option"
-          type="button"
+      <div>
+        <p
+          class="euiScreenReaderOnly"
+          role="alert"
         >
-          <span
-            class="euiContextMenu__itemLayout"
+          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+        </p>
+        <div
+          aria-activedescendant="1"
+          role="listbox"
+        >
+          <button
+            class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+            disabled=""
+            id="1"
+            role="option"
+            type="button"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+            <span
+              class="euiContextMenu__itemLayout"
             >
-              <path
-                d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+                />
+              </svg>
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Option #1
+              </span>
+            </span>
+          </button>
+          <button
+            class="euiContextMenuItem euiSuperSelect__item"
+            data-test-subj="option two"
+            id="2"
+            role="option"
+            type="button"
+          >
+            <span
+              class="euiContextMenu__itemLayout"
+            >
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
               />
-            </svg>
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Option #1
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Option #2
+              </span>
             </span>
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          data-test-subj="option two"
-          id="2"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Option #2
-            </span>
-          </span>
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -615,18 +619,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                     }
                     onMutation={[Function]}
                   >
-                    <EuiMutationObserver
-                      key=".0"
-                      observerOptions={
-                        Object {
-                          "attributes": true,
-                          "characterData": true,
-                          "childList": true,
-                          "subtree": true,
-                        }
-                      }
-                      onMutation={[Function]}
-                    >
+                    <div>
                       <EuiScreenReaderOnly>
                         <p
                           className="euiScreenReaderOnly"
@@ -637,19 +630,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                            items and must select a single option. Use the up and down keys to navigate or escape to close.
                         </p>
                       </EuiScreenReaderOnly>
-                    </EuiMutationObserver>
-                    <EuiMutationObserver
-                      key=".1"
-                      observerOptions={
-                        Object {
-                          "attributes": true,
-                          "characterData": true,
-                          "childList": true,
-                          "subtree": true,
-                        }
-                      }
-                      onMutation={[Function]}
-                    >
                       <div
                         aria-activedescendant="1"
                         role="listbox"
@@ -811,7 +791,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           </button>
                         </EuiContextMenuItem>
                       </div>
-                    </EuiMutationObserver>
+                    </div>
                   </EuiMutationObserver>
                 </div>
               </EuiPanel>
@@ -896,63 +876,65 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
       <div
         class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
       />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
-      >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
-      <div
-        role="listbox"
-      >
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="1"
-          role="option"
-          type="button"
+      <div>
+        <p
+          class="euiScreenReaderOnly"
+          role="alert"
         >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Option #1
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="2"
-          role="option"
-          type="button"
+          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+        </p>
+        <div
+          role="listbox"
         >
-          <span
-            class="euiContextMenu__itemLayout"
+          <button
+            class="euiContextMenuItem euiSuperSelect__item"
+            id="1"
+            role="option"
+            type="button"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
             <span
-              class="euiContextMenuItem__text"
+              class="euiContextMenu__itemLayout"
             >
-              Option #2
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Option #1
+              </span>
             </span>
-          </span>
-        </button>
+          </button>
+          <button
+            class="euiContextMenuItem euiSuperSelect__item"
+            id="2"
+            role="option"
+            type="button"
+          >
+            <span
+              class="euiContextMenu__itemLayout"
+            >
+              <svg
+                class="euiIcon euiIcon--medium euiContextMenu__icon"
+                focusable="false"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <span
+                class="euiContextMenuItem__text"
+              >
+                Option #2
+              </span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

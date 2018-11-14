@@ -10,15 +10,18 @@ import {
 
 const iconTypes = [
   'alert',
+  'apmTrace',
   'apps',
   'arrowDown',
   'arrowLeft',
   'arrowRight',
   'arrowUp',
   'asterisk',
+  'beaker',
   'bolt',
   'boxesHorizontal',
   'boxesVertical',
+  'branch',
   'broom',
   'brush',
   'bullseye',
@@ -87,6 +90,7 @@ const iconTypes = [
   'list',
   'listAdd',
   'lock',
+  'lockOpen',
   'logstashFilter',
   'logstashIf',
   'logstashInput',
@@ -149,7 +153,7 @@ const iconTypes = [
   'visText',
   'visTimelion',
   'visVega',
-  'visVisualBuilder',
+  'visVisualBuilder'
 ];
 
 export default () => (

@@ -7,8 +7,9 @@
 }
 
 .euiFormControlLayoutCustomIcon--clickable {
-  pointer-events: all;
   @include size($euiSize);
+
+  pointer-events: all;
 
   .euiFormControlLayoutCustomIcon__icon {
     vertical-align: baseline;

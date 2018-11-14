@@ -1,6 +1,7 @@
 /// <reference path="../common.d.ts" />
+/// <reference path="../button/index.d.ts" />
 
-import { SFC, HTMLAttributes } from 'react';
+import { ReactNode, SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -57,5 +58,37 @@ declare module '@elastic/eui' {
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
+  /**
+   * Confirm modal type defs
+   *
+   * @see './confirm_modal.js'
+   */
+
+  // index.js re-exports values from confirm_modal.js with these names.
+  export const EUI_MODAL_CONFIRM_BUTTON: 'confirm';
+  export const EUI_MODAL_CANCEL_BUTTON: 'cancel';
+
+  export interface EuiConfirmModalProps {
+    buttonColor?: ButtonColor;
+    cancelButtonText?: ReactNode;
+    confirmButtonText?: ReactNode;
+    defaultFocusedButton?: 'confirm' | 'cancel';
+    title?: ReactNode;
+    onCancel?: () => void;
+    onConfirm?: () => void;
+    /**
+     * Sets the max-width of the modal,
+     * set to `true` to use the default size,
+     * set to `false` to not restrict the width,
+     * set to a number for a custom width in px,
+     * set to a string for a custom width in custom measurement.
+     */
+    maxWidth?: boolean | number | string;
+  }
+
+  // `title` from the React defs conflicts with our definition above
+  export const EuiConfirmModal: SFC<
+    CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiConfirmModalProps
+    >;
 
 }

@@ -17,6 +17,18 @@ describe('EuiAvatar', () => {
       .toMatchSnapshot();
   });
 
+  test('allows a name composed entirely of whitespace', () => {
+    const component = render(
+      <EuiAvatar
+        name="  "
+        {...requiredProps}
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('imageUrl', () => {
       it('is rendered', () => {

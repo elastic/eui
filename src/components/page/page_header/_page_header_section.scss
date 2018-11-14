@@ -4,7 +4,7 @@
   }
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiPageHeader--responsive .euiPageHeaderSection {
     width: 100%;
 

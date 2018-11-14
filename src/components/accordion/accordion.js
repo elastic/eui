@@ -152,11 +152,13 @@ export class EuiAccordion extends Component {
             observerOptions={{ childList: true, subtree: true }}
             onMutation={this.setChildContentHeight}
           >
-            <div ref={this.setChildContentRef}>
-              <div className={paddingClass}>
-                {children}
+            {mutationRef => (
+              <div ref={ref => {this.setChildContentRef(ref); mutationRef(ref);}}>
+                <div className={paddingClass}>
+                  {children}
+                </div>
               </div>
-            </div>
+            )}
           </EuiMutationObserver>
         </div>
       </div>

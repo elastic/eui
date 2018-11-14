@@ -10,6 +10,7 @@ export const EuiTableRow = ({
   hasActions,
   isExpandedRow,
   isExpandable,
+  onClick,
   ...rest
 }) => {
   const classes = classNames('euiTableRow', className, {
@@ -18,11 +19,13 @@ export const EuiTableRow = ({
     'euiTableRow-hasActions': hasActions,
     'euiTableRow-isExpandedRow': isExpandedRow,
     'euiTableRow-isExpandable': isExpandable,
+    'euiTableRow-isClickable': onClick,
   });
 
   return (
     <tr
       className={classes}
+      onClick={onClick}
       {...rest}
     >
       {children}

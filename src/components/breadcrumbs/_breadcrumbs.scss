@@ -24,7 +24,7 @@
   margin-right: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
-  transform: translateY(0.2em) rotate(15deg);
+  transform: translateY(.2em) rotate(15deg);
   background: $euiColorLightShade;
 }
 
@@ -62,7 +62,7 @@
   }
 
   // Mobile
-  @include euiBreakpoint('xs','s') {
+  @include euiBreakpoint('xs', 's') {
     .euiBreadcrumbSeparator,
     .euiBreadcrumb {
       display: none;

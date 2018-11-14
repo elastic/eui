@@ -10,10 +10,10 @@ declare module '@elastic/eui' {
    */
 
   export type FlexGridGutterSize = 'none' | 's' | 'm' | 'l' | 'xl';
-  export type FlexGridColumns = 0 | 2 | 3 | 4;
+  export type FlexGridColumns = 0 | 1 | 2 | 3 | 4;
 
   export interface EuiFlexGridProps {
-    columns: FlexGridColumns;
+    columns?: FlexGridColumns;
     gutterSize?: FlexGridGutterSize;
   }
 
@@ -46,7 +46,7 @@ declare module '@elastic/eui' {
     | 'spaceBetween'
     | 'spaceAround'
     | 'spaceEvenly';
-  
+
   export interface EuiFlexGroupProps {
     alignItems?: FlexGroupAlignItems;
     children?: React.ReactNode;

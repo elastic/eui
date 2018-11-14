@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { HorizontalRectSeries } from 'react-vis';
 import classNames from 'classnames';
 
-import { VisualizationColorType } from '../utils/visualization_color_type';
-
 export class EuiHorizontalRectSeries extends HorizontalRectSeries {
   state = {
     isMouseOverValue: false,
@@ -53,8 +51,8 @@ EuiHorizontalRectSeries.propTypes = {
     y: PropTypes.number,
     y0: PropTypes.number,
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   /**
    * Callback when clicking on a bar. Returns { x, y } object.
    */

@@ -4,8 +4,6 @@ import { VerticalBarSeries, HorizontalBarSeries, AbstractSeries } from 'react-vi
 import { ORIENTATION } from '../utils/chart_utils';
 import classNames from 'classnames';
 
-import { VisualizationColorType } from '../utils/visualization_color_type';
-
 export class EuiBarSeries extends AbstractSeries {
   state = {
     isMouseOverValue: false,
@@ -68,10 +66,8 @@ EuiBarSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /**
-   * An EUI visualization color, the default value is passed through EuiSeriesChart
-   */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   /**
    * @private passed via XYChart
    */

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalRectSeries, HorizontalRectSeries, AbstractSeries } from 'react-vis';
 import { ORIENTATION } from '../utils/chart_utils';
-import { VISUALIZATION_COLORS } from '../../../services';
 import classNames from 'classnames';
 
 export class EuiHistogramSeries extends AbstractSeries {
@@ -63,8 +62,8 @@ EuiHistogramSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: PropTypes.oneOf(VISUALIZATION_COLORS),
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
 
   /**
    * @private passed via XYChart

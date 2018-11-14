@@ -1,3 +1,6 @@
+// This file utilizes !importants on purpose
+// sass-lint:disable no-important
+
 // Vertical alignment
 .eui-alignBaseline { vertical-align: baseline !important; }
 .eui-alignBottom { vertical-align: bottom !important; }
@@ -32,17 +35,19 @@
  *
  *  3. Be sure to hide/show the element initially
  */
-[class*="eui-hideFor"] {
+[class*='eui-hideFor'] {
   display: inline !important; /* 3 */
 }
-[class*="eui-showFor"] {
- display: none !important; /* 3 */
+
+[class*='eui-showFor'] {
+  display: none !important; /* 3 */
 }
 
 @each $size in $euiBreakpointKeys {
   .eui-hideFor--#{$size} {
     @include euiBreakpoint($size) { display: none !important; }
   }
+
   .eui-showFor--#{$size} {
     @include  euiBreakpoint($size) { display: inline !important; }
   }

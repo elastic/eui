@@ -81,7 +81,11 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
         <p>A new notification appears</p>
       </EuiScreenReaderOnly>
 
-      <div className={headerClasses} aria-label="Notification">
+      <div
+        className={headerClasses}
+        aria-label="Notification"
+        data-test-subj="euiToastHeader"
+      >
         {headerIcon}
 
         <span className="euiToastHeader__title">

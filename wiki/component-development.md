@@ -73,3 +73,36 @@ We follow Kibana's [CSS style guide][kibana-css] and [SCSS style guide][kibana-s
 [docs-manual]: creating-components-manually.md
 [kibana-css]: https://github.com/elastic/kibana/blob/master/style_guides/css_style_guide.md
 [kibana-scss]: https://github.com/elastic/kibana/blob/master/style_guides/scss_style_guide.md
+
+## TypeScript definitions
+
+### Pass-through props
+
+Many of our components use `rest parameters` and the `spread` operator to pass props through to an underlying DOM element. In those instances the component's TypeScript definition needs to properly include the target DOM element's props.
+
+A `Foo` component that passes `...rest` through to a `button` element would have the props interface 
+
+```
+// passes extra props to a button
+interface FooProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  title: string
+}
+```
+
+Some DOM elements (e.g. `div`, `span`) do not have attributes beyond the basic ones provided by all HTML elements. In these cases there isn't a specific `*HTMLAttributes<T>` interface, and you should use `HTMLAttributes<HTMLDivElement>`.
+
+```
+// passes extra props to a div
+interface FooProps extends HTMLAttributes<HTMLDivElement> {
+  title: string
+}
+```
+
+If your component forwards the `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
+
+```
+// passes extra props and forwards the ref to a button
+interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  title: string
+}
+```

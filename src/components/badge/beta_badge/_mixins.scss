@@ -11,12 +11,12 @@
 
     .#{$selector}__betaBadgeWrapper {
       position: absolute;
-      top: $euiSizeL/-2;
+      top: ($euiSizeL / -2);
       left: 50%;
       transform: translateX(-50%);
       z-index: 3; // get above abs positioned image
       min-width: 40%; /* 1 */
-      max-width: calc(100% - #{$spacing*2});
+      max-width: calc(100% - #{($spacing * 2)});
 
       .euiToolTipAnchor,
       .#{$selector}__betaBadge {
@@ -26,6 +26,7 @@
       .#{$selector}__betaBadge {
         overflow: hidden;
         text-overflow: ellipsis;
+        background-color: $euiColorEmptyShade;
       }
     }
   }

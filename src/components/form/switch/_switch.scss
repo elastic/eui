@@ -26,7 +26,7 @@
   .euiSwitch__input:focus + .euiSwitch__body {
 
     .euiSwitch__thumb {
-      @include euiCustomControl--focused;
+      @include euiCustomControlFocused;
     }
   }
 
@@ -42,8 +42,9 @@
   }
 
   .euiSwitch__thumb {
-    position: absolute;
     @include euiCustomControl($type: 'round', $size: $euiSwitchThumbSize);
+
+    position: absolute;
     display: inline-block;
     left: $euiSwitchWidth - $euiSwitchThumbSize;
     transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
@@ -92,6 +93,7 @@
       transform: scale(.95);
     }
   }
+
   .euiSwitch__input:disabled:hover {
     cursor: not-allowed;
   }
@@ -101,7 +103,7 @@
     background: $euiColorLightShade;
 
     .euiSwitch__thumb {
-      @include euiCustomControl--disabled;
+      @include euiCustomControlDisabled;
       background-color: $euiColorLightestShade;
     }
 

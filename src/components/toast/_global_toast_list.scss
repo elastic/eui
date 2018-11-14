@@ -55,7 +55,7 @@
   }
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   /**
    * 1. Mobile we make these 100%. Matching change happens on the item as well.
    */

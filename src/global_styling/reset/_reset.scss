@@ -1,3 +1,6 @@
+// This file allows mutli-line selectors to make it more readible
+// sass-lint:disable single-line-per-selector
+
 /**
  * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
  *
@@ -28,7 +31,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
-  border: 0;
+  border: none;
   font: inherit; /* 1 */
   font-family: inherit; /* 1 */
   vertical-align: baseline;
@@ -83,7 +86,7 @@ a {
   }
 }
 
-a:hover, button, [role=button] {
+a:hover, button, [role='button'] {
   cursor: pointer;
 }
 
@@ -99,8 +102,8 @@ button {
   margin: 0;
   outline: none;
   font-size: $euiFontSize;
-  color: inherit;
   font-size: inherit;
+  color: inherit;
   border-radius: 0;
 
   &:hover {
@@ -119,7 +122,7 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none;
+  content: none; // sass-lint:disable-line no-duplicate-properties
 }
 
 table {

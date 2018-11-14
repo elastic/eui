@@ -41,7 +41,8 @@
   width: 100%;
   text-align: left;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 }
@@ -50,6 +51,7 @@
   0% {
     transform: translateX($euiContextMenuWidth);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -59,6 +61,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-$euiContextMenuWidth);
   }
@@ -66,8 +69,9 @@
 
 @keyframes euiContextMenuPanelTxInRight {
   0% {
-    transform: translateX(-$euiContextMenuWidth);;
+    transform: translateX(-$euiContextMenuWidth);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -77,6 +81,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX($euiContextMenuWidth);
   }

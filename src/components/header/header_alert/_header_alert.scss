@@ -18,7 +18,7 @@
   }
 
   .euiHeaderAlert__title {
-    @include euiTitle("xs");
+    @include euiTitle('xs');
     padding-right: $euiSizeL; // Accounts for the dismiss button.
   }
 
