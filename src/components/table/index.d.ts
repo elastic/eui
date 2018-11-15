@@ -11,7 +11,6 @@ import {
   ThHTMLAttributes,
   TdHTMLAttributes
 } from 'react';
-import { EuiTableRowCellProps } from '@elastic/eui';
 
 declare module '@elastic/eui' {
   /**
