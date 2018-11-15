@@ -26,6 +26,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     <div
       aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
+      data-test-subj="euiToastHeader"
     >
       <svg
         aria-hidden="true"
@@ -94,6 +95,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     <div
       aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
+      data-test-subj="euiToastHeader"
     >
       <svg
         aria-hidden="true"

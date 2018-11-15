@@ -1,0 +1,14 @@
+// Modifier naming and colors.
+$euiCallOutTypes: (
+  primary: $euiColorPrimary,
+  success: $euiColorSecondary,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+);
+
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+
+$callOutTypes: $euiCallOutTypes;

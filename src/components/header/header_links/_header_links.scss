@@ -10,18 +10,23 @@
 .euiHeaderLinks__list {
   white-space: nowrap;
   overflow: hidden;
-
-  @include euiBreakpoint('xs','s'){
-    display: none;
-  }
 }
 
 .euiHeaderLinks__mobile {
+  // sass-lint:disable-block no-important
   display: none !important; // override popover inline-block
   position: absolute !important; // override popover relative
   right: 0;
 
-  @include euiBreakpoint('xs','s'){
+}
+
+@include euiBreakpoint('xs', 's') {
+  // sass-lint:disable-block no-important
+  .euiHeaderLinks__mobile {
     display: block !important;
+  }
+
+  .euiHeaderLinks__list {
+    display: none;
   }
 }

@@ -1,9 +1,10 @@
 .euiDescriptionList {
+  // sass-lint:disable-block nesting-depth
 
   &.euiDescriptionList--row {
 
     .euiDescriptionList__title {
-      @include euiTitle("xs");
+      @include euiTitle('xs');
       margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
@@ -33,7 +34,7 @@
       }
 
       .euiDescriptionList__description {
-        @include euiTitle("xs");
+        @include euiTitle('xs');
       }
     }
 
@@ -41,7 +42,7 @@
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiTitle("xxs");
+        @include euiTitle('xxs');
       }
 
       .euiDescriptionList__description {
@@ -55,7 +56,7 @@
         }
 
         .euiDescriptionList__description {
-          @include euiTitle("xxs");
+          @include euiTitle('xxs');
         }
       }
     }
@@ -72,12 +73,13 @@
     }
 
     // First two items don't have margin
-    > *:first-child, >:nth-child(2) {
+    > *:first-child,
+    > :nth-child(2) {
       margin-top: 0;
     }
 
     .euiDescriptionList__title {
-      @include euiTitle("xs");
+      @include euiTitle('xs');
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
@@ -103,14 +105,14 @@
       }
 
       .euiDescriptionList__description {
-        @include euiTitle("xs");
+        @include euiTitle('xs');
       }
     }
 
     &.euiDescriptionList--compressed {
 
       .euiDescriptionList__title {
-        @include euiTitle("xxs");
+        @include euiTitle('xxs');
       }
 
       .euiDescriptionList__description {
@@ -124,7 +126,7 @@
         }
 
         .euiDescriptionList__description {
-          @include euiTitle("xxs");
+          @include euiTitle('xxs');
         }
       }
     }

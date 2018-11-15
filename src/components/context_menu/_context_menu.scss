@@ -13,15 +13,15 @@ $euiContextMenuWidth: $euiSize * 16;
   }
 }
 
-  /**
-   * 1. When there are multiple ContextMenuPanels, the ContextMenu will absolutely
-   *    position them. ContextMenuPanel will break the layout of a Popover if it's
-   *    absolutely positioned by default.
-   */
-  .euiContextMenu__panel {
-    position: absolute; /* 1 */
-  }
+/**
+  * 1. When there are multiple ContextMenuPanels, the ContextMenu will absolutely
+  *    position them. ContextMenuPanel will break the layout of a Popover if it's
+  *    absolutely positioned by default.
+  */
+.euiContextMenu__panel {
+  position: absolute; /* 1 */
+}
 
-  .euiContextMenu__icon {
-    margin-right: $euiSizeS;
-  }
+.euiContextMenu__icon {
+  margin-right: $euiSizeS;
+}

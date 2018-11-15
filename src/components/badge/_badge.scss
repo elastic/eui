@@ -15,7 +15,6 @@
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
-  white-space: nowrap;
   overflow: hidden;
 
   + .euiBadge {
@@ -35,7 +34,7 @@
   }
 
   &:focus {
-    @include euiFocusRing("small");
+    @include euiFocusRing('small');
   }
 
   .euiBadge__icon {
@@ -43,8 +42,8 @@
     margin-right: $euiSizeXS;
 
     &:focus {
-      background-color: rgba(255,255,255,.8);
-      color: #000;
+      background-color: transparentize($euiColorGhost, .2);
+      color: #000; // sass-lint:disable-line no-color-literals
       border-radius: 2px;
     }
   }
@@ -72,6 +71,7 @@ $badgeTypes: (
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
+    // sass-lint:disable-block no-color-literals
     background-color: $color;
     @if (lightness($color) > 50) {
       color: #000;

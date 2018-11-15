@@ -10,9 +10,16 @@
   vertical-align: middle;
 }
 
-@mixin euiTableActionsBackground--mobile {
-  background-image: linear-gradient(to right, $euiTableActionsBorderColor 0px, $euiTableActionsBorderColor 1px, transparent 1px, transparent 100%);
+@mixin euiTableActionsBackgroundMobile {
+  background-image: linear-gradient(to right, $euiTableActionsBorderColor 0, $euiTableActionsBorderColor 1px, transparent 1px, transparent 100%);
   background-size: $euiTableActionsAreaWidth 100%;
   background-position-x: right;
   background-repeat: no-repeat;
+}
+
+// Deprecated mixins below. This was changed in Nov. 2018
+
+@mixin euiTableActionsBackground--mobile { // sass-lint:disable-line mixin-name-format
+  @include euiTableActionsBackgroundMobile;
+  @warn '@mixin euiTableActionsBackground--mobile is deprecated, please use euiTableActionsBackgroundMobile instead';
 }

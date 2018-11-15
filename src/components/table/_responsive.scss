@@ -1,6 +1,6 @@
 @import '../panel/mixins';
 
-@include euiBreakpoint('xs','s'){
+@include euiBreakpoint('xs', 's') {
 
   .euiTable.euiTable--responsive {
     // Not allowing compressed styles in mobile view (for now)
@@ -28,7 +28,7 @@
 
       &.euiTableRow-isExpandable,
       &.euiTableRow-hasActions {
-        @include euiTableActionsBackground--mobile;
+        @include euiTableActionsBackgroundMobile;
         padding-right: $euiSizeXXL;
         position: relative;
       }
@@ -38,7 +38,7 @@
         min-width: 0;
         width: $euiSizeL;
         position: absolute;
-        top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
+        top: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
         right: $euiTableCellContentPadding;
 
         &::before {
@@ -63,13 +63,13 @@
       }
 
       &.euiTableRow-isSelectable {
-        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding/2);
+        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding / 2);
         position: relative;
 
         .euiTableRowCellCheckbox {
           position: absolute;
-          left: $euiTableCellContentPadding/2;
-          top: $euiTableCellContentPadding + (($euiTableCellContentPadding*$euiLineHeight)-$euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
+          left: $euiTableCellContentPadding / 2;
+          top: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding); // same as row padding-top + cell padding + 1/2 line height
         }
       }
 
@@ -84,9 +84,9 @@
       }
 
       &.euiTableRow-isExpandedRow {
-        @include euiTableActionsBackground--mobile;
+        @include euiTableActionsBackgroundMobile;
         @include euiBottomShadowSmall;
-        margin-top: -$euiTableCellContentPadding*2;
+        margin-top: -$euiTableCellContentPadding * 2;
         position: relative;
         z-index: 2; // on top of it's parent/previous row
         border-top: none;
@@ -115,9 +115,10 @@
 
       // Prepend the data attribute "data-header" to each cell
       &::before {
+        @include fontSize($euiFontSize * .6875);
+
         content: attr(data-header);
         display: block;
-        @include fontSize($euiFontSize * .6875);
         color: $euiColorDarkShade;
         padding: $euiSizeS;
         padding-bottom: 0;

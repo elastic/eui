@@ -1,5 +1,5 @@
 .euiStepNumber {
-  @include createStepsNumber();
+  @include createStepsNumber;
 
   .euiStepNumber__icon {
     position: relative;
