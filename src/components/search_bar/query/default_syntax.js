@@ -138,7 +138,8 @@ word
   = wordChar+ {
       if (text().toLowerCase() === 'or') {
         error(
-        'To search for the phrase or it must be quoted: "or". To perform a logical OR it must be in a parenthesis group: (foo:bar or baz)'
+          'To use OR in a text search, put it inside quotes: "or". To ' +
+          'perform a logical OR, enclose the words in parenthesis: (foo:bar or bar).'
         );
       }
       return Exp.string(unescapeValue(text()), location());
