@@ -4,6 +4,10 @@
 - Added mixins for `EuiCallOut` coloring and `EuiTooltip` styles ([#1305](https://github.com/elastic/eui/pull/1305))
 - Added support for OR group clauses in `EuiQuery` and `EuiSearchBar` ([#1204](https://github.com/elastic/eui/pull/1204))
 
+**Breaking changes**
+
+- Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
 ## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
 
 **Bug fixes**
