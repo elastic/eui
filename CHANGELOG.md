@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.1.0`.
+**Bug fixes**
+
+- `EuiBasicTable` now converts the `EuiTableRowCell` `header` into an empty string if it's been provided as a non-string node, preventing the node from being rendered as `[object Object]` on narrow screens ([#1312](https://github.com/elastic/eui/pull/1312))
 
 ## [`5.1.0`](https://github.com/elastic/eui/tree/v5.1.0)
 
