@@ -7,7 +7,8 @@
 
 .euiModal {
   border: $euiBorderThin;
-  @include euiBottomShadowLarge($adjustBorders: true);
+  // This mixin overwrites some of the border above
+  @include euiBottomShadowLarge($adjustBorders: true); // sass-lint:disable-line mixins-before-declarations
   display: flex; /* 1 */
 
   position: relative;
@@ -26,7 +27,7 @@
 }
 
 .euiModal--maxWidth-default {
-  max-width: map-get($euiBreakpoints, "m");
+  max-width: map-get($euiBreakpoints, 'm');
 }
 
 .euiModal--confirmation {
@@ -34,18 +35,19 @@
 }
 
 .euiModalHeader {
+  @include euiOverflowShadowBottom;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: $euiSizeL $euiSizeXXL $euiSizeM $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0;
-  @include euiOverflowShadowBottom;
 }
 
-  .euiModalHeader__title {
-    @include euiTitle("m");
-  }
+.euiModalHeader__title {
+  @include euiTitle('m');
+}
 
 .euiModalBody {
   @include euiScrollBar;
@@ -56,12 +58,13 @@
 }
 
 .euiModalFooter {
+  @include euiOverflowShadowTop;
+
   display: flex;
   justify-content: flex-end;
-  padding: $euiSizeL $euiSizeL;
+  padding: $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0; // ensure the height of the footer is based off it's contents and doesn't squish
-  @include euiOverflowShadowTop;
 
   > * + * {
     margin-left: $euiSize;
@@ -89,6 +92,7 @@
     opacity: 0;
     transform: translateY($euiSizeXL);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -96,8 +100,9 @@
 }
 
 // On mobile we fix modals as a takeover.
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiModal {
+    // sass-lint:disable-block no-important
     position: fixed;
     width: calc(100vw + 2px) !important;
     max-width: none !important;

@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
 const glob = require('glob');
+const path = require('path');
 
 function compileLib() {
   shell.mkdir('-p', 'lib/components/icon/assets/tokens', 'lib/services', 'lib/test');

@@ -13,11 +13,11 @@
   padding: $euiSize;
 }
 
-  .euiErrorBoundary__text {
-    background-color: $euiColorEmptyShade;
-    padding: $euiSizeS;
-  }
+.euiErrorBoundary__text {
+  background-color: $euiColorEmptyShade;
+  padding: $euiSizeS;
+}
 
-  .euiErrorBoundary__stack {
-    white-space: pre-wrap;
-  }
+.euiErrorBoundary__stack {
+  white-space: pre-wrap;
+}

@@ -5,7 +5,7 @@
     // necessary to output declaration files relative to the correct path
     "rootDir": "./src",
 
-    // don't emit any files when type checking; this is overridden by the build script
+    // emit files to the `types` dir, these are ignored by everything but TS needs _somewhere_ to emit
     "outDir": "types",
 
     // generate declaration files
@@ -17,16 +17,14 @@
     // Enables all strict type checking options.
     "strict": true,
 
-    // Output as ES Modules, webpack will handle further conversion
+    // Output as ES Modules & esnext code, webpack will handle further conversion
     "module": "es6",
+    "target": "esnext",
 
     // Allows default imports from modules with no default export. This does not affect code emit, just type checking.
     // We have to enable this option explicitly since `esModuleInterop` doesn't enable it automatically when ES2015 or
     // ESNext module format is used.
     "allowSyntheticDefaultImports": true,
-
-    // target ES5 for browser compatibility
-    "target": "es5",
 
     // Support .tsx files and transform JSX into calls to React.createElement
     "jsx": "react",

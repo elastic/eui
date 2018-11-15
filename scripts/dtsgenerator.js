@@ -5,7 +5,7 @@ const dtsGenerator = require('dts-generator').default;
 const baseDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(baseDir, 'src');
 
-dtsGenerator({
+const generator = dtsGenerator({
   name: '@elastic/eui',
   project: baseDir,
   out: 'eui.d.ts',
@@ -47,4 +47,13 @@ dtsGenerator({
       return params.importedModuleId;
     }
   },
+});
+
+// strip any `/// <reference` lines from the generated eui.d.ts
+generator.then(() => {
+  const defsFilePath = path.resolve(baseDir, 'eui.d.ts');
+  fs.writeFileSync(
+    defsFilePath,
+    fs.readFileSync(defsFilePath).toString().replace(/\/\/\/\W+<reference.*/g, '')
+  );
 });

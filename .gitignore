@@ -11,6 +11,7 @@ dist/
 lib/
 types/
 es/
+types/
 .idea
 .vscode/
 .DS_Store
@@ -18,6 +19,7 @@ es/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+eui.d.ts
 
 # typescript output
 types/ # various tsc processing will output here

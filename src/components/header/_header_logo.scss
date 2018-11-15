@@ -24,15 +24,15 @@
 }
 
 .euiHeaderLogo__text {
-  @include euiTitle("s");
+  @include euiTitle('s');
   padding-left: $euiSize;
   font-weight: $euiFontWeightLight;
 }
 
 @include euiBreakpoint('xs') {
   .euiHeaderLogo {
-    height: $euiHeaderChildSize*.75;
-    line-height: $euiHeaderChildSize*.75;
+    height: $euiHeaderChildSize * .75;
+    line-height: $euiHeaderChildSize * .75;
     padding: 0 $euiSizeM;
   }
 
@@ -42,7 +42,7 @@
   }
 
   .euiHeaderLogo__text {
-    @include euiTitle("xs");
+    @include euiTitle('xs');
     font-weight: $euiFontWeightRegular;
   }
 }
