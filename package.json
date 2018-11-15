@@ -4,7 +4,7 @@
   "version": "5.1.0",
   "main": "lib",
   "module": "es",
-  "types": "src/index.d.ts",
+  "types": "eui.d.ts",
   "postcss": {},
   "docker_image": "node:8",
   "scripts": {
@@ -89,6 +89,7 @@
     "circular-dependency-plugin": "^5.0.2",
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
+    "dts-generator": "^2.1.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "enzyme-to-json": "^3.3.0",
