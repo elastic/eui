@@ -1,8 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - `EuiToken` now exports enumerated constants for `SHAPES` and `COLORS` ([#1301](https://github.com/elastic/eui/pull/1301))
-
-No public interface changes since `5.0.1`.
+- TypeScript types are now published to a `eui.d.ts` top-level file ([#1304](https://github.com/elastic/eui/pull/1304))
 
 ## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
 
