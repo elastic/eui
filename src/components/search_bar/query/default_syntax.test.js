@@ -1031,4 +1031,21 @@ describe('defaultSyntax', () => {
     expect(nameClauseB.field).toBe('name');
     expect(nameClauseB.value).toBe('susan');
   });
+
+  test('or term parsing and printing', () => {
+    const query = `"or"`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getTermClause('or');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('or');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
+  });
 });

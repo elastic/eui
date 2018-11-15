@@ -29,7 +29,7 @@ Clause
 
 GroupClause
   = "(" head:Clause tail:(
-    space? "OR" space? clause:Clause { return clause }
+    space? orWord space? clause:Clause { return clause }
   )* ")" {
     return AST.Group.must([head, ...tail]);
   }
@@ -48,7 +48,7 @@ IsFlag
     return flag;
   }
 
-FieldClause
+FieldClause "field"
   = space? "-" fv:FieldEQValue { return AST.Field.mustNot.eq(fv.field, fv.value); }
   / space? "-" fv:FieldGTValue { return AST.Field.mustNot.gt(fv.field, fv.value); }
   / space? "-" fv:FieldGTEValue { return AST.Field.mustNot.gte(fv.field, fv.value); }
@@ -111,7 +111,7 @@ termValue "term"
 
 containsOrValues
   = "(" space? head:containsValue tail:(
-  	space ([oO][rR]) space value:containsValue { return value; }
+  	space orWord space value:containsValue { return value; }
   )* space? ")" { return [ head, ...tail ]; }
   
 rangeValue
@@ -122,16 +122,27 @@ containsValue
   = numberWord
   / date
   / booleanWord
-  / word
   / phrase
+  / word
 
 phrase
   = '"' space? phrase:(
-  	word (space word)* { return unescapeValue(text()); }
+  	phraseWord (space phraseWord)* { return unescapeValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
+phraseWord
+  = orWord
+  / word
+
 word
-  = wordChar+ { return Exp.string(unescapeValue(text()), location()); }
+  = wordChar+ {
+      if (text().toLowerCase() === 'or') {
+        error(
+        'To search for the phrase or it must be quoted: "or". To perform a logical OR it must be in a parenthesis group: (foo:bar or baz)'
+        );
+      }
+      return Exp.string(unescapeValue(text()), location());
+    }
 
 wordChar
   = alnum
@@ -143,6 +154,9 @@ escapedChar
 
 reservedChar
   = [\-:\\\\]
+
+orWord
+  = ([oO][rR])
 
 // only match booleans followed by whitespace or end of input
 booleanWord
@@ -282,7 +296,7 @@ const printValue = (value, options) => {
   }
 
   const escapeFn = options.escapeValue || escapeValue;
-  if (value.match(/\s/)) {
+  if (value.match(/\s/) || value.toLowerCase() === 'or') {
     return `"${escapeFn(value)}"`;
   }
   return escapeFn(value);
