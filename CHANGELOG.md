@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.1.0`.
+
+## [`5.1.0`](https://github.com/elastic/eui/tree/v5.1.0)
+
 - `EuiToken` now exports enumerated constants for `SHAPES` and `COLORS` ([#1301](https://github.com/elastic/eui/pull/1301))
 - Added mixins for `EuiCallOut` coloring and `EuiTooltip` styles ([#1305](https://github.com/elastic/eui/pull/1305))
 - Improve TypeScript definitions for `EuiTableRowCellProps` ([#1310](https://github.com/elastic/eui/pull/1310))
