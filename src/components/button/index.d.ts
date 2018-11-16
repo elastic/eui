@@ -33,6 +33,8 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     isLoading?: boolean;
     isDisabled?: boolean;
+    contentProps?: object;
+    textProps?: object;
   }
   export const EuiButton: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
@@ -87,6 +89,8 @@ declare module '@elastic/eui' {
     flush?: EmptyButtonFlush;
     isLoading?: boolean;
     isDisabled?: boolean;
+    contentProps?: object;
+    textProps?: object;
   }
 
   export const EuiButtonEmpty: SFC<
