@@ -169,9 +169,13 @@ EuiButton.propTypes = {
   buttonRef: PropTypes.func,
 
   /**
-   * Props passing
+   * Passes props to `euiButton__content` span
    */
   contentProps: PropTypes.object,
+
+  /**
+   * Passes props to `euiButton__text` span
+   */
   textProps: PropTypes.object,
 };
 
