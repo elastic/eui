@@ -26,7 +26,6 @@ import {
   EuiTabbedContent,
   EuiForm,
   EuiSwitch,
-  EuiTextColor,
   EuiToolTip,
   EuiFieldText,
   EuiButtonIcon,
@@ -90,7 +89,7 @@ class GlobalDatePopover extends Component {
             </EuiFlexItem>
           </EuiFlexGroup>
           <EuiFormRow>
-            <EuiDatePicker selected={moment().subtract(3, 'day')} readOnly />
+            <EuiFieldText defaultValue={String(moment().subtract(3, 'day'))} readOnly />
           </EuiFormRow>
           <EuiFormRow>
             <EuiSwitch label="Round to the day" />
@@ -101,14 +100,11 @@ class GlobalDatePopover extends Component {
       id: 'now',
       name: 'Now',
       content: (
-        <EuiText textAlign="center" style={{ width: 390, padding: 16 }}>
-          <EuiTitle size="m"><span>{moment().format('MMMM Do YYYY')}</span></EuiTitle>
-          <EuiSpacer size="s" />
-          <EuiTitle size="m">
-            <EuiTextColor color="subdued">
-              <span>{moment().format('h:mm:ss a')}</span>
-            </EuiTextColor>
-          </EuiTitle>
+        <EuiText size="s" color="subdued" style={{ width: 390, padding: 16 }}>
+          <p>
+            Setting the time to &quot;Now&quot; means that on every refresh
+            this time will be set to the time of the refresh.
+          </p>
         </EuiText>
       ),
     }];
@@ -241,9 +237,6 @@ export default class extends Component {
         ['11/25/2017 00:00 AM', '11/25/2017 11:59 PM'],
         ['3 hours ago', '4 minutes ago'],
         'Last 6 months',
-        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
-        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
-        ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
         ['06/11/2017 06:11 AM', '06/11/2017 06:11 PM'],
       ],
     };

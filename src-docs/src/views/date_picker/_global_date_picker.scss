@@ -1,5 +1,6 @@
 //// GLOBAL Date picker
 
+// sass-lint:disable no-important
 .euiGlobalDatePicker__quickSelectButton {
   // Override prepend border since button already lives inside another prepend
   border-right: none !important;
@@ -21,6 +22,7 @@
       max-width: none;
       width: auto;
 
+      // sass-lint:disable nesting-depth
       .euiPopover__anchor {
         display: block;
       }
@@ -75,14 +77,6 @@
 .euiGlobalDatePicker__updateButton {
   // Just wide enough for all 3 states
   min-width: $euiButtonMinWidth + ($euiSizeXS * 1.5);
-
-  @include euiBreakpoint('xs', 's') {
-    min-width: 0;
-
-    .euiGlobalDatePicker__updateButtonText {
-      display: none;
-    }
-  }
 }
 
 .euiGlobalDatePicker__popoverSection {
@@ -90,4 +84,14 @@
   max-height: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiGlobalDatePicker__updateButton {
+    min-width: 0;
+
+    .euiGlobalDatePicker__updateButtonText {
+      display: none;
+    }
+  }
 }
