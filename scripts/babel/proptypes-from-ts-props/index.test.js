@@ -769,18 +769,19 @@ FooComponent.propTypes = {
 
     describe('array / arrayOf propTypes', () => {
 
-      it('understands an Array of strings', () => {
-        const result = transform(
-          `
+      describe('Array<T>', () => {
+        it('understands an Array of strings', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<string>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -790,20 +791,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an Array of numbers', () => {
-        const result = transform(
-          `
+        it('understands an Array of numbers', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<number>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -813,20 +814,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an Array of booleans', () => {
-        const result = transform(
-          `
+        it('understands an Array of booleans', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<boolean>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -836,20 +837,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an Array of functions', () => {
-        const result = transform(
-          `
+        it('understands an Array of functions', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<() => void>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -859,20 +860,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an Array of literal values', () => {
-        const result = transform(
-          `
+        it('understands an Array of literal values', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<'foo' | 'bar'>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -882,20 +883,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an Array of mixed literal and non-literal types', () => {
-        const result = transform(
-          `
+        it('understands an Array of mixed literal and non-literal types', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar: Array<string | 5 | 6>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -905,20 +906,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
 };`);
-      });
+        });
 
-      it('understands an optional Array of strings and numbers', () => {
-        const result = transform(
-          `
+        it('understands an optional Array of strings and numbers', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar?: Array<string | number>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -928,21 +929,21 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
 };`);
-      });
+        });
 
-      it('understands an Array of a custom type', () => {
-        const result = transform(
-          `
+        it('understands an Array of a custom type', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface FooBar {foo: string, bar?: boolean}
 interface IFooProps {bar: Array<FooBar>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -955,6 +956,198 @@ FooComponent.propTypes = {
     bar: PropTypes.bool
   }).isRequired).isRequired
 };`);
+        });
+      });
+
+      describe('T[]', () => {
+        it('understands an Array of strings', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar: string[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+};`);
+        });
+
+        it('understands an Array of numbers', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar: number[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
+};`);
+        });
+
+        it('understands an Array of booleans', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar: boolean[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired
+};`);
+        });
+
+        it('understands an Array of functions', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar: (() => void)[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.func.isRequired).isRequired
+};`);
+        });
+
+        it('understands an Array of literal values', () => {
+          const result = transform(
+            `
+import React from 'react';
+type BarType = 'foo' | 'bar'
+interface IFooProps {bar: BarType[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.oneOf(["foo", "bar"]).isRequired).isRequired
+};`);
+        });
+
+        it('understands an Array of mixed literal and non-literal types', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar: (string | 5 | 6)[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([5, 6])]).isRequired).isRequired
+};`);
+        });
+
+        it('understands an optional Array of strings and numbers', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface IFooProps {bar?: (string | number)[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired)
+};`);
+        });
+
+        it('understands an Array of a custom type', () => {
+          const result = transform(
+            `
+import React from 'react';
+interface FooBar {foo: string, bar?: boolean}
+interface IFooProps {bar: FooBar[]}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.shape({
+    foo: PropTypes.string.isRequired,
+    bar: PropTypes.bool
+  }).isRequired).isRequired
+};`);
+        });
       });
 
     });

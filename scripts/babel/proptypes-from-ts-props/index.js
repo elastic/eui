@@ -31,6 +31,31 @@ function resolveArrayToPropTypes(node, state) {
   }
 }
 
+function resolveArrayTypeToPropTypes(node, state) {
+  const types = state.get('types');
+
+  const { elementType } = node;
+
+  if (elementType == null) {
+    // Array without any type information
+    return buildPropTypePrimitiveExpression(types, 'array');
+  } else {
+    // Array with typed elements
+    // PropTypes.array
+    // PropTypes.arrayOf()
+    // Array type only has one type argument
+    return types.callExpression(
+      types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('arrayOf')
+      ),
+      [
+        getPropTypesForNode(elementType, false, state)
+      ]
+    );
+  }
+}
+
 function resolveIdentifierToPropTypes(node, state) {
   const typeDefinitions = state.get('typeDefinitions');
   const types = state.get('types');
@@ -285,19 +310,28 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     case 'TSStringKeyword':
-      propType =  buildPropTypePrimitiveExpression(types, 'string');
+      propType = buildPropTypePrimitiveExpression(types, 'string');
       break;
 
     case 'TSNumberKeyword':
-      propType =  buildPropTypePrimitiveExpression(types, 'number');
+      propType = buildPropTypePrimitiveExpression(types, 'number');
       break;
 
     case 'TSBooleanKeyword':
-      propType =  buildPropTypePrimitiveExpression(types, 'bool');
+      propType = buildPropTypePrimitiveExpression(types, 'bool');
       break;
 
     case 'TSFunctionType':
-      propType =  buildPropTypePrimitiveExpression(types, 'func');
+      propType = buildPropTypePrimitiveExpression(types, 'func');
+      break;
+
+    case 'TSArrayType':
+      propType = resolveArrayTypeToPropTypes(node, state);
+      break;
+
+    case 'TSParenthesizedType':
+      propType = getPropTypesForNode(node.typeAnnotation, optional, state);
+      optional = true; // handling `optional` has been delegated to the above call
       break;
 
     case 'TSLiteralType':
@@ -326,7 +360,7 @@ function getPropTypesForNode(node, optional, state) {
   }
 
   if (propType == null) {
-      propType = types.memberExpression(
+    propType = types.memberExpression(
       types.identifier('PropTypes'),
       types.identifier('any')
     );
