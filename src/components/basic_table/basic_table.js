@@ -829,10 +829,10 @@ export class EuiBasicTable extends Component {
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
-    // Name can also be an array or an element, so we need to convert it into a string. We can't
+    // Name can also be an array or an element, so we need to convert it to undefined. We can't
     // stringify the value, because this value is rendered directly in the mobile layout. So the
-    // best thing we can do is render nothing.
-    const header = typeof name === 'string' ? name : '';
+    // best thing we can do is render no header at all.
+    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
