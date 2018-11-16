@@ -16,7 +16,7 @@
   .euiComboBox__inputWrap {
     @include euiFormControlStyle($includeStates: false, $includeSizes: false);
     @include euiFormControlWithIcon($isIconOptional: true);
-    @include euiFormControlSize(auto);
+    @include euiFormControlSize(auto, $includeAlternates: true);
     padding: $euiSizeXS;
     // sass-lint:disable-block mixins-before-declarations
     @include euiFormControlLayoutPadding(1); /* 2 */ //
