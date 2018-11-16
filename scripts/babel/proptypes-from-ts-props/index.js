@@ -152,7 +152,6 @@ function getPropTypesForNode(node, optional, state) {
             nodePropTypes.callee.object.name !== 'PropTypes' ||
             nodePropTypes.callee.property.name !== 'shape'
           ) {
-            debugger;
             throw new Error('Cannot process an encountered type intersection');
           }
 
@@ -354,9 +353,10 @@ function getPropTypesForNode(node, optional, state) {
       optional = true; // cannot call `.isRequired` on a boolean literal
       break;
 
-    default:
-      debugger;
-      throw new Error(`Could not generate prop types for node type ${node.type}`);
+    // very helpful debugging code
+    // default:
+    //   debugger;
+    //   throw new Error(`Could not generate prop types for node type ${node.type}`);
   }
 
   if (propType == null) {
@@ -465,7 +465,6 @@ const typeDefinitionExtractors = {
     const { id, body } = node;
 
     if (id.type !== 'Identifier') {
-      debugger;
       throw new Error(`TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
@@ -476,7 +475,6 @@ const typeDefinitionExtractors = {
     const { id, typeAnnotation } = node;
 
     if (id.type !== 'Identifier') {
-      debugger;
       throw new Error(`TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
@@ -487,8 +485,6 @@ const typeDefinitionExtractors = {
 };
 function extractTypeDefinition(node, opts) {
   if (node == null) {
-    // TODO when does this happen
-    debugger;
     return null;
   }
   return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node, opts) : null;
@@ -579,6 +575,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
         if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
 
         // Extract any of the imported variables from 'react' (SFC, ReactNode, etc)
+        // we do this here instead of resolving when the imported values are used
+        // as the babel typescript preset strips type-only imports before babel visits their usages
         const importsFromReact = new Set();
         programPath.traverse(
           {
@@ -677,7 +675,6 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                 fileCodeNeedsUpdating = true;
               } else {
-                debugger;
                 throw new Error(`Cannot process annotation id React.${right.name}`);
               }
             }
@@ -689,7 +686,6 @@ module.exports = function propTypesFromTypeScript({ types }) {
               }
             }
           } else {
-            debugger;
             throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
           }
 
