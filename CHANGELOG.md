@@ -4,7 +4,7 @@
 
 **Bug fixes**
 
-- `EuiBasicTable` now converts the `EuiTableRowCell` `header` into an empty string if it's been provided as a non-string node, preventing the node from being rendered as `[object Object]` on narrow screens ([#1312](https://github.com/elastic/eui/pull/1312))
+- `EuiBasicTable` now converts the `EuiTableRowCell` `header` into `undefined` if it's been provided as a non-string node, hiding the header and preventing the node from being rendered as `[object Object]` on narrow screens ([#1312](https://github.com/elastic/eui/pull/1312))
 
 ## [`5.1.0`](https://github.com/elastic/eui/tree/v5.1.0)
 
