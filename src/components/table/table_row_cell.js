@@ -115,5 +115,5 @@ EuiTableRowCell.propTypes = {
 
 EuiTableRowCell.defaultProps = {
   align: LEFT_ALIGNMENT,
-  textOnly: true
+  textOnly: true,
 };
