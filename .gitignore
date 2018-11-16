@@ -9,9 +9,7 @@ reports/
 tmp/
 dist/
 lib/
-types/
 es/
-types/
 .idea
 .vscode/
 .DS_Store

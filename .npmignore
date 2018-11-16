@@ -5,10 +5,8 @@ tmp/
 wiki/
 generator-eui/
 test/
-types/
 src-docs/
 src-framer/
-types/
 .nvmrc
 
 # typescript output
