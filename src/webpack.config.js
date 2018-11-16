@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -10,6 +11,12 @@ const plugins = [
   new CircularDependencyPlugin({
     exclude: /node_modules/,
     failOnError: true,
+  }),
+  // run TypeScript and tslint during webpack build
+  new ForkTsCheckerWebpackPlugin({
+    tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+    tslint: path.resolve(__dirname, '..', 'tslint.yaml'),
+    async: false, // makes errors more visible, but potentially less performant
   }),
 ];
 
