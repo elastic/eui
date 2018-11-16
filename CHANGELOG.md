@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.1.0`.
+**Bug fixes**
+
+- Fixed `fullWidth` size of `EuiComboBox` ([#1314](https://github.com/elastic/eui/pull/1314))
 
 ## [`5.1.0`](https://github.com/elastic/eui/tree/v5.1.0)
 
