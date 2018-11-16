@@ -328,7 +328,7 @@ export default class extends Component {
         closePopover={this.closePopover.bind(this)}
         anchorPosition="downLeft"
       >
-        <div style={{ maxWidth: 400 }}>
+        <div style={{ width: 400, maxWidth: '100%' }}>
           {this.renderQuickSelect()}
           <EuiHorizontalRule margin="s" />
           {commonlyUsed}
