@@ -14,7 +14,6 @@
     "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "webpack --config=src-docs/webpack.config.js",
     "build": "node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js",
-    "build-js": "node ./scripts/compile-eui.js",
     "lint": "yarn lint-es && yarn lint-ts && yarn lint-sass && yarn lint-framer",
     "lint-fix": "yarn lint-es-fix && yarn lint-ts-fix",
     "lint-es": "eslint --cache --ignore-pattern \"**/*.snap.js\" \"src/**/*.js\" \"src-docs/**/*.js\"",
