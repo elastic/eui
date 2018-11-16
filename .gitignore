@@ -20,5 +20,5 @@ yarn-error.log
 eui.d.ts
 
 # typescript output
-types/ # various tsc processing will output here
-eui.d.ts # bundled definitions file
+types/
+eui.d.ts

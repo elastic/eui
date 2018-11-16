@@ -10,7 +10,7 @@ src-framer/
 .nvmrc
 
 # typescript output
-types/ # various tsc processing will output here
+types/
 
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)
