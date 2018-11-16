@@ -74,6 +74,7 @@
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.13",
+    "@types/jest": "^23.3.9",
     "@types/lodash": "^4.14.116",
     "@types/react": "^16.0.31",
     "@types/react-virtualized": "^9.18.6",

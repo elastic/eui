@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSpacer } from './spacer.tsx';
+import { EuiSpacer } from './spacer';
 
 describe('EuiSpacer', () => {
   test('is rendered', () => {

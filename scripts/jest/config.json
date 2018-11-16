@@ -32,7 +32,9 @@
     "json"
   ],
   "testMatch": [
-    "**/*.test.js"
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ],
   "testPathIgnorePatterns": [
     "/node_modules/"
