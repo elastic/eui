@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for nodes as "Action" column headers in `EuiBasicTable`, which was overlooked in the original change in `4.5.0` ([#1312](https://github.com/elastic/eui/pull/1312))
+
 **Bug fixes**
 
 - `EuiBasicTable` now converts the `EuiTableRowCell` `header` into an empty string if it's been provided as a non-string node, preventing the node from being rendered as `[object Object]` on narrow screens ([#1312](https://github.com/elastic/eui/pull/1312))
@@ -98,7 +100,7 @@
 
 - Added export for `TYPES` to `EuiAvatar` ([#1238](https://github.com/elastic/eui/pull/1238))
 - Updated node-sass dependency to support OSX Mojave ([#1238](https://github.com/elastic/eui/pull/1238))
-- Added TypeScript definitions for `EuiFieldNumber, `EuiFormLabel` and `EuiSelect`, and fix the `EuiTextColor` definition. ([#1240](https://github.com/elastic/eui/pull/1240))
+- Added TypeScript definitions for `EuiFieldNumber`, `EuiFormLabel` and `EuiSelect`, and fix the `EuiTextColor` definition. ([#1240](https://github.com/elastic/eui/pull/1240))
 - Added support for nodes as column headers in `EuiBasicTable` for supporting things like tooltips and localized text. ([#1234](https://github.com/elastic/eui/pull/1234))
 
 ## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
