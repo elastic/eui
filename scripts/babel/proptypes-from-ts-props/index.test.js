@@ -225,18 +225,20 @@ FooComponent.propTypes = {
 
     describe('enum / oneOf propTypes', () => {
 
-      it('understands an enum of strings', () => {
-        const result = transform(
-          `
+      describe('union type', () => {
+
+        it('understands a union of strings', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {flower: 'daisy' | 'daffodil' |  'dandelion'}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -246,20 +248,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   flower: PropTypes.oneOf(["daisy", "daffodil", "dandelion"]).isRequired
 };`);
-      });
+        });
 
-      it('understands an enum of numbers', () => {
-        const result = transform(
-          `
+        it('understands a union of numbers', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {prime: 2 | 3 | 5 | 7 | 11 | 13}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -269,20 +271,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   prime: PropTypes.oneOf([2, 3, 5, 7, 11, 13]).isRequired
 };`);
-      });
+        });
 
-      it('understands an enum of booleans', () => {
-        const result = transform(
-          `
+        it('understands a union of booleans', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {visible: true | false}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -292,20 +294,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   visible: PropTypes.oneOf([true, false]).isRequired
 };`);
-      });
+        });
 
-      it('understands a mix of primitives', () => {
-        const result = transform(
-          `
+        it('understands a mix of primitives', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bool: true | false | 'FileNotFound'}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -315,20 +317,20 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bool: PropTypes.oneOf([true, false, "FileNotFound"]).isRequired
 };`);
-      });
+        });
 
-      it('understands optional enums', () => {
-        const result = transform(
-          `
+        it('understands optional unions', () => {
+          const result = transform(
+            `
 import React from 'react';
 interface IFooProps {bar?: 'hello' | 'world'}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
-          babelOptions
-        );
+            babelOptions
+          );
 
-        expect(result.code).toBe(`import React from 'react';
+          expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
 
 const FooComponent = () => {
@@ -338,6 +340,154 @@ const FooComponent = () => {
 FooComponent.propTypes = {
   bar: PropTypes.oneOf(["hello", "world"])
 };`);
+        });
+
+      });
+
+      describe('enum', () => {
+
+        it('understands enum of strings', () => {
+          const result = transform(
+            `
+import React from 'react';
+enum Foo {
+  bar = 'BAR',
+  baz = 'BAZ',
+};
+interface IFooProps {foo: Foo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+var Foo;
+
+(function (Foo) {
+  Foo["bar"] = "BAR";
+  Foo["baz"] = "BAZ";
+})(Foo || (Foo = {}));
+
+;
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["BAR", "BAZ"]).isRequired
+};`);
+        });
+
+        it('understands enum of numbers', () => {
+          const result = transform(
+            `
+import React from 'react';
+enum Foo {
+  bar = 3,
+  baz = 54,
+};
+interface IFooProps {foo: Foo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+var Foo;
+
+(function (Foo) {
+  Foo[Foo["bar"] = 3] = "bar";
+  Foo[Foo["baz"] = 54] = "baz";
+})(Foo || (Foo = {}));
+
+;
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf([3, 54]).isRequired
+};`);
+        });
+
+        it('understands a mix of primitives', () => {
+          const result = transform(
+            `
+import React from 'react';
+enum Foo {
+  bar = 'BAR',
+  baz = 5,
+  buzz = false,
+};
+interface IFooProps {foo: Foo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+var Foo;
+
+(function (Foo) {
+  Foo["bar"] = "BAR";
+  Foo[Foo["baz"] = 5] = "baz";
+  Foo[Foo["buzz"] = false] = "buzz";
+})(Foo || (Foo = {}));
+
+;
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["BAR", 5, false]).isRequired
+};`);
+        });
+
+        it('understands optional enums', () => {
+          const result = transform(
+            `
+import React from 'react';
+enum Foo {
+  bar = 'BAR',
+  baz = 'BAZ',
+};
+interface IFooProps {foo?: Foo}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+var Foo;
+
+(function (Foo) {
+  Foo["bar"] = "BAR";
+  Foo["baz"] = "BAZ";
+})(Foo || (Foo = {}));
+
+;
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["BAR", "BAZ"])
+};`);
+        });
+
       });
 
     });

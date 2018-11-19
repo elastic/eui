@@ -308,6 +308,25 @@ function getPropTypesForNode(node, optional, state) {
       }
       break;
 
+    case 'TSEnumDeclaration':
+      const memberTypes = node.members.map(member => getPropTypesForNode(member, true, state));
+      propType = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('oneOf'),
+        ),
+        [
+          types.arrayExpression(
+            memberTypes
+          )
+        ]
+      );
+      break;
+
+    case 'TSEnumMember':
+      propType = getPropTypesForNode(node.initializer, optional, state);
+      break;
+
     case 'TSStringKeyword':
       propType = buildPropTypePrimitiveExpression(types, 'string');
       break;
@@ -354,9 +373,9 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     // very helpful debugging code
-    // default:
-    //   debugger;
-    //   throw new Error(`Could not generate prop types for node type ${node.type}`);
+    default:
+      debugger;
+      throw new Error(`Could not generate prop types for node type ${node.type}`);
   }
 
   if (propType == null) {
@@ -479,6 +498,16 @@ const typeDefinitionExtractors = {
     }
 
     return [{ name: id.name, definition: typeAnnotation }];
+  },
+
+  TSEnumDeclaration: node => {
+    const { id } = node;
+
+    if (id.type !== 'Identifier') {
+      throw new Error(`TSEnumDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+    }
+
+    return [{ name: id.name, definition: node }];
   },
 
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
