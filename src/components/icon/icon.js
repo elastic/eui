@@ -135,6 +135,8 @@ import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoGolang from './assets/logo_golang.svg';
 import logoHAproxy from './assets/logo_haproxy.svg';
+import logoIBM from './assets/logo_ibm.svg';
+import logoIBMMono from './assets/logo_ibm_mono.svg';
 import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
@@ -396,6 +398,8 @@ const typeToIconMap = {
   logoGmail,
   logoGolang,
   logoHAproxy,
+  logoIBM,
+  logoIBMMono,
   logoKafka,
   logoKibana,
   logoKubernetes,
