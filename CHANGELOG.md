@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added IBM logo in colour and mono
+([#1321](https://github.com/elastic/eui/pull/1321))
 - Added support for nodes as "Action" column headers in `EuiBasicTable`, which was overlooked in the original change in `4.5.0` ([#1312](https://github.com/elastic/eui/pull/1312))
 
 **Bug fixes**
