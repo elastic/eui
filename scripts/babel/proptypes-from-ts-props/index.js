@@ -83,6 +83,7 @@ function resolveIdentifierToPropTypes(node, state) {
     case 'ReactElement':
     case 'ComponentClass':
     case 'SFC':
+    case 'StatelessComponent':
       return types.memberExpression(
         types.identifier('PropTypes'),
         types.identifier('element')
