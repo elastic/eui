@@ -34,7 +34,7 @@ declare module '@elastic/eui' {
     isLoading?: boolean;
     isDisabled?: boolean;
     contentProps?: HTMLAttributes<HTMLSpanElement>;
-    textProps?: object;
+    textProps?: HTMLAttributes<HTMLSpanElement>;
   }
   export const EuiButton: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
