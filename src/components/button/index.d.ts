@@ -33,7 +33,7 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     isLoading?: boolean;
     isDisabled?: boolean;
-    contentProps?: object;
+    contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: object;
   }
   export const EuiButton: SFC<
