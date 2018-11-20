@@ -1,7 +1,7 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
