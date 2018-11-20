@@ -89,7 +89,7 @@ declare module '@elastic/eui' {
     flush?: EmptyButtonFlush;
     isLoading?: boolean;
     isDisabled?: boolean;
-    contentProps?: object;
+    contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: object;
   }
 
