@@ -1693,6 +1693,54 @@ FooComponent.propTypes = {
 };`);
           });
 
+          it('imported types can import types from other locations', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { Foo } from './types/foo.ts';
+const FooComponent: React.SFC<Foo> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: filepath => {
+                          if (filepath === path.resolve(process.cwd(), 'types', 'foo.ts')) {
+                            return Buffer.from(`
+                              import { IFoo } from '../interfaces/foo.ts';
+                              export type Foo = IFoo;
+                            `);
+                          } else if (filepath === path.resolve(process.cwd(), 'interfaces', 'foo.ts')) {
+                            return Buffer.from(`
+                              export interface IFoo { bar: string } 
+                            `);
+                          }
+                        }
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.string.isRequired
+};`);
+          });
+
         });
 
       });
