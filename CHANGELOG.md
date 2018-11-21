@@ -6,6 +6,7 @@
 - Updated `GlobalDatePicker` example to include all Kibana features ([#1219](https://github.com/elastic/eui/pull/1219))
 - Adjusted `EuiDatePickerRange` to allow for deeper customization ([#1219](https://github.com/elastic/eui/pull/1219))
 - Added `contentProps` and `textProps` to `EuiButton` and `EuiButtonEmpty` ([#1219](https://github.com/elastic/eui/pull/1219))
+- TypeScript types are now published to a `eui.d.ts` top-level file ([#1304](https://github.com/elastic/eui/pull/1304))
 
 **Bug fixes**
 
@@ -18,7 +19,6 @@
 - `EuiToken` now exports enumerated constants for `SHAPES` and `COLORS` ([#1301](https://github.com/elastic/eui/pull/1301))
 - Added mixins for `EuiCallOut` coloring and `EuiTooltip` styles ([#1305](https://github.com/elastic/eui/pull/1305))
 - Improve TypeScript definitions for `EuiTableRowCellProps` ([#1310](https://github.com/elastic/eui/pull/1310))
-- TypeScript types are now published to a `eui.d.ts` top-level file ([#1304](https://github.com/elastic/eui/pull/1304))
 
 ## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
 
