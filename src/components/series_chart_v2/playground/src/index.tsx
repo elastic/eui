@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Chart } from '../../components/chart';
 import { AxisOrientation, AxisPosition, Rotation } from '../../lib/series/specs';
-import { getAxisId, getSpecId } from '../../lib/utils/ids';
+import { getAxisId, getGroupId, getSpecId } from '../../lib/utils/ids';
 import { ScaleType } from '../../lib/utils/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
@@ -135,18 +135,33 @@ class App extends Component {
             position={AxisPosition.Left}
             orientation={AxisOrientation.Vertical}
           />
-          {/* <BarSeries
-            id={getSpecId('renderBarChart1y0g')}
+          <Axis
+            id={getAxisId('top')}
+            // groupId={getGroupId('barchart')}
+            position={AxisPosition.Top}
+            orientation={AxisOrientation.Horizontal}
+          />
+          <BarSeries
+            id={getSpecId('barchart')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y1', 'y2']}
+            splitSeriesAccessors={['g1', 'g2']}
+            data={this.state.barchart_2y2g}
+          />
+          <LineSeries
+            id={getSpecId('linechart')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
             data={this.state.barchart_1y1g}
-          /> */}
+          />
+          {/*
           <AreaSeries
-            id={getSpecId('renderBarCahart1y0g')}
+             id={getSpecId('areachart')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
@@ -155,7 +170,7 @@ class App extends Component {
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
             curve={CurveType.CURVE_MONOTONE_X}
-          />
+          /> */}
         </Chart>
       </div>
     );

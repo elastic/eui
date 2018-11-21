@@ -101,7 +101,7 @@ export const DEFAULT_THEME: Theme = {
   },
   scales: {
     ordinal: {
-      padding: 0.15,
+      padding: 0.25,
     },
   },
   axes: {

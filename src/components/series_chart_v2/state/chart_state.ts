@@ -321,6 +321,7 @@ export class ChartStore {
       const { id, groupId } = lineSeriesGlyphs;
       const specDomain = this.seriesSpecDomains.get(id);
       const globalSpecDomain = this.globalSpecDomains.get(groupId);
+      console.log(globalSpecDomain);
       if (!specDomain) {
         throw new Error('Missing spec domain for existing spec');
       }

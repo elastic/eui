@@ -36,9 +36,6 @@ export function renderAreaSeriesSpec(
     curve,
   } = areaSeriesSpec;
 
-  if (domains.xDomains.length !== 1) {
-    return []; // TODO find a better return value, option maybe?
-  }
   const maxXWidth = (rotation === 0 || rotation === 180) ? chartDims.width : chartDims.height;
   const xScaleConfig = getScale(
     xAccessor,

@@ -1,10 +1,12 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Rect, Stage } from 'react-konva';
+import { debug } from 'util';
 import { BarSeries, LineSeries } from '.';
 import { ChartStore } from '../../state/chart_state';
 import { AreaSeries } from './area_series';
 import { Axis } from './axis';
+import { InteractionsLayer } from './interactions';
 
 interface ReactiveChartProps {
   chartStore?: ChartStore; // FIX until we find a better way on ts mobx
@@ -21,6 +23,15 @@ class Chart extends React.Component<ReactiveChartProps> {
   public componentWillUnmount() {
     // tslint:disable-next-line:no-console
     console.log('Chart unmounted');
+  }
+
+  public renderInteractions = () => {
+    const { areaSeriesGlyphs, barSeriesGlyphs, chartDimensions } = this.props.chartStore!;
+    return <InteractionsLayer
+      chartDimensions={chartDimensions}
+      areaSeriesGlyphs={areaSeriesGlyphs}
+      barSeriesGlyphs={barSeriesGlyphs}
+    />;
   }
 
   public renderAxes = () => {
@@ -67,6 +78,9 @@ class Chart extends React.Component<ReactiveChartProps> {
       debug,
     } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
+    if (debug) {
+      console.log([...barSeriesGlyphs]);
+    }
     barSeriesGlyphs.forEach((barGlyphs, specId) => {
       const spec = barSeriesSpecs.get(specId);
       if (spec) {
@@ -91,8 +105,11 @@ class Chart extends React.Component<ReactiveChartProps> {
     return bars;
   }
   public renderLineSeries = () => {
-    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme, canDataBeAnimated } = this.props.chartStore!;
+    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme, canDataBeAnimated, debug } = this.props.chartStore!;
     const lines: JSX.Element[] = [];
+    if (debug) {
+      console.log([...lineSeriesGlyphs]);
+    }
     lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
       const spec = lineSeriesSpecs.get(specId);
       if (spec) {
@@ -192,6 +209,14 @@ class Chart extends React.Component<ReactiveChartProps> {
             {this.renderBarSeries()}
             {this.renderLineSeries()}
             {debug && this.renderDebugChartBorders()}
+          </Layer>
+          <Layer
+            x={chartDimensions.left + chartTransform.x}
+            y={chartDimensions.top + chartTransform.y}
+            rotation={chartRotation}
+            {...clippings}
+          >
+            {this.renderInteractions()}
           </Layer>
           <Layer hitGraphEnabled={false}>
             {this.renderAxes()}
