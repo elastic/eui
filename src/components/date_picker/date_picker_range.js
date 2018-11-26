@@ -1,5 +1,5 @@
 import React, {
-  cloneElement,
+  cloneElement, Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -11,11 +11,13 @@ import {
 } from '../icon';
 
 export const EuiDatePickerRange = ({
+  children,
   className,
   startDateControl,
   endDateControl,
   iconType,
   fullWidth,
+  isCustom,
   ...rest
 }) => {
 
@@ -38,25 +40,35 @@ export const EuiDatePickerRange = ({
     optionalIcon = null;
   }
 
-  const clonedStartDate = cloneElement(startDateControl, {
-    showIcon: false,
-    fullWidth: fullWidth,
-  });
+  let startControl = startDateControl;
+  let endControl = endDateControl;
 
-  const clonedEndDate = cloneElement(endDateControl, {
-    showIcon: false,
-    fullWidth: fullWidth,
-  });
+  if (!isCustom) {
+    startControl = cloneElement(startDateControl, {
+      showIcon: false,
+      fullWidth: fullWidth,
+    });
+
+    endControl = cloneElement(endDateControl, {
+      showIcon: false,
+      fullWidth: fullWidth,
+    });
+  }
+
 
   return (
     <div
       className={classes}
       {...rest}
     >
-      {optionalIcon}
-      {clonedStartDate}
-      <EuiText className="euiDatePickerRange__delimeter" size="s" color="subdued">→</EuiText>
-      {clonedEndDate}
+      {children ? (children) : (
+        <Fragment>
+          {optionalIcon}
+          {startControl}
+          <EuiText className="euiDatePickerRange__delimeter" size="s" color="subdued">→</EuiText>
+          {endControl}
+        </Fragment>
+      )}
     </div>
   );
 };
@@ -78,6 +90,14 @@ EuiDatePickerRange.propTypes = {
     PropTypes.oneOf(ICON_TYPES),
   ]),
   fullWidth: PropTypes.bool,
+  /**
+   * Won't apply any additional props to start and end date components
+   */
+  isCustom: PropTypes.bool,
+  /**
+   * Including any children will replace all innerds with the provided children
+   */
+  children: PropTypes.node,
 };
 
 EuiDatePickerRange.defaultProps = {

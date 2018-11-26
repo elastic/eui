@@ -279,9 +279,7 @@ export const DatePickerExample = {
         <EuiCallOut color="warning" title="Demo of visual pattern only">
           <p>
             This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global date/time picker. It uses all EUI components without any custom styles. However, it
-            currently depends strongly on <EuiLink href="https://reactdatepicker.com/#example-45">react-datepicker&apos;s <code>calendarContainer</code></EuiLink> option
-            which has it&apos;s own problems and limitations (like auto-focus on input stealing focus from inputs inside of popover).
+            global date/time picker. It uses all EUI components with some custom styles.
           </p>
         </EuiCallOut>
       </div>

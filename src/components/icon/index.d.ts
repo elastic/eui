@@ -135,6 +135,8 @@ declare module '@elastic/eui' {
     | 'logoGmail'
     | 'logoGolang'
     | 'logoHAproxy'
+    | 'logoIBM'
+    | 'logoIBMMono'
     | 'logoKafka'
     | 'logoKibana'
     | 'logoKubernetes'
