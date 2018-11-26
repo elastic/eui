@@ -490,6 +490,41 @@ FooComponent.propTypes = {
 
       });
 
+      describe('keyof typeof', () => {
+
+        it('understands keyof typeof', () => {
+          const result = transform(
+            `
+import React from 'react';
+const FooMap = {
+  foo: 'bar',
+  fizz: 'buzz',
+};
+interface IFooProps {foo: keyof typeof FooMap}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+            babelOptions
+          );
+
+          expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+const FooMap = {
+  foo: 'bar',
+  fizz: 'buzz'
+};
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["foo", "fizz"]).isRequired
+};`);
+        });
+
+      });
+
     });
 
     describe('object / shape propTypes', () => {
@@ -1738,6 +1773,51 @@ const FooComponent = () => {
 
 FooComponent.propTypes = {
   bar: PropTypes.string.isRequired
+};`);
+          });
+
+          it('resolves object keys used in keyof typeof', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { commonKeys, commonKeyTypes } from '../common';
+const FooComponent: React.SFC<{foo: keyof typeof commonKeys, bar?: commonKeyTypes}> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: () => Buffer.from(`
+                          export const commonKeys = {
+                            s: 'small',
+                            'l': 'large',
+                          };
+                          
+                          export type commonKeyTypes = keyof typeof commonKeys;
+                        `)
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.oneOf(["s", "l"]).isRequired,
+  bar: PropTypes.oneOf(["s", "l"])
 };`);
           });
 

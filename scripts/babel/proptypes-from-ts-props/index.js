@@ -277,6 +277,33 @@ function getPropTypesForNode(node, optional, state) {
       );
       break;
 
+    // resolve a type operator (keyword) that operates on a value
+    // currently only supporting `keyof typeof [object variable]`
+    case 'TSTypeOperator':
+      if (node.operator === 'keyof' && node.typeAnnotation.type === 'TSTypeQuery') {
+        const typeDefinitions = state.get('typeDefinitions');
+        const typeDefinition = typeDefinitions[node.typeAnnotation.exprName.name];
+        if (typeDefinition != null) {
+          propType = getPropTypesForNode(typeDefinition, true, state);
+        }
+      }
+      break;
+
+    // invoked only by `keyof typeof` TSTypeOperator, safe to form PropTypes.oneOf(Object.keys(variable))
+    case 'ObjectExpression':
+      propType = types.callExpression(
+        types.memberExpression(
+          types.identifier('PropTypes'),
+          types.identifier('oneOf')
+        ),
+        [
+          types.arrayExpression(
+            node.properties.map(property => types.stringLiteral(property.key.name || property.key.name || property.key.value))
+          )
+        ]
+      );
+      break;
+
     // translate a type definition into a PropTypes.shape
     case 'TSTypeLiteral':
       propType = types.callExpression(
@@ -497,8 +524,8 @@ const typeDefinitionExtractors = {
           case 'ImportSpecifier':
             return specifier.imported.name;
 
-          default:
-            throw new Error(`Unable to process import specifier type ${specifier.type}`);
+          // default:
+          //   throw new Error(`Unable to process import specifier type ${specifier.type}`);
         }
       });
 
@@ -621,6 +648,23 @@ const typeDefinitionExtractors = {
     }
 
     return [{ name: id.name, definition: node }];
+  },
+
+  /**
+   * Tracks variable declarations as object definitions are used by `keyof typeof [object variable]
+   * @param node
+   * @returns Array
+   */
+  VariableDeclaration: node => {
+    return node.declarations.reduce(
+      (declarations, declaration) => {
+        if (declaration.init.type === 'ObjectExpression') {
+          declarations.push({ name: declaration.id.name, definition: declaration.init });
+        }
+        return declarations;
+      },
+      []
+    );
   },
 
   ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
