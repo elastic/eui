@@ -65,6 +65,7 @@ declare module '@elastic/eui' {
     | 'editorTable'
     | 'editorUnderline'
     | 'editorUnorderedList'
+    | 'email'
     | 'empty'
     | 'exit'
     | 'expand'
