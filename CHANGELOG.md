@@ -4,6 +4,7 @@
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
 - Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
+- Added `filterWith` option for `EuiSearchBar` filters of type `field_value_selection` ([#1328](https://github.com/elastic/eui/pull/1328))
 
 **Bug fixes**
 
@@ -16,7 +17,7 @@
 **Bug fixes**
 
 - Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
-- Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
+- Fixed some issues around parsing string values in `EuiSearchBar` and `EuiQuery` ([#1189](https://github.com/elastic/eui/pull/1189))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 
