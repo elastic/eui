@@ -49,7 +49,7 @@ const FieldValueSelectionFilterPropTypes = {
 const defaults = {
   config: {
     multiSelect: true,
-    filterWith: `prefix`,
+    filterWith: 'prefix',
     loadingMessage: 'Loading...',
     noOptionsMessage: 'No options found',
     searchThreshold: 10,
