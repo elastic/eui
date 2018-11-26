@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <g fill="none" transform="translate(2 2)">
-    <rect width="12" height="12" x="16" fill="#00BFB3" rx="2"/>
-    <rect width="12" height="12" fill="#00A9E5" rx="2"/>
-    <path fill="#0078A0" d="M2 0L10 0C11.1045695-2.02906125e-16 12 .8954305 12 2L12 3 0 3 0 2C-1.3527075e-16.8954305.8954305 2.02906125e-16 2 0zM18 0L26 0C27.1045695-2.02906125e-16 28 .8954305 28 2L28 3 16 3 16 2C16 .8954305 16.8954305 2.02906125e-16 18 0z"/>
-    <rect width="12" height="12" y="16" fill="#00BFB3" rx="2"/>
-    <rect width="12" height="12" x="16" y="16" fill="#00A9E5" rx="2"/>
-    <path fill="#0078A0" d="M2 16L10 16C11.1045695 16 12 16.8954305 12 18L12 19 0 19 0 18C-1.3527075e-16 16.8954305.8954305 16 2 16zM18 16L26 16C27.1045695 16 28 16.8954305 28 18L28 19 16 19 16 18C16 16.8954305 16.8954305 16 18 16z"/>
+  <g>
+    <rect width="6" height="2" x="4" y="4" class="euiIcon__fillSecondary"/>
+    <rect width="6" height="2" x="22" y="4" class="euiIcon__fillSecondary"/>
+    <rect width="6" height="2" x="4" y="22" class="euiIcon__fillSecondary"/>
+    <path d="M0 14L14 14 14 0 0 0 0 14zM2 2L12 2 12 12 2 12 2 2zM18 0L18 14 32 14 32 0 18 0zM30 12L20 12 20 2 30 2 30 12zM0 32L14 32 14 18 0 18 0 32zM2 20L12 20 12 30 2 30 2 20zM18 32L32 32 32 18 18 18 18 32zM20 20L30 20 30 30 20 30 20 20z"/>
+    <rect width="6" height="2" x="22" y="22" class="euiIcon__fillSecondary"/>
   </g>
 </svg>

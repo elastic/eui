@@ -19,34 +19,38 @@
   &.euiComboBoxOptionsList--bottom { /* 4 */
     @include euiBottomShadowMedium;
   }
+
   &.euiComboBoxOptionsList--top { /* 4 */
+    // sass-lint:disable-block indentation
     box-shadow:
-      0 -2px 4px -1px rgba($euiShadowColor, .2),
-      0 0px 2px 0 rgba($euiShadowColor, .2);
+      0 -2px 4px -1px transparentize($euiShadowColor, .8),
+      0 0 2px 0 transparentize($euiShadowColor, .8);
   }
 }
 
 .euiComboBoxOptionsList--bottom {
+  // sass-lint:disable-block no-important
   border-radius: 0 0 $euiBorderRadius $euiBorderRadius !important;
   border-top: none !important;
 }
 
 .euiComboBoxOptionsList--top {
+  // sass-lint:disable-block no-important
   border-radius: $euiBorderRadius $euiBorderRadius 0 0 !important;
 }
 
-  /**
-   * 1. Prevent really long input from overflowing the container.
-   */
-  .euiComboBoxOptionsList__empty {
-    padding: $euiSizeS;
-    text-align: center;
-    color: $euiColorDarkShade;
-    word-wrap: break-word; /* 1 */
-  }
+/**
+  * 1. Prevent really long input from overflowing the container.
+  */
+.euiComboBoxOptionsList__empty {
+  padding: $euiSizeS;
+  text-align: center;
+  color: $euiColorDarkShade;
+  word-wrap: break-word; /* 1 */
+}
 
-  .euiComboBoxOptionsList__rowWrap {
-    padding: 0;
-    max-height: 200px;
-    overflow: hidden;
-  }
+.euiComboBoxOptionsList__rowWrap {
+  padding: 0;
+  max-height: 200px;
+  overflow: hidden;
+}

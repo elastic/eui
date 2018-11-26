@@ -4,7 +4,7 @@
   display: none;
 }
 
-@include euiBreakpoint('xs','s'){
+@include euiBreakpoint('xs', 's') {
 
   .euiTableHeaderMobile {
     display: flex;

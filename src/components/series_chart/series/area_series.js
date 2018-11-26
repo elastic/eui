@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AreaSeries, AbstractSeries } from 'react-vis';
+import { AreaSeries, AbstractSeries, LineSeries } from 'react-vis';
 import { CURVE } from '../utils/chart_utils';
-
-import { VisualizationColorType } from '../utils/visualization_color_type';
 
 // TODO: needs to send a PR to react-vis for incorporate these changes into AreaSeries class for vertical
 // area chart visualizations.
@@ -44,22 +42,38 @@ export class EuiAreaSeries extends AbstractSeries {
 
   render() {
     const { isMouseOverSeries } = this.state;
-    const { name, data, curve, color, onSeriesClick, ...rest } = this.props;
+    const { name, data, curve, color, lineSize, onSeriesClick, fillOpacity, ...rest } = this.props;
     return (
-      <AreaSeries
-        key={`${name}-area`}
-        className="euiAreaSeries"
-        curve={curve}
-        color={color}
-        data={data}
-        onSeriesClick={onSeriesClick}
-        onSeriesMouseOver={this._onSeriesMouseOver}
-        onSeriesMouseOut={this._onSeriesMouseOut}
-        style={{
-          cursor: isMouseOverSeries && onSeriesClick ? 'pointer' : 'default',
-        }}
-        {...rest}
-      />
+      <React.Fragment>
+        <LineSeries
+          {...rest}
+          key={`${name}-line`}
+          curve={curve}
+          data={data}
+          opacity={1}
+          onSeriesClick={onSeriesClick}
+          color={color}
+          style={{
+            pointerEvents: 'visiblestroke',
+            strokeWidth: lineSize
+          }}
+        />
+        <AreaSeries
+          key={`${name}-area`}
+          className="euiAreaSeries"
+          curve={curve}
+          color={color}
+          data={data}
+          onSeriesClick={onSeriesClick}
+          onSeriesMouseOver={this._onSeriesMouseOver}
+          onSeriesMouseOut={this._onSeriesMouseOut}
+          style={{
+            cursor: isMouseOverSeries && onSeriesClick ? 'pointer' : 'default',
+            opacity: fillOpacity,
+          }}
+          {...rest}
+        />
+      </React.Fragment>
     );
   }
 }
@@ -74,12 +88,16 @@ EuiAreaSeries.propTypes = {
       y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   onSeriesClick: PropTypes.func,
+  lineSize: PropTypes.number,
+  fillOpacity: PropTypes.number,
 };
 
 EuiAreaSeries.defaultProps = {
   curve: CURVE.LINEAR,
+  lineSize: 1,
+  fillOpacity: 1,
 };

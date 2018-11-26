@@ -280,6 +280,8 @@ export {
 export {
   EuiTable,
   EuiTableBody,
+  EuiTableFooter,
+  EuiTableFooterCell,
   EuiTableHeader,
   EuiTableHeaderButton,
   EuiTableHeaderCell,
@@ -292,6 +294,10 @@ export {
   EuiTableSortMobile,
   EuiTableSortMobileItem,
 } from './table';
+
+export {
+  EuiToken
+} from './token';
 
 export {
   EuiBasicTable,

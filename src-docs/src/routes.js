@@ -25,6 +25,9 @@ import ColorGuidelines
 import ModalGuidelines
   from './views/guidelines/modals';
 
+import SassGuidelines
+  from './views/guidelines/sass';
+
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
 
@@ -35,6 +38,9 @@ import WritingGuidelines
   from './views/guidelines/writing';
 
 // Services
+
+import { ColorPaletteExample }
+  from './views/color_palette/color_palette_example';
 
 import { IsColorDarkExample }
   from './views/is_color_dark/is_color_dark_example';
@@ -304,6 +310,9 @@ const navigation = [{
     name: 'Modals',
     component: ModalGuidelines,
   }, {
+    name: 'Sass',
+    component: SassGuidelines,
+  }, {
     name: 'Text scales',
     component: TextScales,
   }, {
@@ -395,17 +404,18 @@ const navigation = [{
   name: 'Utilities',
   items: [
     AccessibilityExample,
+    ColorPaletteExample,
     CopyExample,
-    ResponsiveExample,
+    UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
     IsColorDarkExample,
+    MutationObserverExample,
     OutsideClickDetectorExample,
     PortalExample,
+    ResponsiveExample,
     ToggleExample,
-    UtilityClassesExample,
-    MutationObserverExample,
     WindowEventExample,
   ].map(example => createExample(example)),
 }, {

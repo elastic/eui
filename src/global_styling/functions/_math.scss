@@ -12,7 +12,7 @@
 // use a nthRoot-algorithm for parts of the calculation
 @function pow($base, $exponent, $prec: 12) {
   @if (floor($exponent) != $exponent) {
-    $prec2 : pow(10, $prec);
+    $prec2: pow(10, $prec);
     $exponent: round($exponent * $prec2);
     $denominator: gcd($exponent, $prec2);
     @return nthRoot(pow($base, $exponent / $denominator), $prec2 / $denominator, $prec);

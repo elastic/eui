@@ -1,3 +1,8 @@
+// This file uses RGBA literal values responsibly
+// This file uses off-pattern indedentation to be more readible
+
+// sass-lint:disable no-color-literals, indentation
+
 @mixin euiSlightShadow($color: $euiShadowColor, $opacity: .3) {
   box-shadow: 0 2px 2px -1px rgba($color, $opacity);
 }
@@ -19,9 +24,9 @@
 // that drop UP rather than DOWN.
 @mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: .2) {
   box-shadow:
-    0 0px 12px -1px rgba($color, $opacity),
-    0 0px 4px -1px rgba($color, $opacity),
-    0 0px 2px 0 rgba($color, $opacity);
+    0 0 12px -1px rgba($color, $opacity),
+    0 0 4px -1px rgba($color, $opacity),
+    0 0 2px 0 rgba($color, $opacity);
 }
 
 // adjustBorder allows the border color to match the drop shadow better so that there's better
@@ -60,7 +65,7 @@
 
 @mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
   box-shadow:
-    0 4px 8px 0px rgba($color, $opacity/2),
+    0 4px 8px 0 rgba($color, $opacity/2),
     0 2px 2px -1px rgba($color, $opacity);
 }
 
@@ -71,7 +76,7 @@
 // Overflow shadows are useful when a middle element scrolls independently from
 // any top and/or bottom elements
 @mixin euiOverflowShadowTop {
-  box-shadow: 0 ($euiSize *-1) $euiSize (-$euiSize / 2) $euiColorEmptyShade;
+  box-shadow: 0 ($euiSize * -1) $euiSize (-$euiSize / 2) $euiColorEmptyShade;
   z-index: 2;
 }
 

@@ -1,7 +1,7 @@
 /// <reference path="../common.d.ts" />
 /// <reference path="../icon/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
@@ -33,6 +33,8 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     isLoading?: boolean;
     isDisabled?: boolean;
+    contentProps?: HTMLAttributes<HTMLSpanElement>;
+    textProps?: HTMLAttributes<HTMLSpanElement>;
   }
   export const EuiButton: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
@@ -57,6 +59,7 @@ declare module '@elastic/eui' {
     'aria-label'?: string;
     'aria-labelledby'?: string;
     isDisabled?: boolean;
+    size?: ButtonSize;
   }
   export const EuiButtonIcon: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
@@ -86,6 +89,8 @@ declare module '@elastic/eui' {
     flush?: EmptyButtonFlush;
     isLoading?: boolean;
     isDisabled?: boolean;
+    contentProps?: HTMLAttributes<HTMLSpanElement>;
+    textProps?: HTMLAttributes<HTMLSpanElement>;
   }
 
   export const EuiButtonEmpty: SFC<

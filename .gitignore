@@ -9,6 +9,8 @@ reports/
 tmp/
 dist/
 lib/
+es/
+types/
 .idea
 .vscode/
 .DS_Store
@@ -16,3 +18,4 @@ lib/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+eui.d.ts

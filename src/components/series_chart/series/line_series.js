@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { LineSeries, MarkSeries, AbstractSeries } from 'react-vis';
 import { CURVE } from '../utils/chart_utils';
-import { VisualizationColorType } from '../utils/visualization_color_type';
 
 export class EuiLineSeries extends AbstractSeries {
   render() {
@@ -17,6 +16,7 @@ export class EuiLineSeries extends AbstractSeries {
       lineMarkColor,
       lineMarkSize,
       color,
+      borderOpacity,
       ...rest
     } = this.props;
 
@@ -27,11 +27,11 @@ export class EuiLineSeries extends AbstractSeries {
           key={`${name}-border`}
           curve={curve}
           data={data}
-          opacity={1}
           onSeriesClick={onSeriesClick}
           style={{
             pointerEvents: 'visiblestroke',
             strokeWidth: lineSize + 2, // border margin
+            opacity: borderOpacity,
           }}
           _colorValue={'white'}
         />
@@ -82,20 +82,22 @@ EuiLineSeries.propTypes = {
       PropTypes.number
     ]),
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   curve: PropTypes.oneOf(Object.values(CURVE)),
   showLineMarks: PropTypes.bool,
   lineSize: PropTypes.number,
   lineMarkColor: PropTypes.string,
   lineMarkSize: PropTypes.number,
   onSeriesClick: PropTypes.func,
-  onValueClick: PropTypes.func
+  onValueClick: PropTypes.func,
+  borderOpacity: PropTypes.number,
 };
 
 EuiLineSeries.defaultProps = {
   curve: CURVE.LINEAR,
   showLineMarks: false,
   lineSize: 1,
-  lineMarkSize: 0
+  lineMarkSize: 0,
+  borderOpacity: 1,
 };

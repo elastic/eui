@@ -460,6 +460,99 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+
+  describe('footers', () => {
+    test('do not render without a column footer definition', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1', age: 20 },
+          { id: '2', name: 'name2', age: 21 },
+          { id: '3', name: 'name3', age: 22 }
+        ],
+        itemId: 'id',
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'your name'
+          },
+          {
+            field: 'id',
+            name: 'ID',
+            description: 'your id'
+          },
+          {
+            field: 'age',
+            name: 'Age',
+            description: 'your age'
+          }
+        ],
+        onChange: () => { }
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('render with pagination, selection, sorting, and footer', () => {
+      const props = {
+        items: [
+          { id: '1', name: 'name1', age: 20 },
+          { id: '2', name: 'name2', age: 21 },
+          { id: '3', name: 'name3', age: 22 }
+        ],
+        itemId: 'id',
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'your name',
+            sortable: true,
+            footer: <strong>Name</strong>
+          },
+          {
+            field: 'id',
+            name: 'ID',
+            description: 'your id',
+            footer: 'ID'
+          },
+          {
+            field: 'age',
+            name: 'Age',
+            description: 'your age',
+            footer: ({ items, pagination }) => (
+              <strong>
+                sum:
+                {items.reduce((acc, cur) => acc + cur.age, 0)}<br />
+                total items:
+                {pagination.totalItemCount}
+              </strong>
+            )
+          }
+        ],
+        pagination: {
+          pageIndex: 0,
+          pageSize: 3,
+          totalItemCount: 5
+        },
+        selection: {
+          onSelectionChanged: () => undefined
+        },
+        sorting: {
+          sort: { field: 'name', direction: 'asc' }
+        },
+        onChange: () => { }
+      };
+      const component = shallow(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   test('with pagination, selection, sorting and column renderer', () => {
     const props = {
       items: [

@@ -294,7 +294,7 @@ export const FlexExample = {
     text: (
       <p>
         You can set a <EuiCode>columns</EuiCode> prop to specify
-        anywhere between 2-4 columns. Any more would likely break on laptop screens.
+        anywhere between 1-4 columns. Any more would likely break on laptop screens.
       </p>
     ),
     demo: <div className="guideDemo__highlightGridWrap"><FlexGridColumns /></div>,

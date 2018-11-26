@@ -14,6 +14,7 @@ export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
 
 const columnsToClassNameMap = {
   0: 'euiFlexGrid--wrap',
+  1: 'euiFlexGrid--single',
   2: 'euiFlexGrid--halves',
   3: 'euiFlexGrid--thirds',
   4: 'euiFlexGrid--fourths',
@@ -46,6 +47,9 @@ EuiFlexGrid.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   gutterSize: PropTypes.oneOf(GUTTER_SIZES),
+  /**
+   * Number of columns to show in the grid. Up to 4.
+   */
   columns: PropTypes.oneOf(COLUMNS).isRequired,
   /**
    * Allow grid items display at block level on small screens

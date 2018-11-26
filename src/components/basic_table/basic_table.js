@@ -17,6 +17,8 @@ import { EuiCheckbox } from '../form/checkbox/checkbox';
 import { EuiTableHeaderCell } from '../table/table_header_cell';
 import { EuiTableHeader } from '../table/table_header';
 import { EuiTableBody } from '../table/table_body';
+import { EuiTableFooterCell } from '../table/table_footer_cell';
+import { EuiTableFooter } from '../table/table_footer';
 import { EuiTableRowCellCheckbox } from '../table/table_row_cell_checkbox';
 import { COLORS as BUTTON_ICON_COLORS } from '../button/button_icon/button_icon';
 import { ICON_TYPES } from '../icon';
@@ -30,7 +32,7 @@ import { LoadingTableBody } from './loading_table_body';
 import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
-import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 
 const dataTypesProfiles = {
   auto: {
@@ -89,27 +91,32 @@ const SupportedItemActionType = PropTypes.oneOfType([
 
 export const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string
 });
 
 export const FieldDataColumnTypeShape = {
   field: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
   description: PropTypes.string,
   dataType: PropTypes.oneOf(DATA_TYPES),
   width: PropTypes.string,
   sortable: PropTypes.bool,
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
-  render: PropTypes.func // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
+  footer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.func, // ({ items, pagination }) => PropTypes.node
+  ])
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
 export const ComputedColumnType = PropTypes.shape({
   render: PropTypes.func.isRequired, // (record) => PropTypes.node
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string,
   truncateText: PropTypes.bool
@@ -183,6 +190,17 @@ function getCellProps(item, column, cellProps) {
   }
 
   return {};
+}
+
+function getColumnFooter(column, { items, pagination }) {
+  if (column.footer) {
+    if (isFunction(column.footer)) {
+      return column.footer({ items, pagination });
+    }
+    return column.footer;
+  }
+
+  return undefined;
 }
 
 export class EuiBasicTable extends Component {
@@ -348,6 +366,7 @@ export class EuiBasicTable extends Component {
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
+    const footer = this.renderTableFooter();
     return (
       <div
         ref={element => { this.tableElement = element; }}
@@ -357,6 +376,7 @@ export class EuiBasicTable extends Component {
           {caption}
           {head}
           {body}
+          {footer}
         </EuiTable>
       </div>
     );
@@ -509,6 +529,53 @@ export class EuiBasicTable extends Component {
     return <EuiTableHeader>{headers}</EuiTableHeader>;
   }
 
+  renderTableFooter() {
+    const { items, columns, pagination, selection } = this.props;
+
+    const footers = [];
+    let hasDefinedFooter = false;
+
+    if (selection) {
+      // Create an empty cell to compensate for additional selection column
+      footers.push(
+        <EuiTableFooterCell key="_selection_column_f">
+          {undefined}
+        </EuiTableFooterCell>
+      );
+    }
+
+    columns.forEach(column => {
+      const footer = getColumnFooter(column, { items, pagination });
+      if (column.isMobileHeader) {
+        return; // exclude columns that only exist for mobile headers
+      }
+
+      if (footer) {
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_${column.field}`}
+            align={column.align}
+          >
+            {footer}
+          </EuiTableFooterCell>
+        );
+        hasDefinedFooter = true;
+      } else {
+        // Footer is undefined, so create an empty cell to preserve layout
+        footers.push(
+          <EuiTableFooterCell
+            key={`footer_empty_${footers.length - 1}`}
+            align={column.align}
+          >
+            {undefined}
+          </EuiTableFooterCell>
+        );
+      }
+    });
+
+    return footers.length && hasDefinedFooter ? <EuiTableFooter>{footers}</EuiTableFooter> : null;
+  }
+
   renderTableBody() {
     if (this.props.error) {
       return this.renderErrorBody(this.props.error);
@@ -609,19 +676,25 @@ export class EuiBasicTable extends Component {
 
     const { rowProps: rowPropsCallback } = this.props;
     const rowProps = getRowProps(item, rowPropsCallback);
+    const row = (
+      <EuiTableRow
+        aria-owns={expandedRowId}
+        isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
+        isSelected={selected}
+        hasActions={hasActions == null ? calculatedHasActions : hasActions}
+        isExpandable={isExpandable}
+        {...rowProps}
+      >
+        {cells}
+      </EuiTableRow>
+    );
 
     return (
       <Fragment key={`row_${itemId}`}>
-        <EuiTableRow
-          aria-owns={expandedRowId}
-          isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
-          isSelected={selected}
-          hasActions={hasActions == null ? calculatedHasActions : hasActions}
-          isExpandable={isExpandable}
-          {...rowProps}
-        >
-          {cells}
-        </EuiTableRow>
+        {rowProps.onClick
+          ? <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
+          : row
+        }
         {expandedRow}
       </Fragment>
     );
@@ -745,22 +818,27 @@ export class EuiBasicTable extends Component {
       render,
       dataType,
       isExpander,
-      name,
       textOnly,
+      name,
       field, // eslint-disable-line no-unused-vars
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
+      footer, // eslint-disable-line no-unused-vars
       ...rest
     } = column;
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
+    // Name can also be an array or an element, so we need to convert it to undefined. We can't
+    // stringify the value, because this value is rendered directly in the mobile layout. So the
+    // best thing we can do is render no header at all.
+    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={name}
+        header={header}
         isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}

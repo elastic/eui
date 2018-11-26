@@ -6,8 +6,8 @@ $euiFocusRingAnimStartColor: rgba($euiColorPrimary, 0);
 $euiFocusRingSize: 2px;
 $euiFocusRingSizeLarge: 4px;
 
-@mixin euiFocusRing($size: "small") {
-  @if $size == "large" {
+@mixin euiFocusRing($size: 'small') {
+  @if $size == 'large' {
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge;
   } @else {
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;

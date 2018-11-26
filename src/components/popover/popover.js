@@ -76,6 +76,27 @@ const DEFAULT_POPOVER_STYLES = {
 
 const GROUP_NUMERIC = /^([\d.]+)/;
 
+function getElementFromInitialFocus(initialFocus) {
+  const initialFocusType = typeof initialFocus;
+  if (initialFocusType === 'string') return document.querySelector(initialFocus);
+  if (initialFocusType === 'function') return initialFocus();
+  return initialFocus;
+}
+
+function getTransitionTimings(element) {
+  const computedStyle = window.getComputedStyle(element);
+
+  const computedDuration = computedStyle.getPropertyValue('transition-duration');
+  let durationMatch = computedDuration.match(GROUP_NUMERIC);
+  durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
+
+  const computedDelay = computedStyle.getPropertyValue('transition-delay');
+  let delayMatch = computedDelay.match(GROUP_NUMERIC);
+  delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
+
+  return { durationMatch, delayMatch };
+}
+
 export class EuiPopover extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevProps.isOpen && !nextProps.isOpen) {
@@ -115,6 +136,8 @@ export class EuiPopover extends Component {
       popoverStyles: DEFAULT_POPOVER_STYLES,
       arrowStyles: {},
       arrowPosition: null,
+      openPosition: null, // once a stable position has been found, keep the contents on that side
+      isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
     };
   }
 
@@ -139,10 +162,25 @@ export class EuiPopover extends Component {
       }
 
       // Otherwise let's focus the first tabbable item and expedite input from the user.
-      const tabbableItems = tabbable(this.panel);
-      if (tabbableItems.length) {
-        tabbableItems[0].focus();
+      let focusTarget;
+
+      if (this.props.initialFocus != null) {
+        focusTarget = getElementFromInitialFocus(this.props.initialFocus);
+        // there's a race condition between the popover content becoming visible and this function call
+        // if the element isn't visible yet (due to css styling) then it can't accept focus
+        // so wait for another render and try again
+        const visibility = window.getComputedStyle(focusTarget).visibility;
+        if (visibility === 'hidden') {
+          this.updateFocus();
+        }
+      } else {
+        const tabbableItems = tabbable(this.panel);
+        if (tabbableItems.length) {
+          focusTarget = tabbableItems[0];
+        }
       }
+
+      if (focusTarget != null) focusTarget.focus();
     });
   }
 
@@ -154,7 +192,7 @@ export class EuiPopover extends Component {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopover);
+      window.addEventListener('scroll', this.positionPopoverFixed);
     }
 
     this.updateFocus();
@@ -171,14 +209,37 @@ export class EuiPopover extends Component {
           isOpening: true,
         });
       });
+
+      // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
+      const { durationMatch, delayMatch } = Array.prototype.slice.call(this.panel.children).reduce(
+        ({ durationMatch, delayMatch }, element) => {
+          const transitionTimings = getTransitionTimings(element);
+
+          return {
+            durationMatch: Math.max(durationMatch, transitionTimings.durationMatch),
+            delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
+          };
+        },
+        { durationMatch: 0, delayMatch: 0 }
+      );
+
+      setTimeout(
+        () => {
+          this.setState(
+            { isOpenStable: true },
+            this.positionPopoverFixed
+          );
+        },
+        (durationMatch + delayMatch)
+      );
     }
 
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopover);
+        window.addEventListener('scroll', this.positionPopoverFixed);
       } else {
-        window.removeEventListener('scroll', this.positionPopover);
+        window.removeEventListener('scroll', this.positionPopoverFixed);
       }
     }
 
@@ -197,7 +258,7 @@ export class EuiPopover extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopover);
+    window.removeEventListener('scroll', this.positionPopoverFixed);
     clearTimeout(this.closingTransitionTimeout);
   }
 
@@ -206,16 +267,7 @@ export class EuiPopover extends Component {
       (waitDuration, record) => {
         // only check for CSS transition values for ELEMENT nodes
         if (record.target.nodeType === document.ELEMENT_NODE) {
-          const computedStyle = window.getComputedStyle(record.target);
-
-          const computedDuration = computedStyle.getPropertyValue('transition-duration');
-          let durationMatch = computedDuration.match(GROUP_NUMERIC);
-          durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
-
-          const computedDelay = computedStyle.getPropertyValue('transition-delay');
-          let delayMatch = computedDelay.match(GROUP_NUMERIC);
-          delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
-
+          const { durationMatch, delayMatch } = getTransitionTimings(record.target);
           waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
         }
 
@@ -223,14 +275,14 @@ export class EuiPopover extends Component {
       },
       0
     );
-    this.positionPopover();
+    this.positionPopoverFixed();
 
     if (waitDuration > 0) {
       const startTime = Date.now();
       const endTime = startTime + waitDuration;
 
       const onFrame = () => {
-        this.positionPopover();
+        this.positionPopoverFixed();
 
         if (endTime > Date.now()) {
           requestAnimationFrame(onFrame);
@@ -241,12 +293,20 @@ export class EuiPopover extends Component {
     }
   }
 
-  positionPopover = () => {
+  positionPopover = allowEnforcePosition => {
     if (this.button == null || this.panel == null) return;
 
-    const { top, left, position, arrow } = findPopoverPosition({
+    let position = getPopoverPositionFromAnchorPosition(this.props.anchorPosition);
+    let forcePosition = null;
+    if (allowEnforcePosition && this.state.isOpenStable && this.state.openPosition != null) {
+      position = this.state.openPosition;
+      forcePosition = true;
+    }
+
+    const { top, left, position: foundPosition, arrow } = findPopoverPosition({
       container: this.props.container,
-      position: getPopoverPositionFromAnchorPosition(this.props.anchorPosition),
+      position,
+      forcePosition,
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
       popover: this.panel,
@@ -270,9 +330,17 @@ export class EuiPopover extends Component {
     };
 
     const arrowStyles = this.props.hasArrow ? arrow : null;
-    const arrowPosition = position;
+    const arrowPosition = foundPosition;
 
-    this.setState({ popoverStyles, arrowStyles, arrowPosition });
+    this.setState({ popoverStyles, arrowStyles, arrowPosition, openPosition: foundPosition });
+  }
+
+  positionPopoverFixed = () => {
+    this.positionPopover(true);
+  }
+
+  positionPopoverFluid = () => {
+    this.positionPopover(false);
   }
 
   panelRef = node => {
@@ -284,12 +352,14 @@ export class EuiPopover extends Component {
         popoverStyles: DEFAULT_POPOVER_STYLES,
         arrowStyles: {},
         arrowPosition: null,
+        openPosition: null,
+        isOpenStable: false,
       });
-      window.removeEventListener('resize', this.positionPopover);
+      window.removeEventListener('resize', this.positionPopoverFluid);
     } else {
       // panel is coming into existence
-      this.positionPopover();
-      window.addEventListener('resize', this.positionPopover);
+      this.positionPopoverFluid();
+      window.addEventListener('resize', this.positionPopoverFluid);
     }
   };
 
@@ -311,6 +381,7 @@ export class EuiPopover extends Component {
       hasArrow,
       repositionOnScroll, // eslint-disable-line no-unused-vars
       zIndex, // eslint-disable-line no-unused-vars
+      initialFocus, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -382,24 +453,17 @@ export class EuiPopover extends Component {
               style={this.state.popoverStyles}
             >
               <div className={arrowClassNames} style={this.state.arrowStyles}/>
-              {
-                children
-                  ? (
-                    <EuiMutationObserver
-                      observerOptions={{
-                        attributes: true, // element attribute changes
-                        childList: true, // added/removed elements
-                        characterData: true, // text changes
-                        subtree: true // watch all child elements
-                      }}
-                      onMutation={this.onMutation}
-                    >
-                      {children}
-                    </EuiMutationObserver>
-                  )
-                  : null
-
-              }
+              <EuiMutationObserver
+                observerOptions={{
+                  attributes: true, // element attribute changes
+                  childList: true, // added/removed elements
+                  characterData: true, // text changes
+                  subtree: true // watch all child elements
+                }}
+                onMutation={this.onMutation}
+              >
+                {mutationRef => <div ref={mutationRef}>{children}</div>}
+              </EuiMutationObserver>
             </EuiPanel>
           </FocusTrap>
         </EuiPortal>
@@ -436,14 +500,17 @@ EuiPopover.propTypes = {
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,
   hasArrow: PropTypes.bool,
-  container: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.instanceOf(HTMLElement)
-  ]),
+  container: PropTypes.instanceOf(HTMLElement),
   /** When `true`, the popover's position is re-calculated when the user scrolls, this supports having fixed-position popover anchors. */
   repositionOnScroll: PropTypes.bool,
   /** By default, popover content inherits the z-index of the anchor component; pass zIndex to override */
   zIndex: PropTypes.number,
+  /** specifies what element should initially have focus; Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. */
+  initialFocus: PropTypes.oneOfType([
+    PropTypes.instanceOf(HTMLElement),
+    PropTypes.func,
+    PropTypes.string,
+  ]),
 };
 
 EuiPopover.defaultProps = {

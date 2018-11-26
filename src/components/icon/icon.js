@@ -6,19 +6,24 @@ import addDataApp from './assets/app_add_data.svg';
 import advancedSettingsApp from './assets/app_advanced_settings.svg';
 import alert from './assets/alert.svg';
 import apmApp from './assets/app_apm.svg';
+import apmTrace from './assets/apm_trace.svg';
 import apps from './assets/apps.svg';
 import arrowDown from './assets/arrow_down.svg';
 import arrowLeft from './assets/arrow_left.svg';
 import arrowRight from './assets/arrow_right.svg';
 import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
+import auditbeatApp from './assets/app_auditbeat.svg';
+import beaker from './assets/beaker.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
+import branch from './assets/branch.svg';
 import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
+import canvasApp from './assets/app_canvas.svg';
 import check from './assets/check.svg';
 import checkInCircleFilled from './assets/checkInCircleFilled.svg';
 import clock from './assets/clock.svg';
@@ -34,9 +39,10 @@ import createMultiMetricJob from './assets/ml_create_multi_metric_job.svg';
 import createPopulationJob from './assets/ml_create_population_job.svg';
 import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
+import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
 import dashboardApp from './assets/app_dashboard.svg';
-import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
+import database from './assets/database.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
@@ -65,14 +71,17 @@ import eyeClosed from './assets/eye_closed.svg';
 import faceHappy from './assets/face_happy.svg';
 import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
+import filebeatApp from './assets/app_filebeat.svg';
 import filter from './assets/filter.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
+import gisApp from './assets/app_gis.svg';
 import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
+import heartbeatApp from './assets/app_heartbeat.svg';
 import heatmap from './assets/heatmap.svg';
 import help from './assets/help.svg';
 import iInCircle from './assets/iInCircle.svg';
@@ -84,9 +93,10 @@ import indexManagementApp from './assets/app_index_management.svg';
 import indexMapping from './assets/index_mapping.svg';
 import indexOpen from './assets/index_open.svg';
 import indexPatternApp from './assets/app_index_pattern.svg';
+import indexRollupApp from './assets/app_index_rollup.svg';
 import indexSettings from './assets/index_settings.svg';
-import inputOutput from './assets/inputOutput.svg';
 import infraApp from './assets/app_infra.svg';
+import inputOutput from './assets/inputOutput.svg';
 import inspect from './assets/inspect.svg';
 import invert from './assets/invert.svg';
 import kqlField from './assets/kql_field.svg';
@@ -98,12 +108,16 @@ import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
+import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
-import logoAerospike from './assets/logo_aerospike.svg';
-import logoApache from './assets/logo_apache.svg';
+import logoAPM from './assets/logo_apm.svg';
 import logoAWS from './assets/logo_aws.svg';
 import logoAWSMono from './assets/logo_aws_mono.svg';
+import logoAerospike from './assets/logo_aerospike.svg';
+import logoApache from './assets/logo_apache.svg';
+import logoAppSearch from './assets/logo_app_search.svg';
 import logoBeats from './assets/logo_beats.svg';
+import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
@@ -111,8 +125,9 @@ import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
-import logoElasticsearch from './assets/logo_elasticsearch.svg';
 import logoElasticStack from './assets/logo_elastic_stack.svg';
+import logoElasticsearch from './assets/logo_elasticsearch.svg';
+import logoEnterpriseSearch from './assets/logo_enterprise_search.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGCP from './assets/logo_gcp.svg';
 import logoGCPMono from './assets/logo_gcp_mono.svg';
@@ -120,11 +135,14 @@ import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoGolang from './assets/logo_golang.svg';
 import logoHAproxy from './assets/logo_haproxy.svg';
+import logoIBM from './assets/logo_ibm.svg';
+import logoIBMMono from './assets/logo_ibm_mono.svg';
 import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
 import logoLogstash from './assets/logo_logstash.svg';
 import logoMemcached from './assets/logo_memcached.svg';
+import logoMetrics from './assets/logo_metrics.svg';
 import logoMongodb from './assets/logo_mongodb.svg';
 import logoMySQL from './assets/logo_mysql.svg';
 import logoNginx from './assets/logo_nginx.svg';
@@ -134,6 +152,7 @@ import logoPostgres from './assets/logo_postgres.svg';
 import logoPrometheus from './assets/logo_prometheus.svg';
 import logoRabbitmq from './assets/logo_rabbitmq.svg';
 import logoRedis from './assets/logo_redis.svg';
+import logoSiteSearch from './assets/logo_site_search.svg';
 import logoSketch from './assets/logo_sketch.svg';
 import logoSlack from './assets/logo_slack.svg';
 import logoWebhook from './assets/logo_webhook.svg';
@@ -149,12 +168,15 @@ import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
 import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
+import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import monitoringApp from './assets/app_monitoring.svg';
 import node from './assets/node.svg';
+import notebookApp from './assets/app_notebook.svg';
 import number from './assets/number.svg';
 import offline from './assets/offline.svg';
 import online from './assets/online.svg';
+import packetbeatApp from './assets/app_packetbeat.svg';
 import pause from './assets/pause.svg';
 import pencil from './assets/pencil.svg';
 import pin from './assets/pin.svg';
@@ -170,6 +192,7 @@ import savedObjectsApp from './assets/app_saved_objects.svg';
 import scale from './assets/scale.svg';
 import search from './assets/search.svg';
 import searchProfilerApp from './assets/app_search_profiler.svg';
+import securityAnalyticsApp from './assets/app_security_analytics.svg';
 import securityApp from './assets/app_security.svg';
 import shard from './assets/shard.svg';
 import share from './assets/share.svg';
@@ -178,6 +201,7 @@ import sortLeft from './assets/sortLeft.svg';
 import sortRight from './assets/sortRight.svg';
 import sortUp from './assets/sort_up.svg';
 import spacesApp from './assets/app_spaces.svg';
+import sqlApp from './assets/app_sql.svg';
 import starEmpty from './assets/star_empty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
@@ -211,27 +235,59 @@ import visTable from './assets/vis_table.svg';
 import visTagCloud from './assets/vis_tag_cloud.svg';
 import visText from './assets/vis_text.svg';
 import visTimelion from './assets/vis_timelion.svg';
-import visualizeApp from './assets/app_visualize.svg';
 import visVega from './assets/vis_vega.svg';
 import visVisualBuilder from './assets/vis_visual_builder.svg';
+import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
 
+// Token Icon Imports
+import tokenClass from './assets/tokens/tokenClass.svg';
+import tokenProperty from './assets/tokens/tokenProperty.svg';
+import tokenEnum from './assets/tokens/tokenEnum.svg';
+import tokenVariable from './assets/tokens/tokenVariable.svg';
+import tokenMethod from './assets/tokens/tokenMethod.svg';
+import tokenAnnotation from './assets/tokens/tokenAnnotation.svg';
+import tokenException from './assets/tokens/tokenException.svg';
+import tokenInterface from './assets/tokens/tokenInterface.svg';
+import tokenParameter from './assets/tokens/tokenParameter.svg';
+import tokenField from './assets/tokens/tokenField.svg';
+import tokenElement from './assets/tokens/tokenElement.svg';
+import tokenFunction from './assets/tokens/tokenFunction.svg';
+import tokenBoolean from './assets/tokens/tokenBoolean.svg';
+import tokenString from './assets/tokens/tokenString.svg';
+import tokenArray from './assets/tokens/tokenArray.svg';
+import tokenNumber from './assets/tokens/tokenNumber.svg';
+import tokenConstant from './assets/tokens/tokenConstant.svg';
+import tokenObject from './assets/tokens/tokenObject.svg';
+import tokenEvent from './assets/tokens/tokenEvent.svg';
+import tokenKey from './assets/tokens/tokenKey.svg';
+import tokenNull from './assets/tokens/tokenNull.svg';
+import tokenStruct from './assets/tokens/tokenStruct.svg';
+import tokenPackage from './assets/tokens/tokenPackage.svg';
+import tokenOperator from './assets/tokens/tokenOperator.svg';
+import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
+import tokenRepo from './assets/tokens/tokenRepo.svg';
+import tokenSymbol from './assets/tokens/tokenSymbol.svg';
+import tokenFile from './assets/tokens/tokenFile.svg';
 
 const typeToIconMap = {
   addDataApp,
   advancedSettingsApp,
   alert,
   apmApp,
+  apmTrace,
   apps,
   arrowDown,
   arrowLeft,
   arrowRight,
   arrowUp,
   asterisk,
+  beaker,
   bolt,
   boxesHorizontal,
   boxesVertical,
+  branch,
   broom,
   brush,
   bullseye,
@@ -315,12 +371,16 @@ const typeToIconMap = {
   list,
   listAdd,
   lock,
+  lockOpen,
   loggingApp,
-  logoAerospike,
-  logoApache,
+  logoAPM,
   logoAWS,
   logoAWSMono,
+  logoAerospike,
+  logoApache,
+  logoAppSearch,
   logoBeats,
+  logoBusinessAnalytics,
   logoCeph,
   logoCloud,
   logoCloudEnterprise,
@@ -328,8 +388,9 @@ const typeToIconMap = {
   logoDocker,
   logoDropwizard,
   logoElastic,
-  logoElasticsearch,
   logoElasticStack,
+  logoElasticsearch,
+  logoEnterpriseSearch,
   logoEtcd,
   logoGCP,
   logoGCPMono,
@@ -337,11 +398,14 @@ const typeToIconMap = {
   logoGmail,
   logoGolang,
   logoHAproxy,
+  logoIBM,
+  logoIBMMono,
   logoKafka,
   logoKibana,
   logoKubernetes,
   logoLogstash,
   logoMemcached,
+  logoMetrics,
   logoMongodb,
   logoMySQL,
   logoNginx,
@@ -351,6 +415,7 @@ const typeToIconMap = {
   logoPrometheus,
   logoRabbitmq,
   logoRedis,
+  logoSiteSearch,
   logoSketch,
   logoSlack,
   logoWebhook,
@@ -433,6 +498,46 @@ const typeToIconMap = {
   visVisualBuilder,
   watchesApp,
   wrench,
+  auditbeatApp,
+  canvasApp,
+  crossClusterReplicationApp,
+  filebeatApp,
+  gisApp,
+  heartbeatApp,
+  indexRollupApp,
+  metricbeatApp,
+  notebookApp,
+  packetbeatApp,
+  securityAnalyticsApp,
+  sqlApp,
+  tokenClass,
+  tokenProperty,
+  tokenEnum,
+  tokenVariable,
+  tokenMethod,
+  tokenAnnotation,
+  tokenException,
+  tokenInterface,
+  tokenParameter,
+  tokenField,
+  tokenElement,
+  tokenFunction,
+  tokenBoolean,
+  tokenString,
+  tokenArray,
+  tokenNumber,
+  tokenConstant,
+  tokenObject,
+  tokenEvent,
+  tokenKey,
+  tokenNull,
+  tokenStruct,
+  tokenPackage,
+  tokenOperator,
+  tokenEnumMember,
+  tokenRepo,
+  tokenSymbol,
+  tokenFile
 };
 
 export const TYPES = Object.keys(typeToIconMap);
@@ -480,10 +585,16 @@ export const EuiIcon = ({
     optionalCustomStyles = { fill: color };
   }
 
+  // These icons are a little special and get some extra CSS flexibility
+  const isAppIcon = /.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer');
+
   const classes = classNames(
     'euiIcon',
     sizeToClassNameMap[size],
     optionalColorClass,
+    {
+      'euiIcon--app': isAppIcon,
+    },
     className,
   );
 

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { VerticalBarSeries } from 'react-vis';
 import classNames from 'classnames';
 
-import { VisualizationColorType } from '../utils/visualization_color_type';
-
 export class EuiVerticalBarSeries extends VerticalBarSeries {
   state = {
     isMouseOverValue: false,
@@ -55,8 +53,8 @@ EuiVerticalBarSeries.propTypes = {
     ]),
     y: PropTypes.number,
   })).isRequired,
-  /** An EUI visualization color, the default value is enforced by EuiSeriesChart */
-  color: VisualizationColorType,
+  /** See eui_palettes.js or colorPalette service for recommended colors */
+  color: PropTypes.string,
   /**
    * Callback when clicking on a bar. Returns { x, y } object.
    */

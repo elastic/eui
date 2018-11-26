@@ -11,7 +11,6 @@ import {
   ThHTMLAttributes,
   TdHTMLAttributes
 } from 'react';
-import { EuiTableRowCellProps } from '@elastic/eui';
 
 declare module '@elastic/eui' {
   /**
@@ -22,6 +21,7 @@ declare module '@elastic/eui' {
 
   export interface EuiTableProps {
     compressed?: boolean;
+    responsive?: boolean;
   }
 
   export const EuiTable: SFC<
@@ -121,9 +121,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiTableRow: SFC<
-    CommonProps &
-      AnyProps & // at least according to the contract of table_row.js
-      EuiTableRowProps
+    CommonProps & EuiTableRowProps & HTMLAttributes<HTMLTableRowElement>
   >;
 
   /**
@@ -133,13 +131,20 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableRowCellProps {
-    truncateText?: boolean;
     align?: HorizontalAlignment;
+    hasActions?: boolean;
+    header?: string;
+    hideForMobile?: boolean;
+    isExpander?: boolean;
+    isMobileFullWidth?: boolean;
+    isMobileHeader?: boolean;
+    showOnHover?: boolean;
     textOnly?: boolean;
+    truncateText?: boolean;
   }
 
   export const EuiTableRowCell: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiTableRowCellProps
+    CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellProps
   >;
 
   /**
