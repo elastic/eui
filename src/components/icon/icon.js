@@ -61,6 +61,7 @@ import editorStrike from './assets/editor_strike.svg';
 import editorTable from './assets/editor_table.svg';
 import editorUnderline from './assets/editor_underline.svg';
 import editorUnorderedList from './assets/editor_unordered_list.svg';
+import email from './assets/email.svg';
 import empty from './assets/empty.svg';
 import emsApp from './assets/app_ems.svg';
 import exit from './assets/exit.svg';
@@ -328,6 +329,7 @@ const typeToIconMap = {
   editorTable,
   editorUnderline,
   editorUnorderedList,
+  email,
   empty,
   emsApp,
   exit,

@@ -53,6 +53,7 @@ const iconTypes = [
   'editorUnderline',
   'editorOrderedList',
   'editorUnorderedList',
+  'email',
   'empty',
   'exit',
   'expand',
