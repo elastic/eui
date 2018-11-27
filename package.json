@@ -150,7 +150,6 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.0.1",
     "wdio-chromedriver-service": "^0.1.2",
-    "wdio-iedriver-service": "^0.1.0",
     "wdio-mocha-framework": "^0.5.13",
     "wdio-sauce-service": "^0.4.8",
     "wdio-selenium-standalone-service": "^0.0.10",
