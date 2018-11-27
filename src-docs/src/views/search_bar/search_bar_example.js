@@ -13,12 +13,16 @@ import {
 
 import { SearchBar } from './search_bar';
 import { ControlledSearchBar } from './controlled_search_bar';
+import { SearchBarFilters } from './search_bar_filters';
 
 const searchBarSource = require('!!raw-loader!./search_bar');
 const searchBarHtml = renderToHtml(SearchBar);
 
 const controlledSearchBarSource = require('!!raw-loader!./controlled_search_bar');
 const controlledSearchBarHtml = renderToHtml(ControlledSearchBar);
+
+const searchBarFiltersSource = require('!!raw-loader!./search_bar_filters');
+const searchBarFiltersHtml = renderToHtml(SearchBarFilters);
 
 export const SearchBarExample = {
   title: 'Search Bar',
@@ -116,6 +120,26 @@ export const SearchBarExample = {
         </div>
       ),
       demo: <ControlledSearchBar/>
+    },
+    {
+      title: 'Search Bar Filters',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: searchBarFiltersSource,
+        }, {
+          type: GuideSectionTypes.HTML,
+          code: searchBarFiltersHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            A <EuiCode>EuiSearchBar</EuiCode> can have custom filter drop downs that control how a user can search.
+          </p>
+        </div>
+      ),
+      demo: <SearchBarFilters/>
     }
   ],
 };
