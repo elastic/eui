@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   EuiHorizontalRule,
-} from '../../../../src/components';
+} from '../../../../src/components/horizontal_rule';
 
 export default () => (
   <div>
