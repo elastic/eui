@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
-
-export type EuiHorizontalRuleMargin = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type EuiHorizontalRuleMargin = keyof typeof marginToClassNameMap;
 
 export interface EuiHorizontalRuleProps {
   /**
