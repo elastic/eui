@@ -1,10 +1,9 @@
 import { extent, sum } from 'd3-array';
 import { nest } from 'd3-collection';
-import { uniq } from 'lodash';
 import { Accessor, AccessorFn } from './accessor';
-import { ScaleType } from './scales';
+import { ScaleType } from './scales/scales';
 
-export type Domain = number[] | string[] | [number, number] | [undefined, undefined];
+export type Domain = any[];
 
 export interface SpecDomain {
   accessor: Accessor;
@@ -43,7 +42,7 @@ export function computeOrdinalDataDomain(
   sorted?: boolean,
 ): string[] | number[] {
   const domain = data.map(accessor);
-  const uniqueValues = uniq(domain);
+  const uniqueValues = [...new Set(domain)];
   return sorted ? uniqueValues.sort((a, b) => {
     return `${a}`.localeCompare(`${b}`);
   }) : uniqueValues;
@@ -53,7 +52,7 @@ export function computeContinuousDataDomain(
   data: any[],
   accessor: AccessorFn,
   scaleToExtent = false,
-): [number, number] | [undefined, undefined] {
+): number[] {
   const range = extent(data, accessor);
   return scaleToExtent ? range : [0, range[1] || 0];
 }

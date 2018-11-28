@@ -4,7 +4,7 @@ import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { Accessor, AccessorFn, getAccessorFn } from '../../utils/accessor';
 import { Dimensions } from '../../utils/dimensions';
 import { Domain, SpecDomains } from '../../utils/domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales/scales';
 import { BarScaleFnConfig } from '../bars/commons';
 import { Datum, LineSeriesSpec, Rotation } from '../specs';
 import { CurveType, getCurveFactory } from '../utils/curves';
@@ -75,9 +75,9 @@ export function renderLineSeriesSpec(
     yAccessorsFns.forEach((yAccessorFn, index) => {
       const yAccessor = yAccessors[index];
       const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
-      const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
-      let y = yScaleConfig.scale(yAccessorFn(datum));
-      const height = y - yScaleConfig.scale(0);
+      const x = xScaleConfig.scaleFn.scale(xAccessorFn(datum)) + xScaleConfig.scaleFn.bandwidth / 2;
+      let y = yScaleConfig.scaleFn.scale(yAccessorFn(datum));
+      const height = y - yScaleConfig.scaleFn.scale(0);
       if (stackAccessors.length > 0) {
         const stackKey = getStackKey(datum, stackAccessors, '');
         if (stackedYValues.has(stackKey)) {
@@ -154,20 +154,16 @@ export function getScale(
   padding?: number,
 ): BarScaleFnConfig {
   if (type === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], min, max, padding);
-    const barWidth = scale.bandwidth();
+    const scaleFn = createOrdinalScale(domain as string[], min, max, padding);
     return {
       accessor,
-      scale,
-      barWidth,
+      scaleFn,
     };
   } else {
-    const scale = createContinuousScale(type, domain as [number, number], min, max, clamp);
-    const barWidth = 0;
+    const scaleFn = createContinuousScale(type, domain as [number, number], min, max, clamp);
     return {
       accessor,
-      scale,
-      barWidth,
+      scaleFn,
     };
   }
 }

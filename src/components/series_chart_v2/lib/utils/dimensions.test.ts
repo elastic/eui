@@ -1,8 +1,8 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
 import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
-import { ScaleType } from '../utils/scales';
 import { computeChartDimensions, Margins } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
+import { ScaleType } from './scales/scales';
 
 describe('Computed chart dimensions', () => {
   const parentDim = {

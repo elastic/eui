@@ -2,7 +2,7 @@ import { inject } from 'mobx-react';
 import React from 'react';
 import { BarSeriesSpec } from '../lib/series/specs';
 import { getGroupId } from '../lib/utils/ids';
-import { ScaleType } from '../lib/utils/scales';
+import { ScaleType } from '../lib/utils/scales/scales';
 import { SpecProps } from './specs_parser';
 
 type BarSpecProps = SpecProps & BarSeriesSpec;

@@ -5,7 +5,7 @@ import { ChartConfig, ScalesConfig } from '../themes/theme';
 import { Dimensions, Margins } from '../utils/dimensions';
 import { Domain, SpecDomain, SpecDomains } from '../utils/domain';
 import { AxisId } from '../utils/ids';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../utils/scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../utils/scales/scales';
 import { BBoxCalculator } from './bbox_calculator';
 
 export interface AxisTick {
@@ -158,12 +158,12 @@ export function getAvailableTicks(
       scalesConfig.ordinal.padding,
     );
     const ticks = scale.ticks();
-    const bandwidth = scale.bandwidth();
+    const bandwidth = scale.bandwidth * ([0, 90].includes(chartRotation) ? 1 : -1);
     allTicks = ticks.map((tick) => {
       return {
         value: tick,
         label: axisSpec.tickFormat(tick),
-        position: scale(tick) + bandwidth / 2,
+        position: scale.scale(tick) + bandwidth / 2,
       };
     });
   } else {
@@ -178,7 +178,7 @@ export function getAvailableTicks(
       return {
         value: tick,
         label: axisSpec.tickFormat(tick),
-        position: scale(tick),
+        position: scale.scale(tick),
       };
     });
   }

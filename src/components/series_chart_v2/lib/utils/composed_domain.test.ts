@@ -1,6 +1,6 @@
 import { MULTI_GROUPED_BAR_CHART } from '../../utils/data_generators/data_examples';
 import { ComposedDomain } from './composed_domain';
-import { ScaleType } from './scales';
+import { ScaleType } from './scales/scales';
 
 describe('Composed Domain', () => {
   test('can get ticks', () => {

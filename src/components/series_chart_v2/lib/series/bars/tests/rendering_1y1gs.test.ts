@@ -2,7 +2,7 @@ import { ColorConfig, ScalesConfig } from '../../../themes/theme';
 import { Dimensions } from '../../../utils/dimensions';
 import { SpecDomains } from '../../../utils/domain';
 import { getGroupId, getSpecId } from '../../../utils/ids';
-import { ScaleType } from '../../../utils/scales';
+import { ScaleType } from '../../../utils/scales/scales';
 import { BarSeriesSpec } from '../../specs';
 import { computeDataDomain } from '../domains';
 import { renderBarSeriesSpec } from '../rendering';

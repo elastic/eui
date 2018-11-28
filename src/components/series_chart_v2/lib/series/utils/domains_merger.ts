@@ -1,7 +1,7 @@
 import { none, Option, some } from 'fp-ts/lib/Option';
 import { uniq } from 'lodash';
 import { ColorDomain, SpecDomain, SpecDomains } from '../../utils/domain';
-import { ScaleType } from '../../utils/scales';
+import { ScaleType } from '../../utils/scales/scales';
 
 export function mergeDomains(globalDomains: SpecDomains, specDomains: SpecDomains): SpecDomains {
   const otherLevelGlobalXDomain = globalDomains.xDomains.filter((levelDomain) => levelDomain.level !== 0);

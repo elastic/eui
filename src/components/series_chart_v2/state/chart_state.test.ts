@@ -1,6 +1,6 @@
 import { AxisOrientation, AxisPosition, AxisSpec, BarSeriesSpec } from '../lib/series/specs';
 import { getAxisId, getGroupId, getSpecId } from '../lib/utils/ids';
-import { ScaleType } from '../lib/utils/scales';
+import { ScaleType } from '../lib/utils/scales/scales';
 import { ChartStore } from './chart_state';
 
 describe('Chart Store', () => {

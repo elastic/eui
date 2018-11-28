@@ -10,7 +10,7 @@ import { CanvasTextBBoxCalculator } from '../lib/axes/canvas_text_bbox_calculato
 import { computeDataDomain as areaSeriesComputeDataDomain } from '../lib/series/areas/domains';
 import { AreaGlyph, renderAreaSeriesSpec } from '../lib/series/areas/rendering';
 import { computeDataDomain as barSeriesComputeDataDomain } from '../lib/series/bars/domains';
-import { BarGlyphGroup, renderBarSeriesSpec } from '../lib/series/bars/rendering';
+import { BarSeriesState, renderBarSeriesSpec } from '../lib/series/bars/rendering';
 import { computeDataDomain as lineSeriesComputeDataDomain } from '../lib/series/lines/domains';
 import { LineGlyph, renderLineSeriesSpec } from '../lib/series/lines/rendering';
 import {
@@ -67,7 +67,7 @@ export class ChartStore {
   public axesTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
 
   public barSeriesSpecs: Map<SpecId, BarSeriesSpec> = new Map(); // readed from jsx
-  public barSeriesGlyphs: Map<SpecId, BarGlyphGroup[]> = new Map();
+  public barSeriesGlyphs: Map<SpecId, BarSeriesState> = new Map();
   public lineSeriesSpecs: Map<SpecId, LineSeriesSpec> = new Map(); // readed from jsx
   public lineSeriesGlyphs: Map<SpecId, LineGlyph[]> = new Map();
   public areaSeriesSpecs: Map<SpecId, AreaSeriesSpec> = new Map(); // readed from jsx
@@ -303,7 +303,7 @@ export class ChartStore {
         throw new Error('Missing spec domain for existing spec');
       }
       const colorScales = this.globalColorScales.get(groupId);
-      const renderedGlyphs = renderBarSeriesSpec(
+      const barSeriesState = renderBarSeriesSpec(
         barSeriesSpec,
         globalSpecDomain!,
         this.chartDimensions,
@@ -312,8 +312,8 @@ export class ChartStore {
         this.chartTheme.colors,
         this.chartTheme.scales,
       );
-      this.barSeriesGlyphs.set(id, renderedGlyphs);
-      glyphsCount += renderedGlyphs.length;
+      this.barSeriesGlyphs.set(id, barSeriesState);
+      glyphsCount += barSeriesState.geometries.length;
     });
 
     // compute line series glyphs
@@ -321,7 +321,6 @@ export class ChartStore {
       const { id, groupId } = lineSeriesGlyphs;
       const specDomain = this.seriesSpecDomains.get(id);
       const globalSpecDomain = this.globalSpecDomains.get(groupId);
-      console.log(globalSpecDomain);
       if (!specDomain) {
         throw new Error('Missing spec domain for existing spec');
       }
@@ -373,6 +372,7 @@ export class ChartStore {
     } else {
       this.canDataBeAnimated = this.animateData;
     }
+    this.canDataBeAnimated = false;
     this.initialized.set(true);
   }
 

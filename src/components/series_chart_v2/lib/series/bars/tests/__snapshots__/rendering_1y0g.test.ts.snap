@@ -37,62 +37,74 @@ Object {
 `;
 
 exports[`Bar rendering 1Y0G should render the bar series 1`] = `
-Array [
-  Object {
-    "accessor": "x",
-    "data": Object {
+Object {
+  "geometries": Array [
+    Object {
+      "color": "green",
+      "height": 10,
+      "width": 25,
       "x": 0,
-      "y": 1,
+      "y0": 100,
+      "y1": 90,
     },
-    "fill": "green",
-    "height": 10,
-    "level": 0,
-    "levelValue": 1,
-    "width": 25,
-    "x": 0,
-    "y": 90,
-  },
-  Object {
-    "accessor": "x",
-    "data": Object {
-      "x": 1,
-      "y": 2,
+    Object {
+      "color": "green",
+      "height": 20,
+      "width": 25,
+      "x": 25,
+      "y0": 100,
+      "y1": 80,
     },
-    "fill": "green",
-    "height": 20,
-    "level": 0,
-    "levelValue": 2,
-    "width": 25,
-    "x": 25,
-    "y": 80,
-  },
-  Object {
-    "accessor": "x",
-    "data": Object {
-      "x": 2,
-      "y": 10,
+    Object {
+      "color": "green",
+      "height": 100,
+      "width": 25,
+      "x": 50,
+      "y0": 100,
+      "y1": 0,
     },
-    "fill": "green",
-    "height": 100,
-    "level": 0,
-    "levelValue": 10,
-    "width": 25,
-    "x": 50,
-    "y": 0,
-  },
-  Object {
-    "accessor": "x",
-    "data": Object {
-      "x": 3,
-      "y": 6,
+    Object {
+      "color": "green",
+      "height": 60,
+      "width": 25,
+      "x": 75,
+      "y0": 100,
+      "y1": 40,
     },
-    "fill": "green",
-    "height": 60,
-    "level": 0,
-    "levelValue": 6,
-    "width": 25,
-    "x": 75,
-    "y": 40,
-  },
-]
+  ],
+  "interactionAreas": Array [
+    Object {
+      "color": "gray",
+      "height": 100,
+      "width": 25,
+      "x": 0,
+      "y0": 100,
+      "y1": 0,
+    },
+    Object {
+      "color": "gray",
+      "height": 100,
+      "width": 25,
+      "x": 25,
+      "y0": 100,
+      "y1": 0,
+    },
+    Object {
+      "color": "gray",
+      "height": 100,
+      "width": 25,
+      "x": 50,
+      "y0": 100,
+      "y1": 0,
+    },
+    Object {
+      "color": "gray",
+      "height": 100,
+      "width": 25,
+      "x": 75,
+      "y0": 100,
+      "y1": 0,
+    },
+  ],
+}
 `;

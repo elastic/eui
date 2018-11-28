@@ -89,7 +89,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     const { barSeriesGlyphs } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
     barSeriesGlyphs.forEach((barGlyphs) => {
-      bars.push(<BarSeries key="data bars" glyphs={barGlyphs} />);
+      bars.push(<BarSeries key="data bars" geoms={barGlyphs.geometries} />);
     });
     return bars;
   }

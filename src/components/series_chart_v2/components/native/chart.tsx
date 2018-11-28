@@ -1,6 +1,5 @@
 import { Group, Layer, Rect, Stage } from 'konva';
-import { isBarGlyphGroupLeaf } from '../../lib/series/bars/commons';
-import { BarGlyphGroup } from '../../lib/series/bars/rendering';
+import { BarGeom, BarSeriesState } from '../../lib/series/bars/rendering';
 import { BarSeriesSpec, Rotation } from '../../lib/series/specs';
 import { Theme } from '../../lib/themes/theme';
 import { Dimensions } from '../../lib/utils/dimensions';
@@ -74,7 +73,7 @@ function resizeLayers(
 function renderAllBarsSeries(
   chartLayer: Layer,
   barSeriesSpecs: Map<SpecId, BarSeriesSpec>,
-  barSeriesGlyphs: Map<SpecId, BarGlyphGroup[]>,
+  barSeriesGlyphs: Map<SpecId, BarSeriesState>,
   chartTheme: Theme,
 ): void {
 
@@ -82,63 +81,25 @@ function renderAllBarsSeries(
     const spec = barSeriesSpecs.get(specId);
     if (spec) {
       const { tooltipLevel = -1 } = spec;
-      renderBarSeries(chartLayer, barGlyphs, tooltipLevel, chartTheme);
+      renderBarSeries(chartLayer, barGlyphs.geometries, tooltipLevel, chartTheme);
     }
   });
 }
-function renderBarSeries(chartLayer: Layer, barGlyphs: BarGlyphGroup[], tooltipLevel: number , chartTheme: Theme) {
-  function renderGlyphs(currentGroup: Group, glyphs: BarGlyphGroup[], uuidPath: string) {
-    if (isBarGlyphGroupLeaf(glyphs)) {
-      return renderBars(currentGroup, glyphs, uuidPath, tooltipLevel, chartTheme);
-    }
+function renderBarSeries(chartLayer: Layer, barGlyphs: BarGeom[], tooltipLevel: number , chartTheme: Theme) {
+  function renderGlyphs(currentGroup: Group, glyphs: BarGeom[], uuidPath: string) {
     glyphs.forEach((glyph, i) => {
-      // let onMouseOverFn;
-      const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
-      // if (tooltipLevel === glyph.level && glyph.elements) {
-      //   onMouseOverFn = this.onMouseOver(groupKey);
-      // }
-      const group = new Group({
-        x: glyph.x,
-        y: glyph.y,
+      const { x, y1, width, height, color } = glyph;
+      const bar = new Rect({
+        x,
+        y: y1,
+        width,
+        height,
+        fill: color,
+        strokeWidth: 0,
+        listening: false,
       });
-      if (glyph.elements) {
-        renderGlyphs(group, glyph.elements, groupKey);
-      }
+      currentGroup.add(bar);
     });
   }
   renderGlyphs(chartLayer, barGlyphs, '');
-}
-
-function renderBars(group: Group, glyphs: BarGlyphGroup[], uuidPath: string, tooltipLevel: number, chartTheme: Theme) {
-  return glyphs.map((glyph) => {
-    const { x, y, width, height, fill, level } = glyph;
-    const hasTooltip = tooltipLevel === level;
-    // const groupKey = [uuidPath, glyph.level, glyph.accessor, glyph.levelValue].join('-');
-    const bar = new Rect({
-      x,
-      y,
-      width,
-      height,
-      fill,
-      strokeWidth: 0,
-      listening: hasTooltip,
-    });
-    group.add(bar);
-    // return (
-    //   <Rect
-    //     key={groupKey}
-    //     x={x}
-    //     y={y}
-    //     width={width}
-    //     height={height}
-    //     fill={fill}
-    //     strokeWidth={0}
-    //     listening={hasTooltip}
-    //     opacity={this.state.uuid === undefined || groupKey.indexOf(this.state.uuid) === 0 ? 1 : hideOpacity}
-    //     perfectDrawEnabled={false}
-    //     onMouseOver={hasTooltip ? this.onMouseOver(groupKey) : undefined}
-    //     onMouseOut={hasTooltip ? this.onMouseOut : undefined}
-    //   />
-    // );
-  });
 }

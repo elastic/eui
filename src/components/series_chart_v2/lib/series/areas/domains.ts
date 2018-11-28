@@ -2,7 +2,7 @@ import { extent, sum } from 'd3-array';
 import { uniq } from 'lodash';
 import { Accessor, getAccessorFn } from '../../utils/accessor';
 import { Domain, SpecDomains } from '../../utils/domain';
-import { ScaleType } from '../../utils/scales';
+import { ScaleType } from '../../utils/scales/scales';
 import { AreaSeriesSpec } from '../specs';
 
 /**

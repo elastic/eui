@@ -4,7 +4,7 @@ import { ColorConfig, ScalesConfig } from '../../themes/theme';
 import { Accessor, AccessorFn, getAccessorFn } from '../../utils/accessor';
 import { Dimensions } from '../../utils/dimensions';
 import { Domain, SpecDomains } from '../../utils/domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from '../../utils/scales/scales';
 import { BarScaleFnConfig } from '../bars/commons';
 import { AreaSeriesSpec, Datum, Rotation } from '../specs';
 import { getCurveFactory } from '../utils/curves';
@@ -76,15 +76,15 @@ export function renderAreaSeriesSpec(
     yAccessorsFns.forEach((yAccessorFn, index) => {
       const yAccessor = yAccessors[index];
       const seriesKey = getSeriesKey(splitSeriesKey, yAccessor);
-      const x = xScaleConfig.scale(xAccessorFn(datum)) + xScaleConfig.barWidth / 2;
+      const x = xScaleConfig.scaleFn.scale(xAccessorFn(datum)) + xScaleConfig.scaleFn.bandwidth / 2;
       // to be changed to the available y0accessor
-      let y0 = yScaleConfig.scale(0);
-      let y1 = yScaleConfig.scale(yAccessorFn(datum));
+      let y0 = yScaleConfig.scaleFn.scale(0);
+      let y1 = yScaleConfig.scaleFn.scale(yAccessorFn(datum));
       if (stackAccessors.length > 0) {
         const stackKey = getStackKey(datum, stackAccessors, '');
         if (stackedYValues.has(stackKey)) {
           y0 = stackedYValues.get(stackKey) || 0;
-          y1 = (y1 - yScaleConfig.scale(0)) + y0;
+          y1 = (y1 - yScaleConfig.scaleFn.scale(0)) + y0;
         }
         stackedYValues.set(stackKey, y1);
       }
@@ -164,20 +164,16 @@ export function getScale(
   padding?: number,
 ): BarScaleFnConfig {
   if (type === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], min, max, padding);
-    const barWidth = scale.bandwidth();
+    const scaleFn = createOrdinalScale(domain as string[], min, max, padding);
     return {
       accessor,
-      scale,
-      barWidth,
+      scaleFn,
     };
   } else {
-    const scale = createContinuousScale(type, domain as [number, number], min, max, clamp);
-    const barWidth = 0;
+    const scaleFn = createContinuousScale(type, domain as [number, number], min, max, clamp);
     return {
       accessor,
-      scale,
-      barWidth,
+      scaleFn,
     };
   }
 }

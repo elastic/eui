@@ -1,6 +1,6 @@
 import { Accessor, getAccessorFn } from './accessor';
 import { computeContinuousDataDomain, computeOrdinalDataDomain, Domain } from './domain';
-import { createContinuousScale, createOrdinalScale, ScaleType } from './scales';
+import { createContinuousScale, createOrdinalScale, ScaleType } from './scales/scales';
 
 export class ComposedDomain {
   private dataDomains: Domain[] = [];

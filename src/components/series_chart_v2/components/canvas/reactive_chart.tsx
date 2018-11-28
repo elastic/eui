@@ -1,7 +1,6 @@
 import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Rect, Stage } from 'react-konva';
-import { debug } from 'util';
 import { BarSeries, LineSeries } from '.';
 import { ChartStore } from '../../state/chart_state';
 import { AreaSeries } from './area_series';
@@ -30,7 +29,7 @@ class Chart extends React.Component<ReactiveChartProps> {
     return <InteractionsLayer
       chartDimensions={chartDimensions}
       areaSeriesGlyphs={areaSeriesGlyphs}
-      barSeriesGlyphs={barSeriesGlyphs}
+      barSeriesStates={barSeriesGlyphs}
     />;
   }
 
@@ -69,35 +68,18 @@ class Chart extends React.Component<ReactiveChartProps> {
     const {
       barSeriesSpecs,
       barSeriesGlyphs,
-      chartTheme,
-      onTooltipOver,
-      onTooltipOut,
       canDataBeAnimated,
-      chartRotation,
-      chartDimensions,
-      debug,
     } = this.props.chartStore!;
     const bars: JSX.Element[] = [];
-    if (debug) {
-      console.log([...barSeriesGlyphs]);
-    }
-    barSeriesGlyphs.forEach((barGlyphs, specId) => {
+
+    barSeriesGlyphs.forEach((barSeriesGeom, specId) => {
       const spec = barSeriesSpecs.get(specId);
       if (spec) {
-        const { tooltipLevel } = spec;
         bars.push(
           <BarSeries
             key={`barSeries-${specId}`}
-            specId={specId}
-            glyphs={barGlyphs}
-            tooltipLevel={tooltipLevel}
-            chartTheme={chartTheme}
-            onElementOver={onTooltipOver}
-            onElementOut={onTooltipOut}
+            geoms={barSeriesGeom.geometries}
             animated={canDataBeAnimated}
-            rotation={chartRotation}
-            barMaxHeight={[-90, 90].includes(chartRotation) ? chartDimensions.width : chartDimensions.height}
-            debug={debug}
           />,
         );
       }
@@ -105,11 +87,8 @@ class Chart extends React.Component<ReactiveChartProps> {
     return bars;
   }
   public renderLineSeries = () => {
-    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme, canDataBeAnimated, debug } = this.props.chartStore!;
+    const { lineSeriesSpecs, lineSeriesGlyphs, chartTheme, canDataBeAnimated } = this.props.chartStore!;
     const lines: JSX.Element[] = [];
-    if (debug) {
-      console.log([...lineSeriesGlyphs]);
-    }
     lineSeriesGlyphs.forEach((lineGlyphs, specId) => {
       const spec = lineSeriesSpecs.get(specId);
       if (spec) {

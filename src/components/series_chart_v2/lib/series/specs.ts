@@ -1,7 +1,7 @@
 import { Accessor } from '../utils/accessor';
 import { Domain } from '../utils/domain';
 import { AxisId, GroupId, SpecId } from '../utils/ids';
-import { ScaleType } from '../utils/scales';
+import { ScaleType } from '../utils/scales/scales';
 import { CurveType } from './utils/curves';
 
 export type Datum = any;

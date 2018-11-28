@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Chart } from '../../components/chart';
 import { AxisOrientation, AxisPosition, Rotation } from '../../lib/series/specs';
-import { getAxisId, getGroupId, getSpecId } from '../../lib/utils/ids';
-import { ScaleType } from '../../lib/utils/scales';
+import { getAxisId, getSpecId } from '../../lib/utils/ids';
+import { ScaleType } from '../../lib/utils/scales/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
@@ -12,7 +12,6 @@ import { datasetStacked as AREA_STACKED } from './data_example2';
 import { TEMPORAL_DATA1 } from './data_example3';
 
 import { extent } from 'd3-array';
-import { CurveType } from '../../lib/series/utils/curves';
 import { Settings } from '../../specs/settings';
 import { niceTimeFormatter } from '../../utils/data/formatters';
 import {
@@ -123,6 +122,7 @@ class App extends Component {
         <Chart renderer={renderer}>
           <Settings
             rotation={rotation}
+            animateData={true}
           />
           <Axis
             id={getAxisId('bottom')}
@@ -148,20 +148,25 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y1', 'y2']}
             splitSeriesAccessors={['g1', 'g2']}
+            stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
+            tooltipLevel={3}
           />
-          <LineSeries
-            id={getSpecId('linechart')}
+
+          {/* <LineSeries
+            id={getSpecId('renderLineChart2y2g')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
-            yAccessors={['y']}
-            splitSeriesAccessors={['g']}
-            data={this.state.barchart_1y1g}
+            yAccessors={['y1', 'y2']}
+            splitSeriesAccessors={['g1', 'g2']}
+            stackAccessors={['x', 'g1', 'g2']}
+            data={this.state.barchart_2y2g}
+            tooltipLevel={1}
           />
-          {/*
+
           <AreaSeries
-             id={getSpecId('areachart')}
+            id={getSpecId('areachart')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
@@ -620,7 +625,7 @@ class App extends Component {
             yAccessors={['y1', 'y2']}
             splitSeriesAccessors={['g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={3}
+            tooltipLevel={2}
           />
         </Chart>
       </div>
@@ -656,7 +661,7 @@ class App extends Component {
             data={this.state.barchart_2y2g}
             tooltipLevel={2}
           />
-          <LineSeries
+          {/* <LineSeries
             id={getSpecId('renderLineChart2y2g')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
@@ -666,7 +671,7 @@ class App extends Component {
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
             tooltipLevel={1}
-          />
+          /> */}
         </Chart>
       </div>
     );
@@ -961,6 +966,7 @@ class App extends Component {
     );
   }
   public render() {
+
     // const randomData = dataGenerator.generateGroupedSeries(50, 40);
     return (
       <div className="app">
@@ -968,19 +974,20 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        { this.renderAreaChart1y0g('canvas', 0)}
-        {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)} */}
+        {/* { this.renderAreaChart1y0g('canvas', 0)} */}
         {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)}
+        { this.renderHighVolumeLineChart('canvas', randomData, 0)}
         { this.renderHighVolumeLineChart('canvas', randomData, 0)}
         { this.renderHighVolumeLineChart('canvas', randomData, 0)} */}
         {/* { [0,  90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))} */}
-          {/* { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
-
-          { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
+          {/* { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y0g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderTimeLineChart('canvas', r as Rotation)) }
-          { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))} */}
-          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))} */} */}
-          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
+      { [0, 90, -90, 180].map((r) => this.renderMultipleBarseriesMultiAxis('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))}*/} */}
+          {/* { [0].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))} */}
+          {/* { [0].map((r) => this.renderBarChart1y2g('canvas', r as Rotation))} */}
+          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y2g('canvas', r as Rotation))}
@@ -988,14 +995,14 @@ class App extends Component {
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y1g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart2y2g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))} */}
-          {/* { [0, 90, -90, 180].map((r) => this.renderSimpleStackedBarChart('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderSimpleStackedBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderSimpleClusteredBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderMultipleClusteredBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderGitHubIssue('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))}
+          {/* { [0, 90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))} */}
           { [0, 90, -90, 180].map((r) => this.renderLineChart1y0g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))} */}
+          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
         </div>
       </div>
     );
