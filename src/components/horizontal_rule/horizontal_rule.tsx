@@ -39,8 +39,8 @@ export const EuiHorizontalRule: SFC<
 CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
 > = ({
   className,
-  size = 'full',
-  margin = 'l',
+  size,
+  margin,
   ...rest
 }) => {
   const classes = classNames(
