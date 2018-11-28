@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-export type EuiHorizontalRuleSize = 'full' | 'half' | 'quarter';
+export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
 
 export type EuiHorizontalRuleMargin = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
