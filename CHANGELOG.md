@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.2.0`.
+
+## [`5.2.0`](https://github.com/elastic/eui/tree/v5.2.0)
+
 - Added `email` icon to `EuiIcon` ([#1331](https://github.com/elastic/eui/pull/1331))
 - Added IBM logo in colour and mono
 ([#1321](https://github.com/elastic/eui/pull/1321))
