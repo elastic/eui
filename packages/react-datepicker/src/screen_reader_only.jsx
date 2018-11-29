@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 export const ScreenReaderOnly = ({ children }) => {
-  const classes = classNames("screenReaderOnly", children.props.className);
+  const classes = classNames("react-datepicker__screenReaderOnly", children.props.className);
 
   const props = {
     ...children.props,

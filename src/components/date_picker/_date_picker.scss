@@ -186,6 +186,8 @@
   width: 0;
   padding: 0;
   z-index: 1;
+  text-indent: -999em;
+  overflow: hidden;
 
   &--previous {
     @include datePicker__arrow;
@@ -570,6 +572,22 @@
   &--selected {
     display: none;
   }
+}
+
+.react-datepicker__screenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.react-datepicker__month--accessible:focus,
+.react-datepicker__navigation:focus,
+.react-datepicker__month-read-view:focus,
+.react-datepicker__year-read-view:focus {
+  @include euiFocusRing;
 }
 
 // These selectors are not a typo. react-datepicker has a bug where these selectors

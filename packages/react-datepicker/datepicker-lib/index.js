@@ -110,7 +110,7 @@ var possibleConstructorReturn = function (self, call) {
 var ScreenReaderOnly = function ScreenReaderOnly(_ref) {
   var children = _ref.children;
 
-  var classes = classnames("screenReaderOnly", children.props.className);
+  var classes = classnames("react-datepicker__screenReaderOnly", children.props.className);
 
   var props = _extends({}, children.props, {
     className: classes
@@ -3418,9 +3418,7 @@ var DatePicker = function (_React$Component) {
         nextMonthButtonLabel: "Next month",
         renderDayContents: function renderDayContents(date) {
           return date;
-        },
-
-        accessibleMode: true
+        }
       };
     }
   }]);

@@ -491,7 +491,7 @@
       border-left-color: #e6e6e6;
       cursor: default; }
 
-.screenReaderOnly {
+.react-datepicker__screenReaderOnly {
   position: absolute;
   left: -10000px;
   top: auto;

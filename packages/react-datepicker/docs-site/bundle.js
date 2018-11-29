@@ -27073,9 +27073,7 @@
 	        nextMonthButtonLabel: "Next month",
 	        renderDayContents: function renderDayContents(date) {
 	          return date;
-	        },
-
-	        accessibleMode: true
+	        }
 	      };
 	    }
 	  }]);
@@ -29796,7 +29794,7 @@
 	var ScreenReaderOnly = exports.ScreenReaderOnly = function ScreenReaderOnly(_ref) {
 	  var children = _ref.children;
 
-	  var classes = (0, _classnames2.default)("screenReaderOnly", children.props.className);
+	  var classes = (0, _classnames2.default)("react-datepicker__screenReaderOnly", children.props.className);
 
 	  var props = _extends({}, children.props, {
 	    className: classes
