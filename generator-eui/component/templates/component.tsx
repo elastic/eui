@@ -1,24 +1,24 @@
 import React, {
   Component,
+  HTMLAttributes,
 } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
 
-export class <%= componentName %> extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+export type <%= componentName %>Props = HTMLAttributes<HTMLDivElement> & CommonProps & {
 
-  constructor(props) {
+};
+
+export class <%= componentName %> extends Component<<%= componentName %>Props> {
+  constructor(props: <%= componentName %>Props) {
     super(props);
   }
 
-  render() {
+  public render() {
     const {
       children,
       className,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(
