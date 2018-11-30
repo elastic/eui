@@ -1,8 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { MouseEventHandler, ReactNode, SFC, HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
-  import { MouseEventHandler, ReactNode, SFC, HTMLAttributes } from 'react';
-
   type TAB_SIZES = 's' | 'm';
 
   type EuiTabProps = {

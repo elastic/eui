@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
 
 const sizeToClassNameMap = {
   xs: 'euiSpacer--xs',
@@ -13,14 +14,20 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiSpacer = ({
+export type SpacerSize = keyof typeof sizeToClassNameMap;
+
+export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> & CommonProps & {
+  size?: SpacerSize,
+};
+
+export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
   className,
   size,
   ...rest
 }) => {
   const classes = classNames(
     'euiSpacer',
-    sizeToClassNameMap[size],
+    size ? sizeToClassNameMap[size] : undefined,
     className
   );
 
@@ -30,12 +37,6 @@ export const EuiSpacer = ({
       {...rest}
     />
   );
-};
-
-EuiSpacer.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  size: PropTypes.oneOf(SIZES),
 };
 
 EuiSpacer.defaultProps = {

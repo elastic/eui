@@ -1,5 +1,7 @@
 import { HTMLAttributes, Component, ReactNode } from 'react';
 
+import { CommonProps } from '../common';
+
 declare module '@elastic/eui' {
   export type EuiAccordionSize = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
 

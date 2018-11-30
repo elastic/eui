@@ -13,13 +13,13 @@ interface Props {
 export class Title extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Title text goes here',
     size: 'l',
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -36,7 +36,7 @@ export class Title extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiTitle

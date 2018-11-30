@@ -21,7 +21,7 @@ interface Props {
 export class Button extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Button text',
     color: 'primary',
     iconType: null,
@@ -31,7 +31,7 @@ export class Button extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -76,7 +76,7 @@ export class Button extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiButton

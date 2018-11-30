@@ -11,10 +11,12 @@ module.exports = {
       "useBuiltIns": "usage",
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
+    "@babel/typescript",
     "@babel/react"
   ],
   "plugins": [
     "pegjs-inline-precompile",
+    "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
     [
       "react-docgen",

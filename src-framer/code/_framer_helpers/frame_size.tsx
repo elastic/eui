@@ -9,19 +9,19 @@ interface Props {
 export class FrameSize extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     frame: true,
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     frame: {
       type: ControlType.boolean,
       title: '🖍 Fit to frame',
     },
   };
 
-  public render() {
+  render() {
     let optionallyFramedComponent;
     if (this.props.frame) {
       optionallyFramedComponent = (

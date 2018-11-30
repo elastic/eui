@@ -1,5 +1,5 @@
 /// <reference path="./table_pagination/index.d.ts" />
-/// <reference path="../common.d.ts" />
+import { CommonProps, NoArgCallback } from '../common';
 /// <reference path="../icon/index.d.ts" />
 /// <reference path="../../services/alignment.d.ts" />
 

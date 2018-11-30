@@ -16,14 +16,14 @@ interface Props {
 export class CodeBlock extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     name: 'Han Solo',
     height: 300, // To give a decent start with sizing
     width: 600, // To give a decent start with sizing
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     fontSize: {
       type: ControlType.SegmentedEnum,
       options: FONT_SIZES,
@@ -52,7 +52,7 @@ export class CodeBlock extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiCodeBlock
         fontSize={this.props.fontSize}

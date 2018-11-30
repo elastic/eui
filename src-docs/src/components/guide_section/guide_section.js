@@ -318,7 +318,8 @@ export class GuideSection extends Component {
     const npmImports = code
       .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
       .replace(/(from )'(..\/)+src\/services(\/?';)/, `from '@elastic/eui/lib/services';`)
-      .replace(/(from )'(..\/)+src\/experimental(\/?';)/, `from '@elastic/eui/lib/experimental';`);
+      .replace(/(from )'(..\/)+src\/experimental(\/?';)/, `from '@elastic/eui/lib/experimental';`)
+      .replace(/(from )'(..\/)+src\/components\/.*?';/, `from '@elastic/eui';`);
 
     return (
       <div key={name} ref={name}>

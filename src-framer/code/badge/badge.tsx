@@ -16,7 +16,7 @@ interface Props {
 export class Badge extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Badge text',
     color: 'primary',
     iconType: null,
@@ -27,7 +27,7 @@ export class Badge extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -59,7 +59,7 @@ export class Badge extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
   return (
     <EuiBadge
       color={this.props.color}

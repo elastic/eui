@@ -1,4 +1,4 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps, NoArgCallback } from '../common';
 /// <reference path="../panel/index.d.ts" />
 
 import { SFC, ReactNode, HTMLAttributes } from 'react';

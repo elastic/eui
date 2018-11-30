@@ -21,14 +21,14 @@ interface Props {
 export class FieldText extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     hasFormRow: false,
     fullWidth: true,
     formRowLabel: 'Label name',
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     placeholder: { type: ControlType.String, title: 'placeholder' },
     value: { type: ControlType.String, title: 'value' },
     isInvalid: { type: ControlType.Boolean, title: 'isInvalid' },
@@ -57,7 +57,7 @@ export class FieldText extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     const fieldText = (
       <EuiFieldText
         placeholder={this.props.placeholder}

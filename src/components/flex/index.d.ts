@@ -1,4 +1,4 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
 
 import { SFC, HTMLAttributes } from 'react';
 
@@ -31,7 +31,8 @@ declare module '@elastic/eui' {
     | 'stretch'
     | 'flexStart'
     | 'flexEnd'
-    | 'center';
+    | 'center'
+    | 'baseline';
   export type FlexGroupComponentType = 'div' | 'span';
   export type FlexGroupDirection =
     | 'column'

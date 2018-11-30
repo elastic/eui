@@ -5,5 +5,4 @@ export {
   isBoolean,
   isNumber,
   isNaN,
-  isPromise
 } from 'lodash';
