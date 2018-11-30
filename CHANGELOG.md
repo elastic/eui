@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.3.0`.
+
+## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
+
 - Introduced TypeScript support, converted `EuiSpacer` and `EuiHorizontalRule` ([#1317](https://github.com/elastic/eui/pull/1317))
 
 ## [`5.2.0`](https://github.com/elastic/eui/tree/v5.2.0)
