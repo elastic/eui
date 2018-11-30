@@ -6,7 +6,7 @@
   "version": "2.0.0",
   "license": "MIT",
   "homepage": "https://github.com/Hacker0x01/react-datepicker",
-  "main": "datepicker-lib",
+  "main": "lib",
   "files": ["*.md", "dist", "datepicker-lib", "es", "src/stylesheets"],
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -54,10 +54,10 @@
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.9.2",
-    "react": "^16.1.0",
+    "react": "^16.2.0",
     "react-docgen": "^2.20.0",
-    "react-dom": "^16.1.0",
-    "react-test-renderer": "^16.1.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "react-transform-hmr": "^1.0.4",
     "rimraf": "^2.6.2",
     "rollup": "^0.51.3",
@@ -99,20 +99,20 @@
     "prepare": "npm run build",
     "codecov":
       "cat coverage/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js",
-    "prebuild": "rimraf es datepicker-lib dist",
+    "prebuild": "rimraf es lib dist",
     "build": "cross-env NODE_ENV=production run-p build:** && run-p css:**",
     "build-dev":
       "cross-env NODE_ENV=development run-p build:** && run-p css:**",
     "css:prod":
-      "node-sass --output-style compressed src/stylesheets/datepicker.scss > datepicker-lib/react-datepicker.min.css",
+      "mkdir -p lib && node-sass --output-style compressed src/stylesheets/datepicker.scss > lib/react-datepicker.min.css",
     "css:modules:prod":
-      "node-sass --output-style compressed src/stylesheets/datepicker-cssmodules.scss > datepicker-lib/react-datepicker-cssmodules.min.css",
+      "mkdir -p lib && node-sass --output-style compressed src/stylesheets/datepicker-cssmodules.scss > lib/react-datepicker-cssmodules.min.css",
     "css:dev":
-      "node-sass --output-style expanded src/stylesheets/datepicker.scss > datepicker-lib/react-datepicker.css",
+      "mkdir -p lib && node-sass --output-style expanded src/stylesheets/datepicker.scss > lib/react-datepicker.css",
     "css:modules:dev":
-      "node-sass --output-style expanded src/stylesheets/datepicker-cssmodules.scss > datepicker-lib/react-datepicker-cssmodules.css",
-    "build:cjs":
-      "cross-env BABEL_ENV=cjs rollup -c -i src/index.jsx -o datepicker-lib/index.js",
+      "mkdir -p lib && node-sass --output-style expanded src/stylesheets/datepicker-cssmodules.scss > lib/react-datepicker-cssmodules.css",
+    "build:es":
+      "cross-env BABEL_ENV=es rollup -c -i src/index.jsx -o ../react-datepicker.js",
     "build:docs":
       "cross-env MODULES=false webpack --config webpack.docs.config.js"
   },

@@ -680,6 +680,7 @@ export default class Calendar extends React.Component {
           })}
         >
           <FocusTrap
+            tag={React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker--calendar" {...props}/>)}
             focusTrapOptions={{
               onDeactivate: () => this.props.setOpen(false),
               initialFocus: initialFocusTarget

@@ -20,11 +20,18 @@ const config = {
         helperName => helperName !== "asyncGenerator"
       )
     }),
-    commonjs()
+    commonjs({
+      include: 'node_modules/**',
+    })
   ],
-  external: Object.keys(pkg.dependencies).concat(
-    Object.keys(pkg.peerDependencies)
-  )
+  external: [
+    'react',
+    'react-dom',
+    'classnames',
+    'prop-types',
+    'moment',
+    'focus-trap-react'
+  ]
 };
 
 export default config;
