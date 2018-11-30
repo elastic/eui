@@ -21,3 +21,4 @@ rules:
   interface-name: false
   quotemark: [true, "single", "jsx-double", "avoid-template", "avoid-escape"]
   no-reference: false
+  member-access: [true, "no-public"]

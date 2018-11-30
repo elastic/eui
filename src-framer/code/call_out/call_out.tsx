@@ -16,7 +16,7 @@ interface Props {
 export class CallOut extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     title: 'Title',
     color: 'primary',
     iconType: null,
@@ -25,7 +25,7 @@ export class CallOut extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     title: {
       type: ControlType.String,
       title: 'title',
@@ -54,7 +54,7 @@ export class CallOut extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiCallOut
         size={this.props.size}

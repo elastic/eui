@@ -27,7 +27,7 @@ interface Props {
 export class DescriptionList extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     align: 'left',
     compressed: false,
     textStyle: 'normal',
@@ -39,7 +39,7 @@ export class DescriptionList extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     titleText: {
       type: ControlType.String,
       title: '🧙 titleText',
@@ -69,7 +69,7 @@ export class DescriptionList extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiDescriptionList
         titleText={this.props.titleText}

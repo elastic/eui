@@ -14,7 +14,7 @@ export class <%= componentName %> extends Component<<%= componentName %>Props> {
     super(props);
   }
 
-  public render() {
+  render() {
     const {
       children,
       className,

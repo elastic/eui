@@ -17,14 +17,14 @@ interface Props {
 export class Avatar extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     name: 'Han Solo',
     height: 32, // To give a decent start with sizing
     width: 32, // To give a decent start with sizing
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     name: {
       type: ControlType.String,
       title: 'name',
@@ -54,7 +54,7 @@ export class Avatar extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiAvatar
         name={this.props.name}
