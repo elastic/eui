@@ -22,7 +22,6 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   padding: $euiCardSpacing;
   min-height: 1px; /* 2 */
   position: relative;
-  overflow: hidden;
 
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
@@ -158,4 +157,6 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   left: 0;
   height: $euiSizeXXL;
   width: 100%;
+  overflow: hidden;
+  border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
 }

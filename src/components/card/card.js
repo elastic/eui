@@ -153,7 +153,7 @@ export const EuiCard = ({
           <defs>
             <linearGradient id={`wave-light-${bottomGraphicColor}`} x1="50%" x2="50%" y1="10%" y2="60%">
               <stop offset="0%" stopColor="#EFEFEF" stopOpacity=".05"/>
-              <stop offset="75%" stopColor="#444" stopOpacity=".12"/>
+              <stop offset="75%" stopColor="#444" stopOpacity=".11"/>
             </linearGradient>
             <linearGradient id={`wave-${bottomGraphicColor}`} x1="0%" y1="50%" y2="50%">
               <stop offset="0%" stopColor={graphicStartColor} />
