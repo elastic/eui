@@ -24,6 +24,8 @@ const iconTypes = [
   'logoGmail',
   'logoGolang',
   'logoHAproxy',
+  'logoIBM',
+  'logoIBMMono',
   'logoKafka',
   'logoKubernetes',
   'logoMemcached',

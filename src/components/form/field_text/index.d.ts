@@ -15,6 +15,7 @@ declare module '@elastic/eui' {
     inputRef?: (ref: HTMLInputElement) => void;
     fullWidth?: boolean;
     isLoading?: boolean;
+    prepend?: React.ReactNode;
   }
 
   export const EuiFieldText: SFC<

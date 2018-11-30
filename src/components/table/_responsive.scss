@@ -113,8 +113,8 @@
       min-width: 50%;
       border: none;
 
-      // Prepend the data attribute "data-header" to each cell
-      &::before {
+      // Prepend the data attribute "data-header" to each cell, if the data-header exists.
+      &[data-header]::before {
         @include fontSize($euiFontSize * .6875);
 
         content: attr(data-header);

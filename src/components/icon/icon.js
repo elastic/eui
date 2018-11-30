@@ -61,6 +61,7 @@ import editorStrike from './assets/editor_strike.svg';
 import editorTable from './assets/editor_table.svg';
 import editorUnderline from './assets/editor_underline.svg';
 import editorUnorderedList from './assets/editor_unordered_list.svg';
+import email from './assets/email.svg';
 import empty from './assets/empty.svg';
 import emsApp from './assets/app_ems.svg';
 import exit from './assets/exit.svg';
@@ -135,6 +136,8 @@ import logoGithub from './assets/logo_github.svg';
 import logoGmail from './assets/logo_gmail.svg';
 import logoGolang from './assets/logo_golang.svg';
 import logoHAproxy from './assets/logo_haproxy.svg';
+import logoIBM from './assets/logo_ibm.svg';
+import logoIBMMono from './assets/logo_ibm_mono.svg';
 import logoKafka from './assets/logo_kafka.svg';
 import logoKibana from './assets/logo_kibana.svg';
 import logoKubernetes from './assets/logo_kubernetes.svg';
@@ -326,6 +329,7 @@ const typeToIconMap = {
   editorTable,
   editorUnderline,
   editorUnorderedList,
+  email,
   empty,
   emsApp,
   exit,
@@ -396,6 +400,8 @@ const typeToIconMap = {
   logoGmail,
   logoGolang,
   logoHAproxy,
+  logoIBM,
+  logoIBMMono,
   logoKafka,
   logoKibana,
   logoKubernetes,

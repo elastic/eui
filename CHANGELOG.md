@@ -1,15 +1,32 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.2.0`.
+
+## [`5.2.0`](https://github.com/elastic/eui/tree/v5.2.0)
+
+- Added `email` icon to `EuiIcon` ([#1331](https://github.com/elastic/eui/pull/1331))
+- Added IBM logo in colour and mono
+([#1321](https://github.com/elastic/eui/pull/1321))
+- Added support for nodes as "Action" column headers in `EuiBasicTable`, which was overlooked in the original change in `4.5.0` ([#1312](https://github.com/elastic/eui/pull/1312))
+- Updated `GlobalDatePicker` example to include all Kibana features ([#1219](https://github.com/elastic/eui/pull/1219))
+- Adjusted `EuiDatePickerRange` to allow for deeper customization ([#1219](https://github.com/elastic/eui/pull/1219))
+- Added `contentProps` and `textProps` to `EuiButton` and `EuiButtonEmpty` ([#1219](https://github.com/elastic/eui/pull/1219))
+- TypeScript types are now published to a `eui.d.ts` top-level file ([#1304](https://github.com/elastic/eui/pull/1304))
+- Added `filterWith` option for `EuiSearchBar` filters of type `field_value_selection` ([#1328](https://github.com/elastic/eui/pull/1328))
+
 **Bug fixes**
 
-- Fixed `fullWidth` size of `EuiComboBox` ([#1314](https://github.com/elastic/eui/pull/1314))
+- `EuiBasicTable` now converts the `EuiTableRowCell` `header` into `undefined` if it's been provided as a non-string node, hiding the header and preventing the node from being rendered as `[object Object]` on narrow screens ([#1312](https://github.com/elastic/eui/pull/1312))
+- Fixed `fullWidth` size of `EuiComboBox`, a regression introduced in `4.7.0` ([#1314](https://github.com/elastic/eui/pull/1314))
+- Fixed error when passing empty string as `value` prop for `EuiSuperSelect` ([#1319](https://github.com/elastic/eui/pull/1319))
+- `EuiExpressionButton` now shows focus state when user tabs to it ([#1326](https://github.com/elastic/eui/pull/1326))
+- Added `baseline` as a possible value to `EuiFlexGroup`'s `FlexGroupAlignItems` type ([#1329](https://github.com/elastic/eui/pull/1329))
 
 ## [`5.1.0`](https://github.com/elastic/eui/tree/v5.1.0)
 
 - `EuiToken` now exports enumerated constants for `SHAPES` and `COLORS` ([#1301](https://github.com/elastic/eui/pull/1301))
 - Added mixins for `EuiCallOut` coloring and `EuiTooltip` styles ([#1305](https://github.com/elastic/eui/pull/1305))
 - Improve TypeScript definitions for `EuiTableRowCellProps` ([#1310](https://github.com/elastic/eui/pull/1310))
-- TypeScript types are now published to a `eui.d.ts` top-level file ([#1304](https://github.com/elastic/eui/pull/1304))
 
 ## [`5.0.1`](https://github.com/elastic/eui/tree/v5.0.1)
 
@@ -98,7 +115,7 @@
 
 - Added export for `TYPES` to `EuiAvatar` ([#1238](https://github.com/elastic/eui/pull/1238))
 - Updated node-sass dependency to support OSX Mojave ([#1238](https://github.com/elastic/eui/pull/1238))
-- Added TypeScript definitions for `EuiFieldNumber, `EuiFormLabel` and `EuiSelect`, and fix the `EuiTextColor` definition. ([#1240](https://github.com/elastic/eui/pull/1240))
+- Added TypeScript definitions for `EuiFieldNumber`, `EuiFormLabel` and `EuiSelect`, and fix the `EuiTextColor` definition. ([#1240](https://github.com/elastic/eui/pull/1240))
 - Added support for nodes as column headers in `EuiBasicTable` for supporting things like tooltips and localized text. ([#1234](https://github.com/elastic/eui/pull/1234))
 
 ## [`4.4.1`](https://github.com/elastic/eui/tree/v4.4.1)
@@ -153,7 +170,7 @@
 **Bug fixes**
 
 - Fixed an issue in `EuiTooltip` because IE1 didn't support `document.contains()` ([#1190](https://github.com/elastic/eui/pull/1190))
-- Fixed some issues around parsing string values in EuiSearchBar / EuiQuery ([#1189](https://github.com/elastic/eui/pull/1189))
+- Fixed some issues around parsing string values in `EuiSearchBar` and `EuiQuery` ([#1189](https://github.com/elastic/eui/pull/1189))
 
 ## [`4.0.0`](https://github.com/elastic/eui/tree/v4.0.0)
 

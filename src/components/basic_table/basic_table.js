@@ -91,7 +91,7 @@ const SupportedItemActionType = PropTypes.oneOfType([
 
 export const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string
 });
@@ -829,12 +829,16 @@ export class EuiBasicTable extends Component {
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
+    // Name can also be an array or an element, so we need to convert it to undefined. We can't
+    // stringify the value, because this value is rendered directly in the mobile layout. So the
+    // best thing we can do is render no header at all.
+    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={name}
+        header={header}
         isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}
