@@ -19,7 +19,7 @@ interface Props {
 export class FacetButton extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Facet button',
     quantity: 19,
     height: 40, // To give a decent start with sizing
@@ -27,7 +27,7 @@ export class FacetButton extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -78,7 +78,7 @@ export class FacetButton extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiFacetButton
         icon={

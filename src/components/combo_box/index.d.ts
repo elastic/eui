@@ -6,6 +6,7 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxOptionsListProps,
 } from '@elastic/eui';
+import { RefCallback } from '../common';
 
 declare module '@elastic/eui' {
   export type EuiComboBoxOptionProps = ButtonHTMLAttributes<HTMLButtonElement> & {

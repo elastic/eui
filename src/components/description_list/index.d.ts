@@ -1,4 +1,5 @@
 import { HTMLAttributes, Component, ReactNode } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
   export type EuiDescriptionListType = 'row' | 'column' | 'inline';

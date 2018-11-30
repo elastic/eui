@@ -10,7 +10,6 @@ tmp/
 dist/
 lib/
 es/
-types/
 .idea
 .vscode/
 .DS_Store
@@ -18,4 +17,8 @@ types/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+eui.d.ts
+
+# typescript output
+types/
 eui.d.ts

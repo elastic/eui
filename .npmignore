@@ -5,10 +5,12 @@ tmp/
 wiki/
 generator-eui/
 test/
-types/
 src-docs/
 src-framer/
 .nvmrc
+
+# typescript output
+types/
 
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)

@@ -1,8 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
+import { SFC } from 'react';
 
 declare module '@elastic/eui' {
-  import { SFC } from 'react';
-
   /**
    * title type defs
    *

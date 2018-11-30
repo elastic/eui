@@ -1,6 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { SFC, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
+
+export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
+export type EuiHorizontalRuleMargin = keyof typeof marginToClassNameMap;
+
+export interface EuiHorizontalRuleProps {
+  /**
+   * Defines the width of the HR.
+   */
+  size?: EuiHorizontalRuleSize;
+  margin?: EuiHorizontalRuleMargin;
+}
 
 const sizeToClassNameMap = {
   full: 'euiHorizontalRule--full',
@@ -22,7 +34,9 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule = ({
+export const EuiHorizontalRule: SFC<
+CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
+> = ({
   className,
   size,
   margin,
@@ -30,8 +44,8 @@ export const EuiHorizontalRule = ({
 }) => {
   const classes = classNames(
     'euiHorizontalRule',
-    sizeToClassNameMap[size],
-    marginToClassNameMap[margin],
+    size ? sizeToClassNameMap[size] : undefined,
+    margin ? marginToClassNameMap[margin] : undefined,
     className
   );
 
@@ -41,13 +55,6 @@ export const EuiHorizontalRule = ({
       {...rest}
     />
   );
-};
-
-EuiHorizontalRule.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  size: PropTypes.oneOf(SIZES),
-  margin: PropTypes.oneOf(MARGINS),
 };
 
 EuiHorizontalRule.defaultProps = {

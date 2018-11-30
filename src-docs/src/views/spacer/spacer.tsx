@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../src/components/spacer';
 
 export default () => (
   <div>

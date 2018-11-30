@@ -23,7 +23,7 @@ interface Props {
 export class Card extends React.Component<Props> {
 
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     title: 'Hey there',
     showIconProps: false,
     iconSize: 'xl',
@@ -32,7 +32,7 @@ export class Card extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     title: {
       type: ControlType.String,
       title: 'title',
@@ -96,7 +96,7 @@ export class Card extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiCard

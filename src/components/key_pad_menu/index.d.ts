@@ -1,4 +1,4 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
 
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, SFC } from 'react';
 
