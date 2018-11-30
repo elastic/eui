@@ -28152,7 +28152,7 @@
 	          _focusTrapReact2.default,
 	          {
 	            tag: _react2.default.forwardRef(function (props, ref) {
-	              return _react2.default.createElement("div", _extends({ ref: ref, className: "react-datepicker--calendar" }, props));
+	              return _react2.default.createElement("div", _extends({ ref: ref, className: "react-datepicker__focusTrap" }, props));
 	            }),
 	            focusTrapOptions: {
 	              onDeactivate: function onDeactivate() {

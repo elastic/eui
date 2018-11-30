@@ -3483,7 +3483,7 @@ var Calendar = function (_React$Component) {
           FocusTrap,
           {
             tag: React__default.forwardRef(function (props, ref) {
-              return React__default.createElement("div", _extends({ ref: ref, className: "react-datepicker--calendar" }, props));
+              return React__default.createElement("div", _extends({ ref: ref, className: "react-datepicker__focusTrap" }, props));
             }),
             focusTrapOptions: {
               onDeactivate: function onDeactivate() {

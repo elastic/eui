@@ -605,6 +605,10 @@
   }
 }
 
+.react-datepicker__focusTrap {
+  display: flex;
+}
+
 // We drop the time picker on mobile. They can still type in the time directly.
 @include euiBreakpoint('xs','s') {
   .react-datepicker__time-container {
