@@ -21,6 +21,8 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   flex-direction: column;
   padding: $euiCardSpacing;
   min-height: 1px; /* 2 */
+  position: relative;
+  overflow: hidden;
 
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
@@ -59,6 +61,10 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
         text-decoration: underline;
       }
     }
+  }
+
+  &.euiCard--hasBottomGraphic {
+    padding-bottom: $euiCardSpacing + $euiSizeXXL;
   }
 }
 
@@ -143,4 +149,13 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
     margin-top: 0;
     margin-right: $euiSize;
   }
+}
+
+// Optional decorative graphics
+.euiCard__graphicBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: $euiSizeXXL;
+  width: 100%;
 }
