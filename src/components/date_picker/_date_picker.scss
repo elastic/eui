@@ -305,7 +305,8 @@
           color: $euiColorDarkShade;
           white-space: nowrap;
 
-          &:hover {
+          &:hover,
+          &:focus {
             cursor: pointer;
             text-decoration: underline;
           }
@@ -586,7 +587,8 @@
 .react-datepicker__month--accessible:focus,
 .react-datepicker__navigation:focus,
 .react-datepicker__month-read-view:focus,
-.react-datepicker__year-read-view:focus {
+.react-datepicker__year-read-view:focus,
+.react-datepicker__time-box--accessible:focus {
   @include euiFocusRing;
 }
 
