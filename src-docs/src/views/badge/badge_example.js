@@ -138,3 +138,5 @@ export const BadgeExample = {
     demo: <NotificationBadge />,
   }],
 };
+
+window.EuiNotificationBadge = EuiNotificationBadge;

@@ -892,6 +892,33 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('intersects extended interfaces', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface iFoo {foo: string}
+interface iBar {bar?: number}
+interface iBuzz extends iFoo, iBar {buzz: boolean} 
+const FooComponent: React.SFC<iBuzz> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  buzz: PropTypes.bool.isRequired,
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
     });
 
     describe('union types', () => {

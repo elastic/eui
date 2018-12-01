@@ -1,7 +1,7 @@
 import { cloneElement, SFC } from 'react';
 import classNames from 'classnames';
 
-interface EuiScreenReaderOnlyProps {
+export interface EuiScreenReaderOnlyProps {
   children: React.ReactElement<any>;
 }
 
