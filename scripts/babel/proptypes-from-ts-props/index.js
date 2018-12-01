@@ -761,12 +761,17 @@ function processComponentDeclaration(typeDefinition, path, state) {
   // import PropTypes library if it isn't already
   const proptypesBinding = getVariableBinding(path, 'PropTypes');
   if (proptypesBinding == null) {
-    const reactBinding = getVariableBinding(path, 'React');
-    if (reactBinding == null) {
-      throw new Error('Cannot import PropTypes module, no React namespace import found');
+    let targetNode;
+    // find the first statement in the program and import PropTypes there
+    targetNode = path;
+    while (targetNode.parentPath.parentPath != null) {
+      targetNode = targetNode.parentPath;
     }
-    const reactImportDeclaration = reactBinding.path.getAncestry()[1];
-    reactImportDeclaration.insertAfter(
+    while (targetNode.getPrevSibling().node != null) {
+      targetNode = targetNode.getPrevSibling();
+    }
+
+    targetNode.insertAfter(
       types.importDeclaration(
         [types.importDefaultSpecifier(types.identifier('PropTypes'))],
         types.stringLiteral('prop-types')

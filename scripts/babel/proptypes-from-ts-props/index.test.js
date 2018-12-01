@@ -642,11 +642,11 @@ FooComponent.propTypes = {
 };`);
         });
 
-        it('understands React.ReactElement', () => {
+        it('understands React.ReactElement<P>', () => {
           const result = transform(
             `
 import React from 'react';
-interface IFooProps {foo: React.ReactElement}
+interface IFooProps {foo: React.ReactElement<any>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
@@ -665,11 +665,11 @@ FooComponent.propTypes = {
 };`);
         });
 
-        it('understands ReactElement', () => {
+        it('understands ReactElement<P>', () => {
           const result = transform(
             `
 import React from 'react';
-interface IFooProps {foo: ReactElement}
+interface IFooProps {foo: ReactElement<any>}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
 }`,
