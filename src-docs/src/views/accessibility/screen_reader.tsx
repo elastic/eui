@@ -2,8 +2,7 @@ import React from 'react';
 
 import {
   EuiScreenReaderOnly,
-} from '../../../../src/components';
-
+} from '../../../../src/components/accessibility/screen_reader';
 
 export default () => (
   <div>
@@ -20,4 +19,3 @@ export default () => (
     </p>
   </div>
 );
-

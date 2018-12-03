@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.3.0`.
+**Bug fixes**
+
+- Fixed bug in exporting `CommonProps` in TypeScript definitions ([#1341](https://github.com/elastic/eui/pull/1341))
 
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
