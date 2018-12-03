@@ -10,30 +10,26 @@ const graphicColorsToCodes = [
 export const GRAPHIC_COLORS = graphicColorsToCodes.map(({ color }) => color);
 
 export const EuiCardGraphic = ({
-  graphicColor,
+  color,
 }) => {
   // Set the svg gradient colors
-  const graphicStartColor = graphicColorsToCodes.find(w => w.color === graphicColor).start;
-  const graphicEndColor = graphicColorsToCodes.find(x => x.color === graphicColor).end;
-  const graphicSVGPath = graphicColorsToCodes.find(y => y.color === graphicColor).path;
-  const graphicSVGPathLight = graphicColorsToCodes.find(z => z.color === graphicColor).pathLight;
+  const graphicStartColor = graphicColorsToCodes.find(w => w.color === color).start;
+  const graphicEndColor = graphicColorsToCodes.find(x => x.color === color).end;
+  const graphicSVGPath = graphicColorsToCodes.find(y => y.color === color).path;
+  const graphicSVGPathLight = graphicColorsToCodes.find(z => z.color === color).pathLight;
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="40" viewBox="0 0 300 40" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`wave-light-${graphicColor}`} x1="50%" x2="80%" y1="10%" y2="60%">
-          <stop offset="0%" stopColor="#CCC" stopOpacity=".11"/>
-          <stop offset="80%" stopColor="#555" stopOpacity=".35"/>
-        </linearGradient>
-        <linearGradient id={`wave-${graphicColor}`} x1="0%" y1="50%" y2="50%">
+        <linearGradient id={`wave-${color}`} x1="0%" y1="50%" y2="50%">
           <stop offset="0%" stopColor={graphicStartColor} />
           <stop offset="40%" stopColor={graphicEndColor} />
         </linearGradient>
       </defs>
       <g fill="none" fillRule="evenodd">
-        <path fill={`url(#wave-light-${graphicColor})`} fillRule="evenodd" d={graphicSVGPathLight}/>
+        <path fill="#C4C4C4" fillOpacity=".13" fillRule="evenodd" d={graphicSVGPathLight}/>
         <path
-          fill={`url(#wave-${graphicColor})`}
+          fill={`url(#wave-${color})`}
           fillOpacity=".83"
           fillRule="evenodd"
           d={graphicSVGPath}
@@ -47,9 +43,9 @@ EuiCardGraphic.propTypes = {
   /**
    * Determines the brand-driven color codes used in the SVG
    */
-  graphicColor: PropTypes.oneOf(GRAPHIC_COLORS),
+  color: PropTypes.oneOf(GRAPHIC_COLORS),
 };
 
 EuiCardGraphic.defaultProps = {
-  graphicColor: 'blue',
+  color: 'blue',
 };
