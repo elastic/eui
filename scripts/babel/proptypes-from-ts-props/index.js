@@ -926,26 +926,28 @@ module.exports = function propTypesFromTypeScript({ types }) {
         if (idTypeAnnotation) {
           let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
-            const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
+          if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
+            if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
+              const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
 
-            if (left.name === 'React') {
-              if (right.name === 'SFC') {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                fileCodeNeedsUpdating = true;
-              } else {
-                throw new Error(`Cannot process annotation id React.${right.name}`);
+              if (left.name === 'React') {
+                if (right.name === 'SFC') {
+                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                  fileCodeNeedsUpdating = true;
+                } else {
+                  throw new Error(`Cannot process annotation id React.${right.name}`);
+                }
               }
-            }
-          } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
-            if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
-              if (state.get('importsFromReact').has('SFC')) {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                fileCodeNeedsUpdating = true;
+            } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
+              if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
+                if (state.get('importsFromReact').has('SFC')) {
+                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                  fileCodeNeedsUpdating = true;
+                }
               }
+            } else {
+              throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
             }
-          } else {
-            throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
           }
 
           if (fileCodeNeedsUpdating) {
