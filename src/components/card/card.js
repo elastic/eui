@@ -129,7 +129,7 @@ export const EuiCard = ({
   let optionalBottomGraphic;
   if (bottomGraphic) {
     optionalBottomGraphic = (
-      <span className="euiCard__graphicBottom">
+      <span className="euiCard__graphic">
         {bottomGraphic}
       </span>
     );

@@ -3,5 +3,5 @@ export {
 } from './card';
 
 export {
-  EuiCardBg,
-} from './card_bg';
+  EuiCardGraphic,
+} from './card_graphic';

@@ -9,7 +9,7 @@ const graphicColorsToCodes = [
 
 export const GRAPHIC_COLORS = graphicColorsToCodes.map(({ color }) => color);
 
-export const EuiCardBg = ({
+export const EuiCardGraphic = ({
   graphicColor,
 }) => {
   // Set the svg gradient colors
@@ -19,11 +19,11 @@ export const EuiCardBg = ({
   const graphicSVGPathLight = graphicColorsToCodes.find(z => z.color === graphicColor).pathLight;
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="700" height="40" viewBox="0 0 700 40" preserveAspectRatio="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="40" viewBox="0 0 300 40" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`wave-light-${graphicColor}`} x1="50%" x2="50%" y1="10%" y2="60%">
-          <stop offset="0%" stopColor="#EFEFEF" stopOpacity=".05"/>
-          <stop offset="75%" stopColor="#444" stopOpacity=".11"/>
+        <linearGradient id={`wave-light-${graphicColor}`} x1="50%" x2="80%" y1="10%" y2="60%">
+          <stop offset="0%" stopColor="#CCC" stopOpacity=".11"/>
+          <stop offset="80%" stopColor="#555" stopOpacity=".35"/>
         </linearGradient>
         <linearGradient id={`wave-${graphicColor}`} x1="0%" y1="50%" y2="50%">
           <stop offset="0%" stopColor={graphicStartColor} />
@@ -43,13 +43,13 @@ export const EuiCardBg = ({
   );
 };
 
-EuiCardBg.propTypes = {
+EuiCardGraphic.propTypes = {
   /**
    * Determines the brand-driven color codes used in the SVG
    */
   graphicColor: PropTypes.oneOf(GRAPHIC_COLORS),
 };
 
-EuiCardBg.defaultProps = {
+EuiCardGraphic.defaultProps = {
   graphicColor: 'blue',
 };

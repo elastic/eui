@@ -4,6 +4,7 @@
 
 $euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
 $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
+$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
 
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
@@ -21,7 +22,6 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   flex-direction: column;
   padding: $euiCardSpacing;
   min-height: 1px; /* 2 */
-  position: relative;
 
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
@@ -63,7 +63,8 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   }
 
   &.euiCard--hasBottomGraphic {
-    padding-bottom: $euiCardSpacing + $euiSizeXXL;
+    position: relative;
+    padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
   }
 }
 
@@ -151,12 +152,13 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 }
 
 // Optional decorative graphics
-.euiCard__graphicBottom {
+.euiCard__graphic {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: $euiSizeXXL;
+  height: $euiCardGraphicHeight;
   width: 100%;
   overflow: hidden;
-  border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+  border-bottom-left-radius: $euiBorderRadius;
+  border-bottom-right-radius: $euiBorderRadius;
 }
