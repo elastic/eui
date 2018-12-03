@@ -39,6 +39,7 @@ export {
 
 export {
   EuiCard,
+  EuiCardGraphic,
 } from './card';
 
 export {
