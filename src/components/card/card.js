@@ -6,7 +6,6 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
-import { EuiCardBg } from './card_bg';
 
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
@@ -56,7 +55,6 @@ export const EuiCard = ({
   betaBadgeTitle,
   layout,
   bottomGraphic,
-  bottomGraphicColor,
   ...rest,
 }) => {
   const classes = classNames(
@@ -132,7 +130,7 @@ export const EuiCard = ({
   if (bottomGraphic) {
     optionalBottomGraphic = (
       <span className="euiCard__graphicBottom">
-        <EuiCardBg graphicColor={bottomGraphicColor} />
+        {bottomGraphic}
       </span>
     );
   }
@@ -229,13 +227,11 @@ EuiCard.propTypes = {
    * Add a decorative bottom graphic to the card.
    * This should be used sparingly, consult the Kibana Design team before use.
    */
-  bottomGraphic: PropTypes.bool,
-  bottomGraphicColor: PropTypes.string,
+  bottomGraphic: PropTypes.node,
 };
 
 EuiCard.defaultProps = {
   textAlign: 'center',
   layout: 'vertical',
   titleElement: 'span',
-  bottomGraphicColor: 'blue',
 };
