@@ -2,6 +2,10 @@
 
 - Added `bottomGraphic` prop to `EuiCard` for Kibana home page ([#1338](https://github.com/elastic/eui/pull/1338))
 
+**Bug fixes**
+
+- Fixed bug in exporting `CommonProps` in TypeScript definitions ([#1341](https://github.com/elastic/eui/pull/1341))
+
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
 - Introduced TypeScript support, converted `EuiSpacer` and `EuiHorizontalRule` ([#1317](https://github.com/elastic/eui/pull/1317))

@@ -412,6 +412,34 @@ function getPropTypesForNode(node, optional, state) {
       );
       break;
 
+    // translate an interface to PropTypes
+    case 'TSInterfaceDeclaration':
+      const { body, extends: extensions } = node;
+
+      // if the interface doesn't extend anything use just the interface body
+      if (extensions == null) {
+        propType = getPropTypesForNode(body, true, state);
+      } else {
+        // fake a TSIntersectionType to merge everything together
+        propType = getPropTypesForNode(
+          {
+            type: 'TSIntersectionType',
+            types: [
+              body,
+              ...extensions
+            ]
+          },
+          true,
+          state
+        );
+      }
+      break;
+
+    // simple pass-through wrapper
+    case 'TSExpressionWithTypeArguments':
+      propType = resolveIdentifierToPropTypes(node.expression, state);
+      break;
+
     // an enum member is a simple wrapper around a type definition
     case 'TSEnumMember':
       propType = getPropTypesForNode(node.initializer, optional, state);
@@ -611,13 +639,13 @@ const typeDefinitionExtractors = {
    * @returns Array
    */
   TSInterfaceDeclaration: node => {
-    const { id, body } = node;
+    const { id } = node;
 
     if (id.type !== 'Identifier') {
       throw new Error(`TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
     }
 
-    return [{ name: id.name, definition: body }];
+    return [{ name: id.name, definition: node }];
   },
 
   /**
@@ -761,12 +789,17 @@ function processComponentDeclaration(typeDefinition, path, state) {
   // import PropTypes library if it isn't already
   const proptypesBinding = getVariableBinding(path, 'PropTypes');
   if (proptypesBinding == null) {
-    const reactBinding = getVariableBinding(path, 'React');
-    if (reactBinding == null) {
-      throw new Error('Cannot import PropTypes module, no React namespace import found');
+    let targetNode;
+    // find the first statement in the program and import PropTypes there
+    targetNode = path;
+    while (targetNode.parentPath.parentPath != null) {
+      targetNode = targetNode.parentPath;
     }
-    const reactImportDeclaration = reactBinding.path.getAncestry()[1];
-    reactImportDeclaration.insertAfter(
+    while (targetNode.getPrevSibling().node != null) {
+      targetNode = targetNode.getPrevSibling();
+    }
+
+    targetNode.insertAfter(
       types.importDeclaration(
         [types.importDefaultSpecifier(types.identifier('PropTypes'))],
         types.stringLiteral('prop-types')
