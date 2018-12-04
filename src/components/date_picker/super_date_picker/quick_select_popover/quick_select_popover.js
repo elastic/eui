@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
 
 /*
 import { timeHistory } from '../../timefilter/time_history';
-import { prettyDuration } from '../pretty_duration';
 import { RefreshIntervalForm } from './refresh_interval_form';*/
 
 import {
@@ -49,6 +49,7 @@ import {
 
 import { QuickSelect } from './quick_select';
 import { CommonlyUsed } from './commonly_used';
+import { RecentlyUsed } from './recently_used';
 
 export class QuickSelectPopover extends Component {
 
@@ -68,8 +69,8 @@ export class QuickSelectPopover extends Component {
 
   applyTime = ({ from, to }) => {
     this.props.applyTime({
-      from: from,
-      to: to
+      from,
+      to,
     });
     this.closePopover();
   }
@@ -87,32 +88,6 @@ export class QuickSelectPopover extends Component {
           iconType="arrowRight"
           aria-label="Move forward in time"
         />
-      </Fragment>
-    );
-  }
-
-  renderRecentlyUsed = () => {
-    const links = timeHistory.get().map(({ from, to }) => {
-      const applyTime = () => {
-        this.applyTime({ from, to });
-      };
-      const display = prettyDuration(from, to, (...args) => chrome.getUiSettingsClient().get(...args));
-      return (
-        <EuiFlexItem key={display}>
-          <EuiLink onClick={applyTime}>{display}</EuiLink>
-        </EuiFlexItem>
-      );
-    });
-
-    return (
-      <Fragment>
-        <EuiTitle size="xxxs"><span>Recently used date ranges</span></EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiText size="s">
-          <EuiFlexGroup gutterSize="s" direction="column">
-            {links}
-          </EuiFlexGroup>
-        </EuiText>
       </Fragment>
     );
   }
@@ -144,10 +119,19 @@ export class QuickSelectPopover extends Component {
         <div style={{ width: 400, maxWidth: '100%' }}>
           <QuickSelect
             applyTime={this.applyTime}
+            commonlyUsedRanges={this.props.commonlyUsedRanges}
           />
           <EuiHorizontalRule margin="s" />
           <CommonlyUsed
             applyTime={this.applyTime}
+            commonlyUsedRanges={this.props.commonlyUsedRanges}
+          />
+          <EuiHorizontalRule margin="s" />
+          <RecentlyUsed
+            applyTime={this.applyTime}
+            commonlyUsedRanges={this.props.commonlyUsedRanges}
+            dateFormat={this.props.dateFormat}
+            recentlyUsedRanges={this.props.recentlyUsedRanges}
           />
           <EuiHorizontalRule margin="s" />
         </div>
@@ -161,4 +145,7 @@ QuickSelectPopover.propTypes = {
   setRefresh: PropTypes.func.isRequired,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number,
+  commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
+  dateFormat: PropTypes.string.isRequired,
+  recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,
 };

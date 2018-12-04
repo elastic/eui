@@ -20,6 +20,7 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
 
 import dateMath from '@elastic/datemath';
 
@@ -107,11 +108,11 @@ export class EuiSuperDatePicker extends Component {
   }*/
 
   applyTime = () => {
-    this.props.onTimeChange(this.state.from, this.state.to);
+    this.props.onTimeChange({ from: this.state.from, to: this.state.to });
   }
 
   applyQuickTime = ({ from, to }) => {
-    this.props.onTimeChange(from, to);
+    this.props.onTimeChange({ from, to });
   }
 
   renderDateRange = () => {
@@ -144,9 +145,12 @@ export class EuiSuperDatePicker extends Component {
         applyTime={this.applyQuickTime}
         stepForward={this.stepForward}
         stepBackward={this.stepBackward}
-        setRefresh={this.props.setRefresh}
+        setRefresh={this.props.onRefreshChange}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
+        commonlyUsedRanges={this.props.commonlyUsedRanges}
+        dateFormat={this.props.dateFormat}
+        recentlyUsedRanges={this.props.recentlyUsedRanges}
       />
     );
     return (
@@ -177,6 +181,10 @@ EuiSuperDatePicker.propTypes = {
   isPaused: PropTypes.bool,
   refreshInterval: PropTypes.number,
   onRefreshChange: PropTypes.func.isRequired,
+
+  commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
+  dateFormat: PropTypes.string,
+  recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
 };
 
 EuiSuperDatePicker.defaultProps = {
@@ -184,5 +192,17 @@ EuiSuperDatePicker.defaultProps = {
   to: 'now',
   isPaused: true,
   refreshInterval: 0,
+  commonlyUsedRanges: [
+    { from: 'now/d', to: 'now/d', label: 'Today' },
+    { from: 'now-1d/d', to: 'now-1d/d', label: 'Yesterday' },
+    { from: 'now/w', to: 'now/w', label: 'This week' },
+    { from: 'now/w', to: 'now', label: 'Week to date' },
+    { from: 'now/M', to: 'now/M', label: 'This month' },
+    { from: 'now/M', to: 'now', label: 'Month to date' },
+    { from: 'now/y', to: 'now/y', label: 'This year' },
+    { from: 'now/y', to: 'now', label: 'Year to date' },
+  ],
+  dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
+  recentlyUsedRanges: [],
 };
 

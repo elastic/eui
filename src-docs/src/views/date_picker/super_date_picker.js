@@ -7,10 +7,20 @@ import {
 
 export default class extends Component {
 
-  state = {}
+  state = {
+    recentlyUsedRanges: []
+  }
 
   onTimeChange = ({ from, to }) => {
-    this.setState({ from, to });
+    this.setState((prevState) => {
+      const recentlyUsedRanges = [...prevState.recentlyUsedRanges];
+      recentlyUsedRanges.push({ from, to });
+      return {
+        from,
+        to,
+        recentlyUsedRanges: recentlyUsedRanges.length > 10 ? recentlyUsedRanges.slice(0, 9) : recentlyUsedRanges,
+      };
+    });
   }
 
   onRefreshChange = ({ isPaused, refreshInterval }) => {
@@ -18,7 +28,6 @@ export default class extends Component {
   }
 
   render() {
-
     return (
       <EuiSuperDatePicker
         from={this.state.from}
@@ -27,6 +36,7 @@ export default class extends Component {
         isPaused={this.state.isPaused}
         refreshInterval={this.state.refreshInterval}
         onRefreshChange={this.onRefreshChange}
+        recentlyUsedRanges={this.state.recentlyUsedRanges}
       />
     );
   }
