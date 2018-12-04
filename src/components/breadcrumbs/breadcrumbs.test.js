@@ -18,6 +18,7 @@ describe('EuiBreadcrumbs', () => {
     }, {
       text: 'Boa constrictor',
       href: '#',
+      truncate: true,
     }, {
       text: 'Edit',
     }];

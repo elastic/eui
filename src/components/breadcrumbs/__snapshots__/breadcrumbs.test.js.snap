@@ -28,8 +28,9 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <a
-    class="euiLink euiLink--subdued euiBreadcrumb"
+    class="euiLink euiLink--subdued euiBreadcrumb euiBreadcrumb--truncate"
     href="#"
+    title="Boa constrictor"
   >
     Boa constrictor
   </a>

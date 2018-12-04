@@ -12,7 +12,10 @@ const SIDES = Object.keys(sideToClassNameMap);
 export const EuiHeaderSection = ({ side, children, className, grow, ...rest }) => {
   const classes = classNames(
     'euiHeaderSection',
-    { 'euiHeaderSection--grow': grow, 'euiHeaderSection--dontGrow': !grow },
+    {
+      'euiHeaderSection--grow': grow,
+      'euiHeaderSection--dontGrow': !grow,
+    },
     sideToClassNameMap[side],
     className
   );
