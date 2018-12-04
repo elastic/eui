@@ -58,6 +58,10 @@ import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
 
+import SuperDatePicker from './super_date_picker';
+const superDatePickerSource = require('!!raw-loader!./super_date_picker');
+const superDatePickerHtml = renderToHtml(SuperDatePicker);
+
 import GlobalDatePicker from './global_date_picker';
 const globalDatePickerSource = require('!!raw-loader!./global_date_picker');
 const globalDatePickerHtml = renderToHtml(GlobalDatePicker);
@@ -265,6 +269,21 @@ export const DatePickerExample = {
       </div>
     ),
     demo: <Classes />,
+  }, {
+    title: 'Super date picker',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: superDatePickerSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: superDatePickerHtml,
+    }],
+    text: (
+      <div>
+        Super date picker
+      </div>
+    ),
+    demo: <SuperDatePicker />,
   }, {
     title: 'Global date picker',
     source: [{
