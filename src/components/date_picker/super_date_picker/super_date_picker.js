@@ -21,9 +21,9 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 
-/*import dateMath from '@kbn/datemath';*/
+import dateMath from '@elastic/datemath';
 
-import { QuickSelectPopover } from './quick_select_popover';
+import { QuickSelectPopover } from './quick_select_popover/quick_select_popover';
 //import { TimeInput } from './time_input';
 
 import {
@@ -66,27 +66,22 @@ export class EuiSuperDatePicker extends Component {
       from: nextProps.from,
       to: nextProps.to,
       isInvalid: false,
+      errorMessage: undefined,
       hasChanged: false,
       isEditMode: false,
     };
   }
 
   setTime = ({ from, to }) => {
-    // TODO validation once dateMath is an npm artifact
-    /*const fromMoment = dateMath.parse(from);
+    const fromMoment = dateMath.parse(from);
     const toMoment = dateMath.parse(to, { roundUp: true });
     const isInvalid = fromMoment.isAfter(toMoment);
-    if (isInvalid) {
-      this.lastToast = toastNotifications.addDanger({
-        title: `Invalid time range`,
-        text: `From must occur before To`,
-      });
-    }*/
 
     this.setState({
       from,
       to,
       isInvalid: false,
+      errorMessage: isInvalid ? 'Invalid time range, "from" must occur before "to"' : undefined,
       hasChanged: true,
     });
   }
@@ -146,8 +141,7 @@ export class EuiSuperDatePicker extends Component {
   render() {
     const quickSelect = (
       <QuickSelectPopover
-        setTime={this.setTime}
-        applyTime={this.applyTime}
+        applyTime={this.applyQuickTime}
         stepForward={this.stepForward}
         stepBackward={this.stepBackward}
         setRefresh={this.props.setRefresh}
