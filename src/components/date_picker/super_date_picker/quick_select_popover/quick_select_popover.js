@@ -48,6 +48,7 @@ import {
 } from '../../../link';
 
 import { QuickSelect } from './quick_select';
+import { CommonlyUsed } from './commonly_used';
 
 export class QuickSelectPopover extends Component {
 
@@ -86,51 +87,6 @@ export class QuickSelectPopover extends Component {
           iconType="arrowRight"
           aria-label="Move forward in time"
         />
-      </Fragment>
-    );
-  }
-
-  renderCommonlyUsed = () => {
-    const commonlyUsed = chrome.getUiSettingsClient().get('timepicker:quickRanges');
-    const sections = _.groupBy(commonlyUsed, 'section');
-
-    const renderSectionItems = (section) => {
-      return section.map(({ from, to, display }) => {
-        const applyTime = () => {
-          this.applyTime({ from, to });
-        };
-        return (
-          <EuiFlexItem key={display}>
-            <EuiLink onClick={applyTime}>{display}</EuiLink>
-          </EuiFlexItem>
-        );
-      });
-    };
-
-    return (
-      <Fragment>
-        <EuiTitle size="xxxs"><span>Commonly used</span></EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiText size="s">
-          {Object.keys(sections).map((key, index) => {
-            const isLastSection = Object.keys(sections).length - 1 === index;
-            const sectionSpacer = isLastSection
-              ? undefined
-              : (<EuiSpacer size="m" />);
-            return (
-              <Fragment key={key}>
-                <EuiFlexGrid
-                  gutterSize="s"
-                  columns={2}
-                  responsive={false}
-                >
-                  {renderSectionItems(sections[key])}
-                </EuiFlexGrid>
-                {sectionSpacer}
-              </Fragment>
-            );
-          })}
-        </EuiText>
       </Fragment>
     );
   }
@@ -187,6 +143,10 @@ export class QuickSelectPopover extends Component {
       >
         <div style={{ width: 400, maxWidth: '100%' }}>
           <QuickSelect
+            applyTime={this.applyTime}
+          />
+          <EuiHorizontalRule margin="s" />
+          <CommonlyUsed
             applyTime={this.applyTime}
           />
           <EuiHorizontalRule margin="s" />
