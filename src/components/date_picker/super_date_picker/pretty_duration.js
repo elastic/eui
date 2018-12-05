@@ -11,10 +11,6 @@ function cantLookup(timeFrom, timeTo, dateFormat) {
   return `${displayFrom} to ${displayTo}`;
 }
 
-function getRangeKey(from, to) {
-  return `${from} to ${to}`;
-}
-
 export function formatTimeString(timeString, dateFormat, roundUp = false) {
   const timeAsMoment = moment(timeString, ISO_FORMAT, true);
   if (timeAsMoment.isValid()) {
@@ -27,7 +23,11 @@ export function formatTimeString(timeString, dateFormat, roundUp = false) {
   }
 
   const tryParse = dateMath.parse(timeString, { roundUp: roundUp });
-  return moment.isMoment(tryParse) ? '~ ' + tryParse.fromNow() : timeString;
+  if (moment.isMoment(tryParse)) {
+    return `~ ${tryParse.fromNow()}`;
+  }
+
+  return timeString;
 }
 
 export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {

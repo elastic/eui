@@ -8,6 +8,7 @@ import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiLink } from '../../../link';
 import { EuiText } from '../../../text';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 export function CommonlyUsed({ applyTime, commonlyUsedRanges }) {
   const links = commonlyUsedRanges.map(({ from, to, label }) => {
@@ -30,6 +31,7 @@ export function CommonlyUsed({ applyTime, commonlyUsedRanges }) {
           {links}
         </EuiFlexGrid>
       </EuiText>
+      <EuiHorizontalRule margin="s" />
     </Fragment>
   );
 }

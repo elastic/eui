@@ -1,23 +1,11 @@
-import _ from 'lodash';
-import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
-import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
 
-/*
-import { timeHistory } from '../../timefilter/time_history';
-import { RefreshIntervalForm } from './refresh_interval_form';*/
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
 
 import {
   EuiButtonEmpty,
-  EuiButton,
-  EuiButtonIcon,
 } from '../../../button';
-
-import {
-  EuiFlexGrid,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../flex';
 
 import {
   EuiIcon,
@@ -26,26 +14,6 @@ import {
 import {
   EuiPopover,
 } from '../../../popover';
-
-import {
-  EuiTitle,
-} from '../../../title';
-
-import {
-  EuiSpacer,
-} from '../../../spacer';
-
-import {
-  EuiText,
-} from '../../../text';
-
-import {
-  EuiHorizontalRule,
-} from '../../../horizontal_rule';
-
-import {
-  EuiLink,
-} from '../../../link';
 
 import { QuickSelect } from './quick_select';
 import { CommonlyUsed } from './commonly_used';
@@ -75,23 +43,6 @@ export class QuickSelectPopover extends Component {
     this.closePopover();
   }
 
-  renderTimeNavigation = () => {
-    return (
-      <Fragment>
-        <EuiButtonIcon
-          onClick={this.props.stepBackward}
-          iconType="arrowLeft"
-          aria-label="Move backward in time"
-        />
-        <EuiButtonIcon
-          onClick={this.props.stepForward}
-          iconType="arrowRight"
-          aria-label="Move forward in time"
-        />
-      </Fragment>
-    );
-  }
-
   render() {
     const quickSelectButton = (
       <EuiButtonEmpty
@@ -103,7 +54,7 @@ export class QuickSelectPopover extends Component {
         iconType="arrowDown"
         iconSide="right"
       >
-        <EuiIcon type={this.props.isPaused ? 'calendar': 'clock'} />
+        <EuiIcon type={this.props.isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
     );
 
@@ -121,19 +72,16 @@ export class QuickSelectPopover extends Component {
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
           />
-          <EuiHorizontalRule margin="s" />
           <CommonlyUsed
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
           />
-          <EuiHorizontalRule margin="s" />
           <RecentlyUsed
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
             dateFormat={this.props.dateFormat}
             recentlyUsedRanges={this.props.recentlyUsedRanges}
           />
-          <EuiHorizontalRule margin="s" />
         </div>
       </EuiPopover>
     );

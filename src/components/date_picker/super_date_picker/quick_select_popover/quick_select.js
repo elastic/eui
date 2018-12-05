@@ -8,6 +8,7 @@ import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiFormRow, EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiToolTip } from '../../../tool_tip';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 import { timeUnits } from '../time_units';
 
@@ -131,6 +132,7 @@ export class QuickSelect extends Component {
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
+        <EuiHorizontalRule margin="s" />
       </Fragment>
     );
   }

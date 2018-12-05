@@ -9,6 +9,7 @@ import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
 import { EuiLink } from '../../../link';
 import { EuiText } from '../../../text';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 export function RecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recentlyUsedRanges }) {
   if (recentlyUsedRanges.length === 0) {
@@ -37,6 +38,7 @@ export function RecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recent
           {links}
         </EuiFlexGroup>
       </EuiText>
+      <EuiHorizontalRule margin="s" />
     </Fragment>
   );
 }
