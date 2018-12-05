@@ -68,7 +68,7 @@ export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, m
       link = (
         <span
           className={breadcrumbClasses}
-          title={truncate ? text : undefined}
+          title={text}
           aria-current="page"
           {...breadcrumbRest}
         >
@@ -82,7 +82,7 @@ export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, m
           href={href}
           onClick={onClick}
           className={breadcrumbClasses}
-          title={truncate ? text : undefined}
+          title={text}
           {...breadcrumbRest}
         >
           {text}
@@ -151,6 +151,6 @@ EuiBreadcrumbs.propTypes = {
 
 EuiBreadcrumbs.defaultProps = {
   responsive: true,
-  truncate: false,
+  truncate: true,
   max: 5,
 };
