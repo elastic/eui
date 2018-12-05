@@ -21,28 +21,18 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
+import { prettyDuration } from './pretty_duration';
 
 import dateMath from '@elastic/datemath';
 
 import { QuickSelectPopover } from './quick_select_popover/quick_select_popover';
-//import { TimeInput } from './time_input';
+import { DateButton } from './date_button';
 
-import {
-  EuiFormControlLayout,
-} from '../../form';
-
-import {
-  EuiText,
-} from '../../text';
-
-import {
-  EuiButton,
-} from '../../button';
-
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../flex';
+import { EuiDatePickerRange } from '../date_picker_range';
+import { EuiFormControlLayout } from '../../form';
+import { EuiText } from '../../text';
+import { EuiButton, EuiButtonEmpty } from '../../button';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 /*import { prettyDuration } from '../pretty_duration';
 import { timeNavigation } from '../time_navigation';
@@ -115,8 +105,66 @@ export class EuiSuperDatePicker extends Component {
     this.props.onTimeChange({ from, to });
   }
 
-  renderDateRange = () => {
-    return;
+  toggleEditMode = () => {
+    this.setState({ isEditMode: true });
+  }
+
+  renderDatePickerRange = () => {
+    const {
+      from,
+      to,
+      hasChanged,
+      isInvalid,
+    } = this.state;
+
+    let prettyDurationDateRange;
+    if (!this.state.isEditMode) {
+      prettyDurationDateRange = (
+        <Fragment>
+          <DateButton
+            buttonOnly
+            value={prettyDuration(from, to, this.props.commonlyUsedRanges, this.props.dateFormat)}
+            position="end"
+            needsUpdating={this.state.showNeedsUpdate}
+          />
+          <EuiButtonEmpty
+            size="xs"
+            style={{ flexGrow: 0 }}
+            onClick={this.toggleEditMode}>
+            Show dates
+          </EuiButtonEmpty>
+        </Fragment>
+      );
+    }
+
+    // Why isn't prettyDurationDateRange just returned and instead passed as a child to EuiDatePickerRange?
+    // Need classes provided by EuiDatePickerRange for consistent view and
+    // EuiDatePickerRange does not render startDateControl of endDateControl when children are provided.
+    return (
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        iconType={false}
+        isCustom
+        startDateControl={
+          <DateButton
+            value={from}
+            position="start"
+            needsUpdating={hasChanged}
+            isInvalid={isInvalid}
+          />
+        }
+        endDateControl={
+          <DateButton
+            value={to}
+            position="end"
+            needsUpdating={hasChanged}
+            isInvalid={isInvalid}
+          />
+        }
+      >
+        {prettyDurationDateRange}
+      </EuiDatePickerRange>
+    );
   }
 
   renderUpdateButton = () => {
@@ -158,10 +206,10 @@ export class EuiSuperDatePicker extends Component {
 
         <EuiFlexItem style={{ maxWidth: 480 }}>
           <EuiFormControlLayout
-            className="euiSusperDatePicker"
+            className="euiSuperDatePicker"
             prepend={quickSelect}
           >
-            {this.renderDateRange()}
+            {this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>
 
