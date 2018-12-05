@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import { EuiPopover } from '../../popover';
+import { EuiPopover } from '../../../popover';
+
+import { DateInput } from './date_input';
 
 export class DateButton extends Component {
   static propTypes = {
@@ -11,6 +13,8 @@ export class DateButton extends Component {
     needsUpdating: PropTypes.bool,
     buttonOnly: PropTypes.bool,
     value: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    roundUp: PropTypes.bool,
   }
 
   state = {
@@ -37,6 +41,8 @@ export class DateButton extends Component {
       value,
       buttonProps,
       buttonOnly,
+      roundUp, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -82,7 +88,11 @@ export class DateButton extends Component {
         ownFocus
         {...rest}
       >
-        <div>Date selection popover</div>
+        <DateInput
+          value={this.props.value}
+          roundUp={this.props.roundUp}
+          onChange={this.props.onChange}
+        />
       </EuiPopover>
     );
   }

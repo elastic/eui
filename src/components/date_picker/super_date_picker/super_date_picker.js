@@ -26,7 +26,7 @@ import { prettyDuration } from './pretty_duration';
 import dateMath from '@elastic/datemath';
 
 import { QuickSelectPopover } from './quick_select_popover/quick_select_popover';
-import { DateButton } from './date_button';
+import { DateButton } from './date_popover/date_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
@@ -147,18 +147,21 @@ export class EuiSuperDatePicker extends Component {
         isCustom
         startDateControl={
           <DateButton
-            value={from}
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            onChange={this.setFrom}
+            value={from}
           />
         }
         endDateControl={
           <DateButton
-            value={to}
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            onChange={this.setTo}
+            value={to}
+            roundUp
           />
         }
       >
