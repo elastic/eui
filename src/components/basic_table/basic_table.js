@@ -63,7 +63,9 @@ const DefaultItemActionType = PropTypes.shape({
   type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired, // (item) => void,
+  onClick: PropTypes.func, // (item) => void,
+  href: PropTypes.string,
+  target: PropTypes.string,
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
   isPrimary: PropTypes.bool,
