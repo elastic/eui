@@ -5,6 +5,18 @@ const path = require('path');
 const babelTemplate = require('babel-template');
 const babelCore = require('@babel/core');
 
+// react-docgen does not understand typescript annotations
+function stripTypeScript(filename, ast) {
+  return babelCore.transform(
+    babelCore.transformFromAst(ast).code,
+    {
+      filename: filename,
+      babelrc: false,
+      presets: ['@babel/typescript']
+    }
+  ).code;
+}
+
 /**
  * Converts an Array<X> type to PropTypes.arrayOf(X)
  * @param node
@@ -904,7 +916,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = babelCore.transformFromAst(this.file.ast).code;
+            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
           }
         }
       },
@@ -954,7 +966,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = babelCore.transformFromAst(this.file.ast).code;
+            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
           }
         }
       },
