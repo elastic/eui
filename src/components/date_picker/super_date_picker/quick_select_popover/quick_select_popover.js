@@ -18,6 +18,7 @@ import {
 import { QuickSelect } from './quick_select';
 import { CommonlyUsed } from './commonly_used';
 import { RecentlyUsed } from './recently_used';
+import { RefreshInterval } from './refresh_interval';
 
 export class QuickSelectPopover extends Component {
 
@@ -82,6 +83,11 @@ export class QuickSelectPopover extends Component {
             dateFormat={this.props.dateFormat}
             recentlyUsedRanges={this.props.recentlyUsedRanges}
           />
+          <RefreshInterval
+            applyRefreshInterval={this.props.applyRefreshInterval}
+            isPaused={this.props.isPaused}
+            refreshInterval={this.props.refreshInterval}
+          />
         </div>
       </EuiPopover>
     );
@@ -90,9 +96,9 @@ export class QuickSelectPopover extends Component {
 
 QuickSelectPopover.propTypes = {
   applyTime: PropTypes.func.isRequired,
-  setRefresh: PropTypes.func.isRequired,
+  applyRefreshInterval: PropTypes.func.isRequired,
   isPaused: PropTypes.bool.isRequired,
-  refreshInterval: PropTypes.number,
+  refreshInterval: PropTypes.number.isRequired,
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,

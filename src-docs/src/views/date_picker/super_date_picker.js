@@ -27,7 +27,12 @@ export default class extends Component {
   }
 
   onRefreshChange = ({ isPaused, refreshInterval }) => {
-    this.setState({ isPaused, refreshInterval });
+    this.setState((prevState) => {
+      return {
+        isPaused: isPaused == null ? prevState.isPaused : isPaused,
+        refreshInterval: refreshInterval == null ? prevState.refreshInterval : refreshInterval,
+      };
+    });
   }
 
   render() {

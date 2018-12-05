@@ -145,7 +145,7 @@ export class EuiSuperDatePicker extends Component {
         applyTime={this.applyQuickTime}
         stepForward={this.stepForward}
         stepBackward={this.stepBackward}
-        setRefresh={this.props.onRefreshChange}
+        applyRefreshInterval={this.props.onRefreshChange}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}
