@@ -36,6 +36,8 @@ import {
   getEffectiveMaxDate
 } from "./date_utils";
 
+const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
+
 const DROPDOWN_FOCUS_CLASSNAMES = [
   "react-datepicker__year-select",
   "react-datepicker__month-select",
@@ -680,7 +682,7 @@ export default class Calendar extends React.Component {
           })}
         >
           <FocusTrap
-            tag={React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>)}
+            tag={FocusTrapContainer}
             focusTrapOptions={{
               onDeactivate: () => this.props.setOpen(false),
               initialFocus: initialFocusTarget

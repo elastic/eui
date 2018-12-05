@@ -2944,6 +2944,10 @@ CalendarContainer.propTypes = {
   arrowProps: PropTypes.object // react-popper arrow props
 };
 
+var FocusTrapContainer = React__default.forwardRef(function (props, ref) {
+  return React__default.createElement("div", _extends({ ref: ref, className: "react-datepicker__focusTrap" }, props));
+});
+
 var DROPDOWN_FOCUS_CLASSNAMES = ["react-datepicker__year-select", "react-datepicker__month-select", "react-datepicker__month-year-select"];
 
 var isDropdownSelect = function isDropdownSelect() {
@@ -3482,9 +3486,7 @@ var Calendar = function (_React$Component) {
         React__default.createElement(
           FocusTrap,
           {
-            tag: React__default.forwardRef(function (props, ref) {
-              return React__default.createElement("div", _extends({ ref: ref, className: "react-datepicker__focusTrap" }, props));
-            }),
+            tag: FocusTrapContainer,
             focusTrapOptions: {
               onDeactivate: function onDeactivate() {
                 return _this3.props.setOpen(false);
@@ -8163,7 +8165,7 @@ var DatePicker = function (_React$Component) {
     _this.handleFocus = function (event) {
       if (!_this.state.preventFocus) {
         _this.props.onFocus(event);
-        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly & !_this.props.accessibleMode) {
+        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly && !_this.props.accessibleMode) {
           _this.setOpen(true);
         }
       }

@@ -328,7 +328,7 @@ export default class DatePicker extends React.Component {
       this.props.onFocus(event);
       if (
         !this.props.preventOpenOnFocus &&
-        !this.props.readOnly & !this.props.accessibleMode
+        !this.props.readOnly && !this.props.accessibleMode
       ) {
         this.setOpen(true);
       }
