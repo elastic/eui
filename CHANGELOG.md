@@ -12,7 +12,7 @@
 **Bug fixes**
 
 - Fixed bug in exporting `CommonProps` in TypeScript definitions ([#1341](https://github.com/elastic/eui/pull/1341))
-- Added support for `href` and `target` props in `EuiBasicTable` actions
+- Added support for `href` and `target` props in `EuiBasicTable` actions ([#1347](https://github.com/elastic/eui/pull/1347))
 
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
