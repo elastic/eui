@@ -139,6 +139,12 @@ EuiBreadcrumbs.propTypes = {
    */
   max: PropTypes.number,
 
+  /**
+   * The array of individual breadcrumbs, takes the following props.
+   * `text` (node) (required): visible label of the breadcrumb,
+   * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
+   * `truncate` (bool): Force a max-width on the breadcrumb text
+   */
   breadcrumbs: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.node.isRequired,
