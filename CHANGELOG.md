@@ -6,6 +6,7 @@ No public interface changes since `5.4.0`.
 
 - Added 3 new icons — `folderOpen`, `folderClosed`, and `crosshairs` ([#1350](https://github.com/elastic/eui/pull/1350))
 - Added `bottomGraphic` prop to `EuiCard` for Kibana home page ([#1338](https://github.com/elastic/eui/pull/1338))
+- Added keyboard and screenreader support to `EuiDatePicker` ([#1337](https://github.com/elastic/eui/pull/1337))
 
 **Bug fixes**
 
@@ -14,7 +15,6 @@ No public interface changes since `5.4.0`.
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
 - Introduced TypeScript support, converted `EuiSpacer` and `EuiHorizontalRule` ([#1317](https://github.com/elastic/eui/pull/1317))
-- Added keyboard and screenreader support to `EuiDatePicker` ([#1337](https://github.com/elastic/eui/pull/1337))
 
 ## [`5.2.0`](https://github.com/elastic/eui/tree/v5.2.0)
 
