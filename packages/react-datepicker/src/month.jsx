@@ -195,7 +195,7 @@ export default class Month extends React.Component {
     const { selectingDate, selectsStart, selectsEnd } = this.props;
     return classnames("react-datepicker__month", {
       "react-datepicker__month--accessible":
-        this.props.accessibleMode && !this.props.inline,
+        this.props.accessibleMode,
       "react-datepicker__month--selecting-range":
         selectingDate && (selectsStart || selectsEnd)
     });

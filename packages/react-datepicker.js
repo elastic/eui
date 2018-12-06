@@ -2548,7 +2548,7 @@ var Month = function (_React$Component) {
           selectsEnd = _this$props.selectsEnd;
 
       return classnames("react-datepicker__month", {
-        "react-datepicker__month--accessible": _this.props.accessibleMode && !_this.props.inline,
+        "react-datepicker__month--accessible": _this.props.accessibleMode,
         "react-datepicker__month--selecting-range": selectingDate && (selectsStart || selectsEnd)
       });
     };
