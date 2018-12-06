@@ -1,16 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiHeaderSection grow defaults to false 1`] = `
+<div
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+/>
+`;
+
+exports[`EuiHeaderSection grow renders true 1`] = `
+<div
+  class="euiHeaderSection euiHeaderSection--grow euiHeaderSection--left"
+/>
+`;
+
 exports[`EuiHeaderSection is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeaderSection euiHeaderSection--left testClass1 testClass2"
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeaderSection renders optional params 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--left"
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
   style="color:blue"
 >
   <span>
@@ -21,12 +33,12 @@ exports[`EuiHeaderSection renders optional params 1`] = `
 
 exports[`EuiHeaderSection side defaults to left 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--left"
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
 />
 `;
 
 exports[`EuiHeaderSection side renders right 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--right"
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--right"
 />
 `;

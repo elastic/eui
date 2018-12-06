@@ -30,7 +30,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbSeparator"
   />
   <a
-    class="euiLink euiLink--subdued euiBreadcrumb"
+    class="euiLink euiLink--subdued euiBreadcrumb euiBreadcrumb--truncate"
     href="#"
     title="Boa constrictor"
   >
@@ -238,10 +238,10 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiBreadcrumbs props truncate is rendered 1`] = `
+exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
 <nav
   aria-label="breadcrumb"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+  class="euiBreadcrumbs euiBreadcrumbs--responsive"
 >
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"

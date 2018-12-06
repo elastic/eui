@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiHeader,
@@ -22,46 +20,57 @@ export default class extends Component {
   }
 
   renderLogo() {
-    return (
-      <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />
-    );
+    return <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />;
   }
 
   renderBreadcrumbs() {
-    const breadcrumbs = [{
-      text: 'Management',
-      href: '#',
-      onClick: (e) => { e.preventDefault(); console.log('You clicked management'); },
-      'data-test-subj': 'breadcrumbsAnimals',
-      className: 'customClass',
-    }, {
-      text: 'Truncation test is here for a really long item',
-      href: '#',
-      onClick: (e) => { e.preventDefault(); console.log('You clicked truncation test'); },
-    }, {
-      text: 'hidden',
-      href: '#',
-      onClick: (e) => { e.preventDefault(); console.log('You clicked hidden'); },
-    }, {
-      text: 'Users',
-      href: '#',
-      onClick: (e) => { e.preventDefault(); console.log('You clicked users'); },
-    }, {
-      text: 'Create',
-    }];
+    const breadcrumbs = [
+      {
+        text: 'Management',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked management');
+        },
+        'data-test-subj': 'breadcrumbsAnimals',
+        className: 'customClass',
+      },
+      {
+        text: 'Truncation test is here for a really long item',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked truncation test');
+        },
+      },
+      {
+        text: 'hidden',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked hidden');
+        },
+      },
+      {
+        text: 'Users',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked users');
+        },
+      },
+      {
+        text: 'Create',
+      },
+    ];
 
-    return (
-      <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />
-    );
+    return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />;
   }
 
   renderSearch() {
     return (
       <EuiHeaderSectionItemButton aria-label="Search">
-        <EuiIcon
-          type="search"
-          size="m"
-        />
+        <EuiIcon type="search" size="m" />
       </EuiHeaderSectionItemButton>
     );
   }
@@ -69,21 +78,17 @@ export default class extends Component {
   render() {
     return (
       <EuiHeader>
-        <EuiHeaderSection>
-          <EuiHeaderSectionItem border="right">
-            {this.renderLogo()}
-          </EuiHeaderSectionItem>
+        <EuiHeaderSection grow={false}>
+          <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
           <EuiHeaderSectionItem border="right">
             <HeaderSpacesMenu />
           </EuiHeaderSectionItem>
-
-          {this.renderBreadcrumbs()}
         </EuiHeaderSection>
 
+        {this.renderBreadcrumbs()}
+
         <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>
-            {this.renderSearch()}
-          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>{this.renderSearch()}</EuiHeaderSectionItem>
 
           <EuiHeaderSectionItem>
             <HeaderUserMenu />
