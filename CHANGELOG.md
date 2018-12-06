@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `bottomGraphic` prop to `EuiCard` for Kibana home page ([#1338](https://github.com/elastic/eui/pull/1338))
 - Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
+
+**Bug fixes**
+
+- Fixed bug in exporting `CommonProps` in TypeScript definitions ([#1341](https://github.com/elastic/eui/pull/1341))
 
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
