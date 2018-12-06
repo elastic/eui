@@ -3,7 +3,7 @@
 - Altered functionality of `truncate` on `EuiBreadcrumbs` and added `truncate` ability on breadcrumb item ([#1346](https://github.com/elastic/eui/pull/1346))
 - Altered `EuiHeader`'s location of `EuiHeaderBreadcrumbs` based on the new `truncate` ability ([#1346](https://github.com/elastic/eui/pull/1346))
 - Added support for `href` and `target` props in `EuiBasicTable` actions ([#1347](https://github.com/elastic/eui/pull/1347))
-- `EuiComboBox` will convert entered text into a custom option when the user takes away focus, e.g. by tabbing to another element. This prevents the `EuiComboBox` from being mistaken for a `EuiInputText`.
+- `EuiComboBox` will convert entered text into a custom option when the user takes away focus, e.g. by tabbing to another element. This prevents the `EuiComboBox` from being mistaken for a `EuiInputText`. ([#1353](https://github.com/elastic/eui/pull/1353))
 
 ## [`5.4.0`](https://github.com/elastic/eui/tree/v5.4.0)
 
