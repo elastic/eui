@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
@@ -52,7 +52,6 @@
     "prop-types": "^15.6.0",
     "react-ace": "^5.5.0",
     "react-color": "^2.13.8",
-    "react-datepicker": "v1.5.0",
     "react-input-autosize": "^2.2.1",
     "react-virtualized": "^9.18.5",
     "react-vis": "1.10.2",
