@@ -26954,7 +26954,8 @@
 	      var selected = _this.props.selected ? _this.props.selected : _this.getPreSelection();
 	      var changedDate = (0, _date_utils.setTime)((0, _date_utils.cloneDate)(selected), {
 	        hour: (0, _date_utils.getHour)(time),
-	        minute: (0, _date_utils.getMinute)(time)
+	        minute: (0, _date_utils.getMinute)(time),
+	        second: 0
 	      });
 
 	      _this.setState({
@@ -26990,6 +26991,7 @@
 	      var eventKey = event.key;
 	      if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
 	        if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
+	          event.preventDefault();
 	          _this.onInputClick();
 	        }
 	        return;
@@ -27151,24 +27153,6 @@
 	      );
 
 	      return calendar;
-
-	      // if (this.props.accessibleMode && !this.props.inline) {
-	      //   const initialFocusTarget = this.props.showTimeSelectOnly
-	      //     ? ".react-datepicker__time-box--accessible"
-	      //     : ".react-datepicker__month--accessible";
-	      //   return (
-	      //     <FocusTrap
-	      //       focusTrapOptions={{
-	      //         onDeactivate: () => this.setOpen(false),
-	      //         initialFocus: initialFocusTarget
-	      //       }}
-	      //     >
-	      //       {calendar}
-	      //     </FocusTrap>
-	      //   );
-	      // } else {
-	      //   return calendar;
-	      // }
 	    };
 
 	    _this.renderDateInput = function () {
@@ -28644,12 +28628,12 @@
 	        case "ArrowUp":
 	          event.preventDefault();
 	          event.stopPropagation();
-	          selectionChange = 1;
+	          selectionChange = -1;
 	          break;
 	        case "ArrowDown":
 	          event.preventDefault();
 	          event.stopPropagation();
-	          selectionChange = -1;
+	          selectionChange = 1;
 	          break;
 	        case "Escape":
 	          event.preventDefault();

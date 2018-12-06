@@ -248,12 +248,12 @@ var YearDropdownOptions = function (_React$Component) {
         case "ArrowUp":
           event.preventDefault();
           event.stopPropagation();
-          selectionChange = 1;
+          selectionChange = -1;
           break;
         case "ArrowDown":
           event.preventDefault();
           event.stopPropagation();
-          selectionChange = -1;
+          selectionChange = 1;
           break;
         case "Escape":
           event.preventDefault();
@@ -8320,7 +8320,8 @@ var DatePicker = function (_React$Component) {
       var selected = _this.props.selected ? _this.props.selected : _this.getPreSelection();
       var changedDate = setTime(cloneDate(selected), {
         hour: getHour(time),
-        minute: getMinute(time)
+        minute: getMinute(time),
+        second: 0
       });
 
       _this.setState({
@@ -8356,6 +8357,7 @@ var DatePicker = function (_React$Component) {
       var eventKey = event.key;
       if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
         if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
+          event.preventDefault();
           _this.onInputClick();
         }
         return;
@@ -8517,24 +8519,6 @@ var DatePicker = function (_React$Component) {
       );
 
       return calendar;
-
-      // if (this.props.accessibleMode && !this.props.inline) {
-      //   const initialFocusTarget = this.props.showTimeSelectOnly
-      //     ? ".react-datepicker__time-box--accessible"
-      //     : ".react-datepicker__month--accessible";
-      //   return (
-      //     <FocusTrap
-      //       focusTrapOptions={{
-      //         onDeactivate: () => this.setOpen(false),
-      //         initialFocus: initialFocusTarget
-      //       }}
-      //     >
-      //       {calendar}
-      //     </FocusTrap>
-      //   );
-      // } else {
-      //   return calendar;
-      // }
     };
 
     _this.renderDateInput = function () {

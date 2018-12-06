@@ -481,9 +481,10 @@ export default class DatePicker extends React.Component {
     const selected = this.props.selected
       ? this.props.selected
       : this.getPreSelection();
-    let changedDate = setTime(cloneDate(selected), {
+    const changedDate = setTime(cloneDate(selected), {
       hour: getHour(time),
-      minute: getMinute(time)
+      minute: getMinute(time),
+      second: 0
     });
 
     this.setState({
@@ -523,6 +524,7 @@ export default class DatePicker extends React.Component {
       !this.props.preventOpenOnFocus
     ) {
       if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
+        event.preventDefault();
         this.onInputClick();
       }
       return;
@@ -687,24 +689,6 @@ export default class DatePicker extends React.Component {
     );
 
     return calendar;
-
-    // if (this.props.accessibleMode && !this.props.inline) {
-    //   const initialFocusTarget = this.props.showTimeSelectOnly
-    //     ? ".react-datepicker__time-box--accessible"
-    //     : ".react-datepicker__month--accessible";
-    //   return (
-    //     <FocusTrap
-    //       focusTrapOptions={{
-    //         onDeactivate: () => this.setOpen(false),
-    //         initialFocus: initialFocusTarget
-    //       }}
-    //     >
-    //       {calendar}
-    //     </FocusTrap>
-    //   );
-    // } else {
-    //   return calendar;
-    // }
   };
 
   renderDateInput = () => {

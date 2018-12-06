@@ -107,7 +107,7 @@ export default class Time extends React.Component {
   componentDidUpdate() {
     // scroll to the preSelected time
     const scrollToElement = this.preselectedLi;
-
+    
     if (scrollToElement) {
       // an element matches the selected time, scroll to it
       scrollToElement.scrollIntoView({

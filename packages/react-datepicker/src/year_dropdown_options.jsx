@@ -176,12 +176,12 @@ export default class YearDropdownOptions extends React.Component {
       case "ArrowUp":
         event.preventDefault();
         event.stopPropagation();
-        selectionChange = 1;
+        selectionChange = -1;
         break;
       case "ArrowDown":
         event.preventDefault();
         event.stopPropagation();
-        selectionChange = -1;
+        selectionChange = 1;
         break;
       case "Escape":
         event.preventDefault();
