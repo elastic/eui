@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.3.0`.
+- Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
 
 ## [`5.3.0`](https://github.com/elastic/eui/tree/v5.3.0)
 
