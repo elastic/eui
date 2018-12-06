@@ -1,6 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
+import { CommonProps, keysOf } from '../common';
+
+export type FlexGroupAlignItems = keyof typeof alignItemsToClassNameMap;
+export type FlexGroupComponentType = 'div' | 'span';
+export type FlexGroupDirection = keyof typeof directionToClassNameMap;
+export type FlexGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
+export type FlexGroupJustifyContent = keyof typeof justifyContentToClassNameMap;
+
+export interface EuiFlexGroupProps {
+  alignItems?: FlexGroupAlignItems;
+  children?: React.ReactNode;
+  className?: string;
+  component?: FlexGroupComponentType;
+  direction?: FlexGroupDirection;
+  gutterSize?: FlexGroupGutterSize;
+  justifyContent?: FlexGroupJustifyContent;
+  responsive?: boolean;
+  wrap?: boolean;
+}
 
 const gutterSizeToClassNameMap = {
   none: null,
@@ -11,7 +29,7 @@ const gutterSizeToClassNameMap = {
   xl: 'euiFlexGroup--gutterExtraLarge',
 };
 
-export const GUTTER_SIZES = Object.keys(gutterSizeToClassNameMap);
+export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
 
 const alignItemsToClassNameMap = {
   stretch: null,
@@ -21,7 +39,7 @@ const alignItemsToClassNameMap = {
   baseline: 'euiFlexGroup--alignItemsBaseline',
 };
 
-export const ALIGN_ITEMS = Object.keys(alignItemsToClassNameMap);
+export const ALIGN_ITEMS = keysOf(alignItemsToClassNameMap);
 
 const justifyContentToClassNameMap = {
   flexStart: null,
@@ -32,7 +50,7 @@ const justifyContentToClassNameMap = {
   spaceEvenly: 'euiFlexGroup--justifyContentSpaceEvenly',
 };
 
-export const JUSTIFY_CONTENTS = Object.keys(justifyContentToClassNameMap);
+export const JUSTIFY_CONTENTS = keysOf(justifyContentToClassNameMap);
 
 const directionToClassNameMap = {
   row: 'euiFlexGroup--directionRow',
@@ -41,9 +59,11 @@ const directionToClassNameMap = {
   columnReverse: 'euiFlexGroup--directionColumnReverse',
 };
 
-export const DIRECTIONS = Object.keys(directionToClassNameMap);
+export const DIRECTIONS = keysOf(directionToClassNameMap);
 
-export const EuiFlexGroup = ({
+export const EuiFlexGroup: SFC<
+  CommonProps & HTMLAttributes<HTMLDivElement | HTMLSpanElement> & EuiFlexGroupProps
+> = ({
   children,
   className,
   gutterSize,
@@ -52,15 +72,15 @@ export const EuiFlexGroup = ({
   justifyContent,
   direction,
   wrap,
-  component: Component,
-  ...rest,
+  component: Component = 'div',
+  ...rest
 }) => {
   const classes = classNames(
     'euiFlexGroup',
-    gutterSizeToClassNameMap[gutterSize],
-    alignItemsToClassNameMap[alignItems],
-    justifyContentToClassNameMap[justifyContent],
-    directionToClassNameMap[direction],
+    gutterSize ? gutterSizeToClassNameMap[gutterSize] : undefined,
+    alignItems ? alignItemsToClassNameMap[alignItems] : undefined,
+    justifyContent ? justifyContentToClassNameMap[justifyContent] : undefined,
+    direction ? directionToClassNameMap[direction] : undefined,
     {
       'euiFlexGroup--responsive': responsive,
       'euiFlexGroup--wrap': wrap,
@@ -76,18 +96,6 @@ export const EuiFlexGroup = ({
       {children}
     </Component>
   );
-};
-
-EuiFlexGroup.propTypes = {
-  alignItems: PropTypes.oneOf(ALIGN_ITEMS),
-  children: PropTypes.node,
-  className: PropTypes.string,
-  component: PropTypes.oneOf(['div', 'span']),
-  direction: PropTypes.oneOf(DIRECTIONS),
-  gutterSize: PropTypes.oneOf(GUTTER_SIZES),
-  justifyContent: PropTypes.oneOf(JUSTIFY_CONTENTS),
-  responsive: PropTypes.bool,
-  wrap: PropTypes.bool,
 };
 
 EuiFlexGroup.defaultProps = {

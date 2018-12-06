@@ -1,4 +1,4 @@
-const _mathRandom = Math.random;
+const originalMathRandom = Math.random;
 
 export function patchRandom() {
   let x = 0;
@@ -6,5 +6,5 @@ export function patchRandom() {
 }
 
 export function unpatchRandom() {
-  Math.random = _mathRandom;
+  Math.random = originalMathRandom;
 }

@@ -6,6 +6,12 @@ exports[`EuiFlexItem component div is rendered 1`] = `
 />
 `;
 
+exports[`EuiFlexItem component figure is rendered 1`] = `
+<figure
+  class="euiFlexItem"
+/>
+`;
+
 exports[`EuiFlexItem component span is rendered 1`] = `
 <span
   class="euiFlexItem"

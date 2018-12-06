@@ -8,6 +8,7 @@ import {
 
 import {
   EuiFlexItem,
+  FlexItemComponentType,
   GROW_SIZES,
 } from './flex_item';
 
@@ -24,20 +25,6 @@ describe('EuiFlexItem', () => {
       .toMatchSnapshot();
   });
 
-  test('tests the grow prop correctly', () => {
-    const propType = EuiFlexItem.propTypes.grow;
-
-    const validValues = GROW_SIZES;
-    const invalidValues = ['true', 'false', '1', 0];
-
-    validValues.forEach(value =>
-      expect(propType({ grow: value }, `grow`)).toBe(undefined)
-    );
-    invalidValues.forEach(value =>
-      expect(propType({ grow: value }, `grow`) instanceof Error).toBe(true)
-    );
-  });
-
   describe('grow', () => {
     GROW_SIZES.concat([true, false]).forEach(value => {
       test(`${value} is rendered`, () => {
@@ -52,7 +39,7 @@ describe('EuiFlexItem', () => {
   });
 
   describe('component', () => {
-    ['div', 'span'].forEach(value => {
+    (['div', 'span', 'figure'] as FlexItemComponentType[]).forEach(value => {
       test(`${value} is rendered`, () => {
         const component = render(
           <EuiFlexItem component={value} />
@@ -66,6 +53,8 @@ describe('EuiFlexItem', () => {
     ['h2'].forEach(value => {
       test(`${value} is not rendered`, () => {
         expect(() => render(
+          // intentionally passing an invalid value
+          // @ts-ignore
           <EuiFlexItem component={value} />
         )).toThrow();
       });

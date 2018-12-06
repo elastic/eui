@@ -1,0 +1,60 @@
+import React, { HTMLAttributes, ReactNode, SFC } from 'react';
+import classNames from 'classnames';
+import { CommonProps } from '../common';
+
+export type FlexItemGrowSize =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | true
+  | false
+  | null;
+export type FlexItemComponentType = 'div' | 'span' | 'figure';
+
+export interface EuiFlexItemProps {
+  children?: ReactNode;
+  grow?: FlexItemGrowSize;
+  component?: FlexItemComponentType;
+}
+
+export const GROW_SIZES: FlexItemGrowSize[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export const EuiFlexItem: SFC<
+  CommonProps & HTMLAttributes<HTMLDivElement | HTMLSpanElement> & EuiFlexItemProps
+> = ({
+  children,
+  className,
+  grow,
+  component: Component = 'div',
+  ...rest
+}) => {
+  const classes = classNames(
+    'euiFlexItem',
+    {
+      'euiFlexItem--flexGrowZero': !grow,
+      [`euiFlexItem--flexGrow${grow}`]: typeof grow === 'number' ? GROW_SIZES.indexOf(grow) >= 0 : undefined,
+    },
+    className
+  );
+
+  return (
+    <Component
+      className={classes}
+      {...rest}
+    >
+      {children}
+    </Component>
+  );
+};
+
+EuiFlexItem.defaultProps = {
+  grow: true,
+  component: 'div',
+};

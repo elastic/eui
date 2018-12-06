@@ -1,3 +1,5 @@
+/* tslint:disable:no-console */
+
 /*
   Use this utility to throw errors whenever React complains via the console
   about things like invalid propTypes. This lets us assert that a propType
@@ -9,14 +11,14 @@
   afterAll(stopThrowingReactWarnings);
 */
 
-const consoleWarn = console.warn; // eslint-disable-line no-console
-const consoleError = console.error; // eslint-disable-line no-console
+const consoleWarn = console.warn;
+const consoleError = console.error;
 
 export const startThrowingReactWarnings = () => {
-  console.warn = console.error = (msg) => { throw msg; }; // eslint-disable-line no-console
+  console.warn = console.error = (msg: any) => { throw msg; };
 };
 
 export const stopThrowingReactWarnings = () => {
-  console.warn = consoleWarn; // eslint-disable-line no-console
-  console.error = consoleError; // eslint-disable-line no-console
+  console.warn = consoleWarn;
+  console.error = consoleError;
 };

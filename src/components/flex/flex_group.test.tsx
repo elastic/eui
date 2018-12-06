@@ -96,10 +96,10 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('component', () => {
-      ['div', 'span'].forEach(value => {
+      ['div', 'span'].forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(
-            <EuiFlexGroup component={value} />
+            <EuiFlexGroup component={value as 'div' | 'span'} />
           );
 
           expect(component)
@@ -110,6 +110,8 @@ describe('EuiFlexGroup', () => {
       ['h2'].forEach(value => {
         test(`${value} is not rendered`, () => {
           expect(() => render(
+            // intentionally passing an invalid value
+            // @ts-ignore
             <EuiFlexGroup component={value} />
           )).toThrow();
         });

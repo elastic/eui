@@ -1,4 +1,4 @@
-export function timeExecution(fn) {
+export function timeExecution(fn: () => void) {
   const start = process.hrtime();
   fn();
   const [seconds, nanoseconds] = process.hrtime(start);
@@ -6,7 +6,7 @@ export function timeExecution(fn) {
   return milliseconds;
 }
 
-export function benchmarkFunction(fn, warmupRuns = 3, benchmarkRuns = 3) {
+export function benchmarkFunction(fn: () => void, warmupRuns = 3, benchmarkRuns = 3) {
   // warmup v8 optimizations, cache, etc
   for (let i = 0; i < warmupRuns; i++) {
     fn();
