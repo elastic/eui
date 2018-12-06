@@ -28,7 +28,7 @@
   }
 }
 
-.euiSuperDatePicker__dateButton {
+.euiSuperDatePicker__dateText {
   @include euiFormControlText;
   display: block;
   width: 100%;
@@ -37,7 +37,9 @@
   height: $euiFormControlHeight - 2px;
   word-break: break-all;
   transition: background $euiAnimSpeedFast ease-in;
+}
 
+.euiSuperDatePicker__dateButton {
   $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
   $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
 

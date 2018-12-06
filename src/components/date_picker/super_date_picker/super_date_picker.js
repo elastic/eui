@@ -26,7 +26,7 @@ import { prettyDuration } from './pretty_duration';
 import dateMath from '@elastic/datemath';
 
 import { QuickSelectPopover } from './quick_select_popover/quick_select_popover';
-import { DateButton } from './date_popover/date_button';
+import { DatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
@@ -117,56 +117,53 @@ export class EuiSuperDatePicker extends Component {
       isInvalid,
     } = this.state;
 
-    let prettyDurationDateRange;
     if (!this.state.isEditMode) {
-      prettyDurationDateRange = (
-        <Fragment>
-          <DateButton
-            buttonOnly
-            value={prettyDuration(from, to, this.props.commonlyUsedRanges, this.props.dateFormat)}
-            position="end"
-            needsUpdating={this.state.showNeedsUpdate}
-          />
+      return (
+        <EuiDatePickerRange
+          className="euiDatePickerRange--inGroup"
+          iconType={false}
+          isCustom
+          startDateControl={<div/>}
+          endDateControl={<div/>}
+        >
+          <div className="euiSuperDatePicker__dateText">
+            {prettyDuration(from, to, this.props.commonlyUsedRanges, this.props.dateFormat)}
+          </div>
           <EuiButtonEmpty
             size="xs"
             style={{ flexGrow: 0 }}
             onClick={this.toggleEditMode}>
             Show dates
           </EuiButtonEmpty>
-        </Fragment>
+        </EuiDatePickerRange>
       );
     }
 
-    // Why isn't prettyDurationDateRange just returned and instead passed as a child to EuiDatePickerRange?
-    // Need classes provided by EuiDatePickerRange for consistent view and
-    // EuiDatePickerRange does not render startDateControl of endDateControl when children are provided.
     return (
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
         iconType={false}
         isCustom
         startDateControl={
-          <DateButton
+          <DatePopoverButton
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onChange={this.setFrom}
+            onValueChange={this.setFrom}
             value={from}
           />
         }
         endDateControl={
-          <DateButton
+          <DatePopoverButton
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onChange={this.setTo}
+            onValueChange={this.setTo}
             value={to}
             roundUp
           />
         }
-      >
-        {prettyDurationDateRange}
-      </EuiDatePickerRange>
+      />
     );
   }
 

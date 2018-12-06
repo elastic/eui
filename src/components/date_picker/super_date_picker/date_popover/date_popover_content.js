@@ -11,18 +11,18 @@ import {
   toRelativeString,
 } from './date_modes';
 
-export function DateInput({ value, roundUp, onChange }) {
+export function DatePopoverContent({ value, roundUp, onValueChange }) {
 
   const onTabClick = (selectedTab) => {
     switch(selectedTab.id) {
       case DATE_MODES.ABSOLUTE:
-        onChange(toAbsoluteString(value, roundUp));
+        onValueChange(toAbsoluteString(value, roundUp));
         break;
       case DATE_MODES.RELATIVE:
-        onChange(toRelativeString(value));
+        onValueChange(toRelativeString(value));
         break;
       case DATE_MODES.NOW:
-        onChange('now');
+        onValueChange('now');
         break;
     }
   };
@@ -64,12 +64,12 @@ export function DateInput({ value, roundUp, onChange }) {
   );
 }
 
-DateInput.propTypes = {
+DatePopoverContent.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onValueChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
 };
 
-DateInput.defaultProps = {
+DatePopoverContent.defaultProps = {
   roundUp: false,
 };

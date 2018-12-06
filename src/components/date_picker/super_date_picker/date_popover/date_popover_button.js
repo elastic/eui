@@ -4,16 +4,15 @@ import classNames from 'classnames';
 
 import { EuiPopover } from '../../../popover';
 
-import { DateInput } from './date_input';
+import { DatePopoverContent } from './date_popover_content';
 
-export class DateButton extends Component {
+export class DatePopoverButton extends Component {
   static propTypes = {
     position: PropTypes.oneOf(['start', 'end']),
     isInvalid: PropTypes.bool,
     needsUpdating: PropTypes.bool,
-    buttonOnly: PropTypes.bool,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onValueChange: PropTypes.func,
     roundUp: PropTypes.bool,
   }
 
@@ -40,13 +39,13 @@ export class DateButton extends Component {
       needsUpdating,
       value,
       buttonProps,
-      buttonOnly,
-      roundUp, // eslint-disable-line no-unused-vars
-      onChange, // eslint-disable-line no-unused-vars
+      roundUp,
+      onValueChange,
       ...rest
     } = this.props;
 
     const classes = classNames([
+      'euiSuperDatePicker__dateText',
       'euiSuperDatePicker__dateButton',
       `euiSuperDatePicker__dateButton--${position}`,
       {
@@ -65,7 +64,7 @@ export class DateButton extends Component {
 
     const button = (
       <button
-        onClick={buttonOnly ? undefined : this.togglePopover}
+        onClick={this.togglePopover}
         className={classes}
         title={title}
         {...buttonProps}
@@ -73,10 +72,6 @@ export class DateButton extends Component {
         {value}
       </button>
     );
-
-    if (buttonOnly) {
-      return button;
-    }
 
     return (
       <EuiPopover
@@ -88,10 +83,10 @@ export class DateButton extends Component {
         ownFocus
         {...rest}
       >
-        <DateInput
-          value={this.props.value}
-          roundUp={this.props.roundUp}
-          onChange={this.props.onChange}
+        <DatePopoverContent
+          value={value}
+          roundUp={roundUp}
+          onValueChange={onValueChange}
         />
       </EuiPopover>
     );
