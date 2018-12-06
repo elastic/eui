@@ -5,7 +5,8 @@ import React from 'react';
 import { EuiTabbedContent } from '../../../tabs';
 import { EuiText } from '../../../text';
 
-import { Relative } from './relative';
+import { AbsoluteTab } from './absolute_tab';
+import { RelativeTab } from './relative_tab';
 
 import {
   getDateMode,
@@ -36,14 +37,19 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
         id: DATE_MODES.ABSOLUTE,
         name: 'Absolute',
         content: (
-          <div>absolute: {value}</div>
+          <AbsoluteTab
+            dateFormat={dateFormat}
+            value={value}
+            onChange={onChange}
+            roundUp={roundUp}
+          />
         ),
       },
       {
         id: DATE_MODES.RELATIVE,
         name: 'Relative',
         content: (
-          <Relative
+          <RelativeTab
             dateFormat={dateFormat}
             value={value}
             onChange={onChange}

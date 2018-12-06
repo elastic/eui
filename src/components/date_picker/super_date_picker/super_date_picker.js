@@ -17,9 +17,8 @@
  * under the License.
  */
 
-import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
 import { prettyDuration } from './pretty_duration';
 
@@ -30,7 +29,6 @@ import { DatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
-import { EuiText } from '../../text';
 import { EuiButton, EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
@@ -132,7 +130,8 @@ export class EuiSuperDatePicker extends Component {
           <EuiButtonEmpty
             size="xs"
             style={{ flexGrow: 0 }}
-            onClick={this.toggleEditMode}>
+            onClick={this.toggleEditMode}
+          >
             Show dates
           </EuiButtonEmpty>
         </EuiDatePickerRange>
@@ -170,21 +169,17 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
-    const color = this.state.hasChanged ? 'secondary' : 'primary';
-    const icon = this.state.hasChanged ? 'kqlFunction' : 'refresh';
-    let text = this.state.hasChanged ? 'Update' : 'Refresh';
-
     return (
       <EuiButton
         className="euiSuperDatePicker__updateButton"
-        color={color}
+        color={this.state.hasChanged ? 'secondary' : 'primary'}
         fill
-        iconType={icon}
+        iconType={this.state.hasChanged ? 'kqlFunction' : 'refresh'}
         textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
         disabled={this.state.isInvalid}
         onClick={this.applyTime}
       >
-        {text}
+        {this.state.hasChanged ? 'Update' : 'Refresh'}
       </EuiButton>
     );
   }

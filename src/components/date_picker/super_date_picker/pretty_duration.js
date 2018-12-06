@@ -14,7 +14,6 @@ function cantLookup(timeFrom, timeTo, dateFormat) {
 export function formatTimeString(timeString, dateFormat, roundUp = false) {
   const timeAsMoment = moment(timeString, ISO_FORMAT, true);
   if (timeAsMoment.isValid()) {
-    console.log('ISO_FORMAT', timeAsMoment.format(ISO_FORMAT));
     return timeAsMoment.format(dateFormat);
   }
 

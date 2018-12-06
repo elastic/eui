@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { EuiPopover } from '../../../popover';
 
+import { formatTimeString } from '../pretty_duration';
 import { DatePopoverContent } from './date_popover_content';
 
 export class DatePopoverButton extends Component {
@@ -71,7 +72,7 @@ export class DatePopoverButton extends Component {
         title={title}
         {...buttonProps}
       >
-        {value}
+        {formatTimeString(value, dateFormat)}
       </button>
     );
 

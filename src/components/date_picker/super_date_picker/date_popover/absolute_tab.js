@@ -1,28 +1,24 @@
-
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
-import dateMath from '@kbn/datemath';
-
-import {
-  EuiDatePicker,
-  EuiFieldText,
-  EuiFormRow,
-} from '@elastic/eui';
+import dateMath from '@elastic/datemath';
 
 const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
+
+import { EuiDatePicker } from '../../date_picker';
+import { EuiFormRow, EuiFieldText } from '../../../form';
 
 const toMoment = (value, roundUp) => {
   const valueAsMoment = dateMath.parse(value, { roundUp });
   return {
-    value: valueAsMoment,
+    valueAsMoment,
     textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT)
   };
 };
 
-export class AbsoluteForm extends Component {
+export class AbsoluteTab extends Component {
 
   constructor(props) {
     super(props);
@@ -58,7 +54,7 @@ export class AbsoluteForm extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div style={{ width: 390, padding: 0 }}>
         <EuiDatePicker
           inline
           showTimeSelect
@@ -77,12 +73,13 @@ export class AbsoluteForm extends Component {
             onChange={this.handleTextChange}
           />
         </EuiFormRow>
-      </Fragment>
+      </div>
     );
   }
 }
 
-AbsoluteForm.propTypes = {
+AbsoluteTab.propTypes = {
+  dateFormat: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool.isRequired,

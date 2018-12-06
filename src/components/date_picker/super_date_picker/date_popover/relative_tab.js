@@ -17,7 +17,7 @@ import { timeUnits } from '../time_units';
 import { relativeOptions } from './relative_options';
 import { parseRelativeParts, toRelativeStringFromParts } from './relative_utils';
 
-export class Relative extends Component {
+export class RelativeTab extends Component {
 
   constructor(props) {
     super(props);
@@ -98,7 +98,7 @@ export class Relative extends Component {
   }
 }
 
-Relative.propTypes = {
+RelativeTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
