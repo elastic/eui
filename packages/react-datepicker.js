@@ -1372,7 +1372,7 @@ var MonthDropdownOptions = function (_React$Component) {
           "div",
           {
             className: classnames("react-datepicker__month-option", {
-              "--selected_month": _this.props.month === i,
+              "react-datepicker__month-option--selected_month": _this.props.month === i,
               "react-datepicker__month-option--preselected": _this.props.accessibleMode && _this.state.preSelection === i
             }),
             key: month,
@@ -2674,7 +2674,8 @@ var Time = function (_React$Component) {
     _this.timeFormat = "hh:mm A";
     _this.state = {
       preSelection: preSelection,
-      readInstructions: false
+      readInstructions: false,
+      isFocused: false
     };
     return _this;
   }
@@ -2721,7 +2722,8 @@ var Time = function (_React$Component) {
     }
 
     var classNames = classnames("react-datepicker__time-container", {
-      "react-datepicker__time-container--with-today-button": this.props.todayButton
+      "react-datepicker__time-container--with-today-button": this.props.todayButton,
+      "react-datepicker__time-container--focus": this.state.isFocused
     });
 
     var timeBoxClassNames = classnames("react-datepicker__time-box", {
@@ -2774,7 +2776,8 @@ var Time = function (_React$Component) {
             className: timeBoxClassNames,
             tabIndex: this.props.accessibleMode ? 0 : -1,
             onKeyDown: this.onInputKeyDown,
-            onFocus: this.onFocus
+            onFocus: this.onFocus,
+            onBlur: this.onBlur
           },
           React__default.createElement(
             "ul",
@@ -2821,7 +2824,13 @@ var _initialiseProps = function _initialiseProps() {
 
   this.onFocus = function () {
     if (_this3.props.accessibleMode) {
-      _this3.setState({ readInstructions: true });
+      _this3.setState({ readInstructions: true, isFocused: true });
+    }
+  };
+
+  this.onBlur = function () {
+    if (_this3.props.accessibleMode) {
+      _this3.setState({ isFocused: false });
     }
   };
 

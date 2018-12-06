@@ -26,7 +26,7 @@ export default class MonthDropdownOptions extends React.Component {
     return this.props.monthNames.map((month, i) => (
       <div
         className={classnames("react-datepicker__month-option", {
-          "--selected_month": this.props.month === i,
+          "react-datepicker__month-option--selected_month": this.props.month === i,
           "react-datepicker__month-option--preselected":
             this.props.accessibleMode && this.state.preSelection === i
         })}

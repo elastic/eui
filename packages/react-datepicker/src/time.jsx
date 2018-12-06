@@ -69,7 +69,8 @@ export default class Time extends React.Component {
     this.timeFormat = "hh:mm A";
     this.state = {
       preSelection,
-      readInstructions: false
+      readInstructions: false,
+      isFocused: false
     };
   }
 
@@ -119,7 +120,13 @@ export default class Time extends React.Component {
 
   onFocus = () => {
     if (this.props.accessibleMode) {
-      this.setState({ readInstructions: true });
+      this.setState({ readInstructions: true, isFocused: true });
+    }
+  };
+
+  onBlur = () => {
+    if (this.props.accessibleMode) {
+      this.setState({ isFocused: false });
     }
   };
 
@@ -263,7 +270,8 @@ export default class Time extends React.Component {
 
     const classNames = classnames("react-datepicker__time-container", {
       "react-datepicker__time-container--with-today-button": this.props
-        .todayButton
+        .todayButton,
+      "react-datepicker__time-container--focus": this.state.isFocused
     });
 
     const timeBoxClassNames = classnames("react-datepicker__time-box", {
@@ -303,6 +311,7 @@ export default class Time extends React.Component {
             tabIndex={this.props.accessibleMode ? 0 : -1}
             onKeyDown={this.onInputKeyDown}
             onFocus={this.onFocus}
+            onBlur={this.onBlur}
           >
             <ul
               className="react-datepicker__time-list"
