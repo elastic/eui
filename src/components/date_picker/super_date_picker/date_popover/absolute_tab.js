@@ -71,6 +71,7 @@ export class AbsoluteTab extends Component {
             isInvalid={this.state.isTextInvalid}
             value={this.state.textInputValue}
             onChange={this.handleTextChange}
+            data-test-subj={`superDatePickerAbsoluteDateInput`}
           />
         </EuiFormRow>
       </div>

@@ -17,7 +17,12 @@ export function CommonlyUsed({ applyTime, commonlyUsedRanges }) {
     };
     return (
       <EuiFlexItem key={label}>
-        <EuiLink onClick={applyCommonlyUsed}>{label}</EuiLink>
+        <EuiLink
+          onClick={applyCommonlyUsed}
+          data-test-subj={`superDatePickerCommonlyUsed_${label.replace(' ', '_')}`}
+        >
+          {label}
+        </EuiLink>
       </EuiFlexItem>
     );
   });

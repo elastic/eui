@@ -70,6 +70,7 @@ export class DatePopoverButton extends Component {
         onClick={this.togglePopover}
         className={classes}
         title={title}
+        data-test-subj={`superDatePicker${this.props.position}DatePopoverButton`}
         {...buttonProps}
       >
         {formatTimeString(value, dateFormat)}

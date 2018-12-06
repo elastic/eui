@@ -115,6 +115,7 @@ export class EuiSuperDatePicker extends Component {
             size="xs"
             style={{ flexGrow: 0 }}
             onClick={this.toggleEditMode}
+            data-test-subj="superDatePickerShowDatesButton"
           >
             Show dates
           </EuiButtonEmpty>
@@ -162,6 +163,7 @@ export class EuiSuperDatePicker extends Component {
         textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
         disabled={this.state.isInvalid}
         onClick={this.applyTime}
+        data-test-subj="superDatePickerApplyTimeButton"
       >
         {this.state.hasChanged ? 'Update' : 'Refresh'}
       </EuiButton>

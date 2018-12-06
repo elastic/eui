@@ -44,6 +44,7 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
             roundUp={roundUp}
           />
         ),
+        'data-test-subj': 'superDatePickerAbsoluteTab',
       },
       {
         id: DATE_MODES.RELATIVE,
@@ -55,6 +56,7 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
             onChange={onChange}
           />
         ),
+        'data-test-subj': 'superDatePickerRelativeTab',
       },
       {
         id: DATE_MODES.NOW,
@@ -67,6 +69,7 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
             </p>
           </EuiText>
         ),
+        'data-test-subj': 'superDatePickerNowTab',
       }
     ];
   };

@@ -98,6 +98,7 @@ export class RefreshInterval extends Component {
                 value={this.state.value}
                 onChange={this.onValueChange}
                 aria-label="Refresh interval value"
+                data-test-subj="superDatePickerRefreshIntervalInput"
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -108,6 +109,7 @@ export class RefreshInterval extends Component {
                 value={this.state.units}
                 options={refreshUnitsOptions}
                 onChange={this.onUnitsChange}
+                data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -119,6 +121,7 @@ export class RefreshInterval extends Component {
                 onClick={this.toogleRefresh}
                 style={{ minWidth: 90 }}
                 disabled={this.state.value === '' || this.state.value <= 0}
+                data-test-subj="superDatePickerToggleRefreshButton"
               >
                 {this.props.isPaused ? 'Start' : 'Stop'}
               </EuiButton>

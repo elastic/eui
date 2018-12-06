@@ -54,6 +54,7 @@ export class QuickSelectPopover extends Component {
         size="xs"
         iconType="arrowDown"
         iconSide="right"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
       >
         <EuiIcon type={this.props.isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
@@ -68,7 +69,10 @@ export class QuickSelectPopover extends Component {
         anchorPosition="downLeft"
         ownFocus
       >
-        <div style={{ width: 400, maxWidth: '100%' }}>
+        <div
+          style={{ width: 400, maxWidth: '100%' }}
+          data-test-subj="superDatePickerQuickMenu"
+        >
           <QuickSelect
             applyTime={this.applyTime}
             from={this.props.from}
