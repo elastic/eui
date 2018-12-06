@@ -1,6 +1,8 @@
 
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
+import moment from 'moment';
+import dateMath from '@elastic/datemath';
 
 import { EuiButton, EuiButtonIcon } from '../../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
@@ -70,6 +72,31 @@ export class QuickSelect extends Component {
     });
   }
 
+  getBounds = () => {
+    return {
+      min: dateMath.parse(this.props.from),
+      max: dateMath.parse(this.props.to, { roundUp: true }),
+    };
+  }
+
+  stepForward = () => {
+    const { min, max } = this.getBounds();
+    const diff = max.diff(min);
+    this.props.applyTime({
+      from: moment(max).add(1, 'ms').toISOString(),
+      to: moment(max).add(diff + 1, 'ms').toISOString(),
+    });
+  }
+
+  stepBackward = () => {
+    const { min, max } = this.getBounds();
+    const diff = max.diff(min);
+    this.props.applyTime({
+      from: moment(min).subtract(diff + 1, 'ms').toISOString(),
+      to: moment(min).subtract(1, 'ms').toISOString(),
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -79,12 +106,20 @@ export class QuickSelect extends Component {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiToolTip content="Previous time window">
-              <EuiButtonIcon aria-label="Previous time window" iconType="arrowLeft" />
+              <EuiButtonIcon
+                aria-label="Previous time window"
+                iconType="arrowLeft"
+                onClick={this.stepBackward}
+              />
             </EuiToolTip>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiToolTip content="Next time window">
-              <EuiButtonIcon aria-label="Next time window" iconType="arrowRight" />
+              <EuiButtonIcon
+                aria-label="Next time window"
+                iconType="arrowRight"
+                onClick={this.stepForward}
+              />
             </EuiToolTip>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -140,4 +175,6 @@ export class QuickSelect extends Component {
 
 QuickSelect.propTypes = {
   applyTime: PropTypes.func.isRequired,
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
 };

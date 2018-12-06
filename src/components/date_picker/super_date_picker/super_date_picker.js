@@ -32,10 +32,6 @@ import { EuiFormControlLayout } from '../../form';
 import { EuiButton, EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
-/*import { prettyDuration } from '../pretty_duration';
-import { timeNavigation } from '../time_navigation';
-import { calculateBounds } from 'ui/timefilter/get_time';*/
-
 export class EuiSuperDatePicker extends Component {
 
   constructor(props) {
@@ -69,7 +65,7 @@ export class EuiSuperDatePicker extends Component {
     this.setState({
       from,
       to,
-      isInvalid: false,
+      isInvalid,
       errorMessage: isInvalid ? 'Invalid time range, "from" must occur before "to"' : undefined,
       hasChanged: true,
     });
@@ -82,18 +78,6 @@ export class EuiSuperDatePicker extends Component {
   setTo = (to) => {
     this.setTime({ from: this.state.from, to });
   }
-
-  /*getBounds = () => {
-    return calculateBounds({ from: this.state.from, to: this.state.to });
-  }
-
-  stepForward = () => {
-    this.setTime(timeNavigation.stepForward(this.getBounds()));
-  }
-
-  stepBackward = () => {
-    this.setTime(timeNavigation.stepBackward(this.getBounds()));
-  }*/
 
   applyTime = () => {
     this.props.onTimeChange({ from: this.state.from, to: this.state.to });
@@ -188,8 +172,8 @@ export class EuiSuperDatePicker extends Component {
     const quickSelect = (
       <QuickSelectPopover
         applyTime={this.applyQuickTime}
-        stepForward={this.stepForward}
-        stepBackward={this.stepBackward}
+        from={this.props.from}
+        to={this.props.to}
         applyRefreshInterval={this.props.onRefreshChange}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}

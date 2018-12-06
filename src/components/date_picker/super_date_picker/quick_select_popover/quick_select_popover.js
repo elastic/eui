@@ -71,7 +71,8 @@ export class QuickSelectPopover extends Component {
         <div style={{ width: 400, maxWidth: '100%' }}>
           <QuickSelect
             applyTime={this.applyTime}
-            commonlyUsedRanges={this.props.commonlyUsedRanges}
+            from={this.props.from}
+            to={this.props.to}
           />
           <CommonlyUsed
             applyTime={this.applyTime}
@@ -96,6 +97,8 @@ export class QuickSelectPopover extends Component {
 
 QuickSelectPopover.propTypes = {
   applyTime: PropTypes.func.isRequired,
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
   applyRefreshInterval: PropTypes.func.isRequired,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,
