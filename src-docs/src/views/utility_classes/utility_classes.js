@@ -9,7 +9,6 @@ import {
 
 export default () => (
   <EuiText>
-
     <h4>Text</h4>
 
     <EuiSpacer />
@@ -27,25 +26,58 @@ export default () => (
 
     <EuiSpacer />
 
-    <div style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }} className="eui-textNoWrap">
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textNoWrap"
+    >
       <EuiCode>.eui-textNoWrap</EuiCode> will force text not to wrap even in small containers.
     </div>
 
     <EuiSpacer />
 
-    <div style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }} className="eui-textBreakAll">
-      <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful for long urls like http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textBreakAll"
+    >
+      <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful for long urls like
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
     </div>
 
     <EuiSpacer />
 
-    <div style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }} className="eui-textBreakWord">
-      <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of words. Long urls will still break http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textBreakWord"
+    >
+      <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of words. Long urls will
+      still break
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}
+      <strong>
+        Not supported by &lt;= IE11 and Firefox, falls back to <EuiCode>break-all</EuiCode>
+      </strong>
     </div>
 
     <EuiSpacer />
 
-    <div style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }} className="eui-textTruncate">
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textOverflowWrap"
+    >
+      <EuiCode>.eui-textOverflowWrap</EuiCode> will only break up at the end of words. Long urls
+      will still break
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}
+      <strong>
+        Not supported by &lt;= IE11, falls back to <EuiCode>break-all</EuiCode> and does not work on{' '}
+        <EuiCode>display: flex</EuiCode> elements
+      </strong>
+    </div>
+
+    <EuiSpacer />
+
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textTruncate"
+    >
       <EuiCode>.eui-textTruncate</EuiCode> will ellipsis after a certain point.
     </div>
 
@@ -68,7 +100,7 @@ export default () => (
     <EuiSpacer />
 
     <div>
-      <EuiIcon type="logoElasticStack" size="xxl"  className="eui-alignBottom" />
+      <EuiIcon type="logoElasticStack" size="xxl" className="eui-alignBottom" />
       <EuiCode>.eui-alignBottom</EuiCode>
     </div>
 
@@ -116,7 +148,5 @@ export default () => (
     <EuiCode className="eui-showFor--l">.eui-showFor--l</EuiCode>
     <EuiSpacer />
     <EuiCode className="eui-showFor--xl">.eui-showFor--xl</EuiCode>
-
-
   </EuiText>
 );
