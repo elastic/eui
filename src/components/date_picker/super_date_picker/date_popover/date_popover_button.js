@@ -12,7 +12,8 @@ export class DatePopoverButton extends Component {
     isInvalid: PropTypes.bool,
     needsUpdating: PropTypes.bool,
     value: PropTypes.string.isRequired,
-    onValueChange: PropTypes.func,
+    onChange: PropTypes.func,
+    dateFormat: PropTypes.string.isRequired,
     roundUp: PropTypes.bool,
   }
 
@@ -40,7 +41,8 @@ export class DatePopoverButton extends Component {
       value,
       buttonProps,
       roundUp,
-      onValueChange,
+      onChange,
+      dateFormat,
       ...rest
     } = this.props;
 
@@ -86,7 +88,8 @@ export class DatePopoverButton extends Component {
         <DatePopoverContent
           value={value}
           roundUp={roundUp}
-          onValueChange={onValueChange}
+          onChange={onChange}
+          dateFormat={dateFormat}
         />
       </EuiPopover>
     );

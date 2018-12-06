@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { EuiTabbedContent } from '../../../tabs';
+import { EuiText } from '../../../text';
+
+import { Relative } from './relative';
 
 import {
   getDateMode,
@@ -11,18 +14,18 @@ import {
   toRelativeString,
 } from './date_modes';
 
-export function DatePopoverContent({ value, roundUp, onValueChange }) {
+export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
 
   const onTabClick = (selectedTab) => {
     switch(selectedTab.id) {
       case DATE_MODES.ABSOLUTE:
-        onValueChange(toAbsoluteString(value, roundUp));
+        onChange(toAbsoluteString(value, roundUp));
         break;
       case DATE_MODES.RELATIVE:
-        onValueChange(toRelativeString(value));
+        onChange(toRelativeString(value));
         break;
       case DATE_MODES.NOW:
-        onValueChange('now');
+        onChange('now');
         break;
     }
   };
@@ -40,14 +43,23 @@ export function DatePopoverContent({ value, roundUp, onValueChange }) {
         id: DATE_MODES.RELATIVE,
         name: 'Relative',
         content: (
-          <div>relative: {value}</div>
+          <Relative
+            dateFormat={dateFormat}
+            value={value}
+            onChange={onChange}
+          />
         ),
       },
       {
         id: DATE_MODES.NOW,
         name: 'Now',
         content: (
-          <div>now: {value}</div>
+          <EuiText size="s" color="subdued" style={{ width: 390, padding: 16 }}>
+            <p>
+              Setting the time to &quot;Now&quot; means that on every refresh
+              this time will be set to the time of the refresh.
+            </p>
+          </EuiText>
         ),
       }
     ];
@@ -66,8 +78,9 @@ export function DatePopoverContent({ value, roundUp, onValueChange }) {
 
 DatePopoverContent.propTypes = {
   value: PropTypes.string.isRequired,
-  onValueChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
+  dateFormat: PropTypes.string.isRequired,
 };
 
 DatePopoverContent.defaultProps = {

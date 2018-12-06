@@ -149,8 +149,9 @@ export class EuiSuperDatePicker extends Component {
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onValueChange={this.setFrom}
+            onChange={this.setFrom}
             value={from}
+            dateFormat={this.props.dateFormat}
           />
         }
         endDateControl={
@@ -158,8 +159,9 @@ export class EuiSuperDatePicker extends Component {
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onValueChange={this.setTo}
+            onChange={this.setTo}
             value={to}
+            dateFormat={this.props.dateFormat}
             roundUp
           />
         }
