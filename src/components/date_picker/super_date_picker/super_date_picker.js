@@ -206,15 +206,34 @@ export class EuiSuperDatePicker extends Component {
 }
 
 EuiSuperDatePicker.propTypes = {
+  /**
+   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
   from: PropTypes.string,
+  /**
+   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
   to: PropTypes.string,
   onTimeChange: PropTypes.func.isRequired,
   isPaused: PropTypes.bool,
+  /**
+   * Refresh interval in milliseconds
+   */
   refreshInterval: PropTypes.number,
   onRefreshChange: PropTypes.func.isRequired,
 
+  /**
+   * 'from' and 'to' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
   dateFormat: PropTypes.string,
+  /**
+   * 'from' and 'to' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
 };
 

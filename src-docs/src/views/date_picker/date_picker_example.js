@@ -11,7 +11,7 @@ import {
   EuiLink,
   EuiDatePicker,
   EuiDatePickerRange,
-  EuiCallOut,
+  EuiSuperDatePicker,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -61,10 +61,6 @@ const utcHtml = renderToHtml(Utc);
 import SuperDatePicker from './super_date_picker';
 const superDatePickerSource = require('!!raw-loader!./super_date_picker');
 const superDatePickerHtml = renderToHtml(SuperDatePicker);
-
-import GlobalDatePicker from './global_date_picker';
-const globalDatePickerSource = require('!!raw-loader!./global_date_picker');
-const globalDatePickerHtml = renderToHtml(GlobalDatePicker);
 
 export const DatePickerExample = {
   title: 'DatePicker',
@@ -284,25 +280,6 @@ export const DatePickerExample = {
       </div>
     ),
     demo: <SuperDatePicker />,
-  }, {
-    title: 'Global date picker',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: globalDatePickerSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: globalDatePickerHtml,
-    }],
-    text: (
-      <div>
-        <EuiCallOut color="warning" title="Demo of visual pattern only">
-          <p>
-            This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global date/time picker. It uses all EUI components with some custom styles.
-          </p>
-        </EuiCallOut>
-      </div>
-    ),
-    demo: <GlobalDatePicker />,
+    props: { EuiSuperDatePicker },
   }],
 };
