@@ -139,14 +139,10 @@
   *    the cell.
   */
 .euiTableCellContent__text {
-  @include internetExplorerOnly {
-    word-break: break-all;
-  }
-
   min-width: 0;
   text-overflow: ellipsis;
-  overflow-wrap: break-word; /* 1 */
-
+  word-break: break-all; /* 1 */ // Fallback for FF and IE
+  word-break: break-word; /* 1 */
 }
 
 .euiTableCellContent--alignRight {
@@ -172,6 +168,15 @@
 .euiTableCellContent--overflowingContent {
   overflow: visible;
   white-space: normal;
+  word-break: break-word;
+
+  /**
+   * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
+   *    the cell.
+   */
+  .euiTableCellContent__text {
+    overflow: visible; /* 1 */
+  }
 }
 
 .euiTableCellContent--showOnHover {
