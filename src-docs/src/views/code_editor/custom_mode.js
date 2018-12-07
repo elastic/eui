@@ -20,6 +20,7 @@ export default class extends Component {
     return (
       <EuiCodeEditor
         mode={new MyCustomAceMode()}
+        aria-label="Custom mode code editor"
         theme="github"
         width="100%"
         value={this.state.value}
