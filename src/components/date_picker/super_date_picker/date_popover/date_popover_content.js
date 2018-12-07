@@ -13,7 +13,7 @@ import {
   DATE_MODES,
   toAbsoluteString,
   toRelativeString,
-} from './date_modes';
+} from '../date_modes';
 
 export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
 

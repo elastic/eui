@@ -2,6 +2,7 @@
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
 import { timeUnits } from './time_units';
+import { getDateMode, DATE_MODES } from './date_modes';
 
 const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.sssZ';
 
@@ -49,4 +50,17 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
   }
 
   return cantLookup(timeFrom, timeTo, dateFormat);
+}
+
+export function showPrettyDuration(timeFrom, timeTo, quickRanges = []) {
+  const matchingQuickRange = quickRanges.find(({ from: quickFrom, to: quickTo }) => {
+    return timeFrom === quickFrom && timeTo === quickTo;
+  });
+  if (matchingQuickRange) {
+    return true;
+  }
+
+  const fromDateMode = getDateMode(timeFrom);
+  const toDateMode = getDateMode(timeTo);
+  return fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
 }

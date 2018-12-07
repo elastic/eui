@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
-import { prettyDuration } from './pretty_duration';
+import { prettyDuration, showPrettyDuration } from './pretty_duration';
 
 import dateMath from '@elastic/datemath';
 
@@ -19,36 +19,46 @@ export class EuiSuperDatePicker extends Component {
   constructor(props) {
     super(props);
 
+    const {
+      from,
+      to,
+      commonlyUsedRanges
+    } = this.props;
+
     this.state = {
-      from: this.props.from,
-      to: this.props.to,
+      from,
+      to,
       isInvalid: false,
       hasChanged: false,
-      isEditMode: false,
+      showPrettyDuration: showPrettyDuration(from, to, commonlyUsedRanges),
     };
   }
 
   static getDerivedStateFromProps = (nextProps) => {
+    const {
+      from,
+      to,
+      commonlyUsedRanges
+    } = nextProps;
+
     return {
-      from: nextProps.from,
-      to: nextProps.to,
+      from,
+      to,
       isInvalid: false,
-      errorMessage: undefined,
       hasChanged: false,
-      isEditMode: false,
+      showPrettyDuration: showPrettyDuration(from, to, commonlyUsedRanges),
     };
   }
 
   setTime = ({ from, to }) => {
     const fromMoment = dateMath.parse(from);
     const toMoment = dateMath.parse(to, { roundUp: true });
-    const isInvalid = fromMoment.isAfter(toMoment);
+    const isInvalid = (from === 'now' && to === 'now') || fromMoment.isAfter(toMoment);
 
     this.setState({
       from,
       to,
       isInvalid,
-      errorMessage: isInvalid ? 'Invalid time range, "from" must occur before "to"' : undefined,
       hasChanged: true,
     });
   }
@@ -69,8 +79,8 @@ export class EuiSuperDatePicker extends Component {
     this.props.onTimeChange({ from, to });
   }
 
-  toggleEditMode = () => {
-    this.setState({ isEditMode: true });
+  hidePrettyDuration = () => {
+    this.setState({ showPrettyDuration: false });
   }
 
   renderDatePickerRange = () => {
@@ -81,7 +91,7 @@ export class EuiSuperDatePicker extends Component {
       isInvalid,
     } = this.state;
 
-    if (!this.state.isEditMode) {
+    if (this.state.showPrettyDuration) {
       return (
         <EuiDatePickerRange
           className="euiDatePickerRange--inGroup"
@@ -96,7 +106,7 @@ export class EuiSuperDatePicker extends Component {
           <EuiButtonEmpty
             size="xs"
             style={{ flexGrow: 0 }}
-            onClick={this.toggleEditMode}
+            onClick={this.hidePrettyDuration}
             data-test-subj="superDatePickerShowDatesButton"
           >
             Show dates

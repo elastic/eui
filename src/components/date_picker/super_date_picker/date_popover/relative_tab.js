@@ -14,8 +14,8 @@ import {
 } from '../../../form';
 
 import { timeUnits } from '../time_units';
-import { relativeOptions } from './relative_options';
-import { parseRelativeParts, toRelativeStringFromParts } from './relative_utils';
+import { relativeOptions } from '../relative_options';
+import { parseRelativeParts, toRelativeStringFromParts } from '../relative_utils';
 
 export class RelativeTab extends Component {
 

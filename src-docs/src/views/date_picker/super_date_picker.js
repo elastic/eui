@@ -17,7 +17,7 @@ export default class extends Component {
         const isDuplicate = recentlyUsedRange.from === from && recentlyUsedRange.to === to;
         return !isDuplicate;
       });
-      recentlyUsedRanges.push({ from, to });
+      recentlyUsedRanges.unshift({ from, to });
       return {
         from,
         to,
