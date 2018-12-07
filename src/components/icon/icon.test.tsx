@@ -20,16 +20,8 @@ describe('EuiIcon', () => {
   });
 
   describe('props', () => {
-    describe('title', () => {
-      test('defaults to a humanized version of the type', () => {
-        const component = render(
-          <EuiIcon type="dashboardApp" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      test('is rendered', () => {
+    describe('other props', () => {
+      test('are passed through to the icon', () => {
         const component = render(
           <EuiIcon type="search" aria-label="a custom title" />
         );
