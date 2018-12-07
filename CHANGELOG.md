@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.5.1`.
+
+## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
+
 **Bug fixes**
 
 - Fixed TypeScript definitions in `eui.d.ts` ([#1359](https://github.com/elastic/eui/pull/1359))
