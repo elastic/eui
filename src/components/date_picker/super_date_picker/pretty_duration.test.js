@@ -31,6 +31,12 @@ describe('prettyDuration', () => {
     expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Last 1 month rounded to the week');
   });
 
+  test('next', () => {
+    const timeFrom = 'now';
+    const timeTo = 'now+16m';
+    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Next 16 minutes');
+  });
+
   test('from is in past', () => {
     const timeFrom = 'now-17m';
     const timeTo = 'now-15m';
@@ -50,8 +56,12 @@ describe('showPrettyDuration', () => {
     expect(showPrettyDuration('now-15m', 'now', quickRanges)).toBe(true);
   });
 
-  test('should show pretty duration for relative to now', () => {
+  test('should show pretty duration for last', () => {
     expect(showPrettyDuration('now-17m', 'now', quickRanges)).toBe(true);
+  });
+
+  test('should show pretty duration for next', () => {
+    expect(showPrettyDuration('now', 'now+17m', quickRanges)).toBe(true);
   });
 
   test('should not show pretty duration for relative to relative', () => {

@@ -224,8 +224,8 @@ EuiSuperDatePicker.propTypes = {
    */
   refreshInterval: PropTypes.number,
   /**
-   * Callback for when the time changes. Called with { isPaused, refreshInterval }
-   * Supply onRefreshChange to show refresh interval form in quick select popover
+   * Callback for when the refresh interval changes. Called with { isPaused, refreshInterval }
+   * Supply onRefreshChange to show refresh interval inputs in quick select popover
    */
   onRefreshChange: PropTypes.func,
 

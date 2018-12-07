@@ -1,7 +1,7 @@
 
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
-import { timeUnits } from './time_units';
+import { timeUnits, timeUnitsPlural } from './time_units';
 import { getDateMode, DATE_MODES } from './date_modes';
 import { parseRelativeParts } from './relative_utils';
 
@@ -16,7 +16,9 @@ function cantLookup(timeFrom, timeTo, dateFormat) {
 function isRelativeToNow(timeFrom, timeTo) {
   const fromDateMode = getDateMode(timeFrom);
   const toDateMode = getDateMode(timeTo);
-  return fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
+  const isLast = fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
+  const isNext = fromDateMode === DATE_MODES.NOW && toDateMode === DATE_MODES.RELATIVE;
+  return isLast || isNext;
 }
 
 export function formatTimeString(timeString, dateFormat, roundUp = false) {
@@ -46,15 +48,20 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
   }
 
   if (isRelativeToNow(timeFrom, timeTo)) {
-    const relativeParts = parseRelativeParts(timeFrom);
-    let countTimeUnit = timeUnits[relativeParts.unit.substring(0, 1)];
-    if (relativeParts.count > 1) {
-      countTimeUnit += 's';
+    let timeTense;
+    let relativeParts;
+    if (getDateMode(timeTo) === DATE_MODES.NOW) {
+      timeTense = 'Last';
+      relativeParts = parseRelativeParts(timeFrom);
+    } else {
+      timeTense = 'Next';
+      relativeParts = parseRelativeParts(timeTo);
     }
-    let text = `Last ${relativeParts.count} ${countTimeUnit}`;
+    const countTimeUnit = relativeParts.unit.substring(0, 1);
+    const countTimeUnitFullName = relativeParts.count > 1 ? timeUnitsPlural[countTimeUnit] : timeUnits[countTimeUnit];
+    let text = `${timeTense} ${relativeParts.count} ${countTimeUnitFullName}`;
     if (relativeParts.round) {
-      const roundTimeUnit = timeUnits[relativeParts.roundUnit] ? timeUnits[relativeParts.roundUnit] : relativeParts.roundUnit;
-      text += ` rounded to the ${roundTimeUnit}`;
+      text += ` rounded to the ${timeUnits[relativeParts.roundUnit]}`;
     }
     return text;
   }

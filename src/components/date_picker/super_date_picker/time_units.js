@@ -8,3 +8,13 @@ export const timeUnits = {
   M: 'month',
   y: 'year'
 };
+
+export const timeUnitsPlural = {
+  s: 'seconds',
+  m: 'minutes',
+  h: 'hours',
+  d: 'days',
+  w: 'weeks',
+  M: 'months',
+  y: 'years'
+};
