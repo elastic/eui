@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.5.0`.
+**Bug fixes**
+
+- Fixed TypeScript definitions in `eui.d.ts` ([#1359](https://github.com/elastic/eui/pull/1359))
 
 ## [`5.5.0`](https://github.com/elastic/eui/tree/v5.5.0)
+
+**Note: this release broke the exported TypeScript definitions. This is fixed in `5.5.1`.**
 
 - Altered functionality of `truncate` on `EuiBreadcrumbs` and added `truncate` ability on breadcrumb item ([#1346](https://github.com/elastic/eui/pull/1346))
 - Altered `EuiHeader`'s location of `EuiHeaderBreadcrumbs` based on the new `truncate` ability ([#1346](https://github.com/elastic/eui/pull/1346))
