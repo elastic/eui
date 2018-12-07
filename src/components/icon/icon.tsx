@@ -553,7 +553,9 @@ export const TYPES = Object.keys(typeToIconMap);
 
 export type IconType = keyof typeof typeToIconMap;
 
-const colorToClassMap: { [color: string]: string | null } = {
+interface ColorToClassMap { [color: string]: string | null; }
+
+const colorToClassMap: ColorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
@@ -611,6 +613,8 @@ export const EuiIcon: SFC<Props> = ({
     } else {
       optionalCustomStyles = { fill: color };
     }
+  } else {
+    optionalCustomStyles = { fill: undefined };
   }
 
   // These icons are a little special and get some extra CSS flexibility
@@ -634,7 +638,7 @@ export const EuiIcon: SFC<Props> = ({
   //     which is how SVGs behave in Chrome, Safari, and FF.
   //   - If tab index is -1, then the consumer wants the icon to not be focusable.
   //   - For all other values, the consumer wants the icon to be focusable.
-  const focusable = (!tabIndex || tabIndex === -1) ? 'false' : 'true';
+  const focusable = (tabIndex == null || tabIndex === -1) ? 'false' : 'true';
 
   return (
     <Svg
@@ -656,3 +660,7 @@ function checkValidColor(color: string, type: string) {
     );
   }
 }
+
+EuiIcon.defaultProps = {
+  size: 'm',
+};

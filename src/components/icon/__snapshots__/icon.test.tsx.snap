@@ -252,10 +252,10 @@ exports[`EuiIcon props title defaults to a humanized version of the type 1`] = `
 
 exports[`EuiIcon props title is rendered 1`] = `
 <svg
+  aria-label="a custom title"
   class="euiIcon euiIcon--medium"
   focusable="false"
   height="16"
-  title="a custom title"
   viewBox="0 0 16 16"
   width="16"
   xlink="http://www.w3.org/1999/xlink"
