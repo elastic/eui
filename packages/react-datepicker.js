@@ -1,24 +1,22 @@
-import { Component, cloneElement, createElement } from 'react';
-import React__default from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import FocusTrap from 'focus-trap-react';
-import { findDOMNode } from 'react-dom';
-import moment from 'moment';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var classnames = _interopDefault(require('classnames'));
+var FocusTrap = _interopDefault(require('focus-trap-react'));
+var reactDom = require('react-dom');
+var moment = _interopDefault(require('moment'));
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
 } : function (obj) {
   return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
 };
-
-
-
-
-
-
-
-
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -44,12 +42,6 @@ var createClass = function () {
   };
 }();
 
-
-
-
-
-
-
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -63,8 +55,6 @@ var _extends = Object.assign || function (target) {
 
   return target;
 };
-
-
 
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -81,16 +71,6 @@ var inherits = function (subClass, superClass) {
   });
   if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 };
-
-
-
-
-
-
-
-
-
-
 
 var possibleConstructorReturn = function (self, call) {
   if (!self) {
@@ -109,7 +89,7 @@ var ScreenReaderOnly = function ScreenReaderOnly(_ref) {
     className: classes
   });
 
-  return cloneElement(children, props);
+  return React.cloneElement(children, props);
 };
 
 ScreenReaderOnly.propTypes = {
@@ -663,12 +643,12 @@ function onClickOutsideHOC(WrappedComponent, config) {
         }
       }
 
-      this.componentNode = findDOMNode(this.getInstance());
+      this.componentNode = reactDom.findDOMNode(this.getInstance());
       this.enableOnClickOutside();
     };
 
     _proto.componentDidUpdate = function componentDidUpdate() {
-      this.componentNode = findDOMNode(this.getInstance());
+      this.componentNode = reactDom.findDOMNode(this.getInstance());
     };
     /**
      * Remove all document's event listeners for this component
@@ -701,11 +681,11 @@ function onClickOutsideHOC(WrappedComponent, config) {
 
       props.disableOnClickOutside = this.disableOnClickOutside;
       props.enableOnClickOutside = this.enableOnClickOutside;
-      return createElement(WrappedComponent, props);
+      return React.createElement(WrappedComponent, props);
     };
 
     return onClickOutside;
-  }(Component), _class.displayName = "OnClickOutside(" + (WrappedComponent.displayName || WrappedComponent.name || 'Component') + ")", _class.defaultProps = {
+  }(React.Component), _class.displayName = "OnClickOutside(" + (WrappedComponent.displayName || WrappedComponent.name || 'Component') + ")", _class.defaultProps = {
     eventTypes: ['mousedown', 'touchstart'],
     excludeScrollbar: config && config.excludeScrollbar || false,
     outsideClickIgnoreClass: IGNORE_CLASS_NAME,
@@ -819,8 +799,6 @@ function setYear(date, year) {
   return set$1(date, "year", year);
 }
 
-
-
 // ** Date Getters **
 
 function getSecond(date) {
@@ -857,8 +835,6 @@ function getDate(date) {
   return get$1(date, "date");
 }
 
-
-
 function getDayOfWeekCode(day) {
   return dayOfWeekCodes[day.isoWeekday()];
 }
@@ -879,12 +855,6 @@ function getStartOfMonth(date) {
 function getStartOfDate(date) {
   return getStartOf(date, "date");
 }
-
-// *** End of ***
-
-
-
-
 
 // ** Date Math **
 
@@ -969,29 +939,17 @@ function isSameDay(moment1, moment2) {
   }
 }
 
-
-
 function isDayInRange(day, startDate, endDate) {
   var before = startDate.clone().startOf("day").subtract(1, "seconds");
   var after = endDate.clone().startOf("day").add(1, "seconds");
   return day.clone().startOf("day").isBetween(before, after);
 }
 
-// *** Diffing ***
-
-
-
 // ** Date Localization **
 
 function localizeDate(date, locale) {
   return date.clone().locale(locale || moment.locale());
 }
-
-
-
-
-
-
 
 function getLocaleData(date) {
   return date.localeData();
@@ -3605,8 +3563,6 @@ Calendar.propTypes = {
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-
-
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
@@ -3628,7 +3584,6 @@ var _core = createCommonjsModule(function (module) {
 var core = module.exports = { version: '2.5.1' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 });
-
 var _core_1 = _core.version;
 
 var _aFunction = function (it) {
@@ -3975,20 +3930,21 @@ var _objectAssign = !$assign || _fails(function () {
 
 _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
-var assign$2 = _core.Object.assign;
+var assign = _core.Object.assign;
 
-var assign = createCommonjsModule(function (module) {
-module.exports = { "default": assign$2, __esModule: true };
+var assign$1 = createCommonjsModule(function (module) {
+module.exports = { "default": assign, __esModule: true };
 });
 
-unwrapExports(assign);
+unwrapExports(assign$1);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign);
+var _assign2 = _interopRequireDefault(assign$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4010,6 +3966,7 @@ exports.default = _assign2.default || function (target) {
 var _extends$2 = unwrapExports(_extends$1);
 
 var classCallCheck$1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 exports.default = function (instance, Constructor) {
@@ -4148,8 +4105,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -4174,8 +4129,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && !_has(IteratorPrototype, ITERATOR)) _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -4184,10 +4137,9 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
-  // Plug for library
   if (DEFAULT) {
     methods = {
       values: DEF_VALUES ? $default : getMethod(VALUES),
@@ -4257,7 +4209,6 @@ for (var i = 0; i < DOMIterables.length; i++) {
   var Collection = _global[NAME];
   var proto = Collection && Collection.prototype;
   if (proto && !proto[TO_STRING_TAG]) _hide(proto, TO_STRING_TAG, NAME);
-  
 }
 
 var f$3 = _wks;
@@ -4266,13 +4217,13 @@ var _wksExt = {
 	f: f$3
 };
 
-var iterator$2 = _wksExt.f('iterator');
+var iterator = _wksExt.f('iterator');
 
-var iterator = createCommonjsModule(function (module) {
-module.exports = { "default": iterator$2, __esModule: true };
+var iterator$1 = createCommonjsModule(function (module) {
+module.exports = { "default": iterator, __esModule: true };
 });
 
-unwrapExports(iterator);
+unwrapExports(iterator$1);
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -4329,7 +4280,6 @@ var meta = module.exports = {
   onFreeze: onFreeze
 };
 });
-
 var _meta_1 = _meta.KEY;
 var _meta_2 = _meta.NEED;
 var _meta_3 = _meta.fastKey;
@@ -4368,17 +4318,17 @@ var _isArray = Array.isArray || function isArray(arg) {
 
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
-var f$5 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
-	f: f$5
+	f: f$4
 };
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 
-var gOPN$1 = _objectGopn.f;
+var gOPN = _objectGopn.f;
 var toString$1 = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -4386,27 +4336,27 @@ var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNa
 
 var getWindowNames = function (it) {
   try {
-    return gOPN$1(it);
+    return gOPN(it);
   } catch (e) {
     return windowNames.slice();
   }
 };
 
-var f$4 = function getOwnPropertyNames(it) {
-  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN$1(_toIobject(it));
+var f$5 = function getOwnPropertyNames(it) {
+  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
 };
 
 var _objectGopnExt = {
-	f: f$4
+	f: f$5
 };
 
-var gOPD$1 = Object.getOwnPropertyDescriptor;
+var gOPD = Object.getOwnPropertyDescriptor;
 
-var f$6 = _descriptors ? gOPD$1 : function getOwnPropertyDescriptor(O, P) {
+var f$6 = _descriptors ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = _toIobject(O);
   P = _toPrimitive(P, true);
   if (_ie8DomDefine) try {
-    return gOPD$1(O, P);
+    return gOPD(O, P);
   } catch (e) { /* empty */ }
   if (_has(O, P)) return _propertyDesc(!_objectPie.f.call(O, P), O[P]);
 };
@@ -4440,9 +4390,9 @@ var META = _meta.KEY;
 
 
 
-var gOPD = _objectGopd.f;
+var gOPD$1 = _objectGopd.f;
 var dP$1 = _objectDp.f;
-var gOPN = _objectGopnExt.f;
+var gOPN$1 = _objectGopnExt.f;
 var $Symbol = _global.Symbol;
 var $JSON = _global.JSON;
 var _stringify = $JSON && $JSON.stringify;
@@ -4465,7 +4415,7 @@ var setSymbolDesc = _descriptors && _fails(function () {
     get: function () { return dP$1(this, 'a', { value: 7 }).a; }
   })).a != 7;
 }) ? function (it, key, D) {
-  var protoDesc = gOPD(ObjectProto$1, key);
+  var protoDesc = gOPD$1(ObjectProto$1, key);
   if (protoDesc) delete ObjectProto$1[key];
   dP$1(it, key, D);
   if (protoDesc && it !== ObjectProto$1) dP$1(ObjectProto$1, key, protoDesc);
@@ -4519,12 +4469,12 @@ var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
   it = _toIobject(it);
   key = _toPrimitive(key, true);
   if (it === ObjectProto$1 && _has(AllSymbols, key) && !_has(OPSymbols, key)) return;
-  var D = gOPD(it, key);
+  var D = gOPD$1(it, key);
   if (D && _has(AllSymbols, key) && !(_has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
   return D;
 };
 var $getOwnPropertyNames = function getOwnPropertyNames(it) {
-  var names = gOPN(_toIobject(it));
+  var names = gOPN$1(_toIobject(it));
   var result = [];
   var i = 0;
   var key;
@@ -4534,7 +4484,7 @@ var $getOwnPropertyNames = function getOwnPropertyNames(it) {
 };
 var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
   var IS_OP = it === ObjectProto$1;
-  var names = gOPN(IS_OP ? OPSymbols : _toIobject(it));
+  var names = gOPN$1(IS_OP ? OPSymbols : _toIobject(it));
   var result = [];
   var i = 0;
   var key;
@@ -4653,24 +4603,25 @@ _wksDefine('asyncIterator');
 
 _wksDefine('observable');
 
-var symbol$2 = _core.Symbol;
+var symbol = _core.Symbol;
 
-var symbol = createCommonjsModule(function (module) {
-module.exports = { "default": symbol$2, __esModule: true };
+var symbol$1 = createCommonjsModule(function (module) {
+module.exports = { "default": symbol, __esModule: true };
 });
 
-unwrapExports(symbol);
+unwrapExports(symbol$1);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator);
+var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol);
+var _symbol2 = _interopRequireDefault(symbol$1);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -4686,6 +4637,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 unwrapExports(_typeof_1);
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
@@ -4699,7 +4651,7 @@ exports.default = function (self, call) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  return call && ((typeof call === "undefined" ? "undefined" : (_typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
+  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
 };
 });
 
@@ -4735,38 +4687,39 @@ var _setProto = {
 
 _export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
-var setPrototypeOf$2 = _core.Object.setPrototypeOf;
+var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf = createCommonjsModule(function (module) {
-module.exports = { "default": setPrototypeOf$2, __esModule: true };
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-unwrapExports(setPrototypeOf);
+unwrapExports(setPrototypeOf$1);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
 
 var $Object = _core.Object;
-var create$2 = function create(P, D) {
+var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create = createCommonjsModule(function (module) {
-module.exports = { "default": create$2, __esModule: true };
+var create$1 = createCommonjsModule(function (module) {
+module.exports = { "default": create, __esModule: true };
 });
 
-unwrapExports(create);
+unwrapExports(create$1);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create);
+var _create2 = _interopRequireDefault(create$1);
 
 
 
@@ -4776,10 +4729,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (_typeof3.default)(superClass)));
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
   }
 
-  subClass.prototype = (_create2.default)(superClass && superClass.prototype, {
+  subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
     constructor: {
       value: subClass,
       enumerable: false,
@@ -4787,7 +4740,7 @@ exports.default = function (subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf2.default ? (_setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
+  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
 });
 
@@ -6256,10 +6209,10 @@ function getOppositeVariation(variation) {
  * @method placements
  * @memberof Popper
  */
-var placements$1 = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
 
 // Get rid of `auto` `auto-start` and `auto-end`
-var validPlacements = placements$1.slice(3);
+var validPlacements = placements.slice(3);
 
 /**
  * Given an initial placement, returns all the subsequent placements
@@ -7149,7 +7102,7 @@ var Defaults = {
 
 // Utils
 // Methods
-var Popper$1 = function () {
+var Popper = function () {
   /**
    * Create a new Popper.js instance
    * @class Popper
@@ -7298,9 +7251,9 @@ var Popper$1 = function () {
  */
 
 
-Popper$1.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
-Popper$1.placements = placements$1;
-Popper$1.Defaults = Defaults;
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
 
 var key = '__global_unique_id__';
 
@@ -7395,6 +7348,7 @@ if (process.env.NODE_ENV !== 'production') {
 var warning_1 = warning;
 
 var implementation = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
@@ -7463,7 +7417,7 @@ function onlyChild(children) {
 function createReactContext(defaultValue, calculateChangedBits) {
   var _Provider$childContex, _Consumer$contextType;
 
-  var contextProp = '__create-react-context-' + (_gud2.default)() + '__';
+  var contextProp = '__create-react-context-' + (0, _gud2.default)() + '__';
 
   var Provider = function (_Component) {
     _inherits(Provider, _Component);
@@ -7497,7 +7451,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
         } else {
           changedBits = typeof calculateChangedBits === 'function' ? calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
           if (process.env.NODE_ENV !== 'production') {
-            (_warning2.default)((changedBits & MAX_SIGNED_31_BIT_INT) === changedBits, 'calculateChangedBits: Expected the return value to be a ' + '31-bit integer. Instead received: %s', changedBits);
+            (0, _warning2.default)((changedBits & MAX_SIGNED_31_BIT_INT) === changedBits, 'calculateChangedBits: Expected the return value to be a ' + '31-bit integer. Instead received: %s', changedBits);
           }
 
           changedBits |= 0;
@@ -7594,6 +7548,7 @@ module.exports = exports['default'];
 unwrapExports(implementation);
 
 var lib = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
@@ -7641,7 +7596,7 @@ var Manager = function (_React$Component) {
   }
 
   Manager.prototype.render = function render() {
-    return createElement(
+    return React.createElement(
       ManagerContext.Provider,
       { value: this.state.context },
       this.props.children
@@ -7649,7 +7604,7 @@ var Manager = function (_React$Component) {
   };
 
   return Manager;
-}(Component);
+}(React.Component);
 
 /**
  * Takes an argument and if it's an array, returns the first item in the array,
@@ -7758,7 +7713,7 @@ var InnerPopper = function (_React$Component) {
 
       if (!referenceElement || !popperNode) return;
 
-      _this.popperInstance = new Popper$1(referenceElement, popperNode, _this.getOptions());
+      _this.popperInstance = new Popper(referenceElement, popperNode, _this.getOptions());
     }, _this.scheduleUpdate = function () {
       if (_this.popperInstance) {
         _this.popperInstance.scheduleUpdate();
@@ -7801,7 +7756,7 @@ var InnerPopper = function (_React$Component) {
   };
 
   return InnerPopper;
-}(Component);
+}(React.Component);
 
 InnerPopper.defaultProps = {
   placement: 'bottom',
@@ -7809,13 +7764,14 @@ InnerPopper.defaultProps = {
   referenceElement: undefined,
   positionFixed: false
 };
-function Popper(props) {
-  return createElement(
+
+function Popper$1(props) {
+  return React.createElement(
     ManagerContext.Consumer,
     null,
     function (_ref) {
       var referenceNode = _ref.referenceNode;
-      return createElement(InnerPopper, _extends$2({ referenceElement: referenceNode }, props));
+      return React.createElement(InnerPopper, _extends$2({ referenceElement: referenceNode }, props));
     }
   );
 }
@@ -7879,7 +7835,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$2 = warning$1;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits(InnerReference, _React$Component);
@@ -7900,26 +7856,23 @@ var InnerReference = function (_React$Component) {
   }
 
   InnerReference.prototype.render = function render() {
-    warning_1$2(this.props.getReferenceRef, '`Reference` should not be used outside of a `Manager` component.');
+    warning_1$1(this.props.getReferenceRef, '`Reference` should not be used outside of a `Manager` component.');
     return unwrapArray(this.props.children)({ ref: this.refHandler });
   };
 
   return InnerReference;
-}(Component);
+}(React.Component);
 
 function Reference(props) {
-  return createElement(
+  return React.createElement(
     ManagerContext.Consumer,
     null,
     function (_ref) {
       var getReferenceRef = _ref.getReferenceRef;
-      return createElement(InnerReference, _extends$2({ getReferenceRef: getReferenceRef }, props));
+      return React.createElement(InnerReference, _extends$2({ getReferenceRef: getReferenceRef }, props));
     }
   );
 }
-
-// Public components
-
 
 // Public types
 
@@ -7949,7 +7902,7 @@ var PopperComponent = function (_React$Component) {
     if (!hidePopper) {
       var classes = classnames("react-datepicker-popper", className);
       popper = React__default.createElement(
-        Popper,
+        Popper$1,
         _extends({
           modifiers: popperModifiers,
           placement: popperPlacement
@@ -8069,7 +8022,7 @@ var DatePicker = function (_React$Component) {
         onKeyDown: function onKeyDown() {},
         onInputClick: function onInputClick() {},
         onSelect: function onSelect() {},
-        onClickOutside: function onClickOutside$$1() {},
+        onClickOutside: function onClickOutside() {},
         onMonthChange: function onMonthChange() {},
 
         preventOpenOnFocus: false,
@@ -8731,8 +8684,10 @@ DatePicker.propTypes = {
   accessibleMode: PropTypes.bool,
   accessibleModeButton: PropTypes.element
 };
+
+
 var PRESELECT_CHANGE_VIA_INPUT = "input";
 var PRESELECT_CHANGE_VIA_NAVIGATE = "navigate";
 
-export { CalendarContainer };
-export default DatePicker;
+exports.default = DatePicker;
+exports.CalendarContainer = CalendarContainer;
