@@ -214,6 +214,9 @@ EuiSuperDatePicker.propTypes = {
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
   to: PropTypes.string,
+  /**
+   * Callback for when the time changes. Called with { from, to }
+   */
   onTimeChange: PropTypes.func.isRequired,
   isPaused: PropTypes.bool,
   /**
@@ -221,6 +224,7 @@ EuiSuperDatePicker.propTypes = {
    */
   refreshInterval: PropTypes.number,
   /**
+   * Callback for when the time changes. Called with { isPaused, refreshInterval }
    * Supply onRefreshChange to show refresh interval form in quick select popover
    */
   onRefreshChange: PropTypes.func,

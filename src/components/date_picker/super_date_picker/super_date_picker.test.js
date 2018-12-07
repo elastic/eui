@@ -5,7 +5,7 @@ import {
   EuiSuperDatePicker,
 } from './super_date_picker';
 
-const noop = () => {}
+const noop = () => {};
 
 describe('EuiSuperDatePicker', () => {
   test('is rendered', () => {
