@@ -4,6 +4,8 @@ import { requiredProps } from '../../test/required_props';
 
 import {
   EuiIcon,
+  IconSize,
+  IconType,
   SIZES,
   TYPES,
 } from './icon';
@@ -29,7 +31,7 @@ describe('EuiIcon', () => {
 
       test('is rendered', () => {
         const component = render(
-          <EuiIcon type="search" title="a custom title" />
+          <EuiIcon type="search" aria-label="a custom title" />
         );
 
         expect(component).toMatchSnapshot();
@@ -37,7 +39,7 @@ describe('EuiIcon', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach(size => {
+      (SIZES as IconSize[]).forEach(size => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiIcon type="search" size={size} />
@@ -49,7 +51,7 @@ describe('EuiIcon', () => {
     });
 
     describe('type', () => {
-      TYPES.forEach(type => {
+      (TYPES as IconType[]).forEach(type => {
         test(`${type} is rendered`, () => {
           const component = render(
             <EuiIcon type={type} />
@@ -67,12 +69,12 @@ describe('EuiIcon', () => {
       });
 
       test('renders focusable="false" when -1', () => {
-        const component = render(<EuiIcon type="search" tabIndex="-1" />);
+        const component = render(<EuiIcon type="search" tabIndex={-1} />);
         expect(component).toMatchSnapshot();
       });
 
       test('renders focusable="true" when 0', () => {
-        const component = render(<EuiIcon type="search" tabIndex="0" />);
+        const component = render(<EuiIcon type="search" tabIndex={0} />);
         expect(component).toMatchSnapshot();
       });
     });

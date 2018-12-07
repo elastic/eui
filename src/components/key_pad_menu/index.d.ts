@@ -1,4 +1,5 @@
 import { CommonProps } from '../common';
+import { IconType } from '../icon';
 
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, SFC } from 'react';
 
