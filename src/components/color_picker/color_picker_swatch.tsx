@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { EuiColorPickerEmptySwatch } from './color_picker_empty_swatch';
 
 export interface EuiColorPickerSwatchProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string;
   color?: string;
 }
 

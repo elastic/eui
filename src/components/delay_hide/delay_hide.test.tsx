@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import { EuiDelayHide } from './index';
 
 describe('when EuiDelayHide is visible initially', () => {
-  // let wrapper = ((null as any) as ReactWrapper);
   function getWrapper() {
     jest.useFakeTimers();
     return mount(
