@@ -8,4 +8,4 @@ export {
 
 export {
   EuiSuperDatePicker,
-} from './super_date_picker/super_date_picker';
+} from './super_date_picker';

@@ -5,8 +5,8 @@ import React from 'react';
 import { EuiTabbedContent } from '../../../tabs';
 import { EuiText } from '../../../text';
 
-import { AbsoluteTab } from './absolute_tab';
-import { RelativeTab } from './relative_tab';
+import { EuiAbsoluteTab } from './absolute_tab';
+import { EuiRelativeTab } from './relative_tab';
 
 import {
   getDateMode,
@@ -15,7 +15,7 @@ import {
   toRelativeString,
 } from '../date_modes';
 
-export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
+export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) {
 
   const onTabClick = (selectedTab) => {
     switch(selectedTab.id) {
@@ -37,7 +37,7 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
         id: DATE_MODES.ABSOLUTE,
         name: 'Absolute',
         content: (
-          <AbsoluteTab
+          <EuiAbsoluteTab
             dateFormat={dateFormat}
             value={value}
             onChange={onChange}
@@ -50,7 +50,7 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
         id: DATE_MODES.RELATIVE,
         name: 'Relative',
         content: (
-          <RelativeTab
+          <EuiRelativeTab
             dateFormat={dateFormat}
             value={value}
             onChange={onChange}
@@ -85,13 +85,13 @@ export function DatePopoverContent({ value, roundUp, onChange, dateFormat }) {
   );
 }
 
-DatePopoverContent.propTypes = {
+EuiDatePopoverContent.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
   dateFormat: PropTypes.string.isRequired,
 };
 
-DatePopoverContent.defaultProps = {
+EuiDatePopoverContent.defaultProps = {
   roundUp: false,
 };

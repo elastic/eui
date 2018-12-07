@@ -10,7 +10,7 @@ import { EuiLink } from '../../../link';
 import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
-export function CommonlyUsed({ applyTime, commonlyUsedRanges }) {
+export function EuiCommonlyUsed({ applyTime, commonlyUsedRanges }) {
   const links = commonlyUsedRanges.map(({ from, to, label }) => {
     const applyCommonlyUsed = () => {
       applyTime({ from, to });
@@ -41,7 +41,7 @@ export function CommonlyUsed({ applyTime, commonlyUsedRanges }) {
   );
 }
 
-CommonlyUsed.propTypes = {
+EuiCommonlyUsed.propTypes = {
   applyTime: PropTypes.func.isRequired,
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
 };

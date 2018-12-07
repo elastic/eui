@@ -15,12 +15,12 @@ import {
   EuiPopover,
 } from '../../../popover';
 
-import { QuickSelect } from './quick_select';
-import { CommonlyUsed } from './commonly_used';
-import { RecentlyUsed } from './recently_used';
-import { RefreshInterval } from './refresh_interval';
+import { EuiQuickSelect } from './quick_select';
+import { EuiCommonlyUsed } from './commonly_used';
+import { EuiRecentlyUsed } from './recently_used';
+import { EuiRefreshInterval } from './refresh_interval';
 
-export class QuickSelectPopover extends Component {
+export class EuiQuickSelectPopover extends Component {
 
   state = {
     isOpen: false,
@@ -73,22 +73,22 @@ export class QuickSelectPopover extends Component {
           style={{ width: 400, maxWidth: '100%' }}
           data-test-subj="superDatePickerQuickMenu"
         >
-          <QuickSelect
+          <EuiQuickSelect
             applyTime={this.applyTime}
             from={this.props.from}
             to={this.props.to}
           />
-          <CommonlyUsed
+          <EuiCommonlyUsed
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
           />
-          <RecentlyUsed
+          <EuiRecentlyUsed
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
             dateFormat={this.props.dateFormat}
             recentlyUsedRanges={this.props.recentlyUsedRanges}
           />
-          <RefreshInterval
+          <EuiRefreshInterval
             applyRefreshInterval={this.props.applyRefreshInterval}
             isPaused={this.props.isPaused}
             refreshInterval={this.props.refreshInterval}
@@ -99,7 +99,7 @@ export class QuickSelectPopover extends Component {
   }
 }
 
-QuickSelectPopover.propTypes = {
+EuiQuickSelectPopover.propTypes = {
   applyTime: PropTypes.func.isRequired,
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,

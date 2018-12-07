@@ -6,8 +6,8 @@ import { prettyDuration, showPrettyDuration } from './pretty_duration';
 
 import dateMath from '@elastic/datemath';
 
-import { QuickSelectPopover } from './quick_select_popover/quick_select_popover';
-import { DatePopoverButton } from './date_popover/date_popover_button';
+import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
+import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
@@ -121,7 +121,7 @@ export class EuiSuperDatePicker extends Component {
         iconType={false}
         isCustom
         startDateControl={
-          <DatePopoverButton
+          <EuiDatePopoverButton
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
@@ -131,7 +131,7 @@ export class EuiSuperDatePicker extends Component {
           />
         }
         endDateControl={
-          <DatePopoverButton
+          <EuiDatePopoverButton
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
@@ -164,7 +164,7 @@ export class EuiSuperDatePicker extends Component {
 
   render() {
     const quickSelect = (
-      <QuickSelectPopover
+      <EuiQuickSelectPopover
         applyTime={this.applyQuickTime}
         from={this.props.from}
         to={this.props.to}

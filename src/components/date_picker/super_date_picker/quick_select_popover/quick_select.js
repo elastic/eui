@@ -25,7 +25,7 @@ const timeUnitsOptions = Object.keys(timeUnits).map(key => {
   return { value: key, text: `${timeUnits[key]}s` };
 });
 
-export class QuickSelect extends Component {
+export class EuiQuickSelect extends Component {
   state = {
     timeTense: LAST,
     timeValue: 15,
@@ -173,7 +173,7 @@ export class QuickSelect extends Component {
   }
 }
 
-QuickSelect.propTypes = {
+EuiQuickSelect.propTypes = {
   applyTime: PropTypes.func.isRequired,
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,

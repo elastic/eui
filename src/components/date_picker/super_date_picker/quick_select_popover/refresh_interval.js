@@ -33,7 +33,7 @@ function convertMilliseconds(milliseconds) {
   };
 }
 
-export class RefreshInterval extends Component {
+export class EuiRefreshInterval extends Component {
   constructor(props) {
     super(props);
 
@@ -137,7 +137,7 @@ export class RefreshInterval extends Component {
   }
 }
 
-RefreshInterval.propTypes = {
+EuiRefreshInterval.propTypes = {
   applyRefreshInterval: PropTypes.func,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,

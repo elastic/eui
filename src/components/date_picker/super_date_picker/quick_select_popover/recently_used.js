@@ -11,7 +11,7 @@ import { EuiLink } from '../../../link';
 import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
-export function RecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recentlyUsedRanges }) {
+export function EuiRecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recentlyUsedRanges }) {
   if (recentlyUsedRanges.length === 0) {
     return null;
   }
@@ -43,13 +43,13 @@ export function RecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recent
   );
 }
 
-RecentlyUsed.propTypes = {
+EuiRecentlyUsed.propTypes = {
   applyTime: PropTypes.func.isRequired,
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
 };
 
-RecentlyUsed.defaultProps = {
+EuiRecentlyUsed.defaultProps = {
   recentlyUsedRanges: []
 };

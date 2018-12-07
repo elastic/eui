@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { EuiPopover } from '../../../popover';
 
 import { formatTimeString } from '../pretty_duration';
-import { DatePopoverContent } from './date_popover_content';
+import { EuiDatePopoverContent } from './date_popover_content';
 
-export class DatePopoverButton extends Component {
+export class EuiDatePopoverButton extends Component {
   static propTypes = {
     position: PropTypes.oneOf(['start', 'end']),
     isInvalid: PropTypes.bool,
@@ -87,7 +87,7 @@ export class DatePopoverButton extends Component {
         ownFocus
         {...rest}
       >
-        <DatePopoverContent
+        <EuiDatePopoverContent
           value={value}
           roundUp={roundUp}
           onChange={onChange}

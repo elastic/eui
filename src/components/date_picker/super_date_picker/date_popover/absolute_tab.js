@@ -18,7 +18,7 @@ const toMoment = (value, roundUp) => {
   };
 };
 
-export class AbsoluteTab extends Component {
+export class EuiAbsoluteTab extends Component {
 
   constructor(props) {
     super(props);
@@ -79,7 +79,7 @@ export class AbsoluteTab extends Component {
   }
 }
 
-AbsoluteTab.propTypes = {
+EuiAbsoluteTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
