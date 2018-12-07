@@ -85,6 +85,15 @@
   font-weight: $euiFontWeightLight; // always apply light weight to x-large type
 }
 
+// Overflow-wrap for breaking on word
+// Does not work on `display: flex` items
+@mixin euiTextOverflowWrap  {
+  @include internetExplorerOnly {
+    word-break: break-all;
+  }
+  overflow-wrap: break-word;
+}
+
 // Text truncation
 //
 // Prevent text from wrapping onto multiple lines, and truncate with an

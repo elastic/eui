@@ -44,7 +44,7 @@ export const section = {
         Important to note are how you need to set individual props like
         the <EuiCode>truncateText</EuiCode> prop to cells to enforce a single-line behavior
         and truncate their contents, or set the <EuiCode>textOnly</EuiCode> prop
-        to <EuiCode>false</EuiCode> if they contain overflowing content like popovers.
+        to <EuiCode>false</EuiCode> if you need the contents to be a direct descendent of the cell.
       </p>
       <h3>
         Responsive extras
