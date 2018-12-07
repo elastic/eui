@@ -60,7 +60,7 @@
     "react-test-renderer": "^16.2.0",
     "react-transform-hmr": "^1.0.4",
     "rimraf": "^2.6.2",
-    "rollup": "^0.51.3",
+    "rollup": "^0.62.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
@@ -112,7 +112,7 @@
     "css:modules:dev":
       "mkdir -p lib && node-sass --output-style expanded src/stylesheets/datepicker-cssmodules.scss > lib/react-datepicker-cssmodules.css",
     "build:es":
-      "cross-env BABEL_ENV=es rollup -c -i src/index.jsx -o ../react-datepicker.js",
+      "cross-env BABEL_ENV=cjs rollup -c -i src/index.jsx -o ../react-datepicker.js",
     "build:docs":
       "cross-env MODULES=false webpack --config webpack.docs.config.js"
   },

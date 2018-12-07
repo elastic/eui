@@ -1,3 +1,5 @@
-import ReactDatePicker from './react-datepicker';
+var ReactDatePicker = require('./react-datepicker').default;
 
-export { ReactDatePicker };
+module.exports = {
+  ReactDatePicker: ReactDatePicker
+};
