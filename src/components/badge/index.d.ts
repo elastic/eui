@@ -34,16 +34,4 @@ declare module '@elastic/eui' {
   export const EuiBetaBadge: SFC<
     CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps
   >;
-
-  export interface EuiNotificationBadgeProps {
-    iconType?: IconType;
-    label: ReactNode;
-    tooltipContent?: ReactNode;
-    tooltipPosition?: ToolTipPositions;
-    title?: string;
-  }
-
-  export const EuiNotificationBadge: SFC<
-    CommonProps & HTMLAttributes<HTMLSpanElement>
-  >;
 }
