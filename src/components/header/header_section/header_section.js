@@ -9,14 +9,19 @@ const sideToClassNameMap = {
 
 const SIDES = Object.keys(sideToClassNameMap);
 
-export const EuiHeaderSection = ({ side, children, className, ...rest }) => {
-  const classes = classNames('euiHeaderSection', sideToClassNameMap[side], className);
+export const EuiHeaderSection = ({ side, children, className, grow, ...rest }) => {
+  const classes = classNames(
+    'euiHeaderSection',
+    {
+      'euiHeaderSection--grow': grow,
+      'euiHeaderSection--dontGrow': !grow,
+    },
+    sideToClassNameMap[side],
+    className
+  );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );
@@ -24,8 +29,10 @@ export const EuiHeaderSection = ({ side, children, className, ...rest }) => {
 
 EuiHeaderSection.propTypes = {
   side: PropTypes.oneOf(SIDES),
+  grow: PropTypes.bool,
 };
 
 EuiHeaderSection.defaultProps = {
   side: 'left',
+  grow: false,
 };

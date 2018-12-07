@@ -27,6 +27,26 @@ describe('EuiHeaderSection', () => {
       .toMatchSnapshot();
   });
 
+  describe('grow', () => {
+    test('defaults to false', () => {
+      const component = render(
+        <EuiHeaderSection />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('renders true', () => {
+      const component = render(
+        <EuiHeaderSection grow />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+  });
+
   describe('side', () => {
     test('defaults to left', () => {
       const component = render(

@@ -181,7 +181,7 @@ export const DatePickerExample = {
     ),
     demo: <MinMax />,
   }, {
-    title: 'Open to a sepecifc date',
+    title: 'Open to a specific date',
     source: [{
       type: GuideSectionTypes.JS,
       code: openToDateSource,

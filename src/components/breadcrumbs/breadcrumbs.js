@@ -32,10 +32,7 @@ const limitBreadcrumbs = (breadcrumbs, max) => {
     breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
   }
 
-  return [
-    ...breadcrumbsAtStart,
-    ...breadcrumbsAtEnd,
-  ];
+  return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
 };
 
 const EuiBreadcrumbCollapsed = () => (
@@ -47,19 +44,13 @@ const EuiBreadcrumbCollapsed = () => (
 
 const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
-export const EuiBreadcrumbs = ({
-  breadcrumbs,
-  className,
-  responsive,
-  truncate,
-  max,
-  ...rest,
-}) => {
+export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, max, ...rest }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
       href,
       onClick,
+      truncate,
       className: breadcrumbClassName,
       ...breadcrumbRest
     } = breadcrumb;
@@ -68,6 +59,7 @@ export const EuiBreadcrumbs = ({
 
     const breadcrumbClasses = classNames('euiBreadcrumb', breadcrumbClassName, {
       'euiBreadcrumb--last': isLastBreadcrumb,
+      'euiBreadcrumb--truncate': truncate,
     });
 
     let link;
@@ -76,11 +68,11 @@ export const EuiBreadcrumbs = ({
       link = (
         <span
           className={breadcrumbClasses}
-          title={truncate ? text : undefined}
+          title={text}
           aria-current="page"
           {...breadcrumbRest}
         >
-          { text }
+          {text}
         </span>
       );
     } else {
@@ -90,7 +82,7 @@ export const EuiBreadcrumbs = ({
           href={href}
           onClick={onClick}
           className={breadcrumbClasses}
-          title={truncate ? text : undefined}
+          title={text}
           {...breadcrumbRest}
         >
           {text}
@@ -128,14 +120,39 @@ export const EuiBreadcrumbs = ({
 
 EuiBreadcrumbs.propTypes = {
   className: PropTypes.string,
+
+  /**
+   * Hides left most breadcrumbs as window gets smaller
+   */
   responsive: PropTypes.bool,
+
+  /**
+   * Forces all breadcrumbs to single line and
+   * truncates each breadcrumb to a particular width,
+   * except for the last item
+   */
   truncate: PropTypes.bool,
+
+  /**
+   * Condenses the inner items past the maximum set here
+   * into a single ellipses item
+   */
   max: PropTypes.number,
-  breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.node.isRequired,
-    href: PropTypes.string,
-    onClick: PropTypes.func,
-  })).isRequired,
+
+  /**
+   * The array of individual breadcrumbs, takes the following props.
+   * `text` (node) (required): visible label of the breadcrumb,
+   * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
+   * `truncate` (bool): Force a max-width on the breadcrumb text
+   */
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.node.isRequired,
+      href: PropTypes.string,
+      onClick: PropTypes.func,
+      truncate: PropTypes.bool,
+    })
+  ).isRequired,
 };
 
 EuiBreadcrumbs.defaultProps = {
