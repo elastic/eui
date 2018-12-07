@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
-
 import { EuiColorPickerEmptySwatch } from './color_picker_empty_swatch';
 
-export const EuiColorPickerSwatch = ({
+export interface EuiColorPickerSwatchProps extends HTMLAttributes<HTMLDivElement> {
+  color?: string;
+}
+
+export const EuiColorPickerSwatch: SFC<EuiColorPickerSwatchProps> = ({
   color,
   className,
   ...rest
@@ -29,9 +31,4 @@ export const EuiColorPickerSwatch = ({
       {children}
     </div>
   );
-};
-
-EuiColorPickerSwatch.propTypes = {
-  className: PropTypes.string,
-  color: PropTypes.string,
 };

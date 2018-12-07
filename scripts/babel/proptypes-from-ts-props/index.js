@@ -5,6 +5,18 @@ const path = require('path');
 const babelTemplate = require('babel-template');
 const babelCore = require('@babel/core');
 
+// react-docgen does not understand typescript annotations
+function stripTypeScript(filename, ast) {
+  return babelCore.transform(
+    babelCore.transformFromAst(ast).code,
+    {
+      filename: filename,
+      babelrc: false,
+      presets: ['@babel/typescript']
+    }
+  ).code;
+}
+
 /**
  * Converts an Array<X> type to PropTypes.arrayOf(X)
  * @param node
@@ -904,7 +916,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = babelCore.transformFromAst(this.file.ast).code;
+            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
           }
         }
       },
@@ -926,33 +938,35 @@ module.exports = function propTypesFromTypeScript({ types }) {
         if (idTypeAnnotation) {
           let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
-            const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
+          if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
+            if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
+              const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
 
-            if (left.name === 'React') {
-              if (right.name === 'SFC') {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                fileCodeNeedsUpdating = true;
-              } else {
-                throw new Error(`Cannot process annotation id React.${right.name}`);
+              if (left.name === 'React') {
+                if (right.name === 'SFC') {
+                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                  fileCodeNeedsUpdating = true;
+                } else {
+                  throw new Error(`Cannot process annotation id React.${right.name}`);
+                }
               }
-            }
-          } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
-            if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
-              if (state.get('importsFromReact').has('SFC')) {
-                processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                fileCodeNeedsUpdating = true;
+            } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
+              if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
+                if (state.get('importsFromReact').has('SFC')) {
+                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                  fileCodeNeedsUpdating = true;
+                }
               }
+            } else {
+              throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
             }
-          } else {
-            throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
           }
 
           if (fileCodeNeedsUpdating) {
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = babelCore.transformFromAst(this.file.ast).code;
+            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
           }
         }
       },
