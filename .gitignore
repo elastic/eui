@@ -5,6 +5,7 @@ test/spec/screenshots/diff/**/*.png
 test/spec/screenshots/screen/**/*.png
 test/failure-screenshots/**/*.png
 
+coverage/
 reports/
 tmp/
 dist/

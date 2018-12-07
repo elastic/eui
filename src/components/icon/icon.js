@@ -40,6 +40,7 @@ import createPopulationJob from './assets/ml_create_population_job.svg';
 import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
+import crosshairs from './assets/crosshairs.svg';
 import dashboardApp from './assets/app_dashboard.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
 import database from './assets/database.svg';
@@ -74,6 +75,8 @@ import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
 import filebeatApp from './assets/app_filebeat.svg';
 import filter from './assets/filter.svg';
+import folderClosed from './assets/folder_closed.svg';
+import folderOpen from './assets/folder_open.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
 import gisApp from './assets/app_gis.svg';
@@ -308,6 +311,7 @@ const typeToIconMap = {
   createPopulationJob,
   createSingleMetricJob,
   cross,
+  crosshairs,
   dashboardApp,
   database,
   dataVisualizer,
@@ -341,6 +345,8 @@ const typeToIconMap = {
   faceNeutral,
   faceSad,
   filter,
+  folderClosed,
+  folderOpen,
   fullScreen,
   gear,
   globe,

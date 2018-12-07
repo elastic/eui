@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
+import { ReactDatePicker as DatePicker } from '../../../packages';
 
 import {
   EuiFormControlLayout,
@@ -164,6 +164,7 @@ export class EuiDatePicker extends Component {
                 timeFormat={timeFormat}
                 utcOffset={utcOffset}
                 yearDropdownItemNumber={7}
+                accessibleMode={true}
                 {...rest}
               />
             </EuiValidatableControl>
