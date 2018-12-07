@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuperDatePicker is rendered 1`] = `
+<EuiFlexGroup
+  alignItems="stretch"
+  component="div"
+  direction="row"
+  gutterSize="s"
+  justifyContent="flexStart"
+  responsive={false}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+    style={
+      Object {
+        "maxWidth": 480,
+      }
+    }
+  >
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      compressed={false}
+      isLoading={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "from": "now/d",
+                "label": "Today",
+                "to": "now/d",
+              },
+              Object {
+                "from": "now-1d/d",
+                "label": "Yesterday",
+                "to": "now-1d/d",
+              },
+              Object {
+                "from": "now/w",
+                "label": "This week",
+                "to": "now/w",
+              },
+              Object {
+                "from": "now/w",
+                "label": "Week to date",
+                "to": "now",
+              },
+              Object {
+                "from": "now/M",
+                "label": "This month",
+                "to": "now/M",
+              },
+              Object {
+                "from": "now/M",
+                "label": "Month to date",
+                "to": "now",
+              },
+              Object {
+                "from": "now/y",
+                "label": "This year",
+                "to": "now/y",
+              },
+              Object {
+                "from": "now/y",
+                "label": "Year to date",
+                "to": "now",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          from="now-15m"
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={0}
+          to="now"
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <div
+          className="euiSuperDatePicker__dateText"
+        >
+          Last 15 minutes
+        </div>
+        <EuiButtonEmpty
+          color="primary"
+          data-test-subj="superDatePickerShowDatesButton"
+          iconSide="left"
+          onClick={[Function]}
+          size="xs"
+          style={
+            Object {
+              "flexGrow": 0,
+            }
+          }
+          type="button"
+        >
+          Show dates
+        </EuiButtonEmpty>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <EuiButton
+      className="euiSuperDatePicker__updateButton"
+      color="primary"
+      data-test-subj="superDatePickerApplyTimeButton"
+      disabled={false}
+      fill={true}
+      iconSide="left"
+      iconType="refresh"
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiSuperDatePicker__updateButtonText",
+        }
+      }
+      type="button"
+    >
+      Refresh
+    </EuiButton>
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker isLoading 1`] = `
+<EuiFlexGroup
+  alignItems="stretch"
+  component="div"
+  direction="row"
+  gutterSize="s"
+  justifyContent="flexStart"
+  responsive={false}
+  wrap={false}
+>
+  <EuiFlexItem
+    component="div"
+    grow={true}
+    style={
+      Object {
+        "maxWidth": 480,
+      }
+    }
+  >
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      compressed={false}
+      isLoading={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "from": "now/d",
+                "label": "Today",
+                "to": "now/d",
+              },
+              Object {
+                "from": "now-1d/d",
+                "label": "Yesterday",
+                "to": "now-1d/d",
+              },
+              Object {
+                "from": "now/w",
+                "label": "This week",
+                "to": "now/w",
+              },
+              Object {
+                "from": "now/w",
+                "label": "Week to date",
+                "to": "now",
+              },
+              Object {
+                "from": "now/M",
+                "label": "This month",
+                "to": "now/M",
+              },
+              Object {
+                "from": "now/M",
+                "label": "Month to date",
+                "to": "now",
+              },
+              Object {
+                "from": "now/y",
+                "label": "This year",
+                "to": "now/y",
+              },
+              Object {
+                "from": "now/y",
+                "label": "Year to date",
+                "to": "now",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          from="now-15m"
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={0}
+          to="now"
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <div
+          className="euiSuperDatePicker__dateText"
+        >
+          Last 15 minutes
+        </div>
+        <EuiButtonEmpty
+          color="primary"
+          data-test-subj="superDatePickerShowDatesButton"
+          iconSide="left"
+          onClick={[Function]}
+          size="xs"
+          style={
+            Object {
+              "flexGrow": 0,
+            }
+          }
+          type="button"
+        >
+          Show dates
+        </EuiButtonEmpty>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    component="div"
+    grow={false}
+  >
+    <EuiButton
+      className="euiSuperDatePicker__updateButton"
+      color="secondary"
+      data-test-subj="superDatePickerApplyTimeButton"
+      disabled={false}
+      fill={true}
+      iconSide="left"
+      iconType="kqlFunction"
+      isLoading={true}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiSuperDatePicker__updateButtonText",
+        }
+      }
+      type="button"
+    >
+      Updating
+    </EuiButton>
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;

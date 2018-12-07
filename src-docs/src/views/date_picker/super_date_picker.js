@@ -8,7 +8,8 @@ import {
 export default class extends Component {
 
   state = {
-    recentlyUsedRanges: []
+    recentlyUsedRanges: [],
+    isLoading: false,
   }
 
   onTimeChange = ({ from, to }) => {
@@ -22,8 +23,19 @@ export default class extends Component {
         from,
         to,
         recentlyUsedRanges: recentlyUsedRanges.length > 10 ? recentlyUsedRanges.slice(0, 9) : recentlyUsedRanges,
+        isLoading: true,
       };
-    });
+    }, this.startLoading);
+  }
+
+  startLoading = () => {
+    setTimeout(
+      this.stopLoading,
+      1000);
+  }
+
+  stopLoading = () => {
+    this.setState({ isLoading: false });
   }
 
   onRefreshChange = ({ isPaused, refreshInterval }) => {
@@ -38,6 +50,7 @@ export default class extends Component {
   render() {
     return (
       <EuiSuperDatePicker
+        isLoading={this.state.isLoading}
         from={this.state.from}
         to={this.state.to}
         onTimeChange={this.onTimeChange}

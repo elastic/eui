@@ -146,18 +146,23 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
+    let buttonText = 'Refresh';
+    if (this.state.hasChanged || this.props.isLoading) {
+      buttonText = this.props.isLoading ? 'Updating' : 'Update';
+    }
     return (
       <EuiButton
         className="euiSuperDatePicker__updateButton"
-        color={this.state.hasChanged ? 'secondary' : 'primary'}
+        color={this.state.hasChanged || this.props.isLoading ? 'secondary' : 'primary'}
         fill
-        iconType={this.state.hasChanged ? 'kqlFunction' : 'refresh'}
+        iconType={this.state.hasChanged || this.props.isLoading ? 'kqlFunction' : 'refresh'}
         textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
         disabled={this.state.isInvalid}
         onClick={this.applyTime}
+        isLoading={this.props.isLoading}
         data-test-subj="superDatePickerApplyTimeButton"
       >
-        {this.state.hasChanged ? 'Update' : 'Refresh'}
+        {buttonText}
       </EuiButton>
     );
   }
@@ -198,6 +203,7 @@ export class EuiSuperDatePicker extends Component {
 }
 
 EuiSuperDatePicker.propTypes = {
+  isLoading: PropTypes.bool,
   /**
    * String as either datemath (e.g.: now, now-15m, now-15m/m) or
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
