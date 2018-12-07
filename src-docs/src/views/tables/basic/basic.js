@@ -97,6 +97,7 @@ export const Table = () => {
     return {
       className: 'customCellClass',
       'data-test-subj': `cell-${id}-${field}`,
+      textOnly: true,
     };
   };
 
