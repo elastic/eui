@@ -9,11 +9,7 @@
 **Bug fixes**
 
 - Fixed word-breaks in table cells for Firefox ([#1349](https://github.com/elastic/eui/pull/1349))
-
-**Bug fixes**
-
 - Fixed EUI when used in an environment lacking ES Modules support, e.g. Jest ([#1358](https://github.com/elastic/eui/pull/1358))
->>>>>>> upstream/master
 
 ## [`5.4.0`](https://github.com/elastic/eui/tree/v5.4.0)
 
