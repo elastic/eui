@@ -60,22 +60,22 @@ export class EuiQuickSelect extends Component {
 
     if (timeTense === NEXT) {
       this.props.applyTime({
-        from: 'now',
-        to: `now+${timeValue}${timeUnits}`
+        start: 'now',
+        end: `now+${timeValue}${timeUnits}`
       });
       return;
     }
 
     this.props.applyTime({
-      from: `now-${timeValue}${timeUnits}`,
-      to: 'now'
+      start: `now-${timeValue}${timeUnits}`,
+      end: 'now'
     });
   }
 
   getBounds = () => {
     return {
-      min: dateMath.parse(this.props.from),
-      max: dateMath.parse(this.props.to, { roundUp: true }),
+      min: dateMath.parse(this.props.start),
+      max: dateMath.parse(this.props.end, { roundUp: true }),
     };
   }
 
@@ -83,8 +83,8 @@ export class EuiQuickSelect extends Component {
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      from: moment(max).add(1, 'ms').toISOString(),
-      to: moment(max).add(diff + 1, 'ms').toISOString(),
+      start: moment(max).add(1, 'ms').toISOString(),
+      end: moment(max).add(diff + 1, 'ms').toISOString(),
     });
   }
 
@@ -92,8 +92,8 @@ export class EuiQuickSelect extends Component {
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      from: moment(min).subtract(diff + 1, 'ms').toISOString(),
-      to: moment(min).subtract(1, 'ms').toISOString(),
+      start: moment(min).subtract(diff + 1, 'ms').toISOString(),
+      end: moment(min).subtract(1, 'ms').toISOString(),
     });
   }
 
@@ -175,6 +175,6 @@ export class EuiQuickSelect extends Component {
 
 EuiQuickSelect.propTypes = {
   applyTime: PropTypes.func.isRequired,
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  start: PropTypes.string.isRequired,
+  end: PropTypes.string.isRequired,
 };

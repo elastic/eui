@@ -11,9 +11,9 @@ import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 export function EuiCommonlyUsed({ applyTime, commonlyUsedRanges }) {
-  const links = commonlyUsedRanges.map(({ from, to, label }) => {
+  const links = commonlyUsedRanges.map(({ start, end, label }) => {
     const applyCommonlyUsed = () => {
-      applyTime({ from, to });
+      applyTime({ start, end });
     };
     return (
       <EuiFlexItem key={label}>

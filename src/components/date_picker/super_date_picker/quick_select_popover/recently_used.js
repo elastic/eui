@@ -16,14 +16,14 @@ export function EuiRecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, rec
     return null;
   }
 
-  const links = recentlyUsedRanges.map(({ from, to }) => {
+  const links = recentlyUsedRanges.map(({ start, end }) => {
     const applyRecentlyUsed = () => {
-      applyTime({ from, to });
+      applyTime({ start, end });
     };
     return (
-      <EuiFlexItem grow={false} key={`${from}-${to}`}>
+      <EuiFlexItem grow={false} key={`${start}-${end}`}>
         <EuiLink onClick={applyRecentlyUsed}>
-          {prettyDuration(from, to, commonlyUsedRanges, dateFormat)}
+          {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
         </EuiLink>
       </EuiFlexItem>
     );

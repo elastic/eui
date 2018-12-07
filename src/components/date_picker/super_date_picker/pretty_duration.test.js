@@ -6,8 +6,8 @@ moment.tz.setDefault('UTC');
 const dateFormat = 'MMMM Do YYYY, HH:mm:ss.SSS';
 const quickRanges = [
   {
-    from: 'now-15m',
-    to: 'now',
+    start: 'now-15m',
+    end: 'now',
     label: 'quick range 15 minutes custom display',
   }
 ];

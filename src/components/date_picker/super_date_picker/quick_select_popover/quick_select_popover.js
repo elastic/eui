@@ -36,10 +36,10 @@ export class EuiQuickSelectPopover extends Component {
     }));
   }
 
-  applyTime = ({ from, to }) => {
+  applyTime = ({ start, end }) => {
     this.props.applyTime({
-      from,
-      to,
+      start,
+      end,
     });
     this.closePopover();
   }
@@ -75,8 +75,8 @@ export class EuiQuickSelectPopover extends Component {
         >
           <EuiQuickSelect
             applyTime={this.applyTime}
-            from={this.props.from}
-            to={this.props.to}
+            start={this.props.start}
+            end={this.props.end}
           />
           <EuiCommonlyUsed
             applyTime={this.applyTime}
@@ -101,8 +101,8 @@ export class EuiQuickSelectPopover extends Component {
 
 EuiQuickSelectPopover.propTypes = {
   applyTime: PropTypes.func.isRequired,
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  start: PropTypes.string.isRequired,
+  end: PropTypes.string.isRequired,
   applyRefreshInterval: PropTypes.func,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,

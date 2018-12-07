@@ -29,53 +29,53 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           commonlyUsedRanges={
             Array [
               Object {
-                "from": "now/d",
+                "end": "now/d",
                 "label": "Today",
-                "to": "now/d",
+                "start": "now/d",
               },
               Object {
-                "from": "now-1d/d",
+                "end": "now-1d/d",
                 "label": "Yesterday",
-                "to": "now-1d/d",
+                "start": "now-1d/d",
               },
               Object {
-                "from": "now/w",
+                "end": "now/w",
                 "label": "This week",
-                "to": "now/w",
+                "start": "now/w",
               },
               Object {
-                "from": "now/w",
+                "end": "now",
                 "label": "Week to date",
-                "to": "now",
+                "start": "now/w",
               },
               Object {
-                "from": "now/M",
+                "end": "now/M",
                 "label": "This month",
-                "to": "now/M",
+                "start": "now/M",
               },
               Object {
-                "from": "now/M",
+                "end": "now",
                 "label": "Month to date",
-                "to": "now",
+                "start": "now/M",
               },
               Object {
-                "from": "now/y",
+                "end": "now/y",
                 "label": "This year",
-                "to": "now/y",
+                "start": "now/y",
               },
               Object {
-                "from": "now/y",
+                "end": "now",
                 "label": "Year to date",
-                "to": "now",
+                "start": "now/y",
               },
             ]
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-          from="now-15m"
+          end="now"
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
-          to="now"
+          start="now-15m"
         />
       }
     >
@@ -164,53 +164,53 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
           commonlyUsedRanges={
             Array [
               Object {
-                "from": "now/d",
+                "end": "now/d",
                 "label": "Today",
-                "to": "now/d",
+                "start": "now/d",
               },
               Object {
-                "from": "now-1d/d",
+                "end": "now-1d/d",
                 "label": "Yesterday",
-                "to": "now-1d/d",
+                "start": "now-1d/d",
               },
               Object {
-                "from": "now/w",
+                "end": "now/w",
                 "label": "This week",
-                "to": "now/w",
+                "start": "now/w",
               },
               Object {
-                "from": "now/w",
+                "end": "now",
                 "label": "Week to date",
-                "to": "now",
+                "start": "now/w",
               },
               Object {
-                "from": "now/M",
+                "end": "now/M",
                 "label": "This month",
-                "to": "now/M",
+                "start": "now/M",
               },
               Object {
-                "from": "now/M",
+                "end": "now",
                 "label": "Month to date",
-                "to": "now",
+                "start": "now/M",
               },
               Object {
-                "from": "now/y",
+                "end": "now/y",
                 "label": "This year",
-                "to": "now/y",
+                "start": "now/y",
               },
               Object {
-                "from": "now/y",
+                "end": "now",
                 "label": "Year to date",
-                "to": "now",
+                "start": "now/y",
               },
             ]
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-          from="now-15m"
+          end="now"
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
-          to="now"
+          start="now-15m"
         />
       }
     >

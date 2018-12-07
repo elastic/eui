@@ -40,7 +40,7 @@ export function formatTimeString(timeString, dateFormat, roundUp = false) {
 }
 
 export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
-  const matchingQuickRange = quickRanges.find(({ from: quickFrom, to: quickTo }) => {
+  const matchingQuickRange = quickRanges.find(({ start: quickFrom, end: quickTo }) => {
     return timeFrom === quickFrom && timeTo === quickTo;
   });
   if (matchingQuickRange) {
@@ -70,7 +70,7 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
 }
 
 export function showPrettyDuration(timeFrom, timeTo, quickRanges = []) {
-  const matchingQuickRange = quickRanges.find(({ from: quickFrom, to: quickTo }) => {
+  const matchingQuickRange = quickRanges.find(({ start: quickFrom, end: quickTo }) => {
     return timeFrom === quickFrom && timeTo === quickTo;
   });
   if (matchingQuickRange) {

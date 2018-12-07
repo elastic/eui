@@ -12,16 +12,16 @@ export default class extends Component {
     isLoading: false,
   }
 
-  onTimeChange = ({ from, to }) => {
+  onTimeChange = ({ start, end }) => {
     this.setState((prevState) => {
       const recentlyUsedRanges = prevState.recentlyUsedRanges.filter(recentlyUsedRange => {
-        const isDuplicate = recentlyUsedRange.from === from && recentlyUsedRange.to === to;
+        const isDuplicate = recentlyUsedRange.start === start && recentlyUsedRange.end === end;
         return !isDuplicate;
       });
-      recentlyUsedRanges.unshift({ from, to });
+      recentlyUsedRanges.unshift({ start, end });
       return {
-        from,
-        to,
+        start,
+        end,
         recentlyUsedRanges: recentlyUsedRanges.length > 10 ? recentlyUsedRanges.slice(0, 9) : recentlyUsedRanges,
         isLoading: true,
       };
@@ -51,8 +51,8 @@ export default class extends Component {
     return (
       <EuiSuperDatePicker
         isLoading={this.state.isLoading}
-        from={this.state.from}
-        to={this.state.to}
+        start={this.state.start}
+        end={this.state.end}
         onTimeChange={this.onTimeChange}
         isPaused={this.state.isPaused}
         refreshInterval={this.state.refreshInterval}

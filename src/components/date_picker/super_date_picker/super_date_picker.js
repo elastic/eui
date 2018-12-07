@@ -20,63 +20,63 @@ export class EuiSuperDatePicker extends Component {
     super(props);
 
     const {
-      from,
-      to,
+      start,
+      end,
       commonlyUsedRanges
     } = this.props;
 
     this.state = {
-      from,
-      to,
+      start,
+      end,
       isInvalid: false,
       hasChanged: false,
-      showPrettyDuration: showPrettyDuration(from, to, commonlyUsedRanges),
+      showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
     };
   }
 
   static getDerivedStateFromProps = (nextProps) => {
     const {
-      from,
-      to,
+      start,
+      end,
       commonlyUsedRanges
     } = nextProps;
 
     return {
-      from,
-      to,
+      start,
+      end,
       isInvalid: false,
       hasChanged: false,
-      showPrettyDuration: showPrettyDuration(from, to, commonlyUsedRanges),
+      showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
     };
   }
 
-  setTime = ({ from, to }) => {
-    const fromMoment = dateMath.parse(from);
-    const toMoment = dateMath.parse(to, { roundUp: true });
-    const isInvalid = (from === 'now' && to === 'now') || fromMoment.isAfter(toMoment);
+  setTime = ({ start, end }) => {
+    const startMoment = dateMath.parse(start);
+    const endMoment = dateMath.parse(end, { roundUp: true });
+    const isInvalid = (start === 'now' && end === 'now') || startMoment.isAfter(endMoment);
 
     this.setState({
-      from,
-      to,
+      start,
+      end,
       isInvalid,
       hasChanged: true,
     });
   }
 
-  setFrom = (from) => {
-    this.setTime({ from, to: this.state.to });
+  setStart = (start) => {
+    this.setTime({ start, end: this.state.end });
   }
 
-  setTo = (to) => {
-    this.setTime({ from: this.state.from, to });
+  setEnd = (end) => {
+    this.setTime({ start: this.state.start, end });
   }
 
   applyTime = () => {
-    this.props.onTimeChange({ from: this.state.from, to: this.state.to });
+    this.props.onTimeChange({ start: this.state.start, end: this.state.end });
   }
 
-  applyQuickTime = ({ from, to }) => {
-    this.props.onTimeChange({ from, to });
+  applyQuickTime = ({ start, end }) => {
+    this.props.onTimeChange({ start, end });
   }
 
   hidePrettyDuration = () => {
@@ -85,8 +85,8 @@ export class EuiSuperDatePicker extends Component {
 
   renderDatePickerRange = () => {
     const {
-      from,
-      to,
+      start,
+      end,
       hasChanged,
       isInvalid,
     } = this.state;
@@ -101,7 +101,7 @@ export class EuiSuperDatePicker extends Component {
           endDateControl={<div/>}
         >
           <div className="euiSuperDatePicker__dateText">
-            {prettyDuration(from, to, this.props.commonlyUsedRanges, this.props.dateFormat)}
+            {prettyDuration(start, end, this.props.commonlyUsedRanges, this.props.dateFormat)}
           </div>
           <EuiButtonEmpty
             size="xs"
@@ -125,8 +125,8 @@ export class EuiSuperDatePicker extends Component {
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onChange={this.setFrom}
-            value={from}
+            onChange={this.setStart}
+            value={start}
             dateFormat={this.props.dateFormat}
           />
         }
@@ -135,8 +135,8 @@ export class EuiSuperDatePicker extends Component {
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
-            onChange={this.setTo}
-            value={to}
+            onChange={this.setEnd}
+            value={end}
             dateFormat={this.props.dateFormat}
             roundUp
           />
@@ -171,8 +171,8 @@ export class EuiSuperDatePicker extends Component {
     const quickSelect = (
       <EuiQuickSelectPopover
         applyTime={this.applyQuickTime}
-        from={this.props.from}
-        to={this.props.to}
+        start={this.props.start}
+        end={this.props.end}
         applyRefreshInterval={this.props.onRefreshChange}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
@@ -208,14 +208,14 @@ EuiSuperDatePicker.propTypes = {
    * String as either datemath (e.g.: now, now-15m, now-15m/m) or
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
-  from: PropTypes.string,
+  start: PropTypes.string,
   /**
    * String as either datemath (e.g.: now, now-15m, now-15m/m) or
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
-  to: PropTypes.string,
+  end: PropTypes.string,
   /**
-   * Callback for when the time changes. Called with { from, to }
+   * Callback for when the time changes. Called with { start, end }
    */
   onTimeChange: PropTypes.func.isRequired,
   isPaused: PropTypes.bool,
@@ -230,32 +230,32 @@ EuiSuperDatePicker.propTypes = {
   onRefreshChange: PropTypes.func,
 
   /**
-   * 'from' and 'to' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
   dateFormat: PropTypes.string,
   /**
-   * 'from' and 'to' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
 };
 
 EuiSuperDatePicker.defaultProps = {
-  from: 'now-15m',
-  to: 'now',
+  start: 'now-15m',
+  end: 'now',
   isPaused: true,
   refreshInterval: 0,
   commonlyUsedRanges: [
-    { from: 'now/d', to: 'now/d', label: 'Today' },
-    { from: 'now-1d/d', to: 'now-1d/d', label: 'Yesterday' },
-    { from: 'now/w', to: 'now/w', label: 'This week' },
-    { from: 'now/w', to: 'now', label: 'Week to date' },
-    { from: 'now/M', to: 'now/M', label: 'This month' },
-    { from: 'now/M', to: 'now', label: 'Month to date' },
-    { from: 'now/y', to: 'now/y', label: 'This year' },
-    { from: 'now/y', to: 'now', label: 'Year to date' },
+    { start: 'now/d', end: 'now/d', label: 'Today' },
+    { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
+    { start: 'now/w', end: 'now/w', label: 'This week' },
+    { start: 'now/w', end: 'now', label: 'Week to date' },
+    { start: 'now/M', end: 'now/M', label: 'This month' },
+    { start: 'now/M', end: 'now', label: 'Month to date' },
+    { start: 'now/y', end: 'now/y', label: 'This year' },
+    { start: 'now/y', end: 'now', label: 'Year to date' },
   ],
   dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
   recentlyUsedRanges: [],
