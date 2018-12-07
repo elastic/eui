@@ -214,7 +214,10 @@ EuiSuperDatePicker.propTypes = {
    * Refresh interval in milliseconds
    */
   refreshInterval: PropTypes.number,
-  onRefreshChange: PropTypes.func.isRequired,
+  /**
+   * Supply onRefreshChange to show refresh interval form in quick select popover
+   */
+  onRefreshChange: PropTypes.func,
 
   /**
    * 'from' and 'to' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or

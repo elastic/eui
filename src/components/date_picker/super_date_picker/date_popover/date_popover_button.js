@@ -73,7 +73,7 @@ export class DatePopoverButton extends Component {
         data-test-subj={`superDatePicker${this.props.position}DatePopoverButton`}
         {...buttonProps}
       >
-        {formatTimeString(value, dateFormat)}
+        {formatTimeString(value, dateFormat, roundUp)}
       </button>
     );
 

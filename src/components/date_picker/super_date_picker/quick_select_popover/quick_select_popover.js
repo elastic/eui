@@ -103,7 +103,7 @@ QuickSelectPopover.propTypes = {
   applyTime: PropTypes.func.isRequired,
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  applyRefreshInterval: PropTypes.func.isRequired,
+  applyRefreshInterval: PropTypes.func,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,

@@ -87,6 +87,10 @@ export class RefreshInterval extends Component {
   }
 
   render() {
+    if (!this.props.applyRefreshInterval) {
+      return null;
+    }
+
     return (
       <Fragment>
         <EuiTitle size="xxxs"><span>Refresh every</span></EuiTitle>
@@ -134,7 +138,7 @@ export class RefreshInterval extends Component {
 }
 
 RefreshInterval.propTypes = {
-  applyRefreshInterval: PropTypes.func.isRequired,
+  applyRefreshInterval: PropTypes.func,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,
 };
