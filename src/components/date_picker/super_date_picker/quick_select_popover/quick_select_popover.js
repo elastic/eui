@@ -36,11 +36,14 @@ export class EuiQuickSelectPopover extends Component {
     }));
   }
 
-  applyTime = ({ start, end }) => {
+  applyTime = ({ start, end, quickSelect }) => {
     this.props.applyTime({
       start,
       end,
     });
+    if (quickSelect) {
+      this.setState({ prevQuickSelect: quickSelect });
+    }
     this.closePopover();
   }
 
@@ -77,6 +80,7 @@ export class EuiQuickSelectPopover extends Component {
             applyTime={this.applyTime}
             start={this.props.start}
             end={this.props.end}
+            prevQuickSelect={this.state.prevQuickSelect}
           />
           <EuiCommonlyUsed
             applyTime={this.applyTime}

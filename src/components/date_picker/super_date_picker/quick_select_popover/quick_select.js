@@ -26,10 +26,15 @@ const timeUnitsOptions = Object.keys(timeUnits).map(key => {
 });
 
 export class EuiQuickSelect extends Component {
-  state = {
-    timeTense: LAST,
-    timeValue: 15,
-    timeUnits: 'm',
+  constructor(props) {
+    super(props);
+
+    const { timeTense, timeValue, timeUnits } = this.props.prevQuickSelect;
+    this.state = {
+      timeTense: timeTense ? timeTense : LAST,
+      timeValue: timeValue ? timeValue : 15,
+      timeUnits: timeUnits ? timeUnits : 'm',
+    };
   }
 
   onTimeTenseChange = (evt) => {
@@ -61,14 +66,16 @@ export class EuiQuickSelect extends Component {
     if (timeTense === NEXT) {
       this.props.applyTime({
         start: 'now',
-        end: `now+${timeValue}${timeUnits}`
+        end: `now+${timeValue}${timeUnits}`,
+        quickSelect: { ...this.state },
       });
       return;
     }
 
     this.props.applyTime({
       start: `now-${timeValue}${timeUnits}`,
-      end: 'now'
+      end: 'now',
+      quickSelect: { ...this.state },
     });
   }
 
@@ -160,7 +167,7 @@ export class EuiQuickSelect extends Component {
                 size="s"
                 onClick={this.applyQuickSelect}
                 style={{ minWidth: 0 }}
-                disabled={this.state.timeValue === ''}
+                disabled={this.state.timeValue === '' || this.state.timeValue <= 0}
               >
                 Apply
               </EuiButton>
@@ -177,4 +184,9 @@ EuiQuickSelect.propTypes = {
   applyTime: PropTypes.func.isRequired,
   start: PropTypes.string.isRequired,
   end: PropTypes.string.isRequired,
+  prevQuickSelect: PropTypes.object,
+};
+
+EuiQuickSelect.defaultProps = {
+  prevQuickSelect: {},
 };
