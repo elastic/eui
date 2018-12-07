@@ -27,7 +27,8 @@ describe('parseRelativeParts', () => {
       expect(out).toEqual({
         count: 2,
         unit: 'h',
-        round: true
+        round: true,
+        roundUnit: 'h',
       });
     });
 
@@ -36,7 +37,8 @@ describe('parseRelativeParts', () => {
       expect(out).toEqual({
         count: 10,
         unit: 'm+',
-        round: true
+        round: true,
+        roundUnit: 'm',
       });
     });
   });

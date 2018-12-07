@@ -3,6 +3,7 @@ import dateMath from '@elastic/datemath';
 import moment from 'moment';
 import { timeUnits } from './time_units';
 import { getDateMode, DATE_MODES } from './date_modes';
+import { parseRelativeParts } from './relative_utils';
 
 const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.sssZ';
 
@@ -10,6 +11,12 @@ function cantLookup(timeFrom, timeTo, dateFormat) {
   const displayFrom = formatTimeString(timeFrom, dateFormat);
   const displayTo = formatTimeString(timeTo, dateFormat, true);
   return `${displayFrom} to ${displayTo}`;
+}
+
+function isRelativeToNow(timeFrom, timeTo) {
+  const fromDateMode = getDateMode(timeFrom);
+  const toDateMode = getDateMode(timeTo);
+  return fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
 }
 
 export function formatTimeString(timeString, dateFormat, roundUp = false) {
@@ -38,13 +45,16 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
     return matchingQuickRange.label;
   }
 
-  const fromParts = timeFrom.split('-');
-  if (timeTo === 'now' && fromParts[0] === 'now' && fromParts[1]) {
-    const rounded = fromParts[1].split('/');
-    let text = `Last ${rounded[0]}`;
-    if (rounded[1]) {
-      const timeUnit = timeUnits[rounded[1]] ? timeUnits[rounded[1]] : rounded[1];
-      text = `${text} rounded to the ${timeUnit}`;
+  if (isRelativeToNow(timeFrom, timeTo)) {
+    const relativeParts = parseRelativeParts(timeFrom);
+    let countTimeUnit = timeUnits[relativeParts.unit.substring(0, 1)];
+    if (relativeParts.count > 1) {
+      countTimeUnit += 's';
+    }
+    let text = `Last ${relativeParts.count} ${countTimeUnit}`;
+    if (relativeParts.round) {
+      const roundTimeUnit = timeUnits[relativeParts.roundUnit] ? timeUnits[relativeParts.roundUnit] : relativeParts.roundUnit;
+      text += ` rounded to the ${roundTimeUnit}`;
     }
     return text;
   }
@@ -60,7 +70,5 @@ export function showPrettyDuration(timeFrom, timeTo, quickRanges = []) {
     return true;
   }
 
-  const fromDateMode = getDateMode(timeFrom);
-  const toDateMode = getDateMode(timeTo);
-  return fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
+  return isRelativeToNow(timeFrom, timeTo);
 }

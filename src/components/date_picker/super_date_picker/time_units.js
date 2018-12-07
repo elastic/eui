@@ -8,4 +8,3 @@ export const timeUnits = {
   M: 'month',
   y: 'year'
 };
-

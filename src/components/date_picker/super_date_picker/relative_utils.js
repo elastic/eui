@@ -4,6 +4,8 @@ import moment from 'moment';
 import _ from 'lodash';
 import { relativeOptions } from './relative_options';
 
+const ROUND_DELIMETER = '/';
+
 export function parseRelativeParts(value) {
   const matches = _.isString(value) && value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
@@ -18,10 +20,12 @@ export function parseRelativeParts(value) {
   }
 
   if (count && unit) {
+    const isRounded = roundBy ? true : false;
     return {
       count: parseInt(count, 10),
       unit: operator === '+' ? `${unit}+` : unit,
-      round: roundBy ? true : false,
+      round: isRounded,
+      roundUnit: isRounded ? roundBy.replace(ROUND_DELIMETER, '') : undefined,
     };
   }
 
@@ -45,17 +49,16 @@ export function parseRelativeParts(value) {
 
 export function toRelativeStringFromParts(relativeParts) {
   const count = _.get(relativeParts, `count`, 0);
-  const round = _.get(relativeParts, `round`, false);
+  const isRounded = _.get(relativeParts, `round`, false);
 
-  if (count === 0 && !round) {
+  if (count === 0 && !isRounded) {
     return 'now';
   }
 
   const matches = _.get(relativeParts, `unit`, 's').match(/([smhdwMy])(\+)?/);
   const unit = matches[1];
   const operator = matches && matches[2] ? matches[2] : '-';
+  const round = isRounded ? `${ROUND_DELIMETER}${unit}` : '';
 
-  let result = `now${operator}${count}${unit}`;
-  result += (round ? `/${unit}` : '');
-  return result;
+  return `now${operator}${count}${unit}${round}`;
 }

@@ -20,15 +20,15 @@ describe('prettyDuration', () => {
   });
 
   test('last', () => {
-    const timeFrom = 'now-1M';
+    const timeFrom = 'now-16m';
     const timeTo = 'now';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Last 1M');
+    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Last 16 minutes');
   });
 
   test('last that is rounded', () => {
     const timeFrom = 'now-1M/w';
     const timeTo = 'now';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Last 1M rounded to the week');
+    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('Last 1 month rounded to the week');
   });
 
   test('from is in past', () => {
