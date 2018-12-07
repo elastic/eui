@@ -5,11 +5,19 @@ import {
   EuiCode,
   EuiSpacer,
   EuiIcon,
+  EuiTextColor,
 } from '../../../../src/components';
 
 export default () => (
   <EuiText>
     <h4>Text</h4>
+
+    <EuiSpacer />
+
+    <EuiTextColor color="danger">
+      <EuiCode className="eui-textInheritColor">.eui-textInheritColor</EuiCode> will
+      force text to inherit it&apos;s color from it&apos;s parent.
+    </EuiTextColor>
 
     <EuiSpacer />
 
@@ -37,10 +45,28 @@ export default () => (
 
     <div
       style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
-      className="eui-textBreakAll"
+      className="eui-textTruncate"
     >
-      <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful for long urls like
-      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
+      <EuiCode>.eui-textTruncate</EuiCode> will ellipsis after a certain point.
+    </div>
+
+    <EuiSpacer />
+    <h4>Word breaking</h4>
+    <p>
+      We recommend using <EuiCode>.eui-textOverflowWrap</EuiCode> to break on long words above all other options as it is supported
+      by all major browsers (except for IE11). The one caveat is that it does not work on <EuiCode>display: flex</EuiCode> elements.
+      To remedy, you can either add another wrapper with this class or use <EuiCode>.eui-textBreakWord</EuiCode> instead.
+    </p>
+    <EuiSpacer />
+
+    <div
+      style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
+      className="eui-textOverflowWrap"
+    >
+      <EuiCode>.eui-textOverflowWrap</EuiCode> will only break up at the end of words. Long urls
+      will still break
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}.
+      <strong>Falls back to <EuiCode>break-all</EuiCode> on IE11.</strong>
     </div>
 
     <EuiSpacer />
@@ -51,38 +77,34 @@ export default () => (
     >
       <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of words. Long urls will
       still break
-      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}
-      <strong>
-        Not supported by &lt;= IE11 and Firefox, falls back to <EuiCode>break-all</EuiCode>
-      </strong>
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}.
+      <strong>Falls back to <EuiCode>break-all</EuiCode> on Firefox and IE11.</strong>
     </div>
 
     <EuiSpacer />
 
     <div
       style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
-      className="eui-textOverflowWrap"
+      className="eui-textBreakAll"
     >
-      <EuiCode>.eui-textOverflowWrap</EuiCode> will only break up at the end of words. Long urls
-      will still break
-      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool{' '}
-      <strong>
-        Not supported by &lt;= IE11, falls back to <EuiCode>break-all</EuiCode> and does not work on{' '}
-        <EuiCode>display: flex</EuiCode> elements
-      </strong>
+      <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful for long urls like
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
     </div>
 
     <EuiSpacer />
 
     <div
       style={{ width: 300, padding: 16, background: 'rgba(254, 228, 181, 0.5)' }}
-      className="eui-textTruncate"
+      className="eui-textBreakWord eui-textBreakNormal"
     >
-      <EuiCode>.eui-textTruncate</EuiCode> will ellipsis after a certain point.
+      <EuiCode>.eui-textBreakNormal</EuiCode> revert back to not forcing word breaks. It is <strong>not</strong> useful for long urls like
+      http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool
     </div>
 
+    <EuiSpacer />
+
+    <EuiSpacer />
     <h4>Vertical alignment</h4>
-
     <EuiSpacer />
 
     <div>
