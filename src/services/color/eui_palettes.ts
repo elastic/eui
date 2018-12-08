@@ -1,4 +1,10 @@
-export const palettes = {
+interface EuiPalette {
+  colors: string[];
+}
+
+interface EuiPalettes { [name: string]: EuiPalette }
+
+export const palettes: EuiPalettes = {
   euiPaletteColorBlind: {
     colors: [
       '#1EA593',

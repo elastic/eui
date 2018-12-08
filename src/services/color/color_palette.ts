@@ -1,8 +1,17 @@
+import { rgbDef } from './color_types';
+import { hexToRgb } from './hex_to_rgb';
+
 /**
  * Create the color object for manipulation by other functions
  */
 class Color {
-  constructor(r, g, b) {
+  r: number;
+  g: number;
+  b: number;
+  collection: rgbDef;
+  text: string;
+
+  constructor(r: number, g: number, b: number) {
     this.r = r; // Red value
     this.g = g; // Green value
     this.b = b; // Blue value
@@ -15,21 +24,21 @@ class Color {
  * This function takes a color palette name and returns an array of hex color
  * codes for use in UI elements such as charts.
  *
- * @param {string} hexStart The beginning hexidecimal color code
- * @param {string} hexEnd The ending hexidecimal color code
+ * @param {string} hexStart The beginning hexadecimal color code
+ * @param {string} hexEnd The ending hexadecimal color code
  * @param {number} len The number of colors in the resulting array (default 10)
- * @returns {Array} Returns an array of hexidecimal color codes
+ * @returns {Array} Returns an array of hexadecimal color codes
  */
 
-function colorPalette(hexStart, hexEnd, len = 10) {
+export function colorPalette(hexStart: string, hexEnd: string, len: number = 10) {
   if (isHex(hexStart) && isHex(hexEnd)) {
     const hex1 = formatHex(hexStart); // format to #RRGGBB
     const hex2 = formatHex(hexEnd); // format to #RRGGBB
-    const colorArray = [];
-    const hexPalette = [];
+    const colorArray: Color[] = [];
+    const hexPalette: string[] = [];
     const count = len - 1;
-    const startHex = colorParse(hex1); // get RGB equivalent values as array
-    const endHex = colorParse(hex2); // get RGB equivalent values as array
+    const startHex = hexToRgb(hex1); // get RGB equivalent values as array
+    const endHex = hexToRgb(hex2); // get RGB equivalent values as array
     colorArray[0] = new Color(startHex[0], startHex[1], startHex[2]); // create first color obj
     colorArray[count] = new Color(endHex[0], endHex[1], endHex[2]); // create last color obj
     const step = stepCalc(count, colorArray[0], colorArray[count]); // create array of step increments
@@ -52,16 +61,16 @@ function colorPalette(hexStart, hexEnd, len = 10) {
 }
 
 /**
- * Check if argument is a valid 3 or 6 character hexidecimal color code
+ * Check if argument is a valid 3 or 6 character hexadecimal color code
  */
-function isHex(value) {
+function isHex(value: string): boolean {
   return /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(value);
 }
 
 /**
- * Calculate and construct the hexideciaml color code from RGB values
+ * Calculate and construct the hexadecimal color code from RGB values
  */
-function createHex(rgbValues) {
+function createHex(rgbValues: rgbDef): string {
   let result = '';
   let val = 0;
   let piece;
@@ -72,49 +81,30 @@ function createHex(rgbValues) {
     if (piece.length < 2) {piece = `0${piece}`;}
     result = result + piece;
   }
-  result = `#${result.toUpperCase()}`; // Return in #RRGGBB fomat
+  result = `#${result.toUpperCase()}`; // Return in #RRGGBB format
   return result;
 }
 
 /**
- * Convert hexideciaml color into an array of RGB integer values
+ * Format hexadecimal inputs to #RRGGBB
  */
-function colorParse(color) {
-  const base = 16;
-  let col = color.toUpperCase().replace('#', '');
-
-  if (col.length === 3) {
-    const a = col.substr(0, 1);
-    const b = col.substr(1, 1);
-    const c = col.substr(2, 1);
-    col = a + a + b + b + c + c;
-  }
-  const num = [col.substr(0, 2), col.substr(2, 2), col.substr(4, 2)];
-  const ret = [parseInt(num[0], base), parseInt(num[1], base), parseInt(num[2], base)];
-  return(ret);
-}
-
-/**
- * Format hexideciaml inputs to #RRGGBB
- */
-function formatHex(hex) {
+function formatHex(hex: string): string {
   let cleanHex = hex;
   if (cleanHex.length === 3 || cleanHex.length === 6) {
     cleanHex = `#${cleanHex}`;
   }
   if (cleanHex.length === 4) {
-    cleanHex = cleanHex.split('');
     cleanHex = cleanHex[0] + cleanHex[1] + cleanHex[1] + cleanHex[2] + cleanHex[2] + cleanHex[3] + cleanHex[3];
   }
   return cleanHex;
 }
 
 /**
- * Calculate the step increment for each piece of the hexidecimal color code
+ * Calculate the step increment for each piece of the hexadecimal color code
  */
-function stepCalc(st, cStart, cEnd) {
+function stepCalc(st: number, cStart: Color, cEnd: Color): rgbDef {
   const steps = st;
-  const step = [
+  const step: rgbDef = [
     (cEnd.r - cStart.r) / steps, // Calc step amount for red value
     (cEnd.g - cStart.g) / steps, // Calc step amount for green value
     (cEnd.b - cStart.b) / steps, // Calc step amount for blue value
@@ -122,5 +112,3 @@ function stepCalc(st, cStart, cEnd) {
 
   return step;
 }
-
-export { colorPalette };
