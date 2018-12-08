@@ -1,8 +1,6 @@
-/**
- * Convert hexadecimal color into an array of RGB integer values
- * Modified from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
- * Assumes that the input is well-formed.
- */
+// Convert hexadecimal color into an array of RGB integer values
+// Modified from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+
 import { rgbDef } from './color_types';
 
 export function hexToRgb(hex: string): rgbDef  {
