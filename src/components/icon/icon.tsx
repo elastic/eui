@@ -553,9 +553,7 @@ export const TYPES: IconType[] = keysOf(typeToIconMap);
 
 export type IconType = keyof typeof typeToIconMap;
 
-interface ColorToClassMap { [color: string]: string | null; }
-
-const colorToClassMap: ColorToClassMap = {
+const colorToClassMap: { [color: string]: string | null; } = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
