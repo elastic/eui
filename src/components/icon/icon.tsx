@@ -1,7 +1,7 @@
 import React, { SFC, SVGAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 import addDataApp from './assets/app_add_data.svg';
 import advancedSettingsApp from './assets/app_advanced_settings.svg';
@@ -549,7 +549,7 @@ const typeToIconMap = {
   tokenFile,
 };
 
-export const TYPES = Object.keys(typeToIconMap);
+export const TYPES: IconType[] = keysOf(typeToIconMap);
 
 export type IconType = keyof typeof typeToIconMap;
 
@@ -568,7 +568,7 @@ const colorToClassMap: ColorToClassMap = {
   ghost: 'euiIcon--ghost',
 };
 
-export const COLORS = Object.keys(colorToClassMap);
+export const COLORS: IconColor[] = keysOf(colorToClassMap);
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | keyof typeof colorToClassMap;
@@ -582,7 +582,7 @@ const sizeToClassNameMap = {
   xxl: 'euiIcon--xxLarge',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 
 export type IconSize = keyof typeof sizeToClassNameMap;
 
@@ -592,7 +592,7 @@ export interface EuiIconProps {
   size?: IconSize;
 }
 
-type Props = CommonProps & SVGAttributes<SVGAElement> & EuiIconProps;
+type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
 
 export const EuiIcon: SFC<Props> = ({
   type,

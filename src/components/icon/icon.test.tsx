@@ -4,8 +4,6 @@ import { requiredProps } from '../../test/required_props';
 
 import {
   EuiIcon,
-  IconSize,
-  IconType,
   SIZES,
   TYPES,
 } from './icon';
@@ -31,7 +29,7 @@ describe('EuiIcon', () => {
     });
 
     describe('size', () => {
-      (SIZES as IconSize[]).forEach(size => {
+      SIZES.forEach(size => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiIcon type="search" size={size} />
@@ -43,7 +41,7 @@ describe('EuiIcon', () => {
     });
 
     describe('type', () => {
-      (TYPES as IconType[]).forEach(type => {
+      TYPES.forEach(type => {
         test(`${type} is rendered`, () => {
           const component = render(
             <EuiIcon type={type} />
