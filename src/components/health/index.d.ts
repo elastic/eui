@@ -1,4 +1,4 @@
-/// <reference path="../icon/index.d.ts" />
+import { IconColor } from '../icon'
 
 import { SFC, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';

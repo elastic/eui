@@ -18,18 +18,10 @@ describe('EuiIcon', () => {
   });
 
   describe('props', () => {
-    describe('title', () => {
-      test('defaults to a humanized version of the type', () => {
+    describe('other props', () => {
+      test('are passed through to the icon', () => {
         const component = render(
-          <EuiIcon type="dashboardApp" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      test('is rendered', () => {
-        const component = render(
-          <EuiIcon type="search" title="a custom title" />
+          <EuiIcon type="search" aria-label="a custom title" />
         );
 
         expect(component).toMatchSnapshot();
@@ -67,12 +59,12 @@ describe('EuiIcon', () => {
       });
 
       test('renders focusable="false" when -1', () => {
-        const component = render(<EuiIcon type="search" tabIndex="-1" />);
+        const component = render(<EuiIcon type="search" tabIndex={-1} />);
         expect(component).toMatchSnapshot();
       });
 
       test('renders focusable="true" when 0', () => {
-        const component = render(<EuiIcon type="search" tabIndex="0" />);
+        const component = render(<EuiIcon type="search" tabIndex={0} />);
         expect(component).toMatchSnapshot();
       });
     });

@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { SFC, SVGAttributes } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps, keysOf } from '../common';
 
 import addDataApp from './assets/app_add_data.svg';
 import advancedSettingsApp from './assets/app_advanced_settings.svg';
@@ -545,12 +546,14 @@ const typeToIconMap = {
   tokenEnumMember,
   tokenRepo,
   tokenSymbol,
-  tokenFile
+  tokenFile,
 };
 
-export const TYPES = Object.keys(typeToIconMap);
+export const TYPES: IconType[] = keysOf(typeToIconMap);
 
-const colorToClassMap = {
+export type IconType = keyof typeof typeToIconMap;
+
+const colorToClassMap: { [color: string]: string | null; } = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
@@ -563,7 +566,10 @@ const colorToClassMap = {
   ghost: 'euiIcon--ghost',
 };
 
-export const COLORS = Object.keys(colorToClassMap);
+export const COLORS: IconColor[] = keysOf(colorToClassMap);
+
+// We accept arbitrary color strings, which are impossible to type.
+export type IconColor = string | keyof typeof colorToClassMap;
 
 const sizeToClassNameMap = {
   original: null,
@@ -574,11 +580,21 @@ const sizeToClassNameMap = {
   xxl: 'euiIcon--xxLarge',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 
-export const EuiIcon = ({
+export type IconSize = keyof typeof sizeToClassNameMap;
+
+export interface EuiIconProps {
+  type?: IconType;
+  color?: IconColor;
+  size?: IconSize;
+}
+
+type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
+
+export const EuiIcon: SFC<Props> = ({
   type,
-  size,
+  size = 'm',
   color,
   className,
   tabIndex,
@@ -587,14 +603,20 @@ export const EuiIcon = ({
   let optionalColorClass = null;
   let optionalCustomStyles = null;
 
-  if (COLORS.indexOf(color) > -1) {
-    optionalColorClass = colorToClassMap[color];
+  if (color) {
+    checkValidColor(color, type || 'empty');
+
+    if (COLORS.indexOf(color) > -1) {
+      optionalColorClass = colorToClassMap[color];
+    } else {
+      optionalCustomStyles = { fill: color };
+    }
   } else {
-    optionalCustomStyles = { fill: color };
+    optionalCustomStyles = { fill: undefined };
   }
 
   // These icons are a little special and get some extra CSS flexibility
-  const isAppIcon = /.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer');
+  const isAppIcon = type && (/.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer'));
 
   const classes = classNames(
     'euiIcon',
@@ -603,10 +625,10 @@ export const EuiIcon = ({
     {
       'euiIcon--app': isAppIcon,
     },
-    className,
+    className
   );
 
-  const Svg = typeToIconMap[type] || empty;
+  const Svg = (type && typeToIconMap[type]) || empty;
 
   // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
   // focusable="false".
@@ -614,7 +636,7 @@ export const EuiIcon = ({
   //     which is how SVGs behave in Chrome, Safari, and FF.
   //   - If tab index is -1, then the consumer wants the icon to not be focusable.
   //   - For all other values, the consumer wants the icon to be focusable.
-  const focusable = (!tabIndex || tabIndex === '-1') ? 'false' : 'true';
+  const focusable = (tabIndex == null || tabIndex === -1) ? 'false' : 'true';
 
   return (
     <Svg
@@ -627,21 +649,15 @@ export const EuiIcon = ({
   );
 };
 
-function checkValidColor(props, propName, componentName) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
-  if (props.color && !validHex && !COLORS.includes(props.color)) {
+function checkValidColor(color: string, type: string) {
+  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
+  if (color && !validHex && !COLORS.includes(color)) {
     throw new Error(
-      `${componentName} needs to pass a valid color. This can either be a three ` +
+      `EuiIcon[${type}} needs to pass a valid color. This can either be a three ` +
       `or six character hex value or one of the following: ${COLORS}`
     );
   }
 }
-
-EuiIcon.propTypes = {
-  type: PropTypes.oneOf(TYPES),
-  color: checkValidColor,
-  size: PropTypes.oneOf(SIZES)
-};
 
 EuiIcon.defaultProps = {
   size: 'm',

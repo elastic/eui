@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.5.1`.
+- Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
 
 ## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
 
