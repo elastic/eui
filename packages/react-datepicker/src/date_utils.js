@@ -97,8 +97,8 @@ export function safeDateFormat(date, { dateFormat, locale }) {
 
 // ** Date Setters **
 
-export function setTime(date, { hour, minute, second }) {
-  date.set({ hour, minute, second });
+export function setTime(date, { hour, minute, second, millisecond }) {
+  date.set({ hour, minute, second, millisecond });
   return date;
 }
 
@@ -115,6 +115,10 @@ export function setUTCOffset(date, offset) {
 }
 
 // ** Date Getters **
+
+export function getMillisecond(date) {
+  return get(date, "millisecond");
+}
 
 export function getSecond(date) {
   return get(date, "second");

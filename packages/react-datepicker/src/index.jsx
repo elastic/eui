@@ -14,6 +14,7 @@ import {
   isAfter,
   equals,
   setTime,
+  getMillisecond,
   getSecond,
   getMinute,
   getHour,
@@ -443,7 +444,8 @@ export default class DatePicker extends React.Component {
           changedDate = setTime(newDate(changedDate), {
             hour: getHour(selected),
             minute: getMinute(selected),
-            second: getSecond(selected)
+            second: getSecond(selected),
+            millisecond: getMillisecond(selected),
           });
         }
         if (!this.props.inline) {
@@ -484,7 +486,8 @@ export default class DatePicker extends React.Component {
     const changedDate = setTime(cloneDate(selected), {
       hour: getHour(time),
       minute: getMinute(time),
-      second: 0
+      second: 0,
+      millisecond: 0,
     });
 
     this.setState({
