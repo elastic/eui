@@ -92,6 +92,7 @@ export class EuiQuickSelect extends Component {
     this.props.applyTime({
       start: moment(max).add(1, 'ms').toISOString(),
       end: moment(max).add(diff + 1, 'ms').toISOString(),
+      keepPopoverOpen: true,
     });
   }
 
@@ -101,6 +102,7 @@ export class EuiQuickSelect extends Component {
     this.props.applyTime({
       start: moment(min).subtract(diff + 1, 'ms').toISOString(),
       end: moment(min).subtract(1, 'ms').toISOString(),
+      keepPopoverOpen: true,
     });
   }
 
