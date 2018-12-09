@@ -11,7 +11,7 @@ function createHiddenTextElement(text: string): HTMLSpanElement {
   textElement.style.whiteSpace = 'pre';
   // do not inherit user-select (it may be `none`)
   textElement.style.webkitUserSelect = 'text';
-  // @ts-ignore this one doesn't appear in the TS defitions for some reason
+  // @ts-ignore this one doesn't appear in the TS definitions for some reason
   textElement.style.MozUserSelect = 'text';
   textElement.style.msUserSelect = 'text';
   textElement.style.userSelect = 'text';
