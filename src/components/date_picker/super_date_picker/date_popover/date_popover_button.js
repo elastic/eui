@@ -82,7 +82,7 @@ export class EuiDatePopoverButton extends Component {
         button={button}
         isOpen={this.state.isOpen}
         closePopover={this.closePopover}
-        anchorPosition="downRight"
+        anchorPosition={this.props.position === 'start' ? 'downLeft' : 'downRight'}
         panelPaddingSize="none"
         ownFocus
         {...rest}

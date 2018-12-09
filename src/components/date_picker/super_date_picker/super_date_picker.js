@@ -13,6 +13,7 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiButton, EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiToolTip } from '../../tool_tip';
 
 export class EuiSuperDatePicker extends Component {
 
@@ -151,19 +152,24 @@ export class EuiSuperDatePicker extends Component {
       buttonText = this.props.isLoading ? 'Updating' : 'Update';
     }
     return (
-      <EuiButton
-        className="euiSuperDatePicker__updateButton"
-        color={this.state.hasChanged || this.props.isLoading ? 'secondary' : 'primary'}
-        fill
-        iconType={this.state.hasChanged || this.props.isLoading ? 'kqlFunction' : 'refresh'}
-        textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
-        disabled={this.state.isInvalid}
-        onClick={this.applyTime}
-        isLoading={this.props.isLoading}
-        data-test-subj="superDatePickerApplyTimeButton"
+      <EuiToolTip
+        content={this.state.hasChanged && !this.props.isLoading ? 'Click to apply' : undefined}
+        position="bottom"
       >
-        {buttonText}
-      </EuiButton>
+        <EuiButton
+          className="euiSuperDatePicker__updateButton"
+          color={this.state.hasChanged || this.props.isLoading ? 'secondary' : 'primary'}
+          fill
+          iconType={this.state.hasChanged || this.props.isLoading ? 'kqlFunction' : 'refresh'}
+          textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
+          disabled={this.state.isInvalid}
+          onClick={this.applyTime}
+          isLoading={this.props.isLoading}
+          data-test-subj="superDatePickerApplyTimeButton"
+        >
+          {buttonText}
+        </EuiButton>
+      </EuiToolTip>
     );
   }
 
