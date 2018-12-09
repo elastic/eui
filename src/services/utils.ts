@@ -3,6 +3,6 @@ export {
   memoize
 } from 'lodash';
 
-export const browserTick = (callback) => {
+export const browserTick = (callback: FrameRequestCallback) => {
   requestAnimationFrame(callback);
 };
