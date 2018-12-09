@@ -4,7 +4,7 @@ import { formatDate } from './format_date';
 import { formatNumber } from './format_number';
 import { formatText } from './format_text';
 
-export const formatAuto = value => {
+export const formatAuto = (value: any): string => {
   if (isNil(value) || isNaN(value)) {
     return '';
   }

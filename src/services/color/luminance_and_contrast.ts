@@ -1,7 +1,7 @@
 import { rgbDef } from './color_types';
 
 export function calculateLuminance(r: number, g: number, b: number): number {
-  const a = [r, g, b].map(function (v) {
+  const a = [r, g, b].map(v => {
     v /= 255;
     return v <= 0.03928
       ? v / 12.92

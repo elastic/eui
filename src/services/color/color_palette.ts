@@ -78,7 +78,7 @@ function createHex(rgbValues: rgbDef): string {
   for (let k = 0; k < 3; k++) {
     val = Math.round(rgbValues[k]);
     piece = val.toString(base); // Converts to radix 16 based value (0-9, A-F)
-    if (piece.length < 2) {piece = `0${piece}`;}
+    if (piece.length < 2) {piece = `0${piece}`; }
     result = result + piece;
   }
   result = `#${result.toUpperCase()}`; // Return in #RRGGBB format

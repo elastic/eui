@@ -24,7 +24,7 @@ const euiPaletteForLightBackground: EuiPalette = {
     '#F5A700',
     '#BD271E',
     '#DD0A73',
-  ]
+  ],
 };
 
 const euiPaletteForDarkBackground: EuiPalette = {
@@ -34,7 +34,7 @@ const euiPaletteForDarkBackground: EuiPalette = {
     '#C06C4C',
     '#BF4D4D',
     '#F5258C',
-  ]
+  ],
 };
 
 const euiPaletteForStatus: EuiPalette = {
@@ -49,7 +49,7 @@ const euiPaletteForStatus: EuiPalette = {
     '#D99D4C',
     '#D97E4C',
     '#D75949',
-  ]
+  ],
 };
 
 export const palettes = {

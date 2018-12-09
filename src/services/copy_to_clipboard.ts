@@ -31,7 +31,8 @@ export function copyToClipboard(text: string): boolean {
 
   if (!document.execCommand('copy')) {
     isCopied = false;
-    console.warn('Unable to copy to clipboard.'); // eslint-disable-line no-console
+    // tslint:disable-next-line:no-console
+    console.warn('Unable to copy to clipboard.');
   }
 
   if (selection) {
