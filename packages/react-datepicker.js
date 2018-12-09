@@ -785,9 +785,10 @@ function safeDateFormat(date, _ref2) {
 function setTime(date, _ref3) {
   var hour = _ref3.hour,
       minute = _ref3.minute,
-      second = _ref3.second;
+      second = _ref3.second,
+      millisecond = _ref3.millisecond;
 
-  date.set({ hour: hour, minute: minute, second: second });
+  date.set({ hour: hour, minute: minute, second: second, millisecond: millisecond });
   return date;
 }
 
@@ -800,6 +801,10 @@ function setYear(date, year) {
 }
 
 // ** Date Getters **
+
+function getMillisecond(date) {
+  return get$1(date, "millisecond");
+}
 
 function getSecond(date) {
   return get$1(date, "second");
@@ -2651,7 +2656,8 @@ var Time = function (_React$Component) {
       var closestTime = setTime(newDate(), {
         hour: Math.floor(closestMinutes / 60),
         minute: closestMinutes % 60,
-        second: 0
+        second: 0,
+        millisecond: 0
       });
       this.setState({ preSelection: closestTime });
     }
@@ -8240,7 +8246,8 @@ var DatePicker = function (_React$Component) {
             changedDate = setTime(newDate(changedDate), {
               hour: getHour(selected),
               minute: getMinute(selected),
-              second: getSecond(selected)
+              second: getSecond(selected),
+              millisecond: getMillisecond(selected)
             });
           }
           if (!_this.props.inline) {
@@ -8274,7 +8281,8 @@ var DatePicker = function (_React$Component) {
       var changedDate = setTime(cloneDate(selected), {
         hour: getHour(time),
         minute: getMinute(time),
-        second: 0
+        second: 0,
+        millisecond: 0
       });
 
       _this.setState({
