@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
 
-export const EuiDescriptionListDescription = ({
+export const EuiDescriptionListDescription: SFC<CommonProps & HTMLAttributes<HTMLElement>> = ({
   children,
   className,
   ...rest
@@ -17,9 +17,4 @@ export const EuiDescriptionListDescription = ({
       {children}
     </dd>
   );
-};
-
-EuiDescriptionListDescription.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
 };

@@ -7,7 +7,6 @@
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./context_menu/index.d.ts" />
-/// <reference path="./description_list/index.d.ts" />
 /// <reference path="./empty_prompt/index.d.ts" />
 /// <reference path="./error_boundary/index.d.ts" />
 /// <reference path="./flyout/index.d.ts" />

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, ReactNode, SFC } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -9,6 +8,7 @@ import {
 import {
   EuiDescriptionListDescription,
 } from './description_list_description';
+import { CommonProps, keysOf } from '../common';
 
 const typesToClassNameMap = {
   row: 'euiDescriptionList--row',
@@ -16,23 +16,48 @@ const typesToClassNameMap = {
   inline: 'euiDescriptionList--inline',
 };
 
-export const TYPES = Object.keys(typesToClassNameMap);
+export type EuiDescriptionListType = 'row' | 'column' | 'inline';
+export type EuiDescriptionListAlignment = 'center' | 'left';
+export type EuiDescriptionListTextStyle = 'normal' | 'reverse';
+
+export interface EuiDescriptionListProps {
+  listItems?: Array<{ title: ReactNode, description: ReactNode }>;
+  /**
+   * Text alignment
+   */
+  align?: EuiDescriptionListAlignment;
+  /**
+   * Smaller text and condensed spacing
+   */
+  compressed?: boolean;
+  /**
+   * How should the content be styled, by default
+   * this will emphasize the title
+   */
+  textStyle?: EuiDescriptionListTextStyle;
+  /**
+   * How each item should be layed out
+   */
+  type?: EuiDescriptionListType;
+}
+
+export const TYPES = keysOf(typesToClassNameMap);
 
 const alignmentsToClassNameMap = {
   center: 'euiDescriptionList--center',
   left: '',
 };
 
-export const ALIGNMENTS = Object.keys(alignmentsToClassNameMap);
+export const ALIGNMENTS = keysOf(alignmentsToClassNameMap);
 
 const textStylesToClassNameMap = {
   normal: '',
   reverse: 'euiDescriptionList--reverse',
 };
 
-export const TEXT_STYLES = Object.keys(textStylesToClassNameMap);
+export const TEXT_STYLES = keysOf(textStylesToClassNameMap);
 
-export const EuiDescriptionList = ({
+export const EuiDescriptionList: SFC<CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps> = ({
   children,
   className,
   listItems,
@@ -44,9 +69,9 @@ export const EuiDescriptionList = ({
 }) => {
   const classes = classNames(
     'euiDescriptionList',
-    typesToClassNameMap[type],
-    alignmentsToClassNameMap[align],
-    textStylesToClassNameMap[textStyle],
+    type ? typesToClassNameMap[type] : undefined,
+    align ? alignmentsToClassNameMap[align] : undefined,
+    textStyle ? textStylesToClassNameMap[textStyle] : undefined,
     {
       'euiDescriptionList--compressed': compressed,
     },
@@ -64,7 +89,7 @@ export const EuiDescriptionList = ({
 
           <EuiDescriptionListDescription key={`description-${index}`}>
             {item.description}
-          </EuiDescriptionListDescription>
+          </EuiDescriptionListDescription>,
         ];
       })
     );
@@ -80,36 +105,6 @@ export const EuiDescriptionList = ({
       {childrenOrListItems}
     </dl>
   );
-};
-
-EuiDescriptionList.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.node,
-    description: PropTypes.node,
-  })),
-  children: PropTypes.node,
-  className: PropTypes.string,
-
-  /**
-   * Text alignment
-   */
-  align: PropTypes.oneOf(ALIGNMENTS),
-
-  /**
-   * Smaller text and condensed spacing
-   */
-  compressed: PropTypes.bool,
-
-  /**
-   * How should the content be styled, by default
-   * this will emphasize the title
-   */
-  textStyle: PropTypes.oneOf(TEXT_STYLES),
-
-  /**
-   * How each item should be layed out
-   */
-  type: PropTypes.oneOf(TYPES),
 };
 
 EuiDescriptionList.defaultProps = {
