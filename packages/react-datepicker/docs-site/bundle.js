@@ -26921,7 +26921,8 @@
 	            changedDate = (0, _date_utils.setTime)((0, _date_utils.newDate)(changedDate), {
 	              hour: (0, _date_utils.getHour)(selected),
 	              minute: (0, _date_utils.getMinute)(selected),
-	              second: (0, _date_utils.getSecond)(selected)
+	              second: (0, _date_utils.getSecond)(selected),
+	              millisecond: (0, _date_utils.getMillisecond)(selected)
 	            });
 	          }
 	          if (!_this.props.inline) {
@@ -26955,7 +26956,8 @@
 	      var changedDate = (0, _date_utils.setTime)((0, _date_utils.cloneDate)(selected), {
 	        hour: (0, _date_utils.getHour)(time),
 	        minute: (0, _date_utils.getMinute)(time),
-	        second: 0
+	        second: 0,
+	        millisecond: 0
 	      });
 
 	      _this.setState({
@@ -29869,6 +29871,7 @@
 	exports.setMonth = setMonth;
 	exports.setYear = setYear;
 	exports.setUTCOffset = setUTCOffset;
+	exports.getMillisecond = getMillisecond;
 	exports.getSecond = getSecond;
 	exports.getMinute = getMinute;
 	exports.getHour = getHour;
@@ -30029,9 +30032,10 @@
 	function setTime(date, _ref3) {
 	  var hour = _ref3.hour,
 	      minute = _ref3.minute,
-	      second = _ref3.second;
+	      second = _ref3.second,
+	      millisecond = _ref3.millisecond;
 
-	  date.set({ hour: hour, minute: minute, second: second });
+	  date.set({ hour: hour, minute: minute, second: second, millisecond: millisecond });
 	  return date;
 	}
 
@@ -30048,6 +30052,10 @@
 	}
 
 	// ** Date Getters **
+
+	function getMillisecond(date) {
+	  return get(date, "millisecond");
+	}
 
 	function getSecond(date) {
 	  return get(date, "second");
@@ -48724,7 +48732,8 @@
 	      var closestTime = (0, _date_utils.setTime)((0, _date_utils.newDate)(), {
 	        hour: Math.floor(closestMinutes / 60),
 	        minute: closestMinutes % 60,
-	        second: 0
+	        second: 0,
+	        millisecond: 0
 	      });
 	      this.setState({ preSelection: closestTime });
 	    }

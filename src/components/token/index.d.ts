@@ -1,7 +1,6 @@
-/// <reference path="../icon/index.d.ts" />
-
 import { SFC, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import { IconType } from '../icon';
 
 declare module '@elastic/eui' {
 

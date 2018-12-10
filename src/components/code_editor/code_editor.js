@@ -5,6 +5,14 @@ import AceEditor from 'react-ace';
 
 import { htmlIdGenerator, keyCodes } from '../../services';
 
+function setOrRemoveAttribute(element, attributeName, value) {
+  if (value === null || value === undefined) {
+    element.removeAttribute(attributeName);
+  } else {
+    element.setAttribute(attributeName, value);
+  }
+}
+
 export class EuiCodeEditor extends Component {
 
   state = {
@@ -17,8 +25,12 @@ export class EuiCodeEditor extends Component {
   aceEditorRef = (aceEditor) => {
     if (aceEditor) {
       this.aceEditor = aceEditor;
-      aceEditor.editor.textInput.getElement().tabIndex = -1;
-      aceEditor.editor.textInput.getElement().addEventListener('keydown', this.onKeydownAce);
+      const textbox = aceEditor.editor.textInput.getElement();
+      textbox.tabIndex = -1;
+      textbox.addEventListener('keydown', this.onKeydownAce);
+      setOrRemoveAttribute(textbox, 'aria-label', this.props['aria-label']);
+      setOrRemoveAttribute(textbox, 'aria-labelledby', this.props['aria-labelledby']);
+      setOrRemoveAttribute(textbox, 'aria-describedby', this.props['aria-describedby']);
     }
   };
 
