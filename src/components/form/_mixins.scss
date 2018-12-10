@@ -18,7 +18,12 @@
   font-family: $euiFontFamily;
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
+
+  &::placeholder {
+    color: $euiColorDarkShade;
+  }
 }
+
 
 @mixin euiFormControlSize(
   $height: $euiFormControlHeight,
@@ -212,8 +217,8 @@
 }
 
 @mixin euiCustomControlDisabled($type: null) {
-  border-color: $euiColorLightShade;
-  background-color: $euiColorLightShade;
+  border-color: desaturate($euiColorLightShade, 100%);
+  background-color: desaturate($euiColorLightShade, 100%);
   box-shadow: none;
   @if $type != null {
     @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
