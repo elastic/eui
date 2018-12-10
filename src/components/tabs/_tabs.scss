@@ -68,7 +68,7 @@
       left: 0;
       content: ' ';
       width: 100%;
-      height: $euiBorderWidthThick;
+      height: $euiBorderWidthThick + 1px;
       background-color: $euiColorPrimary;
       animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
     }
