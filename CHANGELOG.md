@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
+- Add support for `aria-label`, `aria-labelledby` and `aria-describedby` to `EuiCodeEditor` ([#1354](https://github.com/elastic/eui/pull/1354))
 
 ## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
 
