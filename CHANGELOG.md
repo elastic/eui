@@ -3,6 +3,10 @@
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
 - Add support for `aria-label`, `aria-labelledby` and `aria-describedby` to `EuiCodeEditor` ([#1354](https://github.com/elastic/eui/pull/1354))
 
+**Bug fixes**
+
+- `react-datepicker` set milliseconds to zero when selecting time ([#1361](https://github.com/elastic/eui/pull/1361))
+
 ## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
 
 **Bug fixes**

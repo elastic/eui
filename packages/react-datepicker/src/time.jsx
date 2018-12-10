@@ -98,7 +98,8 @@ export default class Time extends React.Component {
       const closestTime = setTime(newDate(), {
         hour: Math.floor(closestMinutes / 60),
         minute: closestMinutes % 60,
-        second: 0
+        second: 0,
+        millisecond: 0,
       });
       this.setState({ preSelection: closestTime });
     }
@@ -107,7 +108,7 @@ export default class Time extends React.Component {
   componentDidUpdate() {
     // scroll to the preSelected time
     const scrollToElement = this.preselectedLi;
-    
+
     if (scrollToElement) {
       // an element matches the selected time, scroll to it
       scrollToElement.scrollIntoView({
@@ -163,6 +164,8 @@ export default class Time extends React.Component {
     ) {
       return;
     }
+
+
 
     this.props.onChange(time);
   };
