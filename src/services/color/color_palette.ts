@@ -32,13 +32,11 @@ class Color {
 
 export function colorPalette(hexStart: string, hexEnd: string, len: number = 10) {
   if (isHex(hexStart) && isHex(hexEnd)) {
-    const hex1 = formatHex(hexStart); // format to #RRGGBB
-    const hex2 = formatHex(hexEnd); // format to #RRGGBB
     const colorArray: Color[] = [];
     const hexPalette: string[] = [];
     const count = len - 1;
-    const startHex = hexToRgb(hex1); // get RGB equivalent values as array
-    const endHex = hexToRgb(hex2); // get RGB equivalent values as array
+    const startHex = hexToRgb(hexStart); // get RGB equivalent values as array
+    const endHex = hexToRgb(hexEnd); // get RGB equivalent values as array
     colorArray[0] = new Color(startHex[0], startHex[1], startHex[2]); // create first color obj
     colorArray[count] = new Color(endHex[0], endHex[1], endHex[2]); // create last color obj
     const step = stepCalc(count, colorArray[0], colorArray[count]); // create array of step increments
@@ -83,20 +81,6 @@ function createHex(rgbValues: rgbDef): string {
   }
   result = `#${result.toUpperCase()}`; // Return in #RRGGBB format
   return result;
-}
-
-/**
- * Format hexadecimal inputs to #RRGGBB
- */
-function formatHex(hex: string): string {
-  let cleanHex = hex;
-  if (cleanHex.length === 3 || cleanHex.length === 6) {
-    cleanHex = `#${cleanHex}`;
-  }
-  if (cleanHex.length === 4) {
-    cleanHex = cleanHex[0] + cleanHex[1] + cleanHex[1] + cleanHex[2] + cleanHex[2] + cleanHex[3] + cleanHex[3];
-  }
-  return cleanHex;
 }
 
 /**
