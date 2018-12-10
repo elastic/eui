@@ -101,9 +101,14 @@ export class EuiSuperDatePicker extends Component {
           startDateControl={<div/>}
           endDateControl={<div/>}
         >
-          <div className="euiSuperDatePicker__dateText">
+          <EuiButtonEmpty
+            className="euiSuperDatePicker__dateText"
+            style={{ textAlign: 'left' }}
+            textProps={{ style: { width: '100%' } }}
+            onClick={this.hidePrettyDuration}
+          >
             {prettyDuration(start, end, this.props.commonlyUsedRanges, this.props.dateFormat)}
-          </div>
+          </EuiButtonEmpty>
           <EuiButtonEmpty
             size="xs"
             style={{ flexGrow: 0 }}

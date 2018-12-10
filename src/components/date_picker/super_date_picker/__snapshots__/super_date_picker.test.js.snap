@@ -86,11 +86,27 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
         isCustom={true}
         startDateControl={<div />}
       >
-        <div
+        <EuiButtonEmpty
           className="euiSuperDatePicker__dateText"
+          color="primary"
+          iconSide="left"
+          onClick={[Function]}
+          style={
+            Object {
+              "textAlign": "left",
+            }
+          }
+          textProps={
+            Object {
+              "style": Object {
+                "width": "100%",
+              },
+            }
+          }
+          type="button"
         >
           Last 15 minutes
-        </div>
+        </EuiButtonEmpty>
         <EuiButtonEmpty
           color="primary"
           data-test-subj="superDatePickerShowDatesButton"
@@ -226,11 +242,27 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
         isCustom={true}
         startDateControl={<div />}
       >
-        <div
+        <EuiButtonEmpty
           className="euiSuperDatePicker__dateText"
+          color="primary"
+          iconSide="left"
+          onClick={[Function]}
+          style={
+            Object {
+              "textAlign": "left",
+            }
+          }
+          textProps={
+            Object {
+              "style": Object {
+                "width": "100%",
+              },
+            }
+          }
+          type="button"
         >
           Last 15 minutes
-        </div>
+        </EuiButtonEmpty>
         <EuiButtonEmpty
           color="primary"
           data-test-subj="superDatePickerShowDatesButton"

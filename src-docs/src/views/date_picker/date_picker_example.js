@@ -276,7 +276,11 @@ export const DatePickerExample = {
     }],
     text: (
       <div>
-        Super date picker
+        <p>
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are passed as strings
+          in either datemath format (e.g.: now, now-15m, now-15m/m)
+          or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>
+        </p>
       </div>
     ),
     demo: <SuperDatePicker />,
