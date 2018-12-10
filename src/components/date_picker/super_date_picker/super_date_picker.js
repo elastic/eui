@@ -51,10 +51,21 @@ export class EuiSuperDatePicker extends Component {
     };
   }
 
+  setTootipRef = node => (this.tooltip = node);
+
+  showTooltip = () => this.tooltip.showToolTip();
+  hideTooltip = () => this.tooltip.hideToolTip();
+
   setTime = ({ start, end }) => {
     const startMoment = dateMath.parse(start);
     const endMoment = dateMath.parse(end, { roundUp: true });
     const isInvalid = (start === 'now' && end === 'now') || startMoment.isAfter(endMoment);
+
+    if (this.tooltipTimeout) {
+      clearTimeout(this.tooltipTimeout);
+      this.hideTooltip();
+      this.tooltipTimeout === null;
+    }
 
     this.setState({
       start,
@@ -62,6 +73,13 @@ export class EuiSuperDatePicker extends Component {
       isInvalid,
       hasChanged: true,
     });
+
+    if (!isInvalid) {
+      this.showTooltip();
+      this.tooltipTimeout = setTimeout(() => {
+        this.hideTooltip();
+      }, 2000);
+    }
   }
 
   setStart = (start) => {
@@ -158,6 +176,7 @@ export class EuiSuperDatePicker extends Component {
     }
     return (
       <EuiToolTip
+        ref={this.setTootipRef}
         content={this.state.hasChanged && !this.props.isLoading ? 'Click to apply' : undefined}
         position="bottom"
       >
