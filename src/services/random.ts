@@ -38,7 +38,7 @@ export class Random {
     return values[index];
   }
 
-  setOf = <T>(values: T[], options: { min?: number, max?: number }): T[] => {
+  setOf = <T>(values: T[], options: { min?: number, max?: number } = {}): T[] => {
     const count = this.integer({ min: 0, max: values.length, ...options });
     const copy = [...values];
     return times(count, () => {
