@@ -13,3 +13,7 @@ export type RefCallback<Element extends HTMLElement> = (
 // utility types:
 
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+export function keysOf<T, K extends keyof T>(obj: T): K[] {
+  return Object.keys(obj) as K[];
+}

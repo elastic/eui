@@ -1,5 +1,5 @@
 import { CommonProps, Omit } from '../common';
-/// <reference path="../icon/index.d.ts" />
+import { IconType } from '../icon'
 
 import { SFC, ReactNode, HTMLAttributes } from 'react';
 
