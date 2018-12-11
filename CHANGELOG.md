@@ -6,7 +6,7 @@
 **Bug fixes**
 
 - `react-datepicker` set milliseconds to zero when selecting time ([#1361](https://github.com/elastic/eui/pull/1361))
-- Revert ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. It caused regressions on Kibana. ([#1361](https://github.com/elastic/eui/pull/1361))
+- Revert ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. It caused regressions on Kibana. ([#1363](https://github.com/elastic/eui/pull/1363))
 
 ## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
 
