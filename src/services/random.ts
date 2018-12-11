@@ -5,33 +5,32 @@ import { times } from './utils';
 const defaultRand = Math.random;
 
 export class Random {
-  // tslint:disable-next-line:variable-name
-  _rand: () => number;
+  private readonly rand: () => number;
 
   constructor(rand = defaultRand) {
-    this._rand = rand;
+    this.rand = rand;
   }
 
   boolean = () => {
-    return this._rand() > 0.5;
+    return this.rand() > 0.5;
   }
 
   number = (options: { min?: number, max?: number } = {}) => {
     const min = isNil(options.min) ? Number.MIN_VALUE : options.min!;
     const max = isNil(options.max) ? Number.MAX_VALUE : options.max!;
-    const delta = this._rand() * (max - min);
+    const delta = this.rand() * (max - min);
     return min + delta;
   }
 
   integer = (options: { min?: number, max?: number } = {}) => {
     const min = Math.ceil(isNil(options.min) ? Number.MIN_VALUE : options.min!);
     const max = Math.floor(isNil(options.max) ? Number.MAX_VALUE : options.max!);
-    const delta = Math.floor(this._rand() * (max - min + 1));
+    const delta = Math.floor(this.rand() * (max - min + 1));
     return min + delta;
   }
 
   oneOf = <T>(values: T[]): T => {
-    return values[Math.floor(this._rand() * values.length)];
+    return values[Math.floor(this.rand() * values.length)];
   }
 
   oneToOne = <T>(values: T[], index: number): T => {

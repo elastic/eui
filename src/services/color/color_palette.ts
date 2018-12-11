@@ -5,16 +5,10 @@ import { hexToRgb } from './hex_to_rgb';
  * Create the color object for manipulation by other functions
  */
 class Color {
-  r: number;
-  g: number;
-  b: number;
   collection: rgbDef;
   text: string;
 
-  constructor(r: number, g: number, b: number) {
-    this.r = r; // Red value
-    this.g = g; // Green value
-    this.b = b; // Blue value
+  constructor(public r: number, public g: number, public b: number) {
     this.collection = [r, g, b];
     this.text = createHex(this.collection);
   }
