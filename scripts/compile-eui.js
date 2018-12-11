@@ -20,7 +20,9 @@ function compileLib() {
 
   // Use `tsc` to emit typescript declaration files for .ts files
   console.log('Generating typescript definitions file');
-  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`);
+  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, { stdio: 'inherit' });
+  // validate the generated eui.d.ts doesn't contain errors
+  execSync(`tsc --noEmit -p tsconfig-builttypes.json`, { stdio: 'inherit' });
   console.log(chalk.green('✔ Finished generating definitions'));
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
