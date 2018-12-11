@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" style="background:#d9d9d9" viewBox="0 0 300 150">
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
   <g fill="none" fill-rule="evenodd">
-    <path fill="#DB1374" d="M32 23L96 23 96 127 32 127 32 23zM112 23L268 23 268 127 112 127 112 23z"/>
+    <rect width="300" height="150" fill="#D3DAE6"/>
+    <path fill="#DD0A73" d="M32 23L96 23 96 127 32 127 32 23zM112 23L268 23 268 127 112 127 112 23z"/>
     <g fill="#FFF" opacity=".397" transform="translate(120 31)">
       <path d="M0 64L27 64 27 88 0 88 0 64zM0 0L66 0 66 24 0 24 0 0zM0 32L140 32 140 56 0 56 0 32zM74 0L140 0 140 24 74 24 74 0zM35 64L140 64 140 88 35 88 35 64z"/>
     </g>

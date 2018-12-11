@@ -100,11 +100,11 @@
 
   .euiSwitch__input:disabled ~ .euiSwitch__body,
   .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
-    background: $euiColorLightShade;
+    background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
 
     .euiSwitch__thumb {
       @include euiCustomControlDisabled;
-      background-color: $euiColorLightestShade;
+      background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
     }
 
     .euiSwitch__icon {

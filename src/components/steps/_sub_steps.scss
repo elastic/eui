@@ -1,6 +1,6 @@
 .euiSubSteps {
   padding: $euiSize;
-  background-color: tintOrShade(tint($euiColorPrimary, 55%), 83%, 78%);
+  background-color: $euiColorLightestShade;
   margin-bottom: $euiSize;
 
   > *:last-child {
