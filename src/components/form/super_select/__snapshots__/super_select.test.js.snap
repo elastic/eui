@@ -419,7 +419,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 
 exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
 <EuiSuperSelect
+  compressed={false}
   data-test-subj="superSelect"
+  fullWidth={false}
+  hasDividers={false}
   onChange={[Function]}
   options={
     Array [

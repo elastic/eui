@@ -282,11 +282,23 @@ EuiSuperSelect.propTypes = {
    * Change `EuiContextMenuItem` layout position of icon
    */
   itemLayoutAlign: PropTypes.string,
+  /**
+   * Make it wide
+   */
   fullWidth: PropTypes.bool,
+  /**
+   * Make it short
+   */
   compressed: PropTypes.bool,
+  /**
+   * Applied to the outermost wrapper (popover)
+   */
   popoverClassName: PropTypes.string,
 };
 
 EuiSuperSelect.defaultProps = {
+  hasDividers: false,
+  fullWidth: false,
+  compressed: false,
   options: [],
 };
