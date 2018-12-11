@@ -217,8 +217,8 @@
 }
 
 @mixin euiCustomControlDisabled($type: null) {
-  border-color: desaturate($euiColorLightShade, 100%);
-  background-color: desaturate($euiColorLightShade, 100%);
+  border-color: $euiColorLightShade;
+  background-color: $euiColorLightShade;
   box-shadow: none;
   @if $type != null {
     @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
