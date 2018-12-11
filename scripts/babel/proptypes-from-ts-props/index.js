@@ -355,7 +355,7 @@ function getPropTypesForNode(node, optional, state) {
 
       const reducedUnionTypes = tsUnionTypes.reduce(
         (foundTypes, tsUnionType) => {
-          if (types.isLiteral(tsUnionType)) {
+          if (types.isLiteral(tsUnionType) || (types.isIdentifier(tsUnionType) && tsUnionType.name === 'undefined')) {
             if (foundTypes.oneOfPropType == null) {
               foundTypes.oneOfPropType = types.arrayExpression([]);
               foundTypes.unionTypes.push(
@@ -511,10 +511,20 @@ function getPropTypesForNode(node, optional, state) {
       optional = true; // cannot call `.isRequired` on a boolean literal
       break;
 
+    case 'TSNullKeyword':
+      propType =  types.nullLiteral();
+      optional = true; // cannot call `.isRequired` on a boolean literal
+      break;
+
+    case 'TSUndefinedKeyword':
+      propType =  types.identifier('undefined');
+      optional = true; // cannot call `.isRequired` on a boolean literal
+      break;
+
     // very helpful debugging code
-    // default:
-    //   debugger;
-    //   throw new Error(`Could not generate prop types for node type ${node.type}`);
+    default:
+      debugger;
+      throw new Error(`Could not generate prop types for node type ${node.type}`);
   }
 
   // if the node was unable to be translated to a prop type, fallback to PropTypes.any
