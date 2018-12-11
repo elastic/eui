@@ -1,11 +1,7 @@
 import React from 'react';
-
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiIcon,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
+import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiIcon } from '../../../../src/components/icon';
 
 export default () => (
   <div>

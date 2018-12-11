@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-} from '../../../../src/components';
+import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
 const ITEM_STYLE = { width: '300px' };
 

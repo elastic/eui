@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDescriptionListDescription is rendered 1`] = `
+<dd
+  aria-label="aria-label"
+  class="euiDescriptionList__description testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  Content
+</dd>
+`;

@@ -35,6 +35,8 @@ export const EuiFlexItem: SFC<
   component: Component = 'div',
   ...rest
 }) => {
+  validateGrowValue(grow);
+
   const classes = classNames(
     'euiFlexItem',
     {
@@ -53,6 +55,20 @@ export const EuiFlexItem: SFC<
     </Component>
   );
 };
+
+function validateGrowValue(value: EuiFlexItemProps['grow']) {
+  const validValues = [
+    null, undefined,
+    true, false,
+    ...GROW_SIZES,
+  ];
+
+  if (validValues.indexOf(value) === -1) {
+    throw new Error(
+      `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 1 and 10, received \`${value}\``
+    );
+  }
+}
 
 EuiFlexItem.defaultProps = {
   grow: true,
