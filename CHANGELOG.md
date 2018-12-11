@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.7.0`.
+
+## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
+
 - Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
