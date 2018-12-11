@@ -1,20 +1,20 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-import sinon from 'sinon';
 
 import {
-  EuiExpressionButton,
-} from './expression_button';
+  EuiExpression,
+} from './expression';
 
-describe('EuiExpressionButton', () => {
+describe('EuiExpression', () => {
   test('renders', () => {
     const component = (
-      <EuiExpressionButton
+      <EuiExpression
         description="the answer is"
         buttonValue="42"
         isActive={false}
-        onClick={()=>{}}
+         // tslint:disable no-empty
+        onClick={() => {}}
         {...requiredProps}
       />
     );
@@ -26,11 +26,11 @@ describe('EuiExpressionButton', () => {
     describe('isActive', () => {
       test('true renders active', () => {
         const component = (
-          <EuiExpressionButton
+          <EuiExpression
             description="the answer is"
             buttonValue="42"
             isActive={true}
-            onClick={()=>{}}
+            onClick={() => {}}
           />
         );
 
@@ -39,11 +39,11 @@ describe('EuiExpressionButton', () => {
 
       test('false renders inactive', () => {
         const component = (
-          <EuiExpressionButton
+          <EuiExpression
             description="the answer is"
             buttonValue="42"
             isActive={false}
-            onClick={()=>{}}
+            onClick={() => {}}
           />
         );
 
@@ -52,22 +52,19 @@ describe('EuiExpressionButton', () => {
     });
 
     describe('onClick', () => {
-      test('is called when the button is clicked', () => {
-        const onClickHandler = sinon.spy();
-
-        const button = shallow(
-          <EuiExpressionButton
+      it('is called when the button is clicked', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiExpression
             description="the answer is"
             buttonValue="42"
             isActive={false}
-            onClick={onClickHandler}
+            onClick={handler}
             {...requiredProps}
           />
         );
-
-        button.simulate('click');
-
-        sinon.assert.calledOnce(onClickHandler);
+        component.find('button').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
       });
     });
   });

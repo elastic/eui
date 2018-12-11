@@ -3,8 +3,6 @@ import React, {
 } from 'react';
 
 import {
-  EuiExpression,
-  EuiExpressionButton,
   EuiPopoverTitle,
   EuiFlexItem,
   EuiFlexGroup,
@@ -12,6 +10,10 @@ import {
   EuiSelect,
   EuiFieldText,
 } from '../../../../src/components';
+
+import {
+  EuiExpression,
+} from '../../../../src/components/expression';
 
 // Rise the popovers above GuidePageSideNav
 const POPOVER_STYLE = { zIndex: '200' };
@@ -97,20 +99,18 @@ export default class extends Component {
     return (
       <div style={POPOVER_STYLE}>
         <EuiPopoverTitle>When</EuiPopoverTitle>
-        <EuiExpression style={{ width: 180 }}>
-          <EuiSelect
-            value={this.state.example1.value}
-            onChange={this.changeExample1}
-            options={[
-              { value: 'count()', text: 'count()' },
-              { value: 'average()', text: 'average()' },
-              { value: 'sum()', text: 'sum()' },
-              { value: 'median()', text: 'median()' },
-              { value: 'min()', text: 'min()' },
-              { value: 'max()', text: 'max()' },
-            ]}
-          />
-        </EuiExpression>
+        <EuiSelect
+          value={this.state.example1.value}
+          onChange={this.changeExample1}
+          options={[
+            { value: 'count()', text: 'count()' },
+            { value: 'average()', text: 'average()' },
+            { value: 'sum()', text: 'sum()' },
+            { value: 'median()', text: 'median()' },
+            { value: 'min()', text: 'min()' },
+            { value: 'max()', text: 'max()' },
+          ]}
+        />
       </div>
     );
   }
@@ -119,40 +119,38 @@ export default class extends Component {
     return (
       <div style={POPOVER_STYLE}>
         <EuiPopoverTitle>{this.state.example2.description}</EuiPopoverTitle>
-        <EuiExpression>
-          <EuiFlexGroup style={{ maxWidth: 600 }}>
-            <EuiFlexItem grow={false} style={{ width: 80 }}>
-              <EuiSelect
-                value={this.state.example2.object}
-                onChange={this.changeExample2Object}
-                options={[
-                  { value: 'A', text: 'A' },
-                  { value: 'B', text: 'B' },
-                  { value: 'C', text: 'C' },
-                ]}
-              />
-            </EuiFlexItem>
+        <EuiFlexGroup style={{ maxWidth: 600 }}>
+          <EuiFlexItem grow={false} style={{ width: 80 }}>
+            <EuiSelect
+              value={this.state.example2.object}
+              onChange={this.changeExample2Object}
+              options={[
+                { value: 'A', text: 'A' },
+                { value: 'B', text: 'B' },
+                { value: 'C', text: 'C' },
+              ]}
+            />
+          </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{ width: 150 }}>
-              <EuiSelect
-                value={this.state.example2.description}
-                onChange={this.changeExample2Description}
-                options={[
-                  { value: 'Is above', text: 'Is above' },
-                  { value: 'Is below', text: 'Is below' },
-                  { value: 'Is exactly', text: 'Is exactly' },
-                ]}
-              />
-            </EuiFlexItem>
+          <EuiFlexItem grow={false} style={{ width: 150 }}>
+            <EuiSelect
+              value={this.state.example2.description}
+              onChange={this.changeExample2Description}
+              options={[
+                { value: 'Is above', text: 'Is above' },
+                { value: 'Is below', text: 'Is below' },
+                { value: 'Is exactly', text: 'Is exactly' },
+              ]}
+            />
+          </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{ width: 100 }}>
-              <EuiFieldText
-                value={this.state.example2.value}
-                onChange={this.changeExample2Value}
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiExpression>
+          <EuiFlexItem grow={false} style={{ width: 100 }}>
+            <EuiFieldText
+              value={this.state.example2.value}
+              onChange={this.changeExample2Value}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </div>
     );
   }
@@ -164,7 +162,7 @@ export default class extends Component {
           <EuiPopover
             id="popover1"
             button={(
-              <EuiExpressionButton
+              <EuiExpression
                 description="when"
                 buttonValue={this.state.example1.value}
                 isActive={this.state.example1.isOpen}
@@ -173,7 +171,6 @@ export default class extends Component {
             )}
             isOpen={this.state.example1.isOpen}
             closePopover={this.closeExample1}
-            panelPaddingSize="none"
             ownFocus
             withTitle
             anchorPosition="downLeft"
@@ -186,7 +183,7 @@ export default class extends Component {
           <EuiPopover
             id="popover2"
             button={(
-              <EuiExpressionButton
+              <EuiExpression
                 description={this.state.example2.description}
                 buttonValue={this.state.example2.value}
                 isActive={this.state.example2.isOpen}
@@ -195,7 +192,6 @@ export default class extends Component {
             )}
             isOpen={this.state.example2.isOpen}
             closePopover={this.closeExample2}
-            panelPaddingSize="none"
             ownFocus
             withTitle
             anchorPosition="downLeft"

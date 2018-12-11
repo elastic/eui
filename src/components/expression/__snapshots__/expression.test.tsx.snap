@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiExpressionButton props isActive false renders inactive 1`] = `
+exports[`EuiExpression props isActive false renders inactive 1`] = `
 <button
   class="euiExpressionButton"
 >
@@ -18,7 +18,7 @@ exports[`EuiExpressionButton props isActive false renders inactive 1`] = `
 </button>
 `;
 
-exports[`EuiExpressionButton props isActive true renders active 1`] = `
+exports[`EuiExpression props isActive true renders active 1`] = `
 <button
   class="euiExpressionButton euiExpressionButton-isActive"
 >
@@ -36,7 +36,7 @@ exports[`EuiExpressionButton props isActive true renders active 1`] = `
 </button>
 `;
 
-exports[`EuiExpressionButton renders 1`] = `
+exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
   class="euiExpressionButton testClass1 testClass2"

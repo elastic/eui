@@ -8,8 +8,11 @@ import {
 
 import {
   EuiCode,
-  EuiExpression,
 } from '../../../../src/components';
+
+import {
+  EuiExpression,
+} from '../../../../src/components/expression';
 
 import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
