@@ -204,22 +204,38 @@ export class EuiComboBox extends Component {
   };
 
   addCustomOption = () => {
+    const {
+      options,
+      selectedOptions,
+      onCreateOption,
+    } = this.props;
+
+    const {
+      searchValue,
+      matchingOptions,
+    } = this.state;
+
     if (this.doesSearchMatchOnlyOption()) {
-      this.onAddOption(this.state.matchingOptions[0]);
+      this.onAddOption(matchingOptions[0]);
       return;
     }
 
-    if (!this.props.onCreateOption) {
+    if (!onCreateOption) {
+      return;
+    }
+
+    // Don't bother trying to create an option if the user hasn't typed anything.
+    if (!searchValue) {
       return;
     }
 
     // Don't create the value if it's already been selected.
-    if (getSelectedOptionForSearchValue(this.state.searchValue, this.props.selectedOptions)) {
+    if (getSelectedOptionForSearchValue(searchValue, selectedOptions)) {
       return;
     }
 
     // Add new custom pill if this is custom input, even if it partially matches an option..
-    const isOptionCreated = this.props.onCreateOption(this.state.searchValue, flattenOptionGroups(this.props.options));
+    const isOptionCreated = this.props.onCreateOption(searchValue, flattenOptionGroups(options));
 
     // Expect the consumer to be explicit in rejecting a custom option.
     if (isOptionCreated === false) {
@@ -256,6 +272,12 @@ export class EuiComboBox extends Component {
     const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
+    }
+
+    // If the user tabs away or changes focus to another element, take whatever input they've
+    // typed and convert it into a pill, to prevent the combo box from looking like a text input.
+    if (!this.hasActiveOption() && !focusedInInput) {
+      this.addCustomOption();
     }
 
     if (this.props.onBlur) {

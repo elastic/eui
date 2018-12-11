@@ -135,6 +135,44 @@ describe('props', () => {
 });
 
 describe('behavior', () => {
+  describe('hitting "Enter"', () => {
+    test(`calls the onCreateOption callback when there is input`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
+        />
+      );
+
+      component.setState({ searchValue: 'foo' });
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      sinon.assert.calledOnce(onCreateOptionHandler);
+      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
+    });
+
+    test(`doesn't the onCreateOption callback when there is no input`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
+        />
+      );
+
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      sinon.assert.notCalled(onCreateOptionHandler);
+    });
+  });
+
   describe('tabbing', () => {
     test(`off the search input closes the options list if the user isn't navigating the options`, () => {
       const onKeyDownWrapper = jest.fn();
@@ -158,6 +196,25 @@ describe('behavior', () => {
 
       // If the TAB keydown propagated to the wrapper, then a browser DOM would shift the focus
       expect(onKeyDownWrapper.mock.calls.length).toBe(1);
+    });
+
+    test(`off the search input calls onCreateOption`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
+        />
+      );
+
+      component.setState({ searchValue: 'foo' });
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('blur');
+      sinon.assert.calledOnce(onCreateOptionHandler);
+      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
     });
 
     test('off the search input does nothing if the user is navigating the options', () => {
