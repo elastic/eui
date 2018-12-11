@@ -258,12 +258,6 @@ export class EuiComboBox extends Component {
       this.closeList();
     }
 
-    // If the user tabs away or changes focus to another element, take whatever input they've
-    // typed and convert it into a pill, to prevent the combo box from looking like a text input.
-    if (!this.hasActiveOption()) {
-      this.addCustomOption();
-    }
-
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
