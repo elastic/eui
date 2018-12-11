@@ -367,6 +367,7 @@ export class EuiPopover extends Component {
 
   render() {
     const {
+      anchorClassName,
       anchorPosition,
       button,
       isOpen,
@@ -393,6 +394,11 @@ export class EuiPopover extends Component {
         'euiPopover--withTitle': withTitle,
       },
       className,
+    );
+
+    const anchorClasses = classNames(
+      'euiPopover__anchor',
+      anchorClassName
     );
 
     const panelClasses = classNames(
@@ -478,7 +484,7 @@ export class EuiPopover extends Component {
           ref={popoverRef}
           {...rest}
         >
-          <div className="euiPopover__anchor" ref={this.buttonRef}>
+          <div className={anchorClasses} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
@@ -489,13 +495,14 @@ export class EuiPopover extends Component {
 }
 
 EuiPopover.propTypes = {
+  anchorClassName: PropTypes.string,
+  anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   isOpen: PropTypes.bool,
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
   button: PropTypes.node.isRequired,
   children: PropTypes.node,
-  anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,

@@ -24,6 +24,15 @@ describe('EuiSuperSelect', () => {
   });
 
   describe('props', () => {
+    test('fullWidth is rendered', () => {
+      const component = render(
+        <EuiSuperSelect {...requiredProps} onChange={() => {}} fullWidth />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('select component is rendered', () => {
       const component = render(
         <EuiSuperSelect
