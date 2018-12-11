@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.6.1`.
+**Note: this release is a backport**
+
+- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
+
+**Bug fixes**
+
+- Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
 
 ## [`5.6.1`](https://github.com/elastic/eui/tree/v5.6.1)
 
