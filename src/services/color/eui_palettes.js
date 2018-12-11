@@ -15,10 +15,10 @@ export const palettes = {
   },
   euiPaletteForLightBackground: {
     colors: [
-      '#0079A5',
-      '#017F75',
-      '#E5830E',
-      '#A30000',
+      '#006BB4',
+      '#017D73',
+      '#F5A700',
+      '#BD271E',
       '#DD0A73',
     ]
   },

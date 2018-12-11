@@ -6,6 +6,10 @@
 
 - Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
 
+## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
+
+- Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
+
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))

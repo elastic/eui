@@ -2,10 +2,20 @@
   @include euiScrollBar;
 
   display: flex;
-  border-bottom: $euiBorderThin;
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $euiColorLightShade;
+    content: '';
+  }
 
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
@@ -46,6 +56,16 @@
   &:focus {
     background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $euiColorLightShade;
+      content: '';
+    }
   }
 
   &.euiTab-isDisabled {
@@ -64,7 +84,7 @@
 
     &:after {
       position: absolute;
-      bottom: -1px;
+      bottom: 0;
       left: 0;
       content: ' ';
       width: 100%;

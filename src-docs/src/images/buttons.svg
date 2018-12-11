@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" style="background:#d9d9d9" viewBox="0 0 300 150">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" viewBox="0 0 300 150">
   <defs>
     <rect id="buttons-b" width="115" height="40" rx="4"/>
     <filter id="buttons-a" width="107%" x="-3.5%" y="-5%" filterUnits="objectBoundingBox">
@@ -9,10 +9,11 @@
     </filter>
   </defs>
   <g fill="none" fill-rule="evenodd">
-    <rect width="97" height="16" x="171" y="67" fill="#0079A5"/>
+    <rect width="300" height="150" fill="#D3DAE6"/>
+    <rect width="97" height="16" x="171" y="67" fill="#006BB4"/>
     <g transform="translate(32 55)">
       <use fill="#000" filter="url(#buttons-a)" xlink:href="#buttons-b"/>
-      <use fill="#0079A5" xlink:href="#buttons-b"/>
+      <use fill="#006BB4" xlink:href="#buttons-b"/>
       <rect width="91" height="16" x="12" y="12" fill="#FFF" opacity=".343"/>
     </g>
     <polyline fill="#FFF" fill-rule="nonzero" stroke="#979797" points="0 0 19.2 17.92 9.92 18.72 15.2 30.4 11.68 32 6.56 20.16 0 26.4 0 0" transform="translate(113 85)"/>
