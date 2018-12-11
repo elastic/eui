@@ -160,6 +160,23 @@ describe('behavior', () => {
       expect(onKeyDownWrapper.mock.calls.length).toBe(1);
     });
 
+    test(`off the search input calls onCreateOption`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
+        />
+      );
+
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('blur');
+      sinon.assert.calledOnce(onCreateOptionHandler);
+    });
+
     test('off the search input does nothing if the user is navigating the options', () => {
       const onKeyDownWrapper = jest.fn();
       const component = mount(

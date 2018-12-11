@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.6.0`.
+- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. Note that this can expose errors in validation, most notably when an empty string is accepted as a valid custom option by the `onCreateOption` callback. ([#](https://github.com/elastic/eui/pull/))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
