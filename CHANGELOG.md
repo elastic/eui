@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.6.0`.
+
+## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
+
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
 - Add support for `aria-label`, `aria-labelledby` and `aria-describedby` to `EuiCodeEditor` ([#1354](https://github.com/elastic/eui/pull/1354))
 
