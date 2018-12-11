@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. Note that this can expose errors in validation, most notably when an empty string is accepted as a valid custom option by the `onCreateOption` callback. ([#](https://github.com/elastic/eui/pull/))
+- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox`. Note that this can expose errors in validation, most notably when an empty string is accepted as a valid custom option by the `onCreateOption` callback. ([#1364](https://github.com/elastic/eui/pull/1364))
+
+**Bug fixes**
+
+- Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
@@ -10,7 +14,7 @@
 **Bug fixes**
 
 - `react-datepicker` set milliseconds to zero when selecting time ([#1361](https://github.com/elastic/eui/pull/1361))
-- Revert ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. It caused regressions on Kibana. ([#1363](https://github.com/elastic/eui/pull/1363))
+- Revert ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox`. It caused regressions on Kibana. ([#1363](https://github.com/elastic/eui/pull/1363))
 
 ## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
 
