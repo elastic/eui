@@ -5,6 +5,9 @@
 **Bug fixes**
 
 - Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
+- Added `anchorClassName` prop to `EuiPopover` ([#1367](https://github.com/elastic/eui/pull/1367))
+- Added support for `fullWidth` on `EuiSuperSelect` ([#1367](https://github.com/elastic/eui/pull/1367))
+- Applied new scrollbar customization for Firefox ([#1367](https://github.com/elastic/eui/pull/1367))
 
 ## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
 
