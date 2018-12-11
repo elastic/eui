@@ -150,8 +150,18 @@ export class EuiSuperSelect extends Component {
       hasDividers,
       itemClassName,
       itemLayoutAlign,
+      fullWidth,
+      popoverClassName,
       ...rest
     } = this.props;
+
+    const popoverClasses = classNames(
+      'euiSuperSelect',
+      {
+        'euiSuperSelect--fullWidth': fullWidth,
+      },
+      popoverClassName,
+    );
 
     const buttonClasses = classNames(
       {
@@ -176,6 +186,7 @@ export class EuiSuperSelect extends Component {
         onClick={this.state.isPopoverOpen ? this.closePopover : this.openPopover}
         onKeyDown={this.onSelectKeyDown}
         className={buttonClasses}
+        fullWidth={fullWidth}
         {...rest}
       />
     );
@@ -209,7 +220,8 @@ export class EuiSuperSelect extends Component {
 
     return (
       <EuiPopover
-        className="euiSuperSelect"
+        className={popoverClasses}
+        anchorClassName="euiSuperSelect__popoverAnchor"
         panelClassName="euiSuperSelect__popoverPanel"
         button={button}
         isOpen={isOpen || this.state.isPopoverOpen}
@@ -270,6 +282,9 @@ EuiSuperSelect.propTypes = {
    * Change `EuiContextMenuItem` layout position of icon
    */
   itemLayoutAlign: PropTypes.string,
+  fullWidth: PropTypes.bool,
+  compressed: PropTypes.bool,
+  popoverClassName: PropTypes.string,
 };
 
 EuiSuperSelect.defaultProps = {
