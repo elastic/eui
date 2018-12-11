@@ -28,8 +28,14 @@ export class EuiRelativeTab extends Component {
   }
 
   static getDerivedStateFromProps = (nextProps) => {
+    const relativeParts = parseRelativeParts(nextProps.value);
+    // parseRelativeParts will always return unit of 's' when the count is zero
+    // Do not override state.unit when count is zero to allow users to set the unit when count is zero
+    if (relativeParts.count === 0) {
+      delete relativeParts.unit;
+    }
     return {
-      ...parseRelativeParts(nextProps.value),
+      ...relativeParts,
     };
   }
 
