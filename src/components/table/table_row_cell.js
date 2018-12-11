@@ -82,6 +82,10 @@ EuiTableRowCell.propTypes = {
   truncateText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Setting textOnly to false will break words unnecessarily on FF and IE.
+   * To combat this problem on FF, wrap contents with the css utility `.eui-textBreakWord`.
+   */
   textOnly: PropTypes.bool,
   colSpan: PropTypes.number,
   /**

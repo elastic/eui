@@ -1,10 +1,41 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.6.0`.
+
+## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
+
+- Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
+- Add support for `aria-label`, `aria-labelledby` and `aria-describedby` to `EuiCodeEditor` ([#1354](https://github.com/elastic/eui/pull/1354))
+
+**Bug fixes**
+
+- `react-datepicker` set milliseconds to zero when selecting time ([#1361](https://github.com/elastic/eui/pull/1361))
+- Revert ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `euiComboBox`. It caused regressions on Kibana. ([#1363](https://github.com/elastic/eui/pull/1363))
+
+## [`5.5.1`](https://github.com/elastic/eui/tree/v5.5.1)
+
+**Bug fixes**
+
+- Fixed TypeScript definitions in `eui.d.ts` ([#1359](https://github.com/elastic/eui/pull/1359))
+
+## [`5.5.0`](https://github.com/elastic/eui/tree/v5.5.0)
+
+**Note: this release broke the exported TypeScript definitions and `EuiComboBox` in certain situations. These are both fixed in `5.6.0`.**
+
 - Altered functionality of `truncate` on `EuiBreadcrumbs` and added `truncate` ability on breadcrumb item ([#1346](https://github.com/elastic/eui/pull/1346))
 - Altered `EuiHeader`'s location of `EuiHeaderBreadcrumbs` based on the new `truncate` ability ([#1346](https://github.com/elastic/eui/pull/1346))
 - Added support for `href` and `target` props in `EuiBasicTable` actions ([#1347](https://github.com/elastic/eui/pull/1347))
+- Added `.eui-textBreakWord` CSS utility class  ([#1349](https://github.com/elastic/eui/pull/1349))
+- Added support for `EuiComboBox` converting entered text into a custom option when the user removes focus, e.g. by tabbing to another element. This prevents the `EuiComboBox` from being mistaken for an `EuiInputText`. ([#1353](https://github.com/elastic/eui/pull/1353))
+
+**Bug fixes**
+
+- Fixed word-breaks in table cells for Firefox ([#1349](https://github.com/elastic/eui/pull/1349))
+- Fixed EUI when used in an environment lacking ES Modules support, e.g. Jest ([#1358](https://github.com/elastic/eui/pull/1358))
 
 ## [`5.4.0`](https://github.com/elastic/eui/tree/v5.4.0)
+
+**Note: this release broke usage of EUI in non-ES Module compatible environments. This is fixed in `5.5.0`.**
 
 - Added 3 new icons — `folderOpen`, `folderClosed`, and `crosshairs` ([#1350](https://github.com/elastic/eui/pull/1350))
 - Added `bottomGraphic` prop to `EuiCard` for Kibana home page ([#1338](https://github.com/elastic/eui/pull/1338))
