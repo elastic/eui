@@ -8,7 +8,7 @@ describe('isColorDark', () => {
     [219, 19, 116],
     [73, 0, 146],
     [70, 26, 10],
-    [146, 0, 0]
+    [146, 0, 0],
   ];
 
   const LIGHT_COLORS = [
@@ -18,18 +18,18 @@ describe('isColorDark', () => {
     [212, 157, 170],
     [255, 255, 255],
     [254, 182, 219],
-    [230, 194, 32]
+    [230, 194, 32],
   ];
 
   DARK_COLORS.forEach(color => {
     it(`should return true for dark color rgb(${color.join(', ')})`, () => {
-      expect(isColorDark(...color)).toBe(true);
+      expect(isColorDark(color[0], color[1], color[2])).toBe(true);
     });
   });
 
   LIGHT_COLORS.forEach(color => {
     it(`should return false for light color rgb(${color.join(', ')})`, () => {
-      expect(isColorDark(...color)).toBe(false);
+      expect(isColorDark(color[0], color[1], color[2])).toBe(false);
     });
   });
 });

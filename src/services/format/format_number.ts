@@ -1,15 +1,24 @@
 import numeral from 'numeral';
 import { isNil, isString } from '../predicate';
 
-const numberFormatAliases = {
+const numberFormatAliases: { [alias: string]: string } = {
   decimal1: '0,0.0',
   decimal2: '0,0.00',
   decimal3: '0,0.000',
   ordinal: '0o',
-  integer: '0,0'
+  integer: '0,0',
 };
 
-export const formatNumber = (value, numberFormatOrConfig = {}) => {
+interface FormatNumberConfig {
+  format: string;
+  nil: string;
+  round: boolean;
+}
+
+export const formatNumber = (
+  value?: number | null,
+  numberFormatOrConfig: string | Partial<FormatNumberConfig> = {}
+) => {
   let format;
   let nil = '';
   let round;
@@ -23,7 +32,7 @@ export const formatNumber = (value, numberFormatOrConfig = {}) => {
   }
 
   if (!format) {
-    return isNil(value) ? nil : value.toString();
+    return isNil(value) ? nil : value!.toString();
   }
 
   const roundingFunc = round ? Math.round : Math.floor;

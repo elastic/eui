@@ -26,6 +26,6 @@ describe('formatAuto', () => {
 
   test('object value', () => {
     const obj = { key: 'value' };
-    expect(formatAuto(obj)).toBe(`{\"key\":\"value\"}`);
+    expect(formatAuto(obj)).toBe('{\"key\":\"value\"}');
   });
 });

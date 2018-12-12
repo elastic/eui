@@ -1,12 +1,16 @@
 import { isNil, isFunction, isString } from '../predicate';
-import moment from 'moment';
+import moment, { CalendarSpec, MomentInput } from 'moment';
 
-const calendar = (value, options = {}) => {
-  const refTime = options.refTime || null;
+type CalendarOptions = CalendarSpec & {
+  refTime?: MomentInput
+};
+
+const calendar = (value: Date, options: CalendarOptions = {}) => {
+  const refTime = options.refTime;
   return moment(value).calendar(refTime, options);
 };
 
-export const dateFormatAliases = {
+export const dateFormatAliases: { [alias: string]: any } = {
   date: 'D MMM YYYY',
   longDate: 'DD MMMM YYYY',
   shortDate: 'D MMM YY',
@@ -17,7 +21,7 @@ export const dateFormatAliases = {
   dobLong: 'Do MMMM YYYY',
   iso8601: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
   calendar,
-  calendarDateTime: (value, options) => {
+  calendarDateTime: (value: Date, options: CalendarSpec) => {
     return calendar(value, {
       sameDay: '[Today at] H:mmA',
       nextDay: '[Tomorrow at] H:mmA',
@@ -25,10 +29,10 @@ export const dateFormatAliases = {
       lastDay: '[Yesterday at] H:mmA',
       lastWeek: '[Last] dddd [at] H:mmA',
       sameElse: 'Do MMM YYYY [at] H:mmA',
-      ...options
+      ...options,
     });
   },
-  calendarDate: (value, options) => {
+  calendarDate: (value: Date, options: CalendarSpec) => {
     return calendar(value, {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -36,20 +40,31 @@ export const dateFormatAliases = {
       lastDay: '[Yesterday]',
       lastWeek: '[Last] dddd',
       sameElse: 'Do MMM YYYY',
-      ...options
+      ...options,
     });
-  }
+  },
 };
 
-export const formatDate = (value, dateFormatKeyOrConfig = 'dateTime') => {
+type DateFormat = keyof typeof dateFormatAliases;
+
+interface FormatDateConfig {
+  format: DateFormat;
+  nil: string;
+  options: any;
+}
+
+export const formatDate = (
+  value?: MomentInput,
+  dateFormatKeyOrConfig: DateFormat | string | Partial<FormatDateConfig> = 'dateTime'
+) => {
   if (isString(dateFormatKeyOrConfig)) {
     if (isNil(value)) {
       return '';
     }
 
-    const dateFormat = dateFormatAliases[dateFormatKeyOrConfig] || dateFormatKeyOrConfig;
+    const dateFormatStr = dateFormatAliases[dateFormatKeyOrConfig] || dateFormatKeyOrConfig;
 
-    return moment(value).format(dateFormat);
+    return moment(value).format(dateFormatStr);
   }
 
   const {

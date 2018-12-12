@@ -1,5 +1,7 @@
-function calculateLuminance(r, g, b) {
-  const a = [r, g, b].map(function (v) {
+import { rgbDef } from './color_types';
+
+export function calculateLuminance(r: number, g: number, b: number): number {
+  const a = [r, g, b].map(v => {
     v /= 255;
     return v <= 0.03928
       ? v / 12.92
@@ -8,7 +10,7 @@ function calculateLuminance(r, g, b) {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-function calculateContrast(rgb1, rgb2) {
+export function calculateContrast(rgb1: rgbDef, rgb2: rgbDef): number {
   let contrast =  (
     (calculateLuminance(rgb1[0], rgb1[1], rgb1[2]) + 0.05)
       / (calculateLuminance(rgb2[0], rgb2[1], rgb2[2]) + 0.05)
@@ -19,5 +21,3 @@ function calculateContrast(rgb1, rgb2) {
   }
   return contrast;
 }
-
-export { calculateLuminance, calculateContrast };
