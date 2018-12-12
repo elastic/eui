@@ -19,7 +19,6 @@ const cardNodes = icons.map(function (item, index) {
         description="Example of a card's description. Stick to one or two sentences."
         betaBadgeLabel={badges[index]}
         betaBadgeTooltipContent={badges[index] ? 'This module is not GA. Please help us by reporting any bugs.' : undefined}
-        bottomGraphic
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>

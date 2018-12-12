@@ -28,7 +28,6 @@ export default class extends Component {
         value: 'count()'
       },
       example2: {
-        object: 'A',
         value: '100',
         description: 'Is above'
       },
@@ -83,10 +82,6 @@ export default class extends Component {
     this.setState({ example1: { ...this.state.example1, value: event.target.value } });
   }
 
-  changeExample2Object = (event) => {
-    this.setState({ example2: { ...this.state.example2, object: event.target.value } });
-  }
-
   changeExample2Value = (event) => {
     this.setState({ example2: { ...this.state.example2, value: event.target.value } });
   }
@@ -118,20 +113,7 @@ export default class extends Component {
   renderPopover2() {
     return (
       <div style={POPOVER_STYLE}>
-        <EuiPopoverTitle>{this.state.example2.description}</EuiPopoverTitle>
-        <EuiFlexGroup style={{ maxWidth: 600 }}>
-          <EuiFlexItem grow={false} style={{ width: 80 }}>
-            <EuiSelect
-              value={this.state.example2.object}
-              onChange={this.changeExample2Object}
-              options={[
-                { value: 'A', text: 'A' },
-                { value: 'B', text: 'B' },
-                { value: 'C', text: 'C' },
-              ]}
-            />
-          </EuiFlexItem>
-
+        <EuiFlexGroup>
           <EuiFlexItem grow={false} style={{ width: 150 }}>
             <EuiSelect
               value={this.state.example2.description}
@@ -157,14 +139,14 @@ export default class extends Component {
 
   render() {
     return (
-      <EuiFlexGroup gutterSize="m">
+      <EuiFlexGroup gutterSize="s">
         <EuiFlexItem grow={false}>
           <EuiPopover
             id="popover1"
             button={(
               <EuiExpression
                 description="when"
-                buttonValue={this.state.example1.value}
+                value={this.state.example1.value}
                 isActive={this.state.example1.isOpen}
                 onClick={this.openExample1}
               />
@@ -185,7 +167,7 @@ export default class extends Component {
             button={(
               <EuiExpression
                 description={this.state.example2.description}
-                buttonValue={this.state.example2.value}
+                value={this.state.example2.value}
                 isActive={this.state.example2.isOpen}
                 onClick={this.openExample2}
               />
@@ -193,7 +175,6 @@ export default class extends Component {
             isOpen={this.state.example2.isOpen}
             closePopover={this.closeExample2}
             ownFocus
-            withTitle
             anchorPosition="downLeft"
           >
             {this.renderPopover2()}
