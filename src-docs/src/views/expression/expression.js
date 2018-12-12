@@ -8,7 +8,7 @@ import {
   EuiFlexGroup,
   EuiPopover,
   EuiSelect,
-  EuiFieldText,
+  EuiFieldNumber,
 } from '../../../../src/components';
 
 import {
@@ -28,7 +28,7 @@ export default class extends Component {
         value: 'count()'
       },
       example2: {
-        value: '100',
+        value: 100,
         description: 'Is above'
       },
     };
@@ -82,8 +82,15 @@ export default class extends Component {
     this.setState({ example1: { ...this.state.example1, value: event.target.value } });
   }
 
-  changeExample2Value = (event) => {
-    this.setState({ example2: { ...this.state.example2, value: event.target.value } });
+  changeExample2Value = (e) => {
+    const sanitizedValue = parseInt(e.target.value, 10);
+    this.setState({
+      example2: {
+        ...this.state.example2,
+        value: isNaN(sanitizedValue) ? '' : sanitizedValue,
+      }
+    });
+
   }
 
   changeExample2Description = (event) => {
@@ -127,7 +134,7 @@ export default class extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem grow={false} style={{ width: 100 }}>
-            <EuiFieldText
+            <EuiFieldNumber
               value={this.state.example2.value}
               onChange={this.changeExample2Value}
             />
