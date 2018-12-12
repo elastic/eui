@@ -522,9 +522,9 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     // very helpful debugging code
-    default:
-      debugger;
-      throw new Error(`Could not generate prop types for node type ${node.type}`);
+    // default:
+    //   debugger;
+    //   throw new Error(`Could not generate prop types for node type ${node.type}`);
   }
 
   // if the node was unable to be translated to a prop type, fallback to PropTypes.any

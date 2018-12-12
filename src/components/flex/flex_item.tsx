@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode, SFC } from 'react';
+import React, { HTMLAttributes, SFC } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -19,7 +19,6 @@ export type FlexItemGrowSize =
 export type FlexItemComponentType = 'div' | 'span' | 'figure';
 
 export interface EuiFlexItemProps {
-  children?: ReactNode;
   grow?: FlexItemGrowSize;
   component?: FlexItemComponentType;
 }

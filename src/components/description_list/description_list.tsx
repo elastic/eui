@@ -10,15 +10,9 @@ import {
 } from './description_list_description';
 import { CommonProps, keysOf } from '../common';
 
-const typesToClassNameMap = {
-  row: 'euiDescriptionList--row',
-  column: 'euiDescriptionList--column',
-  inline: 'euiDescriptionList--inline',
-};
-
-export type EuiDescriptionListType = 'row' | 'column' | 'inline';
-export type EuiDescriptionListAlignment = 'center' | 'left';
-export type EuiDescriptionListTextStyle = 'normal' | 'reverse';
+export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
+export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
+export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
 
 export interface EuiDescriptionListProps {
   listItems?: Array<{ title: ReactNode, description: ReactNode }>;
@@ -40,6 +34,12 @@ export interface EuiDescriptionListProps {
    */
   type?: EuiDescriptionListType;
 }
+
+const typesToClassNameMap = {
+  row: 'euiDescriptionList--row',
+  column: 'euiDescriptionList--column',
+  inline: 'euiDescriptionList--inline',
+};
 
 export const TYPES = keysOf(typesToClassNameMap);
 

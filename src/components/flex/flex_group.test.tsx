@@ -96,7 +96,7 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('component', () => {
-      ['div', 'span'].forEach((value) => {
+      ['div', 'span'].forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(
             <EuiFlexGroup component={value as 'div' | 'span'} />

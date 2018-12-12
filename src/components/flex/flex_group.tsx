@@ -10,8 +10,6 @@ export type FlexGroupJustifyContent = keyof typeof justifyContentToClassNameMap;
 
 export interface EuiFlexGroupProps {
   alignItems?: FlexGroupAlignItems;
-  children?: React.ReactNode;
-  className?: string;
   component?: FlexGroupComponentType;
   direction?: FlexGroupDirection;
   gutterSize?: FlexGroupGutterSize;
