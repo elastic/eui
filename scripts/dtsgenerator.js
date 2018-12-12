@@ -3,7 +3,6 @@ const path = require('path');
 const dtsGenerator = require('dts-generator').default;
 
 const baseDir = path.resolve(__dirname, '..');
-const srcDir = path.resolve(baseDir, 'src');
 
 const generator = dtsGenerator({
   name: '@elastic/eui',
@@ -23,16 +22,22 @@ const generator = dtsGenerator({
     const isRelativeImport = params.importedModuleId[0] === '.';
 
     if (isRelativeImport) {
-      // path to the import target, assuming it's a `.d.ts` file
-      const importTargetDTs = `${path.resolve(srcDir, path.dirname(params.currentModuleId), params.importedModuleId)}.d.ts`;
-
       // if importing an `index` file
-      const isModuleIndex = path.basename(params.importedModuleId) === 'index';
+      let isModuleIndex = false;
+      if (path.basename(params.importedModuleId) === 'index') {
+        isModuleIndex = true;
+      } else {
+        const basePath = path.resolve(baseDir, path.dirname(params.currentModuleId));
+        // check if the imported module resolves to ${importedModuleId}/index.ts
+        if (!fs.existsSync(path.resolve(basePath, `${params.importedModuleId}.ts`))) {
+          // not pointing at ${importedModuleId}.ts, check if it's a directory with `index.ts`
+          if (fs.existsSync(path.resolve(basePath, `${params.importedModuleId}/index.ts`))) {
+            isModuleIndex = true;
+          }
+        }
+      }
 
-      if (fs.existsSync(importTargetDTs)) {
-        // the import target is a `.d.ts` file which means it is hand-crafted and already added to the right places, don't modify
-        return path.join('@elastic/eui', params.importedModuleId);
-      } else if (isModuleIndex) {
+      if (isModuleIndex) {
         // importing an `index` file, in `resolveModuleId` above we change those modules to '@elastic/eui'
         return '@elastic/eui';
       } else {
