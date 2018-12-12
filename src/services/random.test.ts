@@ -60,7 +60,7 @@ describe('Random', () => {
 
     // The default max value is now, so we must specify a max in order to keep
     // the test deterministic.
-    const actual = random.date({ max: new Date(Date.parse('2018-12-25T12:23:34.123')) });
+    const actual = random.date({ max: new Date(Date.parse('2018-12-25T12:23:34.123Z')) });
 
     expect(actual).toEqual(new Date(Date.parse('1990-07-29T00:24:17.932Z')));
   });
@@ -70,7 +70,7 @@ describe('Random', () => {
 
     // The default max value is now, so we must specify a max in order to keep
     // the test deterministic.
-    const actual = random.moment({ max: moment('2018-12-25T12:23:34.123') });
+    const actual = random.moment({ max: moment('2018-12-25T12:23:34.123Z') });
 
     expect(actual.toISOString()).toEqual('1990-07-29T00:24:17.932Z');
   });
