@@ -10,6 +10,10 @@
 - Added support for `fullWidth` on `EuiSuperSelect` ([#1367](https://github.com/elastic/eui/pull/1367))
 - Applied new scrollbar customization for Firefox ([#1367](https://github.com/elastic/eui/pull/1367))
 
+**Breaking changes**
+
+- Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
+
 ## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
 
 - Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
