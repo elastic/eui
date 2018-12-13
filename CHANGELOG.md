@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Note: this release is a backport containing changes original made in `5.8.0`**
+
 **Bug fixes**
 
 - Allow any color value to be passed to `EuiIcon` ([#1370](https://github.com/elastic/eui/pull/1370))
