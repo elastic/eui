@@ -604,15 +604,11 @@ export const EuiIcon: SFC<Props> = ({
   let optionalCustomStyles = null;
 
   if (color) {
-    checkValidColor(color, type || 'empty');
-
     if (COLORS.indexOf(color) > -1) {
       optionalColorClass = colorToClassMap[color];
     } else {
       optionalCustomStyles = { fill: color };
     }
-  } else {
-    optionalCustomStyles = { fill: undefined };
   }
 
   // These icons are a little special and get some extra CSS flexibility
@@ -648,16 +644,6 @@ export const EuiIcon: SFC<Props> = ({
     />
   );
 };
-
-function checkValidColor(color: string, type: string) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
-  if (color && !validHex && !COLORS.includes(color)) {
-    throw new Error(
-      `EuiIcon[${type}} needs to pass a valid color. This can either be a three ` +
-      `or six character hex value or one of the following: ${COLORS}`
-    );
-  }
-}
 
 EuiIcon.defaultProps = {
   size: 'm',

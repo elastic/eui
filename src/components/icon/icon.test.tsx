@@ -6,6 +6,7 @@ import {
   EuiIcon,
   SIZES,
   TYPES,
+  COLORS,
 } from './icon';
 
 describe('EuiIcon', () => {
@@ -45,6 +46,18 @@ describe('EuiIcon', () => {
         test(`${type} is rendered`, () => {
           const component = render(
             <EuiIcon type={type} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('color', () => {
+      COLORS.concat(['#fde', '#885522', 'rgb(100, 150, 200)', 'hsla(270, 60%, 70%, 0.9)']).forEach(color => {
+        test(`${color} is rendered`, () => {
+          const component = render(
+            <EuiIcon color={color} />
           );
 
           expect(component).toMatchSnapshot();

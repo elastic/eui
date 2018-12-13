@@ -24,6 +24,164 @@ exports[`EuiIcon is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props color #885522 is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  style="fill:#885522"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color #fde is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  style="fill:#fde"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color accent is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--accent"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color danger is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--danger"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color default is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color ghost is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--ghost"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  style="fill:hsla(270, 60%, 70%, 0.9)"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color primary is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--primary"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  style="fill:rgb(100, 150, 200)"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color secondary is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--secondary"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color subdued is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--subdued"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color success is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--success"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color text is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--text"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`EuiIcon props color warning is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--warning"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
 exports[`EuiIcon props other props are passed through to the icon 1`] = `
 <svg
   aria-label="a custom title"
