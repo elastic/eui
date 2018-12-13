@@ -5,10 +5,10 @@ import moment from 'moment';
 
 import dateMath from '@elastic/datemath';
 
-const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
-
 import { EuiDatePicker } from '../../date_picker';
 import { EuiFormRow, EuiFieldText } from '../../../form';
+
+const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
 
 const toMoment = (value, roundUp) => {
   const valueAsMoment = dateMath.parse(value, { roundUp });
@@ -20,14 +20,7 @@ const toMoment = (value, roundUp) => {
 
 export class EuiAbsoluteTab extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      ...toMoment(this.props.value, this.props.roundUp),
-      isTextInvalid: false,
-    };
-  }
+  state = {}
 
   static getDerivedStateFromProps = (nextProps) => {
     return {

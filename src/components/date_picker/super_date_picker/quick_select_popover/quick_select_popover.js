@@ -16,7 +16,7 @@ import {
 } from '../../../popover';
 
 import { EuiQuickSelect } from './quick_select';
-import { EuiCommonlyUsed } from './commonly_used';
+import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
 import { EuiRefreshInterval } from './refresh_interval';
 
@@ -84,7 +84,7 @@ export class EuiQuickSelectPopover extends Component {
             end={this.props.end}
             prevQuickSelect={this.state.prevQuickSelect}
           />
-          <EuiCommonlyUsed
+          <EuiCommonlyUsedTimeRanges
             applyTime={this.applyTime}
             commonlyUsedRanges={this.props.commonlyUsedRanges}
           />

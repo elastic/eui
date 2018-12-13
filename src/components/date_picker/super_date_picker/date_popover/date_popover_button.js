@@ -13,7 +13,7 @@ export class EuiDatePopoverButton extends Component {
     isInvalid: PropTypes.bool,
     needsUpdating: PropTypes.bool,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     dateFormat: PropTypes.string.isRequired,
     roundUp: PropTypes.bool,
   }

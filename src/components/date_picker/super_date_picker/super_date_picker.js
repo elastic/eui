@@ -64,7 +64,7 @@ export class EuiSuperDatePicker extends Component {
     if (this.tooltipTimeout) {
       clearTimeout(this.tooltipTimeout);
       this.hideTooltip();
-      this.tooltipTimeout === null;
+      this.tooltipTimeout = null;
     }
 
     this.setState({

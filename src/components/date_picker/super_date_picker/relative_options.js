@@ -16,3 +16,12 @@ export const relativeOptions = [
   { text: 'Months from now', value: 'M+' },
   { text: 'Years from now', value: 'y+' },
 ];
+
+export const relativeUnitsFromLargestToSmallest = relativeOptions
+  .filter(({ value }) => {
+    return !value.includes('+');
+  })
+  .map(({ value }) => {
+    return value;
+  })
+  .reverse();

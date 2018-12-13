@@ -2,7 +2,7 @@
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
 import _ from 'lodash';
-import { relativeOptions } from './relative_options';
+import { relativeUnitsFromLargestToSmallest } from './relative_options';
 
 const ROUND_DELIMETER = '/';
 
@@ -31,15 +31,13 @@ export function parseRelativeParts(value) {
 
   const results = { count: 0, unit: 's', round: false };
   const duration = moment.duration(moment().diff(dateMath.parse(value)));
-  const units = _.pluck(_.clone(relativeOptions).reverse(), 'value')
-    .filter(s => /^[smhdwMy]$/.test(s));
   let unitOp = '';
-  for (let i = 0; i < units.length; i++) {
-    const as = duration.as(units[i]);
+  for (let i = 0; i < relativeUnitsFromLargestToSmallest.length; i++) {
+    const as = duration.as(relativeUnitsFromLargestToSmallest[i]);
     if (as < 0) unitOp = '+';
     if (Math.abs(as) > 1) {
       results.count = Math.round(Math.abs(as));
-      results.unit = units[i] + unitOp;
+      results.unit = relativeUnitsFromLargestToSmallest[i] + unitOp;
       results.round = false;
       break;
     }
