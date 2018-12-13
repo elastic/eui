@@ -18,7 +18,12 @@
   font-family: $euiFontFamily;
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
+
+  &::placeholder {
+    color: $euiColorDarkShade;
+  }
 }
+
 
 @mixin euiFormControlSize(
   $height: $euiFormControlHeight,

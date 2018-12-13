@@ -1,16 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" style="background:#d9d9d9" viewBox="0 0 300 150">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="150" viewBox="0 0 300 150">
   <defs>
     <path id="forms-a" d="M13.0688508,5.15725038 L8.38423975,9.76827428 C8.17054415,9.97861308 7.82999214,9.97914095 7.61576025,9.76827428 L2.93114915,5.15725038 C2.7181359,4.94758321 2.37277319,4.94758321 2.15975994,5.15725038 C1.94674669,5.36691756 1.94674669,5.70685522 2.15975994,5.9165224 L6.84437104,10.5275463 C7.48517424,11.1582836 8.51644979,11.1566851 9.15562896,10.5275463 L13.8402401,5.9165224 C14.0532533,5.70685522 14.0532533,5.36691756 13.8402401,5.15725038 C13.6272268,4.94758321 13.2818641,4.94758321 13.0688508,5.15725038 Z"/>
   </defs>
   <g fill="none" fill-rule="evenodd">
+    <rect width="300" height="150" fill="#D3DAE6"/>
     <rect width="93" height="24" fill="#FFF" transform="translate(26 63)"/>
     <g transform="translate(26 102)">
-      <rect width="72" height="24" fill="#00A69B" rx="2"/>
-      <rect width="56" height="8" x="8" y="8" fill="#FFF" opacity=".343"/>
+      <rect width="72" height="24" fill="#017D73" rx="2"/>
+      <polygon fill="#FFF" points="8 8 64 8 64 16 8 16" opacity=".343"/>
     </g>
     <g transform="translate(26 24)">
       <rect width="250" height="24" fill="#FFF"/>
-      <rect width="136" height="8" x="8" y="8" fill="#4A4A4A" opacity=".343"/>
+      <polygon fill="#69707D" points="8 8 144 8 144 16 8 16"/>
       <rect width="1" height="18" x="147" y="3" fill="#000"/>
     </g>
     <g transform="translate(131 63)">

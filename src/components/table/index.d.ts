@@ -1,7 +1,7 @@
 /// <reference path="./table_pagination/index.d.ts" />
 import { CommonProps, NoArgCallback } from '../common';
 import { IconType } from '../icon';
-/// <reference path="../../services/alignment.d.ts" />
+import { HorizontalAlignment } from '../../services/alignment';
 
 import {
   SFC,
