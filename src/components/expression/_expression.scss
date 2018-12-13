@@ -45,7 +45,10 @@
 
 @each $name, $color in $euiExpressionColors {
   .euiExpression--#{$name} {
-    &:focus,
+    &:focus {
+      background-color: transparentize($color, .9);
+    }
+
     &.euiExpression-isActive {
       border-bottom-color: $color;
     }
