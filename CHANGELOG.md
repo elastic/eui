@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
-- Convert roughly half of the services to TypeScript ([#1400](https://github.com/elastic/eui/pull/1400))
+- Convert roughly half of the services to TypeScript ([#1360](https://github.com/elastic/eui/pull/1360))
 
 **Bug fixes**
 
@@ -10,6 +10,7 @@
 - Added support for `fullWidth` on `EuiSuperSelect` ([#1367](https://github.com/elastic/eui/pull/1367))
 - Applied new scrollbar customization for Firefox ([#1367](https://github.com/elastic/eui/pull/1367))
 - Fixed `EuiSuperSelect` from accessing ref when unmounted ([1369](https://github.com/elastic/eui/pull/1369))
+- Allow any color value to be passed to `EuiIcon` ([#1370](https://github.com/elastic/eui/pull/1370))
 
 ## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
 
