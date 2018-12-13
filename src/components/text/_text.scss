@@ -105,7 +105,7 @@
   // coloring will likely coming from the reset.scss anyway.
   color: inherit;
 
-  a {
+  a:not([class]) {
     color: $euiLinkColor;
 
     &:hover {
