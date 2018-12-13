@@ -586,6 +586,9 @@ export type IconSize = keyof typeof sizeToClassNameMap;
 
 export interface EuiIconProps {
   type?: IconType;
+  /**
+   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   */
   color?: IconColor;
   size?: IconSize;
 }
