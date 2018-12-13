@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.6.0`.
+**Bug fixes**
+
+- Allow any color value to be passed to `EuiIcon` ([#1370](https://github.com/elastic/eui/pull/1370))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 

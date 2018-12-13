@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiIcon,
   EuiToken,
+  EuiLink,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -203,10 +204,13 @@ export const IconExample = {
     }],
     text: (
       <p>
-        Use the <EuiCode>color</EuiCode> prop to assign a color for your icons. It
-        can accept named colors from our pallete or a three or six color hex code.
-        The default behavior is to inherit the text color as the SVG
-        color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
+        The default behavior of icons is to inherit from the text color. You can
+        use the <EuiCode>color</EuiCode> prop to assign a custom color which
+        accepts a named color from our palette or a valid&nbsp;
+        <EuiLink target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">CSS color data type</EuiLink>
+        &nbsp;which will be passed down through the inline-style <EuiCode>fill</EuiCode>&nbsp;
+        property. <strong>We recommend relying on the EUI named color palette</strong>&nbsp;
+        unless the custom color is initiated by the user (like as a graph color).
       </p>
     ),
     demo: <IconColors />,
