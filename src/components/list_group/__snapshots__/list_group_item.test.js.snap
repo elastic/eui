@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiListGroupItem is rendered 1`] = `
+<li
+  class="euiListGroupItem"
+>
+  <span>
+    Label
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem renders href 1`] = `
+<li
+  class="euiListGroupItem"
+>
+  <a
+    class="euiButtonEmpty euiButtonEmpty--primary euiListGroupItem__button"
+    href="#"
+  >
+    <span
+      class="euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        Label
+      </span>
+    </span>
+  </a>
+</li>
+`;

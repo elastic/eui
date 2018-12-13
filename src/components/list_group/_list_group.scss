@@ -1,0 +1,80 @@
+/**
+ * The List Group component provides neatly styled lists containing plain text
+ * or links. The outer container can be bordered, with padding, or borderless
+ * with links flush to the sides.
+ *(
+ * List items can be displayed with active and disabled states.
+ */
+
+.euiListGroup {
+  max-width: $euiFormMaxWidth;
+  padding: $euiSizeS;
+
+  &.euiListGroup--flush {
+    padding: 0;
+    border: none;
+
+    .euiListGroupItem > * {
+      border-radius: 0;
+    }
+  }
+
+  &.euiListGroup--bordered {
+    border-radius: $euiBorderRadius;
+    border: $euiBorderThin;
+  }
+}
+
+.euiListGroupItem {
+  display: block;
+  padding: 0;
+  margin-top: $euiSizeXS;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // TODO: Check if padding here messesup SVGs (EuiIcon)
+  > *:not(svg) {
+    display: block;
+    padding: $euiSizeS;
+    line-height: $euiLineHeight;
+    border-radius: $euiBorderRadius;
+  }
+
+  // Color the background of links, buttons, and any active direct descendents
+  > a:hover,
+  > button:hover,
+  &.euiListGroupItem--active > * {
+    background-color: $euiColorLightestShade;
+  }
+
+  // Underline link text, button text, and any links with an active state
+  > a:hover,
+  > button:hover,
+  &.euiListGroupItem--active > a {
+    text-decoration: underline;
+  }
+
+  // Style all disabled direct descendents the same way
+  &.euiListGroupItem--disabled > * {
+    color: $euiButtonColorDisabled;
+    text-decoration: none;
+    cursor: not-allowed;
+
+    // Some properties repeat here to override inherited button styles
+    &:hover {
+      background-color: transparent;
+      color: $euiButtonColorDisabled;
+      text-decoration: none;
+    }
+  }
+}
+
+// Overries for EuiButton
+// This components leverage the EuiButton component to avoid duplicating logic
+.euiListGroupItem__button .euiButtonEmpty__content {
+  justify-content: left;
+  padding-left: 0;
+  padding-right: 0;
+}

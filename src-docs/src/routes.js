@@ -159,6 +159,9 @@ import { KeyPadMenuExample }
 import { LinkExample }
   from './views/link/link_example';
 
+import { ListGroupExample }
+  from './views/list_group/list_group_example';
+
 import { LoadingExample }
   from './views/loading/loading_example';
 
@@ -364,6 +367,7 @@ const navigation = [{
     HealthExample,
     IconExample,
     ImageExample,
+    ListGroupExample,
     LoadingExample,
     ProgressExample,
     StatExample,
