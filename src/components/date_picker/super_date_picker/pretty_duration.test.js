@@ -1,8 +1,6 @@
 
-import moment from 'moment-timezone';
 import { prettyDuration, showPrettyDuration } from './pretty_duration';
 
-moment.tz.setDefault('UTC');
 const dateFormat = 'MMMM Do YYYY, HH:mm:ss.SSS';
 const quickRanges = [
   {
@@ -42,13 +40,6 @@ describe('prettyDuration', () => {
     const timeTo = 'now-15m';
     expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('~ 17 minutes ago to ~ 15 minutes ago');
   });
-
-  // TODO figure out timezone to get this working
-  //test('absolute dates', () => {
-  //  const timeFrom = '2018-01-17T18:57:57.149Z';
-  //  const timeTo = '2018-01-17T20:00:00.000Z';
-  //  expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe('January 17th 2018, 18:57:57.149 to January 17th 2018, 20:00:00.000');
-  //});
 });
 
 describe('showPrettyDuration', () => {

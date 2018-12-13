@@ -122,7 +122,6 @@
     "markdown-it": "8.4.1",
     "mocha": "^5.0.4",
     "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
     "node-sass": "^4.9.3",
     "nodegit": "^0.23.0",
     "npm-run": "^4.1.2",
