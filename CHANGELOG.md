@@ -1,8 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
+
 **Bug fixes**
 
 - Only style anchor tags in `EuiText` that have no class attribute ([#1373](https://github.com/elastic/eui/pull/1373))
+
+**Breaking changes**
+
+- Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
 
 ## [`5.8.0`](https://github.com/elastic/eui/tree/v5.8.0)
 

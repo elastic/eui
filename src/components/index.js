@@ -95,7 +95,6 @@ export {
 
 export {
   EuiExpression,
-  EuiExpressionButton,
 } from './expression';
 
 export {
