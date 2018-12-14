@@ -64,6 +64,7 @@ declare module '@elastic/eui' {
     options?: EuiComboBoxOptionsListProps['options'],
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
     onChange?: (options: Array<EuiComboBoxOptionProps>) => any,
+    onFocus?: () => any,
     onSearchChange?: (searchValue: string) => any,
     onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'],
     renderOption?: EuiComboBoxOptionsListProps['renderOption'],
