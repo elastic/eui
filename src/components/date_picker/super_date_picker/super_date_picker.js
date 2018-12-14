@@ -15,6 +15,78 @@ import { EuiButton, EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
+// EuiSuperDatePicker has state that needs to be reset when start or end change.
+// Instead of using getDerivedStateFromProps, this wrapper adds a key to the component.
+// When a key changes, React will create a new component instance rather than update the current one
+// https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key
+export function WrappedEuiSuperDatePicker(props) {
+  return (
+    <EuiSuperDatePicker
+      key={`${props.start}-${props.end}`}
+      {...props}
+    />
+  );
+}
+
+WrappedEuiSuperDatePicker.propTypes = {
+  isLoading: PropTypes.bool,
+  /**
+   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
+  start: PropTypes.string,
+  /**
+   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
+  end: PropTypes.string,
+  /**
+   * Callback for when the time changes. Called with { start, end }
+   */
+  onTimeChange: PropTypes.func.isRequired,
+  isPaused: PropTypes.bool,
+  /**
+   * Refresh interval in milliseconds
+   */
+  refreshInterval: PropTypes.number,
+  /**
+   * Callback for when the refresh interval changes. Called with { isPaused, refreshInterval }
+   * Supply onRefreshChange to show refresh interval inputs in quick select popover
+   */
+  onRefreshChange: PropTypes.func,
+
+  /**
+   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
+  commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
+  dateFormat: PropTypes.string,
+  /**
+   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
+   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+   */
+  recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
+};
+
+WrappedEuiSuperDatePicker.defaultProps = {
+  start: 'now-15m',
+  end: 'now',
+  isPaused: true,
+  refreshInterval: 0,
+  commonlyUsedRanges: [
+    { start: 'now/d', end: 'now/d', label: 'Today' },
+    { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
+    { start: 'now/w', end: 'now/w', label: 'This week' },
+    { start: 'now/w', end: 'now', label: 'Week to date' },
+    { start: 'now/M', end: 'now/M', label: 'This month' },
+    { start: 'now/M', end: 'now', label: 'Month to date' },
+    { start: 'now/y', end: 'now/y', label: 'This year' },
+    { start: 'now/y', end: 'now', label: 'Year to date' },
+  ],
+  dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
+  recentlyUsedRanges: [],
+};
+
 export class EuiSuperDatePicker extends Component {
 
   constructor(props) {
@@ -216,62 +288,6 @@ export class EuiSuperDatePicker extends Component {
   }
 }
 
-EuiSuperDatePicker.propTypes = {
-  isLoading: PropTypes.bool,
-  /**
-   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
-   */
-  start: PropTypes.string,
-  /**
-   * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
-   */
-  end: PropTypes.string,
-  /**
-   * Callback for when the time changes. Called with { start, end }
-   */
-  onTimeChange: PropTypes.func.isRequired,
-  isPaused: PropTypes.bool,
-  /**
-   * Refresh interval in milliseconds
-   */
-  refreshInterval: PropTypes.number,
-  /**
-   * Callback for when the refresh interval changes. Called with { isPaused, refreshInterval }
-   * Supply onRefreshChange to show refresh interval inputs in quick select popover
-   */
-  onRefreshChange: PropTypes.func,
-
-  /**
-   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
-   */
-  commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
-  dateFormat: PropTypes.string,
-  /**
-   * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-   * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
-   */
-  recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
-};
-
-EuiSuperDatePicker.defaultProps = {
-  start: 'now-15m',
-  end: 'now',
-  isPaused: true,
-  refreshInterval: 0,
-  commonlyUsedRanges: [
-    { start: 'now/d', end: 'now/d', label: 'Today' },
-    { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
-    { start: 'now/w', end: 'now/w', label: 'This week' },
-    { start: 'now/w', end: 'now', label: 'Week to date' },
-    { start: 'now/M', end: 'now/M', label: 'This month' },
-    { start: 'now/M', end: 'now', label: 'Month to date' },
-    { start: 'now/y', end: 'now/y', label: 'This year' },
-    { start: 'now/y', end: 'now', label: 'Year to date' },
-  ],
-  dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
-  recentlyUsedRanges: [],
-};
+EuiSuperDatePicker.propTypes = WrappedEuiSuperDatePicker.propTypes;
+EuiSuperDatePicker.defaultProps = WrappedEuiSuperDatePicker.defaultProps;
 
