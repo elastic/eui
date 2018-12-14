@@ -22,6 +22,12 @@
 
 - Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
 
+## [`5.6.1`](https://github.com/elastic/eui/tree/v5.6.1)
+
+**Note: this release is a backport containing changes original made in `5.8.0`**
+
+**Bug fixes**
+
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
