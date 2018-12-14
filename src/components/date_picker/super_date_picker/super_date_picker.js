@@ -107,10 +107,28 @@ export class EuiSuperDatePicker extends Component {
     };
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
   setTootipRef = node => (this.tooltip = node);
 
-  showTooltip = () => this.tooltip.showToolTip();
-  hideTooltip = () => this.tooltip.hideToolTip();
+  showTooltip = () => {
+    if (!this._isMounted) {
+      return;
+    }
+    this.tooltip.showToolTip();
+  }
+  hideTooltip = () => {
+    if (!this._isMounted) {
+      return;
+    }
+    this.tooltip.hideToolTip();
+  }
 
   setTime = ({ start, end }) => {
     const startMoment = dateMath.parse(start);
