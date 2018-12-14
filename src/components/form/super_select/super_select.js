@@ -24,6 +24,14 @@ export class EuiSuperSelect extends Component {
     };
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   setItemNode = (node, index) => {
     this.itemNodes[index] = node;
   };
@@ -48,6 +56,9 @@ export class EuiSuperSelect extends Component {
       );
 
       requestAnimationFrame(() => {
+        if (!this._isMounted) {
+          return;
+        }
         this.setState({
           menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
         });

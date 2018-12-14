@@ -588,11 +588,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
                               focusable="false"
                               height="16"
-                              style={
-                                Object {
-                                  "fill": undefined,
-                                }
-                              }
+                              style={null}
                               viewBox="0 0 16 16"
                               width="16"
                               xmlns="http://www.w3.org/2000/svg"
@@ -603,11 +599,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                 className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
                                 focusable="false"
                                 height="16"
-                                style={
-                                  Object {
-                                    "fill": undefined,
-                                  }
-                                }
+                                style={null}
                                 viewBox="0 0 16 16"
                                 width="16"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -749,11 +741,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   className="euiIcon euiIcon--medium euiContextMenu__icon"
                                   focusable="false"
                                   height="16"
-                                  style={
-                                    Object {
-                                      "fill": undefined,
-                                    }
-                                  }
+                                  style={null}
                                   viewBox="0 0 16 16"
                                   width="16"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -762,11 +750,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                     className="euiIcon euiIcon--medium euiContextMenu__icon"
                                     focusable="false"
                                     height="16"
-                                    style={
-                                      Object {
-                                        "fill": undefined,
-                                      }
-                                    }
+                                    style={null}
                                     viewBox="0 0 16 16"
                                     width="16"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -829,11 +813,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   className="euiIcon euiIcon--medium euiContextMenu__icon"
                                   focusable="false"
                                   height="16"
-                                  style={
-                                    Object {
-                                      "fill": undefined,
-                                    }
-                                  }
+                                  style={null}
                                   viewBox="0 0 16 16"
                                   width="16"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -842,11 +822,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                     className="euiIcon euiIcon--medium euiContextMenu__icon"
                                     focusable="false"
                                     height="16"
-                                    style={
-                                      Object {
-                                        "fill": undefined,
-                                      }
-                                    }
+                                    style={null}
                                     viewBox="0 0 16 16"
                                     width="16"
                                     xmlns="http://www.w3.org/2000/svg"

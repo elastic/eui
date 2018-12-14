@@ -85,6 +85,8 @@ function resolveArrayTypeToPropTypes(node, state) {
  * Responsible for resolving
  *    - React.* (SFC, ReactNode, etc)
  *    - Arrays
+ *    - MouseEventHandler is interpretted as functions
+ *    - ExclusiveUnion custom type
  *    - defined types/interfaces (found during initial program body parsing)
  * Returns `null` for unresolvable types
  * @param node
@@ -133,6 +135,19 @@ function resolveIdentifierToPropTypes(node, state) {
   }
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
+  if (identifier.name === 'MouseEventHandler') return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'ExclusiveUnion') {
+    // We use ExclusiveUnion at the top level to exclusively discriminate between types
+    // propTypes itself must be an object so merge the union sets together as an intersection
+    return getPropTypesForNode(
+      {
+        type: 'TSIntersectionType',
+        types: node.typeParameters.params,
+      },
+      true,
+      state
+    );
+  }
 
   // Lookup this identifier from types/interfaces defined in code
   const identifierDefinition = typeDefinitions[identifier.name];
@@ -208,7 +223,8 @@ function getPropTypesForNode(node, optional, state) {
             nodePropTypes.callee.object.name !== 'PropTypes' ||
             nodePropTypes.callee.property.name !== 'shape'
           ) {
-            throw new Error('Cannot process an encountered type intersection');
+            return mergedProperties;
+            // throw new Error('Cannot process an encountered type intersection');
           }
 
           // iterate over this type's members, adding them (and their comments) to `mergedProperties`
