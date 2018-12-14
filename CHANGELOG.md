@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
+- Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
 
 **Bug fixes**
 
@@ -40,7 +41,6 @@
 
 - Convert `EuiIcon` to TypeScript ([#1355](https://github.com/elastic/eui/pull/1355))
 - Add support for `aria-label`, `aria-labelledby` and `aria-describedby` to `EuiCodeEditor` ([#1354](https://github.com/elastic/eui/pull/1354))
-- Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
 
 **Bug fixes**
 
