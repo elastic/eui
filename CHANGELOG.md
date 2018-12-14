@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.8.0`.
+**Bug fixes**
+
+- Only style anchor tags in `EuiText` that have no class attribute ([#1373](https://github.com/elastic/eui/pull/1373))
 
 ## [`5.8.0`](https://github.com/elastic/eui/tree/v5.8.0)
 
