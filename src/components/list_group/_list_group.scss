@@ -58,7 +58,7 @@
   button:hover:not([disabled]),
   .euiListGroupItem__actionContent:hover,
   &.euiListGroupItem--active > * {
-    background-color: $euiColorLightestShade;
+    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
   // Underline link and button text when hovered or active
