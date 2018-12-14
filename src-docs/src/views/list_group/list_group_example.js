@@ -20,6 +20,10 @@ import ListGroupLinks from './list_group_links';
 const listGroupLinksSource = require('!!raw-loader!./list_group_links');
 const listGroupLinksHtml = renderToHtml(ListGroupLinks);
 
+import ListGroupLinkActions from './list_group_link_actions';
+const listGroupLinkActionsSource = require('!!raw-loader!./list_group_link_actions');
+const listGroupLinkActionsHtml = renderToHtml(ListGroupLinkActions);
+
 export const ListGroupExample = {
   title: 'List Group',
   sections: [{
@@ -51,11 +55,27 @@ export const ListGroupExample = {
     text: (
       <p>
         Present <EuiCode>ListGropuItems</EuiCode> as links by providing an
-        &nbsp;<EuiCode>href</EuiCode> value. The <EuiCode>label</EuiCode> prop also
-        accepts EUI components, such as <EuiCode>EuiText</EuiCode>, for more
-        advanced use cases.
+        &nbsp;<EuiCode>href</EuiCode> value. The <EuiCode>label</EuiCode>
+        property also accepts EUI components such as <EuiCode>EuiText</EuiCode>,
+        for more advanced use cases.
       </p>
     ),
     demo: <ListGroupLinks />,
+  }, {
+    title: 'Links with actions',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: listGroupLinkActionsSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: listGroupLinkActionsHtml,
+    }],
+    text: (
+      <p>
+        Add a secondary action by supplying an <EuiCode>EuiButtonIcon</EuiCode>
+        to the <EuiCode>linkAction</EuiCode> property.
+      </p>
+    ),
+    demo: <ListGroupLinkActions />,
   }],
 };

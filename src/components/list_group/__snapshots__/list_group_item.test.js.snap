@@ -5,7 +5,11 @@ exports[`EuiListGroupItem is rendered 1`] = `
   class="euiListGroupItem"
 >
   <span>
-    Label
+    <span
+      class="euiListGroupItem__label"
+    >
+      Label
+    </span>
   </span>
 </li>
 `;

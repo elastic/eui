@@ -70,18 +70,17 @@ export default class extends Component {
           <EuiListGroupItem
             label={<EuiText size="s">Third link</EuiText>}
             href="#"
+            isActive
           />
 
           <EuiListGroupItem
             label={<EuiText size="s">Fourth link</EuiText>}
-            href="#"
             isDisabled
           />
 
           <EuiListGroupItem
             label={<EuiText size="s">Fifth link</EuiText>}
             href="#"
-            isActive
           />
         </EuiListGroup>
       </Fragment>

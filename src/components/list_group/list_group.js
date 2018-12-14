@@ -34,7 +34,7 @@ EuiListGroup.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Remove the border and padding, stretching list items to edge of container
+   * Remove container padding, stretching list items to the edges
    */
   flush: PropTypes.bool.isRequired,
 
