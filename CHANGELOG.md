@@ -2,6 +2,7 @@
 
 - Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
 - Convert roughly half of the services to TypeScript ([#1400](https://github.com/elastic/eui/pull/1400))
+- Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
 
 **Bug fixes**
 
