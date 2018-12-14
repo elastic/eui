@@ -105,6 +105,8 @@
   // coloring will likely coming from the reset.scss anyway.
   color: inherit;
 
+  // Style anchors that don't have a class. This prevents overwriting "buttons"
+  // and other stylized elements passed in.
   a:not([class]) {
     color: $euiLinkColor;
 
