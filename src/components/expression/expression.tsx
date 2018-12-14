@@ -1,6 +1,6 @@
-import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 
 const colorToClassNameMap = {
   subdued: 'euiExpression--subdued',
@@ -15,17 +15,17 @@ export const COLORS = keysOf(colorToClassNameMap);
 
 export type ExpressionColor = keyof typeof colorToClassNameMap;
 
-export type EuiExpressionProps = HTMLAttributes<HTMLButtonElement> & CommonProps & {
+export type EuiExpressionProps = CommonProps & {
   /**
    * First part of the expression
    */
   description: ReactNode;
-  descriptionProps?: object;
+  descriptionProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Second part of the expression
    */
   value: ReactNode;
-  valueProps?: object;
+  valueProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
    */
@@ -39,12 +39,23 @@ export type EuiExpressionProps = HTMLAttributes<HTMLButtonElement> & CommonProps
    */
   isActive?: boolean;
   /**
-   * Turns the component into a button and adds an editable style border at the bottome
+   * Turns the component into a button and adds an editable style border at the bottom
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const EuiExpression: React.SFC<EuiExpressionProps> = ({
+type Buttonlike =
+  EuiExpressionProps &
+  ButtonHTMLAttributes<HTMLButtonElement> &
+  { onClick: MouseEventHandler<HTMLButtonElement> }
+;
+
+type Spanlike =
+  EuiExpressionProps &
+  HTMLAttributes<HTMLSpanElement>
+;
+
+export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
   className,
   description,
   descriptionProps,
@@ -54,7 +65,7 @@ export const EuiExpression: React.SFC<EuiExpressionProps> = ({
   uppercase,
   isActive,
   onClick,
-  ...rest
+ ...rest
 }) => {
 
   const classes = classNames('euiExpression', className, {
