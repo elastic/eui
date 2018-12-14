@@ -24,9 +24,11 @@
 
 ## [`5.6.1`](https://github.com/elastic/eui/tree/v5.6.1)
 
-**Note: this release is a backport containing changes original made in `5.8.0`**
+**Note: this release is a backport containing changes originally made in `5.8.0`**
 
 **Bug fixes**
+
+- Allow any color value to be passed to `EuiIcon` ([#1370](https://github.com/elastic/eui/pull/1370))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
@@ -424,7 +426,7 @@
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
-**Note: this release is a backport containing changes original made in `3.6.1`**
+**Note: this release is a backport containing changes originally made in `3.6.1`**
 
 **Bug fixes**
 
@@ -432,13 +434,13 @@
 
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 
-**Note: this release is a backport containing changes original made in `3.4.0`**
+**Note: this release is a backport containing changes originally made in `3.4.0`**
 
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
-**Note: this release is a backport bugfix release containing changes original made in `3.2.0`**
+**Note: this release is a backport bugfix release containing changes originally made in `3.2.0`**
 
 **Bug fixes**
 
