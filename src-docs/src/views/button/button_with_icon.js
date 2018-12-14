@@ -12,7 +12,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           onClick={() => window.alert('Button clicked')}
-          iconType="folderOpen"
+          iconType="arrowUp"
         >
           Primary
         </EuiButton>
@@ -21,7 +21,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           fill
-          iconType="sortLeft"
+          iconType="arrowDown"
           onClick={() => window.alert('Button clicked')}
         >
           Filled
@@ -30,7 +30,7 @@ export default () => (
 
       <EuiFlexItem grow={false}>
         <EuiButton
-          iconType="plusInCircle"
+          iconType="arrowLeft"
           size="s"
           onClick={() => window.alert('Button clicked')}
         >
@@ -40,7 +40,7 @@ export default () => (
 
       <EuiFlexItem grow={false}>
         <EuiButton
-          iconType="plusInCircleFilled"
+          iconType="arrowRight"
           size="s"
           fill
           onClick={() => window.alert('Button clicked')}
