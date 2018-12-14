@@ -35,22 +35,6 @@ export class EuiSuperDatePicker extends Component {
     };
   }
 
-  static getDerivedStateFromProps = (nextProps) => {
-    const {
-      start,
-      end,
-      commonlyUsedRanges
-    } = nextProps;
-
-    return {
-      start,
-      end,
-      isInvalid: false,
-      hasChanged: false,
-      showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
-    };
-  }
-
   setTootipRef = node => (this.tooltip = node);
 
   showTooltip = () => this.tooltip.showToolTip();

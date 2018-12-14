@@ -35,11 +35,11 @@ function convertMilliseconds(milliseconds) {
 
 export class EuiRefreshInterval extends Component {
 
-  state = {}
+  constructor(props) {
+    super(props);
 
-  static getDerivedStateFromProps = (nextProps) => {
-    const { value, units } = convertMilliseconds(nextProps.refreshInterval);
-    return {
+    const { value, units } = convertMilliseconds(props.refreshInterval);
+    this.state = {
       value,
       units,
     };

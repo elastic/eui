@@ -10,39 +10,40 @@ import { EuiFormRow, EuiFieldText } from '../../../form';
 
 const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
 
-const toMoment = (value, roundUp) => {
-  const valueAsMoment = dateMath.parse(value, { roundUp });
-  return {
-    valueAsMoment,
-    textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT)
-  };
-};
-
 export class EuiAbsoluteTab extends Component {
 
-  state = {}
+  constructor(props) {
+    super(props);
 
-  static getDerivedStateFromProps = (nextProps) => {
-    return {
-      ...toMoment(nextProps.value, nextProps.roundUp),
+    const valueAsMoment = dateMath.parse(props.value, { roundUp: props.roundUp });
+    this.state = {
+      valueAsMoment,
+      textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT),
       isTextInvalid: false,
     };
   }
 
   handleChange = (date) => {
     this.props.onChange(date.toISOString());
+    this.setState({
+      valueAsMoment: date,
+      textInputValue: date.format(INPUT_DATE_FORMAT),
+      isTextInvalid: false,
+    });
   }
 
   handleTextChange = (evt) => {
     const date = moment(evt.target.value, INPUT_DATE_FORMAT, true);
-    if (date.isValid()) {
-      this.props.onChange(date.toISOString());
-    }
-
-    this.setState({
+    const updatedState = {
       textInputValue: evt.target.value,
       isTextInvalid: !date.isValid()
-    });
+    };
+    if (date.isValid()) {
+      this.props.onChange(date.toISOString());
+      updatedState.valueAsMoment = date;
+    }
+
+    this.setState(updatedState);
   }
 
   render() {
@@ -52,7 +53,7 @@ export class EuiAbsoluteTab extends Component {
           inline
           showTimeSelect
           shadow={false}
-          selected={this.state.value}
+          selected={this.state.valueAsMoment}
           onChange={this.handleChange}
         />
         <EuiFormRow

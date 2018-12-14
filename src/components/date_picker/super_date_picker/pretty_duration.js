@@ -5,7 +5,7 @@ import { timeUnits, timeUnitsPlural } from './time_units';
 import { getDateMode, DATE_MODES } from './date_modes';
 import { parseRelativeParts } from './relative_utils';
 
-const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.sssZ';
+const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
 
 function cantLookup(timeFrom, timeTo, dateFormat) {
   const displayFrom = formatTimeString(timeFrom, dateFormat);
