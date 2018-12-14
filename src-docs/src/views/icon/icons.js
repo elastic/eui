@@ -150,6 +150,7 @@ const iconTypes = [
   'tear',
   'temperature',
   'trash',
+  'unpin',
   'user',
   'vector',
   'visArea',

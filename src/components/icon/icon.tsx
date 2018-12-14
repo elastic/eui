@@ -234,6 +234,7 @@ import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
 import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
+import unpin from './assets/unpin.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
 import vector from './assets/vector.svg';
@@ -549,6 +550,7 @@ const typeToIconMap = {
   tokenVariable,
   trash,
   upgradeAssistantApp,
+  unpin,
   user,
   usersRolesApp,
   vector,
