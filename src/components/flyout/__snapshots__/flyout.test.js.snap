@@ -23,18 +23,10 @@ exports[`EuiFlyout is rendered 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -65,18 +57,10 @@ exports[`EuiFlyout max width can be set to a custom number 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -107,18 +91,10 @@ exports[`EuiFlyout max width can be set to a custom value and measurement 1`] = 
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -148,18 +124,10 @@ exports[`EuiFlyout max width can be set to a default 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -201,18 +169,10 @@ exports[`EuiFlyout size l is rendered 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -242,18 +202,10 @@ exports[`EuiFlyout size m is rendered 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>
@@ -283,18 +235,10 @@ exports[`EuiFlyout size s is rendered 1`] = `
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <path
-              d="M7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0-.708-.708L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8z"
-              id="cross-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#cross-a"
+          <path
+            d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
           />
         </svg>
       </button>

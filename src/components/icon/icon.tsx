@@ -42,9 +42,10 @@ import createSingleMetricJob from './assets/ml_create_single_metric_job.svg';
 import cross from './assets/cross.svg';
 import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
 import crosshairs from './assets/crosshairs.svg';
+import crossInACircleFilled from './assets/crossInACircleFilled.svg';
 import dashboardApp from './assets/app_dashboard.svg';
-import dataVisualizer from './assets/ml_data_visualizer.svg';
 import database from './assets/database.svg';
+import dataVisualizer from './assets/ml_data_visualizer.svg';
 import devToolsApp from './assets/app_devtools.svg';
 import discoverApp from './assets/app_discover.svg';
 import document from './assets/document.svg';
@@ -59,9 +60,11 @@ import editorHeading from './assets/editor_heading.svg';
 import editorItalic from './assets/editor_italic.svg';
 import editorLink from './assets/editor_link.svg';
 import editorOrderedList from './assets/editor_ordered_list.svg';
+import editorRedo from './assets/editor_redo.svg';
 import editorStrike from './assets/editor_strike.svg';
 import editorTable from './assets/editor_table.svg';
 import editorUnderline from './assets/editor_underline.svg';
+import editorUndo from './assets/editor_undo.svg';
 import editorUnorderedList from './assets/editor_unordered_list.svg';
 import email from './assets/email.svg';
 import empty from './assets/empty.svg';
@@ -83,6 +86,7 @@ import gear from './assets/gear.svg';
 import gisApp from './assets/app_gis.svg';
 import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
+import grabHorizontal from './assets/grab_horizontal.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
@@ -115,12 +119,12 @@ import listAdd from './assets/list_add.svg';
 import lock from './assets/lock.svg';
 import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
-import logoAPM from './assets/logo_apm.svg';
-import logoAWS from './assets/logo_aws.svg';
-import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoAerospike from './assets/logo_aerospike.svg';
 import logoApache from './assets/logo_apache.svg';
+import logoAPM from './assets/logo_apm.svg';
 import logoAppSearch from './assets/logo_app_search.svg';
+import logoAWS from './assets/logo_aws.svg';
+import logoAWSMono from './assets/logo_aws_mono.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
@@ -130,8 +134,8 @@ import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoDropwizard from './assets/logo_dropwizard.svg';
 import logoElastic from './assets/logo_elastic.svg';
-import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoElasticsearch from './assets/logo_elasticsearch.svg';
+import logoElasticStack from './assets/logo_elastic_stack.svg';
 import logoEnterpriseSearch from './assets/logo_enterprise_search.svg';
 import logoEtcd from './assets/logo_etcd.svg';
 import logoGCP from './assets/logo_gcp.svg';
@@ -175,6 +179,7 @@ import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
 import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
+import minusInCircleFilled from './assets/minus_in_circle_filled.svg';
 import monitoringApp from './assets/app_monitoring.svg';
 import node from './assets/node.svg';
 import notebookApp from './assets/app_notebook.svg';
@@ -188,6 +193,7 @@ import pin from './assets/pin.svg';
 import pipelineApp from './assets/app_pipeline.svg';
 import play from './assets/play.svg';
 import plusInCircle from './assets/plus_in_circle.svg';
+import plusInCircleFilled from './assets/plus_in_circle_filled.svg';
 import popout from './assets/popout.svg';
 import questionInCircle from './assets/question_in_circle.svg';
 import refresh from './assets/refresh.svg';
@@ -201,6 +207,7 @@ import securityAnalyticsApp from './assets/app_security_analytics.svg';
 import securityApp from './assets/app_security.svg';
 import shard from './assets/shard.svg';
 import share from './assets/share.svg';
+import sortable from './assets/sortable.svg';
 import sortDown from './assets/sort_down.svg';
 import sortLeft from './assets/sortLeft.svg';
 import sortRight from './assets/sortRight.svg';
@@ -208,6 +215,12 @@ import sortUp from './assets/sort_up.svg';
 import spacesApp from './assets/app_spaces.svg';
 import sqlApp from './assets/app_sql.svg';
 import starEmpty from './assets/star_empty.svg';
+import starEmptySpace from './assets/star_empty_space.svg';
+import starFilled from './assets/star_filled.svg';
+import starFilledSpace from './assets/star_filled_space.svg';
+import starMinusEmpty from './assets/star_minus_empty.svg';
+import starMinusFilled from './assets/star_minus_filled.svg';
+import starPlusEmpty from './assets/starPlusEmpty.svg';
 import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
 import stop from './assets/stop.svg';
@@ -240,9 +253,9 @@ import visTable from './assets/vis_table.svg';
 import visTagCloud from './assets/vis_tag_cloud.svg';
 import visText from './assets/vis_text.svg';
 import visTimelion from './assets/vis_timelion.svg';
+import visualizeApp from './assets/app_visualize.svg';
 import visVega from './assets/vis_vega.svg';
 import visVisualBuilder from './assets/vis_visual_builder.svg';
-import visualizeApp from './assets/app_visualize.svg';
 import watchesApp from './assets/app_watches.svg';
 import wrench from './assets/wrench.svg';
 
@@ -288,6 +301,7 @@ const typeToIconMap = {
   arrowRight,
   arrowUp,
   asterisk,
+  auditbeatApp,
   beaker,
   bolt,
   boxesHorizontal,
@@ -297,6 +311,7 @@ const typeToIconMap = {
   brush,
   bullseye,
   calendar,
+  canvasApp,
   check,
   checkInCircleFilled,
   clock,
@@ -312,7 +327,9 @@ const typeToIconMap = {
   createPopulationJob,
   createSingleMetricJob,
   cross,
+  crossClusterReplicationApp,
   crosshairs,
+  crossInACircleFilled,
   dashboardApp,
   database,
   dataVisualizer,
@@ -330,9 +347,11 @@ const typeToIconMap = {
   editorItalic,
   editorLink,
   editorOrderedList,
+  editorRedo,
   editorStrike,
   editorTable,
   editorUnderline,
+  editorUndo,
   editorUnorderedList,
   email,
   empty,
@@ -345,16 +364,20 @@ const typeToIconMap = {
   faceHappy,
   faceNeutral,
   faceSad,
+  filebeatApp,
   filter,
   folderClosed,
   folderOpen,
   fullScreen,
   gear,
+  gisApp,
   globe,
   grab,
+  grabHorizontal,
   graphApp,
   grid,
   grokApp,
+  heartbeatApp,
   heatmap,
   help,
   iInCircle,
@@ -366,6 +389,7 @@ const typeToIconMap = {
   indexMapping,
   indexOpen,
   indexPatternApp,
+  indexRollupApp,
   indexSettings,
   infraApp,
   inputOutput,
@@ -382,12 +406,12 @@ const typeToIconMap = {
   lock,
   lockOpen,
   loggingApp,
-  logoAPM,
-  logoAWS,
-  logoAWSMono,
   logoAerospike,
   logoApache,
+  logoAPM,
   logoAppSearch,
+  logoAWS,
+  logoAWSMono,
   logoBeats,
   logoBusinessAnalytics,
   logoCeph,
@@ -397,8 +421,8 @@ const typeToIconMap = {
   logoDocker,
   logoDropwizard,
   logoElastic,
-  logoElasticStack,
   logoElasticsearch,
+  logoElasticStack,
   logoEnterpriseSearch,
   logoEtcd,
   logoGCP,
@@ -440,18 +464,23 @@ const typeToIconMap = {
   mapMarker,
   memory,
   merge,
+  metricbeatApp,
   minusInCircle,
+  minusInCircleFilled,
   monitoringApp,
   node,
+  notebookApp,
   number,
   offline,
   online,
+  packetbeatApp,
   pause,
   pencil,
   pin,
   pipelineApp,
   play,
   plusInCircle,
+  plusInCircleFilled,
   popout,
   questionInCircle,
   refresh,
@@ -461,15 +490,24 @@ const typeToIconMap = {
   scale,
   search,
   searchProfilerApp,
+  securityAnalyticsApp,
   securityApp,
   shard,
   share,
+  sortable,
   sortDown,
   sortLeft,
   sortRight,
   sortUp,
   spacesApp,
+  sqlApp,
   starEmpty,
+  starEmptySpace,
+  starFilled,
+  starFilledSpace,
+  starMinusEmpty,
+  starMinusFilled,
+  starPlusEmpty,
   starPlusFilled,
   stats,
   stop,
@@ -481,6 +519,34 @@ const typeToIconMap = {
   tear,
   temperature,
   timelionApp,
+  tokenAnnotation,
+  tokenArray,
+  tokenBoolean,
+  tokenClass,
+  tokenConstant,
+  tokenElement,
+  tokenEnum,
+  tokenEnumMember,
+  tokenEvent,
+  tokenException,
+  tokenField,
+  tokenFile,
+  tokenFunction,
+  tokenInterface,
+  tokenKey,
+  tokenMethod,
+  tokenNull,
+  tokenNumber,
+  tokenObject,
+  tokenOperator,
+  tokenPackage,
+  tokenParameter,
+  tokenProperty,
+  tokenRepo,
+  tokenString,
+  tokenStruct,
+  tokenSymbol,
+  tokenVariable,
   trash,
   upgradeAssistantApp,
   user,
@@ -507,46 +573,6 @@ const typeToIconMap = {
   visVisualBuilder,
   watchesApp,
   wrench,
-  auditbeatApp,
-  canvasApp,
-  crossClusterReplicationApp,
-  filebeatApp,
-  gisApp,
-  heartbeatApp,
-  indexRollupApp,
-  metricbeatApp,
-  notebookApp,
-  packetbeatApp,
-  securityAnalyticsApp,
-  sqlApp,
-  tokenClass,
-  tokenProperty,
-  tokenEnum,
-  tokenVariable,
-  tokenMethod,
-  tokenAnnotation,
-  tokenException,
-  tokenInterface,
-  tokenParameter,
-  tokenField,
-  tokenElement,
-  tokenFunction,
-  tokenBoolean,
-  tokenString,
-  tokenArray,
-  tokenNumber,
-  tokenConstant,
-  tokenObject,
-  tokenEvent,
-  tokenKey,
-  tokenNull,
-  tokenStruct,
-  tokenPackage,
-  tokenOperator,
-  tokenEnumMember,
-  tokenRepo,
-  tokenSymbol,
-  tokenFile,
 };
 
 export const TYPES: IconType[] = keysOf(typeToIconMap);
