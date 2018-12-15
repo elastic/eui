@@ -780,12 +780,11 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@elastic/datemath@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@elastic/datemath/-/datemath-5.0.0.tgz#62900ddbdc1c98b2af824073be462c769c582a34"
-  integrity sha512-csUO6qyWK0LKrX9V8WUnZZ2BBy0pB1nf8nNKw+KQz+PbKQeCr30jtk+2+z/u4DWMCQKODa5V5E8C8f9eNmkD9Q==
+"@elastic/datemath@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@elastic/datemath/-/datemath-5.0.2.tgz#1e62fe7137acd6ebcde9a794ef22b91820c9e6cf"
+  integrity sha512-MYU7KedGPMYu3ljgrO3tY8I8rD73lvBCltd78k5avDIv/6gMbuhKXsMhkEPbb9angs9hR/2ADk0QcGbVxUBXUw==
   dependencies:
-    moment "^2.13.0"
     tslib "^1.9.3"
 
 "@elastic/eslint-config-kibana@^0.15.0":
@@ -8813,22 +8812,10 @@ mocha@^5.0.0, mocha@^5.0.4:
     mkdirp "0.5.1"
     supports-color "4.4.0"
 
-moment-timezone@^0.5.14:
-  version "0.5.23"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.23.tgz#7cbb00db2c14c71b19303cb47b0fb0a6d8651463"
-  integrity sha512-WHFH85DkCfiNMDX5D3X7hpNH3/PUhjTGcD0U1SgfBGZxJ3qUmJh5FdvaFjcClxOvB3rzdfj4oRffbI38jEnC1w==
-  dependencies:
-    moment ">= 2.9.0"
-
 moment@2.x.x:
   version "2.21.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
   integrity sha512-TCZ36BjURTeFTM/CwRcViQlfkMvL1/vFISuNLO5GkcVm1+QHfbSiNqZuWeMFjj1/3+uAjXswgRk30j1kkLYJBQ==
-
-"moment@>= 2.9.0", moment@^2.13.0:
-  version "2.22.2"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
-  integrity sha1-PCV/mDn8DpP/UxSWMiOeuQeD/2Y=
 
 moment@^2.20.1:
   version "2.20.1"
