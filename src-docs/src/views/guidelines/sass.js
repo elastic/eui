@@ -267,22 +267,21 @@ const bemExample = (`// Use camelCase naming
   @include euiSlightShadow;
 
   border-radius: $euiBorderRadius;
+}
 
+// Elements within the component
+.euiButton__content {
+  padding: 0 ($euiSize - $euiSizeXS);
+}
 
-  // Elements exist within the component
-  .euiButton__content {
-    padding: 0 ($euiSize - $euiSizeXS);
-  }
+// Modifiers augment existing components or elements
+.euiButton--primary {
+  background-color: $euiColorPrimary;
+}
 
-  // Modifiers augment existing components or elements
-  &.euiButton--primary {
-    background-color: $euiColorPrimary;
-  }
-
-  // States are written with a verb prefix
-  &.euiButton-isLoading {
-    opacity: .5;
-  }
+// States are written with a verb prefix
+.euiButton--isLoading {
+  opacity: .5;
 }
 
 // Put breakpoints at the bottom of the document
