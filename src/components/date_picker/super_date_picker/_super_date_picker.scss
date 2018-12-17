@@ -1,17 +1,15 @@
-//// GLOBAL Date picker
-
 // sass-lint:disable no-important
-.euiGlobalDatePicker__quickSelectButton {
+.euiSuperDatePicker__quickSelectButton {
   // Override prepend border since button already lives inside another prepend
   border-right: none !important;
 
-  .euiGlobalDatePicker__quickSelectButtonText {
+  .euiSuperDatePicker__quickSelectButtonText {
     // Override specificity from universal and sibiling selectors
     margin-right: $euiSizeXS !important;
   }
 }
 
-.euiGlobalDatePicker.euiFormControlLayout {
+.euiSuperDatePicker.euiFormControlLayout {
   max-width: 480px;
 
   > .euiFormControlLayout__childrenWrapper {
@@ -30,7 +28,7 @@
   }
 }
 
-.euiGlobalDatePicker__dateButton {
+.euiSuperDatePicker__dateText {
   @include euiFormControlText;
   display: block;
   width: 100%;
@@ -39,7 +37,9 @@
   height: $euiFormControlHeight - 2px;
   word-break: break-all;
   transition: background $euiAnimSpeedFast ease-in;
+}
 
+.euiSuperDatePicker__dateButton {
   $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
   $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
 
@@ -66,20 +66,20 @@
   }
 }
 
-.euiGlobalDatePicker__dateButton--start {
+.euiSuperDatePicker__dateButton--start {
   text-align: right;
 }
 
-.euiGlobalDatePicker__dateButton--end {
+.euiSuperDatePicker__dateButton--end {
   text-align: left;
 }
 
-.euiGlobalDatePicker__updateButton {
+.euiSuperDatePicker__updateButton {
   // Just wide enough for all 3 states
   min-width: $euiButtonMinWidth + ($euiSizeXS * 1.5);
 }
 
-.euiGlobalDatePicker__popoverSection {
+.euiSuperDatePicker__popoverSection {
   @include euiScrollBar;
   max-height: $euiSizeM * 11;
   overflow: hidden;
@@ -87,10 +87,10 @@
 }
 
 @include euiBreakpoint('xs', 's') {
-  .euiGlobalDatePicker__updateButton {
+  .euiSuperDatePicker__updateButton {
     min-width: 0;
 
-    .euiGlobalDatePicker__updateButtonText {
+    .euiSuperDatePicker__updateButtonText {
       display: none;
     }
   }

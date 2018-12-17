@@ -11,7 +11,7 @@ import {
   EuiLink,
   EuiDatePicker,
   EuiDatePickerRange,
-  EuiCallOut,
+  EuiSuperDatePicker,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -58,9 +58,9 @@ import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
 
-import GlobalDatePicker from './global_date_picker';
-const globalDatePickerSource = require('!!raw-loader!./global_date_picker');
-const globalDatePickerHtml = renderToHtml(GlobalDatePicker);
+import SuperDatePicker from './super_date_picker';
+const superDatePickerSource = require('!!raw-loader!./super_date_picker');
+const superDatePickerHtml = renderToHtml(SuperDatePicker);
 
 export const DatePickerExample = {
   title: 'DatePicker',
@@ -266,24 +266,24 @@ export const DatePickerExample = {
     ),
     demo: <Classes />,
   }, {
-    title: 'Global date picker',
+    title: 'Super date picker',
     source: [{
       type: GuideSectionTypes.JS,
-      code: globalDatePickerSource,
+      code: superDatePickerSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: globalDatePickerHtml,
+      code: superDatePickerHtml,
     }],
     text: (
       <div>
-        <EuiCallOut color="warning" title="Demo of visual pattern only">
-          <p>
-            This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global date/time picker. It uses all EUI components with some custom styles.
-          </p>
-        </EuiCallOut>
+        <p>
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are passed as strings
+          in either datemath format (e.g.: now, now-15m, now-15m/m)
+          or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>
+        </p>
       </div>
     ),
-    demo: <GlobalDatePicker />,
+    demo: <SuperDatePicker />,
+    props: { EuiSuperDatePicker },
   }],
 };

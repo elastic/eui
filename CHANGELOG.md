@@ -2,6 +2,7 @@
 
 - Added `onFocus` prop to `EuiComboBox` ([#1375](https://github.com/elastic/eui/pull/1375))
 - Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
+- Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
 
 **Bug fixes**
 
