@@ -63,6 +63,7 @@ export default class extends Component {
               <EuiButtonEmpty
                 onClick={() => window.alert('Button clicked')}
                 iconType="bullseye"
+                color="text"
               >
                 EUI button link
               </EuiButtonEmpty>
@@ -83,6 +84,7 @@ export default class extends Component {
               <EuiButtonEmpty
                 onClick={() => window.alert('Button clicked')}
                 iconType="beaker"
+                color="text"
               >
                 EUI button link
               </EuiButtonEmpty>
@@ -103,6 +105,7 @@ export default class extends Component {
               <EuiButtonEmpty
                 onClick={() => window.alert('Button clicked')}
                 iconType="broom"
+                color="text"
               >
                 EUI button link
               </EuiButtonEmpty>
@@ -124,6 +127,7 @@ export default class extends Component {
               <EuiButtonEmpty
                 onClick={() => window.alert('Button clicked')}
                 iconType="brush"
+                color="text"
                 isDisabled
               >
                 EUI button link

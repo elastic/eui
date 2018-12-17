@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import {
+  EuiListGroupItem,
+} from './list_group_item';
+
 export const EuiListGroup = ({
   children,
   className,
   flush,
   bordered,
+  listItems,
   ...rest
 }) => {
 
@@ -19,17 +24,46 @@ export const EuiListGroup = ({
     className
   );
 
+  let childrenOrListItems = null;
+  if (listItems) {
+    childrenOrListItems = (
+      listItems.map((item, index) => {
+        return [
+          <EuiListGroupItem
+            key={`title-${index}`}
+            label={item.label}
+            href={item.href}
+            linkAction={item.linkAction}
+            iconType={item.iconType}
+            isActive={item.isActive}
+            isDisabled={item.isDisabled}
+          />
+        ];
+      })
+    );
+  } else {
+    childrenOrListItems = children;
+  }
+
   return (
     <ul
       className={classes}
       {...rest}
     >
-      {children}
+      {childrenOrListItems}
     </ul>
   );
 };
 
 EuiListGroup.propTypes = {
+  listItems: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.node,
+    href: PropTypes.string,
+    linkAction: PropTypes.node,
+    iconType: PropTypes.string,
+    isActive: PropTypes.boolean,
+    isDisabled: PropTypes.boolean,
+  })),
   children: PropTypes.node,
   className: PropTypes.string,
 

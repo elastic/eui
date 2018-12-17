@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 
 import {
   EuiListGroup,
-  EuiListGroupItem,
   EuiSpacer,
   EuiSwitch,
   EuiCode,
@@ -10,6 +9,32 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
+
+const myContent = [
+  {
+    label: <EuiText size="s">My first link</EuiText>,
+    href: '#',
+  },
+  {
+    label: <EuiText size="s">My second link</EuiText>,
+    href: '#',
+    isActive: true,
+  },
+  {
+    label: <EuiText size="s">My third link</EuiText>,
+    href: '#',
+    isDisabled: true,
+  },
+  {
+    label: <EuiText size="s">My fourth link</EuiText>,
+    href: '#',
+  },
+  {
+    label: <EuiText size="s">My fifth link</EuiText>,
+    href: '#',
+  },
+];
+
 
 export default class extends Component {
   constructor(props) {
@@ -56,33 +81,7 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiListGroup flush={flushWidth} bordered={showBorder}>
-          <EuiListGroupItem
-            label={<EuiText size="s">First link</EuiText>}
-            href="#"
-          />
-
-          <EuiListGroupItem
-            label={<EuiText size="s">Second link</EuiText>}
-            href="#"
-          />
-
-          <EuiListGroupItem
-            label={<EuiText size="s">Third link</EuiText>}
-            href="#"
-            isActive
-          />
-
-          <EuiListGroupItem
-            label={<EuiText size="s">Fourth link</EuiText>}
-            isDisabled
-          />
-
-          <EuiListGroupItem
-            label={<EuiText size="s">Fifth link</EuiText>}
-            href="#"
-          />
-        </EuiListGroup>
+        <EuiListGroup flush={flushWidth} bordered={showBorder} listItems={myContent} />
       </Fragment>
     );
   }
