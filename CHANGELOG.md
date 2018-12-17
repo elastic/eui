@@ -30,6 +30,16 @@
 
 - Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
 
+## [`5.6.2`](https://github.com/elastic/eui/tree/v5.6.2)
+
+**Note: this release is a backport**
+
+- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
+
+**Bug fixes**
+
+- Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
+
 ## [`5.6.1`](https://github.com/elastic/eui/tree/v5.6.1)
 
 **Note: this release is a backport containing changes originally made in `5.8.0`**
