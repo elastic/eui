@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.8.0`.
+**Bug fixes**
+
+- Fixed some EUI services' TS definitions ([#1380](https://github.com/elastic/eui/pull/1380))
 
 ## [`5.8.0`](https://github.com/elastic/eui/tree/v5.8.0)
+
+**Note: this release broke some of the exported TypeScript definitions.**
 
 - Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
 - Convert roughly half of the services to TypeScript ([#1360](https://github.com/elastic/eui/pull/1360))
