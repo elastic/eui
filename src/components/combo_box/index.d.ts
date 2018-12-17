@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode, SFC } from 'react';
+import { ButtonHTMLAttributes, ReactNode, SFC, FocusEventHandler } from 'react';
 import { ListProps } from 'react-virtualized';
 import {
   EuiComboBoxOption,
@@ -64,6 +64,7 @@ declare module '@elastic/eui' {
     options?: EuiComboBoxOptionsListProps['options'],
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
     onChange?: (options: Array<EuiComboBoxOptionProps>) => any,
+    onFocus?: FocusEventHandler<HTMLInputElement>,
     onSearchChange?: (searchValue: string) => any,
     onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'],
     renderOption?: EuiComboBoxOptionsListProps['renderOption'],

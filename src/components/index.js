@@ -73,6 +73,7 @@ export {
 export {
   EuiDatePicker,
   EuiDatePickerRange,
+  EuiSuperDatePicker,
 } from './date_picker';
 
 export {
@@ -95,7 +96,6 @@ export {
 
 export {
   EuiExpression,
-  EuiExpressionButton,
 } from './expression';
 
 export {

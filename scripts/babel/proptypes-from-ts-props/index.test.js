@@ -977,6 +977,35 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('intersects ExclusiveUnion arguments', () => {
+        const result = transform(
+          `
+import React from 'react';
+export type ExclusiveUnion<T, U> = any;
+interface BaseProps { asdf: boolean }
+interface IFooProps extends BaseProps {d: number, foo?: string}
+interface IBarProps extends BaseProps {d: string, bar?: string}
+const FooComponent: React.SFC<ExclusiveUnion<IFooProps, IBarProps>> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  d: PropTypes.string.isRequired,
+  foo: PropTypes.string,
+  asdf: PropTypes.bool.isRequired,
+  bar: PropTypes.string
+};`);
+      });
+
     });
 
     describe('array / arrayOf propTypes', () => {

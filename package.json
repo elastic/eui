@@ -69,6 +69,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
+    "@elastic/datemath": "^5.0.2",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.13",
@@ -170,6 +171,7 @@
     "yo": "^2.0.0"
   },
   "peerDependencies": {
+    "@elastic/datemath": "^5.0.2",
     "moment": "^2.13.0",
     "prop-types": "^15.5.0",
     "react": "^16.3",

@@ -1,10 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `onFocus` prop to `EuiComboBox` ([#1375](https://github.com/elastic/eui/pull/1375))
+- Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
+- Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
 - Altered a few icons and added more: `crossInACircleFilled`, `editorRedo`, `editorUndo`, `grabHorizontal`, `minusInCircleFilled`, `plusInCircleFilled`, `sortable`, `starEmptySpace`, `starFilledSpace`, `starFilled`, `starMinusEmpty`, `starMinusFilled`, `starPlusEmpty`, `pinFilled` ([#1374](https://github.com/elastic/eui/pull/1374))
 
 **Bug fixes**
 
 - Only style anchor tags in `EuiText` that have no class attribute ([#1373](https://github.com/elastic/eui/pull/1373))
+
+**Breaking changes**
+
+- Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
 
 ## [`5.8.0`](https://github.com/elastic/eui/tree/v5.8.0)
 
@@ -23,6 +30,24 @@
 ## [`5.7.0`](https://github.com/elastic/eui/tree/v5.7.0)
 
 - Adjust EUI coloring to better match brand guidelines from Creative Services ([#1356](https://github.com/elastic/eui/pull/1356))
+
+## [`5.6.2`](https://github.com/elastic/eui/tree/v5.6.2)
+
+**Note: this release is a backport**
+
+- Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
+
+**Bug fixes**
+
+- Fixed `onCreateOption` callback of `EuiComboBox` so it isn't called when the input is empty ([#1364](https://github.com/elastic/eui/pull/1364))
+
+## [`5.6.1`](https://github.com/elastic/eui/tree/v5.6.1)
+
+**Note: this release is a backport containing changes originally made in `5.8.0`**
+
+**Bug fixes**
+
+- Allow any color value to be passed to `EuiIcon` ([#1370](https://github.com/elastic/eui/pull/1370))
 
 ## [`5.6.0`](https://github.com/elastic/eui/tree/v5.6.0)
 
@@ -420,7 +445,7 @@
 
 ## [`3.0.5`](https://github.com/elastic/eui/tree/v3.0.5)
 
-**Note: this release is a backport containing changes original made in `3.6.1`**
+**Note: this release is a backport containing changes originally made in `3.6.1`**
 
 **Bug fixes**
 
@@ -428,13 +453,13 @@
 
 ## [`3.0.4`](https://github.com/elastic/eui/tree/v3.0.4)
 
-**Note: this release is a backport containing changes original made in `3.4.0`**
+**Note: this release is a backport containing changes originally made in `3.4.0`**
 
 - Allow `_` and `*` characters to be used in `EuiSearchBar` query terms ([#1058](https://github.com/elastic/eui/pull/1058))
 
 ## [`3.0.3`](https://github.com/elastic/eui/tree/v3.0.3)
 
-**Note: this release is a backport bugfix release containing changes original made in `3.2.0`**
+**Note: this release is a backport bugfix release containing changes originally made in `3.2.0`**
 
 **Bug fixes**
 

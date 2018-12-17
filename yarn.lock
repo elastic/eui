@@ -780,6 +780,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@elastic/datemath@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@elastic/datemath/-/datemath-5.0.2.tgz#1e62fe7137acd6ebcde9a794ef22b91820c9e6cf"
+  integrity sha512-MYU7KedGPMYu3ljgrO3tY8I8rD73lvBCltd78k5avDIv/6gMbuhKXsMhkEPbb9angs9hR/2ADk0QcGbVxUBXUw==
+  dependencies:
+    tslib "^1.9.3"
+
 "@elastic/eslint-config-kibana@^0.15.0":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@elastic/eslint-config-kibana/-/eslint-config-kibana-0.15.0.tgz#a552793497cdfc1829c2f9b7cd7018eb008f1606"
@@ -13508,7 +13515,7 @@ trim@0.0.1:
   dependencies:
     glob "^6.0.4"
 
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==

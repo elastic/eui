@@ -39,6 +39,7 @@ export class EuiComboBox extends Component {
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
     onSearchChange: PropTypes.func,
     onCreateOption: PropTypes.func,
     renderOption: PropTypes.func,
@@ -262,7 +263,10 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
-  onFocus = () => {
+  onComboBoxFocus = () => {
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
     this.openList();
   }
 
@@ -597,7 +601,7 @@ export class EuiComboBox extends Component {
           onRemoveOption={this.onRemoveOption}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
-          onFocus={this.onFocus}
+          onFocus={this.onComboBoxFocus}
           value={value}
           searchValue={searchValue}
           autoSizeInputRef={this.autoSizeInputRef}
