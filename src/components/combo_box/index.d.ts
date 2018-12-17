@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode, SFC } from 'react';
+import { ButtonHTMLAttributes, ReactNode, SFC, FocusEventHandler } from 'react';
 import { ListProps } from 'react-virtualized';
 import {
   EuiComboBoxOption,
