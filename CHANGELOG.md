@@ -13,6 +13,14 @@
 
 - Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
 
+## [`5.8.1`](https://github.com/elastic/eui/tree/v5.8.1)
+
+**Note: this release is a backport containing fixes made in `6.0.0`**
+
+**Bug fixes**
+
+- Fixed some EUI services' TS definitions ([#1380](https://github.com/elastic/eui/pull/1380))
+
 ## [`5.8.0`](https://github.com/elastic/eui/tree/v5.8.0)
 
 **Note: this release broke some of the exported TypeScript definitions.**
