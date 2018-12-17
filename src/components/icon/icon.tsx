@@ -190,6 +190,7 @@ import packetbeatApp from './assets/app_packetbeat.svg';
 import pause from './assets/pause.svg';
 import pencil from './assets/pencil.svg';
 import pin from './assets/pin.svg';
+import pinFilled from './assets/pin_filled.svg';
 import pipelineApp from './assets/app_pipeline.svg';
 import play from './assets/play.svg';
 import plusInCircle from './assets/plus_in_circle.svg';
@@ -234,7 +235,6 @@ import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
 import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
-import unpin from './assets/unpin.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
 import vector from './assets/vector.svg';
@@ -550,7 +550,7 @@ const typeToIconMap = {
   tokenVariable,
   trash,
   upgradeAssistantApp,
-  unpin,
+  pinFilled,
   user,
   usersRolesApp,
   vector,
