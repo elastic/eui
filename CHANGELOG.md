@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `5.6.2`.
+
+## [`5.6.2`](https://github.com/elastic/eui/tree/v5.6.2)
+
 **Note: this release is a backport**
 
 - Reinstate ([#1353](https://github.com/elastic/eui/pull/1353)) `onBlur` action on `EuiComboBox` ([#1364](https://github.com/elastic/eui/pull/1364))
