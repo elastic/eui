@@ -73,7 +73,7 @@ export const ListGroupExample = {
     text: (
       <p>
         Add a secondary action by supplying an <EuiCode>EuiButtonIcon</EuiCode>
-        to the <EuiCode>linkAction</EuiCode> property.
+        to the <EuiCode>extraAction</EuiCode> property.
       </p>
     ),
     demo: <ListGroupLinkActions />,

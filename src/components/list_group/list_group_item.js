@@ -12,16 +12,16 @@ export const EuiListGroupItem = ({
   href,
   className,
   iconType,
-  linkAction,
+  extraAction,
   ...rest
 }) => {
   const classes = classNames(
     'euiListGroupItem',
     {
-      'euiListGroupItem--active': isActive,
-      'euiListGroupItem--disabled': isDisabled,
-      'euiListGroupItem--hasIcon': iconType,
-      'euiListGroupItem__hasAction': linkAction,
+      'euiListGroupItem-active': isActive,
+      'euiListGroupItem-disabled': isDisabled,
+      'euiListGroupItem-hasIcon': iconType,
+      'euiListGroupItem-hasAction': extraAction,
     },
     className
   );
@@ -46,16 +46,16 @@ export const EuiListGroupItem = ({
         {label}
       </EuiButtonEmpty>
     );
-  } else if (typeof label === 'object' && !linkAction) {
+  } else if (typeof label === 'object' && !extraAction) {
     itemContent = label;
-  } else if (linkAction) {
+  } else if (extraAction) {
     itemContent = (
       <span className="euiListGroupItem__actionContent">
         <span className="euiListGroupItem__actionLabel">
           {label}
         </span>
         <span className="euiListGroupItem__actionButton">
-          {linkAction}
+          {extraAction}
         </span>
       </span>
     );
@@ -87,12 +87,12 @@ EuiListGroupItem.propTypes = {
   /**
    * Apply styles indicating an item is active
    */
-  isActive: PropTypes.bool.isRequired,
+  isActive: PropTypes.bool,
 
   /**
    * Apply styles indicating an item is disabled
    */
-  isDisabled: PropTypes.bool.isRequired,
+  isDisabled: PropTypes.bool,
 
   /**
    * Make the list item label a link
@@ -107,7 +107,7 @@ EuiListGroupItem.propTypes = {
   /**
    * Add button icon for secondary action. See EuiButtonIcon
    */
-  linkAction: PropTypes.node,
+  extraAction: PropTypes.node,
 };
 
 EuiListGroupItem.defaultProps = {

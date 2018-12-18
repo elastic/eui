@@ -57,7 +57,7 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiListGroup flush={flushWidth} bordered={showBorder} style={{ maxWidth: '288px' }}>
+        <EuiListGroup flush={flushWidth} bordered={showBorder} maxWidth={288}>
           <EuiListGroupItem
             label={
               <EuiButtonEmpty
@@ -68,7 +68,7 @@ export default class extends Component {
                 EUI button link
               </EuiButtonEmpty>
             }
-            linkAction={
+            extraAction={
               <EuiButtonIcon
                 color="subdued"
                 onClick={() => window.alert('Action clicked')}
@@ -89,7 +89,7 @@ export default class extends Component {
                 EUI button link
               </EuiButtonEmpty>
             }
-            linkAction={
+            extraAction={
               <EuiButtonIcon
                 color="subdued"
                 onClick={() => window.alert('Action clicked')}
@@ -110,7 +110,7 @@ export default class extends Component {
                 EUI button link
               </EuiButtonEmpty>
             }
-            linkAction={
+            extraAction={
               <EuiButtonIcon
                 color="subdued"
                 onClick={() => window.alert('Action clicked')}
@@ -133,7 +133,7 @@ export default class extends Component {
                 EUI button link
               </EuiButtonEmpty>
             }
-            linkAction={
+            extraAction={
               <EuiButtonIcon
                 color="subdued"
                 onClick={() => window.alert('Action clicked')}

@@ -1,0 +1,145 @@
+.euiListGroupItem {
+  padding: 0;
+  margin-top: $euiSizeXS;
+  border-radius: $euiBorderRadius;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  > *:not(.euiListGroupItem__actionContent) {
+    display: block;
+    padding: $euiSizeS;
+    line-height: $euiLineHeight;
+  }
+
+  // Color the background of links, buttons, and any active direct descendents
+  > a:hover,
+  button:hover:not([disabled]),
+  .euiListGroupItem__actionContent:hover,
+  &.euiListGroupItem-active > * {
+    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+  }
+
+  // Underline link and button text when hovered or active
+  > a:hover,
+  button:hover:not([disabled]),
+  &.euiListGroupItem-active > a,
+  &.euiListGroupItem-active button {
+    text-decoration: underline;
+  }
+
+  // Style all disabled list items whether or not they are links or buttons
+  &.euiListGroupItem-disabled > * {
+    color: $euiButtonColorDisabled;
+    text-decoration: none;
+    cursor: not-allowed;
+
+    // Some properties repeat here to override inherited button styles
+    &:hover {
+      background-color: transparent;
+      color: $euiButtonColorDisabled;
+      text-decoration: none;
+    }
+  }
+
+  // Prevents double padding as items with actions have an additional wrapper
+  &.euiListGroupItem-hasAction > span {
+    padding: 0;
+  }
+}
+
+.euiListGroup--flush .euiListGroupItem {
+  border-radius: 0;
+}
+
+.euiListGroup--bordered .euiListGroupItem {
+  &:first-child {
+    border-top-left-radius: $euiBorderRadius;
+    border-top-right-radius: $euiBorderRadius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
+  }
+}
+
+// Aligns list items with sibling icons
+.euiListGroupItem__label {
+  vertical-align: middle;
+}
+
+.euiListGroupItem-hasIcon .euiListGroupItem__label {
+  margin-left: $euiSizeS;
+}
+
+// Override inherited EUI button styles
+// This component leverages the EuiButton component to avoid duplicating logic
+.euiListGroupItem:not(.euiListGroupItem-hasAction) .euiButtonEmpty__content {
+  justify-content: left;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Styles for list items that have secondary actions (i.e. two buttons)
+.euiListGroupItem__actionContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+
+  // Hover anywhere on the list item container to reveal secondary action
+  // Showing and hiding using opacity keeps the button accessible via keyboard
+  &:hover .euiListGroupItem__actionButton button {
+    opacity: 1;
+  }
+
+  // The hover color is applied to the container instead of the buttons
+  // This override prevents flashes of background color on button elemenets
+  button:hover {
+    background-color: transparent !important; //sass-lint:disable-line no-important
+  }
+}
+
+.euiListGroupItem__actionLabel {
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: $euiButtonHeight;
+
+  button {
+    width: 100%;
+  }
+
+  button > span {
+    justify-content: start !important; //sass-lint:disable-line no-important
+  }
+}
+
+.euiListGroupItem__actionButton {
+  flex-shrink: 0;
+  height: $euiSizeL;
+  min-width: $euiSizeL;
+  margin-right: $euiSizeS;
+  vertical-align: middle;
+
+  // Hide visually with opacity, still reachable via keyboard
+  button {
+    opacity: 0;
+
+    // Make button visible with keyboard focus
+    // Mouse users will see it when they hover on the parent container above
+    &:focus {
+      opacity: 1;
+    }
+
+    &:hover:not([disabled]) svg,
+    &:focus:not([disabled]) svg {
+      fill: $euiColorPrimary;
+    }
+  }
+}

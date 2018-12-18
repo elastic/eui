@@ -12,8 +12,19 @@ export const EuiListGroup = ({
   flush,
   bordered,
   listItems,
+  maxWidth,
+  style,
   ...rest
 }) => {
+
+  let newStyle;
+  let widthClassName;
+  if (maxWidth !== true) {
+    const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+    newStyle = { ...style, maxWidth: value };
+  } else if (maxWidth === true) {
+    widthClassName = 'euiListGroup--maxWidth-default';
+  }
 
   const classes = classNames(
     'euiListGroup',
@@ -21,6 +32,7 @@ export const EuiListGroup = ({
       'euiListGroup--flush': flush,
       'euiListGroup--bordered': bordered,
     },
+    widthClassName,
     className
   );
 
@@ -33,7 +45,7 @@ export const EuiListGroup = ({
             key={`title-${index}`}
             label={item.label}
             href={item.href}
-            linkAction={item.linkAction}
+            extraAction={item.extraAction}
             iconType={item.iconType}
             isActive={item.isActive}
             isDisabled={item.isDisabled}
@@ -48,6 +60,7 @@ export const EuiListGroup = ({
   return (
     <ul
       className={classes}
+      style={newStyle || style}
       {...rest}
     >
       {childrenOrListItems}
@@ -59,7 +72,7 @@ EuiListGroup.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.node,
     href: PropTypes.string,
-    linkAction: PropTypes.node,
+    extraAction: PropTypes.node,
     iconType: PropTypes.string,
     isActive: PropTypes.boolean,
     isDisabled: PropTypes.boolean,
@@ -70,15 +83,29 @@ EuiListGroup.propTypes = {
   /**
    * Remove container padding, stretching list items to the edges
    */
-  flush: PropTypes.bool.isRequired,
+  flush: PropTypes.bool,
 
   /**
    * Add a border to the list container
    */
-  bordered: PropTypes.bool.isRequired,
+  bordered: PropTypes.bool,
+
+  /**
+   * Sets the max-width of the page,
+   * set to `true` to use the default size,
+   * set to `false` to not restrict the width,
+   * set to a number for a custom width in px,
+   * set to a string for a custom width in custom measurement.
+   */
+  maxWidth: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 EuiListGroup.defaultProps = {
   flush: false,
   bordered: false,
+  maxWidth: true,
 };
