@@ -70,6 +70,13 @@ export const BARCHART_2Y0G = [
   { x: 3, y1: 6, y2: 10 },
 ];
 
+export const CHART_ORDINAL_2Y0G = [
+  { x: 'a', y1: 1, y2: 3 },
+  { x: 'b', y1: 2, y2: 7 },
+  { x: 'c', y1: 1, y2: 2 },
+  { x: 'd', y1: 6, y2: 10 },
+];
+
 export const BARCHART_2Y1G = [
   { x: 0, g: 'a', y1: 1, y2: 4 },
   { x: 0, g: 'b', y1: 3, y2: 6 },
@@ -99,3 +106,13 @@ export const BARCHART_2Y2G = [
   { x: 3, g1: 'b', g2: 's', y1: 6, y2: 4 },
   { x: 3, g1: 'b', g2: 'p', y1: 6, y2: 4 },
 ];
+
+const NOW = Date.now();
+const DAY = 24 * 60 * 60 * 1000;
+export const TIME_CHART_2Y0G = [
+  { x: NOW, y1: 1, y2: 3 },
+  { x: NOW + DAY, y1: 2, y2: 7 },
+  { x: NOW + DAY * 2, y1: 1, y2: 2 },
+  { x: NOW + DAY * 3, y1: 6, y2: 10 },
+];
+console.log(TIME_CHART_2Y0G);

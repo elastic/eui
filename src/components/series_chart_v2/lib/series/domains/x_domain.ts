@@ -32,7 +32,7 @@ export function mergeXDomain(
   if (mainXScaleType.scaleType === ScaleType.Ordinal) {
     seriesXComputedDomains = computeOrdinalDataDomain(values, identity, false, true);
   } else {
-    seriesXComputedDomains =  computeContinuousDataDomain(values, identity);
+    seriesXComputedDomains =  computeContinuousDataDomain(values, identity, true);
     minInterval = findMinInterval(values);
   }
   return {

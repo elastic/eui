@@ -1,9 +1,7 @@
+import classNames from 'classnames';
 import { inject, observer } from 'mobx-react';
 import React from 'react';
-import { Datum } from '../lib/series/specs';
-import { Accessor } from '../lib/utils/accessor';
-import { SpecId } from '../lib/utils/ids';
-import { ChartStore, TooltipData } from '../state/chart_state';
+import { ChartStore } from '../state/chart_state';
 
 interface ReactiveChartProps {
   chartStore?: ChartStore; // FIX until we find a better way on ts mobx
@@ -13,15 +11,18 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
   public static displayName = 'Tooltips';
 
   public render() {
-    const { initialized, tooltipData, tooltipPosition, parentDimensions } = this.props.chartStore!;
-    if (!initialized.get()) {
-      return null;
-    }
+    const {
+      initialized,
+      tooltipData,
+      tooltipPosition,
+      showTooltip,
+      parentDimensions,
+    } = this.props.chartStore!;
     const tooltip = tooltipData.get();
     const tooltipPos = tooltipPosition.get();
     let hPosition;
-    if (!tooltipPos) {
-      return null;
+    if (!initialized.get() || !tooltip || !tooltipPos) {
+      return <div className="euiChartTooltip euiChartTooltip--hidden" />;
     }
     if (tooltipPos.x <= parentDimensions.width / 2) {
       hPosition = {
@@ -46,54 +47,43 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
         value: parentDimensions.height - tooltipPos.y,
       };
     }
-    return tooltip && this.renderTooltip(tooltip, vPosition, hPosition);
+    return this.renderTooltip(showTooltip.get(), tooltip, vPosition, hPosition);
   }
+
   private renderTooltip = (
-    tooltipData: TooltipData,
+    showTooltip: boolean,
+    tooltip: Array<[any, any]>,
     vPosition: { position: string; value: number },
     hPosition: { position: string; value: number },
   ) => {
-    if (!tooltipData) {
-      return null;
-    }
-
     return (
       <div
-        className={'euiChartTooltip'}
+        className={classNames('euiChartTooltip', showTooltip ? null : 'euiChartTooltip--hidden')}
         style={{
           position: 'absolute',
           [vPosition.position]: vPosition.value,
           [hPosition.position]: hPosition.value,
         }}
       >
-        <p>{tooltipData.value.specId}</p>
-        <ul>{this.formatData(tooltipData.value.specId, tooltipData.value.datum)}</ul>
+        {/* <p>{tooltipData.value.specId}</p> */}
+        <table>
+          <tbody>
+            {
+              tooltip.map(([field, value], index) => {
+                return (
+                  <tr key={`row-${index}`}>
+                    <td className="euiChartTooltip__label">{field}</td>
+                    <td>{value}</td>
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
       </div>
     );
   }
-  private formatData = (specId: SpecId, datum: Datum) => {
-    const spec = this.props.chartStore!.seriesSpecs.get(specId);
-    if (!spec) {
-      return null;
-    }
-    return [
-      ...this.formatAccessor([spec.xAccessor], datum),
-      ...this.formatAccessor(spec.splitSeriesAccessors, datum),
-      ...this.formatAccessor(spec.yAccessors, datum),
-    ];
-  }
-  private formatAccessor(accessors: Accessor[] | undefined, datum: Datum): JSX.Element[] {
-    if (!accessors) {
-      return [];
-    }
-    return accessors.map((accessor, i) => {
-      return (
-        <span key={`${accessor} - ${i}`}>
-          {accessor} : {datum[accessor]}{' '}
-        </span>
-      );
-    });
-  }
+
 }
 
 export const Tooltips = inject('chartStore')(observer(TooltipsComponent));

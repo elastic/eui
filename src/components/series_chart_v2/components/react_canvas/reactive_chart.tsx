@@ -19,18 +19,6 @@ class Chart extends React.Component<ReactiveChartProps> {
   public componentDidMount() {
     // tslint:disable-next-line:no-console
     console.log('Chart mounted');
-    console.log({ ref: this.renderingLayerRef});
-    if (this.renderingLayerRef.current) {
-
-      const ctx = this.renderingLayerRef.current.getCanvas().getContext();
-      if ('imageSmoothingEnabled' in ctx) {
-        ctx.imageSmoothingEnabled = false;
-      } else {
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.msImageSmoothingEnabled = false;
-      }
-    }
-
   }
 
   public componentWillUnmount() {

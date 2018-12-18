@@ -1,9 +1,10 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import {
   AxisTick,
   AxisTicksDimensions,
   computeAxisTicksDimensions,
   getAxisTicksPositions,
+  isVertical,
 } from '../lib/axes/axis_utils';
 import { CanvasTextBBoxCalculator } from '../lib/axes/canvas_text_bbox_calculator';
 import { AreaGeometry, BarGeometry, GeometryValue, LineGeometry, PointGeometry } from '../lib/series/rendering';
@@ -18,10 +19,11 @@ import {
   Rendering,
   Rotation,
 } from '../lib/series/specs';
+import { formatTooltip } from '../lib/series/tooltip';
 import { DEFAULT_THEME, Theme } from '../lib/themes/theme';
 import { computeChartDimensions, Dimensions } from '../lib/utils/dimensions';
 import { SpecDomains } from '../lib/utils/domain';
-import { AxisId, getSpecId, SpecId } from '../lib/utils/ids';
+import { AxisId, getSpecId, GroupId, SpecId } from '../lib/utils/ids';
 import { computeSeriesDomains, computeSeriesGeometries } from './utils';
 export interface TooltipPosition {
   top?: number;
@@ -64,8 +66,9 @@ export class ChartStore {
 
   public seriesSpecDomains: Map<SpecId, SpecDomains> = new Map(); // computed
 
-  public tooltipData = observable.box<TooltipData | null>(null);
+  public tooltipData = observable.box<Array<[any, any]> | null>(null);
   public tooltipPosition = observable.box<{x: number, y: number} | null>();
+  public showTooltip = observable.box(false);
 
   public geometries: {
     points: PointGeometry[];
@@ -82,16 +85,23 @@ export class ChartStore {
   public canDataBeAnimated = false;
 
   public onOverElement = action((tooltip: TooltipData) => {
-    this.tooltipData.set(tooltip);
-    const { specId, seriesKey } = tooltip.value;
+    const { specId } = tooltip.value;
     const spec = this.seriesSpecs.get(specId);
-    console.log(spec);
+    if (!spec) {
+      return;
+    }
+    const { xAxis, yAxis } = this.getAxesSpecForSpecId(spec.groupId);
+    const formattedTooltip = formatTooltip(tooltip, spec, xAxis, yAxis);
+    this.tooltipData.set(formattedTooltip);
+    this.showTooltip.set(true);
+    document.body.style.cursor = 'pointer';
+  });
 
-  });
   public onOutElement = action(() => {
-    this.tooltipData.set(null);
-    this.tooltipPosition.set(null);
+    this.showTooltip.set(false);
+    document.body.style.cursor = 'default';
   });
+
   public setTooltipPosition = action((x: number, y: number) => {
     this.tooltipPosition.set({ x, y});
   });
@@ -133,6 +143,25 @@ export class ChartStore {
   }
   public removeAxisSpec(axisId: AxisId) {
     this.axesSpecs.delete(axisId);
+  }
+
+  public getAxesSpecForSpecId(groupId: GroupId) {
+    let xAxis;
+    let yAxis;
+    for (const axisSpec of this.axesSpecs.values()) {
+      if (axisSpec.groupId !== groupId) {
+        continue;
+      }
+      if (isVertical(axisSpec.position)) {
+        yAxis = axisSpec;
+      } else {
+        xAxis = axisSpec;
+      }
+    }
+    return {
+      xAxis,
+      yAxis,
+    };
   }
 
   public computeChart() {

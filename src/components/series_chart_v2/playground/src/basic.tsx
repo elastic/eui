@@ -15,12 +15,12 @@ import './index.scss';
 const dataGenerator = new DataGenerator();
 class App extends Component {
   public state = {
-    randomData: TestDatasets.BARCHART_1Y0G,
+    randomData: TestDatasets.CHART_ORDINAL_2Y0G,
     highVolume: dataGenerator.generateGroupedSeries(10, 2),
   };
   public onChangeData = () => {
     this.setState({
-      randomData: randomizeData(TestDatasets.BARCHART_1Y0G, ['y'], uniformRandomizer(1000)),
+      randomData: randomizeData(TestDatasets.CHART_ORDINAL_2Y0G, ['y1', 'y2'], uniformRandomizer(1000)),
       highVolume: dataGenerator.generateGroupedSeries(10, 2),
     });
   }
@@ -41,22 +41,24 @@ class App extends Component {
               id={getAxisId('bottom')}
               position={AxisPosition.Bottom}
               title={'Rendering basic test'}
+              // tickFormat={(d) => new Date(d).toISOString()}
             />
             <Axis
               id={getAxisId('left')}
               position={AxisPosition.Left}
+              tickFormat={(d) => Number(d).toFixed(2)}
             />
 
-            <LineSeries
+            <BarSeries
               id={getSpecId('lines')}
-              xScaleType={ScaleType.Linear}
+              xScaleType={ScaleType.Ordinal}
               yScaleType={ScaleType.Linear}
               xAccessor="x"
-              yAccessors={['y']}
-              splitSeriesAccessors={['g']}
-              stackAccessors={['x']}
+              yAccessors={['y1', 'y2']}
+              // splitSeriesAccessors={['g1', 'g2']}
+              // stackAccessors={['x']}
               // curve={CurveType.CURVE_BASIS}
-              data={this.state.highVolume}
+              data={this.state.randomData}
               yScaleToDataExtent={false}
             />
             {/* <AreaSeries
