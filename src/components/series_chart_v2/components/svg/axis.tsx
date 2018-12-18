@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
-import { AxisTick, AxisTicksDimensions } from '../../lib/axes/axis_utils';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../../lib/series/specs';
+import { AxisTick, AxisTicksDimensions, isHorizontal, isVertical } from '../../lib/axes/axis_utils';
+import { AxisPosition, AxisSpec } from '../../lib/series/specs';
 import { Theme } from '../../lib/themes/theme';
 import { Dimensions } from '../../lib/utils/dimensions';
 
@@ -21,14 +21,13 @@ export class Axis extends React.PureComponent<AxisProps> {
       axisSpec: {
         tickSize,
         tickPadding,
-        orientation,
         position,
       },
     } = this.props;
 
     const textProps: SVGProps<SVGTextElement> = {};
 
-    if (orientation === AxisOrientation.Vertical) {
+    if (isVertical(position)) {
       textProps.y = tick.position;
       textProps.textAnchor = position === 'left' ? 'end' : 'start';
       textProps.x = position === 'left' ? 0 : tickSize + tickPadding;
@@ -58,7 +57,6 @@ export class Axis extends React.PureComponent<AxisProps> {
       axisSpec: {
         tickSize,
         tickPadding,
-        orientation,
         position,
       },
       axisTicksDimensions: {
@@ -68,7 +66,7 @@ export class Axis extends React.PureComponent<AxisProps> {
 
     const lineProps: SVGProps<SVGLineElement>  = {};
 
-    if (orientation === 'vertical') {
+    if (isVertical(position)) {
       lineProps.x1 = position === 'left' ? tickPadding : 0;
       lineProps.x2 = position === 'left' ? tickSize + tickPadding : tickSize;
       lineProps.y1 = tick.position;
@@ -119,7 +117,6 @@ export class Axis extends React.PureComponent<AxisProps> {
       axisSpec: {
         tickSize,
         tickPadding,
-        orientation,
         position,
       },
       axisPosition,
@@ -145,14 +142,14 @@ export class Axis extends React.PureComponent<AxisProps> {
     const {
       axisSpec: {
         title,
-        orientation,
+        position,
       },
     } = this.props;
     if (!title) {
       return null;
     }
-    if (orientation === AxisOrientation.Horizontal) {
-      return this.renderOriziontalAxisTitle();
+    if (isHorizontal(position)) {
+      return this.renderHoriziontalAxisTitle();
     }
     return this.renderVerticalAxisTitle();
   }
@@ -192,7 +189,7 @@ export class Axis extends React.PureComponent<AxisProps> {
       </g>
     );
   }
-  private renderOriziontalAxisTitle() {
+  private renderHoriziontalAxisTitle() {
     const {
       axisPosition: {
         width,

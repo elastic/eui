@@ -2,13 +2,13 @@ import { Provider } from 'mobx-react';
 import React, { Fragment } from 'react';
 import { SpecsParser } from '../specs/specs_parser';
 import { ChartStore } from '../state/chart_state';
-import { ReactiveChart as CanvasChart } from './canvas/reactive_chart';
 import { ChartResizer } from './chart_resizer';
+import { ReactiveChart as ReactChart } from './react_canvas/reactive_chart';
 import { ReactiveChart as SVGChart } from './svg/reactive_chart';
 import { Tooltips } from './tooltips';
 
 interface ChartProps {
-  renderer: 'svg' | 'canvas';
+  renderer: 'svg' | 'canvas' | 'canvas_old';
 }
 
 export class Chart extends React.Component<ChartProps> {
@@ -33,7 +33,7 @@ export class Chart extends React.Component<ChartProps> {
             renderer === 'svg' && <SVGChart />
           }
           {
-            renderer === 'canvas' && <CanvasChart />
+            renderer === 'canvas' && <ReactChart />
           }
           <Tooltips />
         </Fragment>

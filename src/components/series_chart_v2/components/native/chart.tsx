@@ -1,9 +1,7 @@
-import { Group, Layer, Rect, Stage } from 'konva';
-import { BarGeom, BarSeriesState } from '../../lib/series/bars/rendering';
-import { BarSeriesSpec, Rotation } from '../../lib/series/specs';
-import { Theme } from '../../lib/themes/theme';
+import { Layer, Rect, Stage } from 'konva';
+import { BarGeometry } from '../../lib/series/rendering';
+import { Rotation } from '../../lib/series/specs';
 import { Dimensions } from '../../lib/utils/dimensions';
-import { SpecId } from '../../lib/utils/ids';
 import { ChartStore } from '../../state/chart_state';
 
 export interface KonvaCanvas {
@@ -35,10 +33,10 @@ export function initializeChart(div: HTMLDivElement): KonvaCanvas {
 
 export function renderChart(chartStore: ChartStore, canvas: KonvaCanvas) {
   const { chartLayer } = canvas;
-  const { parentDimensions, chartDimensions, chartRotation, barSeriesSpecs, barSeriesGlyphs, chartTheme } = chartStore;
+  const { parentDimensions, chartDimensions, chartRotation, geometries } = chartStore;
   // stage.clear();
   resizeLayers(canvas, parentDimensions, chartDimensions, chartRotation);
-  renderAllBarsSeries(chartLayer, barSeriesSpecs, barSeriesGlyphs, chartTheme);
+  renderAllBarsSeries(chartLayer, geometries ? geometries.bars : []);
   // stage.draw();
 }
 
@@ -72,34 +70,20 @@ function resizeLayers(
 
 function renderAllBarsSeries(
   chartLayer: Layer,
-  barSeriesSpecs: Map<SpecId, BarSeriesSpec>,
-  barSeriesGlyphs: Map<SpecId, BarSeriesState>,
-  chartTheme: Theme,
+  geometries: BarGeometry[],
 ): void {
-
-  barSeriesGlyphs.forEach((barGlyphs, specId) => {
-    const spec = barSeriesSpecs.get(specId);
-    if (spec) {
-      const { tooltipLevel = -1 } = spec;
-      renderBarSeries(chartLayer, barGlyphs.geometries, tooltipLevel, chartTheme);
-    }
-  });
-}
-function renderBarSeries(chartLayer: Layer, barGlyphs: BarGeom[], tooltipLevel: number , chartTheme: Theme) {
-  function renderGlyphs(currentGroup: Group, glyphs: BarGeom[], uuidPath: string) {
-    glyphs.forEach((glyph, i) => {
-      const { x, y1, width, height, color } = glyph;
-      const bar = new Rect({
-        x,
-        y: y1,
-        width,
-        height,
-        fill: color,
-        strokeWidth: 0,
-        listening: false,
-      });
-      currentGroup.add(bar);
+  geometries.forEach((geometry) => {
+    const { x, y, width, height, color } = geometry;
+    const bar = new Rect({
+      x,
+      y,
+      width,
+      height,
+      fill: color,
+      strokeWidth: 0,
+      listening: false,
     });
-  }
-  renderGlyphs(chartLayer, barGlyphs, '');
+    chartLayer.add(bar);
+  });
+
 }

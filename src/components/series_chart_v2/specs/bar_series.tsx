@@ -7,10 +7,18 @@ import { SpecProps } from './specs_parser';
 
 type BarSpecProps = SpecProps & BarSeriesSpec;
 
-type DefaultProps = 'groupId' | 'xScaleType' | 'yScaleType' | 'xAccessor' | 'yAccessors' | 'yScaleToDataExtent';
+type DefaultProps =
+  | 'seriesType'
+  | 'groupId'
+  | 'xScaleType'
+  | 'yScaleType'
+  | 'xAccessor'
+  | 'yAccessors'
+  | 'yScaleToDataExtent';
 
 export class BarSeriesSpecComponent extends React.PureComponent<BarSpecProps> {
   public static defaultProps: Pick<BarSpecProps, DefaultProps> = {
+    seriesType: 'bar',
     groupId: getGroupId('__global__'),
     xScaleType: ScaleType.Ordinal,
     yScaleType: ScaleType.Linear,
@@ -20,15 +28,15 @@ export class BarSeriesSpecComponent extends React.PureComponent<BarSpecProps> {
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addBarSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
   }
   public componentDidUpdate() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addBarSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
   }
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore!.removeBarSeriesSpecs(id);
+    chartStore!.removeSeriesSpec(id);
   }
   public render() {
     return null;

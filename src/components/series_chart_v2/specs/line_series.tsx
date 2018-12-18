@@ -7,10 +7,18 @@ import { SpecProps } from './specs_parser';
 
 type LineSpecProps = SpecProps & LineSeriesSpec;
 
-type DefaultProps = 'groupId' | 'xScaleType' | 'yScaleType' | 'xAccessor' | 'yAccessors' | 'yScaleToDataExtent';
+type DefaultProps =
+  | 'seriesType'
+  | 'groupId'
+  | 'xScaleType'
+  | 'yScaleType'
+  | 'xAccessor'
+  | 'yAccessors'
+  | 'yScaleToDataExtent';
 
 export class LineSeriesSpecComponent extends React.PureComponent<LineSpecProps> {
   public static defaultProps: Pick<LineSpecProps, DefaultProps> = {
+    seriesType: 'line',
     groupId: getGroupId('__global__'),
     xScaleType: ScaleType.Ordinal,
     yScaleType: ScaleType.Linear,
@@ -20,15 +28,17 @@ export class LineSeriesSpecComponent extends React.PureComponent<LineSpecProps> 
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addLineSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
+
   }
   public componentDidUpdate() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addLineSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
+
   }
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore!.removeLineSeriesSpecs(id);
+    chartStore!.removeSeriesSpec(id);
   }
   public render() {
     return null;

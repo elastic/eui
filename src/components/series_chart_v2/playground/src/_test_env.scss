@@ -20,18 +20,23 @@ html, body {
 .header {
   position: fixed;
   background: lightcoral;
-  top: 20px;
-  right: 20px;
-  height: 50px;
+  top: 5px;
+  right: 5px;
   z-index: 1000;
   display: flex;
-  padding: 10px
+  padding: 2px;
+  user-select: none;
+  &:hover,
+  &:active {
+    background: coral;
+  }
 }
 .chartContainers {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  padding: 15px;
 }
 .chartContainer {
   width: 100%;
@@ -40,7 +45,6 @@ html, body {
   flex-grow: 0;
   flex-basis: auto;
   position: relative;
-  margin: 5px;
   box-shadow: 6px 6px 14px -2px rgba(0,0,0,0.75);
   background: white;
   box-sizing: border-box;

@@ -40,8 +40,11 @@ export function computeOrdinalDataDomain(
   data: any[],
   accessor: AccessorFn,
   sorted?: boolean,
+  removeNull?: boolean,
 ): string[] | number[] {
-  const domain = data.map(accessor);
+  const domain = data
+    .map(accessor)
+    .filter((d) => removeNull ? d !== null : true);
   const uniqueValues = [...new Set(domain)];
   return sorted ? uniqueValues.sort((a, b) => {
     return `${a}`.localeCompare(`${b}`);

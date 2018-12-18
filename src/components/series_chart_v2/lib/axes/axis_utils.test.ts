@@ -1,7 +1,10 @@
-import { AxisOrientation, AxisPosition } from '../series/specs';
+import { computeSeriesDomains } from '../../state/utils';
+import { XDomain } from '../series/domains/x_domain';
+import { YDomain } from '../series/domains/y_domain';
+import { AxisPosition, BasicSeriesSpec } from '../series/specs';
 import { ScalesConfig } from '../themes/theme';
 import { SpecDomains } from '../utils/domain';
-import { getAxisId, getGroupId } from '../utils/ids';
+import { getAxisId, getGroupId, SpecId } from '../utils/ids';
 import { ScaleType } from '../utils/scales/scales';
 import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
@@ -64,39 +67,31 @@ describe('Axis computational utils', () => {
     showOverlappingTicks: false,
     showOverlappingLabels: false,
     position: AxisPosition.Left,
-    orientation: AxisOrientation.Vertical,
     tickSize: 10,
     tickPadding: 10,
     tickFormat: (value: any) => {
       return `${value}`;
     },
   };
-  const specDomain: SpecDomains = {
-    xDomains: [
-      {
-        level: 0,
-        accessor: 'x',
-        domain: [0, 1],
-        scaleType: ScaleType.Linear,
-      },
-    ],
-    yDomain: {
-      level: 0,
-      accessor: 'y',
-      domain: [0, 1],
-      scaleType: ScaleType.Linear,
-    },
-    colorDomain: {
-      accessors: [],
-      domain: [],
-      scaleType: ScaleType.Ordinal,
-    },
-  };
 
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const axisDimensions = computeAxisTicksDimensions(axis1Spec, specDomain, bboxCalculator, chartScalesConfig, 0);
-    expect(axisDimensions.toNullable()).toEqual(axis1Dims);
+    const xDomain: XDomain = {
+      type: 'xDomain',
+      scaleType: ScaleType.Linear,
+      domain: [0, 1],
+      isBandScale: false,
+      minInterval: 0,
+    };
+    const yDomain: YDomain = {
+      scaleType: ScaleType.Linear,
+      groupId: getGroupId('group_1'),
+      type: 'yDomain',
+      domain: [0, 1],
+      isBandScale: false,
+    };
+    const axisDimensions = computeAxisTicksDimensions(axis1Spec, xDomain, [yDomain], 1, bboxCalculator, 0);
+    expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });
 

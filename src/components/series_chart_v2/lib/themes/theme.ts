@@ -44,6 +44,7 @@ export interface LineSeriesStyle {
   hideDataPoints: boolean;
   dataPointsRadius: number;
   dataPointsStroke: string;
+  dataPointsStrokeWidth: number;
 }
 export interface AreaSeriesStyle {
   hideArea: boolean;
@@ -81,8 +82,9 @@ export const DEFAULT_THEME: Theme = {
         borderWidth: 2,
         borderStrokeColor: 'gray',
         hideDataPoints: true,
-        dataPointsRadius: 3,
+        dataPointsRadius: 5,
         dataPointsStroke: 'gray',
+        dataPointsStrokeWidth: 1,
       },
       areaSeries: {
         hideArea: false,
@@ -93,9 +95,9 @@ export const DEFAULT_THEME: Theme = {
         borderWidth: 2,
         borderStrokeColor: 'gray',
         hideDataPoints: true,
-        dataPointsRadius: 3,
+        dataPointsRadius: 5,
         dataPointsStroke: 'gray',
-        dataPointsStrokeWidth: 0,
+        dataPointsStrokeWidth: 1,
       },
     },
   },

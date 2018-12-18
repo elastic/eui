@@ -14,7 +14,13 @@ export class ScaleBand implements Scale {
   private readonly round: boolean;
   private readonly align = 0.5;
 
-  constructor(domain: any[], range: [number, number], padding?: [number, number], round?: boolean) {
+  constructor(
+    domain: any[],
+    range: [number, number],
+    padding?: [number, number],
+    round?: boolean,
+    overrideBandwidth?: number,
+  ) {
     this.type = ScaleType.Ordinal;
     this.modelDomain = new Map();
     let domainIndex = 0;
@@ -44,6 +50,11 @@ export class ScaleBand implements Scale {
     if (round) {
       start = Math.round(start);
       this.bandwidth = Math.abs(Math.round(this.bandwidth));
+      console.log({round});
+    }
+    if (overrideBandwidth) {
+      this.bandwidth = overrideBandwidth;
+      console.log({overrideBandwidth});
     }
     this.range = range;
     this.modelRange = new Array(n).fill(0).map((val, i) => {

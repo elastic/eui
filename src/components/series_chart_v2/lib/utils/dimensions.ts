@@ -1,5 +1,5 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
+import { AxisPosition, AxisSpec } from '../series/specs';
 import { AxisId } from './ids';
 
 export interface Dimensions {
@@ -38,19 +38,20 @@ export function computeChartDimensions(
     if (!axisSpec) {
       return;
     }
-    const { orientation, position, tickSize, tickPadding } = axisSpec;
-    if (orientation === AxisOrientation.Horizontal) {
-      if (position === AxisPosition.Top) {
+    const { position, tickSize, tickPadding } = axisSpec;
+    switch (position) {
+      case  AxisPosition.Top:
         hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + chartMargins.top;
-      } else if (position === AxisPosition.Bottom) {
+        break;
+      case AxisPosition.Bottom:
         hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + chartMargins.bottom;
-      }
-    } else {
-      if (position === AxisPosition.Left) {
+        break;
+      case AxisPosition.Left:
         vLeftAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.left;
-      } else if (position === AxisPosition.Right) {
+        break;
+      case AxisPosition.Right:
         vRightAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.right;
-      }
+        break;
     }
   });
   // const hMargins = chartMargins.left + chartMargins.right;
@@ -76,10 +77,4 @@ export function computeChartDimensions(
     width: chartWidth - hMargin - chartPaddings.left - chartPaddings.right,
     height: chartHeight - vMargin - chartPaddings.bottom - chartPaddings.bottom,
   };
-  // return {
-  //   top: hTopAxisSpecHeight === 0 ? chartMargins.top : hTopAxisSpecHeight,
-  //   left: vLeftAxisSpecWidth === 0 ? chartMargins.left : vLeftAxisSpecWidth,
-  //   width: chartWidth - hMargin,
-  //   height: chartHeight - vMargin,
-  // };
 }

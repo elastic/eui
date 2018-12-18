@@ -13,38 +13,66 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
   public static displayName = 'Tooltips';
 
   public render() {
-    const { initialized, tooltipData } = this.props.chartStore!;
+    const { initialized, tooltipData, tooltipPosition, parentDimensions } = this.props.chartStore!;
     if (!initialized.get()) {
       return null;
     }
     const tooltip = tooltipData.get();
-    return tooltip.fold(null, this.renderTooltip);
+    const tooltipPos = tooltipPosition.get();
+    let hPosition;
+    if (!tooltipPos) {
+      return null;
+    }
+    if (tooltipPos.x <= parentDimensions.width / 2) {
+      hPosition = {
+        position: 'left',
+        value: tooltipPos.x + 20,
+      };
+    } else {
+      hPosition = {
+        position: 'right',
+        value: parentDimensions.width - tooltipPos.x + 10,
+      };
+    }
+    let vPosition;
+    if (tooltipPos.y <= parentDimensions.height / 2) {
+      vPosition = {
+        position: 'top',
+        value: tooltipPos.y,
+      };
+    } else {
+      vPosition = {
+        position: 'bottom',
+        value: parentDimensions.height - tooltipPos.y,
+      };
+    }
+    return tooltip && this.renderTooltip(tooltip, vPosition, hPosition);
   }
-  private renderTooltip = (tooltipData: TooltipData) => {
+  private renderTooltip = (
+    tooltipData: TooltipData,
+    vPosition: { position: string; value: number },
+    hPosition: { position: string; value: number },
+  ) => {
+    if (!tooltipData) {
+      return null;
+    }
+
     return (
       <div
         className={'euiChartTooltip'}
         style={{
           position: 'absolute',
-          ...tooltipData.position,
+          [vPosition.position]: vPosition.value,
+          [hPosition.position]: hPosition.value,
         }}
       >
-        <p>{tooltipData.specId}</p>
-        <ul>
-          {tooltipData.data.map((datum, i) => {
-            return (
-              <p key={i}>
-              {
-                this.formatData(tooltipData.specId, datum)
-              }
-              </p>);
-          })}
-        </ul>
+        <p>{tooltipData.value.specId}</p>
+        <ul>{this.formatData(tooltipData.value.specId, tooltipData.value.datum)}</ul>
       </div>
     );
   }
   private formatData = (specId: SpecId, datum: Datum) => {
-    const spec = this.props.chartStore!.getSpecById(specId);
+    const spec = this.props.chartStore!.seriesSpecs.get(specId);
     if (!spec) {
       return null;
     }
@@ -59,7 +87,11 @@ class TooltipsComponent extends React.Component<ReactiveChartProps> {
       return [];
     }
     return accessors.map((accessor, i) => {
-      return <span key={`${accessor} - ${i}`}>{accessor} : {datum[accessor]} </span>;
+      return (
+        <span key={`${accessor} - ${i}`}>
+          {accessor} : {datum[accessor]}{' '}
+        </span>
+      );
     });
   }
 }

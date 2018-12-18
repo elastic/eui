@@ -1,5 +1,5 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
-import { AxisOrientation, AxisPosition, AxisSpec } from '../series/specs';
+import { AxisPosition, AxisSpec } from '../series/specs';
 import { computeChartDimensions, Margins } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
 import { ScaleType } from './scales/scales';
@@ -40,7 +40,6 @@ describe('Computed chart dimensions', () => {
     showOverlappingTicks: false,
     showOverlappingLabels: false,
     position: AxisPosition.Left,
-    orientation: AxisOrientation.Vertical,
     tickSize: 10,
     tickPadding: 10,
     tickFormat: (value: any) => {
@@ -76,7 +75,6 @@ describe('Computed chart dimensions', () => {
     axisSpecs.set(getAxisId('axis_1'), {
       ...axis1Spec,
       position: AxisPosition.Top,
-      orientation: AxisOrientation.Horizontal,
     });
     const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
     expect(chartDimensions).toMatchSnapshot();
@@ -88,7 +86,6 @@ describe('Computed chart dimensions', () => {
     axisSpecs.set(getAxisId('axis_1'), {
       ...axis1Spec,
       position: AxisPosition.Bottom,
-      orientation: AxisOrientation.Horizontal,
     });
     const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
     expect(chartDimensions).toMatchSnapshot();

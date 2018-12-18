@@ -1,6 +1,6 @@
 import { inject } from 'mobx-react';
 import React from 'react';
-import { AxisOrientation, AxisPosition, AxisSpec as AxisSpecType } from '../lib/series/specs';
+import { AxisPosition, AxisSpec as AxisSpecType } from '../lib/series/specs';
 import { getGroupId } from '../lib/utils/ids';
 import { SpecProps } from './specs_parser';
 
@@ -14,7 +14,6 @@ type DefaultProps =
   | 'showOverlappingTicks'
   | 'showOverlappingLabels'
   | 'position'
-  | 'orientation'
   | 'tickSize'
   | 'tickPadding'
   | 'tickFormat';
@@ -26,7 +25,6 @@ class AxisSpec extends React.PureComponent<AxisSpecProps> {
     showOverlappingTicks: false,
     showOverlappingLabels: false,
     position: AxisPosition.Left,
-    orientation: AxisOrientation.Vertical,
     tickSize: 10,
     tickPadding: 10,
     tickFormat: (tick: any) => `${tick}`,

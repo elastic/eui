@@ -1,11 +1,13 @@
 import { max } from 'd3-array';
-import { none, Option, some } from 'fp-ts/lib/Option';
-import { AxisOrientation, AxisPosition, AxisSpec, Rotation } from '../series/specs';
-import { ChartConfig, ScalesConfig } from '../themes/theme';
+import { XDomain } from '../series/domains/x_domain';
+import { YDomain } from '../series/domains/y_domain';
+import { computeXScale, computeYScales } from '../series/scales';
+import { AxisPosition, AxisSpec, Rotation, TickFormatter } from '../series/specs';
+import { ChartConfig } from '../themes/theme';
 import { Dimensions, Margins } from '../utils/dimensions';
-import { Domain, SpecDomain, SpecDomains } from '../utils/domain';
+import { Domain } from '../utils/domain';
 import { AxisId } from '../utils/ids';
-import { createContinuousScale, createOrdinalScale, ScaleType } from '../utils/scales/scales';
+import { Scale, ScaleType } from '../utils/scales/scales';
 import { BBoxCalculator } from './bbox_calculator';
 
 export interface AxisTick {
@@ -33,156 +35,142 @@ export interface AxisTicksDimensions {
  */
 export function computeAxisTicksDimensions(
   axisSpec: AxisSpec,
-  specDomains: SpecDomains,
+  xDomain: XDomain,
+  yDomain: YDomain[],
+  totalGroupCount: number,
   bboxCalculator: BBoxCalculator,
-  scalesConfig: ScalesConfig,
   chartRotation: Rotation,
-): Option<AxisTicksDimensions> {
-  let tickValues: string[] | number[];
-  let tickLabels: string[];
-  let axisScaleType: ScaleType;
-  let axisScaleDomain: Domain;
-  const level = axisSpec.groupingLevel ? axisSpec.groupingLevel : 0;
-  return getAxisDomain(axisSpec.orientation, specDomains, chartRotation, level)
-    .chain((axisDomain) => {
-      return computeTicks(axisDomain, axisSpec, scalesConfig);
-    })
-    .map((verticalTicks) => {
-      tickValues = verticalTicks.tickValues;
-      tickLabels = verticalTicks.tickLabels;
-      axisScaleType = verticalTicks.axisScaleType!;
-      axisScaleDomain = verticalTicks.axisScaleDomain!;
-      // compute the boundingbox for each formatted label
-      const ticksDimensions = tickLabels
-        .map((tickLabel: string) => {
-          const bbox = bboxCalculator.compute(tickLabel).getOrElse({
-            width: 0,
-            height: 0,
-          });
-          return {
-            width: Math.ceil(bbox.width),
-            height: Math.ceil(bbox.height),
-          };
-        })
-        .filter((d) => d);
-      const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
-      const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
-      return {
-        axisScaleType,
-        axisScaleDomain,
-        ticksDimensions,
-        tickValues,
-        tickLabels,
-        maxTickWidth,
-        maxTickHeight,
-      };
-    });
+): AxisTicksDimensions | null {
+  const scale = getScaleForAxisSpec(
+    axisSpec,
+    xDomain,
+    yDomain,
+    totalGroupCount,
+    chartRotation,
+    0,
+    1,
+  );
+  if (!scale) {
+    throw new Error(`Cannot compute scale for axis spec ${axisSpec.id}`);
+  }
+  const dimensions = computeTickDimensions(scale, axisSpec.tickFormat, bboxCalculator);
+  return {
+    axisScaleDomain: xDomain.domain,
+    axisScaleType: xDomain.scaleType,
+    ...dimensions,
+  };
+}
+function getScaleForAxisSpec(
+  axisSpec: AxisSpec,
+  xDomain: XDomain,
+  yDomain: YDomain[],
+  totalGroupCount: number,
+  chartRotation: Rotation,
+  minRange: number,
+  maxRange: number,
+): Scale | null {
+  const axisDomain = getAxisDomain(axisSpec.position, xDomain, yDomain, chartRotation);
+  if (axisDomain && Array.isArray(axisDomain)) {
+    const yScales = computeYScales(yDomain, maxRange, minRange);
+    if (yScales.has(axisSpec.groupId)) {
+      return yScales.get(axisSpec.groupId)!;
+    }
+    return null;
+  } else {
+    console.log({xDomain, totalGroupCount, minRange, maxRange});
+    return computeXScale(xDomain, totalGroupCount, minRange, maxRange);
+  }
 }
 
-function computeTicks(
-  specDomain: SpecDomain,
+function computeTickDimensions(
+  scale: Scale,
+  tickFormat: TickFormatter,
+  bboxCalculator: BBoxCalculator,
+) {
+  const tickValues = scale.ticks();
+  const tickLabels = tickValues.map(tickFormat);
+
+  const ticksDimensions = tickLabels
+    .map((tickLabel: string) => {
+      const bbox = bboxCalculator.compute(tickLabel).getOrElse({
+        width: 0,
+        height: 0,
+      });
+      return {
+        width: Math.ceil(bbox.width),
+        height: Math.ceil(bbox.height),
+      };
+    })
+    .filter((d) => d);
+  const maxTickWidth = max(ticksDimensions, (bbox) => bbox.width) || 0;
+  const maxTickHeight = max(ticksDimensions, (bbox) => bbox.height) || 0;
+  return {
+    tickValues,
+    tickLabels,
+    ticksDimensions,
+    maxTickWidth,
+    maxTickHeight,
+  };
+}
+
+function getMinMaxRange(
   axisSpec: AxisSpec,
-  scalesConfig: ScalesConfig,
-): Option<{
-  axisScaleType: ScaleType,
-  axisScaleDomain: Domain,
-  tickValues: any[],
-  tickLabels: string[],
-}> {
-  const { domain, scaleType } = specDomain;
-  if (scaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(domain as string[], 1, 0, scalesConfig.ordinal.padding);
-    const tickValues = scale.ticks();
-    return some({
-      axisScaleType: scaleType,
-      axisScaleDomain: domain,
-      tickValues,
-      tickLabels: tickValues.map(axisSpec.tickFormat),
-    });
+  chartRotation: Rotation,
+  chartDimensions: Dimensions,
+): {
+  minRange: number;
+  maxRange: number;
+} | null {
+  const { width, height } = chartDimensions;
+  if (isVertical(axisSpec.position)) {
+    switch (chartRotation) {
+      case 0:
+      case -90:
+        return {
+          minRange: height,
+          maxRange: 0,
+        };
+      case 90:
+      case 180:
+        return {
+          minRange: 0,
+          maxRange: height,
+        };
+    }
   } else {
-    const scale = createContinuousScale(scaleType, domain as number[], 1, 0);
-    const tickValues = scale.ticks();
-    return some({
-      axisScaleType: scaleType,
-      axisScaleDomain: domain,
-      tickValues,
-      tickLabels: tickValues.map(axisSpec.tickFormat),
-    });
+    switch (chartRotation) {
+      case 0:
+      case 90:
+        return {
+          minRange: 0,
+          maxRange: width,
+        };
+      case 180:
+      case -90:
+        return {
+          minRange: width,
+          maxRange: 0,
+        };
+    }
   }
+  return null;
 }
 
 export function getAvailableTicks(
-  chartDimensions: Dimensions,
   axisSpec: AxisSpec,
-  axisDimension: AxisTicksDimensions,
-  scalesConfig: ScalesConfig,
-  chartRotation: Rotation,
+  scale: Scale,
+  totalGroupCount: number,
 ) {
-  const { width, height } = chartDimensions;
-  const { axisScaleType, axisScaleDomain } = axisDimension;
-  let allTicks: AxisTick[] = [];
-  let minRange: number = 0;
-  let maxRange: number = 0;
-  if (axisSpec.orientation === AxisOrientation.Vertical) {
-    switch (chartRotation) {
-      case 0:
-      case -90:
-        minRange = height;
-        maxRange = 0;
-        break;
-      case 90:
-      case 180:
-        minRange = 0;
-        maxRange = height;
-        break;
-    }
-  } else {
-    switch (chartRotation) {
-      case 0:
-      case 90:
-        minRange = 0;
-        maxRange = width;
-        break;
-      case 180:
-      case -90:
-        minRange = width;
-        maxRange = 0;
-        break;
-    }
-  }
-  if (axisScaleType === ScaleType.Ordinal) {
-    const scale = createOrdinalScale(
-      axisScaleDomain as string[],
-      minRange,
-      maxRange,
-      scalesConfig.ordinal.padding,
-    );
-    const ticks = scale.ticks();
-    const bandwidth = scale.bandwidth * ([0, 90].includes(chartRotation) ? 1 : -1);
-    allTicks = ticks.map((tick) => {
-      return {
-        value: tick,
-        label: axisSpec.tickFormat(tick),
-        position: scale.scale(tick) + bandwidth / 2,
-      };
-    });
-  } else {
-    const scale = createContinuousScale(
-      axisScaleType,
-      axisScaleDomain as number[],
-      minRange,
-      maxRange,
-    );
-    const ticks = scale.ticks();
-    allTicks = ticks.map((tick) => {
-      return {
-        value: tick,
-        label: axisSpec.tickFormat(tick),
-        position: scale.scale(tick),
-      };
-    });
-  }
-  return allTicks;
+  const ticks = scale.ticks();
+  const shift = totalGroupCount > 0 ? totalGroupCount : 1;
+  const offset = (scale.bandwidth * shift ) / 2;
+  return ticks.map((tick) => {
+    return {
+      value: tick,
+      label: axisSpec.tickFormat(tick),
+      position: scale.scale(tick) + offset,
+    };
+  });
 }
 export function getVisibleTicks(
   allTicks: AxisTick[],
@@ -191,11 +179,10 @@ export function getVisibleTicks(
   chartDimensions: Dimensions,
   chartRotation: Rotation,
 ): AxisTick[] {
-  const { orientation, showOverlappingTicks, showOverlappingLabels } = axisSpec;
+  const { showOverlappingTicks, showOverlappingLabels } = axisSpec;
   const { maxTickHeight, maxTickWidth } = axisDim;
   const { width, height } = chartDimensions;
-  const requiredSpace =
-    orientation === AxisOrientation.Vertical ? maxTickHeight / 2 : maxTickWidth / 2;
+  const requiredSpace = isVertical(axisSpec.position) ? maxTickHeight / 2 : maxTickWidth / 2;
   let firstTickPosition;
 
   firstTickPosition = 0;
@@ -206,7 +193,7 @@ export function getVisibleTicks(
     const { position } = allTicks[i];
 
     let relativeTickPosition = 0;
-    if (orientation === AxisOrientation.Vertical) {
+    if (isVertical(axisSpec.position)) {
       if (chartRotation === 90 || chartRotation === 180) {
         relativeTickPosition = position;
       } else {
@@ -250,6 +237,8 @@ export function getAxisPosition(
   cumLeftSum: number,
   cumRightSum: number,
 ) {
+  const { position, tickSize, tickPadding } = axisSpec;
+  const { maxTickHeight, maxTickWidth } = axisDim;
   const { top, left, height, width } = chartDimensions;
   const dimensions = {
     top,
@@ -262,34 +251,28 @@ export function getAxisPosition(
   let leftIncrement = 0;
   let rightIncrement = 0;
 
-  if (axisSpec.orientation === AxisOrientation.Vertical) {
+  if (isVertical(position)) {
     const specLeft =
-      axisSpec.position === AxisPosition.Left
-        ? axisDim.maxTickWidth + cumLeftSum + chartMargins.left
+      position === AxisPosition.Left
+        ? maxTickWidth + cumLeftSum + chartMargins.left
         : left + width + cumRightSum;
-    if (axisSpec.position === AxisPosition.Left) {
-      leftIncrement =
-        axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.left;
+    if (position === AxisPosition.Left) {
+      leftIncrement = maxTickWidth + tickSize + tickPadding + chartMargins.left;
     } else {
-      rightIncrement =
-        axisDim.maxTickWidth + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.right;
+      rightIncrement = maxTickWidth + tickSize + tickPadding + chartMargins.right;
     }
     dimensions.left = specLeft;
-    dimensions.width = axisDim.maxTickWidth;
+    dimensions.width = maxTickWidth;
   } else {
     const specTop =
-      axisSpec.position === AxisPosition.Top
-        ? cumTopSum + chartMargins.top
-        : top + height + cumBottomSum;
-    if (axisSpec.position === AxisPosition.Top) {
-      topIncrement =
-        axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.top;
+      position === AxisPosition.Top ? cumTopSum + chartMargins.top : top + height + cumBottomSum;
+    if (position === AxisPosition.Top) {
+      topIncrement = maxTickHeight + tickSize + tickPadding + chartMargins.top;
     } else {
-      bottomIncrement =
-        axisDim.maxTickHeight + axisSpec.tickSize + axisSpec.tickPadding + chartMargins.bottom;
+      bottomIncrement = maxTickHeight + tickSize + tickPadding + chartMargins.bottom;
     }
     dimensions.top = specTop;
-    dimensions.height = axisDim.maxTickHeight;
+    dimensions.height = maxTickHeight;
   }
   return { dimensions, topIncrement, bottomIncrement, leftIncrement, rightIncrement };
 }
@@ -298,9 +281,11 @@ export function getAxisTicksPositions(
   chartDimensions: Dimensions,
   chartConfig: ChartConfig,
   chartRotation: Rotation,
-  scalesConfig: ScalesConfig,
   axisSpecs: Map<AxisId, AxisSpec>,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
+  xDomain: XDomain,
+  yDomain: YDomain[],
+  totalGroupsCount: number,
 ) {
   const axisPositions: Map<AxisId, Dimensions> = new Map();
   const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
@@ -314,8 +299,41 @@ export function getAxisTicksPositions(
     if (!axisSpec) {
       return;
     }
-    const allTicks = getAvailableTicks(chartDimensions, axisSpec, axisDim, scalesConfig, chartRotation);
-    const visibleTicks = getVisibleTicks(allTicks, axisSpec, axisDim, chartDimensions, chartRotation);
+    const minMaxRanges = getMinMaxRange(axisSpec, chartRotation, chartDimensions);
+    if (minMaxRanges === null) {
+      throw new Error(`cannot comput min and max ranges for spec ${axisSpec.id}`);
+    }
+
+    let minRange;
+    let maxRange;
+    if (isVertical(axisSpec.position)) {
+      minRange = minMaxRanges.maxRange;
+      maxRange = minMaxRanges.minRange;
+    } else {
+      minRange = minMaxRanges.minRange;
+      maxRange = minMaxRanges.maxRange;
+    }
+    const scale = getScaleForAxisSpec(
+      axisSpec,
+      xDomain,
+      yDomain,
+      totalGroupsCount,
+      chartRotation,
+      minRange,
+      maxRange,
+    );
+    if (!scale) {
+      throw new Error(`cannot compute scale for spec ${axisSpec.id}`);
+    }
+
+    const allTicks = getAvailableTicks(axisSpec, scale, totalGroupsCount);
+    const visibleTicks = getVisibleTicks(
+      allTicks,
+      axisSpec,
+      axisDim,
+      chartDimensions,
+      chartRotation,
+    );
     const axisPosition = getAxisPosition(
       chartDimensions,
       chartConfig.margins,
@@ -341,36 +359,46 @@ export function getAxisTicksPositions(
   };
 }
 
-function getDomainByLevel(domain: SpecDomain[], level: number): Option<SpecDomain> {
-  const domainInLevel = domain.find((d) => d.level === level);
-  return domainInLevel ? some(domainInLevel) : none;
-}
-
-function getVerticalDomain(specDomains: SpecDomains, chartRotation: number, level: number): Option<SpecDomain> {
+function getVerticalDomain(
+  xDomain: XDomain,
+  yDomain: YDomain[],
+  chartRotation: number,
+): XDomain | YDomain[] {
   if (chartRotation === 0 || chartRotation === 180) {
-    return some(specDomains.yDomain);
+    return yDomain;
   } else {
-    return getDomainByLevel(specDomains.xDomains, level);
+    return xDomain;
   }
 }
-function getHorizontalDomain(specDomains: SpecDomains, chartRotation: number, level: number): Option<SpecDomain> {
+function getHorizontalDomain(
+  xDomain: XDomain,
+  yDomain: YDomain[],
+  chartRotation: number,
+): XDomain | YDomain[] {
   if (chartRotation === 0 || chartRotation === 180) {
-    return getDomainByLevel(specDomains.xDomains, level);
+    return xDomain;
   } else {
-    return some(specDomains.yDomain);
+    return yDomain;
   }
 }
 
 function getAxisDomain(
-  orientation: AxisOrientation,
-  specDomains: SpecDomains,
+  position: AxisPosition,
+  xDomain: XDomain,
+  yDomain: YDomain[],
   chartRotation: number,
-  level: number,
-): Option<SpecDomain> {
-  if (orientation === AxisOrientation.Vertical) {
-    return getVerticalDomain(specDomains, chartRotation, level);
+): XDomain | YDomain[] {
+  if (!isHorizontal(position)) {
+    return getVerticalDomain(xDomain, yDomain, chartRotation);
   } else {
-    return getHorizontalDomain(specDomains, chartRotation, level);
+    return getHorizontalDomain(xDomain, yDomain, chartRotation);
   }
+}
 
+export function isVertical(position: AxisPosition) {
+  return position === AxisPosition.Left || position === AxisPosition.Right;
+}
+
+export function isHorizontal(position: AxisPosition) {
+  return !isVertical(position);
 }

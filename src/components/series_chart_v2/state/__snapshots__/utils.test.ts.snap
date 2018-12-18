@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chart State utils should compute and format specifications for non stacked chart 1`] = `
+Array [
+  Object {
+    "dataSeries": Array [
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "x": 0,
+              "y": 1,
+            },
+            "x": 0,
+            "y0": 0,
+            "y1": 1,
+          },
+          Object {
+            "datum": Object {
+              "x": 1,
+              "y": 2,
+            },
+            "x": 1,
+            "y0": 0,
+            "y1": 2,
+          },
+          Object {
+            "datum": Object {
+              "x": 2,
+              "y": 10,
+            },
+            "x": 2,
+            "y0": 0,
+            "y1": 10,
+          },
+          Object {
+            "datum": Object {
+              "x": 3,
+              "y": 6,
+            },
+            "x": 3,
+            "y0": 0,
+            "y1": 6,
+          },
+        ],
+        "key": Array [],
+        "seriesColorKey": "specId:{spec1},colors:{}",
+        "specId": "spec1",
+      },
+    ],
+    "groupId": "group1",
+  },
+  Object {
+    "dataSeries": Array [
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "x": 0,
+              "y": 1,
+            },
+            "x": 0,
+            "y0": 0,
+            "y1": 1,
+          },
+          Object {
+            "datum": Object {
+              "x": 1,
+              "y": 2,
+            },
+            "x": 1,
+            "y0": 0,
+            "y1": 2,
+          },
+          Object {
+            "datum": Object {
+              "x": 2,
+              "y": 10,
+            },
+            "x": 2,
+            "y0": 0,
+            "y1": 10,
+          },
+          Object {
+            "datum": Object {
+              "x": 3,
+              "y": 6,
+            },
+            "x": 3,
+            "y0": 0,
+            "y1": 6,
+          },
+        ],
+        "key": Array [],
+        "seriesColorKey": "specId:{spec2},colors:{}",
+        "specId": "spec2",
+      },
+    ],
+    "groupId": "group2",
+  },
+]
+`;
+
+exports[`Chart State utils should compute and format specifications for stacked chart 1`] = `
+Array [
+  Object {
+    "dataSeries": Array [
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 0,
+              "y": 1,
+            },
+            "x": 0,
+            "y0": 0,
+            "y1": 1,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 1,
+              "y": 2,
+            },
+            "x": 1,
+            "y0": 0,
+            "y1": 2,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 2,
+              "y": 3,
+            },
+            "x": 2,
+            "y0": 0,
+            "y1": 3,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 3,
+              "y": 4,
+            },
+            "x": 3,
+            "y0": 0,
+            "y1": 4,
+          },
+        ],
+        "key": Array [
+          "a",
+        ],
+        "seriesColorKey": "specId:{spec2},colors:{a}",
+        "specId": "spec2",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 0,
+              "y": 2,
+            },
+            "x": 0,
+            "y0": 1,
+            "y1": 3,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 1,
+              "y": 3,
+            },
+            "x": 1,
+            "y0": 2,
+            "y1": 5,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 2,
+              "y": 4,
+            },
+            "x": 2,
+            "y0": 3,
+            "y1": 7,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 3,
+              "y": 5,
+            },
+            "x": 3,
+            "y0": 4,
+            "y1": 9,
+          },
+        ],
+        "key": Array [
+          "b",
+        ],
+        "seriesColorKey": "specId:{spec2},colors:{b}",
+        "specId": "spec2",
+      },
+    ],
+    "groupId": "group2",
+  },
+]
+`;
+
+exports[`Chart State utils should compute and format specifications for stacked chart 2`] = `
+Array [
+  Object {
+    "dataSeries": Array [
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 0,
+              "y": 1,
+            },
+            "x": 0,
+            "y0": 0,
+            "y1": 1,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 1,
+              "y": 2,
+            },
+            "x": 1,
+            "y0": 0,
+            "y1": 2,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 2,
+              "y": 3,
+            },
+            "x": 2,
+            "y0": 0,
+            "y1": 3,
+          },
+          Object {
+            "datum": Object {
+              "g": "a",
+              "x": 3,
+              "y": 4,
+            },
+            "x": 3,
+            "y0": 0,
+            "y1": 4,
+          },
+        ],
+        "key": Array [
+          "a",
+        ],
+        "seriesColorKey": "specId:{spec1},colors:{a}",
+        "specId": "spec1",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 0,
+              "y": 2,
+            },
+            "x": 0,
+            "y0": 0,
+            "y1": 2,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 1,
+              "y": 3,
+            },
+            "x": 1,
+            "y0": 0,
+            "y1": 3,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 2,
+              "y": 4,
+            },
+            "x": 2,
+            "y0": 0,
+            "y1": 4,
+          },
+          Object {
+            "datum": Object {
+              "g": "b",
+              "x": 3,
+              "y": 5,
+            },
+            "x": 3,
+            "y0": 0,
+            "y1": 5,
+          },
+        ],
+        "key": Array [
+          "b",
+        ],
+        "seriesColorKey": "specId:{spec1},colors:{b}",
+        "specId": "spec1",
+      },
+    ],
+    "groupId": "group1",
+  },
+]
+`;

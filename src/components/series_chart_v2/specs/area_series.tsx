@@ -7,10 +7,18 @@ import { SpecProps } from './specs_parser';
 
 type AreaSpecProps = SpecProps & AreaSeriesSpec;
 
-type DefaultProps = 'groupId' | 'xScaleType' | 'yScaleType' | 'xAccessor' | 'yAccessors' | 'yScaleToDataExtent';
+type DefaultProps =
+  | 'seriesType'
+  | 'groupId'
+  | 'xScaleType'
+  | 'yScaleType'
+  | 'xAccessor'
+  | 'yAccessors'
+  | 'yScaleToDataExtent';
 
 export class AreaSeriesSpecComponent extends React.PureComponent<AreaSpecProps> {
   public static defaultProps: Pick<AreaSpecProps, DefaultProps> = {
+    seriesType: 'area',
     groupId: getGroupId('__global__'),
     xScaleType: ScaleType.Ordinal,
     yScaleType: ScaleType.Linear,
@@ -20,15 +28,15 @@ export class AreaSeriesSpecComponent extends React.PureComponent<AreaSpecProps> 
   };
   public componentDidMount() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addAreaSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
   }
   public componentDidUpdate() {
     const { chartStore, children, ...config } = this.props;
-    chartStore!.addAreaSeriesSpecs({ ...config });
+    chartStore!.addSeriesSpec({ ...config });
   }
   public componentWillUnmount() {
     const { chartStore, id } = this.props;
-    chartStore!.removeAreaSeriesSpecs(id);
+    chartStore!.removeSeriesSpec(id);
   }
   public render() {
     return null;

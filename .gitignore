@@ -16,4 +16,5 @@ lib/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+eui.d.ts
 !/src/components/series_chart_v2/lib

@@ -1,4 +1,3 @@
-import { none, Option, some } from 'fp-ts/lib/Option';
 import { action, observable } from 'mobx';
 import {
   AxisTick,
@@ -7,27 +6,23 @@ import {
   getAxisTicksPositions,
 } from '../lib/axes/axis_utils';
 import { CanvasTextBBoxCalculator } from '../lib/axes/canvas_text_bbox_calculator';
-import { computeDataDomain as areaSeriesComputeDataDomain } from '../lib/series/areas/domains';
-import { AreaGlyph, renderAreaSeriesSpec } from '../lib/series/areas/rendering';
-import { computeDataDomain as barSeriesComputeDataDomain } from '../lib/series/bars/domains';
-import { BarSeriesState, renderBarSeriesSpec } from '../lib/series/bars/rendering';
-import { computeDataDomain as lineSeriesComputeDataDomain } from '../lib/series/lines/domains';
-import { LineGlyph, renderLineSeriesSpec } from '../lib/series/lines/rendering';
+import { AreaGeometry, BarGeometry, GeometryValue, LineGeometry, PointGeometry } from '../lib/series/rendering';
+import { countClusteredSeries } from '../lib/series/scales';
 import {
   AreaSeriesSpec,
   AxisSpec,
   BarSeriesSpec,
+  BasicSeriesSpec,
   Datum,
   LineSeriesSpec,
   Rendering,
   Rotation,
 } from '../lib/series/specs';
-import { mergeDomains } from '../lib/series/utils/domains_merger';
-import { ColorScales, computeColorScales } from '../lib/themes/colors';
 import { DEFAULT_THEME, Theme } from '../lib/themes/theme';
 import { computeChartDimensions, Dimensions } from '../lib/utils/dimensions';
 import { SpecDomains } from '../lib/utils/domain';
-import { AxisId, GroupId, SpecId } from '../lib/utils/ids';
+import { AxisId, getSpecId, SpecId } from '../lib/utils/ids';
+import { computeSeriesDomains, computeSeriesGeometries } from './utils';
 export interface TooltipPosition {
   top?: number;
   left?: number;
@@ -35,11 +30,10 @@ export interface TooltipPosition {
   right?: number;
 }
 export interface TooltipData {
-  data: Datum[];
-  specId: SpecId;
+  value: GeometryValue;
   position: TooltipPosition;
 }
-const MAX_ANIMATABLE_GLYPHS = 500;
+// const MAX_ANIMATABLE_GLYPHS = 500;
 
 export class ChartStore {
   public debug = true;
@@ -66,18 +60,19 @@ export class ChartStore {
   public axesVisibleTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
   public axesTicks: Map<AxisId, AxisTick[]> = new Map(); // computed
 
-  public barSeriesSpecs: Map<SpecId, BarSeriesSpec> = new Map(); // readed from jsx
-  public barSeriesGlyphs: Map<SpecId, BarSeriesState> = new Map();
-  public lineSeriesSpecs: Map<SpecId, LineSeriesSpec> = new Map(); // readed from jsx
-  public lineSeriesGlyphs: Map<SpecId, LineGlyph[]> = new Map();
-  public areaSeriesSpecs: Map<SpecId, AreaSeriesSpec> = new Map(); // readed from jsx
-  public areaSeriesGlyphs: Map<SpecId, AreaGlyph[]> = new Map();
+  public seriesSpecs: Map<SpecId, BasicSeriesSpec> = new Map(); // readed from jsx
 
   public seriesSpecDomains: Map<SpecId, SpecDomains> = new Map(); // computed
-  public globalSpecDomains: Map<GroupId, SpecDomains> = new Map(); // computed
-  public globalColorScales: Map<GroupId, ColorScales> = new Map();
 
-  public tooltipData = observable.box<Option<TooltipData>>(none);
+  public tooltipData = observable.box<TooltipData | null>(null);
+  public tooltipPosition = observable.box<{x: number, y: number} | null>();
+
+  public geometries: {
+    points: PointGeometry[];
+    bars: BarGeometry[];
+    areas: AreaGeometry[];
+    lines: LineGeometry[];
+  } | null = null;
 
   public animateData = false;
   /**
@@ -85,28 +80,21 @@ export class ChartStore {
    * on the global configuration and on the number of elements per series
    */
   public canDataBeAnimated = false;
-  // public tooltipData = observable.box<Option<TooltipData>>(some({
-  //   specId: getSpecId('renderBarChart1y0g'),
-  //   data: [{x: 1, y: 2}],
-  //   position: {
-  //     top: 0,
-  //     left: 100,
-  //   },
-  // }));
 
-  public onTooltipOver = action((specId: SpecId, data: Datum[], position: TooltipPosition) => {
-    const tooltip: TooltipData = {
-      data,
-      specId,
-      position,
-    };
-    this.tooltipData.set(some(tooltip));
-  });
-  public onTooltipOut = action(() => {
-    this.tooltipData.set(none);
-  });
+  public onOverElement = action((tooltip: TooltipData) => {
+    this.tooltipData.set(tooltip);
+    const { specId, seriesKey } = tooltip.value;
+    const spec = this.seriesSpecs.get(specId);
+    console.log(spec);
 
-  // public chart: any; // computed
+  });
+  public onOutElement = action(() => {
+    this.tooltipData.set(null);
+    this.tooltipPosition.set(null);
+  });
+  public setTooltipPosition = action((x: number, y: number) => {
+    this.tooltipPosition.set({ x, y});
+  });
 
   public updateParentDimensions(width: number, height: number, top: number, left: number) {
     let isChanged = false;
@@ -130,104 +118,12 @@ export class ChartStore {
       this.computeChart();
     }
   }
-  /**
-   * Add a bar series spec to the chart
-   * @param  seriesSpec the series spec to add
-   */
-  public addBarSeriesSpecs(seriesSpec: BarSeriesSpec) {
-    // store spec into barSeriesSpecs
-    this.barSeriesSpecs.set(seriesSpec.id, seriesSpec);
-    // compute all x and y domains
-    const dataDomain = barSeriesComputeDataDomain(seriesSpec);
-    // save data domains
-    this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
-    // merge to global domains
-    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
-    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
-    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
-
-    // TODO merge color scales....
-    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
-    this.globalColorScales.set(seriesSpec.groupId, colorScales);
-    // this.mergeChartScales(seriesSpec.groupId, seriesScales);
-    // TODO compute chart only after all series are updated
-    // this.computeChart();
+  public addSeriesSpec(seriesSpec: BasicSeriesSpec | LineSeriesSpec | AreaSeriesSpec | BarSeriesSpec) {
+    this.seriesSpecs.set(seriesSpec.id, seriesSpec);
   }
-
-  /**
-   * Remove a series spec from the store
-   * @param specId the id of the spec
-   */
-  public removeBarSeriesSpecs(specId: SpecId) {
-    this.barSeriesSpecs.delete(specId);
-    this.seriesSpecDomains.delete(specId);
+  public removeSeriesSpec(specId: SpecId) {
+    this.seriesSpecs.delete(specId);
   }
-
-  /**
-   * Add a line series spec to the chart
-   * @param  seriesSpec the series spec to add
-   */
-  public addLineSeriesSpecs(seriesSpec: LineSeriesSpec) {
-    // store spec into lineSeriesSpecs
-    this.lineSeriesSpecs.set(seriesSpec.id, seriesSpec);
-    // compute all x and y domains
-    const dataDomain = lineSeriesComputeDataDomain(seriesSpec);
-    // save data domains
-    this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
-    // merge to global domains
-    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
-    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
-    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
-
-    // TODO merge color scales....
-    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
-    this.globalColorScales.set(seriesSpec.groupId, colorScales);
-    // this.mergeChartScales(seriesSpec.groupId, seriesScales);
-    // TODO compute chart only after all series are updated
-    // this.computeChart();
-  }
-  /**
-   * Add an area series spec to the chart
-   * @param  seriesSpec the series spec to add
-   */
-  public addAreaSeriesSpecs(seriesSpec: LineSeriesSpec) {
-    // store spec into areaSeriesSpecs
-    this.areaSeriesSpecs.set(seriesSpec.id, seriesSpec);
-    // compute all x and y domains
-    const dataDomain = areaSeriesComputeDataDomain(seriesSpec);
-    // save data domains
-    this.seriesSpecDomains.set(seriesSpec.id, dataDomain);
-    // merge to global domains
-    // merge to global domains
-    const globalSpecDomain = this.globalSpecDomains.get(seriesSpec.groupId) || dataDomain;
-    const mergedDomain = mergeDomains(globalSpecDomain, dataDomain);
-    this.globalSpecDomains.set(seriesSpec.groupId, mergedDomain);
-
-    // TODO merge color scales....
-    const colorScales = computeColorScales(dataDomain.colorDomain, this.chartTheme.colors);
-    this.globalColorScales.set(seriesSpec.groupId, colorScales);
-    // this.mergeChartScales(seriesSpec.groupId, seriesScales);
-    // TODO compute chart only after all series are updated
-    // this.computeChart();
-  }
-
-  /**
-   * Remove a series spec from the store
-   * @param specId the id of the spec
-   */
-  public removeLineSeriesSpecs(specId: SpecId) {
-    this.lineSeriesSpecs.delete(specId);
-    this.seriesSpecDomains.delete(specId);
-  }
-  /**
-   * Remove a series spec from the store
-   * @param specId the id of the spec
-   */
-  public removeAreaSeriesSpecs(specId: SpecId) {
-    this.areaSeriesSpecs.delete(specId);
-    this.seriesSpecDomains.delete(specId);
-  }
-
   /**
    * Add an axis spec to the store
    * @param axisSpec an axis spec
@@ -235,7 +131,6 @@ export class ChartStore {
   public addAxisSpec(axisSpec: AxisSpec) {
     this.axesSpecs.set(axisSpec.id, axisSpec);
   }
-
   public removeAxisSpec(axisId: AxisId) {
     this.axesSpecs.delete(axisId);
   }
@@ -246,33 +141,35 @@ export class ChartStore {
     if (this.parentDimensions.width === 0 || this.parentDimensions.height === 0) {
       return;
     }
-    // TODO merge series domains
+
+    const seriesDomains = computeSeriesDomains(this.seriesSpecs);
+    // tslint:disable-next-line:no-console
+    console.log({seriesDomains});
+
+    const { xDomain, yDomain, formattedDataSeries: { stacked, nonStacked } } = seriesDomains;
+    // compute how many series are clustered
+    const { totalGroupCount } = countClusteredSeries(stacked, nonStacked);
 
     // compute axis dimensions
     const bboxCalculator = new CanvasTextBBoxCalculator();
     this.axesTicksDimensions.clear();
     this.axesSpecs.forEach((axisSpec) => {
-      const { id, groupId } = axisSpec;
-      const groupSeriesScale = this.globalSpecDomains.get(groupId);
-      if (groupSeriesScale) {
-        const dimensions = computeAxisTicksDimensions(
-          axisSpec,
-          groupSeriesScale,
-          bboxCalculator,
-          this.chartTheme.scales,
-          this.chartRotation,
-        ).toNullable();
-
-        if (dimensions) {
-          this.axesTicksDimensions.set(id, dimensions);
-        }
-      } else {
-        throw new Error('Missing group series scale for this axis spec');
+      const { id } = axisSpec;
+      const dimensions = computeAxisTicksDimensions(
+        axisSpec,
+        xDomain,
+        yDomain,
+        totalGroupCount,
+        bboxCalculator,
+        this.chartRotation,
+      );
+      if (dimensions) {
+        this.axesTicksDimensions.set(id, dimensions);
       }
     });
     bboxCalculator.destroy();
 
-    // compute chart dimensions
+    // // compute chart dimensions
     this.chartDimensions = computeChartDimensions(
       this.parentDimensions,
       this.chartTheme.chart.margins,
@@ -281,106 +178,42 @@ export class ChartStore {
       this.axesSpecs,
     );
 
-    // compute visible ticks and their positions
+    const geometries = computeSeriesGeometries(
+      this.seriesSpecs,
+      seriesDomains.xDomain,
+      seriesDomains.yDomain,
+      seriesDomains.formattedDataSeries,
+      seriesDomains.seriesColors,
+      this.chartTheme.colors,
+      this.chartDimensions,
+    );
+    // tslint:disable-next-line:no-console
+    console.log({geometries});
+    this.geometries = geometries;
+
+    // // compute visible ticks and their positions
     const axisTicksPositions = getAxisTicksPositions(
       this.chartDimensions,
       this.chartTheme.chart,
       this.chartRotation,
-      this.chartTheme.scales,
       this.axesSpecs,
       this.axesTicksDimensions,
+      seriesDomains.xDomain,
+      seriesDomains.yDomain,
+      totalGroupCount,
     );
+    // tslint:disable-next-line:no-console
+    console.log({axisTicksPositions});
     this.axesPositions = axisTicksPositions.axisPositions;
     this.axesTicks = axisTicksPositions.axisTicks;
     this.axesVisibleTicks = axisTicksPositions.axisVisibleTicks;
-    let glyphsCount = 0;
-    // compute bar series glyphs
-    this.barSeriesSpecs.forEach((barSeriesSpec) => {
-      const { id, groupId } = barSeriesSpec;
-      const specDomain = this.seriesSpecDomains.get(id);
-      const globalSpecDomain = this.globalSpecDomains.get(groupId);
-      if (!specDomain) {
-        throw new Error('Missing spec domain for existing spec');
-      }
-      const colorScales = this.globalColorScales.get(groupId);
-      const barSeriesState = renderBarSeriesSpec(
-        barSeriesSpec,
-        globalSpecDomain!,
-        this.chartDimensions,
-        this.chartRotation,
-        colorScales!,
-        this.chartTheme.colors,
-        this.chartTheme.scales,
-      );
-      this.barSeriesGlyphs.set(id, barSeriesState);
-      glyphsCount += barSeriesState.geometries.length;
-    });
+    // if (glyphsCount > MAX_ANIMATABLE_GLYPHS) {
+    //   this.canDataBeAnimated = false;
+    // } else {
+    //   this.canDataBeAnimated = this.animateData;
+    // }
+    this.canDataBeAnimated = true;
 
-    // compute line series glyphs
-    this.lineSeriesSpecs.forEach((lineSeriesGlyphs) => {
-      const { id, groupId } = lineSeriesGlyphs;
-      const specDomain = this.seriesSpecDomains.get(id);
-      const globalSpecDomain = this.globalSpecDomains.get(groupId);
-      if (!specDomain) {
-        throw new Error('Missing spec domain for existing spec');
-      }
-      const colorScales = this.globalColorScales.get(groupId);
-      const renderedGlyphs = renderLineSeriesSpec(
-        lineSeriesGlyphs,
-        globalSpecDomain!,
-        this.chartDimensions,
-        this.chartRotation,
-        colorScales!,
-        this.chartTheme.colors,
-        this.chartTheme.scales,
-      );
-      this.lineSeriesGlyphs.set(id, renderedGlyphs);
-      glyphsCount += renderedGlyphs.reduce((count, glyphs) => {
-        // since paths are less expensive to renders than bars
-        // we are just counting half of their points as animate constraint
-        return count + glyphs.data.length / 2;
-      }, 0);
-    });
-
-    // compute area series glyphs
-    this.areaSeriesSpecs.forEach((areaSeriesGlyphs) => {
-      const { id, groupId } = areaSeriesGlyphs;
-      const specDomain = this.seriesSpecDomains.get(id);
-      const globalSpecDomain = this.globalSpecDomains.get(groupId);
-      if (!specDomain) {
-        throw new Error('Missing spec domain for existing spec');
-      }
-      const colorScales = this.globalColorScales.get(groupId);
-      const renderedGlyphs = renderAreaSeriesSpec(
-        areaSeriesGlyphs,
-        globalSpecDomain!, // just to test
-        this.chartDimensions,
-        this.chartRotation,
-        colorScales!,
-        this.chartTheme.colors,
-        this.chartTheme.scales,
-      );
-      this.areaSeriesGlyphs.set(id, renderedGlyphs);
-      glyphsCount += renderedGlyphs.reduce((count, glyphs) => {
-        // since paths are less expensive to renders than bars
-        // we are just counting half of their points as animate constraint
-        return count + glyphs.data.length / 2;
-      }, 0);
-    });
-    if (glyphsCount > MAX_ANIMATABLE_GLYPHS) {
-      this.canDataBeAnimated = false;
-    } else {
-      this.canDataBeAnimated = this.animateData;
-    }
-    this.canDataBeAnimated = false;
     this.initialized.set(true);
-  }
-
-  // private mergeChartScales(groupId: GroupId, seriesScales: SeriesScales[]) {
-  //   // TODO
-  //   this.chartScales.set(groupId, seriesScales);
-  // }
-  public getSpecById(specId: SpecId): BarSeriesSpec  | undefined {
-    return this.barSeriesSpecs.get(specId);
   }
 }

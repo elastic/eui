@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Chart } from '../../components/chart';
-import { AxisOrientation, AxisPosition, Rotation } from '../../lib/series/specs';
+import { AxisPosition, Rotation } from '../../lib/series/specs';
 import { getAxisId, getSpecId } from '../../lib/utils/ids';
 import { ScaleType } from '../../lib/utils/scales/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
@@ -78,13 +78,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y0G] 1 Metric, 1 X Value Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <LineSeries
             id={getSpecId('line1')}
@@ -127,21 +126,20 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y0G] 1 Metric, 1 X Value Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('top')}
             // groupId={getGroupId('barchart')}
             position={AxisPosition.Top}
-            orientation={AxisOrientation.Horizontal}
+
           />
-          <BarSeries
+          {/* <BarSeries
             id={getSpecId('barchart')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
@@ -150,10 +148,19 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={3}
+          /> */}
+
+          <BarSeries
+            id={getSpecId('spec2')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Ordinal}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            data={this.state.barchart_1y1g}
           />
 
-          {/* <LineSeries
+          <BarSeries
             id={getSpecId('renderLineChart2y2g')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
@@ -162,10 +169,9 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={1}
           />
 
-          <AreaSeries
+          {/* <AreaSeries
             id={getSpecId('areachart')}
             yScaleType={ScaleType.Linear}
             xScaleType={ScaleType.Ordinal}
@@ -190,13 +196,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y0G] 1 Metric, 1 X Value  Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y0g')}
@@ -205,7 +210,6 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y']}
             data={this.state.barchart_1y0g}
-            tooltipLevel={0}
           />
         </Chart>
       </div>
@@ -221,7 +225,7 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
             showOverlappingLabels={true}
             showOverlappingTicks={true}
@@ -229,7 +233,6 @@ class App extends Component {
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
             showOverlappingLabels={true}
             showOverlappingTicks={true}
           />
@@ -240,7 +243,6 @@ class App extends Component {
             xAccessor="x"
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
-            tooltipLevel={1}
             data={this.state.barchart_1y1g}
           />
         </Chart>
@@ -257,43 +259,39 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('top')}
             position={AxisPosition.Top}
-            orientation={AxisOrientation.Horizontal}
+
           />
           <Axis
             id={getAxisId('right')}
             position={AxisPosition.Right}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('bottom2')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left2')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('top2')}
             position={AxisPosition.Top}
-            orientation={AxisOrientation.Horizontal}
+
           />
           <Axis
             id={getAxisId('right2')}
             position={AxisPosition.Right}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('spec1')}
@@ -301,7 +299,6 @@ class App extends Component {
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
-            tooltipLevel={0}
             data={[
               { x: 0, y: 3 },
               { x: 1, y: 3 },
@@ -316,7 +313,6 @@ class App extends Component {
             xScaleType={ScaleType.Ordinal}
             xAccessor="x"
             yAccessors={['y']}
-            tooltipLevel={0}
             data={[
               { x: 0, y: 1 },
               { x: 1, y: 2 },
@@ -340,13 +336,11 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('spec1')}
@@ -380,13 +374,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1GS] 1 Metric, 1 X value, 1 Aggregation - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y1g')}
@@ -397,7 +390,6 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
-            tooltipLevel={0}
           />
 
         </Chart>
@@ -414,13 +406,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1GS] 1 Metric, 1 X value, 1 Aggregation - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <LineSeries
             id={getSpecId('renderLineChart1y1g')}
@@ -431,7 +422,6 @@ class App extends Component {
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
             data={this.state.barchart_1y1g}
-            tooltipLevel={0}
           />
 
         </Chart>
@@ -448,13 +438,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y2G] 1 Metric, 1 X Value, 2 Aggregations Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2g')}
@@ -465,7 +454,6 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             colorAccessors={['g1', 'g2']}
             data={this.state.barchart_1y2g}
-            tooltipLevel={0}
           />
         </Chart>
       </div>
@@ -481,13 +469,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y2GS] 1 Metric, 1 X Value, 2 Aggregations - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2gs')}
@@ -515,13 +502,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[2Y0G] 2 Metrics, 1 X Value  Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y0g')}
@@ -546,13 +532,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[2Y1G] 2 Metrics, 1 X Value, 1 aggregation Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1g')}
@@ -577,13 +562,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[2Y1GS] 2 Metrics, 1 X Value, 1 aggregation - stacked  Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1gs')}
@@ -609,13 +593,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[2Y2G] 2 Metrics, 1 X Value, 2 aggregations Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -625,7 +608,6 @@ class App extends Component {
             yAccessors={['y1', 'y2']}
             splitSeriesAccessors={['g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={2}
           />
         </Chart>
       </div>
@@ -642,13 +624,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[2Y2GS] 2 Metrics, 1 X Value, 2 aggregations - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -659,7 +640,6 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={2}
           />
           {/* <LineSeries
             id={getSpecId('renderLineChart2y2g')}
@@ -670,7 +650,6 @@ class App extends Component {
             splitSeriesAccessors={['g1', 'g2']}
             stackAccessors={['x', 'g1', 'g2']}
             data={this.state.barchart_2y2g}
-            tooltipLevel={1}
           /> */}
         </Chart>
       </div>
@@ -687,13 +666,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1GS] Simple Stacked BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderSimpleStackedBarChart')}
@@ -704,7 +682,6 @@ class App extends Component {
             stackAccessors={['timestamp']}
             colorAccessors={['status']}
             data={this.state.simpleStackedBarChart}
-            tooltipLevel={0}
           />
         </Chart>
       </div>
@@ -720,13 +697,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y1G] SimpleClusteredBarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderSimpleClusteredBarChart')}
@@ -751,13 +727,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y2G] Multiple Clustered BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderMultipleClusteredBarChart')}
@@ -783,13 +758,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`[1Y2GS] Stacked Clustered BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderStackedClusteredBarChart')}
@@ -815,13 +789,12 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`GitHub Issues Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <BarSeries
             id={getSpecId('renderGitHubIssue')}
@@ -849,18 +822,16 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`HighVolumeChart stacked Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick: any) => `value: ${tick}`}
           />
@@ -868,7 +839,6 @@ class App extends Component {
             id={getSpecId('1000elements')}
             data={data}
             xScaleType={ScaleType.Ordinal}
-            tooltipLevel={0}
             splitSeriesAccessors={['g']}
             // stackAccessors={['x']}
           />
@@ -886,37 +856,33 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`HighVolumeChart stacked Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
           />
           <Axis
             id={getAxisId('left')}
             position={AxisPosition.Left}
-            orientation={AxisOrientation.Vertical}
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick: any) => `value: ${Number(tick).toFixed(2)}`}
           />
-          {/* <BarSeries
+          <BarSeries
             id={getSpecId('bars')}
             data={data}
             xScaleType={ScaleType.Ordinal}
-            tooltipLevel={0}
-            splitSeriesAccessors={['g']}
-            stackAccessors={['x']}
-          /> */}
-          <AreaSeries
-            id={getSpecId('lines')}
-            data={data}
-            xScaleType={ScaleType.Ordinal}
-            tooltipLevel={0}
             splitSeriesAccessors={['g']}
             stackAccessors={['x']}
           />
+          {/* <AreaSeries
+            id={getSpecId('lines')}
+            data={data}
+            xScaleType={ScaleType.Ordinal}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+          /> */}
         </Chart>
       </div>
     );
@@ -933,7 +899,7 @@ class App extends Component {
           <Axis
             id={getAxisId('bottom')}
             position={[180].includes(rotation) ? AxisPosition.Top : AxisPosition.Bottom}
-            orientation={AxisOrientation.Horizontal}
+
             title={`HighVolumeChart stacked ${rotation}`}
             tickFormat={[0, 180].includes(rotation) ? formatter : (d) => d}
             showOverlappingTicks={true}
@@ -941,7 +907,6 @@ class App extends Component {
            <Axis
             id={getAxisId('left')}
             position={[90, 0, 180].includes(rotation) ? AxisPosition.Left : AxisPosition.Right}
-            orientation={AxisOrientation.Vertical}
             tickFormat={[90, -90].includes(rotation) ? formatter : (d: any) => d}
             showOverlappingTicks={true}
             showOverlappingLabels={true}
@@ -951,16 +916,74 @@ class App extends Component {
             id={getSpecId('lines')}
             data={TEMPORAL_DATA1}
             xScaleType={ScaleType.Ordinal}
-            // tooltipLevel={0}
             stackAccessors={['x']}
 
             xAccessor="x"
             // yAccessors={['y']}
             // splitSeriesAccessors={['g']}
-            // tooltipLevel={0}
             // data={this.state.barchart_1y1g}
             // yScaleType={ScaleType.Linear}
           />
+        </Chart>
+      </div>
+    );
+  }
+  public renderingTest = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
+    return (
+      <div className="chartContainer" key={`renderTest-${renderer}-${rotation}`}>
+        <Chart renderer={renderer}>
+          <Settings
+            rotation={rotation}
+            animateData={true}
+          />
+          <Axis
+            id={getAxisId('bottom')}
+            position={AxisPosition.Bottom}
+            title={`Rendering test Rotation: ${rotation}`}
+          />
+          <Axis
+            id={getAxisId('left')}
+            position={AxisPosition.Left}
+          />
+          <Axis
+            id={getAxisId('top')}
+            // groupId={getGroupId('barchart')}
+            position={AxisPosition.Top}
+
+          />
+          <BarSeries
+            id={getSpecId('1')}
+            yScaleType={ScaleType.Linear}
+            xScaleType={ScaleType.Linear}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            data={this.state.barchart_1y1g}
+          />
+          {/* <LineSeries
+            id={getSpecId('2')}
+            groupId={getGroupId('group2')}
+            yScaleType={ScaleType.Log}
+            xScaleType={ScaleType.Linear}
+            xAccessor="x"
+            yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x', 'g']}
+            data={this.state.barchart_1y1g}
+          /> */}
+          {/* <LineSeries
+            id={getSpecId('3')}
+            groupId={getGroupId('group2')}
+            yScaleType={ScaleType.Log}
+            xScaleType={ScaleType.Linear}
+            xAccessor="x"
+            yAccessors={['y1', 'y2']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['x']}
+            yScaleToDataExtent={true}
+            data={this.state.barchart_2y0g}
+          /> */}
+
         </Chart>
       </div>
     );
@@ -974,7 +997,8 @@ class App extends Component {
           <button onClick={this.onChangeData}>Update chart</button>
         </div>
         <div className="chartContainers">
-        {/* { this.renderAreaChart1y0g('canvas', 0)} */}
+        {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)} */}
+        { this.renderingTest('canvas', 0)}
         {/* { this.renderHighVolumeLineChart('canvas', randomData, 0)}
         { this.renderHighVolumeLineChart('canvas', randomData, 0)}
         { this.renderHighVolumeLineChart('canvas', randomData, 0)}
@@ -987,8 +1011,8 @@ class App extends Component {
           {/* { [0, 90, -90, 180].map((r) => this.renderBarChart1y1g('canvas', r as Rotation))}*/} */}
           {/* { [0].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))} */}
           {/* { [0].map((r) => this.renderBarChart1y2g('canvas', r as Rotation))} */}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
+          {/* { [0].map((r) => this.renderBarChart2y2g('canvas', r as Rotation))} */}
+          {/* { [0, 90, -90, 180].map((r) => this.renderBarChart2y2gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y1gs('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y2g('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderBarChart1y2gs('canvas', r as Rotation))}
@@ -999,10 +1023,10 @@ class App extends Component {
           { [0, 90, -90, 180].map((r) => this.renderSimpleStackedBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderSimpleClusteredBarChart('canvas', r as Rotation))}
           { [0, 90, -90, 180].map((r) => this.renderMultipleClusteredBarChart('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderGitHubIssue('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderGitHubIssue('canvas', r as Rotation))} */}
           {/* { [0, 90, -90, 180].map((r) => this.renderHighVolumeChart('canvas', randomData, r as Rotation))} */}
-          { [0, 90, -90, 180].map((r) => this.renderLineChart1y0g('canvas', r as Rotation))}
-          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))}
+          {/* { [0, 90, -90, 180].map((r) => this.renderLineChart1y0g('canvas', r as Rotation))}
+          { [0, 90, -90, 180].map((r) => this.renderAreaChart1y0g('canvas', r as Rotation))} */}
         </div>
       </div>
     );

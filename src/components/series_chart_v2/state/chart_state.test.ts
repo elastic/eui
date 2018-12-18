@@ -1,4 +1,4 @@
-import { AxisOrientation, AxisPosition, AxisSpec, BarSeriesSpec } from '../lib/series/specs';
+import { AxisPosition, AxisSpec, BarSeriesSpec } from '../lib/series/specs';
 import { getAxisId, getGroupId, getSpecId } from '../lib/utils/ids';
 import { ScaleType } from '../lib/utils/scales/scales';
 import { ChartStore } from './chart_state';
@@ -30,6 +30,7 @@ describe('Chart Store', () => {
   const spec: BarSeriesSpec = {
     id: SPEC_ID,
     groupId: GROUP_ID,
+    seriesType: 'bar',
     yScaleToDataExtent: false,
     data: [
       { x: 1, y: 1 },
@@ -43,12 +44,10 @@ describe('Chart Store', () => {
   };
 
   test('can add a single spec', () => {
-    store.addBarSeriesSpecs(spec);
-    const { seriesSpecDomains, globalSpecDomains } = store;
+    store.addSeriesSpec(spec);
+    const { seriesSpecDomains } = store;
     const computedSpecDomain = seriesSpecDomains.get(SPEC_ID);
     expect(computedSpecDomain).not.toBeUndefined();
-    const mergedSpecDomains = globalSpecDomains.get(GROUP_ID);
-    expect(mergedSpecDomains).not.toBeUndefined();
   });
 
   test('can add an axis', () => {
@@ -59,7 +58,6 @@ describe('Chart Store', () => {
       showOverlappingTicks: false,
       showOverlappingLabels: false,
       position: AxisPosition.Left,
-      orientation: AxisOrientation.Vertical,
       tickSize: 30,
       tickPadding: 10,
       tickFormat: (value: any) => `value ${value}`,
