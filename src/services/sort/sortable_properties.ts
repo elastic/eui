@@ -1,4 +1,10 @@
-import { Comparators } from './comparators';
+import { Comparators, Primitive } from './comparators';
+
+export interface SortableProperty<T> {
+  name: string;
+  getValue: (obj: T) => Primitive;
+  isAscending: boolean;
+}
 
 /**
  * @typedef {Object} SortableProperty
@@ -13,21 +19,26 @@ import { Comparators } from './comparators';
  * Stores sort information for a set of SortableProperties, including which property is currently being sorted on, as
  * well as the last sort order for each property.
  */
-export class SortableProperties {
+export class SortableProperties<T> {
+  sortableProperties: Array<SortableProperty<T>>;
+  currentSortedProperty: SortableProperty<T>;
+
   /**
    * @param {Array<SortableProperty>} sortableProperties - a set of sortable properties.
    * @param {string} initialSortablePropertyName - Which sort property should be sorted on by default.
    */
-  constructor(sortableProperties, initialSortablePropertyName) {
+  constructor(sortableProperties: Array<SortableProperty<T>>, initialSortablePropertyName: string) {
     this.sortableProperties = sortableProperties;
     /**
      * The current property that is being sorted on.
      * @type {SortableProperty}
      */
-    this.currentSortedProperty = this.getSortablePropertyByName(initialSortablePropertyName);
-    if (!this.currentSortedProperty) {
+    const currentSortedProperty = this.getSortablePropertyByName(initialSortablePropertyName);
+    if (!currentSortedProperty) {
       throw new Error(`No property with the name ${initialSortablePropertyName}`);
     }
+
+    this.currentSortedProperty = currentSortedProperty;
   }
 
   /**
@@ -42,7 +53,7 @@ export class SortableProperties {
    * @param items {Array.<Object>}
    * @returns {Array.<Object>} sorted array of items, based off the sort properties.
    */
-  sortItems(items) {
+  sortItems(items: T[]): T[] {
     const copy = [...items];
     let comparator = Comparators.value(this.getSortedProperty().getValue);
     if (!this.isCurrentSortAscending()) {
@@ -57,7 +68,7 @@ export class SortableProperties {
    * @param {String} propertyName
    * @returns {SortableProperty|undefined}
    */
-  getSortablePropertyByName(propertyName) {
+  getSortablePropertyByName(propertyName: string) {
     return this.sortableProperties.find(property => property.name === propertyName);
   }
 
@@ -66,8 +77,11 @@ export class SortableProperties {
    * property was already being sorted.
    * @param propertyName {String}
    */
-  sortOn(propertyName) {
+  sortOn(propertyName: string) {
     const newSortedProperty = this.getSortablePropertyByName(propertyName);
+    if (!newSortedProperty) {
+      throw new Error(`No property with the name ${propertyName}`);
+    }
     const sortedProperty = this.getSortedProperty();
     if (sortedProperty.name === newSortedProperty.name) {
       this.flipCurrentSortOrder();
@@ -88,7 +102,7 @@ export class SortableProperties {
    * @param {string} propertyName
    * @returns {boolean} True if the given sort property is sorted in ascending order.
    */
-  isAscendingByName(propertyName) {
+  isAscendingByName(propertyName: string) {
     const sortedProperty = this.getSortablePropertyByName(propertyName);
     return sortedProperty ? sortedProperty.isAscending : false;
   }
@@ -100,4 +114,3 @@ export class SortableProperties {
     this.currentSortedProperty.isAscending = !this.currentSortedProperty.isAscending;
   }
 }
-

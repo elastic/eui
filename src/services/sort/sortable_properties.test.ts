@@ -1,27 +1,31 @@
-import {
-  SortableProperties,
-} from './sortable_properties';
+import { SortableProperty, SortableProperties } from './sortable_properties';
+
+interface Bird {
+  name: string;
+  color: string;
+  size: number;
+}
 
 describe('SortProperties', () => {
-  const name = {
+  const name: SortableProperty<Bird> = {
     name: 'name',
     getValue: bird => bird.name,
     isAscending: true,
   };
 
-  const size = {
+  const size: SortableProperty<Bird> = {
     name: 'size',
     getValue: bird => bird.size,
     isAscending: false,
   };
 
-  const color = {
+  const color: SortableProperty<Bird> = {
     name: 'color',
     getValue: bird => bird.color,
     isAscending: true,
   };
 
-  const birds = [
+  const birds: Bird[] = [
     {
       name: 'cardinal',
       color: 'red',
@@ -36,7 +40,7 @@ describe('SortProperties', () => {
       name: 'chickadee',
       color: 'black and white',
       size: 3,
-    }
+    },
   ];
 
   describe('initialSortProperty', () => {
@@ -50,6 +54,7 @@ describe('SortProperties', () => {
     });
 
     test('throws an error property name is not defined', () => {
+      // @ts-ignore second param is mandatory
       expect(() => new SortableProperties([name, size, color])).toThrow();
     });
   });
