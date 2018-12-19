@@ -86,40 +86,18 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
         isCustom={true}
         startDateControl={<div />}
       >
-        <EuiButtonEmpty
-          className="euiSuperDatePicker__dateText"
-          color="primary"
-          iconSide="left"
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
           onClick={[Function]}
-          style={
-            Object {
-              "textAlign": "left",
-            }
-          }
-          textProps={
-            Object {
-              "className": "euiSuperDatePicker__dateInnerText",
-            }
-          }
-          type="button"
         >
           Last 15 minutes
-        </EuiButtonEmpty>
-        <EuiButtonEmpty
-          color="primary"
-          data-test-subj="superDatePickerShowDatesButton"
-          iconSide="left"
-          onClick={[Function]}
-          size="xs"
-          style={
-            Object {
-              "flexGrow": 0,
-            }
-          }
-          type="button"
-        >
-          Show dates
-        </EuiButtonEmpty>
+          <span
+            className="euiSuperDatePicker__prettyFormatLink"
+          >
+            Show dates
+          </span>
+        </button>
       </EuiDatePickerRange>
     </EuiFormControlLayout>
   </EuiFlexItem>
@@ -240,40 +218,18 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
         isCustom={true}
         startDateControl={<div />}
       >
-        <EuiButtonEmpty
-          className="euiSuperDatePicker__dateText"
-          color="primary"
-          iconSide="left"
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
           onClick={[Function]}
-          style={
-            Object {
-              "textAlign": "left",
-            }
-          }
-          textProps={
-            Object {
-              "className": "euiSuperDatePicker__dateInnerText",
-            }
-          }
-          type="button"
         >
           Last 15 minutes
-        </EuiButtonEmpty>
-        <EuiButtonEmpty
-          color="primary"
-          data-test-subj="superDatePickerShowDatesButton"
-          iconSide="left"
-          onClick={[Function]}
-          size="xs"
-          style={
-            Object {
-              "flexGrow": 0,
-            }
-          }
-          type="button"
-        >
-          Show dates
-        </EuiButtonEmpty>
+          <span
+            className="euiSuperDatePicker__prettyFormatLink"
+          >
+            Show dates
+          </span>
+        </button>
       </EuiDatePickerRange>
     </EuiFormControlLayout>
   </EuiFlexItem>

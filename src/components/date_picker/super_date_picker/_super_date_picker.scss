@@ -14,13 +14,24 @@
   }
 }
 
-.euiSuperDatePicker__dateText {
+.euiSuperDatePicker__prettyFormat {
   @include euiSuperDatePickerText;
+  display: flex;
+  justify-content: space-between;
   text-align: left;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+
+    .euiSuperDatePicker__prettyFormatLink {
+      text-decoration: underline;
+    }
+  }
 }
 
-.euiSuperDatePicker__dateInnerText {
-  width: 100%;
+.euiSuperDatePicker__prettyFormatLink {
+  color: $euiLinkColor;
 }
 
 .euiSuperDatePicker__updateButton {
