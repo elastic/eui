@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export const always = () => true;
+export const always = (value?: any) => true;
 
-export const never = () => false;
+export const never = (value?: any) => false;
 
 export const isUndefined = (value: any) => {
   return value === undefined;
