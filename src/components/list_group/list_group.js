@@ -14,7 +14,7 @@ export const EuiListGroup = ({
   listItems,
   maxWidth,
   style,
-  ...rest
+  ...rest,
 }) => {
 
   let newStyle;
@@ -43,12 +43,7 @@ export const EuiListGroup = ({
         return [
           <EuiListGroupItem
             key={`title-${index}`}
-            label={item.label}
-            href={item.href}
-            extraAction={item.extraAction}
-            iconType={item.iconType}
-            isActive={item.isActive}
-            isDisabled={item.isDisabled}
+            {...item}
           />
         ];
       })

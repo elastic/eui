@@ -13,25 +13,25 @@ import {
 const myContent = [
   {
     label: <EuiText size="s">My first link</EuiText>,
-    href: '#',
+    href: window.location.href,
   },
   {
     label: <EuiText size="s">My second link</EuiText>,
-    href: '#',
+    href: window.location.href,
     isActive: true,
   },
   {
     label: <EuiText size="s">My third link</EuiText>,
-    href: '#',
+    href: window.location.href,
     isDisabled: true,
   },
   {
     label: <EuiText size="s">My fourth link</EuiText>,
-    href: '#',
+    href: window.location.href,
   },
   {
     label: <EuiText size="s">My fifth link</EuiText>,
-    href: '#',
+    href: window.location.href,
   },
 ];
 

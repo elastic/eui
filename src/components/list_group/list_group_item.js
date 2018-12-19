@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiButtonEmpty } from '../button';
 import { ICON_TYPES, EuiIcon } from '../icon';
 
 export const EuiListGroupItem = ({
@@ -13,6 +12,7 @@ export const EuiListGroupItem = ({
   className,
   iconType,
   extraAction,
+  onClick,
   ...rest
 }) => {
   const classes = classNames(
@@ -26,43 +26,73 @@ export const EuiListGroupItem = ({
     className
   );
 
-  // For text only list item content that has an icon
-  let iconContent;
+  let iconNode;
 
-  if (!href && iconType) {
-    iconContent = (
+  if (iconType) {
+    iconNode = (
       <EuiIcon type={iconType} />
     );
   }
+
+  let labelNode;
+
+  if (label) {
+    labelNode = (
+      <span className="euiListGroupItem__actionLabel">
+        {label}
+      </span>
+    );
+  }
+
+  let extraActionNode;
+
+  if (extraAction) {
+    extraActionNode = (
+      <span className="euiListGroupItem__actionButton">
+        {extraAction}
+      </span>
+    );
+  }
+
+  const buttonContent = (
+    <span className="euiListGroupItem__actionContent">
+      {iconNode}
+      {labelNode}
+      {extraActionNode}
+    </span>
+  );
 
   // Handle the variety of content that can be passed to the label prop
   // This could include a basic link, other EUI components, a secondary button,
   // or plain text with an optional icon
   let itemContent;
 
-  if (href) {
+  if (href && !isDisabled) {
     itemContent = (
-      <EuiButtonEmpty iconType={iconType} isDisabled={isDisabled} className="euiListGroupItem__button" href={href}>
+      <a href={href} className="euiListGroupItem__button" {...rest}>
+        {iconNode}
         {label}
-      </EuiButtonEmpty>
+      </a>
+    );
+  } else if ((href && isDisabled) || onClick) {
+    itemContent = (
+      <button
+        disabled={isDisabled}
+        onClick={onClick}
+        {...rest}
+      >
+        {iconNode}
+        {label}
+      </button>
     );
   } else if (typeof label === 'object' && !extraAction) {
     itemContent = label;
   } else if (extraAction) {
-    itemContent = (
-      <span className="euiListGroupItem__actionContent">
-        <span className="euiListGroupItem__actionLabel">
-          {label}
-        </span>
-        <span className="euiListGroupItem__actionButton">
-          {extraAction}
-        </span>
-      </span>
-    );
+    itemContent = buttonContent;
   } else {
     itemContent = (
-      <span>
-        {iconContent}
+      <span {...rest}>
+        {iconNode}
         <span className="euiListGroupItem__label">{label}</span>
       </span>
     );
@@ -71,7 +101,6 @@ export const EuiListGroupItem = ({
   return (
     <li
       className={classes}
-      {...rest}
     >
       {itemContent}
     </li>
@@ -79,6 +108,8 @@ export const EuiListGroupItem = ({
 };
 
 EuiListGroupItem.propTypes = {
+  className: PropTypes.string,
+
   /**
    * Content to be displyed in the list item
    */
@@ -108,6 +139,8 @@ EuiListGroupItem.propTypes = {
    * Add button icon for secondary action. See EuiButtonIcon
    */
   extraAction: PropTypes.node,
+
+  onClick: PropTypes.func,
 };
 
 EuiListGroupItem.defaultProps = {

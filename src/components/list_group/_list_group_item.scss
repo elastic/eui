@@ -12,6 +12,8 @@
     display: block;
     padding: $euiSizeS;
     line-height: $euiLineHeight;
+    width: 100%;
+    text-align: left;
   }
 
   // Color the background of links, buttons, and any active direct descendents

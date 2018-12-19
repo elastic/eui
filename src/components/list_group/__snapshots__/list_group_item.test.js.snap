@@ -19,18 +19,10 @@ exports[`EuiListGroupItem renders href 1`] = `
   class="euiListGroupItem"
 >
   <a
-    class="euiButtonEmpty euiButtonEmpty--primary euiListGroupItem__button"
+    class="euiListGroupItem__button"
     href="#"
   >
-    <span
-      class="euiButtonEmpty__content"
-    >
-      <span
-        class="euiButtonEmpty__text"
-      >
-        Label
-      </span>
-    </span>
+    Label
   </a>
 </li>
 `;
