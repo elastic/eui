@@ -1,8 +1,8 @@
 /**
- * Secures outbound links. See https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
- * for more info.
+ * Secures outbound links. For more info:
+ * https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
  */
-export const getSecureRelForTarget = (target, rel) => {
+export const getSecureRelForTarget = (target?: '_blank' | '_self' | '_parent' | '_top' | string, rel?: string) => {
   if (!target) {
     return rel;
   }
@@ -20,7 +20,6 @@ export const getSecureRelForTarget = (target, rel) => {
   if (!secureRel.includes('noopener')) {
     secureRel = `${secureRel} noopener`;
   }
-
 
   if (!secureRel.includes('noreferrer')) {
     secureRel = `${secureRel} noreferrer`;
