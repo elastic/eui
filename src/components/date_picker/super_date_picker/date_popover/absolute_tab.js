@@ -48,7 +48,7 @@ export class EuiAbsoluteTab extends Component {
 
   render() {
     return (
-      <div style={{ width: 390, padding: 0 }}>
+      <div>
         <EuiDatePicker
           inline
           showTimeSelect
@@ -57,7 +57,7 @@ export class EuiAbsoluteTab extends Component {
           onChange={this.handleChange}
         />
         <EuiFormRow
-          style={{ padding: '0 8px 8px' }}
+          className="euiDatePopoverContent__padded"
           isInvalid={this.state.isTextInvalid}
           error={this.state.isTextInvalid ? `Expected format ${INPUT_DATE_FORMAT}` : undefined}
         >

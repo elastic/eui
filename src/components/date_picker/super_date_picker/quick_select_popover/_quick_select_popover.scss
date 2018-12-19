@@ -1,3 +1,8 @@
+.euiQuickSelectPopover__content {
+  width: $euiFormMaxWidth;
+  max-width: 100%;
+}
+
 .euiQuickSelectPopover__section {
   @include euiScrollBar;
   max-height: $euiSizeM * 11;

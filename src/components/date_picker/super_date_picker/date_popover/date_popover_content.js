@@ -62,7 +62,7 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
         id: DATE_MODES.NOW,
         name: 'Now',
         content: (
-          <EuiText size="s" color="subdued" style={{ width: 390, padding: 16 }}>
+          <EuiText size="s" color="subdued" className="euiDatePopoverContent__padded">
             <p>
               Setting the time to &quot;Now&quot; means that on every refresh
               this time will be set to the time of the refresh.
@@ -76,6 +76,7 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
 
   return (
     <EuiTabbedContent
+      className="euiDatePopoverContent"
       tabs={renderTabs()}
       initialSelectedTab={{ id: getDateMode(value) }}
       onTabClick={onTabClick}

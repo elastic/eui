@@ -75,7 +75,7 @@ export class EuiQuickSelectPopover extends Component {
         ownFocus
       >
         <div
-          style={{ width: 400, maxWidth: '100%' }}
+          className="euiQuickSelectPopover__content"
           data-test-subj="superDatePickerQuickMenu"
         >
           <EuiQuickSelect

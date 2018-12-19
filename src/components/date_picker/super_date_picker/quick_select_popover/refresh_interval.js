@@ -113,10 +113,10 @@ export class EuiRefreshInterval extends Component {
           <EuiFlexItem grow={false}>
             <EuiFormRow>
               <EuiButton
+                className="euiRefreshInterval__startButton"
                 iconType={this.props.isPaused ? 'play' : 'stop'}
                 size="s"
                 onClick={this.toogleRefresh}
-                style={{ minWidth: 90 }}
                 disabled={this.state.value === '' || this.state.value <= 0}
                 data-test-subj="superDatePickerToggleRefreshButton"
               >
