@@ -196,7 +196,7 @@ export class EuiSuperDatePicker extends Component {
           <EuiButtonEmpty
             className="euiSuperDatePicker__dateText"
             style={{ textAlign: 'left' }}
-            textProps={{ style: { width: '100%' } }}
+            textProps={{ className: 'euiSuperDatePicker__dateInnerText' }}
             onClick={this.hidePrettyDuration}
           >
             {prettyDuration(start, end, this.props.commonlyUsedRanges, this.props.dateFormat)}

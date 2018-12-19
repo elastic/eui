@@ -33,7 +33,7 @@ export function EuiRecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, rec
     <Fragment>
       <EuiTitle size="xxxs"><span>Recently used date ranges</span></EuiTitle>
       <EuiSpacer size="s" />
-      <EuiText size="s" className="euiSuperDatePicker__popoverSection">
+      <EuiText size="s" className="euiQuickSelectPopover__section">
         <EuiFlexGroup gutterSize="s" direction="column">
           {links}
         </EuiFlexGroup>

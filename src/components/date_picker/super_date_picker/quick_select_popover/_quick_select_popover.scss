@@ -1,0 +1,12 @@
+.euiQuickSelectPopover__section {
+  @include euiScrollBar;
+  max-height: $euiSizeM * 11;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+// sass-lint:disable no-important
+.euiQuickSelectPopover__buttonText {
+  // Override specificity from universal and sibiling selectors
+  margin-right: $euiSizeXS !important;
+}

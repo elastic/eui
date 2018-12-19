@@ -98,9 +98,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           }
           textProps={
             Object {
-              "style": Object {
-                "width": "100%",
-              },
+              "className": "euiSuperDatePicker__dateInnerText",
             }
           }
           type="button"
@@ -254,9 +252,7 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
           }
           textProps={
             Object {
-              "style": Object {
-                "width": "100%",
-              },
+              "className": "euiSuperDatePicker__dateInnerText",
             }
           }
           type="button"
