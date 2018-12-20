@@ -4,6 +4,14 @@ import classNames from 'classnames';
 
 import { ICON_TYPES, EuiIcon } from '../icon';
 
+const sizeToClassNameMap = {
+  xs: 'euiListGroupItem--xSmall',
+  s: 'euiListGroupItem--small',
+  l: 'euiListGroupItem--large',
+};
+
+export const SIZES = Object.keys(sizeToClassNameMap);
+
 export const EuiListGroupItem = ({
   label,
   isActive,
@@ -13,10 +21,12 @@ export const EuiListGroupItem = ({
   iconType,
   extraAction,
   onClick,
+  size,
   ...rest
 }) => {
   const classes = classNames(
     'euiListGroupItem',
+    sizeToClassNameMap[size],
     {
       'euiListGroupItem-active': isActive,
       'euiListGroupItem-disabled': isDisabled,
@@ -108,6 +118,11 @@ export const EuiListGroupItem = ({
 
 EuiListGroupItem.propTypes = {
   className: PropTypes.string,
+
+  /**
+   * Set the size of the label text. Defaul is medium
+   */
+  size: PropTypes.oneOf(SIZES),
 
   /**
    * Content to be displyed in the list item

@@ -5,38 +5,42 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiCode,
-  EuiText,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
 const myContent = [
   {
-    label: <EuiText size="s">First link</EuiText>,
+    label: 'First link',
     href: window.location.href,
     iconType: 'calendar',
+    size: 's',
   },
   {
-    label: <EuiText size="s">Second link</EuiText>,
+    label: 'Second link',
     href: window.location.href,
     isActive: true,
     iconType: 'clock',
+    size: 's',
   },
   {
-    label: <EuiText size="s">Third link</EuiText>,
+    label: 'Third link',
     href: window.location.href,
     isDisabled: true,
     iconType: 'compute',
+    size: 's',
   },
   {
-    label: <EuiText size="s">Fourth link</EuiText>,
+    label: 'Fourth link',
     href: window.location.href,
     iconType: 'copyClipboard',
+    size: 's',
   },
   {
-    label: <EuiText size="s">Fifth link</EuiText>,
+    label: 'Fifth link',
     href: window.location.href,
     iconType: 'crosshairs',
+    size: 's',
   },
 ];
 

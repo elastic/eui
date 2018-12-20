@@ -167,3 +167,15 @@
     display: inline-block;
   }
 }
+
+.euiListGroupItem--xSmall {
+  font-size: $euiFontSizeXS;
+}
+
+.euiListGroupItem--small {
+  font-size: $euiFontSizeS;
+}
+
+.euiListGroupItem--large {
+  font-size: $euiFontSizeL;
+}
