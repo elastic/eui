@@ -380,7 +380,7 @@ exports[`props singleSelection is rendered 1`] = `
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
     compressed={false}
-    focusedOptionId={null}
+    focusedOptionId="htmlid__option-2"
     fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
@@ -407,5 +407,143 @@ exports[`props singleSelection is rendered 1`] = `
     updatePosition={[Function]}
     value="Mimas"
   />
+</div>
+`;
+
+exports[`props singleSelection selects existing option when opened 1`] = `
+<div
+  aria-expanded={true}
+  aria-haspopup="listbox"
+  className="euiComboBox euiComboBox-isOpen"
+  onBlur={[Function]}
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    focusedOptionId="htmlid__option-2"
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={true}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+      ]
+    }
+    singleSelection={true}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas"
+  />
+  <EuiPortal>
+    <EuiComboBoxOptionsList
+      activeOptionIndex={2}
+      areAllOptionsSelected={false}
+      data-test-subj=""
+      fullWidth={false}
+      getSelectedOptionForSearchValue={[Function]}
+      listRef={[Function]}
+      matchingOptions={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      onOptionClick={[Function]}
+      onOptionEnterKey={[Function]}
+      optionRef={[Function]}
+      options={
+        Array [
+          Object {
+            "data-test-subj": "titanOption",
+            "label": "Titan",
+          },
+          Object {
+            "label": "Enceladus",
+          },
+          Object {
+            "label": "Mimas",
+          },
+          Object {
+            "label": "Dione",
+          },
+          Object {
+            "label": "Iapetus",
+          },
+          Object {
+            "label": "Phoebe",
+          },
+          Object {
+            "label": "Rhea",
+          },
+          Object {
+            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          },
+          Object {
+            "label": "Tethys",
+          },
+          Object {
+            "label": "Hyperion",
+          },
+        ]
+      }
+      position="bottom"
+      rootId={[Function]}
+      rowHeight={27}
+      scrollToIndex={2}
+      searchValue=""
+      selectedOptions={
+        Array [
+          Object {
+            "label": "Mimas",
+          },
+        ]
+      }
+      updatePosition={[Function]}
+    />
+  </EuiPortal>
 </div>
 `;
