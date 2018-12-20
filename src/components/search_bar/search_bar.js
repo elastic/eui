@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 import { Query } from './query';
 import { EuiFlexItem } from '../flex/flex_item';
 
+export { Query, AST as Ast } from './query';
+
 export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
 
 export const SearchBarPropTypes = {

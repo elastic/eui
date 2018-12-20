@@ -43,12 +43,6 @@ export {
   Pager
 } from './paging';
 
-// TODO: Migrate these services into the services directory.
-export {
-  Query,
-  AST as Ast,
-} from '../components/search_bar/query';
-
 export {
   Random
 } from './random';
