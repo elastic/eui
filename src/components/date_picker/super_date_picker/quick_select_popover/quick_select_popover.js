@@ -52,8 +52,8 @@ export class EuiQuickSelectPopover extends Component {
   render() {
     const quickSelectButton = (
       <EuiButtonEmpty
-        className="euiFormControlLayout__prepend euiSuperDatePicker__quickSelectButton"
-        textProps={{ className: 'euiSuperDatePicker__quickSelectButtonText' }}
+        className="euiFormControlLayout__prepend"
+        textProps={{ className: 'euiQuickSelectPopover__buttonText' }}
         onClick={this.togglePopover}
         aria-label="Date quick select"
         size="xs"
@@ -75,7 +75,7 @@ export class EuiQuickSelectPopover extends Component {
         ownFocus
       >
         <div
-          style={{ width: 400, maxWidth: '100%' }}
+          className="euiQuickSelectPopover__content"
           data-test-subj="superDatePickerQuickMenu"
         >
           <EuiQuickSelect

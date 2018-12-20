@@ -1,0 +1,36 @@
+.euiDatePopoverButton__popover .euiDatePopoverButton__popoverAnchor {
+  display: block;
+}
+
+.euiDatePopoverButton {
+  @include euiSuperDatePickerText;
+
+  $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
+  $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
+
+  &-isSelected,
+  &-needsUpdating,
+  &:hover,
+  &:focus {
+    background-color: $backgroundColor;
+  }
+
+  &-needsUpdating {
+    color: $textColor;
+  }
+
+  &-isInvalid {
+    $backgroundColor: tintOrShade($euiColorDanger, 90%, 70%);
+    $textColor: makeHighContrastColor($euiColorDanger, $backgroundColor);
+    background-color: $backgroundColor;
+    color: $textColor;
+  }
+}
+
+.euiDatePopoverButton--start {
+  text-align: right;
+}
+
+.euiDatePopoverButton--end {
+  text-align: left;
+}

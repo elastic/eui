@@ -191,17 +191,13 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
         hasEmptyLabelSpace={false}
       >
         <EuiButton
+          className="euiQuickSelect__applyButton"
           color="primary"
           disabled={false}
           fill={false}
           iconSide="left"
           onClick={[Function]}
           size="s"
-          style={
-            Object {
-              "minWidth": 0,
-            }
-          }
           type="button"
         >
           Apply
@@ -407,17 +403,13 @@ exports[`EuiSuperDatePicker prevQuickSelect 1`] = `
         hasEmptyLabelSpace={false}
       >
         <EuiButton
+          className="euiQuickSelect__applyButton"
           color="primary"
           disabled={false}
           fill={false}
           iconSide="left"
           onClick={[Function]}
           size="s"
-          style={
-            Object {
-              "minWidth": 0,
-            }
-          }
           type="button"
         >
           Apply

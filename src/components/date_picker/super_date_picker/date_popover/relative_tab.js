@@ -56,7 +56,7 @@ export class EuiRelativeTab extends Component {
   render() {
     const formatedValue = dateMath.parse(this.props.value).format(this.props.dateFormat);
     return (
-      <EuiForm style={{ width: 390, padding: 16 }}>
+      <EuiForm className="euiDatePopoverContent__padded">
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiFormRow>

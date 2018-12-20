@@ -1,16 +1,7 @@
 // sass-lint:disable no-important
-.euiSuperDatePicker__quickSelectButton {
-  // Override prepend border since button already lives inside another prepend
-  border-right: none !important;
-
-  .euiSuperDatePicker__quickSelectButtonText {
-    // Override specificity from universal and sibiling selectors
-    margin-right: $euiSizeXS !important;
-  }
-}
-
-.euiSuperDatePicker.euiFormControlLayout {
-  max-width: 480px;
+.euiSuperDatePicker {
+  // Allow it to always grow to fit the container since the default form max width is too small
+  max-width: 100% !important;
 
   > .euiFormControlLayout__childrenWrapper {
     flex: 1 1 100%;
@@ -19,71 +10,33 @@
     > .euiDatePickerRange {
       max-width: none;
       width: auto;
-
-      // sass-lint:disable nesting-depth
-      .euiPopover__anchor {
-        display: block;
-      }
     }
   }
 }
 
-.euiSuperDatePicker__dateText {
-  @include euiFormControlText;
-  display: block;
-  width: 100%;
-  padding: 0 $euiSizeS;
-  line-height: $euiFormControlHeight - 2px;
-  height: $euiFormControlHeight - 2px;
-  word-break: break-all;
-  transition: background $euiAnimSpeedFast ease-in;
-}
+.euiSuperDatePicker__prettyFormat {
+  @include euiSuperDatePickerText;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
 
-.euiSuperDatePicker__dateButton {
-  $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
-  $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
-
-  &-isSelected,
-  &-needsUpdating,
   &:hover,
   &:focus {
-    background-color: $backgroundColor;
-  }
+    text-decoration: none;
 
-  &-needsUpdating {
-    color: $textColor;
-  }
-
-  &-isInvalid {
-    $backgroundColor: tintOrShade($euiColorDanger, 90%, 70%);
-    $textColor: makeHighContrastColor($euiColorDanger, $backgroundColor);
-    background-color: $backgroundColor;
-    color: $textColor;
-  }
-
-  .euiFormControlLayout__prepend {
-    border: none;
+    .euiSuperDatePicker__prettyFormatLink {
+      text-decoration: underline;
+    }
   }
 }
 
-.euiSuperDatePicker__dateButton--start {
-  text-align: right;
-}
-
-.euiSuperDatePicker__dateButton--end {
-  text-align: left;
+.euiSuperDatePicker__prettyFormatLink {
+  color: $euiLinkColor;
 }
 
 .euiSuperDatePicker__updateButton {
   // Just wide enough for all 3 states
   min-width: $euiButtonMinWidth + ($euiSizeXS * 1.5);
-}
-
-.euiSuperDatePicker__popoverSection {
-  @include euiScrollBar;
-  max-height: $euiSizeM * 11;
-  overflow: hidden;
-  overflow-y: auto;
 }
 
 @include euiBreakpoint('xs', 's') {

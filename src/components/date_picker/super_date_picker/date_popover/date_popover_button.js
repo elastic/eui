@@ -48,13 +48,12 @@ export class EuiDatePopoverButton extends Component {
     } = this.props;
 
     const classes = classNames([
-      'euiSuperDatePicker__dateText',
-      'euiSuperDatePicker__dateButton',
-      `euiSuperDatePicker__dateButton--${position}`,
+      'euiDatePopoverButton',
+      `euiDatePopoverButton--${position}`,
       {
-        'euiSuperDatePicker__dateButton-isSelected': this.state.isOpen,
-        'euiSuperDatePicker__dateButton-isInvalid': isInvalid,
-        'euiSuperDatePicker__dateButton-needsUpdating': needsUpdating
+        'euiDatePopoverButton-isSelected': this.state.isOpen,
+        'euiDatePopoverButton-isInvalid': isInvalid,
+        'euiDatePopoverButton-needsUpdating': needsUpdating
       }
     ]);
 
@@ -79,10 +78,12 @@ export class EuiDatePopoverButton extends Component {
 
     return (
       <EuiPopover
+        className="euiDatePopoverButton__popover"
         button={button}
         isOpen={this.state.isOpen}
         closePopover={this.closePopover}
         anchorPosition={this.props.position === 'start' ? 'downLeft' : 'downRight'}
+        anchorClassName="euiDatePopoverButton__popoverAnchor"
         panelPaddingSize="none"
         ownFocus
         {...rest}

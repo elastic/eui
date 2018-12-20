@@ -166,9 +166,9 @@ export class EuiQuickSelect extends Component {
           <EuiFlexItem grow={false}>
             <EuiFormRow>
               <EuiButton
+                className="euiQuickSelect__applyButton"
                 size="s"
                 onClick={this.applyQuickSelect}
-                style={{ minWidth: 0 }}
                 disabled={this.state.timeValue === '' || this.state.timeValue <= 0}
               >
                 Apply

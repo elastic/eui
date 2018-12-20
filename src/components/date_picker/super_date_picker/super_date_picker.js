@@ -11,7 +11,7 @@ import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
-import { EuiButton, EuiButtonEmpty } from '../../button';
+import { EuiButton } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
@@ -193,22 +193,14 @@ export class EuiSuperDatePicker extends Component {
           startDateControl={<div/>}
           endDateControl={<div/>}
         >
-          <EuiButtonEmpty
-            className="euiSuperDatePicker__dateText"
-            style={{ textAlign: 'left' }}
-            textProps={{ style: { width: '100%' } }}
+          <button
+            className="euiSuperDatePicker__prettyFormat"
+            data-test-subj="superDatePickerShowDatesButton"
             onClick={this.hidePrettyDuration}
           >
             {prettyDuration(start, end, this.props.commonlyUsedRanges, this.props.dateFormat)}
-          </EuiButtonEmpty>
-          <EuiButtonEmpty
-            size="xs"
-            style={{ flexGrow: 0 }}
-            onClick={this.hidePrettyDuration}
-            data-test-subj="superDatePickerShowDatesButton"
-          >
-            Show dates
-          </EuiButtonEmpty>
+            <span className="euiSuperDatePicker__prettyFormatLink">Show dates</span>
+          </button>
         </EuiDatePickerRange>
       );
     }
@@ -248,10 +240,18 @@ export class EuiSuperDatePicker extends Component {
     if (this.state.hasChanged || this.props.isLoading) {
       buttonText = this.props.isLoading ? 'Updating' : 'Update';
     }
+
+    let tooltipContent;
+    if (this.state.isInvalid) {
+      tooltipContent = 'Can\'t update, dates are invalid';
+    } else if (this.state.hasChanged && !this.props.isLoading) {
+      tooltipContent = 'Click to apply';
+    }
+
     return (
       <EuiToolTip
         ref={this.setTootipRef}
-        content={this.state.hasChanged && !this.props.isLoading ? 'Click to apply' : undefined}
+        content={tooltipContent}
         position="bottom"
       >
         <EuiButton
