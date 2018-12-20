@@ -12,26 +12,31 @@ import {
 
 const myContent = [
   {
-    label: <EuiText size="s">My first link</EuiText>,
+    label: <EuiText size="s">First link</EuiText>,
     href: window.location.href,
+    iconType: 'calendar',
   },
   {
-    label: <EuiText size="s">My second link</EuiText>,
+    label: <EuiText size="s">Second link</EuiText>,
     href: window.location.href,
     isActive: true,
+    iconType: 'clock',
   },
   {
-    label: <EuiText size="s">My third link</EuiText>,
+    label: <EuiText size="s">Third link</EuiText>,
     href: window.location.href,
     isDisabled: true,
+    iconType: 'compute',
   },
   {
-    label: <EuiText size="s">My fourth link</EuiText>,
+    label: <EuiText size="s">Fourth link</EuiText>,
     href: window.location.href,
+    iconType: 'copyClipboard',
   },
   {
-    label: <EuiText size="s">My fifth link</EuiText>,
+    label: <EuiText size="s">Fifth link</EuiText>,
     href: window.location.href,
+    iconType: 'crosshairs',
   },
 ];
 

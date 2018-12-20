@@ -8,32 +8,21 @@
     margin-top: 0;
   }
 
-  > *:not(.euiListGroupItem__actionContent) {
-    display: block;
-    padding: $euiSizeS;
-    line-height: $euiLineHeight;
-    width: 100%;
-    text-align: left;
-  }
-
-  // Color the background of links, buttons, and any active direct descendents
-  > a:hover,
-  button:hover:not([disabled]),
-  .euiListGroupItem__actionContent:hover,
-  &.euiListGroupItem-active > * {
+  &:not(.euiListGroupItem-textOnly) .euiListGroupItem__content:hover,
+  &.euiListGroupItem-active .euiListGroupItem__content {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
   // Underline link and button text when hovered or active
-  > a:hover,
+  a:hover,
   button:hover:not([disabled]),
-  &.euiListGroupItem-active > a,
+  &.euiListGroupItem-active a,
   &.euiListGroupItem-active button {
     text-decoration: underline;
   }
 
   // Style all disabled list items whether or not they are links or buttons
-  &.euiListGroupItem-disabled > * {
+  &.euiListGroupItem-disabled .euiListGroupItem__content {
     color: $euiButtonColorDisabled;
     text-decoration: none;
     cursor: not-allowed;
@@ -44,19 +33,18 @@
       color: $euiButtonColorDisabled;
       text-decoration: none;
     }
-  }
 
-  // Prevents double padding as items with actions have an additional wrapper
-  &.euiListGroupItem-hasAction > span {
-    padding: 0;
+    button:hover {
+      cursor: not-allowed;
+    }
   }
 }
 
-.euiListGroup--flush .euiListGroupItem {
+.euiListGroup-flush .euiListGroupItem {
   border-radius: 0;
 }
 
-.euiListGroup--bordered .euiListGroupItem {
+.euiListGroup-bordered .euiListGroupItem {
   &:first-child {
     border-top-left-radius: $euiBorderRadius;
     border-top-right-radius: $euiBorderRadius;
@@ -68,15 +56,6 @@
   }
 }
 
-// Aligns list items with sibling icons
-.euiListGroupItem__label {
-  vertical-align: middle;
-}
-
-.euiListGroupItem-hasIcon .euiListGroupItem__label {
-  margin-left: $euiSizeS;
-}
-
 // Override inherited EUI button styles
 // This component leverages the EuiButton component to avoid duplicating logic
 .euiListGroupItem:not(.euiListGroupItem-hasAction) .euiButtonEmpty__content {
@@ -86,13 +65,19 @@
 }
 
 // Styles for list items that have secondary actions (i.e. two buttons)
-.euiListGroupItem__actionContent {
+.euiListGroupItem__content {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   vertical-align: middle;
   height: 100%;
   width: 100%;
+
+  span > *:not(svg) {
+    padding: $euiSizeS $euiSizeM;
+    width: 100%;
+    text-align: left;
+  }
 
   // Hover anywhere on the list item container to reveal secondary action
   // Showing and hiding using opacity keeps the button accessible via keyboard
@@ -107,11 +92,15 @@
   }
 }
 
-.euiListGroupItem__actionLabel {
+.euiListGroupItem__label {
   flex-grow: 1;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-height: $euiButtonHeight;
+  vertical-align: middle;
+
+  > * {
+    line-height: $euiSizeL;
+  }
 
   button {
     width: 100%;
@@ -119,15 +108,19 @@
 
   button > span {
     justify-content: start !important; //sass-lint:disable-line no-important
+    padding: 0 !important; //sass-lint:disable-line no-important
+  }
+
+  svg + span {
+    margin-left: 0 !important; //sass-lint:disable-line no-important
   }
 }
 
 .euiListGroupItem__actionButton {
   flex-shrink: 0;
-  height: $euiSizeL;
+  height: 100%;
   min-width: $euiSizeL;
-  margin-right: $euiSizeS;
-  vertical-align: middle;
+  margin-right: $euiSizeXS;
 
   // Hide visually with opacity, still reachable via keyboard
   button {
@@ -143,5 +136,34 @@
     &:focus:not([disabled]) svg {
       fill: $euiColorPrimary;
     }
+  }
+}
+
+.euiListGroupItem__button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+
+  > div {
+    flex-grow: 0;
+  }
+}
+
+.euiListGroupItem__icon {
+  flex-grow: 0;
+  height: 100%;
+  margin-right: $euiSizeS;
+}
+
+.euiListGroupItem-textOnly {
+  .euiListGroupItem__icon {
+    vertical-align: text-bottom;
+  }
+
+  .euiListGroupItem__label span {
+    display: inline-block;
   }
 }

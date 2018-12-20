@@ -22,6 +22,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-disabled': isDisabled,
       'euiListGroupItem-hasIcon': iconType,
       'euiListGroupItem-hasAction': extraAction,
+      'euiListGroupItem-textOnly': typeof label === 'string' && !href,
     },
     className
   );
@@ -30,17 +31,7 @@ export const EuiListGroupItem = ({
 
   if (iconType) {
     iconNode = (
-      <EuiIcon type={iconType} />
-    );
-  }
-
-  let labelNode;
-
-  if (label) {
-    labelNode = (
-      <span className="euiListGroupItem__actionLabel">
-        {label}
-      </span>
+      <EuiIcon className="euiListGroupItem__icon" type={iconType} />
     );
   }
 
@@ -53,14 +44,6 @@ export const EuiListGroupItem = ({
       </span>
     );
   }
-
-  const buttonContent = (
-    <span className="euiListGroupItem__actionContent">
-      {iconNode}
-      {labelNode}
-      {extraActionNode}
-    </span>
-  );
 
   // Handle the variety of content that can be passed to the label prop
   // This could include a basic link, other EUI components, a secondary button,
@@ -77,6 +60,7 @@ export const EuiListGroupItem = ({
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
       <button
+        className="euiListGroupItem__button"
         disabled={isDisabled}
         onClick={onClick}
         {...rest}
@@ -85,24 +69,39 @@ export const EuiListGroupItem = ({
         {label}
       </button>
     );
-  } else if (typeof label === 'object' && !extraAction) {
+  } else if (typeof label === 'object') {
     itemContent = label;
-  } else if (extraAction) {
-    itemContent = buttonContent;
   } else {
     itemContent = (
       <span {...rest}>
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {label}
       </span>
     );
   }
+
+  let labelNode;
+
+  if (label) {
+    labelNode = (
+      <span className="euiListGroupItem__label">
+        {itemContent}
+      </span>
+    );
+  }
+
+  const buttonContent = (
+    <span className="euiListGroupItem__content">
+      {labelNode}
+      {extraActionNode}
+    </span>
+  );
 
   return (
     <li
       className={classes}
     >
-      {itemContent}
+      {buttonContent}
     </li>
   );
 };

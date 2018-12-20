@@ -9,17 +9,17 @@
 .euiListGroup {
   padding: $euiSizeS;
 
-  &.euiListGroup--flush {
+  &.euiListGroup-flush {
     padding: 0;
     border: none;
   }
 
-  &.euiListGroup--bordered {
+  &.euiListGroup-bordered {
     border-radius: $euiBorderRadius;
     border: $euiBorderThin;
   }
 }
 
-.euiListGroup--maxWidth-default {
+.euiListGroup-maxWidthDefault {
   max-width: $euiFormMaxWidth;
 }

@@ -54,15 +54,15 @@ export const ListGroupExample = {
     }],
     text: (
       <p>
-        Present <EuiCode>ListGropuItems</EuiCode> as links by providing an
+        Present <EuiCode>ListGroupItems</EuiCode> as links by providing an
         &nbsp;<EuiCode>href</EuiCode> value. The <EuiCode>label</EuiCode>
-        property also accepts EUI components such as <EuiCode>EuiText</EuiCode>,
-        for more advanced use cases.
+        &nbsp;property also accepts EUI components such as <EuiCode>EuiText</EuiCode>,
+        for greater control.
       </p>
     ),
     demo: <ListGroupLinks />,
   }, {
-    title: 'Links with actions',
+    title: 'Advanced links using other components',
     source: [{
       type: GuideSectionTypes.JS,
       code: listGroupLinkActionsSource,
@@ -72,8 +72,11 @@ export const ListGroupExample = {
     }],
     text: (
       <p>
-        Add a secondary action by supplying an <EuiCode>EuiButtonIcon</EuiCode>
-        to the <EuiCode>extraAction</EuiCode> property.
+        Enable full EUI button properties by passing an
+        <EuiCode>EuiButtonEmpty</EuiCode> to the <EuiCode>label</EuiCode>
+        &nbsp;property. Use the <EuiCode>extraAction</EuiCode> property to add a
+        secondary action to any list item by passing it an
+        &nbsp;<EuiCode>EuiButtonIcon</EuiCode>.
       </p>
     ),
     demo: <ListGroupLinkActions />,

@@ -2,13 +2,17 @@
 
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
-  class="euiListGroupItem"
+  class="euiListGroupItem euiListGroupItem-textOnly"
 >
-  <span>
+  <span
+    class="euiListGroupItem__content"
+  >
     <span
       class="euiListGroupItem__label"
     >
-      Label
+      <span>
+        Label
+      </span>
     </span>
   </span>
 </li>
@@ -18,11 +22,19 @@ exports[`EuiListGroupItem renders href 1`] = `
 <li
   class="euiListGroupItem"
 >
-  <a
-    class="euiListGroupItem__button"
-    href="#"
+  <span
+    class="euiListGroupItem__content"
   >
-    Label
-  </a>
+    <span
+      class="euiListGroupItem__label"
+    >
+      <a
+        class="euiListGroupItem__button"
+        href="#"
+      >
+        Label
+      </a>
+    </span>
+  </span>
 </li>
 `;

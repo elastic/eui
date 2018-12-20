@@ -23,14 +23,14 @@ export const EuiListGroup = ({
     const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
     newStyle = { ...style, maxWidth: value };
   } else if (maxWidth === true) {
-    widthClassName = 'euiListGroup--maxWidth-default';
+    widthClassName = 'euiListGroup-maxWidthDefault';
   }
 
   const classes = classNames(
     'euiListGroup',
     {
-      'euiListGroup--flush': flush,
-      'euiListGroup--bordered': bordered,
+      'euiListGroup-flush': flush,
+      'euiListGroup-bordered': bordered,
     },
     widthClassName,
     className
