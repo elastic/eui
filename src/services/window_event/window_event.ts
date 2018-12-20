@@ -1,13 +1,18 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 
-export default class WindowEvent extends Component {
+type EventNames = keyof WindowEventMap;
 
+interface Props<Ev extends EventNames> {
+  event: Ev;
+  handler: (this: Window, ev: WindowEventMap[Ev]) => any;
+}
+
+export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
   componentDidMount() {
     this.addEvent(this.props);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props<E>) {
     if (prevProps.event !== this.props.event || prevProps.handler !== this.props.handler) {
       this.removeEvent(prevProps);
       this.addEvent(this.props);
@@ -18,29 +23,15 @@ export default class WindowEvent extends Component {
     this.removeEvent(this.props);
   }
 
-  addEvent({ event, handler }) {
+  addEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
     window.addEventListener(event, handler);
   }
 
-  removeEvent({ event, handler }) {
+  removeEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
     window.removeEventListener(event, handler);
   }
 
   render() {
     return null;
   }
-
 }
-
-WindowEvent.displayName = 'WindowEvent';
-
-WindowEvent.propTypes = {
-  /**
-   * Type of valid DOM event
-   */
-  event: PropTypes.string.isRequired,
-  /**
-    * Event callback function
-    */
-  handler: PropTypes.func.isRequired
-};
