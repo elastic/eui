@@ -9,7 +9,9 @@
   }
 
   &:not(.euiListGroupItem-textOnly) .euiListGroupItem__content:hover,
-  &.euiListGroupItem-active .euiListGroupItem__content {
+  &.euiListGroupItem-active .euiListGroupItem__content,
+  .euiListGroupItem__content > span > button:focus,
+  .euiListGroupItem__button:focus {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
@@ -130,7 +132,6 @@
     // Mouse users will see it when they hover on the parent container above
     &:focus {
       opacity: 1;
-      background-color: transparent;
     }
 
     &:hover:not([disabled]) svg,
