@@ -37,7 +37,6 @@ const euiColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
-  'euiColorSlightHue',
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorAccent',

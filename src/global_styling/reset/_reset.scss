@@ -1,5 +1,5 @@
 // This file allows mutli-line selectors to make it more readible
-// sass-lint:disable single-line-per-selector
+// sass-lint:disable single-line-per-selector, no-vendor-prefixes
 
 /**
  * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
@@ -56,12 +56,16 @@ footer, header, hgroup, menu, nav, section {
 }
 
 html {
-  font-family: $euiFontFamily;
-  font-weight: $euiFontWeightRegular;
+  @include euiFont;
+  letter-spacing: -.005em;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-kerning: normal;
+  font-feature-settings: $euiFontFeatureSettings;
   font-size: $euiFontSize;
   color: $euiTextColor;
   height: 100%;
-  background-color: $euiColorLightestShade;
+  background-color: $euiPageBackgroundColor;
 }
 
 body {

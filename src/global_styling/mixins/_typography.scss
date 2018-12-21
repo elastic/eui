@@ -4,6 +4,10 @@
 @mixin euiFont {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
+
+  @supports (font-variation-settings: normal) {
+    font-family: 'Inter UI var', $euiFontFamily;
+  }
 }
 
 @mixin euiCodeFont {
@@ -30,19 +34,24 @@
     @include euiFontSize;
     @include lineHeightFromBaseline(3);
     font-weight: $euiFontWeightMedium;
+    letter-spacing: -.02em;
   } @else if $size == 's' {
     @include euiFontSizeL;
     @include lineHeightFromBaseline(4);
     font-weight: $euiFontWeightMedium;
+    letter-spacing: -.025em;
   } @else if $size == 'm' {
     @include euiFontSizeXL;
     @include lineHeightFromBaseline(5);
+    letter-spacing: -.04em;
   } @else if $size == 'l' {
     @include euiFontSizeXXL;
     @include lineHeightFromBaseline(6);
+    letter-spacing: -.05em;
   } @else {
     @include fontSize($size);
     @include lineHeightFromBaseline(3);
+    letter-spacing: -.03em;
   }
 }
 
@@ -111,4 +120,8 @@
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   word-wrap: normal !important; /* 2 */
+}
+
+@mixin euiNumberFormat {
+  font-feature-settings: $euiFontFeatureSettings, 'tnum' 1; // Fixed-width numbers for tabular data
 }

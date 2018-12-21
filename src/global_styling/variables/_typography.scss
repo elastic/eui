@@ -1,7 +1,10 @@
+// sass-lint:disable no-url-domains, no-url-protocols
+
+@import url('https://rsms.me/inter/inter-ui.css');
+
 // Some mixins that help us deal with browser scaling of text more consistantly.
 // Essentially, fonts across eui should scale agains the root html element, not
 // against parent inheritance.
-
 
 // Typography mixins
 
@@ -27,11 +30,13 @@
 
 // Families
 
-$euiFontFamily: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$euiFontFamily: 'Inter UI', system-ui, -apple-system, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 $euiCodeFontFamily: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !default;
 
+$euiFontFeatureSettings: 'calt' 1, 'kern' 1, 'liga' 1 !default;
+
 // Font sizes -- scale is loosely based on Major Third (1.250)
-$euiTextScale:      2.25, 1.75, 1.25, 1.125, 1, .875, .75;
+$euiTextScale:      2.25, 1.75, 1.25, 1.125, 1, .875, .75 !default;
 
 $euiFontSize:       $euiSize !default; // 5th position in scale
 
@@ -51,5 +56,6 @@ $euiLineHeight:     1.5;
 
 $euiFontWeightLight:    300 !default;
 $euiFontWeightRegular:  400 !default;
-$euiFontWeightMedium:   600 !default;
+$euiFontWeightMedium:   500 !default;
+$euiFontWeightSemiBold: 600 !default;
 $euiFontWeightBold:     700 !default;

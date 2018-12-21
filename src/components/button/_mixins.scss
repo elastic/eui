@@ -1,4 +1,5 @@
 @mixin euiButton {
+  @include euiFont;
 
   display: inline-block;
   appearance: none;
@@ -8,7 +9,6 @@
   text-decoration: none;
   border: solid 1px transparent;
   text-align: center;
-  font-family: $euiFontFamily;
   transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   white-space: nowrap;
   max-width: 100%;
