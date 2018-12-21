@@ -70,6 +70,28 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with executeQueryOptions', () => {
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      executeQueryOptions: {
+        defaultFields: ['name']
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with items', () => {
 
     const props = {
