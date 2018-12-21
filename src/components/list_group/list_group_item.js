@@ -8,6 +8,7 @@ import { ICON_TYPES, EuiIcon } from '../icon';
 const sizeToClassNameMap = {
   xs: 'euiListGroupItem--xSmall',
   s: 'euiListGroupItem--small',
+  m: 'euiListGroupItem--medium',
   l: 'euiListGroupItem--large',
 };
 
@@ -23,19 +24,15 @@ export const EuiListGroupItem = ({
   extraAction,
   onClick,
   size,
-  alwaysShowAction,
   ...rest
 }) => {
   const classes = classNames(
     'euiListGroupItem',
     sizeToClassNameMap[size],
     {
-      'euiListGroupItem-active': isActive,
-      'euiListGroupItem-disabled': isDisabled,
-      'euiListGroupItem-hasIcon': iconType,
-      'euiListGroupItem-hasAction': extraAction,
-      'euiListGroupItem-textOnly': typeof label === 'string' && !href,
-      'euiListGroupItem-showAction': alwaysShowAction || isActive,
+      'euiListGroupItem-isActive': isActive,
+      'euiListGroupItem-isDisabled': isDisabled,
+      'euiListGroupItem-isClickable': href || onClick,
     },
     className
   );
@@ -51,16 +48,25 @@ export const EuiListGroupItem = ({
   let extraActionNode;
 
   if (extraAction) {
+    const {
+      iconType,
+      alwaysShow,
+      ...rest
+    } = extraAction;
+
+    const extraActionClasses = classNames(
+      'euiListGroupItem__extraAction',
+      { 'euiListGroupItem__extraAction-alwaysShow': alwaysShow }
+    );
+
     extraActionNode = (
-      <span className="euiListGroupItem__actionButton">
-        <EuiButtonIcon {...extraAction} />
+      <span className={extraActionClasses}>
+        <EuiButtonIcon iconType={iconType} {...rest} disabled={isDisabled} />
       </span>
     );
   }
 
-  // Handle the variety of content that can be passed to the label prop
-  // This could include a basic link, other EUI components, a secondary button,
-  // or plain text with an optional icon
+  // Handle the variety of interaction behavior
   let itemContent;
 
   if (href && !isDisabled) {
@@ -82,39 +88,19 @@ export const EuiListGroupItem = ({
         {label}
       </button>
     );
-  } else if (typeof label === 'object') {
-    itemContent = label;
   } else {
     itemContent = (
-      <span {...rest}>
+      <span className="euiListGroupItem__text" {...rest}>
         {iconNode}
         {label}
       </span>
     );
   }
 
-  let labelNode;
-
-  if (label) {
-    labelNode = (
-      <span className="euiListGroupItem__label">
-        {itemContent}
-      </span>
-    );
-  }
-
-  const buttonContent = (
-    <span className="euiListGroupItem__content">
-      {labelNode}
-      {extraActionNode}
-    </span>
-  );
-
   return (
-    <li
-      className={classes}
-    >
-      {buttonContent}
+    <li className={classes}>
+      {itemContent}
+      {extraActionNode}
     </li>
   );
 };
@@ -123,7 +109,7 @@ EuiListGroupItem.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Set the size of the label text. Defaul is medium
+   * Set the size of the label text
    */
   size: PropTypes.oneOf(SIZES),
 
@@ -148,19 +134,18 @@ EuiListGroupItem.propTypes = {
   href: PropTypes.string,
 
   /**
-   * See EuiIcon
+   * See `EuiIcon`
    */
   iconType: PropTypes.oneOf(ICON_TYPES),
 
   /**
-   * Add button icon for secondary action. See EuiButtonIcon
+   * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
+   * pass `alwaysShow` if you don't want the default behavior of only showing on hover
    */
-  extraAction: PropTypes.object,
-
-  /**
-   * Make the secondary action button always visible
-   */
-  alwaysShowAction: PropTypes.bool,
+  extraAction: PropTypes.shape({
+    iconType: PropTypes.oneOf(ICON_TYPES).isRequired,
+    alwaysShow: PropTypes.bool,
+  }),
 
   onClick: PropTypes.func,
 };
@@ -168,5 +153,5 @@ EuiListGroupItem.propTypes = {
 EuiListGroupItem.defaultProps = {
   isActive: false,
   isDisabled: false,
-  alwaysShowAction: false,
+  size: 'm',
 };

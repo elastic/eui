@@ -3,44 +3,74 @@
   margin-top: $euiSizeXS;
   border-radius: $euiBorderRadius;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: background-color $euiAnimSpeedFast;
 
   &:first-child {
     margin-top: 0;
   }
 
-  &:not(.euiListGroupItem-textOnly) .euiListGroupItem__content:hover,
-  &.euiListGroupItem-active .euiListGroupItem__content,
-  .euiListGroupItem__content > span > button:focus,
-  .euiListGroupItem__button:focus {
+  &.euiListGroupItem-isActive,
+  &.euiListGroupItem-isClickable:hover,
+  &.euiListGroupItem-isClickable:focus {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
-  // Underline link and button text when hovered or active
-  a:hover,
-  button:hover:not([disabled]),
-  &.euiListGroupItem-active a,
-  &.euiListGroupItem-active button {
+  &.euiListGroupItem-isClickable:hover,
+  &.euiListGroupItem-isClickable:focus {
     text-decoration: underline;
   }
 
   // Style all disabled list items whether or not they are links or buttons
-  &.euiListGroupItem-disabled .euiListGroupItem__content {
+  &.euiListGroupItem-isDisabled,
+  &.euiListGroupItem-isDisabled:hover,
+  &.euiListGroupItem-isDisabled:focus {
     color: $euiButtonColorDisabled;
     text-decoration: none;
     cursor: not-allowed;
-
-    // Some properties repeat here to override inherited button styles
-    &:hover {
-      background-color: transparent;
-      color: $euiButtonColorDisabled;
-      text-decoration: none;
-    }
-
-    button:hover {
-      cursor: not-allowed;
-    }
+    background-color: transparent;
   }
 }
+
+.euiListGroupItem__text,
+.euiListGroupItem__button {
+  padding: $euiSizeS;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.euiListGroupItem__extraAction {
+  opacity: 0;
+  transition: opacity $euiAnimSpeedFast;
+
+  .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
+  .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
+  &.euiListGroupItem__extraAction-alwaysShow {
+    opacity: 1;
+  }
+}
+
+.euiListGroupItem__icon {
+  flex-grow: 0;
+  margin-right: $euiSizeS;
+}
+
+.euiListGroupItem--xSmall {
+  font-size: $euiFontSizeXS;
+}
+
+.euiListGroupItem--small {
+  font-size: $euiFontSizeS;
+}
+
+.euiListGroupItem--large {
+  font-size: $euiFontSizeL;
+}
+
+// Layout alts from euiListGroup
 
 .euiListGroup-flush .euiListGroupItem {
   border-radius: 0;
@@ -56,131 +86,4 @@
     border-bottom-left-radius: $euiBorderRadius;
     border-bottom-right-radius: $euiBorderRadius;
   }
-}
-
-// Override inherited EUI button styles
-// This component leverages the EuiButton component to avoid duplicating logic
-.euiListGroupItem:not(.euiListGroupItem-hasAction) .euiButtonEmpty__content {
-  justify-content: left;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-// Styles for list items that have secondary actions (i.e. two buttons)
-.euiListGroupItem__content {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  vertical-align: middle;
-  // height: 100%;
-  width: 100%;
-
-  span > *:not(svg) {
-    padding: $euiSizeS $euiSizeM;
-    width: 100%;
-    text-align: left;
-  }
-
-  // Hover anywhere on the list item container to reveal secondary action
-  // Showing and hiding using opacity keeps the button accessible via keyboard
-  &:hover .euiListGroupItem__actionButton button {
-    opacity: 1;
-  }
-
-  // The hover color is applied to the container instead of the buttons
-  // This override prevents flashes of background color on button elemenets
-  button:hover {
-    background-color: transparent !important; //sass-lint:disable-line no-important
-  }
-}
-
-.euiListGroupItem__label {
-  flex-grow: 1;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  vertical-align: middle;
-
-  > * {
-    line-height: $euiSizeL;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  button > span {
-    justify-content: start !important; //sass-lint:disable-line no-important
-    padding: 0 !important; //sass-lint:disable-line no-important
-  }
-
-  svg + span {
-    margin-left: 0 !important; //sass-lint:disable-line no-important
-  }
-}
-
-.euiListGroupItem__actionButton {
-  flex-shrink: 0;
-  height: 100%;
-  min-width: $euiSizeL;
-  margin-right: $euiSizeXS;
-
-  // Hide visually with opacity, still reachable via keyboard
-  button {
-    opacity: 0;
-
-    // Make button visible with keyboard focus
-    // Mouse users will see it when they hover on the parent container above
-    &:focus {
-      opacity: 1;
-    }
-
-    &:hover:not([disabled]) svg,
-    &:focus:not([disabled]) svg {
-      fill: $euiColorPrimary;
-    }
-  }
-}
-
-.euiListGroupItem-showAction .euiListGroupItem__actionButton button {
-  opacity: 1;
-}
-
-.euiListGroupItem__button {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  vertical-align: middle;
-  height: 100%;
-  width: 100%;
-
-  > div {
-    flex-grow: 0;
-  }
-}
-
-.euiListGroupItem__icon {
-  flex-grow: 0;
-  margin-right: $euiSizeS;
-}
-
-.euiListGroupItem-textOnly {
-  .euiListGroupItem__icon {
-    vertical-align: text-bottom;
-  }
-
-  .euiListGroupItem__label span {
-    display: inline-block;
-  }
-}
-
-.euiListGroupItem--xSmall {
-  font-size: $euiFontSizeXS;
-}
-
-.euiListGroupItem--small {
-  font-size: $euiFontSizeS;
-}
-
-.euiListGroupItem--large {
-  font-size: $euiFontSizeL;
 }
