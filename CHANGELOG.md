@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.0.0`.
+
+## [`6.0.0`](https://github.com/elastic/eui/tree/v6.0.0)
+
 - Added `onFocus` prop to `EuiComboBox` ([#1375](https://github.com/elastic/eui/pull/1375))
 - Added `DisambiguateSet` and `ExclusiveUnion` utility types ([#1368](https://github.com/elastic/eui/pull/1368))
 - Added `EuiSuperDatePicker` component ([#1351](https://github.com/elastic/eui/pull/1351))
