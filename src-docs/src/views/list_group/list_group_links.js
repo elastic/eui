@@ -17,14 +17,14 @@ const myContent = [
     size: 's',
   },
   {
-    label: 'Second link',
+    label: 'Second link is active',
     href: window.location.href,
     isActive: true,
     iconType: 'clock',
     size: 's',
   },
   {
-    label: 'Third link',
+    label: 'Third link is disabled',
     href: window.location.href,
     isDisabled: true,
     iconType: 'compute',

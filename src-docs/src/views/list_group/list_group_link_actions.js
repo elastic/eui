@@ -104,7 +104,7 @@ export default class extends Component {
             extraAction={{
               color: 'subdued',
               onClick: this.link1Clicked,
-              iconType: favorite1 === 'link1' ? 'check' : 'starEmpty',
+              iconType: favorite1 === 'link1' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link1',
               // style: { opacity: favorite1 === 'link1' ? 1 : 0.5},
@@ -126,7 +126,7 @@ export default class extends Component {
             extraAction={{
               color: 'subdued',
               onClick: this.link2Clicked,
-              iconType: favorite2 === 'link2' ? 'check' : 'starEmpty',
+              iconType: favorite2 === 'link2' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link2',
             }}
@@ -147,12 +147,11 @@ export default class extends Component {
             extraAction={{
               color: 'subdued',
               onClick: this.link3Clicked,
-              iconType: favorite3 === 'link3' ? 'check' : 'starEmpty',
+              iconType: favorite3 === 'link3' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link3',
             }}
             alwaysShowAction={favorite3 === 'link3'}
-            isActive
           />
 
           <EuiListGroupItem
@@ -170,9 +169,9 @@ export default class extends Component {
             extraAction={{
               color: 'subdued',
               onClick: () => window.alert('Action clicked'),
-              iconType: 'starEmpty',
+              iconType: 'pin',
               iconSize: 's',
-              'aria-label': 'Open dummy prompt',
+              'aria-label': 'Favorite link4',
               isDisabled: true,
             }}
             isDisabled
