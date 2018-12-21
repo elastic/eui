@@ -8,7 +8,6 @@ import {
   EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -92,89 +91,63 @@ export default class extends Component {
         <EuiListGroup flush={flushWidth} bordered={showBorder} maxWidth={288}>
           <EuiListGroupItem
             id="link1"
-            label={
-              <EuiButtonEmpty
-                onClick={() => window.alert('Button clicked')}
-                iconType="bullseye"
-                color="text"
-              >
-                EUI button link
-              </EuiButtonEmpty>
-            }
+            iconType="bullseye"
+            label="EUI button link"
+            onClick={() => window.alert('Button clicked')}
+            isActive
             extraAction={{
               color: 'subdued',
               onClick: this.link1Clicked,
               iconType: favorite1 === 'link1' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link1',
-              // style: { opacity: favorite1 === 'link1' ? 1 : 0.5},
+              alwaysShow: favorite1 === 'link1',
             }}
-            alwaysShowAction={favorite1 === 'link1'}
           />
 
           <EuiListGroupItem
             id="link2"
-            label={
-              <EuiButtonEmpty
-                onClick={() => window.alert('Button clicked')}
-                iconType="beaker"
-                color="text"
-              >
-                EUI button link
-              </EuiButtonEmpty>
-            }
+            iconType="beaker"
+            onClick={() => window.alert('Button clicked')}
+            label="EUI button link"
             extraAction={{
               color: 'subdued',
               onClick: this.link2Clicked,
               iconType: favorite2 === 'link2' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link2',
+              alwaysShow: favorite2 === 'link2',
             }}
-            alwaysShowAction={favorite2 === 'link2'}
           />
 
           <EuiListGroupItem
             id="link3"
-            label={
-              <EuiButtonEmpty
-                onClick={() => window.alert('Button clicked')}
-                iconType="broom"
-                color="text"
-              >
-                EUI button link
-              </EuiButtonEmpty>
-            }
+            onClick={() => window.alert('Button clicked')}
+            iconType="broom"
+            label="EUI button link"
             extraAction={{
               color: 'subdued',
               onClick: this.link3Clicked,
               iconType: favorite3 === 'link3' ? 'pinFilled' : 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link3',
+              alwaysShow: favorite3 === 'link3',
+              isDisabled: true,
             }}
-            alwaysShowAction={favorite3 === 'link3'}
           />
 
           <EuiListGroupItem
             id="link4"
-            label={
-              <EuiButtonEmpty
-                onClick={() => window.alert('Button clicked')}
-                iconType="brush"
-                color="text"
-                isDisabled
-              >
-                EUI button link
-              </EuiButtonEmpty>
-            }
+            iconType="brush"
+            isDisabled
+            label="EUI button link"
             extraAction={{
               color: 'subdued',
               onClick: () => window.alert('Action clicked'),
               iconType: 'pin',
               iconSize: 's',
               'aria-label': 'Favorite link4',
-              isDisabled: true,
             }}
-            isDisabled
           />
         </EuiListGroup>
       </Fragment>
