@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiButtonIcon } from '../button';
 import { ICON_TYPES, EuiIcon } from '../icon';
 
 const sizeToClassNameMap = {
@@ -22,6 +23,7 @@ export const EuiListGroupItem = ({
   extraAction,
   onClick,
   size,
+  alwaysShowAction,
   ...rest
 }) => {
   const classes = classNames(
@@ -33,6 +35,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-hasIcon': iconType,
       'euiListGroupItem-hasAction': extraAction,
       'euiListGroupItem-textOnly': typeof label === 'string' && !href,
+      'euiListGroupItem-showAction': alwaysShowAction || isActive,
     },
     className
   );
@@ -50,7 +53,7 @@ export const EuiListGroupItem = ({
   if (extraAction) {
     extraActionNode = (
       <span className="euiListGroupItem__actionButton">
-        {extraAction}
+        <EuiButtonIcon {...extraAction} />
       </span>
     );
   }
@@ -152,7 +155,12 @@ EuiListGroupItem.propTypes = {
   /**
    * Add button icon for secondary action. See EuiButtonIcon
    */
-  extraAction: PropTypes.node,
+  extraAction: PropTypes.object,
+
+  /**
+   * Make the secondary action button always visible
+   */
+  alwaysShowAction: PropTypes.bool,
 
   onClick: PropTypes.func,
 };
@@ -160,4 +168,5 @@ EuiListGroupItem.propTypes = {
 EuiListGroupItem.defaultProps = {
   isActive: false,
   isDisabled: false,
+  alwaysShowAction: false,
 };

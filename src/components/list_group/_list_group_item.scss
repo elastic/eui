@@ -130,6 +130,7 @@
     // Mouse users will see it when they hover on the parent container above
     &:focus {
       opacity: 1;
+      background-color: transparent;
     }
 
     &:hover:not([disabled]) svg,
@@ -137,6 +138,10 @@
       fill: $euiColorPrimary;
     }
   }
+}
+
+.euiListGroupItem-showAction .euiListGroupItem__actionButton button {
+  opacity: 1;
 }
 
 .euiListGroupItem__button {
