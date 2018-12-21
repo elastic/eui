@@ -72,7 +72,7 @@
   justify-content: left;
   align-items: center;
   vertical-align: middle;
-  height: 100%;
+  // height: 100%;
   width: 100%;
 
   span > *:not(svg) {
@@ -160,7 +160,6 @@
 
 .euiListGroupItem__icon {
   flex-grow: 0;
-  height: 100%;
   margin-right: $euiSizeS;
 }
 
