@@ -8,6 +8,7 @@ const generator = dtsGenerator({
   name: '@elastic/eui',
   project: baseDir,
   out: 'eui.d.ts',
+  exclude: ['node_modules/**/*.d.ts', 'src/custom_typings/**/*.d.ts'],
   resolveModuleId(params) {
     if (path.basename(params.currentModuleId) === 'index') {
       // this module is exporting from an `index(.d)?.ts` file, declare its exports straight to @elastic/eui module
