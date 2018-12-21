@@ -652,15 +652,21 @@ describe('EuiInMemoryTable', () => {
       const items = [
         {
           active: true,
-          name: 'Kansas'
+          complex: {
+            name: 'Kansas'
+          }
         },
         {
           active: true,
-          name: 'North Dakota'
+          complex: {
+            name: 'North Dakota'
+          }
         },
         {
           active: false,
-          name: 'Florida'
+          complex: {
+            name: 'Florida'
+          }
         },
       ];
 
@@ -670,7 +676,7 @@ describe('EuiInMemoryTable', () => {
           name: 'Is Active'
         },
         {
-          field: 'name',
+          field: 'complex.name',
           name: 'Name'
         }
       ];
@@ -678,21 +684,25 @@ describe('EuiInMemoryTable', () => {
       const search = {
         defaultQuery: 'No',
         executeQueryOptions: {
-          defaultFields: ['name']
+          defaultFields: ['complex.name']
         }
       };
 
-      const noSearchComponent = mount(
-        <EuiInMemoryTable {...{ items, columns, search: {}, className: 'testTable' }} />
+      const message = (
+        <span className="customMessage">No items found!</span>
       );
-      // should render with all three results visible
-      expect(noSearchComponent.find('.testTable EuiTableRow').length).toBe(3);
+
+      const noDefaultFieldsComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search: { defaultQuery: 'No' }, className: 'testTable', message }} />
+      );
+      // should render with the no items found text
+      expect(noDefaultFieldsComponent.find('.customMessage').length).toBe(1);
 
       // With defaultFields and a search query, we should only see one
-      const searchComponent = mount(
-        <EuiInMemoryTable {...{ items, columns, search, className: 'testTable' }} />
+      const defaultFieldComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search, className: 'testTable', message }} />
       );
-      expect(searchComponent.find('.testTable EuiTableRow').length).toBe(1);
+      expect(defaultFieldComponent.find('.testTable EuiTableRow').length).toBe(1);
     });
   });
 
