@@ -647,6 +647,53 @@ describe('EuiInMemoryTable', () => {
       // should render with the one inactive result
       expect(component.find('.testTable EuiTableRow').length).toBe(1);
     });
+
+    it('passes down the executeQueryOptions properly', () => {
+      const items = [
+        {
+          active: true,
+          name: 'Kansas'
+        },
+        {
+          active: true,
+          name: 'North Dakota'
+        },
+        {
+          active: false,
+          name: 'Florida'
+        },
+      ];
+
+      const columns = [
+        {
+          field: 'active',
+          name: 'Is Active'
+        },
+        {
+          field: 'name',
+          name: 'Name'
+        }
+      ];
+
+      const search = {
+        defaultQuery: 'No',
+        executeQueryOptions: {
+          defaultFields: ['name']
+        }
+      };
+
+      const noSearchComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search: {}, className: 'testTable' }} />
+      );
+      // should render with all three results visible
+      expect(noSearchComponent.find('.testTable EuiTableRow').length).toBe(3);
+
+      // With defaultFields and a search query, we should only see one
+      const searchComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search, className: 'testTable' }} />
+      );
+      expect(searchComponent.find('.testTable EuiTableRow').length).toBe(1);
+    });
   });
 
   describe('custom column sorting', () => {

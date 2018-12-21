@@ -50,7 +50,11 @@ const InMemoryTablePropTypes = {
     }),
     filters: SearchFiltersFiltersType,
     onChange: PropTypes.func,
-    executeQueryOptions: PropTypes.object
+    executeQueryOptions: PropTypes.shape({
+      defaultFields: PropTypes.arrayOf(PropTypes.string),
+      isClauseMatcher: PropTypes.func,
+      explain: PropTypes.bool,
+    })
   })]),
   pagination: PropTypes.oneOfType([
     PropTypes.bool,
