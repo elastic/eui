@@ -1,6 +1,8 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`master`](https://github.com/elastic/eui/tree/master) 
 
-No public interface changes since `6.0.0`.
+**Bug fixes**
+
+- `EuiColorPicker` align color picker popup with color selector when page is scrolled ([#1397](https://github.com/elastic/eui/pull/1397))
 
 ## [`6.0.0`](https://github.com/elastic/eui/tree/v6.0.0)
 
