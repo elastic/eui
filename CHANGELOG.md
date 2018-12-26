@@ -1,4 +1,8 @@
-## [`master`](https://github.com/elastic/eui/tree/master) 
+## [`master`](https://github.com/elastic/eui/tree/master)
+
+No public interface changes since `6.0.1`.
+
+## [`6.0.1`](https://github.com/elastic/eui/tree/v6.0.1) 
 
 **Bug fixes**
 
