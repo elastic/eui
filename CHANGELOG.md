@@ -10,6 +10,7 @@
 
 - Only style anchor tags in `EuiText` that have no class attribute ([#1373](https://github.com/elastic/eui/pull/1373))
 - Fixed some EUI services' TS definitions ([#1380](https://github.com/elastic/eui/pull/1380))
+- `EuiColorPicker` align color picker popup with color selector when page is scrolled ([#1397](https://github.com/elastic/eui/pull/1397))
 
 **Breaking changes**
 
