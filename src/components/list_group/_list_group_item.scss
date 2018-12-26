@@ -13,7 +13,9 @@
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover,
-  &.euiListGroupItem-isClickable:focus {
+  &.euiListGroupItem-isClickable:focus,
+  .euiListGroupItem__button:focus,
+  .euiListGroupItem__extraActionButton:focus {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
@@ -25,7 +27,9 @@
   // Style all disabled list items whether or not they are links or buttons
   &.euiListGroupItem-isDisabled,
   &.euiListGroupItem-isDisabled:hover,
-  &.euiListGroupItem-isDisabled:focus {
+  &.euiListGroupItem-isDisabled:focus,
+  &.euiListGroupItem-isDisabled .euiListGroupItem__button:hover,
+  &.euiListGroupItem-isDisabled .euiListGroupItem__button:focus {
     color: $euiButtonColorDisabled;
     text-decoration: none;
     cursor: not-allowed;
@@ -35,20 +39,22 @@
 
 .euiListGroupItem__text,
 .euiListGroupItem__button {
-  padding: $euiSizeS;
+  padding: $euiSizeM $euiSizeS;
   display: flex;
   align-items: center;
   flex-grow: 1;
   text-align: left;
 }
 
-.euiListGroupItem__extraAction {
+.euiListGroupItem__extraActionButton {
   opacity: 0;
+  margin-right: $euiSizeS;
   transition: opacity $euiAnimSpeedFast;
 
   .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
   .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
-  &.euiListGroupItem__extraAction-alwaysShow {
+  .euiListGroupItem__extraAction-alwaysShow &,
+  &:focus {
     opacity: 1;
   }
 }
