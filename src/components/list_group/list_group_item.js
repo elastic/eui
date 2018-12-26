@@ -73,7 +73,7 @@ export const EuiListGroupItem = ({
     itemContent = (
       <a href={href} className="euiListGroupItem__button" {...rest}>
         {iconNode}
-        {label}
+        <span className="euiListGroupItem__label">{label}</span>
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -85,14 +85,14 @@ export const EuiListGroupItem = ({
         {...rest}
       >
         {iconNode}
-        {label}
+        <span className="euiListGroupItem__label">{label}</span>
       </button>
     );
   } else {
     itemContent = (
       <span className="euiListGroupItem__text" {...rest}>
         {iconNode}
-        {label}
+        <span className="euiListGroupItem__label">{label}</span>
       </span>
     );
   }
