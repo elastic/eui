@@ -1,0 +1,36 @@
+// Nav drawer. Global application navigation.
+
+$euiNavDrawerWidthExpanded: 240px;
+$euiNavDrawerWidthCollapsed: 48px;
+$euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
+
+.euiNavDrawer {
+  width: $euiNavDrawerWidthExpanded;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  // z-index: $euiZHeader; // ensure the shadow shows above content
+  background: $euiHeaderBackgroundColor;
+  box-shadow: $euiNavDrawerSideShadow;
+
+  &.euiNavDrawer-isCollapsed {
+    width: $euiNavDrawerWidthCollapsed;
+    transition: width $euiAnimSpeedFast ease-in;
+  }
+
+  &.euiNavDrawer-isExpanded {
+    transition: width $euiAnimSpeedNormal ease-out 1.8s; // Delays the expanded view
+
+    .euiListGroupItem__label,
+    .euiListGroupItem__extraAction {
+      visibility: visible;
+    }
+  }
+
+  .euiListGroupItem__label,
+  .euiListGroupItem__extraAction {
+    visibility: hidden;
+    white-space: nowrap;
+  }
+}
