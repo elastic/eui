@@ -66,6 +66,10 @@ WrappedEuiSuperDatePicker.propTypes = {
    * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
    */
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
+  /**
+   * Set showApplyButton to false to immediately invoke onTimeChange for all start and end changes.
+   */
+  showApplyButton: PropTypes.bool,
 };
 
 WrappedEuiSuperDatePicker.defaultProps = {
@@ -85,6 +89,7 @@ WrappedEuiSuperDatePicker.defaultProps = {
   ],
   dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
   recentlyUsedRanges: [],
+  showApplyButton: true,
 };
 
 export class EuiSuperDatePicker extends Component {
@@ -149,6 +154,11 @@ export class EuiSuperDatePicker extends Component {
     });
 
     if (!isInvalid) {
+      if (!this.props.showApplyButton) {
+        this.props.onTimeChange({ start, end });
+        return;
+      }
+
       this.showTooltip();
       this.tooltipTimeout = setTimeout(() => {
         this.hideTooltip();
@@ -236,6 +246,10 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
+    if (!this.props.showApplyButton) {
+      return;
+    }
+
     let buttonText = 'Refresh';
     if (this.state.hasChanged || this.props.isLoading) {
       buttonText = this.props.isLoading ? 'Updating' : 'Update';
