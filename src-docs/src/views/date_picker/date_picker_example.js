@@ -294,7 +294,7 @@ export const DatePickerExample = {
           <EuiCode>onTimeChange</EuiCode> will be invoked when the user clicks the <strong>Update</strong> button.
           This gives users the ability to set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode>{' '}
           before triggering <EuiCode>onTimeChange</EuiCode>.
-          Set <EuiCode>showApplyButton</EuiCode> to <EuiCode>false</EuiCode>{' '}
+          Set <EuiCode>showUpdateButton</EuiCode> to <EuiCode>false</EuiCode>{' '}
           to immediately invoke <EuiCode>onTimeChange</EuiCode>{' '}
           for all <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
         </p>

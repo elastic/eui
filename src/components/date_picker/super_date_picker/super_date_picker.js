@@ -56,9 +56,9 @@ export class EuiSuperDatePicker extends Component {
      */
     recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
     /**
-     * Set showApplyButton to false to immediately invoke onTimeChange for all start and end changes.
+     * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
      */
-    showApplyButton: PropTypes.bool,
+    showUpdateButton: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -78,7 +78,7 @@ export class EuiSuperDatePicker extends Component {
     ],
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     recentlyUsedRanges: [],
-    showApplyButton: true,
+    showUpdateButton: true,
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -163,7 +163,7 @@ export class EuiSuperDatePicker extends Component {
     });
 
     if (!isInvalid) {
-      if (!this.props.showApplyButton) {
+      if (!this.props.showUpdateButton) {
         this.props.onTimeChange({ start, end });
         return;
       }
@@ -258,7 +258,7 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
-    if (!this.props.showApplyButton) {
+    if (!this.props.showUpdateButton) {
       return;
     }
 

@@ -14,7 +14,7 @@ export default class extends Component {
   state = {
     recentlyUsedRanges: [],
     isLoading: false,
-    showApplyButton: true,
+    showUpdateButton: true,
     start: 'now-30m',
     end: 'now',
   }
@@ -56,33 +56,17 @@ export default class extends Component {
 
   toggleShowApplyButton = () => {
     this.setState(prevState => ({
-      showApplyButton: !prevState.showApplyButton,
+      showUpdateButton: !prevState.showUpdateButton,
     }));
   }
 
   render() {
     return (
       <Fragment>
-        <EuiFormRow
-          label="start time"
-        >
-          <EuiFieldText
-            disabled
-            value={this.state.start}
-          />
-        </EuiFormRow>
-        <EuiFormRow
-          label="end time"
-        >
-          <EuiFieldText
-            disabled
-            value={this.state.end}
-          />
-        </EuiFormRow>
         <EuiSwitch
           label="Show apply button"
           onChange={this.toggleShowApplyButton}
-          checked={this.state.showApplyButton}
+          checked={this.state.showUpdateButton}
         />
         <EuiSpacer />
 
@@ -95,8 +79,25 @@ export default class extends Component {
           refreshInterval={this.state.refreshInterval}
           onRefreshChange={this.onRefreshChange}
           recentlyUsedRanges={this.state.recentlyUsedRanges}
-          showApplyButton={this.state.showApplyButton}
+          showUpdateButton={this.state.showUpdateButton}
         />
+
+        <EuiFormRow
+          label="start"
+        >
+          <EuiFieldText
+            readOnly
+            value={this.state.start}
+          />
+        </EuiFormRow>
+        <EuiFormRow
+          label="end"
+        >
+          <EuiFieldText
+            readOnly
+            value={this.state.end}
+          />
+        </EuiFormRow>
       </Fragment>
     );
   }
