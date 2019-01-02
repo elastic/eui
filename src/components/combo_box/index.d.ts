@@ -63,6 +63,7 @@ declare module '@elastic/eui' {
     noSuggestions?: boolean,
     options?: EuiComboBoxOptionsListProps['options'],
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
+    onBlur?: FocusEventHandler<HTMLInputElement>,
     onChange?: (options: Array<EuiComboBoxOptionProps>) => any,
     onFocus?: FocusEventHandler<HTMLInputElement>,
     onSearchChange?: (searchValue: string) => any,
