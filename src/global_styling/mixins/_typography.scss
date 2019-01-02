@@ -1,9 +1,15 @@
+// sass-lint:disable no-vendor-prefixes
 
 // Our base fonts
 
 @mixin euiFont {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
+  letter-spacing: -.005em;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-kerning: normal;
+  font-feature-settings: $euiFontFeatureSettings;
 
   @supports (font-variation-settings: normal) {
     font-family: 'Inter UI var', $euiFontFamily;
@@ -12,6 +18,7 @@
 
 @mixin euiCodeFont {
   font-family: $euiCodeFontFamily;
+  letter-spacing: normal;
 }
 
 @mixin euiText {
@@ -33,7 +40,7 @@
   } @else if $size == 'xs' {
     @include euiFontSize;
     @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightMedium;
+    font-weight: $euiFontWeightSemiBold;
     letter-spacing: -.02em;
   } @else if $size == 's' {
     @include euiFontSizeL;

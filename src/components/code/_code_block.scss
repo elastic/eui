@@ -12,9 +12,9 @@
   }
 
   .euiCodeBlock__code {
+    @include euiCodeFont;
     display: block;
     line-height: $euiLineHeight;
-    font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
   }
 

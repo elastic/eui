@@ -223,7 +223,7 @@
   color: $euiColorEmptyShade;
 
   &--code {
-    font-family: $euiCodeFontFamily;
+    @include euiCodeFont;
   }
 }
 

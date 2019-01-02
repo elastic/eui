@@ -3,7 +3,7 @@ $euiFontFamily: 'Open Sans', Helvetica, Arial, sans-serif;
 
 $euiTextScale: 2.28571429, 1.71428571, 1.28571429, 1.14285714, 1, 1, .85714286;
 
-$euiFontSize:       14px; // 5th position in scale
+$euiFontSize:       16px; // 5th position in scale
 
 $euiFontSizeXS:     $euiFontSize * nth($euiTextScale, 7); // 12px
 $euiFontSizeS:      $euiFontSize * nth($euiTextScale, 6); // 14px
