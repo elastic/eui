@@ -1,11 +1,7 @@
 // Nav drawer. Global application navigation.
 
-$euiNavDrawerWidthExpanded: 240px;
-$euiNavDrawerWidthCollapsed: 48px;
-$euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
-
 .euiNavDrawer {
-  width: $euiNavDrawerWidthExpanded;
+  width: $euiNavDrawerWidthCollapsed;
   height: 100%;
   position: absolute;
   left: 0;
@@ -15,21 +11,35 @@ $euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
   box-shadow: $euiNavDrawerSideShadow;
 
   &.euiNavDrawer-isCollapsed {
-    width: $euiNavDrawerWidthCollapsed;
     transition: width $euiAnimSpeedFast ease-in;
-  }
 
-  &.euiNavDrawer-isExpanded {
-    transition: width $euiAnimSpeedNormal ease-out 1.8s; // Delays the expanded view
-
-    .euiListGroupItem__label,
-    .euiListGroupItem__extraAction {
-      visibility: visible;
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
     }
   }
 
-  .euiListGroupItem__label,
-  .euiListGroupItem__extraAction {
+  &.euiNavDrawer-isExpanded {
+    width: $euiNavDrawerWidthExpanded;
+    transition: width $euiAnimSpeedNormal ease-out;
+    // transition: width $euiAnimSpeedNormal ease-out 1.8s; // TODO Delays the expanded view
+
+    .euiNavDrawerMenu .euiListGroupItem__label,
+    .euiNavDrawerMenu .euiListGroupItem__extraAction {
+      visibility: visible;
+    }
+
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthExpanded * 2;
+      // transition-delay: 0s; // TODO works with delay
+    }
+
+    // &.euiNavDrawer-flyoutIsCollapsed {
+    //   transition-delay: 0s; // TODO this fixes the delay when flyout collapses, but breaks the delay when menu expands
+    // }
+  }
+
+  .euiNavDrawerMenu .euiListGroupItem__label,
+  .euiNavDrawerMenu .euiListGroupItem__extraAction {
     visibility: hidden;
     white-space: nowrap;
   }

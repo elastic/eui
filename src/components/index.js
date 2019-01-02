@@ -219,6 +219,8 @@ export {
 
 export {
   EuiNavDrawer,
+  EuiNavDrawerMenu,
+  EuiNavDrawerFlyout,
 } from './nav_drawer';
 
 export {

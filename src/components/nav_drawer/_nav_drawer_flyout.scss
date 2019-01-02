@@ -1,0 +1,37 @@
+.euiNavDrawerFlyout {
+  position: absolute;
+  left: $euiNavDrawerWidthCollapsed;
+  top: 0;
+  width: 0;
+  height: 100%;
+  padding: $euiSize;
+  background-color: $euiNavDrawerBackgroundColor;
+  border-left: $euiBorderThin;
+  box-shadow: $euiNavDrawerSideShadow;
+  visibility: hidden;
+  opacity: 0;
+
+  &.euiNavDrawerFlyout-isExpanded {
+    visibility: visible;
+    opacity: 1;
+    width: $euiNavDrawerWidthExpanded;
+    transition: opacity $euiAnimSpeedFast .2s, width $euiAnimSpeedNormal;
+  }
+
+  &.euiNavDrawerFlyout-isCollapsed {
+    transition: opacity $euiAnimSpeedFast, width $euiAnimSpeedFast;
+  }
+
+  .euiNavDrawer-isCollapsed & {
+    left: $euiNavDrawerWidthCollapsed;
+  }
+
+  .euiNavDrawer-isExpanded & {
+    left: $euiNavDrawerWidthExpanded;
+  }
+
+  .euiNavDrawerFlyout__listGroup {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
