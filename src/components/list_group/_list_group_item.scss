@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   transition: background-color $euiAnimSpeedFast;
+  position: relative;
 
   &:first-child {
     margin-top: 0;
