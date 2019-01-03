@@ -60,9 +60,7 @@ export const EuiListGroupItem = ({
     );
 
     extraActionNode = (
-      <span className={extraActionClasses}>
-        <EuiButtonIcon className="euiListGroupItem__extraActionButton" iconType={iconType} {...rest} disabled={isDisabled} />
-      </span>
+      <EuiButtonIcon className={extraActionClasses} iconType={iconType} {...rest} disabled={isDisabled} />
     );
   }
 

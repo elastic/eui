@@ -13,9 +13,7 @@
 
   &.euiListGroupItem-isActive,
   &.euiListGroupItem-isClickable:hover,
-  &.euiListGroupItem-isClickable:focus,
-  .euiListGroupItem__button:focus,
-  .euiListGroupItem__extraActionButton:focus {
+  &.euiListGroupItem-isClickable:focus {
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
@@ -46,14 +44,18 @@
   text-align: left;
 }
 
-.euiListGroupItem__extraActionButton {
+.euiListGroupItem__button:focus {
+  text-decoration: underline;
+}
+
+.euiListGroupItem__extraAction {
   opacity: 0;
   margin-right: $euiSizeS;
   transition: opacity $euiAnimSpeedFast;
 
   .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
   .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
-  .euiListGroupItem__extraAction-alwaysShow &,
+  &.euiListGroupItem__extraAction-alwaysShow,
   &:focus {
     opacity: 1;
   }
