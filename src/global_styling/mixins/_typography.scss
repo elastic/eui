@@ -12,7 +12,7 @@
   font-feature-settings: $euiFontFeatureSettings;
 
   @supports (font-variation-settings: normal) {
-    font-family: 'Inter UI var', $euiFontFamily;
+    font-family: $euiFontFamilyVariable;
   }
 }
 

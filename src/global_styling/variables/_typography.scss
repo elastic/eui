@@ -31,6 +31,7 @@
 // Families
 
 $euiFontFamily: 'Inter UI', system-ui, -apple-system, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$euiFontFamilyVariable: 'Inter UI var', $euiFontFamily !default;
 $euiCodeFontFamily: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !default;
 
 $euiFontFeatureSettings: 'calt' 1, 'kern' 1, 'liga' 1 !default;
