@@ -50,6 +50,11 @@ const InMemoryTablePropTypes = {
     }),
     filters: SearchFiltersFiltersType,
     onChange: PropTypes.func,
+    executeQueryOptions: PropTypes.shape({
+      defaultFields: PropTypes.arrayOf(PropTypes.string),
+      isClauseMatcher: PropTypes.func,
+      explain: PropTypes.bool,
+    })
   })]),
   pagination: PropTypes.oneOfType([
     PropTypes.bool,
@@ -138,6 +143,7 @@ export class EuiInMemoryTable extends Component {
     pagination: false,
     sorting: false,
     responsive: true,
+    executeQueryOptions: {}
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -264,6 +270,7 @@ export class EuiInMemoryTable extends Component {
   }
 
   getItems() {
+    const { executeQueryOptions } = this.props;
     const { prevProps: { items } } = this.state;
 
     if (!items.length) {
@@ -280,7 +287,7 @@ export class EuiInMemoryTable extends Component {
       pageSize,
     } = this.state;
 
-    const matchingItems = query ? EuiSearchBar.Query.execute(query, items) : items;
+    const matchingItems = query ? EuiSearchBar.Query.execute(query, items, executeQueryOptions) : items;
 
     const sortedItems =
       sortField
@@ -319,6 +326,7 @@ export class EuiInMemoryTable extends Component {
       items: _unuseditems, // eslint-disable-line no-unused-vars
       search, // eslint-disable-line no-unused-vars
       onTableChange, // eslint-disable-line no-unused-vars
+      executeQueryOptions, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
