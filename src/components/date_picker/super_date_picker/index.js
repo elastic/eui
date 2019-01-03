@@ -1,5 +1,3 @@
-import {
-  WrappedEuiSuperDatePicker,
+export {
+  EuiSuperDatePicker,
 } from './super_date_picker';
-
-export { WrappedEuiSuperDatePicker as EuiSuperDatePicker };

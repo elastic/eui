@@ -2,6 +2,7 @@
 
 - Convert the other of the services to TypeScript ([#1392](https://github.com/elastic/eui/pull/1392))
 - Changed single selection to select existing option in the list ([#1391](https://github.com/elastic/eui/pull/1391))
+- Added `showUpdateButton` prop to `EuiSuperDatePicker` ([#1399](https://github.com/elastic/eui/pull/1399))
 
 ## [`6.0.1`](https://github.com/elastic/eui/tree/v6.0.1)
 
@@ -22,7 +23,6 @@
 
 - Only style anchor tags in `EuiText` that have no class attribute ([#1373](https://github.com/elastic/eui/pull/1373))
 - Fixed some EUI services' TS definitions ([#1380](https://github.com/elastic/eui/pull/1380))
-- `EuiColorPicker` align color picker popup with color selector when page is scrolled ([#1397](https://github.com/elastic/eui/pull/1397))
 
 **Breaking changes**
 

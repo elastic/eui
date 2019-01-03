@@ -281,6 +281,23 @@ export const DatePickerExample = {
           in either datemath format (e.g.: now, now-15m, now-15m/m)
           or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>
         </p>
+        <p>
+          <EuiCode>onTimeChange</EuiCode> will be immediately invoked when{' '}
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from interactions with{' '}
+          <strong> Quick select</strong>, <strong>Commonly used</strong>, or <strong>Recently used date ranges</strong>{' '}
+          since these interactions set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> in a single event.
+        </p>
+        <p>
+          <EuiCode>onTimeChange</EuiCode> will <strong>not</strong> be invoked when
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from interactions with{' '}
+          <strong>Absolute</strong>, <strong>Relative</strong>, and <strong>Now</strong> tabs.{' '}
+          <EuiCode>onTimeChange</EuiCode> will be invoked when the user clicks the <strong>Update</strong> button.
+          This gives users the ability to set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode>{' '}
+          before triggering <EuiCode>onTimeChange</EuiCode>.
+          Set <EuiCode>showUpdateButton</EuiCode> to <EuiCode>false</EuiCode>{' '}
+          to immediately invoke <EuiCode>onTimeChange</EuiCode>{' '}
+          for all <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
+        </p>
       </div>
     ),
     demo: <SuperDatePicker />,
