@@ -477,19 +477,20 @@ export class EuiComboBox extends Component {
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
     const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async, singleSelection);
-    let nextActiveOptionIndex;
     // ensure that the currently selected single option is active if it is in the matchingOptions
     if (singleSelection && selectedOptions.length === 1) {
+      let nextActiveOptionIndex;
       if (matchingOptions.includes(selectedOptions[0])) {
         nextActiveOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
       }
+      return { matchingOptions, activeOptionIndex: nextActiveOptionIndex };
     }
 
-    return { matchingOptions, activeOptionIndex: nextActiveOptionIndex };
+    return { matchingOptions };
   }
 
   updateMatchingOptionsIfDifferent(newMatchingOptions) {
-    const { matchingOptions } = this.state;
+    const { matchingOptions, activeOptionIndex } = this.state;
     const { singleSelection, selectedOptions } = this.props;
 
     let areOptionsDifferent = false;
@@ -507,7 +508,7 @@ export class EuiComboBox extends Component {
 
     if (areOptionsDifferent) {
       this.options = [];
-      let nextActiveOptionIndex;
+      let nextActiveOptionIndex = activeOptionIndex;
       // ensure that the currently selected single option is active if it is in the matchingOptions
       if (singleSelection && selectedOptions.length === 1) {
         if (newMatchingOptions.includes(selectedOptions[0])) {
