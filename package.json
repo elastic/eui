@@ -10,7 +10,7 @@
   "scripts": {
     "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
-    "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test'",
+    "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test && npm run build'",
     "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "webpack --config=src-docs/webpack.config.js",
     "build": "node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js",
@@ -41,6 +41,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
@@ -74,7 +75,6 @@
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.13",
     "@types/jest": "^23.3.9",
-    "@types/lodash": "^4.14.116",
     "@types/react": "^16.3.0",
     "@types/react-virtualized": "^9.18.6",
     "@types/uuid": "^3.4.4",
@@ -112,6 +112,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.4.0",
     "file-loader": "^1.1.11",
+    "findup": "^0.1.5",
     "fork-ts-checker-webpack-plugin": "^0.4.4",
     "geckodriver": "^1.11.0",
     "glob": "^7.1.2",
@@ -142,6 +143,7 @@
     "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "resolve": "^1.5.0",
     "rimraf": "^2.6.2",
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.3.0",

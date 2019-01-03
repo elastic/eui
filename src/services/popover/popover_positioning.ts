@@ -1,30 +1,62 @@
-const relatedDimension = {
+import { EuiPopoverPosition } from './types';
+
+type Dimension = 'height' | 'width';
+
+export const POSITIONS: EuiPopoverPosition[] = ['top', 'right', 'bottom', 'left'];
+
+interface BoundingBox {
+  [position: string]: number;
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
+export interface EuiClientRect extends BoundingBox {
+  height: number;
+  width: number;
+}
+
+const relatedDimension: { [position in EuiPopoverPosition]: Dimension } = {
   top: 'height',
   right: 'width',
   bottom: 'height',
-  left: 'width'
+  left: 'width',
 };
 
-const dimensionPositionAttribute = {
+const dimensionPositionAttribute: { [dimension in Dimension]: 'top' | 'left' } = {
   height: 'top',
-  width: 'left'
+  width: 'left',
 };
 
-const positionComplements = {
+const positionComplements: { [position in EuiPopoverPosition]: EuiPopoverPosition } = {
   top: 'bottom',
   right: 'left',
   bottom: 'top',
-  left: 'right'
+  left: 'right',
 };
 
 // always resolving to top/left is taken advantage of by knowing they are the
 // minimum edges of the bounding box
-const positionSubstitutes = {
+const positionSubstitutes: { [position in EuiPopoverPosition]: 'left' | 'top' } = {
   top: 'left',
   right: 'top',
   bottom: 'left',
-  left: 'top'
+  left: 'top',
 };
+
+interface FindPopoverPositionArgs {
+  anchor: HTMLElement;
+  popover: HTMLElement;
+  align?: EuiPopoverPosition;
+  position: EuiPopoverPosition;
+  forcePosition?: boolean;
+  buffer?: number;
+  offset?: number;
+  allowCrossAxis?: boolean;
+  container?: HTMLElement;
+  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+}
 
 /**
  * Calculates the absolute positioning (relative to document.body) to place a popover element
@@ -38,23 +70,31 @@ const positionSubstitutes = {
  * @param [offset=0] {number} Distance between the popover and the anchor
  * @param [allowCrossAxis=true] {boolean} Whether to allow the popover to be positioned on the cross-axis
  * @param [container] {HTMLElement} Element the popover must be constrained to fit within
- * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If present, describes the size & constraints for an arrow element, and the function return value will include an `arrow` param with position details
+ * @param [arrowConfig] {{arrowWidth: number, arrowBuffer: number}} If
+ *  present, describes the size & constraints for an arrow element, and the
+ *  function return value will include an `arrow` param with position details
  *
- * @returns {{top: number, left: number, position: string, fit: number, arrow?: {left: number, top: number}}|null} absolute page coordinates for the popover,
- * and the placements's relation to the anchor; if there's no room this returns null
+ * @returns {{
+ *   top: number,
+ *   left: number,
+ *   position: string,
+ *   fit: number,
+ *   arrow?: {left: number, top: number}
+ * } | null} absolute page coordinates for the popover, and the
+ *  placements's relation to the anchor; if there's no room this returns null
  */
 export function findPopoverPosition({
   anchor,
   popover,
-  align,
+  align = null,
   position,
   forcePosition,
   buffer = 16,
   offset = 0,
   allowCrossAxis = true,
   container,
-  arrowConfig
-}) {
+  arrowConfig,
+}: FindPopoverPositionArgs) {
   // find the screen-relative bounding boxes of the anchor, popover, and container
   const anchorBoundingBox = getElementBoundingBox(anchor);
   const popoverBoundingBox = getElementBoundingBox(popover);
@@ -64,13 +104,13 @@ export function findPopoverPosition({
   // so prefer the clientWidth/clientHeight of the DOM if available
   const documentWidth = document.documentElement.clientWidth || window.innerWidth;
   const documentHeight = document.documentElement.clientHeight || window.innerHeight;
-  const windowBoundingBox = {
+  const windowBoundingBox: EuiClientRect = {
     top: 0,
     right: documentWidth,
     bottom: documentHeight,
     left: 0,
     height: documentHeight,
-    width: documentWidth
+    width: documentWidth,
   };
 
   // if no container element is given fall back to using the window viewport
@@ -93,8 +133,10 @@ export function findPopoverPosition({
    * if position = "right" the order is right, left, top, bottom
    */
 
-  const iterationPositions = [position]; // Try the user-desired position first.
-  const iterationAlignments = [align]; // keep user-defined alignment in the original positions.
+  // Try the user-desired position first.
+  const iterationPositions = [position];
+  // keep user-defined alignment in the original positions.
+  const iterationAlignments: Array<null | EuiPopoverPosition> = [align];
 
   if (forcePosition !== true) {
     iterationPositions.push(positionComplements[position]); // Try the complementary position.
@@ -111,20 +153,18 @@ export function findPopoverPosition({
     // position is forced, if it conficts with the alignment then reset align to `null`
     // e.g. original placement request for `downLeft` is moved to the `left` side, future calls
     // will position and align `left`, and `leftLeft` is not a valid placement
-    if (position === align || position === positionComplements[align]) {
+    if (position === align || (align != null && position === positionComplements[align])) {
       iterationAlignments[0] = null;
     }
   }
 
-  const {
-    bestPosition,
-  } = iterationPositions.reduce(({ bestFit, bestPosition }, iterationPosition, idx) => {
-    // If we've already found the ideal fit, use that position.
-    if (bestFit === 1) {
-      return { bestFit, bestPosition };
-    }
+  let bestFit = -Infinity;
+  let bestPosition = null;
 
-    // Otherwise, see if we can find a position with a better fit than we've found so far.
+  for (let idx = 0; idx < iterationPositions.length; idx++) {
+    const iterationPosition = iterationPositions[idx];
+
+    // See if we can find a position with a better fit than we've found so far.
     const screenCoordinates = getPopoverScreenCoordinates({
       position: iterationPosition,
       align: iterationAlignments[idx],
@@ -134,33 +174,41 @@ export function findPopoverPosition({
       containerBoundingBox,
       offset,
       buffer,
-      arrowConfig
+      arrowConfig,
     });
 
     if (screenCoordinates.fit > bestFit) {
-      return {
-        bestFit: screenCoordinates.fit,
-        bestPosition: {
-          fit: screenCoordinates.fit,
-          position: iterationPosition,
-          top: screenCoordinates.top + window.pageYOffset,
-          left: screenCoordinates.left + window.pageXOffset,
-          arrow: screenCoordinates.arrow
-        },
+      bestFit = screenCoordinates.fit;
+      bestPosition = {
+        fit: screenCoordinates.fit,
+        position: iterationPosition,
+        top: screenCoordinates.top + window.pageYOffset,
+        left: screenCoordinates.left + window.pageXOffset,
+        arrow: screenCoordinates.arrow,
       };
+
+      // If we've already found the ideal fit, use that position.
+      if (bestFit === 1) {
+        break;
+      }
     }
 
     // If we haven't improved the fit, then continue on and try a new position.
-    return {
-      bestFit,
-      bestPosition,
-    };
-  }, {
-    bestFit: -Infinity,
-    bestPosition: null,
-  });
+  }
 
   return bestPosition;
+}
+
+interface GetPopoverScreenCoordinatesArgs {
+  position: EuiPopoverPosition;
+  align?: EuiPopoverPosition | null;
+  anchorBoundingBox: EuiClientRect;
+  popoverBoundingBox: EuiClientRect;
+  windowBoundingBox: EuiClientRect;
+  containerBoundingBox: EuiClientRect;
+  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+  offset?: number;
+  buffer?: number;
 }
 
 /**
@@ -168,7 +216,7 @@ export function findPopoverPosition({
  * object with {top, left} screen coordinates or `null` if it's not possible to show
  * content in the target position
  * @param position {string} the target position, one of ["top", "right", "bottom", "left"]
- * @param [align] {string} target alignment on the cross-axis, one of ["top", "right", "bottom", "left"]
+ * @param align {string} target alignment on the cross-axis, one of ["top", "right", "bottom", "left"]
  * @param anchorBoundingBox {Object} bounding box of the anchor element
  * @param popoverBoundingBox {Object} bounding box of the popover element
  * @param windowBoundingBox {Object} bounding box of the window
@@ -177,16 +225,18 @@ export function findPopoverPosition({
  *  constraints for an arrow element, and the function return value will include an `arrow` param
  *  with position details
  * @param [offset=0] {number} Distance between the popover and the anchor
- * @param [buffer=0] {number} Minimum distance between the popover's placement and the container edge
+ * @param [buffer=0] {number} Minimum distance between the popover's
+ *  placement and the container edge
  *
- * @returns {{top: number, left: number, relativePlacement: string, fit: number, arrow?: {top: number, left: number}}|null}
+ * @returns {{top: number, left: number, relativePlacement: string, fit:
+ * number, arrow?: {top: number, left: number}}|null}
  *  object with top/left coordinates, the popover's relative position to the anchor, and how well the
  *  popover fits in the location (0.0 -> 1.0) oordinates and the popover's relative position, if
  *  there is no room in this placement then null
  */
 export function getPopoverScreenCoordinates({
   position,
-  align,
+  align = null,
   anchorBoundingBox,
   popoverBoundingBox,
   windowBoundingBox,
@@ -194,7 +244,7 @@ export function getPopoverScreenCoordinates({
   arrowConfig,
   offset = 0,
   buffer = 0,
-}) {
+}: GetPopoverScreenCoordinatesArgs) {
   /**
    * The goal is to find the best way to align the popover content
    * on the given side of the anchor element. The popover prefers
@@ -266,7 +316,7 @@ export function getPopoverScreenCoordinates({
 
   const popoverPlacement = {
     [crossAxisFirstSide]: crossAxisPosition,
-    [primaryAxisPositionName]: primaryAxisPosition
+    [primaryAxisPositionName]: primaryAxisPosition,
   };
 
   // calculate the fit of the popover in this location
@@ -287,13 +337,13 @@ export function getPopoverScreenCoordinates({
       bottom: popoverPlacement.top + popoverBoundingBox.height,
       left: popoverPlacement.left,
       width: popoverBoundingBox.width,
-      height: popoverBoundingBox.height
+      height: popoverBoundingBox.height,
     },
     combinedBoundingBox
   );
 
   const arrow = arrowConfig ? {
-    [crossAxisFirstSide]: crossAxisArrowPosition - popoverPlacement[crossAxisFirstSide],
+    [crossAxisFirstSide]: crossAxisArrowPosition! - popoverPlacement[crossAxisFirstSide],
     [primaryAxisPositionName]: primaryAxisArrowPosition,
   } : undefined;
 
@@ -303,6 +353,26 @@ export function getPopoverScreenCoordinates({
     left: popoverPlacement.left,
     arrow,
   };
+}
+
+interface GetCrossAxisPositionArgs {
+  crossAxisFirstSide: EuiPopoverPosition;
+  crossAxisSecondSide: EuiPopoverPosition;
+  crossAxisDimension: Dimension;
+  position: EuiPopoverPosition;
+  align: EuiPopoverPosition | null;
+  buffer: number;
+  offset: number;
+  windowBoundingBox: EuiClientRect;
+  containerBoundingBox: EuiClientRect;
+  popoverBoundingBox: EuiClientRect;
+  anchorBoundingBox: EuiClientRect;
+  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+}
+
+interface CrossAxisPosition {
+  crossAxisPosition: number;
+  crossAxisArrowPosition: number | undefined;
 }
 
 function getCrossAxisPosition({
@@ -318,7 +388,7 @@ function getCrossAxisPosition({
   popoverBoundingBox,
   anchorBoundingBox,
   arrowConfig,
-}) {
+}: GetCrossAxisPositionArgs): CrossAxisPosition {
   // how much of the popover overflows past either side of the anchor if its centered
   const popoverSizeOnCrossAxis = popoverBoundingBox[crossAxisDimension];
   const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
@@ -377,8 +447,6 @@ function getCrossAxisPosition({
   let crossAxisArrowPosition;
   if (arrowConfig) {
     const { arrowWidth } = arrowConfig;
-    const anchorSizeOnCrossAxis = anchorBoundingBox[crossAxisDimension];
-    const anchorHalfSize = anchorSizeOnCrossAxis / 2;
     crossAxisArrowPosition = anchorBoundingBox[crossAxisFirstSide] + anchorHalfSize - (arrowWidth / 2);
 
     // make sure there's enough buffer around the arrow
@@ -402,13 +470,21 @@ function getCrossAxisPosition({
   };
 }
 
+interface GetPrimaryAxisPositionArgs {
+  position: EuiPopoverPosition;
+  offset: number;
+  popoverBoundingBox: BoundingBox;
+  anchorBoundingBox: BoundingBox;
+  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+}
+
 function getPrimaryAxisPosition({
   position,
   offset,
   popoverBoundingBox,
   anchorBoundingBox,
   arrowConfig,
-}) {
+}: GetPrimaryAxisPositionArgs) {
   // if positioning to the top or left, the target position decreases
   // from the anchor's top or left, otherwise the position adds to the anchor's
   const isOffsetDecreasing = position === 'top' || position === 'left';
@@ -423,7 +499,7 @@ function getPrimaryAxisPosition({
   // find the popover position on the primary axis
   const anchorSizeOnPrimaryAxis = anchorBoundingBox[primaryAxisDimension];
   const primaryAxisOffset = isOffsetDecreasing ? popoverSizeOnPrimaryAxis : anchorSizeOnPrimaryAxis;
-  const contentOffset = (offset + primaryAxisOffset) * (isOffsetDecreasing ? -1 : 1);
+  const contentOffset = (offset + primaryAxisOffset!) * (isOffsetDecreasing ? -1 : 1);
   const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
 
   let primaryAxisArrowPosition;
@@ -445,7 +521,7 @@ function getPrimaryAxisPosition({
  * @param {HTMLElement} element
  * @returns {{top: number, right: number, bottom: number, left: number, height: number, width: number}}
  */
-export function getElementBoundingBox(element) {
+export function getElementBoundingBox(element: HTMLElement): EuiClientRect {
   const rect = element.getBoundingClientRect();
   return {
     top: rect.top,
@@ -453,7 +529,7 @@ export function getElementBoundingBox(element) {
     bottom: rect.bottom,
     left: rect.left,
     height: rect.height,
-    width: rect.width
+    width: rect.width,
   };
 }
 
@@ -464,10 +540,17 @@ export function getElementBoundingBox(element) {
  * @param {Object} containerBoundingBox Client bounding box of the container element
  * @param {number} buffer Minimum distance between the popover and the bounding container
  * @param {number} offset Distance between the popover and the anchor
- * @param {string} offsetSide Side the offset needs to be applied to, one of ["top", "right", "bottom", "left"]
+ * @param {string} offsetSide Side the offset needs to be applied to, one
+ *  of ["top", "right", "bottom", "left"]
  * @returns {{top: number, right: number, bottom: number, left: number}}
  */
-export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffer, offset, offsetSide) {
+export function getAvailableSpace(
+  anchorBoundingBox: BoundingBox,
+  containerBoundingBox: BoundingBox,
+  buffer: number,
+  offset: number,
+  offsetSide: EuiPopoverPosition
+): BoundingBox {
   return {
     top: anchorBoundingBox.top - containerBoundingBox.top - buffer - (offsetSide === 'top' ? offset : 0),
     right: containerBoundingBox.right - anchorBoundingBox.right - buffer - (offsetSide === 'right' ? offset : 0),
@@ -482,7 +565,7 @@ export function getAvailableSpace(anchorBoundingBox, containerBoundingBox, buffe
  * @param containerBoundingBox bounding box of container
  * @returns {number}
  */
-export function getVisibleFit(contentBoundingBox, containerBoundingBox) {
+export function getVisibleFit(contentBoundingBox: BoundingBox, containerBoundingBox: BoundingBox): number {
   const intersection = intersectBoundingBoxes(contentBoundingBox, containerBoundingBox);
 
   if (intersection.left > intersection.right || intersection.top > intersection.top) {
@@ -491,7 +574,8 @@ export function getVisibleFit(contentBoundingBox, containerBoundingBox) {
   }
 
   const intersectionArea = (intersection.right - intersection.left) * (intersection.bottom - intersection.top);
-  const contentArea = (contentBoundingBox.right - contentBoundingBox.left) * (contentBoundingBox.bottom - contentBoundingBox.top);
+  const contentArea = (contentBoundingBox.right - contentBoundingBox.left) *
+    (contentBoundingBox.bottom - contentBoundingBox.top);
 
   return intersectionArea / contentArea;
 }
@@ -501,22 +585,25 @@ export function getVisibleFit(contentBoundingBox, containerBoundingBox) {
  *
  * @param firstBox
  * @param secondBox
- * @returns {{top: number, right: number, bottom: number, left: number, height: number, width: number}}
+ * @returns {EuiClientRect}
  */
-export function intersectBoundingBoxes(firstBox, secondBox) {
-  const intersection = {
-    top: Math.max(firstBox.top, secondBox.top),
-    right: Math.min(firstBox.right, secondBox.right),
-    bottom: Math.min(firstBox.bottom, secondBox.bottom),
-    left: Math.max(firstBox.left, secondBox.left)
+export function intersectBoundingBoxes(firstBox: BoundingBox, secondBox: BoundingBox): EuiClientRect {
+  const top = Math.max(firstBox.top, secondBox.top);
+  const right = Math.min(firstBox.right, secondBox.right);
+  const bottom = Math.min(firstBox.bottom, secondBox.bottom);
+  const left = Math.max(firstBox.left, secondBox.left);
+  const height = Math.max(bottom - top, 0);
+  const width = Math.max(right - left, 0);
+
+  return {
+    top,
+    right,
+    bottom,
+    left,
+    height,
+    width,
   };
-
-  intersection.height = Math.max(intersection.bottom - intersection.top, 0);
-  intersection.width = Math.max(intersection.right - intersection.left, 0);
-
-  return intersection;
 }
-
 
 /**
  * Returns the top-most defined z-index in the element's ancestor hierarchy
@@ -525,7 +612,7 @@ export function intersectBoundingBoxes(firstBox, secondBox) {
  * @param cousin {HTMLElement}
  * @returns {string}
  */
-export function getElementZIndex(element, cousin) {
+export function getElementZIndex(element: HTMLElement, cousin: HTMLElement): string {
   /**
    * finding the z-index of `element` is not the full story
    * its the CSS stacking context that is important
@@ -547,33 +634,33 @@ export function getElementZIndex(element, cousin) {
    */
 
   // build the array of the element + its offset parents
-  const nodesToInspect = [];
+  const nodesToInspect: HTMLElement[] = [];
   while (true) {
     nodesToInspect.push(element);
 
-    element = element.offsetParent;
+    // AFAICT this is a valid cast - the libdefs appear wrong
+    element = element.offsetParent as HTMLElement;
 
     // stop if there is no parent
-    if (element == null) break;
+    if (element == null) { break; }
 
     // stop if the parent contains the related element
     // as this is the z-index ancestor
-    if (element.contains(cousin)) break;
+    if (element.contains(cousin)) { break; }
   }
 
   // reverse the nodes to walk from top -> element
   nodesToInspect.reverse();
 
-  return nodesToInspect.reduce(
-    (foundZIndex, node) => {
-      if (foundZIndex != null) return foundZIndex;
+  for (const node of nodesToInspect) {
+    // get this node's z-index css value
+    const zIndex = window.document.defaultView.getComputedStyle(node).getPropertyValue('z-index');
 
-      // get this node's z-index css value
-      const zIndex = window.document.defaultView.getComputedStyle(node).getPropertyValue('z-index');
+    // if the z-index is not a number (e.g. "auto") return null, else the value
+    if (!isNaN(parseInt(zIndex, 10))) {
+      return zIndex;
+    }
+  }
 
-      // if the z-index is not a number (e.g. "auto") return null, else the value
-      return isNaN(zIndex) ? null : zIndex;
-    },
-    null
-  ) || '0';
+  return '0';
 }

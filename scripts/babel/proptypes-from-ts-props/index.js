@@ -290,16 +290,20 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.objectExpression(
-            node.body.map(property => {
-              const objectProperty = types.objectProperty(
-                types.identifier(property.key.name || `"${property.key.value}"`),
-                getPropTypesForNode(property.typeAnnotation, property.optional, state)
-              );
-              if (property.leadingComments != null) {
-                objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
-              }
-              return objectProperty;
-            })
+            node.body
+              // This helps filter out index signatures from interfaces,
+              // which don't translate to prop types.
+              .filter(property => property.key != null)
+              .map(property => {
+                const objectProperty = types.objectProperty(
+                  types.identifier(property.key.name || `"${property.key.value}"`),
+                  getPropTypesForNode(property.typeAnnotation, property.optional, state)
+                );
+                if (property.leadingComments != null) {
+                  objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
+                }
+                return objectProperty;
+              })
           )
         ]
       );

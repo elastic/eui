@@ -256,7 +256,9 @@ export {
 } from './progress';
 
 export {
-  EuiSearchBar
+  EuiSearchBar,
+  Query,
+  Ast
 } from './search_bar';
 
 export {
