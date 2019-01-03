@@ -14,6 +14,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     ]
   }
   data-test-subj="test subject string"
+  executeQueryOptions={Object {}}
   items={
     Array [
       Object {
@@ -604,6 +605,28 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
 `;
 
 exports[`EuiInMemoryTable empty array 1`] = `
+<EuiBasicTable
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+        "sortable": false,
+      },
+    ]
+  }
+  data-test-subj="test subject string"
+  items={Array []}
+  noItemsMessage="No items found"
+  onChange={[Function]}
+  responsive={true}
+/>
+`;
+
+exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
   className="testClass1 testClass2"

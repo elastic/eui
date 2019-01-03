@@ -1,8 +1,12 @@
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiSuperDatePicker,
+  EuiSwitch,
+  EuiSpacer,
+  EuiFormRow,
+  EuiFieldText,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -10,6 +14,9 @@ export default class extends Component {
   state = {
     recentlyUsedRanges: [],
     isLoading: false,
+    showUpdateButton: true,
+    start: 'now-30m',
+    end: 'now',
   }
 
   onTimeChange = ({ start, end }) => {
@@ -47,18 +54,51 @@ export default class extends Component {
     });
   }
 
+  toggleShowApplyButton = () => {
+    this.setState(prevState => ({
+      showUpdateButton: !prevState.showUpdateButton,
+    }));
+  }
+
   render() {
     return (
-      <EuiSuperDatePicker
-        isLoading={this.state.isLoading}
-        start={this.state.start}
-        end={this.state.end}
-        onTimeChange={this.onTimeChange}
-        isPaused={this.state.isPaused}
-        refreshInterval={this.state.refreshInterval}
-        onRefreshChange={this.onRefreshChange}
-        recentlyUsedRanges={this.state.recentlyUsedRanges}
-      />
+      <Fragment>
+        <EuiSwitch
+          label="Show apply button"
+          onChange={this.toggleShowApplyButton}
+          checked={this.state.showUpdateButton}
+        />
+        <EuiSpacer />
+
+        <EuiSuperDatePicker
+          isLoading={this.state.isLoading}
+          start={this.state.start}
+          end={this.state.end}
+          onTimeChange={this.onTimeChange}
+          isPaused={this.state.isPaused}
+          refreshInterval={this.state.refreshInterval}
+          onRefreshChange={this.onRefreshChange}
+          recentlyUsedRanges={this.state.recentlyUsedRanges}
+          showUpdateButton={this.state.showUpdateButton}
+        />
+
+        <EuiFormRow
+          label="start"
+        >
+          <EuiFieldText
+            readOnly
+            value={this.state.start}
+          />
+        </EuiFormRow>
+        <EuiFormRow
+          label="end"
+        >
+          <EuiFieldText
+            readOnly
+            value={this.state.end}
+          />
+        </EuiFormRow>
+      </Fragment>
     );
   }
 }

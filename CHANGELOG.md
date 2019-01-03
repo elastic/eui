@@ -1,6 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiListGroup` and `EuiListGroupItem` components ([#1377](https://github.com/elastic/eui/pull/1377))
+- Convert the other of the services to TypeScript ([#1392](https://github.com/elastic/eui/pull/1392))
+- Changed single selection to select existing option in the list ([#1391](https://github.com/elastic/eui/pull/1391))
+- Added `showUpdateButton` prop to `EuiSuperDatePicker` ([#1399](https://github.com/elastic/eui/pull/1399))
+
+## [`6.0.1`](https://github.com/elastic/eui/tree/v6.0.1)
+
+**Bug fixes**
+
+- `EuiColorPicker` align color picker popup with color selector when page is scrolled ([#1397](https://github.com/elastic/eui/pull/1397))
 
 ## [`6.0.0`](https://github.com/elastic/eui/tree/v6.0.0)
 
