@@ -555,7 +555,7 @@ export default() => (
         {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typpography.scss">mixins</Link>
         {' '}sass code for typography.
         For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
-        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass varaibles.
+        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
       </p>
     </EuiText>
 
@@ -565,7 +565,7 @@ export default() => (
       color="warning"
       title={
         <span>
-          It is more common to use these in a mixin (e.g. <EuiCode language="sass">@include $euiFontSize;</EuiCode>)
+          It is more common to use these as a mixin (e.g. <EuiCode language="css">@include euiFontSizeS;</EuiCode>)
           to automatically apply line-height as well as size.
         </span>
       }
@@ -608,7 +608,7 @@ export default() => (
               Abc
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiCode>$euiFontFamily</EuiCode>
+              <EuiCode language="css">@include euiFont;</EuiCode>
             </EuiFlexItem>
           </EuiFlexGroup>
 
@@ -617,7 +617,7 @@ export default() => (
               Abc
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiCode>$euiCodeFontFamily</EuiCode>
+              <EuiCode language="css">@include euiCodeFont;</EuiCode>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>
