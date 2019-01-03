@@ -38,7 +38,8 @@ export const ListGroupExample = {
       <p>
         The <EuiCode>ListGroup</EuiCode> component is used to present
         &nbsp;<EuiCode>ListGroupItems</EuiCode> in a neatly formatted list. Use the
-        &nbsp;<EuiCode>flush</EuiCode> prop for a full-width, borderless alternative.
+        &nbsp;<EuiCode>flush</EuiCode> and <EuiCode>bordered</EuiCode> properties
+        for full-width and bordered presentations, respectively.
       </p>
     ),
     props: { EuiListGroup, EuiListGroupItem },
@@ -55,14 +56,16 @@ export const ListGroupExample = {
     text: (
       <p>
         Present <EuiCode>ListGroupItems</EuiCode> as links by providing an
-        &nbsp;<EuiCode>href</EuiCode> value. The <EuiCode>label</EuiCode>
-        &nbsp;property also accepts EUI components such as <EuiCode>EuiText</EuiCode>,
-        for greater control.
+        &nbsp;<EuiCode>href</EuiCode> value and change their appearance
+        with the <EuiCode>size</EuiCode>, <EuiCode>isActive</EuiCode>, and
+        <EuiCode>isDisabled</EuiCode> properties. As done in this example, the
+        &nbsp;<EuiCode>ListGroup</EuiCode> component can also accept an array of
+        items via the <EuiCode>listItems</EuiCode> property.
       </p>
     ),
     demo: <ListGroupLinks />,
   }, {
-    title: 'Advanced links using other components',
+    title: 'Secondary link actions',
     source: [{
       type: GuideSectionTypes.JS,
       code: listGroupLinkActionsSource,
@@ -72,11 +75,12 @@ export const ListGroupExample = {
     }],
     text: (
       <p>
-        Enable full EUI button properties by passing an
-        <EuiCode>EuiButtonEmpty</EuiCode> to the <EuiCode>label</EuiCode>
-        &nbsp;property. Use the <EuiCode>extraAction</EuiCode> property to add a
-        secondary action to any list item by passing it an
-        &nbsp;<EuiCode>EuiButtonIcon</EuiCode>.
+        The <EuiCode>extraAction</EuiCode> property adds a secondary icon
+        button to any list item. It accepts several properites of its own,
+        including <EuiCode>color</EuiCode>, <EuiCode>onClick</EuiCode>,
+        &nbsp;<EuiCode>iconType</EuiCode> and <EuiCode>alwaysShow</EuiCode>,
+        and can be used for actions such as pinning, favoriting, or deleting an
+        item.
       </p>
     ),
     demo: <ListGroupLinkActions />,
