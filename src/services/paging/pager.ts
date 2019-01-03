@@ -1,33 +1,45 @@
+import { isNumber } from '../predicate';
+
 export class Pager {
-  constructor(totalItems, itemsPerPage, initialPageIndex = 0) {
-    if (isNaN(parseInt(totalItems, 10))) {
+  currentPageIndex: number;
+  firstItemIndex: number;
+  itemsPerPage: number;
+  lastItemIndex: number;
+  totalItems: number;
+  totalPages: number;
+
+  constructor(totalItems: number, itemsPerPage: number, initialPageIndex: number = 0) {
+    if (!isNumber(totalItems) || isNaN(totalItems)) {
       throw new Error('Please provide a number of totalItems');
     }
 
-    if (isNaN(parseInt(itemsPerPage, 10))) {
+    if (!isNumber(itemsPerPage) || isNaN(itemsPerPage)) {
       throw new Error('Please provide a number of itemsPerPage');
     }
 
-    if (isNaN(parseInt(initialPageIndex, 10))) {
+    if (!isNumber(initialPageIndex) || isNaN(initialPageIndex)) {
       throw new Error('Please provide a number of initialPageIndex');
     }
 
-    this.totalItems = totalItems;
-    this.itemsPerPage = itemsPerPage;
     this.currentPageIndex = initialPageIndex;
+    this.firstItemIndex = -1;
+    this.itemsPerPage = itemsPerPage;
+    this.lastItemIndex = -1;
+    this.totalItems = totalItems;
+    this.totalPages = 0;
 
     this.update();
   }
 
-  setTotalItems = (totalItems) => {
+  setTotalItems = (totalItems: number) => {
     this.totalItems = totalItems;
     this.update();
-  };
+  }
 
-  setItemsPerPage = (itemsPerPage) => {
+  setItemsPerPage = (itemsPerPage: number) => {
     this.itemsPerPage = itemsPerPage;
     this.update();
-  };
+  }
 
   isPageable = () => this.firstItemIndex !== -1;
 
@@ -45,13 +57,13 @@ export class Pager {
 
   goToNextPage = () => {
     this.goToPageIndex(this.currentPageIndex + 1);
-  };
+  }
 
   goToPreviousPage = () => {
     this.goToPageIndex(this.currentPageIndex - 1);
-  };
+  }
 
-  goToPageIndex = (pageIndex) => {
+  goToPageIndex = (pageIndex: number) => {
     this.currentPageIndex = pageIndex;
     this.update();
   }
@@ -73,5 +85,5 @@ export class Pager {
     // Find the range of visible items on the current page.
     this.firstItemIndex = this.currentPageIndex * this.itemsPerPage;
     this.lastItemIndex = Math.min(this.firstItemIndex + this.itemsPerPage, this.totalItems) - 1;
-  };
+  }
 }

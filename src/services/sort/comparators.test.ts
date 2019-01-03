@@ -10,7 +10,7 @@ describe('comparators - default', () => {
     expect(Comparators.default(SortDirection.DESC)(5, 10)).toBeGreaterThan(0);
   });
   test('asc/desc when the two values equal', () => {
-    const dir = new Random().oneOf(SortDirection.ASC, SortDirection.DESC);
+    const dir = new Random().oneOf([SortDirection.ASC, SortDirection.DESC]);
     expect(Comparators.default(dir)(5, 5)).toBe(0);
   });
 });
@@ -52,4 +52,3 @@ describe('default comparator', () => {
     expect(sorted).toEqual([3, 5, '7', null, undefined, undefined]);
   });
 });
-

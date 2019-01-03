@@ -1,10 +1,14 @@
 import { SortDirection } from './sort_direction';
 import { get } from '../objects';
 
+export type Primitive = string | boolean | number | null | undefined;
+
+type Comparator<T = Primitive> = (a: T, b: T) => number;
+
 export const Comparators = Object.freeze({
 
-  default: (direction = SortDirection.ASC) => {
-    return (v1, v2) => {
+  default: (direction: 'asc' | 'desc' = SortDirection.ASC) => {
+    return (v1: Primitive, v2: Primitive) => {
       // JavaScript's comparison of null/undefined (and some others not handled here) values always returns `false`
       // (https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
       // resulting in cases where v1 < v2 and v1 > v2 are both false.
@@ -36,25 +40,25 @@ export const Comparators = Object.freeze({
       if (v1 === v2) {
         return 0;
       }
-      const result =  v1 > v2 ? 1 : -1;
+      const result =  v1! > v2! ? 1 : -1;
       return SortDirection.isAsc(direction) ? result : -1 * result;
     };
   },
 
-  reverse: (comparator) => {
+  reverse: <T>(comparator: Comparator<T>): Comparator<T> => {
     return (v1, v2) => comparator(v2, v1);
   },
 
-  value(valueCallback, comparator = undefined) {
+  value<T>(valueCallback: (value: T) => Primitive, comparator?: Comparator): Comparator<T> {
     if (!comparator) {
       comparator = this.default(SortDirection.ASC);
     }
-    return (o1, o2) => {
-      return comparator(valueCallback(o1), valueCallback(o2));
+    return (o1: T, o2: T) => {
+      return comparator!(valueCallback(o1), valueCallback(o2));
     };
   },
 
-  property(prop, comparator = undefined) {
+  property<T>(prop: string, comparator?: Comparator): Comparator<T> {
     return this.value(value => get(value, prop), comparator);
   },
 

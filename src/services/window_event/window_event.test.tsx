@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { EuiWindowEvent } from '.';
+import { EuiWindowEvent } from './window_event';
 
 describe('EuiWindowEvent', () => {
 

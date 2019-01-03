@@ -4,6 +4,14 @@ import {
 
 describe('getSecureRelForTarget', () => {
   describe('returns rel', () => {
+    test('when target is not supplied', () => {
+      expect(getSecureRelForTarget(undefined, 'hello')).toBe('hello');
+    });
+
+    test('when target is empty', () => {
+      expect(getSecureRelForTarget('', 'hello')).toBe('hello');
+    });
+
     test('when target is not _blank', () => {
       expect(getSecureRelForTarget('_self', 'hello')).toBe('hello');
     });

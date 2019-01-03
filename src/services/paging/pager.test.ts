@@ -5,14 +5,17 @@ import {
 describe('Pager', () => {
   describe('constructor', () => {
     test('throws error if missing totalItems', () => {
+      // @ts-ignore
       expect(() => new Pager()).toThrow();
     });
 
     test('throws error if missing itemsPerPage', () => {
+      // @ts-ignore
       expect(() => new Pager(10)).toThrow();
     });
 
     test('throws error if non-number initialPageIndex', () => {
+      // @ts-ignore
       expect(() => new Pager(10, 3, 'invalid argument')).toThrow();
     });
   });
@@ -21,7 +24,8 @@ describe('Pager', () => {
     const totalItems = 10;
     const itemsPerPage = 3;
     const initialPageIndex = 1;
-    let pager;
+    // Initialising this to a Pager straight away keep TS happy.
+    let pager = new Pager(totalItems, itemsPerPage, initialPageIndex);
 
     beforeEach(() => {
       pager = new Pager(totalItems, itemsPerPage, initialPageIndex);
@@ -152,7 +156,7 @@ describe('Pager', () => {
         expect(pager.getLastItemIndex()).toBe(3);
       });
 
-      test(`doesn't update current page`, () => {
+      test("doesn't update current page", () => {
         pager.setItemsPerPage(2);
         expect(pager.getCurrentPageIndex()).toBe(initialPageIndex);
       });
@@ -161,6 +165,7 @@ describe('Pager', () => {
 
   describe('behavior', () => {
     describe('when there are no items', () => {
+      // TODO
     });
   });
 });
