@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiPage,
@@ -19,6 +19,10 @@ import {
   EuiNavDrawerFlyout,
   EuiListGroup,
   EuiHorizontalRule,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSwitch,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -28,6 +32,10 @@ export default class extends Component {
     this.state = {
       isCollapsed: true,
       flyoutIsCollapsed: true,
+      flyoutIsAnimating: false,
+      hasDelay: true,
+      navFlyoutTitle: undefined,
+      navFlyoutContent: [],
     };
 
     this.topLinks = [
@@ -37,27 +45,28 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'Recently viewed items',
-        onClick: this.expandFlyout,
+        onClick: () => this.expandFlyout('recents', 'Recent items'),
         extraAction: {
           color: 'subdued',
           iconType: 'arrowRight',
           iconSize: 's',
           'aria-label': 'Expand to view recent apps and objects',
-          onClick: this.expandFlyout,
+          onClick: () => this.expandFlyout('recents', 'Recent items'),
         },
       },
       {
         label: 'Favorites',
-        href: '/#/layout/nav-drawer',
         iconType: 'starEmpty',
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'Favorited items',
+        onClick: () => this.expandFlyout('favorites', 'Favorited items'),
         extraAction: {
           color: 'subdued',
           iconType: 'arrowRight',
           iconSize: 's',
           'aria-label': 'Expand to view favorited apps and objects',
+          onClick: () => this.expandFlyout('favorites', 'Favorited items'),
         },
       },
     ];
@@ -305,84 +314,158 @@ export default class extends Component {
         },
       },
     ];
+
+    this.favoriteLinks = [
+      {
+        label: 'My workpad',
+        href: '/#/layout/nav-drawer',
+        iconType: 'canvasApp',
+        size: 's',
+        style: { color: 'inherit' },
+        'aria-label': 'My workpad',
+        extraAction: {
+          color: 'subdued',
+          iconType: 'starEmpty',
+          iconSize: 's',
+          'aria-label': 'Add to favorites',
+        },
+      },
+      {
+        label: 'My logs',
+        href: '/#/layout/nav-drawer',
+        iconType: 'loggingApp',
+        size: 's',
+        style: { color: 'inherit' },
+        'aria-label': 'My logs',
+        extraAction: {
+          color: 'subdued',
+          iconType: 'starEmpty',
+          iconSize: 's',
+          'aria-label': 'Add to favorites',
+        },
+      },
+    ];
   }
 
   renderLogo() {
     return <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />;
   }
 
+  toggleHasDelay = () => {
+    this.setState(prevState => ({ hasDelay: !prevState.hasDelay }));
+  };
+
   expandDrawer = () => {
     this.setState({ isCollapsed: false });
   };
 
   collapseDrawer = () => {
-    this.setState({ isCollapsed: true });
+    this.setState({ flyoutIsAnimating: false });
+
+    setTimeout(() => {
+      this.setState({
+        isCollapsed: true,
+        flyoutIsCollapsed: true,
+      });
+    }, 350);
   };
 
-  expandFlyout = () => {
-    this.setState({ flyoutIsCollapsed: false });
+  expandFlyout = (id, title) => {
+    const content = (id === 'recents') ? this.recentLinks : this.favoriteLinks;
+
+    this.setState({
+      flyoutIsCollapsed: false,
+      flyoutIsAnimating: true,
+      navFlyoutTitle: title,
+      navFlyoutContent: content,
+    });
   };
 
   collapseFlyout = () => {
-    this.setState({ flyoutIsCollapsed: true });
+    this.setState({ flyoutIsAnimating: true });
+
+    setTimeout(() => {
+      this.setState({ flyoutIsCollapsed: true });
+    }, 250);
   };
 
   render() {
     const {
       isCollapsed,
       flyoutIsCollapsed,
+      flyoutIsAnimating,
+      hasDelay,
+      navFlyoutTitle,
+      navFlyoutContent,
     } = this.state;
 
     return (
-      <div>
-        <EuiHeader>
-          <EuiHeaderSection grow={false}>
-            <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
-          </EuiHeaderSection>
-        </EuiHeader>
-        <EuiPage style={{ position: 'relative', minHeight: '800px' }}>
-          <EuiNavDrawer
-            isCollapsed={isCollapsed}
-            flyoutIsCollapsed={flyoutIsCollapsed}
-            onMouseOver={this.expandDrawer}
-            onMouseLeave={this.collapseDrawer}
-          >
-            <EuiNavDrawerMenu>
-              <EuiListGroup listItems={this.topLinks} />
-              <EuiHorizontalRule margin="s" />
-              <EuiListGroup listItems={this.bottomLinks} />
-            </EuiNavDrawerMenu>
-            <EuiNavDrawerFlyout
-              title="Recently viewed"
-              isCollapsed={flyoutIsCollapsed}
-              listItems={this.recentLinks}
-              onMouseLeave={this.collapseFlyout}
+      <Fragment>
+        <EuiFlexGroup alignItems="center">
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              label={<span>Show with hover delay</span>}
+              checked={this.state.hasDelay}
+              onChange={this.toggleHasDelay}
             />
-          </EuiNavDrawer>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
-          <EuiPageBody style={{ marginLeft: '64px' }}>
-            <EuiPageHeader>
-              <EuiPageHeaderSection>
-                <EuiTitle size="l">
-                  <h1>Page title</h1>
-                </EuiTitle>
-              </EuiPageHeaderSection>
-            </EuiPageHeader>
-            <EuiPageContent>
-              <EuiPageContentHeader>
-                <EuiPageContentHeaderSection>
-                  <EuiTitle>
-                    <h2>Content title</h2>
+        <EuiSpacer size="l" />
+
+        <div>
+          <EuiHeader>
+            <EuiHeaderSection grow={false}>
+              <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+            </EuiHeaderSection>
+          </EuiHeader>
+          <EuiPage style={{ position: 'relative', minHeight: '800px' }}>
+            <EuiNavDrawer
+              isCollapsed={isCollapsed}
+              hasDelay={hasDelay}
+              flyoutIsCollapsed={flyoutIsCollapsed}
+              flyoutIsAnimating={flyoutIsAnimating}
+              onMouseOver={this.expandDrawer}
+              onFocus={this.expandDrawer}
+              onMouseLeave={this.collapseDrawer}
+            >
+              <EuiNavDrawerMenu>
+                <EuiListGroup listItems={this.topLinks} />
+                <EuiHorizontalRule margin="s" />
+                <EuiListGroup listItems={this.bottomLinks} />
+              </EuiNavDrawerMenu>
+              <EuiNavDrawerFlyout
+                title={navFlyoutTitle}
+                isCollapsed={flyoutIsCollapsed}
+                listItems={navFlyoutContent}
+                onMouseLeave={this.collapseFlyout}
+              />
+            </EuiNavDrawer>
+
+            <EuiPageBody style={{ marginLeft: '64px' }}>
+              <EuiPageHeader>
+                <EuiPageHeaderSection>
+                  <EuiTitle size="l">
+                    <h1>Page title</h1>
                   </EuiTitle>
-                </EuiPageContentHeaderSection>
-              </EuiPageContentHeader>
-              <EuiPageContentBody>
-                Content body
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      </div>
+                </EuiPageHeaderSection>
+              </EuiPageHeader>
+              <EuiPageContent>
+                <EuiPageContentHeader>
+                  <EuiPageContentHeaderSection>
+                    <EuiTitle>
+                      <h2>Content title</h2>
+                    </EuiTitle>
+                  </EuiPageContentHeaderSection>
+                </EuiPageContentHeader>
+                <EuiPageContentBody>
+                  Content body
+                </EuiPageContentBody>
+              </EuiPageContent>
+            </EuiPageBody>
+          </EuiPage>
+        </div>
+      </Fragment>
     );
   }
 }

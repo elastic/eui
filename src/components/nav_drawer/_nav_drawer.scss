@@ -6,12 +6,11 @@
   position: absolute;
   left: 0;
   top: 0;
-  // z-index: $euiZHeader; // ensure the shadow shows above content
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
 
   &.euiNavDrawer-isCollapsed {
-    transition: width $euiAnimSpeedFast ease-in;
+    transition: width $euiAnimSpeedExtraFast ease-in;
 
     &.euiNavDrawer-flyoutIsExpanded {
       width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
@@ -20,27 +19,34 @@
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
-    transition: width $euiAnimSpeedNormal ease-out;
-    // transition: width $euiAnimSpeedNormal ease-out 1.8s; // TODO Delays the expanded view
+    transition: width $euiAnimSpeedFast ease-out;
+
+    &.euiNavDrawer-isDelayed {
+      transition: width $euiAnimSpeedFast ease-out 1.8s; // TODO For prototype alternative
+    }
 
     .euiNavDrawerMenu .euiListGroupItem__label,
     .euiNavDrawerMenu .euiListGroupItem__extraAction {
       visibility: visible;
+      opacity: 1;
+      transition: opacity $euiAnimSpeedExtraFast .2s;
     }
 
     &.euiNavDrawer-flyoutIsExpanded {
       width: $euiNavDrawerWidthExpanded * 2;
-      // transition-delay: 0s; // TODO works with delay
     }
 
-    // &.euiNavDrawer-flyoutIsCollapsed {
-    //   transition-delay: 0s; // TODO this fixes the delay when flyout collapses, but breaks the delay when menu expands
-    // }
+    &.euiNavDrawer-flyoutIsAnimating {
+      transition-delay: 0s;
+      transition-property: width;
+    }
   }
 
   .euiNavDrawerMenu .euiListGroupItem__label,
   .euiNavDrawerMenu .euiListGroupItem__extraAction {
     visibility: hidden;
     white-space: nowrap;
+    opacity: 0;
+    transition: opacity $euiAnimSpeedExtraFast;
   }
 }
