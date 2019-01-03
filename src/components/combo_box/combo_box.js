@@ -63,16 +63,23 @@ export class EuiComboBox extends Component {
     super(props);
 
     const initialSearchValue = '';
-    const { options, selectedOptions } = props;
+    const { options, selectedOptions, singleSelection } = props;
 
     this.state = {
-      matchingOptions: getMatchingOptions(options, selectedOptions, initialSearchValue, props.async),
+      matchingOptions: getMatchingOptions(options, selectedOptions, initialSearchValue, props.async, singleSelection),
       listElement: undefined,
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
       activeOptionIndex: undefined,
     };
+
+    // ensure that the currently selected single option is active if it is in the matchingOptions
+    if (singleSelection && selectedOptions.length === 1) {
+      if (this.state.matchingOptions.includes(selectedOptions[0])) {
+        this.state.activeOptionIndex = this.state.matchingOptions.indexOf(selectedOptions[0]);
+      }
+    }
 
     this.rootId = htmlIdGenerator();
 
@@ -396,8 +403,15 @@ export class EuiComboBox extends Component {
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
     this.searchInput.focus();
-    // If the user does this from a state in which an option has focus, then we need to clear it.
-    this.clearActiveOption();
+
+    // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
+    if (this.props.singleSelection && this.props.selectedOptions.length === 1) {
+      this.setState({
+        activeOptionIndex: this.state.matchingOptions.indexOf(this.props.selectedOptions[0]),
+      });
+    } else {
+      this.clearActiveOption();
+    }
   };
 
   onOpenListClick = () => {
@@ -457,18 +471,27 @@ export class EuiComboBox extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { options, selectedOptions } = nextProps;
+    const { options, selectedOptions, singleSelection } = nextProps;
     const { searchValue } = prevState;
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async);
+    const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async, singleSelection);
+    // ensure that the currently selected single option is active if it is in the matchingOptions
+    if (singleSelection && selectedOptions.length === 1) {
+      let nextActiveOptionIndex;
+      if (matchingOptions.includes(selectedOptions[0])) {
+        nextActiveOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
+      }
+      return { matchingOptions, activeOptionIndex: nextActiveOptionIndex };
+    }
 
     return { matchingOptions };
   }
 
   updateMatchingOptionsIfDifferent(newMatchingOptions) {
-    const { matchingOptions } = this.state;
+    const { matchingOptions, activeOptionIndex } = this.state;
+    const { singleSelection, selectedOptions } = this.props;
 
     let areOptionsDifferent = false;
 
@@ -485,7 +508,14 @@ export class EuiComboBox extends Component {
 
     if (areOptionsDifferent) {
       this.options = [];
-      this.setState({ matchingOptions: newMatchingOptions });
+      let nextActiveOptionIndex = activeOptionIndex;
+      // ensure that the currently selected single option is active if it is in the matchingOptions
+      if (singleSelection && selectedOptions.length === 1) {
+        if (newMatchingOptions.includes(selectedOptions[0])) {
+          nextActiveOptionIndex = newMatchingOptions.indexOf(selectedOptions[0]);
+        }
+      }
+      this.setState({ matchingOptions: newMatchingOptions, activeOptionIndex: nextActiveOptionIndex });
 
       if (!newMatchingOptions.length) {
         // Prevent endless setState -> componentWillUpdate -> setState loop.
@@ -497,13 +527,13 @@ export class EuiComboBox extends Component {
   }
 
   componentDidUpdate() {
-    const { options, selectedOptions } = this.props;
+    const { options, selectedOptions, singleSelection } = this.props;
     const { searchValue } = this.state;
 
     // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps
     // isn't called after a state change, and we track `searchValue` in state
     // instead we need to react to a change in searchValue here
-    this.updateMatchingOptionsIfDifferent(getMatchingOptions(options, selectedOptions, searchValue, this.props.async));
+    this.updateMatchingOptionsIfDifferent(getMatchingOptions(options, selectedOptions, searchValue, this.props.async, singleSelection));
   }
 
   componentWillUnmount() {

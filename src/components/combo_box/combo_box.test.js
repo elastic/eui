@@ -97,16 +97,30 @@ describe('props', () => {
     });
   });
 
-  test('singleSelection is rendered', () => {
-    const component = shallow(
-      <EuiComboBox
-        options={options}
-        selectedOptions={[options[2]]}
-        singleSelection={true}
-      />
-    );
+  describe('singleSelection', () => {
+    test('is rendered', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          singleSelection={true}
+        />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+    test('selects existing option when opened', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          singleSelection={true}
+        />
+      );
+
+      component.setState({ isListOpen: true });
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('isDisabled is rendered', () => {
