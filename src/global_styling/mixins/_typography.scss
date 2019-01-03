@@ -54,11 +54,9 @@
   } @else if $size == 'l' {
     @include euiFontSizeXXL;
     @include lineHeightFromBaseline(6);
-    letter-spacing: -.05em;
   } @else {
     @include fontSize($size);
     @include lineHeightFromBaseline(3);
-    letter-spacing: -.03em;
   }
 }
 
@@ -93,12 +91,14 @@
   @include fontSize($euiFontSizeXL);
   line-height: 1.25;
   font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  letter-spacing: -.05em;
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
   line-height: 1.25;
-  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  font-weight: $euiFontWeightExtraLight; // always apply extra light weight to x-large type
+  letter-spacing: -.03em;
 }
 
 // Overflow-wrap for breaking on word
