@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Convert the other of the services to TypeScript ([#1392](https://github.com/elastic/eui/pull/1392))
+- Changed single selection to select existing option in the list ([#1391](https://github.com/elastic/eui/pull/1391))
 - Added `showUpdateButton` prop to `EuiSuperDatePicker` ([#1399](https://github.com/elastic/eui/pull/1399))
 
 ## [`6.0.1`](https://github.com/elastic/eui/tree/v6.0.1)
