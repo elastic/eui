@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `logo_codesandbox` and updated `apmApp` icons ([#1407](https://github.com/elastic/eui/pull/1407))
+- Change `EuiListGroup` PropType for `extraAction` to clearn warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
 
 ## [`6.1.0`](https://github.com/elastic/eui/tree/v6.1.0)
 
