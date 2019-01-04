@@ -67,7 +67,7 @@ EuiListGroup.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.node,
     href: PropTypes.string,
-    extraAction: PropTypes.node,
+    extraAction: PropTypes.object,
     iconType: PropTypes.string,
     isActive: PropTypes.boolean,
     isDisabled: PropTypes.boolean,
