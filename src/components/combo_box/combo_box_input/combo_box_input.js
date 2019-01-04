@@ -16,6 +16,7 @@ export class EuiComboBoxInput extends Component {
     placeholder: PropTypes.string,
     selectedOptions: PropTypes.array,
     onRemoveOption: PropTypes.func,
+    onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -67,6 +68,9 @@ export class EuiComboBoxInput extends Component {
   };
 
   onBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
     this.setState({
       hasFocus: false,
     });
