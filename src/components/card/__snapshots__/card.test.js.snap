@@ -40,14 +40,14 @@ exports[`EuiCard icon 1`] = `
     >
       <path
         class="euiIcon__fillSecondary"
-        d="M0 3h24v2H0z"
+        d="M7 9v2H0V0h23v7h-2V2H2v7z"
       />
       <path
-        d="M4 11h24v2H4zM4 19h15v2H4z"
+        d="M32 9v12H20c-6.075 0-11-4.925-11-11V9h23zm-20.945 2c.497 4.5 4.312 8 8.945 8h10v-8H11.055z"
       />
       <path
         class="euiIcon__fillSecondary"
-        d="M19 27h13v2H19z"
+        d="M30 23h2v9H19v-9h2v7h9z"
       />
     </svg>
   </span>

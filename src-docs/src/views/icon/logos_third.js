@@ -14,6 +14,7 @@ const iconTypes = [
   'logoAWS',
   'logoAWSMono',
   'logoCeph',
+  'logoCodesandbox',
   'logoCouchbase',
   'logoDocker',
   'logoDropwizard',

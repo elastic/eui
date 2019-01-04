@@ -69,6 +69,18 @@ export const HomeView = () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://codesandbox.io/s/ll7lnlpm97">
+              <strong>Codesandbox</strong>
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="logoCodesandbox" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
 
     </EuiFlexGroup>
     <EuiSpacer />
