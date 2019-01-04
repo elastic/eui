@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
 import { prettyDuration, showPrettyDuration } from './pretty_duration';
+import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
 
@@ -59,6 +60,10 @@ export class EuiSuperDatePicker extends Component {
      * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
      */
     showUpdateButton: PropTypes.bool,
+    /**
+     *
+     */
+    showRefreshOnly: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -79,6 +84,7 @@ export class EuiSuperDatePicker extends Component {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     recentlyUsedRanges: [],
     showUpdateButton: true,
+    showRefreshOnly: false,
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -206,6 +212,22 @@ export class EuiSuperDatePicker extends Component {
       isInvalid,
     } = this.state;
 
+    if (this.props.showRefreshOnly) {
+      return (
+        <EuiDatePickerRange
+          className="euiDatePickerRange--inGroup"
+          iconType={false}
+          isCustom
+          startDateControl={<div/>}
+          endDateControl={<div/>}
+        >
+          <span className="euiSuperDatePicker__prettyFormat">
+            {prettyInterval(this.props.isPaused, this.props.refreshInterval)}
+          </span>
+        </EuiDatePickerRange>
+      );
+    }
+
     if (this.state.showPrettyDuration) {
       return (
         <EuiDatePickerRange
@@ -258,7 +280,7 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
-    if (!this.props.showUpdateButton) {
+    if (!this.props.showUpdateButton || this.props.showRefreshOnly) {
       return;
     }
 
@@ -309,6 +331,7 @@ export class EuiSuperDatePicker extends Component {
         commonlyUsedRanges={this.props.commonlyUsedRanges}
         dateFormat={this.props.dateFormat}
         recentlyUsedRanges={this.props.recentlyUsedRanges}
+        showRefreshOnly={this.props.showRefreshOnly}
       />
     );
     return (

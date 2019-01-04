@@ -75,6 +75,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
+          showRefreshOnly={false}
           start="now-15m"
         />
       }
@@ -207,6 +208,7 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
+          showRefreshOnly={false}
           start="now-15m"
         />
       }

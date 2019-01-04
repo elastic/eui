@@ -11,7 +11,7 @@ const defaultProps = {
   start: 'now-15m',
   end: 'now',
 };
-describe('EuiSuperDatePicker', () => {
+describe('EuiQuickSelect', () => {
   test('is rendered', () => {
     const component = shallow(
       <EuiQuickSelect
