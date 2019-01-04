@@ -2,10 +2,10 @@
 
 .euiNavDrawer {
   width: $euiNavDrawerWidthCollapsed;
-  height: 100%;
-  position: absolute;
+  height: calc(100% - #{$euiHeaderSize});
+  position: fixed;
   left: 0;
-  top: 0;
+  top: $euiHeaderSize;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
 

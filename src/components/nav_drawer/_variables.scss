@@ -5,3 +5,6 @@ $euiNavDrawerBackgroundColor: $euiColorEmptyShade;
 $euiNavDrawerWidthExpanded: 240px;
 $euiNavDrawerWidthCollapsed: 48px;
 $euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
+
+// Layout variables
+$euiHeaderSize: $euiSizeXXL + $euiSizeL;

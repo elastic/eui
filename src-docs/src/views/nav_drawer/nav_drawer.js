@@ -405,35 +405,35 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <div>
+        <div style={{ position: 'relative' }}>
           <EuiHeader>
             <EuiHeaderSection grow={false}>
               <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>
-          <EuiPage style={{ position: 'relative', minHeight: '800px' }}>
-            <EuiNavDrawer
-              isCollapsed={isCollapsed}
-              hasDelay={hasDelay}
-              flyoutIsCollapsed={flyoutIsCollapsed}
-              flyoutIsAnimating={flyoutIsAnimating}
-              onMouseOver={this.expandDrawer}
-              onFocus={this.expandDrawer}
-              onMouseLeave={this.collapseDrawer}
-            >
-              <EuiNavDrawerMenu>
-                <EuiListGroup listItems={this.topLinks} />
-                <EuiHorizontalRule margin="s" />
-                <EuiListGroup listItems={this.bottomLinks} />
-              </EuiNavDrawerMenu>
-              <EuiNavDrawerFlyout
-                title={navFlyoutTitle}
-                isCollapsed={flyoutIsCollapsed}
-                listItems={navFlyoutContent}
-                onMouseLeave={this.collapseFlyout}
-              />
-            </EuiNavDrawer>
-
+          <EuiNavDrawer
+            isCollapsed={isCollapsed}
+            hasDelay={hasDelay}
+            flyoutIsCollapsed={flyoutIsCollapsed}
+            flyoutIsAnimating={flyoutIsAnimating}
+            onMouseOver={this.expandDrawer}
+            onFocus={this.expandDrawer}
+            onMouseLeave={this.collapseDrawer}
+            style={{ position: 'absolute' }} // This is for the embedded docs example only
+          >
+            <EuiNavDrawerMenu>
+              <EuiListGroup listItems={this.topLinks} />
+              <EuiHorizontalRule margin="s" />
+              <EuiListGroup listItems={this.bottomLinks} />
+            </EuiNavDrawerMenu>
+            <EuiNavDrawerFlyout
+              title={navFlyoutTitle}
+              isCollapsed={flyoutIsCollapsed}
+              listItems={navFlyoutContent}
+              onMouseLeave={this.collapseFlyout}
+            />
+          </EuiNavDrawer>
+          <EuiPage style={{ minHeight: '800px' }}>
             <EuiPageBody style={{ marginLeft: '64px' }}>
               <EuiPageHeader>
                 <EuiPageHeaderSection>
