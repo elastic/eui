@@ -97,7 +97,7 @@
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
   line-height: 1.25;
-  font-weight: $euiFontWeightExtraLight; // always apply extra light weight to x-large type
+  font-weight: $euiFontWeightLight; // always apply light weight to xx-large type
   letter-spacing: -.03em;
 }
 
