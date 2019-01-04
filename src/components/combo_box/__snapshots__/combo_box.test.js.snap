@@ -434,6 +434,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     inputRef={[Function]}
     isListOpen={true}
     noIcon={false}
+    onBlur={[Function]}
     onChange={[Function]}
     onClear={[Function]}
     onClick={[Function]}
