@@ -52,6 +52,7 @@ export default class extends Component {
           iconSize: 's',
           'aria-label': 'Expand to view recent apps and objects',
           onClick: () => this.expandFlyout('recents', 'Recent items'),
+          alwaysShow: true,
         },
       },
       {
@@ -67,11 +68,42 @@ export default class extends Component {
           iconSize: 's',
           'aria-label': 'Expand to view favorited apps and objects',
           onClick: () => this.expandFlyout('favorites', 'Favorited items'),
+          alwaysShow: true,
         },
       },
     ];
 
     this.bottomLinks = [
+      {
+        label: 'Canvas',
+        href: '/#/layout/nav-drawer',
+        iconType: 'canvasApp',
+        size: 's',
+        style: { color: 'inherit' },
+        'aria-label': 'Canvas',
+        extraAction: {
+          color: 'subdued',
+          iconType: 'pinFilled',
+          iconSize: 's',
+          'aria-label': 'Pin to top',
+          alwaysShow: true,
+        },
+      },
+      {
+        label: 'Maps',
+        href: '/#/layout/nav-drawer',
+        iconType: 'gisApp',
+        size: 's',
+        style: { color: 'inherit' },
+        'aria-label': 'Maps',
+        extraAction: {
+          color: 'subdued',
+          iconType: 'pinFilled',
+          iconSize: 's',
+          'aria-label': 'Pin to top',
+          alwaysShow: true,
+        },
+      },
       {
         label: 'Discover',
         href: '/#/layout/nav-drawer',
@@ -83,7 +115,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -97,7 +129,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -111,35 +143,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Timelion',
-        href: '/#/layout/nav-drawer',
-        iconType: 'timelionApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Timelion',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Canvas',
-        href: '/#/layout/nav-drawer',
-        iconType: 'canvasApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Canvas',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -153,7 +157,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -167,7 +171,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -181,7 +185,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -195,7 +199,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -209,7 +213,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -223,7 +227,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -237,21 +241,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Maps',
-        href: '/#/layout/nav-drawer',
-        iconType: 'gisApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Maps',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
       {
@@ -265,7 +255,7 @@ export default class extends Component {
           color: 'subdued',
           iconType: 'pin',
           iconSize: 's',
-          'aria-label': 'Add to favorites',
+          'aria-label': 'Pin to top',
         },
       },
     ];
@@ -325,9 +315,10 @@ export default class extends Component {
         'aria-label': 'My workpad',
         extraAction: {
           color: 'subdued',
-          iconType: 'starEmpty',
+          iconType: 'starFilled',
           iconSize: 's',
           'aria-label': 'Add to favorites',
+          alwaysShow: true,
         },
       },
       {
@@ -339,9 +330,10 @@ export default class extends Component {
         'aria-label': 'My logs',
         extraAction: {
           color: 'subdued',
-          iconType: 'starEmpty',
+          iconType: 'starFilled',
           iconSize: 's',
           'aria-label': 'Add to favorites',
+          alwaysShow: true,
         },
       },
     ];

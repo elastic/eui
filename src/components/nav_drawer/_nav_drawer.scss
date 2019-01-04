@@ -25,8 +25,7 @@
       transition: width $euiAnimSpeedFast ease-out 1.8s; // TODO For prototype alternative
     }
 
-    .euiNavDrawerMenu .euiListGroupItem__label,
-    .euiNavDrawerMenu .euiListGroupItem__extraAction {
+    .euiNavDrawerMenu .euiListGroupItem__label {
       visibility: visible;
       opacity: 1;
       transition: opacity $euiAnimSpeedExtraFast .2s;
@@ -42,8 +41,7 @@
     }
   }
 
-  .euiNavDrawerMenu .euiListGroupItem__label,
-  .euiNavDrawerMenu .euiListGroupItem__extraAction {
+  .euiNavDrawerMenu .euiListGroupItem__label {
     visibility: hidden;
     white-space: nowrap;
     opacity: 0;
