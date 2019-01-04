@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Account for `min` attribute when determining `EuiRange` input width ([#1406](https://github.com/elastic/eui/pull/1406))
 - Change `EuiListGroup` PropType for `extraAction` to clearn warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
 
 ## [`6.1.0`](https://github.com/elastic/eui/tree/v6.1.0)
