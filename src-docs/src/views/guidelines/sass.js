@@ -116,7 +116,7 @@ const euiOverFlowShadows = [
 
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
-function renderPaletteColor(color, index) {
+function renderPaletteColor(color) {
   let optionalDefault;
   if (color === 'euiTextColor') {
     optionalDefault = (
@@ -127,7 +127,7 @@ function renderPaletteColor(color, index) {
   }
 
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={color}>
       <EuiFlexItem grow={false}>
         <div className="guideSass__swatch" style={{ background: rgbToHex(lightColors[color].rgba).toUpperCase() }} />
       </EuiFlexItem>
@@ -139,9 +139,9 @@ function renderPaletteColor(color, index) {
   );
 }
 
-function renderSize(size, index) {
+function renderSize(size) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index} className="guideSass__sizeRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={size} className="guideSass__sizeRow">
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
@@ -159,9 +159,9 @@ function renderSize(size, index) {
   );
 }
 
-function renderFontSize(size, index) {
+function renderFontSize(size) {
   return (
-    <div key={index} className="guideSass__fontSizeExample">
+    <div key={size} className="guideSass__fontSizeExample">
       <div className={`guideSass__fontSize guideSass__fontSize--${size}`}>
         The quick brown fox
       </div>
@@ -172,7 +172,7 @@ function renderFontSize(size, index) {
 
 function renderLevel(level, index) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}  className="guideSass__levelRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={level}  className="guideSass__levelRow">
       <EuiFlexItem grow={false}>
         <div className="guideSass__level" style={{ opacity: (1 - (index * .1)) }} />
       </EuiFlexItem>
@@ -190,26 +190,26 @@ function renderLevel(level, index) {
   );
 }
 
-function renderShadow(shadow, index) {
+function renderShadow(shadow) {
   return (
-    <div key={index} className={`guideSass__shadow guideSass__shadow--${shadow}`}>
+    <div key={shadow} className={`guideSass__shadow guideSass__shadow--${shadow}`}>
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>@include {shadow};</EuiCodeBlock>
     </div>
   );
 }
 
-function renderBorder(border, index) {
+function renderBorder(border) {
   return (
-    <EuiFlexItem key={index} className={`guideSass__border guideSass__border--${border}`}>
+    <EuiFlexItem key={border} className={`guideSass__border guideSass__border--${border}`}>
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>border: ${border}</EuiCodeBlock>
     </EuiFlexItem>
   );
 }
 
-function renderAnimationSpeed(speed, index) {
+function renderAnimationSpeed(speed) {
   return (
-    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
-      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <div key={speed} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}ms
           <EuiSpacer size="s" />
@@ -217,17 +217,17 @@ function renderAnimationSpeed(speed, index) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div key={index} className={`guideSass__animParent`}>
+      <div className={`guideSass__animParent`}>
         <div className="guideSass__animChild" />
       </div>
     </div>
   );
 }
 
-function renderAnimationTiming(speed, index) {
+function renderAnimationTiming(speed) {
   return (
-    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
-      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <div key={speed} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}
           <EuiSpacer size="s" />
@@ -235,16 +235,16 @@ function renderAnimationTiming(speed, index) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div key={index} className={`guideSass__animParent`}>
+      <div className={`guideSass__animParent`}>
         <div className="guideSass__animChild" />
       </div>
     </div>
   );
 }
 
-function renderBreakpoint(size, index) {
+function renderBreakpoint(size) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={size}>
       <EuiFlexItem grow={false}>
         <EuiText size="s" className="eui-textRight" style={{ minWidth: 50 }}>
           <EuiCode>{size}</EuiCode>
