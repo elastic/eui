@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.1.0`.
+- Change `EuiListGroup` PropType for `extraAction` to clearn warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
 
 ## [`6.1.0`](https://github.com/elastic/eui/tree/v6.1.0)
 
