@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Change `EuiListGroup` PropType for `extraAction` to clearn warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
+- Added `logoCodesandbox` and updated `apmApp` icons ([#1407](https://github.com/elastic/eui/pull/1407))
+- Changed `EuiListGroup` PropType for `extraAction` to remove console warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
 
 
 **Bug fixes**
