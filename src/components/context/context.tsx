@@ -1,7 +1,7 @@
-import React, { createContext, ReactElement } from 'react';
+import React, { createContext, ReactChild } from 'react';
 
 export interface I18nMappingShape {
-  [key: string]: ReactElement<any>;
+  [key: string]: ReactChild;
 }
 
 const I18nContext: React.Context<I18nMappingShape> = createContext({});

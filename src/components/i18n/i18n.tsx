@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactChild, ReactElement } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
 import { I18nMappingShape } from '../context/context';
@@ -7,20 +7,20 @@ import { I18nMappingShape } from '../context/context';
 // <I18n token="foo">{(foo) => <p>foo</p>}</I18n>
 // <I18n tokens=['foo', 'bar']>{([foo, bar]) => <p>{foo}, {bar}</p></I18n>
 
-function lookupToken(token: string, i18nMapping: I18nMappingShape, valueDefault: ReactElement<any>) {
+function lookupToken(token: string, i18nMapping: I18nMappingShape, valueDefault: ReactChild) {
   return i18nMapping[token] || valueDefault;
 }
 
 interface I18nTokenShape {
   token: string;
-  default: ReactElement<any>;
-  children?: (x: ReactElement<any>) => ReactElement<any>;
+  default: ReactChild;
+  children?: (x: ReactChild) => ReactElement<any>;
 }
 
 interface I18nTokensShape {
   tokens: string[];
-  defaults: Array<ReactElement<any>>;
-  children: (x: Array<ReactElement<any>>) => ReactElement<any>;
+  defaults: ReactChild[];
+  children: (x: ReactChild[]) => ReactElement<any>;
 }
 
 type I18nProps = ExclusiveUnion<I18nTokenShape, I18nTokensShape>;
