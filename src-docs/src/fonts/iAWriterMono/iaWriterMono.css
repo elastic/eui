@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'iA Writer Mono';
+  font-style:  normal;
+  font-weight: 400;
+  src: url("iAWriterMonoS-Regular.woff2") format("woff2"),
+       url("iAWriterMonoS-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: 'iA Writer Mono';
+  font-style:  italic;
+  font-weight: 400;
+  src: url("iAWriterMonoS-Italic.woff2") format("woff2"),
+       url("iAWriterMonoS-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  font-style:  normal;
+  font-weight: 700;
+  src: url("iAWriterMonoS-Bold.woff2") format("woff2"),
+       url("iAWriterMonoS-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: 'iA Writer Mono';
+  font-style:  italic;
+  font-weight: 700;
+  src: url("iAWriterMonoS-BoldItalic.woff2") format("woff2"),
+       url("iAWriterMonoS-BoldItalic.woff") format("woff");
+}
+
+/* --------------------------------------------------------------------------
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'iA Writer Mono V', sans-serif;
+  }
+}
+
+*/
+@font-face {
+  font-family: 'iA Writer Mono V';
+  font-weight: 400 700;
+  font-style: normal;
+  src: url("iAWriterMonoV.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'iA Writer Mono V';
+  font-weight: 400 700;
+  font-style: italic;
+  src: url("iAWriterMonoV-Italic.woff2") format("woff2");
+}

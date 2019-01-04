@@ -19,6 +19,10 @@
 @mixin euiCodeFont {
   font-family: $euiCodeFontFamily;
   letter-spacing: normal;
+
+  @supports (font-variation-settings: normal) {
+    font-family: $euiCodeFontFamilyVariable;
+  }
 }
 
 @mixin euiText {

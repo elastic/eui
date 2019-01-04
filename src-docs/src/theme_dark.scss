@@ -1,3 +1,7 @@
+// sass-lint:disable no-url-domains, no-url-protocols
+@import url('https://rsms.me/inter/inter-ui.css');
+@import url('./fonts/iAWriterMono/iaWriterMono.css');
+
 @import '../../src/theme_dark';
 @import './components/guide_components';
 @import './views/header/global_filter_group';
