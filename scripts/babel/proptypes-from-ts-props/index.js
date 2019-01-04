@@ -967,7 +967,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
                   processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                   fileCodeNeedsUpdating = true;
                 } else {
-                  throw new Error(`Cannot process annotation id React.${right.name}`);
+                  // throw new Error(`Cannot process annotation id React.${right.name}`);
                 }
               }
             } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
