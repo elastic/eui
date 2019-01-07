@@ -61,9 +61,9 @@ export class EuiSuperDatePicker extends Component {
      */
     showUpdateButton: PropTypes.bool,
     /**
-     *
+     * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
      */
-    showRefreshOnly: PropTypes.bool,
+    isAutoRefreshOnly: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -84,7 +84,7 @@ export class EuiSuperDatePicker extends Component {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     recentlyUsedRanges: [],
     showUpdateButton: true,
-    showRefreshOnly: false,
+    isAutoRefreshOnly: false,
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -212,7 +212,7 @@ export class EuiSuperDatePicker extends Component {
       isInvalid,
     } = this.state;
 
-    if (this.props.showRefreshOnly) {
+    if (this.props.isAutoRefreshOnly) {
       return (
         <EuiDatePickerRange
           className="euiDatePickerRange--inGroup"
@@ -281,7 +281,7 @@ export class EuiSuperDatePicker extends Component {
   }
 
   renderUpdateButton = () => {
-    if (!this.props.showUpdateButton || this.props.showRefreshOnly) {
+    if (!this.props.showUpdateButton || this.props.isAutoRefreshOnly) {
       return;
     }
 
@@ -332,7 +332,7 @@ export class EuiSuperDatePicker extends Component {
         commonlyUsedRanges={this.props.commonlyUsedRanges}
         dateFormat={this.props.dateFormat}
         recentlyUsedRanges={this.props.recentlyUsedRanges}
-        showRefreshOnly={this.props.showRefreshOnly}
+        isAutoRefreshOnly={this.props.isAutoRefreshOnly}
       />
     );
     return (

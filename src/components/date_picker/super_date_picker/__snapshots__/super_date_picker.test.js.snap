@@ -72,10 +72,10 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
+          isAutoRefreshOnly={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
-          showRefreshOnly={false}
           start="now-15m"
         />
       }
@@ -205,10 +205,10 @@ exports[`EuiSuperDatePicker isLoading 1`] = `
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
+          isAutoRefreshOnly={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
-          showRefreshOnly={false}
           start="now-15m"
         />
       }

@@ -21,7 +21,7 @@ const defaultProps = {
   recentlyUsedRanges: [
     { start: 'now/d', end: 'now/d', label: 'Today' },
   ],
-  showRefreshOnly: false
+  isAutoRefreshOnly: false
 };
 
 describe('EuiQuickSelectPopover', () => {
@@ -36,11 +36,11 @@ describe('EuiQuickSelectPopover', () => {
       .toMatchSnapshot();
   });
 
-  test('showRefreshOnly', () => {
+  test('isAutoRefreshOnly', () => {
     const component = shallow(
       <EuiQuickSelectPopover
         {...defaultProps}
-        showRefreshOnly={true}
+        isAutoRefreshOnly={true}
       />
     );
 

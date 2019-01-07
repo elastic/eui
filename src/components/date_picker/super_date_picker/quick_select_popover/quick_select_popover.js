@@ -50,7 +50,7 @@ export class EuiQuickSelectPopover extends Component {
   }
 
   renderDateTimeSections = () => {
-    if (this.props.showRefreshOnly) {
+    if (this.props.isAutoRefreshOnly) {
       return null;
     }
 
@@ -88,7 +88,7 @@ export class EuiQuickSelectPopover extends Component {
         iconSide="right"
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
-        <EuiIcon type={!this.props.showRefreshOnly && this.props.isPaused ? 'calendar' : 'clock'} />
+        <EuiIcon type={!this.props.isAutoRefreshOnly && this.props.isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
     );
 
@@ -127,5 +127,5 @@ EuiQuickSelectPopover.propTypes = {
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,
-  showRefreshOnly: PropTypes.bool.isRequired,
+  isAutoRefreshOnly: PropTypes.bool.isRequired,
 };

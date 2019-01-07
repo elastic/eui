@@ -15,7 +15,7 @@ export default class extends Component {
     recentlyUsedRanges: [],
     isLoading: false,
     showUpdateButton: true,
-    showRefreshOnly: false,
+    isAutoRefreshOnly: false,
     start: 'now-30m',
     end: 'now',
   }
@@ -63,12 +63,12 @@ export default class extends Component {
 
   toggleShowRefreshOnly = () => {
     this.setState(prevState => ({
-      showRefreshOnly: !prevState.showRefreshOnly,
+      isAutoRefreshOnly: !prevState.isAutoRefreshOnly,
     }));
   }
 
   renderTimeRange = () => {
-    if (this.state.showRefreshOnly) {
+    if (this.state.isAutoRefreshOnly) {
       return null;
     }
 
@@ -100,8 +100,8 @@ export default class extends Component {
         <EuiSwitch
           label="Show apply button"
           onChange={this.toggleShowApplyButton}
-          checked={!this.state.showRefreshOnly && this.state.showUpdateButton}
-          disabled={this.state.showRefreshOnly}
+          checked={!this.state.isAutoRefreshOnly && this.state.showUpdateButton}
+          disabled={this.state.isAutoRefreshOnly}
         />
 
         &emsp;
@@ -109,7 +109,7 @@ export default class extends Component {
         <EuiSwitch
           label="Is auto-refresh only"
           onChange={this.toggleShowRefreshOnly}
-          checked={this.state.showRefreshOnly}
+          checked={this.state.isAutoRefreshOnly}
         />
         <EuiSpacer />
 
@@ -123,7 +123,7 @@ export default class extends Component {
           onRefreshChange={this.onRefreshChange}
           recentlyUsedRanges={this.state.recentlyUsedRanges}
           showUpdateButton={this.state.showUpdateButton}
-          showRefreshOnly={this.state.showRefreshOnly}
+          isAutoRefreshOnly={this.state.isAutoRefreshOnly}
         />
 
         <EuiSpacer />

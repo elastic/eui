@@ -88,7 +88,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 </EuiPopover>
 `;
 
-exports[`EuiQuickSelectPopover showRefreshOnly 1`] = `
+exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
 <EuiPopover
   anchorPosition="downLeft"
   button={
