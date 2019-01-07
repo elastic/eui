@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
+// tslint:disable-next-line
 import { EuiButton } from '../../../button';
+// tslint:disable-next-line
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
+// tslint:disable-next-line
 import { EuiSwitch } from '../../../form';
 import { Chart } from '../../components/chart';
 import { Position, Rotation } from '../../lib/series/specs';
@@ -116,12 +120,12 @@ class App extends Component {
 
             <BarSeries
               id={getSpecId('lines')}
-              xScaleType={ScaleType.Ordinal}
+              xScaleType={ScaleType.Linear}
               yScaleType={ScaleType.Linear}
               xAccessor="x"
               yAccessors={['y1', 'y2']}
               // splitSeriesAccessors={['g1', 'g2']}
-              // stackAccessors={['x']}
+              stackAccessors={['x']}
               // curve={CurveType.CURVE_BASIS}
               data={this.state.randomData}
               yScaleToDataExtent={false}

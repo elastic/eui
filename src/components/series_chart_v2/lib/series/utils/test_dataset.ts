@@ -105,6 +105,10 @@ export const BARCHART_2Y2G = [
   { x: 3, g1: 'a', g2: 'p', y1: 7, y2: 3 },
   { x: 3, g1: 'b', g2: 's', y1: 6, y2: 4 },
   { x: 3, g1: 'b', g2: 'p', y1: 6, y2: 4 },
+  { x: 6, g1: 'a', g2: 's', y1: 7, y2: 3 },
+  { x: 6, g1: 'a', g2: 'p', y1: 7, y2: 3 },
+  { x: 6, g1: 'b', g2: 's', y1: 6, y2: 4 },
+  { x: 6, g1: 'b', g2: 'p', y1: 6, y2: 4 },
 ];
 
 const NOW = Date.now();
@@ -115,4 +119,3 @@ export const TIME_CHART_2Y0G = [
   { x: NOW + DAY * 2, y1: 1, y2: 2 },
   { x: NOW + DAY * 3, y1: 6, y2: 10 },
 ];
-console.log(TIME_CHART_2Y0G);

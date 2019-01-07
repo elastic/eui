@@ -23,7 +23,7 @@
     "lint-ts": "tslint -c ./tslint.yaml -p ./tsconfig.json --exclude 'src/**/*.js' && tsc -p ./tsconfig.json",
     "lint-ts-fix": "tslint -c ./tslint.yaml -p ./tsconfig.json --exclude 'src/**/*.js' --fix",
     "test": "yarn lint && yarn test-unit",
-    "test-unit": "jest --config ./scripts/jest/config.json",
+    "test-unit": "jest --config ./scripts/jest/config.json --watch",
     "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",

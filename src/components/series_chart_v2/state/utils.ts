@@ -38,7 +38,7 @@ export function computeSeriesDomains(seriesSpecs: Map<SpecId, BasicSeriesSpec>):
 } {
   const { splittedSeries, xValues, seriesColors } = getSplittedSeries(seriesSpecs);
   // tslint:disable-next-line:no-console
-  console.log({ splittedSeries, xValues, seriesColors });
+  // console.log({ splittedSeries, xValues, seriesColors });
   const splittedDataSeries = [...splittedSeries.values()];
   const specsArray = [...seriesSpecs.values()];
   const xDomain = mergeXDomain(specsArray, xValues);

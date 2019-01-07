@@ -60,7 +60,7 @@ export function computeAxisTicksDimensions(
     ...dimensions,
   };
 }
-function getScaleForAxisSpec(
+export function getScaleForAxisSpec(
   axisSpec: AxisSpec,
   xDomain: XDomain,
   yDomain: YDomain[],

@@ -1,19 +1,17 @@
-import { computeSeriesDomains } from '../../state/utils';
 import { XDomain } from '../series/domains/x_domain';
 import { YDomain } from '../series/domains/y_domain';
-import { BasicSeriesSpec, Position } from '../series/specs';
-import { ScalesConfig } from '../themes/theme';
-import { SpecDomains } from '../utils/domain';
-import { getAxisId, getGroupId, SpecId } from '../utils/ids';
+import { Position } from '../series/specs';
+// import { ScalesConfig } from '../themes/theme';
+import { getAxisId, getGroupId } from '../utils/ids';
 import { ScaleType } from '../utils/scales/scales';
-import { computeAxisTicksDimensions, getAvailableTicks, getVisibleTicks } from './axis_utils';
+import { computeAxisTicksDimensions, getAvailableTicks, getScaleForAxisSpec, getVisibleTicks } from './axis_utils';
 import { SvgTextBBoxCalculator } from './svg_text_bbox_calculator';
 
-const chartScalesConfig: ScalesConfig = {
-  ordinal: {
-    padding:  0,
-  },
-};
+// const chartScalesConfig: ScalesConfig = {
+//   ordinal: {
+//     padding:  0,
+//   },
+// };
 describe('Axis computational utils', () => {
   const mockedRect = {
     x: 0,
@@ -60,7 +58,7 @@ describe('Axis computational utils', () => {
     maxTickWidth: 10,
     maxTickHeight: 10,
   };
-  const axis1Spec = {
+  const verticalAxisSpec = {
     id: getAxisId('axis_1'),
     groupId: getGroupId('group_1'),
     hide: false,
@@ -74,29 +72,57 @@ describe('Axis computational utils', () => {
     },
   };
 
+  const xDomain: XDomain = {
+    type: 'xDomain',
+    scaleType: ScaleType.Linear,
+    domain: [0, 1],
+    isBandScale: false,
+    minInterval: 0,
+  };
+
+  const yDomain: YDomain = {
+    scaleType: ScaleType.Linear,
+    groupId: getGroupId('group_1'),
+    type: 'yDomain',
+    domain: [0, 1],
+    isBandScale: false,
+  };
+
   test('should compute axis dimensions', () => {
     const bboxCalculator = new SvgTextBBoxCalculator();
-    const xDomain: XDomain = {
-      type: 'xDomain',
-      scaleType: ScaleType.Linear,
-      domain: [0, 1],
-      isBandScale: false,
-      minInterval: 0,
-    };
-    const yDomain: YDomain = {
-      scaleType: ScaleType.Linear,
-      groupId: getGroupId('group_1'),
-      type: 'yDomain',
-      domain: [0, 1],
-      isBandScale: false,
-    };
-    const axisDimensions = computeAxisTicksDimensions(axis1Spec, xDomain, [yDomain], 1, bboxCalculator, 0);
+    const axisDimensions = computeAxisTicksDimensions(verticalAxisSpec, xDomain, [yDomain], 1, bboxCalculator, 0);
     expect(axisDimensions).toEqual(axis1Dims);
     bboxCalculator.destroy();
   });
 
+  test('should generate a valid scale', () => {
+    const scale = getScaleForAxisSpec(
+      verticalAxisSpec,
+      xDomain,
+      [yDomain],
+      0,
+      0,
+      0,
+      100,
+    );
+    expect(scale).toBeDefined();
+    expect(scale!.bandwidth).toBe(0);
+    expect(scale!.domain).toEqual([0, 1]);
+    expect(scale!.range).toEqual([100, 0]);
+    expect(scale!.ticks()).toEqual([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+  });
+
   test('should compute available ticks', () => {
-    const axisPositions = getAvailableTicks(chartDim, axis1Spec, axis1Dims, chartScalesConfig, 0);
+    const scale = getScaleForAxisSpec(
+      verticalAxisSpec,
+      xDomain,
+      [yDomain],
+      0,
+      0,
+      0,
+      100,
+    );
+    const axisPositions = getAvailableTicks(verticalAxisSpec, scale!, 0);
     const expectedAxisPositions = [
       { label: '0', position: 100, value: 0 },
       { label: '0.1', position: 90, value: 0.1 },
@@ -126,7 +152,7 @@ describe('Axis computational utils', () => {
       { label: '0.9', position: 10, value: 0.9 },
       { label: '1', position: 0, value: 1 },
     ];
-    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis1Dims, chartDim, 0);
+    const visibleTicks = getVisibleTicks(allTicks, verticalAxisSpec, axis1Dims, chartDim, 0);
     const expectedVisibleTicks = [
       { label: '0', position: 100, value: 0 },
       { label: '0.1', position: 90, value: 0.1 },
@@ -177,7 +203,7 @@ describe('Axis computational utils', () => {
       maxTickWidth: 10,
       maxTickHeight: 20,
     };
-    const visibleTicks = getVisibleTicks(allTicks, axis1Spec, axis2Dims, chartDim, 0);
+    const visibleTicks = getVisibleTicks(allTicks, verticalAxisSpec, axis2Dims, chartDim, 0);
     const expectedVisibleTicks = [
       { label: '0', position: 100, value: 0 },
       { label: '0.2', position: 80, value: 0.2 },

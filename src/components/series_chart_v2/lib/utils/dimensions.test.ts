@@ -1,5 +1,6 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
 import { AxisSpec, Position } from '../series/specs';
+import { LegendStyle } from '../themes/theme';
 import { computeChartDimensions, Margins } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
 import { ScaleType } from './scales/scales';
@@ -46,10 +47,23 @@ describe('Computed chart dimensions', () => {
       return `${value}`;
     },
   };
+  const legend: LegendStyle = {
+    verticalWidth: 0,
+    horizontalHeight: 0,
+  };
+  const showLegend = false;
   test('should be equal to parent dimension with no axis minus margins', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(
+      parentDim,
+      chartMargins,
+      chartPaddings,
+      legend,
+      axisDims,
+      axisSpecs,
+      showLegend,
+    );
     expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a left axis', () => {
@@ -57,7 +71,15 @@ describe('Computed chart dimensions', () => {
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), axis1Spec);
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(
+      parentDim,
+      chartMargins,
+      chartPaddings,
+      legend,
+      axisDims,
+      axisSpecs,
+      showLegend,
+    );
     expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a right axis', () => {
@@ -65,7 +87,15 @@ describe('Computed chart dimensions', () => {
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: Position.Right });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(
+      parentDim,
+      chartMargins,
+      chartPaddings,
+      legend,
+      axisDims,
+      axisSpecs,
+      showLegend,
+    );
     expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a top axis', () => {
@@ -76,7 +106,15 @@ describe('Computed chart dimensions', () => {
       ...axis1Spec,
       position: Position.Top,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(
+      parentDim,
+      chartMargins,
+      chartPaddings,
+      legend,
+      axisDims,
+      axisSpecs,
+      showLegend,
+    );
     expect(chartDimensions).toMatchSnapshot();
   });
   test('should be padded by a bottom axis', () => {
@@ -87,7 +125,15 @@ describe('Computed chart dimensions', () => {
       ...axis1Spec,
       position: Position.Bottom,
     });
-    const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
+    const chartDimensions = computeChartDimensions(
+      parentDim,
+      chartMargins,
+      chartPaddings,
+      legend,
+      axisDims,
+      axisSpecs,
+      showLegend,
+    );
     expect(chartDimensions).toMatchSnapshot();
   });
 });

@@ -3,6 +3,12 @@
 exports[`Chart State utils should compute and format specifications for non stacked chart 1`] = `
 Array [
   Object {
+    "counts": Object {
+      "areaSeries": 0,
+      "barSeries": 0,
+      "basicSeries": 0,
+      "lineSeries": 1,
+    },
     "dataSeries": Array [
       Object {
         "data": Array [
@@ -51,6 +57,12 @@ Array [
     "groupId": "group1",
   },
   Object {
+    "counts": Object {
+      "areaSeries": 0,
+      "barSeries": 0,
+      "basicSeries": 0,
+      "lineSeries": 1,
+    },
     "dataSeries": Array [
       Object {
         "data": Array [
@@ -104,6 +116,12 @@ Array [
 exports[`Chart State utils should compute and format specifications for stacked chart 1`] = `
 Array [
   Object {
+    "counts": Object {
+      "areaSeries": 0,
+      "barSeries": 0,
+      "basicSeries": 0,
+      "lineSeries": 2,
+    },
     "dataSeries": Array [
       Object {
         "data": Array [
@@ -212,6 +230,12 @@ Array [
 exports[`Chart State utils should compute and format specifications for stacked chart 2`] = `
 Array [
   Object {
+    "counts": Object {
+      "areaSeries": 0,
+      "barSeries": 0,
+      "basicSeries": 0,
+      "lineSeries": 2,
+    },
     "dataSeries": Array [
       Object {
         "data": Array [
