@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
     anchorPosition?: PopoverAnchorPosition;
     panelClassName?: string;
     panelPaddingSize?: PanelPaddingSize;
-  }  
+  }
 
   export const EuiPopover: SFC<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps
