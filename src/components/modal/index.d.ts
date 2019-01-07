@@ -1,6 +1,7 @@
 import { CommonProps, Omit, NoArgCallback } from '../common';
 /// <reference path="../button/index.d.ts" />
 
+import { FocusTarget } from 'focus-trap';
 import { ReactNode, SFC, HTMLAttributes, ReactHTMLElement } from 'react';
 
 declare module '@elastic/eui' {
@@ -25,7 +26,7 @@ declare module '@elastic/eui' {
      * Specifies what element should initially have focus; 
      * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. 
      */
-    initialFocus?: string | ReactHTMLElement<any> | NoArgCallback<ReactHTMLElement<any>>;
+    initialFocus?: FocusTarget;
   }
 
   export const EuiModal: SFC<
