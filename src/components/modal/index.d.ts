@@ -1,7 +1,7 @@
-import { CommonProps, Omit } from '../common';
+import { CommonProps, Omit, NoArgCallback } from '../common';
 /// <reference path="../button/index.d.ts" />
 
-import { ReactNode, SFC, HTMLAttributes } from 'react';
+import { ReactNode, SFC, HTMLAttributes, ReactHTMLElement } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -20,6 +20,12 @@ declare module '@elastic/eui' {
      * set to a string for a custom width in custom measurement.
      */
     maxWidth?: boolean | number | string;
+
+    /** 
+     * Specifies what element should initially have focus; 
+     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. 
+     */
+    initialFocus?: string | ReactHTMLElement<any> | NoArgCallback<ReactHTMLElement<any>>;
   }
 
   export const EuiModal: SFC<
