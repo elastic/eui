@@ -1,7 +1,7 @@
 import React from 'react';
 import { Group, Line, Text } from 'react-konva';
 import { AxisTick, AxisTicksDimensions, isHorizontal, isVertical } from '../../lib/axes/axis_utils';
-import { AxisPosition, AxisSpec } from '../../lib/series/specs';
+import { AxisSpec, Position } from '../../lib/series/specs';
 import { Theme } from '../../lib/themes/theme';
 import { Dimensions } from '../../lib/utils/dimensions';
 
@@ -206,7 +206,7 @@ export class Axis extends React.PureComponent<AxisProps> {
       return null;
     }
     const top = height;
-    const left = position === AxisPosition.Left
+    const left = position === Position.Left
       ? - (maxTickWidth  + margins.left / 2)
       : tickSize + tickPadding + maxTickWidth + + margins.right / 2;
     return (
@@ -255,7 +255,7 @@ export class Axis extends React.PureComponent<AxisProps> {
       return;
     }
 
-    const top = position === AxisPosition.Top
+    const top = position === Position.Top
     ? - margins.top / 2
     : maxTickHeight + tickPadding + tickSize + margins.bottom / 2;
     const left = width / 2;

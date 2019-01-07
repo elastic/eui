@@ -2,8 +2,8 @@ import { max } from 'd3-array';
 import { XDomain } from '../series/domains/x_domain';
 import { YDomain } from '../series/domains/y_domain';
 import { computeXScale, computeYScales } from '../series/scales';
-import { AxisPosition, AxisSpec, Rotation, TickFormatter } from '../series/specs';
-import { ChartConfig } from '../themes/theme';
+import { AxisSpec, Position, Rotation, TickFormatter } from '../series/specs';
+import { ChartConfig, LegendStyle } from '../themes/theme';
 import { Dimensions, Margins } from '../utils/dimensions';
 import { Domain } from '../utils/domain';
 import { AxisId } from '../utils/ids';
@@ -237,6 +237,7 @@ export function getAxisPosition(
   cumLeftSum: number,
   cumRightSum: number,
 ) {
+  // TODO add title space
   const { position, tickSize, tickPadding } = axisSpec;
   const { maxTickHeight, maxTickWidth } = axisDim;
   const { top, left, height, width } = chartDimensions;
@@ -252,26 +253,22 @@ export function getAxisPosition(
   let rightIncrement = 0;
 
   if (isVertical(position)) {
-    const specLeft =
-      position === AxisPosition.Left
-        ? maxTickWidth + cumLeftSum + chartMargins.left
-        : left + width + cumRightSum;
-    if (position === AxisPosition.Left) {
+    if (position === Position.Left) {
       leftIncrement = maxTickWidth + tickSize + tickPadding + chartMargins.left;
+      dimensions.left = maxTickWidth + cumLeftSum + chartMargins.left;
     } else {
       rightIncrement = maxTickWidth + tickSize + tickPadding + chartMargins.right;
+      dimensions.left = left + width + cumRightSum;
     }
-    dimensions.left = specLeft;
     dimensions.width = maxTickWidth;
   } else {
-    const specTop =
-      position === AxisPosition.Top ? cumTopSum + chartMargins.top : top + height + cumBottomSum;
-    if (position === AxisPosition.Top) {
+    if (position === Position.Top) {
       topIncrement = maxTickHeight + tickSize + tickPadding + chartMargins.top;
+      dimensions.top = cumTopSum + chartMargins.top;
     } else {
       bottomIncrement = maxTickHeight + tickSize + tickPadding + chartMargins.bottom;
+      dimensions.top = top + height + cumBottomSum;
     }
-    dimensions.top = specTop;
     dimensions.height = maxTickHeight;
   }
   return { dimensions, topIncrement, bottomIncrement, leftIncrement, rightIncrement };
@@ -281,11 +278,14 @@ export function getAxisTicksPositions(
   chartDimensions: Dimensions,
   chartConfig: ChartConfig,
   chartRotation: Rotation,
+  legendStyle: LegendStyle,
+  showLegend: boolean,
   axisSpecs: Map<AxisId, AxisSpec>,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
   xDomain: XDomain,
   yDomain: YDomain[],
   totalGroupsCount: number,
+  legendPosition?: Position,
 ) {
   const axisPositions: Map<AxisId, Dimensions> = new Map();
   const axisVisibleTicks: Map<AxisId, AxisTick[]> = new Map();
@@ -294,6 +294,27 @@ export function getAxisTicksPositions(
   let cumBottomSum = chartConfig.paddings.bottom;
   let cumLeftSum = 0;
   let cumRightSum = chartConfig.paddings.right;
+  if (showLegend) {
+    switch (legendPosition) {
+      case Position.Left:
+        cumLeftSum += legendStyle.verticalWidth;
+        break;
+      // case Position.Right:
+      //   cumRightSum += legendStyle.verticalWidth;
+      //   break;
+      // case Position.Bottom:
+      //   cumBottomSum += legendStyle.horizontalHeight;
+      //   break;
+      case Position.Top:
+        cumTopSum += legendStyle.horizontalHeight;
+        break;
+    }
+  }
+  console.log({cumRightSum});
+  // let cumTopSum = showLegend ? legendStyle.horizontalHeight : 0;
+  // let cumBottomSum = chartConfig.paddings.bottom;
+  // let cumLeftSum = showLegend ? legendStyle.verticalWidth : 0;
+  // let cumRightSum = chartConfig.paddings.right;
   axisDimensions.forEach((axisDim, id) => {
     const axisSpec = axisSpecs.get(id);
     if (!axisSpec) {
@@ -383,7 +404,7 @@ function getHorizontalDomain(
 }
 
 function getAxisDomain(
-  position: AxisPosition,
+  position: Position,
   xDomain: XDomain,
   yDomain: YDomain[],
   chartRotation: number,
@@ -395,10 +416,10 @@ function getAxisDomain(
   }
 }
 
-export function isVertical(position: AxisPosition) {
-  return position === AxisPosition.Left || position === AxisPosition.Right;
+export function isVertical(position: Position) {
+  return position === Position.Left || position === Position.Right;
 }
 
-export function isHorizontal(position: AxisPosition) {
+export function isHorizontal(position: Position) {
   return !isVertical(position);
 }

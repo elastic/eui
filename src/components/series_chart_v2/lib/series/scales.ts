@@ -62,6 +62,7 @@ export function computeXScale(
       const intervalCount = (domain[1] - domain[0]) / minInterval;
       const bandwidth = maxRange / (intervalCount + 1);
       const finalLength = maxRange - bandwidth;
+      console.log({domain});
       return createContinuousScale(
         scaleType,
         domain,

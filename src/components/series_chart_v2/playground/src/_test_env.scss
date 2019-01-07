@@ -19,17 +19,14 @@ html, body {
 
 .header {
   position: fixed;
-  background: lightcoral;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 70px;
+  padding: 10px;
   z-index: 1000;
-  display: flex;
-  padding: 2px;
   user-select: none;
-  &:hover,
-  &:active {
-    background: coral;
-  }
+  background: white;
 }
 .chartContainers {
   display: flex;
@@ -37,10 +34,11 @@ html, body {
   flex-wrap: wrap;
   width: 100%;
   padding: 15px;
+  margin-top: 35px;
 }
 .chartContainer {
   width: 100%;
-  height: 300px;
+  height: 600px;
   flex-shrink: 0;
   flex-grow: 0;
   flex-basis: auto;

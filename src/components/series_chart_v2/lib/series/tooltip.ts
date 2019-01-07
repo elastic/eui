@@ -37,7 +37,9 @@ export function formatTooltip(
   // format y value
   const yValues = formatAccessor(datum, yAccessors, yAxis ? yAxis.tickFormat :  emptyFormatter);
   let yTitle = 'Value';
-  if (yAxis && yAxis.title) {
+  if (spec.yAccessors.length > 1) {
+    yTitle = `${yAccessors[0]}`;
+  } else if (yAxis && yAxis.title) {
     yTitle = yAxis.title;
   }
 

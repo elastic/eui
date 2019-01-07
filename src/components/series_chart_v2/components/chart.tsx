@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { SpecsParser } from '../specs/specs_parser';
 import { ChartStore } from '../state/chart_state';
 import { ChartResizer } from './chart_resizer';
+import { Legend } from './legend';
 import { ReactiveChart as ReactChart } from './react_canvas/reactive_chart';
 import { ReactiveChart as SVGChart } from './svg/reactive_chart';
 import { Tooltips } from './tooltips';
@@ -36,6 +37,7 @@ export class Chart extends React.Component<ChartProps> {
             renderer === 'canvas' && <ReactChart />
           }
           <Tooltips />
+          <Legend />
         </Fragment>
       </Provider>
     );

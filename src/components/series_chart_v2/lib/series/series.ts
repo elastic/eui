@@ -1,3 +1,4 @@
+import { ColorConfig } from '../themes/theme';
 import { Accessor } from '../utils/accessor';
 import { GroupId, SpecId } from '../utils/ids';
 import { splitSpecsByGroupId, YBasicSeriesSpec } from './domains/y_domain';
@@ -42,6 +43,11 @@ export interface DataSeriesCounts {
   basicSeries: number;
 }
 
+export interface DataSeriesColorsValues {
+  specId: SpecId;
+  colorValues: any[];
+}
+
 /**
  * Split a dataset into multiple series, each having a key with the relative
  * series configuration
@@ -52,36 +58,38 @@ export function splitSeries(
   specId: SpecId,
 ): {
   rawDataSeries: RawDataSeries[];
-  colorsKeys: string[];
+  colorsValues: Map<string, any[]>;
   xValues: Set<any>;
 } {
   const { xAccessor, yAccessors, splitSeriesAccessors = [] } = accessors;
   const colorAccessors = accessors.colorAccessors ? accessors.colorAccessors : splitSeriesAccessors;
   const isMultipleY = yAccessors && yAccessors.length > 1;
   const series = new Map<string, RawDataSeries>();
-  const colors = new Set<string>();
+  const colorsValues = new Map<string, any[]>();
   const xValues = new Set<any>();
   data.forEach((datum) => {
     const seriesKey = getAccessorsValues(datum, splitSeriesAccessors);
     if (isMultipleY) {
       yAccessors.forEach((accessor) => {
-        const colorKey = getColorKey(datum, specId, colorAccessors, accessor);
-        colors.add(colorKey);
+        const colorValues = getColorValues(datum, colorAccessors, accessor);
+        const colorValuesKey = getColorValuesAsString(colorValues, specId);
+        colorsValues.set(colorValuesKey, colorValues);
         const cleanedDatum = cleanDatum(datum, xAccessor, accessor);
         xValues.add(cleanedDatum.x);
-        updateSeriesMap(series, [...seriesKey, accessor], cleanedDatum, specId, colorKey);
+        updateSeriesMap(series, [...seriesKey, accessor], cleanedDatum, specId, colorValuesKey);
       }, {});
     } else {
-      const colorKey = getColorKey(datum, specId, colorAccessors);
-      colors.add(colorKey);
+      const colorValues = getColorValues(datum, colorAccessors);
+      const colorValuesKey = getColorValuesAsString(colorValues, specId);
+      colorsValues.set(colorValuesKey, colorValues);
       const cleanedDatum = cleanDatum(datum, xAccessor, yAccessors[0]);
       xValues.add(cleanedDatum.x);
-      updateSeriesMap(series, [...seriesKey], cleanedDatum, specId, colorKey);
+      updateSeriesMap(series, [...seriesKey], cleanedDatum, specId, colorValuesKey);
     }
   }, {});
   return {
     rawDataSeries: [...series.values()],
-    colorsKeys: [...colors],
+    colorsValues,
     xValues,
   };
 }
@@ -115,8 +123,8 @@ function updateSeriesMap(
 /**
  * Get the array of values that forms a series key
  */
-function getAccessorsValues(datum: Datum, splitSeriesAccessors: Accessor[] = []): any[] {
-  return splitSeriesAccessors.map((accessor) => {
+function getAccessorsValues(datum: Datum, accessors: Accessor[] = []): any[] {
+  return accessors.map((accessor) => {
     return datum[accessor];
   });
 }
@@ -124,15 +132,25 @@ function getAccessorsValues(datum: Datum, splitSeriesAccessors: Accessor[] = [])
 /**
  * Get the array of values that forms a series key
  */
-function getColorKey(
+function getColorValues(
   datum: Datum,
-  specId: SpecId,
   colorAccessors: Accessor[] = [],
   yAccessorValue?: any,
+): any[] {
+  const colorValues = getAccessorsValues(datum, colorAccessors);
+  if (yAccessorValue) {
+    return [...colorValues, yAccessorValue];
+  }
+  return colorValues;
+}
+/**
+ * Get the array of values that forms a series key
+ */
+function getColorValuesAsString(
+  colorValues: any[],
+  specId: SpecId,
 ): string {
-  const colorValues = getAccessorsValues(datum, colorAccessors).join(',');
-  const yKey = yAccessorValue ? `,y:{${yAccessorValue}}` : '';
-  return `specId:{${specId}},colors:{${colorValues}}${yKey}`;
+  return `specId:{${specId}},colors:{${colorValues}}`;
 }
 
 /**
@@ -209,7 +227,6 @@ export function getRawDataSeries(
     const spec = seriesSpecs[i];
     const { id, seriesType } = spec;
     const ds = dataSeries.get(id);
-    console.log(spec);
     switch (seriesType) {
       case 'bar':
         counts.barSeries += ds ? ds.length : 0;
@@ -327,16 +344,21 @@ export function getSplittedSeries(
   seriesSpecs: Map<SpecId, BasicSeriesSpec>,
 ): {
   splittedSeries: Map<SpecId, RawDataSeries[]>;
-  seriesColors: string[];
+  seriesColors: Map<string, DataSeriesColorsValues>;
   xValues: Set<any>;
 } {
   const splittedSeries = new Map<SpecId, RawDataSeries[]>();
-  const seriesColors: string[] = [];
+  const seriesColors = new Map<string, DataSeriesColorsValues>();
   const xValues: Set<any> = new Set();
   for (const [specId, spec] of seriesSpecs) {
     const dataSeries = splitSeries(spec.data, spec, specId);
     splittedSeries.set(specId, dataSeries.rawDataSeries);
-    seriesColors.push(...dataSeries.colorsKeys);
+    dataSeries.colorsValues.forEach((colorValues, key) => {
+      seriesColors.set(key, {
+        specId,
+        colorValues,
+      });
+    });
     for (const xValue of dataSeries.xValues) {
       xValues.add(xValue);
     }
@@ -346,4 +368,17 @@ export function getSplittedSeries(
     seriesColors,
     xValues,
   };
+}
+
+export function getSeriesColorMap(
+  seriesColors: Map<string, DataSeriesColorsValues>,
+  chartColors: ColorConfig,
+): Map<string, string> {
+  const seriesColorMap = new Map<string, string>();
+  let counter = 0;
+  seriesColors.forEach((value, seriesColorKey) => {
+    seriesColorMap.set(seriesColorKey, chartColors.vizColors[counter % chartColors.vizColors.length]);
+    counter++;
+  });
+  return seriesColorMap;
 }

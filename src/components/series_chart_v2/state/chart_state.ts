@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 import {
   AxisTick,
   AxisTicksDimensions,
@@ -7,15 +7,17 @@ import {
   isVertical,
 } from '../lib/axes/axis_utils';
 import { CanvasTextBBoxCalculator } from '../lib/axes/canvas_text_bbox_calculator';
+import { computeLegend, LegendItem } from '../lib/series/legend';
 import { AreaGeometry, BarGeometry, GeometryValue, LineGeometry, PointGeometry } from '../lib/series/rendering';
 import { countClusteredSeries } from '../lib/series/scales';
+import { getSeriesColorMap } from '../lib/series/series';
 import {
   AreaSeriesSpec,
   AxisSpec,
   BarSeriesSpec,
   BasicSeriesSpec,
-  Datum,
   LineSeriesSpec,
+  Position,
   Rendering,
   Rotation,
 } from '../lib/series/specs';
@@ -23,7 +25,7 @@ import { formatTooltip } from '../lib/series/tooltip';
 import { DEFAULT_THEME, Theme } from '../lib/themes/theme';
 import { computeChartDimensions, Dimensions } from '../lib/utils/dimensions';
 import { SpecDomains } from '../lib/utils/domain';
-import { AxisId, getSpecId, GroupId, SpecId } from '../lib/utils/ids';
+import { AxisId, GroupId, SpecId } from '../lib/utils/ids';
 import { computeSeriesDomains, computeSeriesGeometries } from './utils';
 export interface TooltipPosition {
   top?: number;
@@ -38,7 +40,7 @@ export interface TooltipData {
 // const MAX_ANIMATABLE_GLYPHS = 500;
 
 export class ChartStore {
-  public debug = true;
+  public debug = false;
   public specsInitialized = observable.box(false);
   public initialized = observable.box(false);
   public parentDimensions: Dimensions = {
@@ -66,6 +68,8 @@ export class ChartStore {
 
   public seriesSpecDomains: Map<SpecId, SpecDomains> = new Map(); // computed
 
+  public legendItems: LegendItem[] = [];
+
   public tooltipData = observable.box<Array<[any, any]> | null>(null);
   public tooltipPosition = observable.box<{x: number, y: number} | null>();
   public showTooltip = observable.box(false);
@@ -83,6 +87,9 @@ export class ChartStore {
    * on the global configuration and on the number of elements per series
    */
   public canDataBeAnimated = false;
+
+  public showLegend = observable.box(false);
+  public legendPosition: Position | undefined;
 
   public onOverElement = action((tooltip: TooltipData) => {
     const { specId } = tooltip.value;
@@ -104,6 +111,10 @@ export class ChartStore {
 
   public setTooltipPosition = action((x: number, y: number) => {
     this.tooltipPosition.set({ x, y});
+  });
+
+  public setShowLegend = action((showLegend: boolean) => {
+    this.showLegend.set(showLegend);
   });
 
   public updateParentDimensions(width: number, height: number, top: number, left: number) {
@@ -173,7 +184,19 @@ export class ChartStore {
 
     const seriesDomains = computeSeriesDomains(this.seriesSpecs);
     // tslint:disable-next-line:no-console
+    console.log({colors: seriesDomains.seriesColors});
+
+    // tslint:disable-next-line:no-console
     console.log({seriesDomains});
+    const seriesColorMap = getSeriesColorMap(seriesDomains.seriesColors, this.chartTheme.colors);
+    this.legendItems = computeLegend(
+      seriesDomains.seriesColors,
+      seriesColorMap,
+      this.seriesSpecs,
+      this.chartTheme.colors.defaultVizColor,
+    );
+    // tslint:disable-next-line:no-console
+    console.log({legendItems: this.legendItems});
 
     const { xDomain, yDomain, formattedDataSeries: { stacked, nonStacked } } = seriesDomains;
     // compute how many series are clustered
@@ -203,8 +226,11 @@ export class ChartStore {
       this.parentDimensions,
       this.chartTheme.chart.margins,
       this.chartTheme.chart.paddings,
+      this.chartTheme.legend,
       this.axesTicksDimensions,
       this.axesSpecs,
+      this.showLegend.get(),
+      this.legendPosition,
     );
 
     const geometries = computeSeriesGeometries(
@@ -212,10 +238,11 @@ export class ChartStore {
       seriesDomains.xDomain,
       seriesDomains.yDomain,
       seriesDomains.formattedDataSeries,
-      seriesDomains.seriesColors,
+      seriesColorMap,
       this.chartTheme.colors,
       this.chartDimensions,
     );
+
     // tslint:disable-next-line:no-console
     console.log({geometries});
     this.geometries = geometries;
@@ -225,11 +252,14 @@ export class ChartStore {
       this.chartDimensions,
       this.chartTheme.chart,
       this.chartRotation,
+      this.chartTheme.legend,
+      this.showLegend.get(),
       this.axesSpecs,
       this.axesTicksDimensions,
       seriesDomains.xDomain,
       seriesDomains.yDomain,
       totalGroupCount,
+      this.legendPosition,
     );
     // tslint:disable-next-line:no-console
     console.log({axisTicksPositions});

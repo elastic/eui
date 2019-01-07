@@ -30,7 +30,7 @@ export class ScaleContinuous implements Scale {
     this.d3Scale.domain(domain);
     this.d3Scale.range(range);
     this.d3Scale.clamp(clamp);
-    this.d3Scale.nice();
+    // this.d3Scale.nice();
     this.bandwidth = bandwidth || 0;
     this.step = 0;
     this.domain = domain;
@@ -47,7 +47,7 @@ export class ScaleContinuous implements Scale {
     if (this.minInterval > 0) {
       const intervalCount = (this.domain[1] - this.domain[0]) / this.minInterval;
       return new Array(intervalCount + 1).fill(0).map((d, i) => {
-        return i * this.minInterval;
+        return this.domain[0] + i * this.minInterval;
       });
     }
     return this.d3Scale.ticks();

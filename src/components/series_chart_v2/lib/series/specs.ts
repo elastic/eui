@@ -83,7 +83,7 @@ export interface AxisSpec {
   hide: boolean;
   showOverlappingTicks: boolean;
   showOverlappingLabels: boolean;
-  position: AxisPosition;
+  position: Position;
   tickSize: number;
   tickPadding: number;
   tickFormat: TickFormatter;
@@ -98,7 +98,7 @@ export type TickFormatter = (value: any) => string;
  * A left or right positioned axis is a vertical axis.
  * A top or bottom positioned axis is an horizontal axis.
  */
-export enum AxisPosition {
+export enum Position {
   Top = 'top',
   Bottom = 'bottom',
   Left = 'left',

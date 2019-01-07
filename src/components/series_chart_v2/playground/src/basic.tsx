@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { EuiButton } from '../../../button';
+import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
+import { EuiSwitch } from '../../../form';
 import { Chart } from '../../components/chart';
-import { CurveType } from '../../lib/series/curves';
-import { AxisPosition, Rotation } from '../../lib/series/specs';
+import { Position, Rotation } from '../../lib/series/specs';
 import * as TestDatasets from '../../lib/series/utils/test_dataset';
-import { getAxisId, getGroupId, getSpecId } from '../../lib/utils/ids';
+import { getAxisId, getSpecId } from '../../lib/utils/ids';
 import { ScaleType } from '../../lib/utils/scales/scales';
-import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
+import { Axis, BarSeries } from '../../specs/index';
 import { Settings } from '../../specs/settings';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
@@ -15,20 +17,43 @@ import './index.scss';
 const dataGenerator = new DataGenerator();
 class App extends Component {
   public state = {
-    randomData: TestDatasets.CHART_ORDINAL_2Y0G,
+    debug: false,
+    randomData: TestDatasets.BARCHART_2Y2G,
     highVolume: dataGenerator.generateGroupedSeries(10, 2),
   };
   public onChangeData = () => {
     this.setState({
-      randomData: randomizeData(TestDatasets.CHART_ORDINAL_2Y0G, ['y1', 'y2'], uniformRandomizer(1000)),
+      randomData: randomizeData(TestDatasets.BARCHART_2Y2G, ['y1', 'y2'], uniformRandomizer(1000)),
       highVolume: dataGenerator.generateGroupedSeries(10, 2),
     });
   }
-  public renderingTest = (renderer: 'svg'|'canvas' = 'svg', rotation: Rotation = 0) => {
-    return (
+  public onSwitchDebug = () => {
+    this.setState({ debug: !this.state.debug });
+  }
+  public renderingTest = (
+    renderer: 'svg'|'canvas' = 'svg',
+    rotation: Rotation = 0,
+    showLegend: boolean = true,
+    legendPosition: Position) => {
+      return (
       <div className="app">
         <div className="header">
-          <button onClick={this.onChangeData}>Update chart</button>
+        <EuiFlexGrid
+          // justifyContent="flex-end"
+          // alignItems="center"
+        >
+          <EuiFlexItem>
+            <EuiButton onClick={this.onChangeData}>Update chart</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              name="debug"
+              label="debug"
+              checked={this.state.debug}
+              onChange={this.onSwitchDebug}
+            />
+          </EuiFlexItem>
+        </EuiFlexGrid>
         </div>
         <div className="chartContainers">
           <div className="chartContainer" key={`renderTest-${renderer}-${rotation}`}>
@@ -36,16 +61,56 @@ class App extends Component {
             <Settings
               rotation={rotation}
               animateData={true}
+              showLegend={showLegend}
+              legendPosition={legendPosition}
+              debug={this.state.debug}
+            />
+            <Axis
+              id={getAxisId('top')}
+              position={Position.Top}
+              title={'Rendering basic test'}
+              showOverlappingTicks={true}
             />
             <Axis
               id={getAxisId('bottom')}
-              position={AxisPosition.Bottom}
+              position={Position.Bottom}
               title={'Rendering basic test'}
-              // tickFormat={(d) => new Date(d).toISOString()}
+              showOverlappingTicks={true}
             />
             <Axis
               id={getAxisId('left')}
-              position={AxisPosition.Left}
+              title={'count'}
+              position={Position.Left}
+              tickFormat={(d) => Number(d).toFixed(2)}
+            />
+            <Axis
+              id={getAxisId('right')}
+              title={'count'}
+              position={Position.Right}
+              tickFormat={(d) => Number(d).toFixed(2)}
+            />
+            <Axis
+              id={getAxisId('top2')}
+              position={Position.Top}
+              title={'Rendering basic test'}
+              showOverlappingTicks={true}
+            />
+            <Axis
+              id={getAxisId('bottom2')}
+              position={Position.Bottom}
+              title={'Rendering basic test'}
+              showOverlappingTicks={true}
+            />
+            <Axis
+              id={getAxisId('left2')}
+              title={'count'}
+              position={Position.Left}
+              tickFormat={(d) => Number(d).toFixed(2)}
+            />
+            <Axis
+              id={getAxisId('right2')}
+              title={'count'}
+              position={Position.Right}
               tickFormat={(d) => Number(d).toFixed(2)}
             />
 
@@ -95,7 +160,11 @@ class App extends Component {
     return (
       <div className="app">
         <div className="chartContainers">
-        { this.renderingTest('canvas', 0)}
+        {/* { this.renderingTest('canvas', 0, false, Position.Bottom)} */}
+        { this.renderingTest('canvas', 0, true, Position.Right)}
+        { this.renderingTest('canvas', 0, true, Position.Left)}
+        { this.renderingTest('canvas', 0, true, Position.Top)}
+        { this.renderingTest('canvas', 0, true, Position.Bottom)}
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-import { AxisPosition, AxisSpec, BarSeriesSpec } from '../lib/series/specs';
+import { AxisSpec, BarSeriesSpec, Position } from '../lib/series/specs';
 import { getAxisId, getGroupId, getSpecId } from '../lib/utils/ids';
 import { ScaleType } from '../lib/utils/scales/scales';
 import { ChartStore } from './chart_state';
@@ -57,7 +57,7 @@ describe('Chart Store', () => {
       hide: false,
       showOverlappingTicks: false,
       showOverlappingLabels: false,
-      position: AxisPosition.Left,
+      position: Position.Left,
       tickSize: 30,
       tickPadding: 10,
       tickFormat: (value: any) => `value ${value}`,

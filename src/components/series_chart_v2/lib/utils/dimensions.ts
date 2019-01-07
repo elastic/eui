@@ -1,5 +1,6 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
-import { AxisPosition, AxisSpec } from '../series/specs';
+import { AxisSpec, Position } from '../series/specs';
+import { LegendStyle } from '../themes/theme';
 import { AxisId } from './ids';
 
 export interface Dimensions {
@@ -25,8 +26,11 @@ export function computeChartDimensions(
   parentDimensions: Dimensions,
   chartMargins: Margins,
   chartPaddings: Margins,
+  legendStyle: LegendStyle,
   axisDimensions: Map<AxisId, AxisTicksDimensions>,
   axisSpecs: Map<AxisId, AxisSpec>,
+  showLegend: boolean,
+  legendPosition?: Position,
 ): Dimensions {
   let vLeftAxisSpecWidth = 0;
   let vRightAxisSpecWidth = 0;
@@ -40,16 +44,16 @@ export function computeChartDimensions(
     }
     const { position, tickSize, tickPadding } = axisSpec;
     switch (position) {
-      case  AxisPosition.Top:
+      case  Position.Top:
         hTopAxisSpecHeight += maxTickHeight + tickSize + tickPadding + chartMargins.top;
         break;
-      case AxisPosition.Bottom:
+      case Position.Bottom:
         hBottomAxisSpecHeight += maxTickHeight + tickSize + tickPadding  + chartMargins.bottom;
         break;
-      case AxisPosition.Left:
+      case Position.Left:
         vLeftAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.left;
         break;
-      case AxisPosition.Right:
+      case Position.Right:
         vRightAxisSpecWidth += maxTickWidth + tickSize + tickPadding + chartMargins.right;
         break;
     }
@@ -71,9 +75,41 @@ export function computeChartDimensions(
   if (vRightAxisSpecWidth === 0) {
     hMargin += chartMargins.right;
   }
+  let legendTopMargin = 0;
+  let legendLeftMargin = 0;
+  if (showLegend) {
+    switch (legendPosition) {
+      case 'right':
+        hMargin += legendStyle.verticalWidth;
+        break;
+      case 'left':
+        hMargin += legendStyle.verticalWidth;
+        legendLeftMargin = legendStyle.verticalWidth;
+        break;
+      case 'top':
+        vMargin += legendStyle.horizontalHeight;
+        legendTopMargin = legendStyle.horizontalHeight;
+        break;
+      case 'bottom':
+        vMargin += legendStyle.horizontalHeight;
+        break;
+    }
+  }
+  let top = 0;
+  let left = 0;
+  if (hTopAxisSpecHeight === 0) {
+    top = chartMargins.top + chartPaddings.top + legendTopMargin;
+  } else {
+    top = hTopAxisSpecHeight + chartPaddings.top + legendTopMargin;
+  }
+  if (vLeftAxisSpecWidth === 0) {
+    left = chartMargins.left + chartPaddings.left + legendLeftMargin;
+  } else {
+    left = vLeftAxisSpecWidth + chartPaddings.left + legendLeftMargin;
+  }
   return {
-    top: hTopAxisSpecHeight === 0 ? chartMargins.top + chartPaddings.top : hTopAxisSpecHeight + chartPaddings.top,
-    left: vLeftAxisSpecWidth === 0 ? chartMargins.left + chartPaddings.left : vLeftAxisSpecWidth + chartPaddings.left,
+    top,
+    left,
     width: chartWidth - hMargin - chartPaddings.left - chartPaddings.right,
     height: chartHeight - vMargin - chartPaddings.bottom - chartPaddings.bottom,
   };

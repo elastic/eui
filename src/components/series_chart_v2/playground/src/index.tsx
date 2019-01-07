@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Chart } from '../../components/chart';
-import { AxisPosition, Rotation } from '../../lib/series/specs';
+import { Position, Rotation } from '../../lib/series/specs';
 import { getAxisId, getSpecId } from '../../lib/utils/ids';
 import { ScaleType } from '../../lib/utils/scales/scales';
 import { AreaSeries, Axis, BarSeries, LineSeries } from '../../specs/index';
@@ -77,13 +77,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y0G] 1 Metric, 1 X Value Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <LineSeries
             id={getSpecId('line1')}
@@ -125,18 +125,18 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y0G] 1 Metric, 1 X Value Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('top')}
             // groupId={getGroupId('barchart')}
-            position={AxisPosition.Top}
+            position={Position.Top}
 
           />
           {/* <BarSeries
@@ -195,13 +195,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y0G] 1 Metric, 1 X Value  Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y0g')}
@@ -224,7 +224,7 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
             showOverlappingLabels={true}
@@ -232,7 +232,7 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
             showOverlappingLabels={true}
             showOverlappingTicks={true}
           />
@@ -258,40 +258,40 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('top')}
-            position={AxisPosition.Top}
+            position={Position.Top}
 
           />
           <Axis
             id={getAxisId('right')}
-            position={AxisPosition.Right}
+            position={Position.Right}
           />
           <Axis
             id={getAxisId('bottom2')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left2')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('top2')}
-            position={AxisPosition.Top}
+            position={Position.Top}
 
           />
           <Axis
             id={getAxisId('right2')}
-            position={AxisPosition.Right}
+            position={Position.Right}
           />
           <BarSeries
             id={getSpecId('spec1')}
@@ -335,12 +335,12 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
             title={`[1Y1G] 1 Metric, 1 X value, 1 Aggregation Rotation:${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('spec1')}
@@ -373,13 +373,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1GS] 1 Metric, 1 X value, 1 Aggregation - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y1g')}
@@ -405,13 +405,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1GS] 1 Metric, 1 X value, 1 Aggregation - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <LineSeries
             id={getSpecId('renderLineChart1y1g')}
@@ -437,13 +437,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y2G] 1 Metric, 1 X Value, 2 Aggregations Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2g')}
@@ -468,13 +468,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y2GS] 1 Metric, 1 X Value, 2 Aggregations - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart1y2gs')}
@@ -501,13 +501,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[2Y0G] 2 Metrics, 1 X Value  Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y0g')}
@@ -531,13 +531,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[2Y1G] 2 Metrics, 1 X Value, 1 aggregation Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1g')}
@@ -561,13 +561,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[2Y1GS] 2 Metrics, 1 X Value, 1 aggregation - stacked  Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y1gs')}
@@ -592,13 +592,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[2Y2G] 2 Metrics, 1 X Value, 2 aggregations Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -623,13 +623,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[2Y2GS] 2 Metrics, 1 X Value, 2 aggregations - stacked Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderBarChart2y2g')}
@@ -665,13 +665,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1GS] Simple Stacked BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderSimpleStackedBarChart')}
@@ -696,13 +696,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y1G] SimpleClusteredBarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderSimpleClusteredBarChart')}
@@ -726,13 +726,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y2G] Multiple Clustered BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderMultipleClusteredBarChart')}
@@ -757,13 +757,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`[1Y2GS] Stacked Clustered BarChart Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderStackedClusteredBarChart')}
@@ -788,13 +788,13 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`GitHub Issues Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <BarSeries
             id={getSpecId('renderGitHubIssue')}
@@ -821,17 +821,17 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`HighVolumeChart stacked Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick: any) => `value: ${tick}`}
           />
@@ -855,17 +855,17 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
 
             title={`HighVolumeChart stacked Rotation: ${rotation}`}
           />
            <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
             title={`HighVolumeChart Rotation: ${rotation}`}
             tickFormat={(tick: any) => `value: ${Number(tick).toFixed(2)}`}
           />
@@ -898,7 +898,7 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={[180].includes(rotation) ? AxisPosition.Top : AxisPosition.Bottom}
+            position={[180].includes(rotation) ? Position.Top : Position.Bottom}
 
             title={`HighVolumeChart stacked ${rotation}`}
             tickFormat={[0, 180].includes(rotation) ? formatter : (d) => d}
@@ -906,7 +906,7 @@ class App extends Component {
           />
            <Axis
             id={getAxisId('left')}
-            position={[90, 0, 180].includes(rotation) ? AxisPosition.Left : AxisPosition.Right}
+            position={[90, 0, 180].includes(rotation) ? Position.Left : Position.Right}
             tickFormat={[90, -90].includes(rotation) ? formatter : (d: any) => d}
             showOverlappingTicks={true}
             showOverlappingLabels={true}
@@ -938,17 +938,17 @@ class App extends Component {
           />
           <Axis
             id={getAxisId('bottom')}
-            position={AxisPosition.Bottom}
+            position={Position.Bottom}
             title={`Rendering test Rotation: ${rotation}`}
           />
           <Axis
             id={getAxisId('left')}
-            position={AxisPosition.Left}
+            position={Position.Left}
           />
           <Axis
             id={getAxisId('top')}
             // groupId={getGroupId('barchart')}
-            position={AxisPosition.Top}
+            position={Position.Top}
 
           />
           <BarSeries

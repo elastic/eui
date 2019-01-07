@@ -15,23 +15,35 @@ import {
 import { computeXScale, computeYScales, countClusteredSeries } from '../lib/series/scales';
 import {
   DataSeries,
+  DataSeriesColorsValues,
   FormattedDataSeries,
   getFormattedDataseries,
   getSplittedSeries,
+  RawDataSeries,
 } from '../lib/series/series';
 import { AreaSeriesSpec, BasicSeriesSpec, LineSeriesSpec } from '../lib/series/specs';
 import { ColorConfig } from '../lib/themes/theme';
 import { SpecId } from '../lib/utils/ids';
 import { Scale } from '../lib/utils/scales/scales';
 
-export function computeSeriesDomains(seriesSpecs: Map<SpecId, BasicSeriesSpec>) {
-  const series = getSplittedSeries(seriesSpecs);
-  console.log({ series });
-  const splittedDataSeries = [...series.splittedSeries.values()];
+export function computeSeriesDomains(seriesSpecs: Map<SpecId, BasicSeriesSpec>): {
+  xDomain: XDomain;
+  yDomain: YDomain[];
+  splittedDataSeries: RawDataSeries[][];
+  formattedDataSeries: {
+      stacked: FormattedDataSeries[];
+      nonStacked: FormattedDataSeries[];
+  };
+  seriesColors: Map<string, DataSeriesColorsValues>;
+} {
+  const { splittedSeries, xValues, seriesColors } = getSplittedSeries(seriesSpecs);
+  // tslint:disable-next-line:no-console
+  console.log({ splittedSeries, xValues, seriesColors });
+  const splittedDataSeries = [...splittedSeries.values()];
   const specsArray = [...seriesSpecs.values()];
-  const xDomain = mergeXDomain(specsArray, series.xValues);
-  const yDomain = mergeYDomain(series.splittedSeries, specsArray);
-  const formattedDataSeries = getFormattedDataseries(specsArray, series.splittedSeries);
+  const xDomain = mergeXDomain(specsArray, xValues);
+  const yDomain = mergeYDomain(splittedSeries, specsArray);
+  const formattedDataSeries = getFormattedDataseries(specsArray, splittedSeries);
 
   // console.log({ formattedDataSeries, xDomain, yDomain });
 
@@ -40,7 +52,7 @@ export function computeSeriesDomains(seriesSpecs: Map<SpecId, BasicSeriesSpec>) 
     yDomain,
     splittedDataSeries,
     formattedDataSeries,
-    seriesColors: series.seriesColors,
+    seriesColors,
   };
 }
 
@@ -52,7 +64,7 @@ export function computeSeriesGeometries(
     stacked: FormattedDataSeries[];
     nonStacked: FormattedDataSeries[];
   },
-  seriesColors: string[],
+  seriesColorMap: Map<string, string>,
   chartColors: ColorConfig,
   chartDims: Dimensions,
 ) {
@@ -67,10 +79,6 @@ export function computeSeriesGeometries(
   const yScales = computeYScales(yDomain, height, 0);
 
   // compute colors
-  const seriesColorMap = new Map<string, string>();
-  seriesColors.forEach((seriesColorKey, index) => {
-    seriesColorMap.set(seriesColorKey, chartColors.vizColors[index % chartColors.vizColors.length]);
-  });
 
   // compute geometries
   const points: PointGeometry[] = [];
@@ -80,7 +88,6 @@ export function computeSeriesGeometries(
   let orderIndex = 0;
   formattedDataSeries.stacked.forEach((dataSeriesGroup, index) => {
     const { groupId, dataSeries, counts } = dataSeriesGroup;
-    console.log(`rendering stacked ${groupId}`, dataSeriesGroup);
     const yScale = yScales.get(groupId);
     if (!yScale) {
       return;
@@ -107,7 +114,6 @@ export function computeSeriesGeometries(
   });
   formattedDataSeries.nonStacked.map((dataSeriesGroup, index) => {
     const { groupId, dataSeries } = dataSeriesGroup;
-    console.log(`rendering non-stacked ${groupId}`, dataSeriesGroup);
     const yScale = yScales.get(groupId);
     if (!yScale) {
       return;

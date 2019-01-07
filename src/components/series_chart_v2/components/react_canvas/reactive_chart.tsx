@@ -90,6 +90,7 @@ class Chart extends React.Component<ReactiveChartProps> {
       axesTicksDimensions,
       axesPositions,
       chartTheme,
+      debug,
     } = this.props.chartStore!;
     const axesComponents: JSX.Element[] = [];
     axesVisibleTicks.forEach((axisTicks, axisId) => {
@@ -108,6 +109,7 @@ class Chart extends React.Component<ReactiveChartProps> {
           axisPosition={axisPosition}
           ticks={ticks}
           chartTheme={chartTheme}
+          debug={debug}
         />,
       );
     });

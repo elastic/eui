@@ -1,7 +1,7 @@
 import { computeSeriesDomains } from '../../state/utils';
 import { XDomain } from '../series/domains/x_domain';
 import { YDomain } from '../series/domains/y_domain';
-import { AxisPosition, BasicSeriesSpec } from '../series/specs';
+import { BasicSeriesSpec, Position } from '../series/specs';
 import { ScalesConfig } from '../themes/theme';
 import { SpecDomains } from '../utils/domain';
 import { getAxisId, getGroupId, SpecId } from '../utils/ids';
@@ -66,7 +66,7 @@ describe('Axis computational utils', () => {
     hide: false,
     showOverlappingTicks: false,
     showOverlappingLabels: false,
-    position: AxisPosition.Left,
+    position: Position.Left,
     tickSize: 10,
     tickPadding: 10,
     tickFormat: (value: any) => {

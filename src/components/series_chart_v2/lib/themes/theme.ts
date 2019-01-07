@@ -15,6 +15,7 @@ export interface AxisConfig {
   titleFontSize: number;
   titleFontFamily: string;
   titleFontStyle: string;
+  titlePadding: number;
 }
 export interface ScalesConfig {
   ordinal: {
@@ -28,12 +29,17 @@ export interface ColorConfig {
 export interface InteractionConfig {
   dimmingOpacity: number;
 }
+export interface LegendStyle {
+  verticalWidth: number;
+  horizontalHeight: number;
+}
 export interface Theme {
   chart: ChartConfig;
   axes: AxisConfig;
   scales: ScalesConfig;
   colors: ColorConfig;
   interactions: InteractionConfig;
+  legend: LegendStyle;
 }
 export interface LineSeriesStyle {
   hideLine: boolean;
@@ -113,6 +119,7 @@ export const DEFAULT_THEME: Theme = {
     titleFontSize: 12,
     titleFontStyle: 'bold',
     titleFontFamily: "'Open Sans', Helvetica, Arial, sans-serif",
+    titlePadding: 5,
   },
   colors: {
     vizColors: [
@@ -131,5 +138,9 @@ export const DEFAULT_THEME: Theme = {
   },
   interactions: {
     dimmingOpacity: 0.1,
+  },
+  legend: {
+    verticalWidth: 150,
+    horizontalHeight: 50,
   },
 };

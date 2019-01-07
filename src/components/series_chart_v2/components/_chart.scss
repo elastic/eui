@@ -1,25 +1,3 @@
-// .euiChartTooltip {
-//   @include euiFontSizeS();
-//   background: black;
-//   border-radius: $euiBorderRadius;
-//   padding: $euiSizeXS;
-//   color: white;
-//   word-wrap: break-word;
-//   max-width: 40%;
-//   font-weight: normal;
-//   line-height: 1.1;
-//   opacity: 0.9;
-//   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
-//   min-width: 50px;
-//   pointer-events: none;
-// }
-// .euiChartTooltipTableTd {
-//   min-width: 50px;
-//   padding: $euiSizeXS;
-//   // border-bottom: 1px solid white;
-// }
-
-
 .euiChartTooltip {
   @include euiBottomShadow($color: $euiColorFullShade);
   @include euiFontSizeXS;
@@ -34,7 +12,7 @@
   overflow-wrap: break-word;
   opacity: 0.95;
   transition: opacity $euiAnimSpeedNormal;
-
+  user-select: none;
   > :last-child {
     margin-bottom: $euiSizeS;
   }
@@ -58,4 +36,41 @@
 
 .euiChartTooltip--hidden {
   opacity: 0;
+}
+
+$euiChartLegendMaxWidth: 150px;
+$euiChartLegendMaxHeight: 50px;
+.euiChartLegend {
+  position: absolute;
+}
+.euiChartLegend--debug {
+  background: red;
+}
+.euiChartLegend--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: $euiChartLegendMaxHeight;
+}
+.euiChartLegend--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: $euiChartLegendMaxHeight;
+}
+.euiChartLegend--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $euiChartLegendMaxWidth;
+}
+.euiChartLegend--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: $euiChartLegendMaxWidth;
+}
+.euiChartLegend__listItem {
 }

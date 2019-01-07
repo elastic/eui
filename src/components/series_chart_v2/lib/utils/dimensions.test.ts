@@ -1,5 +1,5 @@
 import { AxisTicksDimensions } from '../axes/axis_utils';
-import { AxisPosition, AxisSpec } from '../series/specs';
+import { AxisSpec, Position } from '../series/specs';
 import { computeChartDimensions, Margins } from './dimensions';
 import { AxisId, getAxisId, getGroupId } from './ids';
 import { ScaleType } from './scales/scales';
@@ -39,7 +39,7 @@ describe('Computed chart dimensions', () => {
     hide: false,
     showOverlappingTicks: false,
     showOverlappingLabels: false,
-    position: AxisPosition.Left,
+    position: Position.Left,
     tickSize: 10,
     tickPadding: 10,
     tickFormat: (value: any) => {
@@ -64,7 +64,7 @@ describe('Computed chart dimensions', () => {
     const axisDims = new Map<AxisId, AxisTicksDimensions>();
     const axisSpecs = new Map<AxisId, AxisSpec>();
     axisDims.set(getAxisId('axis_1'), axis1Dims);
-    axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: AxisPosition.Right });
+    axisSpecs.set(getAxisId('axis_1'), { ...axis1Spec, position: Position.Right });
     const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
     expect(chartDimensions).toMatchSnapshot();
   });
@@ -74,7 +74,7 @@ describe('Computed chart dimensions', () => {
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), {
       ...axis1Spec,
-      position: AxisPosition.Top,
+      position: Position.Top,
     });
     const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
     expect(chartDimensions).toMatchSnapshot();
@@ -85,7 +85,7 @@ describe('Computed chart dimensions', () => {
     axisDims.set(getAxisId('axis_1'), axis1Dims);
     axisSpecs.set(getAxisId('axis_1'), {
       ...axis1Spec,
-      position: AxisPosition.Bottom,
+      position: Position.Bottom,
     });
     const chartDimensions = computeChartDimensions(parentDim, chartMargins, chartPaddings, axisDims, axisSpecs);
     expect(chartDimensions).toMatchSnapshot();
