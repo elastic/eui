@@ -100,10 +100,14 @@ export default class extends Component {
         <EuiSwitch
           label="Show apply button"
           onChange={this.toggleShowApplyButton}
-          checked={this.state.showUpdateButton}
+          checked={!this.state.showRefreshOnly && this.state.showUpdateButton}
+          disabled={this.state.showRefreshOnly}
         />
+
+        &emsp;
+
         <EuiSwitch
-          label="Show refresh only"
+          label="Is auto-refresh only"
           onChange={this.toggleShowRefreshOnly}
           checked={this.state.showRefreshOnly}
         />

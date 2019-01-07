@@ -110,7 +110,7 @@ exports[`EuiQuickSelectPopover showRefreshOnly 1`] = `
     >
       <EuiIcon
         size="m"
-        type="calendar"
+        type="clock"
       />
     </EuiButtonEmpty>
   }

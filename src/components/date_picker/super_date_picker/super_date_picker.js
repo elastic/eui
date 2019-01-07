@@ -220,6 +220,7 @@ export class EuiSuperDatePicker extends Component {
           isCustom
           startDateControl={<div/>}
           endDateControl={<div/>}
+          readOnly
         >
           <span className="euiSuperDatePicker__prettyFormat">
             {prettyInterval(this.props.isPaused, this.props.refreshInterval)}

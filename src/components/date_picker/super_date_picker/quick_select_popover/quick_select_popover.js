@@ -88,7 +88,7 @@ export class EuiQuickSelectPopover extends Component {
         iconSide="right"
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
-        <EuiIcon type={this.props.isPaused ? 'calendar' : 'clock'} />
+        <EuiIcon type={!this.props.showRefreshOnly && this.props.isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
     );
 
