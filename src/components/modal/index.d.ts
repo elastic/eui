@@ -2,7 +2,7 @@ import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
 
 import { FocusTarget } from 'focus-trap';
-import { ReactNode, SFC, HTMLAttributes, ReactHTMLElement } from 'react';
+import { ReactNode, SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
