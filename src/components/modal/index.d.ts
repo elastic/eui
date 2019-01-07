@@ -1,4 +1,4 @@
-import { CommonProps, Omit, NoArgCallback } from '../common';
+import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
 
 import { FocusTarget } from 'focus-trap';
