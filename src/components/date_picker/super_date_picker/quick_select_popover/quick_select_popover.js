@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
 
 import {
@@ -49,6 +49,33 @@ export class EuiQuickSelectPopover extends Component {
     }
   }
 
+  renderDateTimeSections = () => {
+    if (this.props.isAutoRefreshOnly) {
+      return null;
+    }
+
+    return (
+      <Fragment>
+        <EuiQuickSelect
+          applyTime={this.applyTime}
+          start={this.props.start}
+          end={this.props.end}
+          prevQuickSelect={this.state.prevQuickSelect}
+        />
+        <EuiCommonlyUsedTimeRanges
+          applyTime={this.applyTime}
+          commonlyUsedRanges={this.props.commonlyUsedRanges}
+        />
+        <EuiRecentlyUsed
+          applyTime={this.applyTime}
+          commonlyUsedRanges={this.props.commonlyUsedRanges}
+          dateFormat={this.props.dateFormat}
+          recentlyUsedRanges={this.props.recentlyUsedRanges}
+        />
+      </Fragment>
+    );
+  }
+
   render() {
     const quickSelectButton = (
       <EuiButtonEmpty
@@ -61,7 +88,7 @@ export class EuiQuickSelectPopover extends Component {
         iconSide="right"
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
-        <EuiIcon type={this.props.isPaused ? 'calendar' : 'clock'} />
+        <EuiIcon type={!this.props.isAutoRefreshOnly && this.props.isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
     );
 
@@ -78,22 +105,7 @@ export class EuiQuickSelectPopover extends Component {
           className="euiQuickSelectPopover__content"
           data-test-subj="superDatePickerQuickMenu"
         >
-          <EuiQuickSelect
-            applyTime={this.applyTime}
-            start={this.props.start}
-            end={this.props.end}
-            prevQuickSelect={this.state.prevQuickSelect}
-          />
-          <EuiCommonlyUsedTimeRanges
-            applyTime={this.applyTime}
-            commonlyUsedRanges={this.props.commonlyUsedRanges}
-          />
-          <EuiRecentlyUsed
-            applyTime={this.applyTime}
-            commonlyUsedRanges={this.props.commonlyUsedRanges}
-            dateFormat={this.props.dateFormat}
-            recentlyUsedRanges={this.props.recentlyUsedRanges}
-          />
+          {this.renderDateTimeSections()}
           <EuiRefreshInterval
             applyRefreshInterval={this.props.applyRefreshInterval}
             isPaused={this.props.isPaused}
@@ -115,4 +127,5 @@ EuiQuickSelectPopover.propTypes = {
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,
+  isAutoRefreshOnly: PropTypes.bool.isRequired,
 };

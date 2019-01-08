@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSuperDatePicker is rendered 1`] = `
+exports[`EuiQuickSelect is rendered 1`] = `
 <React.Fragment>
   <EuiFlexGroup
     alignItems="center"
@@ -212,7 +212,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
 </React.Fragment>
 `;
 
-exports[`EuiSuperDatePicker prevQuickSelect 1`] = `
+exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <React.Fragment>
   <EuiFlexGroup
     alignItems="center"

@@ -18,6 +18,7 @@ export const EuiDatePickerRange = ({
   iconType,
   fullWidth,
   isCustom,
+  readOnly,
   ...rest
 }) => {
 
@@ -25,6 +26,7 @@ export const EuiDatePickerRange = ({
     'euiDatePickerRange',
     {
       'euiDatePickerRange--fullWidth': fullWidth,
+      'euiDatePickerRange--readOnly': readOnly,
     },
     className
   );
@@ -47,11 +49,13 @@ export const EuiDatePickerRange = ({
     startControl = cloneElement(startDateControl, {
       showIcon: false,
       fullWidth: fullWidth,
+      readOnly: readOnly,
     });
 
     endControl = cloneElement(endDateControl, {
       showIcon: false,
       fullWidth: fullWidth,
+      readOnly: readOnly,
     });
   }
 

@@ -15,6 +15,7 @@ export default class extends Component {
     recentlyUsedRanges: [],
     isLoading: false,
     showUpdateButton: true,
+    isAutoRefreshOnly: false,
     start: 'now-30m',
     end: 'now',
   }
@@ -60,28 +61,19 @@ export default class extends Component {
     }));
   }
 
-  render() {
+  toggleShowRefreshOnly = () => {
+    this.setState(prevState => ({
+      isAutoRefreshOnly: !prevState.isAutoRefreshOnly,
+    }));
+  }
+
+  renderTimeRange = () => {
+    if (this.state.isAutoRefreshOnly) {
+      return null;
+    }
+
     return (
       <Fragment>
-        <EuiSwitch
-          label="Show apply button"
-          onChange={this.toggleShowApplyButton}
-          checked={this.state.showUpdateButton}
-        />
-        <EuiSpacer />
-
-        <EuiSuperDatePicker
-          isLoading={this.state.isLoading}
-          start={this.state.start}
-          end={this.state.end}
-          onTimeChange={this.onTimeChange}
-          isPaused={this.state.isPaused}
-          refreshInterval={this.state.refreshInterval}
-          onRefreshChange={this.onRefreshChange}
-          recentlyUsedRanges={this.state.recentlyUsedRanges}
-          showUpdateButton={this.state.showUpdateButton}
-        />
-
         <EuiFormRow
           label="start"
         >
@@ -98,6 +90,45 @@ export default class extends Component {
             value={this.state.end}
           />
         </EuiFormRow>
+      </Fragment>
+    );
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <EuiSwitch
+          label="Show apply button"
+          onChange={this.toggleShowApplyButton}
+          checked={!this.state.isAutoRefreshOnly && this.state.showUpdateButton}
+          disabled={this.state.isAutoRefreshOnly}
+        />
+
+        &emsp;
+
+        <EuiSwitch
+          label="Is auto-refresh only"
+          onChange={this.toggleShowRefreshOnly}
+          checked={this.state.isAutoRefreshOnly}
+        />
+        <EuiSpacer />
+
+        <EuiSuperDatePicker
+          isLoading={this.state.isLoading}
+          start={this.state.start}
+          end={this.state.end}
+          onTimeChange={this.onTimeChange}
+          isPaused={this.state.isPaused}
+          refreshInterval={this.state.refreshInterval}
+          onRefreshChange={this.onRefreshChange}
+          recentlyUsedRanges={this.state.recentlyUsedRanges}
+          showUpdateButton={this.state.showUpdateButton}
+          isAutoRefreshOnly={this.state.isAutoRefreshOnly}
+        />
+
+        <EuiSpacer />
+
+        {this.renderTimeRange()}
       </Fragment>
     );
   }
