@@ -346,6 +346,9 @@ function getPropTypesForNode(node, optional, state) {
         [
           types.objectExpression(
             node.members.map(property => {
+              // skip TS index signatures
+              if (types.isTSIndexSignature(property)) return null;
+
               const objectProperty = types.objectProperty(
                 types.identifier(property.key.name || `"${property.key.value}"`),
                 getPropTypesForNode(property.typeAnnotation, property.optional, state)
@@ -354,7 +357,7 @@ function getPropTypesForNode(node, optional, state) {
                 objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
               }
               return objectProperty;
-            })
+            }).filter(x => x != null)
           )
         ]
       );

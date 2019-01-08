@@ -5,7 +5,7 @@ export interface I18nShape {
     [key: string]: ReactChild;
   };
   formatNumber?: (x: number) => string;
-  formatDate?: (x: Date) => string;
+  formatDateTime?: (x: Date) => string;
 }
 
 const I18nContext: React.Context<I18nShape> = createContext({});

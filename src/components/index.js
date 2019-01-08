@@ -188,6 +188,7 @@ export {
 
 export {
   I18n,
+  I18nNumber,
 } from './i18n';
 
 export {
