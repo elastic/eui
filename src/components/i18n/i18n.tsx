@@ -1,14 +1,14 @@
 import React, { ReactChild, ReactElement } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
-import { I18nMappingShape } from '../context/context';
+import { I18nShape } from '../context/context';
 
 // <I18n token="foo"/>
 // <I18n token="foo">{(foo) => <p>foo</p>}</I18n>
 // <I18n tokens=['foo', 'bar']>{([foo, bar]) => <p>{foo}, {bar}</p></I18n>
 
-function lookupToken(token: string, i18nMapping: I18nMappingShape, valueDefault: ReactChild) {
-  return i18nMapping[token] || valueDefault;
+function lookupToken(token: string, i18nMapping: I18nShape['mapping'], valueDefault: ReactChild) {
+  return (i18nMapping && i18nMapping[token]) || valueDefault;
 }
 
 interface I18nTokenShape {
@@ -33,11 +33,12 @@ const I18n: React.SFC<I18nProps> = (props) => (
   <EuiI18nConsumer>
     {
       (i18nConfig) => {
+        const { mapping } = i18nConfig;
         if (hasTokens(props)) {
-          return props.children(props.tokens.map((token, idx) => lookupToken(token, i18nConfig, props.defaults[idx])));
+          return props.children(props.tokens.map((token, idx) => lookupToken(token, mapping, props.defaults[idx])));
         }
 
-        const tokenValue = lookupToken(props.token, i18nConfig, props.default);
+        const tokenValue = lookupToken(props.token, mapping, props.default);
         if (props.children) {
           return props.children(tokenValue);
         } else {

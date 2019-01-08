@@ -27,8 +27,12 @@ export default class extends Component {
   setLanguage = (language) => this.setState({ language })
 
   render() {
+    const i18n = {
+      mapping: mappings[this.state.language]
+    };
+
     return (
-      <EuiContext i18n={mappings[this.state.language]}>
+      <EuiContext i18n={i18n}>
         <div>
           <EuiButtonEmpty onClick={() => this.setLanguage('en')}>English</EuiButtonEmpty>
           <EuiButtonEmpty onClick={() => this.setLanguage('fr')}>French</EuiButtonEmpty>
