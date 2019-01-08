@@ -12,33 +12,33 @@ import {
 const myContent = [
   {
     label: 'First link',
-    href: '/#/display/list-group',
+    href: '#',
     iconType: 'calendar',
     size: 's',
   },
   {
     label: 'Second link is active',
-    href: '/#/display/list-group',
+    href: '#',
     isActive: true,
     iconType: 'clock',
     size: 's',
   },
   {
     label: 'Third link is disabled',
-    href: '/#/display/list-group',
+    href: '#',
     isDisabled: true,
     iconType: 'compute',
     size: 's',
   },
   {
     label: 'Fourth link',
-    href: '/#/display/list-group',
+    href: '#',
     iconType: 'copyClipboard',
     size: 's',
   },
   {
     label: 'Fifth link',
-    href: '/#/display/list-group',
+    href: '#',
     iconType: 'crosshairs',
     size: 's',
   },
