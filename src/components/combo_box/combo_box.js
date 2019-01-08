@@ -38,6 +38,7 @@ export class EuiComboBox extends Component {
     noSuggestions: PropTypes.bool,
     options: PropTypes.array,
     selectedOptions: PropTypes.array,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onSearchChange: PropTypes.func,
@@ -277,7 +278,7 @@ export class EuiComboBox extends Component {
     this.openList();
   }
 
-  onBlur = (e) => {
+  onContainerBlur = (e) => {
     // close the options list, unless the use clicked on an option
     const focusedInOptionsList = this.optionsList && this.optionsList.contains(e.relatedTarget);
     const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
@@ -290,9 +291,11 @@ export class EuiComboBox extends Component {
     if (!this.hasActiveOption() && !focusedInInput) {
       this.addCustomOption();
     }
+  }
 
+  onComboBoxBlur = () => {
     if (this.props.onBlur) {
-      this.props.onBlur(e);
+      this.props.onBlur();
     }
   }
 
@@ -619,7 +622,7 @@ export class EuiComboBox extends Component {
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
-        onBlur={this.onBlur}
+        onBlur={this.onContainerBlur}
         role="combobox"
         aria-haspopup="listbox"
         aria-expanded={isListOpen}
@@ -629,6 +632,7 @@ export class EuiComboBox extends Component {
           placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}
+          onBlur={this.onComboBoxBlur}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.onComboBoxFocus}

@@ -66,9 +66,9 @@ export class EuiRange extends Component {
     let extraInputNode;
     if (showInput) {
       // Chrome will properly size the input based on the max value, but FF & IE does not.
-      // Calculate the max-width of the input based on number of characters in max unit
+      // Calculate the max-width of the input based on number of characters in min or max unit, whichever is greater.
       // Add 2 to accomodate for input stepper
-      const maxWidthStyle = { maxWidth: `${String(max).length + 2}em` };
+      const maxWidthStyle = { maxWidth: `${Math.max(String(min).length, String(max).length) + 2}em` };
 
       // Make this input the main control by disabling screen reader access to slider control
       sliderTabIndex = '-1';

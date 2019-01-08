@@ -1,6 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.1.0`.
+- Added `onBlur` prop to `EuiComboBox` ([#1400](https://github.com/elastic/eui/pull/1400))
+- Added `initialFocus` prop typedefs to `EuiModal` and `EuiPopover` ([#1410](https://github.com/elastic/eui/pull/1410))
+- Updated `gisApp` icon ([#1413](https://github.com/elastic/eui/pull/1413))
+
+## [`6.2.0`](https://github.com/elastic/eui/tree/v6.2.0)
+
+- Added `logoCodesandbox` and updated `apmApp` icons ([#1407](https://github.com/elastic/eui/pull/1407))
+- Changed `EuiListGroup` PropType for `extraAction` to remove console warning ([#1405](hhttps://github.com/elastic/eui/pull/1405))
+
+
+**Bug fixes**
+
+- Account for `min` attribute when determining `EuiRange` input width ([#1406](https://github.com/elastic/eui/pull/1406))
 
 ## [`6.1.0`](https://github.com/elastic/eui/tree/v6.1.0)
 
