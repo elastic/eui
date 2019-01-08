@@ -23,6 +23,7 @@
 import {
   Component,
   cloneElement,
+  KeyboardEvent,
   ReactElement,
 } from 'react';
 

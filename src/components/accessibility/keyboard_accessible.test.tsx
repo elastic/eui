@@ -11,13 +11,11 @@ import { keyCodes } from '../../services';
 
 describe('EuiKeyboardAccessible', () => {
   describe('throws an error', () => {
-    let oldConsoleError: typeof console.error;
+    // tslint:disable-next-line:no-console
+    const oldConsoleError = console.error;
     let consoleStub: jest.Mock<typeof console.error>;
 
     beforeEach(() => {
-      // tslint:disable-next-line:no-console
-      oldConsoleError = console.error;
-
       // We don't use jest.spyOn() here, because EUI's tests apply a global
       // console.error() override that throws an exception. For these
       // tests, we just want to know if console.error() was called.
