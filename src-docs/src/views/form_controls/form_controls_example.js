@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -185,8 +189,8 @@ export const FormControlsExample = {
     text: (
       <p>
         This component renders a basic HTML <code>&lt;select&gt;</code> element. If you need more customization
-        for how the options and/or selected values render, use the <EuiLink href="/#/forms/superselect">EuiSuperSelect</EuiLink>.
-        Another option is to use the <EuiLink href="/#/forms/combo-box">EuiComboBox</EuiLink>, which has search and multi-select
+        for how the options and/or selected values render, use the <Link to="/forms/superselect">EuiSuperSelect</Link>.
+        Another option is to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has search and multi-select
         capabilities, but also has restrictions on how items are rendered.
       </p>
     ),
@@ -328,4 +332,3 @@ export const FormControlsExample = {
     demo: <FormControlLayout />,
   }],
 };
-
