@@ -13720,11 +13720,6 @@ underscore@~1.4.4:
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
   integrity sha1-YaajIBBiKvoHljvzJSA88SI51gQ=
 
-unicode-11.0.0@^0.7.8:
-  version "0.7.8"
-  resolved "https://registry.yarnpkg.com/unicode-11.0.0/-/unicode-11.0.0-0.7.8.tgz#5eecdd6c2802fdd6b260661c57921d0294aeea98"
-  integrity sha512-O/7kwPxe1ZOiwbLr4/OleBnUDwDRldjubW5SqcQvz1b2EMPp5mQotOdf4L1z/5CNzSDVmWM9cFmseOI6L8vb6g==
-
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
