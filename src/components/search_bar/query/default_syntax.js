@@ -127,8 +127,11 @@ word
 
 wordChar
   = alnum
-  / [-_*:]
+  / [-_:*]
   / escapedChar
+  / [^ \\t\\n\\r] {
+    return testIsNonAsciiWordCharacter(text()) ? text() : ctx.error(\`\${text()} is not a supported character\`);
+  }
 
 escapedChar
   = "\\\\" reservedChar
@@ -187,6 +190,14 @@ const Exp = {
   string: (expression, location) => ({ type: 'string', expression, location }),
   boolean: (expression, location) => ({ type: 'boolean', expression, location })
 };
+
+// this isn't _strictly_ correct
+// for our purposes, a non-ascii word character is considered to
+// be anything above `Latin-1 Punctuation & Symbols`, which ends at U+00BF
+// this allows any non-ascii character, including the full set of unicode characters
+// even those in the astral plane (U+010000 → U+10FFFF) as those will be seen as
+// their surrogate pairs which are of the format /[\uD800-\uDBFF][\uDC00-\uDFFF]/
+const testIsNonAsciiWordCharacter = char => char.charCodeAt(0) >= 0x00C0;
 
 const validateFlag = (flag, location, ctx) => {
   if (ctx.schema && ctx.schema.strict) {
@@ -310,6 +321,7 @@ export const defaultSyntax = Object.freeze({
       parseDate,
       resolveFieldValue,
       validateFlag,
+      testIsNonAsciiWordCharacter,
       schema: { strict: false, flags: [], fields: {}, ...schema }
     });
     return AST.create(clauses);
