@@ -6,6 +6,7 @@
 - Added `isAutoRefreshOnly` prop to `EuiSuperDatePicker` ([#1412](https://github.com/elastic/eui/pull/1412))
 - Migrate remaining files in `accessiblity/` to TS ([#1408](https://github.com/elastic/eui/pull/1408))
 - Added `titleProps` and `descriptionProps` to `EuiDescriptionList` ([#1419](https://github.com/elastic/eui/pull/1419))
+- Added ability to pass `isDisabled` to individual `EuiButtonGroup` items ([#1424](https://github.com/elastic/eui/pull/1424))
 
 **Bug fixes**
 
