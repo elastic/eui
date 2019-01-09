@@ -9,7 +9,7 @@ import {
 import {
   EuiCode,
   EuiContext,
-  I18n,
+  EuiI18n,
 } from '../../../../src/components';
 
 import Context from './context';
@@ -35,6 +35,6 @@ export const ContextExample = {
     ),
     components: { EuiContext },
     demo: <Context />,
-    props: { EuiContext, I18n },
+    props: { EuiContext, EuiI18n },
   }],
 };
