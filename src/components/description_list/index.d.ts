@@ -12,8 +12,8 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     textStyle?: EuiDescriptionListTextStyle;
     type?: EuiDescriptionListType;
-    titleProps?: object;
-    descriptionProps?: object;
+    titleProps?: HTMLAttributes<HTMLElement>;
+    descriptionProps?: HTMLAttributes<HTMLElement>;
   }
 
   export class EuiDescriptionList extends Component<
