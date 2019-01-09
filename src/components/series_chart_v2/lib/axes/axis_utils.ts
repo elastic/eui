@@ -77,7 +77,7 @@ export function getScaleForAxisSpec(
     }
     return null;
   } else {
-    console.log({xDomain, totalGroupCount, minRange, maxRange});
+    // console.log({xDomain, totalGroupCount, minRange, maxRange});
     return computeXScale(xDomain, totalGroupCount, minRange, maxRange);
   }
 }
@@ -310,7 +310,7 @@ export function getAxisTicksPositions(
         break;
     }
   }
-  console.log({cumRightSum});
+  // console.log({cumRightSum});
   // let cumTopSum = showLegend ? legendStyle.horizontalHeight : 0;
   // let cumBottomSum = chartConfig.paddings.bottom;
   // let cumLeftSum = showLegend ? legendStyle.verticalWidth : 0;

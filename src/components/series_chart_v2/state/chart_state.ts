@@ -188,10 +188,10 @@ export class ChartStore {
 
     const seriesDomains = computeSeriesDomains(this.seriesSpecs);
     // tslint:disable-next-line:no-console
-    console.log({colors: seriesDomains.seriesColors});
+    // console.log({colors: seriesDomains.seriesColors});
 
     // tslint:disable-next-line:no-console
-    console.log({seriesDomains});
+    // console.log({seriesDomains});
     const seriesColorMap = getSeriesColorMap(seriesDomains.seriesColors, this.chartTheme.colors);
     this.legendItems = computeLegend(
       seriesDomains.seriesColors,
@@ -200,7 +200,7 @@ export class ChartStore {
       this.chartTheme.colors.defaultVizColor,
     );
     // tslint:disable-next-line:no-console
-    console.log({legendItems: this.legendItems});
+    // console.log({legendItems: this.legendItems});
 
     const { xDomain, yDomain, formattedDataSeries: { stacked, nonStacked } } = seriesDomains;
     // compute how many series are clustered
@@ -248,7 +248,7 @@ export class ChartStore {
     );
 
     // tslint:disable-next-line:no-console
-    console.log({geometries});
+    // console.log({geometries});
     this.geometries = geometries;
 
     // // compute visible ticks and their positions
@@ -266,7 +266,7 @@ export class ChartStore {
       this.legendPosition,
     );
     // tslint:disable-next-line:no-console
-    console.log({axisTicksPositions});
+    // console.log({axisTicksPositions});
     this.axesPositions = axisTicksPositions.axisPositions;
     this.axesTicks = axisTicksPositions.axisTicks;
     this.axesVisibleTicks = axisTicksPositions.axisVisibleTicks;

@@ -115,7 +115,6 @@ export function renderLine(
     .curve(getCurveFactory(curve));
   const y = 0;
   const x = shift;
-  console.log(x);
   return {
     line: pathGenerator(dataset) || '',
     points: renderPoints(shift, dataset, xScale, yScale, color, specId, seriesKey),

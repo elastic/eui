@@ -50,11 +50,11 @@ export class ScaleBand implements Scale {
     if (round) {
       start = Math.round(start);
       this.bandwidth = Math.abs(Math.round(this.bandwidth));
-      console.log({round});
+      // console.log({round});
     }
     if (overrideBandwidth) {
       this.bandwidth = overrideBandwidth;
-      console.log({overrideBandwidth});
+      // console.log({overrideBandwidth});
     }
     this.range = range;
     this.modelRange = new Array(n).fill(0).map((val, i) => {
