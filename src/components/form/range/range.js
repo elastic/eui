@@ -208,7 +208,7 @@ export class EuiRange extends Component {
               disabled={disabled}
               onClick={onChange}
               style={tickStyle}
-              // "Don't allow tabbing and just let the range to do the work for non-sighted users"
+              // Don't allow tabbing and just let the range to do the work for non-sighted users
               tabIndex="-1"
             >
               {customTick ? customTick.label : tickValue}
