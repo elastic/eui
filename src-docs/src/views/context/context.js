@@ -3,8 +3,10 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiContext,
   EuiButton,
-  EuiButtonEmpty,
   EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormRow,
   EuiSpacer,
   I18n,
   I18nNumber,
@@ -12,6 +14,8 @@ import {
 
 const mappings = {
   fr: {
+    english: 'Anglais',
+    french: 'Française',
     greeting: 'Salutations!',
     guestNo: 'Vous êtes invité #',
     question: 'Quel est votre nom?',
@@ -37,8 +41,19 @@ export default class extends Component {
     return (
       <EuiContext i18n={i18n}>
         <div>
-          <EuiButtonEmpty onClick={() => this.setLanguage('en')}>English</EuiButtonEmpty>
-          <EuiButtonEmpty onClick={() => this.setLanguage('fr')}>French</EuiButtonEmpty>
+          <EuiFlexGroup gutterSize="s" alignItems="center">
+            <EuiFlexItem grow={false}>
+              <EuiButton fill={this.state.language === 'en'} onClick={() => this.setLanguage('en')}>
+                <I18n token="english" default="English"/>
+              </EuiButton>
+            </EuiFlexItem>
+
+            <EuiFlexItem grow={false}>
+              <EuiButton fill={this.state.language === 'fr'} onClick={() => this.setLanguage('fr')}>
+                <I18n token="french" default="French"/>
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
           <EuiSpacer size="m"/>
 
@@ -50,17 +65,23 @@ export default class extends Component {
 
           <EuiSpacer size="m"/>
 
-          <I18n token="question" default="What is your name?">{question => <p>{question}</p>}</I18n>
-
-          <EuiSpacer size="s"/>
-
-          <I18n tokens={['placeholder', 'action']} defaults={['John Doe', 'Submit']}>
-            {([placeholder, action]) => (
+          <I18n tokens={['question', 'action']} defaults={['What is your name?', 'John Doe']}>
+            {([question, action]) => (
               <Fragment>
-                <EuiFieldText
-                  placeholder={placeholder}
-                  value={this.state.name}
-                /><EuiSpacer size="m" />
+                <EuiFormRow
+                  label={question}
+                >
+
+                  <I18n tokens="placeholder" defaults="Submit">
+                    {placeholder => (
+                      <EuiFieldText
+                        placeholder={placeholder}
+                        value={this.state.name}
+                      />
+                    )}
+                  </I18n>
+
+                </EuiFormRow>
 
                 <EuiButton>{action}</EuiButton>
               </Fragment>
