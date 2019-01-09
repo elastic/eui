@@ -1,18 +1,16 @@
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-// tslint:disable-next-line
 import { EuiButton } from '../../../button';
-// tslint:disable-next-line
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
-// tslint:disable-next-line
 import { EuiSwitch } from '../../../form';
 import { Chart } from '../../components/chart';
 import { Position, Rotation } from '../../lib/series/specs';
 import * as TestDatasets from '../../lib/series/utils/test_dataset';
-import { getAxisId, getSpecId } from '../../lib/utils/ids';
+import { getAxisId, getGroupId, getSpecId } from '../../lib/utils/ids';
 import { ScaleType } from '../../lib/utils/scales/scales';
-import { Axis, BarSeries } from '../../specs/index';
+import { AreaSeries, Axis, BarSeries } from '../../specs/index';
 import { Settings } from '../../specs/settings';
 import { DataGenerator } from '../../utils/data_generators/data_generator';
 import { randomizeData, uniformRandomizer } from '../../utils/data_generators/randomizers';
@@ -70,36 +68,6 @@ class App extends Component {
               debug={this.state.debug}
             />
             <Axis
-              id={getAxisId('top')}
-              position={Position.Top}
-              title={'Rendering basic test'}
-              showOverlappingTicks={true}
-            />
-            <Axis
-              id={getAxisId('bottom')}
-              position={Position.Bottom}
-              title={'Rendering basic test'}
-              showOverlappingTicks={true}
-            />
-            <Axis
-              id={getAxisId('left')}
-              title={'count'}
-              position={Position.Left}
-              tickFormat={(d) => Number(d).toFixed(2)}
-            />
-            <Axis
-              id={getAxisId('right')}
-              title={'count'}
-              position={Position.Right}
-              tickFormat={(d) => Number(d).toFixed(2)}
-            />
-            <Axis
-              id={getAxisId('top2')}
-              position={Position.Top}
-              title={'Rendering basic test'}
-              showOverlappingTicks={true}
-            />
-            <Axis
               id={getAxisId('bottom2')}
               position={Position.Bottom}
               title={'Rendering basic test'}
@@ -111,12 +79,6 @@ class App extends Component {
               position={Position.Left}
               tickFormat={(d) => Number(d).toFixed(2)}
             />
-            <Axis
-              id={getAxisId('right2')}
-              title={'count'}
-              position={Position.Right}
-              tickFormat={(d) => Number(d).toFixed(2)}
-            />
 
             <BarSeries
               id={getSpecId('lines')}
@@ -124,25 +86,25 @@ class App extends Component {
               yScaleType={ScaleType.Linear}
               xAccessor="x"
               yAccessors={['y1', 'y2']}
-              // splitSeriesAccessors={['g1', 'g2']}
+              splitSeriesAccessors={['g1', 'g2']}
               stackAccessors={['x']}
               // curve={CurveType.CURVE_BASIS}
               data={this.state.randomData}
               yScaleToDataExtent={false}
             />
-            {/* <AreaSeries
-            // groupId={getGroupId('group2')}
+            <AreaSeries
+            groupId={getGroupId('group2')}
               id={getSpecId('areas')}
               xScaleType={ScaleType.Ordinal}
               yScaleType={ScaleType.Linear}
               xAccessor="x"
-              yAccessors={['y']}
+              yAccessors={['y1', 'y2']}
               splitSeriesAccessors={['g1', 'g2']}
               stackAccessors={['x', 'g']}
               data={this.state.randomData}
               // curve={CurveType.CURVE_MONOTONE_X}
               yScaleToDataExtent={false}
-            /> */}
+            />
             {/* <BarSeries
               groupId={getGroupId('group3')}
               id={getSpecId('bars')}

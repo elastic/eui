@@ -89,8 +89,12 @@ export class ChartStore {
   public canDataBeAnimated = false;
 
   public showLegend = observable.box(false);
+  public legendCollapsed = observable.box(false);
   public legendPosition: Position | undefined;
-
+  public toggleLegendCollapsed = action(() => {
+    this.legendCollapsed.set(!this.legendCollapsed.get());
+    this.computeChart();
+  });
   public onOverElement = action((tooltip: TooltipData) => {
     const { specId } = tooltip.value;
     const spec = this.seriesSpecs.get(specId);
@@ -229,7 +233,7 @@ export class ChartStore {
       this.chartTheme.legend,
       this.axesTicksDimensions,
       this.axesSpecs,
-      this.showLegend.get(),
+      this.showLegend.get() && !this.legendCollapsed.get(),
       this.legendPosition,
     );
 
@@ -253,7 +257,7 @@ export class ChartStore {
       this.chartTheme.chart,
       this.chartRotation,
       this.chartTheme.legend,
-      this.showLegend.get(),
+      this.showLegend.get() && !this.legendCollapsed.get(),
       this.axesSpecs,
       this.axesTicksDimensions,
       seriesDomains.xDomain,

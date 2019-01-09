@@ -1,0 +1,95 @@
+$euiChartLegendMaxWidth: $euiSize * 10 + $euiSize;
+$euiChartLegendMaxHeight: $euiSize * 4 + $euiSize;
+
+.euiChartLegend {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.euiChartLegend--collapsed {
+  width: $euiSize * 2 !important;
+  height: $euiSize * 2 !important;
+  .euiChartLegendList {
+    display: none;
+  }
+}
+.euiChartLegend--debug {
+  background: red;
+}
+.euiChartLegend--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: $euiChartLegendMaxHeight;
+  flex-direction: column;
+  order: 1;
+  .euiChartLegend__listItem {
+    min-height: 50%;
+    width: $euiChartLegendMaxWidth;
+    min-width: $euiChartLegendMaxWidth;
+  }
+}
+.euiChartLegend--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: $euiChartLegendMaxHeight;
+  flex-direction: column;
+  .euiChartLegend__listItem {
+    min-height: 50%;
+    width: $euiChartLegendMaxWidth;
+    min-width: $euiChartLegendMaxWidth;
+  }
+}
+.euiChartLegend--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $euiChartLegendMaxWidth;  
+  order: 1;
+  .euiChartLegend__listItem {
+    min-width: 100%;
+  }
+}
+.euiChartLegend--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: $euiChartLegendMaxWidth;  
+  .euiChartLegend__listItem {
+    min-width: 100%;
+  }
+}
+
+
+.euiChartLegendCollapser {
+  width: 2 * $euiSize;
+  height: 2 * $euiSize;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.euiChartLegendCollapser--top {
+  order: 2;
+}
+.euiChartLegendCollapser--left {
+  order: 2;
+}
+
+
+
+.euiChartLegendListContainer {
+  overflow: hidden;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+.euiChartLegendList {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.euiChartLegendListItem__title {
+  max-width: $euiChartLegendMaxWidth - 4 * $euiSize;
+}
