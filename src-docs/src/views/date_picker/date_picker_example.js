@@ -298,6 +298,10 @@ export const DatePickerExample = {
           to immediately invoke <EuiCode>onTimeChange</EuiCode>{' '}
           for all <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
         </p>
+        <p>
+          Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true </EuiCode> to limit the component to only display auto refresh content.
+          This is useful in cases where there is no time data but auto-refresh configuration is still desired.
+        </p>
       </div>
     ),
     demo: <SuperDatePicker />,

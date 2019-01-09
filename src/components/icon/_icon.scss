@@ -48,6 +48,11 @@
 
 .euiIcon--subdued {
   fill: $euiColorMediumShade;
+
+  // Text icons are fully mono
+  .euiIcon__fillSecondary {
+    fill: $euiColorMediumShade;
+  }
 }
 
 

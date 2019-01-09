@@ -2,6 +2,8 @@
 
 - Added `onBlur` prop to `EuiComboBox` ([#1400](https://github.com/elastic/eui/pull/1400))
 - Added `initialFocus` prop typedefs to `EuiModal` and `EuiPopover` ([#1410](https://github.com/elastic/eui/pull/1410))
+- Updated `gisApp` icon ([#1413](https://github.com/elastic/eui/pull/1413))
+- Added `isAutoRefreshOnly` prop to `EuiSuperDatePicker` ([#1412](https://github.com/elastic/eui/pull/1412))
 - Migrate remaining files in `accessiblity/` to TS ([#1408](https://github.com/elastic/eui/pull/1408))
 
 ## [`6.2.0`](https://github.com/elastic/eui/tree/v6.2.0)
