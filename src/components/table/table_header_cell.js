@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
+  EuiScreenReaderOnly
+} from '../accessibility';
+
+import {
   EuiIcon,
 } from '../icon';
 
@@ -42,23 +46,23 @@ export const EuiTableHeaderCell = ({
   });
 
   if (onSort) {
-    let sortIcon;
-    if (isSorted) {
-      sortIcon = (
+    const statefulAriaLabel = `Sort ${isSortAscending ? 'descending' : 'ascending'}`;
+
+    const SortIconContainer = isSorted ? React.Fragment : EuiScreenReaderOnly;
+    const sortIcon = (
+      <SortIconContainer>
         <EuiIcon
           className="euiTableSortIcon"
           type={isSortAscending ? 'sortUp' : 'sortDown'}
           size="m"
+          aria-label={statefulAriaLabel}
         />
-      );
-    }
+      </SortIconContainer>
+    );
 
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
     });
-
-    const columnTitle = ariaLabel ? ariaLabel : children;
-    const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
 
     return (
       <th
@@ -70,7 +74,6 @@ export const EuiTableHeaderCell = ({
           type="button"
           className={buttonClasses}
           onClick={onSort}
-          aria-label={statefulAriaLabel}
           data-test-subj="tableHeaderSortButton"
         >
           <span className={contentClasses}>
