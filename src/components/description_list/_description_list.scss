@@ -84,13 +84,13 @@
     .euiDescriptionList__title {
       @include euiTitle('xs');
       line-height: $euiLineHeight;
-      flex-basis: 50%;
+      width: 50%; // Flex-basis doesn't work in IE with padding
       padding-right: $euiSizeS;
     }
 
     .euiDescriptionList__description {
       @include euiFontSize;
-      flex-basis: 50%;
+      width: 50%; // Flex-basis doesn't work in IE with padding
       padding-left: $euiSizeS;
     }
 
