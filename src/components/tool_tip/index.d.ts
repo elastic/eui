@@ -1,5 +1,4 @@
 import { ReactElement, ReactNode, SFC } from 'react';
-import { EuiIconTipProps, ToolTipDelay, ToolTipPositions } from '@elastic/eui';
 import { EuiIcon } from '../icon';
 import { Omit, PropsOf } from '../common';
 
