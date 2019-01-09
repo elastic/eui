@@ -23,7 +23,7 @@ for a better explanation about passing color contrast.
 
 ### Linking to external resources
 
-When referring to external sites or resources, using `react-router` is not necessary. For simple links please utilize EUI components, such as `EuiLink` and a standard `href`.
+When referring to external sites or resources, use EUI components that take an `href` prop, such as `EuiLink`.
 
 #### Basic example:
 
