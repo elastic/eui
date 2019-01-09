@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode, SFC } from 'react';
+import { EuiIconTipProps, ToolTipDelay, ToolTipPositions } from '@elastic/eui';
 import { EuiIcon } from '../icon';
-import { PropsOf } from '../common';
+import { Omit, PropsOf } from '../common';
 
 declare module '@elastic/eui' {
   export type ToolTipPositions =
@@ -16,7 +17,7 @@ declare module '@elastic/eui' {
   export interface EuiToolTipProps {
     children: ReactElement<any>;
     className?: string;
-    content: ReactNode;
+    content?: ReactNode;
     delay?: ToolTipDelay;
     title?: ReactNode;
     id?: string;
@@ -29,8 +30,7 @@ declare module '@elastic/eui' {
     type?: string;
     size?: string;
     'aria-label'?: string;
-    content: ReactNode;
     iconProps?: PropsOf<typeof EuiIcon>;
   }
-  export const EuiIconTip: SFC<EuiIconTipProps>;
+  export const EuiIconTip: SFC<Omit<EuiToolTipProps, 'children'> & EuiIconTipProps>;
 }
