@@ -5,6 +5,7 @@
 
     .euiDescriptionList__title {
       @include euiTitle('xs');
+      line-height: $euiLineHeight;
       margin-top: $euiSize;
 
       // Make sure the first <dt> doesn't get a margine.
@@ -43,6 +44,7 @@
 
       .euiDescriptionList__title {
         @include euiTitle('xxs');
+        line-height: $euiLineHeight;
       }
 
       .euiDescriptionList__description {
@@ -57,6 +59,7 @@
 
         .euiDescriptionList__description {
           @include euiTitle('xxs');
+          line-height: $euiLineHeight;
         }
       }
     }
@@ -80,6 +83,7 @@
 
     .euiDescriptionList__title {
       @include euiTitle('xs');
+      line-height: $euiLineHeight;
       flex-basis: 50%;
       padding-right: $euiSizeS;
     }
@@ -106,6 +110,7 @@
 
       .euiDescriptionList__description {
         @include euiTitle('xs');
+        line-height: $euiLineHeight;
       }
     }
 
@@ -113,6 +118,7 @@
 
       .euiDescriptionList__title {
         @include euiTitle('xxs');
+        line-height: $euiLineHeight;
       }
 
       .euiDescriptionList__description {
@@ -127,6 +133,7 @@
 
         .euiDescriptionList__description {
           @include euiTitle('xxs');
+          line-height: $euiLineHeight;
         }
       }
     }
