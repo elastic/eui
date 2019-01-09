@@ -33,12 +33,14 @@ const textStylesToClassNameMap = {
 export const TEXT_STYLES = Object.keys(textStylesToClassNameMap);
 
 export const EuiDescriptionList = ({
+  align,
   children,
   className,
-  listItems,
-  align,
   compressed,
+  descriptionProps,
+  listItems,
   textStyle,
+  titleProps,
   type,
   ...rest
 }) => {
@@ -58,11 +60,11 @@ export const EuiDescriptionList = ({
     childrenOrListItems = (
       listItems.map((item, index) => {
         return [
-          <EuiDescriptionListTitle key={`title-${index}`}>
+          <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
             {item.title}
           </EuiDescriptionListTitle>,
 
-          <EuiDescriptionListDescription key={`description-${index}`}>
+          <EuiDescriptionListDescription key={`description-${index}`} {...descriptionProps}>
             {item.description}
           </EuiDescriptionListDescription>
         ];
@@ -110,6 +112,16 @@ EuiDescriptionList.propTypes = {
    * How each item should be layed out
    */
   type: PropTypes.oneOf(TYPES),
+
+  /**
+   * Props object to be passed to `EuiDescriptionListTitle`
+   */
+  titleProps: PropTypes.object,
+
+  /**
+   * Props object to be passed to `EuiDescriptionListDescription`
+   */
+  descriptionProps: PropTypes.object,
 };
 
 EuiDescriptionList.defaultProps = {
