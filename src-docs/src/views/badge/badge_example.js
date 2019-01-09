@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -10,7 +14,6 @@ import {
   EuiBadge,
   EuiCode,
   EuiBetaBadge,
-  EuiLink,
   EuiNotificationBadge,
 } from '../../../../src/components';
 
@@ -111,8 +114,8 @@ export const BadgeExample = {
           components like the EuiKeyPadMenuItem.
         </p>
         <p>
-          They can also be used in conjunction with <EuiLink href="/#/display/card">EuiCards</EuiLink>
-          &nbsp;and <EuiLink href="/#/navigation/key-pad-menu">EuiKeyPadMenuItems</EuiLink>.
+          They can also be used in conjunction with <Link to="/display/card">EuiCards</Link>
+          &nbsp;and <Link to="/navigation/key-pad-menu">EuiKeyPadMenuItems</Link>.
         </p>
       </div>
     ),
@@ -130,8 +133,8 @@ export const BadgeExample = {
     text: (
       <p>
         Used to showcase the number of notifications, alerts or hidden selections.
-        Typically used in <EuiLink href="/#/layout/header">EuiHeader</EuiLink> or
-        (eventually) <EuiLink href="/#/forms/filter-group">EuiFilterButtons</EuiLink>.
+        Typically used in <Link to="/layout/header">EuiHeader</Link> or
+        (eventually) <Link to="/forms/filter-group">EuiFilterButtons</Link>.
       </p>
     ),
     props: { EuiNotificationBadge },

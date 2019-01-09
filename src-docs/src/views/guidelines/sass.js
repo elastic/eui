@@ -308,8 +308,8 @@ const importOutsideExample = (`// In an outside project, import the core variabl
 `);
 
 const tintOrShadeExample = (`// tintOrShade(color, tint_percent, shade_percent)
-// will tint the color by % in light themes 
-// and shade the color by % in dark themes 
+// will tint the color by % in light themes
+// and shade the color by % in dark themes
 .themedBox {
   background-color: tintOrShade($euiColorPrimary, 90%, 70%);
   border-left: $euiBorderThick;
@@ -749,7 +749,7 @@ export default() => (
 
     <EuiText className="guideSection__text">
       <p>
-        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</Link>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</EuiLink>.
       </p>
       <p>
         Breakpoints in EUI are provided through the use of a sass
@@ -821,7 +821,7 @@ export default() => (
     <GuideRuleTitle>Animation</GuideRuleTitle>
     <EuiText grow={false} className="guideSection__text">
       <p>
-        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</Link>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</EuiLink>.
       </p>
       <p>
         EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.

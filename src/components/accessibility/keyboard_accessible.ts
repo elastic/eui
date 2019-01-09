@@ -23,12 +23,18 @@
 import {
   Component,
   cloneElement,
+  KeyboardEvent,
+  ReactElement,
 } from 'react';
 
 import { keyCodes } from '../../services';
 
-export class EuiKeyboardAccessible extends Component {
-  onKeyDown = e => {
+interface Props {
+  children: ReactElement<any>;
+}
+
+export class EuiKeyboardAccessible extends Component<Props> {
+  onKeyDown = (e: KeyboardEvent) => {
     // Prevent a scroll from occurring if the user has hit space.
     if (e.keyCode === keyCodes.SPACE) {
       e.preventDefault();
@@ -39,7 +45,7 @@ export class EuiKeyboardAccessible extends Component {
     }
   }
 
-  onKeyUp = e => {
+  onKeyUp = (e: KeyboardEvent) => {
     // Support keyboard accessibility by emulating mouse click on ENTER or SPACE keypress.
     if (e.keyCode === keyCodes.ENTER || e.keyCode === keyCodes.SPACE) {
       // Delegate to the click handler on the element.
@@ -51,7 +57,7 @@ export class EuiKeyboardAccessible extends Component {
     }
   }
 
-  applyKeyboardAccessibility(child) {
+  applyKeyboardAccessibility = (child: ReactElement<any>) => {
     // Add attributes required for accessibility unless they are already specified.
     const props = {
       tabIndex: '0',
@@ -69,7 +75,13 @@ export class EuiKeyboardAccessible extends Component {
   }
 }
 
-const keyboardInaccessibleElement = (props, propName, componentName) => {
+// @ts-ignore defining this as a static on EuiKeyboardAccessible breaks the
+// tests
+EuiKeyboardAccessible.propTypes = {
+  children: keyboardInaccessibleElement,
+};
+
+function keyboardInaccessibleElement(props: Props, propName: string, componentName: string) {
   const child = props.children;
 
   if (!child) {
@@ -94,8 +106,4 @@ const keyboardInaccessibleElement = (props, propName, componentName) => {
   if (typeof child.props.onClick !== 'function') {
     throw new Error(`${componentName}'s child's onClick prop needs to be a function.`);
   }
-};
-
-EuiKeyboardAccessible.propTypes = {
-  children: keyboardInaccessibleElement,
-};
+}
