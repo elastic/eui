@@ -18,10 +18,11 @@ export const EuiNavDrawerFlyout = ({ children, className, title, isCollapsed, li
   return (
     <div
       className={classes}
+      aria-labelledby="navDrawerFlyoutTitle"
       {...rest}
     >
       {children}
-      <EuiTitle size="xxs"><h5>{title}</h5></EuiTitle>
+      <EuiTitle tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
       <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} />
     </div>
   );

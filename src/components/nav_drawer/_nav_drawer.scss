@@ -6,12 +6,14 @@
   position: fixed;
   left: 0;
   top: $euiHeaderSize;
+  overflow-x: hidden;
+  overflow-y: scroll;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
+  transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
+  transition-delay: $euiNavDrawerContractingDelay;
 
   &.euiNavDrawer-isCollapsed {
-    transition: width $euiAnimSpeedExtraFast ease-in;
-
     &.euiNavDrawer-flyoutIsExpanded {
       width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
     }
@@ -19,16 +21,13 @@
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
-    transition: width $euiAnimSpeedFast ease-out;
-
-    &.euiNavDrawer-isDelayed {
-      transition: width $euiAnimSpeedFast ease-out 1.8s; // TODO For prototype alternative
-    }
+    transition-delay: $euiNavDrawerExpandingDelay;
 
     .euiNavDrawerMenu .euiListGroupItem__label {
-      visibility: visible;
       opacity: 1;
-      transition: opacity $euiAnimSpeedExtraFast .2s;
+      transition-delay: (
+        $euiNavDrawerExpandingDelay + $euiNavDrawerMenuAddedDelay
+      );
     }
 
     &.euiNavDrawer-flyoutIsExpanded {
@@ -37,14 +36,15 @@
 
     &.euiNavDrawer-flyoutIsAnimating {
       transition-delay: 0s;
-      transition-property: width;
     }
   }
 
   .euiNavDrawerMenu .euiListGroupItem__label {
-    visibility: hidden;
     white-space: nowrap;
     opacity: 0;
-    transition: opacity $euiAnimSpeedExtraFast;
+    transition: opacity $euiAnimSpeedNormal;
+    transition-delay: (
+      $euiNavDrawerContractingDelay + $euiNavDrawerMenuAddedDelay
+    );
   }
 }
