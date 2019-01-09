@@ -4,6 +4,7 @@
 - Added `initialFocus` prop typedefs to `EuiModal` and `EuiPopover` ([#1410](https://github.com/elastic/eui/pull/1410))
 - Updated `gisApp` icon ([#1413](https://github.com/elastic/eui/pull/1413))
 - Added `isAutoRefreshOnly` prop to `EuiSuperDatePicker` ([#1412](https://github.com/elastic/eui/pull/1412))
+- Changed `EuiRange` PropType for `value` to allow `number` (in addition to `string`) ([#1421](hhttps://github.com/elastic/eui/pull/1421))
 
 ## [`6.2.0`](https://github.com/elastic/eui/tree/v6.2.0)
 
