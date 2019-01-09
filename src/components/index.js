@@ -187,8 +187,8 @@ export {
 } from './image';
 
 export {
-  I18n,
-  I18nNumber,
+  EuiI18n,
+  EuiI18nNumber,
 } from './i18n';
 
 export {

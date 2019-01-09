@@ -7,23 +7,23 @@ function defaultFormatNumber(value: number) {
   return defaultFormatter.format(value);
 }
 
-interface I18nNumberValueShape {
+interface EuiI18nNumberValueShape {
   value: number;
   children?: (x: ReactChild) => ReactElement<any>;
 }
 
-interface I18nNumberValuesShape {
+interface EuiI18nNumberValuesShape {
   values: number[];
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
-type I18nNumberProps = ExclusiveUnion<I18nNumberValueShape, I18nNumberValuesShape>;
+type EuiI18nNumberProps = ExclusiveUnion<EuiI18nNumberValueShape, EuiI18nNumberValuesShape>;
 
-function hasValues(x: I18nNumberProps): x is I18nNumberValuesShape {
+function hasValues(x: EuiI18nNumberProps): x is EuiI18nNumberValuesShape {
   return x.values != null;
 }
 
-const I18nNumber: React.SFC<I18nNumberProps> = (props) => (
+const EuiI18nNumber: React.SFC<EuiI18nNumberProps> = (props) => (
   <EuiI18nConsumer>
     {
       (i18nConfig) => {
@@ -44,4 +44,4 @@ const I18nNumber: React.SFC<I18nNumberProps> = (props) => (
   </EuiI18nConsumer>
 );
 
-export { I18nNumber };
+export { EuiI18nNumber };

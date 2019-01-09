@@ -8,8 +8,8 @@ import {
   EuiFlexItem,
   EuiFormRow,
   EuiSpacer,
-  I18n,
-  I18nNumber,
+  EuiI18n,
+  EuiI18nNumber,
 } from '../../../../src/components';
 
 const mappings = {
@@ -44,49 +44,49 @@ export default class extends Component {
           <EuiFlexGroup gutterSize="s" alignItems="center">
             <EuiFlexItem grow={false}>
               <EuiButton fill={this.state.language === 'en'} onClick={() => this.setLanguage('en')}>
-                <I18n token="english" default="English"/>
+                <EuiI18n token="english" default="English"/>
               </EuiButton>
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
               <EuiButton fill={this.state.language === 'fr'} onClick={() => this.setLanguage('fr')}>
-                <I18n token="french" default="French"/>
+                <EuiI18n token="french" default="French"/>
               </EuiButton>
             </EuiFlexItem>
           </EuiFlexGroup>
 
           <EuiSpacer size="m"/>
 
-          <strong><I18n token="greeting" default="Welcome!"/></strong>
+          <strong><EuiI18n token="greeting" default="Welcome!"/></strong>
 
           <EuiSpacer size="s"/>
 
-          <p><I18n token="guestNo" default="You are guest #"/><I18nNumber value={1582394}/></p>
+          <p><EuiI18n token="guestNo" default="You are guest #"/><EuiI18nNumber value={1582394}/></p>
 
           <EuiSpacer size="m"/>
 
-          <I18n tokens={['question', 'action']} defaults={['What is your name?', 'John Doe']}>
+          <EuiI18n tokens={['question', 'action']} defaults={['What is your name?', 'Submit']} >
             {([question, action]) => (
               <Fragment>
                 <EuiFormRow
                   label={question}
                 >
 
-                  <I18n tokens="placeholder" defaults="Submit">
+                  <EuiI18n token="placeholder" default="John Doe">
                     {placeholder => (
                       <EuiFieldText
                         placeholder={placeholder}
                         value={this.state.name}
                       />
                     )}
-                  </I18n>
+                  </EuiI18n>
 
                 </EuiFormRow>
 
                 <EuiButton>{action}</EuiButton>
               </Fragment>
             )}
-          </I18n>
+          </EuiI18n>
         </div>
       </EuiContext>
     );

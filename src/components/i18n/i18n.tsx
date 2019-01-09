@@ -23,13 +23,13 @@ interface I18nTokensShape {
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
-type I18nProps = ExclusiveUnion<I18nTokenShape, I18nTokensShape>;
+type EuiI18nProps = ExclusiveUnion<I18nTokenShape, I18nTokensShape>;
 
-function hasTokens(x: I18nProps): x is I18nTokensShape {
+function hasTokens(x: EuiI18nProps): x is I18nTokensShape {
   return x.tokens != null;
 }
 
-const I18n: React.SFC<I18nProps> = (props) => (
+const EuiI18n: React.SFC<EuiI18nProps> = (props) => (
   <EuiI18nConsumer>
     {
       (i18nConfig) => {
@@ -49,4 +49,4 @@ const I18n: React.SFC<I18nProps> = (props) => (
   </EuiI18nConsumer>
 );
 
-export { I18n };
+export { EuiI18n };
