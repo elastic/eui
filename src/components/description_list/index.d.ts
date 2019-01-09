@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
     textStyle?: EuiDescriptionListTextStyle;
     type?: EuiDescriptionListType;
     titleProps?: HTMLAttributes<HTMLElement>;
-    descriptionProps?: object;
+    descriptionProps?: HTMLAttributes<HTMLElement>;
   }
 
   export class EuiDescriptionList extends Component<
