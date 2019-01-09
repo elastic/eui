@@ -12,7 +12,7 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     textStyle?: EuiDescriptionListTextStyle;
     type?: EuiDescriptionListType;
-    titleProps?: object;
+    titleProps?: HTMLAttributes<HTMLElement>;
     descriptionProps?: object;
   }
 
