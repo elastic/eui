@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiRange allows value prop to accept a number 1`] = `
+<div
+  class="euiRange__wrapper euiRange__wrapper--hasValue"
+>
+  <div
+    class="euiRange__inputWrapper"
+  >
+    <input
+      class="euiRange"
+      max="100"
+      min="1"
+      type="range"
+      value="8"
+    />
+    <div
+      class="euiRange__valueWrapper"
+    >
+      <output
+        class="euiRange__value euiRange__value--right"
+        style="left:7.07070707070707%"
+      >
+        8
+      </output>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiRange is rendered 1`] = `
 <div
   class="euiRange__wrapper"
