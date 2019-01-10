@@ -6,6 +6,8 @@ import {
   EuiFlexItem,
   EuiIconTip,
   EuiSpacer,
+  EuiText,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => (
@@ -36,5 +38,24 @@ export default () => (
       color="warning"
       content="I do not think it means what you think it means"
     />
+
+    <EuiSpacer />
+
+    <EuiText>
+      <p>
+        Pass a position utility class via <EuiCode>iconProps</EuiCode> to shift for
+        better alignment.
+        <EuiIconTip
+          type="iInCircle"
+          color="subdued"
+          content={
+            <span>This was passed <EuiCode>.eui-alignTop</EuiCode></span>
+          }
+          iconProps={{
+            className: 'eui-alignTop',
+          }}
+        />
+      </p>
+    </EuiText>
   </Fragment>
 );
