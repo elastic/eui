@@ -20,6 +20,7 @@ import {
   EuiNavDrawerFlyout,
   EuiListGroup,
   EuiHorizontalRule,
+  EuiShowFor,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -32,6 +33,7 @@ export default class extends Component {
       flyoutIsAnimating: false,
       navFlyoutTitle: undefined,
       navFlyoutContent: [],
+      mobileIsHidden: true,
     };
 
     this.topLinks = [
@@ -398,6 +400,23 @@ export default class extends Component {
     );
   }
 
+  renderMenuTrigger() {
+    return (
+      <EuiHeaderSectionItemButton
+        aria-label="Open nav"
+        onClick={this.toggleOpen}
+      >
+        <EuiIcon type="apps" href="#" size="m" />
+      </EuiHeaderSectionItemButton>
+    );
+  }
+
+  toggleOpen = () => {
+    this.setState({
+      mobileIsHidden: !this.state.mobileIsHidden
+    });
+  };
+
   expandDrawer = () => {
     this.setState({ isCollapsed: false });
   };
@@ -409,6 +428,7 @@ export default class extends Component {
       this.setState({
         isCollapsed: true,
         flyoutIsCollapsed: true,
+        mobileIsHidden: true,
       });
     }, 350);
   };
@@ -416,8 +436,11 @@ export default class extends Component {
   expandFlyout = (links, title) => {
     const content = links;
 
+    this.setState(prevState => ({
+      flyoutIsCollapsed: prevState.navFlyoutTitle === title ? !this.state.flyoutIsCollapsed : false,
+    }));
+
     this.setState({
-      flyoutIsCollapsed: false,
       flyoutIsAnimating: true,
       navFlyoutTitle: title,
       navFlyoutContent: content
@@ -439,6 +462,7 @@ export default class extends Component {
       flyoutIsAnimating,
       navFlyoutTitle,
       navFlyoutContent,
+      mobileIsHidden,
     } = this.state;
 
     return (
@@ -446,6 +470,14 @@ export default class extends Component {
         <div style={{ position: 'relative' }}>
           <EuiHeader>
             <EuiHeaderSection grow={false}>
+              <EuiShowFor sizes={['xs', 's']}>
+                <EuiHeaderSectionItem
+                  className="euiNavDrawer-mobileIsHidden"
+                  border="right"
+                >
+                  {this.renderMenuTrigger()}
+                </EuiHeaderSectionItem>
+              </EuiShowFor>
               <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>
@@ -456,6 +488,7 @@ export default class extends Component {
             onMouseOver={this.expandDrawer}
             onFocus={this.expandDrawer}
             onMouseLeave={this.collapseDrawer}
+            mobileIsHidden={mobileIsHidden}
             style={{ position: 'absolute' }} // This is for the embedded docs example only
           >
             <EuiNavDrawerMenu>

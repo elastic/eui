@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiNavDrawer = ({ children, className, isCollapsed, flyoutIsCollapsed, flyoutIsAnimating, hasDelay, ...rest }) => {
+export const EuiNavDrawer = ({
+  children,
+  className,
+  isCollapsed,
+  flyoutIsCollapsed,
+  flyoutIsAnimating,
+  hasDelay,
+  mobileIsHidden,
+  ...rest
+}) => {
   const classes = classNames(
     'euiNavDrawer',
     {
@@ -12,6 +21,7 @@ export const EuiNavDrawer = ({ children, className, isCollapsed, flyoutIsCollaps
       'euiNavDrawer-flyoutIsExpanded': !flyoutIsCollapsed,
       'euiNavDrawer-flyoutIsAnimating': flyoutIsAnimating,
       'euiNavDrawer-isDelayed': hasDelay,
+      'euiNavDrawer-mobileIsHidden': mobileIsHidden,
     },
     className
   );
@@ -40,8 +50,10 @@ EuiNavDrawer.propTypes = {
   flyoutIsCollapsed: PropTypes.bool,
   flyoutIsAnimatigng: PropTypes.bool,
   hasDelay: PropTypes.bool,
+  mobileIsHidden: PropTypes.bool,
 };
 
 EuiNavDrawer.defaultProps = {
   isCollapsed: true,
+  mobileIsHidden: true,
 };

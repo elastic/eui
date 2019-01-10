@@ -8,6 +8,7 @@ $euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
 
 // Layout variables
 $euiHeaderSize: $euiSizeXXL + $euiSizeL;
+$euiHeaderSizeMobile: $euiHeaderSize - $euiSize;
 
 // Animation variables
 $euiNavDrawerExpandingDelay: $euiAnimSpeedNormal;

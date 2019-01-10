@@ -8,16 +8,11 @@
   top: $euiHeaderSize;
   overflow-x: hidden;
   overflow-y: scroll;
+  z-index: $euiZHeader - 1;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
-
-  &.euiNavDrawer-isCollapsed {
-    &.euiNavDrawer-flyoutIsExpanded {
-      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
-    }
-  }
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
@@ -46,5 +41,39 @@
     transition-delay: (
       $euiNavDrawerContractingDelay + $euiNavDrawerMenuAddedDelay
     );
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiNavDrawer {
+    width: $euiNavDrawerWidthExpanded;
+    height: calc(100% - #{$euiHeaderSizeMobile});
+    top: $euiHeaderSizeMobile;
+
+    &.euiNavDrawer-mobileIsHidden {
+      width: 0;
+    }
+
+    &.euiNavDrawer-isExpanded.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+
+      .euiNavDrawerFlyout {
+        left: $euiNavDrawerWidthCollapsed;
+      }
+    }
+
+    &.euiNavDrawer-flyoutIsExpanded .euiNavDrawerMenu {
+      width: $euiNavDrawerWidthCollapsed;
+    }
+
+    &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
+      width: 0;
+      transition-delay: 0s;
+      transition-duration: 0s;
+    }
+
+    .euiNavDrawerMenu .euiListGroupItem__label {
+      opacity: 1;
+    }
   }
 }
