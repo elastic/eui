@@ -3,6 +3,7 @@
 exports[`align defaults to left 1`] = `
 <th
   class="euiTableHeaderCell"
+  role="columnheader"
   scope="col"
 >
   <div
@@ -18,6 +19,7 @@ exports[`align defaults to left 1`] = `
 exports[`align renders center when specified 1`] = `
 <th
   class="euiTableHeaderCell"
+  role="columnheader"
   scope="col"
 >
   <div
@@ -33,6 +35,7 @@ exports[`align renders center when specified 1`] = `
 exports[`align renders right when specified 1`] = `
 <th
   class="euiTableHeaderCell"
+  role="columnheader"
   scope="col"
 >
   <div
@@ -50,6 +53,7 @@ exports[`renders EuiTableHeaderCell 1`] = `
   aria-label="aria-label"
   class="euiTableHeaderCell testClass1 testClass2"
   data-test-subj="test subject string"
+  role="columnheader"
   scope="col"
 >
   <div

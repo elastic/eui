@@ -29,7 +29,6 @@ export const EuiTableHeaderCell = ({
   isSorted,
   isSortAscending,
   className,
-  ariaLabel,
   scope,
   isMobileHeader,
   hideForMobile,
@@ -46,28 +45,21 @@ export const EuiTableHeaderCell = ({
   });
 
   if (onSort) {
-    const statefulAriaLabel = `Sort ${isSortAscending ? 'descending' : 'ascending'}`;
-
-    const SortIconContainer = isSorted ? React.Fragment : EuiScreenReaderOnly;
-    const sortIcon = (
-      <SortIconContainer>
-        <EuiIcon
-          className="euiTableSortIcon"
-          type={isSortAscending ? 'sortUp' : 'sortDown'}
-          size="m"
-          aria-label={statefulAriaLabel}
-        />
-      </SortIconContainer>
-    );
-
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
     });
+
+    let ariaSortValue = 'none';
+    if (isSorted) {
+      ariaSortValue = isSortAscending ? 'descending' : 'ascending';
+    }
 
     return (
       <th
         className={classes}
         scope={scope}
+        role="columnheader"
+        aria-sort={ariaSortValue}
         {...rest}
       >
         <button
@@ -78,7 +70,16 @@ export const EuiTableHeaderCell = ({
         >
           <span className={contentClasses}>
             <span className="euiTableCellContent__text">{children}</span>
-            {sortIcon}
+            {isSorted ? (
+              <EuiIcon
+                className="euiTableSortIcon"
+                type={isSortAscending ? 'sortUp' : 'sortDown'}
+                size="m"
+                aria-label={`Sorted in ${ariaSortValue} order`}
+              />
+            ) : (
+              <EuiScreenReaderOnly><span>Sortable column</span></EuiScreenReaderOnly>
+            )}
           </span>
         </button>
       </th>
@@ -88,8 +89,8 @@ export const EuiTableHeaderCell = ({
   return (
     <th
       className={classes}
-      aria-label={ariaLabel}
       scope={scope}
+      role="columnheader"
       {...rest}
     >
       <div className={contentClasses}>
