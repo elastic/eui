@@ -48,7 +48,7 @@ export const EuiButtonGroup = ({
             iconSide={option.iconSide}
             iconType={option.iconType}
             id={option.id}
-            isDisabled={isDisabled}
+            isDisabled={isDisabled || option.isDisabled}
             isIconOnly={isIconOnly}
             isSelected={isSelectedState}
             key={index}
@@ -70,7 +70,8 @@ EuiButtonGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      label: PropTypes.string.isRequired,
+      isDisabled: PropTypes.bool,
     }),
   ).isRequired,
   onChange: PropTypes.func.isRequired,
