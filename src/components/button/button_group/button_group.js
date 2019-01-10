@@ -70,7 +70,8 @@ EuiButtonGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      label: PropTypes.string.isRequired,
+      isDisabled: PropTypes.bool,
     }),
   ).isRequired,
   onChange: PropTypes.func.isRequired,
