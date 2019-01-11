@@ -10,6 +10,7 @@ export const EuiNavDrawer = ({
   flyoutIsAnimating,
   hasDelay,
   mobileIsHidden,
+  showScrollbar,
   ...rest
 }) => {
   const classes = classNames(
@@ -22,6 +23,7 @@ export const EuiNavDrawer = ({
       'euiNavDrawer-flyoutIsAnimating': flyoutIsAnimating,
       'euiNavDrawer-isDelayed': hasDelay,
       'euiNavDrawer-mobileIsHidden': mobileIsHidden,
+      'euiNavDrawer-showScrollbar': showScrollbar,
     },
     className
   );
@@ -51,9 +53,11 @@ EuiNavDrawer.propTypes = {
   flyoutIsAnimatigng: PropTypes.bool,
   hasDelay: PropTypes.bool,
   mobileIsHidden: PropTypes.bool,
+  showScrollbar: PropTypes.bool,
 };
 
 EuiNavDrawer.defaultProps = {
   isCollapsed: true,
   mobileIsHidden: true,
+  showScrollbar: false,
 };

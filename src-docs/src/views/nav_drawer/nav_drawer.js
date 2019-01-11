@@ -39,6 +39,7 @@ export default class extends Component {
       navFlyoutTitle: undefined,
       navFlyoutContent: [],
       mobileIsHidden: true,
+      showScrollbar: false,
     };
 
     this.topLinks = [
@@ -472,16 +473,25 @@ export default class extends Component {
 
   expandDrawer = () => {
     this.setState({ isCollapsed: false });
+
+    setTimeout(() => {
+      this.setState({
+        showScrollbar: true,
+      });
+    }, 350);
   };
 
   collapseDrawer = () => {
-    this.setState({ flyoutIsAnimating: false });
+    this.setState({
+      flyoutIsAnimating: false,
+    });
 
     setTimeout(() => {
       this.setState({
         isCollapsed: true,
         flyoutIsCollapsed: true,
         mobileIsHidden: true,
+        showScrollbar: false,
       });
     }, 350);
   };
@@ -516,6 +526,7 @@ export default class extends Component {
       navFlyoutTitle,
       navFlyoutContent,
       mobileIsHidden,
+      showScrollbar,
     } = this.state;
 
     return (
@@ -553,6 +564,7 @@ export default class extends Component {
             onFocus={this.expandDrawer}
             onMouseLeave={this.collapseDrawer}
             mobileIsHidden={mobileIsHidden}
+            showScrollbar={showScrollbar}
             style={{ position: 'absolute' }} // This is for the embedded docs example only
           >
             <EuiNavDrawerMenu>
@@ -571,7 +583,7 @@ export default class extends Component {
               onMouseLeave={this.collapseFlyout}
             />
           </EuiNavDrawer>
-          <EuiPage style={{ minHeight: '800px' }}>
+          <EuiPage style={{ minHeight: '400px' }}>
             <EuiPageBody style={{ marginLeft: '64px' }}>
               <EuiHideFor sizes={['xs', 's']}>
                 <EuiPageHeader>

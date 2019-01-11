@@ -20,7 +20,6 @@
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
     transition-delay: $euiNavDrawerExpandingDelay;
-    overflow-y: auto;
 
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
@@ -45,6 +44,10 @@
     transition-delay: (
       $euiNavDrawerContractingDelay + $euiNavDrawerMenuAddedDelay
     );
+  }
+
+  &.euiNavDrawer-showScrollbar {
+    overflow-y: auto;
   }
 }
 
