@@ -13,6 +13,7 @@ import {
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
+  EuiHeaderBreadcrumbs,
   EuiIcon,
   EuiTitle,
   EuiNavDrawer,
@@ -23,6 +24,9 @@ import {
   EuiShowFor,
   EuiHideFor
 } from '../../../../src/components';
+
+import HeaderUserMenu from '../header/header_user_menu';
+import HeaderSpacesMenu from '../header/header_spaces_menu';
 
 export default class extends Component {
   constructor(props) {
@@ -412,6 +416,54 @@ export default class extends Component {
     );
   }
 
+  renderBreadcrumbs() {
+    const breadcrumbs = [
+      {
+        text: 'Management',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked management');
+        },
+        'data-test-subj': 'breadcrumbsAnimals',
+        className: 'customClass'
+      },
+      {
+        text: 'Truncation test is here for a really long item',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked truncation test');
+        }
+      },
+      {
+        text: 'hidden',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked hidden');
+        }
+      },
+      {
+        text: 'Users',
+        href: '#',
+        onClick: e => {
+          e.preventDefault();
+          console.log('You clicked users');
+        }
+      },
+      {
+        text: 'Create'
+      }
+    ];
+
+    return (
+      <EuiHeaderBreadcrumbs
+        breadcrumbs={breadcrumbs}
+      />
+    );
+  }
+
   toggleOpen = () => {
     this.setState({
       mobileIsHidden: !this.state.mobileIsHidden
@@ -480,6 +532,17 @@ export default class extends Component {
                 </EuiHeaderSectionItem>
               </EuiShowFor>
               <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+              <EuiHeaderSectionItem border="right">
+                <HeaderSpacesMenu />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
+
+            {this.renderBreadcrumbs()}
+
+            <EuiHeaderSection side="right">
+              <EuiHeaderSectionItem>
+                <HeaderUserMenu />
+              </EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>
           <EuiNavDrawer

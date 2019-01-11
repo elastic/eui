@@ -19,7 +19,7 @@
 
 .euiHeaderSectionItem__button {
   height: $euiHeaderChildSize;
-  min-width: $euiHeaderChildSize;
+  min-width: $euiHeaderChildSize + 1px;
   text-align: center;
   font-size: 0; // aligns icons better vertically
 

@@ -8,7 +8,7 @@
   top: $euiHeaderSize;
   overflow-x: hidden;
   overflow-y: scroll;
-  z-index: $euiZHeader - 1;
+  z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
