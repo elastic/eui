@@ -1,13 +1,13 @@
 // Nav drawer. Global application navigation.
 
 .euiNavDrawer {
+  @include euiScrollBar;
   width: $euiNavDrawerWidthCollapsed;
   height: calc(100% - #{$euiHeaderSize});
   position: fixed;
   left: 0;
   top: $euiHeaderSize;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
@@ -20,6 +20,7 @@
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
     transition-delay: $euiNavDrawerExpandingDelay;
+    overflow-y: auto;
 
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
