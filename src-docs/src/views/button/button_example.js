@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
@@ -11,7 +15,6 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiButtonToggle,
-  EuiLink,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -271,7 +274,7 @@ export const ButtonExample = {
           <EuiCode>color=&apos;ghost&apos;</EuiCode> to any of the button styles on this page. These
           should be used extremely rarely, and are only for placing buttons on top of dark or
           image-based backgrounds. A good example of their use is in the{' '}
-          <EuiLink href="/#/layout/bottom-bar">EuiBottomBar</EuiLink> component.
+          <Link to="/layout/bottom-bar">EuiBottomBar</Link> component.
         </p>
       ),
       demo: <ButtonGhost />,

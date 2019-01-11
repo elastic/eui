@@ -31,6 +31,10 @@ import DescriptionListReverse from './description_list_reverse';
 const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
 const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
 
+import DescriptionListClasses from './description_list_classes';
+const descriptionListClassesSource = require('!!raw-loader!./description_list_classes');
+const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
+
 export const DescriptionListExample = {
   title: 'Description List',
   sections: [{
@@ -124,5 +128,23 @@ export const DescriptionListExample = {
       </p>
     ),
     demo: <DescriptionListStyling />,
+  }, {
+    title: 'Passing className',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: descriptionListClassesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: descriptionListClassesHtml,
+    }],
+    text: (
+      <p>
+        When using the <EuiCode>listItems</EuiCode> prop to pass an object of items and you
+        need to also add <EuiCode>className</EuiCode>s (or other available props) to the individual
+        pieces, you can use the <EuiCode>titleProps</EuiCode> and <EuiCode>descriptionProps</EuiCode> to
+        do so.
+      </p>
+    ),
+    demo: <DescriptionListClasses />,
   }],
 };

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiListGroupItem is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem renders href 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+>
+  <a
+    class="euiListGroupItem__button"
+    href="#"
+  >
+    <span
+      class="euiListGroupItem__label"
+    >
+      Label
+    </span>
+  </a>
+</li>
+`;

@@ -130,6 +130,7 @@ import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
 import logoCloud from './assets/logo_cloud.svg';
 import logoCloudEnterprise from './assets/logo_cloud_ece.svg';
+import logoCodesandbox from './assets/logo_codesandbox.svg';
 import logoCouchbase from './assets/logo_couchbase.svg';
 import logoDocker from './assets/logo_docker.svg';
 import logoDropwizard from './assets/logo_dropwizard.svg';
@@ -418,6 +419,7 @@ const typeToIconMap = {
   logoCeph,
   logoCloud,
   logoCloudEnterprise,
+  logoCodesandbox,
   logoCouchbase,
   logoDocker,
   logoDropwizard,

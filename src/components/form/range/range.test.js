@@ -117,4 +117,17 @@ describe('EuiRange', () => {
         .toMatchSnapshot();
     });
   });
+
+  test('allows value prop to accept a number', () => {
+    const component = render(
+      <EuiRange
+        value={8}
+        onChange={() => {}}
+        showValue
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
 });
