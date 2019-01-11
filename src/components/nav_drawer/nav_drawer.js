@@ -40,7 +40,7 @@ EuiNavDrawer.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Toggle the nav drawer between collapsed and expanded
+   * Toggle the nav drawer between collapsed (docked) and expanded
    */
   isCollapsed: PropTypes.bool,
 

@@ -8,6 +8,7 @@ import {
 
 import {
   EuiNavDrawer,
+  EuiCode,
 } from '../../../../src/components';
 
 import NavDrawer from './nav_drawer';
@@ -26,7 +27,10 @@ export const NavDrawerExample = {
     }],
     text: (
       <p>
-        The nav drawer is made up of several individual components.
+        <EuiCode>EuiNavDrawer</EuiCode> provides a side navigation feature that
+        is complete with interactions and a mobile-frienly design. It can
+        contain one or more <EuiCode>EuiListGroup</EuiCode> components and is
+        designed to be used in conjunction with <EuiCode>EuiHeader</EuiCode>.
       </p>
     ),
     props: {
