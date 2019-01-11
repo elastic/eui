@@ -54,8 +54,6 @@
 @include euiBreakpoint('xs', 's') {
   .euiNavDrawer {
     width: $euiNavDrawerWidthExpanded;
-    height: calc(100% - #{$euiHeaderSizeMobile});
-    top: $euiHeaderSizeMobile;
 
     &.euiNavDrawer-mobileIsHidden {
       width: 0;
@@ -69,8 +67,14 @@
       }
     }
 
-    &.euiNavDrawer-flyoutIsExpanded .euiNavDrawerMenu {
-      width: $euiNavDrawerWidthCollapsed;
+    &.euiNavDrawer-flyoutIsExpanded {
+      .euiNavDrawerMenu {
+        width: $euiNavDrawerWidthCollapsed;
+      }
+
+      .euiNavDrawerMenu .euiListGroupItem__label {
+        display: none;
+      }
     }
 
     &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
@@ -82,5 +86,12 @@
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
     }
+  }
+}
+
+@include euiBreakpoint('xs') {
+  .euiNavDrawer {
+    height: calc(100% - #{$euiHeaderSizeMobile});
+    top: $euiHeaderSizeMobile;
   }
 }

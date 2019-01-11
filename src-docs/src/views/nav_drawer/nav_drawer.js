@@ -22,7 +22,7 @@ import {
   EuiListGroup,
   EuiHorizontalRule,
   EuiShowFor,
-  EuiHideFor
+  EuiHideFor,
 } from '../../../../src/components';
 
 import HeaderUserMenu from '../header/header_user_menu';
@@ -535,10 +535,7 @@ export default class extends Component {
           <EuiHeader>
             <EuiHeaderSection grow={false}>
               <EuiShowFor sizes={['xs', 's']}>
-                <EuiHeaderSectionItem
-                  className="euiNavDrawer-mobileIsHidden"
-                  border="right"
-                >
+                <EuiHeaderSectionItem border="right">
                   {this.renderMenuTrigger()}
                 </EuiHeaderSectionItem>
               </EuiShowFor>
@@ -583,7 +580,7 @@ export default class extends Component {
               onMouseLeave={this.collapseFlyout}
             />
           </EuiNavDrawer>
-          <EuiPage style={{ minHeight: '400px' }}>
+          <EuiPage style={{ minHeight: '600px' }}>
             <EuiPageBody style={{ marginLeft: '64px' }}>
               <EuiHideFor sizes={['xs', 's']}>
                 <EuiPageHeader>
