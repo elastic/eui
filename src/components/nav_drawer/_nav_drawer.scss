@@ -13,6 +13,9 @@
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
+  // This prevents the scrollbar from overlapping the nav links. Scrollbars still show on hover
+  // sass-lint:disable no-vendor-prefixes
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;

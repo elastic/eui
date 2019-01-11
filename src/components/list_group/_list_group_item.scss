@@ -41,7 +41,7 @@
   padding: $euiSizeM $euiSizeS;
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
   text-align: left;
 }
 

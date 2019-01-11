@@ -21,6 +21,7 @@ import {
   EuiListGroup,
   EuiHorizontalRule,
   EuiShowFor,
+  EuiHideFor
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -509,25 +510,27 @@ export default class extends Component {
           </EuiNavDrawer>
           <EuiPage style={{ minHeight: '800px' }}>
             <EuiPageBody style={{ marginLeft: '64px' }}>
-              <EuiPageHeader>
-                <EuiPageHeaderSection>
-                  <EuiTitle size="l">
-                    <h1>Page title</h1>
-                  </EuiTitle>
-                </EuiPageHeaderSection>
-              </EuiPageHeader>
-              <EuiPageContent>
-                <EuiPageContentHeader>
-                  <EuiPageContentHeaderSection>
-                    <EuiTitle>
-                      <h2>Content title</h2>
+              <EuiHideFor sizes={['xs', 's']}>
+                <EuiPageHeader>
+                  <EuiPageHeaderSection>
+                    <EuiTitle size="l">
+                      <h1>Page title</h1>
                     </EuiTitle>
-                  </EuiPageContentHeaderSection>
-                </EuiPageContentHeader>
-                <EuiPageContentBody>
-                  Content body
-                </EuiPageContentBody>
-              </EuiPageContent>
+                  </EuiPageHeaderSection>
+                </EuiPageHeader>
+                <EuiPageContent>
+                  <EuiPageContentHeader>
+                    <EuiPageContentHeaderSection>
+                      <EuiTitle>
+                        <h2>Content title</h2>
+                      </EuiTitle>
+                    </EuiPageContentHeaderSection>
+                  </EuiPageContentHeader>
+                  <EuiPageContentBody>
+                    Content body
+                  </EuiPageContentBody>
+                </EuiPageContent>
+              </EuiHideFor>
             </EuiPageBody>
           </EuiPage>
         </div>
