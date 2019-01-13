@@ -92,6 +92,7 @@ class XYChart extends PureComponent {
       margins,
       xType,
       xCrosshairFormat,
+      yCrosshairFormat,
       yType,
       stackBy,
       statusText,
@@ -152,6 +153,7 @@ class XYChart extends PureComponent {
               crosshairValue={crosshairValue}
               onCrosshairUpdate={onCrosshairUpdate}
               xCrosshairFormat={xCrosshairFormat}
+              yCrosshairFormat={yCrosshairFormat}
             />
           )}
 
@@ -183,6 +185,8 @@ XYChart.propTypes = {
   xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** The formatting string for the X-axis. */
   xCrosshairFormat: PropTypes.string,
+  /** The formatting string for the Y-axis. */
+  yCrosshairFormat: PropTypes.string,
   /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
   yType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** Manually specify the domain of x axis. */
