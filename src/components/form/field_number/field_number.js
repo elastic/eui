@@ -25,6 +25,7 @@ export const EuiFieldNumber = ({
   compressed,
   prepend,
   append,
+  inputRef,
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
@@ -54,6 +55,7 @@ export const EuiFieldNumber = ({
           value={value}
           placeholder={placeholder}
           className={classes}
+          ref={inputRef}
           {...rest}
         />
       </EuiValidatableControl>

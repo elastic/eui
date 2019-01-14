@@ -18,6 +18,7 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     prepend?: ReactNode | ReactNode[];
     append?: ReactNode | ReactNode[];
+    inputRef?: (element: HTMLInputElement) => void;
   }
 
   export const EuiFieldNumber: SFC<
