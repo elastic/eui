@@ -8,7 +8,6 @@ export const EuiNavDrawer = ({
   isCollapsed,
   flyoutIsCollapsed,
   flyoutIsAnimating,
-  hasDelay,
   mobileIsHidden,
   showScrollbar,
   ...rest
@@ -21,7 +20,6 @@ export const EuiNavDrawer = ({
       'euiNavDrawer-flyoutIsCollapsed': flyoutIsCollapsed,
       'euiNavDrawer-flyoutIsExpanded': !flyoutIsCollapsed,
       'euiNavDrawer-flyoutIsAnimating': flyoutIsAnimating,
-      'euiNavDrawer-isDelayed': hasDelay,
       'euiNavDrawer-mobileIsHidden': mobileIsHidden,
       'euiNavDrawer-showScrollbar': showScrollbar,
     },
@@ -45,19 +43,21 @@ EuiNavDrawer.propTypes = {
    * Toggle the nav drawer between collapsed (docked) and expanded
    */
   isCollapsed: PropTypes.bool,
+  mobileIsHidden: PropTypes.bool,
 
   /**
    * Toggle the flyout menu between collapsed and expanded
    */
   flyoutIsCollapsed: PropTypes.bool,
-  flyoutIsAnimatigng: PropTypes.bool,
-  hasDelay: PropTypes.bool,
-  mobileIsHidden: PropTypes.bool,
+  flyoutIsAnimating: PropTypes.bool,
+
   showScrollbar: PropTypes.bool,
 };
 
 EuiNavDrawer.defaultProps = {
   isCollapsed: true,
   mobileIsHidden: true,
+  flyoutIsCollapsed: true,
+  flyoutIsAnimating: false,
   showScrollbar: false,
 };
