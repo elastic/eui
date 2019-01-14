@@ -49,6 +49,7 @@ export class EuiComboBox extends Component {
     isClearable: PropTypes.bool,
     fullWidth: PropTypes.bool,
     compressed: PropTypes.bool,
+    inputRef: PropTypes.func,
   }
 
   static defaultProps = {
@@ -448,6 +449,9 @@ export class EuiComboBox extends Component {
 
   searchInputRef = node => {
     this.searchInput = node;
+    if (this.props.inputRef) {
+      this.props.inputRef(node);
+    }
   };
 
   optionsListRef = node => {
