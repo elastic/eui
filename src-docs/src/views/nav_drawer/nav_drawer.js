@@ -23,6 +23,7 @@ import {
   EuiHorizontalRule,
   EuiShowFor,
   EuiHideFor,
+  EuiOutsideClickDetector,
 } from '../../../../src/components';
 
 import HeaderUserMenu from '../header/header_user_menu';
@@ -40,6 +41,7 @@ export default class extends Component {
       navFlyoutContent: [],
       mobileIsHidden: true,
       showScrollbar: false,
+      outsideClickDisaled: true,
     };
 
     this.topLinks = [
@@ -469,6 +471,12 @@ export default class extends Component {
     this.setState({
       mobileIsHidden: !this.state.mobileIsHidden
     });
+
+    setTimeout(() => {
+      this.setState({
+        outsideClickDisaled: this.state.mobileIsHidden ? true : false,
+      });
+    }, 150);
   };
 
   expandDrawer = () => {
@@ -492,6 +500,7 @@ export default class extends Component {
         flyoutIsCollapsed: true,
         mobileIsHidden: true,
         showScrollbar: false,
+        outsideClickDisaled: true,
       });
     }, 350);
   };
@@ -527,6 +536,7 @@ export default class extends Component {
       navFlyoutContent,
       mobileIsHidden,
       showScrollbar,
+      outsideClickDisaled,
     } = this.state;
 
     return (
@@ -553,33 +563,38 @@ export default class extends Component {
               </EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>
-          <EuiNavDrawer
-            isCollapsed={isCollapsed}
-            flyoutIsCollapsed={flyoutIsCollapsed}
-            flyoutIsAnimating={flyoutIsAnimating}
-            onMouseOver={this.expandDrawer}
-            onFocus={this.expandDrawer}
-            onMouseLeave={this.collapseDrawer}
-            mobileIsHidden={mobileIsHidden}
-            showScrollbar={showScrollbar}
-            style={{ position: 'absolute' }} // This is for the embedded docs example only
+          <EuiOutsideClickDetector
+            onOutsideClick={() => this.collapseDrawer()}
+            isDisabled={outsideClickDisaled}
           >
-            <EuiNavDrawerMenu>
-              <EuiListGroup listItems={this.topLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.exploreLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.solutionsLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.adminLinks} />
-            </EuiNavDrawerMenu>
-            <EuiNavDrawerFlyout
-              title={navFlyoutTitle}
-              isCollapsed={flyoutIsCollapsed}
-              listItems={navFlyoutContent}
-              onMouseLeave={this.collapseFlyout}
-            />
-          </EuiNavDrawer>
+            <EuiNavDrawer
+              isCollapsed={isCollapsed}
+              flyoutIsCollapsed={flyoutIsCollapsed}
+              flyoutIsAnimating={flyoutIsAnimating}
+              onMouseOver={this.expandDrawer}
+              onFocus={this.expandDrawer}
+              onMouseLeave={this.collapseDrawer}
+              mobileIsHidden={mobileIsHidden}
+              showScrollbar={showScrollbar}
+              style={{ position: 'absolute' }} // This is for the embedded docs example only
+            >
+              <EuiNavDrawerMenu>
+                <EuiListGroup listItems={this.topLinks} />
+                <EuiHorizontalRule margin="none" />
+                <EuiListGroup listItems={this.exploreLinks} />
+                <EuiHorizontalRule margin="none" />
+                <EuiListGroup listItems={this.solutionsLinks} />
+                <EuiHorizontalRule margin="none" />
+                <EuiListGroup listItems={this.adminLinks} />
+              </EuiNavDrawerMenu>
+              <EuiNavDrawerFlyout
+                title={navFlyoutTitle}
+                isCollapsed={flyoutIsCollapsed}
+                listItems={navFlyoutContent}
+                onMouseLeave={this.collapseFlyout}
+              />
+            </EuiNavDrawer>
+          </EuiOutsideClickDetector>
           <EuiPage style={{ minHeight: '600px' }}>
             <EuiPageBody style={{ marginLeft: '64px' }}>
               <EuiHideFor sizes={['xs', 's']}>
