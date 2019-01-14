@@ -1,4 +1,4 @@
-import { Component, FunctionComponent, SFC } from 'react';
+import { Component, SFC } from 'react';
 
 export interface CommonProps {
   className?: string;
@@ -22,7 +22,7 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
 
 export type PropsOf<C> =
   C extends SFC<infer SFCProps> ? SFCProps :
-  C extends FunctionComponent<infer FunctionalProps> ? FunctionalProps :
+  // C extends FunctionComponent<infer FunctionalProps> ? FunctionalProps :
   C extends Component<infer ComponentProps> ? ComponentProps
   : never;
 
