@@ -226,7 +226,11 @@ describe('behavior', () => {
       component.setState({ searchValue: 'foo' });
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
       searchInput.simulate('focus');
-      searchInput.simulate('blur');
+
+      const searchInputNode = searchInput.getDOMNode();
+      // React doesn't support `focusout` so we have to manually trigger it
+      searchInputNode.dispatchEvent(new FocusEvent('focusout', { bubbles: true }));
+
       sinon.assert.calledOnce(onCreateOptionHandler);
       sinon.assert.calledWith(onCreateOptionHandler, 'foo');
     });

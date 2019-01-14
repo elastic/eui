@@ -299,12 +299,6 @@ export class EuiComboBox extends Component {
     }
   }
 
-  onComboBoxLoseFocus = e => {
-    if (!this.comboBox || !this.comboBox.contains(e.relatedTarget)) {
-      this.closeList();
-    }
-  }
-
   onKeyDown = (e) => {
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
@@ -433,8 +427,16 @@ export class EuiComboBox extends Component {
   };
 
   comboBoxRef = node => {
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this.comboBox != null) {
+      this.comboBox.removeEventListener('focusout', this.onContainerBlur);
+    }
+
     this.comboBox = node;
+
     if (this.comboBox) {
+      this.comboBox.addEventListener('focusout', this.onContainerBlur);
       const comboBoxBounds = this.comboBox.getBoundingClientRect();
       this.setState({
         width: comboBoxBounds.width,
@@ -622,7 +624,6 @@ export class EuiComboBox extends Component {
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
-        onBlur={this.onContainerBlur}
         role="combobox"
         aria-haspopup="listbox"
         aria-expanded={isListOpen}
