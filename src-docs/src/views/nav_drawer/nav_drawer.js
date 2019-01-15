@@ -42,6 +42,7 @@ export default class extends Component {
       mobileIsHidden: true,
       showScrollbar: false,
       outsideClickDisaled: true,
+      isManagingFocus: false,
     };
 
     this.topLinks = [
@@ -467,6 +468,8 @@ export default class extends Component {
     );
   }
 
+  timeoutID;
+
   toggleOpen = () => {
     this.setState({
       mobileIsHidden: !this.state.mobileIsHidden
@@ -476,7 +479,7 @@ export default class extends Component {
       this.setState({
         outsideClickDisaled: this.state.mobileIsHidden ? true : false,
       });
-    }, 150);
+    }, 0);
   };
 
   expandDrawer = () => {
@@ -487,6 +490,19 @@ export default class extends Component {
         showScrollbar: true,
       });
     }, 350);
+
+    // This prevents the drawer from collapsing when tabbing through children
+    // by clearing the timeout thus cancelling the onBlur event (see focusOut).
+    // This means isManagingFocus remains true as long as a child element
+    // has focus. This is the case since React bubbles up onFocus and onBlur
+    // events from the child elements.
+    clearTimeout(this.timeoutID);
+
+    if (!this.state.isManagingFocus) {
+      this.setState({
+        isManagingFocus: true,
+      });
+    }
   };
 
   collapseDrawer = () => {
@@ -504,6 +520,22 @@ export default class extends Component {
       });
     }, 350);
   };
+
+  focusOut = () => {
+    // This collapses the drawer when no children have focus (i.e. tabbed out).
+    // In other words, if focus does not bubble up from a child element, then
+    // the drawer will collapse. See the corresponding block in expandDrawer
+    // (called by onFocus) which cancels this operation via clearTimeout.
+    this.timeoutID = setTimeout(() => {
+      if (this.state.isManagingFocus) {
+        this.setState({
+          isManagingFocus: false,
+        });
+
+        this.collapseDrawer();
+      }
+    }, 0);
+  }
 
   expandFlyout = (links, title) => {
     const content = links;
@@ -573,6 +605,7 @@ export default class extends Component {
               flyoutIsAnimating={flyoutIsAnimating}
               onMouseOver={this.expandDrawer}
               onFocus={this.expandDrawer}
+              onBlur={this.focusOut}
               onMouseLeave={this.collapseDrawer}
               mobileIsHidden={mobileIsHidden}
               showScrollbar={showScrollbar}
@@ -614,7 +647,7 @@ export default class extends Component {
                     </EuiPageContentHeaderSection>
                   </EuiPageContentHeader>
                   <EuiPageContentBody>
-                    Content body
+                    Body content
                   </EuiPageContentBody>
                 </EuiPageContent>
               </EuiHideFor>
