@@ -5,6 +5,7 @@ import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
 import HorizontalRectSeriesExample from './horizontal_rect_series';
 import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series';
 import TimeHistogramSeriesExample from './time_histogram_series';
+import { FormatCrosshairTimesExample } from './format_crosshair_times';
 
 import {
   EuiBadge,
@@ -176,6 +177,27 @@ export const XYChartHistogramExample = {
         },
       ],
       demo: <StackedHorizontalRectSeriesExample />,
+    },
+    {
+      title: 'Custom crosshair time format',
+      text: (
+        <div>
+          <p>
+            Specify a custom formatting string to change the locality or format of the time string on the x crosshair.
+          </p>
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./format_crosshair_times'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: <FormatCrosshairTimesExample />
     },
     {
       title: 'Time Series Histogram version',

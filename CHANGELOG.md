@@ -1,6 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
+- Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
+
+## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
+
+**Bug fixes**
+
+- Downgraded `@types/react` and `@types/prop-types` verisons to align with Kibana ([#1435](https://github.com/elastic/eui/pull/1435))
 
 ## [`6.3.0`](https://github.com/elastic/eui/tree/v6.3.0)
 
