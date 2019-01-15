@@ -2,6 +2,10 @@
 
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
+
 ## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
 
 **Bug fixes**
