@@ -7,8 +7,8 @@ $euiNavDrawerWidthCollapsed: $euiHeaderChildSize;
 $euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
 
 // Layout variables
-$euiHeaderSize: $euiHeaderChildSize + 1px;
-$euiHeaderSizeMobile: ($euiHeaderChildSize * .75) + 1px;
+$euiNavDrawerTopPosition: $euiHeaderChildSize + 1px;
+$euiNavDrawerTopPositionMobile: $euiHeaderChildSizeMobile + 1px;
 
 // Animation variables
 $euiNavDrawerExpandingDelay: $euiAnimSpeedNormal;

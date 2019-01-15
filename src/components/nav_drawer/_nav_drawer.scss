@@ -2,10 +2,10 @@
 
 .euiNavDrawer {
   width: $euiNavDrawerWidthCollapsed;
-  height: calc(100% - #{$euiHeaderSize});
+  height: calc(100% - #{$euiNavDrawerTopPosition});
   position: fixed;
   left: 0;
-  top: $euiHeaderSize;
+  top: $euiNavDrawerTopPosition;
   overflow: hidden;
   z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
@@ -71,6 +71,7 @@
     &.euiNavDrawer-flyoutIsExpanded {
       .euiNavDrawerMenu {
         width: $euiNavDrawerWidthCollapsed;
+        overflow-y: hidden;
       }
 
       .euiNavDrawerMenu .euiListGroupItem__label {
@@ -92,7 +93,7 @@
 
 @include euiBreakpoint('xs') {
   .euiNavDrawer {
-    height: calc(100% - #{$euiHeaderSizeMobile});
-    top: $euiHeaderSizeMobile;
+    height: calc(100% - #{$euiNavDrawerTopPositionMobile});
+    top: $euiNavDrawerTopPositionMobile;
   }
 }

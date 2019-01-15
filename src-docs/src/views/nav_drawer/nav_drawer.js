@@ -479,7 +479,7 @@ export default class extends Component {
       this.setState({
         outsideClickDisaled: this.state.mobileIsHidden ? true : false,
       });
-    }, 0);
+    }, 150);
   };
 
   expandDrawer = () => {
