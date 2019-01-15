@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.3.1`.
+
+## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
+
 **Bug fixes**
 
 - Downgraded `@types/react` and `@types/prop-types` verisons to align with Kibana ([#1435](https://github.com/elastic/eui/pull/1435))
