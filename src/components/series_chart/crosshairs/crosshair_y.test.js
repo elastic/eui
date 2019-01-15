@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-
+import moment from 'moment';
 import { EuiSeriesChart } from '../series_chart';
 import { EuiHorizontalBarSeries } from '../series/horizontal_bar_series';
 import { EuiCrosshairY } from './';
@@ -46,7 +46,11 @@ describe('EuiCrosshairY', () => {
   });
 
   test('y crosshair formats ISO string by default', () => {
-    const data = [ { y0: 1074188586000, y: 1074199386000, x: 1.5 }, { y0: 1074199386000, y: 1074210186000, x: 2 }];
+    const openRange = 1074188586000;
+    const closeRange = 1074199386000;
+    const data = [ { y0: openRange, y: 1074199386000, x: 1.5 }, { y0: closeRange, y: 1074210186000, x: 2 }];
+    const startRangeString = new Date(openRange).toISOString();
+    const endRangeString = new Date(closeRange).toISOString();
     const component = mount(
       <EuiSeriesChart
         width={600}
@@ -62,12 +66,17 @@ describe('EuiCrosshairY', () => {
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
-    expect(crosshair.text()).toContain('2004-01-15T17:43:06.000Z to 2004-01-15T20:43:06.000Z');
+    expect(crosshair.text()).toContain(`${startRangeString} to ${endRangeString}`);
     expect(component.render()).toMatchSnapshot();
   });
 
   test('y crosshair formats ISO string by default', () => {
-    const data = [ { y0: 1074188586000, y: 1074199386000, x: 1.5 }, { y0: 1074199386000, y: 1074210186000, x: 2 }];
+    const openRange = 1074188586000;
+    const closeRange = 1074199386000;
+    const data = [ { y0: openRange, y: 1074199386000, x: 1.5 }, { y0: closeRange, y: 1074210186000, x: 2 }];
+    const momentFormat = 'YYYY-MM-DD hh:mmZ';
+    const startRangeString = moment(openRange).format(momentFormat);
+    const endRangeString = moment(closeRange).format(momentFormat);
     const component = mount(
       <EuiSeriesChart
         width={600}
@@ -75,7 +84,7 @@ describe('EuiCrosshairY', () => {
         {...requiredProps}
         stackBy="x"
         yType={SCALE.TIME}
-        yCrosshairFormat="YYYY-MM-DD hh:mmZ"
+        yCrosshairFormat={momentFormat}
         orientation={EuiSeriesChartUtils.ORIENTATION.HORIZONTAL}
       >
         <EuiHistogramSeries name="Test Series" data={data} />
@@ -84,7 +93,6 @@ describe('EuiCrosshairY', () => {
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
-    expect(crosshair.text()).toContain('2004-01-15 12:43-05:00 to 2004-01-15 03:43-05:00');
-    expect(component.render()).toMatchSnapshot();
+    expect(crosshair.text()).toContain(`${startRangeString} to ${endRangeString}`);
   });
 });

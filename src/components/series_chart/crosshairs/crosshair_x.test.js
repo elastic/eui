@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-
+import moment from 'moment';
 import { EuiSeriesChart } from '../series_chart';
 import { EuiVerticalBarSeries } from '../series/vertical_bar_series';
 import { EuiCrosshairX } from './';
@@ -46,7 +46,11 @@ describe('EuiCrosshairX', () => {
   });
 
   test('x crosshair formats ISO string by default', () => {
-    const data = [ { x0: 1074188586000, x: 1074199386000, y: 1.5 }, { x0: 1074199386000, x: 1074210186000, y: 2 }];
+    const openRange = 1074199386000;
+    const closeRange = 1074210186000;
+    const data = [ { x0: 1074188586000, x: openRange, y: 1.5 }, { x0: 1074199386000, x: closeRange, y: 2 }];
+    const startRangeString = new Date(openRange).toISOString();
+    const endRangeString = new Date(closeRange).toISOString();
     const component = mount(
       <EuiSeriesChart
         width={600}
@@ -60,19 +64,23 @@ describe('EuiCrosshairX', () => {
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
-    expect(crosshair.text()).toContain('2004-01-15T20:43:06.000Z to 2004-01-15T23:43:06.000Z');
-    expect(component.render()).toMatchSnapshot();
+    expect(crosshair.text()).toContain(`${startRangeString} to ${endRangeString}`);
   });
 
   test('x crosshair adheres to custom formatting', () => {
-    const data = [ { x0: 1074188586000, x: 1074199386000, y: 1.5 }, { x0: 1074199386000, x: 1074210186000, y: 2 }];
+    const openRange = 1074199386000;
+    const closeRange = 1074210186000;
+    const data = [ { x0: 1074188586000, x: openRange, y: 1.5 }, { x0: 1074199386000, x: closeRange, y: 2 }];
+    const momentFormat = 'YYYY-MM-DD hh:mmZ';
+    const startRange = moment(openRange).format(momentFormat);
+    const endRange = moment(closeRange).format(momentFormat);
     const component = mount(
       <EuiSeriesChart
         width={600}
         height={200}
         {...requiredProps}
         xType={SCALE.TIME}
-        xCrosshairFormat="YYYY-MM-DD hh:mmZ"
+        xCrosshairFormat={momentFormat}
       >
         <EuiHistogramSeries name="Test Series" data={data} />
       </EuiSeriesChart>
@@ -80,7 +88,6 @@ describe('EuiCrosshairX', () => {
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
-    expect(crosshair.text()).toContain('2004-01-15 03:43-05:00 to 2004-01-15 06:43-05:00');
-    expect(component.render()).toMatchSnapshot();
+    expect(crosshair.text()).toContain(`${startRange} to ${endRange}`);
   });
 });
