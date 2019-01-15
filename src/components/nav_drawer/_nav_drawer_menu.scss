@@ -1,3 +1,4 @@
 .euiNavDrawerMenu {
+  @include euiScrollBar;
   max-width: $euiNavDrawerWidthExpanded;
 }

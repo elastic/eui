@@ -519,6 +519,10 @@ export default class extends Component {
         outsideClickDisaled: true,
       });
     }, 350);
+
+    // Scrolls the menu and flyout back to top when the nav drawer collapses
+    document.getElementById('navDrawerMenu').scroll(0, 0);
+    document.getElementById('navDrawerFlyout').scroll(0, 0);
   };
 
   focusOut = () => {
@@ -555,7 +559,11 @@ export default class extends Component {
     this.setState({ flyoutIsAnimating: true });
 
     setTimeout(() => {
-      this.setState({ flyoutIsCollapsed: true });
+      this.setState({
+        flyoutIsCollapsed: true,
+        navFlyoutTitle: null,
+        navFlyoutContent: null
+      });
     }, 250);
   };
 
@@ -611,7 +619,7 @@ export default class extends Component {
               showScrollbar={showScrollbar}
               style={{ position: 'absolute' }} // This is for the embedded docs example only
             >
-              <EuiNavDrawerMenu>
+              <EuiNavDrawerMenu id="navDrawerMenu">
                 <EuiListGroup listItems={this.topLinks} />
                 <EuiHorizontalRule margin="none" />
                 <EuiListGroup listItems={this.exploreLinks} />
@@ -621,6 +629,7 @@ export default class extends Component {
                 <EuiListGroup listItems={this.adminLinks} />
               </EuiNavDrawerMenu>
               <EuiNavDrawerFlyout
+                id="navDrawerFlyout"
                 title={navFlyoutTitle}
                 isCollapsed={flyoutIsCollapsed}
                 listItems={navFlyoutContent}

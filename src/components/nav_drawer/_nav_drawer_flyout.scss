@@ -1,4 +1,5 @@
 .euiNavDrawerFlyout {
+  @include euiScrollBar;
   position: absolute;
   left: $euiNavDrawerWidthExpanded;
   top: 0;

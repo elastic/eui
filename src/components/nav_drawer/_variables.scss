@@ -1,14 +1,14 @@
 // Themable colors
-$euiNavDrawerBackgroundColor: $euiColorEmptyShade;
+$euiNavDrawerBackgroundColor: $euiHeaderBackgroundColor;
 
 // Drawer variables
 $euiNavDrawerWidthExpanded: 240px;
-$euiNavDrawerWidthCollapsed: 48px;
+$euiNavDrawerWidthCollapsed: $euiHeaderChildSize;
 $euiNavDrawerSideShadow: 2px 0 2px -1px rgba($euiShadowColor, .3);
 
 // Layout variables
-$euiHeaderSize: $euiSizeXXL + $euiSizeS + 1px;
-$euiHeaderSizeMobile: $euiSizeXL + $euiSizeXS + 1px;
+$euiHeaderSize: $euiHeaderChildSize + 1px;
+$euiHeaderSizeMobile: ($euiHeaderChildSize * .75) + 1px;
 
 // Animation variables
 $euiNavDrawerExpandingDelay: $euiAnimSpeedNormal;

@@ -1,7 +1,6 @@
 // Nav drawer. Global application navigation.
 
 .euiNavDrawer {
-  @include euiScrollBar;
   width: $euiNavDrawerWidthCollapsed;
   height: calc(100% - #{$euiHeaderSize});
   position: fixed;
