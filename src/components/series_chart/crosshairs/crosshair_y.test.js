@@ -67,7 +67,6 @@ describe('EuiCrosshairY', () => {
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
     expect(crosshair.text()).toContain(`${startRangeString} to ${endRangeString}`);
-    expect(component.render()).toMatchSnapshot();
   });
 
   test('y crosshair formats ISO string by default', () => {

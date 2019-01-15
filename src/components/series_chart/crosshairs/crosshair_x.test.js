@@ -72,8 +72,8 @@ describe('EuiCrosshairX', () => {
     const closeRange = 1074210186000;
     const data = [ { x0: 1074188586000, x: openRange, y: 1.5 }, { x0: 1074199386000, x: closeRange, y: 2 }];
     const momentFormat = 'YYYY-MM-DD hh:mmZ';
-    const startRange = moment(openRange).format(momentFormat);
-    const endRange = moment(closeRange).format(momentFormat);
+    const startRangeString = moment(openRange).format(momentFormat);
+    const endRangeString = moment(closeRange).format(momentFormat);
     const component = mount(
       <EuiSeriesChart
         width={600}
@@ -88,6 +88,6 @@ describe('EuiCrosshairX', () => {
     component.find('rect').at(0).simulate('mousemove', { nativeEvent: { clientX: 351, clientY: 100 } });
     const crosshair = component.find('.rv-crosshair');
     expect(crosshair).toHaveLength(1);
-    expect(crosshair.text()).toContain(`${startRange} to ${endRange}`);
+    expect(crosshair.text()).toContain(`${startRangeString} to ${endRangeString}`);
   });
 });
