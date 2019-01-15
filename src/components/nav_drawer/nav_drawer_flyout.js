@@ -1,47 +1,100 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import FocusTrap from 'focus-trap-react';
 
 import { EuiTitle } from '../title';
 import { EuiListGroup } from '../list_group';
 
-export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, ...rest }) => {
-  const classes = classNames(
-    'euiNavDrawerFlyout',
-    {
-      'euiNavDrawerFlyout-isCollapsed': isCollapsed,
-      'euiNavDrawerFlyout-isExpanded': !isCollapsed,
-    },
-    className
-  );
+export class EuiNavDrawerFlyout extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+    listItems: EuiListGroup.propTypes.listItems,
 
-  return (
-    <div
-      className={classes}
-      aria-labelledby="navDrawerFlyoutTitle"
-      {...rest}
-    >
-      <EuiTitle tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
-      <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} />
-    </div>
-  );
-};
+    /**
+     * Display a title atop the flyout
+     */
+    title: PropTypes.string,
 
-EuiNavDrawerFlyout.propTypes = {
-  className: PropTypes.string,
-  listItems: EuiListGroup.propTypes.listItems,
+    /**
+     * Toggle the nav drawer between collapsed and expanded
+     */
+    isCollapsed: PropTypes.bool,
+  };
 
-  /**
-   * Display a title atop the flyout
-   */
-  title: PropTypes.string,
+  static defaultProps = {
+    isCollapsed: true,
+  };
 
-  /**
-   * Toggle the nav drawer between collapsed and expanded
-   */
-  isCollapsed: PropTypes.bool,
-};
+  constructor(...args) {
+    super(...args);
 
-EuiNavDrawerFlyout.defaultProps = {
-  isCollapsed: true,
-};
+    // The version of focus-trap-react that we're on only
+    // returns focus when the trap is unmounted, not on deactivation
+    // To track if we need the trap mounted or not means tracking focus
+    this.state = {
+      trappingFocus: false,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isCollapsed: wasCollapsed, listItems: prevItems } = prevProps;
+    const { isCollapsed, listItems } = this.props;
+
+    const nowExpanded = wasCollapsed && !isCollapsed;
+    const newItems = prevItems !== listItems;
+    if (nowExpanded || newItems) {
+      this.setState({ // eslint-disable-line react/no-did-update-set-state
+        trappingFocus: true
+      });
+    }
+  }
+
+  untrap = () => {
+    this.setState({
+      trappingFocus: false
+    });
+  }
+
+  render() {
+    const { className, title, isCollapsed, listItems, ...rest } = this.props;
+    const classes = classNames(
+      'euiNavDrawerFlyout',
+      {
+        'euiNavDrawerFlyout-isCollapsed': isCollapsed,
+        'euiNavDrawerFlyout-isExpanded': !isCollapsed,
+      },
+      className
+    );
+
+    const items = <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} />;
+
+    return (
+      <div
+        className={classes}
+        aria-labelledby="navDrawerFlyoutTitle"
+        onBlur={this.onBlur}
+        {...rest}
+      >
+        <EuiTitle tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
+        {
+          this.state.trappingFocus
+            ? (
+              <FocusTrap
+                active={true}
+                focusTrapOptions={{
+                  clickOutsideDeactivates: true,
+                  returnFocusOnDeactivate: true,
+                  onDeactivate: this.untrap,
+                }}
+              >
+                {items}
+              </FocusTrap>
+            )
+            : items
+        }
+      </div>
+    );
+
+  }
+}
