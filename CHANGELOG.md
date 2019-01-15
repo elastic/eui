@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.3.1`.
+- Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 
 ## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
 
