@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
+- Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
 
 ## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
 
