@@ -2,6 +2,12 @@
 
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 
+## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
+
+**Bug fixes**
+
+- Downgraded `@types/react` and `@types/prop-types` verisons to align with Kibana ([#1435](https://github.com/elastic/eui/pull/1435))
+
 ## [`6.3.0`](https://github.com/elastic/eui/tree/v6.3.0)
 
 - Added `onBlur` prop to `EuiComboBox` ([#1400](https://github.com/elastic/eui/pull/1400))

@@ -34,7 +34,7 @@ interface Props {
 }
 
 export class EuiKeyboardAccessible extends Component<Props> {
-  onKeyDown = (e: KeyboardEvent) => {
+  onKeyDown = (e: KeyboardEvent<any>) => {
     // Prevent a scroll from occurring if the user has hit space.
     if (e.keyCode === keyCodes.SPACE) {
       e.preventDefault();
@@ -45,7 +45,7 @@ export class EuiKeyboardAccessible extends Component<Props> {
     }
   }
 
-  onKeyUp = (e: KeyboardEvent) => {
+  onKeyUp = (e: KeyboardEvent<any>) => {
     // Support keyboard accessibility by emulating mouse click on ENTER or SPACE keypress.
     if (e.keyCode === keyCodes.ENTER || e.keyCode === keyCodes.SPACE) {
       // Delegate to the click handler on the element.
