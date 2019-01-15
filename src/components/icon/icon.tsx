@@ -229,6 +229,8 @@ import stop from './assets/stop.svg';
 import stopFilled from './assets/stop_filled.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
+import submodule from './assets/submodule.svg';
+import symlink from './assets/symlink.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tag from './assets/tag.svg';
 import tear from './assets/tear.svg';
@@ -517,6 +519,8 @@ const typeToIconMap = {
   stopFilled,
   storage,
   string,
+  submodule,
+  symlink,
   tableOfContents,
   tag,
   tear,
