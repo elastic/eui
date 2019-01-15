@@ -19,8 +19,8 @@ const histogramData = new Array(1000).fill(0).map(() => {
 
 export const FormatCrosshairTimesExample = () => (
   <div>
-    <EuiSeriesChart height={200} xType={SCALE.TIME}>
-      <EuiHistogramSeries yDomain={[0, 100]} name="Chart Name" xCrosshairFormat="YYYY-MM-DD hh:mmZ" data={histogramData} />
+    <EuiSeriesChart xCrosshairFormat="YYYY-MM-DD hh:mmZ" height={200} xType={SCALE.TIME}>
+      <EuiHistogramSeries yDomain={[0, 100]} name="Chart Name" data={histogramData} />
     </EuiSeriesChart>
   </div>
 );

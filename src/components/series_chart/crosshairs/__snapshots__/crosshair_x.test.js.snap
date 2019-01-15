@@ -43,3 +43,1017 @@ exports[`EuiCrosshairX render the X crosshair 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiCrosshairX x crosshair adheres to custom formatting 1`] = `
+<div
+  style="width: 100%; height: 100%;"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2 euiSeriesChartContainer"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="rv-xy-plot "
+      style="width: 600px; height: 200px;"
+    >
+      <svg
+        class="rv-xy-plot__inner"
+        height="200"
+        style="width: 100%; height: 100%;"
+        width="600"
+      >
+        <g
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
+        >
+          <rect
+            height="112.5"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
+            width="275"
+            x="0"
+            y="37.5"
+          />
+          <rect
+            height="150"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
+            width="275"
+            x="275"
+            y="0"
+          />
+        </g>
+        <g
+          class="rv-xy-plot__grid-lines"
+          transform="translate(40,10)"
+        >
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="150"
+            y2="150"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="112.5"
+            y2="112.5"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="75"
+            y2="75"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="37.5"
+            y2="37.5"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="0"
+            y2="0"
+          />
+        </g>
+        <g
+          class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
+          transform="translate(40,160)"
+        >
+          <line
+            class="rv-xy-plot__axis__line"
+            x1="0"
+            x2="550"
+            y1="0"
+            y2="0"
+          />
+          <g
+            class="rv-xy-plot__axis__ticks"
+            transform="translate(0, 0)"
+          >
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(25.819444444444443, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                01 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(71.65277777777777, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                01:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(117.48611111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                02 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(163.31944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                02:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(209.15277777777777, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                03 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(254.9861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                03:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(300.81944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                04 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(346.6527777777778, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                04:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(392.4861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                05 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(438.31944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                05:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(484.1527777777778, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                06 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(529.9861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                06:30
+              </text>
+            </g>
+          </g>
+        </g>
+        <g
+          class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
+          transform="translate(0,10)"
+        >
+          <line
+            class="rv-xy-plot__axis__line"
+            x1="40"
+            x2="40"
+            y1="0"
+            y2="150"
+          />
+          <g
+            class="rv-xy-plot__axis__ticks"
+            transform="translate(40, 0)"
+          >
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 150)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                0.0
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 112.5)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                0.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 75)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                1.0
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 37.5)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                1.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                2.0
+              </text>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div
+        class="rv-crosshair undefined"
+        style="left: 452.5px; top: 10px;"
+      >
+        <div
+          class="rv-crosshair__line"
+          style="height: 150px; background: rgb(218, 218, 218);"
+        />
+        <div
+          class="rv-crosshair__inner rv-crosshair__inner--left"
+        >
+          <div
+            class="rv-crosshair__inner__content"
+          >
+            <div>
+              <div
+                class="rv-crosshair__title"
+              >
+                <span
+                  class="rv-crosshair__title__title"
+                >
+                  X Value
+                </span>
+                : 
+                <span
+                  class="rv-crosshair__title__value"
+                >
+                  2004-01-15 03:43-05:00 to 2004-01-15 06:43-05:00
+                </span>
+              </div>
+              <div
+                class="rv-crosshair__item"
+              >
+                <span
+                  class="rv-crosshair__item__title"
+                >
+                  Test Series
+                </span>
+                : 
+                <span
+                  class="rv-crosshair__item__value"
+                >
+                  2
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCrosshairX x crosshair formats ISO string by default 1`] = `
+<div
+  style="width: 100%; height: 100%;"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2 euiSeriesChartContainer"
+    data-test-subj="test subject string"
+  >
+    <div
+      class="rv-xy-plot "
+      style="width: 600px; height: 200px;"
+    >
+      <svg
+        class="rv-xy-plot__inner"
+        height="200"
+        style="width: 100%; height: 100%;"
+        width="600"
+      >
+        <g
+          class="rv-xy-plot__series rv-xy-plot__series--rect euiHistogramSeries"
+          transform="translate(40,10)"
+        >
+          <rect
+            height="112.5"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
+            width="275"
+            x="0"
+            y="37.5"
+          />
+          <rect
+            height="150"
+            style="opacity: 1; stroke: #00B3A4; fill: #00B3A4;"
+            width="275"
+            x="275"
+            y="0"
+          />
+        </g>
+        <g
+          class="rv-xy-plot__grid-lines"
+          transform="translate(40,10)"
+        >
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="150"
+            y2="150"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="112.5"
+            y2="112.5"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="75"
+            y2="75"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="37.5"
+            y2="37.5"
+          />
+          <line
+            class="rv-xy-plot__grid-lines__line"
+            x1="0"
+            x2="550"
+            y1="0"
+            y2="0"
+          />
+        </g>
+        <g
+          class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
+          transform="translate(40,160)"
+        >
+          <line
+            class="rv-xy-plot__axis__line"
+            x1="0"
+            x2="550"
+            y1="0"
+            y2="0"
+          />
+          <g
+            class="rv-xy-plot__axis__ticks"
+            transform="translate(0, 0)"
+          >
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(25.819444444444443, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                01 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(71.65277777777777, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                01:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(117.48611111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                02 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(163.31944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                02:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(209.15277777777777, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                03 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(254.9861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                03:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(300.81944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                04 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(346.6527777777778, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                04:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(392.4861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                05 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(438.31944444444446, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                05:30
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(484.1527777777778, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                06 PM
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(529.9861111111111, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.72em"
+                text-anchor="middle"
+                transform="translate(0, 8)"
+              >
+                06:30
+              </text>
+            </g>
+          </g>
+        </g>
+        <g
+          class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
+          transform="translate(0,10)"
+        >
+          <line
+            class="rv-xy-plot__axis__line"
+            x1="40"
+            x2="40"
+            y1="0"
+            y2="150"
+          />
+          <g
+            class="rv-xy-plot__axis__ticks"
+            transform="translate(40, 0)"
+          >
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 150)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                0.0
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 112.5)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                0.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 75)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                1.0
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 37.5)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                1.5
+              </text>
+            </g>
+            <g
+              class="rv-xy-plot__axis__tick"
+              transform="translate(0, 0)"
+            >
+              <line
+                class="rv-xy-plot__axis__tick__line"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="0"
+              />
+              <text
+                class="rv-xy-plot__axis__tick__text"
+                dy="0.32em"
+                text-anchor="end"
+                transform="translate(-8, 0)"
+              >
+                2.0
+              </text>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div
+        class="rv-crosshair undefined"
+        style="left: 452.5px; top: 10px;"
+      >
+        <div
+          class="rv-crosshair__line"
+          style="height: 150px; background: rgb(218, 218, 218);"
+        />
+        <div
+          class="rv-crosshair__inner rv-crosshair__inner--left"
+        >
+          <div
+            class="rv-crosshair__inner__content"
+          >
+            <div>
+              <div
+                class="rv-crosshair__title"
+              >
+                <span
+                  class="rv-crosshair__title__title"
+                >
+                  X Value
+                </span>
+                : 
+                <span
+                  class="rv-crosshair__title__value"
+                >
+                  2004-01-15T20:43:06.000Z to 2004-01-15T23:43:06.000Z
+                </span>
+              </div>
+              <div
+                class="rv-crosshair__item"
+              >
+                <span
+                  class="rv-crosshair__item__title"
+                >
+                  Test Series
+                </span>
+                : 
+                <span
+                  class="rv-crosshair__item__value"
+                >
+                  2
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
