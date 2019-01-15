@@ -58,7 +58,7 @@ export class EuiCrosshairX extends AbstractSeries {
   _formatXValue = (x) => {
     const { xType, xCrosshairFormat } = this.props;
     if (xType === SCALE.TIME || xType === SCALE.TIME_UTC) {
-      return moment(x).format(xCrosshairFormat);
+      return xCrosshairFormat ? moment(x).format(xCrosshairFormat) : new Date(x).toISOString();
     } else {
       return x;
     }

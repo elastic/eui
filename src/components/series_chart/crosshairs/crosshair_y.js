@@ -240,7 +240,7 @@ export class EuiCrosshairY extends AbstractSeries {
   _formatYValue = (y) => {
     const { yType, yCrosshairFormat } = this.props;
     if (yType === SCALE.TIME || yType === SCALE.TIME_UTC) {
-      return moment(y).format(yCrosshairFormat);
+      return yCrosshairFormat ? moment(y).format(yCrosshairFormat) : new Date(y).toISOString();
     } else {
       return y;
     }
