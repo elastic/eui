@@ -22,7 +22,6 @@ export default class extends Component {
     this.toggleButtons = [{
       id: `${idPrefix}0`,
       label: 'Option one',
-      isDisabled: true,
     }, {
       id: `${idPrefix}1`,
       label: 'Option two is selected by default',
@@ -34,7 +33,6 @@ export default class extends Component {
     this.toggleButtonsMulti = [{
       id: `${idPrefix2}0`,
       label: 'Option 1',
-      isDisabled: true,
     }, {
       id: `${idPrefix2}1`,
       label: 'Option 2 is selected by default',
@@ -47,7 +45,6 @@ export default class extends Component {
       id: `${idPrefix3}0`,
       label: 'Align left',
       iconType: 'editorAlignLeft',
-      isDisabled: true,
     }, {
       id: `${idPrefix3}1`,
       label: 'Align center',
@@ -63,7 +60,6 @@ export default class extends Component {
       label: 'Bold',
       name: 'bold',
       iconType: 'editorBold',
-      isDisabled: true,
     }, {
       id: `${idPrefix3}4`,
       label: 'Italic',
