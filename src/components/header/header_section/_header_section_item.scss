@@ -19,7 +19,7 @@
 
 .euiHeaderSectionItem__button {
   height: $euiHeaderChildSize;
-  min-width: $euiHeaderChildSize;
+  min-width: $euiHeaderChildSize + 1px;
   text-align: center;
   font-size: 0; // aligns icons better vertically
 
@@ -45,16 +45,16 @@
 
 .euiHeaderNotification {
   position: absolute;
-  top: 18%;
-  right: 18%;
+  top: 9%;
+  right: 9%;
   box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
 }
 
 @include euiBreakpoint('xs') {
   .euiHeaderSectionItem,
   .euiHeaderSectionItem__button {
-    height: $euiHeaderChildSize * .75;
-    min-width: $euiHeaderChildSize * .75;
+    height: $euiHeaderChildSizeMobile;
+    min-width: $euiHeaderChildSizeMobile;
   }
 
   .euiHeaderSectionItem--borderLeft,

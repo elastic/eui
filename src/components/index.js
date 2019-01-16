@@ -218,6 +218,12 @@ export {
 } from './mutation_observer';
 
 export {
+  EuiNavDrawer,
+  EuiNavDrawerMenu,
+  EuiNavDrawerFlyout,
+} from './nav_drawer';
+
+export {
   EuiOutsideClickDetector,
 } from './outside_click_detector';
 
