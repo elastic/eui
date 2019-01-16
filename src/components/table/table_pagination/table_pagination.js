@@ -50,7 +50,7 @@ export class EuiTablePagination extends Component {
         iconSide="right"
         onClick={this.onButtonClick}
       >
-        <EuiI18n token="pagination.rowsPerPage" default="Rows per page"/>: {itemsPerPage}
+        <EuiI18n token="euiTablePagination.rowsPerPage" default="Rows per page"/>: {itemsPerPage}
       </EuiButtonEmpty>
     );
 
