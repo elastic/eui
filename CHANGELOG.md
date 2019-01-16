@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
+
 **Bug fixes**
 
 - Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
