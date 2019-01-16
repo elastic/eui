@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `5.8.1`.
+**Note: this release is a backport containing fixes made in `6.4.0`**
+
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
 
 ## [`5.8.1`](https://github.com/elastic/eui/tree/v5.8.1)
 
