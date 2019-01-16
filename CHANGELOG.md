@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.4.0`.
+
+## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
+
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 - Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
