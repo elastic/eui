@@ -145,6 +145,8 @@ const iconTypes = [
   'stopFilled',
   'storage',
   'string',
+  'submodule',
+  'symlink',
   'tableOfContents',
   'tag',
   'tear',

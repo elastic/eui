@@ -2,6 +2,7 @@
 
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
+- Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
 
 **Bug fixes**
 
