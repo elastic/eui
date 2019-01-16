@@ -76,7 +76,6 @@ exports[`props full width is rendered 1`] = `
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox--fullWidth"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -119,7 +118,6 @@ exports[`props isClearable=false disallows user from clearing input when no opti
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -155,7 +153,6 @@ exports[`props isClearable=false disallows user from clearing input when options
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -200,7 +197,6 @@ exports[`props isDisabled is rendered 1`] = `
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isDisabled"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -332,7 +328,6 @@ exports[`props selectedOptions are rendered 1`] = `
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -378,7 +373,6 @@ exports[`props singleSelection is rendered 1`] = `
   aria-expanded={false}
   aria-haspopup="listbox"
   className="euiComboBox"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -421,7 +415,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   aria-expanded={true}
   aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isOpen"
-  onBlur={[Function]}
   onKeyDown={[Function]}
   role="combobox"
 >
