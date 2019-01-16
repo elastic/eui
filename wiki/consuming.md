@@ -60,7 +60,7 @@ If you want access to the Sass variables, functions, and mixins in EUI then you'
 @import '../node_modules/@elastic/eui/src/theme_light.scss';
 ```
 
-In order to use the font-families specified in the default font-family stack, you'll need to add an extra import to the hosted CSS files.
+By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
 
 ```scss
 // index.scss
