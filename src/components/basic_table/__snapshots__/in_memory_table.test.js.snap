@@ -284,7 +284,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         >
                           <EuiI18n
                             default="Rows per page"
-                            token="pagination.rowsPerPage"
+                            token="euiTablePagination.rowsPerPage"
                           />
                           : 
                           2
@@ -372,7 +372,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   >
                                     <EuiI18n
                                       default="Rows per page"
-                                      token="pagination.rowsPerPage"
+                                      token="euiTablePagination.rowsPerPage"
                                     >
                                       Rows per page
                                     </EuiI18n>
