@@ -11,6 +11,7 @@ No public interface changes since `6.4.0`.
 **Bug fixes**
 
 - Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
+- Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
 
 ## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
 
