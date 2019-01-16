@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.4.0`.
+- Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
