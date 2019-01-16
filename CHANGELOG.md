@@ -2,6 +2,10 @@
 
 - Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 
+**Bug fixes**
+
+- Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
+
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
