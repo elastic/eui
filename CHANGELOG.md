@@ -83,6 +83,14 @@
 
 - Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
 
+## [`5.8.2`](https://github.com/elastic/eui/tree/v5.8.2)
+
+**Note: this release is a backport containing fixes made in `6.4.0`**
+
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
+
 ## [`5.8.1`](https://github.com/elastic/eui/tree/v5.8.1)
 
 **Note: this release is a backport containing fixes made in `6.0.0`**
