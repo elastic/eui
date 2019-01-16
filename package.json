@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "5.8.1",
+  "version": "5.8.2",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
