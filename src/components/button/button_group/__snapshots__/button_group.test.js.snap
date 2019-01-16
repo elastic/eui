@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiButtonGroup is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiButtonGroup testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
+<fieldset>
+  <div
+    aria-label="aria-label"
+    class="euiButtonGroup testClass1 testClass2"
+    data-test-subj="test subject string"
+  />
+</fieldset>
 `;

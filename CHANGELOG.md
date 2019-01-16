@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.4.0`.
+**Bug fixes**
+
+- Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
+
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
