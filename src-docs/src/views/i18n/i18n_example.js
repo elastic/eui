@@ -23,6 +23,10 @@ import I18nMulti from './i18n_multi';
 const I18nMultiSource = require('!!raw-loader!./i18n_multi');
 const I18nMultiHtml = renderToHtml(I18nMulti);
 
+import I18nNumber from './i18n_number';
+const I18nNumberSource = require('!!raw-loader!./i18n_number');
+const I18nNumberHtml = renderToHtml(I18nNumber);
+
 export const I18nExample = {
   title: 'I18n',
   sections: [{
@@ -76,5 +80,22 @@ export const I18nExample = {
       </p>
     ),
     demo: <I18nMulti />,
+  }, {
+    title: 'Number localization',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: I18nNumberSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: I18nNumberHtml,
+    }],
+    text: (
+      <p>
+        <EuiCode>EuiI18nNumber</EuiCode> can be used to format one or more numbers. Similarly
+        to <EuiCode>EuiI18n</EuiCode>, it takes <EuiCode>value</EuiCode> or
+        <EuiCode>values</EuiCode> and can render directly to the DOM or call a render prop.
+      </p>
+    ),
+    demo: <I18nNumber />,
   }],
 };
