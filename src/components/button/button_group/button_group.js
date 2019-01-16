@@ -128,7 +128,7 @@ EuiButtonGroup.propTypes = {
   /**
    * Adds a hidden legend to the group for accessiblity
    */
-  legend: PropTypes.node,
+  legend: PropTypes.string,
 };
 
 EuiButtonGroup.defaultProps = {
