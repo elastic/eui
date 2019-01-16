@@ -150,6 +150,9 @@ import { HighlightExample }
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
 
+import { I18nExample }
+  from './views/i18n/i18n_example';
+
 import { IconExample }
   from './views/icon/icon_example';
 
@@ -418,6 +421,7 @@ const navigation = [{
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
+    I18nExample,
     IsColorDarkExample,
     MutationObserverExample,
     OutsideClickDetectorExample,
