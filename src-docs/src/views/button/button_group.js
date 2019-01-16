@@ -22,6 +22,7 @@ export default class extends Component {
     this.toggleButtons = [{
       id: `${idPrefix}0`,
       label: 'Option one',
+      isDisabled: true,
     }, {
       id: `${idPrefix}1`,
       label: 'Option two is selected by default',
@@ -33,6 +34,7 @@ export default class extends Component {
     this.toggleButtonsMulti = [{
       id: `${idPrefix2}0`,
       label: 'Option 1',
+      isDisabled: true,
     }, {
       id: `${idPrefix2}1`,
       label: 'Option 2 is selected by default',
@@ -45,6 +47,7 @@ export default class extends Component {
       id: `${idPrefix3}0`,
       label: 'Align left',
       iconType: 'editorAlignLeft',
+      isDisabled: true,
     }, {
       id: `${idPrefix3}1`,
       label: 'Align center',
@@ -58,18 +61,23 @@ export default class extends Component {
     this.toggleButtonsIconsMulti = [{
       id: `${idPrefix3}3`,
       label: 'Bold',
+      name: 'bold',
       iconType: 'editorBold',
+      isDisabled: true,
     }, {
       id: `${idPrefix3}4`,
       label: 'Italic',
+      name: 'italic',
       iconType: 'editorItalic',
     }, {
       id: `${idPrefix3}5`,
       label: 'Underline',
+      name: 'underline',
       iconType: 'editorUnderline',
     }, {
       id: `${idPrefix3}6`,
       label: 'Strikethrough',
+      name: 'strikethrough',
       iconType: 'editorStrike',
     }];
 
@@ -119,7 +127,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiButtonGroup
-          name="Basic"
+          legend="This is a basic group"
           options={this.toggleButtons}
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChange}
@@ -132,7 +140,8 @@ export default class extends Component {
         <EuiSpacer size="s" />
 
         <EuiButtonGroup
-          name="Primary"
+          legend="This is a primary group"
+          name="primary"
           options={this.toggleButtonsMulti}
           idToSelectedMap={this.state.toggleIdToSelectedMap}
           onChange={this.onChangeMulti}
@@ -147,7 +156,8 @@ export default class extends Component {
         <EuiSpacer size="s" />
 
         <EuiButtonGroup
-          name="Disabled"
+          legend="This is a disabled group"
+          name="disabledGroup"
           options={this.toggleButtons}
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChange}
@@ -162,7 +172,8 @@ export default class extends Component {
         <EuiSpacer size="s" />
 
         <EuiButtonGroup
-          name="Text align"
+          legend="Text align"
+          name="textAlign"
           className="eui-displayInlineBlock"
           options={this.toggleButtonsIcons}
           idSelected={this.state.toggleIconIdSelected}
@@ -173,7 +184,7 @@ export default class extends Component {
         &nbsp;&nbsp;
 
         <EuiButtonGroup
-          name="Text style"
+          legend="Text style"
           className="eui-displayInlineBlock"
           options={this.toggleButtonsIconsMulti}
           idToSelectedMap={this.state.toggleIconIdToSelectedMap}
