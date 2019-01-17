@@ -8,7 +8,6 @@ import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPagination } from '../../pagination';
 import { EuiPopover } from '../../popover';
-import { EuiI18n } from '../../i18n';
 
 export class EuiTablePagination extends Component {
   constructor(props) {
@@ -50,7 +49,7 @@ export class EuiTablePagination extends Component {
         iconSide="right"
         onClick={this.onButtonClick}
       >
-        <EuiI18n token="euiTablePagination.rowsPerPage" default="Rows per page"/>: {itemsPerPage}
+        {`Rows per page: ${itemsPerPage}`}
       </EuiButtonEmpty>
     );
 

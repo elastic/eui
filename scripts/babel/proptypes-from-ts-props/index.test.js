@@ -984,7 +984,7 @@ import React from 'react';
 export type ExclusiveUnion<T, U> = any;
 interface BaseProps { asdf: boolean }
 interface IFooProps extends BaseProps {d: number, foo?: string}
-interface IBarProps extends BaseProps {d: string, foo: string, bar: string}
+interface IBarProps extends BaseProps {d: string, bar?: string}
 const FooComponent: React.SFC<ExclusiveUnion<IFooProps, IBarProps>> = () => {
   return (<div>Hello World</div>);
 }`,
@@ -999,8 +999,8 @@ const FooComponent = () => {
 };
 
 FooComponent.propTypes = {
-  d: PropTypes.oneOfType([PropTypes.number.isRequired, PropTypes.string.isRequired]).isRequired,
-  foo: PropTypes.oneOfType([PropTypes.string, PropTypes.string.isRequired]),
+  d: PropTypes.string.isRequired,
+  foo: PropTypes.string,
   asdf: PropTypes.bool.isRequired,
   bar: PropTypes.string
 };`);
