@@ -16,7 +16,7 @@ declare module '@elastic/eui' {
     fullWidth?: boolean;
     isLoading?: boolean;
     hasNoInitialSelection?: boolean;
-    inputRef?: Ref<HTMLSelectElement> | ((ref: HTMLInputElement) => void);
+    inputRef?: Ref<HTMLSelectElement>;
     compressed?: boolean;
     prepend?: ReactNode | ReactNode[];
     append?: ReactNode | ReactNode[];
