@@ -1,8 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.5.0`.
+**Reverts**
+
+- Reverts EuiI18n commit from previous release ([#1404](https://github.com/elastic/eui/pull/1404))
 
 ## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
+**Note: this contains some i18n work that we reverted in the next release. Use the patch release above instead**
 
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
 - Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
