@@ -41,7 +41,7 @@ export default class extends Component {
       navFlyoutContent: [],
       mobileIsHidden: true,
       showScrollbar: false,
-      outsideClickDisaled: true,
+      outsideClickDisabled: true,
       isManagingFocus: false,
     };
 
@@ -477,9 +477,9 @@ export default class extends Component {
 
     setTimeout(() => {
       this.setState({
-        outsideClickDisaled: this.state.mobileIsHidden ? true : false,
+        outsideClickDisabled: this.state.mobileIsHidden ? true : false,
       });
-    }, 150);
+    }, 350);
   };
 
   expandDrawer = () => {
@@ -516,7 +516,7 @@ export default class extends Component {
         flyoutIsCollapsed: true,
         mobileIsHidden: true,
         showScrollbar: false,
-        outsideClickDisaled: true,
+        outsideClickDisabled: true,
       });
     }, 350);
 
@@ -576,7 +576,7 @@ export default class extends Component {
       navFlyoutContent,
       mobileIsHidden,
       showScrollbar,
-      outsideClickDisaled,
+      outsideClickDisabled,
     } = this.state;
 
     return (
@@ -605,7 +605,7 @@ export default class extends Component {
           </EuiHeader>
           <EuiOutsideClickDetector
             onOutsideClick={() => this.collapseDrawer()}
-            isDisabled={outsideClickDisaled}
+            isDisabled={outsideClickDisabled}
           >
             <EuiNavDrawer
               isCollapsed={isCollapsed}
