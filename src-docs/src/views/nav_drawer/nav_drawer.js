@@ -14,6 +14,7 @@ import {
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
   EuiHeaderBreadcrumbs,
+  EuiHeaderLogo,
   EuiIcon,
   EuiTitle,
   EuiNavDrawer,
@@ -401,11 +402,11 @@ export default class extends Component {
 
   renderLogo() {
     return (
-      <EuiHeaderSectionItemButton
-        aria-label="Go to home page"
-      >
-        <EuiIcon type="logoKibana" href="#" size="l" />
-      </EuiHeaderSectionItemButton>
+      <EuiHeaderLogo
+        iconType="logoKibana"
+        href="/#/layout/nav-drawer"
+        aria-label="Goes to home"
+      />
     );
   }
 
