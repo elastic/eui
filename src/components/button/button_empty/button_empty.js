@@ -87,7 +87,6 @@ export const EuiButtonEmpty = ({
     textProps && textProps.className,
   );
 
-
   // Add an icon to the button if one exists.
   let buttonIcon;
 
