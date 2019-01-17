@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
+- Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
 
 **Bug fixes**
 
@@ -9,6 +10,7 @@
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
+- Added `EuiNavDrawer` side nav component ([#1427](https://github.com/elastic/eui/pull/1427))
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 - Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
