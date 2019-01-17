@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.5.1`.
+
+## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
+
 **Reverts**
 
 - Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
