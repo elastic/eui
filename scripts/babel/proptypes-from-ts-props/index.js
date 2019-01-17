@@ -127,7 +127,6 @@ function resolveIdentifierToPropTypes(node, state) {
       );
 
     // PropTypes.node
-    case 'ReactChild':
     case 'ReactNode':
       return types.memberExpression(
         types.identifier('PropTypes'),
@@ -140,36 +139,7 @@ function resolveIdentifierToPropTypes(node, state) {
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection
-
-    // Any types that are optional or non-existant on one side must be optional after the union
-    const aPropType = getPropTypesForNode(node.typeParameters.params[0], true, state);
-    const bPropType = getPropTypesForNode(node.typeParameters.params[1], true, state);
-
-    const propsOnA = types.isCallExpression(aPropType) ? aPropType.arguments[0].properties : [];
-    const propsOnB = types.isCallExpression(bPropType) ? bPropType.arguments[0].properties : [];
-
-    // optional props is any prop that is optional or non-existant on one side
-    const optionalProps = new Set();
-    for (let i = 0; i < propsOnA.length; i++) {
-      const property = propsOnA[i];
-      const propertyName = property.key.name;
-      const isOptional = !isPropTypeRequired(types, property.value);
-      const existsOnB = propsOnB.find(property => property.key.name === propertyName) != null;
-      if (isOptional || !existsOnB) {
-        optionalProps.add(propertyName);
-      }
-    }
-    for (let i = 0; i < propsOnB.length; i++) {
-      const property = propsOnB[i];
-      const propertyName = property.key.name;
-      const isOptional = !isPropTypeRequired(types, property.value);
-      const existsOnA = propsOnA.find(property => property.key.name === propertyName) != null;
-      if (isOptional || !existsOnA) {
-        optionalProps.add(propertyName);
-      }
-    }
-
-    const propTypes = getPropTypesForNode(
+    return getPropTypesForNode(
       {
         type: 'TSIntersectionType',
         types: node.typeParameters.params,
@@ -177,19 +147,6 @@ function resolveIdentifierToPropTypes(node, state) {
       true,
       state
     );
-
-    if (types.isCallExpression(propTypes)) {
-      // apply the optionals
-      const properties = propTypes.arguments[0].properties;
-      for (let i = 0; i < properties.length; i++) {
-        const property = properties[i];
-        if (optionalProps.has(property.key.name)) {
-          property.value = makePropTypeOptional(types, property.value);
-        }
-      }
-    }
-
-    return propTypes;
   }
 
   // Lookup this identifier from types/interfaces defined in code
@@ -213,41 +170,6 @@ function buildPropTypePrimitiveExpression(types, typeName) {
     types.identifier('PropTypes'),
     types.identifier(typeName)
   );
-}
-
-function isPropTypeRequired(types, propType) {
-  return types.isMemberExpression(propType) &&
-    types.isIdentifier(propType.property) &&
-    propType.property.name === 'isRequired';
-}
-
-function makePropTypeRequired(types, propType) {
-  return types.memberExpression(
-    propType,
-    types.identifier('isRequired')
-  );
-}
-
-function makePropTypeOptional(types, propType) {
-  if (isPropTypeRequired(types, propType)) {
-    // strip the .isRequired member expression
-    return propType.object;
-  }
-  return propType;
-}
-
-function areExpressionsIdentical(a, b) {
-  const aCode = babelCore.transformFromAst(babelCore.types.program([
-    babelCore.types.expressionStatement(
-      babelCore.types.removeComments(babelCore.types.cloneDeep(a))
-    )
-  ])).code;
-  const bCode = babelCore.transformFromAst(babelCore.types.program([
-    babelCore.types.expressionStatement(
-      babelCore.types.removeComments(babelCore.types.cloneDeep(b))
-    )
-  ])).code;
-  return aCode === bCode;
 }
 
 /**
@@ -280,34 +202,30 @@ function getPropTypesForNode(node, optional, state) {
 
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together
     case 'TSIntersectionType':
-      const usableNodes = node.types.filter(node => {
-        const nodePropTypes = getPropTypesForNode(node, true, state);
-
-        if (
-          types.isMemberExpression(nodePropTypes) &&
-          nodePropTypes.object.name === 'PropTypes' &&
-          nodePropTypes.property.name === 'any'
-        ) {
-          return false;
-        }
-
-        // validate that this resulted in a shape, otherwise we don't know how to extract/merge the values
-        if (
-          !types.isCallExpression(nodePropTypes) ||
-          !types.isMemberExpression(nodePropTypes.callee) ||
-          nodePropTypes.callee.object.name !== 'PropTypes' ||
-          nodePropTypes.callee.property.name !== 'shape'
-        ) {
-          return false;
-        }
-
-        return true;
-      });
-
       // merge the resolved proptypes for each intersection member into one object, mergedProperties
-      const mergedProperties = usableNodes.reduce(
+      const mergedProperties = node.types.reduce(
         (mergedProperties, node) => {
           const nodePropTypes = getPropTypesForNode(node, true, state);
+
+          // if this propType is PropTypes.any there is nothing to do here
+          if (
+            types.isMemberExpression(nodePropTypes) &&
+            nodePropTypes.object.name === 'PropTypes' &&
+            nodePropTypes.property.name === 'any'
+          ) {
+            return mergedProperties;
+          }
+
+          // validate that this resulted in a shape, otherwise we don't know how to extract/merge the values
+          if (
+            !types.isCallExpression(nodePropTypes) ||
+            !types.isMemberExpression(nodePropTypes.callee) ||
+            nodePropTypes.callee.object.name !== 'PropTypes' ||
+            nodePropTypes.callee.property.name !== 'shape'
+          ) {
+            return mergedProperties;
+            // throw new Error('Cannot process an encountered type intersection');
+          }
 
           // iterate over this type's members, adding them (and their comments) to `mergedProperties`
           const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
@@ -319,32 +237,7 @@ function getPropTypesForNode(node, optional, state) {
               ...(typeProperty.leadingComments || []),
               ...((mergedProperties[typeProperty.key.name] ? mergedProperties[typeProperty.key.name].leadingComments : null) || []),
             ];
-
-            // if this property has already been found, the only action is to potentially change it to optional
-            if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
-              const existing = mergedProperties[typeProperty.key.name];
-              if (!areExpressionsIdentical(existing, typeProperty.value)) {
-                mergedProperties[typeProperty.key.name] = types.callExpression(
-                  types.memberExpression(
-                    types.identifier('PropTypes'),
-                    types.identifier('oneOfType'),
-                  ),
-                  [
-                    types.arrayExpression(
-                      [existing, typeProperty.value]
-                    )
-                  ]
-                );
-
-                if (isPropTypeRequired(types, existing) && isPropTypeRequired(types, typeProperty.value)) {
-                  mergedProperties[typeProperty.key.name] = makePropTypeRequired(types, mergedProperties[typeProperty.key.name]);
-                }
-              }
-            } else {
-              // property hasn't been seen yet, add it
-              mergedProperties[typeProperty.key.name] = typeProperty.value;
-            }
-
+            mergedProperties[typeProperty.key.name] = typeProperty.value;
             mergedProperties[typeProperty.key.name].leadingComments = leadingComments;
           }
 
@@ -453,9 +346,6 @@ function getPropTypesForNode(node, optional, state) {
         [
           types.objectExpression(
             node.members.map(property => {
-              // skip TS index signatures
-              if (types.isTSIndexSignature(property)) return null;
-
               const objectProperty = types.objectProperty(
                 types.identifier(property.key.name || `"${property.key.value}"`),
                 getPropTypesForNode(property.typeAnnotation, property.optional, state)
@@ -464,7 +354,7 @@ function getPropTypesForNode(node, optional, state) {
                 objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
               }
               return objectProperty;
-            }).filter(x => x != null)
+            })
           )
         ]
       );
@@ -658,7 +548,10 @@ function getPropTypesForNode(node, optional, state) {
   if (optional) {
     return propType;
   } else {
-    return makePropTypeRequired(types, propType);
+    return types.memberExpression(
+      propType,
+      types.identifier('isRequired')
+    );
   }
 }
 
@@ -1074,7 +967,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
                   processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                   fileCodeNeedsUpdating = true;
                 } else {
-                  // throw new Error(`Cannot process annotation id React.${right.name}`);
+                  throw new Error(`Cannot process annotation id React.${right.name}`);
                 }
               }
             } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {

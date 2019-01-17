@@ -11,9 +11,7 @@ Array [
     noDivider={true}
     onClick={[Function]}
     type="button"
-  >
-    Kibana
-  </EuiFilterButton>,
+  />,
   <EuiFilterButton
     color="text"
     grow={false}
@@ -23,9 +21,7 @@ Array [
     noDivider={false}
     onClick={[Function]}
     type="button"
-  >
-    Elasticsearch
-  </EuiFilterButton>,
+  />,
 ]
 `;
 
@@ -40,9 +36,7 @@ Array [
     noDivider={true}
     onClick={[Function]}
     type="button"
-  >
-    -Kibana
-  </EuiFilterButton>,
+  />,
   <EuiFilterButton
     color="text"
     grow={false}
@@ -52,9 +46,7 @@ Array [
     noDivider={false}
     onClick={[Function]}
     type="button"
-  >
-    Elasticsearch
-  </EuiFilterButton>,
+  />,
 ]
 `;
 
@@ -69,9 +61,7 @@ Array [
     noDivider={true}
     onClick={[Function]}
     type="button"
-  >
-    Not Kibana
-  </EuiFilterButton>,
+  />,
   <EuiFilterButton
     color="text"
     grow={false}
@@ -81,9 +71,7 @@ Array [
     noDivider={false}
     onClick={[Function]}
     type="button"
-  >
-    Elasticsearch
-  </EuiFilterButton>,
+  />,
 ]
 `;
 
@@ -98,9 +86,7 @@ Array [
     noDivider={true}
     onClick={[Function]}
     type="button"
-  >
-    Kibana
-  </EuiFilterButton>,
+  />,
   <EuiFilterButton
     color="text"
     grow={false}
@@ -110,8 +96,6 @@ Array [
     noDivider={false}
     onClick={[Function]}
     type="button"
-  >
-    Elasticsearch
-  </EuiFilterButton>,
+  />,
 ]
 `;

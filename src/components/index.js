@@ -61,11 +61,6 @@ export {
 } from './combo_box';
 
 export {
-  EuiContext,
-  EuiI18nConsumer
-} from './context';
-
-export {
   EuiContextMenu,
   EuiContextMenuPanel,
   EuiContextMenuItem,
@@ -185,11 +180,6 @@ export {
 export {
   EuiImage,
 } from './image';
-
-export {
-  EuiI18n,
-  EuiI18nNumber,
-} from './i18n';
 
 export {
   EuiLoadingKibana,
