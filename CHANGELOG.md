@@ -2,7 +2,7 @@
 
 **Reverts**
 
-- Reverts EuiI18n commit from previous release ([#1404](https://github.com/elastic/eui/pull/1404))
+- Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
 
 ## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
 
