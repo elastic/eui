@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.5.0`.
+
+## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
 - Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
 - Updated `EuiNavDrawer` docs example and adjusted `EuiHeaderLogo` padding ([#1449](https://github.com/elastic/eui/pull/1449))
