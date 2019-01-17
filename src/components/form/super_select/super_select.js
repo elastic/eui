@@ -9,6 +9,7 @@ import { EuiSuperSelectControl } from './super_select_control';
 import { EuiPopover } from '../../popover';
 import { EuiContextMenuItem } from '../../context_menu';
 import { keyCodes } from '../../../services';
+import { EuiI18n } from '../../i18n';
 
 const SHIFT_BACK = 'back';
 const SHIFT_FORWARD = 'forward';
@@ -245,8 +246,12 @@ export class EuiSuperSelect extends Component {
       >
         <EuiScreenReaderOnly>
           <p role="alert">
-            You are in a form selector of {options.length} items and must select a single option.
-            Use the up and down keys to navigate or escape to close.
+            <EuiI18n
+              token="euiSuperSelect.screenReaderAnnouncement"
+              default={({ optionsCount }) => `You are in a form selector of ${optionsCount} items and must select a single option.
+              Use the up and down keys to navigate or escape to close.`}
+              values={{ optionsCount: options.length }}
+            />
           </p>
         </EuiScreenReaderOnly>
         <div role="listbox" aria-activedescendant={valueOfSelected}>

@@ -1,8 +1,14 @@
-import React, { createContext, ReactChild } from 'react';
+import React, { createContext, ReactChild, ReactElement } from 'react';
+
+export interface RenderableValues {
+  [key: string]: ReactElement<any>;
+}
+
+export type Renderable = ReactChild | ((values: RenderableValues) => ReactChild);
 
 export interface I18nShape {
   mapping?: {
-    [key: string]: ReactChild;
+    [key: string]: Renderable;
   };
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;

@@ -15,6 +15,7 @@ import {
 } from '../overlay_mask';
 
 import { keyCodes } from '../../services';
+import { EuiI18n } from '../i18n';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
@@ -143,14 +144,21 @@ export class EuiCodeBlockImpl extends Component {
 
     if (!inline && overflowHeight) {
       fullScreenButton = (
-        <EuiButtonIcon
-          className="euiCodeBlock__fullScreenButton"
-          size="s"
-          onClick={this.toggleFullScreen}
-          iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
-          color="text"
-          aria-label={this.state.isFullScreen ? 'Collapse' : 'Expand'}
-        />
+        <EuiI18n
+          tokens={['euiCodeBlock.fullscreenCollapse', 'euiCodeBlock.fullscreenExpand']}
+          defaults={['Collapse', 'Expand']}
+        >
+          {([fullscreenCollapse, fullscreenExpand]) => (
+            <EuiButtonIcon
+              className="euiCodeBlock__fullScreenButton"
+              size="s"
+              onClick={this.toggleFullScreen}
+              iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
+              color="text"
+              aria-label={this.state.isFullScreen ? fullscreenCollapse : fullscreenExpand}
+            />
+          )}
+        </EuiI18n>
       );
     }
 

@@ -144,7 +144,8 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           class="euiScreenReaderOnly"
           role="alert"
         >
-          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          You are in a form selector of 2 items and must select a single option.
+              Use the up and down keys to navigate or escape to close.
         </p>
         <div
           role="listbox"
@@ -350,7 +351,8 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           class="euiScreenReaderOnly"
           role="alert"
         >
-          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          You are in a form selector of 2 items and must select a single option.
+              Use the up and down keys to navigate or escape to close.
         </p>
         <div
           aria-activedescendant="1"
@@ -542,9 +544,22 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       className="euiScreenReaderOnly"
                       id="generated-id"
                     >
-                      Select an option: 
-                      Option #1
-                      , is selected
+                      <EuiI18n
+                        defaults={
+                          Array [
+                            "Select an option:",
+                            "is selected",
+                          ]
+                        }
+                        tokens={
+                          Array [
+                            "euiSuperSelectControl.selectAnOption",
+                            "euiSuperSelectControl.isSelected",
+                          ]
+                        }
+                      >
+                        Select an option: Option #1, is selected
+                      </EuiI18n>
                     </span>
                   </EuiScreenReaderOnly>
                   <button
@@ -689,9 +704,18 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           className="euiScreenReaderOnly"
                           role="alert"
                         >
-                          You are in a form selector of 
-                          2
-                           items and must select a single option. Use the up and down keys to navigate or escape to close.
+                          <EuiI18n
+                            default={[Function]}
+                            token="euiSuperSelect.screenReaderAnnouncement"
+                            values={
+                              Object {
+                                "optionsCount": 2,
+                              }
+                            }
+                          >
+                            You are in a form selector of 2 items and must select a single option.
+              Use the up and down keys to navigate or escape to close.
+                          </EuiI18n>
                         </p>
                       </EuiScreenReaderOnly>
                       <div
@@ -930,7 +954,8 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           class="euiScreenReaderOnly"
           role="alert"
         >
-          You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          You are in a form selector of 2 items and must select a single option.
+              Use the up and down keys to navigate or escape to close.
         </p>
         <div
           role="listbox"

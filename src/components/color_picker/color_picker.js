@@ -8,6 +8,7 @@ import { ChromePicker } from 'react-color';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
+import { EuiI18n } from '../i18n';
 
 export class EuiColorPicker extends Component {
   constructor(props) {
@@ -30,15 +31,24 @@ export class EuiColorPicker extends Component {
   };
 
   getColorLabel() {
-    const { color } = this.props;
-    const colorValue = color === null ? '(transparent)' : color;
     return (
-      <div
-        className="euiColorPicker__label"
-        aria-label={`Color selection is ${ colorValue }`}
+      <EuiI18n
+        tokens={['euiColorPicker.transparentColor', 'euiColorPicker.colorSelectionLabel']}
+        defaults={['transparent', 'Color selection is']}
       >
-        { colorValue }
-      </div>
+        {([transparentColor, colorSelectionLabel]) => {
+          const { color } = this.props;
+          const colorValue = color === null ? `(${transparentColor})` : color;
+          return (
+            <div
+              className="euiColorPicker__label"
+              aria-label={`${colorSelectionLabel} ${ colorValue }`}
+            >
+              { colorValue }
+            </div>
+          );
+        }}
+      </EuiI18n>
     );
   }
 

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AceEditor from 'react-ace';
 
 import { htmlIdGenerator, keyCodes } from '../../services';
+import { EuiI18n } from '../i18n';
 
 function setOrRemoveAttribute(element, attributeName, value) {
   if (value === null || value === undefined) {
@@ -141,11 +142,6 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
-    const activity = isReadOnly
-      ? 'interacting with the code'
-      : 'editing';
-
-
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
@@ -158,13 +154,25 @@ export class EuiCodeEditor extends Component {
         onKeyDown={this.onKeyDownHint}
         data-test-subj="codeEditorHint"
       >
-        <p className="euiText">
-          Press Enter to start {activity}.
-        </p>
+        <EuiI18n
+          tokens={['euiCodeEditor.startActivity', 'euiCodeEditor.stopActivity',  'euiCodeEditor.interacting', 'eduiCodeEditor.editing']}
+          defaults={['Press Enter to start', `When you're done, press Escape to stop`, 'interacting with the code', 'editing']}
+        >
+          {([startActivity, stopActivity, readOnly, editable]) => {
+            const activity = isReadOnly ? readOnly : editable;
+            return (
+              <Fragment>
+                <p className="euiText">
+                  {startActivity} {activity}.
+                </p>
 
-        <p className="euiText">
-          When you&rsquo;re done, press Escape to stop {activity}.
-        </p>
+                <p className="euiText">
+                  {stopActivity} {activity}.
+                </p>
+              </Fragment>
+            );
+          }}
+        </EuiI18n>
       </div>
     );
 

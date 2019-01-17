@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiBadge } from '../../badge';
+import { EuiI18n } from '../../i18n';
 
 export class EuiComboBoxPill extends Component {
   static propTypes = {
@@ -47,23 +48,31 @@ export class EuiComboBoxPill extends Component {
 
     if (onClose) {
       return (
-        <EuiBadge
-          className={classes}
-          title={children}
-          iconOnClick={this.onCloseButtonClick}
-          iconOnClickAriaLabel={`Remove ${children} from selection in this group`}
-          iconType="cross"
-          iconSide="right"
-          color={color}
-          closeButtonProps={{
-            tabIndex: '-1',
-          }}
-          onClick={onClick}
-          onClickAriaLabel={onClickAriaLabel}
-          {...rest}
+        <EuiI18n
+          token="euiComboBoxPill.removeSelection"
+          default={({ children }) => `Remove ${children} from selection in this group`}
+          values={{ children }}
         >
-          {children}
-        </EuiBadge>
+          {removeSelection => (
+            <EuiBadge
+              className={classes}
+              title={children}
+              iconOnClick={this.onCloseButtonClick}
+              iconOnClickAriaLabel={removeSelection}
+              iconType="cross"
+              iconSide="right"
+              color={color}
+              closeButtonProps={{
+                tabIndex: '-1',
+              }}
+              onClick={onClick}
+              onClickAriaLabel={onClickAriaLabel}
+              {...rest}
+            >
+              {children}
+            </EuiBadge>
+          )}
+        </EuiI18n>
       );
     }
 
