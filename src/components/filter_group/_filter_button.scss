@@ -19,6 +19,17 @@
     font-style: italic;
   }
 
+  &:hover:not(:disabled),
+  &:focus {
+    // Remove underline from whole button so notifications don't get the underline
+    text-decoration: none;
+
+    .euiFilterButton__textShift {
+      // Add put it only on the actual text part
+      text-decoration: underline;
+    }
+  }
+
   &.euiFilterButton--grow {
     flex-grow: 1;
     width: 100%;
@@ -38,6 +49,11 @@
     margin-left: $euiSizeS;
     vertical-align: text-bottom;
   }
+}
+
+.euiFilterButton__text-hasNotification {
+  display: flex;
+  align-items: center;
 }
 
 .euiFilterButton__textShift {
