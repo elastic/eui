@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Changes `EuiNavDrawerFLyout` links to wrap ([#1457](https://github.com/elastic/eui/pull/1457))
+- Adds `isWrappable` prop that wraps `EuiListGroupItem` text ([#1458](https://github.com/elastic/eui/pull/1458))
 
 ## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
 

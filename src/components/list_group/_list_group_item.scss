@@ -79,6 +79,18 @@
   font-size: $euiFontSizeL;
 }
 
+.euiListGroupItem-isWrappable {
+  .euiListGroupItem__button {
+    width: 100%;
+    word-break: break-word;
+    line-height: $euiSize;
+  }
+
+  .euiListGroupItem__icon {
+    min-width: $euiSize;
+  }
+}
+
 // Layout alts from euiListGroup
 
 .euiListGroup-flush .euiListGroupItem {
