@@ -5,7 +5,7 @@
 .euiExpression {
   @include euiTextOverflowWrap; /* 1 */
   @include euiFontSizeS;
-  font-family: $euiCodeFontFamily;
+  @include euiCodeFont;
 
   display: inline-block; /* 1 */
   text-align: left;

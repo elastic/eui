@@ -2,12 +2,28 @@
 
 - Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 
+## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
+
+**Reverts**
+
+- Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
+
+## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
+**Note: this contains some i18n work that we reverted in the next release. Use the patch release above instead**
+
+- Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
+- Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
+- Updated `EuiNavDrawer` docs example and adjusted `EuiHeaderLogo` padding ([#1449](https://github.com/elastic/eui/pull/1449))
+- Added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1404](https://github.com/elastic/eui/pull/1404))
+
 **Bug fixes**
 
 - Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
+- Added `EuiNavDrawer` side nav component ([#1427](https://github.com/elastic/eui/pull/1427))
 - Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
 - Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
 - Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
@@ -81,6 +97,14 @@
 **Breaking changes**
 
 - Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
+
+## [`5.8.2`](https://github.com/elastic/eui/tree/v5.8.2)
+
+**Note: this release is a backport containing fixes made in `6.4.0`**
+
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
 
 ## [`5.8.1`](https://github.com/elastic/eui/tree/v5.8.1)
 

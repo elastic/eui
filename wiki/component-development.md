@@ -39,6 +39,7 @@ end of the command like this:
 
 `yarn run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need
 to follow the format of `yarn run test-unit -- [arguments]`.
+Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn run test-unit -- --clearCache`.
 
 `yarn run test-unit -- --watch` watches for changes and runs the tests as you code.
 

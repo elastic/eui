@@ -60,6 +60,14 @@ If you want access to the Sass variables, functions, and mixins in EUI then you'
 @import '../node_modules/@elastic/eui/src/theme_light.scss';
 ```
 
+By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
+
+```scss
+// index.scss
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');
+```
+
 ### Reusing the variables in JavaScript
 
 The Sass variables are also made available for consumption as json files. This enables reuse of values in css-in-js systems like [styled-components](https://www.styled-components.com). As the following example shows, it can also make the downstream components theme-aware without much extra effort:
