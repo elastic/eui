@@ -337,7 +337,7 @@ export default class extends Component {
         },
       },
       {
-        label: 'My workpad',
+        label: 'Workpad with title that wraps',
         href: '/#/layout/nav-drawer',
         iconType: 'canvasApp',
         size: 's',
