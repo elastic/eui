@@ -1,6 +1,6 @@
 // Hide mobile-only elements by default
 .euiTableHeaderMobile,
-.euiTableHeaderCell--isMobileHeader {
+.euiTableHeaderCell--hideForDesktop {
   display: none;
 }
 

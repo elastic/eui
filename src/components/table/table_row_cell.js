@@ -33,7 +33,7 @@ export const EuiTableRowCell = ({
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
-    'euiTableRowCell--hideForDesktop': isMobileHeader, // For BWC only
+    'euiTableRowCell--hideForDesktop': mobileOptions.only || isMobileHeader,
     'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge || isMobileHeader,
     'euiTableRowCell--hasActions': mobileOptions.isActions || hasActions,
     'euiTableRowCell--isMobileFullWidth': mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
@@ -175,6 +175,10 @@ EuiTableRowCell.propTypes = {
      * If false, will not render the cell at all for mobile
      */
     show: PropTypes.bool,
+    /**
+     * Only show for mobile? If true, will not render the column at all for desktop
+     */
+    only: PropTypes.bool,
     /**
      * Custom render/children if different from non-mobile
      */

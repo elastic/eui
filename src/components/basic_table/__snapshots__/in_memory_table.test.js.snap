@@ -134,6 +134,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
                     key="_data_h_name_0"
+                    mobileOptions={
+                      Object {
+                        "only": false,
+                      }
+                    }
                     scope="col"
                   >
                     <th

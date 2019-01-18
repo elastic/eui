@@ -481,6 +481,7 @@ export class EuiBasicTable extends Component {
         align,
         dataType,
         sortable,
+        mobileOptions,
         isMobileHeader,
         hideForMobile,
       } = column;
@@ -494,6 +495,7 @@ export class EuiBasicTable extends Component {
             key={`_actions_h_${index}`}
             align="right"
             width={width}
+            mobileOptions={mobileOptions}
           >
             {name}
           </EuiTableHeaderCell>
@@ -508,6 +510,7 @@ export class EuiBasicTable extends Component {
             key={`_computed_column_h_${index}`}
             align={columnAlign}
             width={width}
+            mobileOptions={mobileOptions}
           >
             {name}
           </EuiTableHeaderCell>
@@ -530,6 +533,7 @@ export class EuiBasicTable extends Component {
           width={width}
           isMobileHeader={isMobileHeader}
           hideForMobile={hideForMobile}
+          mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
           {...sorting}
         >
@@ -558,7 +562,7 @@ export class EuiBasicTable extends Component {
 
     columns.forEach(column => {
       const footer = getColumnFooter(column, { items, pagination });
-      if (column.isMobileHeader) {
+      if ((column.mobileOptions && column.mobileOptions.only) || column.isMobileHeader) {
         return; // exclude columns that only exist for mobile headers
       }
 
@@ -670,7 +674,11 @@ export class EuiBasicTable extends Component {
     let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
 
     const mobileOnlyCols = columns.reduce((num, column) => {
-      return column.isMobileHeader ? num + 1 : num + 0;
+      if (column.mobileOptions && column.mobileOptions.only) {
+        return num + 1;
+      }
+
+      return column.isMobileHeader ? num + 1 : num + 0; // BWC only
     }, 0);
 
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;

@@ -30,12 +30,14 @@ export const EuiTableHeaderCell = ({
   isSortAscending,
   className,
   scope,
+  mobileOptions,
+  // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--isMobileHeader': isMobileHeader,
+    'euiTableHeaderCell--hideForDesktop': mobileOptions.only || isMobileHeader,
     'euiTableHeaderCell--hideForMobile': hideForMobile,
   });
 
@@ -120,9 +122,21 @@ EuiTableHeaderCell.propTypes = {
    * (typically hidden because a custom mobile header utilizes the column's contents)
    */
   hideForMobile: PropTypes.bool,
+  /**
+   * Mobile options for displaying differently at small screens
+   */
+  mobileOptions: PropTypes.shape({
+    /**
+     * Only show for mobile? If true, will not render the column at all for desktop
+     */
+    only: PropTypes.bool,
+  }),
 };
 
 EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
   scope: 'col',
+  mobileOptions: {
+    only: false,
+  }
 };

@@ -31,6 +31,11 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -146,6 +151,11 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -263,6 +273,11 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -321,6 +336,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -387,6 +407,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -445,6 +470,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -453,6 +483,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_id_1"
           key="_data_h_id_1"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           ID
@@ -461,6 +496,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_age_2"
           key="_data_h_age_2"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Age
@@ -671,6 +711,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -680,6 +725,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           align="left"
           data-test-subj="tableHeaderCell_id_1"
           key="_data_h_id_1"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           ID
@@ -688,6 +738,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           align="left"
           data-test-subj="tableHeaderCell_age_2"
           key="_data_h_age_2"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Age
@@ -942,6 +997,11 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1068,6 +1128,11 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1189,6 +1254,11 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1310,6 +1380,11 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1406,6 +1481,11 @@ exports[`EuiBasicTable with pagination 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1523,6 +1603,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1597,6 +1682,11 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1741,6 +1831,11 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -1885,6 +1980,11 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2056,6 +2156,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2064,6 +2169,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         <EuiTableHeaderCell
           align="right"
           key="_actions_h_1"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Actions
@@ -2333,6 +2443,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2504,6 +2619,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2675,6 +2795,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2683,6 +2808,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         <EuiTableHeaderCell
           align="right"
           key="_actions_h_1"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Actions
@@ -2970,6 +3100,11 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -3115,6 +3250,11 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           scope="col"
         >
           Name
@@ -3237,6 +3377,11 @@ exports[`EuiBasicTable with sorting 1`] = `
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "only": false,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
