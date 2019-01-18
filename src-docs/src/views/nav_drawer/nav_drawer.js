@@ -329,7 +329,7 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'My dashboard',
-        isWrappable: true,
+        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -344,7 +344,7 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'Workpad with title that wraps',
-        isWrappable: true,
+        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -359,7 +359,7 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'My logs',
-        isWrappable: true,
+        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',

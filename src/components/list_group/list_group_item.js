@@ -18,7 +18,7 @@ export const EuiListGroupItem = ({
   label,
   isActive,
   isDisabled,
-  isWrappable,
+  displayType,
   href,
   className,
   iconType,
@@ -34,7 +34,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-isActive': isActive,
       'euiListGroupItem-isDisabled': isDisabled,
       'euiListGroupItem-isClickable': href || onClick,
-      'euiListGroupItem-isWrappable': isWrappable,
+      'euiListGroupItem-wrapText': displayType === 'wrapText',
     },
     className
   );
@@ -131,7 +131,7 @@ EuiListGroupItem.propTypes = {
   /**
    * Allow link text to wrap
    */
-  isWrappable: PropTypes.bool,
+  displayType: PropTypes.oneOf(['wrapText']),
 
   /**
    * Make the list item label a link
@@ -158,6 +158,5 @@ EuiListGroupItem.propTypes = {
 EuiListGroupItem.defaultProps = {
   isActive: false,
   isDisabled: false,
-  isWrappable: false,
   size: 'm',
 };
