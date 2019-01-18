@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
-- Added 'bell' icon 
+- Added 'bell' icon ([#1447](https://github.com/elastic/eui/pull/1447))
 
 **Bug fixes**
 
