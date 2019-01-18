@@ -143,8 +143,8 @@ export class EuiComboBoxOptionsList extends Component {
             <p>
               <EuiI18n
                 token="euiComboBoxOptionsList.alreadyAdded"
-                default={({ value }) => <Fragment>{value} has already been added</Fragment>}
-                values={{ value: <strong>{selectedOptionForValue.value}</strong> }}
+                default="{label} has already been added"
+                values={{ label: <strong>{selectedOptionForValue.label}</strong> }}
               />
             </p>
           );
@@ -153,10 +153,8 @@ export class EuiComboBoxOptionsList extends Component {
             <p>
               <EuiI18n
                 token="euiComboBoxOptionsList.createCustomOption"
-                default={({ searchValue }) => (
-                  <Fragment>Hit <EuiCode>ENTER</EuiCode> to add {searchValue} as a custom option</Fragment>
-                )}
-                values={{ searchValue: <strong>{searchValue}</strong> }}
+                default="Hit {key} to add {searchValue} as a custom option"
+                values={{ key: <EuiCode>ENTER</EuiCode>, searchValue: <strong>{searchValue}</strong> }}
               />
             </p>
           );
@@ -166,9 +164,7 @@ export class EuiComboBoxOptionsList extends Component {
           <p>
             <EuiI18n
               token="euiComboBoxOptionsList.noMatchingOptions"
-              default={({ searchValue }) => (
-                <Fragment>{searchValue} doesn&rsquo;t match any options</Fragment>
-              )}
+              default="{searchValue} doesn't match any options"
               values={{ searchValue: <strong>{searchValue}</strong> }}
             />
           </p>

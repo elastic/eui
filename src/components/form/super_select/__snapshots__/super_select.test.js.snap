@@ -705,7 +705,8 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           role="alert"
                         >
                           <EuiI18n
-                            default={[Function]}
+                            default="You are in a form selector of {optionsCount} items and must select a single option.
+              Use the up and down keys to navigate or escape to close."
                             token="euiSuperSelect.screenReaderAnnouncement"
                             values={
                               Object {

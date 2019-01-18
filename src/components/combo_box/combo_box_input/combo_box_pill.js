@@ -50,7 +50,7 @@ export class EuiComboBoxPill extends Component {
       return (
         <EuiI18n
           token="euiComboBoxPill.removeSelection"
-          default={({ children }) => `Remove ${children} from selection in this group`}
+          default="Remove {children} from selection in this group"
           values={{ children }}
         >
           {removeSelection => (
