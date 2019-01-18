@@ -105,7 +105,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="Their mascot is the Octokitty">
           <span>
-            Github <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Github <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -120,7 +120,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="Colloquially known as a 'birthday'">
           <span>
-            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -132,7 +132,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="The nation in which this person resides">
           <span>
-            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -146,7 +146,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="Free to talk or busy with business">
           <span>
-            Online <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Online <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),

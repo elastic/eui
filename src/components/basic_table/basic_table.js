@@ -801,7 +801,7 @@ export class EuiBasicTable extends Component {
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}
+        mobileOptions={{ isActions: true }}
       >
         {tools}
       </EuiTableRowCell>
@@ -841,23 +841,24 @@ export class EuiBasicTable extends Component {
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       footer, // eslint-disable-line no-unused-vars
+      mobileOptions,
       ...rest
     } = column;
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
-    // Name can also be an array or an element, so we need to convert it to undefined. We can't
-    // stringify the value, because this value is rendered directly in the mobile layout. So the
-    // best thing we can do is render no header at all.
-    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={header}
         isExpander={isExpander}
         textOnly={textOnly || !render}
+        mobileOptions={{
+          ...mobileOptions,
+          render: mobileOptions && mobileOptions.render && mobileOptions.render(item),
+          header: mobileOptions && mobileOptions.header === false ? false : name,
+        }}
         {...cellProps}
         {...rest}
       >

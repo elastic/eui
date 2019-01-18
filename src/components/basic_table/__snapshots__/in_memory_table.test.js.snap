@@ -166,14 +166,23 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiTableRowCell
                       align="left"
-                      header="Name"
                       key="_data_column_name_2_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
                       textOnly={true}
                     >
                       <td
                         className="euiTableRowCell"
-                        data-header="Name"
                       >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
                         <div
                           className="euiTableCellContent"
                         >
@@ -195,14 +204,23 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiTableRowCell
                       align="left"
-                      header="Name"
                       key="_data_column_name_3_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
                       textOnly={true}
                     >
                       <td
                         className="euiTableRowCell"
-                        data-header="Name"
                       >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
                         <div
                           className="euiTableCellContent"
                         >
