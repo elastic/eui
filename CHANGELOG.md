@@ -2,7 +2,21 @@
 
 - Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
 
+**Bug fixes**
+
+- Fixed `textProps` and `contentProps` of `EuiButton` and `EuiButtonEmpty` so they don’t override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed `closeButtonProps` of `EuiBadge` so it doesn't override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed font weight shift of `EuiFilterButton` when notification is present ([#1455](https://github.com/elastic/eui/pull/1455))
+
+## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
+
+**Reverts**
+
+- Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
+
 ## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
+**Note: this contains some i18n work that we reverted in the next release. Use the patch release above instead**
 
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
 - Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))

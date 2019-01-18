@@ -61,12 +61,16 @@ export const EuiBadge = ({
     optionalCustomStyles = { backgroundColor: color, color: textColor };
   }
 
-
   const classes = classNames(
     'euiBadge',
     iconSideToClassNameMap[iconSide],
     optionalColorClass,
     className
+  );
+
+  const closeClassNames = classNames(
+    'euiBadge__icon',
+    closeButtonProps && closeButtonProps.className,
   );
 
   let optionalIcon = null;
@@ -78,9 +82,9 @@ export const EuiBadge = ({
             onClick={iconOnClick}
             type={iconType}
             size="s"
-            className="euiBadge__icon"
             aria-label={iconOnClickAriaLabel}
             {...closeButtonProps}
+            className={closeClassNames}
           />
         </EuiKeyboardAccessible>
       );
