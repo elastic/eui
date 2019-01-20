@@ -1,16 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { range, find } from 'lodash';
 
 import { EuiFieldNumber } from '../field_number';
+import { EuiFormErrorText } from '../form_error_text';
 
 export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
 
 export class EuiRange extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.value !== prevState.prevValue) {
+      return {
+        value: nextProps.value,
+        prevValue: nextProps.value,
+        isValid: isWithinRange(nextProps.min, nextProps.max, nextProps.value),
+      };
+    }
+
+    return null;
   }
 
   render() {
@@ -33,8 +48,9 @@ export class EuiRange extends Component {
       showRange,
       showValue,
       valueAppend, // eslint-disable-line no-unused-vars
-      onChange,
-      value,
+      onChange, // eslint-disable-line no-unused-vars
+      onValidatedChange, // eslint-disable-line no-unused-vars
+      value, // eslint-disable-line no-unused-vars
       style,
       ...rest
     } = this.props;
@@ -80,10 +96,10 @@ export class EuiRange extends Component {
           min={min}
           max={max}
           step={step}
-          value={Number(value)}
+          value={this.state.value === '' ? '' : Number(this.state.value)}
           disabled={disabled}
           compressed={compressed}
-          onChange={onChange}
+          onChange={this.onRangeChange}
           style={maxWidthStyle}
           {...rest}
         />
@@ -109,36 +125,66 @@ export class EuiRange extends Component {
     }
 
     return (
-      <div className={wrapperClasses}>
-        {this.renderLabel('min')}
+      <Fragment>
+        <div className={wrapperClasses}>
+          {this.renderLabel('min')}
 
-        <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
-          <input
-            type="range"
-            id={id}
-            name={name}
-            className={classes}
-            min={min}
-            max={max}
-            step={step}
-            value={value}
-            disabled={disabled}
-            onChange={onChange}
-            style={style}
-            tabIndex={sliderTabIndex}
-            {...rest}
-          />
+          <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
+            <input
+              type="range"
+              id={id}
+              name={name}
+              className={classes}
+              min={min}
+              max={max}
+              step={step}
+              value={this.state.value}
+              disabled={disabled}
+              onChange={this.onRangeChange}
+              style={style}
+              tabIndex={sliderTabIndex}
+              {...rest}
+            />
 
-          {this.renderValue()}
-          {this.renderRange()}
-          {this.renderLevels()}
-          {this.renderTicks(tickObject)}
+            {this.renderValue()}
+            {this.renderRange()}
+            {this.renderLevels()}
+            {this.renderTicks(tickObject)}
+          </div>
+
+          {this.renderLabel('max')}
+          {extraInputNode}
         </div>
-
-        {this.renderLabel('max')}
-        {extraInputNode}
-      </div>
+        {this.renderErrorMessage()}
+      </Fragment>
     );
+  }
+
+  onRangeChange = e => {
+    const {
+      max,
+      min,
+      onChange,
+      onValidatedChange
+    } = this.props;
+    if (!onValidatedChange) {
+      onChange(e);
+      return;
+    }
+
+    const sanitizedValue = parseInt(e.target.value, 10);
+    const newValue = isNaN(sanitizedValue) ? '' : sanitizedValue;
+
+    const isValid = isWithinRange(min, max, newValue);
+
+    this.setState({
+      value: newValue,
+      isValid,
+    });
+
+    if (isValid) {
+      onValidatedChange(newValue);
+    }
   }
 
   renderLabel = (side) => {
@@ -159,14 +205,18 @@ export class EuiRange extends Component {
   renderTicks = (tickObject) => {
     const {
       disabled,
-      onChange,
       showTicks,
       ticks,
-      value,
       max,
     } = this.props;
 
+    const { value } = this.state;
+
     if (!showTicks) {
+      return;
+    }
+
+    if (isNaN(value) || value === '') {
       return;
     }
 
@@ -206,7 +256,7 @@ export class EuiRange extends Component {
               key={tickValue}
               value={tickValue}
               disabled={disabled}
-              onClick={onChange}
+              onClick={this.onRangeChange}
               style={tickStyle}
               // Don't allow tabbing and just let the range to do the work for non-sighted users
               tabIndex="-1"
@@ -222,12 +272,17 @@ export class EuiRange extends Component {
   renderRange = () => {
     const {
       showRange,
-      value,
       max,
       min,
     } = this.props;
 
+    const { value } = this.state;
+
     if (!showRange) {
+      return;
+    }
+
+    if (isNaN(value) || value === '' || value < min) {
       return;
     }
 
@@ -245,14 +300,19 @@ export class EuiRange extends Component {
   renderValue = () => {
     const {
       showValue,
-      value,
       valueAppend,
       max,
       min,
       name,
     } = this.props;
 
+    const { value } = this.state;
+
     if (!showValue) {
+      return;
+    }
+
+    if (isNaN(value) || value === '') {
       return;
     }
 
@@ -310,6 +370,18 @@ export class EuiRange extends Component {
       </div>
     );
   }
+
+  renderErrorMessage = () => {
+    if (!this.props.onValidatedChange || this.state.isValid) {
+      return null;
+    }
+
+    return (
+      <EuiFormErrorText>
+        {`Must be between ${this.props.min} and ${this.props.max}`}
+      </EuiFormErrorText>
+    );
+  }
 }
 
 function calculateTicksObject(min, max, interval) {
@@ -329,6 +401,18 @@ function calculateTicksObject(min, max, interval) {
       sequence: sequence,
     }
   );
+}
+
+function isWithinRange(min, max, value) {
+  if (isNaN(value) || value === '') {
+    return false;
+  }
+
+  if (value >= min && value <= max) {
+    return true;
+  }
+
+  return false;
 }
 
 EuiRange.propTypes = {
@@ -365,7 +449,19 @@ EuiRange.propTypes = {
       label: PropTypes.node.isRequired,
     }),
   ),
+  /*
+   * Callback function used when "onValidatedChange" props is not provided.
+   * Function called when value changes through all interactions with range input or number input.
+   * Called with (Event).
+   */
   onChange: PropTypes.func,
+  /*
+   * Callback function used when value changes through interaction with range input or number input.
+   * Function is only called when value changes to a Number that
+   * is within the provided min and max (inclusive).
+   * Called with (Number).
+   */
+  onValidatedChange: PropTypes.func,
   /**
    * Create colored indicators for certain intervals
    */

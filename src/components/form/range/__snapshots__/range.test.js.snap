@@ -194,13 +194,14 @@ exports[`EuiRange props range should render 1`] = `
       max="100"
       min="1"
       type="range"
+      value="50"
     />
     <div
       class="euiRange__range"
     >
       <div
         class="euiRange__range__progress"
-        style="width:NaN%"
+        style="width:49.494949494949495%"
       />
     </div>
   </div>
@@ -219,6 +220,7 @@ exports[`EuiRange props ticks should render 1`] = `
       max="100"
       min="1"
       type="range"
+      value="50"
     />
     <div
       class="euiRange__ticks"
@@ -286,14 +288,17 @@ exports[`EuiRange props value should render 1`] = `
       max="100"
       min="1"
       type="range"
+      value="50"
     />
     <div
       class="euiRange__valueWrapper"
     >
       <output
-        class="euiRange__value euiRange__value--left"
-        style="left:100%"
-      />
+        class="euiRange__value euiRange__value--right"
+        style="left:49.494949494949495%"
+      >
+        50
+      </output>
     </div>
   </div>
 </div>

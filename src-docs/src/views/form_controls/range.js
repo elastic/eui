@@ -7,6 +7,7 @@ import {
   EuiRange,
   EuiSpacer,
   EuiFormHelpText,
+  EuiCode,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -30,12 +31,21 @@ export default class extends Component {
 
     this.state = {
       value: '120',
+      validatedValue: '3000',
     };
   }
 
   onChange = e => {
+    // onChange called with Event
     this.setState({
       value: e.target.value,
+    });
+  };
+
+  onValidatedChange = newValue => {
+    // onValidatedChange called with Number (not Event like onChange)
+    this.setState({
+      validatedValue: newValue
     });
   };
 
@@ -131,6 +141,35 @@ export default class extends Component {
           tickInterval={500}
           levels={this.levels}
         />
+
+        <EuiSpacer size="xl" />
+
+        <div>
+          <p>
+            <EuiCode>onChange</EuiCode> is called with the DOM Event and requires you to extract the value
+            and validate that the value is a Number within the specified range.
+          </p>
+          <p>
+            Use <EuiCode>onValidatedChange</EuiCode> callback to only receive updates when the value
+            changes to a Number that is within the specified range and leave all that error checking
+            to EuiRange.
+          </p>
+        </div>
+        <EuiSpacer size="s" />
+        <EuiRange
+          id={makeId()}
+          min={2000}
+          max={5000}
+          step={50}
+          value={this.state.validatedValue}
+          onValidatedChange={this.onValidatedChange}
+          showInput
+          showRange
+          showTicks
+          showValue
+          tickInterval={500}
+        />
+
       </Fragment>
     );
   }

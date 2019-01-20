@@ -52,7 +52,7 @@ describe('EuiRange', () => {
 
     test('ticks should render', () => {
       const component = render(
-        <EuiRange showTicks tickInterval={20}/>
+        <EuiRange showTicks tickInterval={20} value="50"/>
       );
 
       expect(component)
@@ -61,7 +61,10 @@ describe('EuiRange', () => {
 
     test('range should render', () => {
       const component = render(
-        <EuiRange showRange />
+        <EuiRange
+          value="50"
+          showRange
+        />
       );
 
       expect(component)
@@ -70,7 +73,10 @@ describe('EuiRange', () => {
 
     test('value should render', () => {
       const component = render(
-        <EuiRange showValue />
+        <EuiRange
+          value="50"
+          showValue
+        />
       );
 
       expect(component)
