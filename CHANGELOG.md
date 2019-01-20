@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `onValidatedChange` prop to `EuiRange` ([#1461](https://github.com/elastic/eui/pull/1461))
 - Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
 - Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 
