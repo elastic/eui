@@ -172,7 +172,7 @@ export class EuiRange extends Component {
       return;
     }
 
-    const sanitizedValue = parseInt(e.target.value, 10);
+    const sanitizedValue = parseFloat(e.target.value, 10);
     const newValue = isNaN(sanitizedValue) ? '' : sanitizedValue;
 
     const isValid = isWithinRange(min, max, newValue);
