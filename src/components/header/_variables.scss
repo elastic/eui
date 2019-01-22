@@ -1,0 +1,8 @@
+// Note - these are also used by the EuiNavDrawer (/nav_drawer) component
+// Themable colors
+$euiHeaderBackgroundColor: $euiColorEmptyShade;
+$euiHeaderBreadcrumbColor: $euiColorDarkestShade;
+
+// Layout vars
+$euiHeaderChildSize: $euiSizeXXL + $euiSizeS;
+$euiHeaderChildSizeMobile: $euiHeaderChildSize * .75;

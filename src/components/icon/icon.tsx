@@ -209,6 +209,7 @@ import securityAnalyticsApp from './assets/app_security_analytics.svg';
 import securityApp from './assets/app_security.svg';
 import shard from './assets/shard.svg';
 import share from './assets/share.svg';
+import snowflake from './assets/snowflake.svg';
 import sortable from './assets/sortable.svg';
 import sortDown from './assets/sort_down.svg';
 import sortLeft from './assets/sortLeft.svg';
@@ -229,6 +230,8 @@ import stop from './assets/stop.svg';
 import stopFilled from './assets/stop_filled.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
+import submodule from './assets/submodule.svg';
+import symlink from './assets/symlink.svg';
 import tableOfContents from './assets/tableOfContents.svg';
 import tag from './assets/tag.svg';
 import tear from './assets/tear.svg';
@@ -497,6 +500,7 @@ const typeToIconMap = {
   securityApp,
   shard,
   share,
+  snowflake,
   sortable,
   sortDown,
   sortLeft,
@@ -517,6 +521,8 @@ const typeToIconMap = {
   stopFilled,
   storage,
   string,
+  submodule,
+  symlink,
   tableOfContents,
   tag,
   tear,

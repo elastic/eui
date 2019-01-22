@@ -73,6 +73,7 @@ declare module '@elastic/eui' {
     rowHeight?: number,
     isClearable?: boolean,
     fullWidth?: boolean,
+    inputRef?: (element: HTMLInputElement) => void;
   }
   export const EuiComboBox: SFC<EuiComboBoxProps>;
 }

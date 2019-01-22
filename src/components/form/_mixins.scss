@@ -14,8 +14,8 @@
  */
 
 @mixin euiFormControlText {
+  @include euiFont;
   font-size: $euiFontSizeS;
-  font-family: $euiFontFamily;
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
 

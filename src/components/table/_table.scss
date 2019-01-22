@@ -4,6 +4,7 @@
  */
 .euiTable {
   @include euiFontSizeS;
+  @include euiNumberFormat;
 
   width: 100%;
   table-layout: fixed;

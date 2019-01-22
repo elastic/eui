@@ -15,6 +15,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiButtonToggle,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -251,6 +252,12 @@ export const ButtonExample = {
             (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If your just displaying a group of
             icons, add the prop <EuiCode>isIconOnly</EuiCode>.
           </p>
+          <EuiCallOut title="Accessibility">
+            <p>
+              In order for groups to be properly read as groups with a title, add the <EuiCode>legend</EuiCode> prop.
+              This is only for accessiblity, however, so it will be visibly hidden.
+            </p>
+          </EuiCallOut>
         </div>
       ),
       demo: <ButtonGroup />,

@@ -55,13 +55,12 @@
 // }
 
 .react-datepicker {
-  font-family: $euiFontFamily;
+  @include euiFont;
   font-size: $euiFontSizeXS;
   color: $euiColorFullShade;
   display: flex;
   position: relative;
   border-radius: $euiBorderRadius;
-
 }
 
 // When in time only mode we make the dropdown look more like the combo box styling.

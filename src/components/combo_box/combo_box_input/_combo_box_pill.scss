@@ -6,11 +6,11 @@
   vertical-align: baseline;
 
   &--plainText {
+    @include euiFont;
     @include euiTextTruncate;
 
     line-height: $euiSizeL;
     font-size: $euiFontSizeS;
-    font-family: $euiFontFamily;
     padding: 0 $euiSizeXS;
     color: $euiTextColor;
     vertical-align: middle;

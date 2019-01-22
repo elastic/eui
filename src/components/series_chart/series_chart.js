@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-import { XYPlot, AbstractSeries  } from 'react-vis';
+import { AbstractSeries, XYPlot } from 'react-vis';
 import { makeFlexible } from './utils/flexible';
 import PropTypes from 'prop-types';
 import { EuiEmptyPrompt } from '../empty_prompt';
@@ -17,7 +17,7 @@ const DEFAULT_MARGINS = {
   left: 40,
   right: 10,
   top: 10,
-  bottom: 40
+  bottom: 40,
 };
 
 /**
@@ -32,18 +32,17 @@ class XYChart extends PureComponent {
   colorIterator = 0;
   _xyPlotRef = React.createRef();
 
-
   /**
    * Checks if the plot is empty, looking at existing series and data props.
    */
   _isEmptyPlot(children) {
-    return React.Children
-      .toArray(children)
-      .filter(this._isAbstractSeries)
-      .filter(child => {
-        return child.props.data && child.props.data.length > 0;
-      })
-      .length === 0;
+    return (
+      React.Children.toArray(children)
+        .filter(this._isAbstractSeries)
+        .filter(child => {
+          return child.props.data && child.props.data.length > 0;
+        }).length === 0
+    );
   }
 
   /**
@@ -55,14 +54,13 @@ class XYChart extends PureComponent {
     return prototype instanceof AbstractSeries;
   }
 
-
   /**
    * Render children adding a valid EUI visualization color if the color prop is not specified.
    */
   _renderChildren(children) {
     let colorIterator = 0;
 
-    return  React.Children.map(children, (child, i) => {
+    return React.Children.map(children, (child, i) => {
       // Avoid applying color props to non series children
       if (!this._isAbstractSeries(child)) {
         return child;
@@ -80,11 +78,11 @@ class XYChart extends PureComponent {
       return React.cloneElement(child, props);
     });
   }
-  _getSeriesNames = (children) => {
-    return  React.Children.toArray(children)
+  _getSeriesNames = children => {
+    return React.Children.toArray(children)
       .filter(this._isAbstractSeries)
-      .map(({ props: { name } }) => (name));
-  }
+      .map(({ props: { name } }) => name);
+  };
 
   render() {
     const {
@@ -93,6 +91,8 @@ class XYChart extends PureComponent {
       height,
       margins,
       xType,
+      xCrosshairFormat,
+      yCrosshairFormat,
       yType,
       stackBy,
       statusText,
@@ -119,9 +119,7 @@ class XYChart extends PureComponent {
           className="euiSeriesChartContainer__emptyPrompt"
           iconType="visualizeApp"
           title={<span>Chart not available</span>}
-          body={
-            <p>{ statusText }</p>
-          }
+          body={<p>{statusText}</p>}
         />
       );
     }
@@ -130,10 +128,7 @@ class XYChart extends PureComponent {
     const seriesNames = this._getSeriesNames(children);
     const classes = classNames(className, 'euiSeriesChartContainer');
     return (
-      <div
-        className={classes}
-        {...rest}
-      >
+      <div className={classes} {...rest}>
         <XYPlot
           ref={this._xyPlotRef}
           dontCheckIfEmpty
@@ -153,7 +148,13 @@ class XYChart extends PureComponent {
           {this._renderChildren(children)}
           {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
           {showCrosshair && (
-            <Crosshair seriesNames={seriesNames} crosshairValue={crosshairValue} onCrosshairUpdate={onCrosshairUpdate} />
+            <Crosshair
+              seriesNames={seriesNames}
+              crosshairValue={crosshairValue}
+              onCrosshairUpdate={onCrosshairUpdate}
+              xCrosshairFormat={xCrosshairFormat}
+              yCrosshairFormat={yCrosshairFormat}
+            />
           )}
 
           {enableSelectionBrush && (
@@ -182,6 +183,10 @@ XYChart.propTypes = {
   stackBy: PropTypes.string,
   /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
   xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
+  /** The formatting string for the X-axis. */
+  xCrosshairFormat: PropTypes.string,
+  /** The formatting string for the Y-axis. */
+  yCrosshairFormat: PropTypes.string,
   /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
   yType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
   /** Manually specify the domain of x axis. */

@@ -1,3 +1,5 @@
+import { Component, SFC } from 'react';
+
 export interface CommonProps {
   className?: string;
   'aria-label'?: string;
@@ -17,6 +19,12 @@ export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export function keysOf<T, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
+
+export type PropsOf<C> =
+  C extends SFC<infer SFCProps> ? SFCProps :
+  // C extends FunctionComponent<infer FunctionalProps> ? FunctionalProps :
+  C extends Component<infer ComponentProps> ? ComponentProps
+  : never;
 
 /*
 TypeScript's discriminated unions are overly permissive: as long as one type of the union is satisfied

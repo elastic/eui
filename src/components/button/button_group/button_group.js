@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonToggle } from '../button_toggle';
 import { TOGGLE_TYPES } from '../../toggle';
 
@@ -15,6 +16,7 @@ export const EuiButtonGroup = ({
   isFullWidth,
   isIconOnly,
   name,
+  legend,
   onChange,
   options,
   type,
@@ -29,40 +31,50 @@ export const EuiButtonGroup = ({
     className,
   );
 
+  let legendNode;
+  if (legend) {
+    legendNode = (
+      <EuiScreenReaderOnly><legend>{legend}</legend></EuiScreenReaderOnly>
+    );
+  }
+
   return (
-    <div className={classes} {...rest}>
-      {options.map((option, index) => {
+    <fieldset>
+      {legendNode}
 
-        let isSelectedState;
-        if (type === 'multi') {
-          isSelectedState = idToSelectedMap[option.id] || false;
-        } else {
-          isSelectedState = option.id === idSelected;
-        }
+      <div className={classes} {...rest}>
+        {options.map((option, index) => {
+          let isSelectedState;
+          if (type === 'multi') {
+            isSelectedState = idToSelectedMap[option.id] || false;
+          } else {
+            isSelectedState = option.id === idSelected;
+          }
 
-        return (
-          <EuiButtonToggle
-            className="euiButtonGroup__button"
-            color={color}
-            fill={isSelectedState}
-            iconSide={option.iconSide}
-            iconType={option.iconType}
-            id={option.id}
-            isDisabled={isDisabled}
-            isIconOnly={isIconOnly}
-            isSelected={isSelectedState}
-            key={index}
-            label={option.label}
-            name={name}
-            onChange={onChange.bind(null, option.id, option.value)}
-            size={buttonSize}
-            toggleClassName="euiButtonGroup__toggle"
-            type={type}
-            value={option.value}
-          />
-        );
-      })}
-    </div>
+          return (
+            <EuiButtonToggle
+              className="euiButtonGroup__button"
+              color={color}
+              fill={isSelectedState}
+              iconSide={option.iconSide}
+              iconType={option.iconType}
+              id={option.id}
+              isDisabled={isDisabled || option.isDisabled}
+              isIconOnly={isIconOnly}
+              isSelected={isSelectedState}
+              key={index}
+              label={option.label}
+              name={option.name || name}
+              onChange={onChange.bind(null, option.id, option.value)}
+              size={buttonSize}
+              toggleClassName="euiButtonGroup__toggle"
+              type={type}
+              value={option.value}
+            />
+          );
+        })}
+      </div>
+    </fieldset>
   );
 };
 
@@ -70,7 +82,8 @@ EuiButtonGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      label: PropTypes.string.isRequired,
+      isDisabled: PropTypes.bool,
     }),
   ).isRequired,
   onChange: PropTypes.func.isRequired,
@@ -111,6 +124,11 @@ EuiButtonGroup.propTypes = {
    * Map of ids of selected options for `type="multi"`
    */
   idToSelectedMap: PropTypes.objectOf(PropTypes.bool),
+
+  /**
+   * Adds a hidden legend to the group for accessiblity
+   */
+  legend: PropTypes.string,
 };
 
 EuiButtonGroup.defaultProps = {

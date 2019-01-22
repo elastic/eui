@@ -337,7 +337,7 @@ EuiRange.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   step: PropTypes.number,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
   /**

@@ -1,6 +1,7 @@
 @mixin euiHiddenSelectableInput {
   position: absolute;
-  opacity: 0; /* 1 */
+  // sass-lint:disable no-important
+  opacity: 0 !important; // Make sure it's still hidden when :disabled
   width: 100%;
   height: 100%;
   cursor: pointer;

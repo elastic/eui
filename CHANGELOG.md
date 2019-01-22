@@ -1,16 +1,68 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
+- Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
+
+**Bug fixes**
+
+- Fixed `textProps` and `contentProps` of `EuiButton` and `EuiButtonEmpty` so they don’t override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed `closeButtonProps` of `EuiBadge` so it doesn't override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed font weight shift of `EuiFilterButton` when notification is present ([#1455](https://github.com/elastic/eui/pull/1455))
+
+## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
+
+**Reverts**
+
+- Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
+
+## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
+**Note: this contains some i18n work that we reverted in the next release. Use the patch release above instead**
+
+- Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
+- Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
+- Updated `EuiNavDrawer` docs example and adjusted `EuiHeaderLogo` padding ([#1449](https://github.com/elastic/eui/pull/1449))
+- Added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1404](https://github.com/elastic/eui/pull/1404))
+
+**Bug fixes**
+
+- Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
+
+## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
+
+- Added `EuiNavDrawer` side nav component ([#1427](https://github.com/elastic/eui/pull/1427))
+- Added `inputRef` prop to `EuiComboBox` ([#1433](https://github.com/elastic/eui/pull/1433))
+- Added custom date string formatting for series charts crosshair overlay ([#1429](https://github.com/elastic/eui/pull/1429))
+- Added new icons for `symlink` and `submodule` ([#1439](https://github.com/elastic/eui/pull/1439))
+
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
+
+## [`6.3.1`](https://github.com/elastic/eui/tree/v6.3.1)
+
+**Bug fixes**
+
+- Downgraded `@types/react` and `@types/prop-types` verisons to align with Kibana ([#1435](https://github.com/elastic/eui/pull/1435))
+
+## [`6.3.0`](https://github.com/elastic/eui/tree/v6.3.0)
+
 - Added `onBlur` prop to `EuiComboBox` ([#1400](https://github.com/elastic/eui/pull/1400))
 - Added `initialFocus` prop typedefs to `EuiModal` and `EuiPopover` ([#1410](https://github.com/elastic/eui/pull/1410))
 - Updated `gisApp` icon ([#1413](https://github.com/elastic/eui/pull/1413))
 - Added `isAutoRefreshOnly` prop to `EuiSuperDatePicker` ([#1412](https://github.com/elastic/eui/pull/1412))
 - Migrate remaining files in `accessiblity/` to TS ([#1408](https://github.com/elastic/eui/pull/1408))
 - Added `titleProps` and `descriptionProps` to `EuiDescriptionList` ([#1419](https://github.com/elastic/eui/pull/1419))
+- Propagate `className` on `EuiCodeBlock` in fullscreen mode ([#1422](https://github.com/elastic/eui/pull/1422))
+- Added `iconProps` prop to `EuiIconTip` ([#1420](https://github.com/elastic/eui/pull/1420))
+- Added ability to pass `isDisabled` to individual `EuiButtonGroup` items ([#1424](https://github.com/elastic/eui/pull/1424))
+- Changed `EuiRange` PropType for `value` to allow `number` (in addition to `string`) ([#1421](hhttps://github.com/elastic/eui/pull/1421))
 
 **Bug fixes**
 
 - Support extended characters (e.g. non-latin, unicode) in `EuiSearchBar` and `EuiQuery` ([#1415](https://github.com/elastic/eui/pull/1415))
 - Fixed line-heights of the differently sized `EuiDescriptionList` alternates ([#1419](https://github.com/elastic/eui/pull/1419))
+- Updated `EuiIconTip` TS definitions to inherit those from `EuiToolTip` as well ([#1420](https://github.com/elastic/eui/pull/1420))
 
 ## [`6.2.0`](https://github.com/elastic/eui/tree/v6.2.0)
 
@@ -52,6 +104,14 @@
 **Breaking changes**
 
 - Moved `EuiExpressionButton` contents to `EuiExpression` and deleted `EuiExpressionButton`. Also added support for `color` and `uppercase` props as well as made `onClick` optional to support read only expressions. ([#1368](https://github.com/elastic/eui/pull/1368))
+
+## [`5.8.2`](https://github.com/elastic/eui/tree/v5.8.2)
+
+**Note: this release is a backport containing fixes made in `6.4.0`**
+
+**Bug fixes**
+
+- Fix mouse interaction with `EuiComboBox` in IE11 ([#1437](https://github.com/elastic/eui/pull/1437))
 
 ## [`5.8.1`](https://github.com/elastic/eui/tree/v5.8.1)
 
