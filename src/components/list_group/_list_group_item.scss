@@ -79,8 +79,9 @@
   font-size: $euiFontSizeL;
 }
 
-.euiListGroupItem-wrapText {
-  .euiListGroupItem__button {
+.euiListGroup-wrapText {
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
     width: 100%;
     word-break: break-word;
     line-height: $euiSize;

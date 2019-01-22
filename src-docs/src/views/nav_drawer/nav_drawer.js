@@ -329,7 +329,6 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'My dashboard',
-        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -344,7 +343,6 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'Workpad with title that wraps',
-        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -359,7 +357,6 @@ export default class extends Component {
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'My logs',
-        displayType: 'wrapText',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -638,6 +635,7 @@ export default class extends Component {
                 isCollapsed={flyoutIsCollapsed}
                 listItems={navFlyoutContent}
                 onMouseLeave={this.collapseFlyout}
+                displayType="wrapText"
               />
             </EuiNavDrawer>
           </EuiOutsideClickDetector>

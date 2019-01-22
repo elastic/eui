@@ -18,7 +18,6 @@ export const EuiListGroupItem = ({
   label,
   isActive,
   isDisabled,
-  displayType,
   href,
   className,
   iconType,
@@ -34,7 +33,6 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-isActive': isActive,
       'euiListGroupItem-isDisabled': isDisabled,
       'euiListGroupItem-isClickable': href || onClick,
-      'euiListGroupItem-wrapText': displayType === 'wrapText',
     },
     className
   );
@@ -127,11 +125,6 @@ EuiListGroupItem.propTypes = {
    * Apply styles indicating an item is disabled
    */
   isDisabled: PropTypes.bool,
-
-  /**
-   * Allow link text to wrap
-   */
-  displayType: PropTypes.oneOf(['wrapText']),
 
   /**
    * Make the list item label a link
