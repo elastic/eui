@@ -12,7 +12,7 @@ const hasSymbol = typeof Symbol === 'function' && Symbol.for;
 const REACT_ELEMENT_TYPE = hasSymbol
   ? Symbol.for('react.element')
   : 0xeac7;
-const isElement = (value: any) => {
+const isElement = (value: any): value is ReactElement<any> => {
   return (
     typeof value === 'object' &&
     value !== null &&
@@ -75,15 +75,23 @@ function processStringToChildren(input: string, values: RenderableValues): strin
   return encounteredNonPrimitive ? children : children.join('');
 }
 
-function lookupToken(
+function throwError(): never {
+  throw new Error('asdf');
+}
+
+function lookupToken<T extends RenderableValues>(
   token: string,
   i18nMapping: I18nShape['mapping'],
-  valueDefault: Renderable,
-  values?: I18nTokenShape['values']
+  valueDefault: Renderable<T>,
+  values?: I18nTokenShape<T>['values']
 ): ReactChild {
   const renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
   if (typeof renderable === 'function') {
-    return renderable(values || {});
+    if (values === undefined) {
+      return throwError();
+    } else {
+      return renderable(values);
+    }
   } else if (values === undefined || typeof renderable !== 'string') {
     return renderable;
   } else {
@@ -99,26 +107,27 @@ function lookupToken(
   }
 }
 
-interface I18nTokenShape {
+interface I18nTokenShape<T> {
   token: string;
-  default: Renderable;
-  children?: (x: ReactChild) => ReactElement<any>;
-  values?: {[key: string]: ReactElement<any>};
+  default: Renderable<T>;
+  children?: (x: ReactChild) => ReactChild;
+  values?: T;
 }
 
 interface I18nTokensShape {
   tokens: string[];
   defaults: ReactChild[];
-  children: (x: ReactChild[]) => ReactElement<any>;
+  children: (x: ReactChild[]) => ReactChild;
 }
 
-type EuiI18nProps = ExclusiveUnion<I18nTokenShape, I18nTokensShape>;
+type EuiI18nProps<T> = ExclusiveUnion<I18nTokenShape<T>, I18nTokensShape>;
 
-function hasTokens(x: EuiI18nProps): x is I18nTokensShape {
+function hasTokens(x: EuiI18nProps<any>): x is I18nTokensShape {
   return x.tokens != null;
 }
 
-const EuiI18n: React.SFC<EuiI18nProps> = (props) => (
+// Must use the generics <T extends {}>
+const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
   <EuiI18nConsumer>
     {
       (i18nConfig) => {
