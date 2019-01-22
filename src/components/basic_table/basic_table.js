@@ -4,12 +4,14 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { dropWhile, slice } from 'lodash';
 import {
   formatAuto, formatBoolean, formatDate, formatNumber, formatText, LEFT_ALIGNMENT, PropertySortType,
   RIGHT_ALIGNMENT, SortDirection
 } from '../../services';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiTable } from '../table/table';
 import { EuiTableHeaderCellCheckbox } from '../table/table_header_cell_checkbox';
 import { EuiCheckbox } from '../form/checkbox/checkbox';
@@ -32,7 +34,6 @@ import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
-import { EuiI18n } from '../i18n';
 
 const dataTypesProfiles = {
   auto: {
@@ -364,7 +365,16 @@ export class EuiBasicTable extends Component {
 
     const { compressed, responsive } = this.props;
 
-    const mobileHeader = responsive ? (<EuiTableHeaderMobile>{this.renderTableMobileSort()}</EuiTableHeaderMobile>) : undefined;
+    const mobileHeader = responsive ? (
+      <EuiTableHeaderMobile>
+        <EuiFlexGroup responsive={false} justifyContent="spaceBetween" alignItems="baseline">
+          <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            {this.renderTableMobileSort()}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiTableHeaderMobile>
+    ) : undefined;
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
@@ -417,57 +427,61 @@ export class EuiBasicTable extends Component {
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-relevant="text" aria-live="polite">
-          <EuiI18n
-            token="euiBasicTable.tableDescription"
-            default="Below is a table of {itemCount} items."
-            values={{ itemCount: items.length }}
-          />
-        </caption>
+        <caption role="status" aria-relevant="text" aria-live="polite">Below is a table of {items.length} items.</caption>
       </EuiScreenReaderOnly>
+    );
+  }
+
+  renderSelectAll = isMobile => {
+    const { items, selection } = this.props;
+
+    if (!selection) {
+      return;
+    }
+
+    const selectableItems = items.filter(item => (
+      !selection.selectable || selection.selectable(item)
+    ));
+
+    const checked = this.state.selection &&
+      selectableItems.length > 0 &&
+      this.state.selection.length === selectableItems.length;
+
+    const disabled = selectableItems.length === 0;
+
+    const onChange = (event) => {
+      if (event.target.checked) {
+        this.changeSelection(selectableItems);
+      } else {
+        this.changeSelection([]);
+      }
+    };
+
+    return (
+      <EuiCheckbox
+        id="_selection_column-checkbox"
+        type={isMobile ? null : 'inList'}
+        checked={checked}
+        disabled={disabled}
+        onChange={onChange}
+        // Only add data-test-subj to one of the checkboxes
+        data-test-subj={isMobile ? null : 'checkboxSelectAll'}
+        aria-label="Select all rows"
+        label={isMobile ? 'Select all rows' : null}
+      />
     );
   }
 
   renderTableHead() {
 
-    const { items, columns, selection } = this.props;
+    const { columns, selection } = this.props;
 
     const headers = [];
 
     if (selection) {
-      const selectableItems = items.filter(item => (
-        !selection.selectable || selection.selectable(item)
-      ));
-
-      const checked = this.state.selection &&
-        selectableItems.length > 0 &&
-        this.state.selection.length === selectableItems.length;
-
-      const disabled = selectableItems.length === 0;
-
-      const onChange = (event) => {
-        if (event.target.checked) {
-          this.changeSelection(selectableItems);
-        } else {
-          this.changeSelection([]);
-        }
-      };
-
       headers.push(
         <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
-          <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
-            {selectAllRows => (
-              <EuiCheckbox
-                id="_selection_column-checkbox"
-                type="inList"
-                checked={checked}
-                disabled={disabled}
-                onChange={onChange}
-                data-test-subj="checkboxSelectAll"
-                aria-label={selectAllRows}
-              />
-            )}
-          </EuiI18n>
+          {this.renderSelectAll()}
         </EuiTableHeaderCellCheckbox>
       );
     }
@@ -741,20 +755,16 @@ export class EuiBasicTable extends Component {
     };
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
-          {selectThisRow => (
-            <EuiCheckbox
-              id={`${key}-checkbox`}
-              type="inList"
-              disabled={disabled}
-              checked={checked}
-              onChange={onChange}
-              title={title}
-              aria-label={selectThisRow}
-              data-test-subj={`checkboxSelectRow-${itemId}`}
-            />
-          )}
-        </EuiI18n>
+        <EuiCheckbox
+          id={`${key}-checkbox`}
+          type="inList"
+          disabled={disabled}
+          checked={checked}
+          onChange={onChange}
+          title={title}
+          aria-label="Select this row"
+          data-test-subj={`checkboxSelectRow-${itemId}`}
+        />
       </EuiTableRowCellCheckbox>
     );
   }
@@ -767,8 +777,7 @@ export class EuiBasicTable extends Component {
     if (column.actions.length > 2) {
 
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = column.actions.filter(o => o.isPrimary);
-      actualActions = primaryActions.slice(0, 2);
+      actualActions = slice(dropWhile(column.actions, function (o) { return !o.isPrimary; }), 0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum

@@ -5,7 +5,26 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -15,15 +34,9 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -125,7 +138,26 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -135,15 +167,9 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -247,7 +273,26 @@ exports[`EuiBasicTable empty is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -257,15 +302,9 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
-              }
-            }
-          />
+          Below is a table of 
+          0
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -310,7 +349,26 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -320,15 +378,9 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
-              }
-            }
-          />
+          Below is a table of 
+          0
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -381,7 +433,26 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -391,15 +462,9 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
-              }
-            }
-          />
+          Below is a table of 
+          0
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -444,7 +509,26 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -454,15 +538,9 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -660,19 +738,51 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -683,15 +793,9 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -700,9 +804,17 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -759,9 +871,16 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -815,9 +934,16 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -871,9 +997,16 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -971,7 +1104,26 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -981,15 +1133,9 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1102,7 +1248,26 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1112,15 +1277,9 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1228,7 +1387,26 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1238,15 +1416,9 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1354,7 +1526,26 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1364,15 +1555,9 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 2,
-              }
-            }
-          />
+          Below is a table of 
+          2
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1455,7 +1640,26 @@ exports[`EuiBasicTable with pagination 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1465,15 +1669,9 @@ exports[`EuiBasicTable with pagination 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1577,7 +1775,26 @@ exports[`EuiBasicTable with pagination and error 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1587,15 +1804,9 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1646,7 +1857,39 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1656,15 +1899,9 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1673,9 +1910,17 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -1703,9 +1948,16 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -1733,9 +1985,16 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -1763,9 +2022,16 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -1805,7 +2071,26 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1815,15 +2100,9 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1929,19 +2208,51 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -1952,15 +2263,9 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1969,9 +2274,17 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -2002,9 +2315,16 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2032,9 +2352,16 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2062,9 +2389,16 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2105,19 +2439,51 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2128,15 +2494,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -2145,9 +2505,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -2191,9 +2559,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2255,9 +2630,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2319,9 +2701,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2395,19 +2784,51 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_count_0",
+                  "name": "Count",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2418,15 +2839,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -2435,9 +2850,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -2468,9 +2891,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2498,9 +2928,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2528,9 +2965,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2571,19 +3015,51 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2594,15 +3070,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -2611,9 +3081,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -2644,9 +3122,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2674,9 +3159,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2704,9 +3196,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2747,19 +3246,51 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2770,15 +3301,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -2787,9 +3312,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -2833,9 +3366,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2903,9 +3443,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -2973,9 +3520,16 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -3055,19 +3609,51 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj={null}
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label="Select all rows"
+            onChange={[Function]}
+            type={null}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_count_0",
+                  "name": "Count",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -3078,15 +3664,9 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -3095,9 +3675,17 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           scope="col"
           width="24px"
         >
-          <EuiI18n
-            default="Select all rows"
-            token="euiBasicTable.selectAllRows"
+          <EuiCheckbox
+            aria-label="Select all rows"
+            checked={false}
+            compressed={false}
+            data-test-subj="checkboxSelectAll"
+            disabled={false}
+            id="_selection_column-checkbox"
+            indeterminate={false}
+            label={null}
+            onChange={[Function]}
+            type="inList"
           />
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
@@ -3128,9 +3716,16 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             <EuiTableRowCellCheckbox
               key="_selection_column_1"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-1"
+                disabled={false}
+                id="_selection_column_1-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -3158,9 +3753,16 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             <EuiTableRowCellCheckbox
               key="_selection_column_2"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-2"
+                disabled={false}
+                id="_selection_column_2-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -3188,9 +3790,16 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
             <EuiTableRowCellCheckbox
               key="_selection_column_3"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
+              <EuiCheckbox
+                aria-label="Select this row"
+                checked={false}
+                compressed={false}
+                data-test-subj="checkboxSelectRow-3"
+                disabled={false}
+                id="_selection_column_3-checkbox"
+                indeterminate={false}
+                onChange={[Function]}
+                type="inList"
               />
             </EuiTableRowCellCheckbox>
             <EuiTableRowCell
@@ -3230,7 +3839,26 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -3240,15 +3868,9 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -3342,19 +3964,38 @@ exports[`EuiBasicTable with sorting 1`] = `
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -3365,15 +4006,9 @@ exports[`EuiBasicTable with sorting 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
-              }
-            }
-          />
+          Below is a table of 
+          3
+           items.
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
