@@ -51,7 +51,7 @@ export const EuiTableHeaderCell = ({
 
     let ariaSortValue = 'none';
     if (isSorted) {
-      ariaSortValue = isSortAscending ? 'descending' : 'ascending';
+      ariaSortValue = isSortAscending ? 'ascending' : 'descending';
     }
 
     return (
@@ -60,6 +60,7 @@ export const EuiTableHeaderCell = ({
         scope={scope}
         role="columnheader"
         aria-sort={ariaSortValue}
+        aria-live
         {...rest}
       >
         <button
@@ -78,7 +79,9 @@ export const EuiTableHeaderCell = ({
                 aria-label={`Sorted in ${ariaSortValue} order`}
               />
             ) : (
-              <EuiScreenReaderOnly><span>Sortable column</span></EuiScreenReaderOnly>
+              <EuiScreenReaderOnly>
+                <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+              </EuiScreenReaderOnly>
             )}
           </span>
         </button>
