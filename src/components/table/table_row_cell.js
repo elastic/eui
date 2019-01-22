@@ -22,22 +22,22 @@ export const EuiTableRowCell = ({
   showOnHover,
   textOnly,
   colSpan,
+  hasActions,
+  isExpander,
   mobileOptions,
   // Soon to be deprecated for {...mobileOptions}
   header,
   hideForMobile,
   isMobileHeader,
   isMobileFullWidth,
-  hasActions,
-  isExpander,
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
+    'euiTableRowCell--hasActions': hasActions,
+    'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only || isMobileHeader,
     'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge || isMobileHeader,
-    'euiTableRowCell--hasActions': mobileOptions.isActions || hasActions,
     'euiTableRowCell--isMobileFullWidth': mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
-    'euiTableRowCell--isExpander': mobileOptions.isExpander || isExpander,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -129,44 +129,57 @@ export const EuiTableRowCell = ({
 };
 
 EuiTableRowCell.propTypes = {
-  align: PropTypes.oneOf(ALIGNMENT),
-  showOnHover: PropTypes.bool,
-  truncateText: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
+  colSpan: PropTypes.number,
   /**
-   * Setting textOnly to false will break words unnecessarily on FF and IE.
+   * Horizontal alignment of the text in the cell
+   */
+  align: PropTypes.oneOf(ALIGNMENT),
+  /**
+   * Don't allow line breaks within cells
+   */
+  truncateText: PropTypes.bool,
+  /**
+   * Setting `textOnly` to `false` will break words unnecessarily on FF and IE.
    * To combat this problem on FF, wrap contents with the css utility `.eui-textBreakWord`.
    */
   textOnly: PropTypes.bool,
-  colSpan: PropTypes.number,
   /**
-   * The column's header title for use in mobile view (will be added as a data-attr)
-   */
-  header: PropTypes.string,
-  /**
-   * Indicates if the column was created to be the row's heading in mobile view
-   * (this column will be hidden at larger screens)
-   */
-  isMobileHeader: PropTypes.bool,
-  /**
-   * Indicates if the column should not show for mobile users
-   * (typically hidden because a custom mobile header utilizes the column's contents)
-   */
-  hideForMobile: PropTypes.bool,
-  /**
-   * Allocates 100% of the width of the container in mobile view
-   * (typically cells are contained to 50%)
-   */
-  isMobileFullWidth: PropTypes.bool,
-  /**
-   * Indicates if the column is dedicated to icon-only actions (affects mobile only)
+   * Indicates if the column is dedicated to icon-only actions (currently affects mobile only)
    */
   hasActions: PropTypes.bool,
   /**
    * Indicates if the column is dedicated as the expandable row toggle
    */
   isExpander: PropTypes.bool,
+  /**
+   * _Should only be used for action cells_
+   */
+  showOnHover: PropTypes.bool,
+  /**
+   * _DEPRECATED: use `mobileOptions.header`_
+   * The column's header title for use in mobile view (will be added as a data-attr)
+   */
+  header: PropTypes.string,
+  /**
+   * _DEPRECATED: use `mobileOptions.only = true`_
+   * Indicates if the column was created to be the row's heading in mobile view
+   * (this column will be hidden at larger screens)
+   */
+  isMobileHeader: PropTypes.bool,
+  /**
+   * _DEPRECATED: use `mobileOptions.show = false`_
+   * Indicates if the column should not show for mobile users
+   * (typically hidden because a custom mobile header utilizes the column's contents)
+   */
+  hideForMobile: PropTypes.bool,
+  /**
+   * _DEPRECATED: use `mobileOptions.fullWidth`_
+   * Allocates 100% of the width of the container in mobile view
+   * (typically cells are contained to 50%)
+   */
+  isMobileFullWidth: PropTypes.bool,
   /**
    * Mobile options for displaying differently at small screens
    */
@@ -180,17 +193,16 @@ EuiTableRowCell.propTypes = {
      */
     only: PropTypes.bool,
     /**
-     * Custom render/children if different from non-mobile
+     * Custom render/children if different from desktop
      */
     render: PropTypes.node,
     /**
-     * The column's header title for use in mobile view (will be added as a data-attr).
+     * The column's header for use in mobile view (automatically passed down when using `EuiBasicTable`).
      * Or pass `false` to not show a header at all.
      */
     header: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
     /**
-     * Indicates if the column was created to be the row's heading in mobile view
-     * (this column will be hidden at larger screens)
+     * Increase text size compared to rest of cells
      */
     enlarge: PropTypes.bool,
     /**
@@ -198,14 +210,6 @@ EuiTableRowCell.propTypes = {
      * (typically cells are contained to 50%)
      */
     fullWidth: PropTypes.bool,
-    /**
-     * Indicates if the column is dedicated to icon-only actions (affects mobile only)
-     */
-    isActions: PropTypes.bool,
-    /**
-     * Indicates if the column is dedicated as the expandable row toggle
-     */
-    isExpander: PropTypes.bool,
   }),
 };
 

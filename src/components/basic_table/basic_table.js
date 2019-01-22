@@ -142,25 +142,25 @@ const SortingType = PropTypes.shape({
 });
 
 const BasicTablePropTypes = {
-  items: PropTypes.array.isRequired,
   itemId: ItemIdType,
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  items: PropTypes.array.isRequired,
+  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  className: PropTypes.string,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
-  pagination: PaginationType,
-  sorting: SortingType,
-  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
-  onChange: PropTypes.func,
+  compressed: PropTypes.bool,
   error: PropTypes.string,
+  hasActions: PropTypes.bool,
+  isExpandable: PropTypes.bool,
+  isSelectable: PropTypes.bool,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
-  className: PropTypes.string,
-  compressed: PropTypes.bool,
-  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  onChange: PropTypes.func,
+  pagination: PaginationType,
   responsive: PropTypes.bool,
-  isSelectable: PropTypes.bool,
-  isExpandable: PropTypes.bool,
-  hasActions: PropTypes.bool,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
+  sorting: SortingType,
 };
 
 export function getItemId(item, itemId) {
@@ -809,7 +809,7 @@ export class EuiBasicTable extends Component {
         key={key}
         align="right"
         textOnly={false}
-        mobileOptions={{ isActions: true }}
+        hasActions={true}
       >
         {tools}
       </EuiTableRowCell>

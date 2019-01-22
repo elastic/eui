@@ -136,7 +136,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     key="_data_h_name_0"
                     mobileOptions={
                       Object {
-                        "only": false,
+                        "show": true,
                       }
                     }
                     scope="col"

@@ -113,11 +113,13 @@ EuiTableHeaderCell.propTypes = {
   isSortAscending: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   /**
+   * _DEPRECATED: use `mobileOptions.only = true`_
    * Indicates if the column was created to be the row's heading in mobile view
    * (this column will be hidden at larger screens)
    */
   isMobileHeader: PropTypes.bool,
   /**
+   * _DEPRECATED: use `mobileOptions.show = false`_
    * Indicates if the column should not show for mobile users
    * (typically hidden because a custom mobile header utilizes the column's contents)
    */
@@ -126,6 +128,10 @@ EuiTableHeaderCell.propTypes = {
    * Mobile options for displaying differently at small screens
    */
   mobileOptions: PropTypes.shape({
+    /**
+     * If false, will not render the column at all for mobile
+     */
+    show: PropTypes.bool,
     /**
      * Only show for mobile? If true, will not render the column at all for desktop
      */
@@ -137,6 +143,6 @@ EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
   scope: 'col',
   mobileOptions: {
-    only: false,
+    show: true,
   }
 };
