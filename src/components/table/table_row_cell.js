@@ -102,7 +102,7 @@ export const EuiTableRowCell = ({
     cellRender = (
       <td className={cellClasses} colSpan={colSpan} {...rest}>
         {/* Mobile-only header */}
-        {(mobileOptions.header || header) &&
+        {(mobileOptions.header || header) && !isMobileHeader &&
           <div className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>{mobileOptions.header || header}</div>
         }
 
@@ -163,9 +163,9 @@ EuiTableRowCell.propTypes = {
    */
   header: PropTypes.string,
   /**
-   * _DEPRECATED: use `mobileOptions.only = true`_
-   * Indicates if the column was created to be the row's heading in mobile view
-   * (this column will be hidden at larger screens)
+   * _DEPRECATED: use `mobileOptions.only = true & mobileOptions.header = false`_
+   * Indicates if the column was created to be the row's heading in mobile view.
+   * It won't display column's header inline and it the column will be hidden at larger screens)
    */
   isMobileHeader: PropTypes.bool,
   /**

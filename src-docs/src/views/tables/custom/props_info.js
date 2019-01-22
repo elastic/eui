@@ -51,7 +51,7 @@ export const cellPropsInfo = {
           type: { name: 'bool' }
         },
         isMobileHeader: {
-          description: 'DEPRECATED: use `mobileOptions.only = true`',
+          description: 'DEPRECATED: use `mobileOptions.only = true & mobileOptions.header = false`',
           required: false,
           type: { name: 'bool' }
         },

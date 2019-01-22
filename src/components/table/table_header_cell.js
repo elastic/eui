@@ -38,7 +38,7 @@ export const EuiTableHeaderCell = ({
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
     'euiTableHeaderCell--hideForDesktop': mobileOptions.only || isMobileHeader,
-    'euiTableHeaderCell--hideForMobile': hideForMobile,
+    'euiTableHeaderCell--hideForMobile': !mobileOptions.show || hideForMobile,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
