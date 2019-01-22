@@ -9,7 +9,6 @@ import {
   EuiTableHeaderCellCheckbox,
   EuiTablePagination,
   EuiTableRow,
-  EuiTableRowCell,
   EuiTableRowCellCheckbox,
   EuiTableHeaderMobile,
   EuiTableSortMobile,
@@ -22,6 +21,7 @@ import { renderToHtml } from '../../../services';
 import Custom from './custom';
 const source = require('!!raw-loader!./custom');
 const html = renderToHtml(Custom);
+import { cellPropsInfo } from './props_info';
 
 export const section = {
   title: 'Build a custom table from individual components',
@@ -73,8 +73,8 @@ export const section = {
     EuiTableHeaderCellCheckbox,
     EuiTablePagination,
     EuiTableRow,
-    EuiTableRowCell,
     EuiTableRowCellCheckbox,
+    ...cellPropsInfo,
     EuiTableHeaderMobile,
     EuiTableSortMobile,
     EuiTableSortMobileItem,
