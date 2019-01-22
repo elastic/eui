@@ -27,10 +27,13 @@ export function processStringToChildren(input: string, values: RenderableValues)
 
   function appendCharToChild(char: string) {
     if (child === undefined) {
+      // starting a new string literal
       child = char;
     } else if (typeof child === 'string') {
+      // existing string literal
       child = child + char;
     } else if (hasPropName(child)) {
+      // adding to the propName of a values lookup
       child.propName = child.propName + char;
     }
   }
@@ -38,9 +41,9 @@ export function processStringToChildren(input: string, values: RenderableValues)
   function appendValueToChildren(value: Child) {
     if (value === undefined) {
       return;
-    } else if (typeof value === 'string') {
-      children.push(value);
     } else if (isElement(value)) {
+      // an array with any ReactElements will be kept as an array
+      // so they need to be assigned a key
       children.push(cloneElement(
         value,
         { key: children.length }
@@ -48,10 +51,13 @@ export function processStringToChildren(input: string, values: RenderableValues)
     } else if (hasPropName(value)) {
       // this won't be called, propName children are converted to a ReactChild before calling this
     } else {
+      // everything else can go straight in
       children.push(value);
     }
   }
 
+  // if we don't encounter a non-primitive
+  // then `children` can be concatenated together at the end
   let encounteredNonPrimitive = false;
   // tslint:disable-next-line:prefer-for-of
   for (let i = 0; i < input.length; i++) {

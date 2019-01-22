@@ -11,18 +11,12 @@ exports[`EuiCodeEditor behavior hint element should be disabled when the ui ace 
   <p
     class="euiText"
   >
-    Press Enter to start
-     
-    editing
-    .
+    Press Enter to start editing.
   </p>
   <p
     class="euiText"
   >
-    When you're done, press Escape to stop
-     
-    editing
-    .
+     When you're done, press Escape to stop editing.
   </p>
 </div>
 `;
@@ -38,18 +32,12 @@ exports[`EuiCodeEditor behavior hint element should be enabled when the ui ace b
   <p
     class="euiText"
   >
-    Press Enter to start
-     
-    editing
-    .
+    Press Enter to start editing.
   </p>
   <p
     class="euiText"
   >
-    When you're done, press Escape to stop
-     
-    editing
-    .
+     When you're done, press Escape to stop editing.
   </p>
 </div>
 `;
@@ -65,18 +53,12 @@ exports[`EuiCodeEditor behavior hint element should be tabable 1`] = `
   <p
     class="euiText"
   >
-    Press Enter to start
-     
-    editing
-    .
+    Press Enter to start editing.
   </p>
   <p
     class="euiText"
   >
-    When you're done, press Escape to stop
-     
-    editing
-    .
+     When you're done, press Escape to stop editing.
   </p>
 </div>
 `;
@@ -101,7 +83,7 @@ exports[`EuiCodeEditor is rendered 1`] = `
     <p
       class="euiText"
     >
-      When you're done, press Escape to stop editing.
+       When you're done, press Escape to stop editing.
     </p>
   </div>
   <div
@@ -217,7 +199,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-describedby on 
     <p
       class="euiText"
     >
-      When you're done, press Escape to stop editing.
+       When you're done, press Escape to stop editing.
     </p>
   </div>
   <div
@@ -333,7 +315,7 @@ exports[`EuiCodeEditor props aria attributes allows setting aria-labelledby on t
     <p
       class="euiText"
     >
-      When you're done, press Escape to stop editing.
+       When you're done, press Escape to stop editing.
     </p>
   </div>
   <div
@@ -449,7 +431,7 @@ exports[`EuiCodeEditor props isReadOnly renders alternate hint text 1`] = `
     <p
       class="euiText"
     >
-      When you're done, press Escape to stop interacting with the code.
+       When you're done, press Escape to stop interacting with the code.
     </p>
   </div>
   <div

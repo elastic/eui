@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AceEditor from 'react-ace';
@@ -142,6 +142,11 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
+    const activityLabel = isReadOnly ? 'Interacting' : 'Editing';
+    const activity = isReadOnly
+      ? 'interacting with the code'
+      : 'editing';
+
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
@@ -154,25 +159,21 @@ export class EuiCodeEditor extends Component {
         onKeyDown={this.onKeyDownHint}
         data-test-subj="codeEditorHint"
       >
-        <EuiI18n
-          tokens={['euiCodeEditor.startActivity', 'euiCodeEditor.stopActivity',  'euiCodeEditor.interacting', 'eduiCodeEditor.editing']}
-          defaults={['Press Enter to start', `When you're done, press Escape to stop`, 'interacting with the code', 'editing']}
-        >
-          {([startActivity, stopActivity, readOnly, editable]) => {
-            const activity = isReadOnly ? readOnly : editable;
-            return (
-              <Fragment>
-                <p className="euiText">
-                  {startActivity} {activity}.
-                </p>
+        <p className="euiText">
+          <EuiI18n
+            token={`euiCodeEditor.start${activityLabel}`}
+            default={`Press Enter to start ${activity}.`}
+            values={{ activity }}
+          />
+        </p>
 
-                <p className="euiText">
-                  {stopActivity} {activity}.
-                </p>
-              </Fragment>
-            );
-          }}
-        </EuiI18n>
+        <p className="euiText">
+          <EuiI18n
+            token={`euiCodeEditor.stop${activityLabel}`}
+            default={` When you're done, press Escape to stop ${activity}.`}
+            values={{ activity }}
+          />
+        </p>
       </div>
     );
 

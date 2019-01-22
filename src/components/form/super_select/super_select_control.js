@@ -75,11 +75,10 @@ export const EuiSuperSelectControl = ({
         <EuiScreenReaderOnly>
           <span id={screenReaderId}>
             <EuiI18n
-              tokens={['euiSuperSelectControl.selectAnOption', 'euiSuperSelectControl.isSelected']}
-              defaults={['Select an option:', 'is selected']}
-            >
-              {([selectAnOption, isSelected]) => `${selectAnOption} ${selectedValue}, ${isSelected}`}
-            </EuiI18n>
+              token="euiSuperSelectControl.selectAnOption"
+              default="Select an option: {selectedValue}, is selected"
+              values={{ selectedValue }}
+            />
           </span>
         </EuiScreenReaderOnly>
 

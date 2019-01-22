@@ -33,19 +33,27 @@ export class EuiColorPicker extends Component {
   getColorLabel() {
     return (
       <EuiI18n
-        tokens={['euiColorPicker.transparentColor', 'euiColorPicker.colorSelectionLabel']}
-        defaults={['transparent', 'Color selection is']}
+        token="euiColorPicker.transparentColor"
+        default="transparent"
       >
-        {([transparentColor, colorSelectionLabel]) => {
+        {transparentColor => {
           const { color } = this.props;
           const colorValue = color === null ? `(${transparentColor})` : color;
           return (
-            <div
-              className="euiColorPicker__label"
-              aria-label={`${colorSelectionLabel} ${ colorValue }`}
+            <EuiI18n
+              token="euiColorPicker.colorSelectionLabel"
+              default="Color selection is {colorValue}"
+              values={{ colorValue }}
             >
-              { colorValue }
-            </div>
+              {colorSelectionLabel => (
+                <div
+                  className="euiColorPicker__label"
+                  aria-label={colorSelectionLabel}
+                >
+                  { colorValue }
+                </div>
+              )}
+            </EuiI18n>
           );
         }}
       </EuiI18n>

@@ -545,17 +545,12 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       id="generated-id"
                     >
                       <EuiI18n
-                        defaults={
-                          Array [
-                            "Select an option:",
-                            "is selected",
-                          ]
-                        }
-                        tokens={
-                          Array [
-                            "euiSuperSelectControl.selectAnOption",
-                            "euiSuperSelectControl.isSelected",
-                          ]
+                        default="Select an option: {selectedValue}, is selected"
+                        token="euiSuperSelectControl.selectAnOption"
+                        values={
+                          Object {
+                            "selectedValue": "Option #1",
+                          }
                         }
                       >
                         Select an option: Option #1, is selected
