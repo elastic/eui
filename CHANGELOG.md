@@ -1,6 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Adds `displayType` prop that enables `EuiListGroupItem` text to wrap ([#1458](https://github.com/elastic/eui/pull/1458))
+- Adds `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
+- Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
+- Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
+- Added `bell` icon ([#1447](https://github.com/elastic/eui/pull/1447))
+- Improved screen reader behavior for table header cell content, especially in sortable columns ([#1426](https://github.com/elastic/eui/pull/1426))
+
+**Bug fixes**
+
+- Fixed `textProps` and `contentProps` of `EuiButton` and `EuiButtonEmpty` so they don’t override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed `closeButtonProps` of `EuiBadge` so it doesn't override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed font weight shift of `EuiFilterButton` when notification is present ([#1455](https://github.com/elastic/eui/pull/1455))
 
 ## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
 
@@ -20,7 +30,6 @@
 **Bug fixes**
 
 - Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
-
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 
