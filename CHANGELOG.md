@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Adds `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
 - Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
 - Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 - Added `bell` icon ([#1447](https://github.com/elastic/eui/pull/1447))
