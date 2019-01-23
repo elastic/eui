@@ -635,7 +635,7 @@ export default class extends Component {
                 isCollapsed={flyoutIsCollapsed}
                 listItems={navFlyoutContent}
                 onMouseLeave={this.collapseFlyout}
-                displayType="wrapText"
+                wrapText={true}
               />
             </EuiNavDrawer>
           </EuiOutsideClickDetector>

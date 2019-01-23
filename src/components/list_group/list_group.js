@@ -6,21 +6,15 @@ import {
   EuiListGroupItem,
 } from './list_group_item';
 
-const displayTypeToClassNameMap = {
-  wrapText: 'euiListGroup-wrapText',
-};
-
-export const DISPLAY_TYPES = Object.keys(displayTypeToClassNameMap);
-
 export const EuiListGroup = ({
   children,
   className,
   flush,
   bordered,
+  wrapText,
   listItems,
   maxWidth,
   style,
-  displayType,
   ...rest,
 }) => {
 
@@ -35,10 +29,10 @@ export const EuiListGroup = ({
 
   const classes = classNames(
     'euiListGroup',
-    displayTypeToClassNameMap[displayType],
     {
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
+      'euiListGroup-wrapText': wrapText,
     },
     widthClassName,
     className
@@ -94,6 +88,11 @@ EuiListGroup.propTypes = {
   bordered: PropTypes.bool,
 
   /**
+   * Allow link text to wrap
+   */
+  wrapText: PropTypes.bool,
+
+  /**
    * Sets the max-width of the page,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
@@ -105,15 +104,11 @@ EuiListGroup.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-
-  /**
-   * Allow link text to wrap
-   */
-  displayType: PropTypes.oneOf(DISPLAY_TYPES),
 };
 
 EuiListGroup.defaultProps = {
   flush: false,
   bordered: false,
+  wrapText: false,
   maxWidth: true,
 };

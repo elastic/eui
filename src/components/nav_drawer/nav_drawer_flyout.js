@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { EuiTitle } from '../title';
 import { EuiListGroup } from '../list_group';
 
-export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, displayType, ...rest }) => {
+export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, wrapText, ...rest }) => {
   const classes = classNames(
     'euiNavDrawerFlyout',
     {
@@ -22,7 +22,7 @@ export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, d
       {...rest}
     >
       <EuiTitle tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
-      <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} displayType={displayType} />
+      <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} wrapText={wrapText} />
     </div>
   );
 };
@@ -30,7 +30,7 @@ export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, d
 EuiNavDrawerFlyout.propTypes = {
   className: PropTypes.string,
   listItems: EuiListGroup.propTypes.listItems,
-  displayType: EuiListGroup.propTypes.displayType,
+  wrapText: EuiListGroup.propTypes.wrapText,
 
   /**
    * Display a title atop the flyout
