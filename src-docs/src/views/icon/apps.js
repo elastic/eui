@@ -45,6 +45,7 @@ const iconTypes = [
   'sqlApp',
   'timelionApp',
   'upgradeAssistantApp',
+  'uptimeApp',
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
