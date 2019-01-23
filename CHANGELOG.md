@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.6.0`.
+- Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
