@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.6.0`.
+
+## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
+
 - Added `uptimeApp` icon ([#1445](https://github.com/elastic/eui/pull/1463))
 - Adds `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
 - Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
