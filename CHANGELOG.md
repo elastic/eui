@@ -23,7 +23,6 @@
 - Fixed `closeButtonProps` of `EuiBadge` so it doesn't override classes ([#1455](https://github.com/elastic/eui/pull/1455))
 - Fixed font weight shift of `EuiFilterButton` when notification is present ([#1455](https://github.com/elastic/eui/pull/1455))
 - Fixed `$euiCodeFontFamily` monospace font stack and subsequent JSON asset build ([#1465](https://github.com/elastic/eui/pull/1465))
->>>>>>> b349c9675690b0a89efeaf4140cab33e600c99d3
 
 ## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
 
