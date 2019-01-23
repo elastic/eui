@@ -88,7 +88,8 @@ export class EuiSuperDatePicker extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.start !== prevState.prevProps.start
+    if (!prevState.prevProps
+      || nextProps.start !== prevState.prevProps.start
       || nextProps.end !== prevState.prevProps.end) {
       return {
         prevProps: {
@@ -99,34 +100,14 @@ export class EuiSuperDatePicker extends Component {
         end: nextProps.end,
         isInvalid: false,
         hasChanged: false,
-        showPrettyDuration: showPrettyDuration(nextProps.start, nextProps.end, nextProps.commonlyUsedRanges)
+        showPrettyDuration: showPrettyDuration(nextProps.start, nextProps.end, nextProps.commonlyUsedRanges),
       };
     }
 
     return null;
   }
 
-  constructor(props) {
-    super(props);
-
-    const {
-      start,
-      end,
-      commonlyUsedRanges
-    } = this.props;
-
-    this.state = {
-      prevProps: {
-        start: props.start,
-        end: props.end,
-      },
-      start,
-      end,
-      isInvalid: false,
-      hasChanged: false,
-      showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
-    };
-  }
+  state = {}
 
   componentWillUnmount() {
     this._isMounted = false;
