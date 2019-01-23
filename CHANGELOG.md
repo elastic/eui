@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
+- Set `type="button"` on accordion buttons ([#1468](https://github.com/elastic/eui/pull/1468))
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
