@@ -99,6 +99,7 @@ export class EuiSuperDatePicker extends Component {
         end: nextProps.end,
         isInvalid: false,
         hasChanged: false,
+        showPrettyDuration: showPrettyDuration(nextProps.start, nextProps.end, nextProps.commonlyUsedRanges),
       };
     }
 
