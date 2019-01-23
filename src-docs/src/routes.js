@@ -90,6 +90,9 @@ import { ColorPickerExample }
 import { ComboBoxExample }
   from './views/combo_box/combo_box_example';
 
+import { ContextExample }
+  from './views/context/context_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -146,6 +149,9 @@ import { HighlightExample }
 
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
+
+import { I18nExample }
+  from './views/i18n/i18n_example';
 
 import { IconExample }
   from './views/icon/icon_example';
@@ -398,7 +404,7 @@ const navigation = [{
   ].map(example => createExample(example)),
 },
 {
-  name: 'Series charts (beta)',
+  name: 'Charts (deprecated)',
   items: [
     XYChartExample,
     XYChartAxisExample,
@@ -413,11 +419,13 @@ const navigation = [{
   items: [
     AccessibilityExample,
     ColorPaletteExample,
+    ContextExample,
     CopyExample,
     UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
+    I18nExample,
     IsColorDarkExample,
     MutationObserverExample,
     OutsideClickDetectorExample,

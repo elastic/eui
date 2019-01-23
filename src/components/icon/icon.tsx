@@ -16,6 +16,7 @@ import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
 import auditbeatApp from './assets/app_auditbeat.svg';
 import beaker from './assets/beaker.svg';
+import bell from './assets/bell.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -239,6 +240,7 @@ import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
 import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
+import uptimeApp from './assets/app_uptime.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
 import vector from './assets/vector.svg';
@@ -308,6 +310,7 @@ const typeToIconMap = {
   asterisk,
   auditbeatApp,
   beaker,
+  bell,
   bolt,
   boxesHorizontal,
   boxesVertical,
@@ -559,6 +562,7 @@ const typeToIconMap = {
   trash,
   upgradeAssistantApp,
   pinFilled,
+  uptimeApp,
   user,
   usersRolesApp,
   vector,
