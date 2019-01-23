@@ -14,6 +14,7 @@ const iconTypes = [
   'apmApp',
   'auditbeatApp',
   'canvasApp',
+  'codeApp',
   'consoleApp',
   'crossClusterReplicationApp',
   'dashboardApp',

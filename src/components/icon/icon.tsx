@@ -26,6 +26,7 @@ import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
 import canvasApp from './assets/app_canvas.svg';
+import codeApp from './assets/app_code.svg';
 import check from './assets/check.svg';
 import checkInCircleFilled from './assets/checkInCircleFilled.svg';
 import clock from './assets/clock.svg';
@@ -320,6 +321,7 @@ const typeToIconMap = {
   bullseye,
   calendar,
   canvasApp,
+  codeApp,
   check,
   checkInCircleFilled,
   clock,
