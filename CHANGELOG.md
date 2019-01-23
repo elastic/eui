@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a new app icon for Code ([#1467](https://github.com/elastic/eui/pull/1467))
 No public interface changes since `6.6.0`.
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
