@@ -89,6 +89,7 @@ export class Table extends Component {
     }, {
       field: 'lastName',
       name: 'Last Name',
+      sortable: true,
       truncateText: true,
       hideForMobile: true,
     }, {
@@ -108,6 +109,7 @@ export class Table extends Component {
           </span>
         </EuiToolTip>
       ),
+      sortable: true,
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -134,6 +136,7 @@ export class Table extends Component {
           </span>
         </EuiToolTip>
       ),
+      sortable: true,
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
@@ -148,6 +151,7 @@ export class Table extends Component {
         </EuiToolTip>
       ),
       dataType: 'boolean',
+      sortable: true,
       render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
