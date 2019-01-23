@@ -283,7 +283,12 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           size="xs"
                           type="button"
                         >
-                          Rows per page: 2
+                          <EuiI18n
+                            default="Rows per page"
+                            token="euiTablePagination.rowsPerPage"
+                          />
+                          : 
+                          2
                         </EuiButtonEmpty>
                       }
                       closePopover={[Function]}
@@ -366,7 +371,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                   <span
                                     className="euiButtonEmpty__text"
                                   >
-                                    Rows per page: 2
+                                    <EuiI18n
+                                      default="Rows per page"
+                                      token="euiTablePagination.rowsPerPage"
+                                    >
+                                      Rows per page
+                                    </EuiI18n>
+                                    : 
+                                    2
                                   </span>
                                 </span>
                               </button>
