@@ -127,6 +127,7 @@ export class EuiAccordion extends Component {
               aria-expanded={!!this.state.isOpen}
               onClick={this.onToggle}
               className={buttonClasses}
+              type="button"
             >
               <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
                 <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
