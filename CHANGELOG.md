@@ -3,6 +3,12 @@
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
 - Set `type="button"` on accordion buttons ([#1468](https://github.com/elastic/eui/pull/1468))
 
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not updating derived `showPrettyDuration` state on prop update ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` not passing `refreshInterval` to callback when refresh internval start/stop toggle button clicked ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` `refreshInterval` input not allowing decimals ([#1464](https://github.com/elastic/eui/pull/1464))
+
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
 - Added `uptimeApp` icon ([#1445](https://github.com/elastic/eui/pull/1463))
