@@ -87,7 +87,7 @@ declare module '@elastic/eui' {
     scope?: TableHeaderCellScope;
     isMobileHeader?: boolean;
     hideForMobile?: boolean;
-    mobileOptions: EuiTableHeaderCellMobileOptionsShape;
+    mobileOptions?: EuiTableHeaderCellMobileOptionsShape;
   }
 
   export const EuiTableHeaderCell: FunctionComponent<
@@ -162,7 +162,7 @@ declare module '@elastic/eui' {
     isExpander?: boolean;
     isMobileFullWidth?: boolean;
     isMobileHeader?: boolean;
-    mobileOptions: EuiTableRowCellMobileOptionsShape & EuiTableRowCellSharedPropsShape;
+    mobileOptions?: EuiTableRowCellMobileOptionsShape & EuiTableRowCellSharedPropsShape;
   }
 
   export const EuiTableRowCell: FunctionComponent<
