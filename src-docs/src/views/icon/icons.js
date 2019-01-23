@@ -129,6 +129,7 @@ const iconTypes = [
   'shard',
   'share',
   'sortable',
+  'snowflake',
   'sortDown',
   'sortLeft',
   'sortRight',
