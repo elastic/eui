@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { timeUnits } from '../time_units';
@@ -23,13 +24,13 @@ function fromMilliseconds(milliseconds) {
   if (milliseconds > MILLISECONDS_IN_HOUR) {
     return {
       units: 'h',
-      value: milliseconds / MILLISECONDS_IN_HOUR
+      value: _.round(milliseconds / MILLISECONDS_IN_HOUR, 3)
     };
   }
 
   return {
     units: 'm',
-    value: milliseconds / MILLISECONDS_IN_MINUTE
+    value: _.round(milliseconds / MILLISECONDS_IN_MINUTE, 3)
   };
 }
 
