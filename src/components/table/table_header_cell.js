@@ -71,18 +71,15 @@ export const EuiTableHeaderCell = ({
         >
           <span className={contentClasses}>
             <span className="euiTableCellContent__text">{children}</span>
-            {isSorted ? (
-              <EuiIcon
-                className="euiTableSortIcon"
-                type={isSortAscending ? 'sortUp' : 'sortDown'}
-                size="m"
-                aria-label={`Sorted in ${ariaSortValue} order`}
-              />
-            ) : (
-              <EuiScreenReaderOnly>
-                <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
-              </EuiScreenReaderOnly>
-            )}
+            <EuiIcon
+              className="euiTableSortIcon"
+              type={isSortAscending ? 'sortUp' : 'sortDown'}
+              size="m"
+              aria-label={`Sorted in ${ariaSortValue} order`}
+            />
+            <EuiScreenReaderOnly>
+              <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+            </EuiScreenReaderOnly>
           </span>
         </button>
       </th>
