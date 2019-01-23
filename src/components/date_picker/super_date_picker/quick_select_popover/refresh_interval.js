@@ -19,7 +19,7 @@ const refreshUnitsOptions = Object.keys(timeUnits)
 const MILLISECONDS_IN_MINUTE = 1000 * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
 
-function convertMilliseconds(milliseconds) {
+function fromMilliseconds(milliseconds) {
   if (milliseconds > MILLISECONDS_IN_HOUR) {
     return {
       units: 'h',
@@ -33,12 +33,18 @@ function convertMilliseconds(milliseconds) {
   };
 }
 
+function toMilliseconds(units, value) {
+  return units === 'h'
+    ? value * MILLISECONDS_IN_HOUR
+    : value * MILLISECONDS_IN_MINUTE;
+}
+
 export class EuiRefreshInterval extends Component {
 
   constructor(props) {
     super(props);
 
-    const { value, units } = convertMilliseconds(props.refreshInterval);
+    const { value, units } = fromMilliseconds(props.refreshInterval);
     this.state = {
       value,
       units,
@@ -63,9 +69,7 @@ export class EuiRefreshInterval extends Component {
       return;
     }
 
-    const valueInMilliSeconds = this.state.units === 'h'
-      ? this.state.value * MILLISECONDS_IN_HOUR
-      : this.state.value * MILLISECONDS_IN_MINUTE;
+    const valueInMilliSeconds = toMilliseconds(this.state.units, this.state.value);
 
     this.props.applyRefreshInterval({
       refreshInterval: valueInMilliSeconds,
@@ -75,6 +79,7 @@ export class EuiRefreshInterval extends Component {
 
   toogleRefresh = () => {
     this.props.applyRefreshInterval({
+      refreshInterval: toMilliseconds(this.state.units, this.state.value),
       isPaused: !this.props.isPaused
     });
   }
