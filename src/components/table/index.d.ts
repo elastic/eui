@@ -73,11 +73,6 @@ declare module '@elastic/eui' {
 
   export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
-  export type EuiTableHeaderCellMobileOptionsShape = {
-    show?: boolean;
-    only?: boolean;
-  }
-
   export interface EuiTableHeaderCellProps {
     align?: HorizontalAlignment;
     width?: string;
@@ -87,7 +82,10 @@ declare module '@elastic/eui' {
     scope?: TableHeaderCellScope;
     isMobileHeader?: boolean;
     hideForMobile?: boolean;
-    mobileOptions?: EuiTableHeaderCellMobileOptionsShape;
+    mobileOptions?: {
+      show?: boolean;
+      only?: boolean;
+    };
   }
 
   export const EuiTableHeaderCell: FunctionComponent<
