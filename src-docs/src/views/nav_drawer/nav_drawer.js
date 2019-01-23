@@ -337,12 +337,12 @@ export default class extends Component {
         },
       },
       {
-        label: 'My workpad',
+        label: 'Workpad with title that wraps',
         href: '/#/layout/nav-drawer',
         iconType: 'canvasApp',
         size: 's',
         style: { color: 'inherit' },
-        'aria-label': 'My workpad',
+        'aria-label': 'Workpad with title that wraps',
         extraAction: {
           color: 'subdued',
           iconType: 'starEmpty',
@@ -522,8 +522,10 @@ export default class extends Component {
     }, 350);
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
-    document.getElementById('navDrawerMenu').scroll(0, 0);
-    document.getElementById('navDrawerFlyout').scroll(0, 0);
+    setTimeout(() => {
+      document.getElementById('navDrawerMenu').scrollTop = 0;
+      document.getElementById('navDrawerFlyout').scrollTop = 0;
+    }, 300);
   };
 
   focusOut = () => {
@@ -635,6 +637,7 @@ export default class extends Component {
                 isCollapsed={flyoutIsCollapsed}
                 listItems={navFlyoutContent}
                 onMouseLeave={this.collapseFlyout}
+                wrapText={true}
               />
             </EuiNavDrawer>
           </EuiOutsideClickDetector>

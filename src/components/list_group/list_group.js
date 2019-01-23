@@ -11,6 +11,7 @@ export const EuiListGroup = ({
   className,
   flush,
   bordered,
+  wrapText,
   listItems,
   maxWidth,
   style,
@@ -31,6 +32,7 @@ export const EuiListGroup = ({
     {
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
+      'euiListGroup-wrapText': wrapText,
     },
     widthClassName,
     className
@@ -86,6 +88,11 @@ EuiListGroup.propTypes = {
   bordered: PropTypes.bool,
 
   /**
+   * Allow link text to wrap
+   */
+  wrapText: PropTypes.bool,
+
+  /**
    * Sets the max-width of the page,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
@@ -102,5 +109,6 @@ EuiListGroup.propTypes = {
 EuiListGroup.defaultProps = {
   flush: false,
   bordered: false,
+  wrapText: false,
   maxWidth: true,
 };

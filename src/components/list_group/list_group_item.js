@@ -33,6 +33,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-isActive': isActive,
       'euiListGroupItem-isDisabled': isDisabled,
       'euiListGroupItem-isClickable': href || onClick,
+      'euiListGroupItem-hasExtraAction': extraAction,
     },
     className
   );
