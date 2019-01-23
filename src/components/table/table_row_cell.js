@@ -128,10 +128,7 @@ export const EuiTableRowCell = ({
   return cellRender;
 };
 
-EuiTableRowCell.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  colSpan: PropTypes.number,
+const sharedPropTypes = {
   /**
    * Horizontal alignment of the text in the cell
    */
@@ -146,6 +143,17 @@ EuiTableRowCell.propTypes = {
    */
   textOnly: PropTypes.bool,
   /**
+   * _Should only be used for action cells_
+   */
+  showOnHover: PropTypes.bool,
+};
+
+EuiTableRowCell.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  colSpan: PropTypes.number,
+  ...sharedPropTypes,
+  /**
    * Indicates if the column is dedicated to icon-only actions (currently affects mobile only)
    */
   hasActions: PropTypes.bool,
@@ -153,10 +161,6 @@ EuiTableRowCell.propTypes = {
    * Indicates if the column is dedicated as the expandable row toggle
    */
   isExpander: PropTypes.bool,
-  /**
-   * _Should only be used for action cells_
-   */
-  showOnHover: PropTypes.bool,
   /**
    * _DEPRECATED: use `mobileOptions.header`_
    * The column's header title for use in mobile view (will be added as a data-attr)
@@ -210,6 +214,7 @@ EuiTableRowCell.propTypes = {
      * (typically cells are contained to 50%)
      */
     fullWidth: PropTypes.bool,
+    ...sharedPropTypes,
   }),
 };
 

@@ -3,32 +3,14 @@ export const cellPropsInfo = {
   EuiTableRowCell: {
     __docgenInfo: {
       props: {
+        sharedProps: {
+          description: 'These props can be passed at the top level or within #mobileOptions',
+          type: { name: '#sharedProps' },
+        },
         colSpan: {
           description: 'Number of columns to span',
           required: false,
           type: { name: 'number' },
-        },
-        align: {
-          description: 'Horizontal alignment of the text in the cell',
-          required: false,
-          type: { name: 'left | right | center' },
-          defaultValue: { value: 'left' },
-        },
-        truncateText: {
-          description: 'Don\'t allow line breaks within cells',
-          required: false,
-          type: { name: 'bool' }
-        },
-        textOnly: {
-          description: 'Setting `textOnly` to `false` will break words unnecessarily on FF and IE. ' +
-            'To combat this problem on FF, wrap contents with the css utility `.eui-textBreakWord`.',
-          required: false,
-          type: { name: 'bool' }
-        },
-        showOnHover: {
-          description: '_Should only be used for action cells_',
-          required: false,
-          type: { name: 'bool' }
         },
         hasActions: {
           description: 'Indicates if the column is dedicated to icon-only actions (currently affects mobile only)',
@@ -41,7 +23,7 @@ export const cellPropsInfo = {
           type: { name: 'bool' }
         },
         mobileOptions: {
-          description: 'Mobile options for displaying differently at small screens',
+          description: 'Object of mobile specific options for displaying differently at small screens',
           required: false,
           type: { name: '#mobileOptions' },
         },
@@ -62,6 +44,36 @@ export const cellPropsInfo = {
         },
         isMobileFullWidth: {
           description: 'DEPRECATED: use `mobileOptions.fullWidth`',
+          required: false,
+          type: { name: 'bool' }
+        },
+      }
+    }
+  },
+
+  sharedProps: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        align: {
+          description: 'Horizontal alignment of the text in the cell',
+          required: false,
+          type: { name: 'left | right | center' },
+          defaultValue: { value: 'left' },
+        },
+        truncateText: {
+          description: 'Don\'t allow line breaks within cells',
+          required: false,
+          type: { name: 'bool' }
+        },
+        textOnly: {
+          description: 'Setting `textOnly` to `false` will break words unnecessarily on FF and IE. ' +
+            'To combat this problem on FF, wrap contents with the css utility `.eui-textBreakWord`.',
+          required: false,
+          type: { name: 'bool' }
+        },
+        showOnHover: {
+          description: '_Should only be used for action cells_',
           required: false,
           type: { name: 'bool' }
         },
@@ -104,6 +116,10 @@ export const cellPropsInfo = {
           description: 'Allocates 100% of the width of the container in mobile view (typically cells are contained to 50%)',
           required: false,
           type: { name: 'bool' }
+        },
+        sharedProps: {
+          description: 'These props will only work if a mobile specific `render` function is also passed',
+          type: { name: '#sharedProps' },
         },
       }
     }
