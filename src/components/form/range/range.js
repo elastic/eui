@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { range, find } from 'lodash';
 
 import { EuiFieldNumber } from '../field_number';
-import { EuiFormErrorText } from '../form_error_text';
 
 export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
 
@@ -50,6 +49,7 @@ export class EuiRange extends Component {
       valueAppend, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onValidatedChange, // eslint-disable-line no-unused-vars
+      onValidationError, // eslint-disable-line no-unused-vars
       value, // eslint-disable-line no-unused-vars
       style,
       ...rest
@@ -84,7 +84,7 @@ export class EuiRange extends Component {
       // Chrome will properly size the input based on the max value, but FF & IE does not.
       // Calculate the max-width of the input based on number of characters in min or max unit, whichever is greater.
       // Add 2 to accomodate for input stepper
-      const maxWidthStyle = { maxWidth: `${Math.max(String(min).length, String(max).length) + 2}em` };
+      const maxWidthStyle = { maxWidth: `${Math.max(String(min + step).length, String(max + step).length) + 2}em` };
 
       // Make this input the main control by disabling screen reader access to slider control
       sliderTabIndex = '-1';
@@ -125,38 +125,35 @@ export class EuiRange extends Component {
     }
 
     return (
-      <Fragment>
-        <div className={wrapperClasses}>
-          {this.renderLabel('min')}
+      <div className={wrapperClasses}>
+        {this.renderLabel('min')}
 
-          <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
-            <input
-              type="range"
-              id={id}
-              name={name}
-              className={classes}
-              min={min}
-              max={max}
-              step={step}
-              value={this.state.value}
-              disabled={disabled}
-              onChange={this.onRangeChange}
-              style={style}
-              tabIndex={sliderTabIndex}
-              {...rest}
-            />
+        <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
+          <input
+            type="range"
+            id={id}
+            name={name}
+            className={classes}
+            min={min}
+            max={max}
+            step={step}
+            value={this.state.value}
+            disabled={disabled}
+            onChange={this.onRangeChange}
+            style={style}
+            tabIndex={sliderTabIndex}
+            {...rest}
+          />
 
-            {this.renderValue()}
-            {this.renderRange()}
-            {this.renderLevels()}
-            {this.renderTicks(tickObject)}
-          </div>
-
-          {this.renderLabel('max')}
-          {extraInputNode}
+          {this.renderValue()}
+          {this.renderRange()}
+          {this.renderLevels()}
+          {this.renderTicks(tickObject)}
         </div>
-        {this.renderErrorMessage()}
-      </Fragment>
+
+        {this.renderLabel('max')}
+        {extraInputNode}
+      </div>
     );
   }
 
@@ -165,7 +162,8 @@ export class EuiRange extends Component {
       max,
       min,
       onChange,
-      onValidatedChange
+      onValidatedChange,
+      onValidationError,
     } = this.props;
     if (!onValidatedChange) {
       onChange(e);
@@ -184,6 +182,11 @@ export class EuiRange extends Component {
 
     if (isValid) {
       onValidatedChange(newValue);
+    }
+
+    if (onValidationError) {
+      const message = isValid ? null : `Must be between ${min} and ${max}`;
+      onValidationError(message);
     }
   }
 
@@ -213,10 +216,6 @@ export class EuiRange extends Component {
     const { value } = this.state;
 
     if (!showTicks) {
-      return;
-    }
-
-    if (isNaN(value) || value === '') {
       return;
     }
 
@@ -312,7 +311,7 @@ export class EuiRange extends Component {
       return;
     }
 
-    if (isNaN(value) || value === '') {
+    if (isNaN(value) || value === '' || value < min || value > max) {
       return;
     }
 
@@ -368,18 +367,6 @@ export class EuiRange extends Component {
           );
         })}
       </div>
-    );
-  }
-
-  renderErrorMessage = () => {
-    if (!this.props.onValidatedChange || this.state.isValid) {
-      return null;
-    }
-
-    return (
-      <EuiFormErrorText>
-        {`Must be between ${this.props.min} and ${this.props.max}`}
-      </EuiFormErrorText>
     );
   }
 }
@@ -462,6 +449,7 @@ EuiRange.propTypes = {
    * Called with (Number).
    */
   onValidatedChange: PropTypes.func,
+  onValidationError: PropTypes.func,
   /**
    * Create colored indicators for certain intervals
    */

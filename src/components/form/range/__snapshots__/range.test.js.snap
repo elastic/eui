@@ -100,7 +100,7 @@ exports[`EuiRange props extra input should render 1`] = `
         max="10"
         min="1"
         name="name"
-        style="max-width:4em"
+        style="max-width:5em"
         type="number"
         value="8"
       />

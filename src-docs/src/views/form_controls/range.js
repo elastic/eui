@@ -8,6 +8,8 @@ import {
   EuiSpacer,
   EuiFormHelpText,
   EuiCode,
+  EuiText,
+  EuiFormRow,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -32,6 +34,7 @@ export default class extends Component {
     this.state = {
       value: '120',
       validatedValue: '3000',
+      validationErrorMsg: null,
     };
   }
 
@@ -48,6 +51,12 @@ export default class extends Component {
       validatedValue: newValue
     });
   };
+
+  onValidationError = message => {
+    this.setState({
+      validationErrorMsg: message
+    });
+  }
 
   render() {
     return (
@@ -144,7 +153,8 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <div>
+        <EuiText>
+          <h3>Validation</h3>
           <p>
             <EuiCode>onChange</EuiCode> is called with the DOM Event and requires you to extract the value
             and validate that the value is a Number within the specified range.
@@ -154,21 +164,30 @@ export default class extends Component {
             changes to a Number that is within the specified range and leave all that error checking
             to EuiRange.
           </p>
-        </div>
+          <p>
+            Provide <EuiCode>onValidationError</EuiCode> to receive validation error messages.
+          </p>
+        </EuiText>
         <EuiSpacer size="s" />
-        <EuiRange
-          id={makeId()}
-          min={2000}
-          max={5000}
-          step={50}
-          value={this.state.validatedValue}
-          onValidatedChange={this.onValidatedChange}
-          showInput
-          showRange
-          showTicks
-          showValue
-          tickInterval={500}
-        />
+        <EuiFormRow
+          isInvalid={this.state.validationErrorMsg == null ? false : true}
+          error={this.state.validationErrorMsg}
+        >
+          <EuiRange
+            id={makeId()}
+            min={2000}
+            max={5000}
+            step={50}
+            value={this.state.validatedValue}
+            onValidatedChange={this.onValidatedChange}
+            onValidationError={this.onValidationError}
+            showInput
+            showRange
+            showTicks
+            showValue
+            tickInterval={500}
+          />
+        </EuiFormRow>
 
       </Fragment>
     );
