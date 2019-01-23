@@ -76,7 +76,7 @@
 .euiListGroupItem__icon {
   flex-grow: 0;
   margin-right: $euiSizeM;
-  min-width: $euiSize;
+  flex-shrink: 0;
 }
 
 .euiListGroupItem--xSmall {
@@ -100,10 +100,6 @@
 
   .euiListGroupItem__label {
     white-space: initial;
-  }
-
-  .euiListGroupItem__icon {
-    min-width: $euiSize;
   }
 }
 

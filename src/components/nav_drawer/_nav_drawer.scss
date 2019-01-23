@@ -13,6 +13,12 @@
   transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
 
+  &.euiNavDrawer-isCollapsed  {
+    .euiListGroupItem-hasExtraAction .euiListGroupItem__button {
+      max-width: 100%;
+    }
+  }
+
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
     transition-delay: $euiNavDrawerExpandingDelay;
