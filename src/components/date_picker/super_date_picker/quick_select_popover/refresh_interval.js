@@ -36,8 +36,8 @@ function fromMilliseconds(milliseconds) {
 
 function toMilliseconds(units, value) {
   return units === 'h'
-    ? value * MILLISECONDS_IN_HOUR
-    : value * MILLISECONDS_IN_MINUTE;
+    ? Math.round(value * MILLISECONDS_IN_HOUR)
+    : Math.round(value * MILLISECONDS_IN_MINUTE);
 }
 
 export class EuiRefreshInterval extends Component {
@@ -53,7 +53,7 @@ export class EuiRefreshInterval extends Component {
   }
 
   onValueChange = (evt) => {
-    const sanitizedValue = parseInt(evt.target.value, 10);
+    const sanitizedValue = parseFloat(evt.target.value);
     this.setState({
       value: isNaN(sanitizedValue) ? '' : sanitizedValue,
     }, this.applyRefreshInterval);
