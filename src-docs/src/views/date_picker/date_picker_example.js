@@ -12,6 +12,7 @@ import {
   EuiDatePicker,
   EuiDatePickerRange,
   EuiSuperDatePicker,
+  EuiUpdateButton,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -305,6 +306,6 @@ export const DatePickerExample = {
       </div>
     ),
     demo: <SuperDatePicker />,
-    props: { EuiSuperDatePicker },
+    props: { EuiSuperDatePicker, EuiUpdateButton },
   }],
 };

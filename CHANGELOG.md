@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
+- Expose `EuiUpdateButton` componenent from `EuiSuperDatePicker` ([#1470](https://github.com/elastic/eui/pull/1470))
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
