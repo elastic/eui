@@ -1,7 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a new app icon for Code ([#1467](https://github.com/elastic/eui/pull/1467))
+No public interface changes since `6.6.0`.
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
 - Expose `EuiSuperUpdateButton` componenent from `EuiSuperDatePicker` ([#1470](https://github.com/elastic/eui/pull/1470))
+- Set `type="button"` on accordion buttons ([#1468](https://github.com/elastic/eui/pull/1468))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not updating derived `showPrettyDuration` state on prop update ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` not passing `refreshInterval` to callback when refresh internval start/stop toggle button clicked ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` `refreshInterval` input not allowing decimals ([#1464](https://github.com/elastic/eui/pull/1464))
+>>>>>>> c32d25e5d498de286815350a4823e872f9af964b
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
