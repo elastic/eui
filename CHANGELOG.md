@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.7.0`.
+
+## [`6.7.0`](https://github.com/elastic/eui/tree/v6.7.0)
+
 - Added `z-index` to `EuiProgress` and example usage with `EuiHeader` ([#1471](https://github.com/elastic/eui/pull/1471))
 - Added a new app icon for Code ([#1467](https://github.com/elastic/eui/pull/1467))
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
