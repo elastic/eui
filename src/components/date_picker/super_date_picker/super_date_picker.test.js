@@ -18,16 +18,4 @@ describe('EuiSuperDatePicker', () => {
     expect(component)
       .toMatchSnapshot();
   });
-
-  test('isLoading', () => {
-    const component = shallow(
-      <EuiSuperDatePicker
-        isLoading
-        onTimeChange={noop}
-      />
-    );
-
-    expect(component)
-      .toMatchSnapshot();
-  });
 });

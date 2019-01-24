@@ -3,6 +3,7 @@
 - Added a new app icon for Code ([#1467](https://github.com/elastic/eui/pull/1467))
 No public interface changes since `6.6.0`.
 - Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
+- Expose `EuiSuperUpdateButton` component from `EuiSuperDatePicker` ([#1470](https://github.com/elastic/eui/pull/1470))
 - Set `type="button"` on accordion buttons ([#1468](https://github.com/elastic/eui/pull/1468))
 
 **Bug fixes**
