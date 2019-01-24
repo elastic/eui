@@ -8,4 +8,5 @@ export {
 
 export {
   EuiSuperDatePicker,
+  EuiUpdateButton,
 } from './super_date_picker';

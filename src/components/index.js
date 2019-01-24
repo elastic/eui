@@ -79,6 +79,7 @@ export {
   EuiDatePicker,
   EuiDatePickerRange,
   EuiSuperDatePicker,
+  EuiUpdateButton,
 } from './date_picker';
 
 export {

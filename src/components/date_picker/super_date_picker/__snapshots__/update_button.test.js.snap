@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiUpdateButton hasChanged 1`] = `
+<EuiToolTip
+  content="Click to apply"
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperDatePicker__updateButton"
+    color="secondary"
+    data-test-subj="superDatePickerApplyTimeButton"
+    disabled={false}
+    fill={true}
+    iconSide="left"
+    iconType="kqlFunction"
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperDatePicker__updateButtonText",
+      }
+    }
+    type="button"
+  >
+    Update
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiUpdateButton is rendered 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperDatePicker__updateButton"
+    color="primary"
+    data-test-subj="superDatePickerApplyTimeButton"
+    disabled={false}
+    fill={true}
+    iconSide="left"
+    iconType="refresh"
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperDatePicker__updateButtonText",
+      }
+    }
+    type="button"
+  >
+    Refresh
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiUpdateButton isInvalid 1`] = `
+<EuiToolTip
+  content="Can't update, values are invalid"
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperDatePicker__updateButton"
+    color="primary"
+    data-test-subj="superDatePickerApplyTimeButton"
+    disabled={true}
+    fill={true}
+    iconSide="left"
+    iconType="refresh"
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperDatePicker__updateButtonText",
+      }
+    }
+    type="button"
+  >
+    Refresh
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiUpdateButton isLoading 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperDatePicker__updateButton"
+    color="secondary"
+    data-test-subj="superDatePickerApplyTimeButton"
+    disabled={false}
+    fill={true}
+    iconSide="left"
+    iconType="kqlFunction"
+    isLoading={true}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperDatePicker__updateButtonText",
+      }
+    }
+    type="button"
+  >
+    Updating
+  </EuiButton>
+</EuiToolTip>
+`;

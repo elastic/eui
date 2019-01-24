@@ -7,14 +7,13 @@ import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
 
+import { EuiUpdateButton } from './update_button';
 import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
-import { EuiButton } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiToolTip } from '../../tool_tip';
 
 export class EuiSuperDatePicker extends Component {
 
@@ -127,29 +126,6 @@ export class EuiSuperDatePicker extends Component {
     };
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-  }
-
-  setTootipRef = node => (this.tooltip = node);
-
-  showTooltip = () => {
-    if (!this._isMounted || !this.tooltip) {
-      return;
-    }
-    this.tooltip.showToolTip();
-  }
-  hideTooltip = () => {
-    if (!this._isMounted || !this.tooltip) {
-      return;
-    }
-    this.tooltip.hideToolTip();
-  }
-
   setTime = ({ start, end }) => {
     const startMoment = dateMath.parse(start);
     const endMoment = dateMath.parse(end, { roundUp: true });
@@ -173,11 +149,6 @@ export class EuiSuperDatePicker extends Component {
         this.props.onTimeChange({ start, end });
         return;
       }
-
-      this.showTooltip();
-      this.tooltipTimeout = setTimeout(() => {
-        this.hideTooltip();
-      }, 2000);
     }
   }
 
@@ -285,38 +256,13 @@ export class EuiSuperDatePicker extends Component {
       return;
     }
 
-    let buttonText = 'Refresh';
-    if (this.state.hasChanged || this.props.isLoading) {
-      buttonText = this.props.isLoading ? 'Updating' : 'Update';
-    }
-
-    let tooltipContent;
-    if (this.state.isInvalid) {
-      tooltipContent = 'Can\'t update, dates are invalid';
-    } else if (this.state.hasChanged && !this.props.isLoading) {
-      tooltipContent = 'Click to apply';
-    }
-
     return (
-      <EuiToolTip
-        ref={this.setTootipRef}
-        content={tooltipContent}
-        position="bottom"
-      >
-        <EuiButton
-          className="euiSuperDatePicker__updateButton"
-          color={this.state.hasChanged || this.props.isLoading ? 'secondary' : 'primary'}
-          fill
-          iconType={this.state.hasChanged || this.props.isLoading ? 'kqlFunction' : 'refresh'}
-          textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
-          disabled={this.state.isInvalid}
-          onClick={this.applyTime}
-          isLoading={this.props.isLoading}
-          data-test-subj="superDatePickerApplyTimeButton"
-        >
-          {buttonText}
-        </EuiButton>
-      </EuiToolTip>
+      <EuiUpdateButton
+        hasChanged={this.state.hasChanged}
+        isLoading={this.props.isLoading}
+        isInvalid={this.state.isInvalid}
+        onApply={this.applyTime}
+      />
     );
   }
 
