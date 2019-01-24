@@ -107,6 +107,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     grow={false}
   >
     <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
       hasChanged={false}
       isInvalid={false}
       isLoading={false}

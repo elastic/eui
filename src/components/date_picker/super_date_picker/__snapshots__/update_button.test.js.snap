@@ -9,7 +9,6 @@ exports[`EuiSuperUpdateButton hasChanged 1`] = `
   <EuiButton
     className="euiSuperDatePicker__updateButton"
     color="secondary"
-    data-test-subj="superDatePickerApplyTimeButton"
     disabled={false}
     fill={true}
     iconSide="left"
@@ -36,7 +35,6 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
   <EuiButton
     className="euiSuperDatePicker__updateButton"
     color="primary"
-    data-test-subj="superDatePickerApplyTimeButton"
     disabled={false}
     fill={true}
     iconSide="left"
@@ -64,7 +62,6 @@ exports[`EuiSuperUpdateButton isInvalid 1`] = `
   <EuiButton
     className="euiSuperDatePicker__updateButton"
     color="primary"
-    data-test-subj="superDatePickerApplyTimeButton"
     disabled={true}
     fill={true}
     iconSide="left"
@@ -91,7 +88,6 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
   <EuiButton
     className="euiSuperDatePicker__updateButton"
     color="secondary"
-    data-test-subj="superDatePickerApplyTimeButton"
     disabled={false}
     fill={true}
     iconSide="left"

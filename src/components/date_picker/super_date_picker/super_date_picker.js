@@ -263,6 +263,7 @@ export class EuiSuperDatePicker extends Component {
         isLoading={this.props.isLoading}
         isInvalid={this.state.isInvalid}
         onApply={this.applyTime}
+        data-test-subj="superDatePickerApplyTimeButton"
       />
     );
   }

@@ -57,6 +57,7 @@ export class EuiSuperUpdateButton extends Component {
       isLoading,
       isInvalid,
       onApply,
+      ...rest
     } = this.props;
 
     let buttonText = 'Refresh';
@@ -86,7 +87,7 @@ export class EuiSuperUpdateButton extends Component {
           disabled={isInvalid}
           onClick={onApply}
           isLoading={isLoading}
-          data-test-subj="superDatePickerApplyTimeButton"
+          {...rest}
         >
           {buttonText}
         </EuiButton>
