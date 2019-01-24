@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import {
   EuiSuperUpdateButton,
-} from './update_button';
+} from './super_update_button';
 
 const noop = () => {};
 
@@ -11,7 +11,7 @@ describe('EuiSuperUpdateButton', () => {
   test('is rendered', () => {
     const component = shallow(
       <EuiSuperUpdateButton
-        onApply={noop}
+        onClick={noop}
       />
     );
 
@@ -19,11 +19,11 @@ describe('EuiSuperUpdateButton', () => {
       .toMatchSnapshot();
   });
 
-  test('hasChanged', () => {
+  test('needsUpdate', () => {
     const component = shallow(
       <EuiSuperUpdateButton
-        hasChanged
-        onApply={noop}
+        needsUpdate
+        onClick={noop}
       />
     );
 
@@ -31,11 +31,11 @@ describe('EuiSuperUpdateButton', () => {
       .toMatchSnapshot();
   });
 
-  test('isInvalid', () => {
+  test('isDisabled', () => {
     const component = shallow(
       <EuiSuperUpdateButton
-        isInvalid
-        onApply={noop}
+        isDisabled
+        onClick={noop}
       />
     );
 
@@ -47,7 +47,7 @@ describe('EuiSuperUpdateButton', () => {
     const component = shallow(
       <EuiSuperUpdateButton
         isLoading
-        onApply={noop}
+        onClick={noop}
       />
     );
 

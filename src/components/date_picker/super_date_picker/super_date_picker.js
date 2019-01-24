@@ -1,13 +1,14 @@
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
 import { prettyDuration, showPrettyDuration } from './pretty_duration';
 import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
 
-import { EuiSuperUpdateButton } from './update_button';
+import { EuiSuperUpdateButton } from './super_update_button';
 import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
@@ -258,13 +259,15 @@ export class EuiSuperDatePicker extends Component {
     }
 
     return (
-      <EuiSuperUpdateButton
-        hasChanged={this.state.hasChanged}
-        isLoading={this.props.isLoading}
-        isInvalid={this.state.isInvalid}
-        onApply={this.applyTime}
-        data-test-subj="superDatePickerApplyTimeButton"
-      />
+      <EuiFlexItem grow={false}>
+        <EuiSuperUpdateButton
+          needsUpdate={this.state.hasChanged}
+          isLoading={this.props.isLoading}
+          isDisabled={this.state.isInvalid}
+          onClick={this.applyTime}
+          data-test-subj="superDatePickerApplyTimeButton"
+        />
+      </EuiFlexItem>
     );
   }
 
@@ -283,10 +286,19 @@ export class EuiSuperDatePicker extends Component {
         isAutoRefreshOnly={this.props.isAutoRefreshOnly}
       />
     );
-    return (
-      <EuiFlexGroup gutterSize="s" responsive={false}>
 
-        <EuiFlexItem style={{ maxWidth: 480 }}>
+    const flexWrapperClasses = classNames(
+      'euiSuperDatePicker__flexWrapper',
+      {
+        'euiSuperDatePicker__flexWrapper--noUpdateButton': !this.props.showUpdateButton,
+        'euiSuperDatePicker__flexWrapper--isAutoRefreshOnly': this.props.isAutoRefreshOnly,
+      }
+    );
+
+    return (
+      <EuiFlexGroup gutterSize="s" responsive={false} className={flexWrapperClasses}>
+
+        <EuiFlexItem>
           <EuiFormControlLayout
             className="euiSuperDatePicker"
             prepend={quickSelect}
@@ -295,9 +307,7 @@ export class EuiSuperDatePicker extends Component {
           </EuiFormControlLayout>
         </EuiFlexItem>
 
-        <EuiFlexItem grow={false}>
-          {this.renderUpdateButton()}
-        </EuiFlexItem>
+        {this.renderUpdateButton()}
 
       </EuiFlexGroup>
     );

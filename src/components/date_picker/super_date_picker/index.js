@@ -4,4 +4,4 @@ export {
 
 export {
   EuiSuperUpdateButton,
-} from './update_button';
+} from './super_update_button';

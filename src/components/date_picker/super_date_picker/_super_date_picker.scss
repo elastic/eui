@@ -1,5 +1,18 @@
-// sass-lint:disable no-important
+.euiSuperDatePicker__flexWrapper {
+  max-width: 100%;
+  width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
+}
+
+.euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
+  width: $euiFormMaxWidth;
+}
+
+.euiSuperDatePicker__flexWrapper--noUpdateButton {
+  width: $euiSuperDatePickerWidth;
+}
+
 .euiSuperDatePicker {
+  // sass-lint:disable-block no-important
   // Allow it to always grow to fit the container since the default form max width is too small
   max-width: 100% !important;
 
@@ -32,19 +45,19 @@
 
 .euiSuperDatePicker__prettyFormatLink {
   color: $euiLinkColor;
-}
-
-.euiSuperDatePicker__updateButton {
-  // Just wide enough for all 3 states
-  min-width: $euiButtonMinWidth + ($euiSizeXS * 1.5);
+  padding-left: $euiSizeXS; // Adds some separation between date text and link
+  flex-shrink: 0;
 }
 
 @include euiBreakpoint('xs', 's') {
-  .euiSuperDatePicker__updateButton {
-    min-width: 0;
+  .euiSuperDatePicker__flexWrapper,
+  .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly,
+  .euiSuperDatePicker__flexWrapper--noUpdateButton {
+    width: 100%;
+  }
 
-    .euiSuperDatePicker__updateButtonText {
-      display: none;
-    }
+  .euiSuperDatePicker__prettyFormatLink {
+    flex-shrink: 1;
+    min-width: 3em; // Ensures at least "Show" is always visible
   }
 }

@@ -1,21 +1,26 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import { EuiButton } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 
 export class EuiSuperUpdateButton extends Component {
   static propTypes = {
-    hasChanged: PropTypes.bool,
+    needsUpdate: PropTypes.bool,
     isLoading: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    onApply: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    /**
+     * Passes props to `EuiToolTip`
+     */
+    toolTipProps: PropTypes.object,
   }
 
   static defaultProps = {
-    hasChanged: false,
+    needsUpdate: false,
     isLoading: false,
-    isInvalid: false,
+    isDisabled: false,
   }
 
   componentWillUnmount() {
@@ -27,7 +32,7 @@ export class EuiSuperUpdateButton extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.hasChanged && !this.props.isInvalid && !this.props.isLoading) {
+    if (this.props.needsUpdate && !this.props.isDisabled && !this.props.isLoading) {
       this.showTooltip();
       this.tooltipTimeout = setTimeout(() => {
         this.hideTooltip();
@@ -53,22 +58,26 @@ export class EuiSuperUpdateButton extends Component {
 
   render() {
     const {
-      hasChanged,
+      className,
+      needsUpdate,
       isLoading,
-      isInvalid,
-      onApply,
+      isDisabled,
+      onClick,
+      toolTipProps,
       ...rest
     } = this.props;
 
+    const classes = classNames('euiSuperUpdateButton', className);
+
     let buttonText = 'Refresh';
-    if (hasChanged || isLoading) {
+    if (needsUpdate || isLoading) {
       buttonText = isLoading ? 'Updating' : 'Update';
     }
 
     let tooltipContent;
-    if (isInvalid) {
-      tooltipContent = 'Can\'t update, values are invalid';
-    } else if (hasChanged && !isLoading) {
+    if (isDisabled) {
+      tooltipContent = 'Cannot update';
+    } else if (needsUpdate && !isLoading) {
       tooltipContent = 'Click to apply';
     }
 
@@ -77,15 +86,16 @@ export class EuiSuperUpdateButton extends Component {
         ref={this.setTootipRef}
         content={tooltipContent}
         position="bottom"
+        {...toolTipProps}
       >
         <EuiButton
-          className="euiSuperDatePicker__updateButton"
-          color={hasChanged || isLoading ? 'secondary' : 'primary'}
+          className={classes}
+          color={needsUpdate || isLoading ? 'secondary' : 'primary'}
           fill
-          iconType={hasChanged || isLoading ? 'kqlFunction' : 'refresh'}
-          textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
-          disabled={isInvalid}
-          onClick={onApply}
+          iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
+          textProps={{ className: 'euiSuperUpdateButton__text' }}
+          isDisabled={isDisabled}
+          onClick={onClick}
           isLoading={isLoading}
           {...rest}
         >
