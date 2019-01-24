@@ -11,7 +11,6 @@ No public interface changes since `6.6.0`.
 - Fixed `EuiSuperDatePicker` not updating derived `showPrettyDuration` state on prop update ([#1464](https://github.com/elastic/eui/pull/1464))
 - Fixed `EuiSuperDatePicker` not passing `refreshInterval` to callback when refresh internval start/stop toggle button clicked ([#1464](https://github.com/elastic/eui/pull/1464))
 - Fixed `EuiSuperDatePicker` `refreshInterval` input not allowing decimals ([#1464](https://github.com/elastic/eui/pull/1464))
->>>>>>> c32d25e5d498de286815350a4823e872f9af964b
 
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
