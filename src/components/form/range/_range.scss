@@ -28,6 +28,7 @@
 }
 
 .euiRange__inputWrapper {
+  height: 100%; // Don't overflow `euiRange__wrapper`
   flex-grow: 1;
   position: relative; // for positioning ticks/levels
   align-self: flex-start; /* 3 */
@@ -368,6 +369,12 @@ $euiRangeLevelColors: (
     border-width: ($euiRangeThumbHeight / 2) 0;
     color: transparent;
   }
+
+  &--dual {
+    @include euiRangeThumbPerBrowser {
+      opacity: 0; // display: hidden doesn't work. Find something better
+    }
+  }
 }
 
 .euiRange__wrapper--hasRange .euiRange,
@@ -375,5 +382,28 @@ $euiRangeLevelColors: (
   @include euiRangeTrackPerBrowser {
     background-color: transparentize($euiRangeTrackColor, .6);
     border-color: transparentize($euiRangeTrackBorderColor, .6);
+  }
+}
+
+.euiRange__thumb {
+  @include euiCustomControl($type: 'round');
+
+  cursor: pointer;
+  border-color: $euiRangeThumbBorderColor;
+  padding: 0;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbWidth;
+
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -($euiRangeThumbHeight / 2);
+  z-index: $euiZLevel2;
+
+  pointer-events: none;
+
+  &--hasTicks {
+    top: 25%;
   }
 }
