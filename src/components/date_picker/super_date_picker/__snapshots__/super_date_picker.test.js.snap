@@ -106,7 +106,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     component="div"
     grow={false}
   >
-    <EuiUpdateButton
+    <EuiSuperUpdateButton
       hasChanged={false}
       isInvalid={false}
       isLoading={false}

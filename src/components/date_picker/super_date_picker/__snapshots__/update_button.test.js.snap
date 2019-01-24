@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiUpdateButton hasChanged 1`] = `
+exports[`EuiSuperUpdateButton hasChanged 1`] = `
 <EuiToolTip
   content="Click to apply"
   delay="regular"
@@ -28,7 +28,7 @@ exports[`EuiUpdateButton hasChanged 1`] = `
 </EuiToolTip>
 `;
 
-exports[`EuiUpdateButton is rendered 1`] = `
+exports[`EuiSuperUpdateButton is rendered 1`] = `
 <EuiToolTip
   delay="regular"
   position="bottom"
@@ -55,7 +55,7 @@ exports[`EuiUpdateButton is rendered 1`] = `
 </EuiToolTip>
 `;
 
-exports[`EuiUpdateButton isInvalid 1`] = `
+exports[`EuiSuperUpdateButton isInvalid 1`] = `
 <EuiToolTip
   content="Can't update, values are invalid"
   delay="regular"
@@ -83,7 +83,7 @@ exports[`EuiUpdateButton isInvalid 1`] = `
 </EuiToolTip>
 `;
 
-exports[`EuiUpdateButton isLoading 1`] = `
+exports[`EuiSuperUpdateButton isLoading 1`] = `
 <EuiToolTip
   delay="regular"
   position="bottom"

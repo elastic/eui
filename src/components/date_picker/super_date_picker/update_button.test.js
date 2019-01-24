@@ -2,15 +2,15 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import {
-  EuiUpdateButton,
+  EuiSuperUpdateButton,
 } from './update_button';
 
 const noop = () => {};
 
-describe('EuiUpdateButton', () => {
+describe('EuiSuperUpdateButton', () => {
   test('is rendered', () => {
     const component = shallow(
-      <EuiUpdateButton
+      <EuiSuperUpdateButton
         onApply={noop}
       />
     );
@@ -21,7 +21,7 @@ describe('EuiUpdateButton', () => {
 
   test('hasChanged', () => {
     const component = shallow(
-      <EuiUpdateButton
+      <EuiSuperUpdateButton
         hasChanged
         onApply={noop}
       />
@@ -33,7 +33,7 @@ describe('EuiUpdateButton', () => {
 
   test('isInvalid', () => {
     const component = shallow(
-      <EuiUpdateButton
+      <EuiSuperUpdateButton
         isInvalid
         onApply={noop}
       />
@@ -45,7 +45,7 @@ describe('EuiUpdateButton', () => {
 
   test('isLoading', () => {
     const component = shallow(
-      <EuiUpdateButton
+      <EuiSuperUpdateButton
         isLoading
         onApply={noop}
       />

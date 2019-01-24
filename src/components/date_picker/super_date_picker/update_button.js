@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { EuiButton } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 
-export class EuiUpdateButton extends Component {
+export class EuiSuperUpdateButton extends Component {
   static propTypes = {
     hasChanged: PropTypes.bool,
     isLoading: PropTypes.bool,

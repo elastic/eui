@@ -7,7 +7,7 @@ import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
 
-import { EuiUpdateButton } from './update_button';
+import { EuiSuperUpdateButton } from './update_button';
 import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
@@ -257,7 +257,7 @@ export class EuiSuperDatePicker extends Component {
     }
 
     return (
-      <EuiUpdateButton
+      <EuiSuperUpdateButton
         hasChanged={this.state.hasChanged}
         isLoading={this.props.isLoading}
         isInvalid={this.state.isInvalid}

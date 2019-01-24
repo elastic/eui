@@ -3,5 +3,5 @@ export {
 } from './super_date_picker';
 
 export {
-  EuiUpdateButton,
+  EuiSuperUpdateButton,
 } from './update_button';
