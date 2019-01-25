@@ -19,7 +19,7 @@
 
 .euiHeaderSectionItem__button {
   height: $euiHeaderChildSize;
-  min-width: $euiHeaderChildSize + 1px;
+  min-width: $euiHeaderChildSize;
   text-align: center;
   font-size: 0; // aligns icons better vertically
 
@@ -53,8 +53,7 @@
 @include euiBreakpoint('xs') {
   .euiHeaderSectionItem,
   .euiHeaderSectionItem__button {
-    height: $euiHeaderChildSizeMobile;
-    min-width: $euiHeaderChildSizeMobile;
+    min-width: $euiHeaderChildSize * .75;
   }
 
   .euiHeaderSectionItem--borderLeft,
@@ -67,7 +66,7 @@
   // On small screens just show a small dot indicating there are notifications
   .euiHeaderNotification {
     @include size($euiSizeS);
-
+    top: 20%;
     min-width: 0;
     border-radius: $euiSizeS;
     color: $euiColorAccent;
