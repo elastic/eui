@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import {
+  EuiDualRange,
   EuiRange,
   EuiSpacer,
   EuiFormHelpText,
@@ -30,12 +31,19 @@ export default class extends Component {
 
     this.state = {
       value: '120',
+      values: [120, 180]
     };
   }
 
   onChange = e => {
     this.setState({
       value: e.target.value,
+    });
+  };
+
+  onDualChange = (values) => {
+    this.setState({
+      values: values,
     });
   };
 
@@ -52,6 +60,17 @@ export default class extends Component {
           showLabels
           showValue
           name="firstRange"
+        />
+
+        <EuiDualRange
+          id={makeId()}
+          min={100}
+          max={200}
+          value={this.state.values}
+          onChange={this.onDualChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showLabels
+          name="dualRange"
         />
 
         <EuiSpacer size="xl" />
@@ -75,6 +94,18 @@ export default class extends Component {
           max={200}
           value={this.state.value}
           onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showLabels
+          showInput
+          showRange
+        />
+
+        <EuiDualRange
+          id={makeId()}
+          min={100}
+          max={200}
+          value={this.state.values}
+          onChange={this.onDualChange}
           aria-label="Use aria labels when no actual label is in use"
           showLabels
           showInput
@@ -115,6 +146,19 @@ export default class extends Component {
           tickInterval={300}
         />
 
+        <EuiDualRange
+          id={makeId()}
+          min={0}
+          max={2000}
+          step={50}
+          value={this.state.values}
+          onChange={this.onDualChange}
+          aria-label="Use aria labels when no actual label is in use"
+          showTicks
+          showRange
+          tickInterval={300}
+        />
+
         <EuiSpacer size="xl" />
 
         <EuiRange
@@ -124,6 +168,21 @@ export default class extends Component {
           step={50}
           value={this.state.value}
           onChange={this.onChange}
+          aria-label="Use aria labels when no actual label is in use"
+          aria-describedby="levelsHelp"
+          showTicks
+          showInput
+          tickInterval={500}
+          levels={this.levels}
+        />
+
+        <EuiDualRange
+          id={makeId()}
+          min={0}
+          max={2000}
+          step={50}
+          value={this.state.values}
+          onChange={this.onDualChange}
           aria-label="Use aria labels when no actual label is in use"
           aria-describedby="levelsHelp"
           showTicks
