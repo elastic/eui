@@ -2,6 +2,10 @@
 
 - Default light theme now comes with an empty light variables file to make theme switching easier ([#1479](https://github.com/elastic/eui/pull/1479))
 
+**Bug fixes**
+
+- `EuiSuperDatePicker` always trigger `onTimeChange` when time changes and prop `showUpdateButton` is false ([#1477](https://github.com/elastic/eui/pull/1477))
+
 ## [`6.7.1`](https://github.com/elastic/eui/tree/v6.7.1)
 
 **Bug fixes**
