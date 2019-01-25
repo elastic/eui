@@ -10,10 +10,6 @@
   -ms-text-size-adjust: 100%;
   font-kerning: normal;
   font-feature-settings: $euiFontFeatureSettings;
-
-  @supports (font-variation-settings: normal) {
-    font-family: $euiFontFamilyVariable;
-  }
 }
 
 @mixin euiCodeFont {
