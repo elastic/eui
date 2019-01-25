@@ -31,7 +31,7 @@ export class EuiSuperDatePicker extends Component {
      */
     end: PropTypes.string,
     /**
-     * Callback for when the time changes. Called with { start, end }
+     * Callback for when the time changes. Called with { start, end, isQuickSelection, isInvalid }
      */
     onTimeChange: PropTypes.func.isRequired,
     isPaused: PropTypes.bool,
@@ -146,11 +146,13 @@ export class EuiSuperDatePicker extends Component {
       hasChanged: true,
     });
 
-    if (!isInvalid) {
-      if (!this.props.showUpdateButton) {
-        this.props.onTimeChange({ start, end });
-        return;
-      }
+    if (!this.props.showUpdateButton) {
+      this.props.onTimeChange({
+        start,
+        end,
+        isQuickSelection: false,
+        isInvalid,
+      });
     }
   }
 
@@ -163,14 +165,24 @@ export class EuiSuperDatePicker extends Component {
   }
 
   applyTime = () => {
-    this.props.onTimeChange({ start: this.state.start, end: this.state.end });
+    this.props.onTimeChange({
+      start: this.state.start,
+      end: this.state.end,
+      isQuickSelection: false,
+      isInvalid: false,
+    });
   }
 
   applyQuickTime = ({ start, end }) => {
     this.setState({
       showPrettyDuration: showPrettyDuration(start, end, this.props.commonlyUsedRanges),
     });
-    this.props.onTimeChange({ start, end });
+    this.props.onTimeChange({
+      start,
+      end,
+      isQuickSelection: true,
+      isInvalid: false
+    });
   }
 
   hidePrettyDuration = () => {
