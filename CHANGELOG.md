@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.7.0`.
+**Bug fixes**
+
+- Fixed an issue with font family inheritance by changing the CSS reset ([#1474](https://github.com/elastic/eui/pull/1474))
 
 ## [`6.7.0`](https://github.com/elastic/eui/tree/v6.7.0)
 
