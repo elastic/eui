@@ -1,20 +1,19 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { EuiFieldNumber } from '../field_number';
 
-export const EuiRangeInput = props => {
-  const {
-    min,
-    max,
-    step,
-    value,
-    disabled,
-    compressed,
-    onChange,
-    name,
-    ...rest
-  } = props;
+export const EuiRangeInput = ({
+  min,
+  max,
+  step,
+  value,
+  disabled,
+  compressed,
+  onChange,
+  name,
+  ...rest
+}) => {
 
   const maxWidthStyle = { maxWidth: `${Math.max(String(min).length, String(max).length) + 2}em` };
 
@@ -33,4 +32,14 @@ export const EuiRangeInput = props => {
       {...rest}
     />
   );
+};
+
+EuiRangeInput.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  step: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  compressed: PropTypes.bool,
+  onChange: PropTypes.func,
+  name: PropTypes.string
 };

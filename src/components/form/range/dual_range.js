@@ -2,21 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { keyCodes } from '../../../services';
+
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeSlider } from './range_slider';
-import { EuiRangeTrack } from './range_track';
+import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
-
 export class EuiDualRange extends Component {
+  rangeSliderRef = React.createRef();
+
+  get lowerValue() {
+    return this.props.value[0];
+  }
+  get upperValue() {
+    return this.props.value[1];
+  }
 
   _determineThumbMovement = (newVal, e) => {
     // Determine closer thumb
-    let lower = this.props.value[0];
-    let upper = this.props.value[1];
+    let lower = this.lowerValue;
+    let upper = this.upperValue;
     if (Math.abs(lower - newVal) <= Math.abs(upper - newVal)) {
       lower = newVal;
     } else {
@@ -34,11 +42,52 @@ export class EuiDualRange extends Component {
   }
 
   handleLowerInputChange = (e) => {
-    this._handleOnChange(e.target.value, this.props.value[1], e);
+    this._handleOnChange(e.target.value, this.upperValue, e);
   }
 
   handleUpperInputChange = (e) => {
-    this._handleOnChange(this.props.value[0], e.target.value, e);
+    this._handleOnChange(this.lowerValue, e.target.value, e);
+  }
+
+  _handleKeyDown = (value, e) => {
+    e.preventDefault();
+    let newVal = value;
+    const change = this.props.step || 1;
+    switch (e.keyCode) {
+      case keyCodes.UP:
+      case keyCodes.RIGHT:
+        newVal += change;
+        break;
+      case keyCodes.DOWN:
+      case keyCodes.LEFT:
+        newVal -= change;
+        break;
+    }
+    return newVal;
+  }
+
+  handleLowerKeyDown = (e) => {
+    let lower = this.lowerValue;
+    switch (e.keyCode) {
+      case keyCodes.TAB:
+        return;
+      default:
+        lower = this._handleKeyDown(lower, e);
+    }
+    if (lower >= this.upperValue || lower < this.props.min) return;
+    this._handleOnChange(lower, this.upperValue, e);
+  }
+
+  handleUpperKeyDown = (e) => {
+    let upper = this.upperValue;
+    switch (e.keyCode) {
+      case keyCodes.TAB:
+        return;
+      default:
+        upper = this._handleKeyDown(upper, e);
+    }
+    if (upper <= this.lowerValue || upper > this.props.max) return;
+    this._handleOnChange(this.lowerValue, upper,  e);
   }
 
   calculateThumbPositionStyle = (value) => {
@@ -48,8 +97,10 @@ export class EuiDualRange extends Component {
     let valuePosition = decimal <= 1 ? decimal : 1;
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
-    //TODO: left should be 100% - (ratio of thumb width to track width)
-    return { left: `${valuePosition * 95.5}%` };
+    // TODO: Get ref earlier
+    const thumbToTrackRatio = this.rangeSliderRef.current ? (16 / this.rangeSliderRef.current.offsetWidth) : 0.05;
+    const trackPositionScale = (1 - thumbToTrackRatio) * 100;
+    return { left: `${valuePosition * trackPositionScale}%` };
   }
 
   render() {
@@ -70,6 +121,7 @@ export class EuiDualRange extends Component {
       tickInterval,
       ticks, // eslint-disable-line no-unused-vars
       levels,
+      onChange, // eslint-disable-line no-unused-vars
       showRange,
       valueAppend, // eslint-disable-line no-unused-vars
       value,
@@ -77,14 +129,7 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const thumbClasses = classNames(
-      'euiRange__thumb',
-      {
-        'euiRange__thumb--hasTicks': showTicks
-      },
-    );
-    const lowerThumbStyle = this.calculateThumbPositionStyle(value[0]);
-    const upperThumbStyle = this.calculateThumbPositionStyle(value[1]);
+    const rangeClasses = classNames('euiRange', 'euiRange--dual', className);
 
     return (
       <EuiRangeWrapper
@@ -99,16 +144,16 @@ export class EuiDualRange extends Component {
         {showInput && (
           <EuiRangeInput
             min={min}
-            max={value[1]}
+            max={Number(this.upperValue)}
             step={step}
-            value={value[0]}
+            value={this.lowerValue}
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleLowerInputChange}
             name={name}
           />
         )}
-        {showLabels && <EuiRangeLabel side="min">{this.props.min}</EuiRangeLabel>}
+        {showLabels && <EuiRangeLabel side="min">{min}</EuiRangeLabel>}
         <EuiRangeTrack
           disabled={disabled}
           max={max}
@@ -122,9 +167,10 @@ export class EuiDualRange extends Component {
           value={value}
         >
           <EuiRangeSlider
+            ref={this.rangeSliderRef}
             id={id}
             name={name}
-            className={`euiRange euiRange--dual ${className}`}
+            className={rangeClasses}
             min={min}
             max={max}
             step={step}
@@ -136,25 +182,43 @@ export class EuiDualRange extends Component {
             {...rest}
           />
 
-          <div className={thumbClasses} style={lowerThumbStyle} />
-          <div className={thumbClasses} style={upperThumbStyle} />
+          <EuiRangeThumb
+            min={min}
+            max={Number(this.upperValue)}
+            value={this.lowerValue}
+            disabled={disabled}
+            showTicks={showTicks}
+            showInput={showInput}
+            onKeyDown={this.handleLowerKeyDown}
+            style={this.calculateThumbPositionStyle(this.lowerValue)}
+          />
+          <EuiRangeThumb
+            min={Number(this.lowerValue)}
+            max={max}
+            value={this.upperValue}
+            disabled={disabled}
+            showTicks={showTicks}
+            showInput={showInput}
+            onKeyDown={this.handleUpperKeyDown}
+            style={this.calculateThumbPositionStyle(this.upperValue)}
+          />
 
           {showRange && (
             <EuiRangeHighlight
-              min={min}
-              max={max}
-              lowerValue={value[0]}
-              upperValue={value[1]}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(this.lowerValue)}
+              upperValue={Number(this.upperValue)}
             />
           )}
         </EuiRangeTrack>
-        {showLabels && <EuiRangeLabel side="max">{this.props.max}</EuiRangeLabel>}
+        {showLabels && <EuiRangeLabel side="max">{max}</EuiRangeLabel>}
         {showInput && (
           <EuiRangeInput
-            min={value[0]}
+            min={Number(this.lowerValue)}
             max={max}
             step={step}
-            value={value[1]}
+            value={this.upperValue}
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleUpperInputChange}
@@ -230,4 +294,26 @@ EuiDualRange.defaultProps = {
   showInput: false,
   showTicks: false,
   levels: [],
+};
+
+const EuiRangeThumb = ({ min, max, value, disabled, onKeyDown, showInput, showTicks, style }) => {
+  const classes = classNames(
+    'euiRange__thumb',
+    {
+      'euiRange__thumb--hasTicks': showTicks
+    },
+  );
+  return (
+    <div
+      className={classes}
+      style={style}
+      role="slider"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      aria-disabled={!!disabled}
+      tabIndex={showInput ? '-1' : '0'}
+      onKeyDown={onKeyDown}
+    />
+  );
 };

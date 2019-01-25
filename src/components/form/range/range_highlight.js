@@ -1,14 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-export const EuiRangeHighlight = props => {
-  const {
-    lowerValue,
-    upperValue,
-    max,
-    min,
-  } = props;
-
+export const EuiRangeHighlight = ({ lowerValue, upperValue, max, min }) => {
   // Calculate the width the range based on value
   // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
@@ -23,4 +16,11 @@ export const EuiRangeHighlight = props => {
       <div className="euiRange__range__progress" style={rangeWidthStyle} />
     </div>
   );
+};
+
+EuiRangeHighlight.propTypes = {
+  lowerValue: PropTypes.number.isRequired,
+  upperValue: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired
 };

@@ -403,6 +403,10 @@ $euiRangeLevelColors: (
 
   pointer-events: none;
 
+  &:focus {
+    @include euiCustomControlFocused;
+  }
+
   &--hasTicks {
     top: 25%;
   }

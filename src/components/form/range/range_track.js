@@ -94,17 +94,8 @@ EuiRangeTrack.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ]),
-  /**
-   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
-   */
   showTicks: PropTypes.bool,
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
   tickInterval: PropTypes.number,
-  /**
-   * Specified ticks at specified values
-   */
   ticks: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number.isRequired,
@@ -112,9 +103,6 @@ EuiRangeTrack.propTypes = {
     }),
   ),
   onChange: PropTypes.func,
-  /**
-   * Create colored indicators for certain intervals
-   */
   levels: PropTypes.arrayOf(
     PropTypes.shape({
       min: PropTypes.number,
@@ -122,14 +110,6 @@ EuiRangeTrack.propTypes = {
       color: PropTypes.oneOf(LEVEL_COLORS),
     }),
   ),
-};
-
-EuiRangeTrack.defaultProps = {
-  min: 1,
-  max: 100,
-  showInput: false,
-  showTicks: false,
-  levels: [],
 };
 
 const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, max }) => {

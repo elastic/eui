@@ -40,44 +40,10 @@ export const EuiRangeWrapper = ({
 EuiRangeWrapper.propTypes = {
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
   showLabels: PropTypes.bool,
-  /**
-   * Displays an extra input control for direct manipulation
-   */
   showInput: PropTypes.bool,
-  /**
-   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
-   */
   showTicks: PropTypes.bool,
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels: PropTypes.arrayOf(
-    PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-      color: PropTypes.oneOf(LEVEL_COLORS),
-    }),
-  ),
-  /**
-   * Shows a thick line from min to value
-   */
+  levels: PropTypes.array,
   showRange: PropTypes.bool,
-  /**
-   * Shows a tooltip styled value
-   */
   showValue: PropTypes.bool,
-};
-
-EuiRangeWrapper.defaultProps = {
-  fullWidth: false,
-  compressed: false,
-  showLabels: false,
-  showInput: false,
-  showTicks: false,
-  showValue: false,
-  levels: [],
 };

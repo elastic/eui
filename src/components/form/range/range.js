@@ -1,42 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeSlider } from './range_slider';
 import { EuiRangeTooltip } from './range_tooltip';
-import { EuiRangeTrack } from './range_track';
+import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
+export const EuiRange = ({
+  className,
+  compressed,
+  disabled,
+  fullWidth,
+  id,
+  max,
+  min,
+  name,
+  step,
+  showLabels,
+  showInput,
+  showTicks,
+  tickInterval,
+  ticks, // eslint-disable-line no-unused-vars
+  levels,
+  showRange,
+  showValue,
+  valueAppend, // eslint-disable-line no-unused-vars
+  onChange,
+  value,
+  style,
+  tabIndex,
+  ...rest
+}) => {
 
-export const EuiRange = props => {
-
-  const {
-    className,
-    compressed,
-    disabled,
-    fullWidth,
-    id,
-    max,
-    min,
-    name,
-    step,
-    showLabels,
-    showInput,
-    showTicks,
-    tickInterval,
-    ticks, // eslint-disable-line no-unused-vars
-    levels,
-    showRange,
-    showValue,
-    valueAppend, // eslint-disable-line no-unused-vars
-    onChange,
-    value,
-    style,
-    ...rest
-  } = props;
+  const classes = classNames('euiRange', className);
 
   return (
     <EuiRangeWrapper
@@ -49,7 +49,7 @@ export const EuiRange = props => {
       showRange={showRange}
       showValue={showValue}
     >
-      {showLabels && <EuiRangeLabel side="min">{props.min}</EuiRangeLabel>}
+      {showLabels && <EuiRangeLabel side="min">{min}</EuiRangeLabel>}
       <EuiRangeTrack
         disabled={disabled}
         max={max}
@@ -65,7 +65,7 @@ export const EuiRange = props => {
         <EuiRangeSlider
           id={id}
           name={name}
-          className={`euiRange ${className}`}
+          className={classes}
           min={min}
           max={max}
           step={step}
@@ -73,7 +73,7 @@ export const EuiRange = props => {
           disabled={disabled}
           onChange={onChange}
           style={style}
-          tabIndex={showInput ? '-1' : '0'}
+          tabIndex={showInput ? '-1' : (tabIndex || null)}
           {...rest}
         />
 
@@ -88,14 +88,14 @@ export const EuiRange = props => {
 
         {showRange && (
           <EuiRangeHighlight
-            min={min}
-            max={max}
-            lowerValue={min}
-            upperValue={value}
+            min={Number(min)}
+            max={Number(max)}
+            lowerValue={Number(min)}
+            upperValue={Number(value)}
           />
         )}
       </EuiRangeTrack>
-      {showLabels && <EuiRangeLabel side="max">{props.max}</EuiRangeLabel>}
+      {showLabels && <EuiRangeLabel side="max">{max}</EuiRangeLabel>}
       {showInput && (
         <EuiRangeInput
           min={min}
