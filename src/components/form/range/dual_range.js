@@ -12,6 +12,10 @@ import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiDualRange extends Component {
+  state = {
+    hasFocus: false
+  }
+
   rangeSliderRef = React.createRef();
 
   get lowerValue() {
@@ -103,6 +107,12 @@ export class EuiDualRange extends Component {
     return { left: `${valuePosition * trackPositionScale}%` };
   }
 
+  toggleHasFocus = (shouldFocused = !this.state.hasFocus) => {
+    this.setState({
+      hasFocus: shouldFocused
+    });
+  }
+
   render() {
 
     const {
@@ -190,6 +200,8 @@ export class EuiDualRange extends Component {
             showTicks={showTicks}
             showInput={showInput}
             onKeyDown={this.handleLowerKeyDown}
+            onFocus={() => this.toggleHasFocus(true)}
+            onBlur={() => this.toggleHasFocus(false)}
             style={this.calculateThumbPositionStyle(this.lowerValue)}
           />
           <EuiRangeThumb
@@ -200,11 +212,14 @@ export class EuiDualRange extends Component {
             showTicks={showTicks}
             showInput={showInput}
             onKeyDown={this.handleUpperKeyDown}
+            onFocus={() => this.toggleHasFocus(true)}
+            onBlur={() => this.toggleHasFocus(false)}
             style={this.calculateThumbPositionStyle(this.upperValue)}
           />
 
           {showRange && (
             <EuiRangeHighlight
+              hasFocus={this.state.hasFocus}
               min={Number(min)}
               max={Number(max)}
               lowerValue={Number(this.lowerValue)}
@@ -296,7 +311,7 @@ EuiDualRange.defaultProps = {
   levels: [],
 };
 
-const EuiRangeThumb = ({ min, max, value, disabled, onKeyDown, showInput, showTicks, style }) => {
+const EuiRangeThumb = ({ min, max, value, disabled, showInput, showTicks, ...rest }) => {
   const classes = classNames(
     'euiRange__thumb',
     {
@@ -306,14 +321,13 @@ const EuiRangeThumb = ({ min, max, value, disabled, onKeyDown, showInput, showTi
   return (
     <div
       className={classes}
-      style={style}
       role="slider"
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
       aria-disabled={!!disabled}
       tabIndex={showInput ? '-1' : '0'}
-      onKeyDown={onKeyDown}
+      {...rest}
     />
   );
 };

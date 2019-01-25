@@ -124,6 +124,10 @@ $euiRangeLevelColors: (
   height: 4px;
   border-radius: 4px;
   background-color: $euiRangeTrackColor;
+
+  &--hasFocus {
+    background-color: $euiColorPrimary;
+  }
 }
 
 .euiRange__value {
