@@ -13,10 +13,17 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiDualRange extends Component {
   state = {
-    hasFocus: false
+    hasFocus: false,
+    rangeSliderRefAvailable: false
   }
 
-  rangeSliderRef = React.createRef();
+  rangeSliderRef = null;
+  handleRangeSliderRefUpdate = (ref) => {
+    this.rangeSliderRef = ref;
+    this.setState({
+      rangeSliderRefAvailable: true
+    });
+  }
 
   get lowerValue() {
     return this.props.value[0];
@@ -101,8 +108,8 @@ export class EuiDualRange extends Component {
     let valuePosition = decimal <= 1 ? decimal : 1;
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
-    // TODO: Get ref earlier
-    const thumbToTrackRatio = this.rangeSliderRef.current ? (16 / this.rangeSliderRef.current.offsetWidth) : 0.05;
+    const EUI_THUMB_SIZE = 16;
+    const thumbToTrackRatio = (EUI_THUMB_SIZE / this.rangeSliderRef.clientWidth);
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
   }
@@ -177,7 +184,7 @@ export class EuiDualRange extends Component {
           value={value}
         >
           <EuiRangeSlider
-            ref={this.rangeSliderRef}
+            ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
             className={rangeClasses}
@@ -192,30 +199,34 @@ export class EuiDualRange extends Component {
             {...rest}
           />
 
-          <EuiRangeThumb
-            min={min}
-            max={Number(this.upperValue)}
-            value={this.lowerValue}
-            disabled={disabled}
-            showTicks={showTicks}
-            showInput={showInput}
-            onKeyDown={this.handleLowerKeyDown}
-            onFocus={() => this.toggleHasFocus(true)}
-            onBlur={() => this.toggleHasFocus(false)}
-            style={this.calculateThumbPositionStyle(this.lowerValue)}
-          />
-          <EuiRangeThumb
-            min={Number(this.lowerValue)}
-            max={max}
-            value={this.upperValue}
-            disabled={disabled}
-            showTicks={showTicks}
-            showInput={showInput}
-            onKeyDown={this.handleUpperKeyDown}
-            onFocus={() => this.toggleHasFocus(true)}
-            onBlur={() => this.toggleHasFocus(false)}
-            style={this.calculateThumbPositionStyle(this.upperValue)}
-          />
+          {this.state.rangeSliderRefAvailable && (
+            <React.Fragment>
+              <EuiRangeThumb
+                min={min}
+                max={Number(this.upperValue)}
+                value={this.lowerValue}
+                disabled={disabled}
+                showTicks={showTicks}
+                showInput={showInput}
+                onKeyDown={this.handleLowerKeyDown}
+                onFocus={() => this.toggleHasFocus(true)}
+                onBlur={() => this.toggleHasFocus(false)}
+                style={this.calculateThumbPositionStyle(this.lowerValue)}
+              />
+              <EuiRangeThumb
+                min={Number(this.lowerValue)}
+                max={max}
+                value={this.upperValue}
+                disabled={disabled}
+                showTicks={showTicks}
+                showInput={showInput}
+                onKeyDown={this.handleUpperKeyDown}
+                onFocus={() => this.toggleHasFocus(true)}
+                onBlur={() => this.toggleHasFocus(false)}
+                style={this.calculateThumbPositionStyle(this.upperValue)}
+              />
+            </React.Fragment>
+          )}
 
           {showRange && (
             <EuiRangeHighlight
