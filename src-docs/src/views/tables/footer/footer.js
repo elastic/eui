@@ -132,16 +132,23 @@ export class Table extends Component {
       footer: <em>Page totals:</em>,
       sortable: true,
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'firstName',
       name: 'Full Name',
-      isMobileHeader: true,
+      mobileOptions: {
+        only: true,
+        fullWidth: true,
+      },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
