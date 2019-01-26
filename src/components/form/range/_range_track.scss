@@ -1,0 +1,94 @@
+.euiRangeTrack {
+  height: 100%; // Don't overflow `euiRangeWrapper`
+  flex-grow: 1;
+  position: relative; // for positioning ticks/levels
+  align-self: flex-start; // Adjust vertical alignment of input based on extras
+
+  &--disabled {
+    opacity: .25;
+  }
+}
+
+.euiRangeTicks {
+  position: absolute;
+  left: ($euiRangeThumbWidth / 2);
+  right: ($euiRangeThumbWidth / 2);
+  top: $euiSizeS;
+  display: flex;
+  z-index: $euiZLevel1;
+}
+
+.euiRangeTick {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  font-size: $euiFontSizeXS;
+  position: relative;
+  padding-top: $euiSize;
+
+  &::before {
+    @include size($euiSizeXS);
+
+    content: '';
+    background-color: $euiColorDarkShade;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(50% - #{($euiSizeXS/2)});
+  }
+
+  &--isCustom {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  &:enabled:hover,
+  &:focus,
+  &--selected {
+    color: $euiColorPrimary;
+  }
+
+  &--selected {
+    font-weight: $euiFontWeightMedium;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.euiRangeLevels {
+  display: flex;
+  justify-content: stretch;
+  z-index: $euiZLevel0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: ($euiFormControlHeight / 2) + 2px;
+
+  &--hasTicks {
+    top: ($euiFormControlHeight / 4) + 2px;
+  }
+}
+
+.euiRangeLevel {
+  display: block;
+  height: 6px;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+// Modifier naming and colors.
+$euiRangeLevelColors: (
+  primary: $euiColorPrimary,
+  success: $euiColorSuccess,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+);
+
+// Create level modifiers based upon the map.
+@each $name, $color in $euiRangeLevelColors {
+  .euiRangeLevel--#{$name} {
+    background-color: transparentize($color, .7);
+  }
+}

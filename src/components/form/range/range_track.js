@@ -60,14 +60,19 @@ export class EuiRangeTrack extends Component {
       }
     }
 
+    const trackClasses = classNames('euiRangeTrack', {
+      'euiRangeTrack--disabled': disabled
+    });
+
     return (
-      <div className="euiRange__inputWrapper" style={inputWrapperStyle}>
+      <div className={trackClasses} style={inputWrapperStyle}>
         {children}
         {!!levels.length && (
           <EuiRangeLevels
             levels={levels}
             max={max}
             min={min}
+            showTicks={showTicks}
           />
         )}
         {showTicks && (
@@ -118,7 +123,7 @@ const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, max }) =>
   const ticksStyle = !!ticks ? undefined : { margin: `0 ${tickObject.percentageWidth / -2}%`, left: 0, right: 0 };
 
   return (
-    <div className="euiRange__ticks" style={ticksStyle}>
+    <div className="euiRangeTicks" style={ticksStyle}>
       {tickObject.sequence.map((tickValue) => {
         const tickStyle = {};
         let customTick;
@@ -135,10 +140,10 @@ const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, max }) =>
         }
 
         const tickClasses = classNames(
-          'euiRange__tick',
+          'euiRangeTick',
           {
-            'euiRange__tick--selected': value === tickValue,
-            'euiRange__tick-isCustom': customTick,
+            'euiRangeTick--selected': value === tickValue,
+            'euiRangeTick--isCustom': customTick,
           }
         );
 
@@ -162,15 +167,20 @@ const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, max }) =>
   );
 };
 
-const EuiRangeLevels = ({ levels, max, min }) => (
-  <div className="euiRange__levels">
-    {levels.map((level, index) => {
-      const range = level.max - level.min;
-      const width = (range / (max - min)) * 100;
+const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
+  const classes = classNames('euiRangeLevels', {
+    'euiRangeLevels--hasTicks': showTicks
+  });
+  return (
+    <div className={classes}>
+      {levels.map((level, index) => {
+        const range = level.max - level.min;
+        const width = (range / (max - min)) * 100;
 
-      return (
-        <span key={index} style={{ width: `${width}%` }} className={`euiRange__level--${level.color}`} />
-      );
-    })}
-  </div>
-);
+        return (
+          <span key={index} style={{ width: `${width}%` }} className={`euiRangeLevel euiRangeLevel--${level.color}`} />
+        );
+      })}
+    </div>
+  );
+};

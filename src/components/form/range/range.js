@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -36,20 +35,12 @@ export const EuiRange = ({
   ...rest
 }) => {
 
-  const classes = classNames('euiRange', className);
-
   return (
     <EuiRangeWrapper
-      compressed={compressed}
-      disabled={disabled}
+      className="euiRange"
       fullWidth={fullWidth}
-      showLabels={showLabels}
-      showTicks={showTicks}
-      levels={levels}
-      showRange={showRange}
-      showValue={showValue}
     >
-      {showLabels && <EuiRangeLabel side="min">{min}</EuiRangeLabel>}
+      {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
       <EuiRangeTrack
         disabled={disabled}
         max={max}
@@ -65,7 +56,7 @@ export const EuiRange = ({
         <EuiRangeSlider
           id={id}
           name={name}
-          className={classes}
+          className={className}
           min={min}
           max={max}
           step={step}
@@ -73,6 +64,7 @@ export const EuiRange = ({
           disabled={disabled}
           onChange={onChange}
           style={style}
+          showTicks={showTicks}
           tabIndex={showInput ? '-1' : (tabIndex || null)}
           {...rest}
         />
@@ -83,11 +75,13 @@ export const EuiRange = ({
             max={max}
             min={min}
             name={name}
+            showTicks={showTicks}
           />
         )}
 
         {showRange && (
           <EuiRangeHighlight
+            showTicks={showTicks}
             min={Number(min)}
             max={Number(max)}
             lowerValue={Number(min)}
@@ -95,7 +89,7 @@ export const EuiRange = ({
           />
         )}
       </EuiRangeTrack>
-      {showLabels && <EuiRangeLabel side="max">{max}</EuiRangeLabel>}
+      {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
       {showInput && (
         <EuiRangeInput
           min={min}

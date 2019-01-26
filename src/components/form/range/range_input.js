@@ -12,6 +12,7 @@ export const EuiRangeInput = ({
   compressed,
   onChange,
   name,
+  side,
   ...rest
 }) => {
 
@@ -20,7 +21,7 @@ export const EuiRangeInput = ({
   return (
     <EuiFieldNumber
       name={name}
-      className="euiRange__extraInput"
+      className={`euiRangeInput euiRangeInput--${side}`}
       min={Number(min)}
       max={Number(max)}
       step={step}
@@ -41,5 +42,9 @@ EuiRangeInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   compressed: PropTypes.bool,
   onChange: PropTypes.func,
-  name: PropTypes.string
+  name: PropTypes.string,
+  side: PropTypes.oneOf(['min', 'max'])
+};
+EuiRangeInput.defaultProps = {
+  side: 'max'
 };

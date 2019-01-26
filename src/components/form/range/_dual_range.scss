@@ -1,0 +1,30 @@
+.euiDualRange {
+  &__slider {
+    @include euiRangeThumbPerBrowser {
+      visibility: hidden;
+    }
+  }
+}
+
+.euiRangeThumb {
+  @include euiCustomControl($type: 'round');
+
+  @include euiRangeThumbStyle;
+
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -($euiRangeThumbHeight / 2);
+  z-index: $euiZLevel2;
+
+  pointer-events: none;
+
+  &:focus {
+    @include euiCustomControlFocused;
+  }
+
+  &--hasTicks {
+    top: 25%;
+  }
+}

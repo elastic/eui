@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export const EuiRangeSlider = React.forwardRef(({
   className,
@@ -13,25 +14,31 @@ export const EuiRangeSlider = React.forwardRef(({
   tabIndex,
   value,
   style,
+  showTicks,
   ...rest
-}, ref) => (
-  <input
-    ref={ref}
-    type="range"
-    id={id}
-    name={name}
-    className={className}
-    min={min}
-    max={max}
-    step={step}
-    value={value}
-    disabled={disabled}
-    onChange={onChange}
-    style={style}
-    tabIndex={tabIndex}
-    {...rest}
-  />
-));
+}, ref) => {
+  const classes = classNames('euiRangeSlider', {
+    'euiRangeSlider--hasTicks': showTicks
+  }, className);
+  return (
+    <input
+      ref={ref}
+      type="range"
+      id={id}
+      name={name}
+      className={classes}
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      disabled={disabled}
+      onChange={onChange}
+      style={style}
+      tabIndex={tabIndex}
+      {...rest}
+    />
+  );
+});
 
 EuiRangeSlider.propTypes = {
   id: PropTypes.string,

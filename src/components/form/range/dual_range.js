@@ -146,20 +146,16 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const rangeClasses = classNames('euiRange', 'euiRange--dual', className);
+    const rangeClasses = classNames('euiDualRange__slider', className);
 
     return (
       <EuiRangeWrapper
-        compressed={compressed}
-        disabled={disabled}
+        className="euiDualRange"
         fullWidth={fullWidth}
-        showLabels={showLabels}
-        showTicks={showTicks}
-        levels={levels}
-        showRange={showRange}
       >
         {showInput && (
           <EuiRangeInput
+            side="min"
             min={min}
             max={Number(this.upperValue)}
             step={step}
@@ -170,7 +166,7 @@ export class EuiDualRange extends Component {
             name={name}
           />
         )}
-        {showLabels && <EuiRangeLabel side="min">{min}</EuiRangeLabel>}
+        {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
         <EuiRangeTrack
           disabled={disabled}
           max={max}
@@ -195,6 +191,7 @@ export class EuiDualRange extends Component {
             disabled={disabled}
             onChange={this.handleSliderChange}
             style={style}
+            showTicks={showTicks}
             tabIndex={'-1'}
             {...rest}
           />
@@ -231,6 +228,7 @@ export class EuiDualRange extends Component {
           {showRange && (
             <EuiRangeHighlight
               hasFocus={this.state.hasFocus}
+              showTicks={showTicks}
               min={Number(min)}
               max={Number(max)}
               lowerValue={Number(this.lowerValue)}
@@ -238,7 +236,7 @@ export class EuiDualRange extends Component {
             />
           )}
         </EuiRangeTrack>
-        {showLabels && <EuiRangeLabel side="max">{max}</EuiRangeLabel>}
+        {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
         {showInput && (
           <EuiRangeInput
             min={Number(this.lowerValue)}
@@ -324,9 +322,9 @@ EuiDualRange.defaultProps = {
 
 const EuiRangeThumb = ({ min, max, value, disabled, showInput, showTicks, ...rest }) => {
   const classes = classNames(
-    'euiRange__thumb',
+    'euiRangeThumb',
     {
-      'euiRange__thumb--hasTicks': showTicks
+      'euiRangeThumb--hasTicks': showTicks
     },
   );
   return (

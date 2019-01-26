@@ -1,3 +1,10 @@
 @import 'variables';
 @import 'mixins';
-@import 'range';
+@import 'range_highlight';
+@import 'range_input';
+@import 'range_label';
+@import 'range_slider';
+@import 'range_tooltip';
+@import 'range_track';
+@import 'range_wrapper';
+@import 'dual_range';
