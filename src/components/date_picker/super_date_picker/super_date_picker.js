@@ -136,7 +136,7 @@ export class EuiSuperDatePicker extends Component {
       },
       start,
       end,
-      isInvalid: false,
+      isInvalid: isRangeInvalid(start, end),
       hasChanged: false,
       showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
     };
