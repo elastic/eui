@@ -2224,7 +2224,40 @@ const B = {
 export { A, B };`);
     });
 
-    it('extracts the type from an export statement', () => {
+    it('removes type exports from ExportNamedDeclaration with a source', () => {
+      const result = transform(
+        `
+export { Foo, A } from './foo';
+`,
+        {
+          ...babelOptions,
+          plugins: [
+            [
+              './scripts/babel/proptypes-from-ts-props',
+              {
+                fs: {
+                  existsSync: () => true,
+                  statSync: () => ({ isDirectory: () => false }),
+                  readFileSync: filepath => {
+                    if (filepath.endsWith('/foo')) {
+                      return Buffer.from(`
+                        export type Foo = string;
+                      `);
+                    }
+
+                    throw new Error(`Test tried to import from ${filepath}`);
+                  }
+                }
+              }
+            ],
+          ]
+        }
+      );
+
+      expect(result.code).toBe(`export { A } from './foo';`);
+    });
+
+    it('removes type export statements', () => {
       const result = transform(
         `
 export type Foo = string;
