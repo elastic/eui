@@ -14,5 +14,8 @@ export const EuiRangeLabel = ({ children, disabled, side }) => {
 };
 
 EuiRangeLabel.propTypes = {
-  side: PropTypes.string.isRequired
+  side: PropTypes.oneOf(['min', 'max'])
+};
+EuiRangeLabel.defaultProps = {
+  side: 'max'
 };

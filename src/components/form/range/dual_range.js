@@ -236,7 +236,7 @@ export class EuiDualRange extends Component {
             />
           )}
         </EuiRangeTrack>
-        {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
+        {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
         {showInput && (
           <EuiRangeInput
             min={Number(this.lowerValue)}
@@ -335,7 +335,7 @@ const EuiRangeThumb = ({ min, max, value, disabled, showInput, showTicks, ...res
       aria-valuemax={max}
       aria-valuenow={Number(value)}
       aria-disabled={!!disabled}
-      tabIndex={showInput ? '-1' : '0'}
+      tabIndex={(showInput || !!disabled) ? '-1' : '0'}
       {...rest}
     />
   );
