@@ -5,7 +5,7 @@
   align-self: flex-start; // Adjust vertical alignment of input based on extras
 
   &--disabled {
-    opacity: .25;
+    opacity: $euiRangeDisabledOpacity;
   }
 }
 

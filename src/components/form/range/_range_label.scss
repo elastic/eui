@@ -13,6 +13,6 @@
   }
 
   &--isDisabled {
-    opacity: .25;
+    opacity: $euiRangeDisabledOpacity;
   }
 }

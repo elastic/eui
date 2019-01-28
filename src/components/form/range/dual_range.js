@@ -21,7 +21,7 @@ export class EuiDualRange extends Component {
   handleRangeSliderRefUpdate = (ref) => {
     this.rangeSliderRef = ref;
     this.setState({
-      rangeSliderRefAvailable: true
+      rangeSliderRefAvailable: !!ref
     });
   }
 
@@ -333,10 +333,17 @@ const EuiRangeThumb = ({ min, max, value, disabled, showInput, showTicks, ...res
       role="slider"
       aria-valuemin={min}
       aria-valuemax={max}
-      aria-valuenow={value}
+      aria-valuenow={Number(value)}
       aria-disabled={!!disabled}
       tabIndex={showInput ? '-1' : '0'}
       {...rest}
     />
   );
+};
+EuiRangeThumb.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  showInput: PropTypes.bool,
+  showTicks: PropTypes.bool,
 };
