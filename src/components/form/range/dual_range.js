@@ -140,7 +140,6 @@ export class EuiDualRange extends Component {
       levels,
       onChange, // eslint-disable-line no-unused-vars
       showRange,
-      valueAppend, // eslint-disable-line no-unused-vars
       value,
       style,
       ...rest
@@ -260,6 +259,9 @@ EuiDualRange.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   step: PropTypes.number,
+  /**
+   * Array containing lower and upper values. Fallback is `min` and `max` respectively
+   */
   value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
@@ -268,7 +270,7 @@ EuiDualRange.propTypes = {
    */
   showLabels: PropTypes.bool,
   /**
-   * Displays an extra input control for direct manipulation
+   * Displays a input controls for direct manipulation
    */
   showInput: PropTypes.bool,
   /**
@@ -300,13 +302,9 @@ EuiDualRange.propTypes = {
     }),
   ),
   /**
-   * Shows a thick line from min to value
+   * Shows a thick line from lower value to upper value
    */
   showRange: PropTypes.bool,
-  /**
-   * Shows a tooltip styled value
-   */
-  valueAppend: PropTypes.node,
 };
 
 EuiDualRange.defaultProps = {
@@ -316,6 +314,7 @@ EuiDualRange.defaultProps = {
   compressed: false,
   showLabels: false,
   showInput: false,
+  showRange: true,
   showTicks: false,
   levels: [],
 };

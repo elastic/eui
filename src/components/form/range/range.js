@@ -173,6 +173,7 @@ EuiRange.defaultProps = {
   compressed: false,
   showLabels: false,
   showInput: false,
+  showRange: false,
   showTicks: false,
   showValue: false,
   levels: [],

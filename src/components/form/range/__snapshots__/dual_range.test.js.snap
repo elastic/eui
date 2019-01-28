@@ -15,6 +15,14 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
       type="range"
       value="0,8"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:-1.0101010101010102%;width:8.080808080808081%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -38,6 +46,14 @@ exports[`EuiDualRange is rendered 1`] = `
       type="range"
       value="0,8"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:-11.11111111111111%;width:88.88888888888889%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -56,6 +72,14 @@ exports[`EuiDualRange props compressed should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -74,6 +98,14 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -114,6 +146,14 @@ exports[`EuiDualRange props inputs should render 1`] = `
       type="range"
       value="0,8"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:-11.11111111111111%;width:88.88888888888889%"
+      />
+    </div>
   </div>
   <div
     class="euiFormControlLayout"
@@ -154,6 +194,14 @@ exports[`EuiDualRange props labels should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
   </div>
   <label
     class="euiRangeLabel euiRangeLabel--max"
@@ -177,6 +225,14 @@ exports[`EuiDualRange props levels should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
     <div
       class="euiRangeLevels"
     >
@@ -233,6 +289,14 @@ exports[`EuiDualRange props ticks should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight euiRangeHighlight--hasTicks"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
     <div
       class="euiRangeTicks"
       style="margin:0 -8.403361344537815%;left:0;right:0"
