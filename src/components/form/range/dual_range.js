@@ -26,10 +26,10 @@ export class EuiDualRange extends Component {
   }
 
   get lowerValue() {
-    return this.props.value[0];
+    return this.props.value ? this.props.value[0] : this.props.min;
   }
   get upperValue() {
-    return this.props.value[1];
+    return this.props.value ? this.props.value[1] : this.props.max;
   }
 
   _determineThumbMovement = (newVal, e) => {
@@ -163,7 +163,7 @@ export class EuiDualRange extends Component {
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleLowerInputChange}
-            name={name}
+            name={`${name}-minValue`}
           />
         )}
         {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
@@ -246,7 +246,7 @@ export class EuiDualRange extends Component {
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleUpperInputChange}
-            name={name}
+            name={`${name}-maxValue`}
           />
         )}
       </EuiRangeWrapper>

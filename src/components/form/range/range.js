@@ -100,6 +100,7 @@ export const EuiRange = ({
           compressed={compressed}
           onChange={onChange}
           name={name}
+          {...rest}
         />
       )}
     </EuiRangeWrapper>

@@ -37,7 +37,7 @@ export const EuiRangeTooltip = ({ value, valueAppend, max, min, name, showTicks 
 };
 
 EuiRangeTooltip.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   valueAppend: PropTypes.string,
   max: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
