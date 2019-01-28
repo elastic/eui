@@ -2,6 +2,10 @@
 
 - `EuiHeader` no longer reduces height at mobile sizes ([#1480](https://github.com/elastic/eui/pull/1480))
 
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not updating derived `isInvalid` state on prop update ([#1483](https://github.com/elastic/eui/pull/1483))
+
 ## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
 
 - Default light theme now comes with an empty light variables file to make theme switching easier ([#1479](https://github.com/elastic/eui/pull/1479))
