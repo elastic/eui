@@ -2,6 +2,10 @@
 
 - `EuiHeader` no longer reduces height at mobile sizes ([#1480](https://github.com/elastic/eui/pull/1480))
 
+**Bug fixes**
+
+- Remove Typescript type and interface definitions from ES and CJS exports ([#1486](https://github.com/elastic/eui/pull/1486))
+
 ## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
 
 - Default light theme now comes with an empty light variables file to make theme switching easier ([#1479](https://github.com/elastic/eui/pull/1479))
