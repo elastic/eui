@@ -23,17 +23,17 @@ function lookupToken<T extends RenderableValues>(
     }
   } else if (values === undefined || typeof renderable !== 'string') {
     return renderable;
-  } else {
-    const children = processStringToChildren(renderable, values);
-    if (typeof children === 'string') {
-      return children;
-    } else {
-      const Component: SFC<any> = () => {
-        return <Fragment>{children}</Fragment>;
-      };
-      return React.createElement(Component, values);
-    }
   }
+
+  const children = processStringToChildren(renderable, values);
+  if (typeof children === 'string') {
+    return children;
+  }
+
+  const Component: SFC<any> = () => {
+    return <Fragment>{children}</Fragment>;
+  };
+  return React.createElement(Component, values);
 }
 
 interface I18nTokenShape<T> {

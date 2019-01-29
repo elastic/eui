@@ -78,8 +78,7 @@ export function processStringToChildren(input: string, values: RenderableValues)
       appendValueToChildren(child);
       child = {propName: ''};
     } else if (char === '}') {
-      // @ts-ignore
-      const propName = child.propName;
+      const propName = (child as {propName: string}).propName;
       if (!values.hasOwnProperty(propName)) {
         throw new Error(`Key "${propName}" not found in ${JSON.stringify(values, null, 2)}`);
       }
