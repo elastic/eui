@@ -405,8 +405,6 @@ function getCrossAxisPosition({
   const combinedBoundingBox = intersectBoundingBoxes(windowBoundingBox, containerBoundingBox);
   const availableSpace = getAvailableSpace(anchorBoundingBox, combinedBoundingBox, buffer, offset, position);
   const minimumSpace = arrowConfig ? arrowConfig.arrowBuffer : 0;
-  availableSpace[crossAxisFirstSide] = Math.max(availableSpace[crossAxisFirstSide], minimumSpace);
-  availableSpace[crossAxisSecondSide] = Math.max(availableSpace[crossAxisSecondSide], minimumSpace);
 
   const contentOverflowSize = (popoverSizeOnCrossAxis - anchorSizeOnCrossAxis) / 2;
 
