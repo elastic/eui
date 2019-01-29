@@ -164,6 +164,8 @@ export class EuiDualRange extends Component {
             compressed={compressed}
             onChange={this.handleLowerInputChange}
             name={`${name}-minValue`}
+            aria-describedby={this.props['aria-describedby']}
+            aria-label={this.props['aria-label']}
           />
         )}
         {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
@@ -193,6 +195,7 @@ export class EuiDualRange extends Component {
             style={style}
             showTicks={showTicks}
             hasFocus={this.state.hasFocus}
+            aria-hidden={true}
             tabIndex={'-1'}
             {...rest}
           />
@@ -210,6 +213,8 @@ export class EuiDualRange extends Component {
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
                 style={this.calculateThumbPositionStyle(this.lowerValue)}
+                aria-describedby={this.props['aria-describedby']}
+                aria-label={this.props['aria-label']}
               />
               <EuiRangeThumb
                 min={Number(this.lowerValue)}
@@ -222,6 +227,8 @@ export class EuiDualRange extends Component {
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
                 style={this.calculateThumbPositionStyle(this.upperValue)}
+                aria-describedby={this.props['aria-describedby']}
+                aria-label={this.props['aria-label']}
               />
             </React.Fragment>
           )}
@@ -249,6 +256,8 @@ export class EuiDualRange extends Component {
             compressed={compressed}
             onChange={this.handleUpperInputChange}
             name={`${name}-maxValue`}
+            aria-describedby={this.props['aria-describedby']}
+            aria-label={this.props['aria-label']}
           />
         )}
       </EuiRangeWrapper>
