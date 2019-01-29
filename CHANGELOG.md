@@ -7,6 +7,7 @@
 **Bug fixes**
 
 - Fixed popover & tooltip positioning to properly account for arrow buffer ([#1490](https://github.com/elastic/eui/pull/1490))
+- Fixed `EuiSuperDatePicker` unexpectedly closing start and end date popovers ([#1494](https://github.com/elastic/eui/pull/1494))
 
 ## [`6.7.3`](https://github.com/elastic/eui/tree/v6.7.3)
 
