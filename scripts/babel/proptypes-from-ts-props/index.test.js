@@ -1877,6 +1877,57 @@ FooComponent.propTypes = {
 };`);
           });
 
+          it('resolves types exported without an import', () => {
+            const result = transform(
+              `
+import React from 'react';
+import { Foo } from '../foo';
+const FooComponent: React.SFC<{foo: Foo}> = () => {
+  return (<div>Hello World</div>);
+}`,
+              {
+                ...babelOptions,
+                plugins: [
+                  [
+                    './scripts/babel/proptypes-from-ts-props',
+                    {
+                      fs: {
+                        existsSync: () => true,
+                        statSync: () => ({ isDirectory: () => false }),
+                        readFileSync: filepath => {
+                          if (filepath.endsWith('/foo')) {
+                            return Buffer.from(`
+                              export { Foo } from './Foo';
+                            `);
+                          }
+
+                          if (filepath.endsWith('/Foo')) {
+                            return Buffer.from(`
+                              export type Foo = string;
+                            `);
+                          }
+
+                          throw new Error(`Test tried to import from ${filepath}`);
+                        }
+                      }
+                    }
+                  ],
+                ]
+              }
+            );
+
+            expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired
+};`);
+          });
+
         });
 
       });
@@ -2126,6 +2177,96 @@ FooComponent.propTypes = {
 
     });
 
+  });
+
+  describe('remove types from exports', () => {
+    it('removes sole type export from ExportNamedDeclaration', () => {
+      const result = transform(
+        `
+type Foo = string;
+export { Foo };
+`,
+        babelOptions
+      );
+
+      expect(result.code).toBe(`export {};`);
+    });
+
+    it('removes multiple type export from ExportNamedDeclaration', () => {
+      const result = transform(
+        `
+type Foo = string;
+type Bar = number | Foo;
+export { Foo, Bar };
+`,
+        babelOptions
+      );
+
+      expect(result.code).toBe(`export {};`);
+    });
+
+    it('removes type exports from ExportNamedDeclaration, leaving legitimate exports', () => {
+      const result = transform(
+        `
+type Foo = string;
+type Bar = Foo | boolean;
+const A = 500;
+const B = { bar: A };
+export { Foo, A, Bar, B };
+`,
+        babelOptions
+      );
+
+      expect(result.code).toBe(`const A = 500;
+const B = {
+  bar: A
+};
+export { A, B };`);
+    });
+
+    it('removes type exports from ExportNamedDeclaration with a source', () => {
+      const result = transform(
+        `
+export { Foo, A } from './foo';
+`,
+        {
+          ...babelOptions,
+          plugins: [
+            [
+              './scripts/babel/proptypes-from-ts-props',
+              {
+                fs: {
+                  existsSync: () => true,
+                  statSync: () => ({ isDirectory: () => false }),
+                  readFileSync: filepath => {
+                    if (filepath.endsWith('/foo')) {
+                      return Buffer.from(`
+                        export type Foo = string;
+                      `);
+                    }
+
+                    throw new Error(`Test tried to import from ${filepath}`);
+                  }
+                }
+              }
+            ],
+          ]
+        }
+      );
+
+      expect(result.code).toBe(`export { A } from './foo';`);
+    });
+
+    it('removes type export statements', () => {
+      const result = transform(
+        `
+export type Foo = string;
+`,
+        babelOptions
+      );
+
+      expect(result.code).toBe('');
+    });
   });
 
 });
