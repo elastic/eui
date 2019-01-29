@@ -34,7 +34,25 @@
     }
   }
 
-  &:focus {
+  @include euiRangeThumbPerBrowser {
+    @include euiCustomControl($type: 'round');
+
+    @include euiRangeThumbStyle;
+  }
+
+  @include euiRangeTrackPerBrowser {
+    @include euiRangeTrackSize;
+
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius;
+
+    background-color: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
+  }
+
+  &:focus,
+  &--hasFocus {
     @include euiRangeThumbPerBrowser {
       @include euiCustomControlFocused;
     }
@@ -59,23 +77,6 @@
         transform: translateX(-100%) translateY(-50%) scale(1.1);
       }
     }
-  }
-
-  @include euiRangeThumbPerBrowser {
-    @include euiCustomControl($type: 'round');
-
-    @include euiRangeThumbStyle;
-  }
-
-  @include euiRangeTrackPerBrowser {
-    @include euiRangeTrackSize;
-
-    background: $euiRangeTrackColor;
-    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
-    border-radius: $euiRangeTrackRadius;
-
-    background-color: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 
   // Resets

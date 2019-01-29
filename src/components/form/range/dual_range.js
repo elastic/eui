@@ -191,6 +191,7 @@ export class EuiDualRange extends Component {
             onChange={this.handleSliderChange}
             style={style}
             showTicks={showTicks}
+            hasFocus={this.state.hasFocus}
             tabIndex={'-1'}
             {...rest}
           />
