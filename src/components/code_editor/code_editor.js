@@ -142,11 +142,6 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
-    const activityLabel = isReadOnly ? 'Interacting' : 'Editing';
-    const activity = isReadOnly
-      ? 'interacting with the code'
-      : 'editing';
-
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
@@ -160,19 +155,39 @@ export class EuiCodeEditor extends Component {
         data-test-subj="codeEditorHint"
       >
         <p className="euiText">
-          <EuiI18n
-            token={`euiCodeEditor.start${activityLabel}`}
-            default={`Press Enter to start ${activity}.`}
-            values={{ activity }}
-          />
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.startInteracting"
+                  default="Press Enter to start interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.startEditing"
+                  default="Press Enter to start editing."
+                />
+              )
+          }
         </p>
 
         <p className="euiText">
-          <EuiI18n
-            token={`euiCodeEditor.stop${activityLabel}`}
-            default={` When you're done, press Escape to stop ${activity}.`}
-            values={{ activity }}
-          />
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.stopInteracting"
+                  default="When you're done, press Escape to stop interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.stopEditing"
+                  default="When you're done, press Escape to stop editing."
+                />
+              )
+          }
         </p>
       </div>
     );
