@@ -2599,15 +2599,15 @@ exports[`EuiIcon props type logoAPM is rendered 1`] = `
     fill-rule="evenodd"
   >
     <path
-      d="M0 11h24V.999H0z"
+      d="M0 10.001h24V0H0z"
       fill="#F04E98"
     />
     <path
-      d="M32 21H20c-5.522 0-10-4.478-10-10h22v10z"
+      d="M32 20H20c-5.522 0-10-4.478-10-10h22v10z"
       fill="#343741"
     />
     <path
-      d="M20 33h12v-9H20z"
+      d="M20 32h12v-9H20z"
       fill="#0080D5"
     />
   </g>

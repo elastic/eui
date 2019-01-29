@@ -16,6 +16,20 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
+function isRangeInvalid(start, end) {
+  if (start === 'now' && end === 'now') {
+    return true;
+  }
+
+  const startMoment = dateMath.parse(start);
+  const endMoment = dateMath.parse(end, { roundUp: true });
+  if (startMoment.isAfter(endMoment)) {
+    return true;
+  }
+
+  return false;
+}
+
 export class EuiSuperDatePicker extends Component {
 
   static propTypes = {
@@ -97,7 +111,7 @@ export class EuiSuperDatePicker extends Component {
         },
         start: nextProps.start,
         end: nextProps.end,
-        isInvalid: false,
+        isInvalid: isRangeInvalid(nextProps.start, nextProps.end),
         hasChanged: false,
         showPrettyDuration: showPrettyDuration(nextProps.start, nextProps.end, nextProps.commonlyUsedRanges),
       };
@@ -122,22 +136,14 @@ export class EuiSuperDatePicker extends Component {
       },
       start,
       end,
-      isInvalid: false,
+      isInvalid: isRangeInvalid(start, end),
       hasChanged: false,
       showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
     };
   }
 
   setTime = ({ start, end }) => {
-    const startMoment = dateMath.parse(start);
-    const endMoment = dateMath.parse(end, { roundUp: true });
-    const isInvalid = (start === 'now' && end === 'now') || startMoment.isAfter(endMoment);
-
-    if (this.tooltipTimeout) {
-      clearTimeout(this.tooltipTimeout);
-      this.hideTooltip();
-      this.tooltipTimeout = null;
-    }
+    const isInvalid = isRangeInvalid(start, end);
 
     this.setState({
       start,

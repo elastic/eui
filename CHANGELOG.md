@@ -4,6 +4,8 @@
 
 **Bug fixes**
 
+- Fixed `EuiSuperDatePicker` not updating derived `isInvalid` state on prop update ([#1483](https://github.com/elastic/eui/pull/1483))
+- Fixed `logoAPM` ([#1489](https://github.com/elastic/eui/pull/1489))
 - Remove Typescript type and interface definitions from ES and CJS exports ([#1486](https://github.com/elastic/eui/pull/1486))
 
 ## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
