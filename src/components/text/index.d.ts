@@ -29,7 +29,7 @@ declare module '@elastic/eui' {
 
   type EuiTextAlignProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
-      align?: ALIGNMENTS;
+      textAlign?: ALIGNMENTS;
     };
 
   type EuiTextProps = EuiTextAlignProps & {
