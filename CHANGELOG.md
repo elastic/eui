@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.7.3`.
+**Bug fixes**
+
+- Fixed popover & tooltip positioning to properly account for arrow buffer ([#1490](https://github.com/elastic/eui/pull/1490))
 
 ## [`6.7.3`](https://github.com/elastic/eui/tree/v6.7.3)
 
