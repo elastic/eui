@@ -157,6 +157,7 @@ export class EuiDualRange extends Component {
             side="min"
             min={min}
             max={Number(this.upperValue)}
+            digits={String(max).length}
             step={step}
             value={this.lowerValue}
             disabled={disabled}
@@ -241,6 +242,7 @@ export class EuiDualRange extends Component {
           <EuiRangeInput
             min={Number(this.lowerValue)}
             max={max}
+            digits={String(max).length}
             step={step}
             value={this.upperValue}
             disabled={disabled}

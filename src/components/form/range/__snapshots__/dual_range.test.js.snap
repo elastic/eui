@@ -125,7 +125,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         max="8"
         min="1"
         name="name-minValue"
-        style="max-width:3em"
+        style="width:4em"
         type="number"
         value="0"
       />
@@ -166,7 +166,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         max="10"
         min="0"
         name="name-maxValue"
-        style="max-width:4em"
+        style="width:4em"
         type="number"
         value="8"
       />
