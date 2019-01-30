@@ -13,6 +13,12 @@
   transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
 
+  &.euiNavDrawer-isCollapsed  {
+    .euiListGroupItem-hasExtraAction .euiListGroupItem__button {
+      max-width: 100%;
+    }
+  }
+
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
     transition-delay: $euiNavDrawerExpandingDelay;
@@ -50,6 +56,18 @@
     // sass-lint:disable no-vendor-prefixes
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
+
+  .euiListGroupItem__label {
+    line-height: $euiSize;
+  }
+
+  .euiListGroupItem__extraAction {
+    visibility: hidden;
+  }
+
+  &.euiNavDrawer-showScrollbar .euiListGroupItem__extraAction {
+    visibility: visible;
+  }
 }
 
 @include euiBreakpoint('xs', 's') {
@@ -72,6 +90,10 @@
       .euiNavDrawerMenu {
         width: $euiNavDrawerWidthCollapsed;
         overflow-y: hidden;
+
+        .euiListGroupItem__extraAction {
+          visibility: hidden;
+        }
       }
 
       .euiNavDrawerMenu .euiListGroupItem__label {
@@ -88,12 +110,9 @@
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
     }
-  }
-}
 
-@include euiBreakpoint('xs') {
-  .euiNavDrawer {
-    height: calc(100% - #{$euiNavDrawerTopPositionMobile});
-    top: $euiNavDrawerTopPositionMobile;
+    .euiListGroupItem__extraAction {
+      visibility: visible;
+    }
   }
 }

@@ -17,7 +17,7 @@ const myContent = [
     size: 's',
   },
   {
-    label: 'Second link is active',
+    label: 'This is an active link with very long label that truncates',
     href: '#/display/list-group',
     isActive: true,
     iconType: 'clock',

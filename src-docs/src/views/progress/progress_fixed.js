@@ -9,6 +9,14 @@ import {
   EuiText,
   EuiPanel,
   EuiCallOut,
+  EuiCode,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiPortal,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -18,9 +26,11 @@ export default class extends Component {
     this.state = {
       value: 0,
       showProgress: false,
+      showHeader: false,
     };
 
     this.toggleProgress = this.toggleProgress.bind(this);
+    this.toggleHeader = this.toggleHeader.bind(this);
   }
 
   toggleProgress() {
@@ -36,6 +46,14 @@ export default class extends Component {
 
     this.setState({
       showProgress: !this.state.showProgress,
+      showHeader: false
+    });
+  }
+
+  toggleHeader() {
+    this.setState({
+      showHeader: !this.state.showHeader,
+      showProgress: false,
     });
   }
 
@@ -73,6 +91,35 @@ export default class extends Component {
       );
     }
 
+    if (this.state.showHeader) {
+      progress = (
+        <div>
+          <EuiCallOut
+            title="Look up!"
+            color="warning"
+            iconType="sortUp"
+          >
+            <p>
+              The progress bar is fixed to the top of your browser and
+              positioned above an <EuiCode>EuiHeader</EuiCode>.
+            </p>
+          </EuiCallOut>
+          <EuiHeader style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
+            <EuiHeaderSection grow={false}>
+              <EuiHeaderSectionItem border="right">
+                <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
+          </EuiHeader>
+          <div style={{ position: 'absolute', zIndex: '5' }}>
+            <EuiPortal>
+              <EuiProgress size="xs" color="accent" position="fixed" />
+            </EuiPortal>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
 
@@ -89,9 +136,18 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiButton size="s" onClick={this.toggleProgress}>
-          Toggle a fixed bar
-        </EuiButton>
+        <EuiFlexGroup gutterSize="s" alignItems="center">
+          <EuiFlexItem grow={false}>
+            <EuiButton size="s" onClick={this.toggleProgress}>
+              Toggle a fixed bar
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton size="s" onClick={this.toggleHeader}>
+              Toggle a fixed bar with header
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
 
         <EuiSpacer size="l" />
 

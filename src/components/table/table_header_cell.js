@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
+  EuiScreenReaderOnly
+} from '../accessibility';
+
+import {
   EuiIcon,
 } from '../icon';
 
@@ -25,7 +29,6 @@ export const EuiTableHeaderCell = ({
   isSorted,
   isSortAscending,
   className,
-  ariaLabel,
   scope,
   isMobileHeader,
   hideForMobile,
@@ -42,40 +45,43 @@ export const EuiTableHeaderCell = ({
   });
 
   if (onSort) {
-    let sortIcon;
-    if (isSorted) {
-      sortIcon = (
-        <EuiIcon
-          className="euiTableSortIcon"
-          type={isSortAscending ? 'sortUp' : 'sortDown'}
-          size="m"
-        />
-      );
-    }
-
     const buttonClasses = classNames('euiTableHeaderButton', {
       'euiTableHeaderButton-isSorted': isSorted,
     });
 
-    const columnTitle = ariaLabel ? ariaLabel : children;
-    const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
+    let ariaSortValue = 'none';
+    if (isSorted) {
+      ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+    }
 
     return (
       <th
         className={classes}
         scope={scope}
+        role="columnheader"
+        aria-sort={ariaSortValue}
+        aria-live
         {...rest}
       >
         <button
           type="button"
           className={buttonClasses}
           onClick={onSort}
-          aria-label={statefulAriaLabel}
           data-test-subj="tableHeaderSortButton"
         >
           <span className={contentClasses}>
             <span className="euiTableCellContent__text">{children}</span>
-            {sortIcon}
+            {isSorted && (
+              <EuiIcon
+                className="euiTableSortIcon"
+                type={isSortAscending ? 'sortUp' : 'sortDown'}
+                size="m"
+                aria-label={`Sorted in ${ariaSortValue} order`}
+              />
+            )}
+            <EuiScreenReaderOnly>
+              <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+            </EuiScreenReaderOnly>
           </span>
         </button>
       </th>
@@ -85,8 +91,8 @@ export const EuiTableHeaderCell = ({
   return (
     <th
       className={classes}
-      aria-label={ariaLabel}
       scope={scope}
+      role="columnheader"
       {...rest}
     >
       <div className={contentClasses}>

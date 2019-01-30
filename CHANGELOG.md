@@ -1,5 +1,83 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.7.4`.
+
+## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
+
+- Added `textAlign` property to TypeScript definition for `EuiText` ([#1487](https://github.com/elastic/eui/pull/1487))
+- Added missing `'m'` option for text `size` for `EuiText`'s TypeScript definition ([#1487](https://github.com/elastic/eui/pull/1487))
+- Added missing TypeScript definition for `EuiTextAlign` ([#1487](https://github.com/elastic/eui/pull/1487))
+
+**Bug fixes**
+
+- Fixed popover & tooltip positioning to properly account for arrow buffer ([#1490](https://github.com/elastic/eui/pull/1490))
+- Fixed `EuiSuperDatePicker` unexpectedly closing start and end date popovers ([#1494](https://github.com/elastic/eui/pull/1494))
+
+## [`6.7.3`](https://github.com/elastic/eui/tree/v6.7.3)
+
+- `EuiHeader` no longer reduces height at mobile sizes ([#1480](https://github.com/elastic/eui/pull/1480))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not updating derived `isInvalid` state on prop update ([#1483](https://github.com/elastic/eui/pull/1483))
+- Fixed `logoAPM` ([#1489](https://github.com/elastic/eui/pull/1489))
+- Remove Typescript type and interface definitions from ES and CJS exports ([#1486](https://github.com/elastic/eui/pull/1486))
+
+## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
+
+- Default light theme now comes with an empty light variables file to make theme switching easier ([#1479](https://github.com/elastic/eui/pull/1479))
+
+**Bug fixes**
+
+- `EuiSuperDatePicker` always trigger `onTimeChange` when time changes and prop `showUpdateButton` is false ([#1477](https://github.com/elastic/eui/pull/1477))
+- Fixed font rendering in italics only in Safari ([#1481](https://github.com/elastic/eui/pull/1481))
+
+## [`6.7.1`](https://github.com/elastic/eui/tree/v6.7.1)
+
+**Bug fixes**
+
+- Fixed an issue with font family inheritance by changing the CSS reset ([#1474](https://github.com/elastic/eui/pull/1474))
+
+## [`6.7.0`](https://github.com/elastic/eui/tree/v6.7.0)
+
+- Added `z-index` to `EuiProgress` and example usage with `EuiHeader` ([#1471](https://github.com/elastic/eui/pull/1471))
+- Added a new app icon for Code ([#1467](https://github.com/elastic/eui/pull/1467))
+- Re-added EuiI18n, EuiI18nNumber, and EuiContext for localization ([#1466](https://github.com/elastic/eui/pull/1466))
+- Expose `EuiSuperUpdateButton` component from `EuiSuperDatePicker` ([#1470](https://github.com/elastic/eui/pull/1470))
+- Set `type="button"` on accordion buttons ([#1468](https://github.com/elastic/eui/pull/1468))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not updating derived `showPrettyDuration` state on prop update ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` not passing `refreshInterval` to callback when refresh internval start/stop toggle button clicked ([#1464](https://github.com/elastic/eui/pull/1464))
+- Fixed `EuiSuperDatePicker` `refreshInterval` input not allowing decimals ([#1464](https://github.com/elastic/eui/pull/1464))
+
+## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
+
+- Added `uptimeApp` icon ([#1445](https://github.com/elastic/eui/pull/1463))
+- Adds `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
+- Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
+- Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
+- Added `bell` icon ([#1447](https://github.com/elastic/eui/pull/1447))
+- Improved screen reader behavior for table header cell content, especially in sortable columns ([#1426](https://github.com/elastic/eui/pull/1426))
+
+**Bug fixes**
+
+- Fixed `textProps` and `contentProps` of `EuiButton` and `EuiButtonEmpty` so they don’t override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed `closeButtonProps` of `EuiBadge` so it doesn't override classes ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed font weight shift of `EuiFilterButton` when notification is present ([#1455](https://github.com/elastic/eui/pull/1455))
+- Fixed `$euiCodeFontFamily` monospace font stack and subsequent JSON asset build ([#1465](https://github.com/elastic/eui/pull/1465))
+
+## [`6.5.1`](https://github.com/elastic/eui/tree/v6.5.1)
+
+**Reverts**
+
+- Reverts EuiI18n commit from previous release ([#1453](https://github.com/elastic/eui/pull/1453))
+
+## [`6.5.0`](https://github.com/elastic/eui/tree/v6.5.0)
+
+**Note: this contains some i18n work that we reverted in the next release. Use the patch release above instead**
+
 - Added Inter UI to the font family stack ([#1402](https://github.com/elastic/eui/pull/1402))
 - Changed padding on `EuiHeaderLogo` and updated `EuiNavDrawer` example ([#1448](https://github.com/elastic/eui/pull/1448))
 - Updated `EuiNavDrawer` docs example and adjusted `EuiHeaderLogo` padding ([#1449](https://github.com/elastic/eui/pull/1449))
@@ -8,7 +86,6 @@
 **Bug fixes**
 
 - Added `legend` for accessibility of `EuiButtonGroup` and fixed opacity of disabled input ([#1444](https://github.com/elastic/eui/pull/1444))
-
 
 ## [`6.4.0`](https://github.com/elastic/eui/tree/v6.4.0)
 

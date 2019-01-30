@@ -404,7 +404,7 @@ const navigation = [{
   ].map(example => createExample(example)),
 },
 {
-  name: 'Series charts (beta)',
+  name: 'Charts (deprecated)',
   items: [
     XYChartExample,
     XYChartAxisExample,

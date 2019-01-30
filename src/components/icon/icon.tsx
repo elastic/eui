@@ -16,6 +16,7 @@ import arrowUp from './assets/arrow_up.svg';
 import asterisk from './assets/asterisk.svg';
 import auditbeatApp from './assets/app_auditbeat.svg';
 import beaker from './assets/beaker.svg';
+import bell from './assets/bell.svg';
 import bolt from './assets/bolt.svg';
 import boxesHorizontal from './assets/boxes_horizontal.svg';
 import boxesVertical from './assets/boxes_vertical.svg';
@@ -25,6 +26,7 @@ import brush from './assets/brush.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
 import canvasApp from './assets/app_canvas.svg';
+import codeApp from './assets/app_code.svg';
 import check from './assets/check.svg';
 import checkInCircleFilled from './assets/checkInCircleFilled.svg';
 import clock from './assets/clock.svg';
@@ -209,6 +211,7 @@ import securityAnalyticsApp from './assets/app_security_analytics.svg';
 import securityApp from './assets/app_security.svg';
 import shard from './assets/shard.svg';
 import share from './assets/share.svg';
+import snowflake from './assets/snowflake.svg';
 import sortable from './assets/sortable.svg';
 import sortDown from './assets/sort_down.svg';
 import sortLeft from './assets/sortLeft.svg';
@@ -238,6 +241,7 @@ import temperature from './assets/temperature.svg';
 import timelionApp from './assets/app_timelion.svg';
 import trash from './assets/trash.svg';
 import upgradeAssistantApp from './assets/app_upgrade_assistant.svg';
+import uptimeApp from './assets/app_uptime.svg';
 import user from './assets/user.svg';
 import usersRolesApp from './assets/app_users_roles.svg';
 import vector from './assets/vector.svg';
@@ -307,6 +311,7 @@ const typeToIconMap = {
   asterisk,
   auditbeatApp,
   beaker,
+  bell,
   bolt,
   boxesHorizontal,
   boxesVertical,
@@ -316,6 +321,7 @@ const typeToIconMap = {
   bullseye,
   calendar,
   canvasApp,
+  codeApp,
   check,
   checkInCircleFilled,
   clock,
@@ -499,6 +505,7 @@ const typeToIconMap = {
   securityApp,
   shard,
   share,
+  snowflake,
   sortable,
   sortDown,
   sortLeft,
@@ -557,6 +564,7 @@ const typeToIconMap = {
   trash,
   upgradeAssistantApp,
   pinFilled,
+  uptimeApp,
   user,
   usersRolesApp,
   vector,

@@ -19,18 +19,27 @@ const refreshUnitsOptions = Object.keys(timeUnits)
 const MILLISECONDS_IN_MINUTE = 1000 * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
 
-function convertMilliseconds(milliseconds) {
+function fromMilliseconds(milliseconds) {
+  function round(value) {
+    return parseFloat(value.toFixed(2));
+  }
   if (milliseconds > MILLISECONDS_IN_HOUR) {
     return {
       units: 'h',
-      value: milliseconds / MILLISECONDS_IN_HOUR
+      value: round(milliseconds / MILLISECONDS_IN_HOUR)
     };
   }
 
   return {
     units: 'm',
-    value: milliseconds / MILLISECONDS_IN_MINUTE
+    value: round(milliseconds / MILLISECONDS_IN_MINUTE)
   };
+}
+
+function toMilliseconds(units, value) {
+  return units === 'h'
+    ? Math.round(value * MILLISECONDS_IN_HOUR)
+    : Math.round(value * MILLISECONDS_IN_MINUTE);
 }
 
 export class EuiRefreshInterval extends Component {
@@ -38,7 +47,7 @@ export class EuiRefreshInterval extends Component {
   constructor(props) {
     super(props);
 
-    const { value, units } = convertMilliseconds(props.refreshInterval);
+    const { value, units } = fromMilliseconds(props.refreshInterval);
     this.state = {
       value,
       units,
@@ -46,7 +55,7 @@ export class EuiRefreshInterval extends Component {
   }
 
   onValueChange = (evt) => {
-    const sanitizedValue = parseInt(evt.target.value, 10);
+    const sanitizedValue = parseFloat(evt.target.value);
     this.setState({
       value: isNaN(sanitizedValue) ? '' : sanitizedValue,
     }, this.applyRefreshInterval);
@@ -63,9 +72,7 @@ export class EuiRefreshInterval extends Component {
       return;
     }
 
-    const valueInMilliSeconds = this.state.units === 'h'
-      ? this.state.value * MILLISECONDS_IN_HOUR
-      : this.state.value * MILLISECONDS_IN_MINUTE;
+    const valueInMilliSeconds = toMilliseconds(this.state.units, this.state.value);
 
     this.props.applyRefreshInterval({
       refreshInterval: valueInMilliSeconds,
@@ -75,6 +82,7 @@ export class EuiRefreshInterval extends Component {
 
   toogleRefresh = () => {
     this.props.applyRefreshInterval({
+      refreshInterval: toMilliseconds(this.state.units, this.state.value),
       isPaused: !this.props.isPaused
     });
   }

@@ -72,6 +72,16 @@ export const EuiButton = ({
     },
   );
 
+  const contentClassNames = classNames(
+    'euiButton__content',
+    contentProps && contentProps.className,
+  );
+
+  const textClassNames = classNames(
+    'euiButton__text',
+    textProps && textProps.className,
+  );
+
   // Add an icon to the button if one exists.
   let buttonIcon;
 
@@ -93,6 +103,13 @@ export const EuiButton = ({
     );
   }
 
+  const innerNode = (
+    <span {...contentProps} className={contentClassNames}>
+      {buttonIcon}
+      <span {...textProps} className={textClassNames}>{children}</span>
+    </span>
+  );
+
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
   if (href && !isDisabled) {
@@ -107,10 +124,7 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content" {...contentProps}>
-          {buttonIcon}
-          <span className="euiButton__text" {...textProps}>{children}</span>
-        </span>
+        {innerNode}
       </a>
     );
   } else {
@@ -122,10 +136,7 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content" {...contentProps}>
-          {buttonIcon}
-          <span className="euiButton__text" {...textProps}>{children}</span>
-        </span>
+        {innerNode}
       </button>
     );
   }
