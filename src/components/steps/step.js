@@ -15,6 +15,10 @@ import {
   EuiStepNumber,
 } from './step_number';
 
+import {
+  EuiI18n,
+} from '../i18n';
+
 export const EuiStep = ({
   className,
   children,
@@ -26,9 +30,11 @@ export const EuiStep = ({
 }) => {
   const classes = classNames('euiStep', className);
 
-  let screenReaderPrefix;
+  let screenReaderStep;
   if (status === 'incomplete') {
-    screenReaderPrefix = 'Incomplete';
+    screenReaderStep = <EuiI18n token="euiStep.incompleteStep" default="Incomplete Step"/>;
+  } else {
+    screenReaderStep = <EuiI18n token="euiStep.completeStep" default="Step"/>;
   }
 
   return (
@@ -37,7 +43,7 @@ export const EuiStep = ({
       {...rest}
     >
 
-      <EuiScreenReaderOnly><span>{screenReaderPrefix} Step </span></EuiScreenReaderOnly>
+      <EuiScreenReaderOnly><span>{screenReaderStep}&nbsp;</span></EuiScreenReaderOnly>
 
       <EuiStepNumber className="euiStep__circle" number={step} status={status} isHollow={status === 'incomplete'}/>
 

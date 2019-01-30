@@ -4,22 +4,12 @@ exports[`CollapsedItemActions render 1`] = `
 <EuiPopover
   anchorPosition="leftCenter"
   button={
-    <EuiToolTip
-      content="All actions"
-      delay="long"
-      position="top"
+    <EuiI18n
+      default="All actions"
+      token="euiCollapsedItemActions.allActions"
     >
-      <EuiButtonIcon
-        aria-label="All actions"
-        color="text"
-        iconSize="m"
-        iconType="boxesHorizontal"
-        isDisabled={false}
-        onClick={[Function]}
-        onFocus={[Function]}
-        type="button"
-      />
-    </EuiToolTip>
+      [Function]
+    </EuiI18n>
   }
   closePopover={[Function]}
   hasArrow={true}

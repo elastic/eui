@@ -3,6 +3,7 @@ import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
+import { EuiI18n } from '../i18n';
 
 export class CollapsedItemActions extends Component {
 
@@ -88,21 +89,29 @@ export class CollapsedItemActions extends Component {
     }, []);
 
     const popoverButton = (
-      <EuiButtonIcon
-        className={className}
-        aria-label="All actions"
-        iconType="boxesHorizontal"
-        color="text"
-        isDisabled={allDisabled}
-        onClick={this.togglePopover.bind(this)}
-        onFocus={onFocus}
-      />
+      <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
+        {allActions => (
+          <EuiButtonIcon
+            className={className}
+            aria-label={allActions}
+            iconType="boxesHorizontal"
+            color="text"
+            isDisabled={allDisabled}
+            onClick={this.togglePopover.bind(this)}
+            onFocus={onFocus}
+          />
+        )}
+      </EuiI18n>
     );
 
     const withTooltip = !allDisabled && (
-      <EuiToolTip content="All actions" delay="long">
-        {popoverButton}
-      </EuiToolTip>
+      <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
+        {allActions => (
+          <EuiToolTip content={allActions} delay="long">
+            {popoverButton}
+          </EuiToolTip>
+        )}
+      </EuiI18n>
     );
 
     return (
