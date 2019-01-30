@@ -19,6 +19,7 @@ import { EuiPortal } from '../portal';
 import { EuiMutationObserver } from '../mutation_observer';
 
 import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
+import { EuiI18n } from '../i18n';
 
 const anchorPositionToPopoverPositionMap = {
   'up': 'top',
@@ -430,7 +431,9 @@ export class EuiPopover extends Component {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">You are in a popup. To exit this popup, hit escape.</p>
+            <p role="alert">
+              <EuiI18n token="euiPopover.screenReaderAnnouncement" default="You are in a popup. To exit this popup, hit escape."/>
+            </p>
           </EuiScreenReaderOnly>
         );
       }

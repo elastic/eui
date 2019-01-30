@@ -139,6 +139,8 @@ export class EuiSuperDatePicker extends Component {
       isInvalid: isRangeInvalid(start, end),
       hasChanged: false,
       showPrettyDuration: showPrettyDuration(start, end, commonlyUsedRanges),
+      isStartDatePopoverOpen: false,
+      isEndDatePopoverOpen: false,
     };
   }
 
@@ -195,6 +197,26 @@ export class EuiSuperDatePicker extends Component {
     this.setState({ showPrettyDuration: false });
   }
 
+  onStartDatePopoverToggle = () => {
+    this.setState(prevState => {
+      return { isStartDatePopoverOpen: !prevState.isStartDatePopoverOpen };
+    });
+  }
+
+  onStartDatePopoverClose = () => {
+    this.setState({ isStartDatePopoverOpen: false });
+  }
+
+  onEndDatePopoverToggle = () => {
+    this.setState(prevState => {
+      return { isEndDatePopoverOpen: !prevState.isEndDatePopoverOpen };
+    });
+  }
+
+  onEndDatePopoverClose = () => {
+    this.setState({ isEndDatePopoverOpen: false });
+  }
+
   renderDatePickerRange = () => {
     const {
       start,
@@ -220,7 +242,9 @@ export class EuiSuperDatePicker extends Component {
       );
     }
 
-    if (this.state.showPrettyDuration) {
+    if (this.state.showPrettyDuration
+      && !this.state.isStartDatePopoverOpen
+      && !this.state.isEndDatePopoverOpen) {
       return (
         <EuiDatePickerRange
           className="euiDatePickerRange--inGroup"
@@ -254,6 +278,9 @@ export class EuiSuperDatePicker extends Component {
             onChange={this.setStart}
             value={start}
             dateFormat={this.props.dateFormat}
+            isOpen={this.state.isStartDatePopoverOpen}
+            onPopoverToggle={this.onStartDatePopoverToggle}
+            onPopoverClose={this.onStartDatePopoverClose}
           />
         }
         endDateControl={
@@ -265,6 +292,9 @@ export class EuiSuperDatePicker extends Component {
             value={end}
             dateFormat={this.props.dateFormat}
             roundUp
+            isOpen={this.state.isEndDatePopoverOpen}
+            onPopoverToggle={this.onEndDatePopoverToggle}
+            onPopoverClose={this.onEndDatePopoverClose}
           />
         }
       />

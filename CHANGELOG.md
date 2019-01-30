@@ -1,11 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Changed `flex-basis` value on `EuiPageBody` for better cross-broswer support ([#1497](https://github.com/elastic/eui/pull/1497))
+- Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485))
+
+## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
+
+- Added `textAlign` property to TypeScript definition for `EuiText` ([#1487](https://github.com/elastic/eui/pull/1487))
+- Added missing `'m'` option for text `size` for `EuiText`'s TypeScript definition ([#1487](https://github.com/elastic/eui/pull/1487))
+- Added missing TypeScript definition for `EuiTextAlign` ([#1487](https://github.com/elastic/eui/pull/1487))
+
+**Bug fixes**
+
+- Fixed popover & tooltip positioning to properly account for arrow buffer ([#1490](https://github.com/elastic/eui/pull/1490))
+- Fixed `EuiSuperDatePicker` unexpectedly closing start and end date popovers ([#1494](https://github.com/elastic/eui/pull/1494))
+
+## [`6.7.3`](https://github.com/elastic/eui/tree/v6.7.3)
+
 - `EuiHeader` no longer reduces height at mobile sizes ([#1480](https://github.com/elastic/eui/pull/1480))
 
 **Bug fixes**
 
 - Fixed `EuiSuperDatePicker` not updating derived `isInvalid` state on prop update ([#1483](https://github.com/elastic/eui/pull/1483))
+- Fixed `logoAPM` ([#1489](https://github.com/elastic/eui/pull/1489))
+- Remove Typescript type and interface definitions from ES and CJS exports ([#1486](https://github.com/elastic/eui/pull/1486))
 
 ## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
 

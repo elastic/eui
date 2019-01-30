@@ -1,0 +1,355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiI18n default rendering render prop with multiple tokens renders render prop result to the dom 1`] = `
+<EuiI18n
+  defaults={
+    Array [
+      "This is the first basic string.",
+      "This is the second basic string.",
+    ]
+  }
+  tokens={
+    Array [
+      "test1",
+      "test2",
+    ]
+  }
+>
+  <div>
+    This is the first basic string.
+     
+    This is the second basic string.
+  </div>
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering render prop with single token calls a function and renders render prop result to the dom 1`] = `
+<EuiI18n
+  default={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "special": "values",
+            "type": "callback",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": "This is a callback with values.",
+        },
+      ],
+    }
+  }
+  token="test"
+  values={
+    Object {
+      "special": "values",
+      "type": "callback",
+    }
+  }
+>
+  Here's something neat: This is a callback with values.
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering render prop with single token renders render prop result to the dom 1`] = `
+<EuiI18n
+  default="This is a basic string."
+  token="test"
+>
+  A nifty thing: This is a basic string.
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering render prop with single token renders render prop result with placeholders to the dom 1`] = `
+<EuiI18n
+  default="This is a {type} with {special}."
+  token="test"
+  values={
+    Object {
+      "special": "values",
+      "type": "string",
+    }
+  }
+>
+  Here's something cool: This is a string with values.
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering rendering to dom calls a function and renders the result to the dom 1`] = `
+<EuiI18n
+  default={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "special": "values",
+            "type": "callback",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": "This is a callback with values.",
+        },
+      ],
+    }
+  }
+  token="test"
+  values={
+    Object {
+      "special": "values",
+      "type": "callback",
+    }
+  }
+>
+  This is a callback with values.
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering rendering to dom renders a basic string to the dom 1`] = `
+<EuiI18n
+  default="This is a basic string."
+  token="test"
+>
+  This is a basic string.
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering rendering to dom renders a string with placeholders to the dom 1`] = `
+<EuiI18n
+  default="This is a {type} with {special}."
+  token="test"
+  values={
+    Object {
+      "special": "values",
+      "type": "string",
+    }
+  }
+>
+  This is a string with values.
+</EuiI18n>
+`;
+
+exports[`EuiI18n reading values from context render prop with multiple tokens renders mapped render prop result to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "This is the first mapped value.",
+        "test2": "This is the second mapped value.",
+      },
+    }
+  }
+>
+  <EuiI18n
+    defaults={
+      Array [
+        "This is the first basic string.",
+        "This is the second basic string.",
+      ]
+    }
+    tokens={
+      Array [
+        "test1",
+        "test2",
+      ]
+    }
+  >
+    <div>
+      This is the first mapped value.
+       
+      This is the second mapped value.
+    </div>
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context render prop with single token calls a mapped function and renders render prop result to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": [MockFunction] {
+          "calls": Array [
+            Array [
+              Object {
+                "special": "values",
+                "type": "callback",
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": "This is a callback with values.",
+            },
+          ],
+        },
+      },
+    }
+  }
+>
+  <EuiI18n
+    default={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "special": "values",
+              "type": "callback",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "This is a callback with values.",
+          },
+        ],
+      }
+    }
+    token="test"
+    values={
+      Object {
+        "special": "values",
+        "type": "callback",
+      }
+    }
+  >
+    Here's something neat: This is a callback with values.
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context render prop with single token renders mapped render prop result to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": "An overridden string.",
+      },
+    }
+  }
+>
+  <EuiI18n
+    default="This is a basic string."
+    token="test"
+  >
+    A nifty thing: An overridden string.
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context render prop with single token renders mapped render prop result with placeholders to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": "An overridden {type} with {special}.",
+      },
+    }
+  }
+>
+  <EuiI18n
+    default="This is a {type} with {special}."
+    token="test"
+    values={
+      Object {
+        "special": "values",
+        "type": "string",
+      }
+    }
+  >
+    Here's something cool: An overridden string with values.
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context rendering to dom calls a mapped function and renders the result to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": [MockFunction] {
+          "calls": Array [
+            Array [
+              Object {
+                "special": "values",
+                "type": "callback",
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": "This is a mapped callback with values.",
+            },
+          ],
+        },
+      },
+    }
+  }
+>
+  <EuiI18n
+    default={[Function]}
+    token="test"
+    values={
+      Object {
+        "special": "values",
+        "type": "callback",
+      }
+    }
+  >
+    This is a mapped callback with values.
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context rendering to dom renders a mapped basic string to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": "An overridden string.",
+      },
+    }
+  }
+>
+  <EuiI18n
+    default="This is a basic string."
+    token="test"
+  >
+    An overridden string.
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context rendering to dom renders a mapped string with placeholders to the dom 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test": "An overridden {type} with {special}.",
+      },
+    }
+  }
+>
+  <EuiI18n
+    default="This is a {type} with {special}."
+    token="test"
+    values={
+      Object {
+        "special": "values",
+        "type": "string",
+      }
+    }
+  >
+    An overridden string with values.
+  </EuiI18n>
+</EuiContext>
+`;

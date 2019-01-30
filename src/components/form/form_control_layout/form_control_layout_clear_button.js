@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiIcon } from '../../icon';
+import { EuiI18n } from '../../i18n';
 
 export const EuiFormControlLayoutClearButton = ({
   className,
@@ -12,17 +13,21 @@ export const EuiFormControlLayoutClearButton = ({
   const classes = classNames('euiFormControlLayoutClearButton', className);
 
   return (
-    <button
-      className={classes}
-      onClick={onClick}
-      aria-label="Clear input"
-      {...rest}
-    >
-      <EuiIcon
-        className="euiFormControlLayoutClearButton__icon"
-        type="cross"
-      />
-    </button>
+    <EuiI18n token="euiFormControlLayoutClearButton.label" default="Clear input">
+      {label => (
+        <button
+          className={classes}
+          onClick={onClick}
+          aria-label={label}
+          {...rest}
+        >
+          <EuiIcon
+            className="euiFormControlLayoutClearButton__icon"
+            type="cross"
+          />
+        </button>
+      )}
+    </EuiI18n>
   );
 };
 
