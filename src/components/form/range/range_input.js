@@ -30,7 +30,7 @@ export const EuiRangeInput = ({
       min={Number(min)}
       max={Number(max)}
       step={step}
-      value={Number(value)}
+      value={value === '' ? '' : Number(value)}
       disabled={disabled}
       compressed={compressed}
       onChange={onChange}
