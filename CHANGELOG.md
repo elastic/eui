@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Changed `flex-basis` value on `EuiPageBody` for better cross-broswer support ([#1497](https://github.com/elastic/eui/pull/1497))
 - `EuiHeader` no longer reduces height at mobile sizes ([#1480](https://github.com/elastic/eui/pull/1480))
 
 **Bug fixes**
@@ -38,7 +39,7 @@
 ## [`6.6.0`](https://github.com/elastic/eui/tree/v6.6.0)
 
 - Added `uptimeApp` icon ([#1445](https://github.com/elastic/eui/pull/1463))
-- Adds `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
+- Added `wrapText` prop that enables `EuiListGroupItem` text to wrap ([#1459](https://github.com/elastic/eui/pull/1459))
 - Added `inputRef` prop to `EuiFieldNumber` and updated `EuiFieldText`'s to a Ref type ([#1434](https://github.com/elastic/eui/pull/1434))
 - Added `snowflake` icon ([#1445](https://github.com/elastic/eui/pull/1445))
 - Added `bell` icon ([#1447](https://github.com/elastic/eui/pull/1447))
