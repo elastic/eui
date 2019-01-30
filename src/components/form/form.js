@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
+import { EuiI18n } from '../i18n';
 
 export const EuiForm = ({
   children,
@@ -31,13 +32,17 @@ export const EuiForm = ({
 
   if (isInvalid) {
     optionalErrorAlert = (
-      <EuiCallOut
-        className="euiForm__errors"
-        title="Please address the errors in your form."
-        color="danger"
-      >
-        {optionalErrors}
-      </EuiCallOut>
+      <EuiI18n token="euiForm.addressFormErrors" default="Please address the errors in your form.">
+        {addressFormErrors => (
+          <EuiCallOut
+            className="euiForm__errors"
+            title={addressFormErrors}
+            color="danger"
+          >
+            {optionalErrors}
+          </EuiCallOut>
+        )}
+      </EuiI18n>
     );
   }
 

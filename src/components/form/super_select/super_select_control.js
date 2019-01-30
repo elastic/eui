@@ -7,6 +7,7 @@ import makeId from '../form_row/make_id';
 import {
   EuiFormControlLayout,
 } from '../form_control_layout';
+import { EuiI18n } from '../../i18n';
 
 export const EuiSuperSelectControl = ({
   className,
@@ -37,7 +38,7 @@ export const EuiSuperSelectControl = ({
     selectDefaultValue = defaultValue || '';
   }
 
-  let selectedValue;
+  let selectedValue = '';
   if (value) {
     const selectedOption = options.find(option => option.value === value);
     selectedValue = selectedOption.inputDisplay;
@@ -73,7 +74,11 @@ export const EuiSuperSelectControl = ({
         */}
         <EuiScreenReaderOnly>
           <span id={screenReaderId}>
-            Select an option: {selectedValue}, is selected
+            <EuiI18n
+              token="euiSuperSelectControl.selectAnOption"
+              default="Select an option: {selectedValue}, is selected"
+              values={{ selectedValue }}
+            />
           </span>
         </EuiScreenReaderOnly>
 

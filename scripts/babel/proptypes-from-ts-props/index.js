@@ -17,6 +17,31 @@ function stripTypeScript(filename, ast) {
   ).code;
 }
 
+// .ts file could import types from a .tsx file, so force nested imports to parse JSX
+function forceTSXParsing(opts) {
+  return {
+    ...opts,
+    plugins: opts.plugins.map(plugin => {
+      if (plugin.key.indexOf('@babel/preset-typescript') !== -1) {
+        plugin.options.isTSX = true;
+        plugin.options.allExtensions = true;
+      }
+      return plugin;
+    }),
+  };
+}
+
+// determine is a node is a TS*, or if it is a proptype that came from one
+function isTSType(node) {
+  if (node == null) return false;
+
+  if (node.isAlreadyResolved) {
+    return node.isTSType;
+  }
+
+  return node.type.startsWith('TS');
+}
+
 /**
  * Converts an Array<X> type to PropTypes.arrayOf(X)
  * @param node
@@ -655,11 +680,15 @@ function getPropTypesForNode(node, optional, state) {
     );
   }
 
-  if (optional) {
-    return propType;
-  } else {
-    return makePropTypeRequired(types, propType);
+  if (!optional) {
+    propType = makePropTypeRequired(types, propType);
   }
+
+  if (isTSType(node)) {
+    propType.isTSType = true;
+  }
+
+  return propType;
 }
 
 // typeDefinitionExtractors is a mapping of [ast_node_type: func] which is used to find type definitions
@@ -690,6 +719,8 @@ const typeDefinitionExtractors = {
         switch (specifier.type) {
           case 'ImportSpecifier':
             return specifier.imported.name;
+          case 'ExportSpecifier':
+            return specifier.exported.name;
 
           // default:
           //   throw new Error(`Unable to process import specifier type ${specifier.type}`);
@@ -834,7 +865,15 @@ const typeDefinitionExtractors = {
     );
   },
 
-  ExportNamedDeclaration: node => extractTypeDefinition(node.declaration),
+  ExportNamedDeclaration: (node, extractionOptions) => {
+    const types = extractionOptions.state.get('types');
+    if (types.isStringLiteral(node.source)) {
+      // export { variable } from './location'
+      // for our needs, this node type overlaps an ImportDeclaration
+      return typeDefinitionExtractors.ImportDeclaration(node, extractionOptions);
+    }
+    return extractTypeDefinition(node.declaration);
+  },
 };
 function extractTypeDefinition(node, opts) {
   if (node == null) {
@@ -955,55 +994,82 @@ module.exports = function propTypesFromTypeScript({ types }) {
        * @param programPath
        * @param state
        */
-      Program: function visitProgram(programPath, state) {
-        // only process typescript files
-        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+      Program: {
+        enter: function visitProgram(programPath, state) {
+          // only process typescript files
+          if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
 
-        // Extract any of the imported variables from 'react' (SFC, ReactNode, etc)
-        // we do this here instead of resolving when the imported values are used
-        // as the babel typescript preset strips type-only imports before babel visits their usages
-        const importsFromReact = new Set();
-        programPath.traverse(
-          {
-            ImportDeclaration: ({ node }) => {
-              if (node.source.value === 'react') {
-                node.specifiers.forEach(specifier => {
-                  if (specifier.type === 'ImportSpecifier') {
-                    importsFromReact.add(specifier.local.name);
-                  }
-                });
+          // Extract any of the imported variables from 'react' (SFC, ReactNode, etc)
+          // we do this here instead of resolving when the imported values are used
+          // as the babel typescript preset strips type-only imports before babel visits their usages
+          const importsFromReact = new Set();
+          programPath.traverse(
+            {
+              ImportDeclaration: ({ node }) => {
+                if (node.source.value === 'react') {
+                  node.specifiers.forEach(specifier => {
+                    if (specifier.type === 'ImportSpecifier') {
+                      importsFromReact.add(specifier.local.name);
+                    }
+                  });
+                }
+              }
+            },
+            state
+          );
+          state.set('importsFromReact', importsFromReact);
+
+          const { opts = {} } = state;
+          const typeDefinitions = {};
+          state.set('typeDefinitions', typeDefinitions);
+          state.set('types', types);
+
+          // extraction options are used to further resolve types imported from other files
+          const extractionOptions = {
+            state,
+            sourceFilename: path.resolve(process.cwd(), this.file.opts.filename),
+            fs: opts.fs || fs,
+            parse: code => babelCore.parse(code, forceTSXParsing(state.file.opts)),
+          };
+
+          // collect named TS type definitions for later reference
+          for (let i = 0; i < programPath.node.body.length; i++) {
+            const bodyNode = programPath.node.body[i];
+            const extractedDefinitions = extractTypeDefinition(bodyNode, extractionOptions) || [];
+            for (let i = 0; i < extractedDefinitions.length; i++) {
+              const typeDefinition = extractedDefinitions[i];
+              if (typeDefinition) {
+                typeDefinitions[typeDefinition.name] = typeDefinition.definition;
               }
             }
-          },
-          state
-        );
-        state.set('importsFromReact', importsFromReact);
-
-        const { opts = {} } = state;
-        const typeDefinitions = {};
-        state.set('typeDefinitions', typeDefinitions);
-        state.set('types', types);
-
-        // extraction options are used to further resolve types imported from other files
-        const extractionOptions = {
-          state,
-          sourceFilename: path.resolve(process.cwd(), this.file.opts.filename),
-          fs: opts.fs || fs,
-          parse: code => babelCore.parse(code, state.file.opts),
-        };
-
-        // collect named TS type definitions for later reference
-        for (let i = 0; i < programPath.node.body.length; i++) {
-          const bodyNode = programPath.node.body[i];
-
-          const extractedDefinitions = extractTypeDefinition(bodyNode, extractionOptions) || [];
-
-          for (let i = 0; i < extractedDefinitions.length; i++) {
-            const typeDefinition = extractedDefinitions[i];
-            if (typeDefinition) {
-              typeDefinitions[typeDefinition.name] = typeDefinition.definition;
-            }
           }
+        },
+        exit: function exitProgram(programPath, state) {
+          // only process typescript files
+          if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+
+          const types = state.get('types');
+          const typeDefinitions = state.get('typeDefinitions');
+
+          // remove any exported identifiers that are TS types or interfaces
+          // this prevents TS-only identifiers from leaking into ES code
+          programPath.traverse({
+            ExportNamedDeclaration: (path) => {
+              const specifiers = path.get('specifiers');
+              specifiers.forEach(specifierPath => {
+                if (types.isExportSpecifier(specifierPath)) {
+                  const { node: { exported } } = specifierPath;
+                  if (types.isIdentifier(exported)) {
+                    const { name } = exported;
+                    const def = typeDefinitions[name];
+                    if (isTSType(def)) {
+                      specifierPath.remove();
+                    }
+                  }
+                }
+              });
+            }
+          });
         }
       },
 

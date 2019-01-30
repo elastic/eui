@@ -297,12 +297,33 @@ describe('popover_positioning', () => {
           offset: 10,
           arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
         })).toEqual({
-          fit: 0.63,
+          fit: 0.665,
           top: -15,
-          left: 35,
+          left: 37.5,
           arrow: {
             top: 50,
-            left: 12.5,
+            left: 10,
+          },
+        });
+      });
+
+      it('respects both popover & arrow buffers', () => {
+        expect(getPopoverScreenCoordinates({
+          position: 'top',
+          anchorBoundingBox: makeBB(45, 55, 55, 45),
+          popoverBoundingBox: makeBB(0, 50, 50, 0),
+          windowBoundingBox: makeBB(0, 1024, 768, 0),
+          containerBoundingBox: makeBB(0, 1024, 768, 40),
+          offset: 10,
+          buffer: 15,
+          arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
+        })).toEqual({
+          fit: 0.26,
+          top: -15,
+          left: 37.5,
+          arrow: {
+            top: 50,
+            left: 10,
           },
         });
       });
