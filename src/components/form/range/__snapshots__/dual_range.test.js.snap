@@ -14,14 +14,14 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
       min="1"
       tabindex="-1"
       type="range"
-      value="0,8"
+      value="1,8"
     />
     <div
       class="euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:-1.0101010101010102%;width:8.080808080808081%"
+        style="margin-left:0%;width:7.07070707070707%"
       />
     </div>
   </div>
@@ -46,14 +46,14 @@ exports[`EuiDualRange is rendered 1`] = `
       name="name"
       tabindex="-1"
       type="range"
-      value="0,8"
+      value="1,8"
     />
     <div
       class="euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:-11.11111111111111%;width:88.88888888888889%"
+        style="margin-left:0%;width:77.77777777777779%"
       />
     </div>
   </div>
@@ -132,7 +132,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         name="name-minValue"
         style="width:4em"
         type="number"
-        value="0"
+        value="1"
       />
     </div>
   </div>
@@ -150,14 +150,14 @@ exports[`EuiDualRange props inputs should render 1`] = `
       name="name"
       tabindex="-1"
       type="range"
-      value="0,8"
+      value="1,8"
     />
     <div
       class="euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:-11.11111111111111%;width:88.88888888888889%"
+        style="margin-left:0%;width:77.77777777777779%"
       />
     </div>
   </div>
@@ -171,7 +171,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--max"
         max="10"
-        min="0"
+        min="1"
         name="name-maxValue"
         style="width:4em"
         type="number"
@@ -272,13 +272,14 @@ exports[`EuiDualRange props range should render 1`] = `
       min="1"
       tabindex="-1"
       type="range"
+      value="1,8"
     />
     <div
       class="euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:100%"
+        style="margin-left:0%;width:7.07070707070707%"
       />
     </div>
   </div>

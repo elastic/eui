@@ -194,13 +194,14 @@ exports[`EuiRange props range should render 1`] = `
       max="100"
       min="1"
       type="range"
+      value="8"
     />
     <div
       class="euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:NaN%"
+        style="margin-left:0%;width:7.07070707070707%"
       />
     </div>
   </div>

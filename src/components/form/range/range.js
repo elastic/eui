@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { isWithinRange } from '../../../services/number';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -9,103 +11,116 @@ import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-export const EuiRange = ({
-  className,
-  compressed,
-  disabled,
-  fullWidth,
-  id,
-  max,
-  min,
-  name,
-  step,
-  showLabels,
-  showInput,
-  showTicks,
-  tickInterval,
-  ticks, // eslint-disable-line no-unused-vars
-  levels,
-  showRange,
-  showValue,
-  valueAppend, // eslint-disable-line no-unused-vars
-  onChange,
-  value,
-  style,
-  tabIndex,
-  ...rest
-}) => {
+export class EuiRange extends Component {
+  handleOnChange = (e) => {
+    const isValid = isWithinRange(this.props.min, this.props.max, e.target.value);
+    this.props.onChange(e, isValid);
+  }
 
-  return (
-    <EuiRangeWrapper
-      className="euiRange"
-      fullWidth={fullWidth}
-    >
-      {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
-      <EuiRangeTrack
-        disabled={disabled}
-        max={max}
-        min={min}
-        step={step}
-        showTicks={showTicks}
-        tickInterval={tickInterval}
-        ticks={ticks}
-        levels={levels}
-        onChange={onChange}
-        value={value}
+  get isValid() {
+    return isWithinRange(this.props.min, this.props.max, this.props.value);
+  }
+
+  render() {
+
+    const {
+      className,
+      compressed,
+      disabled,
+      fullWidth,
+      id,
+      max,
+      min,
+      name,
+      step,
+      showLabels,
+      showInput,
+      showTicks,
+      tickInterval,
+      ticks, // eslint-disable-line no-unused-vars
+      levels,
+      showRange,
+      showValue,
+      valueAppend, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
+      value,
+      style,
+      tabIndex,
+      ...rest
+    } = this.props;
+
+    return (
+      <EuiRangeWrapper
+        className="euiRange"
+        fullWidth={fullWidth}
       >
-        <EuiRangeSlider
-          id={id}
-          name={name}
-          className={className}
-          min={min}
-          max={max}
-          step={step}
-          value={value}
+        {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
+        <EuiRangeTrack
           disabled={disabled}
-          onChange={onChange}
-          style={style}
+          max={max}
+          min={min}
+          step={step}
           showTicks={showTicks}
-          tabIndex={showInput ? '-1' : (tabIndex || null)}
-          {...rest}
-        />
-
-        {showValue && (
-          <EuiRangeTooltip
-            value={value}
-            max={max}
-            min={min}
-            name={name}
-            showTicks={showTicks}
-          />
-        )}
-
-        {showRange && (
-          <EuiRangeHighlight
-            showTicks={showTicks}
-            min={Number(min)}
-            max={Number(max)}
-            lowerValue={Number(min)}
-            upperValue={Number(value)}
-          />
-        )}
-      </EuiRangeTrack>
-      {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
-      {showInput && (
-        <EuiRangeInput
-          min={min}
-          max={max}
-          step={step}
+          tickInterval={tickInterval}
+          ticks={ticks}
+          levels={levels}
+          onChange={this.handleOnChange}
           value={value}
-          disabled={disabled}
-          compressed={compressed}
-          onChange={onChange}
-          name={name}
-          {...rest}
-        />
-      )}
-    </EuiRangeWrapper>
-  );
-};
+        >
+          <EuiRangeSlider
+            id={id}
+            name={name}
+            className={className}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            onChange={this.handleOnChange}
+            style={style}
+            showTicks={showTicks}
+            tabIndex={showInput ? '-1' : (tabIndex || null)}
+            {...rest}
+          />
+
+          {(showValue && !!String(value).length) && (
+            <EuiRangeTooltip
+              value={value}
+              max={max}
+              min={min}
+              name={name}
+              showTicks={showTicks}
+            />
+          )}
+
+          {(showRange && this.isValid) && (
+            <EuiRangeHighlight
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+            />
+          )}
+        </EuiRangeTrack>
+        {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
+        {showInput && (
+          <EuiRangeInput
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            compressed={compressed}
+            onChange={this.handleOnChange}
+            name={name}
+            {...rest}
+          />
+        )}
+      </EuiRangeWrapper>
+    );
+  }
+}
 
 EuiRange.propTypes = {
   name: PropTypes.string,

@@ -12,7 +12,7 @@ describe('EuiDualRange', () => {
         id="id"
         min={1}
         max={10}
-        value={['0', '8']}
+        value={['1', '8']}
         onChange={() => {}}
         {...requiredProps}
       />
@@ -61,7 +61,7 @@ describe('EuiDualRange', () => {
 
     test('range should render', () => {
       const component = render(
-        <EuiDualRange showRange />
+        <EuiDualRange showRange value={[1, 8]} />
       );
 
       expect(component)
@@ -75,7 +75,7 @@ describe('EuiDualRange', () => {
           id="id"
           min={1}
           max={10}
-          value={['0', '8']}
+          value={['1', '8']}
           onChange={() => {}}
           showInput
           {...requiredProps}
@@ -112,7 +112,7 @@ describe('EuiDualRange', () => {
   test('allows value prop to accept numbers', () => {
     const component = render(
       <EuiDualRange
-        value={[0, 8]}
+        value={[1, 8]}
         onChange={() => {}}
       />
     );

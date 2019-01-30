@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
+import { isWithinRange } from '../../../services/number';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -31,6 +32,10 @@ export class EuiDualRange extends Component {
   get upperValue() {
     return this.props.value ? this.props.value[1] : this.props.max;
   }
+  get isValid() {
+    return isWithinRange(this.props.min, this.upperValue, this.lowerValue)
+      && isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+  }
 
   _determineThumbMovement = (newVal, e) => {
     // Determine closer thumb
@@ -45,7 +50,8 @@ export class EuiDualRange extends Component {
   }
 
   _handleOnChange = (lower, upper, e) => {
-    this.props.onChange([lower, upper], e);
+    const isValid = isWithinRange(this.props.min, upper, lower) && isWithinRange(lower, this.props.max, upper);
+    this.props.onChange([lower, upper], isValid, e);
   }
 
   handleSliderChange = (e) => {
@@ -233,7 +239,7 @@ export class EuiDualRange extends Component {
             </React.Fragment>
           )}
 
-          {showRange && (
+          {(showRange && this.isValid) && (
             <EuiRangeHighlight
               hasFocus={this.state.hasFocus}
               showTicks={showTicks}
