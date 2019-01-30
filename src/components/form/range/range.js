@@ -156,6 +156,9 @@ EuiRange.propTypes = {
       label: PropTypes.node.isRequired,
     }),
   ),
+  /**
+   * Function signature: `(event, isValid)`
+   */
   onChange: PropTypes.func,
   /**
    * Create colored indicators for certain intervals
