@@ -123,6 +123,40 @@ const invalid = [
       }
     }]
   },
+
+  // invalid attribute types
+  {
+    code: '<EuiI18n token={5} default="value"/>',
+    errors: [{ messageId: 'invalidTokenType', data: { type: 'JSXExpressionContainer' } }]
+  },
+  {
+    code: `<EuiI18n tokens="euiFooBar.token" defaults={['value']}/>`,
+    errors: [{ messageId: 'invalidTokensType', data: { type: 'Literal' } }]
+  },
+  {
+    code: `<EuiI18n tokens={5} defaults={['value']}/>`,
+    errors: [{ messageId: 'invalidTokensType', data: { type: 'Literal' } }]
+  },
+  {
+    code: `<EuiI18n tokens={[5]} defaults={['value']}/>`,
+    errors: [{ messageId: 'invalidTokensType', data: { type: 'Literal' } }]
+  },
+  {
+    code: '<EuiI18n token="euiFooBar.token" default={5}/>',
+    errors: [{ messageId: 'invalidDefaultType', data: { type: 'Literal' } }]
+  },
+  {
+    code: `<EuiI18n tokens={['euiFooBar.token']} defaults="value"/>`,
+    errors: [{ messageId: 'invalidDefaultsType', data: { type: 'Literal' } }]
+  },
+  {
+    code: `<EuiI18n tokens={['euiFooBar.token']} defaults={5}/>`,
+    errors: [{ messageId: 'invalidDefaultsType', data: { type: 'Literal' } }]
+  },
+  {
+    code: `<EuiI18n tokens={['euiFooBar.token']} defaults={[5]}/>`,
+    errors: [{ messageId: 'invalidDefaultsType', data: { type: 'Literal' } }]
+  },
 ];
 
 function withFilename(ruleset) {

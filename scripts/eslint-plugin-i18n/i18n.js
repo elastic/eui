@@ -82,6 +82,10 @@ module.exports = {
       mismatchedValues: 'expected values "{{ expected }}" but provided {{ provided }}',
       mismatchedTokensAndDefaults: 'given {{ tokenLength }} tokens but {{ defaultsLength }} defaults',
       tokenNamesNotUsedInRenderProp: 'tokens {{ tokenNames }} is not used by render prop params {{ paramNames }}',
+      invalidTokenType: 'token expects a string value, {{ type }} passed instead',
+      invalidTokensType: 'tokens expects an array of strings, {{ type }} passed instead',
+      invalidDefaultType: 'default expects a string or arrow function, {{ type }} passed instead',
+      invalidDefaultsType: 'defaults expects an array of strings or arrow functions, {{ type }} passed instead',
     },
   },
   create: function (context) {
@@ -98,6 +102,110 @@ module.exports = {
         const hasRenderProp = jsxElement.children.length > 0;
 
         const attributes = attributesArrayToLookup(node.attributes);
+
+        // validate attribute types
+        if (attributes.hasOwnProperty('token')) {
+          // `token` must be a Literal
+          if (attributes.token.type !== 'Literal') {
+            context.report({
+              node,
+              loc: attributes.token.loc,
+              messageId: 'invalidTokenType',
+              data: { type: attributes.token.type }
+            });
+            return;
+          }
+        }
+
+        if (attributes.hasOwnProperty('default')) {
+          // default must be either a Literal of an ArrowFunctionExpression
+          const isLiteral = attributes.default.type === 'Literal';
+          const isArrowExpression =
+            attributes.default.type === 'JSXExpressionContainer' &&
+            attributes.default.expression.type === 'ArrowFunctionExpression';
+          if (!isLiteral && !isArrowExpression) {
+            context.report({
+              node,
+              loc: attributes.default.loc,
+              messageId: 'invalidDefaultType',
+              data: { type: attributes.default.expression.type }
+            });
+            return;
+          }
+        }
+
+        if (attributes.hasOwnProperty('tokens')) {
+          // tokens must be an array of Literals
+          if (attributes.tokens.type !== 'JSXExpressionContainer') {
+            context.report({
+              node,
+              loc: attributes.tokens.loc,
+              messageId: 'invalidTokensType',
+              data: { type: attributes.tokens.type }
+            });
+            return;
+          }
+
+          if (attributes.tokens.expression.type !== 'ArrayExpression') {
+            context.report({
+              node,
+              loc: attributes.tokens.loc,
+              messageId: 'invalidTokensType',
+              data: { type: attributes.tokens.expression.type }
+            });
+            return;
+          }
+
+          for (let i = 0; i < attributes.tokens.expression.elements.length; i++) {
+            const tokenNode = attributes.tokens.expression.elements[i];
+            if (tokenNode.type !== 'Literal' || typeof tokenNode.value !== 'string') {
+              context.report({
+                node,
+                loc: tokenNode.loc,
+                messageId: 'invalidTokensType',
+                data: { type: tokenNode.type }
+              });
+              return;
+            }
+          }
+        }
+
+        if (attributes.hasOwnProperty('defaults')) {
+          // defaults must be an array of either Literals or ArrowFunctionExpressions
+          if (attributes.defaults.type !== 'JSXExpressionContainer') {
+            context.report({
+              node,
+              loc: attributes.defaults.loc,
+              messageId: 'invalidDefaultsType',
+              data: { type: attributes.defaults.type }
+            });
+            return;
+          }
+
+          if (attributes.defaults.expression.type !== 'ArrayExpression') {
+            context.report({
+              node,
+              loc: attributes.defaults.loc,
+              messageId: 'invalidDefaultsType',
+              data: { type: attributes.defaults.expression.type }
+            });
+            return;
+          }
+
+          for (let i = 0; i < attributes.defaults.expression.elements.length; i++) {
+            const defaultNode = attributes.defaults.expression.elements[i];
+            if (defaultNode.type !== 'Literal' || typeof defaultNode.value !== 'string') {
+              console.log('::', defaultNode.value, typeof defaultNode.value);
+              context.report({
+                node,
+                loc: defaultNode.loc,
+                messageId: 'invalidDefaultsType',
+                data: { type: defaultNode.type }
+              });
+              return;
+            }
+          }
+        }
 
         const hasMultipleTokens = attributes.hasOwnProperty('tokens');
 
