@@ -41,10 +41,24 @@ export class EuiDualRange extends Component {
     // Determine closer thumb
     let lower = this.lowerValue;
     let upper = this.upperValue;
-    if (Math.abs(lower - newVal) <= Math.abs(upper - newVal)) {
-      lower = newVal;
+    if (!this.isValid) {
+      const isBackwards = (Number(lower) >= Number(upper));
+      const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
+      const isLow = lower < this.props.min;
+      const isHigh = upper > this.props.max;
+      if (isBackwards || isUnbound) {
+        lower = newVal - (this.props.step || 1);
+        upper = newVal;
+      } else {
+        lower = isLow ? this.props.min : lower;
+        upper = isHigh ? this.props.max : upper;
+      }
     } else {
-      upper = newVal;
+      if (Math.abs(lower - newVal) <= Math.abs(upper - newVal)) {
+        lower = newVal;
+      } else {
+        upper = newVal;
+      }
     }
     this._handleOnChange(lower, upper, e);
   }
