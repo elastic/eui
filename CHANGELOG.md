@@ -2,6 +2,7 @@
 
 - Changed `flex-basis` value on `EuiPageBody` for better cross-broswer support ([#1497](https://github.com/elastic/eui/pull/1497))
 - Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485))
+- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1500](https://github.com/elastic/eui/pull/1500))
 
 ## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
 
