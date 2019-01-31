@@ -40,7 +40,7 @@ export const EuiStepNumber = ({
   if (status === 'complete') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.isComplete" default="complete">
-        {complete => <EuiIcon type="check" className="euiStepNumber__icon" title={complete} />}
+        {isComplete => <EuiIcon type="check" className="euiStepNumber__icon" title={isComplete} />}
       </EuiI18n>
     );
   } else if (status === 'warning') {
