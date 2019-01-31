@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import { timeUnits } from '../time_units';
+import { timeUnits, timeUnitsPlural } from '../time_units';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
@@ -10,13 +10,14 @@ import { EuiButton } from '../../../button';
 
 const refreshUnitsOptions = Object.keys(timeUnits)
   .filter(timeUnit => {
-    return timeUnit === 'h' || timeUnit === 'm';
+    return timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's';
   })
   .map(timeUnit => {
-    return { value: timeUnit, text: `${timeUnits[timeUnit]}s` };
+    return { value: timeUnit, text: timeUnitsPlural[timeUnit] };
   });
 
-const MILLISECONDS_IN_MINUTE = 1000 * 60;
+const MILLISECONDS_IN_SECOND = 1000;
+const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
 
 function fromMilliseconds(milliseconds) {
@@ -30,16 +31,29 @@ function fromMilliseconds(milliseconds) {
     };
   }
 
+  if (milliseconds > MILLISECONDS_IN_MINUTE) {
+    return {
+      units: 'm',
+      value: round(milliseconds / MILLISECONDS_IN_MINUTE)
+    };
+  }
+
   return {
-    units: 'm',
-    value: round(milliseconds / MILLISECONDS_IN_MINUTE)
+    units: 's',
+    value: round(milliseconds / MILLISECONDS_IN_SECOND)
   };
 }
 
 function toMilliseconds(units, value) {
-  return units === 'h'
-    ? Math.round(value * MILLISECONDS_IN_HOUR)
-    : Math.round(value * MILLISECONDS_IN_MINUTE);
+  switch (units) {
+    case 'h':
+      return Math.round(value * MILLISECONDS_IN_HOUR);
+    case 'm':
+      return Math.round(value * MILLISECONDS_IN_MINUTE);
+    case 's':
+    default:
+      return Math.round(value * MILLISECONDS_IN_SECOND);
+  }
 }
 
 export class EuiRefreshInterval extends Component {
