@@ -75,7 +75,7 @@ export class EuiConfirmModal extends Component {
 
     let message;
 
-    if (typeof children === 'string' && !!children.length) {
+    if (typeof children === 'string' && children.length > 0) {
       message = <p>{children}</p>;
     } else {
       message = children;
