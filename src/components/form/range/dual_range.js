@@ -38,22 +38,28 @@ export class EuiDualRange extends Component {
   }
 
   _determineThumbMovement = (newVal, e) => {
-    // Determine closer thumb
+    // Determine thumb movement based on slider interaction
     let lower = this.lowerValue;
     let upper = this.upperValue;
     if (!this.isValid) {
-      const isBackwards = (Number(lower) >= Number(upper));
+      // Non-standard positioning follows
+      const isBackwards = Number(lower) >= Number(upper);
       const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
       const isLow = lower < this.props.min;
       const isHigh = upper > this.props.max;
       if (isBackwards || isUnbound) {
+        // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
+        // Reset both values in the proximity of the click.
         lower = newVal - (this.props.step || 1);
         upper = newVal;
       } else {
+        // Scenerio in which we can reasonably infer intention via click location if range extrema are respected.
+        // Reset either value to its respective terminal value.
         lower = isLow ? this.props.min : lower;
         upper = isHigh ? this.props.max : upper;
       }
     } else {
+      // Standard positioning based on click event proximity to thumb locations
       if (Math.abs(lower - newVal) <= Math.abs(upper - newVal)) {
         lower = newVal;
       } else {
