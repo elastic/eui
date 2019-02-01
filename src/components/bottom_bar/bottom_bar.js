@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -53,7 +54,10 @@ export class EuiBottomBar extends Component {
       <EuiPortal>
         <EuiScreenReaderOnly>
           <p aria-live="assertive">
-            There is a new menu opening with page level controls at the bottom of the document.
+            <EuiI18n
+              token="euiBottomBar.screenReaderAnnouncement"
+              default="There is a new menu opening with page level controls at the bottom of the document."
+            />
           </p>
         </EuiScreenReaderOnly>
         <div

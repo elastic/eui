@@ -11,6 +11,7 @@ import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
+import { EuiI18n } from '../../i18n';
 
 const positionToClassNameMap = {
   top: 'euiComboBoxOptionsList--top',
@@ -129,7 +130,7 @@ export class EuiComboBoxOptionsList extends Component {
             <EuiLoadingSpinner size="m" />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            Loading options
+            <EuiI18n token="euiComboBoxOptionsList.loadingOptions" default="Loading options"/>
           </EuiFlexItem>
         </EuiFlexGroup>
       );
@@ -139,22 +140,48 @@ export class EuiComboBoxOptionsList extends Component {
         if (selectedOptionForValue) {
           // Disallow duplicate custom options.
           emptyStateContent = (
-            <p><strong>{selectedOptionForValue.value}</strong> has already been added</p>
+            <p>
+              <EuiI18n
+                token="euiComboBoxOptionsList.alreadyAdded"
+                default="{label} has already been added"
+                values={{ label: <strong>{selectedOptionForValue.label}</strong> }}
+              />
+            </p>
           );
         } else {
           emptyStateContent = (
-            <p>Hit <EuiCode>ENTER</EuiCode> to add <strong>{searchValue}</strong> as a custom option</p>
+            <p>
+              <EuiI18n
+                token="euiComboBoxOptionsList.createCustomOption"
+                default="Hit {key} to add {searchValue} as a custom option"
+                values={{ key: <EuiCode>ENTER</EuiCode>, searchValue: <strong>{searchValue}</strong> }}
+              />
+            </p>
           );
         }
       } else {
         emptyStateContent = (
-          <p><strong>{searchValue}</strong> doesn&rsquo;t match any options</p>
+          <p>
+            <EuiI18n
+              token="euiComboBoxOptionsList.noMatchingOptions"
+              default="{searchValue} doesn't match any options"
+              values={{ searchValue: <strong>{searchValue}</strong> }}
+            />
+          </p>
         );
       }
     } else if (!options.length) {
-      emptyStateContent = <p>There aren&rsquo;t any options available</p>;
+      emptyStateContent = (
+        <p>
+          <EuiI18n token="euiComboBoxOptionsList.noAvailableOptions" default="There aren't any options available"/>
+        </p>
+      );
     } else if (areAllOptionsSelected) {
-      emptyStateContent = <p>You&rsquo;ve selected all available options</p>;
+      emptyStateContent = (
+        <p>
+          <EuiI18n token="euiComboBoxOptionsList.allOptionsSelected" default="You've selected all available options"/>
+        </p>
+      );
     }
 
     const emptyState = emptyStateContent ? (

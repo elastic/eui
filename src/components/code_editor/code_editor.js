@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import AceEditor from 'react-ace';
 
 import { htmlIdGenerator, keyCodes } from '../../services';
+import { EuiI18n } from '../i18n';
 
 function setOrRemoveAttribute(element, attributeName, value) {
   if (value === null || value === undefined) {
@@ -141,11 +142,6 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
-    const activity = isReadOnly
-      ? 'interacting with the code'
-      : 'editing';
-
-
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
@@ -159,11 +155,39 @@ export class EuiCodeEditor extends Component {
         data-test-subj="codeEditorHint"
       >
         <p className="euiText">
-          Press Enter to start {activity}.
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.startInteracting"
+                  default="Press Enter to start interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.startEditing"
+                  default="Press Enter to start editing."
+                />
+              )
+          }
         </p>
 
         <p className="euiText">
-          When you&rsquo;re done, press Escape to stop {activity}.
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.stopInteracting"
+                  default="When you're done, press Escape to stop interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.stopEditing"
+                  default="When you're done, press Escape to stop editing."
+                />
+              )
+          }
         </p>
       </div>
     );

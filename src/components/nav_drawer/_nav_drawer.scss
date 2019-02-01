@@ -116,10 +116,3 @@
     }
   }
 }
-
-@include euiBreakpoint('xs') {
-  .euiNavDrawer {
-    height: calc(100% - #{$euiNavDrawerTopPositionMobile});
-    top: $euiNavDrawerTopPositionMobile;
-  }
-}
