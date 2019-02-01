@@ -1,7 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Changed `flex-basis` value on `EuiPageBody` for better cross-broswer support ([#1497](https://github.com/elastic/eui/pull/1497))
+- Changed `flex-basis` value on `EuiPageBody` for better cross-browser support ([#1497](https://github.com/elastic/eui/pull/1497))
 - Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485)) ([#1504](https://github.com/elastic/eui/pull/1504))
+- Added a seconds option to the refresh interval selection in `EuiSuperDatePicker`  ([#1503](https://github.com/elastic/eui/pull/1503))
+- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1500](https://github.com/elastic/eui/pull/1500))
 
 ## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
 
