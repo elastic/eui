@@ -87,17 +87,27 @@ export class EuiDualRange extends Component {
   }
 
   _handleKeyDown = (value, e) => {
-    e.preventDefault();
-    let newVal = value;
+    let newVal = Number(value);
+    let changeRemainder = 0;
     const change = this.props.step || 1;
     switch (e.keyCode) {
       case keyCodes.UP:
       case keyCodes.RIGHT:
+        e.preventDefault();
         newVal += change;
+        changeRemainder = (newVal - this.props.min) % change;
+        if (change !== 1 && changeRemainder > 0) {
+          newVal = newVal - changeRemainder;
+        }
         break;
       case keyCodes.DOWN:
       case keyCodes.LEFT:
+        e.preventDefault();
         newVal -= change;
+        changeRemainder = (newVal - this.props.min) % change;
+        if (change !== 1 && changeRemainder > 0) {
+          newVal = newVal + (change - changeRemainder);
+        }
         break;
     }
     return newVal;
@@ -215,7 +225,6 @@ export class EuiDualRange extends Component {
             min={min}
             max={max}
             step={step}
-            value={value}
             disabled={disabled}
             onChange={this.handleSliderChange}
             style={style}
