@@ -10,35 +10,34 @@ import {
 } from '../../../../src/components';
 
 export class ConfirmModal extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isModalVisible: false,
-      isDestroyModalVisible: false,
-    };
-
-    this.closeModal = this.closeModal.bind(this);
-    this.showModal = this.showModal.bind(this);
-
-    this.closeDestroyModal = this.closeDestroyModal.bind(this);
-    this.showDestroyModal = this.showDestroyModal.bind(this);
+  state = {
+    isModalVisible: false,
+    isDestroyModalVisible: false,
+    isEmptyModalVisible: false
   }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({ isModalVisible: false });
   }
 
-  showModal() {
+  showModal = () => {
     this.setState({ isModalVisible: true });
   }
 
-  closeDestroyModal() {
+  closeDestroyModal = () => {
     this.setState({ isDestroyModalVisible: false });
   }
 
-  showDestroyModal() {
+  showDestroyModal = () => {
     this.setState({ isDestroyModalVisible: true });
+  }
+
+  closeEmptyModal = () => {
+    this.setState({ isEmptyModalVisible: false });
+  }
+
+  showEmptyModal = () => {
+    this.setState({ isEmptyModalVisible: true });
   }
 
   render() {
@@ -83,6 +82,23 @@ export class ConfirmModal extends Component {
       );
     }
 
+    let emptyModal;
+
+    if (this.state.isEmptyModalVisible) {
+      emptyModal = (
+        <EuiOverlayMask>
+          <EuiConfirmModal
+            title="Do this thing"
+            onCancel={this.closeEmptyModal}
+            onConfirm={this.closeEmptyModal}
+            cancelButtonText="No, don't do it"
+            confirmButtonText="Yes, do it"
+            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
+          />
+        </EuiOverlayMask>
+      );
+    }
+
     return (
       <div>
         <EuiButton onClick={this.showModal}>
@@ -95,8 +111,15 @@ export class ConfirmModal extends Component {
           Show dangerous ConfirmModal
         </EuiButton>
 
+        &nbsp;
+
+        <EuiButton onClick={this.showEmptyModal}>
+          Show title-only ConfirmModal
+        </EuiButton>
+
         {modal}
         {destroyModal}
+        {emptyModal}
       </div>
     );
   }

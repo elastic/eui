@@ -176,7 +176,6 @@ const iconTypes = [
   'visVega',
   'visVisualBuilder',
   'wrench',
-  'wrench',
 ];
 
 export default () => (

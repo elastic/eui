@@ -4,11 +4,13 @@ import { renderToHtml } from '../../services';
 import { propsInfo } from './props_info';
 
 import {
+  GuideRuleTitle,
   GuideSectionTypes,
 } from '../../components';
 
 import {
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import { SearchBar } from './search_bar';
@@ -93,6 +95,52 @@ export const SearchBarExample = {
               this flag back and forth (adds/removed an <EuiCode>is:</EuiCode> clause to/from the query).
             </li>
           </ul>
+
+          <GuideRuleTitle>Date parsing</GuideRuleTitle>
+          <p>
+            Date values can be used for equality or range tests when the <EuiCode>schema</EuiCode> prop specifies
+            the field as a <EuiCode>date</EuiCode> type (the <EuiCode>created</EuiCode> field in the demo below is
+            a date), and must be enclosed in single quotes. E.g.&nbsp;
+            <EuiCode>created:&apos;2019-01-01&apos;</EuiCode>,&nbsp;
+            <EuiCode>created&gt;=&apos;3rd January 2017&apos;</EuiCode>
+          </p>
+          <p>
+            Formats understood by the parser
+            <ul>
+              <li>
+                <p>relative</p>
+                <ul>
+                  <li><EuiCode>yesterday</EuiCode></li>
+                  <li><EuiCode>today</EuiCode></li>
+                  <li><EuiCode>tomorrow</EuiCode></li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  absolute (parsed by Moment.js&apos;s&nbsp;
+                  <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
+                  )
+                </p>
+                <ul>
+                  <li><EuiCode>ddd</EuiCode></li>
+                  <li><EuiCode>dddd</EuiCode></li>
+                  <li><EuiCode>D MMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMM YY</EuiCode></li>
+                  <li><EuiCode>D MMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMM YYYY</EuiCode></li>
+                  <li><EuiCode>D MMMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YY</EuiCode></li>
+                  <li><EuiCode>D MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>YYYY-MM-DD</EuiCode></li>
+                </ul>
+              </li>
+            </ul>
+          </p>
         </div>
       ),
       props: propsInfo,
