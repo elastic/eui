@@ -15,6 +15,13 @@ To install the Elastic UI Framework into an existing project, use the `yarn` CLI
 yarn add @elastic/eui
 ```
 
+Note that EUI itself has some dependencies itself mostly around management of dates and times. If you are installing it into a blank project you will need to install the following with it. You can read more about other ways to consume EUI [over here](consuming).
+
+```
+yarn add @elastic/eui @elastic/datemath moment
+```
+
+
 ## Running Locally
 
 ### Node
