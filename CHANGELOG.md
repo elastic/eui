@@ -3,7 +3,11 @@
 - Changed `flex-basis` value on `EuiPageBody` for better cross-browser support ([#1497](https://github.com/elastic/eui/pull/1497))
 - Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485))
 - Added a seconds option to the refresh interval selection in `EuiSuperDatePicker`  ([#1503](https://github.com/elastic/eui/pull/1503))
-- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1500](https://github.com/elastic/eui/pull/1500))
+- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1505](https://github.com/elastic/eui/pull/1505))
+
+**Bug fixes**
+
+- Remove `font-features` setting on `@euiFont` mixin to prevent breaks in ACE editor ([#1497](https://github.com/elastic/eui/pull/1497))
 
 ## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
 
