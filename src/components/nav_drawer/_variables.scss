@@ -11,6 +11,6 @@ $euiNavDrawerTopPosition: $euiHeaderChildSize + 1px;
 
 // Animation variables
 $euiNavDrawerExpandingDelay: $euiAnimSpeedNormal;
-$euiNavDrawerContractingDelay: $euiAnimSpeedSlow;
+$euiNavDrawerContractingDelay: $euiAnimSpeedFast;
 $euiNavDrawerExtendedDelay: $euiAnimSpeedExtraSlow * 2;
 $euiNavDrawerMenuAddedDelay: $euiAnimSpeedExtraFast;

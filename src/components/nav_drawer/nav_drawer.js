@@ -10,6 +10,7 @@ export const EuiNavDrawer = ({
   flyoutIsAnimating,
   mobileIsHidden,
   showScrollbar,
+  isExpandable,
   ...rest
 }) => {
   const classes = classNames(
@@ -21,7 +22,8 @@ export const EuiNavDrawer = ({
       'euiNavDrawer-flyoutIsExpanded': !flyoutIsCollapsed,
       'euiNavDrawer-flyoutIsAnimating': flyoutIsAnimating,
       'euiNavDrawer-mobileIsHidden': mobileIsHidden,
-      'euiNavDrawer-showScrollbar': showScrollbar,
+      'euiNavDrawer-showScrollbar': showScrollbar && isExpandable,
+      'euiNavDrawer-notExpandable': !isExpandable,
     },
     className
   );
@@ -51,6 +53,12 @@ EuiNavDrawer.propTypes = {
   flyoutIsCollapsed: PropTypes.bool,
   flyoutIsAnimating: PropTypes.bool,
 
+
+  /**
+   * Determine whether the menu expands upon hover
+   */
+  isExpandable: PropTypes.bool,
+
   showScrollbar: PropTypes.bool,
 };
 
@@ -60,4 +68,5 @@ EuiNavDrawer.defaultProps = {
   flyoutIsCollapsed: true,
   flyoutIsAnimating: false,
   showScrollbar: false,
+  isExpandable: true,
 };

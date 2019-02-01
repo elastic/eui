@@ -1,4 +1,12 @@
 .euiNavDrawerMenu {
   @include euiScrollBar;
   max-width: $euiNavDrawerWidthExpanded;
+
+  .euiNavDrawer-notExpandable & {
+    max-width: $euiNavDrawerWidthCollapsed;
+  }
+
+  &.euiNavDrawerMenu-hasFooter {
+    padding-bottom: $euiSizeXXL;
+  }
 }

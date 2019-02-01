@@ -11,6 +11,10 @@
   box-shadow: $euiNavDrawerSideShadow;
   opacity: 0;
 
+  .euiNavDrawer-notExpandable & {
+    left: $euiNavDrawerWidthCollapsed;
+  }
+
   &.euiNavDrawerFlyout-isExpanded {
     opacity: 1;
     transition: opacity $euiAnimSpeedNormal;

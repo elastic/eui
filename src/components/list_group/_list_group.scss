@@ -18,6 +18,13 @@
     border-radius: $euiBorderRadius;
     border: $euiBorderThin;
   }
+
+  &.euiListGroup-isFooter {
+    @include euiBottomShadowFlat;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 .euiListGroup-maxWidthDefault {

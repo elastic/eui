@@ -10,7 +10,7 @@
   z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
-  transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
+  transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
 
   &.euiNavDrawer-isCollapsed  {
@@ -36,6 +36,15 @@
 
     &.euiNavDrawer-flyoutIsAnimating {
       transition-delay: 0s;
+    }
+  }
+
+  &:hover.euiNavDrawer-notExpandable {
+    width: $euiNavDrawerWidthCollapsed;
+    overflow-y: auto;
+
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthExpanded + $euiNavDrawerWidthCollapsed;
     }
   }
 
@@ -73,6 +82,10 @@
 @include euiBreakpoint('xs', 's') {
   .euiNavDrawer {
     width: $euiNavDrawerWidthExpanded;
+
+    &.euiNavDrawer-notExpandable {
+      width: $euiNavDrawerWidthCollapsed;
+    }
 
     &.euiNavDrawer-mobileIsHidden {
       width: 0;

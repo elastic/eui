@@ -44,6 +44,7 @@ export default class extends Component {
       showScrollbar: false,
       outsideClickDisabled: true,
       isManagingFocus: false,
+      isExpandable: true,
     };
 
     this.topLinks = [
@@ -216,7 +217,7 @@ export default class extends Component {
       {
         label: 'Uptime',
         href: '/#/layout/nav-drawer',
-        iconType: 'upgradeAssistantApp',
+        iconType: 'uptimeApp',
         size: 's',
         style: { color: 'inherit' },
         'aria-label': 'Graph',
@@ -484,13 +485,20 @@ export default class extends Component {
   };
 
   expandDrawer = () => {
-    this.setState({ isCollapsed: false });
+    // Stop the collapse animation
+    clearTimeout(this.timeoutCollapse);
 
-    setTimeout(() => {
+    this.timeoutExpand = setTimeout(() => {
+      this.setState({
+        isCollapsed: false,
+      });
+    }, 750);
+
+    this.timeoutScrollbar = setTimeout(() => {
       this.setState({
         showScrollbar: true,
       });
-    }, 350);
+    }, 1200);
 
     // This prevents the drawer from collapsing when tabbing through children
     // by clearing the timeout thus cancelling the onBlur event (see focusOut).
@@ -507,11 +515,15 @@ export default class extends Component {
   };
 
   collapseDrawer = () => {
+    // Stop the expand animation
+    clearTimeout(this.timeoutExpand);
+    clearTimeout(this.timeoutScrollbar);
+
     this.setState({
       flyoutIsAnimating: false,
     });
 
-    setTimeout(() => {
+    this.timeoutCollapse = setTimeout(() => {
       this.setState({
         isCollapsed: true,
         flyoutIsCollapsed: true,
@@ -519,13 +531,20 @@ export default class extends Component {
         showScrollbar: false,
         outsideClickDisabled: true,
       });
-    }, 350);
+    }, 250);
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
-      document.getElementById('navDrawerMenu').scrollTop = 0;
-      document.getElementById('navDrawerFlyout').scrollTop = 0;
-    }, 300);
+      const menuEl = document.getElementById('navDrawerMenu');
+      if (menuEl) {
+        menuEl.scrollTop = 0;
+      }
+
+      const flyoutEl = document.getElementById('navDrawerFlyout');
+      if (flyoutEl) {
+        flyoutEl.scrollTop = 0;
+      }
+    }, 240);
   };
 
   focusOut = () => {
@@ -570,6 +589,20 @@ export default class extends Component {
     }, 250);
   };
 
+  toggleHover = () => {
+    this.setState({
+      isExpandable: !this.state.isExpandable,
+    });
+
+    setTimeout(() => {
+      if (this.state.isExpandable) {
+        this.expandDrawer();
+      } else {
+        this.collapseDrawer();
+      }
+    }, 0);
+  };
+
   render() {
     const {
       isCollapsed,
@@ -580,6 +613,7 @@ export default class extends Component {
       mobileIsHidden,
       showScrollbar,
       outsideClickDisabled,
+      isExpandable,
     } = this.state;
 
     return (
@@ -614,15 +648,24 @@ export default class extends Component {
               isCollapsed={isCollapsed}
               flyoutIsCollapsed={flyoutIsCollapsed}
               flyoutIsAnimating={flyoutIsAnimating}
-              onMouseOver={this.expandDrawer}
-              onFocus={this.expandDrawer}
+              onMouseEnter={isExpandable ? this.expandDrawer : undefined}
+              onFocus={isExpandable ? this.expandDrawer : undefined}
               onBlur={this.focusOut}
               onMouseLeave={this.collapseDrawer}
               mobileIsHidden={mobileIsHidden}
               showScrollbar={showScrollbar}
+              isExpandable={isExpandable}
               style={{ position: 'absolute' }} // This is for the embedded docs example only
             >
-              <EuiNavDrawerMenu id="navDrawerMenu">
+              <EuiNavDrawerMenu
+                id="navDrawerMenu"
+                footerLink={{
+                  iconType: isExpandable ? 'arrowLeft' : 'arrowRight',
+                  label: 'Collapse',
+                  size: 's',
+                  onClick: () => this.toggleHover(),
+                }}
+              >
                 <EuiListGroup listItems={this.topLinks} />
                 <EuiHorizontalRule margin="none" />
                 <EuiListGroup listItems={this.exploreLinks} />

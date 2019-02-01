@@ -34,6 +34,10 @@
     cursor: not-allowed;
     background-color: transparent;
   }
+
+  .euiListGroup-isFooter & {
+    background-color: $euiColorEmptyShade;
+  }
 }
 
 .euiListGroupItem__text,
@@ -47,6 +51,10 @@
 
   .euiListGroupItem-hasExtraAction & {
     max-width: calc(100% - #{$euiSizeXL});
+  }
+
+  .euiListGroup-isFooter & {
+    padding-left: $euiSize;
   }
 }
 
