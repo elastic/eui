@@ -15,7 +15,8 @@ import { EuiRangeWrapper } from './range_wrapper';
 export class EuiDualRange extends Component {
   state = {
     hasFocus: false,
-    rangeSliderRefAvailable: false
+    rangeSliderRefAvailable: false,
+    lastThumbInteraction: null
   }
 
   rangeSliderRef = null;
@@ -37,36 +38,70 @@ export class EuiDualRange extends Component {
       && isWithinRange(this.lowerValue, this.props.max, this.upperValue);
   }
 
-  _determineThumbMovement = (newVal, e) => {
-    // Determine thumb movement based on slider interaction
-    let lower = this.lowerValue;
-    let upper = this.upperValue;
-    if (!this.isValid) {
-      // Non-standard positioning follows
-      const isBackwards = Number(lower) >= Number(upper);
-      const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
-      const isLow = lower < this.props.min;
-      const isHigh = upper > this.props.max;
-      if (isBackwards || isUnbound) {
-        // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
-        // Reset both values in the proximity of the click.
-        lower = newVal - (this.props.step || 1);
-        upper = newVal;
-      } else {
-        // Scenerio in which we can reasonably infer intention via click location if range extrema are respected.
-        // Reset either value to its respective terminal value.
-        lower = isLow ? this.props.min : lower;
-        upper = isHigh ? this.props.max : upper;
-      }
+  _determineInvalidThumbMovement = (newVal, lower, upper, e) => {
+    const isBackwards = Number(lower) >= Number(upper);
+    const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
+    const isLow = lower < this.props.min;
+    const isHigh = upper > this.props.max;
+    if (isBackwards || isUnbound) {
+      // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
+      // Reset both values in the proximity of the click.
+      lower = newVal - (this.props.step || 1);
+      upper = newVal;
     } else {
-      // Standard positioning based on click event proximity to thumb locations
-      if (Math.abs(lower - newVal) <= Math.abs(upper - newVal)) {
-        lower = newVal;
-      } else {
-        upper = newVal;
-      }
+      // Scenerio in which we can reasonably infer intention via click location if range extrema are respected.
+      // Reset either value to its respective terminal value.
+      lower = isLow ? this.props.min : lower;
+      upper = isHigh ? this.props.max : upper;
     }
     this._handleOnChange(lower, upper, e);
+  }
+
+  _determineValidThumbMovement = (newVal, lower, upper, e) => {
+    const thumbsAreEquidistant = Math.abs(lower - newVal) === Math.abs(upper - newVal);
+    // Lower thumb nearing swap with upper thumb
+    if (
+      (newVal === upper || (newVal < upper && thumbsAreEquidistant))
+      && this.state.lastThumbInteraction === 'lower'
+    ) {
+      lower = newVal;
+    }
+    // Upper thumb nearing swap with lower thumb
+    else if (
+      (newVal === lower || (newVal > lower && thumbsAreEquidistant))
+      && this.state.lastThumbInteraction === 'upper'
+    ) {
+      upper = newVal;
+    }
+    // Lower thumb targeted or right-moving swap has occured
+    else if (
+      Math.abs(lower - newVal) < Math.abs(upper - newVal)
+      || (thumbsAreEquidistant && this.state.lastThumbInteraction === 'upper')
+    ) {
+      this.setState({
+        lastThumbInteraction: 'lower'
+      });
+      lower = newVal;
+    }
+    // Upper thumb targeted or left-moving swap has occured
+    else {
+      this.setState({
+        lastThumbInteraction: 'upper'
+      });
+      upper = newVal;
+    }
+    this._handleOnChange(lower, upper, e);
+  }
+
+  _determineThumbMovement = (newVal, e) => {
+    // Determine thumb movement based on slider interaction
+    if (!this.isValid) {
+      // Non-standard positioning follows
+      this._determineInvalidThumbMovement(newVal, this.lowerValue, this.upperValue, e);
+    } else {
+      // Standard positioning based on click event proximity to thumb locations
+      this._determineValidThumbMovement(newVal, this.lowerValue, this.upperValue, e);
+    }
   }
 
   _handleOnChange = (lower, upper, e) => {

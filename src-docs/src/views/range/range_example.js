@@ -57,6 +57,27 @@ export const RangeControlExample = {
     },
     {
       title: 'DualRange',
+      text: (
+        <Fragment>
+          <EuiCallOut color="warning" title="Retrieving field values">
+            <p>
+            Two-value <code>input[type=range]</code> elements are not part of the HTML5 specification.
+            Because of this support gap, <code>EuiDualRange</code> cannot expose a native <code>value</code> property
+            for native <code>form</code> to consumption.
+              <strong>
+                The React <code>onChange</code> prop is the recommended method
+                for retrieving the upper and lower values.
+              </strong>
+            </p>
+            <p>
+              <code>EuiDualRange</code> does use native <code>input</code>s to help validate step values
+            and range limits. These may be used as <code>form</code> values when <code>showInput</code> is in use.
+            The alternative is to store values in <code>input[type=hidden]</code>.
+            </p>
+          </EuiCallOut>
+          <EuiSpacer size="l" />
+        </Fragment>
+      ),
       source: [{
         type: GuideSectionTypes.JS,
         code: dualRangeSource,
