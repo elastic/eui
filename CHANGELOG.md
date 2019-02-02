@@ -8,6 +8,7 @@
 - Updated `EuiPage` background color to match body background color ([#1513](https://github.com/elastic/eui/pull/1513))
 - Fixed React key usage in `EuiPagination` ([#1514](https://github.com/elastic/eui/pull/1514))
 - Fixed bug which prevented `EuiSwitch` with generated ID from having its label announced by VoiceOver ([#1519](https://github.com/elastic/eui/pull/1519))
+- Fixed `EuiFilterButton` handling `numFilters` when `0` was specified ([#1510](https://github.com/elastic/eui/pull/1510))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
