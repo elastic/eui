@@ -52,7 +52,7 @@ export const EuiFilterButton = ({
       <span className="euiFilterButton__textShift" data-text={children}>
         {children}
       </span>
-      {numFilters &&
+      {numFilters != null &&
         <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
       }
     </Fragment>
