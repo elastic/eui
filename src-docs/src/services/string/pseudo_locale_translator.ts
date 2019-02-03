@@ -18,8 +18,10 @@
  */
 
 /**
- * Matches every single [A-Za-z] character, `<tag attr="any > text">`, `](markdown-link-address)` and `@I18N@valid_variable_name@I18N@`
+ * Matches every single [A-Za-z] character, `<tag attr="any > text">`, `](markdown-link-address)` and
+ * `@I18N@valid_variable_name@I18N@`
  */
+
 const CHARS_FOR_PSEUDO_LOCALIZATION_REGEX = /[A-Za-z]|(\]\([\s\S]*?\))|(<([^"<>]|("[^"]*?"))*?>)|(@I18N@\w*?@I18N@)/g;
 const PSEUDO_ACCENTS_LOCALE = 'en-xa';
 

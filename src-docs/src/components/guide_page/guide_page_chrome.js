@@ -17,6 +17,9 @@ import {
 } from '../../../../src/components';
 
 import {
+  GuideLocaleSelector,
+} from '../guide_locale_selector';
+import {
   GuideThemeSelector,
 } from '../guide_theme_selector';
 
@@ -87,6 +90,12 @@ export class GuidePageChrome extends Component {
           <GuideThemeSelector
             onToggleTheme={this.props.onToggleTheme}
             selectedTheme={this.props.selectedTheme}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <GuideLocaleSelector
+            onToggleLocale={this.props.onToggleLocale}
+            selectedLocale={this.props.selectedLocale}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -198,5 +207,7 @@ GuidePageChrome.propTypes = {
   currentRouteName: PropTypes.string,
   onToggleTheme: PropTypes.func.isRequired,
   selectedTheme: PropTypes.string.isRequired,
+  onToggleLocale: PropTypes.func.isRequired,
+  selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,
 };
