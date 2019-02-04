@@ -20,7 +20,7 @@ export class EuiSwitch extends Component {
   render() {
     const {
       label,
-      id,
+      id, // eslint-disable-line no-unused-vars
       name,
       checked,
       disabled,
@@ -73,7 +73,7 @@ export class EuiSwitch extends Component {
         { label &&
           <label
             className="euiSwitch__label"
-            htmlFor={id}
+            htmlFor={switchId}
           >
             {label}
           </label>
