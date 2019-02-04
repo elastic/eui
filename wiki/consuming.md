@@ -33,9 +33,11 @@ Test utilities are published from the `lib/test` directory.
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
 
-## Requirements
+## Requirements and dependencies
 
 EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
+
+EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
 
 ## Using EUI in Kibana
 
