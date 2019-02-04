@@ -8,6 +8,10 @@ import {
 } from '../accessibility';
 
 import {
+  EuiI18n,
+} from '../i18n';
+
+import {
   STATUS,
   EuiStepNumber,
 } from './step_number';
@@ -30,14 +34,10 @@ export const EuiStepHorizontal = ({
     'euiStepHorizontal-isDisabled': disabled,
   });
 
-  let titleAppendix = '';
-
   if (disabled) {
     status = 'disabled';
-    titleAppendix = ' is disabled';
   } else if (isComplete) {
     status = 'complete';
-    titleAppendix = ' is complete';
   } else if (isSelected) {
     status = status;
   } else if (!isComplete && !status) {
@@ -52,29 +52,44 @@ export const EuiStepHorizontal = ({
     onClick(e);
   };
 
-  const buttonTitle = `Step ${step}: ${title}${titleAppendix}`;
-
   return (
-    <EuiKeyboardAccessible>
-      <div
-        role="tab"
-        aria-selected={!!isSelected}
-        aria-disabled={!!disabled}
-        className={classes}
-        onClick={onStepClick}
-        tabIndex={disabled ? '-1' : '0'}
-        title={buttonTitle}
-        {...rest}
-      >
-        <EuiScreenReaderOnly><div>Step</div></EuiScreenReaderOnly>
+    <EuiI18n
+      token="euiStepHorizontal.buttonTitle"
+      default={({ step, title, disabled, isComplete }) => {
+        let titleAppendix = '';
+        if (disabled) {
+          titleAppendix = ' is disabled';
+        } else if (isComplete) {
+          titleAppendix = ' is complete';
+        }
 
-        <EuiStepNumber className="euiStepHorizontal__number" status={status} number={step} />
+        return `Step ${step}: ${title}${titleAppendix}`;
+      }}
+      values={{ step, title, disabled, isComplete }}
+    >
+      {buttonTitle => (
+        <EuiKeyboardAccessible>
+          <div
+            role="tab"
+            aria-selected={!!isSelected}
+            aria-disabled={!!disabled}
+            className={classes}
+            onClick={onStepClick}
+            tabIndex={disabled ? '-1' : '0'}
+            title={buttonTitle}
+            {...rest}
+          >
+            <EuiScreenReaderOnly><div><EuiI18n token="euiStepHorizontal.step" default="Step"/></div></EuiScreenReaderOnly>
 
-        <div className="euiStepHorizontal__title">
-          {title}
-        </div>
-      </div>
-    </EuiKeyboardAccessible>
+            <EuiStepNumber className="euiStepHorizontal__number" status={status} number={step} />
+
+            <div className="euiStepHorizontal__title">
+              {title}
+            </div>
+          </div>
+        </EuiKeyboardAccessible>
+      )}
+    </EuiI18n>
   );
 };
 

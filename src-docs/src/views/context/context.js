@@ -14,13 +14,13 @@ import {
 
 const mappings = {
   fr: {
-    english: 'Anglais',
-    french: 'Française',
-    greeting: 'Salutations!',
-    guestNo: 'Vous êtes invité #',
-    question: 'Quel est votre nom?',
-    placeholder: 'Jean Dupont',
-    action: 'Soumettre',
+    'euiContext.english': 'Anglais',
+    'euiContext.french': 'Française',
+    'euiContext.greeting': 'Salutations!',
+    'euiContext.guestNo': 'Vous êtes invité #',
+    'euiContext.question': 'Quel est votre nom?',
+    'euiContext.placeholder': 'Jean Dupont',
+    'euiContext.action': 'Soumettre',
   },
 };
 
@@ -44,35 +44,35 @@ export default class extends Component {
           <EuiFlexGroup gutterSize="s" alignItems="center">
             <EuiFlexItem grow={false}>
               <EuiButton fill={this.state.language === 'en'} onClick={() => this.setLanguage('en')}>
-                <EuiI18n token="english" default="English"/>
+                <EuiI18n token="euiContext.english" default="English"/>
               </EuiButton>
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
               <EuiButton fill={this.state.language === 'fr'} onClick={() => this.setLanguage('fr')}>
-                <EuiI18n token="french" default="French"/>
+                <EuiI18n token="euiContext.french" default="French"/>
               </EuiButton>
             </EuiFlexItem>
           </EuiFlexGroup>
 
           <EuiSpacer size="m"/>
 
-          <strong><EuiI18n token="greeting" default="Welcome!"/></strong>
+          <strong><EuiI18n token="euiContext.greeting" default="Welcome!"/></strong>
 
           <EuiSpacer size="s"/>
 
-          <p><EuiI18n token="guestNo" default="You are guest #"/><EuiI18nNumber value={1582394}/></p>
+          <p><EuiI18n token="euiContext.guestNo" default="You are guest #"/><EuiI18nNumber value={1582394}/></p>
 
           <EuiSpacer size="m"/>
 
-          <EuiI18n tokens={['question', 'action']} defaults={['What is your name?', 'Submit']} >
+          <EuiI18n tokens={['euiContext.question', 'euiContext.action']} defaults={['What is your name?', 'Submit']} >
             {([question, action]) => (
               <Fragment>
                 <EuiFormRow
                   label={question}
                 >
 
-                  <EuiI18n token="placeholder" default="John Doe">
+                  <EuiI18n token="euiContext.placeholder" default="John Doe">
                     {placeholder => (
                       <EuiFieldText
                         placeholder={placeholder}

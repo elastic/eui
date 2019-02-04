@@ -8,7 +8,7 @@ export default () => {
   return (
     <p>
       <EuiI18n
-        token="i18n.basicexample"
+        token="euiI18nBasic.basicexample"
         default="This is the English copy that would be replaced by a translation defined by the i18n.basicexample token."
       />
     </p>
