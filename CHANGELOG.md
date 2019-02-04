@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
+- Updated `app_ems.svg` ([#1517](https://github.com/elastic/eui/pull/1517))
 
 **Bug fixes**
 
