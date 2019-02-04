@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  EuiButtonEmpty,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
-  EuiPopover,
+  EuiSwitch,
 } from '../../../../src/components';
 
 export class GuideLocaleSelector extends Component {
@@ -30,53 +27,15 @@ export class GuideLocaleSelector extends Component {
   };
 
   render() {
-    const localeButton = (
-      <EuiButtonEmpty
-        size="s"
-        color="text"
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onLocaleButtonClick}
-        aria-label="Select a locale"
-      >
-        <span className="guideSideNav__locale">{this.props.selectedLocale}</span>
-      </EuiButtonEmpty>
-    );
-
-    const localeOptions = [{
-      name: 'English',
-      value: 'en',
-    }, {
-      name: 'Pseudo-English',
-      value: 'en-xa',
-    }].map(option => {
-      const { name, value } = option;
-
-      return (
-        <EuiContextMenuItem
-          key={value}
-          icon={value === this.props.selectedLocale ? 'check' : 'empty'}
-          onClick={() => { this.closeLocalePopover(); this.props.onToggleLocale(value); }}
-        >
-          {`${name}`}
-        </EuiContextMenuItem>
-      );
-    });
+    const otherLocale = this.props.selectedLocale === 'en' ? 'en-xa' : 'en';
 
     return (
-      <EuiPopover
-        id="pageChromeLocalePopover"
-        button={localeButton}
-        isOpen={this.state.isLocalePopoverOpen}
-        closePopover={this.closeLocalePopover}
-        panelPaddingSize="none"
-        anchorPosition="downRight"
-      >
-        <EuiContextMenuPanel
-          style={{ width: '60px' }}
-          items={localeOptions}
-        />
-      </EuiPopover>
+      <EuiSwitch
+        label="pseudo translation"
+        checked={this.props.selectedLocale === 'en-xa'}
+        onChange={() => this.props.onToggleLocale(otherLocale)}
+        compressed={true}
+      />
     );
   }
 }

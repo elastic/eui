@@ -81,7 +81,7 @@ export class GuidePageChrome extends Component {
     );
 
     return (
-      <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+      <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false} wrap>
         <EuiFlexItem grow={false}>
           {homeLink}
         </EuiFlexItem>
@@ -92,12 +92,18 @@ export class GuidePageChrome extends Component {
             selectedTheme={this.props.selectedTheme}
           />
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <GuideLocaleSelector
-            onToggleLocale={this.props.onToggleLocale}
-            selectedLocale={this.props.selectedLocale}
-          />
-        </EuiFlexItem>
+        {
+          location.host === 'localhost:8030' // eslint-disable-line no-restricted-globals
+            ? (
+              <EuiFlexItem grow={false}>
+                <GuideLocaleSelector
+                  onToggleLocale={this.props.onToggleLocale}
+                  selectedLocale={this.props.selectedLocale}
+                />
+              </EuiFlexItem>
+            )
+            : null
+        }
       </EuiFlexGroup>
     );
   }
