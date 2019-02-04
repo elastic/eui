@@ -24,18 +24,14 @@ function lookupToken<T extends RenderableValues>(
       return renderable(values);
     }
   } else if (values === undefined || typeof renderable !== 'string') {
-
     if (i18nMappingFunc && typeof valueDefault === 'string') {
       renderable = i18nMappingFunc(valueDefault);
     }
     return renderable;
   }
 
-  const children = processStringToChildren(renderable, values);
+  const children = processStringToChildren(renderable, values, i18nMappingFunc);
   if (typeof children === 'string') {
-    if (i18nMappingFunc) {
-      renderable = i18nMappingFunc(children);
-    }
     return children;
   }
 
