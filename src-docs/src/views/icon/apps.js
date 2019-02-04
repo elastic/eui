@@ -20,6 +20,7 @@ const iconTypes = [
   'dashboardApp',
   'devToolsApp',
   'discoverApp',
+  'emsApp',
   'filebeatApp',
   'gisApp',
   'graphApp',
