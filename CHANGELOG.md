@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Updated `EuiPage` background color to match body background color ([#1513](https://github.com/elastic/eui/pull/1513))
+- Fixed React key usage in `EuiPagination` ([#1514](https://github.com/elastic/eui/pull/1514))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
