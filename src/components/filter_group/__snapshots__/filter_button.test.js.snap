@@ -32,7 +32,7 @@ exports[`EuiFilterButton renders zero properly 1`] = `
     class="euiButtonEmpty__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
     >
       <span
         class="euiFilterButton__textShift"
