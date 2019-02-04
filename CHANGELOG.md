@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.8.0`.
+- Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
