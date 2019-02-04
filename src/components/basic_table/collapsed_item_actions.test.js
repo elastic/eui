@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { CollapsedItemActions } from './collapsed_item_actions';
 
 describe('CollapsedItemActions', () => {
@@ -27,7 +27,7 @@ describe('CollapsedItemActions', () => {
       onFocus: () => {}
     };
 
-    const component = shallow(
+    const component = render(
       <CollapsedItemActions {...props} />
     );
 

@@ -14,10 +14,12 @@
     "@elastic/eslint-config-kibana"
   ],
   "plugins": [
-    "prettier"
+    "prettier",
+    "local"
   ],
   "rules": {
-    "prefer-template": "error"
+    "prefer-template": "error",
+    "local/i18n": "error"
   },
   "env": {
     "jest": true

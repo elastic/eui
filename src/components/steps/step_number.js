@@ -6,6 +6,10 @@ import {
   EuiIcon,
 } from '../icon';
 
+import {
+  EuiI18n,
+} from '../i18n';
+
 const statusToClassNameMap = {
   complete: 'euiStepNumber--complete',
   incomplete: 'euiStepNumber--incomplete',
@@ -34,11 +38,23 @@ export const EuiStepNumber = ({
 
   let numberOrIcon;
   if (status === 'complete') {
-    numberOrIcon = <EuiIcon type="check" className="euiStepNumber__icon" title="complete" />;
+    numberOrIcon = (
+      <EuiI18n token="euiStepNumber.isComplete" default="complete">
+        {isComplete => <EuiIcon type="check" className="euiStepNumber__icon" title={isComplete} />}
+      </EuiI18n>
+    );
   } else if (status === 'warning') {
-    numberOrIcon = <EuiIcon type="alert" className="euiStepNumber__icon" title="has warnings" />;
+    numberOrIcon = (
+      <EuiI18n token="euiStepNumber.hasWarnings" default="has warnings">
+        {hasWarnings => <EuiIcon type="alert" className="euiStepNumber__icon" title={hasWarnings} />}
+      </EuiI18n>
+    );
   } else if (status === 'danger') {
-    numberOrIcon = <EuiIcon type="cross" className="euiStepNumber__icon" title="has errors" />;
+    numberOrIcon = (
+      <EuiI18n token="euiStepNumber.hasErrors" default="has errors">
+        {hasErrors => <EuiIcon type="cross" className="euiStepNumber__icon" title={hasErrors} />}
+      </EuiI18n>
+    );
   } else if (!isHollow) {
     numberOrIcon = number;
   }

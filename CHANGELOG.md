@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
