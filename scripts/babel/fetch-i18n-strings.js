@@ -1,41 +1,58 @@
 const babel = require('@babel/core');
 const babelOptions = require('../../.babelrc');
 const fs = require('fs');
+const { promisify } = require('util');
+const { basename, join, relative } = require('path');
+const glob = require('glob');
+const asyncGlob = promisify(glob);
 
-const { basename, extname, resolve } = require('path');
-const { readdir, stat } = require('fs').promises;
+const rootDir = join(__dirname, '..', '..');
+const srcDir = join(rootDir, 'src');
 
+const tokenMappings = [];
 
-const folder = './src/components/';
-const suffixes = ['.js', '.jsx', '.ts', '.tsx'];
-// const filepath = './src/components/combo_box/combo_box_options_list/combo_box_options_list.js';
-
-const tokenMapping = {};
+function getCodeForExpression(expressionNode) {
+  return babel.transformFromAst(babel.types.program([
+    babel.types.expressionStatement(
+      babel.types.removeComments(babel.types.cloneDeep(expressionNode))
+    )
+  ])).code;
+}
 
 function handleJSXPath(path) {
-  if (path.node.name.name === "EuiI18n") {
-    let token = path.node.attributes.filter(
-      node => { return node.name.name === "token" }
-    );
-    let defString = path.node.attributes.filter(
-      node => { return node.name.name === "default" }
+  if (path.node.name.name === 'EuiI18n') {
+    const symbols = [];
+
+    const attributes = path.node.attributes.reduce(
+      (attributes, node) => {
+        attributes[node.name.name] = node.value;
+        return attributes;
+      },
+      {}
     );
 
-    try {
-      token = token[0].value.value;
-    } catch (e) {
-      token = null;
-    }
-    try {
-      defString = defString[0].value.value;
-    } catch (e) {
-      defString = null;
+    if (attributes.hasOwnProperty('token') && attributes.hasOwnProperty('default')) {
+      const tokenNode = attributes.token;
+      const defStringNode = attributes.default;
+
+      let defString;
+      let highlighting;
+      if (defStringNode.type === 'StringLiteral') {
+        defString = defStringNode.value;
+        highlighting = 'string';
+      } else if (defStringNode.type === 'JSXExpressionContainer') {
+        defString = getCodeForExpression(defStringNode.expression);
+        highlighting = 'code';
+      }
+      symbols.push({
+        token: tokenNode.value,
+        defString,
+        highlighting,
+        loc: path.node.loc
+      });
     }
 
-    return {
-      token, 
-      defString
-    };
+    return symbols;
   }
 }
 
@@ -53,46 +70,36 @@ function traverseFile(filepath) {
   babel.traverse(
     ast,
     {
-      // Identifier(path) {
-      //   console.log(path.name)
-      // },
-      JSXOpeningElement(path){
-        if (path.node.name.name === "EuiI18n") {
-          const {
-            token, 
-            defString
-          } = handleJSXPath(path);
-          if (token) {
-            tokenMapping[token] = defString;
+      JSXOpeningElement(path) {
+        if (path.node.name.name === 'EuiI18n') {
+          const symbols = handleJSXPath(path);
+          for (let i = 0; i < symbols.length; i++) {
+            tokenMappings.push(
+              { ...symbols[i], filepath: relative(rootDir, filepath) }
+            );
           }
         }
       }
     }
   );
-  console.log(`DONE handling ${basename(filepath)}`)
-
-
-}
-
-async function getFiles(dir) {
-  const subdirs = await readdir(dir);
-  const files = await Promise.all(subdirs.map(async (subdir) => {
-    const res = resolve(dir, subdir);
-    return (await stat(res)).isDirectory() ? getFiles(res) : res;
-  }));
-  return Array.prototype.concat(...files);
 }
 
 (async () => {
-  let files = await getFiles(folder);
-  files = files.filter(filename => {
-    return suffixes.indexOf(extname(filename)) > -1;
-  }) 
+  const files = (await asyncGlob(
+    '**/*.@(js|ts|tsx)',
+    { cwd: srcDir, realpath: true },
+  )).filter(filepath => {
+    if (filepath.endsWith('index.d.ts')) return false;
+    if (filepath.endsWith('test.ts')) return false;
+    if (filepath.endsWith('test.tsx')) return false;
+    if (filepath.endsWith('test.js')) return false;
 
-  files.forEach(filename => {
-    traverseFile(filename)
-  })
-  console.log(tokenMapping);
+    return true;
+  });
+
+  files.forEach(filename => traverseFile(filename));
+  fs.writeFileSync(
+    join(rootDir, 'src-docs', 'src', 'i18ntokens.json'),
+    JSON.stringify(tokenMappings, null, 2)
+  );
 })();
-
-// 
