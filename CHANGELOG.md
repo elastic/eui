@@ -2,6 +2,10 @@
 
 - Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 
+**Bug fixes**
+
+- Updated `EuiPage` background color to match body background color ([#1513](https://github.com/elastic/eui/pull/1513))
+
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
 - Changed `flex-basis` value on `EuiPageBody` for better cross-browser support ([#1497](https://github.com/elastic/eui/pull/1497))
