@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.9.0`.
+
+## [`6.9.0`](https://github.com/elastic/eui/tree/v6.9.0)
+
 - Changed animation settings for `EuiNavDrawer` ([#1524](https://github.com/elastic/eui/pull/1524))
 - Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 - Updated `app_ems.svg` ([#1517](https://github.com/elastic/eui/pull/1517))
