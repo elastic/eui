@@ -25,7 +25,7 @@ export const EuiColorPickerSwatch: SFC<EuiColorPickerSwatchProps> = ({
   return (
     <div
       className={classes}
-      data-test-subj='colorSwatch'
+      data-test-subj="colorSwatch"
       style={{ background: color ? color : '' }}
       {...rest}>
       {children}

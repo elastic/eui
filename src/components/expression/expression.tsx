@@ -83,10 +83,10 @@ export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
 
   return (
     <Component className={classes} onClick={onClick} {...rest}>
-      <span className='euiExpression__description' {...descriptionProps}>
+      <span className="euiExpression__description" {...descriptionProps}>
         {description}
       </span>{' '}
-      <span className='euiExpression__value' {...valueProps}>
+      <span className="euiExpression__value" {...valueProps}>
         {value}
       </span>
     </Component>

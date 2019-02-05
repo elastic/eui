@@ -54,7 +54,7 @@ describe('EuiKeyboardAccessible', () => {
       // @ts-ignore unused var
       const component = (
         <EuiKeyboardAccessible>
-          <a href='#' onClick={noop} />
+          <a href="#" onClick={noop} />
         </EuiKeyboardAccessible>
       );
 
@@ -84,7 +84,7 @@ describe('EuiKeyboardAccessible', () => {
         <EuiKeyboardAccessible>
           <div
             // @ts-ignore not a valid prop type
-            onClick='notAFunction'
+            onClick="notAFunction"
           />
         </EuiKeyboardAccessible>
       );
@@ -150,7 +150,7 @@ describe('EuiKeyboardAccessible', () => {
     test('role', () => {
       const $button = render(
         <EuiKeyboardAccessible>
-          <div onClick={noop} role='submit' />
+          <div onClick={noop} role="submit" />
         </EuiKeyboardAccessible>
       );
 

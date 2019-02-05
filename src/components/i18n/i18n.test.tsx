@@ -8,7 +8,7 @@ describe('EuiI18n', () => {
     describe('rendering to dom', () => {
       it('renders a basic string to the dom', () => {
         const component = mount(
-          <EuiI18n token='test' default='This is a basic string.' />
+          <EuiI18n token="test" default="This is a basic string." />
         );
         expect(component).toMatchSnapshot();
       });
@@ -16,8 +16,8 @@ describe('EuiI18n', () => {
       it('renders a string with placeholders to the dom', () => {
         const component = mount(
           <EuiI18n
-            token='test'
-            default='This is a {type} with {special}.'
+            token="test"
+            default="This is a {type} with {special}."
             values={{ type: 'string', special: 'values' }}
           />
         );
@@ -30,7 +30,7 @@ describe('EuiI18n', () => {
           ({ type, special }) => `This is a ${type} with ${special}.`
         );
         const component = mount(
-          <EuiI18n token='test' default={renderCallback} values={values} />
+          <EuiI18n token="test" default={renderCallback} values={values} />
         );
         expect(component).toMatchSnapshot();
 
@@ -41,7 +41,7 @@ describe('EuiI18n', () => {
     describe('render prop with single token', () => {
       it('renders render prop result to the dom', () => {
         const component = mount(
-          <EuiI18n token='test' default='This is a basic string.'>
+          <EuiI18n token="test" default="This is a basic string.">
             {(result: ReactChild) => `A nifty thing: ${result}`}
           </EuiI18n>
         );
@@ -51,8 +51,8 @@ describe('EuiI18n', () => {
       it('renders render prop result with placeholders to the dom', () => {
         const component = mount(
           <EuiI18n
-            token='test'
-            default='This is a {type} with {special}.'
+            token="test"
+            default="This is a {type} with {special}."
             values={{ type: 'string', special: 'values' }}>
             {(result: ReactChild) => `Here's something cool: ${result}`}
           </EuiI18n>
@@ -66,7 +66,7 @@ describe('EuiI18n', () => {
           ({ type, special }) => `This is a ${type} with ${special}.`
         );
         const component = mount(
-          <EuiI18n token='test' default={renderCallback} values={values}>
+          <EuiI18n token="test" default={renderCallback} values={values}>
             {(result: ReactChild) => `Here's something neat: ${result}`}
           </EuiI18n>
         );
@@ -102,7 +102,7 @@ describe('EuiI18n', () => {
       it('renders a mapped basic string to the dom', () => {
         const component = mount(
           <EuiContext i18n={{ mapping: { test: 'An overridden string.' } }}>
-            <EuiI18n token='test' default='This is a basic string.' />
+            <EuiI18n token="test" default="This is a basic string." />
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
@@ -115,8 +115,8 @@ describe('EuiI18n', () => {
               mapping: { test: 'An overridden {type} with {special}.' },
             }}>
             <EuiI18n
-              token='test'
-              default='This is a {type} with {special}.'
+              token="test"
+              default="This is a {type} with {special}."
               values={{ type: 'string', special: 'values' }}
             />
           </EuiContext>
@@ -131,7 +131,7 @@ describe('EuiI18n', () => {
         );
         const component = mount(
           <EuiContext i18n={{ mapping: { test: renderCallback } }}>
-            <EuiI18n token='test' default={() => ''} values={values} />
+            <EuiI18n token="test" default={() => ''} values={values} />
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
@@ -144,7 +144,7 @@ describe('EuiI18n', () => {
       it('renders mapped render prop result to the dom', () => {
         const component = mount(
           <EuiContext i18n={{ mapping: { test: 'An overridden string.' } }}>
-            <EuiI18n token='test' default='This is a basic string.'>
+            <EuiI18n token="test" default="This is a basic string.">
               {(result: ReactChild) => `A nifty thing: ${result}`}
             </EuiI18n>
           </EuiContext>
@@ -159,8 +159,8 @@ describe('EuiI18n', () => {
               mapping: { test: 'An overridden {type} with {special}.' },
             }}>
             <EuiI18n
-              token='test'
-              default='This is a {type} with {special}.'
+              token="test"
+              default="This is a {type} with {special}."
               values={{ type: 'string', special: 'values' }}>
               {(result: ReactChild) => `Here's something cool: ${result}`}
             </EuiI18n>
@@ -176,7 +176,7 @@ describe('EuiI18n', () => {
         );
         const component = mount(
           <EuiContext i18n={{ mapping: { test: renderCallback } }}>
-            <EuiI18n token='test' default={renderCallback} values={values}>
+            <EuiI18n token="test" default={renderCallback} values={values}>
               {(result: ReactChild) => `Here's something neat: ${result}`}
             </EuiI18n>
           </EuiContext>

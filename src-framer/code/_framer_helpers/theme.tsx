@@ -32,7 +32,7 @@ export class Theme extends React.Component<Props> {
       <FrameSize>
         <div style={{ background: bgColor, flexGrow: 1, display: 'flex' }}>
           <style
-            type='text/css'
+            type="text/css"
             dangerouslySetInnerHTML={{
               __html: this.props.theme === 'light' ? LightCSS : DarkCSS,
             }}

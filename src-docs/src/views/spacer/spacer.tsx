@@ -5,19 +5,19 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 export default () => (
   <div>
     <p>xs: 4px</p>
-    <EuiSpacer size='xs' />
+    <EuiSpacer size="xs" />
 
     <br />
     <br />
 
     <p>s: 8px</p>
-    <EuiSpacer size='s' />
+    <EuiSpacer size="s" />
 
     <br />
     <br />
 
     <p>m: 16px</p>
-    <EuiSpacer size='m' />
+    <EuiSpacer size="m" />
 
     <br />
     <br />
@@ -29,11 +29,11 @@ export default () => (
     <br />
 
     <p>xl: 32px</p>
-    <EuiSpacer size='xl' />
+    <EuiSpacer size="xl" />
 
     <br />
     <br />
     <p>xxl: 40px</p>
-    <EuiSpacer size='xxl' />
+    <EuiSpacer size="xxl" />
   </div>
 );

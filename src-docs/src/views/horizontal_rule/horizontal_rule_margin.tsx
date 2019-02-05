@@ -5,16 +5,16 @@ import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 export default () => (
   <div>
     <p>xs</p>
-    <EuiHorizontalRule margin='xs' />
+    <EuiHorizontalRule margin="xs" />
     <p>s</p>
-    <EuiHorizontalRule margin='s' />
+    <EuiHorizontalRule margin="s" />
     <p>m</p>
-    <EuiHorizontalRule margin='m' />
+    <EuiHorizontalRule margin="m" />
     <p>l (default)</p>
-    <EuiHorizontalRule margin='l' />
+    <EuiHorizontalRule margin="l" />
     <p>xl</p>
-    <EuiHorizontalRule margin='xl' />
+    <EuiHorizontalRule margin="xl" />
     <p>xxl</p>
-    <EuiHorizontalRule margin='xxl' />
+    <EuiHorizontalRule margin="xxl" />
   </div>
 );
