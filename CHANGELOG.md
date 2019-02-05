@@ -1,13 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.9.0`.
+- Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
 
 ## [`6.9.0`](https://github.com/elastic/eui/tree/v6.9.0)
 
 - Changed animation settings for `EuiNavDrawer` ([#1524](https://github.com/elastic/eui/pull/1524))
 - Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 - Updated `app_ems.svg` ([#1517](https://github.com/elastic/eui/pull/1517))
-- Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
 
 **Bug fixes**
 
