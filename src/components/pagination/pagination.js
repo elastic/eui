@@ -67,13 +67,13 @@ export const EuiPagination = ({
   if (firstPageInRange > 0) {
     firstPageButtons.push(
       <EuiI18n
+        key="0"
         token="euiPagination.pageOfTotal"
         default="Page {page} of {total}"
         values={{ page: 1, total: lastPageInRange }}
       >
         {pageOfTotal => (
           <EuiPaginationButton
-            key="0"
             onClick={onPageClick.bind(null, 0)}
             hideOnMobile
             aria-label={pageOfTotal}
@@ -116,13 +116,13 @@ export const EuiPagination = ({
 
     lastPageButtons.push(
       <EuiI18n
+        key={pageCount - 1}
         token="euiPagination.jumpToLastPage"
         default="Jump to the last page, number {pageCount}"
         values={{ pageCount }}
       >
         {jumpToLastPage => (
           <EuiPaginationButton
-            key={pageCount - 1}
             onClick={onPageClick.bind(null, pageCount - 1)}
             hideOnMobile
             aria-label={jumpToLastPage}
