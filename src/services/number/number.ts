@@ -1,5 +1,5 @@
 export const isWithinRange = (min: number | string, max: number | string, value: number | string) => {
-  if (value === '') {
+  if (min === '' || max === '' || value === '') {
     return false;
   }
 
