@@ -481,6 +481,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
     popoverRef={[Function]}
   >
     <EuiOutsideClickDetector
+      isDisabled={false}
       onOutsideClick={[Function]}
     >
       <div

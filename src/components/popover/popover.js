@@ -480,7 +480,10 @@ export class EuiPopover extends Component {
     }
 
     return (
-      <EuiOutsideClickDetector onOutsideClick={closePopover}>
+      <EuiOutsideClickDetector
+        isDisabled={!isOpen}
+        onOutsideClick={closePopover}
+      >
         <div
           className={classes}
           onKeyDown={this.onKeyDown}
