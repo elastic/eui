@@ -20,3 +20,29 @@ exports[`EuiFilterButton is rendered 1`] = `
   </span>
 </button>
 `;
+
+exports[`EuiFilterButton renders zero properly 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+    >
+      <span
+        class="euiFilterButton__textShift"
+      />
+      <span
+        class="euiNotificationBadge euiFilterButton__notification"
+      >
+        0
+      </span>
+    </span>
+  </span>
+</button>
+`;
