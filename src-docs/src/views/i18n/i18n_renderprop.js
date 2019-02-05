@@ -13,7 +13,7 @@ export default () => {
         This text field&apos;s placeholder reads from <EuiCode>i18n.renderpropexample</EuiCode>
       </p>
       <div>
-        <EuiI18n token="i18n.renderpropexample" default="John Doe">
+        <EuiI18n token="euiI18nRenderprop.placeholderName" default="John Doe">
           {placeholderName => <EuiFieldText placeholder={placeholderName}/>}
         </EuiI18n>
       </div>

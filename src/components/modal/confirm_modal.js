@@ -75,7 +75,7 @@ export class EuiConfirmModal extends Component {
 
     let message;
 
-    if (typeof children === 'string') {
+    if (typeof children === 'string' && children.length > 0) {
       message = <p>{children}</p>;
     } else {
       message = children;
@@ -89,11 +89,13 @@ export class EuiConfirmModal extends Component {
       >
         {modalTitle}
 
-        <EuiModalBody>
-          <EuiText data-test-subj="confirmModalBodyText">
-            {message}
-          </EuiText>
-        </EuiModalBody>
+        {message && (
+          <EuiModalBody>
+            <EuiText data-test-subj="confirmModalBodyText">
+              {message}
+            </EuiText>
+          </EuiModalBody>
+        )}
 
         <EuiModalFooter>
           <EuiButtonEmpty

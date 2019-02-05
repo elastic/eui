@@ -1,7 +1,7 @@
 .euiPage {
   display: flex;
   padding: $euiSize;
-  background-color: $euiColorLightestShade;
+  background-color: $euiPageBackgroundColor;
 
   &--restrictWidth-default,
   &--restrictWidth-custom {

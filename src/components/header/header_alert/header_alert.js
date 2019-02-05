@@ -11,6 +11,10 @@ import {
   EuiFlexItem,
 } from '../../flex';
 
+import {
+  EuiI18n,
+} from '../../i18n';
+
 export const EuiHeaderAlert = ({
   action,
   className,
@@ -22,33 +26,37 @@ export const EuiHeaderAlert = ({
   const classes = classNames('euiHeaderAlert', className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      <EuiButtonIcon
-        aria-label="Dismiss"
-        iconType="cross"
-        size="s"
-        className="euiHeaderAlert__dismiss"
-      />
+    <EuiI18n token="euiHeaderAlert.dismiss" default="Dismiss">
+      {dismiss => (
+        <div
+          className={classes}
+          {...rest}
+        >
+          <EuiButtonIcon
+            aria-label={dismiss}
+            iconType="cross"
+            size="s"
+            className="euiHeaderAlert__dismiss"
+          />
 
-      <div className="euiHeaderAlert__title">{title}</div>
+          <div className="euiHeaderAlert__title">{title}</div>
 
-      <div className="euiHeaderAlert__text">{text}</div>
+          <div className="euiHeaderAlert__text">{text}</div>
 
-      <EuiFlexGroup justifyContent="spaceBetween">
-        <EuiFlexItem grow={false}>
-          <div className="euiHeaderAlert__action euiLink">{action}</div>
-        </EuiFlexItem>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <div className="euiHeaderAlert__action euiLink">{action}</div>
+            </EuiFlexItem>
 
-        <EuiFlexItem grow={false}>
-          <div className="euiHeaderAlert__date">
-            {date}
-          </div>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </div>
+            <EuiFlexItem grow={false}>
+              <div className="euiHeaderAlert__date">
+                {date}
+              </div>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </div>
+      )}
+    </EuiI18n>
   );
 };
 

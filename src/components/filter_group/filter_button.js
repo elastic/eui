@@ -42,8 +42,10 @@ export const EuiFilterButton = ({
     className,
   );
 
+  // != instead of !== to allow for null and undefined
+  const numFiltersDefined = numFilters != null;
   const buttonTextClassNames = classNames(
-    { 'euiFilterButton__text-hasNotification': numFilters, },
+    { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
     textProps && textProps.className,
   );
 
@@ -52,7 +54,7 @@ export const EuiFilterButton = ({
       <span className="euiFilterButton__textShift" data-text={children}>
         {children}
       </span>
-      {numFilters &&
+      {numFiltersDefined &&
         <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
       }
     </Fragment>

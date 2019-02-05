@@ -13,4 +13,12 @@ describe('EuiFilterButton', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  test('renders zero properly', () => {
+    const component = render(
+      <EuiFilterButton {...requiredProps} numFilters={0} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
