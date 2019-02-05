@@ -90,11 +90,14 @@ export class EuiFormRow extends Component {
 
     if (error && isInvalid) {
       const errorTexts = Array.isArray(error) ? error : [error];
-      optionalErrors = errorTexts.map((error, i) => (
-        <EuiFormErrorText key={`${id}-error-${i}`} id={`${id}-error-${i}`} className="euiFormRow__text">
-          {error}
-        </EuiFormErrorText>
-      ));
+      optionalErrors = errorTexts.map((error, i) =>{
+        const key = typeof error === 'string' ? error : i;
+        return (
+          <EuiFormErrorText key={key} id={`${id}-error-${i}`} className="euiFormRow__text">
+            {error}
+          </EuiFormErrorText>
+        );}
+      );
     }
 
     let optionalLabel;

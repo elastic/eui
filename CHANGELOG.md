@@ -9,7 +9,7 @@
 - Fixed React key usage in `EuiPagination` ([#1514](https://github.com/elastic/eui/pull/1514))
 - Fixed bug which prevented `EuiSwitch` with generated ID from having its label announced by VoiceOver ([#1519](https://github.com/elastic/eui/pull/1519))
 - Fixed `EuiFilterButton` handling `numFilters` when `0` was specified ([#1510](https://github.com/elastic/eui/pull/1510))
-- Fixed `EuiFormRow` errors from the possibility of having duplicate `key` values ([#1522](https://github.com/elastic/eui/pull/1522))
+- Fixed `EuiFormRow` errors from the possibility of having duplicate `key` values. Allow `EuiDescribedFormGroup` to exist as a description-only row. ([#1522](https://github.com/elastic/eui/pull/1522))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 

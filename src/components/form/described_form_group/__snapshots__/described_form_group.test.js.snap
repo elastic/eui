@@ -419,7 +419,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 <EuiFormErrorText
                   className="euiFormRow__text"
                   id="generated-id-error-0"
-                  key="generated-id-error-0"
+                  key="Error one"
                 >
                   <div
                     aria-live="polite"
@@ -432,7 +432,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 <EuiFormErrorText
                   className="euiFormRow__text"
                   id="generated-id-error-1"
-                  key="generated-id-error-1"
+                  key="Error two"
                 >
                   <div
                     aria-live="polite"
