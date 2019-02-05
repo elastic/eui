@@ -1,15 +1,19 @@
 import { cloneElement, ReactChild } from 'react';
-import { isBoolean, isString, isNumber } from '../../services/predicate/lodash_predicates';
-import {isElement} from 'react-is';
+import {
+  isBoolean,
+  isString,
+  isNumber,
+} from '../../services/predicate/lodash_predicates';
+import { isElement } from 'react-is';
 import { RenderableValues } from '../context/context';
 
 function isPrimitive(value: ReactChild) {
   return isBoolean(value) || isString(value) || isNumber(value);
 }
 
-type Child = string | {propName: string} | ReactChild | undefined;
+type Child = string | { propName: string } | ReactChild | undefined;
 
-function hasPropName(child: Child): child is ({propName: string}) {
+function hasPropName(child: Child): child is { propName: string } {
   return typeof child === 'object' && child.hasOwnProperty('propName');
 }
 
@@ -20,7 +24,10 @@ function hasPropName(child: Child): child is ({propName: string}) {
  * @param {RenderableValues} values
  * @returns {string | React.ReactChild[]}
  */
-export function processStringToChildren(input: string, values: RenderableValues): string | ReactChild[] {
+export function processStringToChildren(
+  input: string,
+  values: RenderableValues
+): string | ReactChild[] {
   const children: ReactChild[] = [];
 
   let child: Child;
@@ -44,10 +51,7 @@ export function processStringToChildren(input: string, values: RenderableValues)
     } else if (isElement(value)) {
       // an array with any ReactElements will be kept as an array
       // so they need to be assigned a key
-      children.push(cloneElement(
-        value,
-        { key: children.length }
-      ));
+      children.push(cloneElement(value, { key: children.length }));
     } else if (hasPropName(value)) {
       // this won't be called, propName children are converted to a ReactChild before calling this
     } else {
@@ -76,14 +80,17 @@ export function processStringToChildren(input: string, values: RenderableValues)
       appendCharToChild(charToAdd);
     } else if (char === '{') {
       appendValueToChildren(child);
-      child = {propName: ''};
+      child = { propName: '' };
     } else if (char === '}') {
-      const propName = (child as {propName: string}).propName;
+      const propName = (child as { propName: string }).propName;
       if (!values.hasOwnProperty(propName)) {
-        throw new Error(`Key "${propName}" not found in ${JSON.stringify(values, null, 2)}`);
+        throw new Error(
+          `Key "${propName}" not found in ${JSON.stringify(values, null, 2)}`
+        );
       }
       const propValue = values[propName];
-      encounteredNonPrimitive = encounteredNonPrimitive || !(isPrimitive(propValue));
+      encounteredNonPrimitive =
+        encounteredNonPrimitive || !isPrimitive(propValue);
       appendValueToChildren(propValue);
       child = undefined;
     } else {

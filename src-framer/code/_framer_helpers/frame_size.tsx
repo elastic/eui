@@ -7,7 +7,6 @@ interface Props {
 }
 
 export class FrameSize extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     frame: true,
@@ -25,13 +24,19 @@ export class FrameSize extends React.Component<Props> {
     let optionallyFramedComponent;
     if (this.props.frame) {
       optionallyFramedComponent = (
-        <div style={{ display: 'flex', position: 'absolute', height: '100%', width: '100%' }}>
+        <div
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+          }}>
           {this.props.children}
         </div>
       );
     } else {
-      optionallyFramedComponent = (this.props.children);
+      optionallyFramedComponent = this.props.children;
     }
-    return (<React.Fragment>{optionallyFramedComponent}</React.Fragment>);
+    return <React.Fragment>{optionallyFramedComponent}</React.Fragment>;
   }
 }

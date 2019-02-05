@@ -1,7 +1,4 @@
-export {
-  times,
-  memoize
-} from 'lodash';
+export { times, memoize } from 'lodash';
 
 export const browserTick = (callback: FrameRequestCallback) => {
   requestAnimationFrame(callback);

@@ -6,10 +6,7 @@ describe('when EuiDelayHide is visible initially', () => {
   function getWrapper() {
     jest.useFakeTimers();
     return mount(
-      <EuiDelayHide
-        hide={false}
-        render={() => <div>Hello World</div>}
-      />
+      <EuiDelayHide hide={false} render={() => <div>Hello World</div>} />
     );
   }
 
@@ -57,10 +54,7 @@ describe('when EuiDelayHide parent updates', () => {
   it('should still hide correctly', () => {
     jest.useFakeTimers();
     const wrapper = mount(
-      <EuiDelayHide
-        hide={true}
-        render={() => <div>Hello World</div>}
-      />
+      <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
     );
 
     wrapper.setProps({ hide: false });
@@ -141,10 +135,7 @@ describe('when EuiDelayHide has been visible and become hidden', () => {
   it('should still be visible for the minimum duration the second time', () => {
     jest.useFakeTimers();
     const wrapper = mount(
-      <EuiDelayHide
-        hide={true}
-        render={() => <div>Hello World</div>}
-      />
+      <EuiDelayHide hide={true} render={() => <div>Hello World</div>} />
     );
 
     wrapper.setProps({ hide: false });

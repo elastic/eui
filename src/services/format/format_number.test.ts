@@ -12,7 +12,9 @@ describe('formatNumber', () => {
   });
 
   test('with config - "decimal1" format - rounded', () => {
-    expect(formatNumber(value, { format: 'decimal1', round: true })).toBe('1,234.6');
+    expect(formatNumber(value, { format: 'decimal1', round: true })).toBe(
+      '1,234.6'
+    );
   });
 
   test('with config - "decimal2" format', () => {
@@ -20,7 +22,9 @@ describe('formatNumber', () => {
   });
 
   test('with config - "decimal2" format - rounded', () => {
-    expect(formatNumber(value, { format: 'decimal2', round: true })).toBe('1,234.57');
+    expect(formatNumber(value, { format: 'decimal2', round: true })).toBe(
+      '1,234.57'
+    );
   });
 
   test('with config - "decimal3" format', () => {
@@ -28,7 +32,9 @@ describe('formatNumber', () => {
   });
 
   test('with config - "decimal3" format - rounded', () => {
-    expect(formatNumber(value, { format: 'decimal3', round: true })).toBe('1,234.568');
+    expect(formatNumber(value, { format: 'decimal3', round: true })).toBe(
+      '1,234.568'
+    );
   });
 
   test('with config - "ordinal" format', () => {

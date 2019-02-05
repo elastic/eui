@@ -2,19 +2,16 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import {
-  EuiExpression,
-  COLORS,
-} from './expression';
+import { EuiExpression, COLORS } from './expression';
 
 describe('EuiExpression', () => {
   test('renders', () => {
     const component = (
       <EuiExpression
-        description="the answer is"
-        value="42"
+        description='the answer is'
+        value='42'
         isActive={false}
-         // tslint:disable no-empty
+        // tslint:disable no-empty
         onClick={() => {}}
         {...requiredProps}
       />
@@ -29,15 +26,14 @@ describe('EuiExpression', () => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiExpression
-              description="the answer is"
-              value="42"
+              description='the answer is'
+              value='42'
               color={color}
               {...requiredProps}
             />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -46,8 +42,8 @@ describe('EuiExpression', () => {
       test('true renders uppercase', () => {
         const component = (
           <EuiExpression
-            description="the answer is"
-            value="42"
+            description='the answer is'
+            value='42'
             uppercase={true}
           />
         );
@@ -58,8 +54,8 @@ describe('EuiExpression', () => {
       test('false renders inherted case', () => {
         const component = (
           <EuiExpression
-            description="the answer is"
-            value="42"
+            description='the answer is'
+            value='42'
             uppercase={false}
           />
         );
@@ -72,8 +68,8 @@ describe('EuiExpression', () => {
       test('true renders active', () => {
         const component = (
           <EuiExpression
-            description="the answer is"
-            value="42"
+            description='the answer is'
+            value='42'
             isActive={true}
           />
         );
@@ -84,8 +80,8 @@ describe('EuiExpression', () => {
       test('false renders inactive', () => {
         const component = (
           <EuiExpression
-            description="the answer is"
-            value="42"
+            description='the answer is'
+            value='42'
             isActive={false}
           />
         );
@@ -99,8 +95,8 @@ describe('EuiExpression', () => {
         const handler = jest.fn();
         const component = mount(
           <EuiExpression
-            description="the answer is"
-            value="42"
+            description='the answer is'
+            value='42'
             isActive={false}
             onClick={handler}
             {...requiredProps}

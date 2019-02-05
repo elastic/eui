@@ -6,7 +6,6 @@ export type Primitive = string | boolean | number | null | undefined;
 type Comparator<T = Primitive> = (a: T, b: T) => number;
 
 export const Comparators = Object.freeze({
-
   default: (direction: 'asc' | 'desc' = SortDirection.ASC) => {
     return (v1: Primitive, v2: Primitive) => {
       // JavaScript's comparison of null/undefined (and some others not handled here) values always returns `false`
@@ -40,7 +39,7 @@ export const Comparators = Object.freeze({
       if (v1 === v2) {
         return 0;
       }
-      const result =  v1! > v2! ? 1 : -1;
+      const result = v1! > v2! ? 1 : -1;
       return SortDirection.isAsc(direction) ? result : -1 * result;
     };
   },
@@ -49,7 +48,10 @@ export const Comparators = Object.freeze({
     return (v1, v2) => comparator(v2, v1);
   },
 
-  value<T>(valueCallback: (value: T) => Primitive, comparator?: Comparator): Comparator<T> {
+  value<T>(
+    valueCallback: (value: T) => Primitive,
+    comparator?: Comparator
+  ): Comparator<T> {
     if (!comparator) {
       comparator = this.default(SortDirection.ASC);
     }
@@ -61,5 +63,4 @@ export const Comparators = Object.freeze({
   property<T>(prop: string, comparator?: Comparator): Comparator<T> {
     return this.value(value => get(value, prop), comparator);
   },
-
 });

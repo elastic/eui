@@ -1,6 +1,4 @@
-import {
-  Pager,
-} from './pager';
+import { Pager } from './pager';
 
 describe('Pager', () => {
   describe('constructor', () => {

@@ -17,13 +17,13 @@ export class Timer {
     clearTimeout(this.id);
     this.id = undefined;
     this.timeRemaining = (this.finishTime || 0) - Date.now();
-  }
+  };
 
   resume = () => {
     this.id = setTimeout(this.finish, this.timeRemaining);
     this.finishTime = Date.now() + (this.timeRemaining || 0);
     this.timeRemaining = undefined;
-  }
+  };
 
   clear = () => {
     clearTimeout(this.id);
@@ -31,12 +31,12 @@ export class Timer {
     this.callback = undefined;
     this.finishTime = undefined;
     this.timeRemaining = undefined;
-  }
+  };
 
   finish = () => {
     if (this.callback) {
       this.callback();
     }
     this.clear();
-  }
+  };
 }
