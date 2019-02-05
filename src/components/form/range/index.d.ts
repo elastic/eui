@@ -1,4 +1,4 @@
-import { CommonProps } from '../../common';
+import { CommonProps, Omit } from '../../common';
 
 import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
 
@@ -43,10 +43,10 @@ declare module '@elastic/eui' {
 
     export interface EuiDualRangeProps {
       // Override acceptable value type
-      value: Array<number | string>
+      value: [number | string, number | string]
     }
 
     export const EuiDualRange: SFC<
-      CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiRangeProps & EuiDualRangeProps
+      CommonProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & EuiRangeProps & EuiDualRangeProps
     >;
 }

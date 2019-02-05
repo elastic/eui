@@ -18,8 +18,5 @@ describe('numbers', () => {
     expect(isWithinRange(10, 100, 0)).toBe(false);
     expect(isWithinRange(0, 100, -10)).toBe(false);
     expect(isWithinRange(0, 100, '')).toBe(false);
-    expect(isWithinRange(0, 100, null)).toBe(false);
-    expect(isWithinRange(0, 100)).toBe(false);
-    expect(isWithinRange(0, 100, 'a')).toBe(false);
   });
 });

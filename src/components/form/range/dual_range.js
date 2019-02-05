@@ -123,25 +123,25 @@ export class EuiDualRange extends Component {
 
   _handleKeyDown = (value, e) => {
     let newVal = Number(value);
-    let changeRemainder = 0;
-    const change = this.props.step || 1;
+    let stepRemainder = 0;
+    const step = this.props.step || 1;
     switch (e.keyCode) {
       case keyCodes.UP:
       case keyCodes.RIGHT:
         e.preventDefault();
-        newVal += change;
-        changeRemainder = (newVal - this.props.min) % change;
-        if (change !== 1 && changeRemainder > 0) {
-          newVal = newVal - changeRemainder;
+        newVal += step;
+        stepRemainder = (newVal - this.props.min) % step;
+        if (step !== 1 && stepRemainder > 0) {
+          newVal = newVal - stepRemainder;
         }
         break;
       case keyCodes.DOWN:
       case keyCodes.LEFT:
         e.preventDefault();
-        newVal -= change;
-        changeRemainder = (newVal - this.props.min) % change;
-        if (change !== 1 && changeRemainder > 0) {
-          newVal = newVal + (change - changeRemainder);
+        newVal -= step;
+        stepRemainder = (newVal - this.props.min) % step;
+        if (step !== 1 && stepRemainder > 0) {
+          newVal = newVal + (step - stepRemainder);
         }
         break;
     }
