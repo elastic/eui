@@ -21,7 +21,11 @@ interface EuiPopoverPositionedBox extends EuiPopoverBoundingBox {
   position: EuiPopoverPosition;
 }
 
-const getVisibleArea = (bounds: EuiPopoverBoundingBox, windowWidth: number, windowHeight: number): number => {
+const getVisibleArea = (
+  bounds: EuiPopoverBoundingBox,
+  windowWidth: number,
+  windowHeight: number
+): number => {
   const { left, top, width, height } = bounds;
   // This is a common algorithm for finding the intersected area among two rectangles.
   const dx = Math.min(left + width, windowWidth) - Math.max(left, 0);
@@ -90,9 +94,10 @@ export function calculatePopoverPosition(
   buffer: number = 16,
   positions: EuiPopoverPosition[] = ['top', 'right', 'bottom', 'left']
 ): EuiPopoverPositionedBox {
-
   if (typeof buffer !== 'number') {
-    throw new Error(`calculatePopoverPosition received a buffer argument of ${buffer}' but expected a number`);
+    throw new Error(
+      `calculatePopoverPosition received a buffer argument of ${buffer}' but expected a number`
+    );
   }
 
   const windowWidth = window.innerWidth;
@@ -103,21 +108,36 @@ export function calculatePopoverPosition(
   const positionToVisibleAreaMap: { [positon: string]: number } = {};
 
   positions.forEach(position => {
-    const bounds = positionToPositionerMap[position](anchorBounds, popoverWidth, popoverHeight, buffer);
+    const bounds = positionToPositionerMap[position](
+      anchorBounds,
+      popoverWidth,
+      popoverHeight,
+      buffer
+    );
     positionToBoundsMap[position] = bounds;
 
     // Calculate how much area of the popover is visible at each position.
-    positionToVisibleAreaMap[position] = getVisibleArea(bounds, windowWidth, windowHeight);
+    positionToVisibleAreaMap[position] = getVisibleArea(
+      bounds,
+      windowWidth,
+      windowHeight
+    );
   });
 
   // If the requested position clips the popover, find the position which clips the popover the least.
   // Default to use the requested position.
-  const calculatedPopoverPosition = positions.reduce((mostVisiblePosition, position) => {
-    if (positionToVisibleAreaMap[position] > positionToVisibleAreaMap[mostVisiblePosition]) {
-      return position;
-    }
-    return mostVisiblePosition;
-  }, requestedPosition);
+  const calculatedPopoverPosition = positions.reduce(
+    (mostVisiblePosition, position) => {
+      if (
+        positionToVisibleAreaMap[position] >
+        positionToVisibleAreaMap[mostVisiblePosition]
+      ) {
+        return position;
+      }
+      return mostVisiblePosition;
+    },
+    requestedPosition
+  );
 
   return {
     position: calculatedPopoverPosition,

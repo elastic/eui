@@ -6,11 +6,8 @@ import { EuiNotificationBadge } from './badge_notification';
 
 describe('EuiNotificationBadge', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiNotificationBadge {...requiredProps} />
-    );
+    const component = render(<EuiNotificationBadge {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

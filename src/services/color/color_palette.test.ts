@@ -1,4 +1,4 @@
-import { colorPalette} from './color_palette';
+import { colorPalette } from './color_palette';
 
 describe('colorPalette', () => {
   it('should generate the expected palette', () => {

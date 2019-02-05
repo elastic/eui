@@ -1,4 +1,9 @@
-import React, { ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 
@@ -44,16 +49,12 @@ export type EuiExpressionProps = CommonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-type Buttonlike =
-  EuiExpressionProps &
-  ButtonHTMLAttributes<HTMLButtonElement> &
-  { onClick: MouseEventHandler<HTMLButtonElement> }
-;
+type Buttonlike = EuiExpressionProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    onClick: MouseEventHandler<HTMLButtonElement>;
+  };
 
-type Spanlike =
-  EuiExpressionProps &
-  HTMLAttributes<HTMLSpanElement>
-;
+type Spanlike = EuiExpressionProps & HTMLAttributes<HTMLSpanElement>;
 
 export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
   className,
@@ -65,10 +66,12 @@ export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
   uppercase,
   isActive,
   onClick,
- ...rest
+  ...rest
 }) => {
-
-  const classes = classNames('euiExpression', className, {
+  const classes = classNames(
+    'euiExpression',
+    className,
+    {
       'euiExpression-isActive': isActive,
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
@@ -79,13 +82,13 @@ export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
   const Component = onClick ? 'button' : 'span';
 
   return (
-    <Component
-      className={classes}
-      onClick={onClick}
-      {...rest}
-    >
-      <span className="euiExpression__description" {...descriptionProps}>{description}</span>{' '}
-      <span className="euiExpression__value" {...valueProps}>{value}</span>
+    <Component className={classes} onClick={onClick} {...rest}>
+      <span className="euiExpression__description" {...descriptionProps}>
+        {description}
+      </span>{' '}
+      <span className="euiExpression__value" {...valueProps}>
+        {value}
+      </span>
     </Component>
   );
 };

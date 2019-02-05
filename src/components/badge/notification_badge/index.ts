@@ -1,3 +1,1 @@
-export {
-  EuiNotificationBadge,
-} from './badge_notification';
+export { EuiNotificationBadge } from './badge_notification';

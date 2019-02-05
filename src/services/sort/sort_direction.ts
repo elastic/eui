@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 const ASC: 'asc' = 'asc';
 const DESC: 'desc' = 'desc';
 
-export type Direction =
-  | typeof ASC
-  | typeof DESC;
+export type Direction = typeof ASC | typeof DESC;
 
 export const SortDirection = Object.freeze({
   ASC,
@@ -18,4 +16,4 @@ export const SortDirection = Object.freeze({
   },
 });
 
-export const SortDirectionType = PropTypes.oneOf([ ASC, DESC ]);
+export const SortDirectionType = PropTypes.oneOf([ASC, DESC]);

@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- TypeScript are now formatted with Prettier ([#1529](https://github.com/elastic/eui/pull/1529))
 - Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
 
 ## [`6.9.0`](https://github.com/elastic/eui/tree/v6.9.0)

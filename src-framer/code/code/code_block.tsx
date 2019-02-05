@@ -1,4 +1,7 @@
-import { FONT_SIZES, PADDING_SIZES } from '@elastic/eui/lib/components/code/_code_block.js';
+import {
+  FONT_SIZES,
+  PADDING_SIZES,
+} from '@elastic/eui/lib/components/code/_code_block.js';
 import { EuiCodeBlock } from '@elastic/eui/lib/components/code/code_block.js';
 import { ControlType, PropertyControls } from 'framer';
 import React from 'react';
@@ -14,7 +17,6 @@ interface Props {
 }
 
 export class CodeBlock extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     name: 'Han Solo',
@@ -59,8 +61,7 @@ export class CodeBlock extends React.Component<Props> {
         language={this.props.language}
         overflowHeight={this.props.overflowHeight}
         paddingSize={this.props.paddingSize}
-        transparentBackground={this.props.transparentBackground}
-      >
+        transparentBackground={this.props.transparentBackground}>
         {this.props.childText}
       </EuiCodeBlock>
     );
