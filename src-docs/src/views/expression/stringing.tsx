@@ -19,10 +19,7 @@ export default () => (
       value="kibana_sample_data_ky_avl right"
       onClick={() => {}}
     />
-    <EuiExpression
-      description="on"
-      value="left.smis = right.kytccountynmbr"
-    />
+    <EuiExpression description="on" value="left.smis = right.kytccountynmbr" />
     <EuiExpression
       description="group by"
       value="right.kytccountynmbr"

@@ -12,7 +12,6 @@ interface Props {
 }
 
 export class Panel extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     paddingSize: 'm',
@@ -33,16 +32,15 @@ export class Panel extends React.Component<Props> {
   };
 
   render() {
-  return (
-    <FrameSize frame={this.fitToFrame}>
-      <EuiPanel
-        hasShadow={this.props.hasShadow}
-        paddingSize={this.props.paddingSize}
-        betaBadgeLabel={this.props.betaBadgeLabel}
-      >
-        {this.props.children}
-      </EuiPanel>
-    </FrameSize>
-  );
+    return (
+      <FrameSize frame={this.fitToFrame}>
+        <EuiPanel
+          hasShadow={this.props.hasShadow}
+          paddingSize={this.props.paddingSize}
+          betaBadgeLabel={this.props.betaBadgeLabel}>
+          {this.props.children}
+        </EuiPanel>
+      </FrameSize>
+    );
   }
 }

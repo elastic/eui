@@ -2,7 +2,7 @@ import { isNil, isFunction, isString } from '../predicate';
 import moment, { CalendarSpec, MomentInput } from 'moment';
 
 type CalendarOptions = CalendarSpec & {
-  refTime?: MomentInput
+  refTime?: MomentInput;
 };
 
 const calendar = (value: Date, options: CalendarOptions = {}) => {
@@ -55,23 +55,23 @@ interface FormatDateConfig {
 
 export const formatDate = (
   value?: MomentInput,
-  dateFormatKeyOrConfig: DateFormat | string | Partial<FormatDateConfig> = 'dateTime'
+  dateFormatKeyOrConfig:
+    | DateFormat
+    | string
+    | Partial<FormatDateConfig> = 'dateTime'
 ) => {
   if (isString(dateFormatKeyOrConfig)) {
     if (isNil(value)) {
       return '';
     }
 
-    const dateFormatStr = dateFormatAliases[dateFormatKeyOrConfig] || dateFormatKeyOrConfig;
+    const dateFormatStr =
+      dateFormatAliases[dateFormatKeyOrConfig] || dateFormatKeyOrConfig;
 
     return moment(value).format(dateFormatStr);
   }
 
-  const {
-    format = 'dateTime',
-    nil = '',
-    options,
-  } = dateFormatKeyOrConfig;
+  const { format = 'dateTime', nil = '', options } = dateFormatKeyOrConfig;
 
   const dateFormat = dateFormatAliases[format] || format;
 

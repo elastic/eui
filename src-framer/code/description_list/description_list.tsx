@@ -2,14 +2,10 @@ import {
   EuiDescriptionList,
   TYPES,
   ALIGNMENTS,
-  TEXT_STYLES
+  TEXT_STYLES,
 } from '@elastic/eui/lib/components/description_list/description_list.js';
-import {
-  EuiDescriptionListTitle
-} from '@elastic/eui/lib/components/description_list/description_list_title.js';
-import {
-  EuiDescriptionListDescription
-} from '@elastic/eui/lib/components/description_list/description_list_description.js';
+import { EuiDescriptionListTitle } from '@elastic/eui/lib/components/description_list/description_list_title.js';
+import { EuiDescriptionListDescription } from '@elastic/eui/lib/components/description_list/description_list_description.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -25,7 +21,6 @@ interface Props {
 }
 
 export class DescriptionList extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     align: 'left',
@@ -77,10 +72,13 @@ export class DescriptionList extends React.Component<Props> {
         compressed={this.props.compressed}
         align={this.props.align}
         textStyle={this.props.textStyle}
-        type={this.props.type}
-      >
-        <EuiDescriptionListTitle>{this.props.titleText}</EuiDescriptionListTitle>
-        <EuiDescriptionListDescription>{this.props.descText}</EuiDescriptionListDescription>
+        type={this.props.type}>
+        <EuiDescriptionListTitle>
+          {this.props.titleText}
+        </EuiDescriptionListTitle>
+        <EuiDescriptionListDescription>
+          {this.props.descText}
+        </EuiDescriptionListDescription>
       </EuiDescriptionList>
     );
   }

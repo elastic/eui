@@ -13,7 +13,10 @@ export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
   }
 
   componentDidUpdate(prevProps: Props<E>) {
-    if (prevProps.event !== this.props.event || prevProps.handler !== this.props.handler) {
+    if (
+      prevProps.event !== this.props.event ||
+      prevProps.handler !== this.props.handler
+    ) {
       this.removeEvent(prevProps);
       this.addEvent(this.props);
     }

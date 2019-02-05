@@ -1,8 +1,12 @@
-import { EuiAvatar, SIZES, TYPES } from '@elastic/eui/lib/components/avatar/avatar.js';
+import {
+  EuiAvatar,
+  SIZES,
+  TYPES,
+} from '@elastic/eui/lib/components/avatar/avatar.js';
 import { ControlType, PropertyControls } from 'framer';
 import React from 'react';
 
-const initialsOptions = [ '1', '2' ];
+const initialsOptions = ['1', '2'];
 
 // Define type of property
 interface Props {
@@ -15,7 +19,6 @@ interface Props {
 }
 
 export class Avatar extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     name: 'Han Solo',
