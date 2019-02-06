@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import find from 'lodash/find';
+
 export const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, max }) => {
   // Align with item labels across the range by adding
   // left and right negative margins that is half of the tick marks
@@ -13,7 +15,7 @@ export const EuiRangeTicks = ({ disabled, onChange, ticks, tickObject, value, ma
         const tickStyle = {};
         let customTick;
         if (ticks) {
-          customTick = ticks.find(o => o.value === tickValue);
+          customTick = find(ticks, o => o.value === tickValue);
 
           if (customTick == null) {
             return;
