@@ -30,6 +30,7 @@ export const FieldValueSelectionFilterConfigType = PropTypes.shape({
   autoClose: PropTypes.boolean,
   name: PropTypes.string.isRequired,
   options: FieldValueOptionsType.isRequired,
+  filterWith: PropTypes.oneOfType([ PropTypes.func, PropTypes.oneOf([ 'prefix', 'includes' ]) ]),
   cache: PropTypes.number,
   multiSelect: PropTypes.oneOfType([ PropTypes.bool, PropTypes.oneOf([ 'and', 'or' ]) ]),
   loadingMessage: PropTypes.string,
@@ -48,6 +49,7 @@ const FieldValueSelectionFilterPropTypes = {
 const defaults = {
   config: {
     multiSelect: true,
+    filterWith: 'prefix',
     loadingMessage: 'Loading...',
     noOptionsMessage: 'No options found',
     searchThreshold: 10,
@@ -108,21 +110,39 @@ export class FieldValueSelectionFilter extends Component {
     });
   }
 
-  filterOptions(prefix = '') {
+  filterOptions(q = '') {
     this.setState(prevState => {
       if (isNil(prevState.options)) {
         return {};
       }
+
+      const predicate = this.getOptionFilter();
+
       return {
         options: {
           ...prevState.options,
-          shown: prevState.options.all.filter(option => {
-            const name = this.resolveOptionName(option);
-            return name.toLowerCase().startsWith(prefix.toLowerCase());
+          shown: prevState.options.all.filter((option, i, options) => {
+            const name = this.resolveOptionName(option).toLowerCase();
+            const query = q.toLowerCase();
+            return predicate(name, query, options);
           })
         }
       };
     });
+  }
+
+  getOptionFilter() {
+    const filterWith = this.props.config.filterWith || defaults.config.filterWith;
+
+    if (typeof filterWith === 'function') {
+      return filterWith;
+    }
+
+    if (filterWith === 'includes') {
+      return (name, query) => name.includes(query);
+    }
+
+    return (name, query) => name.startsWith(query);
   }
 
   resolveOptionsLoader() {

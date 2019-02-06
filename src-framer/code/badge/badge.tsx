@@ -1,4 +1,8 @@
-import { COLORS, EuiBadge, ICON_SIDES } from '@elastic/eui/lib/components/badge/badge.js';
+import {
+  COLORS,
+  EuiBadge,
+  ICON_SIDES,
+} from '@elastic/eui/lib/components/badge/badge.js';
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -14,9 +18,8 @@ interface Props {
 }
 
 export class Badge extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Badge text',
     color: 'primary',
     iconType: null,
@@ -27,7 +30,7 @@ export class Badge extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -59,15 +62,14 @@ export class Badge extends React.Component<Props> {
     },
   };
 
-  public render() {
-  return (
-    <EuiBadge
-      color={this.props.color}
-      iconType={this.props.showIconProps ? this.props.iconType : null}
-      iconSide={this.props.iconSide}
-    >
-      {this.props.childText}
-    </EuiBadge>
-  );
+  render() {
+    return (
+      <EuiBadge
+        color={this.props.color}
+        iconType={this.props.showIconProps ? this.props.iconType : null}
+        iconSide={this.props.iconSide}>
+        {this.props.childText}
+      </EuiBadge>
+    );
   }
 }

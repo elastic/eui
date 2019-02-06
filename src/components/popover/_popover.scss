@@ -140,22 +140,6 @@
   }
 }
 
-.euiPopover__panel.euiPopover__panel-withTitle {
-  .euiPopover__panelArrow {
-    &.euiPopover__panelArrow--bottom:after {
-      border-bottom-color: $euiColorLightestShade;
-    }
-
-    &.euiPopover__panelArrow--right:after {
-      border-right-color: $euiColorLightestShade;
-    }
-
-    &.euiPopover__panelArrow--left:after {
-      border-left-color: $euiColorLightestShade;
-    }
-  }
-}
-
 .euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--top {
   transform: translateY($euiPopoverTranslateDistance) translateZ(0);
 }

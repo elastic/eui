@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -27,6 +27,7 @@ export const EuiFilterButton = ({
   type,
   grow,
   noDivider,
+  textProps,
   ...rest
 }) => {
 
@@ -41,13 +42,22 @@ export const EuiFilterButton = ({
     className,
   );
 
+  // != instead of !== to allow for null and undefined
+  const numFiltersDefined = numFilters != null;
+  const buttonTextClassNames = classNames(
+    { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
+    textProps && textProps.className,
+  );
+
   const buttonContents = (
-    <span className="euiFilterButton__textShift" data-text={children}>
-      {children}
-      {numFilters &&
+    <Fragment>
+      <span className="euiFilterButton__textShift" data-text={children}>
+        {children}
+      </span>
+      {numFiltersDefined &&
         <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
       }
-    </span>
+    </Fragment>
   );
 
   return (
@@ -58,6 +68,7 @@ export const EuiFilterButton = ({
       iconSide={iconSide}
       iconType={iconType}
       type={type}
+      textProps={{ ...textProps, className: buttonTextClassNames }}
       {...rest}
     >
       {buttonContents}

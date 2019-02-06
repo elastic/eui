@@ -21,6 +21,7 @@ export default class extends Component {
         value={this.state.value}
         setOptions={{ fontSize: '14px' }}
         isReadOnly
+        aria-label="Read only code editor"
       />
     );
   }

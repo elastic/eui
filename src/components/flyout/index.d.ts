@@ -1,3 +1,5 @@
+import { CommonProps } from '../common';
+
 declare module '@elastic/eui' {
   export interface EuiFlyoutProps {
     onClose: () => void;

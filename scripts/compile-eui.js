@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
+const path = require('path');
 const glob = require('glob');
 
 function compileLib() {
@@ -8,13 +9,21 @@ function compileLib() {
 
   console.log('Compiling src/ to es/ and lib/');
 
+  // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
   execSync(
-    'babel --quiet --out-dir=es --ignore "**/webpack.config.js,**/*.test.js" src',
+    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
     { env: { ...this.process.env, BABEL_MODULES: false } }
   );
-  execSync('babel --quiet --out-dir=lib --ignore "**/webpack.config.js,**/*.test.js" src');
+  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
 
   console.log(chalk.green('✔ Finished compiling src/'));
+
+  // Use `tsc` to emit typescript declaration files for .ts files
+  console.log('Generating typescript definitions file');
+  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, { stdio: 'inherit' });
+  // validate the generated eui.d.ts doesn't contain errors
+  execSync(`tsc --noEmit -p tsconfig-builttypes.json`, { stdio: 'inherit' });
+  console.log(chalk.green('✔ Finished generating definitions'));
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.

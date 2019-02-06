@@ -16,7 +16,7 @@
   .euiComboBox__inputWrap {
     @include euiFormControlStyle($includeStates: false, $includeSizes: false);
     @include euiFormControlWithIcon($isIconOptional: true);
-    @include euiFormControlSize(auto);
+    @include euiFormControlSize(auto, $includeAlternates: true);
     padding: $euiSizeXS;
     // sass-lint:disable-block mixins-before-declarations
     @include euiFormControlLayoutPadding(1); /* 2 */ //
@@ -52,12 +52,12 @@
     overflow: hidden; /* 5 */
 
     > input {
+      @include euiFont;
       appearance: none; /* 3 */
       padding: 0;
       border: none;
       background: transparent;
       font-size: $euiFontSizeS;
-      font-family: $euiFontFamily;
       color: $euiTextColor;
       margin: $euiSizeXS;
       line-height: $euiLineHeight; /* 4 */

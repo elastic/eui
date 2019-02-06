@@ -1,5 +1,14 @@
-import { ALIGNMENTS, EuiCard, LAYOUT_ALIGNMENTS } from '@elastic/eui/lib/components/card/card.js';
-import { COLORS, EuiIcon, SIZES, TYPES } from '@elastic/eui/lib/components/icon/icon.js';
+import {
+  ALIGNMENTS,
+  EuiCard,
+  LAYOUT_ALIGNMENTS,
+} from '@elastic/eui/lib/components/card/card.js';
+import {
+  COLORS,
+  EuiIcon,
+  SIZES,
+  TYPES,
+} from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 import { FrameSize } from '../_framer_helpers/frame_size.tsx';
@@ -21,9 +30,8 @@ interface Props {
 }
 
 export class Card extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     title: 'Hey there',
     showIconProps: false,
     iconSize: 'xl',
@@ -32,7 +40,7 @@ export class Card extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     title: {
       type: ControlType.String,
       title: 'title',
@@ -96,17 +104,26 @@ export class Card extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiCard
           textAlign={this.props.textAlign}
           layout={this.props.layout}
-          icon={this.props.showIconProps ?
-            <EuiIcon size={this.props.iconSize} color={this.props.iconColor} type={this.props.icon} />
-            : null
+          icon={
+            this.props.showIconProps ? (
+              <EuiIcon
+                size={this.props.iconSize}
+                color={this.props.iconColor}
+                type={this.props.icon}
+              />
+            ) : null
           }
-          image={this.props.randomImage ? 'https://source.unsplash.com/400x200/?Nature' : this.props.image }
+          image={
+            this.props.randomImage
+              ? 'https://source.unsplash.com/400x200/?Nature'
+              : this.props.image
+          }
           title={this.props.title}
           description={this.props.description}
           betaBadgeLabel={this.props.betaBadgeLabel}

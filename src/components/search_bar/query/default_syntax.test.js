@@ -68,6 +68,28 @@ describe('defaultSyntax', () => {
     expect(clause.value).toBe('dash-3');
   });
 
+  test('unicode field and term values', () => {
+    const query = 'name:👸Queen_Elizabeth 🤴King_Henry';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toBeDefined();
+    expect(ast.clauses).toHaveLength(2);
+
+    let clause = ast.getSimpleFieldClause('name', '👸Queen_Elizabeth');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('name');
+    expect(clause.value).toBe('👸Queen_Elizabeth');
+
+    clause = ast.getTermClause('🤴King_Henry');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('🤴King_Henry');
+  });
+
   test('escaped chars as default clauses', () => {
     const query = '-\\: \\\\';
     const ast = defaultSyntax.parse(query);

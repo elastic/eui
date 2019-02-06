@@ -4,21 +4,27 @@ import { renderToHtml } from '../../services';
 import { propsInfo } from './props_info';
 
 import {
+  GuideRuleTitle,
   GuideSectionTypes,
 } from '../../components';
 
 import {
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import { SearchBar } from './search_bar';
 import { ControlledSearchBar } from './controlled_search_bar';
+import { SearchBarFilters } from './search_bar_filters';
 
 const searchBarSource = require('!!raw-loader!./search_bar');
 const searchBarHtml = renderToHtml(SearchBar);
 
 const controlledSearchBarSource = require('!!raw-loader!./controlled_search_bar');
 const controlledSearchBarHtml = renderToHtml(ControlledSearchBar);
+
+const searchBarFiltersSource = require('!!raw-loader!./search_bar_filters');
+const searchBarFiltersHtml = renderToHtml(SearchBarFilters);
 
 export const SearchBarExample = {
   title: 'Search Bar',
@@ -94,6 +100,52 @@ export const SearchBarExample = {
               this flag back and forth (adds/removed an <EuiCode>is:</EuiCode> clause to/from the query).
             </li>
           </ul>
+
+          <GuideRuleTitle>Date parsing</GuideRuleTitle>
+          <p>
+            Date values can be used for equality or range tests when the <EuiCode>schema</EuiCode> prop specifies
+            the field as a <EuiCode>date</EuiCode> type (the <EuiCode>created</EuiCode> field in the demo below is
+            a date), and must be enclosed in single quotes. E.g.&nbsp;
+            <EuiCode>created:&apos;2019-01-01&apos;</EuiCode>,&nbsp;
+            <EuiCode>created&gt;=&apos;3rd January 2017&apos;</EuiCode>
+          </p>
+          <p>
+            Formats understood by the parser
+            <ul>
+              <li>
+                <p>relative</p>
+                <ul>
+                  <li><EuiCode>yesterday</EuiCode></li>
+                  <li><EuiCode>today</EuiCode></li>
+                  <li><EuiCode>tomorrow</EuiCode></li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  absolute (parsed by Moment.js&apos;s&nbsp;
+                  <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
+                  )
+                </p>
+                <ul>
+                  <li><EuiCode>ddd</EuiCode></li>
+                  <li><EuiCode>dddd</EuiCode></li>
+                  <li><EuiCode>D MMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMM YY</EuiCode></li>
+                  <li><EuiCode>D MMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMM YYYY</EuiCode></li>
+                  <li><EuiCode>D MMMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YY</EuiCode></li>
+                  <li><EuiCode>D MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>YYYY-MM-DD</EuiCode></li>
+                </ul>
+              </li>
+            </ul>
+          </p>
         </div>
       ),
       props: propsInfo,
@@ -121,6 +173,26 @@ export const SearchBarExample = {
         </div>
       ),
       demo: <ControlledSearchBar/>
+    },
+    {
+      title: 'Search Bar Filters',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: searchBarFiltersSource,
+        }, {
+          type: GuideSectionTypes.HTML,
+          code: searchBarFiltersHtml,
+        }
+      ],
+      text: (
+        <div>
+          <p>
+            A <EuiCode>EuiSearchBar</EuiCode> can have custom filter drop downs that control how a user can search.
+          </p>
+        </div>
+      ),
+      demo: <SearchBarFilters/>
     }
   ],
 };

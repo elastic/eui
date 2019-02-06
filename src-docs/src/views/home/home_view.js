@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import imageIcons from '../../images/icons.jpg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
@@ -36,9 +40,9 @@ export const HomeView = () => (
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
-              <EuiLink href="#/package/changelog">
+              <Link to="/package/changelog">
                 <strong>v{ pkg.version }</strong>
-              </EuiLink>
+              </Link>
             </p>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -66,6 +70,18 @@ export const HomeView = () => (
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiIcon type="logoSketch" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://codesandbox.io/s/ll7lnlpm97">
+              <strong>Codesandbox</strong>
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="logoCodesandbox" />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>

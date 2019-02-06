@@ -1,15 +1,22 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
+import { SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-  import { SFC, HTMLAttributes } from 'react';
-
   /**
    * text type defs
    *
    * @see './text.js'
    * @see './text_color.js'
    */
-  type TEXT_SIZES = 's' | 'xs';
+  type TEXT_SIZES = 'm' | 's' | 'xs';
+
+  /**
+   * text alignment options
+   *
+   * @see './text.js'
+   * @see './text_align.js'
+   */
+  type ALIGNMENTS = 'left' | 'center' | 'right';
 
   type COLORS =
     | 'default'
@@ -20,8 +27,12 @@ declare module '@elastic/eui' {
     | 'warning'
     | 'ghost';
 
-  type EuiTextProps = CommonProps &
+  type EuiTextAlignProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
+      textAlign?: ALIGNMENTS;
+    };
+
+  type EuiTextProps = EuiTextAlignProps & {
       size?: TEXT_SIZES;
       color?: COLORS;
       grow?: boolean;
@@ -33,6 +44,9 @@ declare module '@elastic/eui' {
     color?: COLORS;
   };
 
+
+
   export const EuiText: SFC<EuiTextProps>;
+  export const EuiTextAlign: SFC<EuiTextAlignProps>;
   export const EuiTextColor: SFC<EuiTextColorProps>;
 }

@@ -160,7 +160,7 @@ function emitClause(clause, isGroupMember = false) {
 
 export const astToEsQueryString = (ast) => {
   if (ast.clauses.length === 0) {
-    return '';
+    return '*';
   }
 
   return ast.clauses.map(clause => emitClause(clause)).join(' ');

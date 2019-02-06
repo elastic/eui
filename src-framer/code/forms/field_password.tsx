@@ -17,16 +17,15 @@ interface Props {
 }
 
 export class FieldPassword extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     hasFormRow: false,
     fullWidth: true,
     formRowLabel: 'Label name',
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     placeholder: { type: ControlType.String, title: 'placeholder' },
     value: { type: ControlType.String, title: 'value' },
     isInvalid: { type: ControlType.Boolean, title: 'isInvalid' },
@@ -50,7 +49,7 @@ export class FieldPassword extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     const fieldPassword = (
       <EuiFieldPassword
         placeholder={this.props.placeholder}
@@ -67,16 +66,12 @@ export class FieldPassword extends React.Component<Props> {
       fieldWithOptionalRow = (
         <EuiFormRow
           label={this.props.formRowLabel}
-          helpText={this.props.formRowHelpText}
-        >
+          helpText={this.props.formRowHelpText}>
           {fieldPassword}
         </EuiFormRow>
       );
-
     }
 
-    return (
-      <div>{fieldWithOptionalRow}</div>
-    );
+    return <div>{fieldWithOptionalRow}</div>;
   }
 }

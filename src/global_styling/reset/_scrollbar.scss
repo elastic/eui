@@ -1,0 +1,8 @@
+// Firefox's scrollbar coloring cascades throughout which is why it's set at the html level
+// However, the width sizing is not, but this has been added to the euiScrollBar mixin as well
+
+html {
+  // sass-lint:disable-block no-misspelled-properties
+  scrollbar-width: thin;
+  scrollbar-color: transparentize($euiColorDarkShade, .5) transparent; // Firefox support
+}

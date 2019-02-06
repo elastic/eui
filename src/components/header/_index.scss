@@ -1,11 +1,5 @@
-// Themable colors
-$euiHeaderBackgroundColor: $euiColorEmptyShade;
-$euiHeaderBreadcrumbColor: $euiColorDarkestShade;
-
-// Layout vars
-$euiHeaderChildSize: $euiSizeXXL + $euiSizeL;
-
 // Components
+@import 'variables';
 @import 'header';
 @import 'header_profile';
 @import 'header_links/index';

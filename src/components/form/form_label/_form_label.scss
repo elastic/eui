@@ -5,7 +5,7 @@
   font-size: $euiFontSizeXS;
   margin-bottom: $euiSizeS;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
-  font-weight: $euiFontWeightMedium;
+  font-weight: $euiFontWeightSemiBold;
 
   &.euiFormLabel-isInvalid {
     color: $euiColorDanger; /* 1 */

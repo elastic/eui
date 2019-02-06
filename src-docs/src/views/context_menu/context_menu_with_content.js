@@ -7,8 +7,7 @@ import {
   EuiContextMenu,
   EuiIcon,
   EuiPopover,
-  EuiPanel,
-  EuiCard
+  EuiText
 } from '../../../../src/components';
 
 function flattenPanelTree(tree, array = []) {
@@ -54,13 +53,15 @@ export default class extends Component {
           width: 400,
           title: 'See more',
           content: (
-            <EuiPanel>
-              <EuiCard
-                icon={<EuiIcon size="l" type="bolt" />}
-                title="More Details"
-                description="This menu demonstrates using panels that have items and panels with content."
-              />
-            </EuiPanel>
+            <EuiText style={{ padding: 24 }} textAlign="center">
+              <p><EuiIcon type="faceHappy" size="xxl" /></p>
+
+              <h3>Context panels can contain anything</h3>
+              <p>
+                You can stuff just about anything into these panels. Be mindful of size though.
+                This panel is set to 400px and the height will grow as space allows.
+              </p>
+            </EuiText>
           )
         },
       }],

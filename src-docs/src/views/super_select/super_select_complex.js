@@ -56,7 +56,7 @@ export default class extends Component {
     ];
 
     this.state = {
-      value: this.options[1].value,
+      value: '',
     };
   }
 

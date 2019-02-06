@@ -85,6 +85,15 @@ export default class extends Component {
           onChange={this.onChange}
           compressed
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiSuperSelect
+          options={this.options}
+          valueOfSelected={this.state.value}
+          onChange={this.onChange}
+          fullWidth
+        />
       </Fragment>
     );
   }

@@ -86,10 +86,10 @@ module.exports = class extends Generator {
 
       const documentationPageDemoPath
         = config.documentationPageDemoPath
-        = `${path}/${folderName}/${fileName}.js`;
+        = `${path}/${folderName}/${fileName}.tsx`;
 
       this.fs.copyTpl(
-        this.templatePath('documentation_page_demo.js'),
+        this.templatePath('documentation_page_demo.tsx'),
         this.destinationPath(documentationPageDemoPath),
         vars
       );

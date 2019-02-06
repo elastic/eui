@@ -1,13 +1,19 @@
+// sass-lint:disable no-vendor-prefixes
 
 // Our base fonts
 
 @mixin euiFont {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
+  letter-spacing: -.005em;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-kerning: normal;
 }
 
 @mixin euiCodeFont {
   font-family: $euiCodeFontFamily;
+  letter-spacing: normal;
 }
 
 @mixin euiText {
@@ -29,14 +35,17 @@
   } @else if $size == 'xs' {
     @include euiFontSize;
     @include lineHeightFromBaseline(3);
-    font-weight: $euiFontWeightMedium;
+    font-weight: $euiFontWeightSemiBold;
+    letter-spacing: -.02em;
   } @else if $size == 's' {
     @include euiFontSizeL;
     @include lineHeightFromBaseline(4);
     font-weight: $euiFontWeightMedium;
+    letter-spacing: -.025em;
   } @else if $size == 'm' {
     @include euiFontSizeXL;
     @include lineHeightFromBaseline(5);
+    letter-spacing: -.04em;
   } @else if $size == 'l' {
     @include euiFontSizeXXL;
     @include lineHeightFromBaseline(6);
@@ -77,12 +86,23 @@
   @include fontSize($euiFontSizeXL);
   line-height: 1.25;
   font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  letter-spacing: -.05em;
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
   line-height: 1.25;
-  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  font-weight: $euiFontWeightLight; // always apply light weight to xx-large type
+  letter-spacing: -.03em;
+}
+
+// Overflow-wrap for breaking on word
+// Does not work on `display: flex` items
+@mixin euiTextOverflowWrap  {
+  @include internetExplorerOnly {
+    word-break: break-all;
+  }
+  overflow-wrap: break-word;
 }
 
 // Text truncation
@@ -102,4 +122,8 @@
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   word-wrap: normal !important; /* 2 */
+}
+
+@mixin euiNumberFormat {
+  font-feature-settings: $euiFontFeatureSettings, 'tnum' 1; // Fixed-width numbers for tabular data
 }

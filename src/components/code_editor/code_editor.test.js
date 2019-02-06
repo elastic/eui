@@ -27,6 +27,18 @@ describe('EuiCodeEditor', () => {
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });
     });
+
+    describe('aria attributes', () => {
+      test('allows setting aria-labelledby on textbox', () => {
+        const component = mount(<EuiCodeEditor aria-labelledby="labelledbyid"/>);
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      });
+
+      test('allows setting aria-describedby on textbox', () => {
+        const component = mount(<EuiCodeEditor aria-describedby="describedbyid"/>);
+        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {

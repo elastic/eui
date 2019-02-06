@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
@@ -11,7 +15,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiButtonToggle,
-  EuiLink,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Button from './button';
@@ -248,6 +252,12 @@ export const ButtonExample = {
             (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If your just displaying a group of
             icons, add the prop <EuiCode>isIconOnly</EuiCode>.
           </p>
+          <EuiCallOut title="Accessibility">
+            <p>
+              In order for groups to be properly read as groups with a title, add the <EuiCode>legend</EuiCode> prop.
+              This is only for accessiblity, however, so it will be visibly hidden.
+            </p>
+          </EuiCallOut>
         </div>
       ),
       demo: <ButtonGroup />,
@@ -271,7 +281,7 @@ export const ButtonExample = {
           <EuiCode>color=&apos;ghost&apos;</EuiCode> to any of the button styles on this page. These
           should be used extremely rarely, and are only for placing buttons on top of dark or
           image-based backgrounds. A good example of their use is in the{' '}
-          <EuiLink href="/#/layout/bottom-bar">EuiBottomBar</EuiLink> component.
+          <Link to="/layout/bottom-bar">EuiBottomBar</Link> component.
         </p>
       ),
       demo: <ButtonGhost />,

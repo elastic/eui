@@ -90,6 +90,9 @@ import { ColorPickerExample }
 import { ComboBoxExample }
   from './views/combo_box/combo_box_example';
 
+import { ContextExample }
+  from './views/context/context_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -147,6 +150,9 @@ import { HighlightExample }
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
 
+import { I18nExample }
+  from './views/i18n/i18n_example';
+
 import { IconExample }
   from './views/icon/icon_example';
 
@@ -159,6 +165,9 @@ import { KeyPadMenuExample }
 import { LinkExample }
   from './views/link/link_example';
 
+import { ListGroupExample }
+  from './views/list_group/list_group_example';
+
 import { LoadingExample }
   from './views/loading/loading_example';
 
@@ -167,6 +176,9 @@ import { ModalExample }
 
 import { MutationObserverExample }
   from './views/mutation_observer/mutation_observer_example';
+
+import { NavDrawerExample }
+  from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample }
   from './views/outside_click_detector/outside_click_detector_example';
@@ -332,6 +344,7 @@ const navigation = [{
     HeaderExample,
     HorizontalRuleExample,
     ModalExample,
+    NavDrawerExample,
     PageExample,
     PanelExample,
     PopoverExample,
@@ -364,6 +377,7 @@ const navigation = [{
     HealthExample,
     IconExample,
     ImageExample,
+    ListGroupExample,
     LoadingExample,
     ProgressExample,
     StatExample,
@@ -390,7 +404,7 @@ const navigation = [{
   ].map(example => createExample(example)),
 },
 {
-  name: 'Series charts (beta)',
+  name: 'Charts (deprecated)',
   items: [
     XYChartExample,
     XYChartAxisExample,
@@ -405,11 +419,13 @@ const navigation = [{
   items: [
     AccessibilityExample,
     ColorPaletteExample,
+    ContextExample,
     CopyExample,
     UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
     HighlightExample,
+    I18nExample,
     IsColorDarkExample,
     MutationObserverExample,
     OutsideClickDetectorExample,

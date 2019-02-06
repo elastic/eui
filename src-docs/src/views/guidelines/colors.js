@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+import {
+  Link,
+} from 'react-router';
+
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import { calculateContrast, rgbToHex } from '../../../../src/services';
 
@@ -29,7 +34,6 @@ const allowedColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
-  'euiColorSlightHue',
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorWarning',
@@ -300,7 +304,7 @@ color: $${color2};`
           </p>
           <p>
             For more visualization palettes and rendering services, go to
-            the <EuiLink href="/#/utilities/color-palettes">Color Palettes</EuiLink> utility page.
+            the <Link to="/utilities/color-palettes">Color Palettes</Link> utility page.
           </p>
         </EuiText>
 

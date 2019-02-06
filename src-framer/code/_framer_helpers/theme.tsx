@@ -11,12 +11,12 @@ interface Props {
 
 export class Theme extends React.Component<Props> {
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     theme: 'light',
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     theme: {
       type: ControlType.SegmentedEnum,
       options: ['light', 'dark'],
@@ -24,18 +24,19 @@ export class Theme extends React.Component<Props> {
     },
   };
 
-  public render() {
-
+  render() {
     const lightBgColor = '#FFF';
     const darkBgColor = '#222';
-    const bgColor = (this.props.theme === 'light' ? lightBgColor : darkBgColor);
+    const bgColor = this.props.theme === 'light' ? lightBgColor : darkBgColor;
     return (
       <FrameSize>
         <div style={{ background: bgColor, flexGrow: 1, display: 'flex' }}>
           <style
             type="text/css"
-            dangerouslySetInnerHTML={{__html: this.props.theme === 'light' ? LightCSS : DarkCSS}}>
-          </style>
+            dangerouslySetInnerHTML={{
+              __html: this.props.theme === 'light' ? LightCSS : DarkCSS,
+            }}
+          />
         </div>
       </FrameSize>
     );

@@ -203,12 +203,13 @@ export class Table extends Component {
           }
         }]
         : [{
-          name: 'Delete',
-          description: 'Delete this user',
-          icon: 'trash',
-          color: 'danger',
+          name: 'Elastic.co',
+          description: 'Go to elastic.co',
+          icon: 'editorLink',
+          color: 'primary',
           type: 'icon',
-          onClick: this.deleteUser
+          href: 'https://elastic.co',
+          target: '_blank',
         }];
     }
 

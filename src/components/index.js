@@ -39,6 +39,7 @@ export {
 
 export {
   EuiCard,
+  EuiCardGraphic,
 } from './card';
 
 export {
@@ -60,6 +61,11 @@ export {
 } from './combo_box';
 
 export {
+  EuiContext,
+  EuiI18nConsumer
+} from './context';
+
+export {
   EuiContextMenu,
   EuiContextMenuPanel,
   EuiContextMenuItem,
@@ -72,6 +78,8 @@ export {
 export {
   EuiDatePicker,
   EuiDatePickerRange,
+  EuiSuperDatePicker,
+  EuiSuperUpdateButton,
 } from './date_picker';
 
 export {
@@ -94,7 +102,6 @@ export {
 
 export {
   EuiExpression,
-  EuiExpressionButton,
 } from './expression';
 
 export {
@@ -181,6 +188,11 @@ export {
 } from './image';
 
 export {
+  EuiI18n,
+  EuiI18nNumber,
+} from './i18n';
+
+export {
   EuiLoadingKibana,
   EuiLoadingChart,
   EuiLoadingSpinner,
@@ -197,6 +209,11 @@ export {
 } from './link';
 
 export {
+  EuiListGroup,
+  EuiListGroupItem,
+} from './list_group';
+
+export {
   EUI_MODAL_CANCEL_BUTTON,
   EUI_MODAL_CONFIRM_BUTTON,
   EuiConfirmModal,
@@ -210,6 +227,12 @@ export {
 export {
   EuiMutationObserver,
 } from './mutation_observer';
+
+export {
+  EuiNavDrawer,
+  EuiNavDrawerMenu,
+  EuiNavDrawerFlyout,
+} from './nav_drawer';
 
 export {
   EuiOutsideClickDetector,
@@ -255,7 +278,9 @@ export {
 } from './progress';
 
 export {
-  EuiSearchBar
+  EuiSearchBar,
+  Query,
+  Ast
 } from './search_bar';
 
 export {

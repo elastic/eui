@@ -15,14 +15,13 @@ interface Props {
 }
 
 export class Text extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Add your text in the overide',
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -48,7 +47,7 @@ export class Text extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiText
@@ -57,8 +56,7 @@ export class Text extends React.Component<Props> {
           textAlign={this.props.textAlign}
           grow={this.props.grow}
           // Display block so that the frame size dictates size in Framer
-          style={{ display: 'block', flexGrow: 1, width: '100%' }}
-        >
+          style={{ display: 'block', flexGrow: 1, width: '100%' }}>
           {this.props.childText}
         </EuiText>
       </FrameSize>

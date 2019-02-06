@@ -26,6 +26,13 @@
 .eui-textBreakAll {word-break: break-all !important;}
 .eui-textBreakNormal {word-break: normal !important;}
 
+.eui-textOverflowWrap {
+  @include internetExplorerOnly {
+    word-break: break-all !important;
+  }
+  overflow-wrap: break-word !important;
+}
+
 .eui-textTruncate {
   @include euiTextTruncate;
 }

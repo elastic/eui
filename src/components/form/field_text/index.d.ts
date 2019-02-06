@@ -1,6 +1,6 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps } from '../../common';
 
-import { SFC, InputHTMLAttributes } from 'react';
+import { SFC, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -12,9 +12,10 @@ declare module '@elastic/eui' {
   export interface EuiFieldTextProps {
     icon?: string;
     isInvalid?: boolean;
-    inputRef?: (ref: HTMLInputElement) => void;
+    inputRef?: Ref<HTMLInputElement>;
     fullWidth?: boolean;
     isLoading?: boolean;
+    prepend?: React.ReactNode;
   }
 
   export const EuiFieldText: SFC<

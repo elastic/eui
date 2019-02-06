@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -18,9 +19,13 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.(js|tsx?)$/,
       loader: 'babel-loader',
       exclude: /node_modules/
     }, {
@@ -55,6 +60,12 @@ module.exports = {
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
+    }),
+    // run TypeScript and tslint during webpack build
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+      tslint: path.resolve(__dirname, '..', 'tslint.yaml'),
+      async: false, // makes errors more visible, but potentially less performant
     }),
   ],
 

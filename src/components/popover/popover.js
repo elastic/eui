@@ -19,6 +19,7 @@ import { EuiPortal } from '../portal';
 import { EuiMutationObserver } from '../mutation_observer';
 
 import { findPopoverPosition, getElementZIndex } from '../../services/popover/popover_positioning';
+import { EuiI18n } from '../i18n';
 
 const anchorPositionToPopoverPositionMap = {
   'up': 'top',
@@ -367,6 +368,7 @@ export class EuiPopover extends Component {
 
   render() {
     const {
+      anchorClassName,
       anchorPosition,
       button,
       isOpen,
@@ -393,6 +395,11 @@ export class EuiPopover extends Component {
         'euiPopover--withTitle': withTitle,
       },
       className,
+    );
+
+    const anchorClasses = classNames(
+      'euiPopover__anchor',
+      anchorClassName
     );
 
     const panelClasses = classNames(
@@ -424,7 +431,9 @@ export class EuiPopover extends Component {
       if (ownFocus) {
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p role="alert">You are in a popup. To exit this popup, hit escape.</p>
+            <p role="alert">
+              <EuiI18n token="euiPopover.screenReaderAnnouncement" default="You are in a popup. To exit this popup, hit escape."/>
+            </p>
           </EuiScreenReaderOnly>
         );
       }
@@ -471,14 +480,17 @@ export class EuiPopover extends Component {
     }
 
     return (
-      <EuiOutsideClickDetector onOutsideClick={closePopover}>
+      <EuiOutsideClickDetector
+        isDisabled={!isOpen}
+        onOutsideClick={closePopover}
+      >
         <div
           className={classes}
           onKeyDown={this.onKeyDown}
           ref={popoverRef}
           {...rest}
         >
-          <div className="euiPopover__anchor" ref={this.buttonRef}>
+          <div className={anchorClasses} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
@@ -489,13 +501,14 @@ export class EuiPopover extends Component {
 }
 
 EuiPopover.propTypes = {
+  anchorClassName: PropTypes.string,
+  anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   isOpen: PropTypes.bool,
   ownFocus: PropTypes.bool,
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
   button: PropTypes.node.isRequired,
   children: PropTypes.node,
-  anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
   popoverRef: PropTypes.func,

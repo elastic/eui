@@ -11,7 +11,8 @@ import {
   EuiLink,
   EuiDatePicker,
   EuiDatePickerRange,
-  EuiCallOut,
+  EuiSuperDatePicker,
+  EuiSuperUpdateButton,
 } from '../../../../src/components';
 
 import DatePicker from './date_picker';
@@ -58,9 +59,9 @@ import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
 const utcHtml = renderToHtml(Utc);
 
-import GlobalDatePicker from './global_date_picker';
-const globalDatePickerSource = require('!!raw-loader!./global_date_picker');
-const globalDatePickerHtml = renderToHtml(GlobalDatePicker);
+import SuperDatePicker from './super_date_picker';
+const superDatePickerSource = require('!!raw-loader!./super_date_picker');
+const superDatePickerHtml = renderToHtml(SuperDatePicker);
 
 export const DatePickerExample = {
   title: 'DatePicker',
@@ -181,7 +182,7 @@ export const DatePickerExample = {
     ),
     demo: <MinMax />,
   }, {
-    title: 'Open to a sepecifc date',
+    title: 'Open to a specific date',
     source: [{
       type: GuideSectionTypes.JS,
       code: openToDateSource,
@@ -266,26 +267,45 @@ export const DatePickerExample = {
     ),
     demo: <Classes />,
   }, {
-    title: 'Global date picker',
+    title: 'Super date picker',
     source: [{
       type: GuideSectionTypes.JS,
-      code: globalDatePickerSource,
+      code: superDatePickerSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: globalDatePickerHtml,
+      code: superDatePickerHtml,
     }],
     text: (
       <div>
-        <EuiCallOut color="warning" title="Demo of visual pattern only">
-          <p>
-            This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global date/time picker. It uses all EUI components without any custom styles. However, it
-            currently depends strongly on <EuiLink href="https://reactdatepicker.com/#example-45">react-datepicker&apos;s <code>calendarContainer</code></EuiLink> option
-            which has it&apos;s own problems and limitations (like auto-focus on input stealing focus from inputs inside of popover).
-          </p>
-        </EuiCallOut>
+        <p>
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are passed as strings
+          in either datemath format (e.g.: now, now-15m, now-15m/m)
+          or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>
+        </p>
+        <p>
+          <EuiCode>onTimeChange</EuiCode> will be immediately invoked when{' '}
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from interactions with{' '}
+          <strong> Quick select</strong>, <strong>Commonly used</strong>, or <strong>Recently used date ranges</strong>{' '}
+          since these interactions set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> in a single event.
+        </p>
+        <p>
+          <EuiCode>onTimeChange</EuiCode> will <strong>not</strong> be invoked when
+          <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from interactions with{' '}
+          <strong>Absolute</strong>, <strong>Relative</strong>, and <strong>Now</strong> tabs.{' '}
+          <EuiCode>onTimeChange</EuiCode> will be invoked when the user clicks the <strong>Update</strong> button.
+          This gives users the ability to set both <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode>{' '}
+          before triggering <EuiCode>onTimeChange</EuiCode>.
+          Set <EuiCode>showUpdateButton</EuiCode> to <EuiCode>false</EuiCode>{' '}
+          to immediately invoke <EuiCode>onTimeChange</EuiCode>{' '}
+          for all <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
+        </p>
+        <p>
+          Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true </EuiCode> to limit the component to only display auto refresh content.
+          This is useful in cases where there is no time data but auto-refresh configuration is still desired.
+        </p>
       </div>
     ),
-    demo: <GlobalDatePicker />,
+    demo: <SuperDatePicker />,
+    props: { EuiSuperDatePicker, EuiSuperUpdateButton },
   }],
 };

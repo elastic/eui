@@ -1,4 +1,7 @@
-import { FONT_SIZES, PADDING_SIZES } from '@elastic/eui/lib/components/code/_code_block.js';
+import {
+  FONT_SIZES,
+  PADDING_SIZES,
+} from '@elastic/eui/lib/components/code/_code_block.js';
 import { EuiCodeBlock } from '@elastic/eui/lib/components/code/code_block.js';
 import { ControlType, PropertyControls } from 'framer';
 import React from 'react';
@@ -14,16 +17,15 @@ interface Props {
 }
 
 export class CodeBlock extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     name: 'Han Solo',
     height: 300, // To give a decent start with sizing
     width: 600, // To give a decent start with sizing
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     fontSize: {
       type: ControlType.SegmentedEnum,
       options: FONT_SIZES,
@@ -52,15 +54,14 @@ export class CodeBlock extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiCodeBlock
         fontSize={this.props.fontSize}
         language={this.props.language}
         overflowHeight={this.props.overflowHeight}
         paddingSize={this.props.paddingSize}
-        transparentBackground={this.props.transparentBackground}
-      >
+        transparentBackground={this.props.transparentBackground}>
         {this.props.childText}
       </EuiCodeBlock>
     );

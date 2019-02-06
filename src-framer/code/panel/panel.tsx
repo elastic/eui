@@ -12,16 +12,15 @@ interface Props {
 }
 
 export class Panel extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     paddingSize: 'm',
     hasShadow: false,
     fitToFrame: true,
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     hasShadow: { type: ControlType.Boolean, title: 'hasShadow' },
     betaBadgeLabel: { type: ControlType.String, title: 'betaBadgeLabel' },
     paddingSize: {
@@ -32,17 +31,16 @@ export class Panel extends React.Component<Props> {
     fitToFrame: { type: ControlType.Boolean, title: 'fitToFrame' },
   };
 
-  public render() {
-  return (
-    <FrameSize frame={this.fitToFrame}>
-      <EuiPanel
-        hasShadow={this.props.hasShadow}
-        paddingSize={this.props.paddingSize}
-        betaBadgeLabel={this.props.betaBadgeLabel}
-      >
-        {this.props.children}
-      </EuiPanel>
-    </FrameSize>
-  );
+  render() {
+    return (
+      <FrameSize frame={this.fitToFrame}>
+        <EuiPanel
+          hasShadow={this.props.hasShadow}
+          paddingSize={this.props.paddingSize}
+          betaBadgeLabel={this.props.betaBadgeLabel}>
+          {this.props.children}
+        </EuiPanel>
+      </FrameSize>
+    );
   }
 }

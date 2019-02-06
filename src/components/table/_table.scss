@@ -4,6 +4,7 @@
  */
 .euiTable {
   @include euiFontSizeS;
+  @include euiNumberFormat;
 
   width: 100%;
   table-layout: fixed;
@@ -127,22 +128,20 @@
  * 2. The padding on this div allows the ellipsis to show if the content is truncated. If
  *    the padding was on the cell, the ellipsis would be cropped.
  * 3. Support wrapping.
+ * 4. Prevent very long single words (e.g. the name of a field in a document) from overflowing
+ *    the cell.
  */
 .euiTableCellContent {
+  overflow: hidden; /* 4 */
   display: flex;
   align-items: center; /* 1 */
   padding: $euiTableCellContentPadding; /* 2 */
 }
 
-/**
-  * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
-  *    the cell.
-  */
 .euiTableCellContent__text {
+  @include euiTextOverflowWrap; /* 4 */
   min-width: 0;
   text-overflow: ellipsis;
-  word-break: break-all; /* 1 */ // Fallback for FF and IE
-  word-break: break-word; /* 1 */
 }
 
 .euiTableCellContent--alignRight {
@@ -168,15 +167,9 @@
 .euiTableCellContent--overflowingContent {
   overflow: visible;
   white-space: normal;
+  //* 4 */ overflow-wrap is not supported on flex parents
+  word-break: break-all; // Fallback for FF and IE
   word-break: break-word;
-
-  /**
-   * 1. Prevent very long single words (e.g. the name of a field in a document) from overflowing
-   *    the cell.
-   */
-  .euiTableCellContent__text {
-    overflow: visible; /* 1 */
-  }
 }
 
 .euiTableCellContent--showOnHover {

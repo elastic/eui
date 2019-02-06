@@ -33,6 +33,20 @@ test('renders EuiConfirmModal', () => {
   expect(component).toMatchSnapshot();
 });
 
+test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
+  const component = render(
+    <EuiConfirmModal
+      title="A confirmation modal"
+      onCancel={() => {}}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+      {...requiredProps}
+    />
+  );
+  expect(component).toMatchSnapshot();
+});
+
 test('onConfirm', () => {
   const component = mount(
     <EuiConfirmModal

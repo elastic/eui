@@ -75,14 +75,25 @@ export const ProgressExample = {
       code: progressFixedHtml,
     }],
     text: (
-      <p>
-        Using the <EuiCode>position</EuiCode> prop we can align our bar
-        to be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
-        options, the background color of the base bar is dropped (since the
-        context of width is already known from your wrapping element). For the
-        absolute option, make sure that your wrapping element
-        has <EuiCode>position: relative</EuiCode> applied.
-      </p>
+      <div>
+        <p>
+          Using the <EuiCode>position</EuiCode> prop we can align our bar
+          to be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
+          options, the background color of the base bar is dropped (since the
+          context of width is already known from your wrapping element). For the
+          absolute option, make sure that your wrapping element
+          has <EuiCode>position: relative</EuiCode> applied.
+        </p>
+
+        <p>
+          Using <EuiCode>EuiProgress</EuiCode> with
+          a <EuiCode>fixed</EuiCode> position may result in it being overlayed
+          when its parent wrapper has a <EuiCode>z-index</EuiCode> value lower
+          than another fixed element, such as <EuiCode>EuiHeader</EuiCode>. In
+          that case, wrap <EuiCode>EuiProgress</EuiCode> in
+          an <EuiCode>EuiPortal</EuiCode>.
+        </p>
+      </div>
     ),
     demo: <ProgressFixed />,
   }, {

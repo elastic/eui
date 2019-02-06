@@ -1,8 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { SFC, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
+import { CommonProps, Omit } from '../common';
 
 declare module '@elastic/eui' {
-  import { SFC, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
-
   export type EuiStepStatus = 'complete' | 'incomplete' | 'warning' | 'danger' | 'disabled'
 
   /**

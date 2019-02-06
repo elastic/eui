@@ -1,4 +1,9 @@
-import { COLORS, EuiButton, ICON_SIDES, SIZES } from '@elastic/eui/lib/components/button/button.js';
+import {
+  COLORS,
+  EuiButton,
+  ICON_SIDES,
+  SIZES,
+} from '@elastic/eui/lib/components/button/button.js';
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -19,9 +24,8 @@ interface Props {
 }
 
 export class Button extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Button text',
     color: 'primary',
     iconType: null,
@@ -31,7 +35,7 @@ export class Button extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -63,7 +67,7 @@ export class Button extends React.Component<Props> {
       options: ICON_TYPES,
       title: '↳ iconType',
       hidden(props) {
-      return props.showIconProps === false;
+        return props.showIconProps === false;
       },
     },
     iconSide: {
@@ -71,12 +75,12 @@ export class Button extends React.Component<Props> {
       options: ICON_SIDES,
       title: '↳ iconSide',
       hidden(props) {
-      return props.showIconProps === false;
+        return props.showIconProps === false;
       },
     },
   };
 
-  public render() {
+  render() {
     return (
       <FrameSize>
         <EuiButton
@@ -87,8 +91,7 @@ export class Button extends React.Component<Props> {
           iconSide={this.props.iconSide}
           style={{ width: this.props.fullWidth ? '100%' : 'auto' }}
           width={this.props.width}
-          height={this.props.height}
-        >
+          height={this.props.height}>
           {this.props.childText}
         </EuiButton>
       </FrameSize>

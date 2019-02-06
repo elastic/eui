@@ -1,22 +1,14 @@
 extends:
   - tslint:recommended
+  - tslint-plugin-prettier
+  - tslint-config-prettier
 
 rules:
+  prettier: true
   arrow-parens: false
   ordered-imports: false
-  trailing-comma: [
-                    true,
-                    {
-                      "multiline": {
-                        "objects": "always",
-                        "arrays": "always",
-                        "functions": "never",
-                        "typeLiterals": "ignore"
-                      },
-                      "esSpecCompliant": true
-                    }
-                  ]
   object-literal-sort-keys: false
+  object-literal-key-quotes: false
   interface-name: false
-  no-default-export: true
-  quotemark: [true, "single", "jsx-double", "avoid-template", "avoid-escape"]
+  no-reference: false
+  member-access: [true, "no-public"]

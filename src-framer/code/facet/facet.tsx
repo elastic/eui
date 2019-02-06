@@ -1,5 +1,10 @@
 import { EuiFacetButton } from '@elastic/eui/lib/components/facet/facet_button.js';
-import { COLORS, EuiIcon, SIZES, TYPES } from '@elastic/eui/lib/components/icon/icon.js';
+import {
+  COLORS,
+  EuiIcon,
+  SIZES,
+  TYPES,
+} from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -17,9 +22,8 @@ interface Props {
 }
 
 export class FacetButton extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     childText: 'Facet button',
     quantity: 19,
     height: 40, // To give a decent start with sizing
@@ -27,7 +31,7 @@ export class FacetButton extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     childText: {
       type: ControlType.String,
       title: '🧙 childText',
@@ -78,19 +82,22 @@ export class FacetButton extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiFacetButton
         icon={
-          this.props.showIconProps ?
-          <EuiIcon type={this.props.iconType} color={this.props.iconColor} size={this.props.iconSize} />
-          : null
+          this.props.showIconProps ? (
+            <EuiIcon
+              type={this.props.iconType}
+              color={this.props.iconColor}
+              size={this.props.iconSize}
+            />
+          ) : null
         }
         isDisabled={this.props.isDisabled}
         isLoading={this.props.isLoading}
         isSelected={this.props.isSelected}
-        quantity={this.props.quantity}
-      >
+        quantity={this.props.quantity}>
         {this.props.childText}
       </EuiFacetButton>
     );

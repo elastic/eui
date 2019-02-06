@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiExpression props color accent is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--accent"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props color danger is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--danger"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props color primary is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--primary"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props color secondary is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--secondary"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props color subdued is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--subdued"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props color warning is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--warning"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props isActive false renders inactive 1`] = `
+<span
+  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props isActive true renders active 1`] = `
+<span
+  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression--secondary"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props uppercase false renders inherted case 1`] = `
+<span
+  class="euiExpression euiExpression--secondary"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression props uppercase true renders uppercase 1`] = `
+<span
+  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
+exports[`EuiExpression renders 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</button>
+`;

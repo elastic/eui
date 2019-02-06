@@ -1,4 +1,9 @@
-import { COLORS, EuiIcon, SIZES, TYPES } from '@elastic/eui/lib/components/icon/icon.js';
+import {
+  COLORS,
+  EuiIcon,
+  SIZES,
+  TYPES,
+} from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -12,9 +17,8 @@ interface Props {
 }
 
 export class Icon extends React.Component<Props> {
-
   // Set default properties
-  public static defaultProps = {
+  static defaultProps = {
     size: 'xl',
     type: 'logoElasticsearch',
     // Initial size at 32 for ease of use
@@ -23,7 +27,7 @@ export class Icon extends React.Component<Props> {
   };
 
   // Items shown in property panel
-  public static propertyControls: PropertyControls = {
+  static propertyControls: PropertyControls = {
     type: {
       type: ControlType.Enum,
       options: TYPES,
@@ -41,7 +45,7 @@ export class Icon extends React.Component<Props> {
     },
   };
 
-  public render() {
+  render() {
     return (
       <EuiIcon
         type={this.props.type}

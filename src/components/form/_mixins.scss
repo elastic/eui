@@ -13,6 +13,18 @@
  * 3. Must supply both values to background-size or some browsers apply the single value to both directions
  */
 
+@mixin euiFormControlText {
+  @include euiFont;
+  font-size: $euiFontSizeS;
+  line-height: 1em; // fixes text alignment in IE
+  color: $euiTextColor;
+
+  &::placeholder {
+    color: $euiColorDarkShade;
+  }
+}
+
+
 @mixin euiFormControlSize(
   $height: $euiFormControlHeight,
   $includeAlternates: false
@@ -134,14 +146,11 @@
 @mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
   @include euiFormControlSize($includeAlternates: $includeSizes);
   @include euiFormControlDefaultShadow;
+  @include euiFormControlText;
 
   border: none;
-  font-size: $euiFontSizeS;
-  font-family: $euiFontFamily;
-  padding: $euiFormControlPadding;
-  line-height: 1em; // fixes text alignment in IE
-  color: $euiTextColor;
   border-radius: 0;
+  padding: $euiFormControlPadding;
 
   @if ($includeSizes) {
     &--compressed {

@@ -5,6 +5,7 @@ test/spec/screenshots/diff/**/*.png
 test/spec/screenshots/screen/**/*.png
 test/failure-screenshots/**/*.png
 
+coverage/
 reports/
 tmp/
 dist/
@@ -17,3 +18,8 @@ es/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+eui.d.ts
+
+# typescript output
+types/
+eui.d.ts

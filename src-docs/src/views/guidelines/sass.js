@@ -37,7 +37,6 @@ const euiColors = [
   'euiColorDarkShade',
   'euiColorDarkestShade',
   'euiColorFullShade',
-  'euiColorSlightHue',
   'euiColorPrimary',
   'euiColorSecondary',
   'euiColorAccent',
@@ -117,7 +116,7 @@ const euiOverFlowShadows = [
 
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
-function renderPaletteColor(color, index) {
+function renderPaletteColor(color) {
   let optionalDefault;
   if (color === 'euiTextColor') {
     optionalDefault = (
@@ -128,7 +127,7 @@ function renderPaletteColor(color, index) {
   }
 
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={color}>
       <EuiFlexItem grow={false}>
         <div className="guideSass__swatch" style={{ background: rgbToHex(lightColors[color].rgba).toUpperCase() }} />
       </EuiFlexItem>
@@ -140,9 +139,9 @@ function renderPaletteColor(color, index) {
   );
 }
 
-function renderSize(size, index) {
+function renderSize(size) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index} className="guideSass__sizeRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={size} className="guideSass__sizeRow">
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div className="guideSass__size" style={{ width: sizes[size], height: sizes[size] }} />
       </EuiFlexItem>
@@ -160,9 +159,9 @@ function renderSize(size, index) {
   );
 }
 
-function renderFontSize(size, index) {
+function renderFontSize(size) {
   return (
-    <div key={index} className="guideSass__fontSizeExample">
+    <div key={size} className="guideSass__fontSizeExample">
       <div className={`guideSass__fontSize guideSass__fontSize--${size}`}>
         The quick brown fox
       </div>
@@ -173,7 +172,7 @@ function renderFontSize(size, index) {
 
 function renderLevel(level, index) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}  className="guideSass__levelRow">
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={level}  className="guideSass__levelRow">
       <EuiFlexItem grow={false}>
         <div className="guideSass__level" style={{ opacity: (1 - (index * .1)) }} />
       </EuiFlexItem>
@@ -191,26 +190,26 @@ function renderLevel(level, index) {
   );
 }
 
-function renderShadow(shadow, index) {
+function renderShadow(shadow) {
   return (
-    <div key={index} className={`guideSass__shadow guideSass__shadow--${shadow}`}>
+    <div key={shadow} className={`guideSass__shadow guideSass__shadow--${shadow}`}>
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>@include {shadow};</EuiCodeBlock>
     </div>
   );
 }
 
-function renderBorder(border, index) {
+function renderBorder(border) {
   return (
-    <EuiFlexItem key={index} className={`guideSass__border guideSass__border--${border}`}>
+    <EuiFlexItem key={border} className={`guideSass__border guideSass__border--${border}`}>
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>border: ${border}</EuiCodeBlock>
     </EuiFlexItem>
   );
 }
 
-function renderAnimationSpeed(speed, index) {
+function renderAnimationSpeed(speed) {
   return (
-    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
-      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <div key={speed} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}ms
           <EuiSpacer size="s" />
@@ -218,17 +217,17 @@ function renderAnimationSpeed(speed, index) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div key={index} className={`guideSass__animParent`}>
+      <div className={`guideSass__animParent`}>
         <div className="guideSass__animChild" />
       </div>
     </div>
   );
 }
 
-function renderAnimationTiming(speed, index) {
+function renderAnimationTiming(speed) {
   return (
-    <div key={index} className={`guideSass__animRow guideSass__animRow--${speed}`}>
-      <EuiFlexGroup alignItems="center" gutterSize="s" key={index}>
+    <div key={speed} className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}
           <EuiSpacer size="s" />
@@ -236,16 +235,16 @@ function renderAnimationTiming(speed, index) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div key={index} className={`guideSass__animParent`}>
+      <div className={`guideSass__animParent`}>
         <div className="guideSass__animChild" />
       </div>
     </div>
   );
 }
 
-function renderBreakpoint(size, index) {
+function renderBreakpoint(size) {
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={index}>
+    <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" key={size}>
       <EuiFlexItem grow={false}>
         <EuiText size="s" className="eui-textRight" style={{ minWidth: 50 }}>
           <EuiCode>{size}</EuiCode>
@@ -308,8 +307,8 @@ const importOutsideExample = (`// In an outside project, import the core variabl
 `);
 
 const tintOrShadeExample = (`// tintOrShade(color, tint_percent, shade_percent)
-// will tint the color by % in light themes 
-// and shade the color by % in dark themes 
+// will tint the color by % in light themes
+// and shade the color by % in dark themes
 .themedBox {
   background-color: tintOrShade($euiColorPrimary, 90%, 70%);
   border-left: $euiBorderThick;
@@ -556,7 +555,7 @@ export default() => (
         {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typpography.scss">mixins</Link>
         {' '}sass code for typography.
         For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
-        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass varaibles.
+        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
       </p>
     </EuiText>
 
@@ -566,7 +565,7 @@ export default() => (
       color="warning"
       title={
         <span>
-          It is more common to use these in a mixin (e.g. <EuiCode language="sass">@include $euiFontSize;</EuiCode>)
+          It is more common to use these as a mixin (e.g. <EuiCode language="css">@include euiFontSizeS;</EuiCode>)
           to automatically apply line-height as well as size.
         </span>
       }
@@ -609,7 +608,7 @@ export default() => (
               Abc
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiCode>$euiFontFamily</EuiCode>
+              <EuiCode language="css">@include euiFont;</EuiCode>
             </EuiFlexItem>
           </EuiFlexGroup>
 
@@ -618,7 +617,7 @@ export default() => (
               Abc
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiCode>$euiCodeFontFamily</EuiCode>
+              <EuiCode language="css">@include euiCodeFont;</EuiCode>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>
@@ -749,7 +748,7 @@ export default() => (
 
     <EuiText className="guideSection__text">
       <p>
-        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</Link>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</EuiLink>.
       </p>
       <p>
         Breakpoints in EUI are provided through the use of a sass
@@ -821,7 +820,7 @@ export default() => (
     <GuideRuleTitle>Animation</GuideRuleTitle>
     <EuiText grow={false} className="guideSection__text">
       <p>
-        <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</Link>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</EuiLink>.
       </p>
       <p>
         EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.

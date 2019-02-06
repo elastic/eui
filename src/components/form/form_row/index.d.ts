@@ -1,4 +1,4 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps } from '../../common';
 
 import { SFC, ReactNode, HTMLAttributes } from 'react';
 
@@ -15,6 +15,8 @@ declare module '@elastic/eui' {
       helpText?: ReactNode;
       isInvalid?: boolean;
       label?: ReactNode;
+      describedByIds?: string[];
+      compressed?: boolean;
     };
 
   export const EuiFormRow: SFC<EuiFormRowProps>;

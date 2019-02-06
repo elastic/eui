@@ -14,10 +14,10 @@ export const getSelectedOptionForSearchValue = (searchValue, selectedOptions) =>
   return selectedOptions.find(option => option.label.toLowerCase() === normalizedSearchValue);
 };
 
-const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue, isPreFiltered) => {
-  // Only show options which haven't yet been selected.
+const collectMatchingOption = (accumulator, option, selectedOptions, normalizedSearchValue, isPreFiltered, showPrevSelected) => {
+  // Only show options which haven't yet been selected unless requested.
   const selectedOption = getSelectedOptionForSearchValue(option.label, selectedOptions);
-  if (selectedOption) {
+  if (selectedOption && !showPrevSelected) {
     return false;
   }
 
@@ -38,7 +38,7 @@ const collectMatchingOption = (accumulator, option, selectedOptions, normalizedS
   }
 };
 
-export const getMatchingOptions = (options, selectedOptions, searchValue, isPreFiltered) => {
+export const getMatchingOptions = (options, selectedOptions, searchValue, isPreFiltered, showPrevSelected) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
   const matchingOptions = [];
 
@@ -46,7 +46,14 @@ export const getMatchingOptions = (options, selectedOptions, searchValue, isPreF
     if (option.options) {
       const matchingOptionsForGroup = [];
       option.options.forEach(groupOption => {
-        collectMatchingOption(matchingOptionsForGroup, groupOption, selectedOptions, normalizedSearchValue, isPreFiltered);
+        collectMatchingOption(
+          matchingOptionsForGroup,
+          groupOption,
+          selectedOptions,
+          normalizedSearchValue,
+          isPreFiltered,
+          showPrevSelected
+        );
       });
       if (matchingOptionsForGroup.length > 0) {
         // Add option for group label
@@ -55,7 +62,7 @@ export const getMatchingOptions = (options, selectedOptions, searchValue, isPreF
         matchingOptions.push(...matchingOptionsForGroup);
       }
     } else {
-      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue, isPreFiltered);
+      collectMatchingOption(matchingOptions, option, selectedOptions, normalizedSearchValue, isPreFiltered, showPrevSelected);
     }
   });
   return matchingOptions;

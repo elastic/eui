@@ -17,6 +17,7 @@
  * 2. If it has a BetaBadge, make sure only the first letter shows
  */
 .euiKeyPadMenuItem {
+  @include euiFont; /* 1 */
   // Disable indentation for transition legibility
   // sass-lint:disable-block indentation
   display: block;
@@ -27,7 +28,6 @@
   border: $euiBorderThin;
   border-color: transparent;
   border-radius: $euiBorderRadius;
-  font-family: $euiFontFamily; /* 1 */
   transition:
     border-color $euiAnimSpeedFast ease-in,
     box-shadow $euiAnimSpeedFast ease-in;

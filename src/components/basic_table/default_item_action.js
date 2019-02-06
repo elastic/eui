@@ -15,11 +15,13 @@ export class DefaultItemAction extends Component {
 
   render() {
     const { action, enabled, item, className } = this.props;
-    if (!action.onClick) {
-      throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback. If you want
-      to provide a custom action control, make sure to define the 'render' callback`);
+
+    if (!action.onClick && !action.href) {
+      throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback
+        or 'href' string. If you want to provide a custom action control, make sure to define the 'render' callback`);
     }
-    const onClick = () => action.onClick(item);
+
+    const onClick = action.onClick ? () => action.onClick(item) : undefined;
     const color = this.resolveActionColor();
     const icon = this.resolveActionIcon();
 
@@ -37,6 +39,8 @@ export class DefaultItemAction extends Component {
           color={color}
           iconType={icon}
           onClick={onClick}
+          href={action.href}
+          target={action.target}
         />
       );
     } else {
@@ -48,6 +52,8 @@ export class DefaultItemAction extends Component {
           color={color}
           iconType={icon}
           onClick={onClick}
+          href={action.href}
+          target={action.target}
           flush="right"
         >
           {action.name}

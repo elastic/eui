@@ -33,6 +33,7 @@ import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 const dataTypesProfiles = {
   auto: {
@@ -63,7 +64,9 @@ const DefaultItemActionType = PropTypes.shape({
   type: PropTypes.oneOf(['icon', 'button']), // default is 'button'
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired, // (item) => void,
+  onClick: PropTypes.func, // (item) => void,
+  href: PropTypes.string,
+  target: PropTypes.string,
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
   isPrimary: PropTypes.bool,
@@ -91,7 +94,7 @@ const SupportedItemActionType = PropTypes.oneOfType([
 
 export const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
-  name: PropTypes.string,
+  name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string
 });
@@ -415,7 +418,13 @@ export class EuiBasicTable extends Component {
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-relevant="text" aria-live="polite">Below is a table of {items.length} items.</caption>
+        <caption role="status" aria-relevant="text" aria-live="polite">
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="Below is a table of {itemCount} items."
+            values={{ itemCount: items.length }}
+          />
+        </caption>
       </EuiScreenReaderOnly>
     );
   }
@@ -447,15 +456,19 @@ export class EuiBasicTable extends Component {
 
       headers.push(
         <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
-          <EuiCheckbox
-            id="_selection_column-checkbox"
-            type="inList"
-            checked={checked}
-            disabled={disabled}
-            onChange={onChange}
-            data-test-subj="checkboxSelectAll"
-            aria-label="Select all rows"
-          />
+          <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
+            {selectAllRows => (
+              <EuiCheckbox
+                id="_selection_column-checkbox"
+                type="inList"
+                checked={checked}
+                disabled={disabled}
+                onChange={onChange}
+                data-test-subj="checkboxSelectAll"
+                aria-label={selectAllRows}
+              />
+            )}
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
       );
     }
@@ -721,16 +734,20 @@ export class EuiBasicTable extends Component {
     };
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiCheckbox
-          id={`${key}-checkbox`}
-          type="inList"
-          disabled={disabled}
-          checked={checked}
-          onChange={onChange}
-          title={title}
-          aria-label="Select this row"
-          data-test-subj={`checkboxSelectRow-${itemId}`}
-        />
+        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
+          {selectThisRow => (
+            <EuiCheckbox
+              id={`${key}-checkbox`}
+              type="inList"
+              disabled={disabled}
+              checked={checked}
+              onChange={onChange}
+              title={title}
+              aria-label={selectThisRow}
+              data-test-subj={`checkboxSelectRow-${itemId}`}
+            />
+          )}
+        </EuiI18n>
       </EuiTableRowCellCheckbox>
     );
   }
@@ -829,12 +846,16 @@ export class EuiBasicTable extends Component {
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
+    // Name can also be an array or an element, so we need to convert it to undefined. We can't
+    // stringify the value, because this value is rendered directly in the mobile layout. So the
+    // best thing we can do is render no header at all.
+    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={name}
+        header={header}
         isExpander={isExpander}
         textOnly={textOnly || !render}
         {...cellProps}

@@ -4,6 +4,15 @@ import classNames from 'classnames';
 import AceEditor from 'react-ace';
 
 import { htmlIdGenerator, keyCodes } from '../../services';
+import { EuiI18n } from '../i18n';
+
+function setOrRemoveAttribute(element, attributeName, value) {
+  if (value === null || value === undefined) {
+    element.removeAttribute(attributeName);
+  } else {
+    element.setAttribute(attributeName, value);
+  }
+}
 
 export class EuiCodeEditor extends Component {
 
@@ -17,8 +26,12 @@ export class EuiCodeEditor extends Component {
   aceEditorRef = (aceEditor) => {
     if (aceEditor) {
       this.aceEditor = aceEditor;
-      aceEditor.editor.textInput.getElement().tabIndex = -1;
-      aceEditor.editor.textInput.getElement().addEventListener('keydown', this.onKeydownAce);
+      const textbox = aceEditor.editor.textInput.getElement();
+      textbox.tabIndex = -1;
+      textbox.addEventListener('keydown', this.onKeydownAce);
+      setOrRemoveAttribute(textbox, 'aria-label', this.props['aria-label']);
+      setOrRemoveAttribute(textbox, 'aria-labelledby', this.props['aria-labelledby']);
+      setOrRemoveAttribute(textbox, 'aria-describedby', this.props['aria-describedby']);
     }
   };
 
@@ -129,11 +142,6 @@ export class EuiCodeEditor extends Component {
       filteredCursorStart = cursorStart;
     }
 
-    const activity = isReadOnly
-      ? 'interacting with the code'
-      : 'editing';
-
-
     // Don't use EuiKeyboardAccessible here because it doesn't play nicely with onKeyDown.
     const prompt = (
       <div
@@ -147,11 +155,39 @@ export class EuiCodeEditor extends Component {
         data-test-subj="codeEditorHint"
       >
         <p className="euiText">
-          Press Enter to start {activity}.
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.startInteracting"
+                  default="Press Enter to start interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.startEditing"
+                  default="Press Enter to start editing."
+                />
+              )
+          }
         </p>
 
         <p className="euiText">
-          When you&rsquo;re done, press Escape to stop {activity}.
+          {
+            isReadOnly
+              ? (
+                <EuiI18n
+                  token="euiCodeEditor.stopInteracting"
+                  default="When you're done, press Escape to stop interacting with the code."
+                />
+              )
+              : (
+                <EuiI18n
+                  token="euiCodeEditor.stopEditing"
+                  default="When you're done, press Escape to stop editing."
+                />
+              )
+          }
         </p>
       </div>
     );

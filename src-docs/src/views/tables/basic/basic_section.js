@@ -61,6 +61,10 @@ export const section = {
           returns the React node that should be displayed as the content of the cell. This can be as simple as
           formatting values (e.g. the &quot;Date of Birth&quot; column) to utilizing more complex React components
           (e.g. the &quot;Online&quot;, &quot;Github&quot; and &quot;Nationality&quot; columns as seen below).
+          <br/>
+          <strong>Note:</strong> the basic table will treat any cells that use a <EuiCode>render</EuiCode> function
+          as being <EuiCode>textOnly: false</EuiCode>. This may cause unnecessary word breaks. Apply <EuiCode>textOnly: true</EuiCode> to
+          ensure it breaks properly.
         </li>
       </ul>
     </div>

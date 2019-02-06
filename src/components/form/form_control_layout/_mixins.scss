@@ -29,7 +29,7 @@
     @include size($euiSizeS);
     fill: $euiColorEmptyShade;
     stroke: $euiColorEmptyShade;
-    stroke-width: 3px; // increase thickness of icon at such a small size
+    stroke-width: 2px; // increase thickness of icon at such a small size
   }
 }
 

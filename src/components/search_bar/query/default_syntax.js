@@ -149,6 +149,16 @@ wordChar
   = alnum
   / [-_*:]
   / escapedChar
+  / extendedGlyph
+  
+// This isn't _strictly_ correct:
+// for our purposes, a non-ascii word character is considered to
+// be anything above \`Latin-1 Punctuation & Symbols\`, which ends at U+00BF
+// This allows any non-ascii character, including the full set of unicode characters
+// even those in the supplementary planes (U+010000 → U+10FFFF) as those will be seen individually
+// in their surrogate pairs which are of the format /[\uD800-\uDBFF][\uDC00-\uDFFF]/
+extendedGlyph
+  = [\u00C0-\uFFFF]
 
 escapedChar
   = "\\\\" reservedChar

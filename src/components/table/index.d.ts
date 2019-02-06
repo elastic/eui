@@ -1,7 +1,7 @@
 /// <reference path="./table_pagination/index.d.ts" />
-/// <reference path="../common.d.ts" />
-/// <reference path="../icon/index.d.ts" />
-/// <reference path="../../services/alignment.d.ts" />
+import { CommonProps, NoArgCallback } from '../common';
+import { IconType } from '../icon';
+import { HorizontalAlignment } from '../../services/alignment';
 
 import {
   SFC,
@@ -11,7 +11,6 @@ import {
   ThHTMLAttributes,
   TdHTMLAttributes
 } from 'react';
-import { EuiTableRowCellProps } from '@elastic/eui';
 
 declare module '@elastic/eui' {
   /**
@@ -132,13 +131,20 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiTableRowCellProps {
-    truncateText?: boolean;
     align?: HorizontalAlignment;
+    hasActions?: boolean;
+    header?: string;
+    hideForMobile?: boolean;
+    isExpander?: boolean;
+    isMobileFullWidth?: boolean;
+    isMobileHeader?: boolean;
+    showOnHover?: boolean;
     textOnly?: boolean;
+    truncateText?: boolean;
   }
 
   export const EuiTableRowCell: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiTableRowCellProps
+    CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellProps
   >;
 
   /**
