@@ -2,17 +2,17 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiRange } from './range';
+import { EuiDualRange } from './dual_range';
 
-describe('EuiRange', () => {
+describe('EuiDualRange', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiRange
+      <EuiDualRange
         name="name"
         id="id"
         min={1}
         max={10}
-        value="8"
+        value={['1', '8']}
         onChange={() => {}}
         {...requiredProps}
       />
@@ -25,7 +25,7 @@ describe('EuiRange', () => {
   describe('props', () => {
     test('fullWidth should render', () => {
       const component = render(
-        <EuiRange fullWidth/>
+        <EuiDualRange fullWidth/>
       );
 
       expect(component)
@@ -34,7 +34,7 @@ describe('EuiRange', () => {
 
     test('compressed should render', () => {
       const component = render(
-        <EuiRange compressed/>
+        <EuiDualRange compressed/>
       );
 
       expect(component)
@@ -43,7 +43,7 @@ describe('EuiRange', () => {
 
     test('labels should render', () => {
       const component = render(
-        <EuiRange showLabels/>
+        <EuiDualRange showLabels/>
       );
 
       expect(component)
@@ -52,7 +52,7 @@ describe('EuiRange', () => {
 
     test('ticks should render', () => {
       const component = render(
-        <EuiRange showTicks tickInterval={20}/>
+        <EuiDualRange showTicks tickInterval={20}/>
       );
 
       expect(component)
@@ -61,30 +61,21 @@ describe('EuiRange', () => {
 
     test('range should render', () => {
       const component = render(
-        <EuiRange showRange value="8" />
+        <EuiDualRange showRange value={[1, 8]} />
       );
 
       expect(component)
         .toMatchSnapshot();
     });
 
-    test('value should render', () => {
+    test('inputs should render', () => {
       const component = render(
-        <EuiRange showValue />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test('extra input should render', () => {
-      const component = render(
-        <EuiRange
+        <EuiDualRange
           name="name"
           id="id"
           min={1}
           max={10}
-          value="8"
+          value={['1', '8']}
           onChange={() => {}}
           showInput
           {...requiredProps}
@@ -97,7 +88,7 @@ describe('EuiRange', () => {
 
     test('levels should render', () => {
       const component = render(
-        <EuiRange
+        <EuiDualRange
           levels={[
             {
               min: 0,
@@ -118,12 +109,11 @@ describe('EuiRange', () => {
     });
   });
 
-  test('allows value prop to accept a number', () => {
+  test('allows value prop to accept numbers', () => {
     const component = render(
-      <EuiRange
-        value={8}
+      <EuiDualRange
+        value={[1, 8]}
         onChange={() => {}}
-        showValue
       />
     );
 

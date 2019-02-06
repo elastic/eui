@@ -201,6 +201,9 @@ import { PortalExample }
 import { ProgressExample }
   from './views/progress/progress_example';
 
+import { RangeControlExample }
+  from './views/range/range_example';
+
 import { ResponsiveExample }
   from './views/responsive/responsive_example';
 
@@ -400,6 +403,7 @@ const navigation = [{
     DatePickerExample,
     ExpressionExample,
     FilterGroupExample,
+    RangeControlExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 },
