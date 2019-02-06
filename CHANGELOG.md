@@ -2,6 +2,10 @@
 
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 
+**Bug fixes**
+
+- Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
+
 ## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
 
 - Adjust dark mode background color ([#1530](https://github.com/elastic/eui/pull/1530))
