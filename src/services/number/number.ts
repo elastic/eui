@@ -7,5 +7,6 @@ export const isWithinRange = (
     return false;
   }
 
-  return min <= value && value <= max;
+  const val = Number(value);
+  return Number(min) <= val && val <= Number(max);
 };
