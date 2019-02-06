@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import find from 'lodash/find';
 import range from 'lodash/range';
 
 import { EuiFieldNumber } from '../field_number';
@@ -180,7 +181,7 @@ export class EuiRange extends Component {
           const tickStyle = {};
           let customTick;
           if (ticks) {
-            customTick = ticks.find(o => o.value === tickValue);
+            customTick = find(ticks, o => o.value === tickValue);
 
             if (customTick == null) {
               return;
