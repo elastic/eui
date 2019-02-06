@@ -15,8 +15,7 @@ describe('EuiScreenReaderOnly', () => {
         </EuiScreenReaderOnly>
       );
 
-      expect($paragraph)
-        .toMatchSnapshot();
+      expect($paragraph).toMatchSnapshot();
     });
     test('and combines other classNames (foo, bar) given as props on the child', () => {
       const $paragraph = render(
@@ -28,8 +27,7 @@ describe('EuiScreenReaderOnly', () => {
         </EuiScreenReaderOnly>
       );
 
-      expect($paragraph)
-        .toMatchSnapshot();
+      expect($paragraph).toMatchSnapshot();
     });
   });
 });

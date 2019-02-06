@@ -16,9 +16,10 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 
 export type SpacerSize = keyof typeof sizeToClassNameMap;
 
-export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> & CommonProps & {
-  size?: SpacerSize,
-};
+export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    size?: SpacerSize;
+  };
 
 export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
   className,
@@ -31,12 +32,7 @@ export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
     className
   );
 
-  return (
-    <div
-      className={classes}
-      {...rest}
-    />
-  );
+  return <div className={classes} {...rest} />;
 };
 
 EuiSpacer.defaultProps = {

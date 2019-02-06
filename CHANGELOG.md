@@ -2,6 +2,12 @@
 
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 
+## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
+
+- Adjust dark mode background color ([#1530](https://github.com/elastic/eui/pull/1530))
+- TypeScript are now formatted with Prettier ([#1529](https://github.com/elastic/eui/pull/1529))
+- Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
+
 ## [`6.9.0`](https://github.com/elastic/eui/tree/v6.9.0)
 
 - Changed animation settings for `EuiNavDrawer` ([#1524](https://github.com/elastic/eui/pull/1524))

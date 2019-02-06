@@ -1,5 +1,9 @@
 {
-  "printWidth": 100,
+  "jsxBracketSameLine": true,
+  "jsxSingleQuote": false,
+  "parser": "typescript",
+  "printWidth": 80,
+  "semi": true,
   "singleQuote": true,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
 }

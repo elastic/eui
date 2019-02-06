@@ -35,13 +35,8 @@ const marginToClassNameMap = {
 export const MARGINS = Object.keys(marginToClassNameMap);
 
 export const EuiHorizontalRule: SFC<
-CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
-> = ({
-  className,
-  size,
-  margin,
-  ...rest
-}) => {
+  CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
+> = ({ className, size, margin, ...rest }) => {
   const classes = classNames(
     'euiHorizontalRule',
     size ? sizeToClassNameMap[size] : undefined,
@@ -49,12 +44,7 @@ CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
     className
   );
 
-  return (
-    <hr
-      className={classes}
-      {...rest}
-    />
-  );
+  return <hr className={classes} {...rest} />;
 };
 
 EuiHorizontalRule.defaultProps = {

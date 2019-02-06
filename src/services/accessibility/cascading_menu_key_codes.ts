@@ -9,14 +9,7 @@
  * TAB: Normal tabbing navigation is still supported.
  */
 
-import {
-  DOWN,
-  ESCAPE,
-  LEFT,
-  RIGHT,
-  UP,
-  TAB,
-} from '../key_codes';
+import { DOWN, ESCAPE, LEFT, RIGHT, UP, TAB } from '../key_codes';
 
 export const cascadingMenuKeyCodes = {
   DOWN,

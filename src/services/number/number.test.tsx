@@ -1,7 +1,6 @@
 import { isWithinRange } from './number';
 
 describe('numbers', () => {
-
   test('isWithinRange', () => {
     // True
     expect(isWithinRange(0, 100, 50)).toBe(true);

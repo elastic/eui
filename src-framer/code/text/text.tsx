@@ -15,7 +15,6 @@ interface Props {
 }
 
 export class Text extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     childText: 'Add your text in the overide',
@@ -57,8 +56,7 @@ export class Text extends React.Component<Props> {
           textAlign={this.props.textAlign}
           grow={this.props.grow}
           // Display block so that the frame size dictates size in Framer
-          style={{ display: 'block', flexGrow: 1, width: '100%' }}
-        >
+          style={{ display: 'block', flexGrow: 1, width: '100%' }}>
           {this.props.childText}
         </EuiText>
       </FrameSize>

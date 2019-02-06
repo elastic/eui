@@ -2,18 +2,11 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import {
-  EuiIcon,
-  SIZES,
-  TYPES,
-  COLORS,
-} from './icon';
+import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
 
 describe('EuiIcon', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiIcon type="search" {...requiredProps} />
-    );
+    const component = render(<EuiIcon type="search" {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -32,9 +25,7 @@ describe('EuiIcon', () => {
     describe('size', () => {
       SIZES.forEach(size => {
         test(`${size} is rendered`, () => {
-          const component = render(
-            <EuiIcon type="search" size={size} />
-          );
+          const component = render(<EuiIcon type="search" size={size} />);
 
           expect(component).toMatchSnapshot();
         });
@@ -44,9 +35,7 @@ describe('EuiIcon', () => {
     describe('type', () => {
       TYPES.forEach(type => {
         test(`${type} is rendered`, () => {
-          const component = render(
-            <EuiIcon type={type} />
-          );
+          const component = render(<EuiIcon type={type} />);
 
           expect(component).toMatchSnapshot();
         });
@@ -54,11 +43,14 @@ describe('EuiIcon', () => {
     });
 
     describe('color', () => {
-      COLORS.concat(['#fde', '#885522', 'rgb(100, 150, 200)', 'hsla(270, 60%, 70%, 0.9)']).forEach(color => {
+      COLORS.concat([
+        '#fde',
+        '#885522',
+        'rgb(100, 150, 200)',
+        'hsla(270, 60%, 70%, 0.9)',
+      ]).forEach(color => {
         test(`${color} is rendered`, () => {
-          const component = render(
-            <EuiIcon color={color} />
-          );
+          const component = render(<EuiIcon color={color} />);
 
           expect(component).toMatchSnapshot();
         });

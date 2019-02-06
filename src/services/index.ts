@@ -6,14 +6,10 @@ export {
   accessibleClickKeys,
   cascadingMenuKeyCodes,
   comboBoxKeyCodes,
-  htmlIdGenerator
+  htmlIdGenerator,
 } from './accessibility';
 
-export {
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-} from './alignment';
+export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 
 export {
   isColorDark,
@@ -27,9 +23,7 @@ export {
   palettes,
 } from './color';
 
-export {
-  copyToClipboard
-} from './copy_to_clipboard';
+export { copyToClipboard } from './copy_to_clipboard';
 
 export {
   formatAuto,
@@ -39,21 +33,13 @@ export {
   formatText,
 } from './format';
 
-export {
-  isWithinRange,
-} from './number';
+export { isWithinRange } from './number';
 
-export {
-  Pager
-} from './paging';
+export { Pager } from './paging';
 
-export {
-  Random
-} from './random';
+export { Random } from './random';
 
-export {
-  getSecureRelForTarget,
-} from './security';
+export { getSecureRelForTarget } from './security';
 
 export {
   PropertySortType,
@@ -63,11 +49,6 @@ export {
   Comparators,
 } from './sort';
 
-export {
-  calculatePopoverPosition,
-  findPopoverPosition,
-} from './popover';
+export { calculatePopoverPosition, findPopoverPosition } from './popover';
 
-export {
-  EuiWindowEvent
-} from './window_event';
+export { EuiWindowEvent } from './window_event';
