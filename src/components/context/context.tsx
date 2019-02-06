@@ -10,7 +10,6 @@ export interface I18nShape {
   mapping?: {
     [key: string]: Renderable<any>;
   };
-  mappingFunc?: (value: string) => string;
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;
 }

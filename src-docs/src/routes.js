@@ -267,9 +267,6 @@ import { XYChartLineExample }
 import { Changelog }
   from './views/package/changelog';
 
-import { I18nTokens }
-  from './views/package/i18n_tokens';
-
 import { SuperSelectExample }
   from './views/super_select/super_select_example';
 
@@ -444,8 +441,7 @@ const navigation = [{
 }, {
   name: 'Package',
   items: [
-    Changelog,
-    I18nTokens,
+    Changelog
   ]
 }].map(({ name, items, ...rest }) => ({
   name,

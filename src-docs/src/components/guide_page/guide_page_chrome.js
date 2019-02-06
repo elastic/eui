@@ -17,9 +17,6 @@ import {
 } from '../../../../src/components';
 
 import {
-  GuideLocaleSelector,
-} from '../guide_locale_selector';
-import {
   GuideThemeSelector,
 } from '../guide_theme_selector';
 
@@ -81,7 +78,7 @@ export class GuidePageChrome extends Component {
     );
 
     return (
-      <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false} wrap>
+      <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
         <EuiFlexItem grow={false}>
           {homeLink}
         </EuiFlexItem>
@@ -92,18 +89,6 @@ export class GuidePageChrome extends Component {
             selectedTheme={this.props.selectedTheme}
           />
         </EuiFlexItem>
-        {
-          location.host === 'localhost:8030' // eslint-disable-line no-restricted-globals
-            ? (
-              <EuiFlexItem grow={false}>
-                <GuideLocaleSelector
-                  onToggleLocale={this.props.onToggleLocale}
-                  selectedLocale={this.props.selectedLocale}
-                />
-              </EuiFlexItem>
-            )
-            : null
-        }
       </EuiFlexGroup>
     );
   }
@@ -213,7 +198,5 @@ GuidePageChrome.propTypes = {
   currentRouteName: PropTypes.string,
   onToggleTheme: PropTypes.func.isRequired,
   selectedTheme: PropTypes.string.isRequired,
-  onToggleLocale: PropTypes.func.isRequired,
-  selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,
 };

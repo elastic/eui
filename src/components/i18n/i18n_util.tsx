@@ -22,13 +22,11 @@ function hasPropName(child: Child): child is { propName: string } {
  * e.g. input:'Hello, {name}' will replace `{name}` with `values[name]`
  * @param {string} input
  * @param {RenderableValues} values
- * @param {Function} i18nMappingFunc
  * @returns {string | React.ReactChild[]}
  */
 export function processStringToChildren(
   input: string,
-  values: RenderableValues,
-  i18nMappingFunc?: (token: string) => string
+  values: RenderableValues
 ): string | ReactChild[] {
   const children: ReactChild[] = [];
 
@@ -58,9 +56,6 @@ export function processStringToChildren(
       // this won't be called, propName children are converted to a ReactChild before calling this
     } else {
       // everything else can go straight in
-      if (i18nMappingFunc !== undefined && typeof value === 'string') {
-        value = i18nMappingFunc(value);
-      }
       children.push(value);
     }
   }
