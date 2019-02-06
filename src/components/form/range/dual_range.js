@@ -216,7 +216,7 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const rangeClasses = classNames('euiDualRange__slider', className);
+    const sliderClasses = classNames('euiDualRange__slider', className);
 
     return (
       <EuiRangeWrapper
@@ -256,7 +256,7 @@ export class EuiDualRange extends Component {
             ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
-            className={rangeClasses}
+            className={sliderClasses}
             min={min}
             max={max}
             step={step}
