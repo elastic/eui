@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.10.0`.
+**Bug fixes**
+
+- Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
 
 ## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
 
@@ -20,7 +22,6 @@ No public interface changes since `6.10.0`.
 - Fixed React key usage in `EuiPagination` ([#1514](https://github.com/elastic/eui/pull/1514))
 - Fixed bug which prevented `EuiSwitch` with generated ID from having its label announced by VoiceOver ([#1519](https://github.com/elastic/eui/pull/1519))
 - Fixed `EuiFilterButton` handling `numFilters` when `0` was specified ([#1510](https://github.com/elastic/eui/pull/1510))
-- Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
 
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
