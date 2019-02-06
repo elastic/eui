@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`astToEsQueryString ast - '' 1`] = `""`;
+exports[`astToEsQueryString ast - '*' 1`] = `"*"`;
 
 exports[`astToEsQueryString ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `"-group:es +group:kibana -group:beats +group:logstash"`;
 
