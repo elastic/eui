@@ -5,7 +5,3 @@ export function getTheme(state) {
 export function getRoutes(state) {
   return state.routes;
 }
-
-export function getLocale(state) {
-  return state.locale.locale;
-}

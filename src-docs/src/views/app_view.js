@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 import {
   applyTheme,
-  translateUsingPseudoLocale
 } from '../services';
 
 import {
@@ -14,7 +13,6 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
-  EuiContext
 } from '../../../src/components';
 
 import { keyCodes } from '../../../src/services';
@@ -48,21 +46,10 @@ export class AppView extends Component {
       currentRoute,
       toggleTheme,
       theme,
-      toggleLocale,
-      locale,
       routes,
     } = this.props;
 
     const { navigation } = routes;
-
-    const mappingFuncs = {
-      'en-xa': translateUsingPseudoLocale
-    };
-
-    const i18n = {
-      mappingFunc: mappingFuncs[locale],
-      formatNumber: (value) => new Intl.NumberFormat(locale).format(value),
-    };
 
     return (
       <EuiPage restrictWidth={1240} className="guidePage">
@@ -72,16 +59,12 @@ export class AppView extends Component {
               currentRouteName={currentRoute.name}
               onToggleTheme={toggleTheme}
               selectedTheme={theme}
-              onToggleLocale={toggleLocale}
-              selectedLocale={locale}
               navigation={navigation}
             />
           </EuiErrorBoundary>
 
           <div className="guidePageContent">
-            <EuiContext i18n={i18n}>
-              {children}
-            </EuiContext>
+            {children}
           </div>
         </EuiPageBody>
       </EuiPage>
@@ -134,8 +117,6 @@ AppView.propTypes = {
   currentRoute: PropTypes.object.isRequired,
   theme: PropTypes.string.isRequired,
   toggleTheme: PropTypes.func.isRequired,
-  locale: PropTypes.string.isRequired,
-  toggleLocale: PropTypes.func.isRequired,
   routes: PropTypes.object.isRequired,
 };
 

@@ -31,17 +31,5 @@ describe('i18n_util', () => {
         expect(processStringToChildren(message, {})).toEqual(message);
       });
     });
-
-    describe('i18nMappingFunction', () => {
-      it('calls the mapping function with the source string', () => {
-        expect(
-          processStringToChildren(
-            'Hello, {name}',
-            { greeting: 'Hello', name: 'John' },
-            value => value.toUpperCase()
-          )
-        ).toEqual('HELLO, JOHN');
-      });
-    });
   });
 });

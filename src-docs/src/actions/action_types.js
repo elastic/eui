@@ -7,7 +7,4 @@ export default keyMirror({
 
   // Theme actions
   TOGGLE_THEME: null,
-
-  // Locale actions
-  TOGGLE_LOCALE: null,
 });
