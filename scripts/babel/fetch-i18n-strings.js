@@ -97,7 +97,28 @@ function traverseFile(filepath) {
     return true;
   });
 
+  // extract tokens from source files
   files.forEach(filename => traverseFile(filename));
+
+  // validate tokens
+  tokenMappings.reduce(
+    (mappings, symbol) => {
+      const { token, defString } = symbol;
+
+      if (mappings.hasOwnProperty(token)) {
+        if (mappings[token] !== defString) {
+          console.error(`Token ${token} has two differing defaults:\n${defString}\n${mappings[token]}`);
+          process.exit(1);
+        }
+      } else {
+        mappings[token] = defString;
+      }
+
+      return mappings;
+    },
+    {}
+  );
+
   fs.writeFileSync(
     join(rootDir, 'src-docs', 'src', 'i18ntokens.json'),
     JSON.stringify(tokenMappings, null, 2)
