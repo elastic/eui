@@ -180,7 +180,6 @@ export class EuiRange extends Component {
           const tickStyle = {};
           let customTick;
           if (ticks) {
-            // customTick = find(ticks, function (o) { return o.value === tickValue; });
             customTick = ticks.find(o => o.value === tickValue);
 
             if (customTick == null) {
