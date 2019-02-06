@@ -12,9 +12,11 @@ function lookupToken<T extends RenderableValues>(
   token: string,
   i18nMapping: I18nShape['mapping'],
   valueDefault: Renderable<T>,
+  i18nMappingFunc?: (token: string) => string,
   values?: I18nTokenShape<T>['values']
 ): ReactChild {
-  const renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
+  let renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
+
   if (typeof renderable === 'function') {
     if (values === undefined) {
       return throwError();
@@ -22,10 +24,13 @@ function lookupToken<T extends RenderableValues>(
       return renderable(values);
     }
   } else if (values === undefined || typeof renderable !== 'string') {
+    if (i18nMappingFunc && typeof valueDefault === 'string') {
+      renderable = i18nMappingFunc(valueDefault);
+    }
     return renderable;
   }
 
-  const children = processStringToChildren(renderable, values);
+  const children = processStringToChildren(renderable, values, i18nMappingFunc);
   if (typeof children === 'string') {
     return children;
   }
@@ -61,11 +66,11 @@ function hasTokens(x: EuiI18nProps<any>): x is I18nTokensShape {
 const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
   <EuiI18nConsumer>
     {i18nConfig => {
-      const { mapping } = i18nConfig;
+      const { mapping, mappingFunc } = i18nConfig;
       if (hasTokens(props)) {
         return props.children(
           props.tokens.map((token, idx) =>
-            lookupToken(token, mapping, props.defaults[idx])
+            lookupToken(token, mapping, props.defaults[idx], mappingFunc)
           )
         );
       }
@@ -74,6 +79,7 @@ const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
         props.token,
         mapping,
         props.default,
+        mappingFunc,
         props.values
       );
       if (props.children) {

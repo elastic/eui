@@ -214,5 +214,24 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('mappingFunc', () => {
+      it('calls the mapping function with the source string', () => {
+        const component = mount(
+          <EuiContext
+            i18n={{
+              mapping: {
+                test1: 'This is the mapped value.',
+              },
+              mappingFunc: (value: string) => value.toUpperCase(),
+            }}>
+            <EuiI18n token="test1" default="This is the basic string.">
+              {(one: ReactChild) => <div>{one}</div>}
+            </EuiI18n>
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });
