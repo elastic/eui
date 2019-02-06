@@ -27,15 +27,22 @@ export class SortableProperties<T> {
    * @param {Array<SortableProperty>} sortableProperties - a set of sortable properties.
    * @param {string} initialSortablePropertyName - Which sort property should be sorted on by default.
    */
-  constructor(sortableProperties: Array<SortableProperty<T>>, initialSortablePropertyName: string) {
+  constructor(
+    sortableProperties: Array<SortableProperty<T>>,
+    initialSortablePropertyName: string
+  ) {
     this.sortableProperties = sortableProperties;
     /**
      * The current property that is being sorted on.
      * @type {SortableProperty}
      */
-    const currentSortedProperty = this.getSortablePropertyByName(initialSortablePropertyName);
+    const currentSortedProperty = this.getSortablePropertyByName(
+      initialSortablePropertyName
+    );
     if (!currentSortedProperty) {
-      throw new Error(`No property with the name ${initialSortablePropertyName}`);
+      throw new Error(
+        `No property with the name ${initialSortablePropertyName}`
+      );
     }
 
     this.currentSortedProperty = currentSortedProperty;
@@ -69,7 +76,9 @@ export class SortableProperties<T> {
    * @returns {SortableProperty|undefined}
    */
   getSortablePropertyByName(propertyName: string) {
-    return this.sortableProperties.find(property => property.name === propertyName);
+    return this.sortableProperties.find(
+      property => property.name === propertyName
+    );
   }
 
   /**
@@ -111,6 +120,7 @@ export class SortableProperties<T> {
    * Flips the current sorted property sort order.
    */
   flipCurrentSortOrder() {
-    this.currentSortedProperty.isAscending = !this.currentSortedProperty.isAscending;
+    this.currentSortedProperty.isAscending = !this.currentSortedProperty
+      .isAscending;
   }
 }

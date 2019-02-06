@@ -8,7 +8,11 @@ export class Pager {
   totalItems: number;
   totalPages: number;
 
-  constructor(totalItems: number, itemsPerPage: number, initialPageIndex: number = 0) {
+  constructor(
+    totalItems: number,
+    itemsPerPage: number,
+    initialPageIndex: number = 0
+  ) {
     if (!isNumber(totalItems) || isNaN(totalItems)) {
       throw new Error('Please provide a number of totalItems');
     }
@@ -34,12 +38,12 @@ export class Pager {
   setTotalItems = (totalItems: number) => {
     this.totalItems = totalItems;
     this.update();
-  }
+  };
 
   setItemsPerPage = (itemsPerPage: number) => {
     this.itemsPerPage = itemsPerPage;
     this.update();
-  }
+  };
 
   isPageable = () => this.firstItemIndex !== -1;
 
@@ -57,16 +61,16 @@ export class Pager {
 
   goToNextPage = () => {
     this.goToPageIndex(this.currentPageIndex + 1);
-  }
+  };
 
   goToPreviousPage = () => {
     this.goToPageIndex(this.currentPageIndex - 1);
-  }
+  };
 
   goToPageIndex = (pageIndex: number) => {
     this.currentPageIndex = pageIndex;
     this.update();
-  }
+  };
 
   update = () => {
     if (this.totalItems <= 0) {
@@ -80,10 +84,14 @@ export class Pager {
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
 
     // Ensure the current page falls within our range of total pages.
-    this.currentPageIndex = Math.min(Math.max(0, this.currentPageIndex), this.totalPages - 1);
+    this.currentPageIndex = Math.min(
+      Math.max(0, this.currentPageIndex),
+      this.totalPages - 1
+    );
 
     // Find the range of visible items on the current page.
     this.firstItemIndex = this.currentPageIndex * this.itemsPerPage;
-    this.lastItemIndex = Math.min(this.firstItemIndex + this.itemsPerPage, this.totalItems) - 1;
-  }
+    this.lastItemIndex =
+      Math.min(this.firstItemIndex + this.itemsPerPage, this.totalItems) - 1;
+  };
 }

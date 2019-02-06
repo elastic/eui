@@ -65,22 +65,29 @@ function hasTokens(x: EuiI18nProps<any>): x is I18nTokensShape {
 // when using a `values` object with a renderer callback.
 const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
   <EuiI18nConsumer>
-    {
-      (i18nConfig) => {
-        const { mapping, mappingFunc } = i18nConfig;
-        if (hasTokens(props)) {
-          return props.children(props.tokens.map((token, idx) =>
-            lookupToken(token, mapping, props.defaults[idx], mappingFunc)));
-        }
-
-        const tokenValue = lookupToken(props.token, mapping, props.default, mappingFunc, props.values);
-        if (props.children) {
-          return props.children(tokenValue);
-        } else {
-          return tokenValue;
-        }
+    {i18nConfig => {
+      const { mapping, mappingFunc } = i18nConfig;
+      if (hasTokens(props)) {
+        return props.children(
+          props.tokens.map((token, idx) =>
+            lookupToken(token, mapping, props.defaults[idx], mappingFunc)
+          )
+        );
       }
-    }
+
+      const tokenValue = lookupToken(
+        props.token,
+        mapping,
+        props.default,
+        mappingFunc,
+        props.values
+      );
+      if (props.children) {
+        return props.children(tokenValue);
+      } else {
+        return tokenValue;
+      }
+    }}
   </EuiI18nConsumer>
 );
 

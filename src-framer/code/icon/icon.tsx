@@ -1,4 +1,9 @@
-import { COLORS, EuiIcon, SIZES, TYPES } from '@elastic/eui/lib/components/icon/icon.js';
+import {
+  COLORS,
+  EuiIcon,
+  SIZES,
+  TYPES,
+} from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -12,7 +17,6 @@ interface Props {
 }
 
 export class Icon extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     size: 'xl',

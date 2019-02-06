@@ -13,11 +13,11 @@ describe('Random', () => {
   it('should generate numbers', () => {
     const random = new Random(() => 0.42);
 
-    expect(random.number()).toEqual(7.550311166421726e+307);
-    expect(random.number({ min: 5 })).toEqual(7.550311166421726e+307);
+    expect(random.number()).toEqual(7.550311166421726e307);
+    expect(random.number({ min: 5 })).toEqual(7.550311166421726e307);
     expect(random.number({ max: 10 })).toEqual(4.2);
     expect(random.number({ min: 5, max: 10 })).toEqual(7.1);
-    expect(random.number({ min: -10, max: 10 })).toBeCloseTo(-1.60);
+    expect(random.number({ min: -10, max: 10 })).toBeCloseTo(-1.6);
   });
 
   it('should generate integers', () => {
@@ -60,7 +60,9 @@ describe('Random', () => {
 
     // The default max value is now, so we must specify a max in order to keep
     // the test deterministic.
-    const actual = random.date({ max: new Date(Date.parse('2018-12-25T12:23:34.123Z')) });
+    const actual = random.date({
+      max: new Date(Date.parse('2018-12-25T12:23:34.123Z')),
+    });
 
     expect(actual).toEqual(new Date(Date.parse('1990-07-29T00:24:17.932Z')));
   });

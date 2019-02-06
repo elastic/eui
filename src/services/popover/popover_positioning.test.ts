@@ -8,7 +8,12 @@ import {
   POSITIONS,
 } from './popover_positioning';
 
-function makeBB(top: number, right: number, bottom: number, left: number): EuiClientRect {
+function makeBB(
+  top: number,
+  right: number,
+  bottom: number,
+  left: number
+): EuiClientRect {
   return {
     top,
     right,
@@ -21,10 +26,23 @@ function makeBB(top: number, right: number, bottom: number, left: number): EuiCl
 
 describe('popover_positioning', () => {
   describe('getElementBoundingBox', () => {
-    const clientRect = { top: 5, right: 20, left: 5, bottom: 50, width: 15, height: 45 };
-    const origGetBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
-    beforeEach(() => HTMLElement.prototype.getBoundingClientRect = () => clientRect);
-    afterEach(() => HTMLElement.prototype.getBoundingClientRect = origGetBoundingClientRect);
+    const clientRect = {
+      top: 5,
+      right: 20,
+      left: 5,
+      bottom: 50,
+      width: 15,
+      height: 45,
+    };
+    const origGetBoundingClientRect =
+      HTMLElement.prototype.getBoundingClientRect;
+    beforeEach(
+      () => (HTMLElement.prototype.getBoundingClientRect = () => clientRect)
+    );
+    afterEach(
+      () =>
+        (HTMLElement.prototype.getBoundingClientRect = origGetBoundingClientRect)
+    );
 
     it('returns a new JavaScript object with correct values', () => {
       // `getBoundingClientRect` in the browser returns a `DOMRect`
@@ -54,14 +72,17 @@ describe('popover_positioning', () => {
 
     it('returns the distance from each side of the anchor to each side of the container', () => {
       POSITIONS.forEach(side => {
-        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, side)).toEqual(
-          expectedAvailableSpace);
+        expect(
+          getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 0, side)
+        ).toEqual(expectedAvailableSpace);
       });
     });
 
     it('subtracts the buffer amount from the returned distances', () => {
       POSITIONS.forEach(side => {
-        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, side)).toEqual({
+        expect(
+          getAvailableSpace(anchorBoundingBox, containerBoundingBox, 5, 0, side)
+        ).toEqual({
           top: expectedAvailableSpace.top - 5,
           right: expectedAvailableSpace.right - 5,
           bottom: expectedAvailableSpace.bottom - 5,
@@ -72,7 +93,9 @@ describe('popover_positioning', () => {
 
     it('subtracts the offset from the specified offsetSide', () => {
       POSITIONS.forEach(side => {
-        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, side)).toEqual({
+        expect(
+          getAvailableSpace(anchorBoundingBox, containerBoundingBox, 0, 5, side)
+        ).toEqual({
           ...expectedAvailableSpace,
           [side]: expectedAvailableSpace[side] - 5,
         });
@@ -81,7 +104,9 @@ describe('popover_positioning', () => {
 
     it('subtracts the buffer and the offset from the specified offsetSide', () => {
       POSITIONS.forEach(side => {
-        expect(getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, side)).toEqual({
+        expect(
+          getAvailableSpace(anchorBoundingBox, containerBoundingBox, 3, 1, side)
+        ).toEqual({
           // apply buffer space
           top: expectedAvailableSpace.top - 3,
           right: expectedAvailableSpace.right - 3,
@@ -124,13 +149,15 @@ describe('popover_positioning', () => {
     describe('not enough space', () => {
       it('returns correct fit when the window does not have space on the primary axis', () => {
         // no window space on top
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(10, 500, 15, 450),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(10, 500, 15, 450),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+          })
+        ).toEqual({
           fit: 0.2,
           top: -40,
           left: 450,
@@ -139,13 +166,15 @@ describe('popover_positioning', () => {
 
       it('returns correct fit when the window does not have space on the cross-axis', () => {
         // enough space on top, but anchor width + available window space isn't enough
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(10, 500, 15, 450),
-          popoverBoundingBox: makeBB(0, 100, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 430),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(10, 500, 15, 450),
+            popoverBoundingBox: makeBB(0, 100, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 430),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+          })
+        ).toEqual({
           fit: 0.2,
           top: -40,
           left: 430,
@@ -154,13 +183,15 @@ describe('popover_positioning', () => {
 
       it('returns correct fit when the container does not have space on the primary axis', () => {
         // no window space on top
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(10, 500, 15, 450),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(10, 500, 15, 450),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+          })
+        ).toEqual({
           fit: 0.2,
           top: -40,
           left: 450,
@@ -169,13 +200,15 @@ describe('popover_positioning', () => {
 
       it('returns null when the container does not have space on the cross-axis', () => {
         // enough space on top, but anchor width + available window space isn't enough
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(10, 500, 15, 450),
-          popoverBoundingBox: makeBB(0, 100, 50, 0),
-          windowBoundingBox: makeBB(0, 520, 768, 430),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(10, 500, 15, 450),
+            popoverBoundingBox: makeBB(0, 100, 50, 0),
+            windowBoundingBox: makeBB(0, 520, 768, 430),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+          })
+        ).toEqual({
           fit: 0.18,
           top: -40,
           left: 430,
@@ -187,14 +220,16 @@ describe('popover_positioning', () => {
       it('prefers placing centered along the anchor', () => {
         // no need to shift content, should be positioned at the
         // anchor's right + offset, and centered vertically
-        expect(getPopoverScreenCoordinates({
-          position: 'right',
-          anchorBoundingBox: makeBB(300, 200, 320, 100),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-          offset: 20,
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'right',
+            anchorBoundingBox: makeBB(300, 200, 320, 100),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+            offset: 20,
+          })
+        ).toEqual({
           fit: 1,
           top: 285,
           left: 220,
@@ -204,28 +239,32 @@ describe('popover_positioning', () => {
       describe('limited window space', () => {
         it('shifts along the cross axis when needed', () => {
           // bottom space is limited, should shift up to make the difference
-          expect(getPopoverScreenCoordinates({
-            position: 'right',
-            anchorBoundingBox: makeBB(300, 200, 320, 100),
-            popoverBoundingBox: makeBB(0, 50, 50, 0),
-            windowBoundingBox: makeBB(0, 1024, 330, 0),
-            containerBoundingBox: makeBB(0, 1024, 768, 0),
-            offset: 20,
-          })).toEqual({
+          expect(
+            getPopoverScreenCoordinates({
+              position: 'right',
+              anchorBoundingBox: makeBB(300, 200, 320, 100),
+              popoverBoundingBox: makeBB(0, 50, 50, 0),
+              windowBoundingBox: makeBB(0, 1024, 330, 0),
+              containerBoundingBox: makeBB(0, 1024, 768, 0),
+              offset: 20,
+            })
+          ).toEqual({
             fit: 1,
             top: 280,
             left: 220,
           });
 
           // top space is limited, should shift down to make the difference
-          expect(getPopoverScreenCoordinates({
-            position: 'right',
-            anchorBoundingBox: makeBB(300, 200, 320, 100),
-            popoverBoundingBox: makeBB(0, 50, 50, 0),
-            windowBoundingBox: makeBB(300, 1024, 768, 0),
-            containerBoundingBox: makeBB(0, 1024, 768, 0),
-            offset: 20,
-          })).toEqual({
+          expect(
+            getPopoverScreenCoordinates({
+              position: 'right',
+              anchorBoundingBox: makeBB(300, 200, 320, 100),
+              popoverBoundingBox: makeBB(0, 50, 50, 0),
+              windowBoundingBox: makeBB(300, 1024, 768, 0),
+              containerBoundingBox: makeBB(0, 1024, 768, 0),
+              offset: 20,
+            })
+          ).toEqual({
             fit: 1,
             top: 300,
             left: 220,
@@ -236,28 +275,32 @@ describe('popover_positioning', () => {
       describe('limited container space', () => {
         it('shifts along the cross axis when needed', () => {
           // left space is limited, should shift right to make the difference
-          expect(getPopoverScreenCoordinates({
-            position: 'bottom',
-            anchorBoundingBox: makeBB(300, 110, 400, 100),
-            popoverBoundingBox: makeBB(0, 50, 50, 0),
-            windowBoundingBox: makeBB(0, 1024, 768, 0),
-            containerBoundingBox: makeBB(0, 1024, 768, 90),
-            offset: 35,
-          })).toEqual({
+          expect(
+            getPopoverScreenCoordinates({
+              position: 'bottom',
+              anchorBoundingBox: makeBB(300, 110, 400, 100),
+              popoverBoundingBox: makeBB(0, 50, 50, 0),
+              windowBoundingBox: makeBB(0, 1024, 768, 0),
+              containerBoundingBox: makeBB(0, 1024, 768, 90),
+              offset: 35,
+            })
+          ).toEqual({
             fit: 1,
             top: 435,
             left: 90,
           });
 
           // right space is limited, should shift left to make the difference
-          expect(getPopoverScreenCoordinates({
-            position: 'top',
-            anchorBoundingBox: makeBB(300, 110, 400, 100),
-            popoverBoundingBox: makeBB(0, 50, 50, 0),
-            windowBoundingBox: makeBB(0, 1024, 768, 0),
-            containerBoundingBox: makeBB(0, 125, 768, 0),
-            offset: 35,
-          })).toEqual({
+          expect(
+            getPopoverScreenCoordinates({
+              position: 'top',
+              anchorBoundingBox: makeBB(300, 110, 400, 100),
+              popoverBoundingBox: makeBB(0, 50, 50, 0),
+              windowBoundingBox: makeBB(0, 1024, 768, 0),
+              containerBoundingBox: makeBB(0, 125, 768, 0),
+              offset: 35,
+            })
+          ).toEqual({
             fit: 1,
             top: 215,
             left: 75,
@@ -268,15 +311,17 @@ describe('popover_positioning', () => {
 
     describe('arrow positioning', () => {
       it('calculates the position for the arrow', () => {
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(100, 100, 100, 0),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-          offset: 10,
-          arrowConfig: { arrowWidth: 5, arrowBuffer: 0 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(100, 100, 100, 0),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+            offset: 10,
+            arrowConfig: { arrowWidth: 5, arrowBuffer: 0 },
+          })
+        ).toEqual({
           fit: 1,
           top: 40,
           left: 25,
@@ -288,15 +333,17 @@ describe('popover_positioning', () => {
       });
 
       it('respects the arrow buffer', () => {
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(45, 55, 55, 45),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 40),
-          offset: 10,
-          arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(45, 55, 55, 45),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 40),
+            offset: 10,
+            arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
+          })
+        ).toEqual({
           fit: 0.665,
           top: -15,
           left: 37.5,
@@ -308,16 +355,18 @@ describe('popover_positioning', () => {
       });
 
       it('respects both popover & arrow buffers', () => {
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          anchorBoundingBox: makeBB(45, 55, 55, 45),
-          popoverBoundingBox: makeBB(0, 50, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 40),
-          offset: 10,
-          buffer: 15,
-          arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            anchorBoundingBox: makeBB(45, 55, 55, 45),
+            popoverBoundingBox: makeBB(0, 50, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 40),
+            offset: 10,
+            buffer: 15,
+            arrowConfig: { arrowWidth: 5, arrowBuffer: 10 },
+          })
+        ).toEqual({
           fit: 0.26,
           top: -15,
           left: 37.5,
@@ -331,15 +380,17 @@ describe('popover_positioning', () => {
 
     describe('align position', () => {
       it('aligns the cross-axis position to align with the anchor boundary', () => {
-        expect(getPopoverScreenCoordinates({
-          position: 'top',
-          align: 'left',
-          anchorBoundingBox: makeBB(100, 125, 110, 75),
-          popoverBoundingBox: makeBB(0, 100, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-          arrowConfig: { arrowWidth: 6, arrowBuffer: 10 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'top',
+            align: 'left',
+            anchorBoundingBox: makeBB(100, 125, 110, 75),
+            popoverBoundingBox: makeBB(0, 100, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+            arrowConfig: { arrowWidth: 6, arrowBuffer: 10 },
+          })
+        ).toEqual({
           fit: 1,
           top: 50,
           left: 75,
@@ -349,15 +400,17 @@ describe('popover_positioning', () => {
           },
         });
 
-        expect(getPopoverScreenCoordinates({
-          position: 'bottom',
-          align: 'right',
-          anchorBoundingBox: makeBB(100, 125, 110, 75),
-          popoverBoundingBox: makeBB(0, 100, 50, 0),
-          windowBoundingBox: makeBB(0, 1024, 768, 0),
-          containerBoundingBox: makeBB(0, 1024, 768, 0),
-          arrowConfig: { arrowWidth: 6, arrowBuffer: 20 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'bottom',
+            align: 'right',
+            anchorBoundingBox: makeBB(100, 125, 110, 75),
+            popoverBoundingBox: makeBB(0, 100, 50, 0),
+            windowBoundingBox: makeBB(0, 1024, 768, 0),
+            containerBoundingBox: makeBB(0, 1024, 768, 0),
+            arrowConfig: { arrowWidth: 6, arrowBuffer: 20 },
+          })
+        ).toEqual({
           fit: 1,
           top: 110,
           left: 25,
@@ -369,15 +422,17 @@ describe('popover_positioning', () => {
       });
 
       it('aligns content best as possible in limited space', () => {
-        expect(getPopoverScreenCoordinates({
-          position: 'right',
-          align: 'bottom',
-          anchorBoundingBox: makeBB(100, 125, 110, 75),
-          popoverBoundingBox: makeBB(0, 100, 200, 0),
-          windowBoundingBox: makeBB(-200, 1024, 768, 0),
-          containerBoundingBox: makeBB(-200, 1024, 768, 0),
-          arrowConfig: { arrowWidth: 6, arrowBuffer: 10 },
-        })).toEqual({
+        expect(
+          getPopoverScreenCoordinates({
+            position: 'right',
+            align: 'bottom',
+            anchorBoundingBox: makeBB(100, 125, 110, 75),
+            popoverBoundingBox: makeBB(0, 100, 200, 0),
+            windowBoundingBox: makeBB(-200, 1024, 768, 0),
+            containerBoundingBox: makeBB(-200, 1024, 768, 0),
+            arrowConfig: { arrowWidth: 6, arrowBuffer: 10 },
+          })
+        ).toEqual({
           fit: 1,
           top: -82,
           left: 125,
@@ -410,13 +465,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
 
-        expect(findPopoverPosition({
-          position: 'top',
-          anchor,
-          popover,
-          container,
-          offset: 7,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'top',
+            anchor,
+            popover,
+            container,
+            offset: 7,
+          })
+        ).toEqual({
           fit: 1,
           position: 'top',
           top: 43,
@@ -437,13 +494,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(50, 300, 768, 30);
 
-        expect(findPopoverPosition({
-          position: 'left',
-          anchor,
-          popover,
-          container,
-          offset: 5,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'left',
+            anchor,
+            popover,
+            container,
+            offset: 5,
+          })
+        ).toEqual({
           fit: 1,
           position: 'right',
           top: 85,
@@ -464,13 +523,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
 
-        expect(findPopoverPosition({
-          position: 'right',
-          anchor,
-          popover,
-          container,
-          offset: 5,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'right',
+            anchor,
+            popover,
+            container,
+            offset: 5,
+          })
+        ).toEqual({
           fit: 1,
           position: 'top',
           top: 45,
@@ -489,14 +550,16 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
 
-        expect(findPopoverPosition({
-          position: 'right',
-          align: 'bottom',
-          anchor,
-          popover,
-          container,
-          offset: 5,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'right',
+            align: 'bottom',
+            anchor,
+            popover,
+            container,
+            offset: 5,
+          })
+        ).toEqual({
           fit: 1,
           position: 'top',
           top: 45,
@@ -515,14 +578,16 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(0, 160, 768, 40);
 
-        expect(findPopoverPosition({
-          position: 'right',
-          forcePosition: true,
-          anchor,
-          popover,
-          container,
-          offset: 5,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'right',
+            forcePosition: true,
+            anchor,
+            popover,
+            container,
+            offset: 5,
+          })
+        ).toEqual({
           fit: 0,
           position: 'right',
           top: 85,
@@ -543,13 +608,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(100, 160, 768, 40);
 
-        expect(findPopoverPosition({
-          position: 'right',
-          anchor,
-          popover,
-          container,
-          offset: 5,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'right',
+            anchor,
+            popover,
+            container,
+            offset: 5,
+          })
+        ).toEqual({
           fit: 1,
           position: 'bottom',
           top: 125,
@@ -574,13 +641,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(0, 1024, 768, 0);
 
-        expect(findPopoverPosition({
-          position: 'top',
-          anchor,
-          popover,
-          container,
-          offset: 7,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'top',
+            anchor,
+            popover,
+            container,
+            offset: 7,
+          })
+        ).toEqual({
           fit: 1,
           position: 'top',
           top: 143,
@@ -600,13 +669,15 @@ describe('popover_positioning', () => {
         const container = document.createElement('div');
         container.getBoundingClientRect = () => makeBB(400, 1024, 600, 0);
 
-        expect(findPopoverPosition({
-          position: 'top',
-          anchor,
-          popover,
-          container,
-          allowCrossAxis: false,
-        })).toEqual({
+        expect(
+          findPopoverPosition({
+            position: 'top',
+            anchor,
+            popover,
+            container,
+            allowCrossAxis: false,
+          })
+        ).toEqual({
           fit: 0.34,
           position: 'top',
           top: 350,

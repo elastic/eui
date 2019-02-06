@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  render,
-  shallow,
-} from 'enzyme';
+import { render, shallow } from 'enzyme';
 import { noop } from 'lodash';
 
 import { EuiKeyboardAccessible } from './keyboard_accessible';
@@ -87,7 +84,8 @@ describe('EuiKeyboardAccessible', () => {
         <EuiKeyboardAccessible>
           <div
             // @ts-ignore not a valid prop type
-            onClick="notAFunction" />
+            onClick="notAFunction"
+          />
         </EuiKeyboardAccessible>
       );
 
@@ -134,8 +132,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
   });
 
@@ -147,8 +144,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
 
     test('role', () => {
@@ -158,8 +154,7 @@ describe('EuiKeyboardAccessible', () => {
         </EuiKeyboardAccessible>
       );
 
-      expect($button)
-        .toMatchSnapshot();
+      expect($button).toMatchSnapshot();
     });
   });
 

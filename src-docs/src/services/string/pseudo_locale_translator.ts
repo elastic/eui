@@ -1,4 +1,4 @@
-const CHARS_FOR_PSEUDO_LOCALIZATION_REGEX = /[a-z]/ig;
+const CHARS_FOR_PSEUDO_LOCALIZATION_REGEX = /[a-z]/gi;
 
 /**
  * Replaces every latin char by pseudo char and repeats every third char twice.

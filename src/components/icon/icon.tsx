@@ -595,7 +595,7 @@ export const TYPES: IconType[] = keysOf(typeToIconMap);
 
 export type IconType = keyof typeof typeToIconMap;
 
-const colorToClassMap: { [color: string]: string | null; } = {
+const colorToClassMap: { [color: string]: string | null } = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
@@ -657,7 +657,9 @@ export const EuiIcon: SFC<Props> = ({
   }
 
   // These icons are a little special and get some extra CSS flexibility
-  const isAppIcon = type && (/.+App$/.test(type) || /.+Job$/.test(type) || (type === 'dataVisualizer'));
+  const isAppIcon =
+    type &&
+    (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
   const classes = classNames(
     'euiIcon',
@@ -677,7 +679,7 @@ export const EuiIcon: SFC<Props> = ({
   //     which is how SVGs behave in Chrome, Safari, and FF.
   //   - If tab index is -1, then the consumer wants the icon to not be focusable.
   //   - For all other values, the consumer wants the icon to be focusable.
-  const focusable = (tabIndex == null || tabIndex === -1) ? 'false' : 'true';
+  const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
   return (
     <Svg

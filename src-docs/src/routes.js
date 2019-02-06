@@ -440,7 +440,8 @@ const navigation = [{
 }, {
   name: 'Package',
   items: [
-    Changelog
+    Changelog,
+    I18nTokens,
   ]
 }].map(({ name, items, ...rest }) => ({
   name,

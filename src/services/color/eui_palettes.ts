@@ -18,23 +18,11 @@ const euiPaletteColorBlind: EuiPalette = {
 };
 
 const euiPaletteForLightBackground: EuiPalette = {
-  colors: [
-    '#006BB4',
-    '#017D73',
-    '#F5A700',
-    '#BD271E',
-    '#DD0A73',
-  ],
+  colors: ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'],
 };
 
 const euiPaletteForDarkBackground: EuiPalette = {
-  colors: [
-    '#4DA1C0',
-    '#01B2A4',
-    '#C06C4C',
-    '#BF4D4D',
-    '#F5258C',
-  ],
+  colors: ['#4DA1C0', '#01B2A4', '#C06C4C', '#BF4D4D', '#F5258C'],
 };
 
 const euiPaletteForStatus: EuiPalette = {
