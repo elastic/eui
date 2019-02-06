@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.10.0`.
+
+## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
+
 - Adjust dark mode background color ([#1530](https://github.com/elastic/eui/pull/1530))
 - TypeScript are now formatted with Prettier ([#1529](https://github.com/elastic/eui/pull/1529))
 - Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
