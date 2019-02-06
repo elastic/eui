@@ -6,7 +6,7 @@ import { astToEsQueryString } from './ast_to_es_query_string';
 
 describe('astToEsQueryString', () => {
 
-  test(`ast - ''`, () => {
+  test(`ast - '*'`, () => {
     const query = astToEsQueryString(AST.create([]));
     expect(query).toMatchSnapshot();
   });
