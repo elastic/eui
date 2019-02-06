@@ -80,9 +80,11 @@ export class EuiQuickSelect extends Component {
   }
 
   getBounds = () => {
+    const startMoment = dateMath.parse(this.props.start);
+    const endMoment = dateMath.parse(this.props.end, { roundUp: true });
     return {
-      min: dateMath.parse(this.props.start),
-      max: dateMath.parse(this.props.end, { roundUp: true }),
+      min: startMoment ? startMoment : moment().subtract(15, 'minute'),
+      max: endMoment ? endMoment : moment(),
     };
   }
 

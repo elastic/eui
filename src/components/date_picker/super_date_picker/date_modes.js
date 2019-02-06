@@ -21,7 +21,11 @@ export function getDateMode(value) {
 }
 
 export function toAbsoluteString(value, roundUp) {
-  return dateMath.parse(value, { roundUp }).toISOString();
+  const valueAsMoment = dateMath.parse(value, { roundUp });
+  if (!valueAsMoment) {
+    return value;
+  }
+  return valueAsMoment.toISOString();
 }
 
 
