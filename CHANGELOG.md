@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
+- Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 
 **Bug fixes**
 
