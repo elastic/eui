@@ -1,0 +1,17 @@
+/*
+ * 1. Align extra input slightly better with slider labels, in an IE compliant way.
+ */
+
+.euiRangeInput {
+  width: auto;
+  position: relative; /* 1 */
+  top: -2px; /* 1 */
+
+  &--min {
+    margin-right: $euiSize;
+  }
+
+  &--max {
+    margin-left: $euiSize;
+  }
+}

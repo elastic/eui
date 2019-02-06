@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 
 import {
-  EuiRange,
+  EuiDualRange,
   EuiSpacer,
   EuiFormHelpText,
 } from '../../../../src/components';
@@ -29,37 +29,37 @@ export default class extends Component {
     ];
 
     this.state = {
-      value: '120',
+      value: [120, 480]
     };
   }
 
-  onChange = e => {
+  onChange = (value) => {
     this.setState({
-      value: e.target.value,
+      value
     });
   };
 
   render() {
     return (
       <Fragment>
-        <EuiRange
+
+        <EuiDualRange
           id={makeId()}
-          min={100}
-          max={200}
+          min={0}
+          max={2000}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showLabels
-          showValue
-          name="firstRange"
+          name="dualRange"
         />
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
+        <EuiDualRange
           id={makeId()}
-          min={100}
-          max={200}
+          min={0}
+          max={2000}
           value={this.state.value}
           onChange={this.onChange}
           disabled
@@ -69,10 +69,10 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
+        <EuiDualRange
           id={makeId()}
-          min={100}
-          max={200}
+          min={0}
+          max={2000}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
@@ -83,7 +83,7 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
+        <EuiDualRange
           id={makeId()}
           min={0}
           max={2000}
@@ -101,7 +101,7 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
+        <EuiDualRange
           id={makeId()}
           min={0}
           max={2000}
@@ -111,13 +111,12 @@ export default class extends Component {
           aria-label="Use aria labels when no actual label is in use"
           showTicks
           showRange
-          showValue
           tickInterval={300}
         />
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
+        <EuiDualRange
           id={makeId()}
           min={0}
           max={2000}
