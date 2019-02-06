@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { times } from 'lodash';
+import { times } from '../../../../src/services/utils';
 import { Random } from '../../../../src/services/random';
 import {
   EuiHealth,

@@ -4,7 +4,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { dropWhile, slice } from 'lodash';
 import {
   formatAuto, formatBoolean, formatDate, formatNumber, formatText, LEFT_ALIGNMENT, PropertySortType,
   RIGHT_ALIGNMENT, SortDirection
@@ -760,7 +759,8 @@ export class EuiBasicTable extends Component {
     if (column.actions.length > 2) {
 
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      actualActions = slice(dropWhile(column.actions, function (o) { return !o.isPrimary; }), 0, 2);
+      const primaryActions = column.actions.filter(o => o.isPrimary);
+      actualActions = primaryActions.slice(0, 2);
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum

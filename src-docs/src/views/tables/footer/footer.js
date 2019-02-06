@@ -14,7 +14,7 @@ import {
   EuiFlexItem,
 } from '../../../../../src/components';
 
-import { uniq } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 
 /*
 Example user object:
@@ -152,7 +152,7 @@ export class Table extends Component {
       field: 'github',
       name: 'Github',
       footer: ({ items }) => (
-        <span>{uniq(items, 'github').length} users</span>
+        <span>{uniqBy(items, 'github').length} users</span>
       ),
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
@@ -169,7 +169,7 @@ export class Table extends Component {
       field: 'nationality',
       name: 'Nationality',
       footer: ({ items }) => (
-        <span>{uniq(items, 'nationality').length} countries</span>
+        <span>{uniqBy(items, 'nationality').length} countries</span>
       ),
       render: (countryCode) => {
         const country = store.getCountry(countryCode);

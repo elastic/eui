@@ -4,7 +4,8 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { get } from 'lodash';
+
+import { get } from '../../../services/objects';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';

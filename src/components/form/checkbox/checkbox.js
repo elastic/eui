@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { omit } from 'lodash';
+
+import { omit } from '../../../services/objects';
 
 const typeToClassNameMap = {
   inList: 'euiCheckbox--inList',
