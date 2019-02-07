@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get } from '../../../services/objects';
 import { isString, isArray } from '../../../services/predicate';
 import { eq, gt, gte, lt, lte } from './operators';
 import { AST } from './ast';

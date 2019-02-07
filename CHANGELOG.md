@@ -1,10 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
+- Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 - Added support for OR group clauses in `EuiQuery` and `EuiSearchBar` ([#1204](https://github.com/elastic/eui/pull/1204))
 
 **Bug fixes**
 
 - Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
+- Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
+- Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
+- Make TSLint issues be warnings, not errors, when running `src-docs` ([#1537](https://github.com/elastic/eui/pull/1537))
 
 **Breaking changes**
 
@@ -32,13 +37,14 @@
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
 - Changed `flex-basis` value on `EuiPageBody` for better cross-browser support ([#1497](https://github.com/elastic/eui/pull/1497))
-- Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485))
+- Converted a number of components to support text localization ([#1450](https://github.com/elastic/eui/pull/1450))
 - Added a seconds option to the refresh interval selection in `EuiSuperDatePicker`  ([#1503](https://github.com/elastic/eui/pull/1503))
-- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1505](https://github.com/elastic/eui/pull/1505))
+- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1500](https://github.com/elastic/eui/pull/1500))
+
 
 **Bug fixes**
 
-- Remove `font-features` setting on `@euiFont` mixin to prevent breaks in ACE editor ([#1497](https://github.com/elastic/eui/pull/1497))
+- Remove `font-features` setting on `@euiFont` mixin to prevent breaks in ACE editor ([#1505](https://github.com/elastic/eui/pull/1505))
 
 ## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
 

@@ -36,6 +36,18 @@ export default class extends Component {
     }, this.startLoading);
   }
 
+  onStartInputChange = e => {
+    this.setState({
+      start: e.target.value,
+    });
+  };
+
+  onEndInputChange = e => {
+    this.setState({
+      end: e.target.value,
+    });
+  };
+
   startLoading = () => {
     setTimeout(
       this.stopLoading,
@@ -74,17 +86,19 @@ export default class extends Component {
       <Fragment>
         <EuiFormRow
           label="start"
+          helpText="EuiSuperDatePicker should be resilient to invalid start values. Try to break it with unexpected values"
         >
           <EuiFieldText
-            readOnly
+            onChange={this.onStartInputChange}
             value={this.state.start}
           />
         </EuiFormRow>
         <EuiFormRow
           label="end"
+          helpText="EuiSuperDatePicker should be resilient to invalid end values. Try to break it with unexpected values"
         >
           <EuiFieldText
-            readOnly
+            onChange={this.onEndInputChange}
             value={this.state.end}
           />
         </EuiFormRow>
