@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.10.1`.
+
+## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
+
 **Note: this release is a backport containing changes originally made in `6.11.0`**
 
 **Bug fixes**
