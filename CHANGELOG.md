@@ -1,14 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.10.1`.
-
-## [`6.10.11`](https://github.com/elastic/eui/tree/6.10.11)
-
 **Note: this release is a backport containing changes originally made in `6.11.0`**
 
 **Bug fixes**
 
 - Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
+- Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
 
 ## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
 
