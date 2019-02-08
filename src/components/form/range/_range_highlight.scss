@@ -1,0 +1,23 @@
+.euiRangeHighlight {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: ($euiFormControlHeight / 2) - 2px;
+  z-index: $euiZLevel0;
+  overflow: hidden;
+
+  &__progress {
+    height: 4px;
+    border-radius: 4px;
+    background-color: $euiRangeTrackColor;
+
+    &--hasFocus {
+      background-color: $euiColorPrimary;
+    }
+  }
+
+  &--hasTicks {
+    top: ($euiFormControlHeight / 4) - 2px;
+    left: 0;
+  }
+}

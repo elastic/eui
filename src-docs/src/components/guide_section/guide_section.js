@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { flatten } from 'lodash';
 
 import {
   EuiCode,
@@ -273,9 +272,9 @@ export class GuideSection extends Component {
 
   renderProps() {
     const { props } = this.props;
-    return flatten(
-      this.componentNames.map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
-    );
+    return this.componentNames
+      .map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
+      .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
 
   renderChrome() {

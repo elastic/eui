@@ -61,7 +61,7 @@ describe('EuiRange', () => {
 
     test('range should render', () => {
       const component = render(
-        <EuiRange showRange />
+        <EuiRange showRange value="8" />
       );
 
       expect(component)

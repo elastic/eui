@@ -1,10 +1,13 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import { noop } from 'lodash';
 
 import { EuiKeyboardAccessible } from './keyboard_accessible';
 
 import { keyCodes } from '../../services';
+
+const noop = () => {
+  // eslint-disable-line no-empty
+};
 
 describe('EuiKeyboardAccessible', () => {
   describe('throws an error', () => {

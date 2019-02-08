@@ -23,6 +23,9 @@ function isRangeInvalid(start, end) {
 
   const startMoment = dateMath.parse(start);
   const endMoment = dateMath.parse(end, { roundUp: true });
+  if (!startMoment || !endMoment || !startMoment.isValid() || !endMoment.isValid()) {
+    return true;
+  }
   if (startMoment.isAfter(endMoment)) {
     return true;
   }
