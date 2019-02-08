@@ -18,6 +18,8 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
+import SuperSelectComplexExample from '../super_select/super_select_complex';
+
 import makeId from '../../../../src/components/form/form_row/make_id';
 
 export class Modal extends Component {
@@ -75,6 +77,12 @@ export class Modal extends Component {
             max={100}
             name="poprange"
           />
+        </EuiFormRow>
+
+        <EuiFormRow
+          label="A SuperSelect field"
+        >
+          <SuperSelectComplexExample />
         </EuiFormRow>
       </EuiForm>
     );
