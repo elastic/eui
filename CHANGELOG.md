@@ -2,6 +2,8 @@
 
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 - Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
+- Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
+- New docs page listing localization tokens ([#1541](https://github.com/elastic/eui/pull/1541))
 
 **Bug fixes**
 
