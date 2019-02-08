@@ -1,5 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
+- New docs page listing localization tokens ([#1541](https://github.com/elastic/eui/pull/1541))
+
 **Bug fixes**
 
 - Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
