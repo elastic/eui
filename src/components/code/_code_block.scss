@@ -18,10 +18,19 @@
     font-weight: $euiFontWeightRegular;
   }
 
-  .euiCodeBlock__fullScreenButton {
+  .euiCodeBlock__copyButton {
+    background-color: $euiColorLightestShade;
+  }
+
+  .euiCodeBlock__controls {
     position: absolute;
     top: $euiSizeM;
     right: $euiSizeL;
+  }
+
+  .euiCodeBlock__copyButton,
+  .euiCodeBlock__fullScreenButton {
+    display: inline-block;
   }
 
   &.euiCodeBlock-isFullScreen {

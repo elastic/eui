@@ -7,8 +7,11 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
+  EuiCodeBlock,
   EuiProgress,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import Progress from './progress';
@@ -26,6 +29,10 @@ const progressFixedHtml = renderToHtml(ProgressFixed);
 import ProgressSizeColor from './progress_size_color';
 const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
 const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
+
+const htmlCode = `<EuiPortal>
+  <EuiProgress size="xs" color="accent" position="fixed" />
+</EuiPortal>`;
 
 export const ProgressExample = {
   title: 'Progress',
@@ -84,15 +91,23 @@ export const ProgressExample = {
           absolute option, make sure that your wrapping element
           has <EuiCode>position: relative</EuiCode> applied.
         </p>
-
-        <p>
-          Using <EuiCode>EuiProgress</EuiCode> with
-          a <EuiCode>fixed</EuiCode> position may result in it being overlayed
-          when its parent wrapper has a <EuiCode>z-index</EuiCode> value lower
-          than another fixed element, such as <EuiCode>EuiHeader</EuiCode>. In
-          that case, wrap <EuiCode>EuiProgress</EuiCode> in
-          an <EuiCode>EuiPortal</EuiCode>.
-        </p>
+        <EuiCallOut
+          title="Note about progress bars over fixed headers"
+          iconType="iInCircle"
+        >
+          <p>
+            Using <EuiCode>EuiProgress</EuiCode> with
+            a <EuiCode>fixed</EuiCode> position may result in it being overlayed
+            when its parent wrapper has a <EuiCode>z-index</EuiCode> value lower
+            than another fixed element, such as <EuiCode>EuiHeader</EuiCode>. In
+            that case, wrap <EuiCode>EuiProgress</EuiCode> in
+            an <EuiCode>EuiPortal</EuiCode>.
+          </p>
+        </EuiCallOut>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="html" paddingSize="m" isCopyable>
+          {htmlCode}
+        </EuiCodeBlock>
       </div>
     ),
     demo: <ProgressFixed />,
