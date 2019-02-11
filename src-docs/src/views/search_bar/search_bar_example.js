@@ -109,11 +109,11 @@ export const SearchBarExample = {
             <EuiCode>created:&apos;2019-01-01&apos;</EuiCode>,&nbsp;
             <EuiCode>created&gt;=&apos;3rd January 2017&apos;</EuiCode>
           </p>
-          <p>
+          <div>
             Formats understood by the parser
             <ul>
               <li>
-                <p>relative</p>
+                relative
                 <ul>
                   <li><EuiCode>yesterday</EuiCode></li>
                   <li><EuiCode>today</EuiCode></li>
@@ -121,11 +121,9 @@ export const SearchBarExample = {
                 </ul>
               </li>
               <li>
-                <p>
-                  absolute (parsed by Moment.js&apos;s&nbsp;
-                  <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
-                  )
-                </p>
+                absolute (parsed by Moment.js&apos;s&nbsp;
+                <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
+                )
                 <ul>
                   <li><EuiCode>ddd</EuiCode></li>
                   <li><EuiCode>dddd</EuiCode></li>
@@ -145,7 +143,7 @@ export const SearchBarExample = {
                 </ul>
               </li>
             </ul>
-          </p>
+          </div>
         </div>
       ),
       props: propsInfo,
