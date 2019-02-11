@@ -67,6 +67,11 @@ export const SearchBarExample = {
               <EuiCode>is:open -is:assigned</EuiCode>. In this example the intention is to find all items that are
               flagged as <EuiCode>open</EuiCode> but are not flagged as <EuiCode>assigned</EuiCode>
             </li>
+            <li>
+              <EuiCode>or group</EuiCode> clauses - allowing multiple clauses to be OR&apos;d together - Example,
+              <EuiCode>(is:active OR owner:dewey) followers&gt;5</EuiCode>. In this example the intention is to find all items that are
+              <EuiCode>active</EuiCode> OR owned by <EuiCode>dewey</EuiCode>, and have more than 5 <EuiCode>followers</EuiCode>
+            </li>
           </ul>
           <p>
             While the user can use the syntax described above to enter queries in the search box, it is possible

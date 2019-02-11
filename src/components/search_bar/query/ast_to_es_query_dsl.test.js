@@ -109,4 +109,24 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
+  test('ast - (name:john OR name:fred)', () => {
+    const query = astToEsQueryDsl(AST.create([
+      AST.Group.must([
+        AST.Field.must.eq('name', 'john'),
+        AST.Field.must.eq('name', 'fred'),
+      ])
+    ]));
+    expect(query).toMatchSnapshot();
+  });
+
+  test('ast - name:john (is:enrolled OR Teacher)', () => {
+    const query = astToEsQueryDsl(AST.create([
+      AST.Field.must.eq('name', 'john'),
+      AST.Group.must([
+        AST.Is.must('enrolled'),
+        AST.Term.must('Teacher'),
+      ])
+    ]));
+    expect(query).toMatchSnapshot();
+  });
 });
