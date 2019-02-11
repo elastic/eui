@@ -1,14 +1,14 @@
 import { SFC } from 'react';
 import { Props as ReactFocusLockProps } from 'react-focus-lock';
 import { CommonProps } from '../common';
-/**
- * A DOM node, a selector string (which will be passed to
- * `document.querySelector()` to find the DOM node), or a function that
- * returns a DOM node.
- */
-export type FocusTarget = HTMLElement | string | { (): HTMLElement };
 
 declare module '@elastic/eui' {
+  /**
+   * A DOM node, a selector string (which will be passed to
+   * `document.querySelector()` to find the DOM node), or a function that
+   * returns a DOM node.
+   */
+  export type FocusTarget = HTMLElement | string | { (): HTMLElement };
   /**
    * FocusTrap type defs
    *
@@ -16,6 +16,7 @@ declare module '@elastic/eui' {
    */
   interface EuiFocusTrapProps {
     clickOutsideDisables?: boolean,
+    initialFocus?: FocusTarget
   }
 
   export const EuiFocusTrap: SFC<

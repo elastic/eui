@@ -1,7 +1,7 @@
 import { CommonProps, NoArgCallback } from '../common';
+/// <reference path="../focus_trap/index.d.ts" />
 /// <reference path="../panel/index.d.ts" />
 
-import { FocusTarget } from '../focus_trap';
 import { SFC, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {

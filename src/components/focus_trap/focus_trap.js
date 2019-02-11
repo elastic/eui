@@ -48,6 +48,7 @@ export class EuiFocusTrap extends React.Component {
         node = initialFocus();
       }
       if (!node) return;
+      // `data-autofocus` is part of the 'react-focus-lock' API
       node.setAttribute('data-autofocus', true);
     }
   }
@@ -110,6 +111,7 @@ EuiFocusTrap.propTypes = {
   children: PropTypes.node.isRequired,
   clickOutsideDisables: PropTypes.bool,
   disabled: PropTypes.bool,
+  initialFocus: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.func]),
   returnFocus: PropTypes.bool
 };
 
