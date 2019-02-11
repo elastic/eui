@@ -129,6 +129,9 @@ import { FlexExample }
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
+import { FocusTrapExample }
+  from './views/focus_trap/focus_trap_example';
+
 import { FormControlsExample }
   from './views/form_controls/form_controls_example';
 
@@ -428,6 +431,7 @@ const navigation = [{
     UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    FocusTrapExample,
     HighlightExample,
     I18nExample,
     IsColorDarkExample,
