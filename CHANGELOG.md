@@ -4,6 +4,7 @@
 - Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 - Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
 - New docs page listing localization tokens ([#1541](https://github.com/elastic/eui/pull/1541))
+- Added `customQuickSelectPanels` prop to `EuiSuperDatePicker` ([#1549](https://github.com/elastic/eui/pull/1549))
 
 **Bug fixes**
 
