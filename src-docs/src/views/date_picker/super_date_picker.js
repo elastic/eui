@@ -7,7 +7,21 @@ import {
   EuiSpacer,
   EuiFormRow,
   EuiFieldText,
+  EuiLink,
 } from '../../../../src/components';
+
+function MyCustomQuickSelectPanel({ applyTime }) {
+
+  function applyMyCustomTime() {
+    applyTime({ start: 'now-30d', end: 'now+7d' });
+  }
+
+  return (
+    <EuiLink onClick={applyMyCustomTime}>
+      entire dataset timerange
+    </EuiLink>
+  );
+}
 
 export default class extends Component {
 
@@ -16,6 +30,7 @@ export default class extends Component {
     isLoading: false,
     showUpdateButton: true,
     isAutoRefreshOnly: false,
+    showCustomQuickSelectPanel: false,
     start: 'now-30m',
     end: 'now',
   }
@@ -77,6 +92,12 @@ export default class extends Component {
     }));
   }
 
+  toggleShowCustomQuickSelectPanel = () => {
+    this.setState(prevState => ({
+      showCustomQuickSelectPanel: !prevState.showCustomQuickSelectPanel,
+    }));
+  }
+
   renderTimeRange = () => {
     if (this.state.isAutoRefreshOnly) {
       return null;
@@ -107,6 +128,15 @@ export default class extends Component {
   }
 
   render() {
+    let customQuickSelectPanels;
+    if (this.state.showCustomQuickSelectPanel) {
+      customQuickSelectPanels = [
+        {
+          title: 'My custom panel',
+          content: (<MyCustomQuickSelectPanel/>),
+        }
+      ];
+    }
     return (
       <Fragment>
         <EuiSwitch
@@ -123,6 +153,14 @@ export default class extends Component {
           onChange={this.toggleShowRefreshOnly}
           checked={this.state.isAutoRefreshOnly}
         />
+
+        &emsp;
+
+        <EuiSwitch
+          label="Show custom quick select panel"
+          onChange={this.toggleShowCustomQuickSelectPanel}
+          checked={this.state.showCustomQuickSelectPanel}
+        />
         <EuiSpacer />
 
         <EuiSuperDatePicker
@@ -136,6 +174,7 @@ export default class extends Component {
           recentlyUsedRanges={this.state.recentlyUsedRanges}
           showUpdateButton={this.state.showUpdateButton}
           isAutoRefreshOnly={this.state.isAutoRefreshOnly}
+          customQuickSelectPanels={customQuickSelectPanels}
         />
 
         <EuiSpacer />
