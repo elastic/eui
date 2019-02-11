@@ -28,11 +28,9 @@ export class EuiFocusTrap extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    // Disable focus trapping _only_ if the provided props have changed to indicate trapping should discontinue
-    // If the inverse is true (props.disabled === false & state.isDisabled === true), we continue to use local state
-    if (nextProps.disabled && !prevState.isDisabled) {
+    if (nextProps.disabled !== prevState.isDisabled) {
       return {
-        isDisabled: true
+        isDisabled: nextProps.disabled
       };
     }
     return null;
@@ -109,9 +107,25 @@ export class EuiFocusTrap extends React.Component {
 
 EuiFocusTrap.propTypes = {
   children: PropTypes.node.isRequired,
+  /**
+   * Disables focus trap when clicks occur outside of the locked area
+   */
   clickOutsideDisables: PropTypes.bool,
+  /**
+   * From `react-focus-lock`.
+   * Focus will not be trapped if false
+   */
   disabled: PropTypes.bool,
+  /**
+   * A DOM node, a selector string (which will be passed to
+   * `document.querySelector()` to find the DOM node), or a function that
+   * returns a DOM node.
+   */
   initialFocus: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.func]),
+  /**
+   * From `react-focus-lock`.
+   * When exiting/disabling, focus will return to the element that previously help focus
+   */
   returnFocus: PropTypes.bool
 };
 
