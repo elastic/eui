@@ -4,6 +4,7 @@
 - Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 - Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
 - New docs page listing localization tokens ([#1541](https://github.com/elastic/eui/pull/1541))
+- Added support for OR group clauses in `EuiQuery` and `EuiSearchBar` ([#1204](https://github.com/elastic/eui/pull/1204))
 
 **Bug fixes**
 
@@ -11,6 +12,10 @@
 - Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
 - Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
 - Make TSLint issues be warnings, not errors, when running `src-docs` ([#1537](https://github.com/elastic/eui/pull/1537))
+
+**Breaking changes**
+
+- Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
 ## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
 

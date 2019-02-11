@@ -101,6 +101,7 @@ export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClau
     const termClauses = ast.getTermClauses();
     const fields = ast.getFieldNames();
     const isClauses = ast.getIsClauses();
+    const groupClauses = ast.getGroupClauses();
 
     const isTermMatch = termClauseMatcher(item, defaultFields, termClauses, explainLines);
     if (!isTermMatch) {
@@ -117,7 +118,23 @@ export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClau
       return false;
     }
 
-    return true;
+    const isGroupMatch = groupClauses.every(clause => {
+      const matchesGroup = clause.value.some(clause => {
+        if (AST.Term.isInstance(clause)) {
+          return termClauseMatcher(item, defaultFields, [clause], explainLines);
+        }
+        if (AST.Field.isInstance(clause)) {
+          return fieldClauseMatcher(item, clause.field, [clause], explainLines);
+        }
+        if (AST.Is.isInstance(clause)) {
+          return isClauseMatcher(item, clause, explainLines);
+        }
+        throw new Error(`Unknown query clause type in group, [${clause.type}]`);
+      });
+      return matchesGroup;
+    });
+
+    return isGroupMatch;
   };
 };
 
