@@ -17,6 +17,15 @@
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
+## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
+
+**Note: this release is a backport containing changes originally made in `6.11.0`**
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
+- Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
+
 ## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
 
 - Adjust dark mode background color ([#1530](https://github.com/elastic/eui/pull/1530))
