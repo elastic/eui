@@ -47,23 +47,31 @@ export class EuiRelativeTab extends Component {
   };
 
   handleChange = () => {
-    if (this.state.count === '') {
+    if (this.state.count === '' || this.state.count < 0) {
       return;
     }
     this.props.onChange(toRelativeStringFromParts(this.state));
   }
 
   render() {
-    const formatedValue = dateMath.parse(this.props.value).format(this.props.dateFormat);
+    const isInvalid = this.state.count < 0;
+    const parsedValue = dateMath.parse(this.props.value);
+    const formatedValue = isInvalid || !parsedValue || !parsedValue.isValid()
+      ? ''
+      : parsedValue.format(this.props.dateFormat);
     return (
       <EuiForm className="euiDatePopoverContent__padded">
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiFormRow>
+            <EuiFormRow
+              isInvalid={isInvalid}
+              error={isInvalid ? 'Must be >= 0' : null}
+            >
               <EuiFieldNumber
                 aria-label="Count of"
                 value={this.state.count}
                 onChange={this.onCountChange}
+                isInvalid={isInvalid}
               />
             </EuiFormRow>
           </EuiFlexItem>

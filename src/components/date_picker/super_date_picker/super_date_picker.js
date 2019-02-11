@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape, quickSelectPanelShape } from './types';
 import { prettyDuration, showPrettyDuration } from './pretty_duration';
 import { prettyInterval } from './pretty_interval';
 
@@ -23,6 +23,9 @@ function isRangeInvalid(start, end) {
 
   const startMoment = dateMath.parse(start);
   const endMoment = dateMath.parse(end, { roundUp: true });
+  if (!startMoment || !endMoment || !startMoment.isValid() || !endMoment.isValid()) {
+    return true;
+  }
   if (startMoment.isAfter(endMoment)) {
     return true;
   }
@@ -78,6 +81,7 @@ export class EuiSuperDatePicker extends Component {
      * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
      */
     isAutoRefreshOnly: PropTypes.bool,
+    customQuickSelectPanels: PropTypes.arrayOf(quickSelectPanelShape),
   }
 
   static defaultProps = {
@@ -332,6 +336,7 @@ export class EuiSuperDatePicker extends Component {
         dateFormat={this.props.dateFormat}
         recentlyUsedRanges={this.props.recentlyUsedRanges}
         isAutoRefreshOnly={this.props.isAutoRefreshOnly}
+        customQuickSelectPanels={this.props.customQuickSelectPanels}
       />
     );
 

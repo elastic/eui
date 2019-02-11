@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { range } from 'lodash';
+import range from 'lodash/range';
 
 import { EuiRangeLevels, LEVEL_COLORS } from './range_levels';
 import { EuiRangeTicks } from './range_ticks';

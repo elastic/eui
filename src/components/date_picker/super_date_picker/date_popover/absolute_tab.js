@@ -15,7 +15,8 @@ export class EuiAbsoluteTab extends Component {
   constructor(props) {
     super(props);
 
-    const valueAsMoment = dateMath.parse(props.value, { roundUp: props.roundUp });
+    const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
+    const valueAsMoment = parsedValue && parsedValue.isValid() ? parsedValue : moment();
     this.state = {
       valueAsMoment,
       textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT),

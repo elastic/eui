@@ -67,6 +67,11 @@ export const SearchBarExample = {
               <EuiCode>is:open -is:assigned</EuiCode>. In this example the intention is to find all items that are
               flagged as <EuiCode>open</EuiCode> but are not flagged as <EuiCode>assigned</EuiCode>
             </li>
+            <li>
+              <EuiCode>or group</EuiCode> clauses - allowing multiple clauses to be OR&apos;d together - Example,
+              <EuiCode>(is:active OR owner:dewey) followers&gt;5</EuiCode>. In this example the intention is to find all items that are
+              <EuiCode>active</EuiCode> OR owned by <EuiCode>dewey</EuiCode>, and have more than 5 <EuiCode>followers</EuiCode>
+            </li>
           </ul>
           <p>
             While the user can use the syntax described above to enter queries in the search box, it is possible
@@ -104,11 +109,11 @@ export const SearchBarExample = {
             <EuiCode>created:&apos;2019-01-01&apos;</EuiCode>,&nbsp;
             <EuiCode>created&gt;=&apos;3rd January 2017&apos;</EuiCode>
           </p>
-          <p>
+          <div>
             Formats understood by the parser
             <ul>
               <li>
-                <p>relative</p>
+                relative
                 <ul>
                   <li><EuiCode>yesterday</EuiCode></li>
                   <li><EuiCode>today</EuiCode></li>
@@ -116,11 +121,9 @@ export const SearchBarExample = {
                 </ul>
               </li>
               <li>
-                <p>
-                  absolute (parsed by Moment.js&apos;s&nbsp;
-                  <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
-                  )
-                </p>
+                absolute (parsed by Moment.js&apos;s&nbsp;
+                <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
+                )
                 <ul>
                   <li><EuiCode>ddd</EuiCode></li>
                   <li><EuiCode>dddd</EuiCode></li>
@@ -140,7 +143,7 @@ export const SearchBarExample = {
                 </ul>
               </li>
             </ul>
-          </p>
+          </div>
         </div>
       ),
       props: propsInfo,
