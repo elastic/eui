@@ -11,7 +11,7 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
-import { EuiMutationObserver } from '../mutation_observer';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 const positionsToClassNameMap = {
   top: 'euiToolTip--top',
