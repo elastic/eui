@@ -103,8 +103,11 @@ const emitFieldSingleValueClause = (field, value, operator, match) => {
   throw new Error(`unknown type of field value [${value}]`);
 };
 
-const emitFieldClause = (clause) => {
-  const { field, value, operator, match } = clause;
+const emitFieldClause = (clause, isGroupMember) => {
+  const { field, value, operator } = clause;
+  let { match } = clause;
+  if (isGroupMember && AST.Match.isMust(match)) match = null;
+
   if (!isArray(value)) {
     return emitFieldSingleValueClause(field, value, operator, match);
   }
@@ -113,33 +116,52 @@ const emitFieldClause = (clause) => {
   return `${matchOp}(${clauses})`;
 };
 
-const emitTermClause = (clause) => {
-  const { value, match } = clause;
+const emitTermClause = (clause, isGroupMember) => {
+  const { value } = clause;
+  let { match } = clause;
+  if (isGroupMember && AST.Match.isMust(match)) match = null;
+
   const matchOp = emitMatch(match);
   return `${matchOp}${value}`;
 };
 
-const emitIsClause = (clause) => {
+const emitIsClause = (clause, isGroupMember) => {
   const { flag, match } = clause;
-  return AST.Match.isMust(match) ? `+${flag}:true` : `+${flag}:false`;
+  const matchOp = isGroupMember ? '' : '+';
+  const flagValue = AST.Match.isMust(match);
+  return `${matchOp}${flag}:${flagValue}`;
 };
 
-export const astToEsQueryString = (ast) => {
+const emitGroupClause = (clause) => {
+  const { value } = clause;
+  const formattedValues = value.map(
+    clause => {
+      return emitClause(clause, true);
+    }
+  );
+  return `+(${formattedValues.join(' ')})`;
+};
 
+function emitClause(clause, isGroupMember = false) {
+  if (AST.Field.isInstance(clause)) {
+    return emitFieldClause(clause, isGroupMember);
+  }
+  if (AST.Term.isInstance(clause)) {
+    return emitTermClause(clause, isGroupMember);
+  }
+  if (AST.Is.isInstance(clause)) {
+    return emitIsClause(clause, isGroupMember);
+  }
+  if (AST.Group.isInstance(clause)) {
+    return emitGroupClause(clause, isGroupMember);
+  }
+  throw new Error(`unknown clause type [${JSON.stringify(clause)}]`);
+}
+
+export const astToEsQueryString = (ast) => {
   if (ast.clauses.length === 0) {
-    return '';
+    return '*';
   }
 
-  return ast.clauses.map(clause => {
-    if (AST.Field.isInstance(clause)) {
-      return emitFieldClause(clause);
-    }
-    if (AST.Term.isInstance(clause)) {
-      return emitTermClause(clause);
-    }
-    if (AST.Is.isInstance(clause)) {
-      return emitIsClause(clause);
-    }
-    throw new Error(`unknown clause type [${JSON.stringify(clause)}]`);
-  }).join(' ');
+  return ast.clauses.map(clause => emitClause(clause)).join(' ');
 };

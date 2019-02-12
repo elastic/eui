@@ -10,7 +10,7 @@
   z-index: $euiZHeader;
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
-  transition: width $euiAnimSpeedFast $euiAnimSlightResistance;
+  transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
 
   &.euiNavDrawer-isCollapsed  {

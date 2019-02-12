@@ -1,4 +1,8 @@
-import { COLORS, EuiCallOut, SIZES } from '@elastic/eui/lib/components/call_out/call_out.js';
+import {
+  COLORS,
+  EuiCallOut,
+  SIZES,
+} from '@elastic/eui/lib/components/call_out/call_out.js';
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -14,7 +18,6 @@ interface Props {
 }
 
 export class CallOut extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     title: 'Title',
@@ -49,7 +52,7 @@ export class CallOut extends React.Component<Props> {
       options: ICON_TYPES,
       title: 'iconType',
       hidden(props) {
-      return props.showIconProps === false;
+        return props.showIconProps === false;
       },
     },
   };
@@ -60,8 +63,7 @@ export class CallOut extends React.Component<Props> {
         size={this.props.size}
         color={this.props.color}
         iconType={this.props.iconType}
-        title={this.props.title}
-      >
+        title={this.props.title}>
         {this.props.childText}
       </EuiCallOut>
     );

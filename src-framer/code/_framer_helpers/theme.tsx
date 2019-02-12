@@ -25,17 +25,18 @@ export class Theme extends React.Component<Props> {
   };
 
   render() {
-
     const lightBgColor = '#FFF';
     const darkBgColor = '#222';
-    const bgColor = (this.props.theme === 'light' ? lightBgColor : darkBgColor);
+    const bgColor = this.props.theme === 'light' ? lightBgColor : darkBgColor;
     return (
       <FrameSize>
         <div style={{ background: bgColor, flexGrow: 1, display: 'flex' }}>
           <style
             type="text/css"
-            dangerouslySetInnerHTML={{__html: this.props.theme === 'light' ? LightCSS : DarkCSS}}>
-          </style>
+            dangerouslySetInnerHTML={{
+              __html: this.props.theme === 'light' ? LightCSS : DarkCSS,
+            }}
+          />
         </div>
       </FrameSize>
     );

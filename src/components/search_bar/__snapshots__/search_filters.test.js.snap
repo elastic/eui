@@ -23,6 +23,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
             "_clauses": Array [],
             "_indexedClauses": Object {
               "field": Object {},
+              "group": Array [],
               "is": Object {},
               "term": Array [],
             },
@@ -30,6 +31,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
           "syntax": Object {
             "parse": [Function],
             "print": [Function],
+            "printClause": [Function],
           },
           "text": "",
         }
@@ -57,6 +59,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
             "_clauses": Array [],
             "_indexedClauses": Object {
               "field": Object {},
+              "group": Array [],
               "is": Object {},
               "term": Array [],
             },
@@ -64,6 +67,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
           "syntax": Object {
             "parse": [Function],
             "print": [Function],
+            "printClause": [Function],
           },
           "text": "",
         }

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { Hint } from 'react-vis';
 import PropTypes from 'prop-types';
 // import {
@@ -69,7 +68,7 @@ import PropTypes from 'prop-types';
 //   </TooltipElm>;
 
 export default function Tooltip({ tooltipPoints, x, y, ...props }) {
-  if (_.isEmpty(tooltipPoints)) {
+  if (tooltipPoints.length === 0) {
     return null;
   }
   return <Hint {...props} value={{ x, y }} />;

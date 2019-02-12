@@ -1,13 +1,14 @@
-
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
-import _ from 'lodash';
+
+import { get } from '../../../services/objects';
+import { isString } from '../../../services/predicate';
 import { relativeUnitsFromLargestToSmallest } from './relative_options';
 
 const ROUND_DELIMETER = '/';
 
 export function parseRelativeParts(value) {
-  const matches = _.isString(value) && value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
+  const matches = isString(value) && value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
   const isNow = matches && !matches[1];
   const operator = matches && matches[2];
@@ -46,14 +47,14 @@ export function parseRelativeParts(value) {
 }
 
 export function toRelativeStringFromParts(relativeParts) {
-  const count = _.get(relativeParts, `count`, 0);
-  const isRounded = _.get(relativeParts, `round`, false);
+  const count = get(relativeParts, `count`, 0);
+  const isRounded = get(relativeParts, `round`, false);
 
   if (count === 0 && !isRounded) {
     return 'now';
   }
 
-  const matches = _.get(relativeParts, `unit`, 's').match(/([smhdwMy])(\+)?/);
+  const matches = get(relativeParts, `unit`, 's').match(/([smhdwMy])(\+)?/);
   const unit = matches[1];
   const operator = matches && matches[2] ? matches[2] : '-';
   const round = isRounded ? `${ROUND_DELIMETER}${unit}` : '';

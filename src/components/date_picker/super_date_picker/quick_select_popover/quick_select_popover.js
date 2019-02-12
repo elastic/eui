@@ -1,19 +1,15 @@
 
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape, quickSelectPanelShape } from '../types';
 
-import {
-  EuiButtonEmpty,
-} from '../../../button';
-
-import {
-  EuiIcon,
-} from '../../../icon';
-
-import {
-  EuiPopover,
-} from '../../../popover';
+import { EuiButtonEmpty } from '../../../button';
+import { EuiIcon } from '../../../icon';
+import { EuiPopover } from '../../../popover';
+import { EuiTitle } from '../../../title';
+import { EuiSpacer } from '../../../spacer';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
+import { EuiText } from '../../../text';
 
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
@@ -72,8 +68,28 @@ export class EuiQuickSelectPopover extends Component {
           dateFormat={this.props.dateFormat}
           recentlyUsedRanges={this.props.recentlyUsedRanges}
         />
+        {this.renderCustomQuickSelectPanels()}
       </Fragment>
     );
+  }
+
+  renderCustomQuickSelectPanels = () => {
+    if (!this.props.customQuickSelectPanels) {
+      return null;
+    }
+
+    return this.props.customQuickSelectPanels.map(({ title, content }) => {
+      return (
+        <Fragment key={title}>
+          <EuiTitle size="xxxs"><span>{title}</span></EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiText size="s" className="euiQuickSelectPopover__section">
+            {React.cloneElement(content, { applyTime: this.applyTime })}
+          </EuiText>
+          <EuiHorizontalRule margin="s" />
+        </Fragment>
+      );
+    });
   }
 
   render() {
@@ -128,4 +144,6 @@ EuiQuickSelectPopover.propTypes = {
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,
   isAutoRefreshOnly: PropTypes.bool.isRequired,
+  isAutoRefreshOnly: PropTypes.bool.isRequired,
+  customQuickSelectPanels: PropTypes.arrayOf(quickSelectPanelShape),
 };

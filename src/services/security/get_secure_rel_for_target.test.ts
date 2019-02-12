@@ -1,6 +1,4 @@
-import {
-  getSecureRelForTarget,
-} from './get_secure_rel_for_target';
+import { getSecureRelForTarget } from './get_secure_rel_for_target';
 
 describe('getSecureRelForTarget', () => {
   describe('returns rel', () => {
@@ -27,19 +25,27 @@ describe('getSecureRelForTarget', () => {
     });
 
     test('when rel contains both', () => {
-      expect(getSecureRelForTarget('_blank', 'noopener noreferrer')).toBe('noopener noreferrer');
+      expect(getSecureRelForTarget('_blank', 'noopener noreferrer')).toBe(
+        'noopener noreferrer'
+      );
     });
 
     test('when rel contains noopener', () => {
-      expect(getSecureRelForTarget('_blank', 'noopener')).toBe('noopener noreferrer');
+      expect(getSecureRelForTarget('_blank', 'noopener')).toBe(
+        'noopener noreferrer'
+      );
     });
 
     test('when rel contains noreferrer', () => {
-      expect(getSecureRelForTarget('_blank', 'noreferrer')).toBe('noreferrer noopener');
+      expect(getSecureRelForTarget('_blank', 'noreferrer')).toBe(
+        'noreferrer noopener'
+      );
     });
 
     test('including the original rel value', () => {
-      expect(getSecureRelForTarget('_blank', 'nofollow')).toBe('nofollow noopener noreferrer');
+      expect(getSecureRelForTarget('_blank', 'nofollow')).toBe(
+        'nofollow noopener noreferrer'
+      );
     });
   });
 });

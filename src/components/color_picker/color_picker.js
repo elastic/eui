@@ -64,7 +64,10 @@ export class EuiColorPicker extends Component {
     const { color, className, showColorLabel } = this.props;
     const classes = classNames('euiColorPicker', className);
     return (
-      <EuiOutsideClickDetector onOutsideClick={this.closeColorSelector}>
+      <EuiOutsideClickDetector
+        isDisabled={!this.state.showColorSelector}
+        onOutsideClick={this.closeColorSelector}
+      >
         <div
           className={classes}
           data-test-subj={this.props['data-test-subj']}

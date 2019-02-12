@@ -1,7 +1,6 @@
 import { hexToRgb } from './hex_to_rgb';
 
 describe('hexToRgb ', () => {
-
   it('should handle 3 digit codes without a hash prefix', () => {
     expect(hexToRgb('0a8')).toEqual([0, 170, 136]);
   });

@@ -1,4 +1,12 @@
-import { isNil, isArray, isBoolean, isDate, isNaN, isNumber, isString } from '../predicate';
+import {
+  isNil,
+  isArray,
+  isBoolean,
+  isDate,
+  isNaN,
+  isNumber,
+  isString,
+} from '../predicate';
 import { formatBoolean } from './format_boolean';
 import { formatDate } from './format_date';
 import { formatNumber } from './format_number';
@@ -26,7 +34,9 @@ export const formatAuto = (value: any): string => {
   }
 
   if (isArray(value)) {
-    return Array.isArray(value) ? value.map(item => formatAuto(item)).join(', ') : formatAuto(value);
+    return Array.isArray(value)
+      ? value.map(item => formatAuto(item)).join(', ')
+      : formatAuto(value);
   }
 
   // TODO not sure if we want that.. the (+) is that we show something, the (-) is that it's very technical

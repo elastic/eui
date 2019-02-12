@@ -201,6 +201,9 @@ import { PortalExample }
 import { ProgressExample }
   from './views/progress/progress_example';
 
+import { RangeControlExample }
+  from './views/range/range_example';
+
 import { ResponsiveExample }
   from './views/responsive/responsive_example';
 
@@ -263,6 +266,9 @@ import { XYChartLineExample }
 
 import { Changelog }
   from './views/package/changelog';
+
+import { I18nTokens }
+  from './views/package/i18n_tokens';
 
 import { SuperSelectExample }
   from './views/super_select/super_select_example';
@@ -400,6 +406,7 @@ const navigation = [{
     DatePickerExample,
     ExpressionExample,
     FilterGroupExample,
+    RangeControlExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 },
@@ -437,7 +444,8 @@ const navigation = [{
 }, {
   name: 'Package',
   items: [
-    Changelog
+    Changelog,
+    I18nTokens,
   ]
 }].map(({ name, items, ...rest }) => ({
   name,

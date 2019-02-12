@@ -135,6 +135,28 @@ exports[`EuiI18n default rendering rendering to dom renders a string with placeh
 </EuiI18n>
 `;
 
+exports[`EuiI18n reading values from context mappingFunc calls the mapping function with the source string 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "This is the mapped value.",
+      },
+      "mappingFunc": [Function],
+    }
+  }
+>
+  <EuiI18n
+    default="This is the basic string."
+    token="test1"
+  >
+    <div>
+      THIS IS THE BASIC STRING.
+    </div>
+  </EuiI18n>
+</EuiContext>
+`;
+
 exports[`EuiI18n reading values from context render prop with multiple tokens renders mapped render prop result to the dom 1`] = `
 <EuiContext
   i18n={

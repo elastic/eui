@@ -1,0 +1,87 @@
+.euiRangeTooltip {
+  // Keeps tooltip (value) aligned to percentage of actual slider
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(100% - #{$euiRangeThumbWidth});
+  margin-left: $euiRangeThumbWidth / 2;
+}
+
+.euiRangeTooltip__value {
+  // Indentation for legibility in transition
+  // sass-lint:disable-block indentation
+  @include euiFontSizeS;
+  border: 1px solid transparentize($euiColorDarkestShade, .8);
+  position: absolute;
+  border-radius: $euiBorderRadius;
+  padding: ($euiSizeXS / 2) $euiSizeS;
+  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+  color: $euiColorGhost;
+  max-width: 256px;
+  z-index: $euiZLevel4;
+  top: ($euiFormControlHeight / 2) - 1px;
+  transition:
+    box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
+    transform $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  // Custom sizing
+  $arrowSize: $euiSizeM;
+  $arrowMinusSize: (($arrowSize / 2) - 1px) * -1;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -$arrowSize / 2;
+    left: 50%;
+    transform-origin: center;
+    background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+    width: $arrowSize;
+    height: $arrowSize;
+    border-radius: 2px;
+  }
+
+  &::before {
+    background-color: transparentize($euiColorDarkestShade, .8);
+  }
+
+  // Positions the arrow
+  &.euiRangeTooltip__value--right {
+    transform: translateX(0) translateY(-50%);
+    margin-left: $euiSizeL;
+
+    &:before,
+    &:after {
+      bottom: 50%;
+      left: $arrowMinusSize;
+      transform: translateY(50%) rotateZ(45deg);
+    }
+
+    &::before {
+      margin-left: -1px;
+    }
+  }
+
+  &.euiRangeTooltip__value--left {
+    transform: translateX(-100%) translateY(-50%);
+    margin-left: -$euiSizeL;
+
+    &:before,
+    &:after {
+      bottom: 50%;
+      left: auto;
+      right: $arrowMinusSize;
+      transform: translateY(50%) rotateZ(45deg);
+    }
+
+    &::before {
+      margin-right: -1px;
+    }
+  }
+
+  &--hasTicks {
+    top: ($euiFormControlHeight / 4) - 1px;
+  }
+}
