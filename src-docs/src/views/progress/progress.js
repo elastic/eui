@@ -5,5 +5,5 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiProgress size="xs" />
+  <EuiProgress size="xs" color="accent" />
 );

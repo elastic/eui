@@ -17,22 +17,23 @@ import {
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
 const progressHtml = renderToHtml(Progress);
+const progressSnippet = `<EuiProgress size="xs" color="accent" />`;
 
 import ProgressValue from './progress_value';
 const progressValueSource = require('!!raw-loader!./progress_value');
 const progressValueHtml = renderToHtml(ProgressValue);
+const progressValueSnippet = '<EuiProgress value={22} max={100} size="xs" />';
 
 import ProgressFixed from './progress_fixed';
 const progressFixedSource = require('!!raw-loader!./progress_fixed');
 const progressFixedHtml = renderToHtml(ProgressFixed);
+const progressFixedSnippet = `<EuiPortal>
+  <EuiProgress size="xs" color="accent" position="fixed" />
+</EuiPortal>`;
 
 import ProgressSizeColor from './progress_size_color';
 const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
 const progressSizeColorHtml = renderToHtml(ProgressSizeColor);
-
-const htmlCode = `<EuiPortal>
-  <EuiProgress size="xs" color="accent" position="fixed" />
-</EuiPortal>`;
 
 export const ProgressExample = {
   title: 'Progress',
@@ -53,6 +54,7 @@ export const ProgressExample = {
         always strech <EuiCode>100%</EuiCode> to its container.
       </p>
     ),
+    snippet: progressSnippet,
     props: { EuiProgress },
     demo: <Progress />,
   }, {
@@ -71,6 +73,7 @@ export const ProgressExample = {
         using an HTML5 <EuiCode>progress</EuiCode> tag.
       </p>
     ),
+    snippet: progressValueSnippet,
     demo: <ProgressValue />,
   }, {
     title: 'Progress can have absolute or fixed positions',
@@ -106,7 +109,7 @@ export const ProgressExample = {
         </EuiCallOut>
         <EuiSpacer size="s" />
         <EuiCodeBlock language="html" paddingSize="m" isCopyable>
-          {htmlCode}
+          {progressFixedSnippet}
         </EuiCodeBlock>
       </div>
     ),

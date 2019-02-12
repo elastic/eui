@@ -159,10 +159,8 @@ export class EuiCodeBlockImpl extends Component {
                 onClick={copy}
                 iconType="copy"
                 color="text"
-                aria-label="Copy code block to clipboard"
-              >
-                Copy
-              </EuiButtonIcon>
+                aria-label="Copy"
+              />
             )}
           </EuiCopy>
         </div>
@@ -279,7 +277,7 @@ EuiCodeBlockImpl.propTypes = {
   inline: PropTypes.bool,
 
   /**
-   * Displays a 'Copy' button that copies the provided code snippet.
+   * Displays an icon button that copies the code snippet to your clipboard.
    */
   isCopyable: PropTypes.bool,
 };

@@ -138,6 +138,23 @@ export class GuideSection extends Component {
     ];
   }
 
+  renderSnippet() {
+    const { snippet } = this.props;
+
+    if (!snippet) {
+      return;
+    }
+
+    return [
+      <Fragment key="snippet">
+        <EuiSpacer size="m" />
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+          {snippet}
+        </EuiCodeBlock>
+      </Fragment>
+    ];
+  }
+
   renderPropsForComponent = (componentName, component) => {
     if (!component.__docgenInfo) {
       return;
@@ -295,6 +312,7 @@ export class GuideSection extends Component {
         <div className="guideSection__text">
           {title}
           {this.renderText()}
+          {this.renderSnippet()}
         </div>
 
         <EuiSpacer size="m" />
@@ -375,6 +393,7 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
+  snippet: PropTypes.string,
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
