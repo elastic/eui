@@ -44,7 +44,7 @@ export default class extends Component {
             <EuiSpacer size="m" />
 
             <EuiButton onClick={this.toggleDisabled}>
-              {`${!isDisabled ? 'Disable' : 'Enable'} Focus Lock`}
+              {`${!isDisabled ? 'Disable' : 'Enable'} Focus Trap`}
             </EuiButton>
           </EuiPanel>
 

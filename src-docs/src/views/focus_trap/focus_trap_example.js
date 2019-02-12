@@ -26,9 +26,20 @@ export const FocusTrapExample = {
       code: focusTrapHtml,
     }],
     text: (
-      <p>
-      Use the <EuiCode>clickOutsideDisables</EuiCode> prop to disabled focus lock on clicks outside of the locked area.
-      </p>
+      <React.Fragment>
+        <p>
+          Use <EuiCode>EuiFocusTrap</EuiCode> to prevent keyboard-initiated focus from leaving a defined area.
+          Temporary flows and UX escapes that occur in components such as
+          <EuiCode>EuiModal</EuiCode> and <EuiCode>EuiFlyout</EuiCode> are prime examples.
+        </p>
+        <p>
+          For components that project content in a React portal,
+          <EuiCode>EuiFocusTrap</EuiCode> will maintain the tab order expected by users.
+        </p>
+        <p>
+          Use <EuiCode>clickOutsideDisables</EuiCode> to disable the focus trap when the user clicks outside the trap.
+        </p>
+      </React.Fragment>
     ),
     props: { EuiFocusTrap },
     demo: <FocusTrap />,
