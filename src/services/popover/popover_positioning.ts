@@ -59,7 +59,7 @@ const positionSubstitutes: {
 interface FindPopoverPositionArgs {
   anchor: HTMLElement;
   popover: HTMLElement;
-  align?: EuiPopoverPosition;
+  align?: EuiPopoverPosition | null;
   position: EuiPopoverPosition;
   forcePosition?: boolean;
   buffer?: number;
@@ -744,8 +744,8 @@ export function getElementZIndex(
 
   for (const node of nodesToInspect) {
     // get this node's z-index css value
-    const zIndex = window.document.defaultView
-      .getComputedStyle(node)
+    const zIndex = window.document
+      .defaultView!.getComputedStyle(node)
       .getPropertyValue('z-index');
 
     // if the z-index is not a number (e.g. "auto") return null, else the value
