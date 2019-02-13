@@ -204,6 +204,9 @@ import { ProgressExample }
 import { RangeControlExample }
   from './views/range/range_example';
 
+import { ResizeObserverExample }
+  from './views/resize_observer/resize_observer_example';
+
 import { ResponsiveExample }
   from './views/responsive/responsive_example';
 
@@ -437,6 +440,7 @@ const navigation = [{
     MutationObserverExample,
     OutsideClickDetectorExample,
     PortalExample,
+    ResizeObserverExample,
     ResponsiveExample,
     ToggleExample,
     WindowEventExample,
