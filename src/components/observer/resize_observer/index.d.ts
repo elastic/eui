@@ -1,0 +1,19 @@
+import { CommonProps } from '../../common';
+
+import { SFC } from 'react';
+
+declare module '@elastic/eui' {
+
+  /**
+   * ResizeObserver type defs
+   *
+   * @see './resize_observer.js'
+   */
+  export interface EuiResizeObserverProps {
+    onResize: () => void
+  }
+
+  export const EuiResizeObserver: SFC<
+    CommonProps & EuiResizeObserverProps
+    >;
+}

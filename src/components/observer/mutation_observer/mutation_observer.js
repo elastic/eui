@@ -1,11 +1,13 @@
-// import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { EuiObserver } from '../observer';
 
 class EuiMutationObserver extends EuiObserver {
-  beginObserve = () => {
+  constructor(...args) {
+    super(...args);
     this.name = 'EuiMutationObserver';
+  }
+  beginObserve = () => {
     this.observer = new MutationObserver(this.props.onMutation);
     this.observer.observe(this.childNode, this.props.observerOptions);
   }
