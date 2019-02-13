@@ -30,17 +30,16 @@ export class EuiFocusTrap extends React.Component {
 
   // Programmatically sets focus on a nested DOM node; optional
   setInitalFocus = (initialFocus) => {
-    if (initialFocus) {
-      let node = initialFocus;
-      if (typeof node === 'string') {
-        node = document.querySelector(initialFocus);
-      }
-      if (typeof node === 'function') {
-        node = initialFocus();
-      }
-      // `data-autofocus` is part of the 'react-focus-lock' API
-      node.setAttribute('data-autofocus', true);
+    let node = initialFocus;
+    if (typeof node === 'string') {
+      node = document.querySelector(initialFocus);
     }
+    if (typeof node === 'function') {
+      node = initialFocus();
+    }
+    if (!node) return;
+    // `data-autofocus` is part of the 'react-focus-lock' API
+    node.setAttribute('data-autofocus', true);
   }
 
   // Sets whether the focus trap has been disabled by clicks outside its component tree
