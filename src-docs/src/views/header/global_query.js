@@ -64,7 +64,7 @@ export default class extends Component {
   setFilterBarHeight = () => {
     requestAnimationFrame(() => {
       const height = this.filterBar && this.state.isFiltersVisible ? this.filterBar.clientHeight + 4 : 0;
-      this.filterBarWrapper && this.filterBarWrapper.setAttribute('style', `height: ${height}px`);
+      if (this.filterBarWrapper != null) this.filterBarWrapper.style.height = `${height}px`;
     });
   }
 
