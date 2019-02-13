@@ -86,7 +86,7 @@ export class GuideSection extends Component {
     super(props);
 
     this.componentNames = Object.keys(props.props);
-    this.hasSnippet = 'snippet' in props;
+    const hasSnippet = 'snippet' in props;
 
     this.tabs = [{
       name: 'demo',
@@ -101,7 +101,7 @@ export class GuideSection extends Component {
       isCode: true,
     }];
 
-    if (this.hasSnippet) {
+    if (hasSnippet) {
       this.tabs.push({
         name: 'snippet',
         displayName: 'Snippet',

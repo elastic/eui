@@ -5,10 +5,13 @@
   color: $euiCodeBlockColor;
 
   .euiCodeBlock__pre {
+    @include euiScrollBar;
     height: 100%;
     overflow: auto;
     display: block;
     white-space: pre-wrap;
+    // sass-lint:disable-block no-important
+    padding-right: $euiSizeXXL !important; // Space for controls
   }
 
   .euiCodeBlock__code {
@@ -16,6 +19,10 @@
     display: block;
     line-height: $euiLineHeight;
     font-weight: $euiFontWeightRegular;
+  }
+
+  .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
+    margin-top: $euiSizeXS;
   }
 
   .euiCodeBlock__copyButton {
@@ -28,11 +35,6 @@
     right: $euiSize;
   }
 
-  .euiCodeBlock__copyButton,
-  .euiCodeBlock__fullScreenButton {
-    display: inline-block;
-  }
-
   &.euiCodeBlock-isFullScreen {
     position: fixed;
     top: 0;
@@ -41,7 +43,8 @@
     bottom: 0;
 
     .euiCodeBlock__pre {
-      padding: $euiSizeXL !important; // sass-lint:disable-line no-important
+      // sass-lint:disable-block no-important
+      padding: $euiSizeXL !important;
     }
   }
 

@@ -152,17 +152,21 @@ export class EuiCodeBlockImpl extends Component {
       copyButton = (
         // TODO add i18n
         <div className="euiCodeBlock__copyButton">
-          <EuiCopy textToCopy={children}>
-            {(copy) => (
-              <EuiButtonIcon
-                size="s"
-                onClick={copy}
-                iconType="copy"
-                color="text"
-                aria-label="Copy"
-              />
+          <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
+            {copyButton => (
+              <EuiCopy textToCopy={children}>
+                {(copy) => (
+                  <EuiButtonIcon
+                    size="s"
+                    onClick={copy}
+                    iconType="copy"
+                    color="text"
+                    aria-label={copyButton}
+                  />
+                )}
+              </EuiCopy>
             )}
-          </EuiCopy>
+          </EuiI18n>
         </div>
       );
     }
@@ -194,8 +198,8 @@ export class EuiCodeBlockImpl extends Component {
     if (copyButton || fullScreenButton) {
       codeBlockControls = (
         <div className="euiCodeBlock__controls">
-          {copyButton}
           {fullScreenButton}
+          {copyButton}
         </div>
       );
     }
@@ -277,7 +281,7 @@ EuiCodeBlockImpl.propTypes = {
   inline: PropTypes.bool,
 
   /**
-   * Displays an icon button that copies the code snippet to your clipboard.
+   * Displays an icon button to copy the code snippet to the clipboard.
    */
   isCopyable: PropTypes.bool,
 };
