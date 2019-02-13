@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added optional `copy` button to `EuiCode` blocks ([#1556](https://github.com/elastic/eui/pull/1556))
+- Added `isCopyable` prop to `EuiCodeBlock` ([#1556](https://github.com/elastic/eui/pull/1556))
 - Added optional `Snippet` tab to docs and renamed demo tabs ([#1556](https://github.com/elastic/eui/pull/1556))
 
 ## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
