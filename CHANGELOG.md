@@ -4,6 +4,10 @@ No public interface changes since `6.10.2`.
 
 ## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
 
+No public interface changes since `6.10.2`.
+
+## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
+
 **Note: this release is a backport containing changes originally made in `7.1.0`**
 
 - Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1562](https://github.com/elastic/eui/pull/1562))
