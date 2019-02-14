@@ -7,7 +7,7 @@ import {
 
 const htmlCode = `<!--I'm an example of HTML-->
 <div>
-  asdf
+  <h1>Title</h1>
 </div>
 `;
 
@@ -21,7 +21,7 @@ export default () => (
 
     <EuiSpacer />
 
-    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="dark" overflowHeight={300}>
+    <EuiCodeBlock language="js" fontSize="m" paddingSize="m" color="dark" overflowHeight={300} isCopyable>
       {jsCode}
     </EuiCodeBlock>
 
