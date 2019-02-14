@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `7.0.0`.
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1462](https://github.com/elastic/eui/pull/1562))
 
 ## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
 
