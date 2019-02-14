@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `7.0.0`.
+
+## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
+
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 - Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 - Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
@@ -20,7 +24,7 @@
 
 ## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
 
-**Note: this release is a backport containing changes originally made in `6.11.0`**
+**Note: this release is a backport containing changes originally made in `7.0.0`**
 
 **Bug fixes**
 
