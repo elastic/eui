@@ -150,7 +150,6 @@ export class EuiCodeBlockImpl extends Component {
 
     if (isCopyable) {
       copyButton = (
-        // TODO add i18n
         <div className="euiCodeBlock__copyButton">
           <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
             {copyButton => (
