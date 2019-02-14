@@ -16,7 +16,8 @@ import {
 export class ResizeObserverExample extends Component {
   state = {
     hasResizeObserver: typeof ResizeObserver !== 'undefined',
-    lastMutation: 'no resize detected',
+    height: 0,
+    width: 0,
     paddingSize: 's',
     items: ['Item 1', 'Item 2', 'Item 3'],
   };
@@ -33,17 +34,10 @@ export class ResizeObserverExample extends Component {
     }));
   }
 
-  onResize = ([entry]) => {
-    let lastMutation;
-    if (this.state.hasResizeObserver) {
-      lastMutation = <EuiCode>{`height: ${entry.contentRect.height}; width: ${entry.contentRect.width}`}</EuiCode>;
-    } else {
-      lastMutation = entry.type === 'attributes'
-        ? 'class name changed'
-        : 'DOM tree changed';
-    }
+  onResize = ({ height, width }) => {
     this.setState({
-      lastMutation
+      height,
+      width
     });
   }
 
@@ -58,7 +52,7 @@ export class ResizeObserverExample extends Component {
               <EuiIcon type="crossInACircleFilled" color="danger" /> Browser does not support ResizeObserver API. Using MutationObserver.
             </p>
           )}
-          <p>{this.state.lastMutation}</p>
+          <p><EuiCode>{`height: ${this.state.height}; width: ${this.state.width}`}</EuiCode></p>
         </EuiText>
 
         <EuiSpacer/>

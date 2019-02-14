@@ -42,6 +42,7 @@ describe('EuiResizeObserver', () => {
 
     await waitforResizeObserver();
 
-    expect(onResize).toHaveBeenCalledTimes(1);
+    // Expect 2 calls because it's called once on mount
+    expect(onResize).toHaveBeenCalledTimes(2);
   });
 });
