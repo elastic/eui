@@ -2,8 +2,10 @@
  * Secures outbound links. For more info:
  * https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
  */
-import filter from 'lodash/filter';
+import _ from 'lodash';
 import { isDomainSecure } from '../url';
+
+const filter = _.filter;
 
 export const getSecureRelForTarget = ({
   href,
