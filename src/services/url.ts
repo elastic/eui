@@ -1,4 +1,4 @@
-const isElasticDomain = /(https?:\/\/(.+?\.)?elastic\.co(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g;
+const isElasticDomain = /(https?:\/\/(.+?\.)?elastic\.co((\/|\?)[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g;
 
 // In order for the domain to be secure the regex
 // has to match _and_ the lengths of the match must

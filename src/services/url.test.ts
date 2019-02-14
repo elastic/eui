@@ -4,6 +4,7 @@ describe(`url`, () => {
   describe(`#isDomainSecure`, () => {
     it(`returns true for secure domains`, () => {
       expect(isDomainSecure('https://elastic.co')).toEqual(true);
+      expect(isDomainSecure('https://elastic.co?foo=bar')).toEqual(true);
       expect(isDomainSecure('https://elastic.co/')).toEqual(true);
       expect(isDomainSecure('https://www.elastic.co')).toEqual(true);
       expect(isDomainSecure('https://docs.elastic.co')).toEqual(true);
