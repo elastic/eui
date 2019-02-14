@@ -80,6 +80,10 @@
   fill: $euiColorGhost;
 }
 
+.euiIcon__fillNegative {
+  fill: $euiColorDarkestShade;
+}
+
 .euiIcon--small {
   @include size($euiSizeM);
 }
