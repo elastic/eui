@@ -24,7 +24,7 @@ const columns = [
       return (
         <EuiCodeBlock
           language={highlighting === 'code' ? 'javascript' : 'text'}
-          paddingSize="s"
+          paddingSize="none"
           transparentBackground
           fontSize="s"
         >
