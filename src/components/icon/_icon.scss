@@ -80,6 +80,13 @@
   fill: $euiColorGhost;
 }
 
+// Use the negative fill on SVG elements that need to flip portions
+// of the icon to light and dark compatible modes. You can see this
+// in use on the Elastic logo icons.
+.euiIcon__fillNegative {
+  fill: $euiColorDarkestShade;
+}
+
 .euiIcon--small {
   @include size($euiSizeM);
 }
