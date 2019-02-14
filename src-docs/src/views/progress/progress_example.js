@@ -9,9 +9,7 @@ import {
 import {
   EuiCallOut,
   EuiCode,
-  EuiCodeBlock,
   EuiProgress,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import Progress from './progress';
@@ -27,7 +25,11 @@ const progressValueSnippet = '<EuiProgress value={22} max={100} size="xs" />';
 import ProgressFixed from './progress_fixed';
 const progressFixedSource = require('!!raw-loader!./progress_fixed');
 const progressFixedHtml = renderToHtml(ProgressFixed);
-const progressFixedSnippet = `<EuiPortal>
+const progressFixedSnippet = `<!-- Position at top of parent container -->
+<EuiProgress size="xs" color="accent" position="absolute" />
+
+<!-- Position at top of screen, above global header -->
+<EuiPortal>
   <EuiProgress size="xs" color="accent" position="fixed" />
 </EuiPortal>`;
 
@@ -104,15 +106,12 @@ export const ProgressExample = {
             when its parent wrapper has a <EuiCode>z-index</EuiCode> value lower
             than another fixed element, such as <EuiCode>EuiHeader</EuiCode>. In
             that case, wrap <EuiCode>EuiProgress</EuiCode> in
-            an <EuiCode>EuiPortal</EuiCode>.
+            an <EuiCode>EuiPortal</EuiCode> as seen on the Snippet tab.
           </p>
         </EuiCallOut>
-        <EuiSpacer size="s" />
-        <EuiCodeBlock language="html" paddingSize="m" isCopyable>
-          {progressFixedSnippet}
-        </EuiCodeBlock>
       </div>
     ),
+    snippet: progressFixedSnippet,
     demo: <ProgressFixed />,
   }, {
     title: 'Progress has a range of sizes and colors',
