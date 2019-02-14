@@ -127,7 +127,7 @@ export class EuiContextMenuItem extends Component {
     // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
     // this is a button and piggyback off its disabled styles.
     if (href && !disabled) {
-      const secureRel = getSecureRelForTarget(target, rel);
+      const secureRel = getSecureRelForTarget({ href, target, rel });
 
       button = (
         <a
