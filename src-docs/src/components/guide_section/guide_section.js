@@ -86,20 +86,33 @@ export class GuideSection extends Component {
     super(props);
 
     this.componentNames = Object.keys(props.props);
+    const hasSnippet = 'snippet' in props;
 
     this.tabs = [{
-      name: 'Demo',
+      name: 'demo',
+      displayName: 'Demo',
     }, {
-      name: 'JavaScript',
+      name: 'javascript',
+      displayName: 'Demo JS',
       isCode: true,
     }, {
-      name: 'HTML',
+      name: 'html',
+      displayName: 'Demo HTML',
       isCode: true,
     }];
 
+    if (hasSnippet) {
+      this.tabs.push({
+        name: 'snippet',
+        displayName: 'Snippet',
+        isCode: true,
+      });
+    }
+
     if (this.componentNames.length) {
       this.tabs.push({
-        name: 'Props',
+        name: 'props',
+        displayName: 'Props',
       });
     }
 
@@ -121,7 +134,7 @@ export class GuideSection extends Component {
         isSelected={tab === this.state.selectedTab}
         key={tab.name}
       >
-        {tab.name}
+        {tab.displayName}
       </EuiTab>
     ));
   }
@@ -135,6 +148,23 @@ export class GuideSection extends Component {
 
     return [
       <EuiText key="text">{text}</EuiText>,
+    ];
+  }
+
+  renderSnippet() {
+    const { snippet } = this.props;
+
+    if (!snippet) {
+      return;
+    }
+
+    return [
+      <Fragment key="snippet">
+        <EuiSpacer size="m" />
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+          {snippet}
+        </EuiCodeBlock>
+      </Fragment>
     ];
   }
 
@@ -308,8 +338,8 @@ export class GuideSection extends Component {
 
   renderCode(name) {
     const nameToCodeClassMap = {
-      JavaScript: 'javascript',
-      HTML: 'html',
+      javascript: 'javascript',
+      html: 'html',
     };
 
     const codeClass = nameToCodeClassMap[name];
@@ -333,6 +363,14 @@ export class GuideSection extends Component {
   }
 
   renderContent() {
+    if (this.state.selectedTab.name === 'snippet') {
+      return (
+        <EuiErrorBoundary>
+          {this.renderSnippet()}
+        </EuiErrorBoundary>
+      );
+    }
+
     if (this.state.selectedTab.isCode) {
       return (
         <EuiErrorBoundary>
@@ -341,7 +379,7 @@ export class GuideSection extends Component {
       );
     }
 
-    if (this.state.selectedTab.name === 'Props') {
+    if (this.state.selectedTab.name === 'props') {
       return (
         <EuiErrorBoundary>
           {this.renderProps()}
@@ -375,6 +413,7 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
+  snippet: PropTypes.string,
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
