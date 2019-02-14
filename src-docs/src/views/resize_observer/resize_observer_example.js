@@ -43,7 +43,7 @@ export const ResizeObserverExample = {
         <p>
           Due to limited browser support (currently supported in Chrome and Opera), <EuiCode>EuiResizeObserver</EuiCode> will
           fallback to using the <EuiCode>MutationObserver</EuiCode> API with a default
-          set of paramters that appoximate the results of <EuiCode>MutationObserver</EuiCode>.
+          set of paramters that approximate the results of <EuiCode>MutationObserver</EuiCode>.
         </p>
       </React.Fragment>
     ),
