@@ -1,28 +1,37 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import tokens from '../../i18ntokens';
 
-import { EuiCodeBlock, EuiInMemoryTable } from '../../../../src';
+import { EuiCodeBlock, EuiInMemoryTable, EuiLink } from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
 const columns = [
-  { name: 'Token', field: 'token' },
   {
-    name: 'Default',
-    render({ defString, highlighting }) {
+    name: 'Token',
+    render({ filepath, loc, token }) {
       return (
-        <EuiCodeBlock language={highlighting === 'code' ? 'javascript' : 'text'}>{defString}</EuiCodeBlock>
+        <div>
+          <p><strong>{token}</strong></p>
+          <EuiLink target="_blank" color="subdued" href={`https://github.com/elastic/eui/blob/master/${filepath}#L${loc.start.line}`}>
+            {filepath}:{loc.start.line}:{loc.start.column}
+          </EuiLink>
+        </div>
       );
     }
   },
   {
-    name: 'File',
-    render({ filepath, loc }) {
+    name: 'Default',
+    render({ defString, highlighting }) {
       return (
-        <Fragment>
-          {filepath}:{loc.start.line}:{loc.start.column}
-        </Fragment>
+        <EuiCodeBlock
+          language={highlighting === 'code' ? 'javascript' : 'text'}
+          paddingSize="s"
+          transparentBackground
+          fontSize="s"
+        >
+          {defString}
+        </EuiCodeBlock>
       );
-    },
+    }
   },
 ];
 
@@ -41,8 +50,7 @@ export const I18nTokens = {
         items={tokens}
         columns={columns}
         search={search}
-        compressed={true}
-        pagination={true}
+        pagination={{ initialPageSize: 50 }}
       />
     </GuidePage>
   ),
