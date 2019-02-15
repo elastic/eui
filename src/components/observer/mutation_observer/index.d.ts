@@ -11,7 +11,7 @@ declare module '@elastic/eui' {
    */
   export interface EuiMutationObserverProps {
     observerOptions: MutationObserverInit, // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
-    onMutation: () => void
+    onMutation: MutationCallback
   }
 
   export const EuiMutationObserver: SFC<

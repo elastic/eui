@@ -10,7 +10,7 @@ declare module '@elastic/eui' {
    * @see './resize_observer.js'
    */
   export interface EuiResizeObserverProps {
-    onResize: () => void
+    onResize: (dimensions: { width: number, height: number }) => void
   }
 
   export const EuiResizeObserver: SFC<
