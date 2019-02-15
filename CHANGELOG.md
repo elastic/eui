@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `7.1.0`.
+- Converted `EuiToggle` to TypeScript ([#1570](https://github.com/elastic/eui/pull/1570))
+- Added type definitions for `EuiButtonGroup`,`EuiButtonToggle`, `EuiFilterButton`, `EuiFilterGroup`, and `EuiFilterSelectItem` ([#1570](https://github.com/elastic/eui/pull/1570))
 
 ## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
 
