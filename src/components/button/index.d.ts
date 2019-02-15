@@ -60,7 +60,7 @@ declare module '@elastic/eui' {
     'aria-labelledby'?: string;
     isDisabled?: boolean;
     size?: ButtonSize;
-    iconSize ?: IconSize
+    iconSize?: IconSize
   }
   export const EuiButtonIcon: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
