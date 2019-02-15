@@ -160,6 +160,22 @@
     "filepath": "src/components/code_editor/code_editor.js"
   },
   {
+    "token": "euiCodeBlock.copyButton",
+    "defString": "Copy",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 154,
+        "column": 10
+      },
+      "end": {
+        "line": 154,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/code/_code_block.js"
+  },
+  {
     "token": "euiColorPicker.transparentColor",
     "defString": "transparent",
     "highlighting": "string",
