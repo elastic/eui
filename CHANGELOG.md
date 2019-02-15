@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `7.1.0`.
+- Added `text` as an color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
 
 ## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
 
