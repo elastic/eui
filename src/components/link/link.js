@@ -42,7 +42,7 @@ export const EuiLink = ({
     );
   }
 
-  const secureRel = getSecureRelForTarget(target, rel);
+  const secureRel = getSecureRelForTarget({ href, target, rel });
 
   return (
     <a
