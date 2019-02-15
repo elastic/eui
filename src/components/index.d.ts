@@ -10,6 +10,7 @@
 /// <reference path="./description_list/index.d.ts" />
 /// <reference path="./empty_prompt/index.d.ts" />
 /// <reference path="./error_boundary/index.d.ts" />
+/// <reference path="./filter_group/index.d.ts" />
 /// <reference path="./flex/index.d.ts" />
 /// <reference path="./flyout/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
