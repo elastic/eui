@@ -8,6 +8,7 @@ import tabbable from 'tabbable';
 
 import { EuiIcon } from '../icon';
 import { EuiPopoverTitle } from '../popover';
+import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeyCodes } from '../../services';
 
 const transitionDirectionAndTypeToClassNameMap = {
@@ -323,17 +324,7 @@ export class EuiContextMenuPanel extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.items.length > 0 || this.props.items.length > 0) {
-      // content comes from items
-      if (this.didItemsChange(prevProps.items, this.props.items)) {
-        this.updateHeight();
-      }
-    } else {
-      // content comes from children
-      this.updateHeight();
-    }
-
+  componentDidUpdate() {
     this.updateFocus();
   }
 
@@ -435,7 +426,9 @@ export class EuiContextMenuPanel extends Component {
         {panelTitle}
 
         <div ref={this.contentRef}>
-          {content}
+          <EuiResizeObserver onResize={() => this.updateHeight()}>
+            {resizeRef => <div ref={resizeRef}>{content}</div>}
+          </EuiResizeObserver>
         </div>
       </div>
     );

@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
+- Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
+
+**Bug fixes**
+
+- Fixed content cut off in `EuiContextMenuPanel` when height changes dynamically ([#1559](https://github.com/elastic/eui/pull/1559))
 
 ## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
 
