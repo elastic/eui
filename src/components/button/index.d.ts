@@ -1,7 +1,8 @@
 import { CommonProps } from '../common';
 import { IconType, IconSize } from '../icon'
+import { EuiToggleProps, ToggleType } from '../toggle/toggle'
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, FieldsetHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
@@ -67,7 +68,7 @@ declare module '@elastic/eui' {
   >;
 
   /**
-   * button icon type defs
+   * empty button type defs
    *
    * @see './button_empty/button_empty.js'
    */
@@ -82,7 +83,7 @@ declare module '@elastic/eui' {
   export type EmptyButtonSizes = 'xs' | 's' | 'l';
   export type EmptyButtonFlush = 'left' | 'right';
 
-  export interface EuiButtonEmptyProps {
+  export type EuiButtonEmptyProps = EuiButtonPropsForButtonOrLink<CommonProps & {
     iconType?: IconType;
     iconSide?: EmptyButtonIconSide;
     color?: EmptyButtonColor;
@@ -92,9 +93,48 @@ declare module '@elastic/eui' {
     isDisabled?: boolean;
     contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: HTMLAttributes<HTMLSpanElement>;
-  }
+  }>
 
-  export const EuiButtonEmpty: SFC<
-    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonEmptyProps>
-  >;
+  export const EuiButtonEmpty: SFC<EuiButtonEmptyProps>;
+
+  /**
+   * button toggle type defs
+   *
+   * @see './button_toggle/button_toggle.js'
+   */
+
+  export type EuiButtonToggleProps = EuiToggleProps &
+    EuiButtonProps & {
+      isIconOnly?: boolean;
+      isEmpty?: boolean;
+      toggleClassName?: string;
+    }
+
+  export const EuiButtonToggle: SFC<EuiButtonToggleProps>;
+
+  /**
+   * button group type defs
+   *
+   * @see './button_group/button_group.js'
+   */
+
+  export type EuiButtonGroupIdToSelectedMap = { [id: string]: boolean };
+  export type GroupButtonSize = 's' | 'm';
+
+  export interface EuiButtonGroupOption {
+    id: string,
+    label: string,
+    isDisabled?: boolean,
+  }
+  export type EuiButtonGroupProps = FieldsetHTMLAttributes<HTMLFieldSetElement> &
+    EuiButtonToggleProps & {
+      options: EuiButtonGroupOption[],
+      buttonSize?: GroupButtonSize;
+      isFullWidth?: boolean;
+      idSelected?: string;
+      idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
+      legend?: string,
+    }
+
+  export const EuiButtonGroup: SFC<EuiButtonGroupProps>;
 }
