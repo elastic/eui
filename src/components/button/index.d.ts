@@ -1,8 +1,8 @@
 import { CommonProps } from '../common';
 import { IconType, IconSize } from '../icon'
-import { EuiToggleProps, ToggleType } from '../toggle/toggle'
+import { ToggleType } from '../toggle'
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, FieldsetHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
+import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
@@ -103,14 +103,18 @@ declare module '@elastic/eui' {
    * @see './button_toggle/button_toggle.js'
    */
 
-  export type EuiButtonToggleProps = EuiToggleProps &
-    EuiButtonProps & {
-      isIconOnly?: boolean;
+  export type EuiButtonToggleProps = EuiButtonProps & {
       isEmpty?: boolean;
+      isIconOnly?: boolean;
+      isSelected?: boolean;
+      label: string;
       toggleClassName?: string;
+      type?: ToggleType;
     }
 
-  export const EuiButtonToggle: SFC<EuiButtonToggleProps>;
+  export const EuiButtonToggle: SFC<
+    EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonToggleProps>
+  >;
 
   /**
    * button group type defs
@@ -126,15 +130,22 @@ declare module '@elastic/eui' {
     label: string,
     isDisabled?: boolean,
   }
-  export type EuiButtonGroupProps = FieldsetHTMLAttributes<HTMLFieldSetElement> &
-    EuiButtonToggleProps & {
+  export interface EuiButtonGroupProps {
       options: EuiButtonGroupOption[],
+      onChange: ChangeEventHandler<HTMLInputElement>;
       buttonSize?: GroupButtonSize;
+      isDisabled?: boolean,
       isFullWidth?: boolean;
+      isIconOnly?: boolean;
       idSelected?: string;
       idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
       legend?: string,
+      color?: ButtonColor,
+      type?: ToggleType,
+      name?: string;
     }
 
-  export const EuiButtonGroup: SFC<EuiButtonGroupProps>;
+  export const EuiButtonGroup: SFC<
+    HTMLAttributes<HTMLDivElement> & EuiButtonGroupProps
+  >;
 }
