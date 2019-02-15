@@ -1,7 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
 - Converted `EuiToggle` to TypeScript ([#1570](https://github.com/elastic/eui/pull/1570))
 - Added type definitions for `EuiButtonGroup`,`EuiButtonToggle`, `EuiFilterButton`, `EuiFilterGroup`, and `EuiFilterSelectItem` ([#1570](https://github.com/elastic/eui/pull/1570))
+
+**Bug fixes**
+
+- Fixed content cut off in `EuiContextMenuPanel` when height changes dynamically ([#1559](https://github.com/elastic/eui/pull/1559))
 
 ## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
 
