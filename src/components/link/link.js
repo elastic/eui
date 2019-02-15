@@ -12,6 +12,7 @@ const colorsToClassNameMap = {
   'danger': 'euiLink--danger',
   'warning': 'euiLink--warning',
   'ghost': 'euiLink--ghost',
+  'text': 'euiLink--text',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);

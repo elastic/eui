@@ -68,6 +68,13 @@ export default () => (
         </EuiLink>
       </li>
       <li>
+        <span>
+          <EuiLink color="text" href="#">
+            text
+          </EuiLink>
+        </span>
+      </li>
+      <li>
         <span style={{ background: 'black' }}>
           <EuiLink color="ghost" href="#">
             ghost
