@@ -6,6 +6,7 @@
 - Added optional `Snippet` tab to docs and renamed demo tabs ([#1556](https://github.com/elastic/eui/pull/1556))
 - Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
 - New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- Add iconSize to ButtonIcon type definition ([#1568](https://github.com/elastic/eui/pull/1568))
 
 ## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
 
