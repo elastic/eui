@@ -16,6 +16,7 @@ declare module '@elastic/eui' {
     fullWidth?: boolean;
     isLoading?: boolean;
     prepend?: React.ReactNode;
+    append?: React.ReactNode;
   }
 
   export const EuiFieldText: SFC<
