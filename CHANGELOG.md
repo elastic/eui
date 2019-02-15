@@ -1,10 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.10.2`.
+**Note: this release is a backport containing changes originally made in `7.1.0`**
 
-## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
-
-No public interface changes since `6.10.2`.
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
 
 ## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
 
