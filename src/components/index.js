@@ -227,7 +227,7 @@ export {
 
 export {
   EuiMutationObserver,
-} from './mutation_observer';
+} from './observer/mutation_observer';
 
 export {
   EuiNavDrawer,
@@ -277,6 +277,10 @@ export {
 export {
   EuiProgress,
 } from './progress';
+
+export {
+  EuiResizeObserver,
+} from './observer/resize_observer';
 
 export {
   EuiSearchBar,

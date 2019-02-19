@@ -2,87 +2,55 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  EuiButtonEmpty,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
-  EuiPopover,
+  EuiSelect,
+  EuiFormRow
 } from '../../../../src/components';
 
 export class GuideThemeSelector extends Component {
   constructor(props) {
     super(props);
 
+    this.themeOptions = [
+      {
+        text: 'Light',
+        value: 'light',
+      }, {
+        text: 'Dark',
+        value: 'dark',
+      }, {
+        text: 'K6',
+        value: 'k6',
+      }, {
+        text: 'K6 dark',
+        value: 'k6_dark',
+      }
+    ];
+
     this.state = {
-      isThemePopoverOpen: false,
+      value: this.themeOptions[0].value,
     };
   }
 
-  onThemeButtonClick = () => {
+  onChange = e => {
     this.setState({
-      isThemePopoverOpen: !this.state.isThemePopoverOpen,
-    });
-  };
-
-  closeThemePopover = () => {
-    this.setState({
-      isThemePopoverOpen: false,
+      value: e.target.value,
     });
   };
 
   render() {
-    const themeButton = (
-      <EuiButtonEmpty
-        size="s"
-        color="text"
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onThemeButtonClick}
-        aria-label="Select a visual theme"
-      >
-        <strong>Elastic UI</strong> <span className="guideSideNav__theme"> ~ {this.props.selectedTheme}</span>
-      </EuiButtonEmpty>
-    );
-
-    const themeOptions = [{
-      name: 'Light',
-      value: 'light',
-    }, {
-      name: 'Dark',
-      value: 'dark',
-    }, {
-      name: 'K6',
-      value: 'k6',
-    }, {
-      name: 'K6 dark',
-      value: 'k6_dark',
-    }].map(option => {
-      const { name, value } = option;
-
-      return (
-        <EuiContextMenuItem
-          key={value}
-          icon={value === this.props.selectedTheme ? 'check' : 'empty'}
-          onClick={() => { this.closeThemePopover(); this.props.onToggleTheme(value); }}
-        >
-          {`${name}`}
-        </EuiContextMenuItem>
-      );
-    });
-
     return (
-      <EuiPopover
-        id="pageChromeThemePopover"
-        button={themeButton}
-        isOpen={this.state.isThemePopoverOpen}
-        closePopover={this.closeThemePopover}
-        panelPaddingSize="none"
-        anchorPosition="downRight"
+
+      <EuiFormRow
+        label="Theme"
       >
-        <EuiContextMenuPanel
-          style={{ width: '120px' }}
-          items={themeOptions}
+        <EuiSelect
+          options={this.themeOptions}
+          value={this.props.selectedTheme}
+          onChange={(e) => {this.props.onToggleTheme(e.target.value); }}
+          aria-label="Switch the theme"
         />
-      </EuiPopover>
+      </EuiFormRow>
+
     );
   }
 }

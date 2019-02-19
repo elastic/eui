@@ -22,6 +22,7 @@ declare module '@elastic/eui' {
     | 'accent'
     | 'danger'
     | 'warning'
+    | 'text'
     | 'ghost';
 
   export interface LinkButtonProps {

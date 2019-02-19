@@ -12,6 +12,7 @@ const colorsToClassNameMap = {
   'danger': 'euiLink--danger',
   'warning': 'euiLink--warning',
   'ghost': 'euiLink--ghost',
+  'text': 'euiLink--text',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);
@@ -42,7 +43,7 @@ export const EuiLink = ({
     );
   }
 
-  const secureRel = getSecureRelForTarget(target, rel);
+  const secureRel = getSecureRelForTarget({ href, target, rel });
 
   return (
     <a

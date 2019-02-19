@@ -72,7 +72,7 @@ export const EuiCard = ({
 
   let secureRel;
   if (href) {
-    secureRel = getSecureRelForTarget(target, rel);
+    secureRel = getSecureRelForTarget({ href, target, rel });
   }
 
   let imageNode;

@@ -1,44 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
   EuiSwitch,
+  EuiFormRow,
 } from '../../../../src/components';
 
-export class GuideLocaleSelector extends Component {
-  constructor(props) {
-    super(props);
+export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
 
-    this.state = {
-      isLocalePopoverOpen: false,
-    };
-  }
-
-  onLocaleButtonClick = () => {
-    this.setState({
-      isLocalePopoverOpen: !this.state.isLocalePopoverOpen,
-    });
-  };
-
-  closeLocalePopover = () => {
-    this.setState({
-      isLocalePopoverOpen: false,
-    });
-  };
-
-  render() {
-    const otherLocale = this.props.selectedLocale === 'en' ? 'en-xa' : 'en';
-
-    return (
+  return (
+    <EuiFormRow
+      label="Translations for development"
+    >
       <EuiSwitch
-        label="pseudo translation"
-        checked={this.props.selectedLocale === 'en-xa'}
-        onChange={() => this.props.onToggleLocale(otherLocale)}
+        label="Activate babelfish"
+        checked={selectedLocale === 'en-xa'}
+        onChange={() => onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')}
         compressed={true}
       />
-    );
-  }
-}
+    </EuiFormRow>
+  );
+};
 
 GuideLocaleSelector.propTypes = {
   onToggleLocale: PropTypes.func.isRequired,
