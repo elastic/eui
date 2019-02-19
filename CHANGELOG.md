@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed content cut off in `EuiContextMenuPanel` when height changes dynamically ([#1559](https://github.com/elastic/eui/pull/1559))
+- Fixed `EuiComboBox` to allow keyboard tab to exit single selection box ([#1576](https://github.com/elastic/eui/pull/1576))
 
 ## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
 
