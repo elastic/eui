@@ -1,5 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
+- Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
+
+**Bug fixes**
+
+- Fixed content cut off in `EuiContextMenuPanel` when height changes dynamically ([#1559](https://github.com/elastic/eui/pull/1559))
+- Fixed `EuiComboBox` to allow keyboard tab to exit single selection box ([#1576](https://github.com/elastic/eui/pull/1576))
+
+## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
+
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1462](https://github.com/elastic/eui/pull/1562))
+- Added `isCopyable` prop to `EuiCodeBlock` ([#1556](https://github.com/elastic/eui/pull/1556))
+- Added optional `Snippet` tab to docs and renamed demo tabs ([#1556](https://github.com/elastic/eui/pull/1556))
+- Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- Add iconSize to ButtonIcon type definition ([#1568](https://github.com/elastic/eui/pull/1568))
+
+## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
+
 - Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
 - Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
 - Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
@@ -22,7 +42,7 @@
 
 ## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
 
-**Note: this release is a backport containing changes originally made in `6.11.0`**
+**Note: this release is a backport containing changes originally made in `7.0.0`**
 
 **Bug fixes**
 

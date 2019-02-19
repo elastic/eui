@@ -158,7 +158,8 @@ export const IconExample = {
     }],
     text: (
       <p>
-        Product logos follow similar rules as app logos.
+        Product logos follow similar rules as app logos. Note the use of <EuiCode>.euiIcon__fillNegative</EuiCode> on
+        portions of the SVGs to handle flipping colors for dark mode.
       </p>
     ),
     demo: <Logos />,
@@ -171,11 +172,6 @@ export const IconExample = {
       type: GuideSectionTypes.HTML,
       code: iconsHtml,
     }],
-    text: (
-      <p>
-        Product logos follow similar rules as app logos.
-      </p>
-    ),
     demo: <LogosThird />,
   }, {
     title: 'Sizes',

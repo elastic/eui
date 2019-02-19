@@ -9,7 +9,8 @@ $textColors: (
   accent: $euiColorAccent,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
-  ghost: #FFF, // Ghost is special and a constant.
+  text: $euiTextColor,
+  ghost: $euiColorGhost,
 );
 
 // Create color modifiers based on the map

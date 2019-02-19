@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-import { IconType } from '../icon'
+import { IconType, IconSize } from '../icon'
 
 import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
 
@@ -60,6 +60,7 @@ declare module '@elastic/eui' {
     'aria-labelledby'?: string;
     isDisabled?: boolean;
     size?: ButtonSize;
+    iconSize?: IconSize
   }
   export const EuiButtonIcon: SFC<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>

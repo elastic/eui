@@ -24,6 +24,7 @@ declare module '@elastic/eui' {
     overflowHeight?: number;
     fontSize?: FontSize;
     transparentBackground?: boolean;
+    isCopyable?: boolean;
   }
 
 

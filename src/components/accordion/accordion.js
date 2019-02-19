@@ -15,7 +15,7 @@ import {
 
 import {
   EuiMutationObserver,
-} from '../mutation_observer';
+} from '../observer/mutation_observer';
 
 const paddingSizeToClassNameMap = {
   none: null,

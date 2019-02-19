@@ -6,6 +6,10 @@ import classNames from 'classnames';
 import hljs from 'highlight.js';
 
 import {
+  EuiCopy,
+} from '../copy';
+
+import {
   EuiButtonIcon,
 } from '../button';
 
@@ -98,6 +102,7 @@ export class EuiCodeBlockImpl extends Component {
       overflowHeight,
       paddingSize,
       transparentBackground,
+      isCopyable,
       ...otherProps
     } = this.props;
 
@@ -108,6 +113,7 @@ export class EuiCodeBlockImpl extends Component {
       {
         'euiCodeBlock--transparentBackground': transparentBackground,
         'euiCodeBlock--inline': inline,
+        'euiCodeBlock-isCopyable': isCopyable,
       },
       className
     );
@@ -143,6 +149,30 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
+    let copyButton;
+
+    if (isCopyable) {
+      copyButton = (
+        <div className="euiCodeBlock__copyButton">
+          <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
+            {copyButton => (
+              <EuiCopy textToCopy={children}>
+                {(copy) => (
+                  <EuiButtonIcon
+                    size="s"
+                    onClick={copy}
+                    iconType="copy"
+                    color="text"
+                    aria-label={copyButton}
+                  />
+                )}
+              </EuiCopy>
+            )}
+          </EuiI18n>
+        </div>
+      );
+    }
+
     let fullScreenButton;
 
     if (!inline && overflowHeight) {
@@ -162,6 +192,17 @@ export class EuiCodeBlockImpl extends Component {
             />
           )}
         </EuiI18n>
+      );
+    }
+
+    let codeBlockControls;
+
+    if (copyButton || fullScreenButton) {
+      codeBlockControls = (
+        <div className="euiCodeBlock__controls">
+          {fullScreenButton}
+          {copyButton}
+        </div>
       );
     }
 
@@ -194,7 +235,7 @@ export class EuiCodeBlockImpl extends Component {
                 </code>
               </pre>
 
-              {fullScreenButton}
+              {codeBlockControls}
             </div>
           </EuiFocusTrap>
         </EuiOverlayMask>
@@ -211,7 +252,7 @@ export class EuiCodeBlockImpl extends Component {
           If the below fullScreen code renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
         */}
-        {fullScreenButton}
+        {codeBlockControls}
         {fullScreenDisplay}
       </div>
     );
@@ -235,10 +276,16 @@ EuiCodeBlockImpl.propTypes = {
    * Displays the passed code in an inline format. Also removes any margins set.
    */
   inline: PropTypes.bool,
+
+  /**
+   * Displays an icon button to copy the code snippet to the clipboard.
+   */
+  isCopyable: PropTypes.bool,
 };
 
 EuiCodeBlockImpl.defaultProps = {
   transparentBackground: false,
   paddingSize: 'l',
   fontSize: 's',
+  isCopyable: false,
 };
