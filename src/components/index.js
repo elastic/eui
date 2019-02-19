@@ -133,6 +133,7 @@ export {
   EuiCheckboxGroup,
   EuiDescribedFormGroup,
   EuiDualRange,
+  EuiFieldEmpty,
   EuiFieldNumber,
   EuiFieldPassword,
   EuiFieldSearch,

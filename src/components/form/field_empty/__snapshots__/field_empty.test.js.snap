@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFieldEmpty is rendered with node children 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFieldEmpty testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div>
+    <span>
+      foo
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldEmpty is rendered with text children 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFieldEmpty testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  foo
+</div>
+`;

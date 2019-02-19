@@ -45,6 +45,10 @@ import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
+import InlineFieldEmpty from './inline_field_empty';
+const inlineFieldEmptySource = require('!!raw-loader!./inline_field_empty');
+const inlineFieldEmptyHtml = renderToHtml(InlineFieldEmpty);
+
 import FormCompressed from './form_compressed';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
 const formCompressedHtml = renderToHtml(FormCompressed);
@@ -160,7 +164,7 @@ export const FormLayoutsExample = {
     title: 'Inline',
     text: (
       <p>
-        Inline forms can be made with <EuiCode>FlexGroup</EuiCode>. Apply
+        Inline forms can be made with <EuiCode>EuiFlexGroup</EuiCode>. Apply
         <EuiCode>grow=false</EuiCode> on any of the items you want to collapse
         (like this button). Note that the button FormRow component also requires
         an additional prop because it&rsquo;s missing a label.
@@ -182,6 +186,23 @@ export const FormLayoutsExample = {
       EuiFieldText,
     },
     demo: <Inline />,
+  }, {
+    title: 'Inline forms with inline data views',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: inlineFieldEmptySource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: inlineFieldEmptyHtml,
+    }],
+    text: (
+      <p>
+        Inline forms often need us to display some computed properties that result
+        from the inputs, and do so inline as well. <EuiCode>EuiFieldEmpty</EuiCode>
+        facilitates the layout for those cases.
+      </p>
+    ),
+    demo: <InlineFieldEmpty />,
   }, {
     title: 'Apply width to FlexItem to size individual controls',
     source: [{
