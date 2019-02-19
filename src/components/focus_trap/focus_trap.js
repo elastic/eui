@@ -18,11 +18,11 @@ const OutsideEventDetector = ({ children, handleEvent, ...rest }) => {
 
 export class EuiFocusTrap extends React.Component {
   state = {
-    hasBeenDisabledByClick: false,
-    preventFocusExit: false
+    hasBeenDisabledByClick: false
   }
 
   lastInterceptedEvent = null;
+  preventFocusExit = false;
 
   componentDidMount() {
     this.setInitalFocus(this.props.initialFocus);
@@ -52,19 +52,15 @@ export class EuiFocusTrap extends React.Component {
 
   // Sets whether an event has been prevented from disabling the focus trap
   // Only applicable for `clickOutsideDisables`
-  toggleExitPrevented = (shouldPrevent = !this.state.preventFocusExit) => {
-    this.setState({
-      preventFocusExit: shouldPrevent
-    });
+  toggleExitPrevented = (shouldPrevent = !this.preventFocusExit) => {
+    this.preventFocusExit = shouldPrevent;
   }
 
   // Event handler to determine whether a mouse or key event should disable the focus trap
   // Only applicable for `clickOutsideDisables`
   handleOutsideClick = (event) => {
-    if (this.state.preventFocusExit && event.target === this.lastInterceptedEvent.target) {
-      this.toggleExitPrevented(false);
-      return;
-    }
+    this.toggleExitPrevented(false);
+    if (this.preventFocusExit && event.target === this.lastInterceptedEvent.target) return;
     this.toggleDisabled(true);
   }
 
