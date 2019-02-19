@@ -132,7 +132,7 @@ declare module '@elastic/eui' {
   }
   export interface EuiButtonGroupProps {
       options: EuiButtonGroupOption[],
-      onChange: ChangeEventHandler<HTMLInputElement>;
+      onChange: (id: string, value: any) => void;
       buttonSize?: GroupButtonSize;
       isDisabled?: boolean,
       isFullWidth?: boolean;
