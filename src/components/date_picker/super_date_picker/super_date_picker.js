@@ -63,6 +63,11 @@ export class EuiSuperDatePicker extends Component {
     onRefreshChange: PropTypes.func,
 
     /**
+     * Callback for when the refresh interval is fired
+     */
+    onRefresh: PropTypes.func,
+
+    /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
      */
@@ -221,6 +226,27 @@ export class EuiSuperDatePicker extends Component {
     this.setState({ isEndDatePopoverOpen: false });
   }
 
+  onRefreshChange = ({ refreshInterval, isPaused }) => {
+    this.resetInterval({ refreshInterval, isPaused });
+    this.props.onRefreshChange({ refreshInterval, isPaused });
+  }
+
+  componentWillUnmount = () => {
+    window.clearInterval(this.intervalId);
+  }
+
+  resetInterval = ({ isPaused, refreshInterval }) => {
+    window.clearInterval(this.intervalId);
+    if(!isPaused && this.props.onRefresh) {
+      this.intervalId = window.setInterval(() => {
+        const { start, end, onRefresh } = this.props;
+        if(onRefresh) {
+          onRefresh({ start, end, refreshInterval });
+        }
+      }, refreshInterval);
+    }
+  }
+
   renderDatePickerRange = () => {
     const {
       start,
@@ -329,7 +355,7 @@ export class EuiSuperDatePicker extends Component {
         applyTime={this.applyQuickTime}
         start={this.props.start}
         end={this.props.end}
-        applyRefreshInterval={this.props.onRefreshChange}
+        applyRefreshInterval={this.onRefreshChange}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}
