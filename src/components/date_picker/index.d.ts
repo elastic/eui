@@ -28,30 +28,30 @@ declare module '@elastic/eui' {
     // not sure if this is correct
     injectTimes?: Moment[];
     // not sure what this generic value should be?
-    inputRef: React.Ref<HTMLInputElement>;
-    isInvalid: boolean;
-    isLoading: boolean;
-    locale: string;
-    maxDate: Moment;
-    maxTime: Moment;
-    minDate: Moment;
-    minTime: Moment;
+    inputRef?: React.Ref<HTMLInputElement>;
+    isInvalid?: boolean;
+    isLoading?: boolean;
+    locale?: string;
+    maxDate?: Moment;
+    maxTime?: Moment;
+    minDate?: Moment;
+    minTime?: Moment;
     // pulled from react-datepickeer definitely typed
     // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-datepicker/index.d.ts#L68
     onChange(
       date: Date | null,
       event: React.SyntheticEvent<any> | undefined
     ): void;
-    openToDate: Moment;
-    placeholder: string;
-    popperClassName: string;
-    selected: Moment;
-    shadow: boolean;
-    shouldCloseOnSelect: boolean;
-    showIcon: boolean;
-    showTimeSelect: boolean;
-    showTimeSelectOnly: boolean;
-    timeFormat: string;
+    openToDate?: Moment;
+    placeholder?: string;
+    popperClassName?: string;
+    selected?: Moment;
+    shadow?: boolean;
+    shouldCloseOnSelect?: boolean;
+    showIcon?: boolean;
+    showTimeSelect?: boolean;
+    showTimeSelectOnly?: boolean;
+    timeFormat?: string;
   };
 
   export const EuiDatePicker: React.SFC<EuiDatePickerProps>;
@@ -59,9 +59,9 @@ declare module '@elastic/eui' {
   export type EuiDatePickerRangeProps = CommonProps & {
     startDateControl: typeof EuiDatePicker;
     endDateControl: typeof EuiDatePicker;
-    iconType: boolean | IconType;
-    fullWidth: boolean;
-    isCustom: boolean;
+    iconType?: boolean | IconType;
+    fullWidth?: boolean;
+    isCustom?: boolean;
   };
 
   export const EuiDatePickerRange: React.SFC<EuiDatePickerRangeProps>;
@@ -92,9 +92,9 @@ declare module '@elastic/eui' {
     commonlyUsedRanges?: EuiSuperDatePickerCommonRange[];
     dateFormat?: string;
     recentlyUsedRanges?: EuiSuperDatePickerRecentRange[];
-    showUpdateButton: boolean;
-    isAutoRefreshOnly: boolean;
-    customQuickSelectPanels: EuiSuperDatePickerQuickSelectPanel[];
+    showUpdateButton?: boolean;
+    isAutoRefreshOnly?: boolean;
+    customQuickSelectPanels?: EuiSuperDatePickerQuickSelectPanel[];
   };
 
   export const EuiSuperDatePicker: React.SFC<EuiSuperDatePickerProps>;
