@@ -133,21 +133,4 @@ describe('defaultFocusedButton', () => {
       done();
     });
   });
-
-  test('when not given gives focus to the modal', done => {
-    const component = mount(
-      <EuiConfirmModal
-        onCancel={onCancel}
-        onConfirm={onConfirm}
-        cancelButtonText="Cancel Button Text"
-        confirmButtonText="Confirm Button Text"
-      />
-    );
-
-    // The auto-focus implementation waits a frame before focusing.
-    requestAnimationFrame(() => {
-      expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
-      done();
-    });
-  });
 });

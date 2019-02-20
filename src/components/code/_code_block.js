@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import FocusTrap from 'focus-trap-react';
 import hljs from 'highlight.js';
 
 import {
@@ -17,6 +16,10 @@ import {
 import {
   EuiOverlayMask,
 } from '../overlay_mask';
+
+import {
+  EuiFocusTrap,
+} from '../focus_trap';
 
 import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
@@ -218,13 +221,8 @@ export class EuiCodeBlockImpl extends Component {
       );
 
       fullScreenDisplay = (
-        <FocusTrap
-          focusTrapOptions={{
-            clickOutsideDeactivates: true,
-            initialFocus: () => this.codeFullScreen,
-          }}
-        >
-          <EuiOverlayMask>
+        <EuiOverlayMask>
+          <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
               <pre className="euiCodeBlock__pre">
                 <code
@@ -239,8 +237,8 @@ export class EuiCodeBlockImpl extends Component {
 
               {codeBlockControls}
             </div>
-          </EuiOverlayMask>
-        </FocusTrap>
+          </EuiFocusTrap>
+        </EuiOverlayMask>
       );
     }
 
