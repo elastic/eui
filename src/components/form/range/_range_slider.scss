@@ -36,19 +36,14 @@
 
   @include euiRangeThumbPerBrowser {
     @include euiCustomControl($type: 'round');
-
     @include euiRangeThumbStyle;
   }
 
   @include euiRangeTrackPerBrowser {
     @include euiRangeTrackSize;
-
     background: $euiRangeTrackColor;
     border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
     border-radius: $euiRangeTrackRadius;
-
-    background-color: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 
   &:focus,
@@ -94,7 +89,6 @@
 
   &::-ms-track {
     @include euiRangeTrackSize;
-
     background: transparent;
     border-color: transparent;
     border-width: ($euiRangeThumbHeight / 2) 0;
@@ -104,5 +98,13 @@
   // States
   &--hasTicks {
     height: $euiFormControlHeight / 2; // Adjust vertical alignment based on extras
+  }
+}
+
+// Lighten the track when showing the range
+.euiRangeSlider--hasRange {
+  @include euiRangeTrackPerBrowser {
+    background-color: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 }

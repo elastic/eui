@@ -17,13 +17,13 @@ export default class extends Component {
 
     this.levels = [
       {
-        min: 0,
-        max: 600,
+        min: 100,
+        max: 140,
         color: 'danger'
       },
       {
-        min: 600,
-        max: 2000,
+        min: 140,
+        max: 180,
         color: 'success'
       }
     ];
@@ -76,18 +76,19 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
-          showLabels
           showInput
           showRange
+          showTicks
+          tickInterval={20}
         />
 
         <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={100}
+          max={200}
+          step={10}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
@@ -103,32 +104,29 @@ export default class extends Component {
 
         <EuiRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={100}
+          max={200}
+          step={10}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showTicks
           showRange
-          showValue
-          tickInterval={300}
         />
 
         <EuiSpacer size="xl" />
 
         <EuiRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={100}
+          max={200}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           aria-describedby="levelsHelp"
           showTicks
+          ticks={[{ label: 100, value: 100 }, { label: 200, value: 200 }]}
           showInput
-          tickInterval={500}
           levels={this.levels}
         />
       </Fragment>

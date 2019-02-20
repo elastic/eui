@@ -17,19 +17,22 @@ export default class extends Component {
 
     this.levels = [
       {
-        min: 0,
-        max: 600,
+        min: 100,
+        max: 140,
         color: 'danger'
       },
       {
-        min: 600,
-        max: 2000,
+        min: 140,
+        max: 180,
         color: 'success'
       }
     ];
 
     this.state = {
-      value: [120, 480]
+      value: ['', ''],
+      min: 100,
+      max: 200,
+      step: 10,
     };
   }
 
@@ -45,8 +48,8 @@ export default class extends Component {
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
+          min={this.state.min}
+          max={this.state.max}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
@@ -58,8 +61,8 @@ export default class extends Component {
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
+          min={this.state.min}
+          max={this.state.max}
           value={this.state.value}
           onChange={this.onChange}
           disabled
@@ -71,63 +74,61 @@ export default class extends Component {
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
+          min={this.state.min}
+          max={this.state.max}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
-          showLabels
           showInput
           showRange
+          showTicks
+          tickInterval={20}
         />
 
         <EuiSpacer size="xl" />
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={this.state.min}
+          max={this.state.max}
+          step={this.state.step}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           aria-describedby="levelsHelp"
-          showLabels
           showInput
           compressed
           levels={this.levels}
         />
-        <EuiFormHelpText id="levelsHelp">Recommended levels are 600 and above.</EuiFormHelpText>
+        <EuiFormHelpText id="levelsHelp">Recommended levels are 120 and above.</EuiFormHelpText>
 
         <EuiSpacer size="xl" />
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={this.state.min}
+          max={this.state.max}
+          step={this.state.step}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           showTicks
-          showRange
-          tickInterval={300}
         />
 
         <EuiSpacer size="xl" />
 
         <EuiDualRange
           id={makeId()}
-          min={0}
-          max={2000}
-          step={50}
+          min={this.state.min}
+          max={this.state.max}
+          step={this.state.step}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           aria-describedby="levelsHelp"
           showTicks
+          ticks={[{ value: this.state.min, label: this.state.min }, { value: this.state.max, label: this.state.max }]}
           showInput
-          tickInterval={500}
           levels={this.levels}
         />
       </Fragment>

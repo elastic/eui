@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
 
@@ -49,9 +50,11 @@ export class EuiRange extends Component {
       ...rest
     } = this.props;
 
+    const classes = classNames('euiRange', className);
+
     return (
       <EuiRangeWrapper
-        className="euiRange"
+        className={classes}
         fullWidth={fullWidth}
       >
         {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
@@ -70,7 +73,6 @@ export class EuiRange extends Component {
           <EuiRangeSlider
             id={id}
             name={name}
-            className={className}
             min={min}
             max={max}
             step={step}
@@ -79,6 +81,7 @@ export class EuiRange extends Component {
             onChange={this.handleOnChange}
             style={style}
             showTicks={showTicks}
+            showRange={showRange}
             tabIndex={showInput ? '-1' : (tabIndex || null)}
             {...rest}
           />
@@ -187,6 +190,7 @@ EuiRange.propTypes = {
 EuiRange.defaultProps = {
   min: 1,
   max: 100,
+  step: 1,
   fullWidth: false,
   compressed: false,
   showLabels: false,

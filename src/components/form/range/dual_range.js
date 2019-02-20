@@ -29,10 +29,10 @@ export class EuiDualRange extends Component {
   }
 
   get lowerValue() {
-    return this.props.value ? this.props.value[0] : this.props.min;
+    return this.props.value && this.props.value !== '' ? this.props.value[0] : this.props.min;
   }
   get upperValue() {
-    return this.props.value ? this.props.value[1] : this.props.max;
+    return this.props.value && this.props.value !== '' ? this.props.value[1] : this.props.max;
   }
   get isValid() {
     return isWithinRange(this.props.min, this.upperValue, this.lowerValue)
@@ -208,7 +208,7 @@ export class EuiDualRange extends Component {
       showInput,
       showTicks,
       tickInterval,
-      ticks, // eslint-disable-line no-unused-vars
+      ticks,
       levels,
       onChange, // eslint-disable-line no-unused-vars
       showRange,
@@ -217,11 +217,11 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const sliderClasses = classNames('euiDualRange__slider', className);
+    const classes = classNames('euiDualRange', className);
 
     return (
       <EuiRangeWrapper
-        className="euiDualRange"
+        className={classes}
         fullWidth={fullWidth}
       >
         {showInput && (
@@ -254,10 +254,10 @@ export class EuiDualRange extends Component {
           value={value}
         >
           <EuiRangeSlider
+            className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
-            className={sliderClasses}
             min={min}
             max={max}
             step={step}
@@ -268,6 +268,7 @@ export class EuiDualRange extends Component {
             hasFocus={this.state.hasFocus}
             aria-hidden={true}
             tabIndex={'-1'}
+            showRange={showRange}
             {...rest}
           />
 
@@ -283,7 +284,7 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.lowerValue)}
+                style={this.calculateThumbPositionStyle(this.lowerValue || min)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -297,7 +298,7 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.upperValue)}
+                style={this.calculateThumbPositionStyle(this.upperValue || max)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -394,8 +395,9 @@ EuiDualRange.propTypes = {
 };
 
 EuiDualRange.defaultProps = {
-  min: 1,
+  min: 0,
   max: 100,
+  step: 1,
   fullWidth: false,
   compressed: false,
   showLabels: false,

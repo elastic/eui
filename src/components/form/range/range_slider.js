@@ -15,12 +15,14 @@ export const EuiRangeSlider = React.forwardRef(({
   value,
   style,
   showTicks,
+  showRange,
   hasFocus,
   ...rest
 }, ref) => {
   const classes = classNames('euiRangeSlider', {
     'euiRangeSlider--hasTicks': showTicks,
-    'euiRangeSlider--hasFocus': hasFocus
+    'euiRangeSlider--hasFocus': hasFocus,
+    'euiRangeSlider--hasRange': showRange,
   }, className);
   return (
     <input
@@ -55,5 +57,6 @@ EuiRangeSlider.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ]),
-  hasFocus: PropTypes.bool
+  hasFocus: PropTypes.bool,
+  showRange: PropTypes.bool,
 };
