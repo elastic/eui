@@ -320,7 +320,7 @@ exports[`EuiRange props value should render 1`] = `
     >
       <output
         class="euiRangeTooltip__value euiRangeTooltip__value--left"
-        style="left:100%"
+        style="right:0%"
       />
     </div>
   </div>

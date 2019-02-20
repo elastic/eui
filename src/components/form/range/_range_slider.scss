@@ -32,6 +32,13 @@
       background-color: $euiRangeThumbBorderColor;
       box-shadow: none;
     }
+
+    ~ .euiRangeThumb {
+      cursor: not-allowed;
+      border-color: $euiRangeThumbBorderColor;
+      background-color: $euiRangeThumbBorderColor;
+      box-shadow: none;
+    }
   }
 
   @include euiRangeThumbPerBrowser {
@@ -50,6 +57,10 @@
   &--hasFocus {
     @include euiRangeThumbPerBrowser {
       @include euiCustomControlFocused;
+    }
+
+    ~ .euiRangeThumb {
+      border-color: $euiColorPrimary;
     }
 
     @include euiRangeTrackPerBrowser {
