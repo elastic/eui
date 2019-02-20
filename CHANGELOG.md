@@ -2,7 +2,6 @@
 
 - Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
 - Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
-- Added Apache-2.0 license field to package.json ([#1579](https://github.com/elastic/eui/pull/1579))
 
 **Bug fixes**
 
