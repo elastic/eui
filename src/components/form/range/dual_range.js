@@ -44,6 +44,7 @@ export class EuiDualRange extends Component {
     const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
     const isLow = lower < this.props.min;
     const isHigh = upper > this.props.max;
+    console.log(isBackwards, isUnbound);
     if (isBackwards || isUnbound) {
       // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
       // Reset both values in the proximity of the click.
@@ -65,6 +66,7 @@ export class EuiDualRange extends Component {
       (newVal === upper || (newVal < upper && thumbsAreEquidistant))
       && this.state.lastThumbInteraction === 'lower'
     ) {
+      console.log('Lower thumb nearing swap with upper thumb');
       lower = newVal;
     }
     // Upper thumb nearing swap with lower thumb
@@ -72,6 +74,7 @@ export class EuiDualRange extends Component {
       (newVal === lower || (newVal > lower && thumbsAreEquidistant))
       && this.state.lastThumbInteraction === 'upper'
     ) {
+      console.log('Upper thumb nearing swap with lower thumb');
       upper = newVal;
     }
     // Lower thumb targeted or right-moving swap has occured
@@ -79,6 +82,7 @@ export class EuiDualRange extends Component {
       Math.abs(lower - newVal) < Math.abs(upper - newVal)
       || (thumbsAreEquidistant && this.state.lastThumbInteraction === 'upper')
     ) {
+      console.log('Lower thumb targeted or right-moving swap has occured');
       this.setState({
         lastThumbInteraction: 'lower'
       });
@@ -86,6 +90,7 @@ export class EuiDualRange extends Component {
     }
     // Upper thumb targeted or left-moving swap has occured
     else {
+      console.log('Upper thumb targeted or left-moving swap has occured');
       this.setState({
         lastThumbInteraction: 'upper'
       });
@@ -108,6 +113,9 @@ export class EuiDualRange extends Component {
   _handleOnChange = (lower, upper, e) => {
     const isValid = isWithinRange(this.props.min, upper, lower) && isWithinRange(lower, this.props.max, upper);
     this.props.onChange([lower, upper], isValid, e);
+    this.setState({
+      lastThumbInteraction: null
+    });
   }
 
   handleSliderChange = (e) => {
