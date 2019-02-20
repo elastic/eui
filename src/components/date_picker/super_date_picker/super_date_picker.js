@@ -15,6 +15,7 @@ import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { AsyncInterval } from './async_interval';
 
 function isRangeInvalid(start, end) {
   if (start === 'now' && end === 'now') {
@@ -173,8 +174,14 @@ export class EuiSuperDatePicker extends Component {
     }
   }
 
+  componentDidMount = () => {
+    if(!this.props.isPaused) {
+      this.startInterval(this.props.refreshInterval);
+    }
+  }
+
   componentWillUnmount = () => {
-    window.clearTimeout(this.timeoutId);
+    this.stopInterval();
   }
 
   setStart = (start) => {
@@ -231,27 +238,23 @@ export class EuiSuperDatePicker extends Component {
   }
 
   onRefreshChange = ({ refreshInterval, isPaused }) => {
-    window.clearTimeout(this.timeoutId);
-    if(!isPaused && this.props.onRefresh) {
+    this.stopInterval();
+    if(!isPaused) {
       this.startInterval(refreshInterval);
     }
     this.props.onRefreshChange({ refreshInterval, isPaused });
   }
 
-  setIntervalAsync = (fn, ms) => {
-    Promise.resolve(fn()).then(() => {
-      const nextAsyncHandler = () => this.setIntervalAsync(fn, ms);
-      this.timeoutId = window.setTimeout(nextAsyncHandler, ms);
-    });
-  };
+  stopInterval = () => {
+    this.asyncInterval.stop();
+  }
 
   startInterval = (refreshInterval) => {
-    this.setIntervalAsync(() => {
-      const { start, end, onRefresh } = this.props;
-      if(onRefresh) {
-        return onRefresh({ start, end, refreshInterval });
-      }
-    }, refreshInterval);
+    const { start, end, onRefresh } = this.props;
+    if(onRefresh) {
+      const handler = () => onRefresh({ start, end, refreshInterval });
+      this.asyncInterval = new AsyncInterval(handler, refreshInterval);
+    }
   }
 
   renderDatePickerRange = () => {
