@@ -173,6 +173,10 @@ export class EuiSuperDatePicker extends Component {
     }
   }
 
+  componentWillUnmount = () => {
+    window.clearTimeout(this.timeoutId);
+  }
+
   setStart = (start) => {
     this.setTime({ start, end: this.state.end });
   }
@@ -227,10 +231,12 @@ export class EuiSuperDatePicker extends Component {
   }
 
   onRefreshChange = ({ refreshInterval, isPaused }) => {
-    this.resetInterval({ refreshInterval, isPaused });
+    window.clearTimeout(this.timeoutId);
+    if(!isPaused && this.props.onRefresh) {
+      this.startInterval(refreshInterval);
+    }
     this.props.onRefreshChange({ refreshInterval, isPaused });
   }
-
 
   setIntervalAsync = (fn, ms) => {
     Promise.resolve(fn()).then(() => {
@@ -239,20 +245,13 @@ export class EuiSuperDatePicker extends Component {
     });
   };
 
-  componentWillUnmount = () => {
-    window.clearTimeout(this.timeoutId);
-  }
-
-  resetInterval = ({ isPaused, refreshInterval }) => {
-    window.clearTimeout(this.timeoutId);
-    if(!isPaused && this.props.onRefresh) {
-      this.setIntervalAsync(() => {
-        const { start, end, onRefresh } = this.props;
-        if(onRefresh) {
-          return onRefresh({ start, end, refreshInterval });
-        }
-      }, refreshInterval);
-    }
+  startInterval = (refreshInterval) => {
+    this.setIntervalAsync(() => {
+      const { start, end, onRefresh } = this.props;
+      if(onRefresh) {
+        return onRefresh({ start, end, refreshInterval });
+      }
+    }, refreshInterval);
   }
 
   renderDatePickerRange = () => {
