@@ -31,7 +31,7 @@ export default class extends Component {
 
         <EuiDualRange
           id={makeId()}
-          min={100}
+          min={-100}
           max={200}
           step={10}
           value={this.state.value}
@@ -43,7 +43,7 @@ export default class extends Component {
 
         <EuiDualRange
           id={makeId()}
-          min={100}
+          min={-100}
           max={200}
           step={10}
           value={this.state.value}

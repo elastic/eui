@@ -13,15 +13,15 @@ export const EuiRangeInput = ({
   onChange,
   name,
   side,
-  digits,
+  digitTolerance,
   ...rest
 }) => {
 
   // Chrome will properly size the input based on the max value, but FF & IE do not.
   // Calculate the width of the input based on highest number of characters.
   // Add 2 to accomodate for input stepper
-  const digitTolerance = !!digits ? digits : Math.max(String(min).length, String(max).length);
   const widthStyle = { width: `${(digitTolerance / 1.25) + 2}em` };
+  console.log(digitTolerance);
 
   return (
     <EuiFieldNumber
@@ -48,7 +48,7 @@ EuiRangeInput.propTypes = {
   compressed: PropTypes.bool,
   onChange: PropTypes.func,
   name: PropTypes.string,
-  digits: PropTypes.number,
+  digitTolerance: PropTypes.number.isRequired,
   side: PropTypes.oneOf(['min', 'max'])
 };
 EuiRangeInput.defaultProps = {

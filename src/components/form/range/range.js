@@ -52,6 +52,7 @@ export class EuiRange extends Component {
     } = this.props;
 
     const classes = classNames('euiRange', className);
+    const digitTolerance = Math.max(String(min).length, String(max).length);
 
     return (
       <EuiRangeWrapper
@@ -114,6 +115,7 @@ export class EuiRange extends Component {
           <EuiRangeInput
             min={min}
             max={max}
+            digitTolerance={digitTolerance}
             step={step}
             value={value}
             disabled={disabled}
