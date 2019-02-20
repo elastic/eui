@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `7.2.0`.
+
+## [`7.2.0`](https://github.com/elastic/eui/tree/v7.2.0)
+
 - Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
 - Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
 - Added `EuiFocusTrap` as a wrapper around `react-focus-lock` to enable trapping focus in more cases, including React portals ([#1550](https://github.com/elastic/eui/pull/1550))
