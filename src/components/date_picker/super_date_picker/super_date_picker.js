@@ -231,17 +231,25 @@ export class EuiSuperDatePicker extends Component {
     this.props.onRefreshChange({ refreshInterval, isPaused });
   }
 
+
+  setIntervalAsync = (fn, ms) => {
+    Promise.resolve(fn()).then(() => {
+      const nextAsyncHandler = () => this.setIntervalAsync(fn, ms);
+      this.timeoutId = window.setTimeout(nextAsyncHandler, ms);
+    });
+  };
+
   componentWillUnmount = () => {
-    window.clearInterval(this.intervalId);
+    window.clearTimeout(this.timeoutId);
   }
 
   resetInterval = ({ isPaused, refreshInterval }) => {
-    window.clearInterval(this.intervalId);
+    window.clearTimeout(this.timeoutId);
     if(!isPaused && this.props.onRefresh) {
-      this.intervalId = window.setInterval(() => {
+      this.setIntervalAsync(() => {
         const { start, end, onRefresh } = this.props;
         if(onRefresh) {
-          onRefresh({ start, end, refreshInterval });
+          return onRefresh({ start, end, refreshInterval });
         }
       }, refreshInterval);
     }
