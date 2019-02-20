@@ -64,12 +64,9 @@
     ~ .euiRangeTooltip .euiRangeTooltip__value {
       @include euiBottomShadowMedium;
 
-      &.euiRangeTooltip__value--right {
-        transform: translateX(0) translateY(-50%) scale(1.1);
-      }
-
+      &.euiRangeTooltip__value--right,
       &.euiRangeTooltip__value--left {
-        transform: translateX(-100%) translateY(-50%) scale(1.1);
+        transform: translateX(0) translateY(-50%) scale(1.1);
       }
     }
   }
