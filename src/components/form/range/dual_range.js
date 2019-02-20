@@ -349,6 +349,7 @@ EuiDualRange.propTypes = {
   value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */

@@ -4,8 +4,9 @@ import React, {
 } from 'react';
 
 import {
-  EuiDualRange,
+  EuiRange,
   EuiSpacer,
+  EuiDualRange,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -15,39 +16,39 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      value: ['', ''],
+      value: '20',
+      dualValue: [20, 100],
     };
   }
 
-  onChange = (value) => {
+  onChange = e => {
     this.setState({
-      value
+      value: e.target.value,
+    });
+  };
+
+  onDualChange = (value) => {
+    this.setState({
+      dualValue: value
     });
   };
 
   render() {
     return (
       <Fragment>
-
-        <EuiDualRange
+        <EuiRange
           id={makeId()}
-          min={100}
-          max={200}
-          step={10}
           value={this.state.value}
           onChange={this.onChange}
-          showLabels
+          showInput
         />
 
         <EuiSpacer size="xl" />
 
         <EuiDualRange
           id={makeId()}
-          min={100}
-          max={200}
-          step={10}
-          value={this.state.value}
-          onChange={this.onChange}
+          value={this.state.dualValue}
+          onChange={this.onDualChange}
           showInput
         />
       </Fragment>

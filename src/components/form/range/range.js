@@ -43,6 +43,7 @@ export class EuiRange extends Component {
       showRange,
       showValue,
       valueAppend, // eslint-disable-line no-unused-vars
+      valuePrepend, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       value,
       style,
@@ -93,6 +94,8 @@ export class EuiRange extends Component {
               min={min}
               name={name}
               showTicks={showTicks}
+              valuePrepend={valuePrepend}
+              valueAppend={valueAppend}
             />
           )}
 
@@ -134,6 +137,7 @@ EuiRange.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */
@@ -182,13 +186,17 @@ EuiRange.propTypes = {
    */
   showValue: PropTypes.bool,
   /**
-   * Shows a tooltip styled value
+   * Appends to the tooltip
    */
   valueAppend: PropTypes.node,
+  /**
+   * Prepends to the tooltip
+   */
+  valuePrepend: PropTypes.node,
 };
 
 EuiRange.defaultProps = {
-  min: 1,
+  min: 0,
   max: 100,
   step: 1,
   fullWidth: false,

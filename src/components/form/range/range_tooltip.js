@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiRangeTooltip = ({ value, valueAppend, max, min, name, showTicks }) => {
+export const EuiRangeTooltip = ({ value, valueAppend, valuePrepend, max, min, name, showTicks }) => {
   // Calculate the left position based on value
   const decimal = (value - min) / (max - min);
   // Must be between 0-100%
@@ -30,7 +30,7 @@ export const EuiRangeTooltip = ({ value, valueAppend, max, min, name, showTicks 
   return (
     <div className="euiRangeTooltip">
       <output className={valueClasses} htmlFor={name} style={valuePositionStyle}>
-        {value}{valueAppend}
+        {valuePrepend}{value}{valueAppend}
       </output>
     </div>
   );
@@ -38,7 +38,8 @@ export const EuiRangeTooltip = ({ value, valueAppend, max, min, name, showTicks 
 
 EuiRangeTooltip.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  valueAppend: PropTypes.string,
+  valueAppend: PropTypes.node,
+  valuePrepend: PropTypes.node,
   max: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
   name: PropTypes.string
