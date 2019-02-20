@@ -59,7 +59,7 @@ const positionSubstitutes: {
 interface FindPopoverPositionArgs {
   anchor: HTMLElement;
   popover: HTMLElement;
-  align?: EuiPopoverPosition | null;
+  align?: EuiPopoverPosition;
   position: EuiPopoverPosition;
   forcePosition?: boolean;
   buffer?: number;
@@ -97,7 +97,7 @@ interface FindPopoverPositionArgs {
 export function findPopoverPosition({
   anchor,
   popover,
-  align = null,
+  align,
   position,
   forcePosition,
   buffer = 16,
@@ -151,7 +151,7 @@ export function findPopoverPosition({
   // Try the user-desired position first.
   const iterationPositions = [position];
   // keep user-defined alignment in the original positions.
-  const iterationAlignments: Array<null | EuiPopoverPosition> = [align];
+  const iterationAlignments: Array<undefined | EuiPopoverPosition> = [align];
 
   if (forcePosition !== true) {
     iterationPositions.push(positionComplements[position]); // Try the complementary position.
@@ -162,7 +162,7 @@ export function findPopoverPosition({
         positionSubstitutes[position], // Switch to the cross axis.
         positionComplements[positionSubstitutes[position]] // Try the complementary position on the cross axis.
       );
-      iterationAlignments.push(null, null); // discard desired alignment on cross-axis
+      iterationAlignments.push(undefined, undefined); // discard desired alignment on cross-axis
     }
   } else {
     // position is forced, if it conficts with the alignment then reset align to `null`
@@ -170,9 +170,9 @@ export function findPopoverPosition({
     // will position and align `left`, and `leftLeft` is not a valid placement
     if (
       position === align ||
-      (align != null && position === positionComplements[align])
+      (align !== undefined && position === positionComplements[align])
     ) {
-      iterationAlignments[0] = null;
+      iterationAlignments[0] = undefined;
     }
   }
 
@@ -219,7 +219,7 @@ export function findPopoverPosition({
 
 interface GetPopoverScreenCoordinatesArgs {
   position: EuiPopoverPosition;
-  align?: EuiPopoverPosition | null;
+  align?: EuiPopoverPosition;
   anchorBoundingBox: EuiClientRect;
   popoverBoundingBox: EuiClientRect;
   windowBoundingBox: EuiClientRect;
@@ -254,7 +254,7 @@ interface GetPopoverScreenCoordinatesArgs {
  */
 export function getPopoverScreenCoordinates({
   position,
-  align = null,
+  align,
   anchorBoundingBox,
   popoverBoundingBox,
   windowBoundingBox,
@@ -382,7 +382,7 @@ interface GetCrossAxisPositionArgs {
   crossAxisSecondSide: EuiPopoverPosition;
   crossAxisDimension: Dimension;
   position: EuiPopoverPosition;
-  align: EuiPopoverPosition | null;
+  align?: EuiPopoverPosition;
   buffer: number;
   offset: number;
   windowBoundingBox: EuiClientRect;
