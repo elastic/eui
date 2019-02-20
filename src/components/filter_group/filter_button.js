@@ -22,6 +22,7 @@ export const EuiFilterButton = ({
   color,
   hasActiveFilters,
   numFilters,
+  numActiveFilters,
   isDisabled,
   isSelected,
   type,
@@ -49,13 +50,24 @@ export const EuiFilterButton = ({
     textProps && textProps.className,
   );
 
+  let dataText;
+  if (typeof children === 'string') {
+    dataText = children;
+  }
+
   const buttonContents = (
     <Fragment>
-      <span className="euiFilterButton__textShift" data-text={children}>
+      <span className="euiFilterButton__textShift" data-text={dataText}>
         {children}
       </span>
       {numFiltersDefined &&
-        <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
+        <EuiNotificationBadge
+          className="euiFilterButton__notification"
+          size="m"
+          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+        >
+          {numActiveFilters || numFilters}
+        </EuiNotificationBadge>
       }
     </Fragment>
   );
@@ -94,6 +106,7 @@ EuiFilterButton.propTypes = {
    * Adds a notification with number
    */
   numFilters: PropTypes.number,
+  numActiveFilters: PropTypes.number,
   /**
    * Applies a visual state to the button useful when using with a popover.
    */

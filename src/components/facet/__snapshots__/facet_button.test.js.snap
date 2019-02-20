@@ -12,6 +12,7 @@ exports[`EuiFacetButton is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
+      data-text="Content"
     >
       Content
     </span>
@@ -117,7 +118,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
       class="euiFacetButton__text"
     />
     <span
-      class="euiNotificationBadge euiFacetButton__quantity"
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
     >
       60
     </span>

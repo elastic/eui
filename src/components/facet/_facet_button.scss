@@ -14,43 +14,7 @@
   animation: none !important; /* 1 */
   transition-timing-function: ease-in; /* 2 */
   transition-duration: $euiAnimSpeedFast; /* 2 */
-
-  .euiFacetButton__content {
-    @include euiButtonContent;
-  }
-
-  .euiFacetButton__text {
-    flex-grow: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: $euiButtonHeight; // For better alignment with icon/quantity
-  }
-
-  .euiFacetButton__spinner,
-  .euiFacetButton__quantity,
-  .euiFacetButton__icon {
-    flex-shrink: 0; // Ensures they don't scale down below their intended size
-  }
-
-  .euiFacetButton__quantity,
-  .euiFacetButton__icon {
-    transition: all $euiAnimSpeedFast ease-in;
-  }
-
-  .euiFacetButton__quantity {
-    // Increase the default size a bit
-    $size: $euiSize + $euiSizeXS;
-    line-height: $size;
-    height: $size;
-    min-width: $euiSizeL;
-  }
-
-  &.euiFacetButton--unSelected .euiFacetButton__quantity,
-  &:disabled .euiFacetButton__quantity {
-    // Change the default coloring when it's not selected
-    background-color: tint($euiColorLightShade, 30%);
-    color: $euiColorFullShade;
-  }
+  transition: all $euiAnimSpeedFast ease-in;
 
   &:hover,
   &:focus {
@@ -91,6 +55,21 @@
   }
 }
 
-.euiFacetButton--isSelected .euiFacetButton__text {
-  font-weight: $euiFontWeightBold;
+.euiFacetButton__content {
+  @include euiButtonContent;
+}
+
+.euiFacetButton__text {
+  @include euiTextShift;
+  @include euiTextTruncate;
+  flex-grow: 1;
+  vertical-align: middle;
+
+  .euiFacetButton--isSelected & {
+    font-weight: $euiFontWeightBold;
+  }
+}
+
+.euiFacetButton__icon {
+  transition: all $euiAnimSpeedFast ease-in;
 }

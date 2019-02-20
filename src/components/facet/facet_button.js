@@ -48,6 +48,8 @@ export const EuiFacetButton = ({
     buttonQuantity = (
       <EuiNotificationBadge
         className="euiFacetButton__quantity"
+        size="m"
+        color={!isSelected || isDisabled ? 'subdued' : 'accent'}
       >
         {quantity}
       </EuiNotificationBadge>
@@ -64,18 +66,22 @@ export const EuiFacetButton = ({
     );
   }
 
+  let dataText;
+  if (typeof children === 'string') {
+    dataText = children;
+  }
 
   return (
     <button
-      disabled={isDisabled}
       className={classes}
+      disabled={isDisabled}
       type="button"
       ref={buttonRef}
       {...rest}
     >
       <span className="euiFacetButton__content">
         {buttonIcon}
-        <span className="euiFacetButton__text">{children}</span>
+        <span data-text={dataText} className="euiFacetButton__text">{children}</span>
         {buttonQuantity}
       </span>
     </button>
