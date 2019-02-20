@@ -17,7 +17,6 @@ export class EuiDualRange extends Component {
   state = {
     hasFocus: false,
     rangeSliderRefAvailable: false,
-    lastThumbInteraction: null
   }
 
   rangeSliderRef = null;
@@ -40,60 +39,23 @@ export class EuiDualRange extends Component {
   }
 
   _determineInvalidThumbMovement = (newVal, lower, upper, e) => {
-    const isBackwards = Number(lower) >= Number(upper);
-    const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
-    const isLow = lower < this.props.min;
-    const isHigh = upper > this.props.max;
-    console.log(isBackwards, isUnbound);
-    if (isBackwards || isUnbound) {
-      // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
-      // Reset both values in the proximity of the click.
-      lower = newVal - (this.props.step || 1);
-      upper = newVal;
-    } else {
-      // Scenerio in which we can reasonably infer intention via click location if range extrema are respected.
-      // Reset either value to its respective terminal value.
-      lower = isLow ? this.props.min : lower;
-      upper = isHigh ? this.props.max : upper;
-    }
+    // If the values are invalid, find whether the new value is in the upper
+    // or lower half and move the appropriate handle to the new value,
+    // while the other handle gets moved to the opposite bound
+    const lowerHalf = (Math.abs(this.props.max - this.props.min) / 2) + this.props.min;
+    const newValIsLow = isWithinRange(this.props.min, lowerHalf, newVal);
+    lower = newValIsLow ? newVal : this.props.min;
+    upper = !newValIsLow ? newVal : this.props.max;
     this._handleOnChange(lower, upper, e);
   }
 
   _determineValidThumbMovement = (newVal, lower, upper, e) => {
-    const thumbsAreEquidistant = Math.abs(lower - newVal) === Math.abs(upper - newVal);
-    // Lower thumb nearing swap with upper thumb
-    if (
-      (newVal === upper || (newVal < upper && thumbsAreEquidistant))
-      && this.state.lastThumbInteraction === 'lower'
-    ) {
-      console.log('Lower thumb nearing swap with upper thumb');
-      lower = newVal;
-    }
-    // Upper thumb nearing swap with lower thumb
-    else if (
-      (newVal === lower || (newVal > lower && thumbsAreEquidistant))
-      && this.state.lastThumbInteraction === 'upper'
-    ) {
-      console.log('Upper thumb nearing swap with lower thumb');
-      upper = newVal;
-    }
     // Lower thumb targeted or right-moving swap has occured
-    else if (
-      Math.abs(lower - newVal) < Math.abs(upper - newVal)
-      || (thumbsAreEquidistant && this.state.lastThumbInteraction === 'upper')
-    ) {
-      console.log('Lower thumb targeted or right-moving swap has occured');
-      this.setState({
-        lastThumbInteraction: 'lower'
-      });
+    if (Math.abs(lower - newVal) < Math.abs(upper - newVal)) {
       lower = newVal;
     }
     // Upper thumb targeted or left-moving swap has occured
     else {
-      console.log('Upper thumb targeted or left-moving swap has occured');
-      this.setState({
-        lastThumbInteraction: 'upper'
-      });
       upper = newVal;
     }
     this._handleOnChange(lower, upper, e);
@@ -113,9 +75,6 @@ export class EuiDualRange extends Component {
   _handleOnChange = (lower, upper, e) => {
     const isValid = isWithinRange(this.props.min, upper, lower) && isWithinRange(lower, this.props.max, upper);
     this.props.onChange([lower, upper], isValid, e);
-    this.setState({
-      lastThumbInteraction: null
-    });
   }
 
   handleSliderChange = (e) => {
