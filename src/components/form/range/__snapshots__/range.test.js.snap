@@ -11,6 +11,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
       value="8"
     />
@@ -30,19 +31,20 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
 
 exports[`EuiRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiRange"
+  class="euiRangeWrapper euiRange testClass1 testClass2"
 >
   <div
     class="euiRangeTrack"
   >
     <input
       aria-label="aria-label"
-      class="euiRangeSlider testClass1 testClass2"
+      class="euiRangeSlider"
       data-test-subj="test subject string"
       id="id"
       max="10"
       min="1"
       name="name"
+      step="1"
       type="range"
       value="8"
     />
@@ -61,6 +63,7 @@ exports[`EuiRange props compressed should render 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
   </div>
@@ -69,19 +72,20 @@ exports[`EuiRange props compressed should render 1`] = `
 
 exports[`EuiRange props extra input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange"
+  class="euiRangeWrapper euiRange testClass1 testClass2"
 >
   <div
     class="euiRangeTrack"
   >
     <input
       aria-label="aria-label"
-      class="euiRangeSlider testClass1 testClass2"
+      class="euiRangeSlider"
       data-test-subj="test subject string"
       id="id"
       max="10"
       min="1"
       name="name"
+      step="1"
       tabindex="-1"
       type="range"
       value="8"
@@ -100,7 +104,8 @@ exports[`EuiRange props extra input should render 1`] = `
         max="10"
         min="1"
         name="name"
-        style="width:4em"
+        step="1"
+        style="width:3.6em"
         type="number"
         value="8"
       />
@@ -120,6 +125,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
   </div>
@@ -142,6 +148,7 @@ exports[`EuiRange props labels should render 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
   </div>
@@ -164,6 +171,7 @@ exports[`EuiRange props levels should render 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
     <div
@@ -171,11 +179,11 @@ exports[`EuiRange props levels should render 1`] = `
     >
       <span
         class="euiRangeLevel euiRangeLevel--danger"
-        style="width:606.060606060606%"
+        style="width:19.19191919191919%"
       />
       <span
         class="euiRangeLevel euiRangeLevel--success"
-        style="width:1414.141414141414%"
+        style="width:80.8080808080808%"
       />
     </div>
   </div>
@@ -190,9 +198,10 @@ exports[`EuiRange props range should render 1`] = `
     class="euiRangeTrack"
   >
     <input
-      class="euiRangeSlider"
+      class="euiRangeSlider euiRangeSlider--hasRange"
       max="100"
       min="1"
+      step="1"
       type="range"
       value="8"
     />
@@ -219,6 +228,7 @@ exports[`EuiRange props ticks should render 1`] = `
       class="euiRangeSlider euiRangeSlider--hasTicks"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
     <div
@@ -229,6 +239,7 @@ exports[`EuiRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.80672268907563%"
         tabindex="-1"
+        title="1"
         type="button"
         value="1"
       >
@@ -238,6 +249,7 @@ exports[`EuiRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.80672268907563%"
         tabindex="-1"
+        title="21"
         type="button"
         value="21"
       >
@@ -247,6 +259,7 @@ exports[`EuiRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.80672268907563%"
         tabindex="-1"
+        title="41"
         type="button"
         value="41"
       >
@@ -256,6 +269,7 @@ exports[`EuiRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.80672268907563%"
         tabindex="-1"
+        title="61"
         type="button"
         value="61"
       >
@@ -265,6 +279,7 @@ exports[`EuiRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.80672268907563%"
         tabindex="-1"
+        title="81"
         type="button"
         value="81"
       >
@@ -286,6 +301,7 @@ exports[`EuiRange props value should render 1`] = `
       class="euiRangeSlider"
       max="100"
       min="1"
+      step="1"
       type="range"
     />
     <div

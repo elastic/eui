@@ -8,20 +8,24 @@ export const EuiRangeTicks = ({
   disabled,
   onChange,
   ticks,
-  tickObject,
+  tickSequence,
   value,
   max,
   min,
+  interval,
 }) => {
+  // Calculate the width of each tick mark
+  const percentageWidth = (interval / ((max - min) + interval)) * 100;
+
   // Align with item labels across the range by adding
   // left and right negative margins that is half of the tick marks
   const ticksStyle = !!ticks
     ? undefined
-    : { margin: `0 ${tickObject.percentageWidth / -2}%`, left: 0, right: 0 };
+    : { margin: `0 ${percentageWidth / -2}%`, left: 0, right: 0 };
 
   return (
     <div className="euiRangeTicks" style={ticksStyle}>
-      {tickObject.sequence.map(tickValue => {
+      {tickSequence.map(tickValue => {
         const tickStyle = {};
         let customTick;
         if (ticks) {
@@ -31,7 +35,7 @@ export const EuiRangeTicks = ({
             tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
           }
         } else {
-          tickStyle.width = `${tickObject.percentageWidth}%`;
+          tickStyle.width = `${percentageWidth}%`;
         }
 
         const tickClasses = classNames('euiRangeTick', {
@@ -70,10 +74,7 @@ EuiRangeTicks.propTypes = {
       label: PropTypes.node.isRequired,
     })
   ),
-  tickObject: PropTypes.shape({
-    percentageWidth: PropTypes.number,
-    sequence: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
+  tickSequence: PropTypes.arrayOf(PropTypes.number).isRequired,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -83,4 +84,5 @@ EuiRangeTicks.propTypes = {
   ]),
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
+  interval: PropTypes.number,
 };

@@ -18,12 +18,12 @@ export default class extends Component {
     this.levels = [
       {
         min: 100,
-        max: 140,
+        max: 120,
         color: 'danger'
       },
       {
-        min: 140,
-        max: 180,
+        min: 120,
+        max: 200,
         color: 'success'
       }
     ];

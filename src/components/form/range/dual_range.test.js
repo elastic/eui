@@ -91,13 +91,13 @@ describe('EuiDualRange', () => {
         <EuiDualRange
           levels={[
             {
-              min: 0,
-              max: 600,
+              min: 1,
+              max: 20,
               color: 'danger'
             },
             {
-              min: 600,
-              max: 2000,
+              min: 20,
+              max: 100,
               color: 'success'
             }
           ]}

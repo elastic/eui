@@ -96,6 +96,7 @@ export default class extends Component {
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
           aria-describedby="levelsHelp"
+          showLabels
           showInput
           compressed
           levels={this.levels}
