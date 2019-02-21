@@ -33,19 +33,29 @@ export class EuiDualRange extends Component {
   get upperValue() {
     return this.props.value && this.props.value !== '' ? this.props.value[1] : this.props.max;
   }
+  get lowerValueIsValid() {
+    return isWithinRange(this.props.min, this.upperValue, this.lowerValue);
+  }
+  get upperValueIsValid() {
+    return isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+  }
   get isValid() {
-    return isWithinRange(this.props.min, this.upperValue, this.lowerValue)
-      && isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+    return this.lowerValueIsValid && this.upperValueIsValid;
   }
 
   _determineInvalidThumbMovement = (newVal, lower, upper, e) => {
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
-    // while the other handle gets moved to the opposite bound
+    // while the other handle gets moved to the opposite bound (if invalid)
     const lowerHalf = (Math.abs(this.props.max - this.props.min) / 2) + this.props.min;
     const newValIsLow = isWithinRange(this.props.min, lowerHalf, newVal);
-    lower = newValIsLow ? newVal : this.props.min;
-    upper = !newValIsLow ? newVal : this.props.max;
+    if (newValIsLow) {
+      lower = newVal;
+      upper = !this.upperValueIsValid ? this.props.max : upper;
+    } else {
+      lower = !this.lowerValueIsValid ? this.props.min : lower;
+      upper = newVal;
+    }
     this._handleOnChange(lower, upper, e);
   }
 
