@@ -5,7 +5,7 @@ import {
   configure
 } from 'enzyme';
 
-import EnzymeAdapter from 'enzyme-adapter-react-16.3';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
 
 import html from 'html';
 
