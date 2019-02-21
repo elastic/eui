@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -19,5 +19,5 @@ declare module '@elastic/eui' {
       compressed?: boolean;
     };
 
-  export const EuiFormRow: SFC<EuiFormRowProps>;
+  export const EuiFormRow: FunctionComponent<EuiFormRowProps>;
 }

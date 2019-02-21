@@ -2,7 +2,7 @@ import { CommonProps, NoArgCallback } from '../common';
 /// <reference path="../panel/index.d.ts" />
 
 import { FocusTarget } from 'focus-trap';
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -40,11 +40,11 @@ declare module '@elastic/eui' {
     panelPaddingSize?: PanelPaddingSize;
   }
 
-  export const EuiPopover: SFC<
+  export const EuiPopover: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps
   >;
 
-  export const EuiPopoverTitle: SFC<
+  export const EuiPopoverTitle: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
   >;
 }

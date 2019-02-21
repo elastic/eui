@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -12,5 +12,5 @@ declare module '@elastic/eui' {
 
   };
 
-  export const EuiListGroup: SFC<EuiListGroupProps>;
+  export const EuiListGroup: FunctionComponent<EuiListGroupProps>;
 }

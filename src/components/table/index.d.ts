@@ -4,7 +4,7 @@ import { IconType } from '../icon';
 import { HorizontalAlignment } from '../../services/alignment';
 
 import {
-  SFC,
+  FunctionComponent,
   HTMLAttributes,
   TableHTMLAttributes,
   ButtonHTMLAttributes,
@@ -24,7 +24,7 @@ declare module '@elastic/eui' {
     responsive?: boolean;
   }
 
-  export const EuiTable: SFC<
+  export const EuiTable: FunctionComponent<
     CommonProps & TableHTMLAttributes<HTMLTableElement> & EuiTableProps
   >;
 
@@ -36,7 +36,7 @@ declare module '@elastic/eui' {
 
   export interface EuiTableBodyProps {}
 
-  export const EuiTableBody: SFC<CommonProps & EuiTableBodyProps>;
+  export const EuiTableBody: FunctionComponent<CommonProps & EuiTableBodyProps>;
 
   /**
    * table header type defs
@@ -46,7 +46,7 @@ declare module '@elastic/eui' {
 
   export interface EuiTableHeaderProps {}
 
-  export const EuiTableHeader: SFC<CommonProps & EuiTableHeaderProps>;
+  export const EuiTableHeader: FunctionComponent<CommonProps & EuiTableHeaderProps>;
 
   /**
    * table header button type defs
@@ -58,7 +58,7 @@ declare module '@elastic/eui' {
     iconType?: IconType;
   }
 
-  export const EuiTableHeaderButton: SFC<
+  export const EuiTableHeaderButton: FunctionComponent<
     CommonProps &
       ButtonHTMLAttributes<HTMLButtonElement> &
       EuiTableHeaderButtonProps
@@ -81,7 +81,7 @@ declare module '@elastic/eui' {
     scope?: TableHeaderCellScope;
   }
 
-  export const EuiTableHeaderCell: SFC<
+  export const EuiTableHeaderCell: FunctionComponent<
     CommonProps &
       ThHTMLAttributes<HTMLTableHeaderCellElement> &
       EuiTableHeaderCellProps
@@ -104,7 +104,7 @@ declare module '@elastic/eui' {
     scope?: EuiTableHeaderCellCheckboxScope;
   }
 
-  export const EuiTableHeaderCellCheckbox: SFC<
+  export const EuiTableHeaderCellCheckbox: FunctionComponent<
     CommonProps &
       TdHTMLAttributes<HTMLTableCellElement> &
       EuiTableHeaderCellCheckboxProps
@@ -120,7 +120,7 @@ declare module '@elastic/eui' {
     isSelected?: boolean;
   }
 
-  export const EuiTableRow: SFC<
+  export const EuiTableRow: FunctionComponent<
     CommonProps & EuiTableRowProps & HTMLAttributes<HTMLTableRowElement>
   >;
 
@@ -143,7 +143,7 @@ declare module '@elastic/eui' {
     truncateText?: boolean;
   }
 
-  export const EuiTableRowCell: SFC<
+  export const EuiTableRowCell: FunctionComponent<
     CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellProps
   >;
 
@@ -155,7 +155,7 @@ declare module '@elastic/eui' {
 
   export interface EuiTableRowCellCheckboxProps {}
 
-  export const EuiTableRowCellCheckbox: SFC<
+  export const EuiTableRowCellCheckbox: FunctionComponent<
     CommonProps &
       TdHTMLAttributes<HTMLTableCellElement> &
       EuiTableRowCellCheckboxProps

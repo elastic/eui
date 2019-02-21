@@ -1,7 +1,7 @@
 import { CommonProps } from '../../common';
 /// <reference path="../../icon/index.d.ts" />
 
-import { ReactNode, SFC, HTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -11,7 +11,7 @@ declare module '@elastic/eui' {
   export interface EuiFormHelpTextProps {
   }
 
-  export const EuiFormHelpText: SFC<
+  export const EuiFormHelpText: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiFormHelpTextProps
     >;
 }

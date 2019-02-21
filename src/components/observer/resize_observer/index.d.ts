@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
     onResize: (dimensions: { width: number, height: number }) => void
   }
 
-  export const EuiResizeObserver: SFC<
+  export const EuiResizeObserver: FunctionComponent<
     CommonProps & EuiResizeObserverProps
     >;
 }

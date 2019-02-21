@@ -21,7 +21,7 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
     size?: SpacerSize;
   };
 
-export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
+export const EuiSpacer: React.FunctionComponent<EuiSpacerProps> = ({
   className,
   size = 'l',
   ...rest

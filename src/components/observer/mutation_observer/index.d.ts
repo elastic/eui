@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -14,7 +14,7 @@ declare module '@elastic/eui' {
     onMutation: MutationCallback
   }
 
-  export const EuiMutationObserver: SFC<
+  export const EuiMutationObserver: FunctionComponent<
     CommonProps & EuiMutationObserverProps
     >;
 }

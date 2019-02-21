@@ -1,5 +1,5 @@
 declare module '@elastic/eui' {
-  import { SFC } from 'react';
+  import { FunctionComponent } from 'react';
 
   /**
    * portal type defs
@@ -10,5 +10,5 @@ declare module '@elastic/eui' {
     children: React.ReactNode;
   };
 
-  export const EuiPortal: SFC<EuiPortalProps>;
+  export const EuiPortal: FunctionComponent<EuiPortalProps>;
 }

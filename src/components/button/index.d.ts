@@ -1,7 +1,7 @@
 import { CommonProps } from '../common';
 import { IconType, IconSize } from '../icon'
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
+import { FunctionComponent, ButtonHTMLAttributes, AnchorHTMLAttributes, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
@@ -36,7 +36,7 @@ declare module '@elastic/eui' {
     contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }
-  export const EuiButton: SFC<
+  export const EuiButton: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
   >;
 
@@ -62,7 +62,7 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     iconSize?: IconSize
   }
-  export const EuiButtonIcon: SFC<
+  export const EuiButtonIcon: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
   >;
 
@@ -94,7 +94,7 @@ declare module '@elastic/eui' {
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }
 
-  export const EuiButtonEmpty: SFC<
+  export const EuiButtonEmpty: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonEmptyProps>
   >;
 }

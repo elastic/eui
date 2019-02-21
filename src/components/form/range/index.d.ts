@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../../common';
 
-import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
@@ -31,7 +31,7 @@ declare module '@elastic/eui' {
     tickInterval?: number;
   }
 
-  export const EuiRange: SFC<
+  export const EuiRange: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiRangeProps
   >;
 
@@ -46,7 +46,7 @@ declare module '@elastic/eui' {
       value: [number | string, number | string]
     }
 
-    export const EuiDualRange: SFC<
+    export const EuiDualRange: FunctionComponent<
       CommonProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & EuiRangeProps & EuiDualRangeProps
     >;
 }

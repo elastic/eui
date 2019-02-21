@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../../common';
 
-import { SFC, ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
+import { FunctionComponent, ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -24,7 +24,7 @@ declare module '@elastic/eui' {
 
   export type x = EuiRadioGroupProps['onChange'];
 
-  export const EuiRadioGroup: SFC<EuiRadioGroupProps>;
+  export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps>;
 
   export interface EuiRadioProps {
     autoFocus?: boolean;
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
     onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
   }
 
-  export const EuiRadio: SFC<
+  export const EuiRadio: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiRadioProps
   >;
 }

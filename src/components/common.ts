@@ -1,4 +1,4 @@
-import { Component, SFC } from 'react';
+import { Component, FunctionComponent, SFC } from 'react';
 
 export interface CommonProps {
   className?: string;
@@ -21,7 +21,9 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
 }
 
 export type PropsOf<C> = C extends SFC<infer SFCProps>
-  ? SFCProps // C extends FunctionComponent<infer FunctionalProps> ? FunctionalProps :
+  ? SFCProps
+  : C extends FunctionComponent<infer FunctionProps>
+  ? FunctionProps
   : C extends Component<infer ComponentProps>
   ? ComponentProps
   : never;
@@ -60,7 +62,7 @@ passing additional props down through `...rest`, which can be specified as
 
 type Spanlike = HTMLAttributes<HTMLSpanElement>;
 type Buttonlike = { onClick: MouseEventHandler<HTMLButtonElement> }; // onClick is the discriminant
-React.SFC<Spanlike | Buttonlike>
+React.FunctionComponent<Spanlike | Buttonlike>
 
 Internally, the component would have a type guard to check if props contains `onClick` and resolve to Buttonlike.
 Externally, however, you could use the component as
@@ -72,7 +74,7 @@ This prevents immediate feedback to the develop, and would actually lead to Reac
 still propogate down to the span's props, which is invalid. The following two utility types provide a solution for
 creating exclusive unions:
 
-React.SFC<ExclusiveUnion<Spanlike, Buttonlike>>
+React.FunctionComponent<ExclusiveUnion<Spanlike, Buttonlike>>
  */
 
 /**

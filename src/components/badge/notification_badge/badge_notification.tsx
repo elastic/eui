@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode, SFC } from 'react';
+import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
@@ -8,11 +8,9 @@ export interface EuiNotificationBadgeProps
   children?: ReactNode;
 }
 
-export const EuiNotificationBadge: SFC<EuiNotificationBadgeProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiNotificationBadge: FunctionComponent<
+  EuiNotificationBadgeProps
+> = ({ children, className, ...rest }) => {
   const classes = classNames('euiNotificationBadge', className);
 
   return (

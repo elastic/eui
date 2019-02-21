@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, SFC, HTMLAttributes } from 'react';
+import { MouseEventHandler, ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
@@ -30,7 +30,7 @@ declare module '@elastic/eui' {
     expand?: boolean;
   }
 
-  export const EuiTab: SFC<EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
-  export const EuiTabs: SFC<EuiTabsProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
-  export const EuiTabbedContent: SFC<EuiTabbedContentProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiTab: FunctionComponent<EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiTabs: FunctionComponent<EuiTabsProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiTabbedContent: FunctionComponent<EuiTabbedContentProps & CommonProps & HTMLAttributes<HTMLDivElement>>;
 }
