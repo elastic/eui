@@ -4,7 +4,9 @@
  * Common use cases include calling simulate or getDOMNode on the returned ReactWrapper.
  */
 export const findTestSubject = (mountedComponent, testSubjectSelector) => {
-  const testSubject = mountedComponent.find(`[data-test-subj="${testSubjectSelector}"]`);
+  // The ~ looks for the value in space-separated list, allowing support for multiple data-test-subj
+  // values on a single element.
+  const testSubject = mountedComponent.find(`[data-test-subj~="${testSubjectSelector}"]`);
 
   // Restores Enzyme 2's find behavior, which was to only return ReactWrappers around DOM elements.
   // Enzyme 3 returns ReactWrappers around both DOM elements and React components.
