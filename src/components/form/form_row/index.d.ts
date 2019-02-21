@@ -17,6 +17,7 @@ declare module '@elastic/eui' {
       label?: ReactNode;
       describedByIds?: string[];
       compressed?: boolean;
+      displayOnly?: boolean;
     };
 
   export const EuiFormRow: SFC<EuiFormRowProps>;
