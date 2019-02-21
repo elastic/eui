@@ -691,7 +691,3 @@ export const EuiIcon: SFC<Props> = ({
     />
   );
 };
-
-EuiIcon.defaultProps = {
-  size: 'm',
-};

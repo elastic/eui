@@ -23,18 +23,10 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
 
 export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
   className,
-  size,
+  size = 'l',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiSpacer',
-    size ? sizeToClassNameMap[size] : undefined,
-    className
-  );
+  const classes = classNames('euiSpacer', sizeToClassNameMap[size], className);
 
   return <div className={classes} {...rest} />;
-};
-
-EuiSpacer.defaultProps = {
-  size: 'l',
 };

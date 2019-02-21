@@ -590,7 +590,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           <EuiIcon
                             aria-hidden="true"
                             className="euiFormControlLayoutCustomIcon__icon"
-                            size="m"
                             type="arrowDown"
                           >
                             <arrowDown

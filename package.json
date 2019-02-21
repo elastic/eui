@@ -100,8 +100,8 @@
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
     "dts-generator": "^2.1.0",
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16.3": "^1.4.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "enzyme-to-json": "^3.3.0",
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.9.0",
@@ -139,8 +139,8 @@
     "prompt": "^1.0.0",
     "prop-types": "^15.6.0",
     "raw-loader": "^0.5.1",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.2.0",
     "react-router-redux": "^4.0.8",
@@ -183,8 +183,8 @@
     "@types/react": "^16.8.0",
     "moment": "^2.13.0",
     "prop-types": "^15.5.0",
-    "react": "^16.3",
-    "react-dom": "^16.3",
+    "react": "^16.8",
+    "react-dom": "^16.8",
     "typescript": "^3.0.0"
   }
 }
