@@ -36,9 +36,9 @@ export const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
 EuiRangeLevels.propTypes = {
   levels: PropTypes.arrayOf(
     PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-      color: PropTypes.oneOf(LEVEL_COLORS),
+      min: PropTypes.number.isRequired,
+      max: PropTypes.number.isRequired,
+      color: PropTypes.oneOf(LEVEL_COLORS).isRequired,
     }),
   ),
   max: PropTypes.number.isRequired,

@@ -11,15 +11,13 @@ export { LEVEL_COLORS };
 
 export class EuiRangeTrack extends Component {
   validateValueIsInStep = (value) => {
-    // Error out if the max value is not included in the sequence
     if (value < this.props.min) {
       throw new Error(`The value of ${value} is lower than the min value of ${this.props.min}.`);
     }
-    // Error out if the max value is not included in the sequence
     if (value > this.props.max) {
       throw new Error(`The value of ${value} is higher than the max value of ${this.props.max}.`);
     }
-    // Error out if the max value is not included in the sequence
+    // Error out if the value doesn't line up with the sequence of steps
     if ((value - this.props.min) % this.props.step > 0) {
       throw new Error(`The value of ${value} is not included in the possible sequence provided by the step of ${this.props.step}.`);
     }
@@ -106,7 +104,7 @@ export class EuiRangeTrack extends Component {
     return (
       <div className={trackClasses} style={inputWrapperStyle}>
         {children}
-        {!!levels.length && (
+        {levels && !!levels.length && (
           <EuiRangeLevels
             levels={levels}
             max={max}

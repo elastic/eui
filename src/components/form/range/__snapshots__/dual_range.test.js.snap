@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    class="euiRangeTrack"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange allows value prop to accept numbers 1`] = `
 <div
   class="euiRangeWrapper euiDualRange"
@@ -70,6 +90,88 @@ exports[`EuiDualRange props compressed should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDualRange props custom ticks should render 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    class="euiRangeTrack"
+    style="margin-right:0.6em"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasTicks euiRangeSlider--hasRange euiDualRange__slider"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+    <div
+      class="euiRangeHighlight euiRangeHighlight--hasTicks"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiRangeTicks"
+    >
+      <button
+        class="euiRangeTick euiRangeTick--isCustom"
+        style="left:20%"
+        tabindex="-1"
+        title="20kb"
+        type="button"
+        value="20"
+      >
+        20kb
+      </button>
+      <button
+        class="euiRangeTick euiRangeTick--isCustom"
+        style="left:100%"
+        tabindex="-1"
+        title="100kb"
+        type="button"
+        value="100"
+      >
+        100kb
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDualRange props disabled should render 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    class="euiRangeTrack euiRangeTrack--disabled"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      disabled=""
       max="100"
       min="0"
       step="1"
