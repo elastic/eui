@@ -13,6 +13,7 @@
 /// <reference path="./filter_group/index.d.ts" />
 /// <reference path="./flex/index.d.ts" />
 /// <reference path="./flyout/index.d.ts" />
+/// <reference path="./focus_trap/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./health/index.d.ts" />
 /// <reference path="./key_pad_menu/index.d.ts" />

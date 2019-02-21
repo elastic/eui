@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import FocusTrap from 'focus-trap-react';
 
 import { keyCodes, EuiWindowEvent } from '../../services';
 
+import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiButtonIcon } from '../button';
 
@@ -92,14 +92,9 @@ export class EuiFlyout extends Component {
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
-        <FocusTrap
-          focusTrapOptions={{
-            fallbackFocus: () => this.flyout,
-            clickOutsideDeactivates: true,
-          }}
-        >
+        <EuiFocusTrap clickOutsideDisables={true}>
           {flyoutContent}
-        </FocusTrap>
+        </EuiFocusTrap>
       </span>
     );
   }

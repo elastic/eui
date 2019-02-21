@@ -1,7 +1,7 @@
 import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
+/// <reference path="../focus_trap/index.d.ts" />
 
-import { FocusTarget } from 'focus-trap';
 import { ReactNode, SFC, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
@@ -22,9 +22,9 @@ declare module '@elastic/eui' {
      */
     maxWidth?: boolean | number | string;
 
-    /** 
-     * Specifies what element should initially have focus; 
-     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. 
+    /**
+     * Specifies what element should initially have focus;
+     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
      */
     initialFocus?: FocusTarget;
   }

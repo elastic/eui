@@ -129,6 +129,10 @@ export {
 } from './flyout';
 
 export {
+  EuiFocusTrap
+} from './focus_trap';
+
+export {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiDescribedFormGroup,
