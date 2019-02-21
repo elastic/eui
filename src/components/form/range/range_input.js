@@ -21,7 +21,6 @@ export const EuiRangeInput = ({
   // Calculate the width of the input based on highest number of characters.
   // Add 2 to accomodate for input stepper
   const widthStyle = { width: `${(digitTolerance / 1.25) + 2}em` };
-  console.log(digitTolerance);
 
   return (
     <EuiFieldNumber
