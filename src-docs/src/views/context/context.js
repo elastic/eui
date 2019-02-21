@@ -27,7 +27,6 @@ const mappings = {
 export default class extends Component {
   state = {
     language: 'en',
-    name: ''
   }
 
   setLanguage = (language) => this.setState({ language })
@@ -76,7 +75,6 @@ export default class extends Component {
                     {placeholder => (
                       <EuiFieldText
                         placeholder={placeholder}
-                        value={this.state.name}
                       />
                     )}
                   </EuiI18n>
