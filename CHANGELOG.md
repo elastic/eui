@@ -3,6 +3,10 @@
 - Converted `EuiToggle` to TypeScript ([#1570](https://github.com/elastic/eui/pull/1570))
 - Added type definitions for `EuiButtonGroup`,`EuiButtonToggle`, `EuiFilterButton`, `EuiFilterGroup`, and `EuiFilterSelectItem` ([#1570](https://github.com/elastic/eui/pull/1570))
 
+**Bug fixes**
+
+- Fixed several bugs with `EuiRange` and `EuiDualRange` including sizing of inputs, tick placement, and the handling of invalid values ([#1580](https://github.com/elastic/eui/pull/1580))
+
 ## [`7.2.0`](https://github.com/elastic/eui/tree/v7.2.0)
 
 - Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
