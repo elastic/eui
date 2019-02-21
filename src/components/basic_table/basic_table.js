@@ -34,6 +34,8 @@ import { EuiTableHeaderMobile } from '../table/mobile/table_header_mobile';
 import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
+import { EuiI18n } from '../i18n';
+import makeId from '../form/form_row/make_id';
 
 const dataTypesProfiles = {
   auto: {
@@ -427,7 +429,13 @@ export class EuiBasicTable extends Component {
 
     return (
       <EuiScreenReaderOnly>
-        <caption role="status" aria-relevant="text" aria-live="polite">Below is a table of {items.length} items.</caption>
+        <caption role="status" aria-relevant="text" aria-live="polite">
+          <EuiI18n
+            token="euiBasicTable.tableDescription"
+            default="Below is a table of {itemCount} items."
+            values={{ itemCount: items.length }}
+          />
+        </caption>
       </EuiScreenReaderOnly>
     );
   }
@@ -458,17 +466,21 @@ export class EuiBasicTable extends Component {
     };
 
     return (
-      <EuiCheckbox
-        id="_selection_column-checkbox"
-        type={isMobile ? null : 'inList'}
-        checked={checked}
-        disabled={disabled}
-        onChange={onChange}
-        // Only add data-test-subj to one of the checkboxes
-        data-test-subj={isMobile ? null : 'checkboxSelectAll'}
-        aria-label="Select all rows"
-        label={isMobile ? 'Select all rows' : null}
-      />
+      <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
+        {selectAllRows => (
+          <EuiCheckbox
+            id={`_selection_column-checkbox_${makeId()}`}
+            type={isMobile ? null : 'inList'}
+            checked={checked}
+            disabled={disabled}
+            onChange={onChange}
+            // Only add data-test-subj to one of the checkboxes
+            data-test-subj={isMobile ? null : 'checkboxSelectAll'}
+            aria-label={selectAllRows}
+            label={isMobile ? selectAllRows : null}
+          />
+        )}
+      </EuiI18n>
     );
   }
 
@@ -755,16 +767,20 @@ export class EuiBasicTable extends Component {
     };
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiCheckbox
-          id={`${key}-checkbox`}
-          type="inList"
-          disabled={disabled}
-          checked={checked}
-          onChange={onChange}
-          title={title}
-          aria-label="Select this row"
-          data-test-subj={`checkboxSelectRow-${itemId}`}
-        />
+        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
+          {selectThisRow => (
+            <EuiCheckbox
+              id={`${key}-checkbox`}
+              type="inList"
+              disabled={disabled}
+              checked={checked}
+              onChange={onChange}
+              title={title}
+              aria-label={selectThisRow}
+              data-test-subj={`checkboxSelectRow-${itemId}`}
+            />
+          )}
+        </EuiI18n>
       </EuiTableRowCellCheckbox>
     );
   }
