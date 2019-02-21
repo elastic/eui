@@ -59,7 +59,7 @@ const positionSubstitutes: {
 interface FindPopoverPositionArgs {
   anchor: HTMLElement;
   popover: HTMLElement;
-  align?: EuiPopoverPosition;
+  align?: EuiPopoverPosition | null;
   position: EuiPopoverPosition;
   forcePosition?: boolean;
   buffer?: number;
