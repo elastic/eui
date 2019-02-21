@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiToggle } from './toggle';
 
@@ -10,7 +10,6 @@ describe('EuiToggle', () => {
       <EuiToggle label="Is toggle on?" {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
