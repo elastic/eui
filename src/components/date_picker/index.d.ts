@@ -1,7 +1,7 @@
 import React from 'react';
 import { CommonProps } from '../common';
-import { Moment } from 'moment';
 import { IconType } from '../icon';
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 
 declare module '@elastic/eui' {
   interface OnTimeChangeProps {
@@ -16,44 +16,17 @@ declare module '@elastic/eui' {
     refreshInterval: number;
   }
 
-  export type EuiDatePickerProps = CommonProps & {
-    calendarClassName?: string;
-    customInput?: React.ReactNode;
-    dateFormat?: string;
-    // not sure if this is correct
-    dayClassName?: (date: Moment) => string | undefined;
-    // not sure if this is correct
-    filterDates?: Moment[];
+  interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
     fullWidth?: boolean;
-    // not sure if this is correct
-    injectTimes?: Moment[];
-    // not sure what this generic value should be?
-    inputRef?: React.Ref<HTMLInputElement>;
     isInvalid?: boolean;
     isLoading?: boolean;
-    locale?: string;
-    maxDate?: Moment;
-    maxTime?: Moment;
-    minDate?: Moment;
-    minTime?: Moment;
-    // pulled from react-datepickeer definitely typed
-    // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-datepicker/index.d.ts#L68
-    onChange(
-      date: Date | null,
-      event: React.SyntheticEvent<any> | undefined
-    ): void;
-    openToDate?: Moment;
+    inputRef?: React.Ref<ReactDatePicker>;
     placeholder?: string;
-    popperClassName?: string;
-    selected?: Moment;
     shadow?: boolean;
-    shouldCloseOnSelect?: boolean;
     showIcon?: boolean;
-    showTimeSelect?: boolean;
-    showTimeSelectOnly?: boolean;
-    timeFormat?: string;
-  };
+  }
 
+  export type EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
   export const EuiDatePicker: React.SFC<EuiDatePickerProps>;
 
   export type EuiDatePickerRangeProps = CommonProps & {
