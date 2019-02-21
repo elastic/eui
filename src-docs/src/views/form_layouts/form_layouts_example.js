@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -38,7 +38,6 @@ const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
 import FormCompressed from './form_compressed';
-import { Fragment } from 'react-is';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
 const formCompressedHtml = renderToHtml(FormCompressed);
 
