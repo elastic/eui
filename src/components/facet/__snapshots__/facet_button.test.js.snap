@@ -51,7 +51,10 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     </svg>
     <span
       class="euiFacetButton__text"
-    />
+      data-text="Content"
+    >
+      Content
+    </span>
   </span>
 </button>
 `;
@@ -67,7 +70,10 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-    />
+      data-text="Content"
+    >
+      Content
+    </span>
   </span>
 </button>
 `;
@@ -83,7 +89,10 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-    />
+      data-text="Content"
+    >
+      Content
+    </span>
     <div
       class="euiLoadingSpinner euiLoadingSpinner--medium euiFacetButton__spinner"
     />
@@ -101,7 +110,10 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-    />
+      data-text="Content"
+    >
+      Content
+    </span>
   </span>
 </button>
 `;
@@ -116,7 +128,10 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text"
-    />
+      data-text="Content"
+    >
+      Content
+    </span>
     <span
       class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
     >
