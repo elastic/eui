@@ -64,7 +64,9 @@ export class EuiSuperDatePicker extends Component {
     onRefreshChange: PropTypes.func,
 
     /**
-     * Callback for when the refresh interval is fired
+     * Callback for when the refresh interval is fired. Called with { start, end, refreshInterval }
+     * If a promise is returned, the next refresh interval will not start until the promise has resolved.
+     * If the promise rejects the refresh interval will stop and the error thrown
      */
     onRefresh: PropTypes.func,
 
