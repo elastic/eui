@@ -91,6 +91,23 @@ export class EuiDualRange extends Component {
     this._determineThumbMovement(e.target.value, e);
   }
 
+  _resetToRangeEnds = (e) => {
+    // Arbitrary decision to pass `min` instead of `max`. Result is the same.
+    this._determineInvalidThumbMovement(this.props.min, this.lowerValue, this.upperValue, e);
+  }
+
+  _isDirectionalKeyPress = (e) => {
+    return [keyCodes.UP, keyCodes.RIGHT, keyCodes.DOWN, keyCodes.LEFT].indexOf(e.keyCode) > -1;
+  }
+
+  handleInputKeyDown = (e) => {
+    // Relevant only when initial values are both `''` and `showInput` is set
+    if (this._isDirectionalKeyPress(e) && !this.isValid) {
+      e.preventDefault();
+      this._resetToRangeEnds(e);
+    }
+  }
+
   handleLowerInputChange = (e) => {
     this._handleOnChange(e.target.value, this.upperValue, e);
   }
@@ -132,6 +149,12 @@ export class EuiDualRange extends Component {
       case keyCodes.TAB:
         return;
       default:
+        if (!this.lowerValueIsValid) {
+          // Relevant only when initial value is `''` and `showInput` is not set
+          e.preventDefault();
+          this._resetToRangeEnds(e);
+          return;
+        }
         lower = this._handleKeyDown(lower, e);
     }
     if (lower >= this.upperValue || lower < this.props.min) return;
@@ -144,6 +167,12 @@ export class EuiDualRange extends Component {
       case keyCodes.TAB:
         return;
       default:
+        if (!this.upperValueIsValid) {
+          // Relevant only when initial value is `''` and `showInput` is not set
+          e.preventDefault();
+          this._resetToRangeEnds(e);
+          return;
+        }
         upper = this._handleKeyDown(upper, e);
     }
     if (upper <= this.lowerValue || upper > this.props.max) return;
@@ -213,6 +242,7 @@ export class EuiDualRange extends Component {
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleLowerInputChange}
+            onKeyDown={this.handleInputKeyDown}
             name={`${name}-minValue`}
             aria-describedby={this.props['aria-describedby']}
             aria-label={this.props['aria-label']}
@@ -306,6 +336,7 @@ export class EuiDualRange extends Component {
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleUpperInputChange}
+            onKeyDown={this.handleInputKeyDown}
             name={`${name}-maxValue`}
             aria-describedby={this.props['aria-describedby']}
             aria-label={this.props['aria-label']}
