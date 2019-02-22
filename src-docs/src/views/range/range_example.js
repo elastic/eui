@@ -283,7 +283,7 @@ export const RangeControlExample = {
     {min: 0, max: 20, color: 'danger'},
     {min: 20, max: 100, color: 'success'}
   ]}
-  aria-describedby=""
+  aria-describedBy={replaceWithID}
 />
 
 <EuiDualRange
@@ -291,7 +291,7 @@ export const RangeControlExample = {
     {min: 0, max: 20, color: 'danger'},
     {min: 20, max: 100, color: 'success'}
   ]}
-  aria-describedby=""
+  aria-describedBy={replaceWithID}
 />`,
     },
     {
@@ -326,7 +326,7 @@ export const RangeControlExample = {
   showRange
   tickInterval={}
   levels={[]}
-  aria-describedby=""
+  aria-describedBy={replaceWithID}
 />
 
 <EuiDualRange
@@ -341,7 +341,7 @@ export const RangeControlExample = {
   showTicks
   ticks={[]}
   levels={[]}
-  aria-describedby=""
+  aria-describedBy={replaceWithID}
 />`,
     },
   ]
