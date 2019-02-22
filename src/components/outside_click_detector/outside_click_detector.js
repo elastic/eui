@@ -49,7 +49,7 @@ export class EuiOutsideClickDetector extends Component {
       return;
     }
 
-    onOutsideClick();
+    onOutsideClick(event);
   }
 
   componentDidMount() {

@@ -158,6 +158,17 @@ describe('EuiFormRow', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('displayOnly is rendered', () => {
+      const component = render(
+        <EuiFormRow displayOnly>
+          <span>just some text</span>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 
   describe('behavior', () => {

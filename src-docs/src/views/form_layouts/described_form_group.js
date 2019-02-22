@@ -4,7 +4,6 @@ import React, {
 } from 'react';
 
 import {
-  EuiButton,
   EuiCode,
   EuiFieldText,
   EuiForm,
@@ -178,10 +177,6 @@ export default class extends Component {
             <EuiFieldText name="second" fullWidth />
           </EuiFormRow>
         </EuiDescribedFormGroup>
-
-        <EuiButton type="submit" fill>
-          Save form
-        </EuiButton>
       </EuiForm>
     );
   }

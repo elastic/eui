@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -11,10 +11,6 @@ import {
   EuiForm,
   EuiFormRow,
   EuiDescribedFormGroup,
-  EuiFieldText,
-  EuiPopover,
-  EuiRange,
-  EuiSwitch,
 } from '../../../../src/components';
 
 import FormRows from './form_rows';
@@ -28,10 +24,6 @@ const describedFormGroupHtml = renderToHtml(DescribedFormGroup);
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
 const fullWidthHtml = renderToHtml(FullWidth);
-
-import Popover from './popover';
-const popoverSource = require('!!raw-loader!./popover');
-const popoverHtml = renderToHtml(Popover);
 
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
@@ -71,6 +63,12 @@ export const FormLayoutsExample = {
       EuiFormRow,
     },
     demo: <FormRows />,
+    snippet: `<EuiFormRow
+  label="Text field"
+  helpText="I am some friendly help text."
+>
+  <EuiFieldText />
+</EuiFormRow>`
   }, {
     title: 'Full-width',
     source: [{
@@ -83,8 +81,8 @@ export const FormLayoutsExample = {
     text: (
       <p>
         Form elements will automatically flex to a max-width of <EuiCode>400px</EuiCode>.
-        You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to both individual field
-        and row components to expand to their container. This should be done rarely and usually
+        You can optionally pass the <EuiCode>fullWidth</EuiCode> prop to the row and form control to
+        expand to their container. This should be done rarely and usually
         you will only need it for isolated controls like search bars and sliders.
       </p>
     ),
@@ -92,6 +90,13 @@ export const FormLayoutsExample = {
       EuiFormRow,
     },
     demo: <FullWidth />,
+    snippet: `<EuiFormRow
+  fullWidth
+  label="Works on form rows too"
+  helpText="Note that the fullWidth prop is not passed to the form row's child"
+>
+  <EuiRange fullWidth />
+</EuiFormRow>`,
   }, {
     title: 'Compressed',
     source: [{
@@ -112,6 +117,12 @@ export const FormLayoutsExample = {
       EuiFormRow,
     },
     demo: <FormCompressed />,
+    snippet: `<EuiFormRow
+  label="Text field"
+  compressed
+>
+  <EuiFieldText />
+</EuiFormRow>`,
   }, {
     title: 'Described form groups',
     source: [{
@@ -132,30 +143,22 @@ export const FormLayoutsExample = {
       EuiDescribedFormGroup,
     },
     demo: <DescribedFormGroup />,
-  }, {
-    title: 'In popover',
-    text: (
-      <p>
-        Forms can be placed within <EuiCode>EuiPopover</EuiCode> and
-        should scale accordingly.
-      </p>
-    ),
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: popoverSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: popoverHtml,
-    }],
-    props: {
-      EuiPopover,
-      EuiForm,
-      EuiRange,
-      EuiFormRow,
-      EuiSwitch,
-      EuiFieldText,
-    },
-    demo: <Popover />,
+    snippet: `<EuiDescribedFormGroup
+  idAria="id"
+  title={<h3>Set heading level based on context</h3>}
+  description={
+    <Fragment>
+      Will be wrapped in a small, subdued EuiText block.
+    </Fragment>
+  }
+>
+  <EuiFormRow
+    label="Text field"
+    describedByIds={['id']}
+  >
+    <EuiFieldText />
+  </EuiFormRow>
+</EuiDescribedFormGroup>`,
   }, {
     title: 'Inline',
     text: (
@@ -173,17 +176,9 @@ export const FormLayoutsExample = {
       type: GuideSectionTypes.HTML,
       code: inlineHtml,
     }],
-    props: {
-      EuiPopover,
-      EuiForm,
-      EuiRange,
-      EuiFormRow,
-      EuiSwitch,
-      EuiFieldText,
-    },
     demo: <Inline />,
   }, {
-    title: 'Apply width to FlexItem to size individual controls',
+    title: 'Sizing inline form rows',
     source: [{
       type: GuideSectionTypes.JS,
       code: inlineSizingSource,
@@ -192,14 +187,22 @@ export const FormLayoutsExample = {
       code: inlineSizingHtml,
     }],
     text: (
-      <p>
-        When you need to make a field smaller, always apply the width to the
-        FlexItem, not the input. The input inside will resize as needed.
-      </p>
+      <Fragment>
+        <p>
+          Apply a width to the wrapping FlexItem to size individual controls.
+          When you need to make a field smaller, always apply the width to the
+          FlexItem, not the input. The input inside will resize as needed.
+        </p>
+        <p>
+          When supplying children to an EuiFormRow that is <strong>not</strong> a
+          form control, and you need to the content to vertically center with the other
+          form controls, add the prop <EuiCode>displayOnly</EuiCode>.
+        </p>
+      </Fragment>
     ),
     demo: <InlineSizing />,
   }, {
-    title: 'Inline forms can live in popovers, or any container',
+    title: 'In a popover',
     source: [{
       type: GuideSectionTypes.JS,
       code: inlinePopoverSource,
