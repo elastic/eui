@@ -2,6 +2,7 @@ import React from 'react';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import { Moment } from 'moment';
 
 declare module '@elastic/eui' {
   interface OnTimeChangeProps {
@@ -20,7 +21,8 @@ declare module '@elastic/eui' {
     fullWidth?: boolean;
     isInvalid?: boolean;
     isLoading?: boolean;
-    inputRef?: React.Ref<ReactDatePicker>;
+    injectTimes?: Moment[]; // added here because the type is missing in @types/react-datepicker@1.8.0
+    inputRef?: React.Ref<typeof ReactDatePicker>;
     placeholder?: string;
     shadow?: boolean;
     showIcon?: boolean;
@@ -30,8 +32,8 @@ declare module '@elastic/eui' {
   export const EuiDatePicker: React.SFC<EuiDatePickerProps>;
 
   export type EuiDatePickerRangeProps = CommonProps & {
-    startDateControl: typeof EuiDatePicker;
-    endDateControl: typeof EuiDatePicker;
+    startDateControl: React.ReactElement<EuiDatePickerProps>;
+    endDateControl: React.ReactElement<EuiDatePickerProps>;
     iconType?: boolean | IconType;
     fullWidth?: boolean;
     isCustom?: boolean;
