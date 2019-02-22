@@ -69,9 +69,6 @@ export const FacetExample = {
       ),
       props: { EuiFacetGroup },
       demo: <FacetLayout />,
-      snippet: `<EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
-
-<EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>`,
     },
   ],
 };

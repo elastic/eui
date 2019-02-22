@@ -89,16 +89,11 @@ export const EuiFacetButton = ({
 };
 
 EuiFacetButton.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
+  icon: PropTypes.node,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  buttonRef: PropTypes.func,
-
-  /**
-   * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
-   */
-  icon: PropTypes.node,
 
   /**
    * Adds/swaps for loading spinner & disables
@@ -114,6 +109,8 @@ EuiFacetButton.propTypes = {
    * Adds a notification indicator for displaying the quantity provided
    */
   quantity: PropTypes.number,
+
+  buttonRef: PropTypes.func,
 };
 
 EuiFacetButton.defaultProps = {
