@@ -95,7 +95,7 @@ declare module '@elastic/eui' {
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }>
 
-  export const EuiButtonEmpty: SFC<EuiButtonEmptyProps>;
+  export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps>;
 
   /**
    * button toggle type defs
@@ -145,7 +145,7 @@ declare module '@elastic/eui' {
       name?: string;
     }
 
-  export const EuiButtonGroup: SFC<
+  export const EuiButtonGroup: FunctionComponent<
     HTMLAttributes<HTMLDivElement> & EuiButtonGroupProps
   >;
 }

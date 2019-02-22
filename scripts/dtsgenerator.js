@@ -78,10 +78,10 @@ const generator = dtsGenerator({
   },
 });
 
-// NOTE: once EUI is all converted to typescript this madness can be deleted for ever
+// NOTE: once EUI is all converted to typescript this madness can be deleted forever
 // 1. strip any `/// <reference` lines from the generated eui.d.ts
-// 2. replace any import("src/...") declarations to import("@elastic/src/...")
-// 3. replace any import("./...") declarations to import("@elastic/src/...)
+// 2. replace any import("src/...") declarations to import("@elastic/eui/src/...")
+// 3. replace any import("./...") declarations to import("@elastic/eui/src/...)
 generator.then(() => {
   const defsFilePath = path.resolve(baseDir, 'eui.d.ts');
 
