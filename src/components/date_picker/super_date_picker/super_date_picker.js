@@ -246,7 +246,9 @@ export class EuiSuperDatePicker extends Component {
   }
 
   stopInterval = () => {
-    this.asyncInterval.stop();
+    if(this.asyncInterval) {
+      this.asyncInterval.stop();
+    }
   }
 
   startInterval = (refreshInterval) => {
