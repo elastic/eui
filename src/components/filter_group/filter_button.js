@@ -103,9 +103,14 @@ EuiFilterButton.propTypes = {
    */
   hasActiveFilters: PropTypes.bool,
   /**
-   * Adds a notification with number
+   * Pass the total number of filters available and it will
+   * add a subdued notification badge showing the number
    */
   numFilters: PropTypes.number,
+  /**
+   * Pass the number of selected filters and it will
+   * add a bright notification badge showing the number
+   */
   numActiveFilters: PropTypes.number,
   /**
    * Applies a visual state to the button useful when using with a popover.
