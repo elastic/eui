@@ -28,10 +28,10 @@ export class EuiDualRange extends Component {
   }
 
   get lowerValue() {
-    return this.props.value && this.props.value !== '' ? this.props.value[0] : this.props.min;
+    return this.props.value ? this.props.value[0] : this.props.min;
   }
   get upperValue() {
-    return this.props.value && this.props.value !== '' ? this.props.value[1] : this.props.max;
+    return this.props.value ? this.props.value[1] : this.props.max;
   }
   get lowerValueIsValid() {
     return isWithinRange(this.props.min, this.upperValue, this.lowerValue);
