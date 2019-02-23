@@ -27,7 +27,7 @@ export default class extends Component {
 
   state = {
     refreshInterval: 1000,
-    isPaused: false,
+    isPaused: true,
     recentlyUsedRanges: [],
     isLoading: false,
     showUpdateButton: true,
