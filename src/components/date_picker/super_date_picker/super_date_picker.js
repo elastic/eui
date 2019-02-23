@@ -244,7 +244,9 @@ export class EuiSuperDatePicker extends Component {
     if(!isPaused) {
       this.startInterval(refreshInterval);
     }
-    this.props.onRefreshChange({ refreshInterval, isPaused });
+    if(this.props.onRefreshChange) {
+      this.props.onRefreshChange({ refreshInterval, isPaused });
+    }
   }
 
   stopInterval = () => {
