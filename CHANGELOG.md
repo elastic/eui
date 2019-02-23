@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
 
 **Bug fixes**
 
