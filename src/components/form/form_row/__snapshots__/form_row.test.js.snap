@@ -175,6 +175,23 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormRow props displayOnly is rendered 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__displayOnlyWrapper"
+  >
+    <span
+      id="generated-id"
+    >
+      just some text
+    </span>
+  </div>
+</div>
+`;
+
 exports[`EuiFormRow props error as array is rendered 1`] = `
 <div
   class="euiFormRow"

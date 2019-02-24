@@ -343,7 +343,7 @@ export class EuiComboBox extends Component {
 
       case TAB:
         // Disallow tabbing when the user is navigating the options.
-        if (this.hasActiveOption()) {
+        if (this.hasActiveOption() && this.state.isListOpen) {
           e.preventDefault();
           e.stopPropagation();
         }

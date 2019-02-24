@@ -50,6 +50,7 @@ export class EuiFormRow extends Component {
       isFocused: false,
     });
   }
+
   render() {
     const {
       children,
@@ -62,6 +63,7 @@ export class EuiFormRow extends Component {
       className,
       describedByIds,
       compressed,
+      displayOnly,
       ...rest
     } = this.props;
 
@@ -128,13 +130,21 @@ export class EuiFormRow extends Component {
       optionalProps[`aria-describedby`] = describingIds.join(` `);
     }
 
-    const field = cloneElement(children, {
+    let field = cloneElement(children, {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       compressed: compressed,
       ...optionalProps
     });
+
+    if (displayOnly) {
+      field = (
+        <div className="euiFormRow__displayOnlyWrapper">
+          {field}
+        </div>
+      );
+    }
 
     return (
       <div
@@ -170,6 +180,11 @@ EuiFormRow.propTypes = {
    * compressed prop to the input
    */
   compressed: PropTypes.bool,
+  /**
+   * Vertically centers non-input style content so it aligns
+   * better with input style content.
+   */
+  displayOnly: PropTypes.bool,
 };
 
 EuiFormRow.defaultProps = {
