@@ -1,6 +1,6 @@
 import { CommonProps } from '../common';
 
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type FontSize = 's' | 'm' | 'l';
@@ -38,7 +38,7 @@ declare module '@elastic/eui' {
     inline?: true
   }
 
-  export const EuiCode: SFC<
+  export const EuiCode: FunctionComponent<
     CommonProps & EuiCodeProps & HTMLAttributes<HTMLCodeElement>
   >;
 
@@ -52,7 +52,7 @@ declare module '@elastic/eui' {
     inline?: false
   }
 
-  export const EuiCodeBlock: SFC<
+  export const EuiCodeBlock: FunctionComponent<
     CommonProps & EuiCodeBlockProps & HTMLAttributes<HTMLCodeElement>
   >;
 }

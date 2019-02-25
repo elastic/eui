@@ -13,7 +13,7 @@ import { CommonProps } from '../common';
 /// <reference path="./switch/index.d.ts" />
 /// <reference path="./text_area/index.d.ts" />
 
-import { SFC, FormHTMLAttributes, ReactNode } from 'react';
+import { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -25,5 +25,5 @@ declare module '@elastic/eui' {
       error?: ReactNode | ReactNode[];
     };
 
-  export const EuiForm: SFC<EuiFormProps>;
+  export const EuiForm: FunctionComponent<EuiFormProps>;
 }

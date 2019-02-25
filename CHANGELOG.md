@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `7.3.0`.
+**Breaking changes**
+
+- Upgraded TypeScript to 3.3 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded React to 16.8 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Jest to 24.1 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Enzyme to 3.9 ([#1583](https://github.com/elastic/eui/pull/1583))
 
 ## [`7.3.0`](https://github.com/elastic/eui/tree/v7.3.0)
 

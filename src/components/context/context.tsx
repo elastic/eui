@@ -23,8 +23,9 @@ interface IEuiContextProps {
   children: React.ReactNode;
 }
 
-const EuiContext: React.SFC<IEuiContextProps> = ({ i18n = {}, children }) => (
-  <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>
-);
+const EuiContext: React.FunctionComponent<IEuiContextProps> = ({
+  i18n = {},
+  children,
+}) => <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>;
 
 export { EuiContext, EuiI18nConsumer };

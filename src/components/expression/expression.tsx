@@ -56,15 +56,17 @@ type Buttonlike = EuiExpressionProps &
 
 type Spanlike = EuiExpressionProps & HTMLAttributes<HTMLSpanElement>;
 
-export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
+export const EuiExpression: React.FunctionComponent<
+  ExclusiveUnion<Buttonlike, Spanlike>
+> = ({
   className,
   description,
   descriptionProps,
   value,
   valueProps,
-  color,
-  uppercase,
-  isActive,
+  color = 'secondary',
+  uppercase = true,
+  isActive = false,
   onClick,
   ...rest
 }) => {
@@ -76,7 +78,7 @@ export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
       'euiExpression-isClickable': onClick,
       'euiExpression-isUppercase': uppercase,
     },
-    color ? colorToClassNameMap[color] : undefined
+    colorToClassNameMap[color]
   );
 
   const Component = onClick ? 'button' : 'span';
@@ -91,10 +93,4 @@ export const EuiExpression: React.SFC<ExclusiveUnion<Buttonlike, Spanlike>> = ({
       </span>
     </Component>
   );
-};
-
-EuiExpression.defaultProps = {
-  color: 'secondary',
-  uppercase: true,
-  isActive: false,
 };

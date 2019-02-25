@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -21,7 +21,7 @@ declare module '@elastic/eui' {
     indeterminate?: boolean;
   }
 
-  export const EuiCheckbox: SFC<
+  export const EuiCheckbox: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiCheckboxProps
   >;
 
@@ -44,7 +44,7 @@ declare module '@elastic/eui' {
     onChange: ChangeEventHandler<HTMLInputElement>;
   }
 
-  export const EuiCheckboxGroup: SFC<
+  export const EuiCheckboxGroup: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiCheckboxGroupProps
   >;
 }

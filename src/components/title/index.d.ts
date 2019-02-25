@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -17,5 +17,5 @@ declare module '@elastic/eui' {
     textTransform?: EuiTitleTextTransform;
   };
 
-  export const EuiTitle: SFC<EuiTitleProps>;
+  export const EuiTitle: FunctionComponent<EuiTitleProps>;
 }

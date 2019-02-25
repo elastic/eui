@@ -1,4 +1,4 @@
-import React, { Fragment, ReactChild, SFC } from 'react';
+import React, { Fragment, ReactChild, FunctionComponent } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
 import { I18nShape, Renderable, RenderableValues } from '../context/context';
@@ -35,7 +35,7 @@ function lookupToken<T extends RenderableValues>(
     return children;
   }
 
-  const Component: SFC<any> = () => {
+  const Component: FunctionComponent<any> = () => {
     return <Fragment>{children}</Fragment>;
   };
   return React.createElement(Component, values);
@@ -61,7 +61,7 @@ function hasTokens(x: EuiI18nProps<any>): x is I18nTokensShape {
 }
 
 // Must use the generics <T extends {}>
-// If instead typed with React.SFC there isn't feedback given back to the dev
+// If instead typed with React.FunctionComponent there isn't feedback given back to the dev
 // when using a `values` object with a renderer callback.
 const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
   <EuiI18nConsumer>
