@@ -12,9 +12,7 @@
   border: none;
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
-  transition-timing-function: ease-in; /* 2 */
-  transition-duration: $euiAnimSpeedFast; /* 2 */
-  transition: all $euiAnimSpeedFast ease-in;
+  transition: all $euiAnimSpeedFast ease-in; /* 2 */
 
   &:hover,
   &:focus {

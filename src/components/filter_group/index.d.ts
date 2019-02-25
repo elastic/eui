@@ -2,7 +2,7 @@ import { CommonProps } from '../common';
 import { IconType, IconSize } from '../icon'
 /// <reference path="../button/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler } from 'react';
+import { SFC, ButtonHTMLAttributes, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -12,8 +12,6 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiFilterButtonProps {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    hasActiveFilters?: boolean;
     numFilters?: number;
     numActiveFilters?: number;
     isSelected?: boolean;
@@ -22,7 +20,7 @@ declare module '@elastic/eui' {
     grow?: boolean;
     noDivider?: boolean;
   }
-  export const EuiFilterButton: SFC<CommonProps & EuiButtonEmptyProps> & EuiFilterButtonProps;
+  export const EuiFilterButton: SFC<EuiButtonEmptyProps> & EuiFilterButtonProps;
 
   /**
    * Filter group type defs
