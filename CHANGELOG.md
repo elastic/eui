@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `8.0.0`.
+
+## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
+
 **Breaking changes**
 
 - Upgraded TypeScript to 3.3 ([#1583](https://github.com/elastic/eui/pull/1583))
