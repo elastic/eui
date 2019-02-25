@@ -9,7 +9,8 @@ import {
   TableHTMLAttributes,
   ButtonHTMLAttributes,
   ThHTMLAttributes,
-  TdHTMLAttributes
+  TdHTMLAttributes,
+  ReactNode
 } from 'react';
 
 declare module '@elastic/eui' {
@@ -79,6 +80,12 @@ declare module '@elastic/eui' {
     isSorted?: boolean;
     isSortAscending?: boolean;
     scope?: TableHeaderCellScope;
+    isMobileHeader?: boolean;
+    hideForMobile?: boolean;
+    mobileOptions?: {
+      show?: boolean;
+      only?: boolean;
+    };
   }
 
   export const EuiTableHeaderCell: FunctionComponent<
@@ -130,21 +137,34 @@ declare module '@elastic/eui' {
    * @see './table_row_cell.js'
    */
 
-  export interface EuiTableRowCellProps {
+  interface EuiTableRowCellSharedPropsShape {
     align?: HorizontalAlignment;
+    showOnHover?: boolean;
+    textOnly?: boolean;
+    truncateText?: boolean;
+  }
+
+  export type EuiTableRowCellMobileOptionsShape = {
+    show?: boolean;
+    only?: boolean;
+    render?: ReactNode;
+    header?: ReactNode | boolean;
+    enlarge?: boolean;
+    fullWidth?: boolean;
+  }
+
+  export interface EuiTableRowCellProps {
     hasActions?: boolean;
     header?: string;
     hideForMobile?: boolean;
     isExpander?: boolean;
     isMobileFullWidth?: boolean;
     isMobileHeader?: boolean;
-    showOnHover?: boolean;
-    textOnly?: boolean;
-    truncateText?: boolean;
+    mobileOptions?: EuiTableRowCellMobileOptionsShape & EuiTableRowCellSharedPropsShape;
   }
 
   export const EuiTableRowCell: FunctionComponent<
-    CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellProps
+    CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellSharedPropsShape & EuiTableRowCellProps
   >;
 
   /**

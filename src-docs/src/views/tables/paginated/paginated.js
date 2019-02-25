@@ -87,15 +87,25 @@ export class Table extends Component {
       name: 'First Name',
       truncateText: true,
       hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'firstName',
       name: 'Full Name',
-      isMobileHeader: true,
+      mobileOptions: {
+        header: false,
+        only: true,
+        enlarge: true,
+        fullWidth: true,
+      },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>

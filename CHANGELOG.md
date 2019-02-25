@@ -1,6 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `8.0.0`.
+- Added `mobileOptions` object prop for handling of all the mobile specific options of `EuiBasicTable` ([#1462](https://github.com/elastic/eui/pull/1462))
+- Table headers now accept `React.node` types ([#1462](https://github.com/elastic/eui/pull/1462))
+
+**Bug fixes**
+
+- `EuiBasicTable` select all shows up on mobile ([#1462](https://github.com/elastic/eui/pull/1462))
+
+**Breaking changes**
+
+- `EuiBasicTable`'s select all checkbox appends a `makeId` string to the id ([#1462](https://github.com/elastic/eui/pull/1462))
 
 ## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
 
