@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.10.3`.
+**Note: this release is a backport containing changes originally made in `7.3.0`**
+
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
 
 ## [`6.10.3`](https://github.com/elastic/eui/tree/v6.10.3)
 
