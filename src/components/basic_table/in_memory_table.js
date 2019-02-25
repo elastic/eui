@@ -191,10 +191,17 @@ export class EuiInMemoryTable extends Component {
       size: pageSize
     } = page;
 
-    const {
+    let {
       field: sortField,
       direction: sortDirection
     } = sort;
+
+    if (this.state.sortField === sortField
+      && this.state.sortDirection === 'desc'
+      && sortDirection === 'asc') {
+      sortField = '';
+      sortDirection = '';
+    }
 
     this.setState({
       pageIndex,
