@@ -20,7 +20,7 @@ declare module '@elastic/eui' {
     grow?: boolean;
     noDivider?: boolean;
   }
-  export const EuiFilterButton: FunctionComponent<EuiButtonEmptyProps> & EuiFilterButtonProps;
+  export const EuiFilterButton: FunctionComponent<EuiButtonEmptyProps & EuiFilterButtonProps>;
 
   /**
    * Filter group type defs
