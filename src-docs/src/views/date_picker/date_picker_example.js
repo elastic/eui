@@ -64,7 +64,7 @@ const superDatePickerSource = require('!!raw-loader!./super_date_picker');
 const superDatePickerHtml = renderToHtml(SuperDatePicker);
 
 export const DatePickerExample = {
-  title: 'DatePicker',
+  title: 'Date Picker',
   sections: [{
     source: [{
       type: GuideSectionTypes.JS,
@@ -85,7 +85,7 @@ export const DatePickerExample = {
     demo: <DatePicker />,
     props: { EuiDatePicker },
   }, {
-    title: 'Datepicker states',
+    title: 'Date picker states',
     source: [{
       type: GuideSectionTypes.JS,
       code: statesSource,
@@ -140,7 +140,7 @@ export const DatePickerExample = {
     ),
     demo: <Locale />,
   }, {
-    title: 'Datepicker range',
+    title: 'Date picker range',
     source: [{
       type: GuideSectionTypes.JS,
       code: rangeSource,
@@ -227,7 +227,7 @@ export const DatePickerExample = {
     ),
     demo: <Utc />,
   }, {
-    title: 'Datepicker inline',
+    title: 'Date picker inline',
     source: [{
       type: GuideSectionTypes.JS,
       code: inlineSource,

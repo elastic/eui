@@ -6,6 +6,8 @@ import React, {
 import {
   EuiRange,
   EuiSpacer,
+  EuiTitle,
+  EuiDualRange,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -15,7 +17,8 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      value: '120'
+      value: '20',
+      dualValue: [20, 100],
     };
   }
 
@@ -25,42 +28,52 @@ export default class extends Component {
     });
   };
 
+  onDualChange = (value) => {
+    this.setState({
+      dualValue: value
+    });
+  };
+
   render() {
     return (
       <Fragment>
         <EuiRange
           id={makeId()}
-          min={100}
-          max={200}
+          step={10}
           value={this.state.value}
           onChange={this.onChange}
-          showLabels
+          showTicks
         />
 
         <EuiSpacer size="xl" />
 
-        <EuiRange
-          id={makeId()}
-          min={100}
-          max={200}
-          value={this.state.value}
-          onChange={this.onChange}
-          showLabels
-          showValue
-        />
+        <EuiTitle size="xxs"><h3>Custom tick interval</h3></EuiTitle>
 
-        <EuiSpacer size="xl" />
+        <EuiSpacer size="l" />
 
         <EuiRange
           id={makeId()}
-          min={100}
-          max={200}
           value={this.state.value}
           onChange={this.onChange}
-          showLabels
+          showInput
           showRange
-          showValue
-          valuePrepend="100 - "
+          showTicks
+          tickInterval={20}
+        />
+
+        <EuiSpacer size="xl" />
+
+        <EuiTitle size="xxs"><h3>Custom ticks object</h3></EuiTitle>
+
+        <EuiSpacer size="l" />
+
+        <EuiDualRange
+          id={makeId()}
+          value={this.state.dualValue}
+          onChange={this.onDualChange}
+          showTicks
+          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
+          showInput
         />
       </Fragment>
     );

@@ -32,29 +32,35 @@
       background-color: $euiRangeThumbBorderColor;
       box-shadow: none;
     }
+
+    ~ .euiRangeThumb {
+      cursor: not-allowed;
+      border-color: $euiRangeThumbBorderColor;
+      background-color: $euiRangeThumbBorderColor;
+      box-shadow: none;
+    }
   }
 
   @include euiRangeThumbPerBrowser {
     @include euiCustomControl($type: 'round');
-
     @include euiRangeThumbStyle;
   }
 
   @include euiRangeTrackPerBrowser {
     @include euiRangeTrackSize;
-
     background: $euiRangeTrackColor;
     border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
     border-radius: $euiRangeTrackRadius;
-
-    background-color: transparentize($euiRangeTrackColor, .6);
-    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 
   &:focus,
   &--hasFocus {
     @include euiRangeThumbPerBrowser {
       @include euiCustomControlFocused;
+    }
+
+    ~ .euiRangeThumb {
+      border-color: $euiColorPrimary;
     }
 
     @include euiRangeTrackPerBrowser {
@@ -69,12 +75,9 @@
     ~ .euiRangeTooltip .euiRangeTooltip__value {
       @include euiBottomShadowMedium;
 
-      &.euiRangeTooltip__value--right {
-        transform: translateX(0) translateY(-50%) scale(1.1);
-      }
-
+      &.euiRangeTooltip__value--right,
       &.euiRangeTooltip__value--left {
-        transform: translateX(-100%) translateY(-50%) scale(1.1);
+        transform: translateX(0) translateY(-50%) scale(1.1);
       }
     }
   }
@@ -94,7 +97,6 @@
 
   &::-ms-track {
     @include euiRangeTrackSize;
-
     background: transparent;
     border-color: transparent;
     border-width: ($euiRangeThumbHeight / 2) 0;
@@ -104,5 +106,13 @@
   // States
   &--hasTicks {
     height: $euiFormControlHeight / 2; // Adjust vertical alignment based on extras
+  }
+}
+
+// Lighten the track when showing the range
+.euiRangeSlider--hasRange {
+  @include euiRangeTrackPerBrowser {
+    background-color: transparentize($euiRangeTrackColor, .6);
+    border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 }

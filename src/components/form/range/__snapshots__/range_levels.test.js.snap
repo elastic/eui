@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiRangeLevels is rendered 1`] = `
+<div
+  class="euiRangeLevels euiRangeLevels--hasTicks"
+>
+  <span
+    class="euiRangeLevel euiRangeLevel--danger"
+    style="width:20%"
+  />
+  <span
+    class="euiRangeLevel euiRangeLevel--success"
+    style="width:80%"
+  />
+</div>
+`;
+
+exports[`EuiRangeLevels should throw error if \`level.max\` is higher than \`max\` 1`] = `"The level max of 200 is higher than the max value of 100."`;
+
+exports[`EuiRangeLevels should throw error if \`level.min\` is lower than \`min\` 1`] = `"The level min of -10 is lower than the min value of 0."`;
