@@ -65,6 +65,26 @@ No public interface changes since `8.0.0`.
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
+## [`6.10.4`](https://github.com/elastic/eui/tree/v6.10.4)
+
+**Note: this release is a backport containing changes originally made in `7.3.0`**
+
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
+
+## [`6.10.3`](https://github.com/elastic/eui/tree/v6.10.3)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
+
+## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1562](https://github.com/elastic/eui/pull/1562))
+- Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+
 ## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
 
 **Note: this release is a backport containing changes originally made in `7.0.0`**
