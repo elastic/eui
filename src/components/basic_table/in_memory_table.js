@@ -196,6 +196,7 @@ export class EuiInMemoryTable extends Component {
       direction: sortDirection
     } = sort;
 
+    // Allow going back to 'neutral' sorting
     if (this.state.sortField === sortField
       && this.state.sortDirection === 'desc'
       && sortDirection === 'asc') {
