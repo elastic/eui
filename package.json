@@ -187,6 +187,6 @@
     "prop-types": "^15.5.0",
     "react": "^16.8",
     "react-dom": "^16.8",
-    "typescript": "^3.0.0"
+    "typescript": "^3.3.0"
   }
 }
