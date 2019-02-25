@@ -1,9 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `mobileOptions` object prop for handling of all the mobile specific options of `EuiBasicTable` ([#1462](https://github.com/elastic/eui/pull/1462))
+- Table headers now accept `React.node` types ([#1462](https://github.com/elastic/eui/pull/1462))
 - Added `displayOnly` prop to `EuiFormRow` ([#1582](https://github.com/elastic/eui/pull/1582))
 - Added `numActiveFilters` prop to `EuiFilterButton` ([#1589](https://github.com/elastic/eui/pull/1589))
 - Updated style of `EuiFilterButton` to match `EuiFacetButton` ([#1589](https://github.com/elastic/eui/pull/1589))
 - Added `size` and `color` props to `EuiNotificationBadge` ([#1589](https://github.com/elastic/eui/pull/1589))
+
+**Bug fixes**
+
+- `EuiBasicTable` select all shows up on mobile ([#1462](https://github.com/elastic/eui/pull/1462))
+
+**Breaking changes**
+
+- `EuiBasicTable`'s select all checkbox appends a `makeId` string to the id ([#1462](https://github.com/elastic/eui/pull/1462))
 
 ## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
 
