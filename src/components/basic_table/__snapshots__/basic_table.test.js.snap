@@ -61,78 +61,66 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customRowClass"
-              data-test-subj="cell-1-name"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customRowClass"
+            data-test-subj="cell-1-name"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customRowClass"
-              data-test-subj="cell-2-name"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customRowClass"
+            data-test-subj="cell-2-name"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customRowClass"
-              data-test-subj="cell-3-name"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customRowClass"
+            data-test-subj="cell-3-name"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -200,78 +188,66 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customClass"
-              data-test-subj="cell"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customClass"
+            data-test-subj="cell"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customClass"
-              data-test-subj="cell"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customClass"
+            data-test-subj="cell"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              className="customClass"
-              data-test-subj="cell"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            className="customClass"
+            data-test-subj="cell"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              onClick={[Function]}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            onClick={[Function]}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -621,147 +597,135 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_1_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_1_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_1_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_1_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
-              }
-              textOnly={true}
-            >
-              20
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            20
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_2_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_2_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_2_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_2_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
-              }
-              textOnly={true}
-            >
-              21
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            21
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_3_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_3_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_3_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_3_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
-              }
-              textOnly={true}
-            >
-              22
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            22
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -790,7 +754,9 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -841,7 +807,9 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -887,174 +855,168 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_1_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_1_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_1_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_1_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              20
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            20
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_2_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_2_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_2_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_2_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              21
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            21
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_id_3_1"
-              mobileOptions={
-                Object {
-                  "header": "ID",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_id_3_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_age_3_2"
-              mobileOptions={
-                Object {
-                  "header": "Age",
-                  "render": undefined,
-                }
+            }
+            textOnly={true}
+          >
+            3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_age_3_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              22
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            22
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
       <EuiTableFooter>
         <EuiTableFooterCell
@@ -1165,89 +1127,77 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          aria-owns="row_1_expansion"
+          isSelected={false}
         >
-          <EuiTableRow
-            aria-owns="row_1_expansion"
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-          <EuiTableRow
-            id="row_1_expansion"
-            isExpandedRow={true}
+            }
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              colSpan={1}
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
-              }
-              textOnly={true}
-            >
-              <div>
-                Expanded row
-              </div>
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          id="row_1_expansion"
+          isExpandedRow={true}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            colSpan={1}
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            <div>
+              Expanded row
+            </div>
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1315,84 +1265,72 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customRowClass"
-              data-test-subj="row-1"
-              isSelected={false}
-              onClick={[Function]}
-            >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_0_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-1"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_0_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name1
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customRowClass"
-              data-test-subj="row-2"
-              isSelected={false}
-              onClick={[Function]}
+              }
+              textOnly={true}
             >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_1_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-2"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_1_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name2
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customRowClass"
-              data-test-subj="row-3"
-              isSelected={false}
-              onClick={[Function]}
+              }
+              textOnly={true}
             >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_2_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customRowClass"
+            data-test-subj="row-3"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_2_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name3
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
+              }
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1460,84 +1398,72 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customClass"
-              data-test-subj="row"
-              isSelected={false}
-              onClick={[Function]}
-            >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_0_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_0_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name1
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customClass"
-              data-test-subj="row"
-              isSelected={false}
-              onClick={[Function]}
+              }
+              textOnly={true}
             >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_1_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+              name1
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_1_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name2
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
-        >
-          <EuiKeyboardAccessible>
-            <EuiTableRow
-              className="customClass"
-              data-test-subj="row"
-              isSelected={false}
-              onClick={[Function]}
+              }
+              textOnly={true}
             >
-              <EuiTableRowCell
-                align="left"
-                key="_data_column_name_2_0"
-                mobileOptions={
-                  Object {
-                    "header": "Name",
-                    "render": undefined,
-                  }
+              name2
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
+        <EuiKeyboardAccessible>
+          <EuiTableRow
+            className="customClass"
+            data-test-subj="row"
+            isSelected={false}
+            onClick={[Function]}
+          >
+            <EuiTableRowCell
+              align="left"
+              key="_data_column_name_2_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
                 }
-                textOnly={true}
-              >
-                name3
-              </EuiTableRowCell>
-            </EuiTableRow>
-          </EuiKeyboardAccessible>
-        </React.Fragment>
+              }
+              textOnly={true}
+            >
+              name3
+            </EuiTableRowCell>
+          </EuiTableRow>
+        </EuiKeyboardAccessible>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1605,48 +1531,40 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_3"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_4"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_4_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_4_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1725,69 +1643,57 @@ exports[`EuiBasicTable with pagination 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1880,7 +1786,6 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           >
             <EuiIcon
               color="danger"
-              size="m"
               type="minusInCircle"
             />
              
@@ -1915,7 +1820,9 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -1952,7 +1859,9 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -1969,96 +1878,90 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -2137,69 +2040,57 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -2240,7 +2131,9 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -2291,7 +2184,9 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -2311,96 +2206,90 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -2440,7 +2329,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -2491,7 +2382,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -2523,198 +2416,192 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_1_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_1_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "1",
-                    "name": "name1",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "1",
+                  "name": "name1",
                 }
-                itemId="1"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+              }
+              itemId="1"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_2_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_2_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "2",
-                    "name": "name2",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "2",
+                  "name": "name2",
                 }
-                itemId="2"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+              }
+              itemId="2"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_3_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_3_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "3",
-                    "name": "name3",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "3",
+                  "name": "name3",
                 }
-                itemId="3"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+              }
+              itemId="3"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -2754,7 +2641,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -2805,7 +2694,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="right"
@@ -2825,96 +2716,90 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_1_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_2_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={true}
+          >
+            2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_3_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -2954,7 +2839,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -3005,7 +2892,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -3025,96 +2914,90 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              NAME1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={false}
+          >
+            NAME1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              NAME2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={false}
+          >
+            NAME2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              NAME3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={false}
+          >
+            NAME3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -3154,7 +3037,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -3205,7 +3090,9 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="left"
@@ -3237,216 +3124,210 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_1_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_1_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                    Object {
-                      "description": "delete",
-                      "name": "Delete",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "1",
-                    "name": "name1",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                  Object {
+                    "description": "delete",
+                    "name": "Delete",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "1",
+                  "name": "name1",
                 }
-                itemId="1"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+              }
+              itemId="1"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_2_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_2_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                    Object {
-                      "description": "delete",
-                      "name": "Delete",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "2",
-                    "name": "name2",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                  Object {
+                    "description": "delete",
+                    "name": "Delete",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "2",
+                  "name": "name2",
                 }
-                itemId="2"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+              }
+              itemId="2"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          hasActions={true}
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            hasActions={true}
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-            <EuiTableRowCell
-              align="right"
-              hasActions={true}
-              key="record_actions_3_1"
-              mobileOptions={
-                Object {
-                  "show": true,
-                }
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+          <EuiTableRowCell
+            align="right"
+            hasActions={true}
+            key="record_actions_3_1"
+            mobileOptions={
+              Object {
+                "show": true,
               }
-              showOnHover={true}
-              textOnly={false}
-            >
-              <ExpandedItemActions
-                actionEnabled={[Function]}
-                actions={
-                  Array [
-                    Object {
-                      "description": "edit",
-                      "name": "Edit",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                    Object {
-                      "description": "delete",
-                      "name": "Delete",
-                      "onClick": [Function],
-                      "type": "button",
-                    },
-                  ]
-                }
-                item={
+            }
+            showOnHover={true}
+            textOnly={false}
+          >
+            <ExpandedItemActions
+              actionEnabled={[Function]}
+              actions={
+                Array [
                   Object {
-                    "id": "3",
-                    "name": "name3",
-                  }
+                    "description": "edit",
+                    "name": "Edit",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                  Object {
+                    "description": "delete",
+                    "name": "Delete",
+                    "onClick": [Function],
+                    "type": "button",
+                  },
+                ]
+              }
+              item={
+                Object {
+                  "id": "3",
+                  "name": "name3",
                 }
-                itemId="3"
-              />
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+              }
+              itemId="3"
+            />
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -3486,7 +3367,9 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiFlexItem>
         <EuiFlexItem
           component="div"
@@ -3537,7 +3420,9 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           <EuiI18n
             default="Select all rows"
             token="euiBasicTable.selectAllRows"
-          />
+          >
+            <Component />
+          </EuiI18n>
         </EuiTableHeaderCellCheckbox>
         <EuiTableHeaderCell
           align="right"
@@ -3557,96 +3442,90 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_1"
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_1"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_1"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_1_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              x
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={false}
+          >
+            x
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_2"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_2"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_2_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              xx
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_3"
+            }
+            textOnly={false}
+          >
+            xx
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelectable={true}
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelectable={true}
-            isSelected={false}
+          <EuiTableRowCellCheckbox
+            key="_selection_column_3"
           >
-            <EuiTableRowCellCheckbox
-              key="_selection_column_3"
+            <EuiI18n
+              default="Select this row"
+              token="euiBasicTable.selectThisRow"
             >
-              <EuiI18n
-                default="Select this row"
-                token="euiBasicTable.selectThisRow"
-              />
-            </EuiTableRowCellCheckbox>
-            <EuiTableRowCell
-              align="right"
-              key="_data_column_count_3_0"
-              mobileOptions={
-                Object {
-                  "header": "Count",
-                  "render": undefined,
-                }
+              <Component />
+            </EuiI18n>
+          </EuiTableRowCellCheckbox>
+          <EuiTableRowCell
+            align="right"
+            key="_data_column_count_3_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
               }
-              textOnly={false}
-            >
-              xxx
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={false}
+          >
+            xxx
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -3725,69 +3604,57 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -3872,69 +3739,57 @@ exports[`EuiBasicTable with sorting 1`] = `
         </EuiTableHeaderCell>
       </EuiTableHeader>
       <EuiTableBody>
-        <React.Fragment
-          key="row_0"
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_1"
+            }
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
-        <React.Fragment
-          key="row_2"
+            }
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
         >
-          <EuiTableRow
-            isSelected={false}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </React.Fragment>
+            }
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
