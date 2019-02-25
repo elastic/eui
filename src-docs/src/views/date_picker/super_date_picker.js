@@ -26,8 +26,6 @@ function MyCustomQuickSelectPanel({ applyTime }) {
 export default class extends Component {
 
   state = {
-    refreshInterval: 1000,
-    isPaused: true,
     recentlyUsedRanges: [],
     isLoading: false,
     showUpdateButton: true,
@@ -54,9 +52,7 @@ export default class extends Component {
   }
 
   onRefresh = ({ start, end, refreshInterval }) => {
-    console.log('onRefresh was called');
     return new Promise((resolve) => {
-
       setTimeout(resolve, 100);
     }).then(() => {
       console.log(start, end, refreshInterval);
