@@ -3,7 +3,7 @@ import React, {
   HTMLAttributes,
   ReactNode,
   MouseEventHandler,
-  SFC,
+  FunctionComponent,
 } from 'react';
 import { CommonProps, RefCallback } from '../common';
 /// <reference path="../flex/index.d.ts" />
@@ -25,7 +25,7 @@ declare module '@elastic/eui' {
     quantity: number;
     buttonRef: RefCallback<HTMLButtonElement>;
   }
-  export const EuiFacetButton: SFC<
+  export const EuiFacetButton: FunctionComponent<
     CommonProps & ButtonHTMLAttributes<HTMLButtonElement>> & EuiFacetButtonProps;
 
   /**
@@ -39,6 +39,6 @@ declare module '@elastic/eui' {
     layout?: FacetGroupLayouts
   }
 
-  export const EuiFacetGroup: SFC<
+  export const EuiFacetGroup: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>> & EuiFacetGroupProps;
 }
