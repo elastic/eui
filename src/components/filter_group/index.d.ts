@@ -42,6 +42,5 @@ declare module '@elastic/eui' {
   }
 
   export const EuiFilterSelectItem: Component<CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & EuiFilterSelectItemProps
-  >;
+    ButtonHTMLAttributes<HTMLButtonElement> & EuiFilterSelectItemProps>;
 }

@@ -25,8 +25,8 @@ declare module '@elastic/eui' {
     quantity: number;
     buttonRef: RefCallback<HTMLButtonElement>;
   }
-  export const EuiFacetButton: FunctionComponent<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement>> & EuiFacetButtonProps;
+  export const EuiFacetButton: FunctionComponent<CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement>> & EuiFacetButtonProps;
 
   /**
    * Facet group type defs
@@ -39,6 +39,6 @@ declare module '@elastic/eui' {
     layout?: FacetGroupLayouts
   }
 
-  export const EuiFacetGroup: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>> & EuiFacetGroupProps;
+  export const EuiFacetGroup: FunctionComponent<CommonProps &
+    HTMLAttributes<HTMLDivElement>> & EuiFacetGroupProps;
 }
