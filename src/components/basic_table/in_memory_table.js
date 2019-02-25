@@ -359,7 +359,6 @@ export class EuiInMemoryTable extends Component {
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
-    // Once a user sorts a column, this will become a fully-defined sorting prop.
     const sorting = !hasSorting ? undefined : {
       sort: (!sortField && !sortDirection) ? undefined : {
         field: sortField,
