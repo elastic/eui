@@ -65,6 +65,7 @@ export class EuiSuperDatePicker extends Component {
 
     /**
      * Callback for when the refresh interval is fired. Called with { start, end, refreshInterval }
+     * EuiSuperDatePicker will only manage a refresh interval timer when onRefresh callback is supplied
      * If a promise is returned, the next refresh interval will not start until the promise has resolved.
      * If the promise rejects the refresh interval will stop and the error thrown
      */
@@ -371,7 +372,7 @@ export class EuiSuperDatePicker extends Component {
         applyTime={this.applyQuickTime}
         start={this.props.start}
         end={this.props.end}
-        applyRefreshInterval={this.onRefreshChange}
+        applyRefreshInterval={this.props.onRefreshChange ? this.onRefreshChange : null}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}
