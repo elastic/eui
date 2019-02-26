@@ -138,7 +138,8 @@ export const SelectionType = PropTypes.shape({
 });
 
 const SortingType = PropTypes.shape({
-  sort: PropertySortType
+  sort: PropertySortType,
+  allowNeutralSort: PropTypes.bool,
 });
 
 const BasicTablePropTypes = {
@@ -522,6 +523,7 @@ export class EuiBasicTable extends Component {
         sorting.isSorted = !!sortDirection;
         sorting.isSortAscending = sortDirection ? SortDirection.isAsc(sortDirection) : undefined;
         sorting.onSort = this.resolveColumnOnSort(column);
+        sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
       }
       headers.push(
         <EuiTableHeaderCell

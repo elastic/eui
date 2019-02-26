@@ -28,6 +28,7 @@ export const EuiTableHeaderCell = ({
   onSort,
   isSorted,
   isSortAscending,
+  allowNeutralSort,
   className,
   scope,
   isMobileHeader,
@@ -52,6 +53,16 @@ export const EuiTableHeaderCell = ({
     let ariaSortValue = 'none';
     if (isSorted) {
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+    }
+
+    function getScreenCasterDirection() {
+      if (ariaSortValue === 'ascending') {
+        return 'Click to sort in descending order';
+      } else if (allowNeutralSort && ariaSortValue === 'descending') {
+        return 'Click to unsort';
+      } else {
+        return 'Click to sort in ascending order';
+      }
     }
 
     return (
@@ -80,7 +91,7 @@ export const EuiTableHeaderCell = ({
               />
             )}
             <EuiScreenReaderOnly>
-              <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+              <span>{getScreenCasterDirection()}</span>
             </EuiScreenReaderOnly>
           </span>
         </button>
@@ -109,6 +120,7 @@ EuiTableHeaderCell.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
+  allowNeutralSort: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   /**
    * Indicates if the column was created to be the row's heading in mobile view

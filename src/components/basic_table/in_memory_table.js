@@ -72,6 +72,7 @@ const InMemoryTablePropTypes = {
       sort: PropertySortType
     })
   ]),
+  allowNeutralSort: PropTypes.bool,
   selection: SelectionType,
   itemId: ItemIdType,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -365,6 +366,7 @@ export class EuiInMemoryTable extends Component {
         field: sortField,
         direction: sortDirection,
       },
+      allowNeutralSort: true,
     };
 
     const searchBar = this.renderSearchBar();
