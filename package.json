@@ -182,6 +182,7 @@
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
     "@types/react": "^16.8.0",
+    "@types/react-datepicker": "1.8.0",
     "moment": "^2.13.0",
     "prop-types": "^15.5.0",
     "react": "^16.8",
