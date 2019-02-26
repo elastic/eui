@@ -23,6 +23,9 @@ export class EuiGlobalToastList extends Component {
 
     this.isScrollingToBottom = false;
     this.isScrolledToBottom = true;
+
+    this.isScrollingAnimationFrame;
+    this.startScrollingAnimationFrame;
   }
 
   static propTypes = {
@@ -40,6 +43,7 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingToBottom = true;
 
     const scrollToBottom = () => {
+      if (!this.listElement) return;
       const position = this.listElement.scrollTop;
       const destination = this.listElement.scrollHeight - this.listElement.clientHeight;
       const distanceToDestination = destination - position;
@@ -54,11 +58,11 @@ export class EuiGlobalToastList extends Component {
       this.listElement.scrollTop = position + distanceToDestination * 0.25;
 
       if (this.isScrollingToBottom) {
-        window.requestAnimationFrame(scrollToBottom);
+        this.isScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
       }
     };
 
-    window.requestAnimationFrame(scrollToBottom);
+    this.startScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
   }
 
   onMouseEnter = () => {
@@ -162,6 +166,8 @@ export class EuiGlobalToastList extends Component {
   }
 
   componentWillUnmount() {
+    window.cancelAnimationFrame(this.isScrollingAnimationFrame);
+    window.cancelAnimationFrame(this.startScrollingAnimationFrame);
     this.listElement.removeEventListener('scroll', this.onScroll);
     this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
     this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
