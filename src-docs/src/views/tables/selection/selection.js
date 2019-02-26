@@ -129,16 +129,25 @@ export class Table extends Component {
       name: 'First Name',
       sortable: true,
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'firstName',
       name: 'Full Name',
-      isMobileHeader: true,
+      mobileOptions: {
+        only: true,
+        header: false,
+        enlarge: true,
+        fullWidth: true,
+      },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
@@ -174,7 +183,9 @@ export class Table extends Component {
         this.renderStatus(online)
       ),
       sortable: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }];
 
     const pagination = {

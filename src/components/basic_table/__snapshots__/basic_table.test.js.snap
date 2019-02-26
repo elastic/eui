@@ -5,7 +5,26 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -31,6 +50,11 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -44,8 +68,13 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             align="left"
             className="customRowClass"
             data-test-subj="cell-1-name"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -59,8 +88,13 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             align="left"
             className="customRowClass"
             data-test-subj="cell-2-name"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -74,8 +108,13 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
             align="left"
             className="customRowClass"
             data-test-subj="cell-3-name"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -93,7 +132,26 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -119,6 +177,11 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -132,8 +195,13 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
             align="left"
             className="customClass"
             data-test-subj="cell"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -147,8 +215,13 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
             align="left"
             className="customClass"
             data-test-subj="cell"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -162,8 +235,13 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
             align="left"
             className="customClass"
             data-test-subj="cell"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             onClick={[Function]}
             textOnly={true}
           >
@@ -183,7 +261,26 @@ exports[`EuiBasicTable empty is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -209,6 +306,11 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -220,6 +322,11 @@ exports[`EuiBasicTable empty is rendered 1`] = `
             align="center"
             colSpan={1}
             isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             textOnly={true}
           >
             No items found
@@ -236,7 +343,26 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -262,6 +388,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -273,6 +404,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
             align="center"
             colSpan={1}
             isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             textOnly={true}
           >
             <p>
@@ -297,7 +433,26 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -323,6 +478,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -334,6 +494,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
             align="center"
             colSpan={1}
             isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             textOnly={true}
           >
             where my items at?
@@ -350,7 +515,26 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -376,6 +560,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -384,6 +573,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_id_1"
           key="_data_h_id_1"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           ID
@@ -392,6 +586,11 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           align="left"
           data-test-subj="tableHeaderCell_age_2"
           key="_data_h_age_2"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Age
@@ -403,24 +602,39 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_1_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             1
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_1_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             20
@@ -431,24 +645,39 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_2_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             2
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_2_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             21
@@ -459,24 +688,39 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_3_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             3
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_3_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             22
@@ -494,19 +738,45 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -547,6 +817,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -556,6 +831,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           align="left"
           data-test-subj="tableHeaderCell_id_1"
           key="_data_h_id_1"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           ID
@@ -564,6 +844,11 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           align="left"
           data-test-subj="tableHeaderCell_age_2"
           key="_data_h_age_2"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Age
@@ -586,24 +871,39 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_1_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             1
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_1_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             20
@@ -625,24 +925,39 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_2_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             2
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_2_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             21
@@ -664,24 +979,39 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="ID"
             key="_data_column_id_3_1"
+            mobileOptions={
+              Object {
+                "header": "ID",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             3
           </EuiTableRowCell>
           <EuiTableRowCell
             align="left"
-            header="Age"
             key="_data_column_age_3_2"
+            mobileOptions={
+              Object {
+                "header": "Age",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             22
@@ -741,7 +1071,26 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -767,6 +1116,11 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -779,8 +1133,13 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -793,6 +1152,11 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           <EuiTableRowCell
             align="left"
             colSpan={1}
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             textOnly={true}
           >
             <div>
@@ -805,8 +1169,13 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -817,8 +1186,13 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -835,7 +1209,26 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -861,6 +1254,11 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -876,8 +1274,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_0_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name1
@@ -893,8 +1296,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_1_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name2
@@ -910,8 +1318,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_2_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name3
@@ -929,7 +1342,26 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -955,6 +1387,11 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -970,8 +1407,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_0_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name1
@@ -987,8 +1429,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_1_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name2
@@ -1004,8 +1451,13 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           >
             <EuiTableRowCell
               align="left"
-              header="Name"
               key="_data_column_name_2_0"
+              mobileOptions={
+                Object {
+                  "header": "Name",
+                  "render": undefined,
+                }
+              }
               textOnly={true}
             >
               name3
@@ -1023,7 +1475,26 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1049,6 +1520,11 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -1060,8 +1536,13 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1072,8 +1553,13 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_4_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1101,7 +1587,26 @@ exports[`EuiBasicTable with pagination 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1127,6 +1632,11 @@ exports[`EuiBasicTable with pagination 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -1138,8 +1648,13 @@ exports[`EuiBasicTable with pagination 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1150,8 +1665,13 @@ exports[`EuiBasicTable with pagination 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1162,8 +1682,13 @@ exports[`EuiBasicTable with pagination 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -1191,7 +1716,26 @@ exports[`EuiBasicTable with pagination and error 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1217,6 +1761,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -1228,6 +1777,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
             align="center"
             colSpan={1}
             isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             textOnly={true}
           >
             <EuiIcon
@@ -1249,7 +1803,33 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1287,6 +1867,11 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -1309,8 +1894,13 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1332,8 +1922,13 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1355,8 +1950,13 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -1384,7 +1984,26 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -1410,6 +2029,11 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -1421,8 +2045,13 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1433,8 +2062,13 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1445,8 +2079,13 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -1476,19 +2115,45 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -1529,6 +2194,11 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -1552,8 +2222,13 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1575,8 +2250,13 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1598,8 +2278,13 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -1628,19 +2313,45 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -1681,6 +2392,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -1689,6 +2405,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         <EuiTableHeaderCell
           align="right"
           key="_actions_h_1"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Actions
@@ -1712,8 +2433,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -1722,6 +2448,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             align="right"
             hasActions={true}
             key="record_actions_1_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -1764,8 +2495,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -1774,6 +2510,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             align="right"
             hasActions={true}
             key="record_actions_2_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -1816,8 +2557,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -1826,6 +2572,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
             align="right"
             hasActions={true}
             key="record_actions_3_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -1874,19 +2625,45 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_count_0",
+                  "name": "Count",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -1927,6 +2704,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -1950,8 +2732,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_1_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             1
@@ -1973,8 +2760,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_2_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             2
@@ -1996,8 +2788,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_3_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             3
@@ -2026,19 +2823,45 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2079,6 +2902,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2102,8 +2930,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             NAME1
@@ -2125,8 +2958,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             NAME2
@@ -2148,8 +2986,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             NAME3
@@ -2178,19 +3021,45 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2231,6 +3100,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2239,6 +3113,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         <EuiTableHeaderCell
           align="right"
           key="_actions_h_1"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Actions
@@ -2262,8 +3141,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -2272,6 +3156,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             align="right"
             hasActions={true}
             key="record_actions_1_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -2320,8 +3209,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -2330,6 +3224,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             align="right"
             hasActions={true}
             key="record_actions_2_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -2378,8 +3277,13 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_3_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -2388,6 +3292,11 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
             align="right"
             hasActions={true}
             key="record_actions_3_1"
+            mobileOptions={
+              Object {
+                "show": true,
+              }
+            }
             showOnHover={true}
             textOnly={false}
           >
@@ -2442,19 +3351,45 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_count_0",
-              "name": "Count",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiI18n
+            default="Select all rows"
+            token="euiBasicTable.selectAllRows"
+          >
+            <Component />
+          </EuiI18n>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_count_0",
+                  "name": "Count",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2495,6 +3430,11 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2518,8 +3458,13 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_1_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             x
@@ -2541,8 +3486,13 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_2_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             xx
@@ -2564,8 +3514,13 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           </EuiTableRowCellCheckbox>
           <EuiTableRowCell
             align="right"
-            header="Count"
             key="_data_column_count_3_0"
+            mobileOptions={
+              Object {
+                "header": "Count",
+                "render": undefined,
+              }
+            }
             textOnly={false}
           >
             xxx
@@ -2593,7 +3548,26 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
   className="euiBasicTable"
 >
   <div>
-    <EuiTableHeaderMobile />
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
     >
@@ -2619,6 +3593,11 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           align="left"
           data-test-subj="tableHeaderCell_name_0"
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           scope="col"
         >
           Name
@@ -2630,8 +3609,13 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -2642,8 +3626,13 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -2654,8 +3643,13 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
@@ -2673,19 +3667,38 @@ exports[`EuiBasicTable with sorting 1`] = `
 >
   <div>
     <EuiTableHeaderMobile>
-      <EuiTableSortMobile
-        items={
-          Array [
-            Object {
-              "isSortAscending": true,
-              "isSorted": true,
-              "key": "_data_s_name_0",
-              "name": "Name",
-              "onSort": [Function],
-            },
-          ]
-        }
-      />
+      <EuiFlexGroup
+        alignItems="baseline"
+        component="div"
+        direction="row"
+        gutterSize="l"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap={false}
+      >
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        />
+        <EuiFlexItem
+          component="div"
+          grow={false}
+        >
+          <EuiTableSortMobile
+            items={
+              Array [
+                Object {
+                  "isSortAscending": true,
+                  "isSorted": true,
+                  "key": "_data_s_name_0",
+                  "name": "Name",
+                  "onSort": [Function],
+                },
+              ]
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiTableHeaderMobile>
     <EuiTable
       responsive={true}
@@ -2714,6 +3727,11 @@ exports[`EuiBasicTable with sorting 1`] = `
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
+          mobileOptions={
+            Object {
+              "show": true,
+            }
+          }
           onSort={[Function]}
           scope="col"
         >
@@ -2726,8 +3744,13 @@ exports[`EuiBasicTable with sorting 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name1
@@ -2738,8 +3761,13 @@ exports[`EuiBasicTable with sorting 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name2
@@ -2750,8 +3778,13 @@ exports[`EuiBasicTable with sorting 1`] = `
         >
           <EuiTableRowCell
             align="left"
-            header="Name"
             key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
             textOnly={true}
           >
             name3
