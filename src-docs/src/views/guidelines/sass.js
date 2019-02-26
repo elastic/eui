@@ -318,12 +318,12 @@ const tintOrShadeExample = (`// tintOrShade(color, tint_percent, shade_percent)
 }
 `);
 
-const contrastExample = (`// Make sure text is passes a contrast check
+const contrastExample = (`// Make sure text passes a contrast check
 .contrastBox {
   $backgroundColor: tintOrShade($euiColorWarning, 90%, 70%);
   background: $backgroundColor;
 
-  // Given two colors, adjust the first till contrast is 4.5
+  // Given two colors, adjust the first until contrast is 4.5
   color: makeHighContrastColor($euiColorWarning, $backgroundColor);
   padding: $euiSize;
   border-left: $euiBorderThick;
@@ -552,8 +552,8 @@ export default() => (
     <EuiText grow={false} className="guideSection__text">
       <p>
         View the <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</Link>
-        {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typpography.scss">mixins</Link>
-        {' '}sass code for typography.
+        {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">mixins</Link>
+        {' '}Sass code for typography.
         For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
         {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
       </p>
@@ -688,7 +688,7 @@ export default() => (
         <EuiText>
           <p>
             Primarily used in modals and flyouts, the overflow shadows add a white
-            glow to subltley hide the content they float above.
+            glow to subtly hide the content they float above.
           </p>
         </EuiText>
 
@@ -748,10 +748,10 @@ export default() => (
 
     <EuiText className="guideSection__text">
       <p>
-        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the sass code for media queries</EuiLink>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the Sass code for media queries</EuiLink>.
       </p>
       <p>
-        Breakpoints in EUI are provided through the use of a sass
+        Breakpoints in EUI are provided through the use of a Sass
         mixin <EuiCode>@include euiBreakpoint()</EuiCode> that
         accepts an array of sizes.
       </p>
@@ -820,11 +820,11 @@ export default() => (
     <GuideRuleTitle>Animation</GuideRuleTitle>
     <EuiText grow={false} className="guideSection__text">
       <p>
-        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the sass code for animation</EuiLink>.
+        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the Sass code for animation</EuiLink>.
       </p>
       <p>
         EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.
-        That said, animationsa are tricky, and if they aren&apos;t working for your specific application
+        That said, animations are tricky, and if they aren&apos;t working for your specific application
         this is the one place where we think it&apos;s OK to come up with your own rules.
       </p>
     </EuiText>
@@ -877,7 +877,7 @@ export default() => (
           <h3>Writing Sass the EUI way</h3>
           <p>
             In general, when writing new SCSS in a project that installs EUI as a dependency
-            ry to follow these best practices:
+            try to follow these best practices:
           </p>
         </EuiText>
         <EuiSpacer />
@@ -887,7 +887,7 @@ export default() => (
             <li>Utilize the sizing variables for padding and margins</li>
             <li>Utilize the animation variables for animations when possible</li>
             <li>Utilize the responsive mixins for all screen width calculations</li>
-            <li>Utilize the typography mixins and variables for all font family, weight and sizing</li>
+            <li>Utilize the typography mixins and variables for all font family, weight, and sizing</li>
             <li>Utilize the shadow mixins and z-index variables to manage depth</li>
             <li>Utilize the border and border-radius variable to handle border usage</li>
             <li>Minimize your overwrites and try to make new Sass additive in nature</li>
