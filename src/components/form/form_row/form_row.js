@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { get } from '../../../services/objects';
+import { withRequiredProp } from '../../../utils/prop_types/with_required_prop';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import makeId from './make_id';
 
@@ -58,6 +60,7 @@ export class EuiFormRow extends Component {
       isInvalid,
       error,
       label,
+      labelAppend,
       hasEmptyLabelSpace,
       fullWidth,
       className,
@@ -107,14 +110,26 @@ export class EuiFormRow extends Component {
 
     if (label) {
       optionalLabel = (
-        <EuiFormLabel
-          isFocused={this.state.isFocused}
-          isInvalid={isInvalid}
-          aria-invalid={isInvalid}
-          htmlFor={id}
-        >
-          {label}
-        </EuiFormLabel>
+        // Outer div ensures the label is inline-block (only takes up as much room as it needs)
+        <div>
+          <EuiFormLabel
+            isFocused={this.state.isFocused}
+            isInvalid={isInvalid}
+            aria-invalid={isInvalid}
+            htmlFor={id}
+          >
+            {label}
+          </EuiFormLabel>
+        </div>
+      );
+    }
+
+    if (labelAppend) {
+      optionalLabel = (
+        <EuiFlexGroup responsive={false} wrap={true} gutterSize="xs" justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>{optionalLabel}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{labelAppend}</EuiFlexItem>
+        </EuiFlexGroup>
       );
     }
 
@@ -168,6 +183,12 @@ EuiFormRow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   label: PropTypes.node,
+  /**
+   * Adds an extra node to the right of the form label without
+   * being contained inside the form label. Good for things
+   * like documentation links.
+   */
+  labelAppend: withRequiredProp(PropTypes.node, 'label', 'appending to the label requires that the label also exists'),
   id: PropTypes.string,
   isInvalid: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),

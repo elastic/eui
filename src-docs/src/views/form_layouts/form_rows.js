@@ -9,9 +9,11 @@ import {
   EuiForm,
   EuiFormRow,
   EuiFilePicker,
+  EuiLink,
   EuiRange,
   EuiSelect,
   EuiSwitch,
+  EuiText,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -85,6 +87,7 @@ export default class extends Component {
 
         <EuiFormRow
           label="Select (with no initial selection)"
+          labelAppend={<EuiText size="xs"><EuiLink>Link to some help</EuiLink></EuiText>}
         >
           <EuiSelect
             hasNoInitialSelection
