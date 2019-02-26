@@ -2398,7 +2398,7 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.0.0.tgz#fb7eb569b72ad7a45812f93fd9430a3e410b3dd3"
   integrity sha512-tWnkwu9YEq2uzlBDI4RcLn8jrFvF9AOi8PxDNU3hZZjJcjkcRAq3vCI+vZcg1SuxISDYe86k9VZFwAxDiJGoAw==
 
-camel-case@3.0.x, camel-case@^3.0.0:
+camel-case@3.0.x:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/camel-case/-/camel-case-3.0.0.tgz#ca3c3688a4e9cf3a4cda777dc4dcbc713249cf73"
   integrity sha1-yjw2iKTpzzpM2nd9xNy8cTJJz3M=
@@ -12394,13 +12394,6 @@ sane@^3.0.0:
     watch "~0.18.0"
   optionalDependencies:
     fsevents "^1.2.3"
-
-sass-extract-js@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/sass-extract-js/-/sass-extract-js-0.3.0.tgz#3fc5be20d84ce55c29a8b089a49254fbfb69a2a3"
-  integrity sha512-JYyx28EgoPjduSRu/Xyv7+ec/D3CrWiLujNOawYea1YQCBPcgNk12sKxMYkgHeoRGhsIOfu1MXsY6zGcm02mrA==
-  dependencies:
-    camel-case "^3.0.0"
 
 sass-extract@^2.1.0:
   version "2.1.0"
