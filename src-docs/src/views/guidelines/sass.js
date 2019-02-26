@@ -551,8 +551,8 @@ export default() => (
 
     <EuiText grow={false} className="guideSection__text">
       <p>
-        View the <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</Link>
-        {' '} and <Link to="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">mixins</Link>
+        View the <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</EuiLink>
+        {' '} and <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">mixins</EuiLink>
         {' '}Sass code for typography.
         For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
         {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
