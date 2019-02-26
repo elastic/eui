@@ -9,9 +9,19 @@ export const propsInfo = {
           type: { name: 'object[]' }
         },
         itemId: {
-          description: 'describes how to extract a unique ID from each item, used for selections & expanded rows',
+          description: 'Describes how to extract a unique ID from each item, used for selections & expanded rows',
           required: false,
           type: { name: 'string | (item) => string' }
+        },
+        itemIdToExpandedRowMap: {
+          description: 'Row expansion uses the `itemId` prop to identify each row',
+          required: false,
+          type: { name: 'object[]' }
+        },
+        cellProps: {
+          description: 'Applied to `EuiTableRowCell`',
+          required: false,
+          type: { name: 'func | object[]' }
         },
         compressed: {
           description: 'Makes the font and padding smaller for the entire table',
@@ -22,10 +32,46 @@ export const propsInfo = {
           required: true,
           type: { name: '(#FieldDataColumn | #ComputedColumn | #ActionsColumn)[]' }
         },
+        error: {
+          description: 'Error message to display',
+          required: false,
+          type: { name: 'string' }
+        },
+        hasActions: {
+          description: 'Needed at the top level for responsive positioning',
+          type: { name: 'bool' }
+        },
+        isExpandable: {
+          description: 'Needed at the top level for responsive positioning',
+          type: { name: 'bool' }
+        },
+        isSelectable: {
+          description: 'Needed at the top level for responsive positioning',
+          type: { name: 'bool' }
+        },
+        loading: {
+          description: 'Provides an infinite loading indicator',
+          type: { name: 'bool' }
+        },
+        noItemsMessage: {
+          description: 'Message to display if table is empty',
+          required: false,
+          type: { name: 'node' }
+        },
         pagination: {
           description: 'Configures pagination',
           required: false,
           type: { name: '#Pagination' }
+        },
+        responsive: {
+          description: 'If `true`, will convert table to cards in mobile view',
+          type: { name: 'bool' },
+          defaultValue: { value: 'true' },
+        },
+        rowProps: {
+          description: 'Applied to `EuiTableRow`',
+          required: false,
+          type: { name: 'func | object[]' }
         },
         sorting: {
           description: 'Configures sorting',
@@ -38,7 +84,7 @@ export const propsInfo = {
           type: { name: '#Selection' }
         },
         onChange: {
-          description: 'Called whenever pagination or sorting changes (this property is required when either' +
+          description: 'Called whenever pagination or sorting changes (this property is required when either ' +
             'pagination or sorting is configured',
           required: false,
           type: { name: '(criteria: #Criteria) => void' }

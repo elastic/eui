@@ -85,27 +85,29 @@ export class Table extends Component {
       name: 'First Name',
       sortable: true,
       truncateText: true,
-      hideForMobile: true,
+      mobileOptions: {
+        render: (item) => (
+          <span>{item.firstName} {item.lastName}</span>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        fullWidth: true,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       sortable: true,
       truncateText: true,
-      hideForMobile: true,
-    }, {
-      field: 'firstName',
-      name: 'Full Name',
-      sortable: true,
-      isMobileHeader: true,
-      render: (name, item) => (
-        <span>{item.firstName} {item.lastName}</span>
-      )
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'github',
       name: (
         <EuiToolTip content="Their mascot is the Octokitty">
           <span>
-            Github <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Github <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -120,7 +122,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="Colloquially known as a 'birthday'">
           <span>
-            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Date of Birth <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -132,7 +134,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="The nation in which this person resides">
           <span>
-            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Nationality <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),
@@ -146,7 +148,7 @@ export class Table extends Component {
       name: (
         <EuiToolTip content="Free to talk or busy with business">
           <span>
-            Online <EuiIcon size="s" color="subdued" type="questionInCircle" />
+            Online <EuiIcon size="s" color="subdued" type="questionInCircle" className="eui-alignTop" />
           </span>
         </EuiToolTip>
       ),

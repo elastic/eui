@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, ReactNode, LabelHTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, LabelHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -13,5 +13,5 @@ declare module '@elastic/eui' {
       isInvalid?: boolean;
     };
 
-  export const EuiFormLabel: SFC<EuiFormLabelProps>;
+  export const EuiFormLabel: FunctionComponent<EuiFormLabelProps>;
 }

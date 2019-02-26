@@ -4,75 +4,67 @@ exports[`EuiSearchFilters render - no filters 1`] = `<EuiFilterGroup />`;
 
 exports[`EuiSearchFilters render - with filters 1`] = `
 <EuiFilterGroup>
-  <React.Fragment
-    key="filter_0"
-  >
-    <IsFilter
-      config={
-        Object {
-          "field": "open",
-          "name": "Open",
-          "type": "is",
-        }
+  <IsFilter
+    config={
+      Object {
+        "field": "open",
+        "name": "Open",
+        "type": "is",
       }
-      index={0}
-      onChange={[Function]}
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "group": Array [],
-              "is": Object {},
-              "term": Array [],
-            },
+    }
+    index={0}
+    onChange={[Function]}
+    query={
+      Query {
+        "ast": _AST {
+          "_clauses": Array [],
+          "_indexedClauses": Object {
+            "field": Object {},
+            "group": Array [],
+            "is": Object {},
+            "term": Array [],
           },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-            "printClause": [Function],
-          },
-          "text": "",
-        }
+        },
+        "syntax": Object {
+          "parse": [Function],
+          "print": [Function],
+          "printClause": [Function],
+        },
+        "text": "",
       }
-    />
-  </React.Fragment>
-  <React.Fragment
-    key="filter_1"
-  >
-    <FieldValueSelectionFilter
-      autoClose={true}
-      config={
-        Object {
-          "field": "tag",
-          "name": "Tag",
-          "options": [Function],
-          "type": "field_value_selection",
-        }
+    }
+  />
+  <FieldValueSelectionFilter
+    autoClose={true}
+    config={
+      Object {
+        "field": "tag",
+        "name": "Tag",
+        "options": [Function],
+        "type": "field_value_selection",
       }
-      index={1}
-      onChange={[Function]}
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "group": Array [],
-              "is": Object {},
-              "term": Array [],
-            },
+    }
+    index={1}
+    onChange={[Function]}
+    query={
+      Query {
+        "ast": _AST {
+          "_clauses": Array [],
+          "_indexedClauses": Object {
+            "field": Object {},
+            "group": Array [],
+            "is": Object {},
+            "term": Array [],
           },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-            "printClause": [Function],
-          },
-          "text": "",
-        }
+        },
+        "syntax": Object {
+          "parse": [Function],
+          "print": [Function],
+          "printClause": [Function],
+        },
+        "text": "",
       }
-    />
-  </React.Fragment>
+    }
+  />
 </EuiFilterGroup>
 `;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
 
@@ -42,6 +43,7 @@ export class EuiRange extends Component {
       showRange,
       showValue,
       valueAppend, // eslint-disable-line no-unused-vars
+      valuePrepend, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       value,
       style,
@@ -49,9 +51,12 @@ export class EuiRange extends Component {
       ...rest
     } = this.props;
 
+    const classes = classNames('euiRange', className);
+    const digitTolerance = Math.max(String(min).length, String(max).length);
+
     return (
       <EuiRangeWrapper
-        className="euiRange"
+        className={classes}
         fullWidth={fullWidth}
       >
         {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
@@ -70,7 +75,6 @@ export class EuiRange extends Component {
           <EuiRangeSlider
             id={id}
             name={name}
-            className={className}
             min={min}
             max={max}
             step={step}
@@ -79,6 +83,7 @@ export class EuiRange extends Component {
             onChange={this.handleOnChange}
             style={style}
             showTicks={showTicks}
+            showRange={showRange}
             tabIndex={showInput ? '-1' : (tabIndex || null)}
             {...rest}
           />
@@ -90,6 +95,8 @@ export class EuiRange extends Component {
               min={min}
               name={name}
               showTicks={showTicks}
+              valuePrepend={valuePrepend}
+              valueAppend={valueAppend}
             />
           )}
 
@@ -108,6 +115,7 @@ export class EuiRange extends Component {
           <EuiRangeInput
             min={min}
             max={max}
+            digitTolerance={digitTolerance}
             step={step}
             value={value}
             disabled={disabled}
@@ -131,6 +139,7 @@ EuiRange.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */
@@ -179,14 +188,19 @@ EuiRange.propTypes = {
    */
   showValue: PropTypes.bool,
   /**
-   * Shows a tooltip styled value
+   * Appends to the tooltip
    */
   valueAppend: PropTypes.node,
+  /**
+   * Prepends to the tooltip
+   */
+  valuePrepend: PropTypes.node,
 };
 
 EuiRange.defaultProps = {
-  min: 1,
+  min: 0,
   max: 100,
+  step: 1,
   fullWidth: false,
   compressed: false,
   showLabels: false,

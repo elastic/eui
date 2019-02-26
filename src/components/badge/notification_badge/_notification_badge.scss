@@ -1,4 +1,5 @@
 .euiNotificationBadge {
+  flex-shrink: 0; // Ensures it never scales down below it's intended size
   display: inline-block;
   border-radius: $euiBorderRadius;
   background: $euiColorAccent;
@@ -12,4 +13,18 @@
   padding-right: $euiSizeXS;
   vertical-align: middle;
   text-align: center;
+  transition: all $euiAnimSpeedFast ease-in;
+}
+
+.euiNotificationBadge--medium {
+  // Increase the default size a bit
+  $size: $euiSize + $euiSizeXS;
+  line-height: $size;
+  height: $size;
+  min-width: $euiSizeL;
+}
+
+.euiNotificationBadge--subdued {
+  background-color: tint($euiColorLightShade, 30%);
+  color: $euiColorFullShade;
 }

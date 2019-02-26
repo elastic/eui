@@ -16,11 +16,16 @@
   }
 
   &:disabled {
-    font-style: italic;
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiFilterButton__notification {
+      opacity: .5;
+    }
   }
 
   &:hover:not(:disabled),
-  &:focus {
+  &:focus:not(:disabled) {
     // Remove underline from whole button so notifications don't get the underline
     text-decoration: none;
 
@@ -29,26 +34,34 @@
       text-decoration: underline;
     }
   }
+}
 
-  &.euiFilterButton--grow {
-    flex-grow: 1;
-    width: 100%;
-    text-align: left;
+.euiFilterButton--grow {
+  flex-grow: 1;
+  width: 100%;
+  text-align: left;
 
-    // Force content to space out icon
-    .euiButtonEmpty__content {
-      justify-content: space-between;
-    }
+  // Force content to space out icon
+  .euiButtonEmpty__content {
+    justify-content: space-between;
   }
+}
 
-  &.euiFilterButton-hasActiveFilters {
-    font-weight: $euiFontWeightMedium;
-  }
+.euiFilterButton-hasActiveFilters {
+  font-weight: $euiFontWeightBold;
+}
 
-  .euiFilterButton__notification {
-    margin-left: $euiSizeS;
-    vertical-align: text-bottom;
-  }
+.euiFilterButton__notification {
+  margin-left: $euiSizeS;
+  vertical-align: text-bottom;
+}
+
+.euiFilterButton--noDivider + .euiFilterButton {
+  margin-left: $euiSizeXS * -1;
+}
+
+.euiFilterButton-isSelected {
+  background-color: $euiColorLightestShade;
 }
 
 .euiFilterButton__text-hasNotification {
@@ -57,14 +70,6 @@
 }
 
 .euiFilterButton__textShift {
+  @include euiTextShift;
   vertical-align: middle;
-
-  &::after {
-    display: block;
-    content: attr(data-text);
-    font-weight: $euiFontWeightBold;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-  }
 }

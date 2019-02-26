@@ -1,4 +1,4 @@
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
@@ -42,5 +42,5 @@ declare module '@elastic/eui' {
     };
   }
 
-  export const EuiToken: SFC<CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiToken: FunctionComponent<CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>>;
 }

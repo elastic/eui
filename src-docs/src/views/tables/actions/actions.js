@@ -218,19 +218,22 @@ export class Table extends Component {
       name: 'First Name',
       truncateText: true,
       sortable: true,
-      hideForMobile: true,
+      mobileOptions: {
+        render: (item) => (
+          <span>{item.firstName} {item.lastName}</span>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        fullWidth: true,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
-    }, {
-      field: 'firstName',
-      name: 'Full Name',
-      isMobileHeader: true,
-      render: (name, item) => (
-        <span>{item.firstName} {item.lastName}</span>
-      ),
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'github',
       name: 'Github',

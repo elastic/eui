@@ -1,7 +1,7 @@
 import { CommonProps, Omit } from '../common';
 import { IconType } from '../icon'
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -20,7 +20,7 @@ declare module '@elastic/eui' {
     size?: Size,
   }
 
-  export const EuiCallOut: SFC<
+  export const EuiCallOut: FunctionComponent<
     CommonProps & EuiCallOutProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
   >;
 }

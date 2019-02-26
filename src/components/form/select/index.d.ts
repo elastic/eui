@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import {SFC, ReactNode, Ref, OptionHTMLAttributes, SelectHTMLAttributes} from 'react';
+import {FunctionComponent, ReactNode, Ref, OptionHTMLAttributes, SelectHTMLAttributes} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -22,5 +22,5 @@ declare module '@elastic/eui' {
     append?: ReactNode | ReactNode[];
   };
 
-  export const EuiSelect: SFC<EuiSelectProps>;
+  export const EuiSelect: FunctionComponent<EuiSelectProps>;
 }

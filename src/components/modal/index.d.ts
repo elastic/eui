@@ -2,7 +2,7 @@ import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
 /// <reference path="../focus_trap/index.d.ts" />
 
-import { ReactNode, SFC, HTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -29,7 +29,7 @@ declare module '@elastic/eui' {
     initialFocus?: FocusTarget;
   }
 
-  export const EuiModal: SFC<
+  export const EuiModal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiModalProps
     >;
 
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_body.js'
    */
-  export const EuiModalBody: SFC<
+  export const EuiModalBody: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -45,7 +45,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_footer.js'
    */
-  export const EuiModalFooter: SFC<
+  export const EuiModalFooter: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -53,7 +53,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_header.js'
    */
-  export const EuiModalHeader: SFC<
+  export const EuiModalHeader: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -61,7 +61,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_header_title.js'
    */
-  export const EuiModalHeaderTitle: SFC<
+  export const EuiModalHeaderTitle: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -94,7 +94,7 @@ declare module '@elastic/eui' {
   }
 
   // `title` from the React defs conflicts with our definition above
-  export const EuiConfirmModal: SFC<
+  export const EuiConfirmModal: FunctionComponent<
     CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiConfirmModalProps
     >;
 

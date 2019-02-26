@@ -51,6 +51,14 @@ export default class extends Component {
     }, this.startLoading);
   }
 
+  onRefresh = ({ start, end, refreshInterval }) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  }
+
   onStartInputChange = e => {
     this.setState({
       start: e.target.value,
@@ -168,6 +176,7 @@ export default class extends Component {
           start={this.state.start}
           end={this.state.end}
           onTimeChange={this.onTimeChange}
+          onRefresh={this.onRefresh}
           isPaused={this.state.isPaused}
           refreshInterval={this.state.refreshInterval}
           onRefreshChange={this.onRefreshChange}

@@ -8,13 +8,13 @@ function isComponentBecomingVisible(
 }
 
 export interface EuiDelayHideProps {
-  hide?: boolean;
-  minimumDuration?: number;
+  hide: boolean;
+  minimumDuration: number;
   render: () => ReactNode;
 }
 
 interface EuiDelayHideState {
-  hide?: boolean;
+  hide: boolean;
   countdownExpired?: boolean;
 }
 
@@ -76,7 +76,10 @@ export class EuiDelayHide extends Component<
     if (this.timeoutId == null) {
       this.timeoutId = setTimeout(
         this.finishCountdown,
-        this.props.minimumDuration
+        // even though `minimumDuration` cannot be undefined, passing a strict number type to setTimeout makes TS interpret
+        // it as a NodeJS.Timer instead of a number. The DOM lib defines the setTimeout call as taking `number | undefined`
+        // so we cast minimumDuration to this type instead to force TS's cooperation
+        this.props.minimumDuration as number | undefined
       );
     }
   };

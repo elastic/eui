@@ -1,6 +1,6 @@
 import { CommonProps } from '../common';
 
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -17,7 +17,7 @@ declare module '@elastic/eui' {
     gutterSize?: FlexGridGutterSize;
   }
 
-  export const EuiFlexGrid: SFC<
+  export const EuiFlexGrid: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
   >;
 
@@ -60,7 +60,7 @@ declare module '@elastic/eui' {
     wrap?: boolean;
   }
 
-  export const EuiFlexGroup: SFC<
+  export const EuiFlexGroup: FunctionComponent<
     CommonProps &
       HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
       EuiFlexGroupProps
@@ -93,7 +93,7 @@ declare module '@elastic/eui' {
     component?: FlexItemComponentType;
   }
 
-  export const EuiFlexItem: SFC<
+  export const EuiFlexItem: FunctionComponent<
     CommonProps &
       HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
       EuiFlexItemProps

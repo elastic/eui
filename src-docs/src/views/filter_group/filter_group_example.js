@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -31,7 +35,7 @@ export const FilterGroupExample = {
           This documents a visual pattern used for filtering (usually page heads next to search).
           The individual components themselves are very simple
           and do not have much functionality on their own. If you are looking for expanded usage
-          examples please check out the Table of Records component which uses this more fully and
+          examples please check out the <Link to="/forms/search-bar">Search Bar</Link> component which uses this more fully and
           can give you a better example of its usage when applied to filtering.
         </p>
       </EuiCallOut>

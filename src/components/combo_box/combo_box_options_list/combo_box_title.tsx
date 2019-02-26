@@ -1,5 +1,5 @@
-import React, { SFC } from 'react';
+import React, { FunctionComponent } from 'react';
 
-export const EuiComboBoxTitle: SFC<{}> = ({ children }) => (
+export const EuiComboBoxTitle: FunctionComponent<{}> = ({ children }) => (
   <div className="euiComboBoxTitle">{children}</div>
 );
