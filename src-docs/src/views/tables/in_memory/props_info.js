@@ -43,6 +43,11 @@ export const propsInfo = {
           required: false,
           type: { name: 'boolean | #Sorting' }
         },
+        allowNeutralSort: {
+          description: 'Enables/disables unsorting of table columns. Defaults to true.',
+          required: false,
+          type: { name: 'boolean' }
+        },
         search: {
           description: 'Configures a search bar for the table',
           required: false,

@@ -120,6 +120,10 @@ EuiTableHeaderCell.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
+  /**
+   * Set `allowNeutralSort` on EuiInMemoryTable to false to force column sorting.
+   * EuiBasicTable always forces column sorting.
+   */
   allowNeutralSort: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   /**

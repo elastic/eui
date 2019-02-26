@@ -72,6 +72,9 @@ const InMemoryTablePropTypes = {
       sort: PropertySortType
     })
   ]),
+  /**
+   * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
+   */
   allowNeutralSort: PropTypes.bool,
   selection: SelectionType,
   itemId: ItemIdType,
@@ -366,7 +369,7 @@ export class EuiInMemoryTable extends Component {
         field: sortField,
         direction: sortDirection,
       },
-      allowNeutralSort: true,
+      allowNeutralSort: (this.props.allowNeutralSort === false) ? false : true,
     };
 
     const searchBar = this.renderSearchBar();
