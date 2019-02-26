@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-import { IconType, IconSize } from '../icon'
+import { IconType, IconSize } from '../icon';
 /// <reference path="../button/index.d.ts" />
 
 import { Component, FunctionComponent, ButtonHTMLAttributes, HTMLAttributes } from 'react';
@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
   export interface EuiFilterButtonProps {
     numFilters?: number;
     numActiveFilters?: number;
+    hasActiveFilters?: boolean;
     isSelected?: boolean;
     isDisabled?: boolean;
     type?: string;
@@ -38,7 +39,7 @@ declare module '@elastic/eui' {
 
   export type FilterChecked = 'on' | 'off';
   export interface EuiFilterSelectItemProps {
-    checked?: FilterChecked
+    checked?: FilterChecked;
   }
 
   export const EuiFilterSelectItem: Component<CommonProps &
