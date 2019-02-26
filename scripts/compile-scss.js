@@ -6,6 +6,7 @@ const globModule = require('glob');
 const chalk = require('chalk');
 const postcss = require('postcss');
 const sassExtract = require('sass-extract');
+const sassExtractJsPlugin = require('./sass-extract-js-plugin');
 
 const postcssConfiguration = require('../src-docs/postcss.config.js');
 
@@ -65,7 +66,7 @@ async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilen
       outFile: outputCssFilename,
     },
     {
-      plugins: [{ plugin: 'sass-extract-js' }],
+      plugins: [sassExtractJsPlugin],
     }
   );
 

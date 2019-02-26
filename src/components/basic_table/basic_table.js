@@ -10,6 +10,7 @@ import {
 } from '../../services';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiTable } from '../table/table';
 import { EuiTableHeaderCellCheckbox } from '../table/table_header_cell_checkbox';
 import { EuiCheckbox } from '../form/checkbox/checkbox';
@@ -33,6 +34,7 @@ import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 import { EuiI18n } from '../i18n';
+import makeId from '../form/form_row/make_id';
 
 const dataTypesProfiles = {
   auto: {
@@ -142,25 +144,25 @@ const SortingType = PropTypes.shape({
 });
 
 const BasicTablePropTypes = {
-  items: PropTypes.array.isRequired,
   itemId: ItemIdType,
+  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  items: PropTypes.array.isRequired,
+  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  className: PropTypes.string,
   columns: PropTypes.arrayOf(ColumnType).isRequired,
-  pagination: PaginationType,
-  sorting: SortingType,
-  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
-  onChange: PropTypes.func,
+  compressed: PropTypes.bool,
   error: PropTypes.string,
+  hasActions: PropTypes.bool,
+  isExpandable: PropTypes.bool,
+  isSelectable: PropTypes.bool,
   loading: PropTypes.bool,
   noItemsMessage: PropTypes.node,
-  className: PropTypes.string,
-  compressed: PropTypes.bool,
-  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  onChange: PropTypes.func,
+  pagination: PaginationType,
   responsive: PropTypes.bool,
-  isSelectable: PropTypes.bool,
-  isExpandable: PropTypes.bool,
-  hasActions: PropTypes.bool,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
+  sorting: SortingType,
 };
 
 export function getItemId(item, itemId) {
@@ -364,7 +366,16 @@ export class EuiBasicTable extends Component {
 
     const { compressed, responsive } = this.props;
 
-    const mobileHeader = responsive ? (<EuiTableHeaderMobile>{this.renderTableMobileSort()}</EuiTableHeaderMobile>) : undefined;
+    const mobileHeader = responsive ? (
+      <EuiTableHeaderMobile>
+        <EuiFlexGroup responsive={false} justifyContent="spaceBetween" alignItems="baseline">
+          <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            {this.renderTableMobileSort()}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiTableHeaderMobile>
+    ) : undefined;
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
@@ -428,46 +439,60 @@ export class EuiBasicTable extends Component {
     );
   }
 
+  renderSelectAll = isMobile => {
+    const { items, selection } = this.props;
+
+    if (!selection) {
+      return;
+    }
+
+    const selectableItems = items.filter(item => (
+      !selection.selectable || selection.selectable(item)
+    ));
+
+    const checked = this.state.selection &&
+      selectableItems.length > 0 &&
+      this.state.selection.length === selectableItems.length;
+
+    const disabled = selectableItems.length === 0;
+
+    const onChange = (event) => {
+      if (event.target.checked) {
+        this.changeSelection(selectableItems);
+      } else {
+        this.changeSelection([]);
+      }
+    };
+
+    return (
+      <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
+        {selectAllRows => (
+          <EuiCheckbox
+            id={`_selection_column-checkbox_${makeId()}`}
+            type={isMobile ? null : 'inList'}
+            checked={checked}
+            disabled={disabled}
+            onChange={onChange}
+            // Only add data-test-subj to one of the checkboxes
+            data-test-subj={isMobile ? null : 'checkboxSelectAll'}
+            aria-label={selectAllRows}
+            label={isMobile ? selectAllRows : null}
+          />
+        )}
+      </EuiI18n>
+    );
+  }
+
   renderTableHead() {
 
-    const { items, columns, selection } = this.props;
+    const { columns, selection } = this.props;
 
     const headers = [];
 
     if (selection) {
-      const selectableItems = items.filter(item => (
-        !selection.selectable || selection.selectable(item)
-      ));
-
-      const checked = this.state.selection &&
-        selectableItems.length > 0 &&
-        this.state.selection.length === selectableItems.length;
-
-      const disabled = selectableItems.length === 0;
-
-      const onChange = (event) => {
-        if (event.target.checked) {
-          this.changeSelection(selectableItems);
-        } else {
-          this.changeSelection([]);
-        }
-      };
-
       headers.push(
         <EuiTableHeaderCellCheckbox key="_selection_column_h" width="24px">
-          <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
-            {selectAllRows => (
-              <EuiCheckbox
-                id="_selection_column-checkbox"
-                type="inList"
-                checked={checked}
-                disabled={disabled}
-                onChange={onChange}
-                data-test-subj="checkboxSelectAll"
-                aria-label={selectAllRows}
-              />
-            )}
-          </EuiI18n>
+          {this.renderSelectAll()}
         </EuiTableHeaderCellCheckbox>
       );
     }
@@ -481,6 +506,7 @@ export class EuiBasicTable extends Component {
         align,
         dataType,
         sortable,
+        mobileOptions,
         isMobileHeader,
         hideForMobile,
       } = column;
@@ -494,6 +520,7 @@ export class EuiBasicTable extends Component {
             key={`_actions_h_${index}`}
             align="right"
             width={width}
+            mobileOptions={mobileOptions}
           >
             {name}
           </EuiTableHeaderCell>
@@ -508,6 +535,7 @@ export class EuiBasicTable extends Component {
             key={`_computed_column_h_${index}`}
             align={columnAlign}
             width={width}
+            mobileOptions={mobileOptions}
           >
             {name}
           </EuiTableHeaderCell>
@@ -530,6 +558,7 @@ export class EuiBasicTable extends Component {
           width={width}
           isMobileHeader={isMobileHeader}
           hideForMobile={hideForMobile}
+          mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
           {...sorting}
         >
@@ -558,7 +587,7 @@ export class EuiBasicTable extends Component {
 
     columns.forEach(column => {
       const footer = getColumnFooter(column, { items, pagination });
-      if (column.isMobileHeader) {
+      if ((column.mobileOptions && column.mobileOptions.only) || column.isMobileHeader) {
         return; // exclude columns that only exist for mobile headers
       }
 
@@ -670,7 +699,11 @@ export class EuiBasicTable extends Component {
     let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
 
     const mobileOnlyCols = columns.reduce((num, column) => {
-      return column.isMobileHeader ? num + 1 : num + 0;
+      if (column.mobileOptions && column.mobileOptions.only) {
+        return num + 1;
+      }
+
+      return column.isMobileHeader ? num + 1 : num + 0; // BWC only
     }, 0);
 
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
@@ -841,23 +874,24 @@ export class EuiBasicTable extends Component {
       description, // eslint-disable-line no-unused-vars
       sortable, // eslint-disable-line no-unused-vars
       footer, // eslint-disable-line no-unused-vars
+      mobileOptions,
       ...rest
     } = column;
     const columnAlign = align || this.getAlignForDataType(dataType);
     const { cellProps: cellPropsCallback } = this.props;
     const cellProps = getCellProps(item, column, cellPropsCallback);
-    // Name can also be an array or an element, so we need to convert it to undefined. We can't
-    // stringify the value, because this value is rendered directly in the mobile layout. So the
-    // best thing we can do is render no header at all.
-    const header = typeof name === 'string' ? name : undefined;
 
     return (
       <EuiTableRowCell
         key={key}
         align={columnAlign}
-        header={header}
         isExpander={isExpander}
         textOnly={textOnly || !render}
+        mobileOptions={{
+          ...mobileOptions,
+          render: mobileOptions && mobileOptions.render && mobileOptions.render(item),
+          header: mobileOptions && mobileOptions.header === false ? false : name,
+        }}
         {...cellProps}
         {...rest}
       >

@@ -127,3 +127,22 @@
 @mixin euiNumberFormat {
   font-feature-settings: $euiFontFeatureSettings, 'tnum' 1; // Fixed-width numbers for tabular data
 }
+
+
+// Text weight shifting
+//
+// When changing the font-weight based the state of the component
+// this mixin will ensure that the sizing is dependent on the boldest
+// weight so it doesn't shifter sibling content.
+
+@mixin euiTextShift($fontWeight: $euiFontWeightBold, $attr: 'data-text') {
+  &::after {
+    display: block;
+    content: attr(#{$attr});
+    font-weight: $fontWeight;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+

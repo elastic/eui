@@ -1,8 +1,8 @@
 import { CommonProps } from '../common';
-import { IconType, IconSize } from '../icon'
+import { IconType, IconSize } from '../icon';
 /// <reference path="../button/index.d.ts" />
 
-import { SFC, ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import { Component, FunctionComponent, ButtonHTMLAttributes, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -11,7 +11,17 @@ declare module '@elastic/eui' {
    * @see './filter_button.js'
    */
 
-  export const EuiFilterButton: SFC<EuiButtonEmptyProps>;
+  export interface EuiFilterButtonProps {
+    numFilters?: number;
+    numActiveFilters?: number;
+    hasActiveFilters?: boolean;
+    isSelected?: boolean;
+    isDisabled?: boolean;
+    type?: string;
+    grow?: boolean;
+    noDivider?: boolean;
+  }
+  export const EuiFilterButton: FunctionComponent<EuiButtonEmptyProps & EuiFilterButtonProps>;
 
   /**
    * Filter group type defs
@@ -19,7 +29,7 @@ declare module '@elastic/eui' {
    * @see './filter_group.js'
    */
 
-  export const EuiFilterGroup: SFC<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiFilterGroup: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
 
   /**
    * Filter select item type defs
@@ -29,10 +39,9 @@ declare module '@elastic/eui' {
 
   export type FilterChecked = 'on' | 'off';
   export interface EuiFilterSelectItemProps {
-    checked?: FilterChecked
+    checked?: FilterChecked;
   }
 
-  export const EuiFilterSelectItem: SFC<CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & EuiFilterSelectItemProps
-  >;
+  export const EuiFilterSelectItem: Component<CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> & EuiFilterSelectItemProps>;
 }
