@@ -167,7 +167,7 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting } = props;
+    const { search, pagination, sorting, allowNeutralSort } = props;
     const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
@@ -181,6 +181,7 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
+      allowNeutralSort: (allowNeutralSort === false) ? false : true,
       hidePerPageOptions
     };
   }
@@ -201,7 +202,8 @@ export class EuiInMemoryTable extends Component {
     } = sort;
 
     // Allow going back to 'neutral' sorting
-    if (this.state.sortField === sortField
+    if (this.state.allowNeutralSort &&
+      this.state.sortField === sortField
       && this.state.sortDirection === 'desc'
       && sortDirection === 'asc') {
       sortField = '';
@@ -369,7 +371,7 @@ export class EuiInMemoryTable extends Component {
         field: sortField,
         direction: sortDirection,
       },
-      allowNeutralSort: (this.props.allowNeutralSort === false) ? false : true,
+      allowNeutralSort: this.state.allowNeutralSort,
     };
 
     const searchBar = this.renderSearchBar();
