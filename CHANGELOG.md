@@ -10,6 +10,7 @@
 **Breaking changes**
 
 - `EuiBasicTable`'s select all checkbox appends a `makeId` string to the id ([#1462](https://github.com/elastic/eui/pull/1462))
+- Remove camel casing from exported JSON variables ([#1590](https://github.com/elastic/eui/pull/1590))
 
 ## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
 
