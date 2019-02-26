@@ -20,17 +20,10 @@ export class OverflowTest extends Component {
 
     this.state = {
       isModalVisible: false,
-      isSwitchChecked: true,
     };
 
     this.closeModal = this.closeModal.bind(this);
     this.showModal = this.showModal.bind(this);
-  }
-
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
   }
 
   closeModal() {

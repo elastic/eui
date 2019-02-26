@@ -31,17 +31,10 @@ export class ToastGuidelines extends Component {
 
     this.state = {
       isModalVisible: false,
-      isSwitchChecked: true,
     };
 
     this.closeModal = this.closeModal.bind(this);
     this.showModal = this.showModal.bind(this);
-  }
-
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
   }
 
   closeModal() {
@@ -73,11 +66,15 @@ export class ToastGuidelines extends Component {
                 title="The maximum bucket size of 200 was exceeded"
                 color="danger"
                 size="s"
+                iconType="alert"
               />
-              <EuiSpacer />
+              <EuiSpacer size="s" />
               <EuiCodeBlock>
-                An extremely long error trace can exist in a modal where there there is time and
-                room to read it properly.
+                {`--- FAKE ERROR ---
+An extremely long error trace can exist in a modal so you have time
+and space to read it properly. Alternatively just link to a full page.
+---
+                `}
               </EuiCodeBlock>
             </EuiModalBody>
 
