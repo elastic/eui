@@ -26,7 +26,7 @@ declare module '@elastic/eui' {
     buttonRef: RefCallback<HTMLButtonElement>;
   }
   export const EuiFacetButton: FunctionComponent<CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement>> & EuiFacetButtonProps;
+    ButtonHTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps>;
 
   /**
    * Facet group type defs
@@ -40,5 +40,5 @@ declare module '@elastic/eui' {
   }
 
   export const EuiFacetGroup: FunctionComponent<CommonProps &
-    HTMLAttributes<HTMLDivElement>> & EuiFacetGroupProps;
+    HTMLAttributes<HTMLDivElement> & EuiFacetGroupProps>;
 }
