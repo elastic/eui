@@ -177,7 +177,7 @@ export default () => (
         panel={false}
         frame
         type="do"
-        text="Do. A single line of text is reable at a glance."
+        text="Do. A single line of text is readable at a glance."
       >
         <div style={{ textAlign: 'center' }}>
 
@@ -194,7 +194,7 @@ export default () => (
         panel={false}
         frame
         text="Don't cram a lot of detail into a toast.
-        These errors should persist in callouts and valdiations on the form.
+        These errors should persist in callouts and validations on the form.
         They don't need to be spelled out in the toast."
       >
 
@@ -286,7 +286,7 @@ export default () => (
     <GuideRuleTitle>Icons should emphasize actions</GuideRuleTitle>
 
     <GuideRule
-      description="An icon on the left of the messge can help define the message type."
+      description="An icon on the left of the message can help define the message type."
     >
       <GuideRuleExample
         panel={false}
@@ -476,7 +476,7 @@ export default () => (
         <EuiToast
           color="success"
           style={{ maxWidth: 300 }}
-          title="Visualization 1, Visualation 2, Visualization 3, and Visualization 4 were deleted"
+          title="Visualization 1, Visualization 2, Visualization 3, and Visualization 4 were deleted"
         />
 
       </GuideRuleExample>
