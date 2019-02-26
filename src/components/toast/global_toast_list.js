@@ -24,8 +24,10 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingToBottom = false;
     this.isScrolledToBottom = true;
 
-    this.isScrollingAnimationFrame;
-    this.startScrollingAnimationFrame;
+    // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
+    // for information on initial value of 0
+    this.isScrollingAnimationFrame = 0;
+    this.startScrollingAnimationFrame = 0;
   }
 
   static propTypes = {
@@ -169,8 +171,12 @@ export class EuiGlobalToastList extends Component {
   }
 
   componentWillUnmount() {
-    window.cancelAnimationFrame(this.isScrollingAnimationFrame);
-    window.cancelAnimationFrame(this.startScrollingAnimationFrame);
+    if (this.isScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.isScrollingAnimationFrame);
+    }
+    if (this.startScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.startScrollingAnimationFrame);
+    }
     this.listElement.removeEventListener('scroll', this.onScroll);
     this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
     this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
