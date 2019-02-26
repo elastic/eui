@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
   export interface EuiFilterButtonProps {
     numFilters?: number;
     numActiveFilters?: number;
+    hasActiveFilters?: boolean;
     isSelected?: boolean;
     isDisabled?: boolean;
     type?: string;
