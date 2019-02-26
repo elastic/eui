@@ -21,6 +21,11 @@ Note that EUI itself has some dependencies itself mostly around management of da
 yarn add @elastic/eui @elastic/datemath moment
 ```
 
+Note: if you're using Typescript, you'll also need to install `@types/react-datepicker` version 1.8.0:
+```
+yarn add -D @types/react-datepicker@1.8.0
+```
+
 
 ## Running Locally
 

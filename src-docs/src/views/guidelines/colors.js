@@ -161,7 +161,7 @@ export default class extends Component {
             those against a six-color grayscale. Variation beyond these colors is minimal and
             always dont with math manipulation against the original set.
           </p>
-      //Is the word "dont" correct in text above? Should it be "done" instead?
+          {/* Is the word "dont" correct in text above? Should it be "done" instead? */}
         </EuiText>
 
         <EuiSpacer />
