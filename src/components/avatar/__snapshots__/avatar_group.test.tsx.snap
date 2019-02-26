@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAvatarGroup is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAvatarGroup testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    aria-label="Rafael"
+    class="euiAvatar euiAvatar--m euiAvatar--user"
+    style="background-image:none;background-color:#F98510;color:#000000"
+    title="Rafael"
+  >
+    <span
+      aria-hidden="true"
+    >
+      R
+    </span>
+  </div>
+  <div
+    aria-label="Donatello"
+    class="euiAvatar euiAvatar--m euiAvatar--user"
+    style="background-image:none;background-color:#920000;color:#FFFFFF"
+    title="Donatello"
+  >
+    <span
+      aria-hidden="true"
+    >
+      D
+    </span>
+  </div>
+  <div
+    aria-label="Leornardo"
+    class="euiAvatar euiAvatar--m euiAvatar--user"
+    style="background-image:none;background-color:#BD10E0;color:#FFFFFF"
+    title="Leornardo"
+  >
+    <span
+      aria-hidden="true"
+    >
+      L
+    </span>
+  </div>
+  <span
+    class="euiAvatarGroup__more"
+  >
+    +1
+  </span>
+</div>
+`;
