@@ -43,7 +43,10 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingToBottom = true;
 
     const scrollToBottom = () => {
+      // Although we cancel the requestAnimationFrame in componentWillUnmount,
+      // it's possible for this.listElement to become null in the meantime
       if (!this.listElement) return;
+
       const position = this.listElement.scrollTop;
       const destination = this.listElement.scrollHeight - this.listElement.clientHeight;
       const distanceToDestination = destination - position;
