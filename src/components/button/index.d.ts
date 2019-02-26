@@ -1,4 +1,4 @@
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { IconType, IconSize } from '../icon'
 import { ToggleType } from '../toggle'
 
@@ -146,6 +146,6 @@ declare module '@elastic/eui' {
     }
 
   export const EuiButtonGroup: FunctionComponent<
-    HTMLAttributes<HTMLDivElement> & EuiButtonGroupProps
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & EuiButtonGroupProps
   >;
 }
