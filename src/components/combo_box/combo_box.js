@@ -132,6 +132,12 @@ export class EuiComboBox extends Component {
       return;
     }
 
+    // it's possible that updateListPosition is called when listElement is becoming visible, but isn't yet
+    const listElementBounds = listElement.getBoundingClientRect();
+    if (listElementBounds.width === 0 || listElementBounds.height === 0) {
+      return;
+    }
+
     const comboBoxBounds = this.comboBox.getBoundingClientRect();
 
     const { position, top } = findPopoverPosition({
@@ -437,7 +443,13 @@ export class EuiComboBox extends Component {
     if (this.props.onSearchChange) {
       this.props.onSearchChange(searchValue);
     }
-    this.setState({ searchValue });
+
+    this.setState(
+      { searchValue },
+      () => {
+        if (this.state.isListOpen === false) this.openList();
+      }
+    );
   };
 
   comboBoxRef = node => {
