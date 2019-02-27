@@ -22,7 +22,7 @@ type LabelProps = {
   LabelHTMLAttributes<HTMLLabelElement>;
 
 type LegendProps = {
-  type?: 'legend';
+  type: 'legend';
 } & EuiFormLabelCommonProps &
   HTMLAttributes<HTMLLegendElement>;
 
