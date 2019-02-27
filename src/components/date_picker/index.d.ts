@@ -1,7 +1,7 @@
 import React from 'react';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
-import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import _ReactDatePicker, { ReactDatePickerProps as _ReactDatePickerProps } from './react-datepicker';
 import { Moment } from 'moment';
 
 declare module '@elastic/eui' {
@@ -17,12 +17,12 @@ declare module '@elastic/eui' {
     refreshInterval: number;
   }
 
-  interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
+  interface EuiExtendedDatePickerProps extends _ReactDatePickerProps {
     fullWidth?: boolean;
     isInvalid?: boolean;
     isLoading?: boolean;
     injectTimes?: Moment[]; // added here because the type is missing in @types/react-datepicker@1.8.0
-    inputRef?: React.Ref<typeof ReactDatePicker>;
+    inputRef?: React.Ref<typeof _ReactDatePicker>;
     placeholder?: string;
     shadow?: boolean;
     showIcon?: boolean;
@@ -73,4 +73,7 @@ declare module '@elastic/eui' {
   };
 
   export const EuiSuperDatePicker: React.SFC<EuiSuperDatePickerProps>;
+
+  export const ReactDatePicker: typeof _ReactDatePicker;
+  export const ReactDatePickerProps: _ReactDatePickerProps;
 }

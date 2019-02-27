@@ -43,7 +43,7 @@ export const AccordionExample = {
         <p>
           <EuiCode>EuiFlexGroup</EuiCode>&apos;s negative margins can sometimes
           create scrollbars within <EuiCode>EuiAccordion</EuiCode> because of
-          the overflow tricks the used to hide content. If you run into this issue make
+          the overflow tricks used to hide content. If you run into this issue make
           sure your <EuiCode>paddingSize</EuiCode> prop is large enough to account for
           the <EuiCode>gutterSize</EuiCode> of any nested flex groups.
         </p>
@@ -66,7 +66,7 @@ export const AccordionExample = {
         <p>
           <EuiCode>EuiAccordion</EuiCode> is purposely bare so that you can
           put whatever styling you need on it (see the accordion form example). The only
-          styling we force on you in the caret, which gives the user an understaning
+          styling we force on you is the caret, which gives the user an understanding
           that the content will open up.
         </p>
         <p>
@@ -75,8 +75,8 @@ export const AccordionExample = {
           based on the height of those children.
         </p>
         <p>
-          For styling needs. Classes can be individually applied with
-          <EuiCode>className</EuiCode> (for the accordion entire),
+          For styling needs, classes can be individually applied with
+          <EuiCode>className</EuiCode> (for the entire accordion),
           and <EuiCode>buttonClassName</EuiCode> (for the clickable area).
         </p>
       </div>
@@ -98,7 +98,7 @@ export const AccordionExample = {
         displayed on the right of any accordion. Usually this is a delete or
         button, but can be anything. Note that this action is separate from
         the click state that expands the accordion. This is needed to make
-        it accessibile.
+        it accessible.
       </p>
     ),
     demo: <AccordionExtra />,

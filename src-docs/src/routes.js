@@ -31,7 +31,7 @@ import SassGuidelines
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
 
-import ToastGuidelines
+import { ToastGuidelines }
   from './views/guidelines/toasts';
 
 import WritingGuidelines
