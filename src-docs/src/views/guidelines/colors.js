@@ -159,9 +159,8 @@ export default class extends Component {
             Elastic UI builds with a very limited palette. We use a core set of three colors,
             combined with a green / orange / red qualitative set of three, and finally combine
             those against a six-color grayscale. Variation beyond these colors is minimal and
-            always dont with math manipulation against the original set.
+            always done with math manipulation against the original set.
           </p>
-          {/* Is the word "dont" correct in text above? Should it be "done" instead? */}
         </EuiText>
 
         <EuiSpacer />
