@@ -8,6 +8,7 @@
 - Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `EuiPopoverFooter` and converted `EuiPopoverTitle` to TS ([#1666](https://github.com/elastic/eui/pull/1666))
+- Changed `EuiSuperDatePicker`'s “Now” tab to be titled “Set to now” ([#1620](https://github.com/elastic/eui/pull/1620))
 
 **Bug fixes**
 
