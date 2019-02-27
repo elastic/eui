@@ -247,6 +247,9 @@ function isPropTypeRequired(types, propType) {
 }
 
 function makePropTypeRequired(types, propType) {
+  // can't make literals required no matter how hard we try
+  if (types.isLiteral(propType) === true) return propType;
+
   return types.memberExpression(
     propType,
     types.identifier('isRequired')
@@ -273,6 +276,22 @@ function areExpressionsIdentical(a, b) {
     )
   ])).code;
   return aCode === bCode;
+}
+
+/**
+ * Converts any literal node (StringLiteral, etc) into a PropTypes.oneOF([ literalNode ])
+ * so it can be used in any proptype expression
+ */
+function convertLiteralToOneOf(types, literalNode) {
+  return types.callExpression(
+    types.memberExpression(
+      types.identifier('PropTypes'),
+      types.identifier('oneOf')
+    ),
+    [
+      types.arrayExpression([ literalNode ])
+    ]
+  );
 }
 
 /**
@@ -345,6 +364,12 @@ function getPropTypesForNode(node, optional, state) {
               ...((mergedProperties[typeProperty.key.name] ? mergedProperties[typeProperty.key.name].leadingComments : null) || []),
             ];
 
+            let propTypeValue = typeProperty.value;
+            if (types.isLiteral(propTypeValue)) {
+              // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
+              propTypeValue = convertLiteralToOneOf(types, propTypeValue);
+            }
+
             // if this property has already been found, the only action is to potentially change it to optional
             if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
               const existing = mergedProperties[typeProperty.key.name];
@@ -356,7 +381,7 @@ function getPropTypesForNode(node, optional, state) {
                   ),
                   [
                     types.arrayExpression(
-                      [existing, typeProperty.value]
+                      [existing, propTypeValue]
                     )
                   ]
                 );
@@ -367,7 +392,7 @@ function getPropTypesForNode(node, optional, state) {
               }
             } else {
               // property hasn't been seen yet, add it
-              mergedProperties[typeProperty.key.name] = typeProperty.value;
+              mergedProperties[typeProperty.key.name] = propTypeValue;
             }
 
             mergedProperties[typeProperty.key.name].leadingComments = leadingComments;
