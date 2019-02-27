@@ -60,11 +60,11 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
       },
       {
         id: DATE_MODES.NOW,
-        name: 'Now',
+        name: 'Set to now',
         content: (
           <EuiText size="s" color="subdued" className="euiDatePopoverContent__padded">
             <p>
-              Setting the time to &quot;Now&quot; means that on every refresh
+              Setting the time to &quot;now&quot; means that on every refresh
               this time will be set to the time of the refresh.
             </p>
           </EuiText>
