@@ -24,7 +24,11 @@ class Color {
  * @returns {Array} Returns an array of hexadecimal color codes
  */
 
-export function colorPalette(hexStart: string, hexEnd: string, len: number = 10) {
+export function colorPalette(
+  hexStart: string,
+  hexEnd: string,
+  len: number = 10
+) {
   if (isHex(hexStart) && isHex(hexEnd)) {
     const colorArray: Color[] = [];
     const hexPalette: string[] = [];
@@ -38,9 +42,9 @@ export function colorPalette(hexStart: string, hexEnd: string, len: number = 10)
     hexPalette[0] = colorArray[0].text; // set the first color in the array
     for (let i = 1; i < count; i++) {
       // set the intermediate colors in the array
-      const r = (colorArray[0].r + (step[0] * i));
-      const g = (colorArray[0].g + (step[1] * i));
-      const b = (colorArray[0].b + (step[2] * i));
+      const r = colorArray[0].r + step[0] * i;
+      const g = colorArray[0].g + step[1] * i;
+      const b = colorArray[0].b + step[2] * i;
       colorArray[i] = new Color(r, g, b);
       hexPalette[i] = colorArray[i].text;
     } // all the colors in between
@@ -70,7 +74,9 @@ function createHex(rgbValues: rgbDef): string {
   for (let k = 0; k < 3; k++) {
     val = Math.round(rgbValues[k]);
     piece = val.toString(base); // Converts to radix 16 based value (0-9, A-F)
-    if (piece.length < 2) {piece = `0${piece}`; }
+    if (piece.length < 2) {
+      piece = `0${piece}`;
+    }
     result = result + piece;
   }
   result = `#${result.toUpperCase()}`; // Return in #RRGGBB format

@@ -1,4 +1,1 @@
-export {
-  EuiContext,
-  EuiI18nConsumer
-} from './context';
+export { EuiContext, EuiI18nConsumer } from './context';

@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import { EuiWindowEvent } from './window_event';
 
 describe('EuiWindowEvent', () => {
-
   beforeEach(() => {
     window.addEventListener = jest.fn();
     window.removeEventListener = jest.fn();
@@ -24,19 +23,27 @@ describe('EuiWindowEvent', () => {
     const handler = () => null;
     const wrapper = shallow(<EuiWindowEvent event="click" handler={handler} />);
     wrapper.unmount();
-    expect(window.removeEventListener).toHaveBeenLastCalledWith('click', handler);
+    expect(window.removeEventListener).toHaveBeenLastCalledWith(
+      'click',
+      handler
+    );
   });
 
   test('removes and re-attaches handler to window event on update', () => {
     const handler1 = () => null;
     const handler2 = () => null;
-    const wrapper = shallow(<EuiWindowEvent event="click" handler={handler1} />);
+    const wrapper = shallow(
+      <EuiWindowEvent event="click" handler={handler1} />
+    );
 
     expect(window.addEventListener).toHaveBeenLastCalledWith('click', handler1);
 
     wrapper.setProps({ event: 'hover', handler: handler2 });
 
-    expect(window.removeEventListener).toHaveBeenLastCalledWith('click', handler1);
+    expect(window.removeEventListener).toHaveBeenLastCalledWith(
+      'click',
+      handler1
+    );
     expect(window.addEventListener).toHaveBeenLastCalledWith('hover', handler2);
   });
 
@@ -49,5 +56,4 @@ describe('EuiWindowEvent', () => {
     expect(window.addEventListener).toHaveBeenCalledTimes(1);
     expect(window.removeEventListener).not.toHaveBeenCalled();
   });
-
 });

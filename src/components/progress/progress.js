@@ -74,9 +74,11 @@ EuiProgress.propTypes = {
   color: PropTypes.oneOf(COLORS),
   position: PropTypes.oneOf(POSITIONS),
   max: PropTypes.number,
+  value: PropTypes.number,
 };
 
 EuiProgress.defaultProps = {
+  value: null,
   max: null,
   size: 'm',
   color: 'secondary',

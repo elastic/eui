@@ -17,30 +17,31 @@ interface EuiI18nNumberValuesShape {
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
-type EuiI18nNumberProps = ExclusiveUnion<EuiI18nNumberValueShape, EuiI18nNumberValuesShape>;
+type EuiI18nNumberProps = ExclusiveUnion<
+  EuiI18nNumberValueShape,
+  EuiI18nNumberValuesShape
+>;
 
 function hasValues(x: EuiI18nNumberProps): x is EuiI18nNumberValuesShape {
   return x.values != null;
 }
 
-const EuiI18nNumber: React.SFC<EuiI18nNumberProps> = (props) => (
+const EuiI18nNumber: React.FunctionComponent<EuiI18nNumberProps> = props => (
   <EuiI18nConsumer>
-    {
-      (i18nConfig) => {
-        const formatNumber = i18nConfig.formatNumber || defaultFormatNumber;
+    {i18nConfig => {
+      const formatNumber = i18nConfig.formatNumber || defaultFormatNumber;
 
-        if (hasValues(props)) {
-          return props.children(props.values.map(value => formatNumber(value)));
-        }
-
-        const formattedValue = (formatNumber || defaultFormatNumber)(props.value);
-        if (props.children) {
-          return props.children(formattedValue);
-        } else {
-          return formattedValue;
-        }
+      if (hasValues(props)) {
+        return props.children(props.values.map(value => formatNumber(value)));
       }
-    }
+
+      const formattedValue = (formatNumber || defaultFormatNumber)(props.value);
+      if (props.children) {
+        return props.children(formattedValue);
+      } else {
+        return formattedValue;
+      }
+    }}
   </EuiI18nConsumer>
 );
 

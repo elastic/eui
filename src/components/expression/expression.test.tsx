@@ -2,10 +2,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import {
-  EuiExpression,
-  COLORS,
-} from './expression';
+import { EuiExpression, COLORS } from './expression';
 
 describe('EuiExpression', () => {
   test('renders', () => {
@@ -14,7 +11,7 @@ describe('EuiExpression', () => {
         description="the answer is"
         value="42"
         isActive={false}
-         // tslint:disable no-empty
+        // tslint:disable no-empty
         onClick={() => {}}
         {...requiredProps}
       />
@@ -36,8 +33,7 @@ describe('EuiExpression', () => {
             />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

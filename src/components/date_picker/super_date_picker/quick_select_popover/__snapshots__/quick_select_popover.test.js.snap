@@ -21,7 +21,6 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       type="button"
     >
       <EuiIcon
-        size="m"
         type="calendar"
       />
     </EuiButtonEmpty>
@@ -37,48 +36,46 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     className="euiQuickSelectPopover__content"
     data-test-subj="superDatePickerQuickMenu"
   >
-    <React.Fragment>
-      <EuiQuickSelect
-        applyTime={[Function]}
-        end="now"
-        prevQuickSelect={Object {}}
-        start="now-15m"
-      />
-      <EuiCommonlyUsedTimeRanges
-        applyTime={[Function]}
-        commonlyUsedRanges={
-          Array [
-            Object {
-              "end": "now/d",
-              "label": "Today",
-              "start": "now/d",
-            },
-          ]
-        }
-      />
-      <EuiRecentlyUsed
-        applyTime={[Function]}
-        commonlyUsedRanges={
-          Array [
-            Object {
-              "end": "now/d",
-              "label": "Today",
-              "start": "now/d",
-            },
-          ]
-        }
-        dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-        recentlyUsedRanges={
-          Array [
-            Object {
-              "end": "now/d",
-              "label": "Today",
-              "start": "now/d",
-            },
-          ]
-        }
-      />
-    </React.Fragment>
+    <EuiQuickSelect
+      applyTime={[Function]}
+      end="now"
+      prevQuickSelect={Object {}}
+      start="now-15m"
+    />
+    <EuiCommonlyUsedTimeRanges
+      applyTime={[Function]}
+      commonlyUsedRanges={
+        Array [
+          Object {
+            "end": "now/d",
+            "label": "Today",
+            "start": "now/d",
+          },
+        ]
+      }
+    />
+    <EuiRecentlyUsed
+      applyTime={[Function]}
+      commonlyUsedRanges={
+        Array [
+          Object {
+            "end": "now/d",
+            "label": "Today",
+            "start": "now/d",
+          },
+        ]
+      }
+      dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+      recentlyUsedRanges={
+        Array [
+          Object {
+            "end": "now/d",
+            "label": "Today",
+            "start": "now/d",
+          },
+        ]
+      }
+    />
     <EuiRefreshInterval
       applyRefreshInterval={[Function]}
       isPaused={true}
@@ -109,7 +106,6 @@ exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
       type="button"
     >
       <EuiIcon
-        size="m"
         type="clock"
       />
     </EuiButtonEmpty>

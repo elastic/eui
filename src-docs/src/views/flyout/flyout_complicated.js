@@ -12,6 +12,8 @@ import {
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
+  EuiForm,
+  EuiFormRow,
   EuiPopover,
   EuiSpacer,
   EuiTab,
@@ -19,6 +21,8 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
+
+import SuperSelectComplexExample from '../super_select/super_select_complex';
 
 export class FlyoutComplicated extends Component {
   constructor(props) {
@@ -179,6 +183,12 @@ export class FlyoutComplicated extends Component {
             >
               <p>This is the popover content, notice how it can overflow the flyout!</p>
             </EuiPopover>
+            <EuiSpacer size="m" />
+            <EuiForm>
+              <EuiFormRow label="A SuperSelect field">
+                <SuperSelectComplexExample />
+              </EuiFormRow>
+            </EuiForm>
             {flyoutContent}
             <EuiCodeBlock language="html">
               {htmlCode}

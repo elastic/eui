@@ -1,6 +1,6 @@
 import { CommonProps } from '../common';
 
-import { SFC, ProgressHTMLAttributes } from 'react';
+import { FunctionComponent, ProgressHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -25,5 +25,5 @@ declare module '@elastic/eui' {
       max?: number;
     };
 
-  export const EuiProgress: SFC<EuiProgressProps>;
+  export const EuiProgress: FunctionComponent<EuiProgressProps>;
 }

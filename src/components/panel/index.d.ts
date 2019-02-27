@@ -1,6 +1,6 @@
 import { CommonProps, RefCallback } from '../common';
 
-import { HTMLAttributes, SFC } from 'react';
+import { HTMLAttributes, FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -18,7 +18,7 @@ declare module '@elastic/eui' {
     panelRef?: RefCallback<HTMLDivElement>;
   }
 
-  export const EuiPanel: SFC<
+  export const EuiPanel: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPanelProps
   >;
 }

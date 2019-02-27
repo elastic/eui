@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { commonlyUsedRangeShape, recentlyUsedRangeShape } from './types';
+import { commonlyUsedRangeShape, recentlyUsedRangeShape, quickSelectPanelShape } from './types';
 import { prettyDuration, showPrettyDuration } from './pretty_duration';
 import { prettyInterval } from './pretty_interval';
 
@@ -15,6 +15,7 @@ import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { AsyncInterval } from './async_interval';
 
 function isRangeInvalid(start, end) {
   if (start === 'now' && end === 'now') {
@@ -23,6 +24,9 @@ function isRangeInvalid(start, end) {
 
   const startMoment = dateMath.parse(start);
   const endMoment = dateMath.parse(end, { roundUp: true });
+  if (!startMoment || !endMoment || !startMoment.isValid() || !endMoment.isValid()) {
+    return true;
+  }
   if (startMoment.isAfter(endMoment)) {
     return true;
   }
@@ -60,6 +64,14 @@ export class EuiSuperDatePicker extends Component {
     onRefreshChange: PropTypes.func,
 
     /**
+     * Callback for when the refresh interval is fired. Called with { start, end, refreshInterval }
+     * EuiSuperDatePicker will only manage a refresh interval timer when onRefresh callback is supplied
+     * If a promise is returned, the next refresh interval will not start until the promise has resolved.
+     * If the promise rejects the refresh interval will stop and the error thrown
+     */
+    onRefresh: PropTypes.func,
+
+    /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
      */
@@ -78,6 +90,7 @@ export class EuiSuperDatePicker extends Component {
      * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
      */
     isAutoRefreshOnly: PropTypes.bool,
+    customQuickSelectPanels: PropTypes.arrayOf(quickSelectPanelShape),
   }
 
   static defaultProps = {
@@ -164,6 +177,16 @@ export class EuiSuperDatePicker extends Component {
     }
   }
 
+  componentDidMount = () => {
+    if(!this.props.isPaused) {
+      this.startInterval(this.props.refreshInterval);
+    }
+  }
+
+  componentWillUnmount = () => {
+    this.stopInterval();
+  }
+
   setStart = (start) => {
     this.setTime({ start, end: this.state.end });
   }
@@ -215,6 +238,30 @@ export class EuiSuperDatePicker extends Component {
 
   onEndDatePopoverClose = () => {
     this.setState({ isEndDatePopoverOpen: false });
+  }
+
+  onRefreshChange = ({ refreshInterval, isPaused }) => {
+    this.stopInterval();
+    if(!isPaused) {
+      this.startInterval(refreshInterval);
+    }
+    if(this.props.onRefreshChange) {
+      this.props.onRefreshChange({ refreshInterval, isPaused });
+    }
+  }
+
+  stopInterval = () => {
+    if(this.asyncInterval) {
+      this.asyncInterval.stop();
+    }
+  }
+
+  startInterval = (refreshInterval) => {
+    const { start, end, onRefresh } = this.props;
+    if(onRefresh) {
+      const handler = () => onRefresh({ start, end, refreshInterval });
+      this.asyncInterval = new AsyncInterval(handler, refreshInterval);
+    }
   }
 
   renderDatePickerRange = () => {
@@ -325,13 +372,14 @@ export class EuiSuperDatePicker extends Component {
         applyTime={this.applyQuickTime}
         start={this.props.start}
         end={this.props.end}
-        applyRefreshInterval={this.props.onRefreshChange}
+        applyRefreshInterval={this.props.onRefreshChange ? this.onRefreshChange : null}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}
         dateFormat={this.props.dateFormat}
         recentlyUsedRanges={this.props.recentlyUsedRanges}
         isAutoRefreshOnly={this.props.isAutoRefreshOnly}
+        customQuickSelectPanels={this.props.customQuickSelectPanels}
       />
     );
 

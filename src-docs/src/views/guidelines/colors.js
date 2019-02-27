@@ -158,8 +158,8 @@ export default class extends Component {
           <p>
             Elastic UI builds with a very limited palette. We use a core set of three colors,
             combined with a green / orange / red qualitative set of three, and finally combine
-            those against a six-color grayscale. Variation behond these colors is minimal and
-            always dont with math manipulation against the original set.
+            those against a six-color grayscale. Variation beyond these colors is minimal and
+            always done with math manipulation against the original set.
           </p>
         </EuiText>
 
@@ -178,8 +178,8 @@ export default class extends Component {
           <p>
             <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
               WCAG specifications
-            </EuiLink> defines specific contrast ratios between forground text and a background color.
-            The grid below displays which color combinations pass that rating. In general you sould try to use
+            </EuiLink> defines specific contrast ratios between foreground text and a background color.
+            The grid below displays which color combinations pass that rating. In general you should try to use
             a color combination that is <EuiBadge color="#333">AA</EuiBadge> or above with the exception of using
             large text.
           </p>

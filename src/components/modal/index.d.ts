@@ -1,8 +1,8 @@
 import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
+/// <reference path="../focus_trap/index.d.ts" />
 
-import { FocusTarget } from 'focus-trap';
-import { ReactNode, SFC, HTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -22,14 +22,14 @@ declare module '@elastic/eui' {
      */
     maxWidth?: boolean | number | string;
 
-    /** 
-     * Specifies what element should initially have focus; 
-     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node. 
+    /**
+     * Specifies what element should initially have focus;
+     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
      */
     initialFocus?: FocusTarget;
   }
 
-  export const EuiModal: SFC<
+  export const EuiModal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiModalProps
     >;
 
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_body.js'
    */
-  export const EuiModalBody: SFC<
+  export const EuiModalBody: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -45,7 +45,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_footer.js'
    */
-  export const EuiModalFooter: SFC<
+  export const EuiModalFooter: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -53,7 +53,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_header.js'
    */
-  export const EuiModalHeader: SFC<
+  export const EuiModalHeader: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -61,7 +61,7 @@ declare module '@elastic/eui' {
   /**
    * @see './modal_header_title.js'
    */
-  export const EuiModalHeaderTitle: SFC<
+  export const EuiModalHeaderTitle: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
     >;
 
@@ -94,7 +94,7 @@ declare module '@elastic/eui' {
   }
 
   // `title` from the React defs conflicts with our definition above
-  export const EuiConfirmModal: SFC<
+  export const EuiConfirmModal: FunctionComponent<
     CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiConfirmModalProps
     >;
 

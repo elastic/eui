@@ -9,58 +9,58 @@ const data = Data({
 });
 
 export const Scale: Override = () => {
-    return {
-        scale: data.scale,
-        onTap() {
-            data.scale.set(0.6);
-            animate.spring(data.scale, 1);
-        },
-    };
+  return {
+    scale: data.scale,
+    onTap() {
+      data.scale.set(0.6);
+      animate.spring(data.scale, 1);
+    },
+  };
 };
 
 export const Rotate: Override = props => {
-    data.rotation.set(props.rotation);
+  data.rotation.set(props.rotation);
 
-    return {
-        rotation: data.rotation,
-        onTap() {
-            animate.spring(data.rotation, data.rotation.get() + 90, {
-                tension: 250,
-                friction: 20,
-            });
-        },
-    };
+  return {
+    rotation: data.rotation,
+    onTap() {
+      animate.spring(data.rotation, data.rotation.get() + 90, {
+        tension: 250,
+        friction: 20,
+      });
+    },
+  };
 };
 
 export const Fade: Override = props => {
-    data.opacity.set(props.opacity);
+  data.opacity.set(props.opacity);
 
-    return {
-        opacity: data.opacity,
-        onTap() {
-            animate.linear(data.opacity, 0, 0.2);
-        },
-    };
+  return {
+    opacity: data.opacity,
+    onTap() {
+      animate.linear(data.opacity, 0, 0.2);
+    },
+  };
 };
 
 export const FlipOutput: Override = () => {
-    return {
-        rotationY: data.rotationY,
-    };
+  return {
+    rotationY: data.rotationY,
+  };
 };
 
 export const FlipInput: Override = () => {
-    return {
-        onTap() {
-            const toggle = data.toggle;
-            animate.spring(
-                { rotationY: data.rotationY },
-                {
-                    rotationY: toggle ? 360 : 0,
-                },
-                { tension: 200, friction: 20 }
-            );
-            data.toggle = !toggle;
+  return {
+    onTap() {
+      const toggle = data.toggle;
+      animate.spring(
+        { rotationY: data.rotationY },
+        {
+          rotationY: toggle ? 360 : 0,
         },
-    };
+        { tension: 200, friction: 20 }
+      );
+      data.toggle = !toggle;
+    },
+  };
 };

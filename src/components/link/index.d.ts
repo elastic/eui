@@ -1,7 +1,7 @@
 import { CommonProps, Omit } from '../common';
 
 import {
-  SFC,
+  FunctionComponent,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   MouseEventHandler
@@ -22,6 +22,7 @@ declare module '@elastic/eui' {
     | 'accent'
     | 'danger'
     | 'warning'
+    | 'text'
     | 'ghost';
 
   export interface LinkButtonProps {
@@ -43,5 +44,5 @@ declare module '@elastic/eui' {
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'> &
     LinkAnchorProps;
 
-  export const EuiLink: SFC<EuiLinkButtonProps | EuiLinkAnchorProps>;
+  export const EuiLink: FunctionComponent<EuiLinkButtonProps | EuiLinkAnchorProps>;
 }

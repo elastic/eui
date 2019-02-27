@@ -106,16 +106,35 @@ exports[`EuiPopover props isOpen renders true 1`] = `
     </div>
     <div>
       <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-lock-disabled="disabled"
       >
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
-        <div />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+          <div />
+        </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>
@@ -134,16 +153,35 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
     </div>
     <div>
       <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-lock-disabled="disabled"
       >
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
-        <div />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+          <div />
+        </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>
@@ -161,24 +199,44 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
       <button />
     </div>
     <div>
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
-      >
-        You are in a popup. To exit this popup, hit escape.
-      </p>
       <div
-        aria-live="off"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
         tabindex="0"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="1"
+      />
+      <div
+        data-focus-lock-disabled="false"
       >
+        <p
+          class="euiScreenReaderOnly"
+          role="alert"
+        >
+          You are in a popup. To exit this popup, hit escape.
+        </p>
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
-        <div />
+          aria-live="off"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          data-autofocus="true"
+          style="top: 16px; left: -22px; z-index: 0;"
+          tabindex="0"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+          <div />
+        </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
     </div>
   </div>
 </div>
@@ -197,16 +255,35 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
     </div>
     <div>
       <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
-        style="top: 16px; left: -22px; z-index: 0;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-lock-disabled="disabled"
       >
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
-        <div />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+          <div />
+        </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>
@@ -225,16 +302,35 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
     </div>
     <div>
       <div
-        aria-live="assertive"
-        class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-        style="top: 16px; left: -22px; z-index: 0;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-lock-disabled="disabled"
       >
         <div
-          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-          style="left: 10px; top: 0px;"
-        />
-        <div />
+          aria-live="assertive"
+          class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+          style="top: 16px; left: -22px; z-index: 0;"
+        >
+          <div
+            class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+            style="left: 10px; top: 0px;"
+          />
+          <div />
+        </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
     </div>
   </div>
 </div>

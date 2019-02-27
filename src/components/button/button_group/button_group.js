@@ -65,7 +65,7 @@ export const EuiButtonGroup = ({
               key={index}
               label={option.label}
               name={option.name || name}
-              onChange={onChange.bind(null, option.id, option.value)}
+              onChange={() => onChange(option.id, option.value)}
               size={buttonSize}
               toggleClassName="euiButtonGroup__toggle"
               type={type}

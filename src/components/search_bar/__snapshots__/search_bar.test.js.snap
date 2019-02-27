@@ -123,6 +123,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
             ],
             "_indexedClauses": Object {
               "field": Object {},
+              "group": Array [],
               "is": Object {},
               "term": Array [
                 Object {
@@ -151,6 +152,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
           "syntax": Object {
             "parse": [Function],
             "print": [Function],
+            "printClause": [Function],
           },
           "text": "this is a query",
         }

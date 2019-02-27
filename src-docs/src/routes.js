@@ -31,7 +31,7 @@ import SassGuidelines
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
 
-import ToastGuidelines
+import { ToastGuidelines }
   from './views/guidelines/toasts';
 
 import WritingGuidelines
@@ -129,6 +129,9 @@ import { FlexExample }
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
+import { FocusTrapExample }
+  from './views/focus_trap/focus_trap_example';
+
 import { FormControlsExample }
   from './views/form_controls/form_controls_example';
 
@@ -201,6 +204,12 @@ import { PortalExample }
 import { ProgressExample }
   from './views/progress/progress_example';
 
+import { RangeControlExample }
+  from './views/range/range_example';
+
+import { ResizeObserverExample }
+  from './views/resize_observer/resize_observer_example';
+
 import { ResponsiveExample }
   from './views/responsive/responsive_example';
 
@@ -263,6 +272,9 @@ import { XYChartLineExample }
 
 import { Changelog }
   from './views/package/changelog';
+
+import { I18nTokens }
+  from './views/package/i18n_tokens';
 
 import { SuperSelectExample }
   from './views/super_select/super_select_example';
@@ -400,6 +412,7 @@ const navigation = [{
     DatePickerExample,
     ExpressionExample,
     FilterGroupExample,
+    RangeControlExample,
     SearchBarExample,
   ].map(example => createExample(example)),
 },
@@ -424,12 +437,14 @@ const navigation = [{
     UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    FocusTrapExample,
     HighlightExample,
     I18nExample,
     IsColorDarkExample,
     MutationObserverExample,
     OutsideClickDetectorExample,
     PortalExample,
+    ResizeObserverExample,
     ResponsiveExample,
     ToggleExample,
     WindowEventExample,
@@ -437,7 +452,8 @@ const navigation = [{
 }, {
   name: 'Package',
   items: [
-    Changelog
+    Changelog,
+    I18nTokens,
   ]
 }].map(({ name, items, ...rest }) => ({
   name,

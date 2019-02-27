@@ -1,6 +1,6 @@
 import { CommonProps } from '../common';
 
-import { HTMLAttributes, SFC } from 'react';
+import { HTMLAttributes, FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -19,7 +19,7 @@ declare module '@elastic/eui' {
     type?: AvatarType;
   }
 
-  export const EuiAvatar: SFC<
+  export const EuiAvatar: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiAvatarProps
     >;
 }

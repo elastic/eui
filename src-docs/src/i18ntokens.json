@@ -1,0 +1,738 @@
+[
+  {
+    "token": "euiBasicTable.tableDescription",
+    "defString": "Below is a table of {itemCount} items.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 432,
+        "column": 10
+      },
+      "end": {
+        "line": 436,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/basic_table/basic_table.js"
+  },
+  {
+    "token": "euiBasicTable.selectAllRows",
+    "defString": "Select all rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 468,
+        "column": 6
+      },
+      "end": {
+        "line": 468,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/basic_table/basic_table.js"
+  },
+  {
+    "token": "euiBasicTable.selectThisRow",
+    "defString": "Select this row",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 769,
+        "column": 8
+      },
+      "end": {
+        "line": 769,
+        "column": 79
+      }
+    },
+    "filepath": "src/components/basic_table/basic_table.js"
+  },
+  {
+    "token": "euiCollapsedItemActions.allActions",
+    "defString": "All actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 92,
+        "column": 6
+      },
+      "end": {
+        "line": 92,
+        "column": 80
+      }
+    },
+    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+  },
+  {
+    "token": "euiCollapsedItemActions.allActions",
+    "defString": "All actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 108,
+        "column": 6
+      },
+      "end": {
+        "line": 108,
+        "column": 80
+      }
+    },
+    "filepath": "src/components/basic_table/collapsed_item_actions.js"
+  },
+  {
+    "token": "euiBottomBar.screenReaderAnnouncement",
+    "defString": "There is a new menu opening with page level controls at the bottom of the document.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 57,
+        "column": 12
+      },
+      "end": {
+        "line": 60,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/bottom_bar/bottom_bar.js"
+  },
+  {
+    "token": "euiCodeEditor.startInteracting",
+    "defString": "Press Enter to start interacting with the code.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 161,
+        "column": 16
+      },
+      "end": {
+        "line": 164,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/code_editor/code_editor.js"
+  },
+  {
+    "token": "euiCodeEditor.startEditing",
+    "defString": "Press Enter to start editing.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 167,
+        "column": 16
+      },
+      "end": {
+        "line": 170,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/code_editor/code_editor.js"
+  },
+  {
+    "token": "euiCodeEditor.stopInteracting",
+    "defString": "When you're done, press Escape to stop interacting with the code.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 179,
+        "column": 16
+      },
+      "end": {
+        "line": 182,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/code_editor/code_editor.js"
+  },
+  {
+    "token": "euiCodeEditor.stopEditing",
+    "defString": "When you're done, press Escape to stop editing.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 185,
+        "column": 16
+      },
+      "end": {
+        "line": 188,
+        "column": 18
+      }
+    },
+    "filepath": "src/components/code_editor/code_editor.js"
+  },
+  {
+    "token": "euiCodeBlock.copyButton",
+    "defString": "Copy",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 157,
+        "column": 10
+      },
+      "end": {
+        "line": 157,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/code/_code_block.js"
+  },
+  {
+    "token": "euiColorPicker.transparentColor",
+    "defString": "transparent",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 6
+      },
+      "end": {
+        "line": 38,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.js"
+  },
+  {
+    "token": "euiColorPicker.colorSelectionLabel",
+    "defString": "Color selection is {colorValue}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 43,
+        "column": 12
+      },
+      "end": {
+        "line": 47,
+        "column": 13
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.js"
+  },
+  {
+    "token": "euiComboBoxPill.removeSelection",
+    "defString": "Remove {children} from selection in this group",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 51,
+        "column": 8
+      },
+      "end": {
+        "line": 55,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.loadingOptions",
+    "defString": "Loading options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 133,
+        "column": 12
+      },
+      "end": {
+        "line": 133,
+        "column": 94
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.alreadyAdded",
+    "defString": "{label} has already been added",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 144,
+        "column": 14
+      },
+      "end": {
+        "line": 148,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.createCustomOption",
+    "defString": "Hit {key} to add {searchValue} as a custom option",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 154,
+        "column": 14
+      },
+      "end": {
+        "line": 158,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.noMatchingOptions",
+    "defString": "{searchValue} doesn't match any options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 165,
+        "column": 12
+      },
+      "end": {
+        "line": 169,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.noAvailableOptions",
+    "defString": "There aren't any options available",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 176,
+        "column": 10
+      },
+      "end": {
+        "line": 176,
+        "column": 115
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiComboBoxOptionsList.allOptionsSelected",
+    "defString": "You've selected all available options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 182,
+        "column": 10
+      },
+      "end": {
+        "line": 182,
+        "column": 118
+      }
+    },
+    "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiFormControlLayoutClearButton.label",
+    "defString": "Clear input",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 16,
+        "column": 4
+      },
+      "end": {
+        "line": 16,
+        "column": 81
+      }
+    },
+    "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.js"
+  },
+  {
+    "token": "euiForm.addressFormErrors",
+    "defString": "Please address the errors in your form.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 6
+      },
+      "end": {
+        "line": 35,
+        "column": 99
+      }
+    },
+    "filepath": "src/components/form/form.js"
+  },
+  {
+    "token": "euiSuperSelectControl.selectAnOption",
+    "defString": "Select an option: {selectedValue}, is selected",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 77,
+        "column": 12
+      },
+      "end": {
+        "line": 81,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/form/super_select/super_select_control.js"
+  },
+  {
+    "token": "euiSuperSelect.screenReaderAnnouncement",
+    "defString": "You are in a form selector of {optionsCount} items and must select a single option.\n              Use the up and down keys to navigate or escape to close.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 249,
+        "column": 12
+      },
+      "end": {
+        "line": 254,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/form/super_select/super_select.js"
+  },
+  {
+    "token": "euiHeaderAlert.dismiss",
+    "defString": "Dismiss",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 29,
+        "column": 4
+      },
+      "end": {
+        "line": 29,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/header/header_alert/header_alert.js"
+  },
+  {
+    "token": "euiHeaderLinks.openNavigationMenu",
+    "defString": "Open navigation menu",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 46,
+        "column": 8
+      },
+      "end": {
+        "line": 46,
+        "column": 90
+      }
+    },
+    "filepath": "src/components/header/header_links/header_links.js"
+  },
+  {
+    "token": "euiHeaderLinks.appNavigation",
+    "defString": "App navigation",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 60,
+        "column": 6
+      },
+      "end": {
+        "line": 60,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/header/header_links/header_links.js"
+  },
+  {
+    "token": "euiModal.closeModal",
+    "defString": "Closes this modal window",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 60,
+        "column": 10
+      },
+      "end": {
+        "line": 60,
+        "column": 82
+      }
+    },
+    "filepath": "src/components/modal/modal.js"
+  },
+  {
+    "token": "euiPagination.pageOfTotal",
+    "defString": "Page {page} of {total}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 28,
+        "column": 6
+      },
+      "end": {
+        "line": 33,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/pagination/pagination.js"
+  },
+  {
+    "token": "euiPagination.previousPage",
+    "defString": "Previous page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 51,
+        "column": 4
+      },
+      "end": {
+        "line": 51,
+        "column": 72
+      }
+    },
+    "filepath": "src/components/pagination/pagination.js"
+  },
+  {
+    "token": "euiPagination.pageOfTotal",
+    "defString": "Page {page} of {total}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 69,
+        "column": 6
+      },
+      "end": {
+        "line": 74,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/pagination/pagination.js"
+  },
+  {
+    "token": "euiPagination.jumpToLastPage",
+    "defString": "Jump to the last page, number {pageCount}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 118,
+        "column": 6
+      },
+      "end": {
+        "line": 123,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/pagination/pagination.js"
+  },
+  {
+    "token": "euiPagination.nextPage",
+    "defString": "Next page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 138,
+        "column": 4
+      },
+      "end": {
+        "line": 138,
+        "column": 64
+      }
+    },
+    "filepath": "src/components/pagination/pagination.js"
+  },
+  {
+    "token": "euiPopover.screenReaderAnnouncement",
+    "defString": "You are in a popup. To exit this popup, hit escape.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 436,
+        "column": 14
+      },
+      "end": {
+        "line": 436,
+        "column": 130
+      }
+    },
+    "filepath": "src/components/popover/popover.js"
+  },
+  {
+    "token": "euiStepHorizontal.buttonTitle",
+    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 56,
+        "column": 4
+      },
+      "end": {
+        "line": 69,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/steps/step_horizontal.js"
+  },
+  {
+    "token": "euiStepHorizontal.step",
+    "defString": "Step",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 82,
+        "column": 38
+      },
+      "end": {
+        "line": 82,
+        "column": 94
+      }
+    },
+    "filepath": "src/components/steps/step_horizontal.js"
+  },
+  {
+    "token": "euiStepNumber.isComplete",
+    "defString": "complete",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 42,
+        "column": 6
+      },
+      "end": {
+        "line": 42,
+        "column": 67
+      }
+    },
+    "filepath": "src/components/steps/step_number.js"
+  },
+  {
+    "token": "euiStepNumber.hasWarnings",
+    "defString": "has warnings",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 48,
+        "column": 6
+      },
+      "end": {
+        "line": 48,
+        "column": 72
+      }
+    },
+    "filepath": "src/components/steps/step_number.js"
+  },
+  {
+    "token": "euiStepNumber.hasErrors",
+    "defString": "has errors",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 54,
+        "column": 6
+      },
+      "end": {
+        "line": 54,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/steps/step_number.js"
+  },
+  {
+    "token": "euiStep.incompleteStep",
+    "defString": "Incomplete Step",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 23
+      },
+      "end": {
+        "line": 35,
+        "column": 90
+      }
+    },
+    "filepath": "src/components/steps/step.js"
+  },
+  {
+    "token": "euiStep.completeStep",
+    "defString": "Step",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 37,
+        "column": 23
+      },
+      "end": {
+        "line": 37,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/steps/step.js"
+  },
+  {
+    "token": "euiTableSortMobile.sorting",
+    "defString": "Sorting",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 59,
+        "column": 8
+      },
+      "end": {
+        "line": 59,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/table/mobile/table_sort_mobile.js"
+  },
+  {
+    "token": "euiTablePagination.rowsPerPage",
+    "defString": "Rows per page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 53,
+        "column": 8
+      },
+      "end": {
+        "line": 53,
+        "column": 81
+      }
+    },
+    "filepath": "src/components/table/table_pagination/table_pagination.js"
+  },
+  {
+    "token": "euiToast.dismissToast",
+    "defString": "Dismiss toast",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 6
+      },
+      "end": {
+        "line": 49,
+        "column": 69
+      }
+    },
+    "filepath": "src/components/toast/toast.js"
+  },
+  {
+    "token": "euiToast.newNotification",
+    "defString": "A new notification appears",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 11
+      },
+      "end": {
+        "line": 86,
+        "column": 91
+      }
+    },
+    "filepath": "src/components/toast/toast.js"
+  },
+  {
+    "token": "euiToast.notification",
+    "defString": "Notification",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 89,
+        "column": 6
+      },
+      "end": {
+        "line": 89,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/toast/toast.js"
+  }
+]

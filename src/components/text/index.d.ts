@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -46,7 +46,7 @@ declare module '@elastic/eui' {
 
 
 
-  export const EuiText: SFC<EuiTextProps>;
-  export const EuiTextAlign: SFC<EuiTextAlignProps>;
-  export const EuiTextColor: SFC<EuiTextColorProps>;
+  export const EuiText: FunctionComponent<EuiTextProps>;
+  export const EuiTextAlign: FunctionComponent<EuiTextAlignProps>;
+  export const EuiTextColor: FunctionComponent<EuiTextColorProps>;
 }

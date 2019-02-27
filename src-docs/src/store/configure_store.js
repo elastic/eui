@@ -12,6 +12,7 @@ import {
 
 import Routes from '../routes';
 
+import localeReducer from './reducers/locale_reducer';
 import themeReducer from './reducers/theme_reducer';
 
 /**
@@ -23,6 +24,7 @@ export default function configureStore(initialState) {
     return {
       routing: routerReducer(state.routing, action),
       theme: themeReducer(state.theme, action),
+      locale: localeReducer(state.locale, action),
       routes: Routes,
     };
   }

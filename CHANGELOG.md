@@ -1,5 +1,125 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `mobileOptions` object prop for handling of all the mobile specific options of `EuiBasicTable` ([#1462](https://github.com/elastic/eui/pull/1462))
+- Table headers now accept `React.node` types ([#1462](https://github.com/elastic/eui/pull/1462))
+- Added `displayOnly` prop to `EuiFormRow` ([#1582](https://github.com/elastic/eui/pull/1582))
+- Added `numActiveFilters` prop to `EuiFilterButton` ([#1589](https://github.com/elastic/eui/pull/1589))
+- Updated style of `EuiFilterButton` to match `EuiFacetButton` ([#1589](https://github.com/elastic/eui/pull/1589))
+- Added `size` and `color` props to `EuiNotificationBadge` ([#1589](https://github.com/elastic/eui/pull/1589))
+
+**Bug fixes**
+
+- `EuiBasicTable` select all shows up on mobile ([#1462](https://github.com/elastic/eui/pull/1462))
+- Adds missing `hasActiveFilters` prop for `EuiFilterButton` type and fixes `onChange` signature for `EuiButtonGroup` ([#1603](https://github.com/elastic/eui/pull/1603))
+- Included `react-datepicker` TS types in EUI itself to avoid outside dependency ([#1618](https://github.com/elastic/eui/pull/1618))
+- Prevent `EuiGlobalToastList` from attempting calculations on `null` DOM elements ([#1606](https://github.com/elastic/eui/pull/1606))
+
+**Breaking changes**
+
+- `EuiBasicTable`'s select all checkbox appends a `makeId` string to the id ([#1462](https://github.com/elastic/eui/pull/1462))
+- Remove camel casing from exported JSON variables and preserve hex values instead of converting to rgb ([#1590](https://github.com/elastic/eui/pull/1590))
+
+## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
+
+**Breaking changes**
+
+- Upgraded TypeScript to 3.3 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded React to 16.8 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Jest to 24.1 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Enzyme to 3.9 ([#1583](https://github.com/elastic/eui/pull/1583))
+
+## [`7.3.0`](https://github.com/elastic/eui/tree/v7.3.0)
+
+- Added `onRefresh` option for `EuiSuperDatePicker` ([#1577](https://github.com/elastic/eui/pull/1577))
+- Converted `EuiToggle` to TypeScript ([#1570](https://github.com/elastic/eui/pull/1570))
+- Added type definitions for `EuiButtonGroup`,`EuiButtonToggle`, `EuiFilterButton`, `EuiFilterGroup`, and `EuiFilterSelectItem` ([#1570](https://github.com/elastic/eui/pull/1570))
+- Added `displayOnly` prop to EuiFormRow ([#1582](https://github.com/elastic/eui/pull/1582))
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
+
+**Bug fixes**
+
+- Fixed several bugs with `EuiRange` and `EuiDualRange` including sizing of inputs, tick placement, and the handling of invalid values ([#1580](https://github.com/elastic/eui/pull/1580))
+
+## [`7.2.0`](https://github.com/elastic/eui/tree/v7.2.0)
+
+- Added `text` as a color option for `EuiLink` ([#1571](https://github.com/elastic/eui/pull/1571))
+- Added `EuiResizeObserver` to expose ResizeObserver API to React components; falls back to MutationObserver API in unsupported browsers ([#1559](https://github.com/elastic/eui/pull/1559))
+- Added `EuiFocusTrap` as a wrapper around `react-focus-lock` to enable trapping focus in more cases, including React portals ([#1550](https://github.com/elastic/eui/pull/1550))
+
+**Bug fixes**
+
+- Fixed content cut off in `EuiContextMenuPanel` when height changes dynamically ([#1559](https://github.com/elastic/eui/pull/1559))
+- Fixed `EuiComboBox` to allow keyboard tab to exit single selection box ([#1576](https://github.com/elastic/eui/pull/1576))
+- Various fixes related to focus order and focus trapping as they relate to content in React portals ([#1550](https://github.com/elastic/eui/pull/1550))
+
+## [`7.1.0`](https://github.com/elastic/eui/tree/v7.1.0)
+
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1462](https://github.com/elastic/eui/pull/1562))
+- Added `isCopyable` prop to `EuiCodeBlock` ([#1556](https://github.com/elastic/eui/pull/1556))
+- Added optional `Snippet` tab to docs and renamed demo tabs ([#1556](https://github.com/elastic/eui/pull/1556))
+- Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- Add iconSize to ButtonIcon type definition ([#1568](https://github.com/elastic/eui/pull/1568))
+
+## [`7.0.0`](https://github.com/elastic/eui/tree/v7.0.0)
+
+- Created `EuiDualRange` using components from modularized, refactored `EuiRange`. New util service `isWithinRange` is the first in the number category. ([#1485](https://github.com/elastic/eui/pull/1485))
+- Upgraded `lodash` to v4, taking advantage of modular imports. ([#1534](https://github.com/elastic/eui/pull/1534))
+- Added pseudo-localization mode to docs ([#1541](https://github.com/elastic/eui/pull/1541))
+- New docs page listing localization tokens ([#1541](https://github.com/elastic/eui/pull/1541))
+- Added support for OR group clauses in `EuiQuery` and `EuiSearchBar` ([#1204](https://github.com/elastic/eui/pull/1204))
+- Added `customQuickSelectPanels` prop to `EuiSuperDatePicker` ([#1549](https://github.com/elastic/eui/pull/1549))
+
+**Bug fixes**
+
+- Fixed `EuiSearchBar.Query` match_all query string must be `*` ([#1521](https://github.com/elastic/eui/pull/1521))
+- Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
+- Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
+- Make TSLint issues be warnings, not errors, when running `src-docs` ([#1537](https://github.com/elastic/eui/pull/1537))
+
+**Breaking changes**
+
+- Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
+## [`6.10.4`](https://github.com/elastic/eui/tree/v6.10.4)
+
+**Note: this release is a backport containing changes originally made in `7.3.0`**
+
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
+
+## [`6.10.3`](https://github.com/elastic/eui/tree/v6.10.3)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
+
+## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1562](https://github.com/elastic/eui/pull/1562))
+- Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+
+## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
+
+**Note: this release is a backport containing changes originally made in `7.0.0`**
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` crashing with negative relative value ([#1537](https://github.com/elastic/eui/pull/1537))
+- Fixed `EuiSuperDatePicker` crashing with invalid start and end prop values ([#1544](https://github.com/elastic/eui/pull/1544))
+
+## [`6.10.0`](https://github.com/elastic/eui/tree/v6.10.0)
+
+- Adjust dark mode background color ([#1530](https://github.com/elastic/eui/pull/1530))
+- TypeScript are now formatted with Prettier ([#1529](https://github.com/elastic/eui/pull/1529))
+- Updated `EuiPopover` and `EuiColorPicker` to pause `EuiOutsideClickDetector` in when not open ([#1527](https://github.com/elastic/eui/pull/1527))
+
+## [`6.9.0`](https://github.com/elastic/eui/tree/v6.9.0)
+
+- Changed animation settings for `EuiNavDrawer` ([#1524](https://github.com/elastic/eui/pull/1524))
 - Converted a number of components to support text localization ([#1504](https://github.com/elastic/eui/pull/1504))
 - Updated `app_ems.svg` ([#1517](https://github.com/elastic/eui/pull/1517))
 
@@ -14,13 +134,14 @@
 ## [`6.8.0`](https://github.com/elastic/eui/tree/v6.8.0)
 
 - Changed `flex-basis` value on `EuiPageBody` for better cross-browser support ([#1497](https://github.com/elastic/eui/pull/1497))
-- Converted a number of components to support text localization ([#1485](https://github.com/elastic/eui/pull/1485))
+- Converted a number of components to support text localization ([#1450](https://github.com/elastic/eui/pull/1450))
 - Added a seconds option to the refresh interval selection in `EuiSuperDatePicker`  ([#1503](https://github.com/elastic/eui/pull/1503))
-- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1505](https://github.com/elastic/eui/pull/1505))
+- Changed to conditionally render `EuiModalBody` if `EuiConfirmModal` has no `children` ([#1500](https://github.com/elastic/eui/pull/1500))
+
 
 **Bug fixes**
 
-- Remove `font-features` setting on `@euiFont` mixin to prevent breaks in ACE editor ([#1497](https://github.com/elastic/eui/pull/1497))
+- Remove `font-features` setting on `@euiFont` mixin to prevent breaks in ACE editor ([#1505](https://github.com/elastic/eui/pull/1505))
 
 ## [`6.7.4`](https://github.com/elastic/eui/tree/v6.7.4)
 

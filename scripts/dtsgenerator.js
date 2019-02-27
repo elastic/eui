@@ -54,7 +54,7 @@ const generator = dtsGenerator({
         params.importedModuleId,
         {
           basedir: importFromBaseDir,
-          extensions: ['.ts', '.tsx'],
+          extensions: ['.ts', '.tsx', '.d.ts'],
         }
       );
 
@@ -78,14 +78,41 @@ const generator = dtsGenerator({
   },
 });
 
+// NOTE: once EUI is all converted to typescript this madness can be deleted forever
 // 1. strip any `/// <reference` lines from the generated eui.d.ts
-// 2. replace any import("src/...") declarations to import("@elastic/src/...")
+// 2. replace any import("src/...") declarations to import("@elastic/eui/src/...")
+// 3. replace any import("./...") declarations to import("@elastic/eui/src/...)
 generator.then(() => {
   const defsFilePath = path.resolve(baseDir, 'eui.d.ts');
+
   fs.writeFileSync(
     defsFilePath,
     fs.readFileSync(defsFilePath).toString()
       .replace(/\/\/\/\W+<reference.*/g, '') // 1.
-      .replace(/import\(\"src\/(.*?)\"\)/g, 'import("@elastic/eui/src/$1")') // 2.
+      .replace(/import\("src\/(.*?)"\)/g, 'import("@elastic/eui/src/$1")') // 2.
+      .replace( // start 3.
+        // find any singular `declare module { ... }` block
+        // {.*?^} matches anything until a } starts a new line (via `m` regex option, and `s` is dotall)
+        //
+        // aren't regex really bad for this? Yes.
+        // However, @babel/preset-typescript doesn't understand some syntax generated in eui.d.ts
+        // and the tooling around typescript's parsing & code generation is lacking and undocumented
+        // so... because this works with the guarantee that the newline-brace combination matches a module...
+        /declare module '(.*?)' {.*?^}/smg,
+        (module, moduleName) => {
+          // `moduleName` is the namespace for this ambient module
+          return module.replace(
+            // replace relative imports by attaching them to the module's namespace
+            /import\("([.]{1,2}\/.*?)"\)/g,
+            (importStatement, importPath) => {
+              const target = path.join(
+                path.dirname(moduleName),
+                importPath
+              );
+              return `import ("${target}")`;
+            }
+          );
+        }
+      ) // end 3.
   );
 });

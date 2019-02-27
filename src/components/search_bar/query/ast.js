@@ -69,6 +69,16 @@ const Term = Object.freeze({
   }
 });
 
+const Group = Object.freeze({
+  TYPE: 'group',
+  isInstance: (clause) => {
+    return clause.type === Group.TYPE;
+  },
+  must: (value) => {
+    return { type: Group.TYPE, value, match: Match.MUST };
+  },
+});
+
 const Field = Object.freeze({
   TYPE: 'field',
   isInstance: (clause) => {
@@ -154,10 +164,13 @@ export class _AST {
         case Term.TYPE:
           map.term.push(clause);
           return map;
+        case Group.TYPE:
+          map.group.push(clause);
+          return map;
         default:
           throw new Error(`Unknown query clause type [${clause.type}]`);
       }
-    }, { field: {}, is: {}, term: [] });
+    }, { field: {}, is: {}, term: [], group: [] });
   }
 
   get clauses() {
@@ -289,6 +302,10 @@ export class _AST {
     return new _AST(this._clauses.filter(clause => !Is.isInstance(clause) || clause.flag !== flag));
   }
 
+  getGroupClauses() {
+    return Object.values(this._indexedClauses.group);
+  }
+
   /**
    * Creates and returns a new AST with the given clause added to the current clauses. If
    * the current clauses already include a similar clause, it will be (in-place) replaced by
@@ -352,6 +369,7 @@ export const AST = Object.freeze({
   Match,
   Operator,
   Term,
+  Group,
   Field,
   Is,
   create: (clauses) => new _AST(clauses)
