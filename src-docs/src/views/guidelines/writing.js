@@ -257,7 +257,7 @@ export default () => (
 
       <GuideRuleExample
         type="do"
-        text="Do. Use &quot;we&quot; when taking an action on behalf of the the user."
+        text="Do. Use &quot;we&quot; when taking an action on behalf of the user."
       >
         <GuideRuleWriting>We noticed that you don&apos;t have any data in your cluster.
           Try our sample data and dashboards or jump in with your own data.
@@ -301,7 +301,7 @@ export default () => (
       heading="Don't use unneccessary punctuation"
       description="Although punctuation can help clarify meaning, it can also
       clutter the UI. Don&apos;t add a colon after a label, an ellipsis (...)
-      at the end of an action, an (s) at the end of a noun, or add parenthesis
+      at the end of an action, an (s) at the end of a noun, or add parentheses
       (())."
     >
 
@@ -512,7 +512,7 @@ export default () => (
 
     <GuideRule
       heading="Avoid using &quot;please&quot;"
-      description="In most cases, &quot;please&quot; is unneccessary.
+      description="In most cases, &quot;please&quot; is unnecessary.
       Exceptions are situations where the user must wait or do something inconvenient.
       Or, if the text sounds too abrupt without it."
     >
@@ -577,7 +577,7 @@ export default () => (
 
     <GuideRule
       heading="Avoid the urge to explain everything"
-      description="Not every task requires an explanation nor every field requires placeholder text."
+      description="Not every task requires an explanation nor does every field require placeholder text."
     >
       <GuideRuleExample type="do" text="Do.  Explain new or difficult concepts.">
         <EuiFormRow

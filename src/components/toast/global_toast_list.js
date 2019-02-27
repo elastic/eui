@@ -23,6 +23,11 @@ export class EuiGlobalToastList extends Component {
 
     this.isScrollingToBottom = false;
     this.isScrolledToBottom = true;
+
+    // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
+    // for information on initial value of 0
+    this.isScrollingAnimationFrame = 0;
+    this.startScrollingAnimationFrame = 0;
   }
 
   static propTypes = {
@@ -40,6 +45,10 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingToBottom = true;
 
     const scrollToBottom = () => {
+      // Although we cancel the requestAnimationFrame in componentWillUnmount,
+      // it's possible for this.listElement to become null in the meantime
+      if (!this.listElement) return;
+
       const position = this.listElement.scrollTop;
       const destination = this.listElement.scrollHeight - this.listElement.clientHeight;
       const distanceToDestination = destination - position;
@@ -54,11 +63,11 @@ export class EuiGlobalToastList extends Component {
       this.listElement.scrollTop = position + distanceToDestination * 0.25;
 
       if (this.isScrollingToBottom) {
-        window.requestAnimationFrame(scrollToBottom);
+        this.isScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
       }
     };
 
-    window.requestAnimationFrame(scrollToBottom);
+    this.startScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
   }
 
   onMouseEnter = () => {
@@ -162,6 +171,12 @@ export class EuiGlobalToastList extends Component {
   }
 
   componentWillUnmount() {
+    if (this.isScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.isScrollingAnimationFrame);
+    }
+    if (this.startScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.startScrollingAnimationFrame);
+    }
     this.listElement.removeEventListener('scroll', this.onScroll);
     this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
     this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
