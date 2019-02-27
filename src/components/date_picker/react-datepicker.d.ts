@@ -63,6 +63,9 @@ export interface ReactDatePickerProps {
   openToDate?: moment.Moment;
   peekNextMonth?: boolean;
   placeholderText?: string;
+  popperClassName?: string;
+  popperContainer?(props: { children: React.ReactNode[] }): React.ReactNode;
+  popperPlacement?: string;
   preventOpenOnFocus?: boolean;
   readOnly?: boolean;
   required?: boolean;
