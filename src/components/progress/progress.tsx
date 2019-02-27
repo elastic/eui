@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
-// import { isNil } from '../../services/predicate';
+import { isNil } from '../../services/predicate';
 
 const sizeToClassNameMap = {
   xs: 'euiProgress--xs',
@@ -49,13 +49,10 @@ export type EuiProgressProps = CommonProps & {
 type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
-  ProgressHTMLAttributes<HTMLProgressElement>;
+  ProgressHTMLAttributes<HTMLProgressElement> & {
+    max: number;
+  };
 
-function isProgressBar(
-  props: ExclusiveUnion<Determinate, Indeterminate>
-): props is Determinate {
-  return props.hasOwnProperty('max');
-}
 export const EuiProgress: FunctionComponent<
   ExclusiveUnion<Determinate, Indeterminate>
 > = ({
@@ -67,7 +64,7 @@ export const EuiProgress: FunctionComponent<
   value,
   ...rest
 }) => {
-  const determinate = isProgressBar({ max });
+  const determinate = !isNil(max);
   const classes = classNames(
     'euiProgress',
     {
@@ -82,9 +79,18 @@ export const EuiProgress: FunctionComponent<
 
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
-  if (isProgressBar({ max })) {
-    return <progress className={classes} max={max} value={value} {...rest} />;
+  if (determinate) {
+    return (
+      <progress
+        className={classes}
+        max={max}
+        value={value}
+        {...rest as ProgressHTMLAttributes<HTMLProgressElement>}
+      />
+    );
   } else {
-    return <div className={classes} {...rest} />;
+    return (
+      <div className={classes} {...rest as HTMLAttributes<HTMLDivElement>} />
+    );
   }
 };
