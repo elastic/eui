@@ -561,7 +561,7 @@ and space to read it properly. Alternatively just link to a full page.
 
         <GuideRule
           description="Occassionally the content of a toast is too involved to fit into the constrained space of a toast.
-          This is common in long error messages. In these cases use the test message to deliver the summary of the
+          This is common in long error messages. In these cases use the toast to deliver the summary of the
           information and use a button to provide a call-to-action for the full message."
         >
           <GuideRuleExample
