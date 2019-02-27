@@ -402,6 +402,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                     htmlFor="generated-id"
                     isFocused={false}
                     isInvalid={true}
+                    type="label"
                   >
                     <label
                       aria-invalid={true}

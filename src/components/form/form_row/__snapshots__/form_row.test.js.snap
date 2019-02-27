@@ -19,6 +19,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={false}
+        type="label"
       >
         <label
           className="euiFormLabel"
@@ -58,6 +59,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={false}
+        type="label"
       >
         <label
           className="euiFormLabel"
@@ -97,6 +99,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={true}
+        type="label"
       >
         <label
           className="euiFormLabel euiFormLabel-isFocused"
@@ -136,6 +139,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={true}
+        type="label"
       >
         <label
           className="euiFormLabel euiFormLabel-isFocused"
@@ -351,6 +355,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
         <EuiFormLabel
           htmlFor="generated-id"
           isFocused={false}
+          type="label"
         >
           label
         </EuiFormLabel>
@@ -380,6 +385,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={false}
+      type="label"
     >
       label
     </EuiFormLabel>
@@ -390,4 +396,26 @@ exports[`EuiFormRow props label is rendered 1`] = `
     onFocus={[Function]}
   />
 </div>
+`;
+
+exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
+<fieldset
+  className="euiFormRow"
+  id="generated-id-row"
+>
+  <div>
+    <EuiFormLabel
+      htmlFor={false}
+      isFocused={false}
+      type="legend"
+    >
+      label
+    </EuiFormLabel>
+  </div>
+  <input
+    id="generated-id"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  />
+</fieldset>
 `;

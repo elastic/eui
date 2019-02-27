@@ -60,6 +60,7 @@ export class EuiFormRow extends Component {
       isInvalid,
       error,
       label,
+      labelType,
       labelAppend,
       hasEmptyLabelSpace,
       fullWidth,
@@ -107,16 +108,18 @@ export class EuiFormRow extends Component {
     }
 
     let optionalLabel;
+    const isLegend = labelType === 'legend' ? true : false;
 
     if (label) {
       optionalLabel = (
         // Outer div ensures the label is inline-block (only takes up as much room as it needs)
         <div>
           <EuiFormLabel
-            isFocused={this.state.isFocused}
+            isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
-            htmlFor={id}
+            htmlFor={!isLegend && id}
+            type={labelType}
           >
             {label}
           </EuiFormLabel>
@@ -164,8 +167,10 @@ export class EuiFormRow extends Component {
       );
     }
 
+    const Element = labelType === 'legend' ? 'fieldset' : 'div';
+
     return (
-      <div
+      <Element
         className={classes}
         {...rest}
         id={`${id}-row`}
@@ -174,7 +179,7 @@ export class EuiFormRow extends Component {
         {field}
         {optionalErrors}
         {optionalHelpText}
-      </div>
+      </Element>
     );
   }
 }
@@ -183,6 +188,12 @@ EuiFormRow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   label: PropTypes.node,
+  /**
+   * Sets the type of html element the label should be based
+   * on the form row contents. For instance checkbox groups
+   * should use 'legend' instead of the default 'label'
+   */
+  labelType: PropTypes.oneOf(['label', 'legend']),
   /**
    * Adds an extra node to the right of the form label without
    * being contained inside the form label. Good for things

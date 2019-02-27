@@ -13,4 +13,33 @@ describe('EuiFormLabel', () => {
     expect(component)
       .toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('isFocused is rendered', () => {
+      const component = render(
+        <EuiFormLabel isFocused />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('isInvalid is rendered', () => {
+      const component = render(
+        <EuiFormLabel isInvalid />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('type can be changed to legend', () => {
+      const component = render(
+        <EuiFormLabel type="legend" />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+  });
 });

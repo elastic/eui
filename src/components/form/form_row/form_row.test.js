@@ -71,6 +71,17 @@ describe('EuiFormRow', () => {
         .toMatchSnapshot();
     });
 
+    test('label renders as a legend and subsquently a fieldset wrapper', () => {
+      const component = shallow(
+        <EuiFormRow label="label" labelType="legend">
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('describedByIds is rendered', () => {
       const component = shallow(
         <EuiFormRow describedByIds={['generated-id-additional']}>

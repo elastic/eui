@@ -11,6 +11,7 @@ declare module '@elastic/eui' {
     LabelHTMLAttributes<HTMLLabelElement> & {
       isFocused?: boolean;
       isInvalid?: boolean;
+      type?: 'label' | 'legend';
     };
 
   export const EuiFormLabel: FunctionComponent<EuiFormLabelProps>;

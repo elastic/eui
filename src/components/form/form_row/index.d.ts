@@ -15,6 +15,7 @@ declare module '@elastic/eui' {
       helpText?: ReactNode;
       isInvalid?: boolean;
       label?: ReactNode;
+      labelType?: 'label' | 'legend';
       labelAppend?: ReactNode;
       describedByIds?: string[];
       compressed?: boolean;

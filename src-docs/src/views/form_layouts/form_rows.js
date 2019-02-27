@@ -128,7 +128,8 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow
-          label="Checkboxes"
+          label="Checkbox group labels should use a `legend` label type"
+          labelType="legend"
         >
           <EuiCheckboxGroup
             options={this.state.checkboxes}
