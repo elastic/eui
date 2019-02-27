@@ -74,6 +74,7 @@ export class EuiComboBox extends Component {
       isListOpen: false,
       listPosition: 'bottom',
       activeOptionIndex: undefined,
+      hasFocus: false,
     };
 
     // ensure that the currently selected single option is active if it is in the matchingOptions
@@ -287,6 +288,7 @@ export class EuiComboBox extends Component {
       this.props.onFocus();
     }
     this.openList();
+    this.setState({ hasFocus: true });
   }
 
   onContainerBlur = (e) => {
@@ -308,6 +310,7 @@ export class EuiComboBox extends Component {
     if (this.props.onBlur) {
       this.props.onBlur();
     }
+    this.setState({ hasFocus: false });
   }
 
   onKeyDown = (e) => {
@@ -581,12 +584,13 @@ export class EuiComboBox extends Component {
       'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
+    const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
-    const { searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
+    const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
-      'euiComboBox-isInvalid': isInvalid,
+      'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox--fullWidth': fullWidth,
       'euiComboBox--compressed': compressed,
