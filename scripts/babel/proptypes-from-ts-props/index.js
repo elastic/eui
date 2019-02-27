@@ -1136,7 +1136,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
               const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
 
               if (left.name === 'React') {
-                if (right.name === 'SFC') {
+                const rightName = right.name;
+                if (rightName === 'SFC' || rightName === 'FunctionComponent') {
                   processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                   fileCodeNeedsUpdating = true;
                 } else {
@@ -1144,8 +1145,9 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 }
               }
             } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
-              if (idTypeAnnotation.typeAnnotation.typeName.name === 'SFC') {
-                if (state.get('importsFromReact').has('SFC')) {
+              const typeName = idTypeAnnotation.typeAnnotation.typeName.name;
+              if (typeName === 'SFC' || typeName === 'FunctionComponent') {
+                if (state.get('importsFromReact').has(typeName)) {
                   processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
                   fileCodeNeedsUpdating = true;
                 }
