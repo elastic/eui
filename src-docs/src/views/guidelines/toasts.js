@@ -575,7 +575,7 @@ and space to read it properly. Alternatively just link to a full page.
               color="danger"
               title="Your visualization has an error"
             >
-              <p>The maximum bucket size of 200 was exceeded</p>
+              <p>The maximum bucket size of 200 was exceeded.</p>
               <div style={{ textAlign: 'right' }}>
                 <EuiButton size="s" color="danger" onClick={this.showModal}>
                   See the full error
