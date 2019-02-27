@@ -491,13 +491,19 @@ export class EuiComboBox extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { options, selectedOptions, singleSelection } = nextProps;
-    const { searchValue } = prevState;
+    const { activeOptionIndex, searchValue } = prevState;
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
     const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async, singleSelection);
 
-    return { matchingOptions };
+    const stateUpdate = { matchingOptions };
+
+    if (activeOptionIndex >= matchingOptions.length) {
+      stateUpdate.activeOptionIndex = undefined;
+    }
+
+    return stateUpdate;
   }
 
   updateMatchingOptionsIfDifferent(newMatchingOptions) {
