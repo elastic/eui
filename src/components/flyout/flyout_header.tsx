@@ -7,7 +7,6 @@ export type EuiFlyoutHeaderProps = HTMLAttributes<HTMLDivElement> &
     hasBorder?: boolean;
   };
 
-// TODO: SFC => FunctionalComponent
 export const EuiFlyoutHeader: FunctionComponent<EuiFlyoutHeaderProps> = ({
   children,
   className,
