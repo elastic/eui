@@ -568,7 +568,7 @@ and space to read it properly. Alternatively just link to a full page.
             panel={false}
             type="do"
             frame
-            text="Use buttons, modals, and secondary pages to deliver long form content when toasts contain detailed content"
+            text="Use the toast message to provide a summary and a button to link to the full content"
           >
             <EuiToast
               style={{ maxWidth: 300 }}
@@ -589,7 +589,7 @@ and space to read it properly. Alternatively just link to a full page.
             type="dont"
             panel={false}
             frame
-            text="Don&apos;t cram long form content into the space of a toast."
+            text="Don&apos;t cram a lot of content into the small space of a toast."
           >
             <EuiToast
               style={{ maxWidth: 300 }}
