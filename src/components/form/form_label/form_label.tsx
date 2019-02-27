@@ -24,7 +24,7 @@ type LabelProps = {
 type LegendProps = {
   type?: 'legend';
 } & EuiFormLabelCommonProps &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLLegendElement>;
 
 export type EuiFormLabelProps = CommonProps &
   ExclusiveUnion<LabelProps, LegendProps>;
