@@ -10,6 +10,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
@@ -50,6 +51,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
@@ -90,6 +92,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
@@ -130,6 +133,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
@@ -400,12 +404,13 @@ exports[`EuiFormRow props label is rendered 1`] = `
 
 exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
 <fieldset
+  aria-labelledby="generated-id-legend"
   className="euiFormRow"
   id="generated-id-row"
 >
   <div>
     <EuiFormLabel
-      htmlFor={false}
+      id="generated-id-legend"
       isFocused={false}
       type="legend"
     >

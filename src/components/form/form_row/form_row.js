@@ -108,7 +108,8 @@ export class EuiFormRow extends Component {
     }
 
     let optionalLabel;
-    const isLegend = labelType === 'legend' ? true : false;
+    const isLegend = label && labelType === 'legend' ? true : false;
+    const labelID = isLegend ? `${id}-${labelType}` : undefined;
 
     if (label) {
       optionalLabel = (
@@ -118,8 +119,9 @@ export class EuiFormRow extends Component {
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
-            htmlFor={!isLegend && id}
+            htmlFor={!isLegend ? id : undefined}
             type={labelType}
+            id={labelID}
           >
             {label}
           </EuiFormLabel>
@@ -174,6 +176,7 @@ export class EuiFormRow extends Component {
         className={classes}
         {...rest}
         id={`${id}-row`}
+        aria-labelledby={labelID} // Only renders a string if label type is 'legend'
       >
         {optionalLabel}
         {field}
@@ -226,4 +229,5 @@ EuiFormRow.defaultProps = {
   hasEmptyLabelSpace: false,
   fullWidth: false,
   describedByIds: [],
+  labelType: 'label',
 };
