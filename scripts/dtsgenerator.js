@@ -54,7 +54,7 @@ const generator = dtsGenerator({
         params.importedModuleId,
         {
           basedir: importFromBaseDir,
-          extensions: ['.ts', '.tsx'],
+          extensions: ['.ts', '.tsx', '.d.ts'],
         }
       );
 
