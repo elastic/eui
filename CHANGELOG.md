@@ -9,6 +9,7 @@
 
 **Bug fixes**
 
+- Fixes keyboard navigation of `EuiComboBox` items in single selection mode ([#1619](https://github.com/elastic/eui/pull/1619))
 - `EuiBasicTable` select all shows up on mobile ([#1462](https://github.com/elastic/eui/pull/1462))
 - Adds missing `hasActiveFilters` prop for `EuiFilterButton` type and fixes `onChange` signature for `EuiButtonGroup` ([#1603](https://github.com/elastic/eui/pull/1603))
 - Prevent `EuiGlobalToastList` from attempting calculations on `null` DOM elements ([#1606](https://github.com/elastic/eui/pull/1606))
