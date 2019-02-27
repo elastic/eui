@@ -94,9 +94,19 @@ export class EuiComboBox extends Component {
   }
 
   openList = () => {
-    this.setState({
-      isListOpen: true,
-    });
+    const { selectedOptions, singleSelection } = this.props;
+    const { matchingOptions } = this.state;
+
+    const stateUpdate = { isListOpen: true };
+
+    // ensure that the currently selected single option is active if it is in the matchingOptions
+    if (singleSelection && selectedOptions.length === 1) {
+      if (matchingOptions.includes(selectedOptions[0])) {
+        stateUpdate.activeOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
+      }
+    }
+
+    this.setState(stateUpdate);
   };
 
   closeList = () => {
@@ -186,7 +196,7 @@ export class EuiComboBox extends Component {
   };
 
   hasActiveOption = () => {
-    return this.state.activeOptionIndex != null;
+    return this.state.activeOptionIndex != null && this.state.activeOptionIndex < this.state.matchingOptions.length;
   };
 
   clearActiveOption = () => {
@@ -486,14 +496,6 @@ export class EuiComboBox extends Component {
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
     const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async, singleSelection);
-    // ensure that the currently selected single option is active if it is in the matchingOptions
-    if (singleSelection && selectedOptions.length === 1) {
-      let nextActiveOptionIndex;
-      if (matchingOptions.includes(selectedOptions[0])) {
-        nextActiveOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
-      }
-      return { matchingOptions, activeOptionIndex: nextActiveOptionIndex };
-    }
 
     return { matchingOptions };
   }
