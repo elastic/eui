@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { get } from '../../../services/objects';
+import { withRequiredProp } from '../../../utils/prop_types/with_required_prop';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import makeId from './make_id';
 
@@ -58,6 +60,8 @@ export class EuiFormRow extends Component {
       isInvalid,
       error,
       label,
+      labelType,
+      labelAppend,
       hasEmptyLabelSpace,
       fullWidth,
       className,
@@ -104,17 +108,33 @@ export class EuiFormRow extends Component {
     }
 
     let optionalLabel;
+    const isLegend = label && labelType === 'legend' ? true : false;
+    const labelID = isLegend ? `${id}-${labelType}` : undefined;
 
     if (label) {
       optionalLabel = (
-        <EuiFormLabel
-          isFocused={this.state.isFocused}
-          isInvalid={isInvalid}
-          aria-invalid={isInvalid}
-          htmlFor={id}
-        >
-          {label}
-        </EuiFormLabel>
+        // Outer div ensures the label is inline-block (only takes up as much room as it needs)
+        <div>
+          <EuiFormLabel
+            isFocused={!isLegend && this.state.isFocused}
+            isInvalid={isInvalid}
+            aria-invalid={isInvalid}
+            htmlFor={!isLegend ? id : undefined}
+            type={labelType}
+            id={labelID}
+          >
+            {label}
+          </EuiFormLabel>
+        </div>
+      );
+    }
+
+    if (labelAppend) {
+      optionalLabel = (
+        <EuiFlexGroup responsive={false} wrap={true} gutterSize="xs" justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>{optionalLabel}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{labelAppend}</EuiFlexItem>
+        </EuiFlexGroup>
       );
     }
 
@@ -149,17 +169,20 @@ export class EuiFormRow extends Component {
       );
     }
 
+    const Element = labelType === 'legend' ? 'fieldset' : 'div';
+
     return (
-      <div
+      <Element
         className={classes}
         {...rest}
         id={`${id}-row`}
+        aria-labelledby={labelID} // Only renders a string if label type is 'legend'
       >
         {optionalLabel}
         {field}
         {optionalErrors}
         {optionalHelpText}
-      </div>
+      </Element>
     );
   }
 }
@@ -168,6 +191,18 @@ EuiFormRow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   label: PropTypes.node,
+  /**
+   * Sets the type of html element the label should be based
+   * on the form row contents. For instance checkbox groups
+   * should use 'legend' instead of the default 'label'
+   */
+  labelType: PropTypes.oneOf(['label', 'legend']),
+  /**
+   * Adds an extra node to the right of the form label without
+   * being contained inside the form label. Good for things
+   * like documentation links.
+   */
+  labelAppend: withRequiredProp(PropTypes.node, 'label', 'appending to the label requires that the label also exists'),
   id: PropTypes.string,
   isInvalid: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
@@ -194,4 +229,5 @@ EuiFormRow.defaultProps = {
   hasEmptyLabelSpace: false,
   fullWidth: false,
   describedByIds: [],
+  labelType: 'label',
 };

@@ -1006,6 +1006,31 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('intersects overlapping string enums in ExclusiveUnion', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {type: 'foo', value: string}
+interface IBarProps {type: 'bar', value: number}
+const FooComponent: React.SFC<ExclusiveUnion<IFooProps, IBarProps>> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  type: PropTypes.oneOfType([PropTypes.oneOf(["foo"]), PropTypes.oneOf(["bar"])]),
+  value: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired
+};`);
+      });
+
     });
 
     describe('array / arrayOf propTypes', () => {
