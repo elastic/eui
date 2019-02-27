@@ -568,7 +568,7 @@ and space to read it properly. Alternatively just link to a full page.
             panel={false}
             type="do"
             frame
-            text="Utlize buttons, modals and secondary pages to deliver long form content when toasts contain detailed content"
+            text="Use buttons, modals, and secondary pages to deliver long form content when toasts contain detailed content"
           >
             <EuiToast
               style={{ maxWidth: 300 }}
