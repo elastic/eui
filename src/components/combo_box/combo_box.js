@@ -77,13 +77,6 @@ export class EuiComboBox extends Component {
       hasFocus: false,
     };
 
-    // ensure that the currently selected single option is active if it is in the matchingOptions
-    if (singleSelection && selectedOptions.length === 1) {
-      if (this.state.matchingOptions.includes(selectedOptions[0])) {
-        this.state.activeOptionIndex = this.state.matchingOptions.indexOf(selectedOptions[0]);
-      }
-    }
-
     this.rootId = htmlIdGenerator();
 
     // Refs.
@@ -95,19 +88,9 @@ export class EuiComboBox extends Component {
   }
 
   openList = () => {
-    const { selectedOptions, singleSelection } = this.props;
-    const { matchingOptions } = this.state;
-
-    const stateUpdate = { isListOpen: true };
-
-    // ensure that the currently selected single option is active if it is in the matchingOptions
-    if (singleSelection && selectedOptions.length === 1) {
-      if (matchingOptions.includes(selectedOptions[0])) {
-        stateUpdate.activeOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
-      }
-    }
-
-    this.setState(stateUpdate);
+    this.setState({
+      isListOpen: true,
+    });
   };
 
   closeList = () => {
