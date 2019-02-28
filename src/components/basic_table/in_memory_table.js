@@ -341,6 +341,7 @@ export class EuiInMemoryTable extends Component {
       search, // eslint-disable-line no-unused-vars
       onTableChange, // eslint-disable-line no-unused-vars
       executeQueryOptions, // eslint-disable-line no-unused-vars
+      allowNeutralSort, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
