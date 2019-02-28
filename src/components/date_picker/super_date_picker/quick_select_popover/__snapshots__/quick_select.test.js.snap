@@ -84,6 +84,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiSelect
           aria-label="Quick time tense"
@@ -117,6 +118,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiFieldNumber
           aria-label="Quick time value"
@@ -137,6 +139,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiSelect
           aria-label="Quick time units"
@@ -189,6 +192,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiButton
           className="euiQuickSelect__applyButton"
@@ -295,6 +299,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiSelect
           aria-label="Quick time tense"
@@ -328,6 +333,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiFieldNumber
           aria-label="Quick time value"
@@ -348,6 +354,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiSelect
           aria-label="Quick time units"
@@ -400,6 +407,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <EuiButton
           className="euiQuickSelect__applyButton"

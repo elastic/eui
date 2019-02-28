@@ -37,8 +37,7 @@
 
   .euiTableCellContent__text {
     @include euiFontSizeXS;
-    color: $euiTitleColor;
-    font-weight: $euiFontWeightBold;
+    font-weight: $euiFontWeightSemiBold;
   }
 }
 
