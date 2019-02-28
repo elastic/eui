@@ -94,10 +94,10 @@ export const PopoverExample = {
       <div>
         <p>
           The alignment and arrow on your popover can be set with
-          the <EuiCode>anchorPostion</EuiCode> prop. These positions will not
+          the <EuiCode>anchorPosition</EuiCode> prop. These positions will not
           update based upon screen real estate and will stick to the positions
-          you declare. Because of this,
-          <strong>be careful when using left or right positioning</strong>.
+          you declare. Because of this, <strong>be careful when using left or right
+          positioning</strong>.
         </p>
         <p><strong>Some tips:</strong></p>
         <ul>
@@ -147,7 +147,7 @@ export const PopoverExample = {
       <p>
         Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
         on the panel within the panel. Use the <EuiCode>panelClassName</EuiCode> prop
-        to pass a custom class to the panel. inside a popover.
+        to pass a custom class to the panel inside a popover.
       </p>
     ),
     demo: <PopoverPanelClassName />,
