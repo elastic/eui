@@ -5,7 +5,6 @@ import { CommonProps, Omit } from '../common';
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * Modal type defs
    *
@@ -31,39 +30,7 @@ declare module '@elastic/eui' {
 
   export const EuiModal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiModalProps
-    >;
-
-
-  /**
-   * @see './modal_body.js'
-   */
-  export const EuiModalBody: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_footer.js'
-   */
-  export const EuiModalFooter: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_header.js'
-   */
-  export const EuiModalHeader: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_header_title.js'
-   */
-  export const EuiModalHeaderTitle: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
+  >;
 
   /**
    * Confirm modal type defs
@@ -95,7 +62,8 @@ declare module '@elastic/eui' {
 
   // `title` from the React defs conflicts with our definition above
   export const EuiConfirmModal: FunctionComponent<
-    CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiConfirmModalProps
-    >;
-
+    CommonProps &
+      Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
+      EuiConfirmModalProps
+  >;
 }

@@ -6,13 +6,10 @@ describe('EuiPortal', () => {
   test('is rendered', () => {
     const component = mount(
       <div>
-        <EuiPortal>
-          Content
-        </EuiPortal>
+        <EuiPortal>Content</EuiPortal>
       </div>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

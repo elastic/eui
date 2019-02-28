@@ -26,17 +26,5 @@ declare module '@elastic/eui' {
     maxWidth?: boolean | number | string;
   }
 
-  export const EuiFlyout: React.FunctionComponent<
-    CommonProps &
-    EuiFlyoutProps
-  >;
-
-  export const EuiFlyoutBody: React.FunctionComponent<CommonProps>;
-
-  export interface EuiFlyoutHeaderProps {
-    hasBorder?: boolean;
-  }
-  export const EuiFlyoutHeader: React.FunctionComponent<CommonProps & EuiFlyoutHeaderProps>;
-
-  export const EuiFlyoutFooter: React.FunctionComponent<CommonProps>;
+  export const EuiFlyout: React.FunctionComponent<CommonProps & EuiFlyoutProps>;
 }
