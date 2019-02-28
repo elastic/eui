@@ -75,7 +75,7 @@ export class EuiBottomBar extends Component {
 EuiBottomBar.propTypes = {
   children: PropTypes.node,
   /**
-   * Optional class applied to the bar iteself
+   * Optional class applied to the bar itself
    */
   className: PropTypes.string,
   /**

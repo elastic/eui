@@ -2,9 +2,11 @@
  * 1. Focused state overrides invalid state.
  */
 .euiFormLabel {
-  font-size: $euiFontSizeXS;
-  margin-bottom: $euiSizeS;
+  @include euiFontSizeXS;
+  display: inline-block;
+  margin-bottom: $euiSizeXS;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  color: $euiTitleColor;
   font-weight: $euiFontWeightSemiBold;
 
   &.euiFormLabel-isInvalid {

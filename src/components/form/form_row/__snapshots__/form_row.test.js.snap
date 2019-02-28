@@ -10,24 +10,28 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
     id="generated-id-row"
   >
-    <EuiFormLabel
-      htmlFor="generated-id"
-      isFocused={false}
-    >
-      <label
-        className="euiFormLabel"
+    <div>
+      <EuiFormLabel
         htmlFor="generated-id"
+        isFocused={false}
+        type="label"
       >
-        <span>
-          Label
-        </span>
-      </label>
-    </EuiFormLabel>
+        <label
+          className="euiFormLabel"
+          htmlFor="generated-id"
+        >
+          <span>
+            Label
+          </span>
+        </label>
+      </EuiFormLabel>
+    </div>
     <input
       id="generated-id"
       onBlur={[Function]}
@@ -47,24 +51,28 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
     id="generated-id-row"
   >
-    <EuiFormLabel
-      htmlFor="generated-id"
-      isFocused={false}
-    >
-      <label
-        className="euiFormLabel"
+    <div>
+      <EuiFormLabel
         htmlFor="generated-id"
+        isFocused={false}
+        type="label"
       >
-        <span>
-          Label
-        </span>
-      </label>
-    </EuiFormLabel>
+        <label
+          className="euiFormLabel"
+          htmlFor="generated-id"
+        >
+          <span>
+            Label
+          </span>
+        </label>
+      </EuiFormLabel>
+    </div>
     <input
       id="generated-id"
       onBlur={[Function]}
@@ -84,24 +92,28 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
     id="generated-id-row"
   >
-    <EuiFormLabel
-      htmlFor="generated-id"
-      isFocused={true}
-    >
-      <label
-        className="euiFormLabel euiFormLabel-isFocused"
+    <div>
+      <EuiFormLabel
         htmlFor="generated-id"
+        isFocused={true}
+        type="label"
       >
-        <span>
-          Label
-        </span>
-      </label>
-    </EuiFormLabel>
+        <label
+          className="euiFormLabel euiFormLabel-isFocused"
+          htmlFor="generated-id"
+        >
+          <span>
+            Label
+          </span>
+        </label>
+      </EuiFormLabel>
+    </div>
     <input
       id="generated-id"
       onBlur={[Function]}
@@ -121,24 +133,28 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
       Label
     </span>
   }
+  labelType="label"
 >
   <div
     className="euiFormRow"
     id="generated-id-row"
   >
-    <EuiFormLabel
-      htmlFor="generated-id"
-      isFocused={true}
-    >
-      <label
-        className="euiFormLabel euiFormLabel-isFocused"
+    <div>
+      <EuiFormLabel
         htmlFor="generated-id"
+        isFocused={true}
+        type="label"
       >
-        <span>
-          Label
-        </span>
-      </label>
-    </EuiFormLabel>
+        <label
+          className="euiFormLabel euiFormLabel-isFocused"
+          htmlFor="generated-id"
+        >
+          <span>
+            Label
+          </span>
+        </label>
+      </EuiFormLabel>
+    </div>
     <input
       id="generated-id"
       onBlur={[Function]}
@@ -306,15 +322,60 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <label
-    aria-invalid="true"
-    class="euiFormLabel euiFormLabel-isInvalid"
-    for="generated-id"
-  >
-    label
-  </label>
+  <div>
+    <label
+      aria-invalid="true"
+      class="euiFormLabel euiFormLabel-isInvalid"
+      for="generated-id"
+    >
+      label
+    </label>
+  </div>
   <input
     id="generated-id"
+  />
+</div>
+`;
+
+exports[`EuiFormRow props label append is rendered 1`] = `
+<div
+  className="euiFormRow"
+  id="generated-id-row"
+>
+  <EuiFlexGroup
+    alignItems="stretch"
+    component="div"
+    direction="row"
+    gutterSize="xs"
+    justifyContent="spaceBetween"
+    responsive={false}
+    wrap={true}
+  >
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      <div>
+        <EuiFormLabel
+          htmlFor="generated-id"
+          isFocused={false}
+          type="label"
+        >
+          label
+        </EuiFormLabel>
+      </div>
+    </EuiFlexItem>
+    <EuiFlexItem
+      component="div"
+      grow={false}
+    >
+      append
+    </EuiFlexItem>
+  </EuiFlexGroup>
+  <input
+    id="generated-id"
+    onBlur={[Function]}
+    onFocus={[Function]}
   />
 </div>
 `;
@@ -324,16 +385,42 @@ exports[`EuiFormRow props label is rendered 1`] = `
   className="euiFormRow"
   id="generated-id-row"
 >
-  <EuiFormLabel
-    htmlFor="generated-id"
-    isFocused={false}
-  >
-    label
-  </EuiFormLabel>
+  <div>
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={false}
+      type="label"
+    >
+      label
+    </EuiFormLabel>
+  </div>
   <input
     id="generated-id"
     onBlur={[Function]}
     onFocus={[Function]}
   />
 </div>
+`;
+
+exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
+<fieldset
+  aria-labelledby="generated-id-legend"
+  className="euiFormRow"
+  id="generated-id-row"
+>
+  <div>
+    <EuiFormLabel
+      id="generated-id-legend"
+      isFocused={false}
+      type="legend"
+    >
+      label
+    </EuiFormLabel>
+  </div>
+  <input
+    id="generated-id"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  />
+</fieldset>
 `;
