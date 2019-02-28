@@ -4,6 +4,11 @@ import { CommonProps, Omit } from '../common';
 
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 
+import { EuiModalFooterProps } from './modal_footer';
+import { EuiModalHeaderProps } from './modal_header';
+import { EuiModalBodyProps } from './modal_body';
+import { EuiModalHeaderTitleProps } from './modal_header_title';
+
 declare module '@elastic/eui' {
   /**
    * Modal type defs
@@ -66,4 +71,32 @@ declare module '@elastic/eui' {
       Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
       EuiConfirmModalProps
   >;
+
+  /**
+   * Modal body type defs
+   *
+   * @see './modal_body.js'
+   */
+  export const EuiModalBody: EuiModalBodyProps;
+
+  /**
+   * Modal footer type defs
+   *
+   * @see './modal_footer.js'
+   */
+  export const EuiModalFooter: EuiModalFooterProps;
+
+  /**
+   * Modal header type defs
+   *
+   * @see './modal_header.js'
+   */
+  export const EuiModalHeader: EuiModalHeaderProps;
+
+  /**
+   * Modal header title type defs
+   *
+   * @see './modal_header_title.js'
+   */
+  export const EuiModalHeaderTitle: EuiModalHeaderTitleProps;
 }

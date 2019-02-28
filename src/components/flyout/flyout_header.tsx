@@ -2,12 +2,14 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export type EuiFlyoutHeaderProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    hasBorder?: boolean;
-  };
+export type EuiFlyoutHeaderProps = FunctionComponent<
+  HTMLAttributes<HTMLDivElement> &
+    CommonProps & {
+      hasBorder?: boolean;
+    }
+>;
 
-export const EuiFlyoutHeader: FunctionComponent<EuiFlyoutHeaderProps> = ({
+export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   children,
   className,
   hasBorder = false,
