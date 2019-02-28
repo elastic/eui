@@ -59,8 +59,8 @@ export const FlyoutExample = {
             </li>
             <li>
               <EuiCode>maxWidth</EuiCode> accepts a boolean or number. When set to{' '}
-              <EuiCode>true</EuiCode>, it adds a predefined maxWidth or you can pass an integer set
-              the max width to a custom pixel value or a string to set it to a custom measurement.
+              <EuiCode>true</EuiCode>, it adds a predefined maxWidth, or you can pass an integer to set
+              the max width to a custom pixel value or pass a string to set it to a custom measurement.
             </li>
           </ul>
 
@@ -74,7 +74,7 @@ export const FlyoutExample = {
       demo: <Flyout />,
     },
     {
-      title: 'More complicated Flyout',
+      title: 'More complicated flyout',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -90,7 +90,7 @@ export const FlyoutExample = {
           In this example we use <EuiCode>EuiFlyoutHeader</EuiCode> and
           <EuiCode>EuiFlyoutFooter</EuiCode> to allow for fixed position navigation and actions
           within a flyout. Note that any content within <EuiCode>EuiContentBody</EuiCode> will
-          automatcially overflow.
+          automatically overflow.
         </p>
       ),
       props: { EuiFlyoutFooter },
@@ -112,7 +112,7 @@ export const FlyoutExample = {
         <p>
           In this example, we set <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode> and apply the{' '}
           <EuiCode>ownFocus</EuiCode> prop. The latter not only traps the focus of our flyout, but
-          also adds background overlay to reinforce your boundries.
+          also adds background overlay to reinforce your boundaries.
         </p>
       ),
       demo: <FlyoutSmall />,

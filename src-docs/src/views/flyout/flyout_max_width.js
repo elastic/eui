@@ -65,7 +65,7 @@ export class FlyoutMaxWidth extends Component {
           <EuiFlyoutBody>
             <EuiText>
               <p>
-                In many cases, you&rsquo;ll want to set a custom width that&rdquo;s tailored to your content.
+                In many cases, you&rsquo;ll want to set a custom width that&rsquo;s tailored to your content.
                 In this case, the flyout is an ideal width for form elements.
               </p>
             </EuiText>
