@@ -28,7 +28,7 @@ export const NavDrawerExample = {
     text: (
       <p>
         <EuiCode>EuiNavDrawer</EuiCode> provides a side navigation feature that
-        is complete with interactions and a mobile-frienly design. It can
+        is complete with interactions and a mobile-friendly design. It can
         contain one or more <EuiCode>EuiListGroup</EuiCode> components and is
         designed to be used in conjunction with <EuiCode>EuiHeader</EuiCode>.
       </p>
