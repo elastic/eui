@@ -28,6 +28,7 @@ export const EuiTableHeaderCell = ({
   onSort,
   isSorted,
   isSortAscending,
+  allowNeutralSort,
   className,
   scope,
   mobileOptions,
@@ -56,6 +57,16 @@ export const EuiTableHeaderCell = ({
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
     }
 
+    function getScreenCasterDirection() {
+      if (ariaSortValue === 'ascending') {
+        return 'Click to sort in descending order';
+      } else if (allowNeutralSort && ariaSortValue === 'descending') {
+        return 'Click to unsort';
+      } else {
+        return 'Click to sort in ascending order';
+      }
+    }
+
     return (
       <th
         className={classes}
@@ -82,7 +93,7 @@ export const EuiTableHeaderCell = ({
               />
             )}
             <EuiScreenReaderOnly>
-              <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+              <span>{getScreenCasterDirection()}</span>
             </EuiScreenReaderOnly>
           </span>
         </button>
@@ -111,6 +122,11 @@ EuiTableHeaderCell.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
+  /**
+   * Set `allowNeutralSort` on EuiInMemoryTable to false to force column sorting.
+   * EuiBasicTable always forces column sorting.
+   */
+  allowNeutralSort: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   /**
    * _DEPRECATED: use `mobileOptions.only = true`_

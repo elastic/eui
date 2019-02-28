@@ -792,6 +792,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
   responsive={true}
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": Object {
         "direction": "desc",
         "field": "name",
@@ -1265,6 +1266,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1345,6 +1347,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     }
     sorting={
       Object {
+        "allowNeutralSort": true,
         "sort": undefined,
       }
     }
@@ -1419,6 +1422,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1477,6 +1481,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1569,6 +1574,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     }
     sorting={
       Object {
+        "allowNeutralSort": true,
         "sort": undefined,
       }
     }
@@ -1612,6 +1618,7 @@ exports[`EuiInMemoryTable with sorting 1`] = `
   responsive={true}
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
