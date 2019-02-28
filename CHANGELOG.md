@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.0.0`.
+**Bug fixes**
+
+- Fixed definition exports for converted Typescript components ([#1633](https://github.com/elastic/eui/pull/1633))
 
 ## [`9.0.0`](https://github.com/elastic/eui/tree/v9.0.0)
 

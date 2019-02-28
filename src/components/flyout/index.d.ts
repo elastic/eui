@@ -1,5 +1,9 @@
 import { CommonProps } from '../common';
 
+import { EuiFlyoutFooterProps } from './flyout_footer';
+import { EuiFlyoutHeaderProps } from './flyout_header';
+import { EuiFlyoutBodyProps } from './flyout_body';
+
 declare module '@elastic/eui' {
   export interface EuiFlyoutProps {
     onClose: () => void;
@@ -27,4 +31,25 @@ declare module '@elastic/eui' {
   }
 
   export const EuiFlyout: React.FunctionComponent<CommonProps & EuiFlyoutProps>;
+
+  /**
+   * Flyout body type defs
+   *
+   * @see './flyout_body.js'
+   */
+  export const EuiFlyoutBody: EuiFlyoutBodyProps;
+
+  /**
+   * Flyout footer type defs
+   *
+   * @see './flyout_footer.js'
+   */
+  export const EuiFlyoutFooter: EuiFlyoutFooterProps;
+
+  /**
+   * Flyout header type defs
+   *
+   * @see './flyout_header.js'
+   */
+  export const EuiFlyoutHeader: EuiFlyoutHeaderProps;
 }
