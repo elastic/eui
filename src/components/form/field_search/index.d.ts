@@ -18,6 +18,7 @@ declare module '@elastic/eui' {
     fullWidth?: boolean;
     isLoading?: boolean;
     incremental?: boolean;
+    onSearch?: (value: any) => void;
   }
 
   export const EuiFieldSearch: SFC<
