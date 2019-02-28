@@ -136,6 +136,11 @@ export const propsInfo = {
           description: 'Indicates the property/field to sort on',
           required: false,
           type: { name: '{ field: string, direction: "asc" | "desc" }' }
+        },
+        allowNeutralSort: {
+          description: 'Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.',
+          required: false,
+          type: { name: 'bool' }
         }
       }
     }
