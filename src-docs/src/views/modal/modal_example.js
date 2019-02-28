@@ -37,7 +37,7 @@ export const ModalExample = {
     }],
     text: (
       <p>
-        Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX and create 
+        Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX and create
         another UX within it.
       </p>
     ),
