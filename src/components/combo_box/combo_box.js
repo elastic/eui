@@ -430,7 +430,7 @@ export class EuiComboBox extends Component {
     this.setState(
       { searchValue },
       () => {
-        if (this.state.isListOpen === false) this.openList();
+        if (searchValue && this.state.isListOpen === false) this.openList();
       }
     );
   };
