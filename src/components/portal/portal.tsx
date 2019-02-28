@@ -7,7 +7,12 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { keysOf } from '../common';
 
-export const insertPositions: { [position: string]: InsertPosition } = {
+interface InsertPositionsMap {
+  after: InsertPosition;
+  before: InsertPosition;
+}
+
+export const insertPositions: InsertPositionsMap = {
   after: 'afterend',
   before: 'beforebegin',
 };
