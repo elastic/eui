@@ -379,7 +379,7 @@ exports[`props singleSelection is rendered 1`] = `
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
     compressed={false}
-    focusedOptionId="htmlid__option-2"
+    focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
@@ -421,7 +421,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
     compressed={false}
-    focusedOptionId="htmlid__option-2"
+    focusedOptionId={null}
     fullWidth={false}
     hasSelectedOptions={true}
     inputRef={[Function]}
@@ -451,7 +451,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   />
   <EuiPortal>
     <EuiComboBoxOptionsList
-      activeOptionIndex={2}
       areAllOptionsSelected={false}
       data-test-subj=""
       fullWidth={false}
@@ -533,7 +532,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       position="bottom"
       rootId={[Function]}
       rowHeight={27}
-      scrollToIndex={2}
       searchValue=""
       selectedOptions={
         Array [
