@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.0.0`.
+
+## [`9.0.0`](https://github.com/elastic/eui/tree/v9.0.0)
+
 - Added `allowNeutralSort` prop to `EuiInMemoryTable` to support unsorting table columns ([#1591](https://github.com/elastic/eui/pull/1591))
 - Added `mobileOptions` object prop for handling of all the mobile specific options of `EuiBasicTable` ([#1462](https://github.com/elastic/eui/pull/1462))
 - Table headers now accept `React.node` types ([#1462](https://github.com/elastic/eui/pull/1462))
