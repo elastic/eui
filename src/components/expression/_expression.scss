@@ -1,31 +1,60 @@
+/**
+ * 1. Keep each expression's text together as much as possible,
+ *    but then wrap long words
+ */
 .euiExpression {
-  padding: 20px;
-  white-space: nowrap;
-}
+  @include euiTextOverflowWrap; /* 1 */
+  @include euiFontSizeS;
+  @include euiCodeFont;
 
-.euiExpressionButton {
-  background-color: transparent;
-  padding: 5px 0;
-  border: none;
-  border-bottom: $euiBorderEditable;
-  font-size: $euiFontSize;
-  cursor: pointer;
+  display: inline-block; /* 1 */
+  text-align: left;
+  padding: ($euiSizeXS / 2) 0;
+  transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
+  color: $euiTextColor;
+  border-bottom: 2px solid transparent;
 
   &:focus {
-    border-bottom: solid 2px $expressionColorHighlight;
+    border-bottom-style: solid;
+  }
+
+  & + .euiExpression {
+    margin-left: $euiSizeS;
   }
 }
 
-.euiExpressionButton__description {
-  color: $expressionColorHighlight;
+.euiExpression-isUppercase .euiExpression__description {
   text-transform: uppercase;
 }
 
-.euiExpressionButton__value {
-  color: $euiTextColor;
-  text-transform: lowercase;
+.euiExpression-isClickable {
+  cursor: pointer;
+  border-bottom: $euiBorderEditable;
+
+  &:hover:not(:disabled) {
+    border-bottom-style: solid;
+    transform: translateY(-1px);
+  }
 }
 
-.euiExpressionButton-isActive {
-  border-bottom: solid 2px $expressionColorHighlight;
+.euiExpression-isActive {
+  border-bottom-style: solid;
+}
+
+
+
+@each $name, $color in $euiExpressionColors {
+  .euiExpression--#{$name} {
+    &:focus {
+      background-color: transparentize($color, .9);
+    }
+
+    &.euiExpression-isActive {
+      border-bottom-color: $color;
+    }
+
+    .euiExpression__description {
+      color: $color;
+    }
+  }
 }

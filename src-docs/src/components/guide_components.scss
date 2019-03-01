@@ -4,7 +4,7 @@ $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
-  background: linear-gradient(90deg, $euiColorLightestShade 50%, $euiColorEmptyShade 50%);
+  background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
 }
 
 .guidePage {
@@ -149,6 +149,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .dpTest__purplePopper {
   outline: solid 2px $euiColorVis3;
+}
+
+.guideOptionsPopover {
+  width: $euiSize * 16;
 }
 
 

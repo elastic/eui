@@ -1,7 +1,8 @@
 import { CommonProps, NoArgCallback } from '../common';
+/// <reference path="../focus_trap/index.d.ts" />
 /// <reference path="../panel/index.d.ts" />
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -31,17 +32,19 @@ declare module '@elastic/eui' {
     withTitle?: boolean;
     isOpen?: boolean;
     ownFocus?: boolean;
+    initialFocus?: FocusTarget;
     hasArrow?: boolean;
+    anchorClassName?: string;
     anchorPosition?: PopoverAnchorPosition;
     panelClassName?: string;
     panelPaddingSize?: PanelPaddingSize;
   }
 
-  export const EuiPopover: SFC<
+  export const EuiPopover: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps
   >;
 
-  export const EuiPopoverTitle: SFC<
+  export const EuiPopoverTitle: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
   >;
 }

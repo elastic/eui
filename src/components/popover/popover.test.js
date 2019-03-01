@@ -68,6 +68,22 @@ describe('EuiPopover', () => {
       });
     });
 
+    describe('anchorClassName', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPopover
+            id={getId()}
+            anchorClassName="test"
+            button={<button />}
+            closePopover={() => {}}
+          />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
     describe('closePopover', () => {
       it('is called when ESC key is hit', () => {
         const closePopoverHandler = sinon.stub();

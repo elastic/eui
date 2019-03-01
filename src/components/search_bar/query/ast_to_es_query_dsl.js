@@ -136,8 +136,8 @@ export const _isFlagToQuery = (flag, on) => {
   };
 };
 
-const collectTerms = (ast) => {
-  return ast.getTermClauses().reduce((values, clause) => {
+const collectTerms = (clauses) => {
+  return clauses.reduce((values, clause) => {
     if (AST.Match.isMustClause(clause)) {
       values.must.push(clause.value);
     } else {
@@ -147,7 +147,7 @@ const collectTerms = (ast) => {
   }, { must: [], mustNot: [] });
 };
 
-const collectFields = (ast) => {
+const collectFields = (clauses) => {
 
   const fieldArray = (obj, field, operator) => {
     if (!obj[field]) {
@@ -159,7 +159,7 @@ const collectFields = (ast) => {
     return obj[field][operator];
   };
 
-  return ast.getFieldClauses().reduce((fields, clause) => {
+  return clauses.reduce((fields, clause) => {
     if (AST.Match.isMustClause(clause)) {
       if (isArray(clause.value)) {
         fieldArray(fields.must.or, clause.field, clause.operator).push(...clause.value);
@@ -180,20 +180,12 @@ const collectFields = (ast) => {
   });
 };
 
-export const astToEsQueryDsl = (ast, options = {}) => {
-
-  if (ast.clauses.length === 0) {
-    return { match_all: {} };
-  }
-
+const clausesToEsQueryDsl = ({ fields, terms, is }, options = {}) => {
   const extraMustQueries = options.extraMustQueries || [];
   const extraMustNotQueries = options.extraMustNotQueries || [];
   const termValuesToQuery = options.termValuesToQuery || _termValuesToQuery;
   const fieldValuesToQuery = options.fieldValuesToQuery || _fieldValuesToQuery;
   const isFlagToQuery = options.isFlagToQuery || _isFlagToQuery;
-
-  const terms = collectTerms(ast);
-  const fields = collectFields(ast);
 
   const must = [];
   must.push(...extraMustQueries);
@@ -207,7 +199,7 @@ export const astToEsQueryDsl = (ast, options = {}) => {
   Object.keys(fields.must.or).forEach(field => {
     must.push(fieldValuesToQuery(field, fields.must.or[field], 'or'));
   });
-  ast.getIsClauses().forEach(clause => {
+  is.forEach(clause => {
     must.push(isFlagToQuery(clause.flag, AST.Match.isMustClause(clause)));
   });
 
@@ -231,5 +223,82 @@ export const astToEsQueryDsl = (ast, options = {}) => {
   if (mustNot.length !== 0) {
     bool.must_not = mustNot;
   }
-  return { bool };
+
+  return bool;
+};
+
+const EMPTY_TERMS = { must: [], mustNot: [] };
+const EMPTY_FIELDS = {
+  must: { and: {}, or: {}, },
+  mustNot: { and: {}, or: {} }
+};
+
+export const astToEsQueryDsl = (ast, options) => {
+  if (ast.clauses.length === 0) {
+    return { match_all: {} };
+  }
+
+  const terms = collectTerms(ast.getTermClauses());
+  const fields = collectFields(ast.getFieldClauses());
+  const is = ast.getIsClauses();
+
+  const matchesBool = clausesToEsQueryDsl({ terms, fields, is }, options);
+  const hasTopMatches = Object.keys(matchesBool).length > 0;
+
+  const groupClauses = ast.getGroupClauses();
+  if (groupClauses.length === 0) {
+    // there are no GroupClauses, everything at top level is combined as a must
+    return { bool: matchesBool };
+  } else {
+    // there is at least one GroupClause, wrap the above clauses in another layer and append the ORs
+    const must = groupClauses.reduce(
+      (must, groupClause) => {
+        const clauses = groupClause.value.reduce(
+          (clauses, clause) => {
+            if (AST.Term.isInstance(clause)) {
+              clauses.push(clausesToEsQueryDsl(
+                {
+                  terms: collectTerms([clause]),
+                  fields: EMPTY_FIELDS,
+                  is: []
+                }
+              ));
+            } else if (AST.Field.isInstance(clause)) {
+              clauses.push(clausesToEsQueryDsl(
+                {
+                  terms: EMPTY_TERMS,
+                  fields: collectFields([clause]),
+                  is: []
+                }
+              ));
+            } else if (AST.Is.isInstance(clause)) {
+              clauses.push(clausesToEsQueryDsl(
+                {
+                  terms: EMPTY_TERMS,
+                  fields: EMPTY_FIELDS,
+                  is: [clause]
+                }
+              ));
+            }
+            return clauses;
+          },
+          []
+        );
+
+        must.push({
+          bool: {
+            should: [clauses.map(clause => ({ bool: clause }))]
+          }
+        });
+        return must;
+      },
+      hasTopMatches // only include the first match group if there are any conditions
+        ? [ { bool: matchesBool } ]
+        : []
+    );
+
+    return {
+      bool: { must }
+    };
+  }
 };

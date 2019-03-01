@@ -1,7 +1,7 @@
 import { CommonProps } from '../../common';
-import { IconType } from '../../icon'
+import { IconType } from '../../icon';
 
-import { ReactNode, SFC, InputHTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -18,9 +18,10 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     prepend?: ReactNode | ReactNode[];
     append?: ReactNode | ReactNode[];
+    inputRef?: Ref<HTMLInputElement>;
   }
 
-  export const EuiFieldNumber: SFC<
+  export const EuiFieldNumber: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldNumberProps
     >;
 }

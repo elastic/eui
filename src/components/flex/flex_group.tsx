@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, SFC } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -59,17 +59,19 @@ const directionToClassNameMap = {
 
 export const DIRECTIONS = keysOf(directionToClassNameMap);
 
-export const EuiFlexGroup: SFC<
-  CommonProps & HTMLAttributes<HTMLDivElement | HTMLSpanElement> & EuiFlexGroupProps
+export const EuiFlexGroup: FunctionComponent<
+  CommonProps &
+    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
+    EuiFlexGroupProps
 > = ({
   children,
   className,
-  gutterSize,
-  alignItems,
-  responsive,
-  justifyContent,
-  direction,
-  wrap,
+  gutterSize = 'l',
+  alignItems = 'stretch',
+  responsive = true,
+  justifyContent = 'flexStart',
+  direction = 'row',
+  wrap = false,
   component: Component = 'div',
   ...rest
 }) => {
@@ -87,21 +89,8 @@ export const EuiFlexGroup: SFC<
   );
 
   return (
-    <Component
-      className={classes}
-      {...rest}
-    >
+    <Component className={classes} {...rest}>
       {children}
     </Component>
   );
-};
-
-EuiFlexGroup.defaultProps = {
-  gutterSize: 'l',
-  alignItems: 'stretch',
-  responsive: true,
-  justifyContent: 'flexStart',
-  direction: 'row',
-  component: 'div',
-  wrap: false,
 };

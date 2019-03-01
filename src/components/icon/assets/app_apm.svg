@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <g transform="translate(0 3)">
-    <rect width="24" height="2" class="euiIcon__fillSecondary"/>
-    <rect width="24" height="2" x="4" y="8"/>
-    <rect width="15" height="2" x="4" y="16"/>
-    <rect width="13" height="2" x="19" y="24" class="euiIcon__fillSecondary"/>
+  <g>
+    <polygon class="euiIcon__fillSecondary" points="7 9 7 11 0 11 0 0 23 0 23 7 21 7 21 2 2 2 2 9"/>
+    <path d="M32,9 L32,21 L20,21 C13.9248678,21 9,16.0751322 9,10 L9,9 L32,9 Z M11.0549288,11 C11.5523731,15.4999505 15.3674463,19 20,19 L30,19 L30,11 L11.0549288,11 Z"/>
+    <polygon class="euiIcon__fillSecondary" points="30 23 32 23 32 32 19 32 19 23 21 23 21 30 30 30"/>
   </g>
 </svg>

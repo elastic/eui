@@ -7,6 +7,7 @@ import {
   EuiButton,
   EuiFieldText,
   EuiFieldNumber,
+  EuiAvatar,
 } from '../../../../src/components/';
 
 export default () => (
@@ -19,6 +20,11 @@ export default () => (
     <EuiFlexItem>
       <EuiFormRow label="Full name">
         <EuiFieldText icon="user" placeholder="John Doe" />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiFormRow label="Avatar" displayOnly>
+        <EuiAvatar name="John Doe" size="s"  />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>

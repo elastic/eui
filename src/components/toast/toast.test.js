@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import {
   findTestSubject,
@@ -27,7 +27,7 @@ describe('EuiToast', () => {
     describe('title', () => {
       test('is rendered', () => {
         const component = <EuiToast title="toast title" />;
-        expect(shallow(component)).toMatchSnapshot();
+        expect(mount(component)).toMatchSnapshot();
       });
     });
 
@@ -35,7 +35,7 @@ describe('EuiToast', () => {
       COLORS.forEach(color => {
         test(`${color} is rendered`, () => {
           const component = <EuiToast color={color} />;
-          expect(shallow(component)).toMatchSnapshot();
+          expect(mount(component)).toMatchSnapshot();
         });
       });
     });
@@ -43,7 +43,7 @@ describe('EuiToast', () => {
     describe('iconType', () => {
       test('is rendered', () => {
         const component = <EuiToast iconType="user" />;
-        expect(shallow(component)).toMatchSnapshot();
+        expect(mount(component)).toMatchSnapshot();
       });
     });
 
@@ -51,7 +51,7 @@ describe('EuiToast', () => {
       test('is called when the close button is clicked', () => {
         const onCloseHandler = sinon.stub();
 
-        const component = shallow(
+        const component = mount(
           <EuiToast onClose={onCloseHandler} />
         );
         const closeButton = findTestSubject(component, 'toastCloseButton');

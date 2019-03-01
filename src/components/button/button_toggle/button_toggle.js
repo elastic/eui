@@ -92,6 +92,11 @@ EuiButtonToggle.propTypes = {
   isEmpty: PropTypes.bool,
 
   /**
+   * Initial state of the toggle
+   */
+  isSelected: PropTypes.bool,
+
+  /**
    * Classnames to add to `EuiToggle` instead of the `EuiButton`
    */
   toggleClassName: PropTypes.string,

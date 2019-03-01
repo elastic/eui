@@ -1,10 +1,15 @@
 import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
+/// <reference path="../focus_trap/index.d.ts" />
 
-import { ReactNode, SFC, HTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
+
+import { EuiModalFooterProps } from './modal_footer';
+import { EuiModalHeaderProps } from './modal_header';
+import { EuiModalBodyProps } from './modal_body';
+import { EuiModalHeaderTitleProps } from './modal_header_title';
 
 declare module '@elastic/eui' {
-
   /**
    * Modal type defs
    *
@@ -20,43 +25,17 @@ declare module '@elastic/eui' {
      * set to a string for a custom width in custom measurement.
      */
     maxWidth?: boolean | number | string;
+
+    /**
+     * Specifies what element should initially have focus;
+     * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
+     */
+    initialFocus?: FocusTarget;
   }
 
-  export const EuiModal: SFC<
+  export const EuiModal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiModalProps
-    >;
-
-
-  /**
-   * @see './modal_body.js'
-   */
-  export const EuiModalBody: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_footer.js'
-   */
-  export const EuiModalFooter: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_header.js'
-   */
-  export const EuiModalHeader: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
-
-
-  /**
-   * @see './modal_header_title.js'
-   */
-  export const EuiModalHeaderTitle: SFC<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-    >;
+  >;
 
   /**
    * Confirm modal type defs
@@ -87,8 +66,37 @@ declare module '@elastic/eui' {
   }
 
   // `title` from the React defs conflicts with our definition above
-  export const EuiConfirmModal: SFC<
-    CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiConfirmModalProps
-    >;
+  export const EuiConfirmModal: FunctionComponent<
+    CommonProps &
+      Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
+      EuiConfirmModalProps
+  >;
 
+  /**
+   * Modal body type defs
+   *
+   * @see './modal_body.js'
+   */
+  export const EuiModalBody: EuiModalBodyProps;
+
+  /**
+   * Modal footer type defs
+   *
+   * @see './modal_footer.js'
+   */
+  export const EuiModalFooter: EuiModalFooterProps;
+
+  /**
+   * Modal header type defs
+   *
+   * @see './modal_header.js'
+   */
+  export const EuiModalHeader: EuiModalHeaderProps;
+
+  /**
+   * Modal header title type defs
+   *
+   * @see './modal_header_title.js'
+   */
+  export const EuiModalHeaderTitle: EuiModalHeaderTitleProps;
 }

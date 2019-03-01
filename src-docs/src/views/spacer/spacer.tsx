@@ -1,13 +1,11 @@
 import React from 'react';
 
-import {
-  EuiSpacer,
-} from '../../../../src/components/spacer';
+import { EuiSpacer } from '../../../../src/components/spacer';
 
 export default () => (
   <div>
     <p>xs: 4px</p>
-    <EuiSpacer size="xs"/>
+    <EuiSpacer size="xs" />
 
     <br />
     <br />

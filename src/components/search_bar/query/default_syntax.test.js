@@ -68,6 +68,28 @@ describe('defaultSyntax', () => {
     expect(clause.value).toBe('dash-3');
   });
 
+  test('unicode field and term values', () => {
+    const query = 'name:👸Queen_Elizabeth 🤴King_Henry';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toBeDefined();
+    expect(ast.clauses).toHaveLength(2);
+
+    let clause = ast.getSimpleFieldClause('name', '👸Queen_Elizabeth');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.field).toBe('name');
+    expect(clause.value).toBe('👸Queen_Elizabeth');
+
+    clause = ast.getTermClause('🤴King_Henry');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('🤴King_Henry');
+  });
+
   test('escaped chars as default clauses', () => {
     const query = '-\\: \\\\';
     const ast = defaultSyntax.parse(query);
@@ -984,5 +1006,68 @@ describe('defaultSyntax', () => {
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('name');
     expect(clause.value).toBe('15');
+  });
+
+  test('OR clause', () => {
+    const query = `(name:john OR name:susan) age>20`;
+    const schema = {
+      strict: true,
+      fields: {
+        name: {
+          type: 'string'
+        },
+        age: {
+          type: 'number'
+        }
+      }
+    };
+    const ast = defaultSyntax.parse(query, { schema });
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(2);
+
+    const ageClause = ast.getSimpleFieldClause('age');
+    expect(ageClause).toBeDefined();
+    expect(AST.Field.isInstance(ageClause)).toBe(true);
+    expect(AST.Match.isMustClause(ageClause)).toBe(true);
+    expect(ageClause.field).toBe('age');
+    expect(ageClause.value).toBe(20);
+
+    const groupClauses = ast.getGroupClauses();
+    expect(groupClauses).toHaveLength(1);
+
+    const [groupClause] = groupClauses;
+    expect(groupClause).toBeDefined();
+    expect(AST.Group.isInstance(groupClause)).toBe(true);
+    expect(AST.Match.isMustClause(groupClause)).toBe(true);
+
+    const [nameClauseA, nameClauseB] = groupClause.value;
+
+    expect(AST.Field.isInstance(nameClauseA)).toBe(true);
+    expect(AST.Match.isMustClause(nameClauseA)).toBe(true);
+    expect(nameClauseA.field).toBe('name');
+    expect(nameClauseA.value).toBe('john');
+
+    expect(AST.Field.isInstance(nameClauseB)).toBe(true);
+    expect(AST.Match.isMustClause(nameClauseB)).toBe(true);
+    expect(nameClauseB.field).toBe('name');
+    expect(nameClauseB.value).toBe('susan');
+  });
+
+  test('or term parsing and printing', () => {
+    const query = `"or"`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getTermClause('or');
+    expect(clause).toBeDefined();
+    expect(AST.Term.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(clause.value).toBe('or');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
   });
 });

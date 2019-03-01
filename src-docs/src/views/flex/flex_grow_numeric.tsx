@@ -7,8 +7,14 @@ export default () => (
   <div>
     <EuiFlexGroup>
       <EuiFlexItem grow={1}>1</EuiFlexItem>
-      <EuiFlexItem grow={2}>2<br />wraps content if necessary</EuiFlexItem>
-      <EuiFlexItem grow={3}>3<br />expands_to_fit_if_content_cannot_wrap</EuiFlexItem>
+      <EuiFlexItem grow={2}>
+        2<br />
+        wraps content if necessary
+      </EuiFlexItem>
+      <EuiFlexItem grow={3}>
+        3<br />
+        expands_to_fit_if_content_cannot_wrap
+      </EuiFlexItem>
       <EuiFlexItem grow={4}>4</EuiFlexItem>
     </EuiFlexGroup>
 

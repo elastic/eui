@@ -11,20 +11,12 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
-      direction="row"
       gutterSize="none"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -33,22 +25,18 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
               aria-expanded={false}
               className="euiAccordion__button"
               onClick={[Function]}
+              type="button"
             >
               <EuiFlexGroup
                 alignItems="center"
-                component="div"
-                direction="row"
                 gutterSize="s"
-                justifyContent="flexStart"
                 responsive={false}
-                wrap={false}
               >
                 <div
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     className="euiAccordion__iconWrapper"
-                    component="div"
                     grow={false}
                   >
                     <div
@@ -62,11 +50,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                           className="euiIcon euiIcon--medium"
                           focusable="false"
                           height="16"
-                          style={
-                            Object {
-                              "fill": undefined,
-                            }
-                          }
+                          style={null}
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
@@ -76,11 +60,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                             className="euiIcon euiIcon--medium"
                             focusable="false"
                             height="16"
-                            style={
-                              Object {
-                                "fill": undefined,
-                              }
-                            }
+                            style={null}
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +84,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                   </EuiFlexItem>
                   <EuiFlexItem
                     className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
                   >
                     <div
                       className="euiFlexItem euiAccordion__buttonContent"
@@ -153,20 +131,12 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
-      direction="row"
       gutterSize="none"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -175,22 +145,18 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
               aria-expanded={true}
               className="euiAccordion__button"
               onClick={[Function]}
+              type="button"
             >
               <EuiFlexGroup
                 alignItems="center"
-                component="div"
-                direction="row"
                 gutterSize="s"
-                justifyContent="flexStart"
                 responsive={false}
-                wrap={false}
               >
                 <div
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     className="euiAccordion__iconWrapper"
-                    component="div"
                     grow={false}
                   >
                     <div
@@ -204,11 +170,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                           className="euiIcon euiIcon--medium"
                           focusable="false"
                           height="16"
-                          style={
-                            Object {
-                              "fill": undefined,
-                            }
-                          }
+                          style={null}
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
@@ -218,11 +180,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                             className="euiIcon euiIcon--medium"
                             focusable="false"
                             height="16"
-                            style={
-                              Object {
-                                "fill": undefined,
-                              }
-                            }
+                            style={null}
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
@@ -245,8 +203,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                   </EuiFlexItem>
                   <EuiFlexItem
                     className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
                   >
                     <div
                       className="euiFlexItem euiAccordion__buttonContent"
@@ -299,6 +255,7 @@ exports[`EuiAccordion is rendered 1`] = `
         aria-controls="0"
         aria-expanded="false"
         class="euiAccordion__button"
+        type="button"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -362,6 +319,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
         aria-controls="2"
         aria-expanded="false"
         class="euiAccordion__button"
+        type="button"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -429,6 +387,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         aria-controls="1"
         aria-expanded="false"
         class="euiAccordion__button"
+        type="button"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -492,6 +451,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
         aria-controls="3"
         aria-expanded="false"
         class="euiAccordion__button"
+        type="button"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -562,6 +522,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         aria-controls="4"
         aria-expanded="true"
         class="euiAccordion__button"
+        type="button"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"

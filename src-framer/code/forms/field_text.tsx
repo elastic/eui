@@ -19,7 +19,6 @@ interface Props {
 }
 
 export class FieldText extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     hasFormRow: false,
@@ -75,16 +74,12 @@ export class FieldText extends React.Component<Props> {
       fieldWithOptionalRow = (
         <EuiFormRow
           label={this.props.formRowLabel}
-          helpText={this.props.formRowHelpText}
-        >
+          helpText={this.props.formRowHelpText}>
           {fieldText}
         </EuiFormRow>
       );
-
     }
 
-    return (
-      <div>{fieldWithOptionalRow}</div>
-    );
+    return <div>{fieldWithOptionalRow}</div>;
   }
 }

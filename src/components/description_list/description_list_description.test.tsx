@@ -12,7 +12,6 @@ describe('EuiDescriptionListDescription', () => {
       </EuiDescriptionListDescription>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -15,7 +15,9 @@ const consoleWarn = console.warn;
 const consoleError = console.error;
 
 export const startThrowingReactWarnings = () => {
-  console.warn = console.error = (msg: any) => { throw msg; };
+  console.warn = console.error = (msg: any) => {
+    throw msg;
+  };
 };
 
 export const stopThrowingReactWarnings = () => {

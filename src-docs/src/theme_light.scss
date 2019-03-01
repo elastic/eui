@@ -1,4 +1,7 @@
+// sass-lint:disable no-url-domains, no-url-protocols
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');
+
 @import '../../src/theme_light';
 @import './components/guide_components';
 @import './views/header/global_filter_group';
-@import './views/date_picker/global_date_picker';

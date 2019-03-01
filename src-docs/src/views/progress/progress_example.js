@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiProgress,
 } from '../../../../src/components';
@@ -14,14 +15,23 @@ import {
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
 const progressHtml = renderToHtml(Progress);
+const progressSnippet = `<EuiProgress size="xs" color="accent" />`;
 
 import ProgressValue from './progress_value';
 const progressValueSource = require('!!raw-loader!./progress_value');
 const progressValueHtml = renderToHtml(ProgressValue);
+const progressValueSnippet = '<EuiProgress value={22} max={100} size="xs" />';
 
 import ProgressFixed from './progress_fixed';
 const progressFixedSource = require('!!raw-loader!./progress_fixed');
 const progressFixedHtml = renderToHtml(ProgressFixed);
+const progressFixedSnippet = `<!-- Position at top of parent container -->
+<EuiProgress size="xs" color="accent" position="absolute" />
+
+<!-- Position at top of screen, above global header -->
+<EuiPortal>
+  <EuiProgress size="xs" color="accent" position="fixed" />
+</EuiPortal>`;
 
 import ProgressSizeColor from './progress_size_color';
 const progressSizeColorSource = require('!!raw-loader!./progress_size_color');
@@ -46,6 +56,7 @@ export const ProgressExample = {
         always strech <EuiCode>100%</EuiCode> to its container.
       </p>
     ),
+    snippet: progressSnippet,
     props: { EuiProgress },
     demo: <Progress />,
   }, {
@@ -64,6 +75,7 @@ export const ProgressExample = {
         using an HTML5 <EuiCode>progress</EuiCode> tag.
       </p>
     ),
+    snippet: progressValueSnippet,
     demo: <ProgressValue />,
   }, {
     title: 'Progress can have absolute or fixed positions',
@@ -75,15 +87,31 @@ export const ProgressExample = {
       code: progressFixedHtml,
     }],
     text: (
-      <p>
-        Using the <EuiCode>position</EuiCode> prop we can align our bar
-        to be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
-        options, the background color of the base bar is dropped (since the
-        context of width is already known from your wrapping element). For the
-        absolute option, make sure that your wrapping element
-        has <EuiCode>position: relative</EuiCode> applied.
-      </p>
+      <div>
+        <p>
+          Using the <EuiCode>position</EuiCode> prop we can align our bar
+          to be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
+          options, the background color of the base bar is dropped (since the
+          context of width is already known from your wrapping element). For the
+          absolute option, make sure that your wrapping element
+          has <EuiCode>position: relative</EuiCode> applied.
+        </p>
+        <EuiCallOut
+          title="Note about progress bars over fixed headers"
+          iconType="iInCircle"
+        >
+          <p>
+            Using <EuiCode>EuiProgress</EuiCode> with
+            a <EuiCode>fixed</EuiCode> position may result in it being overlayed
+            when its parent wrapper has a <EuiCode>z-index</EuiCode> value lower
+            than another fixed element, such as <EuiCode>EuiHeader</EuiCode>. In
+            that case, wrap <EuiCode>EuiProgress</EuiCode> in
+            an <EuiCode>EuiPortal</EuiCode> as seen on the Snippet tab.
+          </p>
+        </EuiCallOut>
+      </div>
     ),
+    snippet: progressFixedSnippet,
     demo: <ProgressFixed />,
   }, {
     title: 'Progress has a range of sizes and colors',

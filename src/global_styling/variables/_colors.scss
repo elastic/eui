@@ -19,14 +19,14 @@ $euiColorMediumShade: #98A2B3 !default;
 $euiColorDarkShade: #69707D !default;
 $euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
-$euiColorSlightHue: #909AA1 !default;
 
 // Every color below must be based mathmatically on the set above.
 
 $euiTextColor: $euiColorDarkestShade !default;
-$euiTitleColor: tintOrShade($euiColorFullShade, 10%, 0%) !default;
+$euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 25%) !default;
 
 // Visualization colors
 

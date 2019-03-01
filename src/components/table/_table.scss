@@ -4,6 +4,7 @@
  */
 .euiTable {
   @include euiFontSizeS;
+  @include euiNumberFormat;
 
   width: 100%;
   table-layout: fixed;
@@ -36,8 +37,7 @@
 
   .euiTableCellContent__text {
     @include euiFontSizeXS;
-    color: $euiTitleColor;
-    font-weight: $euiFontWeightBold;
+    font-weight: $euiFontWeightSemiBold;
   }
 }
 

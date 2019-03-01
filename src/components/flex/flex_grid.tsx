@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode, SFC } from 'react';
+import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -20,7 +20,9 @@ const gutterSizeToClassNameMap = {
   xl: 'euiFlexGrid--gutterXLarge',
 };
 
-export const GUTTER_SIZES: FlexGridGutterSize[] = keysOf(gutterSizeToClassNameMap);
+export const GUTTER_SIZES: FlexGridGutterSize[] = keysOf(
+  gutterSizeToClassNameMap
+);
 
 const columnsToClassNameMap = {
   0: 'euiFlexGrid--wrap',
@@ -30,12 +32,20 @@ const columnsToClassNameMap = {
   4: 'euiFlexGrid--fourths',
 };
 
-export const COLUMNS = keysOf(columnsToClassNameMap)
-    .map(columns => parseInt(columns, 10)) as FlexGridColumns[];
+export const COLUMNS = keysOf(columnsToClassNameMap).map(columns =>
+  parseInt(columns, 10)
+) as FlexGridColumns[];
 
-export const EuiFlexGrid: SFC<
+export const EuiFlexGrid: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
-> = ({ children, className, gutterSize, responsive, columns, ...rest }) => {
+> = ({
+  children,
+  className,
+  gutterSize = 'l',
+  responsive = true,
+  columns = 0,
+  ...rest
+}) => {
   const classes = classNames(
     'euiFlexGrid',
     gutterSize ? gutterSizeToClassNameMap[gutterSize] : undefined,
@@ -47,17 +57,8 @@ export const EuiFlexGrid: SFC<
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );
-};
-
-EuiFlexGrid.defaultProps = {
-  gutterSize: 'l',
-  columns: 0,
-  responsive: true,
 };

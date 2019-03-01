@@ -16,6 +16,7 @@ export class EuiComboBoxInput extends Component {
     placeholder: PropTypes.string,
     selectedOptions: PropTypes.array,
     onRemoveOption: PropTypes.func,
+    onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func.isRequired,
     onChange: PropTypes.func,
@@ -67,6 +68,9 @@ export class EuiComboBoxInput extends Component {
   };
 
   onBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
     this.setState({
       hasFocus: false,
     });
@@ -211,7 +215,7 @@ export class EuiComboBoxInput extends Component {
           tabIndex="-1" // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
           data-test-subj="comboBoxInput"
         >
-          {pills}
+          {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
             role="textbox"

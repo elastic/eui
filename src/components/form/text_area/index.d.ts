@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, TextareaHTMLAttributes } from 'react';
+import { FunctionComponent, TextareaHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -14,7 +14,7 @@ declare module '@elastic/eui' {
     inputRef?: (input: any) => void;
   }
 
-  export const EuiTextArea: SFC<
+  export const EuiTextArea: FunctionComponent<
     CommonProps & TextareaHTMLAttributes<HTMLTextAreaElement> & EuiTextAreaProps
     >;
 }

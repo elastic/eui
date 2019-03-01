@@ -105,7 +105,9 @@
   // coloring will likely coming from the reset.scss anyway.
   color: inherit;
 
-  a {
+  // Style anchors that don't have a class. This prevents overwriting "buttons"
+  // and other stylized elements passed in.
+  a:not([class]) {
     color: $euiLinkColor;
 
     &:hover {
@@ -140,6 +142,7 @@
     margin-right: auto;
     font-family: Georgia, Times, Times New Roman, serif;
     font-style: italic;
+    letter-spacing: normal;
 
     p:last-child {
       margin-bottom: 0;
@@ -205,8 +208,8 @@
   // unset font-size from euiCodeBlock so it doesn't doubly add 90%
 
   code {
+    @include euiCodeFont;
     display: inline-block; // ensures background stretches the full line-height
-    font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
   }
 

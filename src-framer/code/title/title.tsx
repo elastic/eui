@@ -1,4 +1,8 @@
-import { EuiTitle, TEXT_TRANSFORM, TITLE_SIZES } from '@elastic/eui/lib/components/title/title';
+import {
+  EuiTitle,
+  TEXT_TRANSFORM,
+  TITLE_SIZES,
+} from '@elastic/eui/lib/components/title/title';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 import { FrameSize } from '../_framer_helpers/frame_size';
@@ -11,7 +15,6 @@ interface Props {
 }
 
 export class Title extends React.Component<Props> {
-
   // Set default properties
   static defaultProps = {
     childText: 'Title text goes here',
@@ -43,11 +46,8 @@ export class Title extends React.Component<Props> {
           size={this.props.size}
           textTransform={this.props.textTransform}
           // Display block so that the frame size dictates size in Framer
-          style={{ display: 'block', flexGrow: 1, width: '100%' }}
-        >
-          <p>
-            {this.props.childText}
-          </p>
+          style={{ display: 'block', flexGrow: 1, width: '100%' }}>
+          <p>{this.props.childText}</p>
         </EuiTitle>
       </FrameSize>
     );

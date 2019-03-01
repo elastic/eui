@@ -12,13 +12,12 @@ export const XYChartAreaExample = {
   intro: (
     <Fragment>
       <EuiCallOut
-        title="Beta Component"
-        color="warning"
+        title="Set for deprecation"
+        color="danger"
       >
         <p>
-          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implement it,
-          but please be aware that breaking changes can come at any time with this component as such changes on beta
-          components does not necessitate a major version bump.
+          This component will be replaced in the near future and managed outside of EUI. We do not recommend using it at this time
+          and it will be removed by June 2019.
         </p>
       </EuiCallOut>
 

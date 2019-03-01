@@ -1,4 +1,4 @@
-import React, { SFC, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -34,30 +34,15 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule: SFC<
-CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
-> = ({
-  className,
-  size,
-  margin,
-  ...rest
-}) => {
+export const EuiHorizontalRule: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLHRElement> & EuiHorizontalRuleProps
+> = ({ className, size = 'full', margin = 'l', ...rest }) => {
   const classes = classNames(
     'euiHorizontalRule',
-    size ? sizeToClassNameMap[size] : undefined,
-    margin ? marginToClassNameMap[margin] : undefined,
+    sizeToClassNameMap[size],
+    marginToClassNameMap[margin],
     className
   );
 
-  return (
-    <hr
-      className={classes}
-      {...rest}
-    />
-  );
-};
-
-EuiHorizontalRule.defaultProps = {
-  size: 'full',
-  margin: 'l',
+  return <hr className={classes} {...rest} />;
 };

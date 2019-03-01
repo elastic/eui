@@ -37,23 +37,26 @@ export const Table = () => {
     field: 'firstName',
     name: 'First Name',
     sortable: true,
-    hideForMobile: true,
     'data-test-subj': 'firstNameCell',
+    mobileOptions: {
+      render: (item) => (
+        <span>{item.firstName} <EuiLink href="#" target="_blank">{item.lastName}</EuiLink></span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      fullWidth: true,
+    }
   }, {
     field: 'lastName',
     name: 'Last Name',
     truncateText: true,
-    hideForMobile: true,
     render: (name) => (
       <EuiLink href="#" target="_blank">{name}</EuiLink>
     ),
-  }, {
-    field: 'firstName',
-    name: 'Full Name',
-    isMobileHeader: true,
-    render: (name, item) => (
-      <span>{item.firstName} <EuiLink href="#" target="_blank">{item.lastName}</EuiLink></span>
-    ),
+    mobileOptions: {
+      show: false,
+    }
   }, {
     field: 'github',
     name: 'Github',

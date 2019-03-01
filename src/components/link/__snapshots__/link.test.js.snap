@@ -106,6 +106,13 @@ exports[`EuiLink supports target 1`] = `
 />
 `;
 
+exports[`EuiLink text is rendered 1`] = `
+<button
+  class="euiLink euiLink--text"
+  type="button"
+/>
+`;
+
 exports[`EuiLink warning is rendered 1`] = `
 <button
   class="euiLink euiLink--warning"

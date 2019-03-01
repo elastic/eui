@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, InputHTMLAttributes, Ref } from 'react';
+import { FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -17,7 +17,7 @@ declare module '@elastic/eui' {
     compressed?: boolean;
   }
 
-  export const EuiFieldPassword: SFC<
+  export const EuiFieldPassword: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldPasswordProps
   >;
 }

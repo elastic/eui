@@ -25,20 +25,16 @@ describe('EuiFlexGroup', () => {
       </EuiFlexGroup>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('responsive', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup responsive={value} />
-          );
+          const component = render(<EuiFlexGroup responsive={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -46,12 +42,9 @@ describe('EuiFlexGroup', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup gutterSize={value} />
-          );
+          const component = render(<EuiFlexGroup gutterSize={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -59,12 +52,9 @@ describe('EuiFlexGroup', () => {
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup alignItems={value} />
-          );
+          const component = render(<EuiFlexGroup alignItems={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -72,12 +62,9 @@ describe('EuiFlexGroup', () => {
     describe('justifyContent', () => {
       JUSTIFY_CONTENTS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup justifyContent={value} />
-          );
+          const component = render(<EuiFlexGroup justifyContent={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -85,12 +72,9 @@ describe('EuiFlexGroup', () => {
     describe('direction', () => {
       DIRECTIONS.forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup direction={value} />
-          );
+          const component = render(<EuiFlexGroup direction={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -102,18 +86,19 @@ describe('EuiFlexGroup', () => {
             <EuiFlexGroup component={value as 'div' | 'span'} />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
 
       ['h2'].forEach(value => {
         test(`${value} is not rendered`, () => {
-          expect(() => render(
-            // intentionally passing an invalid value
-            // @ts-ignore
-            <EuiFlexGroup component={value} />
-          )).toThrow();
+          expect(() =>
+            render(
+              // intentionally passing an invalid value
+              // @ts-ignore
+              <EuiFlexGroup component={value} />
+            )
+          ).toThrow();
         });
       });
     });
@@ -121,12 +106,9 @@ describe('EuiFlexGroup', () => {
     describe('wrap', () => {
       [true, false].forEach(value => {
         test(`${value} is rendered`, () => {
-          const component = render(
-            <EuiFlexGroup wrap={value} />
-          );
+          const component = render(<EuiFlexGroup wrap={value} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

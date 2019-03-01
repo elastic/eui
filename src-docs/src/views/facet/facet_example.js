@@ -69,6 +69,11 @@ export const FacetExample = {
       ),
       props: { EuiFacetGroup },
       demo: <FacetLayout />,
+      snippet: `// Restrict the width of default (vertical) if not restricted by parent
+<EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
+
+// Horizontal
+<EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>`,
     },
   ],
 };

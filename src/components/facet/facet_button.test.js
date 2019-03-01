@@ -21,7 +21,7 @@ describe('EuiFacetButton', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton isDisabled />
+          <EuiFacetButton isDisabled>Content</EuiFacetButton>
         );
 
         expect(component)
@@ -32,7 +32,7 @@ describe('EuiFacetButton', () => {
     describe('isLoading', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton isLoading />
+          <EuiFacetButton isLoading>Content</EuiFacetButton>
         );
 
         expect(component)
@@ -43,7 +43,7 @@ describe('EuiFacetButton', () => {
     describe('isSelected', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton isSelected />
+          <EuiFacetButton isSelected>Content</EuiFacetButton>
         );
 
         expect(component)
@@ -54,7 +54,7 @@ describe('EuiFacetButton', () => {
     describe('quantity', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton quantity={60} />
+          <EuiFacetButton quantity={60}>Content</EuiFacetButton>
         );
 
         expect(component)
@@ -65,7 +65,7 @@ describe('EuiFacetButton', () => {
     describe('icon', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton icon={<EuiIcon type="dot" />} />
+          <EuiFacetButton icon={<EuiIcon type="dot" />}>Content</EuiFacetButton>
         );
 
         expect(component)
@@ -77,7 +77,7 @@ describe('EuiFacetButton', () => {
       it('supports onClick', () => {
         const handler = jest.fn();
         const component = mount(
-          <EuiFacetButton onClick={handler} />
+          <EuiFacetButton onClick={handler}>Content</EuiFacetButton>
         );
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);

@@ -53,3 +53,7 @@
     padding-right: $euiFormControlPadding / 2;
   }
 }
+
+.euiDatePickerRange--readOnly {
+  background: $euiFormBackgroundDisabledColor;
+}

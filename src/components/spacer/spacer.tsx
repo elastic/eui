@@ -16,29 +16,17 @@ export const SIZES = Object.keys(sizeToClassNameMap);
 
 export type SpacerSize = keyof typeof sizeToClassNameMap;
 
-export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> & CommonProps & {
-  size?: SpacerSize,
-};
+export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    size?: SpacerSize;
+  };
 
-export const EuiSpacer: React.SFC<EuiSpacerProps> = ({
+export const EuiSpacer: React.FunctionComponent<EuiSpacerProps> = ({
   className,
-  size,
+  size = 'l',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiSpacer',
-    size ? sizeToClassNameMap[size] : undefined,
-    className
-  );
+  const classes = classNames('euiSpacer', sizeToClassNameMap[size], className);
 
-  return (
-    <div
-      className={classes}
-      {...rest}
-    />
-  );
-};
-
-EuiSpacer.defaultProps = {
-  size: 'l',
+  return <div className={classes} {...rest} />;
 };

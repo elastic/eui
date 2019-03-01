@@ -6,7 +6,8 @@
   position: relative;
   height: $euiHeaderChildSize;
   line-height: $euiHeaderChildSize;
-  padding: 0 $euiSize;
+  min-width: $euiHeaderChildSize + 1px;
+  padding: 0 ($euiSizeM + 1px) 0 $euiSizeM;
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
@@ -31,8 +32,6 @@
 
 @include euiBreakpoint('xs') {
   .euiHeaderLogo {
-    height: $euiHeaderChildSize * .75;
-    line-height: $euiHeaderChildSize * .75;
     padding: 0 $euiSizeM;
   }
 

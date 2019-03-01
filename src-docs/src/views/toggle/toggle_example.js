@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -9,7 +13,6 @@ import {
 import {
   EuiCode,
   EuiToggle,
-  EuiLink,
   EuiCallOut,
 } from '../../../../src/components';
 
@@ -35,16 +38,16 @@ export const ToggleExample = {
           a visibly hidden input (checkbox or radio) overtop of the children provided.
         </p>
         <p>
-          By default, the children will be wrapped in a block element. To change the display you can
-          simply use one of the <EuiLink href="/#/utilities/css-utility-classes">utility classes</EuiLink>
-          like <EuiCode>.eui-displayInlineBlock</EuiCode>.
+          By default, the children will be wrapped in a block element.
+          To change the display you can simply use one of
+          the <Link to="/utilities/css-utility-classes">utility classes</Link> like <EuiCode>.eui-displayInlineBlock</EuiCode>.
         </p>
         <EuiCallOut title="Accessibility">
           <p>
             This utility is just a helper component and comes with no inherit styles including
             no <EuiCode>:hover</EuiCode> or <EuiCode>:focus</EuiCode> states. If you use this utility
             directly, be sure to add these states. Otherwise, you may just want to utilize
-            the <EuiLink href="/#/navigation/button">EuiButtonToggle</EuiLink> component.
+            the <Link to="/navigation/button">EuiButtonToggle</Link> component.
           </p>
         </EuiCallOut>
       </div>

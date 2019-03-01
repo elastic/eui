@@ -64,6 +64,7 @@ $euiProgressSizes: (
 // Progress bars can be set to fixed or absolute.
 .euiProgress--fixed {
   position: fixed;
+  z-index: $euiZHeader + 1;
 }
 
 .euiProgress--absolute {

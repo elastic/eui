@@ -4,11 +4,13 @@ import { renderToHtml } from '../../services';
 import { propsInfo } from './props_info';
 
 import {
+  GuideRuleTitle,
   GuideSectionTypes,
 } from '../../components';
 
 import {
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import { SearchBar } from './search_bar';
@@ -65,6 +67,11 @@ export const SearchBarExample = {
               <EuiCode>is:open -is:assigned</EuiCode>. In this example the intention is to find all items that are
               flagged as <EuiCode>open</EuiCode> but are not flagged as <EuiCode>assigned</EuiCode>
             </li>
+            <li>
+              <EuiCode>or group</EuiCode> clauses - allowing multiple clauses to be OR&apos;d together - Example,
+              <EuiCode>(is:active OR owner:dewey) followers&gt;5</EuiCode>. In this example the intention is to find all items that are
+              <EuiCode>active</EuiCode> OR owned by <EuiCode>dewey</EuiCode>, and have more than 5 <EuiCode>followers</EuiCode>
+            </li>
           </ul>
           <p>
             While the user can use the syntax described above to enter queries in the search box, it is possible
@@ -93,6 +100,50 @@ export const SearchBarExample = {
               this flag back and forth (adds/removed an <EuiCode>is:</EuiCode> clause to/from the query).
             </li>
           </ul>
+
+          <GuideRuleTitle>Date parsing</GuideRuleTitle>
+          <p>
+            Date values can be used for equality or range tests when the <EuiCode>schema</EuiCode> prop specifies
+            the field as a <EuiCode>date</EuiCode> type (the <EuiCode>created</EuiCode> field in the demo below is
+            a date), and must be enclosed in single quotes. E.g.&nbsp;
+            <EuiCode>created:&apos;2019-01-01&apos;</EuiCode>,&nbsp;
+            <EuiCode>created&gt;=&apos;3rd January 2017&apos;</EuiCode>
+          </p>
+          <div>
+            Formats understood by the parser
+            <ul>
+              <li>
+                relative
+                <ul>
+                  <li><EuiCode>yesterday</EuiCode></li>
+                  <li><EuiCode>today</EuiCode></li>
+                  <li><EuiCode>tomorrow</EuiCode></li>
+                </ul>
+              </li>
+              <li>
+                absolute (parsed by Moment.js&apos;s&nbsp;
+                <EuiLink href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">`utc` method</EuiLink>
+                )
+                <ul>
+                  <li><EuiCode>ddd</EuiCode></li>
+                  <li><EuiCode>dddd</EuiCode></li>
+                  <li><EuiCode>D MMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMM YY</EuiCode></li>
+                  <li><EuiCode>D MMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMM YYYY</EuiCode></li>
+                  <li><EuiCode>D MMMM YY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YY</EuiCode></li>
+                  <li><EuiCode>D MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>Do MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YY</EuiCode></li>
+                  <li><EuiCode>DD MMMM YYYY</EuiCode></li>
+                  <li><EuiCode>YYYY-MM-DD</EuiCode></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       ),
       props: propsInfo,

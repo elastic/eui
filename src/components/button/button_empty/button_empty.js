@@ -77,6 +77,16 @@ export const EuiButtonEmpty = ({
     className,
   );
 
+  const contentClassNames = classNames(
+    'euiButtonEmpty__content',
+    contentProps && contentProps.className,
+  );
+
+  const textClassNames = classNames(
+    'euiButtonEmpty__text',
+    textProps && textProps.className,
+  );
+
   // Add an icon to the button if one exists.
   let buttonIcon;
 
@@ -98,10 +108,17 @@ export const EuiButtonEmpty = ({
     );
   }
 
+  const innerNode = (
+    <span {...contentProps} className={contentClassNames}>
+      {buttonIcon}
+      <span {...textProps} className={textClassNames}>{children}</span>
+    </span>
+  );
+
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
   if (href && !isDisabled) {
-    const secureRel = getSecureRelForTarget(target, rel);
+    const secureRel = getSecureRelForTarget({ href, target, rel });
 
     return (
       <a
@@ -112,10 +129,7 @@ export const EuiButtonEmpty = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButtonEmpty__content" {...contentProps}>
-          {buttonIcon}
-          <span className="euiButtonEmpty__text" {...textProps}>{children}</span>
-        </span>
+        {innerNode}
       </a>
     );
   } else {
@@ -127,10 +141,7 @@ export const EuiButtonEmpty = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButtonEmpty__content" {...contentProps}>
-          {buttonIcon}
-          <span className="euiButtonEmpty__text"{...textProps}>{children}</span>
-        </span>
+        {innerNode}
       </button>
     );
   }
@@ -159,12 +170,12 @@ EuiButtonEmpty.propTypes = {
   buttonRef: PropTypes.func,
 
   /**
-   * Passes props to `euiButton__content` span
+   * Passes props to `euiButtonEmpty__content` span
    */
   contentProps: PropTypes.object,
 
   /**
-   * Passes props to `euiButton__text` span
+   * Passes props to `euiButtonEmpty__text` span
    */
   textProps: PropTypes.object,
 };

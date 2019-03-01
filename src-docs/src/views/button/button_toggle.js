@@ -36,7 +36,7 @@ export default class extends Component {
       <div>
         <EuiButtonToggle
           label="Toggle Me"
-          iconType={this.state.toggle0On ? 'check' : 'cross'}
+          iconType={this.state.toggle0On ? 'starPlusEmpty' : 'starFilledSpace'}
           onChange={this.onToggle0Change}
           isSelected={this.state.toggle0On}
         />

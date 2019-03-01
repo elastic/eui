@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AbstractSeries, Crosshair } from 'react-vis';
 import { SCALE } from '../utils/chart_utils';
+import moment from 'moment';
 /**
  * The Crosshair used by the XYChart as main tooltip mechanism along X axis (vertical).
  */
@@ -55,9 +56,9 @@ export class EuiCrosshairX extends AbstractSeries {
   }
 
   _formatXValue = (x) => {
-    const { xType } = this.props;
+    const { xType, xCrosshairFormat } = this.props;
     if (xType === SCALE.TIME || xType === SCALE.TIME_UTC) {
-      return new Date(x).toISOString(); // TODO add a props for time formatting
+      return xCrosshairFormat ? moment(x).format(xCrosshairFormat) : new Date(x).toISOString();
     } else {
       return x;
     }
@@ -201,5 +202,6 @@ EuiCrosshairX.propTypes = {
    * The ordered array of series names
    */
   seriesNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  xCrosshairFormat: PropTypes.string,
 };
 EuiCrosshairX.defaultProps = {};
