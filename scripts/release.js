@@ -39,6 +39,11 @@ const humanReadableTypes = {
   // prompt user for what type of version bump to make (major|minor|patch)
   const versionTarget = await getVersionTypeFromChangelog();
 
+  // build may have generated a new src-docs/src/i18ntokens.json file, dirting the git workspace
+  // it's important to track those changes with this release, so determine the changes and write them
+  // to src-docs/src/i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
+  execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+
   // update package.json & package-lock.json version, git commit, git tag
   execSync(`npm version ${versionTarget}`, execOptions);
 
