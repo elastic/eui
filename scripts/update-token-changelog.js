@@ -118,12 +118,19 @@ async function main() {
       const originalTokens = JSON.parse(await getFileContentsFromCommit(head, 'src-docs/src/i18ntokens.json'));
       const newTokens = require(tokensPath);
 
-      const changeLog = require(tokensChangelogPath);
-      changeLog.unshift({
-        version: newPackageVersion,
-        changes: getTokenChanges(originalTokens, newTokens),
-      });
-      fs.writeFileSync(tokensChangelogPath, JSON.stringify(changeLog, null, 2));
+      const changes = getTokenChanges(originalTokens, newTokens);
+
+      // it's possible that no meaningful changes occurred
+      if (changes.length > 0) {
+        const changeLog = require(tokensChangelogPath);
+        changeLog.unshift({
+          version: newPackageVersion,
+          changes,
+        });
+        fs.writeFileSync(tokensChangelogPath, JSON.stringify(changeLog, null, 2));
+      }
+
+      // always commit changes to i18ntokens.json
       await commitTokenChanges(repo);
 
       // stop iterating over workspace changes
