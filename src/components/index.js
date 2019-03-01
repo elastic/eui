@@ -296,6 +296,14 @@ export {
 } from './search_bar';
 
 export {
+  EuiSelectable,
+  EuiSelectableList,
+  EuiSelectableListItem,
+  EuiSelectableMessage,
+  EuiSelectableSearch,
+} from './selectable';
+
+export {
   EuiSideNav,
 } from './side_nav';
 

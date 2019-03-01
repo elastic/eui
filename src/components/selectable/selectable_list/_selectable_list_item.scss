@@ -1,0 +1,45 @@
+.euiSelectableListItem {
+  @include euiFontSizeS;
+
+  padding: $euiSizeXS $euiSizeM;
+  display: block; // Necessary to make sure it doesn't force the whole popover to be too wide
+  width: 100%;
+  text-align: left;
+  color: $euiTextColor;
+  border-bottom: $euiBorderThin;
+  border-color: darken($euiColorLightestShade, 2%);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus,
+  &-isFocused {
+    cursor: pointer;
+    color: $euiColorPrimary;
+    background-color: $euiFocusBackgroundColor;
+  }
+
+  &[disabled] {
+    color: $euiColorMediumShade;
+    cursor: not-allowed;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.euiSelectableListItem__content {
+  display: flex;
+  align-items: center;
+}
+
+.euiSelectableListItem__icon {
+  margin-right: $euiSizeXS;
+}
+
+.euiSelectableListItem__text {
+  @include euiTextTruncate;
+}

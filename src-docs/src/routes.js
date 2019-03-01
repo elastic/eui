@@ -216,6 +216,9 @@ import { ResponsiveExample }
 import { SearchBarExample }
   from './views/search_bar/search_bar_example';
 
+import { SelectableExample }
+  from './views/selectable/selectable_example';
+
 import { SideNavExample }
   from './views/side_nav/side_nav_example';
 
@@ -392,6 +395,7 @@ const navigation = [{
     ListGroupExample,
     LoadingExample,
     ProgressExample,
+    SelectableExample,
     StatExample,
     TableExample,
     TextExample,
