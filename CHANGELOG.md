@@ -58,7 +58,6 @@
 **Bug fixes**
 
 - Fixed several bugs with `EuiRange` and `EuiDualRange` including sizing of inputs, tick placement, and the handling of invalid values ([#1580](https://github.com/elastic/eui/pull/1580))
->>>>>>> edf0b85abf0668db2fc7f3c282a077fcc2d6f121
 
 ## [`7.2.0`](https://github.com/elastic/eui/tree/v7.2.0)
 

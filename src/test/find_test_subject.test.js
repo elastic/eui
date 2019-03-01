@@ -46,5 +46,11 @@ describe('findTestSubject', () => {
 
       expect(element.length).toBe(2);
     });
+
+    test('throws an error if unsupported matcher is provided', () => {
+      const TestComponent = () => <div data-test-subj="test" />;
+      const component = mount(<TestComponent />);
+      expect(() => findTestSubject(component, 'test', '===')).toThrow();
+    });
   });
 });
