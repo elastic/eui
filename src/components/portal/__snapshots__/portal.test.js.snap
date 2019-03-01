@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`EuiPortal is rendered 1`] = `
-<div>
-  Content
-</div>
-`;

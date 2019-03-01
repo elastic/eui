@@ -1,6 +1,6 @@
 import { CommonProps } from '../common';
 
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
     onClick?: () => void;
   }
 
-  export const EuiOverlayMask: SFC<
+  export const EuiOverlayMask: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiOverlayMaskProps
     >;
 

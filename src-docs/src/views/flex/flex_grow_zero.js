@@ -8,7 +8,7 @@ import {
 export default () => (
   <div>
     <EuiFlexGroup>
-      <EuiFlexItem grow={false}>This item wont grow</EuiFlexItem>
+      <EuiFlexItem grow={false}>This item won&rsquo;t grow</EuiFlexItem>
       <EuiFlexItem>But this item will.</EuiFlexItem>
     </EuiFlexGroup>
   </div>

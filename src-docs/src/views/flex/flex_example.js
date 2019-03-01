@@ -232,7 +232,7 @@ export const FlexExample = {
       <p>
         <EuiCode>FlexGroup</EuiCode>s can also
         use <EuiCode>justifyContent</EuiCode> and <EuiCode>alignItems</EuiCode> props
-        that accept normal flex-box paramenters. Below are some common scenarios,
+        that accept normal flex-box parameters. Below are some common scenarios,
         where you need to separate two items, center justify a single one, or
         center an item vertically. Note the usage
         of <EuiCode>FlexItem</EuiCode>s with <EuiCode>grow=false</EuiCode> so that they do not stretch.

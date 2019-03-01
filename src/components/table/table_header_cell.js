@@ -28,15 +28,18 @@ export const EuiTableHeaderCell = ({
   onSort,
   isSorted,
   isSortAscending,
+  allowNeutralSort,
   className,
   scope,
+  mobileOptions,
+  // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--isMobileHeader': isMobileHeader,
-    'euiTableHeaderCell--hideForMobile': hideForMobile,
+    'euiTableHeaderCell--hideForDesktop': mobileOptions.only || isMobileHeader,
+    'euiTableHeaderCell--hideForMobile': !mobileOptions.show || hideForMobile,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -52,6 +55,16 @@ export const EuiTableHeaderCell = ({
     let ariaSortValue = 'none';
     if (isSorted) {
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+    }
+
+    function getScreenCasterDirection() {
+      if (ariaSortValue === 'ascending') {
+        return 'Click to sort in descending order';
+      } else if (allowNeutralSort && ariaSortValue === 'descending') {
+        return 'Click to unsort';
+      } else {
+        return 'Click to sort in ascending order';
+      }
     }
 
     return (
@@ -80,7 +93,7 @@ export const EuiTableHeaderCell = ({
               />
             )}
             <EuiScreenReaderOnly>
-              <span>{`Click to sort in ${(ariaSortValue === 'descending' || 'none') ? 'ascending' : 'descending'} order`}</span>
+              <span>{getScreenCasterDirection()}</span>
             </EuiScreenReaderOnly>
           </span>
         </button>
@@ -109,20 +122,43 @@ EuiTableHeaderCell.propTypes = {
   onSort: PropTypes.func,
   isSorted: PropTypes.bool,
   isSortAscending: PropTypes.bool,
+  /**
+   * Set `allowNeutralSort` on EuiInMemoryTable to false to force column sorting.
+   * EuiBasicTable always forces column sorting.
+   */
+  allowNeutralSort: PropTypes.bool,
   scope: PropTypes.oneOf(['col', 'row', 'colgroup', 'rowgroup']),
   /**
+   * _DEPRECATED: use `mobileOptions.only = true`_
    * Indicates if the column was created to be the row's heading in mobile view
    * (this column will be hidden at larger screens)
    */
   isMobileHeader: PropTypes.bool,
   /**
+   * _DEPRECATED: use `mobileOptions.show = false`_
    * Indicates if the column should not show for mobile users
    * (typically hidden because a custom mobile header utilizes the column's contents)
    */
   hideForMobile: PropTypes.bool,
+  /**
+   * Mobile options for displaying differently at small screens
+   */
+  mobileOptions: PropTypes.shape({
+    /**
+     * If false, will not render the column at all for mobile
+     */
+    show: PropTypes.bool,
+    /**
+     * Only show for mobile? If true, will not render the column at all for desktop
+     */
+    only: PropTypes.bool,
+  }),
 };
 
 EuiTableHeaderCell.defaultProps = {
   align: LEFT_ALIGNMENT,
   scope: 'col',
+  mobileOptions: {
+    show: true,
+  }
 };

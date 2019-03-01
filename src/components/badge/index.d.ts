@@ -1,7 +1,7 @@
 import { IconType } from '../icon'
 /// <reference path="../tool_tip/index.d.ts" />
 
-import { HTMLAttributes, MouseEventHandler, SFC, ReactNode } from 'react';
+import { HTMLAttributes, MouseEventHandler, FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
@@ -19,7 +19,7 @@ declare module '@elastic/eui' {
     closeButtonProps?: object;
   }
 
-  export const EuiBadge: SFC<
+  export const EuiBadge: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLSpanElement> & HTMLAttributes<HTMLButtonElement> & EuiBadgeProps
   >;
 
@@ -31,7 +31,7 @@ declare module '@elastic/eui' {
     title?: string;
   }
 
-  export const EuiBetaBadge: SFC<
+  export const EuiBetaBadge: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps
   >;
 }

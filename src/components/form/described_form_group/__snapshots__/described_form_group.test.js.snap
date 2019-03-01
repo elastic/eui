@@ -51,6 +51,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -100,6 +101,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -159,6 +161,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={true}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -218,6 +221,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -277,6 +281,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -391,25 +396,29 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
               helpText="Help text"
               isInvalid={true}
               label="Label"
+              labelType="label"
             >
               <div
                 className="euiFormRow"
                 id="generated-id-row"
               >
-                <EuiFormLabel
-                  aria-invalid={true}
-                  htmlFor="generated-id"
-                  isFocused={false}
-                  isInvalid={true}
-                >
-                  <label
+                <div>
+                  <EuiFormLabel
                     aria-invalid={true}
-                    className="euiFormLabel euiFormLabel-isInvalid"
                     htmlFor="generated-id"
+                    isFocused={false}
+                    isInvalid={true}
+                    type="label"
                   >
-                    Label
-                  </label>
-                </EuiFormLabel>
+                    <label
+                      aria-invalid={true}
+                      className="euiFormLabel euiFormLabel-isInvalid"
+                      htmlFor="generated-id"
+                    >
+                      Label
+                    </label>
+                  </EuiFormLabel>
+                </div>
                 <input
                   aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
                   id="generated-id"

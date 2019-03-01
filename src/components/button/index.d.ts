@@ -1,8 +1,8 @@
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { IconType, IconSize } from '../icon'
 import { ToggleType } from '../toggle'
 
-import { SFC, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, MouseEventHandler, HTMLAttributes } from 'react';
+import { FunctionComponent, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, MouseEventHandler, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   type EuiButtonPropsForButtonOrLink<Props> = (
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
     contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }
-  export const EuiButton: SFC<
+  export const EuiButton: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonProps>
   >;
 
@@ -63,7 +63,7 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     iconSize?: IconSize
   }
-  export const EuiButtonIcon: SFC<
+  export const EuiButtonIcon: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
   >;
 
@@ -95,7 +95,7 @@ declare module '@elastic/eui' {
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }>
 
-  export const EuiButtonEmpty: SFC<EuiButtonEmptyProps>;
+  export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps>;
 
   /**
    * button toggle type defs
@@ -112,7 +112,7 @@ declare module '@elastic/eui' {
       type?: ToggleType;
     }
 
-  export const EuiButtonToggle: SFC<
+  export const EuiButtonToggle: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonToggleProps>
   >;
 
@@ -145,7 +145,7 @@ declare module '@elastic/eui' {
       name?: string;
     }
 
-  export const EuiButtonGroup: SFC<
-    HTMLAttributes<HTMLDivElement> & EuiButtonGroupProps
+  export const EuiButtonGroup: FunctionComponent<
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & EuiButtonGroupProps
   >;
 }

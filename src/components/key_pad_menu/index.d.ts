@@ -1,11 +1,11 @@
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, SFC } from 'react';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
 
-  export const EuiKeyPadMenu: SFC<
+  export const EuiKeyPadMenu: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
   >;
 
@@ -16,11 +16,11 @@ declare module '@elastic/eui' {
     betaBadgeTooltipContent?: ReactNode;
   }
 
-  export const EuiKeyPadMenuItemButton: SFC<
+  export const EuiKeyPadMenuItemButton: FunctionComponent<
     CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemCommonProps
   >;
 
-  export const EuiKeyPadMenuItem: SFC<
+  export const EuiKeyPadMenuItem: FunctionComponent<
     CommonProps & AnchorHTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemCommonProps
   >;
 }

@@ -5,7 +5,6 @@ import { CommonProps } from '../common';
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
 /// <reference path="./form_help_text/index.d.ts" />
-/// <reference path="./form_label/index.d.ts" />
 /// <reference path="./form_row/index.d.ts" />
 /// <reference path="./radio/index.d.ts" />
 /// <reference path="./range/index.d.ts" />
@@ -13,7 +12,7 @@ import { CommonProps } from '../common';
 /// <reference path="./switch/index.d.ts" />
 /// <reference path="./text_area/index.d.ts" />
 
-import { SFC, FormHTMLAttributes, ReactNode } from 'react';
+import { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -25,5 +24,5 @@ declare module '@elastic/eui' {
       error?: ReactNode | ReactNode[];
     };
 
-  export const EuiForm: SFC<EuiFormProps>;
+  export const EuiForm: FunctionComponent<EuiFormProps>;
 }

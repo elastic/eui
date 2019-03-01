@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 421,
+        "line": 433,
         "column": 10
       },
       "end": {
-        "line": 425,
+        "line": 437,
         "column": 12
       }
     },
@@ -21,12 +21,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 458,
-        "column": 10
+        "line": 469,
+        "column": 6
       },
       "end": {
-        "line": 458,
-        "column": 81
+        "line": 469,
+        "column": 77
       }
     },
     "filepath": "src/components/basic_table/basic_table.js"
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 736,
+        "line": 771,
         "column": 8
       },
       "end": {
-        "line": 736,
+        "line": 771,
         "column": 79
       }
     },

@@ -1,4 +1,4 @@
-import React, { SFC, SVGAttributes } from 'react';
+import React, { FunctionComponent, SVGAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -637,7 +637,7 @@ export interface EuiIconProps {
 
 type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
 
-export const EuiIcon: SFC<Props> = ({
+export const EuiIcon: FunctionComponent<Props> = ({
   type,
   size = 'm',
   color,
@@ -690,8 +690,4 @@ export const EuiIcon: SFC<Props> = ({
       {...rest}
     />
   );
-};
-
-EuiIcon.defaultProps = {
-  size: 'm',
 };

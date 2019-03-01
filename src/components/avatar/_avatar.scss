@@ -1,10 +1,11 @@
 .euiAvatar {
+  flex-shrink: 0; // Ensures it never scales down below it's intended size
   display: inline-block;
   background-size: cover;
   text-align: center;
   vertical-align: middle;
   overflow-x: hidden;
-  font-weight: $euiFontWeightRegular; // Explicitly state so it doesn't get overridden by inheritence
+  font-weight: $euiFontWeightMedium; // Explicitly state so it doesn't get overridden by inheritence
 }
 
 .euiAvatar--user {
@@ -21,7 +22,7 @@
 $avatarSizing: (
   s: (
     size: $euiSizeL,
-    font-size: $euiSizeM*.9
+    font-size: $euiSizeM
   ),
   m: (
     size: $euiSizeXL,

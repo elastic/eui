@@ -17,7 +17,6 @@ export class EuiDualRange extends Component {
   state = {
     hasFocus: false,
     rangeSliderRefAvailable: false,
-    lastThumbInteraction: null
   }
 
   rangeSliderRef = null;
@@ -34,61 +33,39 @@ export class EuiDualRange extends Component {
   get upperValue() {
     return this.props.value ? this.props.value[1] : this.props.max;
   }
+  get lowerValueIsValid() {
+    return isWithinRange(this.props.min, this.upperValue, this.lowerValue);
+  }
+  get upperValueIsValid() {
+    return isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+  }
   get isValid() {
-    return isWithinRange(this.props.min, this.upperValue, this.lowerValue)
-      && isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+    return this.lowerValueIsValid && this.upperValueIsValid;
   }
 
   _determineInvalidThumbMovement = (newVal, lower, upper, e) => {
-    const isBackwards = Number(lower) >= Number(upper);
-    const isUnbound = Number(upper) < this.props.min || Number(lower) > this.props.max;
-    const isLow = lower < this.props.min;
-    const isHigh = upper > this.props.max;
-    if (isBackwards || isUnbound) {
-      // Scenerio in which we cannot reasonably infer intention via click location due to current invalid thumb positions.
-      // Reset both values in the proximity of the click.
-      lower = newVal - (this.props.step || 1);
-      upper = newVal;
+    // If the values are invalid, find whether the new value is in the upper
+    // or lower half and move the appropriate handle to the new value,
+    // while the other handle gets moved to the opposite bound (if invalid)
+    const lowerHalf = (Math.abs(this.props.max - this.props.min) / 2) + this.props.min;
+    const newValIsLow = isWithinRange(this.props.min, lowerHalf, newVal);
+    if (newValIsLow) {
+      lower = newVal;
+      upper = !this.upperValueIsValid ? this.props.max : upper;
     } else {
-      // Scenerio in which we can reasonably infer intention via click location if range extrema are respected.
-      // Reset either value to its respective terminal value.
-      lower = isLow ? this.props.min : lower;
-      upper = isHigh ? this.props.max : upper;
+      lower = !this.lowerValueIsValid ? this.props.min : lower;
+      upper = newVal;
     }
     this._handleOnChange(lower, upper, e);
   }
 
   _determineValidThumbMovement = (newVal, lower, upper, e) => {
-    const thumbsAreEquidistant = Math.abs(lower - newVal) === Math.abs(upper - newVal);
-    // Lower thumb nearing swap with upper thumb
-    if (
-      (newVal === upper || (newVal < upper && thumbsAreEquidistant))
-      && this.state.lastThumbInteraction === 'lower'
-    ) {
-      lower = newVal;
-    }
-    // Upper thumb nearing swap with lower thumb
-    else if (
-      (newVal === lower || (newVal > lower && thumbsAreEquidistant))
-      && this.state.lastThumbInteraction === 'upper'
-    ) {
-      upper = newVal;
-    }
     // Lower thumb targeted or right-moving swap has occured
-    else if (
-      Math.abs(lower - newVal) < Math.abs(upper - newVal)
-      || (thumbsAreEquidistant && this.state.lastThumbInteraction === 'upper')
-    ) {
-      this.setState({
-        lastThumbInteraction: 'lower'
-      });
+    if (Math.abs(lower - newVal) < Math.abs(upper - newVal)) {
       lower = newVal;
     }
     // Upper thumb targeted or left-moving swap has occured
     else {
-      this.setState({
-        lastThumbInteraction: 'upper'
-      });
       upper = newVal;
     }
     this._handleOnChange(lower, upper, e);
@@ -112,6 +89,23 @@ export class EuiDualRange extends Component {
 
   handleSliderChange = (e) => {
     this._determineThumbMovement(e.target.value, e);
+  }
+
+  _resetToRangeEnds = (e) => {
+    // Arbitrary decision to pass `min` instead of `max`. Result is the same.
+    this._determineInvalidThumbMovement(this.props.min, this.lowerValue, this.upperValue, e);
+  }
+
+  _isDirectionalKeyPress = (e) => {
+    return [keyCodes.UP, keyCodes.RIGHT, keyCodes.DOWN, keyCodes.LEFT].indexOf(e.keyCode) > -1;
+  }
+
+  handleInputKeyDown = (e) => {
+    // Relevant only when initial values are both `''` and `showInput` is set
+    if (this._isDirectionalKeyPress(e) && !this.isValid) {
+      e.preventDefault();
+      this._resetToRangeEnds(e);
+    }
   }
 
   handleLowerInputChange = (e) => {
@@ -155,6 +149,12 @@ export class EuiDualRange extends Component {
       case keyCodes.TAB:
         return;
       default:
+        if (!this.lowerValueIsValid) {
+          // Relevant only when initial value is `''` and `showInput` is not set
+          e.preventDefault();
+          this._resetToRangeEnds(e);
+          return;
+        }
         lower = this._handleKeyDown(lower, e);
     }
     if (lower >= this.upperValue || lower < this.props.min) return;
@@ -167,6 +167,12 @@ export class EuiDualRange extends Component {
       case keyCodes.TAB:
         return;
       default:
+        if (!this.upperValueIsValid) {
+          // Relevant only when initial value is `''` and `showInput` is not set
+          e.preventDefault();
+          this._resetToRangeEnds(e);
+          return;
+        }
         upper = this._handleKeyDown(upper, e);
     }
     if (upper <= this.lowerValue || upper > this.props.max) return;
@@ -208,7 +214,7 @@ export class EuiDualRange extends Component {
       showInput,
       showTicks,
       tickInterval,
-      ticks, // eslint-disable-line no-unused-vars
+      ticks,
       levels,
       onChange, // eslint-disable-line no-unused-vars
       showRange,
@@ -217,24 +223,26 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const sliderClasses = classNames('euiDualRange__slider', className);
+    const classes = classNames('euiDualRange', className);
+    const digitTolerance = Math.max(String(min).length, String(max).length);
 
     return (
       <EuiRangeWrapper
-        className="euiDualRange"
+        className={classes}
         fullWidth={fullWidth}
       >
         {showInput && (
           <EuiRangeInput
+            digitTolerance={digitTolerance}
             side="min"
             min={min}
             max={Number(this.upperValue)}
-            digits={String(max).length}
             step={step}
             value={this.lowerValue}
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleLowerInputChange}
+            onKeyDown={this.handleInputKeyDown}
             name={`${name}-minValue`}
             aria-describedby={this.props['aria-describedby']}
             aria-label={this.props['aria-label']}
@@ -254,10 +262,10 @@ export class EuiDualRange extends Component {
           value={value}
         >
           <EuiRangeSlider
+            className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
-            className={sliderClasses}
             min={min}
             max={max}
             step={step}
@@ -268,6 +276,7 @@ export class EuiDualRange extends Component {
             hasFocus={this.state.hasFocus}
             aria-hidden={true}
             tabIndex={'-1'}
+            showRange={showRange}
             {...rest}
           />
 
@@ -283,7 +292,7 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.lowerValue)}
+                style={this.calculateThumbPositionStyle(this.lowerValue || min)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -297,7 +306,7 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.upperValue)}
+                style={this.calculateThumbPositionStyle(this.upperValue || max)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -318,14 +327,16 @@ export class EuiDualRange extends Component {
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
         {showInput && (
           <EuiRangeInput
+            digitTolerance={digitTolerance}
+            side="max"
             min={Number(this.lowerValue)}
             max={max}
-            digits={String(max).length}
             step={step}
             value={this.upperValue}
             disabled={disabled}
             compressed={compressed}
             onChange={this.handleUpperInputChange}
+            onKeyDown={this.handleInputKeyDown}
             name={`${name}-maxValue`}
             aria-describedby={this.props['aria-describedby']}
             aria-label={this.props['aria-label']}
@@ -348,6 +359,7 @@ EuiDualRange.propTypes = {
   value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */
@@ -394,8 +406,9 @@ EuiDualRange.propTypes = {
 };
 
 EuiDualRange.defaultProps = {
-  min: 1,
+  min: 0,
   max: 100,
+  step: 1,
   fullWidth: false,
   compressed: false,
   showLabels: false,

@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, InputHTMLAttributes, Ref } from 'react';
+import { FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
 
@@ -19,7 +19,7 @@ declare module '@elastic/eui' {
     append?: React.ReactNode;
   }
 
-  export const EuiFieldText: SFC<
+  export const EuiFieldText: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldTextProps
     >;
 }

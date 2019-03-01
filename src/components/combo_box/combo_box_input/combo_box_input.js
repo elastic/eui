@@ -215,7 +215,7 @@ export class EuiComboBoxInput extends Component {
           tabIndex="-1" // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
           data-test-subj="comboBoxInput"
         >
-          {pills}
+          {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
             role="textbox"

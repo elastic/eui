@@ -74,14 +74,8 @@ export class EuiComboBox extends Component {
       isListOpen: false,
       listPosition: 'bottom',
       activeOptionIndex: undefined,
+      hasFocus: false,
     };
-
-    // ensure that the currently selected single option is active if it is in the matchingOptions
-    if (singleSelection && selectedOptions.length === 1) {
-      if (this.state.matchingOptions.includes(selectedOptions[0])) {
-        this.state.activeOptionIndex = this.state.matchingOptions.indexOf(selectedOptions[0]);
-      }
-    }
 
     this.rootId = htmlIdGenerator();
 
@@ -118,6 +112,12 @@ export class EuiComboBox extends Component {
     }
 
     if (!listElement) {
+      return;
+    }
+
+    // it's possible that updateListPosition is called when listElement is becoming visible, but isn't yet
+    const listElementBounds = listElement.getBoundingClientRect();
+    if (listElementBounds.width === 0 || listElementBounds.height === 0) {
       return;
     }
 
@@ -186,7 +186,7 @@ export class EuiComboBox extends Component {
   };
 
   hasActiveOption = () => {
-    return this.state.activeOptionIndex != null;
+    return this.state.activeOptionIndex != null && this.state.activeOptionIndex < this.state.matchingOptions.length;
   };
 
   clearActiveOption = () => {
@@ -277,6 +277,7 @@ export class EuiComboBox extends Component {
       this.props.onFocus();
     }
     this.openList();
+    this.setState({ hasFocus: true });
   }
 
   onContainerBlur = (e) => {
@@ -298,6 +299,7 @@ export class EuiComboBox extends Component {
     if (this.props.onBlur) {
       this.props.onBlur();
     }
+    this.setState({ hasFocus: false });
   }
 
   onKeyDown = (e) => {
@@ -424,7 +426,13 @@ export class EuiComboBox extends Component {
     if (this.props.onSearchChange) {
       this.props.onSearchChange(searchValue);
     }
-    this.setState({ searchValue });
+
+    this.setState(
+      { searchValue },
+      () => {
+        if (searchValue && this.state.isListOpen === false) this.openList();
+      }
+    );
   };
 
   comboBoxRef = node => {
@@ -481,21 +489,19 @@ export class EuiComboBox extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { options, selectedOptions, singleSelection } = nextProps;
-    const { searchValue } = prevState;
+    const { activeOptionIndex, searchValue } = prevState;
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
     const matchingOptions = getMatchingOptions(options, selectedOptions, searchValue, nextProps.async, singleSelection);
-    // ensure that the currently selected single option is active if it is in the matchingOptions
-    if (singleSelection && selectedOptions.length === 1) {
-      let nextActiveOptionIndex;
-      if (matchingOptions.includes(selectedOptions[0])) {
-        nextActiveOptionIndex = matchingOptions.indexOf(selectedOptions[0]);
-      }
-      return { matchingOptions, activeOptionIndex: nextActiveOptionIndex };
+
+    const stateUpdate = { matchingOptions };
+
+    if (activeOptionIndex >= matchingOptions.length) {
+      stateUpdate.activeOptionIndex = undefined;
     }
 
-    return { matchingOptions };
+    return stateUpdate;
   }
 
   updateMatchingOptionsIfDifferent(newMatchingOptions) {
@@ -573,12 +579,13 @@ export class EuiComboBox extends Component {
       'data-test-subj': dataTestSubj,
       ...rest
     } = this.props;
+    const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
-    const { searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
+    const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
-      'euiComboBox-isInvalid': isInvalid,
+      'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox--fullWidth': fullWidth,
       'euiComboBox--compressed': compressed,

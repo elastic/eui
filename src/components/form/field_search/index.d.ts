@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { SFC, InputHTMLAttributes } from 'react';
+import { FunctionComponent, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -20,7 +20,7 @@ declare module '@elastic/eui' {
     incremental?: boolean;
   }
 
-  export const EuiFieldSearch: SFC<
+  export const EuiFieldSearch: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps
   >;
 }

@@ -99,7 +99,38 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         <EuiTableHeaderMobile>
           <div
             className="euiTableHeaderMobile"
-          />
+          >
+            <EuiFlexGroup
+              alignItems="baseline"
+              component="div"
+              direction="row"
+              gutterSize="l"
+              justifyContent="spaceBetween"
+              responsive={false}
+              wrap={false}
+            >
+              <div
+                className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+              >
+                <EuiFlexItem
+                  component="div"
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  />
+                </EuiFlexItem>
+                <EuiFlexItem
+                  component="div"
+                  grow={false}
+                >
+                  <div
+                    className="euiFlexItem euiFlexItem--flexGrowZero"
+                  />
+                </EuiFlexItem>
+              </div>
+            </EuiFlexGroup>
+          </div>
         </EuiTableHeaderMobile>
         <EuiTable
           responsive={true}
@@ -134,6 +165,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
                     key="_data_h_name_0"
+                    mobileOptions={
+                      Object {
+                        "show": true,
+                      }
+                    }
                     scope="col"
                   >
                     <th
@@ -166,14 +202,23 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiTableRowCell
                       align="left"
-                      header="Name"
                       key="_data_column_name_2_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
                       textOnly={true}
                     >
                       <td
                         className="euiTableRowCell"
-                        data-header="Name"
                       >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
                         <div
                           className="euiTableCellContent"
                         >
@@ -195,14 +240,23 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   >
                     <EuiTableRowCell
                       align="left"
-                      header="Name"
                       key="_data_column_name_3_0"
+                      mobileOptions={
+                        Object {
+                          "header": "Name",
+                          "render": undefined,
+                        }
+                      }
                       textOnly={true}
                     >
                       <td
                         className="euiTableRowCell"
-                        data-header="Name"
                       >
+                        <div
+                          className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+                        >
+                          Name
+                        </div>
                         <div
                           className="euiTableCellContent"
                         >
@@ -738,6 +792,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
   responsive={true}
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": Object {
         "direction": "desc",
         "field": "name",
@@ -1211,6 +1266,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1291,6 +1347,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     }
     sorting={
       Object {
+        "allowNeutralSort": true,
         "sort": undefined,
       }
     }
@@ -1365,6 +1422,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1423,6 +1481,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   }
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }
@@ -1515,6 +1574,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     }
     sorting={
       Object {
+        "allowNeutralSort": true,
         "sort": undefined,
       }
     }
@@ -1558,6 +1618,7 @@ exports[`EuiInMemoryTable with sorting 1`] = `
   responsive={true}
   sorting={
     Object {
+      "allowNeutralSort": true,
       "sort": undefined,
     }
   }

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode, SFC, FocusEventHandler } from 'react';
+import { ButtonHTMLAttributes, ReactNode, FunctionComponent, FocusEventHandler } from 'react';
 import { ListProps } from 'react-virtualized';
 import {
   EuiComboBoxOption,
@@ -48,7 +48,7 @@ declare module '@elastic/eui' {
     rowHeight?: number,
     fullWidth?: boolean,
   }
-  export const EuiComboBoxOptionsList: SFC<EuiComboBoxOptionsListProps>;
+  export const EuiComboBoxOptionsList: FunctionComponent<EuiComboBoxOptionsListProps>;
 
   export type EuiComboBoxSingleSelectionShape = { asPlainText?: boolean; };
 
@@ -75,5 +75,5 @@ declare module '@elastic/eui' {
     fullWidth?: boolean,
     inputRef?: (element: HTMLInputElement) => void;
   }
-  export const EuiComboBox: SFC<EuiComboBoxProps>;
+  export const EuiComboBox: FunctionComponent<EuiComboBoxProps>;
 }

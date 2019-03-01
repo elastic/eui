@@ -1,9 +1,64 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
+
+## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
+
+**Bug fixes**
+
+- Fixed definition exports for converted Typescript components ([#1633](https://github.com/elastic/eui/pull/1633))
+
+## [`9.0.0`](https://github.com/elastic/eui/tree/v9.0.0)
+
+- Added `allowNeutralSort` prop to `EuiInMemoryTable` to support unsorting table columns ([#1591](https://github.com/elastic/eui/pull/1591))
+- Added `mobileOptions` object prop for handling of all the mobile specific options of `EuiBasicTable` ([#1462](https://github.com/elastic/eui/pull/1462))
+- Table headers now accept `React.node` types ([#1462](https://github.com/elastic/eui/pull/1462))
+- Added `displayOnly` prop to `EuiFormRow` ([#1582](https://github.com/elastic/eui/pull/1582))
+- Added `numActiveFilters` prop to `EuiFilterButton` ([#1589](https://github.com/elastic/eui/pull/1589))
+- Updated style of `EuiFilterButton` to match `EuiFacetButton` ([#1589](https://github.com/elastic/eui/pull/1589))
+- Added `size` and `color` props to `EuiNotificationBadge` ([#1589](https://github.com/elastic/eui/pull/1589))
+- Allow `EuiDescribedFormGroup` to exist as a description-only row ([#1522](https://github.com/elastic/eui/pull/1522))
+- Added `type` prop for `EuiFormLabel` for the option to make it a `legend` ([#1613](https://github.com/elastic/eui/pull/1613))
+- Added `labelAppend` and `labelType` props to `EuiFormRow` ([#1613](https://github.com/elastic/eui/pull/1613))
+- Aligned text styles of table headers and form labels ([#1613](https://github.com/elastic/eui/pull/1613))
+- Converted `EuiModalBody`, `EuiModalFooter`, `EuiModalHeader`, `EuiModalHeaderTitle`, `EuiFlyoutBody`, `EuiFlyoutFooter`, `EuiFlyoutHeader`, `EuiPortal`, and `EuiProgress` to Typescript ([#1621](https://github.com/elastic/eui/pull/1621))
+
+**Bug fixes**
+
+- Fixed keyboard navigation and UI of `EuiComboBox` items in single selection mode ([#1619](https://github.com/elastic/eui/pull/1619))
+- `EuiBasicTable` select all shows up on mobile ([#1462](https://github.com/elastic/eui/pull/1462))
+- Adds missing `hasActiveFilters` prop for `EuiFilterButton` type and fixes `onChange` signature for `EuiButtonGroup` ([#1603](https://github.com/elastic/eui/pull/1603))
+- Included `react-datepicker` TS types in EUI itself to avoid outside dependency ([#1618](https://github.com/elastic/eui/pull/1618))
+- Prevent `EuiGlobalToastList` from attempting calculations on `null` DOM elements ([#1606](https://github.com/elastic/eui/pull/1606))
+- Fixed `EuiFormRow` errors from the possibility of having duplicate `key` values ([#1522](https://github.com/elastic/eui/pull/1522))
+
+**Breaking changes**
+
+- `EuiBasicTable`'s select all checkbox appends a `makeId` string to the id ([#1462](https://github.com/elastic/eui/pull/1462))
+- Remove camel casing from exported JSON variables and preserve hex values instead of converting to rgb ([#1590](https://github.com/elastic/eui/pull/1590))
+- Added `@types/react-dom` to `peerDependencies` ([#1621](https://github.com/elastic/eui/pull/1621))
+
+## [`8.0.0`](https://github.com/elastic/eui/tree/v8.0.0)
+
+**Breaking changes**
+
+- Upgraded TypeScript to 3.3 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded React to 16.8 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Jest to 24.1 ([#1583](https://github.com/elastic/eui/pull/1583))
+- Upgraded Enzyme to 3.9 ([#1583](https://github.com/elastic/eui/pull/1583))
+
+## [`7.3.0`](https://github.com/elastic/eui/tree/v7.3.0)
+
+- Added `onRefresh` option for `EuiSuperDatePicker` ([#1577](https://github.com/elastic/eui/pull/1577))
 - Converted `EuiToggle` to TypeScript ([#1570](https://github.com/elastic/eui/pull/1570))
 - Added type definitions for `EuiButtonGroup`,`EuiButtonToggle`, `EuiFilterButton`, `EuiFilterGroup`, and `EuiFilterSelectItem` ([#1570](https://github.com/elastic/eui/pull/1570))
 - Added `displayOnly` prop to EuiFormRow ([#1582](https://github.com/elastic/eui/pull/1582))
-- Added support to `findTestSubject` for finding one of multiple space-separated values within a single element's `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
+
+**Bug fixes**
+
+- Fixed several bugs with `EuiRange` and `EuiDualRange` including sizing of inputs, tick placement, and the handling of invalid values ([#1580](https://github.com/elastic/eui/pull/1580))
+>>>>>>> edf0b85abf0668db2fc7f3c282a077fcc2d6f121
 
 ## [`7.2.0`](https://github.com/elastic/eui/tree/v7.2.0)
 
@@ -46,6 +101,26 @@
 **Breaking changes**
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
+## [`6.10.4`](https://github.com/elastic/eui/tree/v6.10.4)
+
+**Note: this release is a backport containing changes originally made in `7.3.0`**
+
+- Added an index.d.ts file for the date picker components, including `EuiDatePicker`, `EuiDatePickerRange`, and `EuiSuperDatePicker` ([#1574](https://github.com/elastic/eui/pull/1574))
+
+## [`6.10.3`](https://github.com/elastic/eui/tree/v6.10.3)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Added `append` prop to `EuiFieldText` ([#1567](https://github.com/elastic/eui/pull/1567))
+
+## [`6.10.2`](https://github.com/elastic/eui/tree/v6.10.2)
+
+**Note: this release is a backport containing changes originally made in `7.1.0`**
+
+- Adjusted set of Elastic Logos in `EuiIcon` to look better in dark mode. ([#1562](https://github.com/elastic/eui/pull/1562))
+- Expanded `getSecureRelForTarget` to handle elastic.co domains as a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
+- New `url` utility for verifying if a URL is a referrer whitelist ([#1565](https://github.com/elastic/eui/pull/1565))
 
 ## [`6.10.1`](https://github.com/elastic/eui/tree/v6.10.1)
 

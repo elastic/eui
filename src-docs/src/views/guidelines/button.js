@@ -58,7 +58,7 @@ export default() => (
             Filled buttons are for the primary action
           </h4>
           <p>
-            This button has the heavist visual weight to draw users&apos; attention.
+            This button has the heaviest visual weight to draw users&apos; attention.
           </p>
         </EuiText>
       </EuiFlexItem>
@@ -98,7 +98,7 @@ export default() => (
       <EuiFlexItem>
         <EuiText className="guideSection__text">
           <h4>
-            Empty buttons are for complimentary, UI-specific actions
+            Empty buttons are for complementary, UI-specific actions
           </h4>
           <p>
             Close, cancel, filter, refresh, and other actions that reconfigure the
@@ -381,7 +381,7 @@ export default() => (
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
-        text="Don't. Readability suffers when mutliple colors and sizes are used."
+        text="Don't. Readability suffers when multiple colors and sizes are used."
         panel={false}
         frame="frame"
       >
@@ -457,8 +457,8 @@ export default() => (
         Labels should provide a clear indication of
         that action that occurs when the user clicks the button.
         Prefer action words, and include an object when it is not clear from the context,
-        for example, Add dashboard. Labels should be three words or less.
-        If your label requries more words, consider using a text link instead.
+        for example, Add dashboard. Labels should be three words or fewer.
+        If your label requires more words, consider using a text link instead.
       </p>
 
       <h3>Preferred words in buttons</h3>

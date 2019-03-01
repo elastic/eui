@@ -1,4 +1,4 @@
-import { SFC, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
 import { CommonProps, Omit } from '../common';
 
 declare module '@elastic/eui' {
@@ -19,7 +19,7 @@ declare module '@elastic/eui' {
   type StandaloneEuiStepProps =
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepProps
 
-  export const EuiStep: SFC<StandaloneEuiStepProps>;
+  export const EuiStep: FunctionComponent<StandaloneEuiStepProps>;
 
   /**
    * @see './steps.js'
@@ -33,7 +33,7 @@ declare module '@elastic/eui' {
     steps: Array<EuiContainedStepProps>,
   }
 
-  export const EuiSteps: SFC<
+  export const EuiSteps: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsProps
   >;
 
@@ -44,7 +44,7 @@ declare module '@elastic/eui' {
   export interface EuiSubStepsProps {
   }
 
-  export const EuiSubSteps: SFC<
+  export const EuiSubSteps: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiSubStepsProps
   >;
 
@@ -69,7 +69,7 @@ declare module '@elastic/eui' {
     steps: Array<ContainedEuiStepHorizontalProps>,
   }
 
-  export const EuiStepsHorizontal: SFC<
+  export const EuiStepsHorizontal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsHorizontalProps
   >;
 }
