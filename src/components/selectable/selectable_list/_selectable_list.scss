@@ -1,3 +1,5 @@
 .euiSelectableList {
-
+  .ReactVirtualized__List {
+    @include euiScrollBar;
+  }
 }

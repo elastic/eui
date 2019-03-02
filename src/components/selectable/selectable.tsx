@@ -1,13 +1,17 @@
 import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { orderBy } from 'lodash';
 import { CommonProps } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
 // @ts-ignore
+import { EuiLoadingChart } from '../loading';
+// @ts-ignore
 import { getMatchingOptions } from '../combo_box/matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
+import { EuiI18n } from '../i18n';
 
 export type EuiSelectableProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -17,45 +21,47 @@ export type EuiSelectableProps = HTMLAttributes<HTMLDivElement> &
     searchable?: boolean;
     searchProps?: {};
     singleSelection?: boolean;
+    sortSelectedToTop: boolean;
+    isLoading?: boolean;
   };
 
 export class EuiSelectable extends Component<EuiSelectableProps> {
   static defaultProps = {
-    singleSelection: false,
     options: [],
     selectedOptions: [],
+    singleSelection: false,
+    sortSelectedToTop: true,
   };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { options, selectedOptions, singleSelection } = nextProps;
-    const { searchValue } = prevState;
-
-    // Calculate and cache the options which match the searchValue, because we use this information
-    // in multiple places and it would be expensive to calculate repeatedly.
-    const visibleOptions = getMatchingOptions(
-      options,
-      selectedOptions,
-      searchValue,
-      nextProps.async,
-      true
-    );
-    return { visibleOptions };
-  }
 
   constructor(props: EuiSelectableProps) {
     super(props);
-    const { options, selectedOptions, singleSelection } = props;
+    const {
+      options,
+      selectedOptions,
+      sortSelectedToTop,
+      singleSelection,
+    } = props;
+    const initialSearchValue = '';
+
+    const visibleOptions = getMatchingOptions(
+      options,
+      selectedOptions,
+      initialSearchValue,
+      props.async,
+      true
+    );
+
+    let sortedOptions;
+    if (sortSelectedToTop) {
+      sortedOptions = orderBy(visibleOptions, ['checked'], ['asc']);
+      // NOT WORKING! WHY???!!
+      // console.log(sortedOptions);
+    }
 
     this.state = {
       activeOptionIndex: undefined,
-      searchValue: '',
-      visibleOptions: getMatchingOptions(
-        options,
-        selectedOptions,
-        '',
-        props.async,
-        true
-      ),
+      searchValue: initialSearchValue,
+      visibleOptions: sortedOptions || visibleOptions,
     };
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
@@ -196,10 +202,46 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
       searchable,
       searchProps,
       singleSelection,
+      sortSelectedToTop,
+      isLoading,
       ...rest
     } = this.props;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
+
+    let messageContent;
+
+    if (isLoading) {
+      messageContent = (
+        <p>
+          <EuiLoadingChart size="m" mono />
+          <br />
+          <EuiI18n
+            token="euiComboBoxOptionsList.loadingOptions"
+            default="Loading options"
+          />
+        </p>
+      );
+    } else if (searchValue && visibleOptions.length === 0) {
+      messageContent = (
+        <p>
+          <EuiI18n
+            token="euiComboBoxOptionsList.noMatchingOptions"
+            default="{searchValue} doesn't match any options"
+            values={{ searchValue: <strong>{searchValue}</strong> }}
+          />
+        </p>
+      );
+    } else if (!options.length) {
+      messageContent = (
+        <p>
+          <EuiI18n
+            token="euiComboBoxOptionsList.noAvailableOptions"
+            default="No options available"
+          />
+        </p>
+      );
+    }
 
     const classes = classNames('euiSelectable', className);
 
@@ -215,7 +257,11 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
       undefined
     );
 
-    const list = options.length ? (
+    const list = messageContent ? (
+      <EuiSelectableMessage key="listMessage">
+        {messageContent}
+      </EuiSelectableMessage>
+    ) : (
       <EuiSelectableList
         key="list"
         options={visibleOptions}
@@ -226,8 +272,6 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         selectedOptions={selectedOptions}
         ref={this.optionsListRef}
       />
-    ) : (
-      <EuiSelectableMessage key="listMessage">Message</EuiSelectableMessage>
     );
 
     return (
