@@ -1,10 +1,11 @@
-import React, { HTMLAttributes, SFC } from 'react';
-import { CommonProps } from '../common';
+import React, { HTMLAttributes } from 'react';
+import { CommonProps } from '../../common';
 import classNames from 'classnames';
+// @ts-ignore
+import { EuiText } from '../../text';
 
-export type EuiSelectableMessageProps = HTMLAttributes<HTMLDivElement> & CommonProps & {
-
-};
+export type EuiSelectableMessageProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {};
 
 export const EuiSelectableMessage: React.SFC<EuiSelectableMessageProps> = ({
   children,
@@ -14,11 +15,8 @@ export const EuiSelectableMessage: React.SFC<EuiSelectableMessageProps> = ({
   const classes = classNames('euiSelectableMessage', className);
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <EuiText color="subdued" size="xs" className={classes} {...rest}>
       {children}
-    </div>
+    </EuiText>
   );
 };
