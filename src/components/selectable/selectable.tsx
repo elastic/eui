@@ -69,8 +69,13 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
 
     // Refs.
     // this.searchInput = undefined;
-    this.options = [];
+    // this.options = [];
+    this.optionsList = undefined;
   }
+
+  optionsListRef = node => {
+    this.optionsList = node;
+  };
 
   hasActiveOption = () => {
     return this.state.activeOptionIndex != null;
@@ -90,9 +95,18 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         this.incrementActiveOptionIndex(1);
         break;
 
+      case comboBoxKeyCodes.ENTER:
+        e.stopPropagation();
+        if (this.hasActiveOption() && this.optionsList) {
+          this.optionsList.onAddOrRemoveOption(
+            this.state.visibleOptions[this.state.activeOptionIndex]
+          );
+        }
+        break;
+
       case TAB:
         // Disallow tabbing when the user is navigating the options.
-        if (this.hasActiveOption() && this.state.isListOpen) {
+        if (this.hasActiveOption()) {
           e.preventDefault();
           e.stopPropagation();
         }
@@ -102,6 +116,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         if (this.props.onKeyDown) {
           this.props.onKeyDown(e);
         }
+        this.clearActiveOption();
     }
   };
 
@@ -209,6 +224,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         onOptionClick={this.onOptionClick}
         singleSelection={singleSelection}
         selectedOptions={selectedOptions}
+        ref={this.optionsListRef}
       />
     ) : (
       <EuiSelectableMessage key="listMessage">Message</EuiSelectableMessage>
