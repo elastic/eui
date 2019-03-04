@@ -47,7 +47,7 @@ export const ImageExample = {
             </li>
             <li>
               <EuiCode>allowFullScreen</EuiCode> when set to true will make the image
-              clicakable to a larger version.
+              clickable to a larger version.
             </li>
             <li>
               <EuiCode>fullScreenIconColor</EuiCode> allows you to change the color of

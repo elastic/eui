@@ -46,7 +46,7 @@ export const CardExample = {
     text: (
       <div>
         <p>
-          At it&apos;s core an <EuiCode>EuiCard</EuiCode> should contain a <EuiCode>title</EuiCode>,
+          At its core an <EuiCode>EuiCard</EuiCode> should contain a <EuiCode>title</EuiCode>,
           <EuiCode>description</EuiCode>, and an <EuiCode>icon</EuiCode>. You can make the whole card
           clickable by giving it an <EuiCode>onClick</EuiCode> handler.
         </p>
@@ -84,7 +84,7 @@ export const CardExample = {
           color="danger"
           title={
             <span>Horizontal layouts <strong>do not</strong> work with images,
-            footers or <EuiCode>textAlign</EuiCode>. Therefore, these properties will be ignored.
+            footers, or <EuiCode>textAlign</EuiCode>. Therefore, these properties will be ignored.
             </span>
           }
         />
@@ -106,7 +106,7 @@ export const CardExample = {
       <div>
         <p>
           Images can be added in place of, or in conjuction with, icons.
-          Just pass a url into the <EuiCode>image</EuiCode> prop and it will expand to to edges of the card.
+          Just pass a url into the <EuiCode>image</EuiCode> prop and it will expand to the edges of the card.
         </p>
         <EuiCallOut
           title={

@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
 import DescriptionList from './description_list';
@@ -54,7 +56,7 @@ export const DescriptionListExample = {
         components separately to build a list manually.
       </p>
     ),
-    props: { EuiDescriptionList },
+    props: { EuiDescriptionList, EuiDescriptionListTitle, EuiDescriptionListDescription },
     demo: <DescriptionList />,
   }, {
     title: 'Reverse style',
@@ -107,7 +109,7 @@ export const DescriptionListExample = {
       <p>
         Using a prop <EuiCode>type</EuiCode> set to <EuiCode>inline</EuiCode> description lists
         can be presented in an inline, blob format. This is useful for JSON code blocks. Inline
-        description lists are sized smaller then normal lists due to their compact nature.
+        description lists are sized smaller than normal lists due to their compact nature.
       </p>
     ),
     demo: <DescriptionListInline />,

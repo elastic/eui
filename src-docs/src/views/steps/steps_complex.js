@@ -47,8 +47,7 @@ const steps = [
       <EuiText>
         <p>Now that you&apos;ve completed step 2, go find the <EuiCode>thing</EuiCode>.</p>
         <p className="euiStep__subSteps">
-          Go to <strong>Overview &gt;&gt; Endpoints</strong> note
-          <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
+          Go to <strong>Overview &gt;&gt; Endpoints</strong> note <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
         </p>
       </EuiText>
     )

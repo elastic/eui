@@ -76,9 +76,9 @@ export const ListGroupExample = {
     text: (
       <p>
         The <EuiCode>extraAction</EuiCode> property adds a secondary icon
-        button to any list item. It accepts several properites of its own,
+        button to any list item. It accepts several properties of its own,
         including <EuiCode>color</EuiCode>, <EuiCode>onClick</EuiCode>,
-        &nbsp;<EuiCode>iconType</EuiCode> and <EuiCode>alwaysShow</EuiCode>,
+        &nbsp;<EuiCode>iconType</EuiCode>, and <EuiCode>alwaysShow</EuiCode>,
         and can be used for actions such as pinning, favoriting, or deleting an
         item.
       </p>

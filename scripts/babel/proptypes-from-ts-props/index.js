@@ -535,7 +535,7 @@ function getPropTypesForNode(node, optional, state) {
 
       const reducedUnionTypes = tsUnionTypes.reduce(
         (foundTypes, tsUnionType) => {
-          if (types.isLiteral(tsUnionType)) {
+          if (types.isLiteral(tsUnionType) || (types.isIdentifier(tsUnionType) && tsUnionType.name === 'undefined')) {
             if (foundTypes.oneOfPropType == null) {
               foundTypes.oneOfPropType = types.arrayExpression([]);
               foundTypes.unionTypes.push(
@@ -689,6 +689,16 @@ function getPropTypesForNode(node, optional, state) {
     case 'BooleanLiteral':
       propType =  types.booleanLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a boolean literal
+      break;
+
+    case 'TSNullKeyword':
+      propType =  types.nullLiteral();
+      optional = true; // cannot call `.isRequired` on a null literal
+      break;
+
+    case 'TSUndefinedKeyword':
+      propType =  types.identifier('undefined');
+      optional = true; // cannot call `.isRequired` on an undefined literal
       break;
 
     // very helpful debugging code

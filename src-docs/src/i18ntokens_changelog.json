@@ -1,0 +1,227 @@
+[
+  {
+    "version": "9.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tableDescription",
+        "changeType": "added",
+        "value": "Below is a table of {itemCount} items."
+      },
+      {
+        "token": "euiBasicTable.selectAllRows",
+        "changeType": "added",
+        "value": "Select all rows"
+      },
+      {
+        "token": "euiBasicTable.selectThisRow",
+        "changeType": "added",
+        "value": "Select this row"
+      },
+      {
+        "token": "euiCollapsedItemActions.allActions",
+        "changeType": "added",
+        "value": "All actions"
+      },
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "There is a new menu opening with page level controls at the bottom of the document."
+      },
+      {
+        "token": "euiCodeEditor.startInteracting",
+        "changeType": "added",
+        "value": "Press Enter to start interacting with the code."
+      },
+      {
+        "token": "euiCodeEditor.startEditing",
+        "changeType": "added",
+        "value": "Press Enter to start editing."
+      },
+      {
+        "token": "euiCodeEditor.stopInteracting",
+        "changeType": "added",
+        "value": "When you're done, press Escape to stop interacting with the code."
+      },
+      {
+        "token": "euiCodeEditor.stopEditing",
+        "changeType": "added",
+        "value": "When you're done, press Escape to stop editing."
+      },
+      {
+        "token": "euiCodeBlock.copyButton",
+        "changeType": "added",
+        "value": "Copy"
+      },
+      {
+        "token": "euiColorPicker.transparentColor",
+        "changeType": "added",
+        "value": "transparent"
+      },
+      {
+        "token": "euiColorPicker.colorSelectionLabel",
+        "changeType": "added",
+        "value": "Color selection is {colorValue}"
+      },
+      {
+        "token": "euiComboBoxPill.removeSelection",
+        "changeType": "added",
+        "value": "Remove {children} from selection in this group"
+      },
+      {
+        "token": "euiComboBoxOptionsList.loadingOptions",
+        "changeType": "added",
+        "value": "Loading options"
+      },
+      {
+        "token": "euiComboBoxOptionsList.alreadyAdded",
+        "changeType": "added",
+        "value": "{label} has already been added"
+      },
+      {
+        "token": "euiComboBoxOptionsList.createCustomOption",
+        "changeType": "added",
+        "value": "Hit {key} to add {searchValue} as a custom option"
+      },
+      {
+        "token": "euiComboBoxOptionsList.noMatchingOptions",
+        "changeType": "added",
+        "value": "{searchValue} doesn't match any options"
+      },
+      {
+        "token": "euiComboBoxOptionsList.noAvailableOptions",
+        "changeType": "added",
+        "value": "There aren't any options available"
+      },
+      {
+        "token": "euiComboBoxOptionsList.allOptionsSelected",
+        "changeType": "added",
+        "value": "You've selected all available options"
+      },
+      {
+        "token": "euiFormControlLayoutClearButton.label",
+        "changeType": "added",
+        "value": "Clear input"
+      },
+      {
+        "token": "euiForm.addressFormErrors",
+        "changeType": "added",
+        "value": "Please address the errors in your form."
+      },
+      {
+        "token": "euiSuperSelectControl.selectAnOption",
+        "changeType": "added",
+        "value": "Select an option: {selectedValue}, is selected"
+      },
+      {
+        "token": "euiSuperSelect.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "You are in a form selector of {optionsCount} items and must select a single option.\n              Use the up and down keys to navigate or escape to close."
+      },
+      {
+        "token": "euiHeaderAlert.dismiss",
+        "changeType": "added",
+        "value": "Dismiss"
+      },
+      {
+        "token": "euiHeaderLinks.openNavigationMenu",
+        "changeType": "added",
+        "value": "Open navigation menu"
+      },
+      {
+        "token": "euiHeaderLinks.appNavigation",
+        "changeType": "added",
+        "value": "App navigation"
+      },
+      {
+        "token": "euiModal.closeModal",
+        "changeType": "added",
+        "value": "Closes this modal window"
+      },
+      {
+        "token": "euiPagination.pageOfTotal",
+        "changeType": "added",
+        "value": "Page {page} of {total}"
+      },
+      {
+        "token": "euiPagination.previousPage",
+        "changeType": "added",
+        "value": "Previous page"
+      },
+      {
+        "token": "euiPagination.jumpToLastPage",
+        "changeType": "added",
+        "value": "Jump to the last page, number {pageCount}"
+      },
+      {
+        "token": "euiPagination.nextPage",
+        "changeType": "added",
+        "value": "Next page"
+      },
+      {
+        "token": "euiPopover.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "You are in a popup. To exit this popup, hit escape."
+      },
+      {
+        "token": "euiStepHorizontal.buttonTitle",
+        "changeType": "added",
+        "value": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};"
+      },
+      {
+        "token": "euiStepHorizontal.step",
+        "changeType": "added",
+        "value": "Step"
+      },
+      {
+        "token": "euiStepNumber.isComplete",
+        "changeType": "added",
+        "value": "complete"
+      },
+      {
+        "token": "euiStepNumber.hasWarnings",
+        "changeType": "added",
+        "value": "has warnings"
+      },
+      {
+        "token": "euiStepNumber.hasErrors",
+        "changeType": "added",
+        "value": "has errors"
+      },
+      {
+        "token": "euiStep.incompleteStep",
+        "changeType": "added",
+        "value": "Incomplete Step"
+      },
+      {
+        "token": "euiStep.completeStep",
+        "changeType": "added",
+        "value": "Step"
+      },
+      {
+        "token": "euiTableSortMobile.sorting",
+        "changeType": "added",
+        "value": "Sorting"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPage",
+        "changeType": "added",
+        "value": "Rows per page"
+      },
+      {
+        "token": "euiToast.dismissToast",
+        "changeType": "added",
+        "value": "Dismiss toast"
+      },
+      {
+        "token": "euiToast.newNotification",
+        "changeType": "added",
+        "value": "A new notification appears"
+      },
+      {
+        "token": "euiToast.notification",
+        "changeType": "added",
+        "value": "Notification"
+      }
+    ]
+  }
+]

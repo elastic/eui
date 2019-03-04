@@ -174,7 +174,7 @@ export const ButtonExample = {
         <p>
           When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left or the right, you
           should make sure they&rsquo;re flush with the edge of their container, so that
-          they&rsquo;re horizontally-aligned with the other content in the container.
+          they&rsquo;re horizontally aligned with the other content in the container.
         </p>
       ),
       demo: <ButtonOptionFlush />,
@@ -214,7 +214,7 @@ export const ButtonExample = {
             <EuiCode>EuiToggle</EuiCode> to create a button with an on/off state. You can pass all
             the same parameters to it as you can to <EuiCode>EuiButton</EuiCode>. The main
             difference is that, it does not accept any children, but a <EuiCode>label</EuiCode> prop
-            instead. This is for the handling of accessiblity with the <EuiCode>EuiToggle</EuiCode>.
+            instead. This is for the handling of accessibility with the <EuiCode>EuiToggle</EuiCode>.
           </p>
           <p>
             The <EuiCode>EuiButtonToggle</EuiCode> does not have any inherit visual state
@@ -248,14 +248,14 @@ export const ButtonExample = {
           </p>
           <p>
             Stylistically, all button groups are the size of small buttons, do not stretch to fill
-            the container and typically should only be <EuiCode>color=&quot;text&quot;</EuiCode>{' '}
-            (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If your just displaying a group of
+            the container, and typically should only be <EuiCode>color=&quot;text&quot;</EuiCode>{' '}
+            (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If you&apos;re just displaying a group of
             icons, add the prop <EuiCode>isIconOnly</EuiCode>.
           </p>
           <EuiCallOut title="Accessibility">
             <p>
               In order for groups to be properly read as groups with a title, add the <EuiCode>legend</EuiCode> prop.
-              This is only for accessiblity, however, so it will be visibly hidden.
+              This is only for accessibility, however, so it will be visibly hidden.
             </p>
           </EuiCallOut>
         </div>

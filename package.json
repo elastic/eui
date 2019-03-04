@@ -32,6 +32,7 @@
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
     "test-visual-tests": "node ./scripts/run-visual-tests.js",
+    "update-token-changelog": "node ./scripts/update-token-changelog.js",
     "start-test-server-and-visual-test": "start-server-and-test start-test-server http-get://localhost:9999 test-visual",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "node ./scripts/release.js",

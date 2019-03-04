@@ -4,17 +4,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
 <Fragment>
   <EuiFlexGroup
     alignItems="center"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
     responsive={false}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         size="xxxs"
         textTransform="none"
@@ -25,7 +18,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
       </EuiTitle>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiToolTip
@@ -44,7 +36,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
       </EuiToolTip>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiToolTip
@@ -67,18 +58,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
     size="s"
   />
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
     responsive={false}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -109,10 +92,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         />
       </EuiFormRow>
     </EuiFlexItem>
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -130,10 +110,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         />
       </EuiFormRow>
     </EuiFlexItem>
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -185,7 +162,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiFormRow
@@ -219,17 +195,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
 <Fragment>
   <EuiFlexGroup
     alignItems="center"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
     responsive={false}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         size="xxxs"
         textTransform="none"
@@ -240,7 +209,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       </EuiTitle>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiToolTip
@@ -259,7 +227,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       </EuiToolTip>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiToolTip
@@ -282,18 +249,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     size="s"
   />
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
     responsive={false}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -324,10 +283,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         />
       </EuiFormRow>
     </EuiFlexItem>
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -345,10 +301,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         />
       </EuiFormRow>
     </EuiFlexItem>
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
@@ -400,7 +353,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <EuiFormRow

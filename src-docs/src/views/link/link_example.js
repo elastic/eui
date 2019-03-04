@@ -28,7 +28,7 @@ export const LinkExample = {
     text: (
       <p>
         <EuiCode>EuiLink</EuiCode> will apply the correct styling onto
-        links and make sure the are accessible. Links can be passed a color.
+        links and make sure they are accessible. Links can be passed a color.
         Note that the <EuiCode>ghost</EuiCode> type should only be used on
         dark backgrounds (regardless of theming). It will always create a white
         link.

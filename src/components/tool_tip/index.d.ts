@@ -14,6 +14,7 @@ declare module '@elastic/eui' {
     | 'long';
 
   export interface EuiToolTipProps {
+    anchorClassName?: string;
     children: ReactElement<any>;
     className?: string;
     content?: ReactNode;

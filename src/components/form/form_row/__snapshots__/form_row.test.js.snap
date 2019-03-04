@@ -343,16 +343,12 @@ exports[`EuiFormRow props label append is rendered 1`] = `
   id="generated-id-row"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="xs"
     justifyContent="spaceBetween"
     responsive={false}
     wrap={true}
   >
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       <div>
@@ -366,7 +362,6 @@ exports[`EuiFormRow props label append is rendered 1`] = `
       </div>
     </EuiFlexItem>
     <EuiFlexItem
-      component="div"
       grow={false}
     >
       append
