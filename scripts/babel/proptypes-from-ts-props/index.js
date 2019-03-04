@@ -698,7 +698,7 @@ function getPropTypesForNode(node, optional, state) {
 
     case 'TSUndefinedKeyword':
       propType =  types.identifier('undefined');
-      optional = true; // cannot call `.isRequired` on a boolean literal
+      optional = true; // cannot call `.isRequired` on an undefined literal
       break;
 
     // very helpful debugging code
