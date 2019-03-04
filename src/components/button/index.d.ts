@@ -33,6 +33,7 @@ declare module '@elastic/eui' {
     size?: ButtonSize;
     isLoading?: boolean;
     isDisabled?: boolean;
+    fullWidth?: boolean;
     contentProps?: HTMLAttributes<HTMLSpanElement>;
     textProps?: HTMLAttributes<HTMLSpanElement>;
   }

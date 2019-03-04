@@ -55,6 +55,7 @@ export const EuiButton = ({
   buttonRef,
   contentProps,
   textProps,
+  fullWidth,
   ...rest
 }) => {
 
@@ -69,6 +70,7 @@ export const EuiButton = ({
     className,
     {
       'euiButton--fill': fill,
+      'euiButton--fullWidth': fullWidth,
     },
   );
 
@@ -162,6 +164,11 @@ EuiButton.propTypes = {
    */
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
+
+  /**
+   * Expands button to fill the width of the parent
+   */
+  fullWidth: PropTypes.bool,
   isDisabled: PropTypes.bool,
   href: PropTypes.string,
   target: PropTypes.string,

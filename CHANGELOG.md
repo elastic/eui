@@ -7,6 +7,8 @@
 - Added `footerLink` and `showToolTips` to `EuiNavDrawer` and added `EuiNavDrawerGroup` ([#1701](https://github.com/elastic/eui/pull/1701))
 - Allow `EuiListGroupItem` to pass a custom element as the `icon` ([#1726](https://github.com/elastic/eui/pull/1726))
 - Added `toInitials` string service ([#1729](https://github.com/elastic/eui/pull/1729))
+- Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
+- Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
 
 **Bug fixes**
 

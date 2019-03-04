@@ -22,7 +22,6 @@ import {
   EuiNavDrawer,
   EuiHorizontalRule,
   EuiShowFor,
-  EuiFocusTrap,
   EuiButton
 } from '../../../../src/components';
 
@@ -354,70 +353,68 @@ export default class extends Component {
     if (this.state.isFullScreen) {
 
       fullScreenDisplay = (
-        <EuiFocusTrap>
-          <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: '100%' }} onKeyDown={this.onKeyDown}>
-            <EuiHeader>
-              <EuiHeaderSection grow={false}>
-                <EuiShowFor sizes={['xs', 's']}>
-                  <EuiHeaderSectionItem border="right">
-                    {this.renderMenuTrigger()}
-                  </EuiHeaderSectionItem>
-                </EuiShowFor>
-                <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+        <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: '100%' }} onKeyDown={this.onKeyDown}>
+          <EuiHeader>
+            <EuiHeaderSection grow={false}>
+              <EuiShowFor sizes={['xs', 's']}>
                 <EuiHeaderSectionItem border="right">
-                  <HeaderSpacesMenu />
+                  {this.renderMenuTrigger()}
                 </EuiHeaderSectionItem>
-              </EuiHeaderSection>
+              </EuiShowFor>
+              <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+              <EuiHeaderSectionItem border="right">
+                <HeaderSpacesMenu />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
 
-              {this.renderBreadcrumbs()}
+            {this.renderBreadcrumbs()}
 
-              <EuiHeaderSection side="right">
-                <EuiHeaderSectionItem>
-                  <HeaderUserMenu />
-                </EuiHeaderSectionItem>
-              </EuiHeaderSection>
-            </EuiHeader>
-            <EuiNavDrawer ref={this.setNavDrawerRef}>
-              <EuiNavDrawerGroup listItems={this.topLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.exploreLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.solutionsLinks} />
-              <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.adminLinks}/>
-            </EuiNavDrawer>
-            <EuiPage className="euiNavDrawerPage">
-              <EuiPageBody className="euiNavDrawerPage__pageBody">
-                <EuiPageHeader>
-                  <EuiPageHeaderSection>
-                    <EuiTitle size="l">
-                      <h1>Page title</h1>
+            <EuiHeaderSection side="right">
+              <EuiHeaderSectionItem>
+                <HeaderUserMenu />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
+          </EuiHeader>
+          <EuiNavDrawer ref={this.setNavDrawerRef}>
+            <EuiNavDrawerGroup listItems={this.topLinks} />
+            <EuiHorizontalRule margin="none" />
+            <EuiNavDrawerGroup listItems={this.exploreLinks} />
+            <EuiHorizontalRule margin="none" />
+            <EuiNavDrawerGroup listItems={this.solutionsLinks} />
+            <EuiHorizontalRule margin="none" />
+            <EuiNavDrawerGroup listItems={this.adminLinks}/>
+          </EuiNavDrawer>
+          <EuiPage className="euiNavDrawerPage">
+            <EuiPageBody className="euiNavDrawerPage__pageBody">
+              <EuiPageHeader>
+                <EuiPageHeaderSection>
+                  <EuiTitle size="l">
+                    <h1>Page title</h1>
+                  </EuiTitle>
+                </EuiPageHeaderSection>
+              </EuiPageHeader>
+              <EuiPageContent>
+                <EuiPageContentHeader>
+                  <EuiPageContentHeaderSection>
+                    <EuiTitle>
+                      <h2>Content title</h2>
                     </EuiTitle>
-                  </EuiPageHeaderSection>
-                </EuiPageHeader>
-                <EuiPageContent>
-                  <EuiPageContentHeader>
-                    <EuiPageContentHeaderSection>
-                      <EuiTitle>
-                        <h2>Content title</h2>
-                      </EuiTitle>
-                    </EuiPageContentHeaderSection>
-                  </EuiPageContentHeader>
-                  <EuiPageContentBody>
-                    <EuiButton
-                      fill
-                      onClick={this.toggleFullScreen}
-                      iconType="exit"
-                      aria-label="Exit fullscreen demo"
-                    >
-                      Exit fullscreen demo
-                    </EuiButton>
-                  </EuiPageContentBody>
-                </EuiPageContent>
-              </EuiPageBody>
-            </EuiPage>
-          </div>
-        </EuiFocusTrap>
+                  </EuiPageContentHeaderSection>
+                </EuiPageContentHeader>
+                <EuiPageContentBody>
+                  <EuiButton
+                    fill
+                    onClick={this.toggleFullScreen}
+                    iconType="exit"
+                    aria-label="Exit fullscreen demo"
+                  >
+                    Exit fullscreen demo
+                  </EuiButton>
+                </EuiPageContentBody>
+              </EuiPageContent>
+            </EuiPageBody>
+          </EuiPage>
+        </div>
       );
     }
     return (
