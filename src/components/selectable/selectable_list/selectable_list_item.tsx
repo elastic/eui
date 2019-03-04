@@ -2,8 +2,9 @@ import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
+import { OptionCheckedType } from '../types';
 
-const resolveIconAndColor = checked => {
+const resolveIconAndColor = (checked: OptionCheckedType) => {
   if (!checked) {
     return { icon: 'empty' };
   }
@@ -20,7 +21,7 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     /**
      * Applies an icon and visual styling to activated items
      */
-    checked?: 'on' | 'off';
+    checked?: OptionCheckedType;
     /**
      * Shows icons based on `checked` type
      */
@@ -43,28 +44,6 @@ export class EuiSelectableListItem extends Component<
     super(props);
     this.state = { hasFocus: false };
   }
-
-  focus = () => {
-    if (this.buttonRef) {
-      this.buttonRef.focus();
-    }
-  };
-
-  onFocus = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: true });
-    }
-  };
-
-  onBlur = () => {
-    if (this.mounted) {
-      this.setState({ hasFocus: false });
-    }
-  };
-
-  hasFocus = () => {
-    return this.state.hasFocus;
-  };
 
   render() {
     const {
@@ -92,6 +71,7 @@ export class EuiSelectableListItem extends Component<
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
+          // @ts-ignore
           type={icon}
         />
       );
@@ -99,7 +79,6 @@ export class EuiSelectableListItem extends Component<
 
     return (
       <button
-        ref={ref => (this.buttonRef = ref)}
         role="option"
         type="button"
         aria-selected={isFocused}

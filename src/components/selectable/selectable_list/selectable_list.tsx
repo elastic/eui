@@ -7,29 +7,30 @@ import { htmlIdGenerator, comboBoxKeyCodes } from '../../../services';
 import { EuiSelectableListItem } from './selectable_list_item';
 // @ts-ignore
 import { EuiHighlight } from '../../highlight';
+import { Option } from '../types';
 
 export type EuiSelectableListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    options: [];
-    selectedOptions: [];
+    options: Option[];
+    selectedOptions: Option[];
     searchValue: string;
-    optionRef?: () => {};
+    optionRef?: () => void;
     /**
-     * returns option object
+     * returns array of selectedOptions
      */
-    onOptionClick?: (option: {}) => {};
+    onOptionClick: (selectedOptions: Option[]) => void;
     /**
      * returns (option, searchValue)
      */
-    renderOption?: (option: {}, searchValue?: string) => {};
+    renderOption?: (option: Option, searchValue?: string) => {};
     width?: number;
     activeOptionIndex?: number;
-    onScroll?: () => {};
+    onScroll?: () => void;
     /**
      *  row height of default option renderer
      */
     rowHeight: number;
-    rootId: (appendix?: string) => {};
+    rootId: (appendix?: string) => void;
     showIcons?: boolean;
     singleSelection?: boolean;
   };
@@ -44,32 +45,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   constructor(props: EuiSelectableListProps) {
     super(props);
   }
-
-  onAddOrRemoveOption = option => {
-    if (option.disabled) {
-      return;
-    }
-
-    if (option.checked === 'on' && !this.props.singleSelection) {
-      this.onRemoveOption(option);
-    } else {
-      this.onAddOption(option);
-    }
-  };
-
-  onAddOption = addedOption => {
-    const { onOptionClick, selectedOptions, singleSelection } = this.props;
-    addedOption.checked = 'on';
-    onOptionClick(
-      singleSelection ? [addedOption] : selectedOptions.concat(addedOption)
-    );
-  };
-
-  onRemoveOption = removedOption => {
-    const { onOptionClick, selectedOptions } = this.props;
-    delete removedOption.checked;
-    onOptionClick(selectedOptions.filter(option => option !== removedOption));
-  };
 
   render() {
     const {
@@ -100,6 +75,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         <AutoSizer disableHeight={!!forcedHeight} disableWidth={!!forcedWidth}>
           {({ width, height }) => (
             <List
+              // @ts-ignore
               id={rootId('listbox')}
               role="listbox"
               width={forcedWidth || width}
@@ -110,24 +86,33 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
               onScroll={onScroll}
               rowRenderer={({ key, index, style }) => {
                 const option = options[index];
-                const { value, label, isGroupLabelOption, ...rest } = option;
-                if (isGroupLabelOption) {
+                const {
+                  label,
+                  isGroupLabel,
+                  checked,
+                  disabled,
+                  ...rest
+                } = option;
+                if (isGroupLabel) {
                   return (
-                    <div key={key} style={style}>
+                    <div key={key} style={style} {...rest}>
                       {label}
                     </div>
                   );
                 }
                 return (
                   <EuiSelectableListItem
+                    // @ts-ignore
+                    id={rootId(`_option-${index}`)}
                     style={style}
                     key={option.label.toLowerCase()}
                     onClick={() => this.onAddOrRemoveOption(option)}
                     ref={optionRef ? optionRef.bind(this, index) : undefined}
                     isFocused={activeOptionIndex === index}
-                    id={rootId(`_option-${index}`)}
                     title={label}
                     showIcons={showIcons}
+                    checked={checked}
+                    disabled={disabled}
                     {...rest}>
                     {renderOption ? (
                       renderOption(option, searchValue)
@@ -143,4 +128,35 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       </div>
     );
   }
+
+  onAddOrRemoveOption = (option: Option) => {
+    if (option.disabled) {
+      return;
+    }
+
+    if (option.checked === 'on') {
+      this.onRemoveOption(option);
+    } else {
+      this.onAddOption(option);
+    }
+  };
+
+  private onAddOption = (addedOption: Option) => {
+    const { onOptionClick, selectedOptions, singleSelection } = this.props;
+    if (singleSelection) {
+      // @ts-ignore
+      selectedOptions.map(option => delete option.checked);
+    }
+    addedOption.checked = 'on';
+    onOptionClick(
+      // @ts-ignore
+      singleSelection ? [addedOption] : selectedOptions.concat(addedOption)
+    );
+  };
+
+  private onRemoveOption = (removedOption: Option) => {
+    const { onOptionClick, selectedOptions } = this.props;
+    delete removedOption.checked;
+    onOptionClick(selectedOptions.filter(option => option !== removedOption));
+  };
 }

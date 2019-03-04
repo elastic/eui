@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
+import { Option } from '../../../../src/components/selectable/types';
 
 export default class extends Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.options = [
@@ -49,7 +50,7 @@ export default class extends Component {
     };
   }
 
-  onChange = selectedOptions => {
+  onChange = (selectedOptions: Option[]) => {
     this.setState({
       selectedOptions,
     });
@@ -63,15 +64,14 @@ export default class extends Component {
         searchable
         searchProps={{
           placeholder: 'Select some options',
+          fullWidth: true,
         }}
         options={this.options}
         selectedOptions={selectedOptions}
-        style={{ width: 300 }}
         onChange={this.onChange}>
         {(search: React.ReactNode, list: React.ReactNode) => (
           <Fragment>
             {search}
-            Some unique child
             {list}
           </Fragment>
         )}

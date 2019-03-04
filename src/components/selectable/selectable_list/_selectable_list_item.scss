@@ -6,8 +6,10 @@
   width: 100%;
   text-align: left;
   color: $euiTextColor;
-  border-bottom: $euiBorderThin;
-  border-color: darken($euiColorLightestShade, 2%);
+
+  &:not(:last-of-type){
+    border-bottom: 1px solid darken($euiColorLightestShade, 2%);
+  }
 
   &:hover,
   &:focus {

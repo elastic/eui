@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes } from 'react';
+import React, { Component, HTMLAttributes, createRef } from 'react';
 import classNames from 'classnames';
 import { orderBy } from 'lodash';
 import { CommonProps } from '../common';
@@ -12,20 +12,34 @@ import { getMatchingOptions } from '../combo_box/matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
+import { Option } from './types';
+import { EuiSelectableListProps } from './selectable_list/selectable_list';
 
 export type EuiSelectableProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    options: [];
-    selectedOptions: [];
-    onChange?: () => {};
+    options: Option[];
+    selectedOptions: Option[];
+    onChange?: (selectedOptions: Option[]) => void;
     searchable?: boolean;
     searchProps?: {};
     singleSelection?: boolean;
     sortSelectedToTop: boolean;
     isLoading?: boolean;
+    async?: boolean;
+    listProps?: EuiSelectableListProps;
   };
 
-export class EuiSelectable extends Component<EuiSelectableProps> {
+export interface EuiSelectableState {
+  activeOptionIndex?: number;
+  searchValue: string;
+  visibleOptions: Option[];
+  selectedOptions: Option[];
+}
+
+export class EuiSelectable extends Component<
+  EuiSelectableProps,
+  EuiSelectableState
+> {
   static defaultProps = {
     options: [],
     selectedOptions: [],
@@ -33,21 +47,26 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
     sortSelectedToTop: true,
   };
 
+  private optionsListRef = createRef<EuiSelectableList>();
+
   constructor(props: EuiSelectableProps) {
     super(props);
+
     const {
       options,
       selectedOptions,
       sortSelectedToTop,
       singleSelection,
-    } = props;
+      async,
+    } = this.props;
+
     const initialSearchValue = '';
 
     const visibleOptions = getMatchingOptions(
       options,
       selectedOptions,
       initialSearchValue,
-      props.async,
+      async,
       true
     );
 
@@ -58,36 +77,29 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
       // console.log(sortedOptions);
     }
 
-    this.state = {
-      activeOptionIndex: undefined,
-      searchValue: initialSearchValue,
-      visibleOptions: sortedOptions || visibleOptions,
-    };
-
     // ensure that the currently selected single option is active if it is in the visibleOptions
+    let activeOptionIndex;
     if (singleSelection && selectedOptions.length === 1) {
-      if (this.state.visibleOptions.includes(selectedOptions[0])) {
-        this.state.activeOptionIndex = this.state.visibleOptions.indexOf(
-          selectedOptions[0]
-        );
+      if (visibleOptions.includes(selectedOptions[0])) {
+        activeOptionIndex = visibleOptions.indexOf(selectedOptions[0]);
       }
     }
 
-    // Refs.
-    // this.searchInput = undefined;
-    // this.options = [];
-    this.optionsList = undefined;
+    this.state = {
+      activeOptionIndex,
+      searchValue: initialSearchValue,
+      visibleOptions: sortedOptions || visibleOptions,
+      selectedOptions: props.selectedOptions,
+    };
   }
-
-  optionsListRef = node => {
-    this.optionsList = node;
-  };
 
   hasActiveOption = () => {
     return this.state.activeOptionIndex != null;
   };
 
-  onKeyDown = e => {
+  onKeyDown = (e: any) => {
+    const optionsList = this.optionsListRef.current;
+
     switch (e.keyCode) {
       case comboBoxKeyCodes.UP:
         e.preventDefault();
@@ -103,8 +115,12 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
 
       case comboBoxKeyCodes.ENTER:
         e.stopPropagation();
-        if (this.hasActiveOption() && this.optionsList) {
-          this.optionsList.onAddOrRemoveOption(
+        if (
+          this.hasActiveOption() &&
+          optionsList &&
+          this.state.activeOptionIndex
+        ) {
+          optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
         }
@@ -152,7 +168,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
       // Group titles are included in option list but are not selectable
       // Skip group title options
       const direction = amount > 0 ? 1 : -1;
-      while (visibleOptions[nextActiveOptionIndex].isGroupLabelOption) {
+      while (visibleOptions[nextActiveOptionIndex].isGroupLabel) {
         nextActiveOptionIndex = nextActiveOptionIndex + direction;
 
         if (nextActiveOptionIndex < 0) {
@@ -183,7 +199,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
     this.clearActiveOption();
   };
 
-  onOptionClick = selectedOptions => {
+  onOptionClick = (selectedOptions: Option[]) => {
     this.setState({
       selectedOptions,
     });
@@ -204,6 +220,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
       singleSelection,
       sortSelectedToTop,
       isLoading,
+      listProps,
       ...rest
     } = this.props;
 
@@ -271,6 +288,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         singleSelection={singleSelection}
         selectedOptions={selectedOptions}
         ref={this.optionsListRef}
+        {...listProps}
       />
     );
 
@@ -280,7 +298,7 @@ export class EuiSelectable extends Component<EuiSelectableProps> {
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         {...rest}>
-        {children([search, list])}
+        {children(search, list)}
       </div>
     );
   }
