@@ -1,7 +1,16 @@
 import React from 'react';
 import tokens from '../../i18ntokens';
+import tokenChangelog from '../../i18ntokens_changelog';
 
-import { EuiCodeBlock, EuiInMemoryTable, EuiLink } from '../../../../src';
+import {
+  EuiAccordion,
+  EuiCodeBlock,
+  EuiInMemoryTable,
+  EuiLink,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
+} from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
 const columns = [
@@ -46,6 +55,35 @@ export const I18nTokens = {
   name: 'I18n Tokens',
   component: () => (
     <GuidePage title="I18n Tokens">
+      <EuiTitle size="m"><span>Token changelog</span></EuiTitle>
+      {
+        tokenChangelog.map(({ version, changes }) => (
+          <EuiAccordion
+            key={version}
+            id={version}
+            buttonContent={<span>{version}</span>}
+          >
+            <EuiInMemoryTable
+              items={changes}
+              columns={[
+                {
+                  field: 'changeType',
+                  name: 'Change',
+                  width: '100px',
+                  render: changeType => <EuiText color="subdued" size="xs">{changeType}</EuiText>,
+                },
+                { field: 'token', name: 'Token' },
+                { field: 'value', name: 'New Value' },
+              ]}
+            />
+            <EuiSpacer size="s"/>
+          </EuiAccordion>
+        ))
+      }
+
+      <EuiSpacer size="m"/>
+
+      <EuiTitle size="m"><span>All tokens</span></EuiTitle>
       <EuiInMemoryTable
         items={tokens}
         columns={columns}
