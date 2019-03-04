@@ -6,6 +6,7 @@
 - Added missing `anchorClassName` prop to `EuiToolTip` definition ([#1657](https://github.com/elastic/eui/pull/1657))
 - Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
+- Added `EuiPopoverFooter` and converted `EuiPopoverTitle` to TS ([#1666](https://github.com/elastic/eui/pull/1666))
 
 ## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
 
