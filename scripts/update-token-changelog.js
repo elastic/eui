@@ -42,7 +42,7 @@ function getTokenMap(tokenInstances) {
 }
 
 function getTokenChanges(oldTokenInstances, newTokenInstances) {
-  // we're interested added, modified, or deleted tokens
+  // we're interested in added, modified, or deleted tokens
   // addition or removal of a token in a single file is uninteresting unless that instance represents the whole usage of the token
   const oldTokens = getTokenMap(oldTokenInstances);
   const newTokens = getTokenMap(newTokenInstances);
@@ -114,7 +114,6 @@ async function main() {
     // iterate through git workspace changes looking for i18ntokens.json
     if (patch.oldFile().path() === 'src-docs/src/i18ntokens.json') {
       // i18n tokens has changed, load the previous version
-      // const commit = await repo.getCommit(head);
       const originalTokens = JSON.parse(await getFileContentsFromCommit(head, 'src-docs/src/i18ntokens.json'));
       const newTokens = require(tokensPath);
 
