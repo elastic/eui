@@ -274,6 +274,11 @@ EuiToolTip.propTypes = {
   className: PropTypes.string,
 
   /**
+   * Passes onto the the trigger.
+   */
+  anchorClassName: PropTypes.string,
+
+  /**
    * Unless you provide one, this will be randomly generated.
    */
   id: PropTypes.string,
