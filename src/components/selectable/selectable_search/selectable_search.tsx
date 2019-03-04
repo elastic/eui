@@ -1,13 +1,16 @@
 import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, Omit } from '../../common';
 // @ts-ignore
 import { EuiFieldSearch } from '../../form/field_search';
 // @ts-ignore
 import { getMatchingOptions } from '../../combo_box/matching_options';
 import { Option } from '../types';
 
-export type EuiSelectableSearchProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSelectableSearchProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onChange'
+> &
   CommonProps & {
     /**
      * Passes back (matchingOptions, searchValue)

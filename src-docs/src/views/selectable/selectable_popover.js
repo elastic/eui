@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// @ts-ignore
 import {
   EuiPopover,
   EuiPopoverTitle,
@@ -10,10 +9,9 @@ import {
 import { EuiSelectable } from '../../../../src/components/selectable';
 
 export default class extends Component {
-  // @ts-ignore
   constructor(props) {
     super(props);
-    // @ts-ignore
+
     this.options = [
       {
         label: 'Titan',
@@ -41,7 +39,7 @@ export default class extends Component {
       },
       {
         label:
-          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
       },
       {
         label: 'Tethys',
@@ -52,7 +50,6 @@ export default class extends Component {
     ];
 
     this.state = {
-      // @ts-ignore
       selectedOptions: [this.options[4]],
       isPopoverOpen: false,
     };
@@ -60,7 +57,6 @@ export default class extends Component {
 
   onButtonClick() {
     this.setState({
-      // @ts-ignore
       isPopoverOpen: !this.state.isPopoverOpen,
     });
   }
@@ -70,7 +66,7 @@ export default class extends Component {
       isPopoverOpen: false,
     });
   }
-  // @ts-ignore
+
   onChange = selectedOptions => {
     this.setState({
       selectedOptions,
@@ -79,14 +75,14 @@ export default class extends Component {
   };
 
   render() {
-    // @ts-ignore
     const { selectedOptions, isPopoverOpen } = this.state;
 
     const button = (
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick.bind(this)}>
+        onClick={this.onButtonClick.bind(this)}
+      >
         Show popover
       </EuiButton>
     );
@@ -97,21 +93,21 @@ export default class extends Component {
         panelPaddingSize="none"
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}>
+        closePopover={this.closePopover.bind(this)}
+      >
         <EuiSelectable
           searchable
           searchProps={{
             placeholder: 'Filter list',
             compressed: true,
           }}
-          // @ts-ignore
           options={this.options}
           selectedOptions={selectedOptions}
           singleSelection
           style={{ width: 300 }}
-          // @ts-ignore
-          onChange={this.onChange}>
-          {(search: React.ReactNode, list: React.ReactNode) => (
+          onChange={this.onChange}
+        >
+          {(search, list) => (
             <Fragment>
               <EuiPopoverTitle>{search}</EuiPopoverTitle>
               {list}

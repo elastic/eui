@@ -3,7 +3,8 @@ import React, { Component, Fragment } from 'react';
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { Option } from '../../../../src/components/selectable/types';
 
-export default class extends Component {
+export default class extends Component<{}, { selectedOptions: Option[] }> {
+  options: Option[] = [];
   constructor(props: any) {
     super(props);
 
@@ -68,7 +69,7 @@ export default class extends Component {
         }}
         options={this.options}
         selectedOptions={selectedOptions}
-        onChange={this.onChange}>
+        onChange={() => this.onChange(selectedOptions)}>
         {(search: React.ReactNode, list: React.ReactNode) => (
           <Fragment>
             {search}

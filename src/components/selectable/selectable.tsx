@@ -1,7 +1,7 @@
-import React, { Component, HTMLAttributes, createRef } from 'react';
+import React, { Component, HTMLAttributes, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 import { orderBy } from 'lodash';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
@@ -15,8 +15,12 @@ import { EuiI18n } from '../i18n';
 import { Option } from './types';
 import { EuiSelectableListProps } from './selectable_list/selectable_list';
 
-export type EuiSelectableProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSelectableProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'children'
+> &
   CommonProps & {
+    children?: (search: ReactNode, list: ReactNode) => ReactNode;
     options: Option[];
     selectedOptions: Option[];
     onChange?: (selectedOptions: Option[]) => void;
@@ -298,7 +302,7 @@ export class EuiSelectable extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         {...rest}>
-        {children(search, list)}
+        {children && children(search, list)}
       </div>
     );
   }
