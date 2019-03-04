@@ -2,19 +2,11 @@
 
 exports[`EuiSuperDatePicker is rendered 1`] = `
 <EuiFlexGroup
-  alignItems="stretch"
   className="euiSuperDatePicker__flexWrapper"
-  component="div"
-  direction="row"
   gutterSize="s"
-  justifyContent="flexStart"
   responsive={false}
-  wrap={false}
 >
-  <EuiFlexItem
-    component="div"
-    grow={true}
-  >
+  <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       compressed={false}
@@ -100,7 +92,6 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
-    component="div"
     grow={false}
   >
     <EuiSuperUpdateButton

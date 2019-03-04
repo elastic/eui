@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
 import DescriptionList from './description_list';
@@ -54,7 +56,7 @@ export const DescriptionListExample = {
         components separately to build a list manually.
       </p>
     ),
-    props: { EuiDescriptionList },
+    props: { EuiDescriptionList, EuiDescriptionListTitle, EuiDescriptionListDescription },
     demo: <DescriptionList />,
   }, {
     title: 'Reverse style',
