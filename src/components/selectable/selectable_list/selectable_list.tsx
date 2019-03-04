@@ -30,7 +30,7 @@ export type EuiSelectableListProps = HTMLAttributes<HTMLDivElement> &
      *  row height of default option renderer
      */
     rowHeight: number;
-    rootId: (appendix?: string) => void;
+    rootId: (appendix?: string) => string;
     showIcons?: boolean;
     singleSelection?: boolean;
   };
@@ -75,7 +75,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         <AutoSizer disableHeight={!!forcedHeight} disableWidth={!!forcedWidth}>
           {({ width, height }) => (
             <List
-              // @ts-ignore
               id={rootId('listbox')}
               role="listbox"
               width={forcedWidth || width}
@@ -91,18 +90,17 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   isGroupLabel,
                   checked,
                   disabled,
-                  ...rest
+                  ...optionRest
                 } = option;
                 if (isGroupLabel) {
                   return (
-                    <div key={key} style={style} {...rest}>
+                    <div key={key} style={style} {...optionRest}>
                       {label}
                     </div>
                   );
                 }
                 return (
                   <EuiSelectableListItem
-                    // @ts-ignore
                     id={rootId(`_option-${index}`)}
                     style={style}
                     key={option.label.toLowerCase()}
@@ -113,7 +111,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     showIcons={showIcons}
                     checked={checked}
                     disabled={disabled}
-                    {...rest}>
+                    {...optionRest}>
                     {renderOption ? (
                       renderOption(option, searchValue)
                     ) : (
@@ -144,12 +142,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   private onAddOption = (addedOption: Option) => {
     const { onOptionClick, selectedOptions, singleSelection } = this.props;
     if (singleSelection) {
-      // @ts-ignore
       selectedOptions.map(option => delete option.checked);
     }
     addedOption.checked = 'on';
     onOptionClick(
-      // @ts-ignore
       singleSelection ? [addedOption] : selectedOptions.concat(addedOption)
     );
   };

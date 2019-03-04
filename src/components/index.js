@@ -199,10 +199,6 @@ export {
 } from './i18n';
 
 export {
-  EuiList,
-} from './list';
-
-export {
   EuiLoadingKibana,
   EuiLoadingChart,
   EuiLoadingContent,

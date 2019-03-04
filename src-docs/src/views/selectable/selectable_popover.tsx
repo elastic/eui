@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import {
   EuiPopover,
   EuiPopoverTitle,
-  EuiPopoverFooter,
+  // EuiPopoverFooter,
   EuiButton,
 } from '../../../../src/components';
 
@@ -115,11 +115,11 @@ export default class extends Component {
             <Fragment>
               <EuiPopoverTitle>{search}</EuiPopoverTitle>
               {list}
-              <EuiPopoverFooter>
+              <EuiPopoverTitle>
                 <EuiButton size="s" fullWidth>
                   Manage this list
                 </EuiButton>
-              </EuiPopoverFooter>
+              </EuiPopoverTitle>
             </Fragment>
           )}
         </EuiSelectable>

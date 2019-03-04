@@ -58,7 +58,7 @@ export class EuiSelectable extends Component<
       sortSelectedToTop,
       singleSelection,
       async,
-    } = this.props;
+    } = props;
 
     const initialSearchValue = '';
 
@@ -89,7 +89,7 @@ export class EuiSelectable extends Component<
       activeOptionIndex,
       searchValue: initialSearchValue,
       visibleOptions: sortedOptions || visibleOptions,
-      selectedOptions: props.selectedOptions,
+      selectedOptions,
     };
   }
 
