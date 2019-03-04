@@ -96,8 +96,7 @@ export const PopoverExample = {
           The alignment and arrow on your popover can be set with
           the <EuiCode>anchorPosition</EuiCode> prop. These positions will not
           update based upon screen real estate and will stick to the positions
-          you declare. Because of this, <strong>be careful when using left or right
-          positioning</strong>.
+          you declare. Because of this, <strong>be careful when using left or right positioning</strong>.
         </p>
         <p><strong>Some tips:</strong></p>
         <ul>
