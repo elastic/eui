@@ -110,7 +110,7 @@ export const FlexExample = {
         </p>
       </div>
     ),
-    props: { EuiFlexGroup, EuiFlexItem },
+    props: { EuiFlexGroup, EuiFlexItem, EuiFlexGrid },
     demo: <div className="guideDemo__highlightGrid"><FlexGroup /></div>,
   }, {
     title: 'FlexGroup can wrap its items',

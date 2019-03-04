@@ -11,20 +11,12 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
-      direction="row"
       gutterSize="none"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -37,19 +29,14 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             >
               <EuiFlexGroup
                 alignItems="center"
-                component="div"
-                direction="row"
                 gutterSize="s"
-                justifyContent="flexStart"
                 responsive={false}
-                wrap={false}
               >
                 <div
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     className="euiAccordion__iconWrapper"
-                    component="div"
                     grow={false}
                   >
                     <div
@@ -97,8 +84,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                   </EuiFlexItem>
                   <EuiFlexItem
                     className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
                   >
                     <div
                       className="euiFlexItem euiAccordion__buttonContent"
@@ -146,20 +131,12 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   >
     <EuiFlexGroup
       alignItems="center"
-      component="div"
-      direction="row"
       gutterSize="none"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -172,19 +149,14 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             >
               <EuiFlexGroup
                 alignItems="center"
-                component="div"
-                direction="row"
                 gutterSize="s"
-                justifyContent="flexStart"
                 responsive={false}
-                wrap={false}
               >
                 <div
                   className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
                 >
                   <EuiFlexItem
                     className="euiAccordion__iconWrapper"
-                    component="div"
                     grow={false}
                   >
                     <div
@@ -231,8 +203,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                   </EuiFlexItem>
                   <EuiFlexItem
                     className="euiAccordion__buttonContent"
-                    component="div"
-                    grow={true}
                   >
                     <div
                       className="euiFlexItem euiAccordion__buttonContent"

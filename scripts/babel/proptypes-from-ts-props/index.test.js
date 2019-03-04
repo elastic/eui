@@ -1031,6 +1031,29 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('treats null and undefined as literals', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {bar: 'five' | null | undefined}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  bar: PropTypes.oneOf(["five", null, undefined]).isRequired
+};`);
+      });
+
     });
 
     describe('array / arrayOf propTypes', () => {
