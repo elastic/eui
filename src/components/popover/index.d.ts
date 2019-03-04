@@ -43,8 +43,4 @@ declare module '@elastic/eui' {
   export const EuiPopover: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps
   >;
-
-  export const EuiPopoverTitle: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-  >;
 }

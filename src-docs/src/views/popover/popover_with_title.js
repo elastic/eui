@@ -5,10 +5,12 @@ import React, {
 import {
   EuiPopover,
   EuiPopoverTitle,
+  EuiPopoverFooter,
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiText
+  EuiText,
+  EuiTextColor,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -61,23 +63,23 @@ export default class extends Component {
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="downCenterWithTitle"
+            id="withTitle"
             ownFocus
             button={(
               <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
-                downCenter with title
+                With title
               </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen1}
             closePopover={this.closePopover1.bind(this)}
             anchorPosition="downCenter"
-            withTitle
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with default padding
+                  Selfies migas stumptown hot chicken quinoa wolf green juice,
+                  mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
                 </p>
               </EuiText>
             </div>
@@ -86,51 +88,56 @@ export default class extends Component {
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="upCenterWithTitle"
+            id="withFooter"
             ownFocus
             button={(
               <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
-                upCenter with title
+                With footer
               </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen2}
             closePopover={this.closePopover2.bind(this)}
             anchorPosition="upCenter"
-            withTitle
           >
-            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with large padding
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
                 </p>
               </EuiText>
             </div>
+            <EuiPopoverFooter>
+              <EuiTextColor color="subdued">
+                Hello, I&rsquo;m a small popover footer caption
+              </EuiTextColor>
+            </EuiPopoverFooter>
           </EuiPopover>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="rightUpWithTitle"
+            id="withTitleAndFooter"
             ownFocus
             button={(
               <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
-                rightUp with title
+                With title and footer button
               </EuiButton>
             )}
             isOpen={this.state.isPopoverOpen3}
             closePopover={this.closePopover3.bind(this)}
-            anchorPosition="rightUp"
-            withTitle
+            anchorPosition="upCenter"
           >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
                 <p>
-                  Popover content with no padding
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
                 </p>
               </EuiText>
             </div>
+            <EuiPopoverFooter><EuiButton size="s">Manage this thing</EuiButton></EuiPopoverFooter>
           </EuiPopover>
         </EuiFlexItem>
       </EuiFlexGroup>
