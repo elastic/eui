@@ -10,18 +10,9 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -44,8 +35,6 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
@@ -69,18 +58,9 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -94,8 +74,6 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
@@ -120,18 +98,9 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -154,8 +123,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
@@ -180,18 +147,9 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -214,8 +172,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
@@ -240,18 +196,9 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -274,8 +221,6 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
@@ -315,21 +260,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     role="group"
   >
     <EuiFlexGroup
-      alignItems="stretch"
-      component="div"
-      direction="row"
       gutterSize="l"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -373,8 +309,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
         </EuiFlexItem>
         <EuiFlexItem
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-          component="div"
-          grow={true}
         >
           <div
             className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
