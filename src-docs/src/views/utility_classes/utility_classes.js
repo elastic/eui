@@ -147,6 +147,10 @@ export default () => (
 
     <EuiCode className="eui-displayInlineBlock">.eui-displayInlineBlock</EuiCode>
 
+    <EuiSpacer />
+
+    <EuiCode className="eui-fullWidth">.eui-fullWidth (similar to eui-displayBlock but adds 100% width)</EuiCode>
+
     <h4>Responsive</h4>
 
     <EuiCode className="eui-hideFor--xs">.eui-hideFor--xs</EuiCode>

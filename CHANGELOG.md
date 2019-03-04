@@ -4,6 +4,8 @@
 - Converted `EuiFlexGrid`, `EuiFlexGroup`, `EuiFlexItem`, `EuiDescriptionList`, `EuiDescriptionListTitle`, and `EuiDescriptionListDescription` to TypeScript ([#1365](https://github.com/elastic/eui/pull/1365))
 - Converted `EuiAvatar` to Typescript ([#1654](https://github.com/elastic/eui/pull/1654))
 - Added missing `anchorClassName` prop to `EuiToolTip` definition ([#1657](https://github.com/elastic/eui/pull/1657))
+- Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
+- Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
 
 ## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
 
