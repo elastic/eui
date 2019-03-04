@@ -138,6 +138,7 @@ export default class extends Component {
             name="poprange"
           />
         </EuiFormRow>
+        <EuiButton fullWidth>Save</EuiButton>
       </EuiForm>
     );
 
