@@ -137,7 +137,9 @@ export default class extends Component {
                 </p>
               </EuiText>
             </div>
-            <EuiPopoverFooter><EuiButton size="s">Manage this thing</EuiButton></EuiPopoverFooter>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">Manage this thing</EuiButton>
+            </EuiPopoverFooter>
           </EuiPopover>
         </EuiFlexItem>
       </EuiFlexGroup>
