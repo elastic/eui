@@ -35,7 +35,7 @@ export default () => (
       <EuiCard
         icon={<EuiIcon size="xxl" type="dashboardApp" />}
         title="Dashboards"
-        description="Example of a short longer card description. See how the footers stay lined up."
+        description="Example of a longer card description. See how the footers stay lined up."
         footer={cardFooterContent}
       />
     </EuiFlexItem>
