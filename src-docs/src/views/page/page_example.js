@@ -59,7 +59,7 @@ export const PageExample = {
             the design. These examples are colored for illustrative purposes only.
           </p>
           <p>
-            By default, the entire page will always be 100% of the window&apos;s width, to max this
+            By default, the entire page will always be 100% of the window&apos;s width; to max
             out the typical width and center the page, set the <EuiCode>restrictWidth</EuiCode> prop
             to <EuiCode>true</EuiCode>. You can also pass an integer to this property to max out the
             width at a custom pixel value or a string with a custom measurement.
@@ -165,7 +165,7 @@ export const PageExample = {
       text: (
         <p>
           Centering the content can happen regardless of layout configuration. In this example,
-          we&rsquo;re cetnering within a complex sidebar layout.
+          we&rsquo;re centering within a complex sidebar layout.
         </p>
       ),
       demo: (
