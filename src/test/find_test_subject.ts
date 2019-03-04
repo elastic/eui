@@ -24,12 +24,22 @@ const MATCHERS = [
   '*=', // Contains substring
 ];
 
-export const findTestSubject: FindTestSubject<ShallowWrapper | ReactWrapper> = (mountedComponent, testSubjectSelector, matcher = '~=') => {
+export const findTestSubject: FindTestSubject<ShallowWrapper | ReactWrapper> = (
+  mountedComponent,
+  testSubjectSelector,
+  matcher = '~='
+) => {
   if (!MATCHERS.includes(matcher)) {
-    throw new Error(`Matcher ${matcher} not found in list of allowed matchers: ${MATCHERS.join(' ')}`);
+    throw new Error(
+      `Matcher ${matcher} not found in list of allowed matchers: ${MATCHERS.join(
+        ' '
+      )}`
+    );
   }
 
-  const testSubject = mountedComponent.find(`[data-test-subj${matcher}"${testSubjectSelector}"]`);
+  const testSubject = mountedComponent.find(
+    `[data-test-subj${matcher}"${testSubjectSelector}"]`
+  );
 
   // Restores Enzyme 2's find behavior, which was to only return ReactWrappers around DOM elements.
   // Enzyme 3 returns ReactWrappers around both DOM elements and React components.
