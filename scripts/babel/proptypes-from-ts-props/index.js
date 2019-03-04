@@ -693,7 +693,7 @@ function getPropTypesForNode(node, optional, state) {
 
     case 'TSNullKeyword':
       propType =  types.nullLiteral();
-      optional = true; // cannot call `.isRequired` on a boolean literal
+      optional = true; // cannot call `.isRequired` on a null literal
       break;
 
     case 'TSUndefinedKeyword':
