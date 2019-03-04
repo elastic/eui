@@ -249,7 +249,7 @@ export const ButtonExample = {
           <p>
             Stylistically, all button groups are the size of small buttons, do not stretch to fill
             the container, and typically should only be <EuiCode>color=&quot;text&quot;</EuiCode>{' '}
-            (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If you're just displaying a group of
+            (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If you&apos;re just displaying a group of
             icons, add the prop <EuiCode>isIconOnly</EuiCode>.
           </p>
           <EuiCallOut title="Accessibility">
