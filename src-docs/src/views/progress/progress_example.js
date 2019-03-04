@@ -50,10 +50,10 @@ export const ProgressExample = {
     text: (
       <p>
         The <EuiCode>Progress</EuiCode> component by default will display
-        in an indeterminate loading state (rendered as a signle div) until you define
+        in an indeterminate loading state (rendered as a single div) until you define
         a <EuiCode>max</EuiCode> and <EuiCode>value</EuiCode> prop.
-        The <EuiCode>size</EuiCode> prop refers to its verical height. It will
-        always strech <EuiCode>100%</EuiCode> to its container.
+        The <EuiCode>size</EuiCode> prop refers to its vertical height. It will
+        always stretch <EuiCode>100%</EuiCode> to its container.
       </p>
     ),
     snippet: progressSnippet,
