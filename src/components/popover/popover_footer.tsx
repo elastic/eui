@@ -1,12 +1,10 @@
-import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 export interface EuiPopoverFooterProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
-}
+    HTMLAttributes<HTMLDivElement> {}
 
 export const EuiPopoverFooter: FunctionComponent<EuiPopoverFooterProps> = ({
   children,
