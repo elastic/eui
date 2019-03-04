@@ -11,7 +11,10 @@ export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
 export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
 
 export interface EuiDescriptionListProps {
-  listItems?: Array<{ title: ReactNode; description: ReactNode }>;
+  listItems?: Array<{
+    title: NonNullable<ReactNode>;
+    description: NonNullable<ReactNode>;
+  }>;
   /**
    * Text alignment
    */
