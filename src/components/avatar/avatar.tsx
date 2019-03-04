@@ -1,6 +1,5 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, keysOf } from '../common';
-// import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb } from '../../services/color';
