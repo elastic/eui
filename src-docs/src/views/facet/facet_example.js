@@ -56,7 +56,7 @@ export const FacetExample = {
         <div>
           <p>
             Typically, each facet grouping should display similarly. For example, they should all
-            have icons or be similar icon nodes (like avatars). It is is up to you whether each
+            have icons or be similar icon nodes (like avatars). It is up to you whether each
             group should be single or multi-selection.
           </p>
           <p>

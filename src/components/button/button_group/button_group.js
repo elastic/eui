@@ -106,7 +106,7 @@ EuiButtonGroup.propTypes = {
   isDisabled: PropTypes.bool,
 
   /**
-   * Makes the whole group 100% of it's parent
+   * Makes the whole group 100% of its parent
    */
   isFullWidth: PropTypes.bool,
 

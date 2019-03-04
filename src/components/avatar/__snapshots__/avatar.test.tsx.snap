@@ -66,7 +66,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
   <span
     aria-hidden="true"
   >
-    n
+    l
   </span>
 </div>
 `;
@@ -175,3 +175,5 @@ exports[`EuiAvatar props type is rendered 1`] = `
   </span>
 </div>
 `;
+
+exports[`EuiAvatar should throw error if color is not a hex 1`] = `"EuiAvatar needs to pass a valid color. This can either be a three or six character hex value"`;
