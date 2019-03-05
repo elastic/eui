@@ -153,6 +153,7 @@ export class EuiInMemoryTable extends Component {
     pagination: false,
     sorting: false,
     responsive: true,
+    allowNeutralSort: true,
     executeQueryOptions: {}
   };
 
@@ -173,7 +174,7 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting, allowNeutralSort, preserveSearchResultOrder } = props;
+    const { search, pagination, sorting } = props;
     const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
@@ -187,8 +188,6 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
-      allowNeutralSort: (allowNeutralSort === false) ? false : true,
-      preserveSearchResultOrder,
       hidePerPageOptions
     };
   }
@@ -209,7 +208,7 @@ export class EuiInMemoryTable extends Component {
     } = sort;
 
     // Allow going back to 'neutral' sorting
-    if (this.state.allowNeutralSort &&
+    if (this.props.allowNeutralSort &&
       this.state.sortField === sortField
       && this.state.sortDirection === 'desc'
       && sortDirection === 'asc') {
@@ -227,17 +226,19 @@ export class EuiInMemoryTable extends Component {
 
   getSortOnSearch(queryText) {
     const isQueryEmpty = !queryText;
-    const { allowNeutralSort, preserveSearchResultOrder } = this.state;
+    const { preserveSearchResultOrder, allowNeutralSort } = this.props;
+
     const shouldClear = allowNeutralSort && preserveSearchResultOrder;
-    const sorting = this.props.sorting;
+    const sorting = getInitialSorting(this.props.sorting);
+
     if (!shouldClear) {
+      // don't change sorting
       return {};
-    } else if (isQueryEmpty && sorting && sorting.sort) {
-      return {
-        sortField: sorting.sort.field,
-        sortDirection: sorting.sort.direction,
-      };
+    } else if (isQueryEmpty && sorting) {
+      // restore original sorting if query is empty
+      return sorting;
     } else {
+      // clear sorting to preserve search result order
       return {
         sortField: '',
         sortDirection: '',
@@ -396,12 +397,13 @@ export class EuiInMemoryTable extends Component {
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
+
     const sorting = !hasSorting ? undefined : {
       sort: (!sortField && !sortDirection) ? undefined : {
         field: sortField,
         direction: sortDirection,
       },
-      allowNeutralSort: this.state.allowNeutralSort,
+      allowNeutralSort,
     };
 
     const searchBar = this.renderSearchBar();

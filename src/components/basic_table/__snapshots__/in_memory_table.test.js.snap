@@ -2,6 +2,7 @@
 
 exports[`EuiInMemoryTable behavior pagination 1`] = `
 <EuiInMemoryTable
+  allowNeutralSort={true}
   aria-label="aria-label"
   className="testClass1 testClass2"
   columns={
