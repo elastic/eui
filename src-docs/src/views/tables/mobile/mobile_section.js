@@ -37,14 +37,14 @@ export const section = {
   text: (
     <div>
       <p>
-        Allowing a table to be responsive means breaking each row down into it&apos;s own section
+        Allowing a table to be responsive means breaking each row down into its own section
         and individually displaying each table header above the cell contents. There are few times
         when you may want to exclude this behavior from your table, for instance, when the table has
         very few columns or the table does not break down easily into this format. For these use
         cases, you may set <EuiCode>responsive = false</EuiCode>.
       </p>
       <h4>
-        To make your table works responsively, please make sure you add the following{' '}
+        To make your table work responsively, please make sure you add the following{' '}
         <EuiTextColor color="danger">additional</EuiTextColor> props to the top level table
         component (<EuiCode>EuiBasicTable</EuiCode> or <EuiCode>EuiInMemoryTable</EuiCode>):
       </h4>
