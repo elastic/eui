@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for `preserveSearchResultOrder` prop to `EuiInMemoryTable`, which in conjunction with `allowNeutralSort`, allows showing search results in the order they are returned from ES.  
 - Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
 - Converted `EuiFlexGrid`, `EuiFlexGroup`, `EuiFlexItem`, `EuiDescriptionList`, `EuiDescriptionListTitle`, and `EuiDescriptionListDescription` to TypeScript ([#1365](https://github.com/elastic/eui/pull/1365))
 - Converted `EuiAvatar` to Typescript ([#1654](https://github.com/elastic/eui/pull/1654))

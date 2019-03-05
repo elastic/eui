@@ -77,11 +77,11 @@ const InMemoryTablePropTypes = {
    */
   allowNeutralSort: PropTypes.bool,
   /**
-   * Set `shouldSearchClearSort` to true to show results in the "neutral" order they are returned, when searching.
-   * If initial sorting was provided, clearing the search query, will restore it.
+   * Set `preserveSearchResultOrder` to true to show search results in the original order they are returned.
+   * If initial sorting is provided, clearing the search query, will restore it.
    * This flag does not apply if `allowNeutralSort` is disabled.
    */
-  shouldSearchClearSort: PropTypes.bool,
+  preserveSearchResultOrder: PropTypes.bool,
   selection: SelectionType,
   itemId: ItemIdType,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -173,7 +173,7 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting, allowNeutralSort, shouldSearchClearSort } = props;
+    const { search, pagination, sorting, allowNeutralSort, preserveSearchResultOrder } = props;
     const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
@@ -188,7 +188,7 @@ export class EuiInMemoryTable extends Component {
       sortField,
       sortDirection,
       allowNeutralSort: (allowNeutralSort === false) ? false : true,
-      shouldSearchClearSort,
+      preserveSearchResultOrder,
       hidePerPageOptions
     };
   }
@@ -227,8 +227,8 @@ export class EuiInMemoryTable extends Component {
 
   getSortOnSearch(queryText) {
     const isQueryEmpty = !queryText;
-    const { allowNeutralSort, shouldSearchClearSort } = this.state;
-    const shouldClear = allowNeutralSort && shouldSearchClearSort;
+    const { allowNeutralSort, preserveSearchResultOrder } = this.state;
+    const shouldClear = allowNeutralSort && preserveSearchResultOrder;
     const sorting = this.props.sorting;
     if (!shouldClear) {
       return {};
@@ -370,7 +370,7 @@ export class EuiInMemoryTable extends Component {
       onTableChange, // eslint-disable-line no-unused-vars
       executeQueryOptions, // eslint-disable-line no-unused-vars
       allowNeutralSort, // eslint-disable-line no-unused-vars
-      shouldSearchClearSort, // eslint-disable-line no-unused-vars
+      preserveSearchResultOrder, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
