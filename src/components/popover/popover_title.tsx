@@ -2,11 +2,11 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export interface EuiPopoverTitleProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {}
+export type EuiPopoverTitleProps = FunctionComponent<
+  HTMLAttributes<HTMLDivElement> & CommonProps
+>;
 
-export const EuiPopoverTitle: FunctionComponent<EuiPopoverTitleProps> = ({
+export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   children,
   className,
   ...rest
