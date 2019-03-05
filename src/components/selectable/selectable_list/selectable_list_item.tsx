@@ -3,15 +3,18 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 import { OptionCheckedType } from '../types';
+import { IconType, IconColor } from '../../icon';
 
-const resolveIconAndColor = (checked: OptionCheckedType) => {
+function resolveIconAndColor(
+  checked: OptionCheckedType
+): { icon: IconType; color?: IconColor } {
   if (!checked) {
     return { icon: 'empty' };
   }
   return checked === 'on'
     ? { icon: 'check', color: 'text' }
     : { icon: 'cross', color: 'text' };
-};
+}
 
 export type EuiSelectableListItemProps = ButtonHTMLAttributes<
   HTMLButtonElement
@@ -75,7 +78,6 @@ export class EuiSelectableListItem extends Component<
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
-          // @ts-ignore
           type={icon}
         />
       );

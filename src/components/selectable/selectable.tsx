@@ -13,7 +13,10 @@ import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
 import { Option } from './types';
-import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
+import {
+  EuiSelectableOptionsListProps,
+  EuiSelectableSingleOptionProps,
+} from './selectable_list/selectable_list';
 
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -26,7 +29,7 @@ export type EuiSelectableProps = Omit<
     onChange?: (selectedOptions: Option[]) => void;
     searchable?: boolean;
     searchProps?: {};
-    singleSelection?: boolean;
+    singleSelection?: EuiSelectableSingleOptionProps;
     sortSelectedToTop: boolean;
     isLoading?: boolean;
     async?: boolean;
@@ -291,7 +294,8 @@ export class EuiSelectable extends Component<
     ) : (
       <EuiSelectableList
         key="list"
-        options={visibleOptions}
+        options={options}
+        visibleOptions={visibleOptions}
         searchValue={searchValue}
         activeOptionIndex={activeOptionIndex}
         onOptionClick={this.onOptionClick}

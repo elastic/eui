@@ -20,7 +20,7 @@ export default class extends Component {
     this.spaces = [
       {
         label: 'Sales team',
-        prepend: <EuiAvatar type="space" name="Sales team" size="s" />,
+        prepend: <EuiAvatar type="space" name="Sales Team" size="s" />,
         checked: 'on'
       },
       {
@@ -40,7 +40,7 @@ export default class extends Component {
     this.additionalSpaces = [
       {
         label: 'Sales team 2',
-        prepend: <EuiAvatar type="space" name="Sales team 2" size="s" />,
+        prepend: <EuiAvatar type="space" name="Sales Team 2" size="s" />,
       },
       {
         label: 'Engineering 2',
@@ -81,7 +81,7 @@ export default class extends Component {
 
   onChange = selectedOptions => {
     this.setState({
-      selectedOptions,
+      selectedSpaces: selectedOptions,
       isOpen: false,
     });
   };
@@ -103,7 +103,7 @@ export default class extends Component {
         aria-label="Apps menu"
         onClick={this.onMenuButtonClick}
       >
-        <EuiAvatar type="space" size="s" name="Sales Team" />
+        {selectedSpaces[0].prepend}
       </EuiHeaderSectionItemButton>
     );
 
@@ -125,11 +125,12 @@ export default class extends Component {
           }}
           options={spaces}
           selectedOptions={selectedSpaces}
-          singleSelection
+          singleSelection="always"
           style={{ width: 300 }}
           onChange={this.onChange}
           listProps={{
             rowHeight: 40,
+            showIcons: false,
           }}
         >
           {(search, list) => (

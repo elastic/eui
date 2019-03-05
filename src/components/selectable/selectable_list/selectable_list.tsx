@@ -9,6 +9,8 @@ import { EuiSelectableListItem } from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
 import { Option } from '../types';
 
+export type EuiSelectableSingleOptionProps = 'always' | boolean;
+
 export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     width?: number;
@@ -19,11 +21,12 @@ export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
      */
     rowHeight: number;
     showIcons?: boolean;
-    singleSelection?: boolean;
+    singleSelection?: EuiSelectableSingleOptionProps;
   };
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
   options: Option[];
+  visibleOptions?: Option[];
   searchValue: string;
   /**
    * returns array the array of options with altered checked state
@@ -64,12 +67,15 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       rootId,
       showIcons,
       singleSelection,
+      visibleOptions,
       ...rest
     } = this.props;
 
     const classes = classNames('euiSelectableList', className);
 
-    const numVisibleOptions = options.length < 7 ? options.length : 7;
+    const optionArray = visibleOptions || options;
+
+    const numVisibleOptions = optionArray.length < 7 ? optionArray.length : 7;
     const forcedHeight = (numVisibleOptions + 0.5) * rowHeight;
 
     return (
@@ -81,12 +87,12 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
               role="listbox"
               width={forcedWidth || width}
               height={forcedHeight || height}
-              rowCount={options.length}
+              rowCount={optionArray.length}
               rowHeight={Number(rowHeight)}
               scrollToIndex={activeOptionIndex}
               onScroll={onScroll}
               rowRenderer={({ key, index, style }) => {
-                const option = options[index];
+                const option = optionArray[index];
                 const {
                   label,
                   isGroupLabel,
@@ -158,8 +164,10 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   };
 
   private onRemoveOption = (removedOption: Option) => {
-    const { onOptionClick, options } = this.props;
-    delete removedOption.checked;
+    const { onOptionClick, singleSelection, options } = this.props;
+    if (singleSelection !== 'always') {
+      delete removedOption.checked;
+    }
     onOptionClick(options);
   };
 }
