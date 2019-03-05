@@ -37,7 +37,7 @@ export const section = {
           in a single popover.
         </li>
         <li>
-          Actions are change opacity when user hovers over the row with the mouse. When more than 2 actions are supplied,
+          Actions change opacity when user hovers over the row with the mouse. When more than 2 actions are supplied,
           only the ellipses icon button stays visible at all times.
         </li>
       </ul>
