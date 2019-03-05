@@ -31,6 +31,8 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
      */
     isFocused?: boolean;
     disabled?: boolean;
+    prepend?: React.ReactNode;
+    append?: React.ReactNode;
   };
 
 export class EuiSelectableListItem extends Component<
@@ -53,6 +55,8 @@ export class EuiSelectableListItem extends Component<
       checked,
       isFocused,
       showIcons,
+      prepend,
+      append,
       ...rest
     } = this.props;
 
@@ -77,6 +81,20 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
+    let prependNode: React.ReactNode;
+    if (prepend) {
+      prependNode = (
+        <span className="euiSelectableListItem__prepend">{prepend}</span>
+      );
+    }
+
+    let appendNode: React.ReactNode;
+    if (append) {
+      appendNode = (
+        <span className="euiSelectableListItem__append">{append}</span>
+      );
+    }
+
     return (
       <button
         role="option"
@@ -88,7 +106,9 @@ export class EuiSelectableListItem extends Component<
         {...rest}>
         <span className="euiSelectableListItem__content">
           {buttonIcon}
+          {prependNode}
           <span className="euiSelectableListItem__text">{children}</span>
+          {appendNode}
         </span>
       </button>
     );

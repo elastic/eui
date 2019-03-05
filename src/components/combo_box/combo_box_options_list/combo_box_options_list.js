@@ -9,7 +9,6 @@ import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
-import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
@@ -104,7 +103,7 @@ export class EuiComboBoxOptionsList extends Component {
       matchingOptions,
       optionRef,
       onOptionClick,
-      onOptionEnterKey,
+      onOptionEnterKey, // eslint-disable-line no-unused-vars
       areAllOptionsSelected,
       getSelectedOptionForSearchValue,
       position,

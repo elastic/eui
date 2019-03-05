@@ -4,14 +4,12 @@ import React, {
 
 import {
   EuiHeaderSectionItemButton,
-  EuiContextMenuPanel,
-  EuiContextMenuItem,
   EuiPopover,
   EuiButton,
   EuiAvatar,
-  EuiHighlight,
   EuiSelectable,
   EuiPopoverTitle,
+  EuiPopoverFooter,
 } from '../../../../src/components';
 import { Fragment } from 'react-is';
 
@@ -22,31 +20,39 @@ export default class extends Component {
     this.spaces = [
       {
         label: 'Sales team',
+        prepend: <EuiAvatar type="space" name="Sales team" size="s" />,
         checked: 'on'
       },
       {
         label: 'Engineering',
+        prepend: <EuiAvatar type="space" name="Engineering" size="s" />,
       },
       {
         label: 'Security',
+        prepend: <EuiAvatar type="space" name="Security" size="s" />,
       },
       {
         label: 'Default',
+        prepend: <EuiAvatar type="space" name="Default" size="s" />,
       },
     ];
 
     this.additionalSpaces = [
       {
         label: 'Sales team 2',
+        prepend: <EuiAvatar type="space" name="Sales team 2" size="s" />,
       },
       {
         label: 'Engineering 2',
+        prepend: <EuiAvatar type="space" name="Engineering 2" size="s" />,
       },
       {
         label: 'Security 2',
+        prepend: <EuiAvatar type="space" name="Security 2" size="s" />,
       },
       {
         label: 'Default 2',
+        prepend: <EuiAvatar type="space" name="Default 2" size="s" />,
       },
     ];
 
@@ -55,6 +61,10 @@ export default class extends Component {
       isOpen: false,
       selectedSpaces: [this.spaces[0]],
     };
+  }
+
+  isListExtended = () => {
+    return this.state.spaces.length > 4 ? true : false;
   }
 
   onMenuButtonClick = () => {
@@ -82,20 +92,6 @@ export default class extends Component {
     });
   }
 
-
-  renderSpace = (space, searchTerm) => {
-    const { label } = space;
-    return (
-      <Fragment key={label}>
-        <EuiAvatar type="space" name={label} size="s" />
-        &emsp;
-        <EuiHighlight search={searchTerm}>
-          {label}
-        </EuiHighlight>
-      </Fragment>
-    );
-  }
-
   render() {
     const { selectedSpaces, isOpen, spaces } = this.state;
 
@@ -118,11 +114,11 @@ export default class extends Component {
         button={button}
         isOpen={isOpen}
         anchorPosition="downLeft"
-        closePopover={this.closeMenu}
+        closePopover={this.closePopover}
         panelPaddingSize="none"
       >
         <EuiSelectable
-          searchable
+          searchable={this.isListExtended()}
           searchProps={{
             placeholder: 'Find a space',
             compressed: true,
@@ -132,20 +128,19 @@ export default class extends Component {
           singleSelection
           style={{ width: 300 }}
           onChange={this.onChange}
-          renderOption={this.renderSpace}
           listProps={{
             rowHeight: 40,
           }}
         >
           {(search, list) => (
             <Fragment>
-              <EuiPopoverTitle>{search}</EuiPopoverTitle>
+              <EuiPopoverTitle>{search || 'Your spaces'}</EuiPopoverTitle>
               {list}
-              <EuiPopoverTitle>
-                <EuiButton size="s" fullWidth onClick={this.addMoreSpaces}>
+              <EuiPopoverFooter>
+                <EuiButton size="s" fullWidth onClick={this.addMoreSpaces} disabled={this.isListExtended()}>
                   Add more spaces
                 </EuiButton>
-              </EuiPopoverTitle>
+              </EuiPopoverFooter>
             </Fragment>
           )}
         </EuiSelectable>

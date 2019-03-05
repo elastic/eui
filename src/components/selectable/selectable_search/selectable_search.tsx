@@ -17,8 +17,8 @@ export type EuiSelectableSearchProps = Omit<
      */
     onChange?: (matchingOptions: [], searchValue: string) => void;
     options?: Option[];
-    selectedOptions?: Option[];
     async?: boolean;
+    defaultValue: string;
   };
 
 export interface EuiSelectableSearchState {
@@ -29,20 +29,24 @@ export class EuiSelectableSearch extends Component<
   EuiSelectableSearchProps,
   EuiSelectableSearchState
 > {
+  static defaultProps = {
+    defaultValue: '',
+  };
+
   constructor(props: EuiSelectableSearchProps) {
     super(props);
 
     this.state = {
-      searchValue: '',
+      searchValue: props.defaultValue,
     };
   }
 
   componentDidMount() {
-    const { options, selectedOptions, async } = this.props;
+    const { options, async } = this.props;
     const { searchValue } = this.state;
     const matchingOptions = getMatchingOptions(
       options,
-      selectedOptions,
+      [],
       searchValue,
       async,
       true
@@ -52,14 +56,8 @@ export class EuiSelectableSearch extends Component<
 
   onSearchChange = (value: string) => {
     this.setState({ searchValue: value });
-    const { options, selectedOptions, async } = this.props;
-    const matchingOptions = getMatchingOptions(
-      options,
-      selectedOptions,
-      value,
-      async,
-      true
-    );
+    const { options, async } = this.props;
+    const matchingOptions = getMatchingOptions(options, [], value, async, true);
     this.passUpMatches(matchingOptions, value);
   };
 
@@ -74,7 +72,8 @@ export class EuiSelectableSearch extends Component<
       className,
       onChange,
       options,
-      selectedOptions,
+      async,
+      defaultValue,
       ...rest
     } = this.props;
 
@@ -86,6 +85,7 @@ export class EuiSelectableSearch extends Component<
           className={classes}
           onSearch={this.onSearchChange}
           incremental
+          defaultValue={defaultValue}
           {...rest}
         />
       </div>

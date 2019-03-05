@@ -7,7 +7,7 @@
   text-align: left;
   color: $euiTextColor;
 
-  &:not(:last-of-type){
+  &:not(:last-of-type) {
     border-bottom: 1px solid darken($euiColorLightestShade, 2%);
   }
 
@@ -38,10 +38,16 @@
   align-items: center;
 }
 
-.euiSelectableListItem__icon {
-  margin-right: $euiSizeXS;
+.euiSelectableListItem__icon,
+.euiSelectableListItem__prepend {
+  margin-right: $euiSizeS;
+}
+
+.euiSelectableListItem__append {
+  margin-left: $euiSizeS;
 }
 
 .euiSelectableListItem__text {
   @include euiTextTruncate;
+  flex-grow: 1; // Pushed appended content to the far right
 }

@@ -9,20 +9,8 @@ import { EuiSelectableListItem } from './selectable_list_item';
 import { EuiHighlight } from '../../highlight';
 import { Option } from '../types';
 
-export type EuiSelectableListProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    options: Option[];
-    selectedOptions: Option[];
-    searchValue: string;
-    optionRef?: () => void;
-    /**
-     * returns array of selectedOptions
-     */
-    onOptionClick: (selectedOptions: Option[]) => void;
-    /**
-     * returns (option, searchValue)
-     */
-    renderOption?: (option: Option, searchValue?: string) => {};
     width?: number;
     activeOptionIndex?: number;
     onScroll?: () => void;
@@ -30,10 +18,26 @@ export type EuiSelectableListProps = HTMLAttributes<HTMLDivElement> &
      *  row height of default option renderer
      */
     rowHeight: number;
-    rootId: (appendix?: string) => string;
     showIcons?: boolean;
     singleSelection?: boolean;
   };
+
+export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
+  options: Option[];
+  searchValue: string;
+  /**
+   * returns array the array of options with altered checked state
+   */
+  onOptionClick: (options: Option[]) => void;
+  /**
+   * returns (option, searchValue)
+   */
+  renderOption?: (option: Option, searchValue?: string) => {};
+  /**
+   *  row height of default option renderer
+   */
+  rootId: (appendix?: string) => string;
+};
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
   static defaultProps = {
@@ -51,7 +55,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       className,
       options,
       searchValue,
-      optionRef,
       onOptionClick,
       renderOption,
       width: forcedWidth,
@@ -60,7 +63,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       activeOptionIndex,
       rootId,
       showIcons,
-      selectedOptions,
       singleSelection,
       ...rest
     } = this.props;
@@ -90,12 +92,17 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   isGroupLabel,
                   checked,
                   disabled,
+                  prepend,
+                  append,
+                  optionRef,
                   ...optionRest
                 } = option;
                 if (isGroupLabel) {
                   return (
                     <div key={key} style={style} {...optionRest}>
+                      {prepend}
                       {label}
+                      {append}
                     </div>
                   );
                 }
@@ -111,6 +118,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     showIcons={showIcons}
                     checked={checked}
                     disabled={disabled}
+                    prepend={prepend}
+                    append={append}
                     {...optionRest}>
                     {renderOption ? (
                       renderOption(option, searchValue)
@@ -140,19 +149,17 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
   };
 
   private onAddOption = (addedOption: Option) => {
-    const { onOptionClick, selectedOptions, singleSelection } = this.props;
+    const { onOptionClick, options, singleSelection } = this.props;
     if (singleSelection) {
-      selectedOptions.map(option => delete option.checked);
+      options.map(option => delete option.checked);
     }
     addedOption.checked = 'on';
-    onOptionClick(
-      singleSelection ? [addedOption] : selectedOptions.concat(addedOption)
-    );
+    onOptionClick(options);
   };
 
   private onRemoveOption = (removedOption: Option) => {
-    const { onOptionClick, selectedOptions } = this.props;
+    const { onOptionClick, options } = this.props;
     delete removedOption.checked;
-    onOptionClick(selectedOptions.filter(option => option !== removedOption));
+    onOptionClick(options);
   };
 }

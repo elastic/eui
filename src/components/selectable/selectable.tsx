@@ -13,7 +13,7 @@ import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
 import { Option } from './types';
-import { EuiSelectableListProps } from './selectable_list/selectable_list';
+import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -30,7 +30,7 @@ export type EuiSelectableProps = Omit<
     sortSelectedToTop: boolean;
     isLoading?: boolean;
     async?: boolean;
-    listProps?: EuiSelectableListProps;
+    listProps?: EuiSelectableOptionsListProps;
     /**
      * returns (option, searchValue)
      */
@@ -42,6 +42,7 @@ export interface EuiSelectableState {
   searchValue: string;
   visibleOptions: Option[];
   selectedOptions: Option[];
+  options: Option[];
 }
 
 export class EuiSelectable extends Component<
@@ -81,7 +82,7 @@ export class EuiSelectable extends Component<
     let sortedOptions;
     if (sortSelectedToTop) {
       sortedOptions = orderBy(visibleOptions, ['checked'], ['asc']);
-      // NOT WORKING! WHY???!!
+      // SOMETIMES NOT WORKING! WHY???!!
       // console.log(sortedOptions);
     }
 
@@ -94,6 +95,7 @@ export class EuiSelectable extends Component<
     }
 
     this.state = {
+      options,
       activeOptionIndex,
       searchValue: initialSearchValue,
       visibleOptions: sortedOptions || visibleOptions,
@@ -123,11 +125,7 @@ export class EuiSelectable extends Component<
 
       case comboBoxKeyCodes.ENTER:
         e.stopPropagation();
-        if (
-          this.hasActiveOption() &&
-          optionsList &&
-          this.state.activeOptionIndex
-        ) {
+        if (this.state.activeOptionIndex != null && optionsList) {
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
@@ -136,6 +134,7 @@ export class EuiSelectable extends Component<
 
       case TAB:
         // Disallow tabbing when the user is navigating the options.
+        // TODO: Can we force the tab to the next sibling element?
         if (this.hasActiveOption()) {
           e.preventDefault();
           e.stopPropagation();
@@ -207,8 +206,11 @@ export class EuiSelectable extends Component<
     this.clearActiveOption();
   };
 
-  onOptionClick = (selectedOptions: Option[]) => {
+  onOptionClick = (options: Option[]) => {
+    const selectedOptions = options.filter(option => option.checked);
+
     this.setState({
+      options,
       selectedOptions,
     });
     if (this.props.onChange) {
@@ -275,7 +277,6 @@ export class EuiSelectable extends Component<
       <EuiSelectableSearch
         key="listSearch"
         options={options}
-        selectedOptions={selectedOptions}
         onChange={this.onSearchChange}
         {...searchProps}
       />
@@ -295,7 +296,6 @@ export class EuiSelectable extends Component<
         activeOptionIndex={activeOptionIndex}
         onOptionClick={this.onOptionClick}
         singleSelection={singleSelection}
-        selectedOptions={selectedOptions}
         ref={this.optionsListRef}
         renderOption={renderOption}
         {...listProps}
