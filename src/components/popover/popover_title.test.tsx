@@ -6,11 +6,8 @@ import { EuiPopoverTitle } from './popover_title';
 
 describe('EuiPopoverTitle', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPopoverTitle {...requiredProps} />
-    );
+    const component = render(<EuiPopoverTitle {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

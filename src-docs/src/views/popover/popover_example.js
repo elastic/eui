@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiPopover,
   EuiPopoverTitle,
+  EuiPopoverFooter,
 } from '../../../../src/components';
 
 import Popover from './popover';
@@ -113,7 +114,7 @@ export const PopoverExample = {
     ),
     demo: <PopoverAnchorPosition />,
   }, {
-    title: 'Popover with title',
+    title: 'Popover with title and/or footer',
     source: [{
       type: GuideSectionTypes.JS,
       code: popoverWithTitleSource,
@@ -125,14 +126,24 @@ export const PopoverExample = {
       <div>
         <p>
           Popovers often have need for titling. This can be applied through
-          a prop or used separately as its own component
-          <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child
+          a prop or used separately as its own component{' '}
+          <EuiCode>EuiPopoverTitle</EuiCode> nested somewhere in the child
           prop.
+        </p>
+        <p>
+          You can also add a similiarly styled{' '}
+          <EuiCode>EuiPopoverFooter</EuiCode> for smaller captions or
+          call to action buttons.
         </p>
       </div>
     ),
-    props: { EuiPopoverTitle },
+    props: { EuiPopoverTitle, EuiPopoverFooter },
     demo: <PopoverWithTitle />,
+    snippet: `<EuiPopover>
+  <EuiPopoverTitle></EuiPopoverTitle>
+  <div></div>
+  <EuiPopoverFooter></EuiPopoverFooter>
+</EuiPopover>`,
   }, {
     title: 'Panel class name and padding size',
     source: [{
