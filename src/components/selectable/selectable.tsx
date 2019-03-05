@@ -31,6 +31,10 @@ export type EuiSelectableProps = Omit<
     isLoading?: boolean;
     async?: boolean;
     listProps?: EuiSelectableListProps;
+    /**
+     * returns (option, searchValue)
+     */
+    renderOption?: (option: Option, searchValue?: string) => {};
   };
 
 export interface EuiSelectableState {
@@ -225,6 +229,7 @@ export class EuiSelectable extends Component<
       sortSelectedToTop,
       isLoading,
       listProps,
+      renderOption,
       ...rest
     } = this.props;
 
@@ -292,6 +297,7 @@ export class EuiSelectable extends Component<
         singleSelection={singleSelection}
         selectedOptions={selectedOptions}
         ref={this.optionsListRef}
+        renderOption={renderOption}
         {...listProps}
       />
     );

@@ -6,11 +6,8 @@ import { EuiSelectable } from './selectable';
 
 describe('EuiSelectable', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiSelectable {...requiredProps} />
-    );
+    const component = render(<EuiSelectable {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
