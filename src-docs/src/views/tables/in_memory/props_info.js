@@ -48,6 +48,11 @@ export const propsInfo = {
           required: false,
           type: { name: 'boolean' }
         },
+        preserveSearchResultOrder: {
+          description: 'Enables/disables preserving search results order.',
+          required: false,
+          type: { name: 'boolean' }
+        },
         search: {
           description: 'Configures a search bar for the table',
           required: false,
