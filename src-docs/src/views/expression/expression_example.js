@@ -40,7 +40,7 @@ export const ExpressionExample = {
       <p>
         Use the <EuiCode>EuiExpression</EuiCode> component to surface expressions. The requires both
         a <EuiCode>description</EuiCode> (left side) and <EuiCode>value</EuiCode> (right side). Optionally,
-        you can pass it an <EuiCode>onClick</EuiCode> function that will convert it to a buttona add some
+        you can pass it an <EuiCode>onClick</EuiCode> function that will convert it to a button and add some
         additional styling to indicate that it is clickable.
       </p>
     ),
