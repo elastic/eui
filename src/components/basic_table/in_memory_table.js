@@ -76,6 +76,12 @@ const InMemoryTablePropTypes = {
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort: PropTypes.bool,
+  /**
+   * Set `shouldSearchClearSort` to true to show results in the "neutral" order they are returned, when searching.
+   * If initial sorting was provided, clearing the search query, will restore it.
+   * This flag does not apply if `allowNeutralSort` is disabled.
+   */
+  shouldSearchClearSort: PropTypes.bool,
   selection: SelectionType,
   itemId: ItemIdType,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -167,7 +173,7 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting, allowNeutralSort } = props;
+    const { search, pagination, sorting, allowNeutralSort, shouldSearchClearSort } = props;
     const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
 
@@ -182,6 +188,7 @@ export class EuiInMemoryTable extends Component {
       sortField,
       sortDirection,
       allowNeutralSort: (allowNeutralSort === false) ? false : true,
+      shouldSearchClearSort,
       hidePerPageOptions
     };
   }
@@ -218,6 +225,26 @@ export class EuiInMemoryTable extends Component {
     });
   };
 
+  getSortOnSearch(queryText) {
+    const isQueryEmpty = !queryText;
+    const { allowNeutralSort, shouldSearchClearSort } = this.state;
+    const shouldClear = allowNeutralSort && shouldSearchClearSort;
+    const sorting = this.props.sorting;
+    if (!shouldClear) {
+      return {};
+    } else if (isQueryEmpty && sorting && sorting.sort) {
+      return {
+        sortField: sorting.sort.field,
+        sortDirection: sorting.sort.direction,
+      };
+    } else {
+      return {
+        sortField: '',
+        sortDirection: '',
+      };
+    }
+  }
+
   onQueryChange = ({ query, queryText, error }) => {
     if (this.props.search.onChange) {
       const shouldQueryInMemory = this.props.search.onChange({ query, queryText, error });
@@ -226,10 +253,11 @@ export class EuiInMemoryTable extends Component {
       }
     }
 
-    // Reset pagination state.
+    // Reset pagination & (possibly) sort state.
     this.setState({
       query,
       pageIndex: 0,
+      ...this.getSortOnSearch(queryText)
     });
   };
 
@@ -342,6 +370,7 @@ export class EuiInMemoryTable extends Component {
       onTableChange, // eslint-disable-line no-unused-vars
       executeQueryOptions, // eslint-disable-line no-unused-vars
       allowNeutralSort, // eslint-disable-line no-unused-vars
+      shouldSearchClearSort, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
