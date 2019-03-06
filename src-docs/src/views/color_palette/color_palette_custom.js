@@ -35,7 +35,7 @@ export default () => (
       ))
     }
     <EuiSpacer size="l" />
-    <EuiTitle size="xxs"><h3>For communicating state, trending negaitve</h3></EuiTitle>
+    <EuiTitle size="xxs"><h3>For communicating state, trending negative</h3></EuiTitle>
     <EuiSpacer size="s" />
     <EuiFlexGroup gutterSize="none" alignItems="flexStart">
       {
