@@ -3,6 +3,8 @@ import { CommonProps, NoArgCallback } from '../common';
 /// <reference path="../panel/index.d.ts" />
 
 import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import { EuiPopoverTitleProps } from './popover_title';
+import { EuiPopoverFooterProps } from './popover_footer';
 
 declare module '@elastic/eui' {
   /**
@@ -44,7 +46,17 @@ declare module '@elastic/eui' {
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps
   >;
 
-  export const EuiPopoverTitle: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-  >;
+  /**
+   * Popover title type defs
+   *
+   * @see './popover_title.js'
+   */
+  export const EuiPopoverTitle: EuiPopoverTitleProps;
+
+  /**
+   * Popover footer type defs
+   *
+   * @see './popover_footer.js'
+   */
+  export const EuiPopoverFooter: EuiPopoverFooterProps;
 }
