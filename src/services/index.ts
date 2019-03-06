@@ -33,7 +33,7 @@ export {
   formatText,
 } from './format';
 
-export { isWithinRange } from './number';
+export { isEvenlyDivisibleBy, isWithinRange } from './number';
 
 export { Pager } from './paging';
 

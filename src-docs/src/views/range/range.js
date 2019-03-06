@@ -32,6 +32,7 @@ export default class extends Component {
           id={makeId()}
           min={100}
           max={200}
+          step={0.05}
           value={this.state.value}
           onChange={this.onChange}
           showLabels
