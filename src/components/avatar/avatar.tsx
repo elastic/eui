@@ -49,7 +49,7 @@ export type EuiAvatarProps = HTMLAttributes<HTMLDivElement> &
     initialsLength?: 1 | 2;
 
     /**
-     * The type of avatar to this is displaying
+     * The type of avatar this is displaying
      */
     type?: EuiAvatarType;
     imageUrl?: string;
