@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.0.1`.
+**Note: this release is a backport containing changes originally made in `9.1.0`**
+
+**Bug fixes**
+
+- Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
 
 ## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
 
