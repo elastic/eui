@@ -37,6 +37,10 @@ describe('numbers', () => {
       expect(isEvenlyDivisibleBy(1, 0.3)).toBe(false);
       expect(isEvenlyDivisibleBy(1, 0.51)).toBe(false);
       expect(isEvenlyDivisibleBy(1, 0.9)).toBe(false);
+      expect(isEvenlyDivisibleBy(1000000, 0.00001)).toBe(true);
+      expect(isEvenlyDivisibleBy(1000000, 0.00002)).toBe(true);
+      expect(isEvenlyDivisibleBy(1000000, 0.00005)).toBe(true);
+      expect(isEvenlyDivisibleBy(15000000, 0.000075)).toBe(true);
 
       expect(isEvenlyDivisibleBy(3, 0.5)).toBe(true);
       expect(isEvenlyDivisibleBy(3, 1.5)).toBe(true);

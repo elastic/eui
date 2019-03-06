@@ -20,7 +20,6 @@ export class EuiRangeTrack extends Component {
     }
     // Error out if the value doesn't line up with the sequence of steps
     if (!isEvenlyDivisibleBy(value - this.props.min, this.props.step !== undefined ? this.props.step : 1)) {
-    // if ((value - this.props.min) % this.props.step > 0) {
       throw new Error(`The value of ${value} is not included in the possible sequence provided by the step of ${this.props.step}.`);
     }
     // Return the value if nothing fails

@@ -21,7 +21,7 @@ export function isEvenlyDivisibleBy(num: number, factor: number) {
   // 1000000000 % 0.1 === 0.09999994448884877
   // 1 % 0.05         === 0.04999999999999995
 
-  // Compare the smaller of (remainder, factor - remainder) to EPISOLON
+  // Compare the smaller of (remainder, factor - remainder) to EPSILON
   return (
     Math.min(
       remainder, // remainder may be smallest, it is 0 in the well-formed case
