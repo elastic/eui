@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `repositionOnScroll` property to the `EuiPopoverProps` type definition ([#1628](https://github.com/elastic/eui/pull/1628))
 - Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
 - Converted `EuiFlexGrid`, `EuiFlexGroup`, `EuiFlexItem`, `EuiDescriptionList`, `EuiDescriptionListTitle`, and `EuiDescriptionListDescription` to TypeScript ([#1365](https://github.com/elastic/eui/pull/1365))
 - Converted `EuiAvatar` to Typescript ([#1654](https://github.com/elastic/eui/pull/1654))
