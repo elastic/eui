@@ -37,8 +37,8 @@ export const ColorPaletteExample = {
       <div>
         <p>
           The <EuiCode>eui_palettes.js</EuiCode> file provides a base set of color palettes in
-          an array format. The hexidecimal color codes in these sets consist of both color safe
-          and EUI themed colors. Import the file, then use javascript to read and apply the color
+          an array format. The hexadecimal color codes in these sets consist of both color safe
+          and EUI themed colors. Import the file, then use JavaScript to read and apply the color
           array values to other EUI components, such as charts.
         </p>
         <p>
@@ -61,7 +61,7 @@ export const ColorPaletteExample = {
       <div>
         <p>
           Use the <EuiCode>colorPalette</EuiCode> service to generate a custom, gradiated palette
-          array of any length from two hexidecimal color codes. For example, obtain an array of
+          array of any length from two hexadecimal color codes. For example, obtain an array of
           yellow-to-green health status colors using
           <EuiCode>colorPalette&#40;&#39;#FFFF6D&#39;, &#39;#1EA593&#39;, 20&#41;</EuiCode>.
         </p>
