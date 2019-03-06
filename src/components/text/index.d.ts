@@ -1,17 +1,24 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-  import { SFC, HTMLAttributes } from 'react';
-
   /**
    * text type defs
    *
    * @see './text.js'
    * @see './text_color.js'
    */
-  type EuiTextSize = 's' | 'xs';
+  type TEXT_SIZES = 'm' | 's' | 'xs';
 
-  type EuiTextColor =
+  /**
+   * text alignment options
+   *
+   * @see './text.js'
+   * @see './text_align.js'
+   */
+  type ALIGNMENTS = 'left' | 'center' | 'right';
+
+  type COLORS =
     | 'default'
     | 'subdued'
     | 'secondary'
@@ -20,11 +27,26 @@ declare module '@elastic/eui' {
     | 'warning'
     | 'ghost';
 
-  type EuiTextProps = CommonProps &
+  type EuiTextAlignProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & {
-      size?: EuiTextSize;
-      color?: EuiTextColor;
+      textAlign?: ALIGNMENTS;
     };
 
-  export const EuiText: SFC<EuiTextProps>;
+  type EuiTextProps = EuiTextAlignProps & {
+      size?: TEXT_SIZES;
+      color?: COLORS;
+      grow?: boolean;
+    };
+
+  type EuiTextColorProps = CommonProps &
+    HTMLAttributes<HTMLDivElement> &
+    HTMLAttributes<HTMLSpanElement> & {
+    color?: COLORS;
+  };
+
+
+
+  export const EuiText: FunctionComponent<EuiTextProps>;
+  export const EuiTextAlign: FunctionComponent<EuiTextAlignProps>;
+  export const EuiTextColor: FunctionComponent<EuiTextColorProps>;
 }

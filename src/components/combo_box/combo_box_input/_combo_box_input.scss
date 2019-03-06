@@ -2,7 +2,8 @@
   max-width: 100%;
 
   // Ensure that no input states are visible on the hidden input
-  input[aria-hidden="true"] {
+  input[aria-hidden='true'] {
+    // sass-lint:disable-block no-important
     border: none !important;
     box-shadow: none !important;
     outline: none !important;

@@ -16,6 +16,7 @@ const titleSizeToClassNameMap = {
 export const TITLE_SIZES = Object.keys(titleSizeToClassNameMap);
 
 const textTransformToClassNameMap = {
+  none: '',
   uppercase: 'euiTitle--uppercase',
 };
 
@@ -47,4 +48,5 @@ EuiTitle.propTypes = {
 
 EuiTitle.defaultProps = {
   size: 'm',
+  textTransform: 'none',
 };

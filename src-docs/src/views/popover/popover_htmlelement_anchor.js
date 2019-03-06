@@ -3,7 +3,7 @@ import React, {
   Component,
 } from 'react';
 
-import { findDOMNode, render, unmountComponentAtNode } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 
 import {
   EuiWrappingPopover,
@@ -49,9 +49,9 @@ class PopoverApp extends Component {
 }
 
 export default class extends Component {
+
   componentDidMount() {
-    const thisNode = findDOMNode(this);
-    const thisAnchor = thisNode.querySelector('button');
+    const thisAnchor = document.querySelector('#popoverAnchorButton');
 
     // `container` can be created here or use an existing DOM element
     // the popover DOM is positioned independently of where the container exists
@@ -71,7 +71,7 @@ export default class extends Component {
   render() {
     return (
       <div dangerouslySetInnerHTML={{ __html: `
-<button class="euiButton euiButton--primary">
+<button id="popoverAnchorButton" class="euiButton euiButton--primary">
   <span class="euiButton__content">This is an HTML button</span>
 </button>
       ` }}

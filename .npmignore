@@ -6,7 +6,12 @@ wiki/
 generator-eui/
 test/
 src-docs/
+src-framer/
+packages/react-datepicker
 .nvmrc
+
+# typescript output
+types/
 
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)

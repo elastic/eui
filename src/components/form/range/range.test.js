@@ -23,6 +23,15 @@ describe('EuiRange', () => {
   });
 
   describe('props', () => {
+    test('disabled should render', () => {
+      const component = render(
+        <EuiRange disabled/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('fullWidth should render', () => {
       const component = render(
         <EuiRange fullWidth/>
@@ -59,9 +68,24 @@ describe('EuiRange', () => {
         .toMatchSnapshot();
     });
 
+    test('custom ticks should render', () => {
+      const component = render(
+        <EuiRange
+          showTicks
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 }
+          ]}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('range should render', () => {
       const component = render(
-        <EuiRange showRange />
+        <EuiRange showRange value="8" />
       );
 
       expect(component)
@@ -70,14 +94,19 @@ describe('EuiRange', () => {
 
     test('value should render', () => {
       const component = render(
-        <EuiRange showValue />
+        <EuiRange
+          value="200"
+          showValue
+          valuePrepend="before"
+          valueAppend="after"
+        />
       );
 
       expect(component)
         .toMatchSnapshot();
     });
 
-    test('extra input should render', () => {
+    test('input should render', () => {
       const component = render(
         <EuiRange
           name="name"
@@ -101,12 +130,12 @@ describe('EuiRange', () => {
           levels={[
             {
               min: 0,
-              max: 600,
+              max: 20,
               color: 'danger'
             },
             {
-              min: 600,
-              max: 2000,
+              min: 20,
+              max: 100,
               color: 'success'
             }
           ]}
@@ -116,5 +145,30 @@ describe('EuiRange', () => {
       expect(component)
         .toMatchSnapshot();
     });
+  });
+
+  test('allows value prop to accept a number', () => {
+    const component = render(
+      <EuiRange
+        value={8}
+        onChange={() => {}}
+        showValue
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
+  });
+
+  test('allows value prop to accept empty string', () => {
+    const component = render(
+      <EuiRange
+        value={''}
+        onChange={() => {}}
+      />
+    );
+
+    expect(component)
+      .toMatchSnapshot();
   });
 });

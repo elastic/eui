@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { EuiPopover } from './popover';
 import { EuiPortal } from '../portal';
@@ -14,14 +13,11 @@ export class EuiWrappingPopover extends Component {
     super(...args);
 
     this.portal = null;
-    this.contentParent = this.props.button.parentNode;
+    this.anchor = null;
   }
 
   componentDidMount() {
-    const thisDomNode = findDOMNode(this);
-    const placeholderAnchor = thisDomNode.querySelector('.euiWrappingPopover__anchor');
-
-    placeholderAnchor.insertAdjacentElement(
+    this.anchor.insertAdjacentElement(
       'beforebegin',
       this.props.button
     );
@@ -40,6 +36,10 @@ export class EuiWrappingPopover extends Component {
     this.portal = node;
   };
 
+  setAnchorRef = node => {
+    this.anchor = node;
+  }
+
   render() {
     const {
       button, // eslint-disable-line no-unused-vars
@@ -52,7 +52,7 @@ export class EuiWrappingPopover extends Component {
       >
         <EuiPopover
           {...rest}
-          button={<div className="euiWrappingPopover__anchor"/>}
+          button={<div ref={this.setAnchorRef} className="euiWrappingPopover__anchor"/>}
         />
       </EuiPortal>
     );

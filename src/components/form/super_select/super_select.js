@@ -9,6 +9,7 @@ import { EuiSuperSelectControl } from './super_select_control';
 import { EuiPopover } from '../../popover';
 import { EuiContextMenuItem } from '../../context_menu';
 import { keyCodes } from '../../../services';
+import { EuiI18n } from '../../i18n';
 
 const SHIFT_BACK = 'back';
 const SHIFT_FORWARD = 'forward';
@@ -22,6 +23,14 @@ export class EuiSuperSelect extends Component {
       isPopoverOpen: props.isOpen || false,
       menuWidth: null,
     };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   setItemNode = (node, index) => {
@@ -47,19 +56,22 @@ export class EuiSuperSelect extends Component {
         null
       );
 
-      // valueOfSelected is optional, and options may not exist yet
-      if (indexOfSelected != null) {
-        // wait for the CSS classes to be applied, removing visibility: hidden
-        requestAnimationFrame(() => {
-          this.focusItemAt(indexOfSelected);
-
-          this.setState({
-            menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
-          });
+      requestAnimationFrame(() => {
+        if (!this._isMounted) {
+          return;
+        }
+        this.setState({
+          menuWidth: this.popoverRef.getBoundingClientRect().width - 2, // account for border not inner shadow
         });
-      } else {
-        requestAnimationFrame(focusSelected);
-      }
+
+        if (this.props.valueOfSelected != null) {
+          if (indexOfSelected != null) {
+            this.focusItemAt(indexOfSelected);
+          } else {
+            focusSelected();
+          }
+        }
+      });
     };
 
     requestAnimationFrame(focusSelected);
@@ -150,8 +162,18 @@ export class EuiSuperSelect extends Component {
       hasDividers,
       itemClassName,
       itemLayoutAlign,
+      fullWidth,
+      popoverClassName,
       ...rest
     } = this.props;
+
+    const popoverClasses = classNames(
+      'euiSuperSelect',
+      {
+        'euiSuperSelect--fullWidth': fullWidth,
+      },
+      popoverClassName,
+    );
 
     const buttonClasses = classNames(
       {
@@ -176,6 +198,7 @@ export class EuiSuperSelect extends Component {
         onClick={this.state.isPopoverOpen ? this.closePopover : this.openPopover}
         onKeyDown={this.onSelectKeyDown}
         className={buttonClasses}
+        fullWidth={fullWidth}
         {...rest}
       />
     );
@@ -209,7 +232,8 @@ export class EuiSuperSelect extends Component {
 
     return (
       <EuiPopover
-        className="euiSuperSelect"
+        className={popoverClasses}
+        anchorClassName="euiSuperSelect__popoverAnchor"
         panelClassName="euiSuperSelect__popoverPanel"
         button={button}
         isOpen={isOpen || this.state.isPopoverOpen}
@@ -222,8 +246,12 @@ export class EuiSuperSelect extends Component {
       >
         <EuiScreenReaderOnly>
           <p role="alert">
-            You are in a form selector of {options.length} items and must select a single option.
-            Use the up and down keys to navigate or escape to close.
+            <EuiI18n
+              token="euiSuperSelect.screenReaderAnnouncement"
+              default="You are in a form selector of {optionsCount} items and must select a single option.
+              Use the up and down keys to navigate or escape to close."
+              values={{ optionsCount: options.length }}
+            />
           </p>
         </EuiScreenReaderOnly>
         <div role="listbox" aria-activedescendant={valueOfSelected}>
@@ -270,8 +298,23 @@ EuiSuperSelect.propTypes = {
    * Change `EuiContextMenuItem` layout position of icon
    */
   itemLayoutAlign: PropTypes.string,
+  /**
+   * Make it wide
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Make it short
+   */
+  compressed: PropTypes.bool,
+  /**
+   * Applied to the outermost wrapper (popover)
+   */
+  popoverClassName: PropTypes.string,
 };
 
 EuiSuperSelect.defaultProps = {
+  hasDividers: false,
+  fullWidth: false,
+  compressed: false,
   options: [],
 };

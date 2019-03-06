@@ -318,13 +318,36 @@ export const propsInfo = {
         items: {
           description: 'A list of field value filters that are part of this group',
           required: true,
-          type: { name: '#FieldValueToggleGroupItem[]' }
+          type: { name: '#FieldValueToggleGroupFilterItemType[]' }
         },
         available: {
           description: 'Called to check whether this filter is currently available. If not, it will not be shown',
           required: false,
           type: { name: '() => boolean' }
         }
+      }
+    }
+  },
+
+  FieldValueToggleGroupFilterItemType: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        value: {
+          description: 'Value of the filter item',
+          required: true,
+          type: { name: 'string | number | boolean' }
+        },
+        name: {
+          description: 'Name rendered on the filter button',
+          required: true,
+          type: { name: 'string' }
+        },
+        negatedName: {
+          description: 'Name rendered on the filter button when its value is negated in the query',
+          required: false,
+          type: { name: 'string' }
+        },
       }
     }
   },

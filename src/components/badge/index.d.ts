@@ -1,10 +1,12 @@
-/// <reference path="../icon/index.d.ts" />
+import { IconType } from '../icon'
+/// <reference path="../tool_tip/index.d.ts" />
 
-import { HTMLAttributes, MouseEventHandler, SFC } from 'react';
+import { HTMLAttributes, MouseEventHandler, FunctionComponent, ReactNode } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
 
-  type IconSide = 'left';
+  type IconSide = 'left' | 'right';
 
   export interface EuiBadgeProps {
     iconType?: IconType;
@@ -14,10 +16,22 @@ declare module '@elastic/eui' {
     onClick?: MouseEventHandler<HTMLButtonElement>;
     onClickAriaLabel?: string;
     color?: string;
-    closeButtonProps?: Object;
+    closeButtonProps?: object;
   }
 
-  export const EuiBadge: SFC<
+  export const EuiBadge: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLSpanElement> & HTMLAttributes<HTMLButtonElement> & EuiBadgeProps
+  >;
+
+  export interface EuiBetaBadgeProps {
+    iconType?: IconType;
+    label: ReactNode;
+    tooltipContent?: ReactNode;
+    tooltipPosition?: ToolTipPositions;
+    title?: string;
+  }
+
+  export const EuiBetaBadge: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps
   >;
 }

@@ -39,12 +39,15 @@
     &:nth-child(1) {
       background-color: $euiColorLightShade;
     }
+
     &:nth-child(2) {
       background-color: darken($euiColorLightShade, 4%);
     }
+
     &:nth-child(3) {
       background-color: darken($euiColorLightShade, 8%);
     }
+
     &:nth-child(4) {
       background-color: darken($euiColorLightShade, 12%);
     }
@@ -53,6 +56,7 @@
 
 .euiLoadingChart--medium {
   height: $euiSize;
+
   > div {
     width: $euiSizeXS / 2;
     margin-left: $euiSizeXS / 2;
@@ -62,6 +66,7 @@
 
 .euiLoadingChart--large {
   height: $euiSizeL;
+
   > div {
     width: $euiSizeXS;
     margin-left: $euiSizeXS / 2;
@@ -71,6 +76,7 @@
 
 .euiLoadingChart--xLarge {
   height: $euiSizeXL;
+
   > div {
     width: $euiSizeS;
     margin-left: $euiSizeXS;

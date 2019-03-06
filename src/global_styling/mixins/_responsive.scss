@@ -1,3 +1,9 @@
+// This file makes use of double quotes to format errors with nested single quotes
+// This file makes use of warn tags to properly announce deprecation
+// The indentation linting freaks out on comments above else statements and is disabled.
+
+// sass-lint:disable quotes, no-warn, indentation
+
 @import '../variables/responsive';
 
 // A sem-complicated mixin for breakpoints, that takes any number of
@@ -20,10 +26,8 @@
         @media only screen and (min-width: $minSize) {
           @content;
         }
-      }
-
       // If it's not the last item, add a max-width
-      @else {
+      } @else {
 
         // Set the max size to the value of the next size (-1px as to not overlap)
         $maxSize: map-get($euiBreakpoints, nth($euiBreakpointKeys, $index + 1)) - 1px;
@@ -33,65 +37,17 @@
           @media only screen and (max-width: $maxSize) {
             @content;
           }
-        }
-
         // Otherwise it should have a min and max width
-        @else {
+        } @else {
           @media only screen and (min-width: $minSize) and (max-width: $maxSize) {
             @content;
           }
         }
       }
-    }
-
     // If it's not a known breakpoint, throw a warning
-    @else {
-      @warn 'euiBreakpoint(): "#{$size}" is not a valid size in $euiBreakpoints.
-             The acceptable values are "#{$euiBreakpointKeys}"';
+    } @else {
+      @warn "euiBreakpoint(): '#{$size}' is not a valid size in $euiBreakpoints.
+        The acceptable values are '#{$euiBreakpointKeys}'";
     }
-  }
-}
-
-
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
-
-$breakpoints: ("xSmall": 575px, "small": 768px, "medium": 992px, "large": 1200px) !default;
-
-
-@mixin screenXSmall {
-  @warn "screenXSmall() has been deprecated. Please use euiBreakpoint('xs','s') instead.";
-  @media only screen and (max-width: map-get($breakpoints, "small")) {
-     @content;
-  }
-}
-
-@mixin screenSmall {
-  @warn "screenSmall() has been deprecated. Please use euiBreakpoint('m') instead.";
-  @media only screen and (min-width: map-get($breakpoints, "small") + 1) and (max-width: map-get($breakpoints, "medium") - 1) {
-     @content;
-  }
-}
-
-@mixin screenMedium {
-  @warn "screenMedium() has been deprecated. Please use euiBreakpoint('l') instead.";
-  @media only screen and (min-width: map-get($breakpoints, "medium")) and (max-width: map-get($breakpoints, "large") - 1) {
-    @content;
-  }
-}
-
-@mixin screenLarge {
-  @warn "screenLarge() has been deprecated. Please use euiBreakpoint('xl') instead.";
-  @media only screen and (min-width: map-get($breakpoints, "large")) {
-    @content;
-  }
-}
-
-@mixin screenSmallMediumLarge {
-  @warn "screenSmallMediumLarge() has been deprecated. Please use euiBreakpoint('m','l','xl') instead.";
-  @media only screen and (min-width: map-get($breakpoints, "small")) {
-    @content;
   }
 }

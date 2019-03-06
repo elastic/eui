@@ -13,6 +13,7 @@ exports[`EuiDatePicker is rendered 1`] = `
     >
       <EuiValidatableControl>
         <DatePicker
+          accessibleMode={true}
           allowSameDay={false}
           aria-label="aria-label"
           className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
@@ -23,15 +24,21 @@ exports[`EuiDatePicker is rendered 1`] = `
           disabledKeyboardNavigation={false}
           dropdownMode="scroll"
           monthsShown={1}
+          nextMonthButtonLabel="Next month"
           onBlur={[Function]}
           onChange={[Function]}
           onClickOutside={[Function]}
           onFocus={[Function]}
+          onInputClick={[Function]}
+          onInputError={[Function]}
           onKeyDown={[Function]}
           onMonthChange={[Function]}
           onSelect={[Function]}
           onYearChange={[Function]}
           preventOpenOnFocus={false}
+          previousMonthButtonLabel="Previous Month"
+          readOnly={false}
+          renderDayContents={[Function]}
           shouldCloseOnSelect={true}
           showMonthDropdown={true}
           showTimeSelect={false}

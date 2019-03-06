@@ -1,40 +1,46 @@
-@mixin euiRange__trackSize {
+// Prefixes are unique in this file
+// sass-lint:disable no-vendor-prefixes
+
+@mixin euiRangeTrackSize {
   height: $euiRangeTrackHeight;
   transition: all $euiAnimSpeedNormal ease-in;
   width: $euiRangeTrackWidth;
 }
 
-@mixin euiRange__track__perBrowser {
+@mixin euiRangeTrackPerBrowser {
   &::-webkit-slider-runnable-track { @content; }
   &::-moz-range-track { @content; }
   &::-ms-fill-lower { @content; }
   &::-ms-fill-upper { @content; }
 }
 
-@mixin euiRange__thumb__perBrowser {
+@mixin euiRangeThumbStyle {
+  cursor: pointer;
+  border-color: $euiRangeThumbBorderColor;
+  padding: 0;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbWidth;
+}
+
+@mixin euiRangeThumbPerBrowser {
   &::-webkit-slider-thumb { @content; }
   &::-moz-range-thumb { @content; }
   &::-ms-thumb { @content; }
 }
 
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
+// Deprecated mixins below. This was changed in Nov. 2018
 
-@mixin track {
-  @warn "track() has been deprecated. Please use euiRange__trackSize() instead.";
-  cursor: pointer;
-  height: $euiRangeTrackHeight;
-  transition: all $euiAnimSpeedNormal ease-in;
-  width: $euiRangeTrackWidth;
+@mixin euiRange__trackSize { // sass-lint:disable-line mixin-name-format
+  @include euiRangeTrackSize;
+  @warn '@mixin euiRange__trackSize is deprecated, please use euiRangeTrackSize instead';
 }
 
-@mixin thumb {
-  @warn "thumb() has been deprecated and styles moved to directly within the range selector.";
-  cursor: pointer;
-  @include euiCustomControl($type: 'round');
-  padding: 0;
-  height: $euiRangeThumbHeight;
-  width: $euiRangeThumbWidth;
+@mixin euiRange__track__perBrowser { // sass-lint:disable-line mixin-name-format
+  @include euiRangeTrackPerBrowser;
+  @warn '@mixin euiRange__track__perBrowser is deprecated, please use euiRangeTrackPerBrowser instead';
+}
+
+@mixin euiRange__thumb__perBrowser { // sass-lint:disable-line mixin-name-format
+  @include euiRangeThumbPerBrowser;
+  @warn '@mixin euiRange__thumb__perBrowser is deprecated, please use euiRangeThumbPerBrowser instead';
 }

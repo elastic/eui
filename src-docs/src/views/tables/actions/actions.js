@@ -203,12 +203,13 @@ export class Table extends Component {
           }
         }]
         : [{
-          name: 'Delete',
-          description: 'Delete this user',
-          icon: 'trash',
-          color: 'danger',
+          name: 'Elastic.co',
+          description: 'Go to elastic.co',
+          icon: 'editorLink',
+          color: 'primary',
           type: 'icon',
-          onClick: this.deleteUser
+          href: 'https://elastic.co',
+          target: '_blank',
         }];
     }
 
@@ -217,19 +218,22 @@ export class Table extends Component {
       name: 'First Name',
       truncateText: true,
       sortable: true,
-      hideForMobile: true,
+      mobileOptions: {
+        render: (item) => (
+          <span>{item.firstName} {item.lastName}</span>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        fullWidth: true,
+      }
     }, {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      hideForMobile: true,
-    }, {
-      field: 'firstName',
-      name: 'Full Name',
-      isMobileHeader: true,
-      render: (name, item) => (
-        <span>{item.firstName} {item.lastName}</span>
-      ),
+      mobileOptions: {
+        show: false,
+      }
     }, {
       field: 'github',
       name: 'Github',

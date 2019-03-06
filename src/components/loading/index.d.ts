@@ -1,6 +1,6 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
 
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
       size?: EuiLoadingSpinnerSize;
     };
 
-  export const EuiLoadingSpinner: SFC<EuiLoadingSpinnerProps>;
+  export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps>;
 
   /**
    * @see './loading_chart.js'
@@ -26,7 +26,7 @@ declare module '@elastic/eui' {
       size?: EuiLoadingChartSize;
     };
 
-  export const EuiLoadingChart: SFC<EuiLoadingChartProps>;
+  export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps>;
 
 
   /**
@@ -36,7 +36,7 @@ declare module '@elastic/eui' {
     size: 'm' | 'l' | 'xl';
   }
 
-  export const EuiLoadingKibana: SFC<
+  export const EuiLoadingKibana: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingKibanaProps
     >;
 }

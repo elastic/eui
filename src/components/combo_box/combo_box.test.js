@@ -6,27 +6,6 @@ import { comboBoxKeyCodes } from '../../services';
 
 import { EuiComboBox } from './combo_box';
 
-let hasComboBoxLostFocus = false;
-
-// This module requires a browser environment, so we'll fake what it returns.
-jest.mock('tabbable', () => () => {
-  const proxy = new Proxy([], {
-    get: (target, prop) => {
-      // If the consumer is trying to access an element in the array, e.g. [-2], pretend there's
-      // a focusable element there. When it's focused, we're going to assume this means that
-      // the combo box has lost focus.
-      if (prop.match(/-?\d+/)) {
-        return {
-          focus: () => { hasComboBoxLostFocus = true; },
-        };
-      } else {
-        return target[prop];
-      }
-    },
-  });
-  return proxy;
-});
-
 jest.mock(
   '../portal',
   () => ({
@@ -34,9 +13,10 @@ jest.mock(
   })
 );
 
-beforeEach(() => {
-  hasComboBoxLostFocus = false;
-});
+// Mock the htmlIdGenerator to generate predictable ids for snapshot tests
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => { return (suffix) => `htmlid_${suffix}`; },
+}));
 
 const options = [{
   label: 'Titan',
@@ -117,16 +97,30 @@ describe('props', () => {
     });
   });
 
-  test('singleSelection is rendered', () => {
-    const component = shallow(
-      <EuiComboBox
-        options={options}
-        selectedOptions={[options[2]]}
-        singleSelection={true}
-      />
-    );
+  describe('singleSelection', () => {
+    test('is rendered', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          singleSelection={true}
+        />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+    test('selects existing option when opened', () => {
+      const component = shallow(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          singleSelection={true}
+        />
+      );
+
+      component.setState({ isListOpen: true });
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('isDisabled is rendered', () => {
@@ -155,13 +149,54 @@ describe('props', () => {
 });
 
 describe('behavior', () => {
-  describe('tabbing', () => {
-    test(`off the search input closes the options list if the user isn't navigating the options`, () => {
+  describe('hitting "Enter"', () => {
+    test(`calls the onCreateOption callback when there is input`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
       const component = mount(
         <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
         />
+      );
+
+      component.setState({ searchValue: 'foo' });
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      sinon.assert.calledOnce(onCreateOptionHandler);
+      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
+    });
+
+    test(`doesn't the onCreateOption callback when there is no input`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
+        />
+      );
+
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+      searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.ENTER });
+      sinon.assert.notCalled(onCreateOptionHandler);
+    });
+  });
+
+  describe('tabbing', () => {
+    test(`off the search input closes the options list if the user isn't navigating the options`, () => {
+      const onKeyDownWrapper = jest.fn();
+      const component = mount(
+        <div onKeyDown={onKeyDownWrapper}>
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[2]]}
+          />
+        </div>
       );
 
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
@@ -173,16 +208,42 @@ describe('behavior', () => {
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
-      // Losing focus will close the options list.
-      expect(hasComboBoxLostFocus).toBe(true);
+      // If the TAB keydown propagated to the wrapper, then a browser DOM would shift the focus
+      expect(onKeyDownWrapper.mock.calls.length).toBe(1);
     });
 
-    test('off the search input does nothing if the user is navigating the options', () => {
+    test(`off the search input calls onCreateOption`, () => {
+      const onCreateOptionHandler = sinon.spy();
+
       const component = mount(
         <EuiComboBox
           options={options}
           selectedOptions={[options[2]]}
+          onCreateOption={onCreateOptionHandler}
         />
+      );
+
+      component.setState({ searchValue: 'foo' });
+      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+      searchInput.simulate('focus');
+
+      const searchInputNode = searchInput.getDOMNode();
+      // React doesn't support `focusout` so we have to manually trigger it
+      searchInputNode.dispatchEvent(new FocusEvent('focusout', { bubbles: true }));
+
+      sinon.assert.calledOnce(onCreateOptionHandler);
+      sinon.assert.calledWith(onCreateOptionHandler, 'foo');
+    });
+
+    test('off the search input does nothing if the user is navigating the options', () => {
+      const onKeyDownWrapper = jest.fn();
+      const component = mount(
+        <div onKeyDown={onKeyDownWrapper}>
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[2]]}
+          />
+        </div>
       );
 
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
@@ -197,8 +258,8 @@ describe('behavior', () => {
       // Tab backwards to take focus off the combo box.
       searchInput.simulate('keyDown', { keyCode: comboBoxKeyCodes.TAB, shiftKey: true });
 
-      // List remains open.
-      expect(hasComboBoxLostFocus).toBe(false);
+      // If the TAB keydown did not bubble to the wrapper, then the tab event was prevented
+      expect(onKeyDownWrapper.mock.calls.length).toBe(0);
     });
   });
 

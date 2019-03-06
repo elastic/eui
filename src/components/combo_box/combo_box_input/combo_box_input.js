@@ -16,8 +16,9 @@ export class EuiComboBoxInput extends Component {
     placeholder: PropTypes.string,
     selectedOptions: PropTypes.array,
     onRemoveOption: PropTypes.func,
+    onBlur: PropTypes.func,
     onClick: PropTypes.func,
-    onFocus: PropTypes.func,
+    onFocus: PropTypes.func.isRequired,
     onChange: PropTypes.func,
     value: PropTypes.string,
     searchValue: PropTypes.string,
@@ -27,6 +28,7 @@ export class EuiComboBoxInput extends Component {
     onClear: PropTypes.func,
     hasSelectedOptions: PropTypes.bool.isRequired,
     isListOpen: PropTypes.bool.isRequired,
+    noIcon: PropTypes.bool.isRequired,
     onOpenListClick: PropTypes.func.isRequired,
     onCloseListClick: PropTypes.func.isRequired,
     singleSelection: PropTypes.oneOfType([
@@ -38,6 +40,9 @@ export class EuiComboBoxInput extends Component {
     isDisabled: PropTypes.bool,
     toggleButtonRef: PropTypes.func,
     fullWidth: PropTypes.bool,
+    rootId: PropTypes.func.isRequired,
+    focusedOptionId: PropTypes.string,
+    compressed: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -63,6 +68,9 @@ export class EuiComboBoxInput extends Component {
   };
 
   onBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
     this.setState({
       hasFocus: false,
     });
@@ -99,6 +107,10 @@ export class EuiComboBoxInput extends Component {
       isDisabled,
       toggleButtonRef,
       fullWidth,
+      noIcon,
+      rootId,
+      focusedOptionId,
+      compressed,
     } = this.props;
 
     const pills = selectedOptions.map((option) => {
@@ -170,17 +182,21 @@ export class EuiComboBoxInput extends Component {
       };
     }
 
-    const icon = {
-      type: 'arrowDown',
-      side: 'right',
-      onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
-      ref: toggleButtonRef,
-      'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
-      disabled: isDisabled,
-      'data-test-subj': 'comboBoxToggleListButton',
-    };
+    let icon;
+    if (!noIcon) {
+      icon = {
+        type: 'arrowDown',
+        side: 'right',
+        onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
+        ref: toggleButtonRef,
+        'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
+        disabled: isDisabled,
+        'data-test-subj': 'comboBoxToggleListButton',
+      };
+    }
 
     const wrapClasses = classNames('euiComboBox__inputWrap', {
+      'euiComboBox__inputWrap--compressed': compressed,
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
       'euiComboBox__inputWrap-isClearable': onClear,
@@ -191,16 +207,20 @@ export class EuiComboBoxInput extends Component {
         icon={icon}
         {...clickProps}
         fullWidth={fullWidth}
+        compressed={compressed}
       >
         <div
           className={wrapClasses}
           onClick={onClick}
+          tabIndex="-1" // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
           data-test-subj="comboBoxInput"
         >
-          {pills}
+          {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
-            aria-hidden
+            role="textbox"
+            aria-controls={isListOpen ? rootId('listbox') : null}
+            aria-activedescendant={focusedOptionId}
             id={id}
             style={{ fontSize: 14 }}
             className="euiComboBox__input"

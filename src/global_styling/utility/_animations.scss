@@ -4,6 +4,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -13,10 +14,12 @@
   0% {
     opacity: 0;
   }
+
   1% {
     opacity: 0;
     transform: scale(0);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -27,6 +30,7 @@
   0% {
     box-shadow: 0 0 0 6px $euiFocusRingAnimStartColor;
   }
+
   100% {
     box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
   }
@@ -36,6 +40,7 @@
   0% {
     box-shadow: 0 0 0 10px $euiFocusRingAnimStartColor;
   }
+
   100% {
     box-shadow: 0 0 0 $euiFocusRingSizeLarge $euiFocusRingColor;
   }

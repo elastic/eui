@@ -1,22 +1,22 @@
-@mixin euiFormControlLayout__padding($numOfIcons, $side: "right") {
+@mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right') {
   $iconPaddingStart: $euiSizeXXL;
 
   @if variable-exists(numOfIcons) == false {
-    @error "$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayout__padding().";
+    @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
   } @else if $numOfIcons == 1 {
     padding-#{$side}: $iconPaddingStart;
   } @else if $numOfIcons == 2 {
     padding-#{$side}: $iconPaddingStart + $euiSize;
   } @else if $numOfIcons == 3 {
-    padding-#{$side}: $iconPaddingStart + ($euiSize*2) + $euiSizeS;
+    padding-#{$side}: $iconPaddingStart + ($euiSize * 2) + $euiSizeS;
   }
 }
 
 @mixin euiFormControlLayoutClearIcon($iconClass) {
   $clearSize: $euiSize;
-  pointer-events: all;
-
   @include size($clearSize);
+
+  pointer-events: all;
   background-color: lightOrDarkTheme($euiColorMediumShade, $euiColorDarkShade);
   border-radius: $clearSize;
   line-height: 0; // ensures the icon stays vertically centered
@@ -29,6 +29,13 @@
     @include size($euiSizeS);
     fill: $euiColorEmptyShade;
     stroke: $euiColorEmptyShade;
-    stroke-width: 3px; // increase thickness of icon at such a small size
+    stroke-width: 2px; // increase thickness of icon at such a small size
   }
+}
+
+// Deprecated mixins below. This was changed in Nov. 2018
+
+@mixin euiFormControlLayout__padding($numOfIcons, $side: 'right') { // sass-lint:disable-line mixin-name-format
+  @include euiFormControlLayoutPadding($numOfIcons, $side: 'right');
+  @warn '@mixin euiFormControlLayout__padding is deprecated, please use euiFormControlLayoutPadding instead';
 }

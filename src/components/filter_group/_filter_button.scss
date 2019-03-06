@@ -16,39 +16,60 @@
   }
 
   &:disabled {
-    font-style: italic;
-  }
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
 
-  &.euiFilterButton--grow {
-    flex-grow: 1;
-    width: 100%;
-    text-align: left;
-
-    // Force content to space out icon
-    .euiButtonEmpty__content {
-      justify-content: space-between;
+    .euiFilterButton__notification {
+      opacity: .5;
     }
   }
 
-  &.euiFilterButton-hasActiveFilters {
-    font-weight: $euiFontWeightMedium;
-  }
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    // Remove underline from whole button so notifications don't get the underline
+    text-decoration: none;
 
-  .euiFilterButton__notification {
-    margin-left: $euiSizeS;
-    vertical-align: text-bottom;
+    .euiFilterButton__textShift {
+      // Add put it only on the actual text part
+      text-decoration: underline;
+    }
   }
 }
 
-.euiFilterButton__textShift {
-  vertical-align: middle;
+.euiFilterButton--grow {
+  flex-grow: 1;
+  width: 100%;
+  text-align: left;
 
-  &::after {
-    display: block;
-    content: attr(data-text);
-    font-weight: $euiFontWeightBold;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
+  // Force content to space out icon
+  .euiButtonEmpty__content {
+    justify-content: space-between;
   }
+}
+
+.euiFilterButton-hasActiveFilters {
+  font-weight: $euiFontWeightBold;
+}
+
+.euiFilterButton__notification {
+  margin-left: $euiSizeS;
+  vertical-align: text-bottom;
+}
+
+.euiFilterButton--noDivider + .euiFilterButton {
+  margin-left: $euiSizeXS * -1;
+}
+
+.euiFilterButton-isSelected {
+  background-color: $euiColorLightestShade;
+}
+
+.euiFilterButton__text-hasNotification {
+  display: flex;
+  align-items: center;
+}
+
+.euiFilterButton__textShift {
+  @include euiTextShift;
+  vertical-align: middle;
 }

@@ -54,25 +54,29 @@ export class MutationObserver extends Component {
           observerOptions={{ subtree: true, attributes: true, childList: true }}
           onMutation={this.onMutation}
         >
+          {mutationRef => (
+            <div ref={mutationRef}>
 
-          <EuiButton color={this.state.buttonColor} fill={true} onClick={this.toggleButtonColor}>
-            Toggle button color
-          </EuiButton>
+              <EuiButton color={this.state.buttonColor} fill={true} onClick={this.toggleButtonColor}>
+                Toggle button color
+              </EuiButton>
 
-          <EuiSpacer/>
+              <EuiSpacer/>
 
-          <EuiFlexGroup>
-            <EuiFlexItem grow={false}>
-              <EuiPanel grow={false}>
-                <ul>
-                  {this.state.items.map(item => <li key={item}>{item}</li>)}
-                </ul>
-                <EuiSpacer size="s"/>
-                <EuiButtonEmpty onClick={this.addItem}>add item</EuiButtonEmpty>
-              </EuiPanel>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+              <EuiFlexGroup>
+                <EuiFlexItem grow={false}>
+                  <EuiPanel grow={false}>
+                    <ul>
+                      {this.state.items.map(item => <li key={item}>{item}</li>)}
+                    </ul>
+                    <EuiSpacer size="s"/>
+                    <EuiButtonEmpty onClick={this.addItem}>add item</EuiButtonEmpty>
+                  </EuiPanel>
+                </EuiFlexItem>
+              </EuiFlexGroup>
 
+            </div>
+          )}
         </EuiMutationObserver>
       </div>
     );

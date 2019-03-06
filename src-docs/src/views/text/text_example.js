@@ -69,7 +69,7 @@ export const TextExample = {
     text: (
       <p>
         Using the <EuiCode>size</EuiCode> prop on <EuiCode>EuiText</EuiCode> you
-        can get smaller sizes of text then the default.
+        can get smaller sizes of text than the default.
       </p>
     ),
     demo: <TextSmall />,
@@ -87,7 +87,7 @@ export const TextExample = {
         There are two ways to color text. Either individually by
         applying <EuiCode>EuiTextColor</EuiCode> on individual text objects, or
         by passing the <EuiCode>color</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
-        a blanket approach across the entirely of your text.
+        a blanket approach across the entirety of your text.
       </p>
     ),
     props: { EuiTextColor },
@@ -106,7 +106,7 @@ export const TextExample = {
         There are two ways to align text. Either individually by
         applying <EuiCode>EuiTextAlign</EuiCode> on individual text objects, or
         by passing the <EuiCode>textAlign</EuiCode> prop directly on <EuiCode>EuiText</EuiCode> for
-        a blanket approach across the entirely of your text.
+        a blanket approach across the entirety of your text.
       </p>
     ),
     props: { EuiTextAlign },

@@ -1,3 +1,6 @@
+// This file uses uncommon vender prefixes not covered by our compiliers
+// sass-lint:disable no-vendor-prefixes
+
 .euiProgress {
   position: relative;
   overflow: hidden;
@@ -48,7 +51,7 @@ $euiProgressSizes: (
 .euiProgress--indeterminate {
   &:before {
     position: absolute;
-    content: "";
+    content: '';
     width: 100%;
     top: 0;
     bottom: 0;
@@ -61,6 +64,7 @@ $euiProgressSizes: (
 // Progress bars can be set to fixed or absolute.
 .euiProgress--fixed {
   position: fixed;
+  z-index: $euiZHeader + 1;
 }
 
 .euiProgress--absolute {
@@ -101,6 +105,7 @@ $euiProgressColors: (
       &::-webkit-progress-value {
         background-color: $color;
       }
+
       &::-moz-progress-bar {
         background-color: $color;
       }
@@ -118,6 +123,7 @@ $euiProgressColors: (
   0% {
     transform: scaleX(1) translateX(-100%);
   }
+
   100% {
     transform: scaleX(1) translateX(100%);
   }

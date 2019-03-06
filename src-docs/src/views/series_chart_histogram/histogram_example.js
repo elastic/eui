@@ -5,6 +5,7 @@ import StackedVerticalRectSeriesExample from './stacked_vertical_rect_series';
 import HorizontalRectSeriesExample from './horizontal_rect_series';
 import StackedHorizontalRectSeriesExample from './stacked_horizontal_rect_series';
 import TimeHistogramSeriesExample from './time_histogram_series';
+import { FormatCrosshairTimesExample } from './format_crosshair_times';
 
 import {
   EuiBadge,
@@ -20,13 +21,12 @@ export const XYChartHistogramExample = {
   intro: (
     <Fragment>
       <EuiCallOut
-        title="Beta Component"
-        color="warning"
+        title="Set for deprecation"
+        color="danger"
       >
         <p>
-          This component is still in Beta. We consider it to be reasonably stable, and welcome you to implement it,
-          but please be aware that breaking changes can come at any time with this component as such changes on beta
-          components does not necessitate a major version bump.
+          This component will be replaced in the near future and managed outside of EUI. We do not recommend using it at this time
+          and it will be removed by June 2019.
         </p>
       </EuiCallOut>
 
@@ -176,6 +176,27 @@ export const XYChartHistogramExample = {
         },
       ],
       demo: <StackedHorizontalRectSeriesExample />,
+    },
+    {
+      title: 'Custom crosshair time format',
+      text: (
+        <div>
+          <p>
+            Specify a custom formatting string to change the locality or format of the time string on the x crosshair.
+          </p>
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: require('!!raw-loader!./format_crosshair_times'),
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: 'This component can only be used from React',
+        },
+      ],
+      demo: <FormatCrosshairTimesExample />
     },
     {
       title: 'Time Series Histogram version',

@@ -21,17 +21,19 @@
     z-index: 0;
     left: 0;
     top: 0;
-  	width: 100%;
-  	height: 100%;
-  	opacity: 0;
-  	overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
 
     &:hover {
       cursor: pointer;
     }
+
     &:hover:disabled {
       cursor: not-allowed;
     }
+
     &:disabled ~ .euiFilePicker__prompt {
       color: $euiColorMediumShade;
     }
@@ -43,6 +45,7 @@
 
     @at-root {
       .euiFilePicker--compressed#{&} {
+        // sass-lint:disable-block no-important
         position: absolute;
         top: $euiSizeS;
         left: $euiSizeM;
@@ -67,17 +70,19 @@
     padding: $euiSizeL;
     text-align: center;
 
+    // sass-lint:disable-block indentation
     transition:
       box-shadow $euiAnimSpeedFast ease-in,
       background-color $euiAnimSpeedFast ease-in,
       background-image $euiAnimSpeedFast ease-in,
       background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
 
+    // sass-lint:disable-block mixins-before-declarations
     @at-root {
       .euiFilePicker--compressed#{&} {
         height: $euiFormControlCompressedHeight;
         padding: $euiFormControlCompressedPadding;
-        @include euiFormControlWithIcon(); /* 3 */
+        @include euiFormControlWithIcon; /* 3 */
         text-align: left;
       }
     }
@@ -105,11 +110,12 @@
   .euiFilePicker__clearButton {
     pointer-events: auto; /* 1 */
 
+    // sass-lint:disable-block mixins-before-declarations
     @at-root {
       .euiFilePicker--compressed#{&} {
         @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
         position: absolute;
-        top: $euiSizeM/2;
+        top: $euiSizeM / 2;
         right: $euiSizeM;
       }
     }
@@ -140,7 +146,7 @@
   }
 
   &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
-    @include euiFormControlWithIcon(false, "right"); /* 3 */
+    @include euiFormControlWithIcon(false, 'right'); /* 3 */
   }
 
   // When the filepicker has files in it, but not in compressed mode

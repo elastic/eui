@@ -37,7 +37,7 @@ export const ModalExample = {
     }],
     text: (
       <p>
-        Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX and create a
+        Use a <EuiCode>EuiModal</EuiCode> to temporarily escape the current UX and create
         another UX within it.
       </p>
     ),
@@ -56,7 +56,7 @@ export const ModalExample = {
       <p>
         Use the <EuiCode>EuiConfirmModal</EuiCode> to ask the user to confirm a decision.
         The default type is a positive or neutral confirmation. To change the main button color
-        change the the <EuiCode>buttonColor</EuiCode> property to any of the button color options.
+        change the <EuiCode>buttonColor</EuiCode> property to any of the button color options.
       </p>
     ),
     props: { EuiConfirmModal },

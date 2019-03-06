@@ -1,7 +1,7 @@
-/// <reference path="../common.d.ts" />
-/// <reference path="../icon/index.d.ts" />
+import { CommonProps } from '../common';
+import { IconType } from '../icon';
 
-import { Component, SFC, HTMLAttributes, ReactChild } from 'react';
+import { Component, FunctionComponent, HTMLAttributes, ReactChild } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -16,7 +16,7 @@ declare module '@elastic/eui' {
     onClose?: () => void,
   }
 
-  export const EuiToast: SFC<EuiToastProps>;
+  export const EuiToast: FunctionComponent<EuiToastProps>;
 
 
   /**
@@ -28,7 +28,7 @@ declare module '@elastic/eui' {
     isDismissed?: boolean;
   }
 
-  export const EuiGlobalToastListItem: SFC<
+  export const EuiGlobalToastListItem: FunctionComponent<
     EuiGlobalToastListItemProps
   >
 

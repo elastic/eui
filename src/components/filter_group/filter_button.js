@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -22,11 +22,13 @@ export const EuiFilterButton = ({
   color,
   hasActiveFilters,
   numFilters,
+  numActiveFilters,
   isDisabled,
   isSelected,
   type,
   grow,
   noDivider,
+  textProps,
   ...rest
 }) => {
 
@@ -41,13 +43,33 @@ export const EuiFilterButton = ({
     className,
   );
 
+  // != instead of !== to allow for null and undefined
+  const numFiltersDefined = numFilters != null;
+  const buttonTextClassNames = classNames(
+    { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
+    textProps && textProps.className,
+  );
+
+  let dataText;
+  if (typeof children === 'string') {
+    dataText = children;
+  }
+
   const buttonContents = (
-    <span className="euiFilterButton__textShift" data-text={children}>
-      {children}
-      {numFilters &&
-        <EuiNotificationBadge className="euiFilterButton__notification">{numFilters}</EuiNotificationBadge>
+    <Fragment>
+      <span className="euiFilterButton__textShift" data-text={dataText}>
+        {children}
+      </span>
+      {numFiltersDefined &&
+        <EuiNotificationBadge
+          className="euiFilterButton__notification"
+          size="m"
+          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+        >
+          {numActiveFilters || numFilters}
+        </EuiNotificationBadge>
       }
-    </span>
+    </Fragment>
   );
 
   return (
@@ -58,6 +80,7 @@ export const EuiFilterButton = ({
       iconSide={iconSide}
       iconType={iconType}
       type={type}
+      textProps={{ ...textProps, className: buttonTextClassNames }}
       {...rest}
     >
       {buttonContents}
@@ -80,9 +103,15 @@ EuiFilterButton.propTypes = {
    */
   hasActiveFilters: PropTypes.bool,
   /**
-   * Adds a notification with number
+   * Pass the total number of filters available and it will
+   * add a subdued notification badge showing the number
    */
   numFilters: PropTypes.number,
+  /**
+   * Pass the number of selected filters and it will
+   * add a bright notification badge showing the number
+   */
+  numActiveFilters: PropTypes.number,
   /**
    * Applies a visual state to the button useful when using with a popover.
    */

@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiIcon,
+  EuiToken,
+  EuiLink,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -23,6 +25,9 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
+
+import Tokens from './tokens';
+const tokensSource = require('!!raw-loader!./tokens');
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
@@ -59,8 +64,8 @@ export const IconExample = {
       <div>
         <p>
           <EuiCode>EuiIcon</EuiCode> can build out an icon from our SVG
-          icon library. Icons are resized and recolored (through a
-          CSS <EuiCode>Fill</EuiCode>) decleration.
+          icon library. Icons are resized and recolored through a
+          CSS <EuiCode>Fill</EuiCode> declaration.
         </p>
         <p>
           New icons should be placed in
@@ -96,6 +101,37 @@ export const IconExample = {
     ),
     demo: <Apps />,
   }, {
+    title: 'Tokens',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: tokensSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: iconsHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Tokens are most commonly used in search to help visually classify results.
+          The tokens included in EUI can be used to identify a number of code-based
+          search results.
+        </p>
+
+        <p>
+          An <EuiCode>EuiToken</EuiCode> accepts any valid <EuiCode>EuiIcon</EuiCode> as its
+          <EuiCode>iconType</EuiCode> property. However, icons designed specifically for
+          use in the <EuiCode>EuiToken</EuiCode> are prefixed with &quot;token&quot; in their name.
+        </p>
+
+        <p>
+          Multiple variants are available including: <EuiCode>shape</EuiCode>, <EuiCode>size</EuiCode>,
+          <EuiCode>color</EuiCode>, <EuiCode>hideBorder</EuiCode>, and <EuiCode>fill</EuiCode>.
+        </p>
+      </div>
+    ),
+    props: { EuiToken },
+    demo: <Tokens />,
+  }, {
     title: 'Machine learning icons',
     source: [{
       type: GuideSectionTypes.JS,
@@ -122,7 +158,8 @@ export const IconExample = {
     }],
     text: (
       <p>
-        Product logos follow similar rules as app logos.
+        Product logos follow similar rules as app logos. Note the use of <EuiCode>.euiIcon__fillNegative</EuiCode> on
+        portions of the SVGs to handle flipping colors for dark mode.
       </p>
     ),
     demo: <Logos />,
@@ -135,11 +172,6 @@ export const IconExample = {
       type: GuideSectionTypes.HTML,
       code: iconsHtml,
     }],
-    text: (
-      <p>
-        Product logos follow similar rules as app logos.
-      </p>
-    ),
     demo: <LogosThird />,
   }, {
     title: 'Sizes',
@@ -153,7 +185,7 @@ export const IconExample = {
     text: (
       <p>
         Use the <EuiCode>size</EuiCode> prop to automatically size your icons.
-        Medium is the default, and will output a <EuiCode>16x16</EuiCode> icons.
+        Medium is the default, and will output a <EuiCode>16x16</EuiCode> icon.
       </p>
     ),
     demo: <IconSizes />,
@@ -168,10 +200,13 @@ export const IconExample = {
     }],
     text: (
       <p>
-        Use the <EuiCode>color</EuiCode> prop to assign a color for your icons. It
-        can accept named colors from our pallete or a three or six color hex code.
-        The default behavior is to inherit the text color as the SVG
-        color <EuiCode>fill</EuiCode> property via <EuiCode>currentColor</EuiCode> in CSS.
+        The default behavior of icons is to inherit from the text color. You can
+        use the <EuiCode>color</EuiCode> prop to assign a custom color which
+        accepts a named color from our palette or a valid&nbsp;
+        <EuiLink target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">CSS color data type</EuiLink>
+        &nbsp;which will be passed down through the inline-style <EuiCode>fill</EuiCode>&nbsp;
+        property. <strong>We recommend relying on the EUI named color palette</strong>&nbsp;
+        unless the custom color is initiated by the user (like as a graph color).
       </p>
     ),
     demo: <IconColors />,
@@ -186,7 +221,7 @@ export const IconExample = {
     }],
     text: (
       <p>
-        You can title the SVG by passing the `aria-label` prop to <EuiCode>EuiCode</EuiCode>. No value is set by default.
+        You can title the SVG by passing the <EuiCode>aria-label</EuiCode> prop to <EuiCode>EuiCode</EuiCode>. No value is set by default.
       </p>
     ),
     demo: <Accessibility />,

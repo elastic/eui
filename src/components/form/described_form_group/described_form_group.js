@@ -101,7 +101,7 @@ EuiDescribedFormGroup.propTypes = {
   /**
    * One or more `EuiFormRow`s
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   /**
    * Passed to `EuiFlexGroup`

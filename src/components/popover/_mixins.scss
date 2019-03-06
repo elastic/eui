@@ -1,10 +1,22 @@
 @mixin euiPopoverTitle {
-  @include euiTitle("xs");
-  background-color: $euiColorLightestShade;
+  @include euiTitle('xxs');
   padding: $euiSizeM;
+  text-transform: uppercase;
+  border-bottom: $euiBorderThin;
 
   // Subtract 1px from the border radius since it's inside another container that also has the border radius
   // -- makes for better rounded corners
   border-top-left-radius: $euiBorderRadius - 1px;
   border-top-right-radius: $euiBorderRadius - 1px;
+
+}
+@mixin euiPopoverFooter {
+  @include euiFontSizeS;
+  padding: $euiSizeM;
+  border-top: $euiBorderThin;
+
+  // Subtract 1px from the border radius since it's inside another container that also has the border radius
+  // -- makes for better rounded corners
+  border-bottom-left-radius: $euiBorderRadius - 1px;
+  border-bottom-right-radius: $euiBorderRadius - 1px;
 }

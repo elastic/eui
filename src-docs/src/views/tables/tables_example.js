@@ -30,7 +30,7 @@ export const TableExample = {
       <EuiCallOut title="EUI provides opinionated and non-opinionated ways to build tables">
         <p>
           Tables can get complicated very fast. If you&apos;re just looking for a basic table
-          with pagination, sorting, checkbox selection and actions then you should
+          with pagination, sorting, checkbox selection, and actions then you should
           use <EuiCode>EuiBasicTable</EuiCode>. It&apos;s a <strong>high level component</strong> that removes
           the need to worry about constructing individual components together. You simply arrange your
           data in the format it asks for.

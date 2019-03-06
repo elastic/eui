@@ -1,8 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps } from '../common';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
-  import { SFC } from 'react';
-
   /**
    * title type defs
    *
@@ -18,5 +17,5 @@ declare module '@elastic/eui' {
     textTransform?: EuiTitleTextTransform;
   };
 
-  export const EuiTitle: SFC<EuiTitleProps>;
+  export const EuiTitle: FunctionComponent<EuiTitleProps>;
 }

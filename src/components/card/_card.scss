@@ -1,9 +1,10 @@
-@import "../panel/variables";
-@import "../panel/mixins";
+@import '../panel/variables';
+@import '../panel/mixins';
 @import '../badge/beta_badge/mixins';
 
-$euiCardSpacing: map-get($euiPanelPaddingModifiers, "paddingMedium");
+$euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
 $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
+$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
 
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
@@ -22,7 +23,8 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   padding: $euiCardSpacing;
   min-height: 1px; /* 2 */
 
-  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing);
+  // This creates a bunch of sub selectors for the beta badge
+  @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
   .euiCard__top,
   .euiCard__content,
@@ -59,6 +61,11 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
       }
     }
   }
+
+  &.euiCard--hasBottomGraphic {
+    position: relative;
+    padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
+  }
 }
 
 .euiCard__top {
@@ -67,12 +74,12 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   min-height: 1px; /* 2 */
 
   .euiCard__icon {
-    margin-top: $euiCardSpacing/2;
+    margin-top: $euiCardSpacing / 2;
   }
 
   .euiCard__image {
     position: relative;
-    width: calc(100% + #{$euiCardSpacing}*2);
+    width: calc(100% + (#{$euiCardSpacing} * 2));
     left: $euiCardSpacing * -1;
     top: $euiCardSpacing * -1;
     margin-bottom: $euiCardSpacing * -1; // ensure the parent is only as tall as the image
@@ -87,7 +94,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
       top: 50%;
       left: 50%;
       transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
-      transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1}));
+      transform: translate(-50%, calc(-50% + #{$euiCardSpacing * -1})); // sass-lint:disable-line no-duplicate-properties
     }
   }
 }
@@ -101,14 +108,15 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
   flex-grow: 1; /* 1 */
 
   .euiCard__title {
-    display: block;
     @include euiTitle($euiCardTitleSize);
+
+    display: block;
     font-weight: $euiFontWeightMedium;
   }
 
   .euiCard__description {
     color: $euiTextColor; // Ensures regular text color if wrapped in an anchor tag
-    margin-top: $euiCardSpacing/2;
+    margin-top: $euiCardSpacing / 2;
   }
 }
 
@@ -128,6 +136,7 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
 // otherwise the button tag won't properly align contents to top
 .euiCard.euiCard--horizontal.euiCard--hasIcon {
   flex-direction: row;
+  // sass-lint:disable-block no-important
   align-items: flex-start !important; /* 3 */
 
   .euiCard__top,
@@ -140,4 +149,16 @@ $euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
     margin-top: 0;
     margin-right: $euiSize;
   }
+}
+
+// Optional decorative graphics
+.euiCard__graphic {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: $euiCardGraphicHeight;
+  width: 100%;
+  overflow: hidden;
+  border-bottom-left-radius: $euiBorderRadius;
+  border-bottom-right-radius: $euiBorderRadius;
 }

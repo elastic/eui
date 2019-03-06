@@ -11,7 +11,7 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-// Should be a component because the datepicker does some ref stuff behind the scenes
+// Should be a component because the date picker does some ref stuff behind the scenes
 // eslint-disable-next-line react/prefer-stateless-function
 class ExampleCustomInput extends React.Component {
 

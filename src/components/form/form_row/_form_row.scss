@@ -11,27 +11,33 @@
   + * {
     margin-top: $euiSize;
   }
+}
 
-  &.euiFormRow--fullWidth {
-    max-width: 100%;
+.euiFormRow--fullWidth {
+  max-width: 100%;
+}
+
+.euiFormRow--hasEmptyLabelSpace {
+  margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
+  // the following ensure that contents that aren't inheritly the same height
+  // as inputs will align to the vertical center
+  min-height: $euiSizeXXL;
+  padding-bottom: 0;
+  justify-content: center;
+}
+
+.euiFormRow--compressed {
+  + * {
+    margin-top: $euiSizeS;
   }
 
-  &.euiFormRow--hasEmptyLabelSpace {
-    margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
-    // the following ensure that contents that aren't inheritly the same height
-    // as inputs will align to the vertical center
-    min-height: $euiSizeXXL;
-    padding-bottom: 0;
-    justify-content: center;
+  .euiFormRow__text {
+    padding-top: $euiSizeM / 2;
   }
+}
 
-  &.euiFormRow--compressed {
-    + * {
-      margin-top: $euiSizeS;
-    }
-
-    .euiFormRow__text {
-      padding-top: $euiSizeM/2;
-    }
-  }
+.euiFormRow__displayOnlyWrapper {
+  min-height: $euiFormControlHeight;
+  display: flex;
+  align-items: center;
 }

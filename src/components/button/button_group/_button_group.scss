@@ -14,15 +14,16 @@
   z-index: 1;
 
   // DO NOT Transform
+  // sass-lint:disable-block no-important
   transition: none !important;
   transform: none !important;
   animation: none !important;
 
-  &[class*="checked"] {
+  &[class*='checked'] {
     z-index: 2; // Raise it above the simply bordered versions for crisper lines
 
     // add a slight divider if two selected items are next to each other
-    + [class*="checked"] {
+    + [class*='checked'] {
       box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
     }
   }
@@ -32,7 +33,7 @@
     width: 100%;
 
     // always the same border color unless it's selected
-    &:not([class*="fill"]) {
+    &:not([class*='fill']) {
       border-color: $euiButtonToggleBorderColor;
     }
 
@@ -41,7 +42,7 @@
       @include euiSlightShadow;
     }
 
-    @include euiButtonToggleStates() {
+    @include euiButtonToggleStates {
       @include euiSlightShadowHover;
     }
   }
@@ -60,7 +61,7 @@
     border-bottom-right-radius: $euiBorderRadius;
   }
 
-  @include euiBreakpoint('xs','s'){
+  @include euiBreakpoint('xs', 's') {
     flex: 1;
     min-width: 0;
 

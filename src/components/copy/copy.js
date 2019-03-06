@@ -68,8 +68,8 @@ EuiCopy.propTypes = {
   afterMessage: PropTypes.string.isRequired,
 
   /**
-   * Function that must return a Component. First argument is 'copy' function.
-   * Use your own logic to create the component that user's interactact with when triggering copy.
+   * Function that must return a component. First argument is 'copy' function.
+   * Use your own logic to create the component that users interact with when triggering copy.
    */
   children: PropTypes.func.isRequired,
 };

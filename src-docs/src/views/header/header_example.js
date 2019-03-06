@@ -96,7 +96,7 @@ export const HeaderExample = {
           <p>
             This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
             global query and filter bars. The filter bar has been broken down into multiple components. There
-            are still bugs and not all the logical is well-formed.
+            are still bugs and not all the logic is well-formed.
           </p>
         </EuiCallOut>
       </div>

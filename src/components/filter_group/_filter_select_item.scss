@@ -9,7 +9,8 @@
   border-bottom: $euiBorderThin;
   border-color: darken($euiColorLightestShade, 2%);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 
@@ -21,7 +22,8 @@
     color: $euiButtonColorDisabled;
     cursor: default;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }

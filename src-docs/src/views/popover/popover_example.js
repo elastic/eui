@@ -10,6 +10,7 @@ import {
   EuiCode,
   EuiPopover,
   EuiPopoverTitle,
+  EuiPopoverFooter,
 } from '../../../../src/components';
 
 import Popover from './popover';
@@ -94,10 +95,9 @@ export const PopoverExample = {
       <div>
         <p>
           The alignment and arrow on your popover can be set with
-          the <EuiCode>anchorPostion</EuiCode> prop. These positions will not
+          the <EuiCode>anchorPosition</EuiCode> prop. These positions will not
           update based upon screen real estate and will stick to the positions
-          you declare. Because of this,
-          <strong>be careful when using left or right positioning</strong>.
+          you declare. Because of this, <strong>be careful when using left or right positioning</strong>.
         </p>
         <p><strong>Some tips:</strong></p>
         <ul>
@@ -114,7 +114,7 @@ export const PopoverExample = {
     ),
     demo: <PopoverAnchorPosition />,
   }, {
-    title: 'Popover with title',
+    title: 'Popover with title and/or footer',
     source: [{
       type: GuideSectionTypes.JS,
       code: popoverWithTitleSource,
@@ -126,14 +126,24 @@ export const PopoverExample = {
       <div>
         <p>
           Popovers often have need for titling. This can be applied through
-          a prop or used separately as its own component
-          <EuiCode>EuiPopoverTitle</EuiCode> nested somwhere in the child
+          a prop or used separately as its own component{' '}
+          <EuiCode>EuiPopoverTitle</EuiCode> nested somewhere in the child
           prop.
+        </p>
+        <p>
+          You can also add a similiarly styled{' '}
+          <EuiCode>EuiPopoverFooter</EuiCode> for smaller captions or
+          call to action buttons.
         </p>
       </div>
     ),
-    props: { EuiPopoverTitle },
+    props: { EuiPopoverTitle, EuiPopoverFooter },
     demo: <PopoverWithTitle />,
+    snippet: `<EuiPopover>
+  <EuiPopoverTitle></EuiPopoverTitle>
+  <div></div>
+  <EuiPopoverFooter></EuiPopoverFooter>
+</EuiPopover>`,
   }, {
     title: 'Panel class name and padding size',
     source: [{
@@ -147,7 +157,7 @@ export const PopoverExample = {
       <p>
         Use the <EuiCode>panelPaddingSize</EuiCode> prop to adjust the padding
         on the panel within the panel. Use the <EuiCode>panelClassName</EuiCode> prop
-        to pass a custom class to the panel. inside a popover.
+        to pass a custom class to the panel inside a popover.
       </p>
     ),
     demo: <PopoverPanelClassName />,

@@ -1,6 +1,6 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps } from '../../common';
 
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -21,5 +21,5 @@ declare module '@elastic/eui' {
     pageCount?: number;
   }
 
-  export const EuiTablePagination: SFC<EuiTablePaginationProps>;
+  export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps>;
 }

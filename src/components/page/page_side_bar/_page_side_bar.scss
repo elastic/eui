@@ -7,7 +7,7 @@
   margin-right: $euiSizeL;
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiPageSideBar {
     width: 100%;
   }

@@ -38,7 +38,7 @@ export const PanelExample = {
     text: (
       <p>
         <EuiCode>Panel</EuiCode> is a simple wrapper component to add
-        depth to a contained layout. It it commonly used as a base for
+        depth to a contained layout. It is commonly used as a base for
         other larger components like <Link to="/layout/page">Page</Link> and <Link to="/layout/popover">Popover</Link>.
       </p>
     ),

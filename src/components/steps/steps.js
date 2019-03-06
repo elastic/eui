@@ -64,7 +64,7 @@ EuiSteps.propTypes = {
    */
   headingElement: PropTypes.string,
   /**
-   * An array of individal step objects
+   * An array of individual step objects
    */
   steps: PropTypes.arrayOf(stepPropType).isRequired,
 };

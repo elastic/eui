@@ -13,8 +13,9 @@ import {
 } from './text_align';
 
 const textSizeToClassNameMap = {
-  s: 'euiText--small',
   xs: 'euiText--extraSmall',
+  s: 'euiText--small',
+  m: 'euiText--medium',
 };
 
 export const TEXT_SIZES = Object.keys(textSizeToClassNameMap);
@@ -64,4 +65,5 @@ EuiText.propTypes = {
 
 EuiText.defaultProps = {
   grow: true,
+  size: 'm',
 };

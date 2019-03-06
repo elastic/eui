@@ -1,18 +1,14 @@
-@import '../../src/global_styling/mixins/_helpers.scss';
+@import '../../src/global_styling/mixins/helpers';
 
 $guideSideNavWidth: 240px;
 $guideZLevelHighest: $euiZLevel9 + 1000;
 
 .guideBody {
-  background: linear-gradient(90deg, $euiColorLightestShade 50%, $euiColorEmptyShade 50%);
+  background: linear-gradient(90deg, $euiPageBackgroundColor 50%, $euiColorEmptyShade 50%);
 }
 
 .guidePage {
   padding: 0;
-
-  @include euiBreakpoint('xs', 's') {
-    display: block; // Fixes IE
-  }
 }
 
 .guideSideNav {
@@ -32,12 +28,13 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   .guideSideNav__content {
+    @include euiScrollBar;
+
     width: $guideSideNavWidth;
     padding: $euiSize;
     position: absolute;
     bottom: 0;
     top: 132px;
-    @include euiScrollBar;
     overflow-y: auto;
   }
 }
@@ -58,35 +55,38 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 
   div {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
   }
 }
+
 .guideDemo__highlightSpacer {
   .euiSpacer {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
   }
 }
 
 .guideDemo__highlightGrid {
   .euiFlexItem {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
     padding: 16px;
   }
 }
 
 .guideDemo__highlightGridWrap {
   .euiFlexItem div {
-    background: transparentize(#0096CC, .9);
+    background: transparentize($euiColorPrimary, .9);
     padding: 16px;
   }
 }
 
+// sass-lint:disable no-important
 .guideDemo__textLines {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
   background-size: 100% 8px !important;
   background-position-y: 2px;
 }
 
+// sass-lint:disable no-important
 .guideDemo__textLines--s {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
   background-size: 100% 7px !important;
@@ -105,6 +105,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     font-size: $euiFontSize;
   }
 }
+
 
 .guideDemo__size {
   background: $euiTextColor;
@@ -135,42 +136,32 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .dpTest__purpleCal {
-  background: purple;
+  background: $euiColorVis3;
 }
 
 .dpTest__purpleInput {
-  outline: solid 2px purple;
+  outline: solid 2px $euiColorVis3;
 }
 
 .dpTest__purpleDay {
-  background: purple;
+  background: $euiColorVis3;
 }
 
 .dpTest__purplePopper {
-  outline: solid 2px purple;
+  outline: solid 2px $euiColorVis3;
 }
 
-.guideColorPalette__swatch {
-  
-  span {
-    height: $euiSize;
-    width: $euiSizeL;
-  }
-  
-  &:first-child span {
-    border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
-  }
-
-  &:last-child span {
-    border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
-  }
+.guideOptionsPopover {
+  width: $euiSize * 16;
 }
 
-@import "../views/guidelines/index";
-@import "guide_section/index";
-@import "guide_rule/index";
 
-@include euiBreakpoint('xs','s') {
+
+@import '../views/guidelines/index';
+@import 'guide_section/index';
+@import 'guide_rule/index';
+
+@include euiBreakpoint('xs', 's') {
 
   .guideBody {
     background: none;
@@ -181,7 +172,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     width: auto;
 
     // This is a temporary hack till we fix how classes pass into form controls
-    .euiFormControlLayout, input[type=search] {
+    .euiFormControlLayout,
+    input[type='search'] {
       max-width: 100%;
     }
 
@@ -216,13 +208,19 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
       height: $euiSize;
       width: $euiSizeL;
     }
-    
+
     &:first-child span {
       border-radius: $euiBorderRadius $euiBorderRadius 0 0;
     }
-  
+
     &:last-child span {
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .guidePage {
+    display: block; // Fixes IE
   }
 }

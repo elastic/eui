@@ -1,5 +1,7 @@
 .euiToast {
   border: $euiBorderThin;
+  // This overwrites some of the border above
+  // sass-lint:disable-block mixins-before-declarations
   @include euiBottomShadowLarge($adjustBorders: true);
 
   position: relative;
@@ -13,37 +15,37 @@
   }
 }
 
-  /**
-   * 1. Fit button to icon.
-   */
-  .euiToast__closeButton {
-    position: absolute;
-    top: $euiSize;
-    right: $euiSize;
-    line-height: 0; /* 1 */
-    appearance: none;
-    opacity: 0;
-    transition: opacity $euiAnimSpeedFast $euiAnimSlightResistance;
+/**
+  * 1. Fit button to icon.
+  */
+.euiToast__closeButton {
+  position: absolute;
+  top: $euiSize;
+  right: $euiSize;
+  line-height: 0; /* 1 */
+  appearance: none;
+  opacity: 0;
+  transition: opacity $euiAnimSpeedFast $euiAnimSlightResistance;
 
+  svg {
+    fill: tintOrShade($euiTitleColor, 50%, 70%);
+  }
+
+  &:hover {
     svg {
-      fill: tintOrShade($euiTitleColor, 50%, 70%);
-    }
-
-    &:hover {
-      svg {
-        fill: $euiTitleColor;
-      }
-    }
-
-    &:focus {
-      background-color: $euiFocusBackgroundColor;
-      opacity: 1;
-
-      svg {
-        fill: $euiColorPrimary;
-      }
+      fill: $euiTitleColor;
     }
   }
+
+  &:focus {
+    background-color: $euiFocusBackgroundColor;
+    opacity: 1;
+
+    svg {
+      fill: $euiColorPrimary;
+    }
+  }
+}
 
 // Modifier naming and colors.
 $toastTypes: (
@@ -67,7 +69,6 @@ $toastTypes: (
  */
 .euiToastHeader {
   padding-right: $euiSizeL; /* 3 */
-
   display: flex;
   align-items: baseline; /* 1 */
 
@@ -76,19 +77,19 @@ $toastTypes: (
   }
 }
 
-  /**
-   * 1. Vertically center icon with first line of title.
-   */
-  .euiToastHeader__icon {
-    flex: 0 0 auto;
-    fill: $euiTitleColor;
-    transform: translateY(2px); /* 1 */
-  }
+/**
+  * 1. Vertically center icon with first line of title.
+  */
+.euiToastHeader__icon {
+  flex: 0 0 auto;
+  fill: $euiTitleColor;
+  transform: translateY(2px); /* 1 */
+}
 
-  .euiToastHeader__title {
-    @include euiTitle("xs");
-    font-weight: $euiFontWeightLight;
-  }
+.euiToastHeader__title {
+  @include euiTitle('xs');
+  font-weight: $euiFontWeightLight;
+}
 
 .euiToastHeader--withBody {
   margin-bottom: $euiSizeM;

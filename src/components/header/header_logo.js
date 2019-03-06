@@ -13,7 +13,7 @@ export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, 
     <a href={href} className={classes} {...rest}>
       <EuiIcon
         className="euiHeaderLogo__icon"
-        size="xl"
+        size="l"
         type={iconType}
         title={iconTitle}
       />

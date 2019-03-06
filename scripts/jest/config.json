@@ -1,8 +1,8 @@
 {
   "rootDir": "../../",
   "roots": [
-    "<rootDir>/src-docs/src",
-    "<rootDir>/src/"
+    "<rootDir>/src/",
+    "<rootDir>/scripts/babel"
   ],
   "collectCoverageFrom": [
     "src/components/**/*.js",
@@ -26,20 +26,19 @@
     "html"
   ],
   "moduleFileExtensions": [
+    "ts",
+    "tsx",
     "js",
     "json"
   ],
   "testMatch": [
-    "**/*.test.js"
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ],
-  "testPathIgnorePatterns": [
-    "<rootDir>/scripts/",
-    "<rootDir>/docs/",
-    "<rootDir>/node_modules/"
-  ],
-  "transformIgnorePatterns": [
-    "[/\\\\]node_modules[/\\\\].+\\.js$"
-  ],
+  "transform": {
+    "^.+\\.(js|tsx?)$": "babel-jest"
+  },
   "snapshotSerializers": [
     "<rootDir>/node_modules/enzyme-to-json/serializer"
   ]

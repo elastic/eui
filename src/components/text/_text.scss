@@ -1,7 +1,8 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
+
 @mixin euiScaleText($baseFontSize) {
-  $baseLineHeightMultiplier: $baseFontSize/2;
-  line-height: convertToRem($baseLineHeightMultiplier*3);
+  $baseLineHeightMultiplier: $baseFontSize / 2;
+  line-height: convertToRem($baseLineHeightMultiplier * 3);
 
   p,
   ul,
@@ -13,7 +14,8 @@
     margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin-left: convertToRem($baseLineHeightMultiplier * 3);
   }
 
@@ -60,12 +62,12 @@
 
   h4,
   dt,
-  dl.eui-definitionListReverse dd {
+  .eui-definitionListReverse dd {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
     line-height: convertToRem($baseLineHeightMultiplier * 3);
   }
 
-  dl.eui-definitionListReverse dt {
+  .eui-definitionListReverse dt {
     font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
     color: $euiTextColor;
   }
@@ -85,7 +87,7 @@
   }
 
   pre {
-    padding: $baseLineHeightMultiplier*2;
+    padding: $baseLineHeightMultiplier * 2;
   }
 
   code {
@@ -103,7 +105,9 @@
   // coloring will likely coming from the reset.scss anyway.
   color: inherit;
 
-  a {
+  // Style anchors that don't have a class. This prevents overwriting "buttons"
+  // and other stylized elements passed in.
+  a:not([class]) {
     color: $euiLinkColor;
 
     &:hover {
@@ -136,16 +140,18 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-family: Georgia,Times,Times New Roman,serif;
+    font-family: Georgia, Times, Times New Roman, serif;
     font-style: italic;
+    letter-spacing: normal;
 
     p:last-child {
       margin-bottom: 0;
     }
 
-    &:before, &:after {
+    &:before,
+    &:after {
       position: absolute;
-      content: "";
+      content: '';
       height: 2px;
       width: 50%;
       right: 0;
@@ -163,33 +169,35 @@
   }
 
   h1 {
-    @include euiTitle("l");
+    @include euiTitle('l');
   }
 
   h2 {
-    @include euiTitle("m");
+    @include euiTitle('m');
   }
 
   h3 {
-    @include euiTitle("s");
+    @include euiTitle('s');
   }
 
   h4,
   dt {
-    @include euiTitle("xs");
+    @include euiTitle('xs');
   }
 
   h5 {
-    @include euiTitle("xxs");
+    @include euiTitle('xxs');
   }
 
   h6 {
-    @include euiTitle("xxxs");
+    @include euiTitle('xxxs');
     text-transform: uppercase;
   }
 
   pre {
     white-space: pre-wrap;
+    background: $euiCodeBlockBackgroundColor;
+    color: $euiCodeBlockColor;
   }
 
   pre,
@@ -197,17 +205,11 @@
     display: block;
   }
 
-  pre,
-  code {
-    background: $euiCodeBlockBackgroundColor;
-    color: $euiCodeBlockColor;
-  }
-
   // unset font-size from euiCodeBlock so it doesn't doubly add 90%
 
   code {
+    @include euiCodeFont;
     display: inline-block; // ensures background stretches the full line-height
-    font-family: $euiCodeFontFamily;
     font-weight: $euiFontWeightRegular;
   }
 
@@ -232,6 +234,6 @@
 
   > :last-child,
   .euiTextColor > :last-child {
-    margin-bottom: 0 !important;
+    margin-bottom: 0 !important; // sass-lint:disable-line no-important
   }
 }

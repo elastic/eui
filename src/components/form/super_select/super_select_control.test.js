@@ -73,5 +73,21 @@ describe('EuiSuperSelectControl', () => {
       expect(component)
         .toMatchSnapshot();
     });
+
+    test('empty value option is rendered', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' }
+          ]}
+          value={''}
+          onChange={() => {}}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
   });
 });

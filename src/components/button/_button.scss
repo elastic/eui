@@ -1,5 +1,8 @@
 @import '../loading/mixins';
 
+// This file has lots of modifiers and is somewhat nesty by nature
+//sass-lint:disable nesting-depth
+
 // Our base button
 .euiButton {
   @include euiButton;
@@ -10,6 +13,7 @@
 
   .euiButton__content {
     @include euiButtonContent;
+
     padding: 0 ($euiSize - $euiSizeXS);
   }
 
@@ -35,7 +39,8 @@
   }
 
   &:enabled {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: transparentize($euiColorPrimary, .9);
     }
   }
@@ -54,14 +59,17 @@
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: $euiButtonColorDisabled;
         border-color: $euiButtonColorDisabled;
       }
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       @include euiSlightShadow;
+
       text-decoration: none;
     }
   }
@@ -98,12 +106,14 @@ $buttonTypes: (
       background-color: $color;
       border-color: $color;
 
-      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000);
+      // The function makes that hexes safe for theming
+      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000); // sass-lint:disable-line no-color-literals
 
       color: $fillTextColor;
 
       &:enabled {
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background-color: darken($color, 5%);
           border-color: darken($color, 5%);
         }
@@ -125,7 +135,8 @@ $buttonTypes: (
 
       @include euiSlightShadow($shadowColor);
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         @include euiSlightShadowHover($shadowColor);
         background-color: transparentize($color, .9);
 
@@ -143,4 +154,9 @@ $buttonTypes: (
       }
     }
   }
+}
+
+.euiButton--fullWidth {
+  display: block;
+  width: 100%;
 }

@@ -18,7 +18,7 @@ export {
   EuiRadio,
   EuiRadioGroup,
 } from './radio';
-export { EuiRange } from './range';
+export { EuiDualRange, EuiRange } from './range';
 export { EuiSelect } from './select';
 export {
   EuiSuperSelect,

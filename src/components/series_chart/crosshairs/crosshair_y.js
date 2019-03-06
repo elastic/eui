@@ -23,6 +23,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { AbstractSeries, ScaleUtils } from 'react-vis';
 import { SCALE } from '../utils/chart_utils';
+import moment from 'moment';
 
 /**
  * Format title by detault.
@@ -237,9 +238,9 @@ export class EuiCrosshairY extends AbstractSeries {
     });
   }
   _formatYValue = (y) => {
-    const { yType } = this.props;
+    const { yType, yCrosshairFormat } = this.props;
     if (yType === SCALE.TIME || yType === SCALE.TIME_UTC) {
-      return new Date(y).toISOString(); // TODO add a props for time formatting
+      return yCrosshairFormat ? moment(y).format(yCrosshairFormat) : new Date(y).toISOString();
     } else {
       return y;
     }
@@ -382,5 +383,6 @@ EuiCrosshairY.propTypes = {
    * The ordered array of series names
    */
   seriesNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  yCrosshairFormat: PropTypes.string,
 };
 EuiCrosshairY.defaultProps = {};

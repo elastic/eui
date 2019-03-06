@@ -1,20 +1,32 @@
 .euiTabs {
+  @include euiScrollBar;
+
   display: flex;
-  border-bottom: $euiBorderThin;
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
-  @include euiScrollBar;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $euiColorLightShade;
+    content: '';
+  }
 
   // Changing height of scrollbar so it sits flush with border
+  // sass-lint:disable no-vendor-prefixes
   &::-webkit-scrollbar {
     height: 3px;
   }
 
   &.euiTabs--small {
     .euiTab {
-      @include euiFontSizeS;
-      padding: $euiSizeS $euiSizeS;
+      @include fontSize($euiTabFontSizeS);
+      padding: $euiSizeS;
     }
   }
 
@@ -27,13 +39,14 @@
 }
 
 .euiTab {
-  @include euiFontSize;
+  @include fontSize($euiTabFontSize);
+  line-height: $euiLineHeight;
 
   position: relative;
   cursor: pointer;
   padding: $euiSizeM $euiSize;
   background-color: transparent;
-  transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+  transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:hover:not(.euiTab-isSelected) {
     color: $euiTextColor;
@@ -43,6 +56,16 @@
   &:focus {
     background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $euiColorLightShade;
+      content: '';
+    }
   }
 
   &.euiTab-isDisabled {
@@ -61,7 +84,7 @@
 
     &:after {
       position: absolute;
-      bottom: -1px;
+      bottom: 0;
       left: 0;
       content: ' ';
       width: 100%;
@@ -73,22 +96,20 @@
 
 }
 
-
-
-  .euiTab__content {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
-    transform: translateY(0);
-  }
-
+.euiTab__content {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
+  transform: translateY(0);
+}
 
 @keyframes euiTab {
   0% {
     transform: scaleX(0);
   }
+
   100% {
     transform: scaleX(1);
   }

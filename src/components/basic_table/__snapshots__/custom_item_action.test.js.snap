@@ -3,5 +3,10 @@
 exports[`CustomItemAction render 1`] = `
 <div
   style={null}
-/>
+>
+  <Component
+    onBlur={[Function]}
+    onFocus={[Function]}
+  />
+</div>
 `;

@@ -221,18 +221,27 @@ export default class extends Component {
       alignment: LEFT_ALIGNMENT,
       width: '24px',
       cellProvider: cell => <EuiIcon type={cell} size="m" />,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       id: 'title',
       label: 'Title',
       footer: <em>Title</em>,
       alignment: LEFT_ALIGNMENT,
       isSortable: true,
-      hideForMobile: true,
+      mobileOptions: {
+        show: false,
+      }
     }, {
       id: 'title_type',
       label: 'Title',
-      isMobileHeader: true,
+      mobileOptions: {
+        only: true,
+        header: false,
+        enlarge: true,
+        fullWidth: true,
+      },
       render: (title, item) => (
         <span><EuiIcon type={item.type} size="m" style={{ verticalAlign: 'text-top' }} /> {title}</span>
       ),
@@ -420,7 +429,7 @@ export default class extends Component {
             onSort={column.isSortable ? this.onSort.bind(this, column.id) : undefined}
             isSorted={this.state.sortedColumn === column.id}
             isSortAscending={this.sortableProperties.isAscendingByName(column.id)}
-            isMobileHeader={column.isMobileHeader}
+            mobileOptions={column.mobileOptions}
           >
             {column.label}
           </EuiTableHeaderCell>
@@ -527,12 +536,13 @@ export default class extends Component {
         return (
           <EuiTableRowCell
             key={column.id}
-            header={column.label}
             align={column.alignment}
             truncateText={cell && cell.truncateText}
             textOnly={cell ? cell.textOnly : true}
-            hideForMobile={column.hideForMobile}
-            isMobileHeader={column.isMobileHeader}
+            mobileOptions={{
+              header: column.label,
+              ...column.mobileOptions
+            }}
           >
             {child}
           </EuiTableRowCell>
@@ -581,7 +591,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
-            header={column.title}
             align={column.alignment}
           >
             {footer}
@@ -591,7 +600,6 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            header={column.title}
             align={column.alignment}
           >
             {undefined}

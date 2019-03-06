@@ -1,7 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
 
-import { HTMLAttributes, SFC } from 'react';
+import { HTMLAttributes, FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -18,7 +18,7 @@ declare module '@elastic/eui' {
     onPageClick?: PageClickHandler;
   }
 
-  export const EuiPagination: SFC<
+  export const EuiPagination: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps
   >;
 
@@ -34,7 +34,7 @@ declare module '@elastic/eui' {
     hideOnMobile?: boolean;
   }
 
-  export const EuiPaginationButton: SFC<
+  export const EuiPaginationButton: FunctionComponent<
     CommonProps &
       Omit<EuiButtonEmptyProps, 'size' | 'color'> &
       EuiPaginationButtonProps

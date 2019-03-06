@@ -16,6 +16,7 @@
 // Because we don't have control over react-datepicker's dom we use SVG URIs for the navigation arrows.
 // There is one for light and dark.
 @mixin datePicker__arrow {
+  background-position: center;
   @if (lightness($euiColorEmptyShade) > 50) {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
   } @else {
@@ -36,10 +37,6 @@
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
 
-    .react-datepicker__time-container {
-        background: $euiColorLightestShade;
-    }
-
     // If the shadow is on, and it is inline, we need to put the shadow on the datepicker
     // itself rather than the popper.
     &.euiDatePicker--inline {
@@ -58,20 +55,18 @@
 // }
 
 .react-datepicker {
-  font-family: $euiFontFamily;
+  @include euiFont;
   font-size: $euiFontSizeXS;
   color: $euiColorFullShade;
   display: flex;
   position: relative;
   border-radius: $euiBorderRadius;
-
 }
 
 // When in time only mode we make the dropdown look more like the combo box styling.
 .react-datepicker--time-only {
 
   .react-datepicker__time-container {
-    background: $euiColorEmptyShade !important;
 
     .react-datepicker__time {
 
@@ -186,6 +181,8 @@
   width: 0;
   padding: 0;
   z-index: 1;
+  text-indent: -999em;
+  overflow: hidden;
 
   &--previous {
     @include datePicker__arrow;
@@ -195,11 +192,19 @@
     transform: rotate(90deg);
     transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
+    &:hover, &:focus {
+      border-radius: $euiBorderRadius;
+      transform: scale(1.2) rotate(90deg);
+    }
+
     &:hover {
       background-color: $euiColorLightestShade;
-      border-radius: $euiBorderRadius;
       box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
-      transform: scale(1.2) rotate(90deg);
+    }
+
+    &:focus {
+      background-color: $euiFocusBackgroundColor;
+      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
     }
 
     &--disabled,
@@ -223,11 +228,19 @@
       left: 248px;
     }
 
-    &:hover {
-      transform: scale(1.2) rotate(-90deg);
-      background-color: $euiColorLightestShade;
+    &:hover, &:focus {
       border-radius: $euiBorderRadius;
+      transform: scale(1.2) rotate(-90deg);
+    }
+
+    &:hover {
+      background-color: $euiColorLightestShade;
       box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
+    }
+
+    &:focus {
+      background-color: $euiFocusBackgroundColor;
+      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
     }
 
     &--disabled,
@@ -270,6 +283,7 @@
 .react-datepicker__month {
   margin: 0 $euiSize $euiSize $euiSize;
   text-align: center;
+  border-radius: $euiBorderRadius;
 }
 
 .react-datepicker__time-container {
@@ -303,7 +317,8 @@
           color: $euiColorDarkShade;
           white-space: nowrap;
 
-          &:hover {
+          &:hover,
+          &:focus {
             cursor: pointer;
             text-decoration: underline;
           }
@@ -572,17 +587,60 @@
   }
 }
 
+.react-datepicker__screenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.react-datepicker__year-option--preselected,
+.react-datepicker__month-option--preselected {
+  background: $euiFocusBackgroundColor;
+}
+
+.react-datepicker__year-option--selected_year.react-datepicker__year-option--preselected,
+.react-datepicker__month-option--selected_month.react-datepicker__month-option--preselected{
+  background: $euiColorPrimary;
+}
+
+.react-datepicker__time-list-item--preselected,
+.react-datepicker__year-option--preselected,
+.react-datepicker__month-option--preselected {
+  background: darken($euiFocusBackgroundColor, 5%);
+}
+
+.react-datepicker__time-container--focus {
+  background: $euiFocusBackgroundColor;
+}
+
+.react-datepicker__month-read-view:focus,
+.react-datepicker__year-read-view:focus, {
+  text-decoration: underline;
+}
+
+.react-datepicker__month--accessible:focus {
+  background: $euiFocusBackgroundColor;
+}
+.react-datepicker__navigation:focus {
+  background-color: $euiFocusBackgroundColor;
+}
+
 // These selectors are not a typo. react-datepicker has a bug where these selectors
 // output as "--selected_year". Sass has trouble compiling .--selected_year, so instead
 // we use this generic selector get around it.
-.react-datepicker__year-option,
-.react-datepicker__month-option {
-  &[class*="selected"] {
+.react-datepicker__year-option--selected_year,
+.react-datepicker__month-option--selected_month {
     background: $euiColorPrimary;
     color: $euiColorEmptyShade;
     font-weight: $euiFontWeightBold;
     border-radius: $euiBorderRadius;
-  }
+}
+
+.react-datepicker__focusTrap {
+  display: flex;
 }
 
 // We drop the time picker on mobile. They can still type in the time directly.

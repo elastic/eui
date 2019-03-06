@@ -9,14 +9,20 @@ import {
 } from '../../../../src/components';
 
 const iconTypes = [
+  'logoAPM',
+  'logoAppSearch',
   'logoBeats',
+  'logoBusinessAnalytics',
   'logoCloud',
   'logoCloudEnterprise',
   'logoElastic',
-  'logoElasticsearch',
   'logoElasticStack',
+  'logoElasticsearch',
+  'logoEnterpriseSearch',
   'logoKibana',
   'logoLogstash',
+  'logoMetrics',
+  'logoSiteSearch',
   'logoXpack',
 ].sort();
 

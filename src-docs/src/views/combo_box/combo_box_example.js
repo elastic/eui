@@ -11,6 +11,7 @@ import {
 } from '../../components';
 
 import {
+  EuiLink,
   EuiCallOut,
   EuiCode,
   EuiComboBox,
@@ -129,7 +130,7 @@ export const ComboBoxExample = {
     }],
     text: (
       <p>
-        <EuiCode>EuiComboBoxList</EuiCode> uses <Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>{' '}
+        <EuiCode>EuiComboBoxList</EuiCode> uses <EuiLink href="https://github.com/bvaughn/react-virtualized">react-virtualized</EuiLink>{' '}
         to only render visible options to be super fast no matter how many options there are.
       </p>
     ),

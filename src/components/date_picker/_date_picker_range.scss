@@ -5,7 +5,7 @@
  * 1. Account for inner box-shadow style border
  */
 
- .euiDatePickerRange {
+.euiDatePickerRange {
   @include euiFormControlSize(auto, $includeAlternates: true);
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow();
@@ -13,8 +13,9 @@
   align-items: center;
   padding: 1px; /* 1 */
 
-  > span {
-    flex: 1 1 0%; // All values necessary for IE support
+  // Allow any child to fill entire range container
+  > * {
+    flex-grow: 1;
   }
 
   .euiFieldText.euiDatePicker {
@@ -36,14 +37,23 @@
       height: $euiFormControlHeight - 2px;
     }
   }
+
+  // Direct descendent selectors to override `> span`
+
+  > .euiDatePickerRange__icon {
+    flex: 0 0 auto;
+    padding-left: $euiFormControlPadding;
+    padding-right: $euiFormControlPadding;
+  }
+
+  > .euiDatePickerRange__delimeter {
+    line-height: 1 !important;
+    flex: 0 0 auto;
+    padding-left: $euiFormControlPadding / 2;
+    padding-right: $euiFormControlPadding / 2;
+  }
 }
 
-.euiDatePickerRange__icon {
-  padding-left: $euiFormControlPadding;
-  padding-right: $euiFormControlPadding;
-}
-
-.euiDatePickerRange__delimeter {
-  padding-left: $euiFormControlPadding/2;
-  padding-right: $euiFormControlPadding/2;
+.euiDatePickerRange--readOnly {
+  background: $euiFormBackgroundDisabledColor;
 }

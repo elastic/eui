@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode, SFC } from 'react';
+import { ButtonHTMLAttributes, ReactNode, FunctionComponent, FocusEventHandler } from 'react';
 import { ListProps } from 'react-virtualized';
 import {
   EuiComboBoxOption,
@@ -6,11 +6,12 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxOptionsListProps,
 } from '@elastic/eui';
+import { RefCallback } from '../common';
 
 declare module '@elastic/eui' {
   export type EuiComboBoxOptionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     label: string,
-    isGroupLabelOption: boolean,
+    isGroupLabelOption?: boolean,
   }
 
   export type EuiComboBoxOptionsListPosition = 'top' | 'bottom'
@@ -47,7 +48,7 @@ declare module '@elastic/eui' {
     rowHeight?: number,
     fullWidth?: boolean,
   }
-  export const EuiComboBoxOptionsList: SFC<EuiComboBoxOptionsListProps>;
+  export const EuiComboBoxOptionsList: FunctionComponent<EuiComboBoxOptionsListProps>;
 
   export type EuiComboBoxSingleSelectionShape = { asPlainText?: boolean; };
 
@@ -62,7 +63,9 @@ declare module '@elastic/eui' {
     noSuggestions?: boolean,
     options?: EuiComboBoxOptionsListProps['options'],
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'],
+    onBlur?: FocusEventHandler<HTMLInputElement>,
     onChange?: (options: Array<EuiComboBoxOptionProps>) => any,
+    onFocus?: FocusEventHandler<HTMLInputElement>,
     onSearchChange?: (searchValue: string) => any,
     onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'],
     renderOption?: EuiComboBoxOptionsListProps['renderOption'],
@@ -70,6 +73,7 @@ declare module '@elastic/eui' {
     rowHeight?: number,
     isClearable?: boolean,
     fullWidth?: boolean,
+    inputRef?: (element: HTMLInputElement) => void;
   }
-  export const EuiComboBox: SFC<EuiComboBoxProps>;
+  export const EuiComboBox: FunctionComponent<EuiComboBoxProps>;
 }

@@ -36,6 +36,8 @@ export const EuiRadioGroup = ({
 );
 
 EuiRadioGroup.propTypes = {
+  disabled: PropTypes.bool,
+  name: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

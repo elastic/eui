@@ -12,27 +12,28 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     <svg
       class="euiIcon euiIcon--medium"
       focusable="false"
-      height="40"
-      viewBox="0 0 30 40"
-      width="30"
+      height="32"
+      viewBox="0 0 32 32"
+      width="32"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M.874 40H30c0-8.046-4.566-15.197-11.652-19.768L.874 40z"
-        fill="#3EBEB0"
-      />
-      <path
-        d="M0 26v14h1.873L18.35 20.229a31.291 31.291 0 0 0-3.562-1.974L0 26z"
-        fill="#37A595"
-      />
-      <path
-        d="M0 13v23l14.79-17.748C10.424 16.186 15.38 14 10 14L0 13z"
-        fill="#353535"
-      />
-      <path
-        d="M30 0H0v15c5.38 0 10.424 1.186 14.79 3.252L30 0z"
-        fill="#E9478B"
-      />
+      <g
+        fill="none"
+        fill-rule="evenodd"
+      >
+        <path
+          d="M4 0v28.789L28.935.017z"
+          fill="#F04E98"
+        />
+        <path
+          class="euiIcon__fillNegative"
+          d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
+        />
+        <path
+          d="M18.479 16.664L6.268 30.754l-1.073 1.237h23.191c-1.252-6.292-4.883-11.719-9.908-15.327"
+          fill="#00BFB3"
+        />
+      </g>
     </svg>
   </div>
 </div>

@@ -1,6 +1,6 @@
-/// <reference path="../../common.d.ts" />
+import { CommonProps } from '../../common';
 
-import { SFC, InputHTMLAttributes, ReactNode } from 'react';
+import { FunctionComponent, InputHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -11,5 +11,5 @@ declare module '@elastic/eui' {
       label?: ReactNode;
     };
 
-  export const EuiSwitch: SFC<EuiSwitchProps>;
+  export const EuiSwitch: FunctionComponent<EuiSwitchProps>;
 }

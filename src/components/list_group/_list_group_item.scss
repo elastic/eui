@@ -1,0 +1,122 @@
+.euiListGroupItem {
+  padding: 0;
+  margin-top: $euiSizeXS;
+  border-radius: $euiBorderRadius;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: background-color $euiAnimSpeedFast;
+  position: relative;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &.euiListGroupItem-isActive,
+  &.euiListGroupItem-isClickable:hover,
+  &.euiListGroupItem-isClickable:focus {
+    background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+  }
+
+  &.euiListGroupItem-isClickable:hover,
+  &.euiListGroupItem-isClickable:focus {
+    text-decoration: underline;
+  }
+
+  // Style all disabled list items whether or not they are links or buttons
+  &.euiListGroupItem-isDisabled,
+  &.euiListGroupItem-isDisabled:hover,
+  &.euiListGroupItem-isDisabled:focus,
+  &.euiListGroupItem-isDisabled .euiListGroupItem__button:hover,
+  &.euiListGroupItem-isDisabled .euiListGroupItem__button:focus {
+    color: $euiButtonColorDisabled;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+  }
+}
+
+.euiListGroupItem__text,
+.euiListGroupItem__button {
+  padding: $euiSizeM $euiSizeS;
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
+  text-align: left;
+  max-width: 100%;
+
+  .euiListGroupItem-hasExtraAction & {
+    max-width: calc(100% - #{$euiSizeXL});
+  }
+}
+
+.euiListGroupItem__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.euiListGroupItem__button:focus {
+  text-decoration: underline;
+}
+
+.euiListGroupItem__extraAction {
+  opacity: 0;
+  margin-right: $euiSizeS;
+  transition: opacity $euiAnimSpeedFast;
+
+  .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
+  .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
+  &.euiListGroupItem__extraAction-alwaysShow,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.euiListGroupItem__icon {
+  flex-grow: 0;
+  margin-right: $euiSizeM;
+  flex-shrink: 0;
+}
+
+.euiListGroupItem--xSmall {
+  font-size: $euiFontSizeXS;
+}
+
+.euiListGroupItem--small {
+  font-size: $euiFontSizeS;
+}
+
+.euiListGroupItem--large {
+  font-size: $euiFontSizeL;
+}
+
+.euiListGroup-wrapText {
+  .euiListGroupItem__button,
+  .euiListGroupItem__text {
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .euiListGroupItem__label {
+    white-space: initial;
+  }
+}
+
+// Layout alts from euiListGroup
+
+.euiListGroup-flush .euiListGroupItem {
+  border-radius: 0;
+}
+
+.euiListGroup-bordered .euiListGroupItem {
+  &:first-child {
+    border-top-left-radius: $euiBorderRadius;
+    border-top-right-radius: $euiBorderRadius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $euiBorderRadius;
+    border-bottom-right-radius: $euiBorderRadius;
+  }
+}

@@ -54,6 +54,7 @@ export const EuiCard = ({
   betaBadgeTooltipContent,
   betaBadgeTitle,
   layout,
+  bottomGraphic,
   ...rest,
 }) => {
   const classes = classNames(
@@ -64,13 +65,14 @@ export const EuiCard = ({
       'euiCard--isClickable': onClick || href || isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
+      'euiCard--hasBottomGraphic': bottomGraphic,
     },
     className,
   );
 
   let secureRel;
   if (href) {
-    secureRel = getSecureRelForTarget(target, rel);
+    secureRel = getSecureRelForTarget({ href, target, rel });
   }
 
   let imageNode;
@@ -124,6 +126,15 @@ export const EuiCard = ({
     );
   }
 
+  let optionalBottomGraphic;
+  if (bottomGraphic) {
+    optionalBottomGraphic = (
+      <span className="euiCard__graphic">
+        {bottomGraphic}
+      </span>
+    );
+  }
+
   return (
     <OuterElement
       onClick={onClick}
@@ -152,6 +163,8 @@ export const EuiCard = ({
           {footer}
         </span>
       }
+
+      {optionalBottomGraphic}
     </OuterElement>
   );
 };
@@ -209,6 +222,12 @@ EuiCard.propTypes = {
    * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   betaBadgeTitle: PropTypes.string,
+
+  /**
+   * Add a decorative bottom graphic to the card.
+   * This should be used sparingly, consult the Kibana Design team before use.
+   */
+  bottomGraphic: PropTypes.node,
 };
 
 EuiCard.defaultProps = {

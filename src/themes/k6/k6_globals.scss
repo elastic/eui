@@ -1,7 +1,7 @@
 // Font families
-$euiFontFamily: 'Open Sans', Helvetica, Arial, sans-serif;
+$euiFontFamily: 'Open Sans', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 
-$euiTextScale: 2.28571429, 1.71428571, 1.28571429, 1.14285714, 1, 1, 0.85714286;
+$euiTextScale: 2.28571429, 1.71428571, 1.28571429, 1.14285714, 1, 1, .85714286;
 
 $euiFontSize:       14px; // 5th position in scale
 
@@ -14,3 +14,8 @@ $euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1); // 32px
 
 // Make titles bold.
 $euiFontWeightLight: 600;
+$euiFontWeightMedium:   600;
+
+// Ensure non-small tabs actually have a larger font size
+$euiTabFontSize: $euiFontSizeM;
+$euiTabFontSizeS: $euiFontSizeS;

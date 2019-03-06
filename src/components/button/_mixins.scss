@@ -1,4 +1,5 @@
 @mixin euiButton {
+  @include euiFont;
 
   display: inline-block;
   appearance: none;
@@ -8,7 +9,6 @@
   text-decoration: none;
   border: solid 1px transparent;
   text-align: center;
-  font-family: $euiFontFamily;
   transition: all $euiAnimSpeedNormal $euiAnimSlightBounce;
   white-space: nowrap;
   max-width: 100%;
@@ -18,7 +18,8 @@
     transform: translateY(-1px);
   }
 
-  &:hover:not(:disabled), &:focus {
+  &:hover:not(:disabled),
+  &:focus {
     text-decoration: underline;
   }
 
@@ -72,7 +73,7 @@
 // BUTTON TOGGLES
 // Pointer events and interactions are handled by the input (checkbox/radio)
 // and not the button, this mixin helps to target that element for states
-@mixin euiButtonToggleStates(){
+@mixin euiButtonToggleStates {
   @at-root {
     .euiButtonToggle__input:enabled:hover + #{&},
     .euiButtonToggle__input:enabled:focus + #{&},

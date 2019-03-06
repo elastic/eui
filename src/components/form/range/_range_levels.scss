@@ -1,0 +1,36 @@
+.euiRangeLevels {
+  display: flex;
+  justify-content: stretch;
+  z-index: $euiZLevel0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: ($euiFormControlHeight / 2) + 2px;
+
+  &--hasTicks {
+    top: ($euiFormControlHeight / 4) + 2px;
+  }
+}
+
+.euiRangeLevel {
+  display: block;
+  height: 6px;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+// Modifier naming and colors.
+$euiRangeLevelColors: (
+  primary: $euiColorPrimary,
+  success: $euiColorSuccess,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+);
+
+// Create level modifiers based upon the map.
+@each $name, $color in $euiRangeLevelColors {
+  .euiRangeLevel--#{$name} {
+    background-color: transparentize($color, .7);
+  }
+}

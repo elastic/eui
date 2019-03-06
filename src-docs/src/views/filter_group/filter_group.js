@@ -88,8 +88,9 @@ export default class extends Component {
         iconType="arrowDown"
         onClick={this.onButtonClick.bind(this)}
         isSelected={this.state.isPopoverOpen}
+        numFilters={items.length}
         hasActiveFilters={true}
-        numFilters={2}
+        numActiveFilters={2}
         grow={true}
       >
         Composers

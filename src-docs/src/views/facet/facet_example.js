@@ -56,7 +56,7 @@ export const FacetExample = {
         <div>
           <p>
             Typically, each facet grouping should display similarly. For example, they should all
-            have icons or be similar icon nodes (like avatars). It is is up to you whether each
+            have icons or be similar icon nodes (like avatars). It is up to you whether each
             group should be single or multi-selection.
           </p>
           <p>
@@ -69,6 +69,11 @@ export const FacetExample = {
       ),
       props: { EuiFacetGroup },
       demo: <FacetLayout />,
+      snippet: `// Restrict the width of default (vertical) if not restricted by parent
+<EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>
+
+// Horizontal
+<EuiFacetGroup layout="horizontal">{facets}</EuiFacetGroup>`,
     },
   ],
 };

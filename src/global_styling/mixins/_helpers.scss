@@ -23,21 +23,27 @@
     right: 0;
     bottom: 0;
     border-radius: $borderRadius;
-    content: "";
+    content: '';
     pointer-events: none;
     border: 1px solid $color;
   }
 }
 
-// Set scroll bar appearance on Chrome.
+// Set scroll bar appearance on Chrome (and firefox).
 @mixin euiScrollBar {
+  // Firefox's scrollbar coloring cascades, but the sizing does not,
+  // so it's being added to this mixin for allowing support wherever custom scrollbars are
+  // sass-lint:disable-block no-misspelled-properties
+  scrollbar-width: thin;
+
+  // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-scrollbar {
     width: 16px;
     height: 16px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($euiColorDarkShade, 0.5);
+    background-color: transparentize($euiColorDarkShade, .5);
     border: 6px solid transparent;
     background-clip: content-box;
   }
@@ -48,9 +54,19 @@
   }
 }
 
+// Hiding elements offscreen to only be read by screen reader
+@mixin euiScreenReaderOnly {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
 // Specifically target IE11, but not Edge.
 @mixin internetExplorerOnly {
+  // sass-lint:disable-block no-vendor-prefixes
   @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
     @content;
   }

@@ -36,6 +36,7 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate}
             onChange={this.handleChange}
+            dateFormat="MM/DD/YYYY HH:mm.ss.SSS"
           />
         </EuiFormRow>
 

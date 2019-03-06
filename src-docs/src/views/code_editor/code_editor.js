@@ -33,6 +33,7 @@ export default class extends Component {
           enableLiveAutocompletion: true,
         }}
         onBlur={() => { console.log('blur'); }} // eslint-disable-line no-console
+        aria-label="Code Editor"
       />
     );
   }

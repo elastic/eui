@@ -3,8 +3,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import FocusTrap from 'focus-trap-react';
 import hljs from 'highlight.js';
+
+import {
+  EuiCopy,
+} from '../copy';
 
 import {
   EuiButtonIcon,
@@ -14,7 +17,12 @@ import {
   EuiOverlayMask,
 } from '../overlay_mask';
 
+import {
+  EuiFocusTrap,
+} from '../focus_trap';
+
 import { keyCodes } from '../../services';
+import { EuiI18n } from '../i18n';
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
@@ -94,6 +102,7 @@ export class EuiCodeBlockImpl extends Component {
       overflowHeight,
       paddingSize,
       transparentBackground,
+      isCopyable,
       ...otherProps
     } = this.props;
 
@@ -104,6 +113,7 @@ export class EuiCodeBlockImpl extends Component {
       {
         'euiCodeBlock--transparentBackground': transparentBackground,
         'euiCodeBlock--inline': inline,
+        'euiCodeBlock-isCopyable': isCopyable,
       },
       className
     );
@@ -139,18 +149,60 @@ export class EuiCodeBlockImpl extends Component {
       );
     }
 
+    let copyButton;
+
+    if (isCopyable) {
+      copyButton = (
+        <div className="euiCodeBlock__copyButton">
+          <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
+            {copyButton => (
+              <EuiCopy textToCopy={children}>
+                {(copy) => (
+                  <EuiButtonIcon
+                    size="s"
+                    onClick={copy}
+                    iconType="copy"
+                    color="text"
+                    aria-label={copyButton}
+                  />
+                )}
+              </EuiCopy>
+            )}
+          </EuiI18n>
+        </div>
+      );
+    }
+
     let fullScreenButton;
 
     if (!inline && overflowHeight) {
       fullScreenButton = (
-        <EuiButtonIcon
-          className="euiCodeBlock__fullScreenButton"
-          size="s"
-          onClick={this.toggleFullScreen}
-          iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
-          color="text"
-          aria-label={this.state.isFullScreen ? 'Collapse' : 'Expand'}
-        />
+        <EuiI18n
+          tokens={['euiCodeBlock.fullscreenCollapse', 'euiCodeBlock.fullscreenExpand']}
+          defaults={['Collapse', 'Expand']}
+        >
+          {([fullscreenCollapse, fullscreenExpand]) => (
+            <EuiButtonIcon
+              className="euiCodeBlock__fullScreenButton"
+              size="s"
+              onClick={this.toggleFullScreen}
+              iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
+              color="text"
+              aria-label={this.state.isFullScreen ? fullscreenCollapse : fullscreenExpand}
+            />
+          )}
+        </EuiI18n>
+      );
+    }
+
+    let codeBlockControls;
+
+    if (copyButton || fullScreenButton) {
+      codeBlockControls = (
+        <div className="euiCodeBlock__controls">
+          {fullScreenButton}
+          {copyButton}
+        </div>
       );
     }
 
@@ -165,16 +217,12 @@ export class EuiCodeBlockImpl extends Component {
         fontSizeToClassNameMap[fontSize],
         'euiCodeBlock-paddingLarge',
         'euiCodeBlock-isFullScreen',
+        className,
       );
 
       fullScreenDisplay = (
-        <FocusTrap
-          focusTrapOptions={{
-            clickOutsideDeactivates: true,
-            initialFocus: () => this.codeFullScreen,
-          }}
-        >
-          <EuiOverlayMask>
+        <EuiOverlayMask>
+          <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
               <pre className="euiCodeBlock__pre">
                 <code
@@ -187,10 +235,10 @@ export class EuiCodeBlockImpl extends Component {
                 </code>
               </pre>
 
-              {fullScreenButton}
+              {codeBlockControls}
             </div>
-          </EuiOverlayMask>
-        </FocusTrap>
+          </EuiFocusTrap>
+        </EuiOverlayMask>
       );
     }
 
@@ -204,7 +252,7 @@ export class EuiCodeBlockImpl extends Component {
           If the below fullScreen code renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
         */}
-        {fullScreenButton}
+        {codeBlockControls}
         {fullScreenDisplay}
       </div>
     );
@@ -228,10 +276,16 @@ EuiCodeBlockImpl.propTypes = {
    * Displays the passed code in an inline format. Also removes any margins set.
    */
   inline: PropTypes.bool,
+
+  /**
+   * Displays an icon button to copy the code snippet to the clipboard.
+   */
+  isCopyable: PropTypes.bool,
 };
 
 EuiCodeBlockImpl.defaultProps = {
   transparentBackground: false,
   paddingSize: 'l',
   fontSize: 's',
+  isCopyable: false,
 };

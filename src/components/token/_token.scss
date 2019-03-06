@@ -1,0 +1,92 @@
+.euiToken {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+}
+
+.euiToken--circle {
+  border-radius: 50%;
+}
+
+.euiToken--square {
+  // These are pretty small elements, the standard size
+  // is just slightly too large.
+  border-radius: $euiBorderRadius - 1px;
+}
+
+.euiToken--small {
+  width: $euiSize;
+  height: $euiSize;
+
+  &.euiToken--rectangle {
+    padding: 0 $euiSizeXS;
+  }
+}
+
+.euiToken--medium {
+  width: $euiSizeL;
+  height: $euiSizeL;
+
+  &.euiToken--rectangle {
+    padding: 0 $euiSizeS;
+  }
+}
+
+.euiToken--large {
+  width: $euiSizeXL;
+  height: $euiSizeXL;
+
+  &.euiToken--rectangle {
+    padding: 0 ($euiSize * .5);
+  }
+}
+
+.euiToken--rectangle {
+  box-sizing: content-box;
+}
+
+$tokenTypes: (
+  tokenTint01: $euiColorPrimary,
+  tokenTint02: $euiColorAccent,
+  tokenTint03: $euiColorVis3,
+  tokenTint04: $euiColorVis7,
+  tokenTint05: $euiColorVis1,
+  tokenTint06: $euiColorVis5,
+  tokenTint07: $euiColorVis0,
+  tokenTint08: $euiColorVis9,
+  tokenTint09: #F0F,
+  tokenTint10: #26AB00,
+  tokenTint11: #4C1604,
+  tokenTint12: #666
+);
+
+@each $tintName, $tintValue in $tokenTypes {
+  .euiToken--#{$tintName} {
+    box-shadow: 0 0 0 1px $tintValue;
+
+    $backgroundColor: tintOrShade($tintValue, 70%, 70%);
+    background-color: $backgroundColor;
+
+    &.euiToken--no-border {
+      box-shadow: none;
+    }
+
+    &.euiToken--fill {
+      background-color: $tintValue;
+
+      svg {
+        fill: $euiColorGhost;
+      }
+    }
+
+    svg {
+      fill: makeHighContrastColor($tintValue, $backgroundColor);
+    }
+  }
+}
