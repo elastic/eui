@@ -39,3 +39,60 @@ exports[`EuiLoadingChart mono is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`EuiLoadingChart size l is rendered 1`] = `
+<div
+  class="euiLoadingChart euiLoadingChart--large"
+>
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+</div>
+`;
+
+exports[`EuiLoadingChart size m is rendered 1`] = `
+<div
+  class="euiLoadingChart euiLoadingChart--medium"
+>
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+</div>
+`;
+
+exports[`EuiLoadingChart size xl is rendered 1`] = `
+<div
+  class="euiLoadingChart euiLoadingChart--xLarge"
+>
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+  <div
+    class="euiLoadingChart__bar"
+  />
+</div>
+`;

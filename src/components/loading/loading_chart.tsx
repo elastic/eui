@@ -1,8 +1,6 @@
-import React, { SFC, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
-
-export type EuiLoadingChartSize = 'm' | 'l' | 'xl';
+import { CommonProps, keysOf } from '../common';
 
 const sizeToClassNameMap = {
   m: 'euiLoadingChart--medium',
@@ -10,9 +8,11 @@ const sizeToClassNameMap = {
   xl: 'euiLoadingChart--xLarge',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES = keysOf(sizeToClassNameMap);
 
-export const EuiLoadingChart: SFC<
+export type EuiLoadingChartSize = keyof typeof sizeToClassNameMap;
+
+export const EuiLoadingChart: FunctionComponent<
   CommonProps &
     HTMLAttributes<HTMLDivElement> & {
       /**
@@ -21,12 +21,12 @@ export const EuiLoadingChart: SFC<
       mono?: boolean;
       size?: EuiLoadingChartSize;
     }
-> = ({ size, mono, className, ...rest }) => {
+> = ({ size = 'm', mono = false, className, ...rest }) => {
   const classes = classNames(
     'euiLoadingChart',
-    { 'euiLoadingChart--mono' : mono },
+    { 'euiLoadingChart--mono': mono },
     className,
-    size ? sizeToClassNameMap[size] : ''
+    sizeToClassNameMap[size]
   );
 
   return (
@@ -37,9 +37,4 @@ export const EuiLoadingChart: SFC<
       <div className="euiLoadingChart__bar" />
     </div>
   );
-};
-
-EuiLoadingChart.defaultProps = {
-  mono: false,
-  size: 'm',
 };
