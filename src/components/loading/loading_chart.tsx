@@ -24,7 +24,7 @@ export const EuiLoadingChart: SFC<
 > = ({ size, mono, className, ...rest }) => {
   const classes = classNames(
     'euiLoadingChart',
-    mono === true ? 'euiLoadingChart--mono' : '',
+    { 'euiLoadingChart--mono' : mono },
     className,
     size ? sizeToClassNameMap[size] : ''
   );
