@@ -8,6 +8,10 @@
 - Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `EuiPopoverFooter` and converted `EuiPopoverTitle` to TS ([#1666](https://github.com/elastic/eui/pull/1666))
 
+**Bug fixes**
+
+- Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
+
 ## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
 
 **Bug fixes**
