@@ -3,7 +3,7 @@
 exports[`EuiLoadingKibana is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiLoadingKibana testClass1 testClass2"
+  class="euiLoadingKibana euiLoadingKibana--medium testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div

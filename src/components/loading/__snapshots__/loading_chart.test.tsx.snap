@@ -3,7 +3,7 @@
 exports[`EuiLoadingChart is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiLoadingChart testClass1 testClass2"
+  class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium"
   data-test-subj="test subject string"
 >
   <div
@@ -23,7 +23,7 @@ exports[`EuiLoadingChart is rendered 1`] = `
 
 exports[`EuiLoadingChart mono is rendered 1`] = `
 <div
-  class="euiLoadingChart euiLoadingChart--mono"
+  class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium"
 >
   <div
     class="euiLoadingChart__bar"

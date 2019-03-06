@@ -6,11 +6,8 @@ import { EuiLoadingKibana } from './loading_kibana';
 
 describe('EuiLoadingKibana', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiLoadingKibana {...requiredProps} />
-    );
+    const component = render(<EuiLoadingKibana size="m" {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

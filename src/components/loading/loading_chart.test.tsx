@@ -6,20 +6,14 @@ import { EuiLoadingChart } from './loading_chart';
 
 describe('EuiLoadingChart', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiLoadingChart {...requiredProps} />
-    );
+    const component = render(<EuiLoadingChart {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('mono is rendered', () => {
-    const component = render(
-      <EuiLoadingChart mono />
-    );
+    const component = render(<EuiLoadingChart mono />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

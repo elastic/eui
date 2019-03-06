@@ -7,11 +7,9 @@
     position: absolute;
     content: '';
     width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 5%;
     border-radius: 50%;
     opacity: .2;
-    transform-origin: -50% -50%;
     z-index: 1;
   }
 

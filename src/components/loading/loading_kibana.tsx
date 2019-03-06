@@ -1,7 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { SFC, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
+
+export interface EuiLoadingKibanaProps {
+  size: 'm' | 'l' | 'xl';
+}
 
 const sizeToClassNameMap = {
   m: 'euiLoadingKibana--medium',
@@ -11,18 +15,17 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
+export const EuiLoadingKibana: SFC<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingKibanaProps
+> = ({ children, size, className, ...rest }) => {
   const classes = classNames(
     'euiLoadingKibana',
     sizeToClassNameMap[size],
-    className,
+    className
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       <div className="euiLoadingKibana__icon">
         <EuiIcon type="logoKibana" size={size} />
       </div>
@@ -31,6 +34,6 @@ export const EuiLoadingKibana = ({ children, size, className, ...rest }) => {
   );
 };
 
-EuiLoadingKibana.propTypes = {
-  size: PropTypes.oneOf(SIZES),
+EuiLoadingKibana.defaultProps = {
+  size: 'm',
 };
