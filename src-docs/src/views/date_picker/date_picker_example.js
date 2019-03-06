@@ -111,7 +111,7 @@ export const DatePickerExample = {
     }],
     text: (
       <p>
-        Two props control time selction. <EuiCode>showTimeSelect</EuiCode> will make
+        Two props control time selection. <EuiCode>showTimeSelect</EuiCode> will make
         time selection appear next to the calendar
         and <EuiCode>showTimeSelectOnly</EuiCode> will exclude the calendar and
         make the time selection the only thing you see. Make sure to adjust
@@ -132,8 +132,8 @@ export const DatePickerExample = {
     text: (
       <p>
         Locale formatting is achieved by using the <EuiCode>locale</EuiCode>,
-        <EuiCode>timeFormat</EuiCode> and <EuiCode>dateFormat</EuiCode> props.
-        The later will take any <EuiCode>moment()</EuiCode> notation. Check{' '}
+        <EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode> props.
+        The latter will take any <EuiCode>moment()</EuiCode> notation. Check{' '}
         <a href="https://en.wikipedia.org/wiki/Date_format_by_country">Date format by country</a>
         {' '}for formatting examples.
       </p>
