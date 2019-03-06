@@ -16,7 +16,7 @@ export default () => (
 
     <EuiTextColor color="danger">
       <EuiCode className="eui-textInheritColor">.eui-textInheritColor</EuiCode> will
-      force text to inherit it&apos;s color from it&apos;s parent.
+      force text to inherit its color from its parent.
     </EuiTextColor>
 
     <EuiSpacer />
