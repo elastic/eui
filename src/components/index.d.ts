@@ -17,7 +17,6 @@
 /// <reference path="./health/index.d.ts" />
 /// <reference path="./key_pad_menu/index.d.ts" />
 /// <reference path="./link/index.d.ts" />
-/// <reference path="./loading/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />
 /// <reference path="./observer/mutation_observer/index.d.ts" />
 /// <reference path="./observer/resize_observer/index.d.ts" />

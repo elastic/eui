@@ -451,6 +451,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   />
   <EuiPortal>
     <EuiComboBoxOptionsList
+      activeOptionIndex={-1}
       areAllOptionsSelected={false}
       data-test-subj=""
       fullWidth={false}
@@ -532,6 +533,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
       position="bottom"
       rootId={[Function]}
       rowHeight={27}
+      scrollToIndex={-1}
       searchValue=""
       selectedOptions={
         Array [

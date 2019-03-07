@@ -73,7 +73,7 @@ export class EuiComboBox extends Component {
       searchValue: initialSearchValue,
       isListOpen: false,
       listPosition: 'bottom',
-      activeOptionIndex: undefined,
+      activeOptionIndex: -1,
       hasFocus: false,
     };
 
@@ -154,7 +154,7 @@ export class EuiComboBox extends Component {
     this.setState(({ activeOptionIndex, matchingOptions }) => {
       let nextActiveOptionIndex;
 
-      if (activeOptionIndex == null) {
+      if (activeOptionIndex < 0) {
         // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
         // either the first or last item.
         nextActiveOptionIndex = amount < 0 ? matchingOptions.length - 1 : 0;
@@ -186,12 +186,12 @@ export class EuiComboBox extends Component {
   };
 
   hasActiveOption = () => {
-    return this.state.activeOptionIndex != null && this.state.activeOptionIndex < this.state.matchingOptions.length;
+    return this.state.activeOptionIndex > -1 && this.state.activeOptionIndex < this.state.matchingOptions.length;
   };
 
   clearActiveOption = () => {
     this.setState({
-      activeOptionIndex: undefined,
+      activeOptionIndex: -1,
     });
   };
 
@@ -498,7 +498,7 @@ export class EuiComboBox extends Component {
     const stateUpdate = { matchingOptions };
 
     if (activeOptionIndex >= matchingOptions.length) {
-      stateUpdate.activeOptionIndex = undefined;
+      stateUpdate.activeOptionIndex = -1;
     }
 
     return stateUpdate;
