@@ -1,6 +1,4 @@
-import {
-  cloneElement,
-} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -36,7 +34,7 @@ export const EuiTitle = ({ size, children, className, textTransform, ...rest }) 
     ...rest
   };
 
-  return cloneElement(children, props);
+  return React.cloneElement(children, props);
 };
 
 EuiTitle.propTypes = {
