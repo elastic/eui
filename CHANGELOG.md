@@ -2,6 +2,8 @@
 
 **Note: this release is a backport containing changes originally made in `9.0.0`, `9.1.0`, and `9.4.0`**
 
+- Adjusted the dark theme palette to have a slight blue titn ([#1691](https://github.com/elastic/eui/pull/1691))
+
 **Bug fixes**
 
 - Fixed keyboard navigation and UI of `EuiComboBox` items in single selection mode ([#1619](https://github.com/elastic/eui/pull/1619))

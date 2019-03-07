@@ -101,7 +101,7 @@
 
 @mixin euiFormControlFocusStyle($borderOnly: false) {
   // sass-lint:disable-block indentation, empty-args
-  background-color: tintOrShade($euiColorEmptyShade, 0%, 50%);
+  background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
   background-image: euiFormControlGradient();
   background-size: 100% 100%; /* 3 */
 

@@ -25,7 +25,7 @@ import ColorGuidelines
 import ModalGuidelines
   from './views/guidelines/modals';
 
-import SassGuidelines
+import { SassGuidelines }
   from './views/guidelines/sass';
 
 import TextScales

@@ -64,7 +64,7 @@ export class AppView extends Component {
           </EuiErrorBoundary>
 
           <div className="guidePageContent">
-            {children}
+            {React.cloneElement(children, { selectedTheme: theme })}
           </div>
         </EuiPageBody>
       </EuiPage>
