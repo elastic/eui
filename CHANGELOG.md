@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.1.0`.
+
+## [`9.1.0`](https://github.com/elastic/eui/tree/v9.1.0)
+
 - Adjusted the dark theme palette to have a slight blue titn ([#1691](https://github.com/elastic/eui/pull/1691))
 - Added `repositionOnScroll` property to the `EuiPopoverProps` type definition ([#1628](https://github.com/elastic/eui/pull/1628))
 - Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
