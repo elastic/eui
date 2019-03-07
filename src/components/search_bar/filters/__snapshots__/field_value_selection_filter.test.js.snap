@@ -32,7 +32,6 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -78,7 +77,6 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -124,7 +122,6 @@ exports[`FieldValueSelectionFilter inactive - field is global 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -170,7 +167,6 @@ exports[`FieldValueSelectionFilter inactive - fields in options 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -216,7 +212,6 @@ exports[`FieldValueSelectionFilter render - all configurations 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -262,7 +257,6 @@ exports[`FieldValueSelectionFilter render - fields in options 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -308,7 +302,6 @@ exports[`FieldValueSelectionFilter render - multi-select OR 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -354,7 +347,6 @@ exports[`FieldValueSelectionFilter render - options as a function 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer
@@ -400,7 +392,6 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
       className="euiFilterSelect__noteContent"
     >
       <EuiLoadingChart
-        mono={false}
         size="m"
       />
       <EuiSpacer

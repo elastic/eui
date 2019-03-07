@@ -8,6 +8,11 @@
 - Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `EuiPopoverFooter` and converted `EuiPopoverTitle` to TS ([#1666](https://github.com/elastic/eui/pull/1666))
+- Converted `EuiLoadingSpinner`, `EuiLoadingKibana`, and `EuiLoadingChart` to TS ([#1683](https://github.com/elastic/eui/pull/1683))
+
+**Bug fixes**
+
+- Fixed IE11 rendering issue in `EuiLoadingKibana` ([#1683](https://github.com/elastic/eui/pull/1683))
 
 **Bug fixes**
 
