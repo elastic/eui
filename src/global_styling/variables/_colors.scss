@@ -26,7 +26,7 @@ $euiTextColor: $euiColorDarkestShade !default;
 $euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
-$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 25%) !default;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Visualization colors
 
