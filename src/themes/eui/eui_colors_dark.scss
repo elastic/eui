@@ -1,5 +1,15 @@
-// Dark theme overides
+// Code
+$euiColorPrimary: #1BA9F5;
+$euiColorSecondary: #7DE2D1;
+$euiColorAccent: #F990C0;
+$euiColorGhost: #FFF;
 
+// Status
+$euiColorSuccess: $euiColorSecondary;
+$euiColorWarning: #FF977A;
+$euiColorDanger: #F66;
+
+// Grays
 $euiColorEmptyShade: #1D1E24;
 $euiColorLightestShade: #25262E;
 $euiColorLightShade: #343741;
@@ -7,21 +17,17 @@ $euiColorMediumShade: #535966;
 $euiColorDarkShade: #D4DAE5;
 $euiColorDarkestShade: #F5F7FA;
 $euiColorFullShade: #FFF;
-$euiColorPrimary: #1BA9F5;
-$euiColorSecondary: #7DE2D1;
-$euiColorWarning: #FF977A;
-$euiColorAccent: #F990C0;
-$euiColorDanger: #F66;
-$euiColorSuccess: $euiColorSecondary;
-$euiColorGhost: #FFF;
+
+// Variations from core
+
 $euiTextColor: #DFE5EF;
 $euiLinkColor: $euiColorPrimary;
-
 $euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
 
 // Visualization colors
+// Currently this is the same as light. It is required to list them for our docs to work
 
 $euiColorVis0: #00B3A4;
 $euiColorVis1: #3185FC;
