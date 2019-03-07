@@ -3,15 +3,16 @@
 exports[`EuiSelectableSearch is rendered 1`] = `
 <div>
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
         aria-label="aria-label"
-        class="euiFieldSearch euiSelectableSearch testClass1 testClass2"
+        class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
         data-test-subj="test subject string"
+        placeholder="Filter options"
         type="search"
         value=""
       />

@@ -1,6 +1,11 @@
-import React, { Component, HTMLAttributes, ReactNode, createRef } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  ReactNode,
+  createRef,
+  Fragment,
+} from 'react';
 import classNames from 'classnames';
-import { orderBy } from 'lodash';
 import { CommonProps, Omit } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
@@ -23,28 +28,64 @@ export type EuiSelectableProps = Omit<
   'children'
 > &
   CommonProps & {
-    children?: (search: ReactNode, list: ReactNode) => ReactNode;
+    /**
+     * Function that returns the `list` node and then
+     * the `search` node (if `searchable` is applied)
+     */
+    children?: (list: ReactNode, search: ReactNode) => ReactNode;
+    /**
+     * Array or Option objects, see docs for props
+     */
     options: Option[];
-    selectedOptions: Option[];
-    onChange?: (selectedOptions: Option[]) => void;
+    /**
+     * Passes back the altered `options` array with selected options as
+     */
+    onChange?: (options: Option[]) => void;
+    /**
+     * Hooks up a search box to filter the list
+     */
     searchable?: boolean;
+    /**
+     * Passes props down to the `EuiFieldSearch`
+     */
     searchProps?: {};
+    /**
+     * Sets the single selection policy of
+     * `false`: allows multiple selection
+     * `true`: only allows one selection
+     * `always`: can and must have only one selection
+     */
     singleSelection?: EuiSelectableSingleOptionProps;
-    sortSelectedToTop: boolean;
+    /**
+     * Allows marking options as checked = 'off' as well as 'on'
+     */
+    allowExclusions?: boolean;
+    /**
+     * Show an loading indicator while you load and hook up your data
+     */
     isLoading?: boolean;
-    async?: boolean;
+    /**
+     * Sets the max height in pixels or pass `full` to allow
+     * the whole group to fill the height of its container and
+     * allows the list grow as well
+     */
+    height?: number | 'full';
+    /**
+     * See `EuiSelectableList`
+     */
     listProps?: EuiSelectableOptionsListProps;
     /**
-     * returns (option, searchValue)
+     * Custom render function for each option.
+     * Returns (option, searchValue)
      */
     renderOption?: (option: Option, searchValue?: string) => {};
+    async?: boolean;
   };
 
 export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
   visibleOptions: Option[];
-  selectedOptions: Option[];
   options: Option[];
 }
 
@@ -54,9 +95,7 @@ export class EuiSelectable extends Component<
 > {
   static defaultProps = {
     options: [],
-    selectedOptions: [],
     singleSelection: false,
-    sortSelectedToTop: true,
   };
 
   private optionsListRef = createRef<EuiSelectableList>();
@@ -64,32 +103,20 @@ export class EuiSelectable extends Component<
   constructor(props: EuiSelectableProps) {
     super(props);
 
-    const {
-      options,
-      selectedOptions,
-      sortSelectedToTop,
-      singleSelection,
-      async,
-    } = props;
+    const { options, singleSelection, async } = props;
 
     const initialSearchValue = '';
 
     const visibleOptions = getMatchingOptions(
       options,
-      selectedOptions,
+      [],
       initialSearchValue,
       async,
       true
     );
 
-    let sortedOptions;
-    if (sortSelectedToTop) {
-      sortedOptions = orderBy(visibleOptions, ['checked'], ['asc']);
-      // SOMETIMES NOT WORKING! WHY???!!
-      // console.log(sortedOptions);
-    }
-
     // ensure that the currently selected single option is active if it is in the visibleOptions
+    const selectedOptions = options.filter(option => option.checked);
     let activeOptionIndex;
     if (singleSelection && selectedOptions.length === 1) {
       if (visibleOptions.includes(selectedOptions[0])) {
@@ -101,8 +128,7 @@ export class EuiSelectable extends Component<
       options,
       activeOptionIndex,
       searchValue: initialSearchValue,
-      visibleOptions: sortedOptions || visibleOptions,
-      selectedOptions,
+      visibleOptions,
     };
   }
 
@@ -210,31 +236,30 @@ export class EuiSelectable extends Component<
   };
 
   onOptionClick = (options: Option[]) => {
-    const selectedOptions = options.filter(option => option.checked);
-
     this.setState({
       options,
-      selectedOptions,
     });
     if (this.props.onChange) {
-      this.props.onChange(selectedOptions);
+      this.props.onChange(options);
     }
   };
 
   render() {
     const {
+      id,
       children,
       className,
       options,
-      selectedOptions,
       onChange,
       searchable,
       searchProps,
       singleSelection,
-      sortSelectedToTop,
       isLoading,
       listProps,
       renderOption,
+      height,
+      allowExclusions,
+      async,
       ...rest
     } = this.props;
 
@@ -244,14 +269,16 @@ export class EuiSelectable extends Component<
 
     if (isLoading) {
       messageContent = (
-        <p>
+        <Fragment>
           <EuiLoadingChart size="m" mono />
           <br />
-          <EuiI18n
-            token="euiComboBoxOptionsList.loadingOptions"
-            default="Loading options"
-          />
-        </p>
+          <p>
+            <EuiI18n
+              token="euiComboBoxOptionsList.loadingOptions"
+              default="Loading options"
+            />
+          </p>
+        </Fragment>
       );
     } else if (searchValue && visibleOptions.length === 0) {
       messageContent = (
@@ -274,13 +301,20 @@ export class EuiSelectable extends Component<
       );
     }
 
-    const classes = classNames('euiSelectable', className);
+    const classes = classNames(
+      'euiSelectable',
+      {
+        'euiSelectable-fullHeight': height === 'full',
+      },
+      className
+    );
 
     const search = searchable ? (
       <EuiSelectableSearch
         key="listSearch"
         options={options}
         onChange={this.onSearchChange}
+        async={async}
         {...searchProps}
       />
     ) : (
@@ -302,6 +336,8 @@ export class EuiSelectable extends Component<
         singleSelection={singleSelection}
         ref={this.optionsListRef}
         renderOption={renderOption}
+        height={height}
+        allowExclusions={allowExclusions}
         {...listProps}
       />
     );
@@ -312,7 +348,7 @@ export class EuiSelectable extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         {...rest}>
-        {children && children(search, list)}
+        {children && children(list, search)}
       </div>
     );
   }

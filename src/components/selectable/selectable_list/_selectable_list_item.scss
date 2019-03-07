@@ -8,12 +8,14 @@
   color: $euiTextColor;
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid darken($euiColorLightestShade, 2%);
+    border-bottom: $euiSelectableListItemBorder;
   }
 
   &:hover,
   &:focus {
-    text-decoration: underline;
+    .euiSelectableListItem__text {
+      text-decoration: underline;
+    }
   }
 
   &:focus,

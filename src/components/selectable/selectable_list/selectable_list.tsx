@@ -1,7 +1,7 @@
 import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { List, AutoSizer } from 'react-virtualized';
+import { List, AutoSizer, ListProps } from 'react-virtualized';
 // @ts-ignore
 import { htmlIdGenerator, comboBoxKeyCodes } from '../../../services';
 import { EuiSelectableListItem } from './selectable_list_item';
@@ -13,38 +13,66 @@ export type EuiSelectableSingleOptionProps = 'always' | boolean;
 
 export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    width?: number;
-    activeOptionIndex?: number;
-    onScroll?: () => void;
     /**
-     *  row height of default option renderer
+     * The index of the option to be highlighted as pseudo-focused.
+     * Good for use when only one selection is allowed and needing to open
+     * directly to that option
+     */
+    activeOptionIndex?: number;
+    /**
+     *  The height of each option in pixels. Defaults to `32`
      */
     rowHeight: number;
+    /**
+     * Show the check/cross selection indicator icons
+     */
     showIcons?: boolean;
     singleSelection?: EuiSelectableSingleOptionProps;
+    /**
+     * Any props to send specifically to the react-virtualized `List`
+     */
+    virtualizedProps?: ListProps;
   };
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
+  /**
+   * All possible options
+   */
   options: Option[];
+  /**
+   * Filtered options list (if applicable)
+   */
   visibleOptions?: Option[];
+  /**
+   * Search value to highlight on the option render
+   */
   searchValue: string;
   /**
-   * returns array the array of options with altered checked state
+   * Returns the array of options with altered checked state
    */
   onOptionClick: (options: Option[]) => void;
   /**
-   * returns (option, searchValue)
+   * Custom render for the label portion of the option.
+   * Returns (option, searchValue)
    */
   renderOption?: (option: Option, searchValue?: string) => {};
   /**
-   *  row height of default option renderer
+   * Sets the max height in pixels or pass `full` to allow
+   * the whole group to fill the height of its container and
+   * allows the list grow as well
    */
+  height?: number | 'full';
+  /**
+   * Allow cycling through the on, off and undefined state of option.checked
+   * and not just on and undefined
+   */
+  allowExclusions?: boolean;
   rootId: (appendix?: string) => string;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
   static defaultProps = {
-    rowHeight: 30,
+    rowHeight: 32,
     rootId: htmlIdGenerator(),
     searchValue: '',
   };
@@ -60,37 +88,51 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       searchValue,
       onOptionClick,
       renderOption,
-      width: forcedWidth,
-      onScroll,
+      height: forcedHeight,
+      virtualizedProps,
       rowHeight,
       activeOptionIndex,
       rootId,
       showIcons,
       singleSelection,
       visibleOptions,
+      allowExclusions,
       ...rest
     } = this.props;
 
-    const classes = classNames('euiSelectableList', className);
-
     const optionArray = visibleOptions || options;
 
-    const numVisibleOptions = optionArray.length < 7 ? optionArray.length : 7;
-    const forcedHeight = (numVisibleOptions + 0.5) * rowHeight;
+    const heightIsFull = forcedHeight === 'full';
+
+    let calculatedHeight: any;
+    if (!heightIsFull) {
+      const numVisibleOptions = optionArray.length < 7 ? optionArray.length : 7;
+      calculatedHeight = forcedHeight
+        ? forcedHeight
+        : (numVisibleOptions + 0.5) * rowHeight;
+    }
+
+    const classes = classNames(
+      'euiSelectableList',
+      {
+        'euiSelectableList-fullHeight': heightIsFull,
+      },
+      className
+    );
 
     return (
       <div className={classes} {...rest}>
-        <AutoSizer disableHeight={!!forcedHeight} disableWidth={!!forcedWidth}>
+        <AutoSizer disableHeight={!heightIsFull}>
           {({ width, height }) => (
             <List
               id={rootId('listbox')}
               role="listbox"
-              width={forcedWidth || width}
-              height={forcedHeight || height}
+              width={width}
+              height={calculatedHeight || height}
               rowCount={optionArray.length}
               rowHeight={Number(rowHeight)}
               scrollToIndex={activeOptionIndex}
-              onScroll={onScroll}
+              {...virtualizedProps}
               rowRenderer={({ key, index, style }) => {
                 const option = optionArray[index];
                 const {
@@ -100,12 +142,16 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                   disabled,
                   prepend,
                   append,
-                  optionRef,
+                  ref,
                   ...optionRest
                 } = option;
                 if (isGroupLabel) {
                   return (
-                    <div key={key} style={style} {...optionRest}>
+                    <div
+                      className="euiSelectableList__groupLabel"
+                      key={key}
+                      style={style}
+                      {...optionRest}>
                       {prepend}
                       {label}
                       {append}
@@ -118,7 +164,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                     style={style}
                     key={option.label.toLowerCase()}
                     onClick={() => this.onAddOrRemoveOption(option)}
-                    ref={optionRef ? optionRef.bind(this, index) : undefined}
+                    ref={ref ? ref.bind(this, index) : undefined}
                     isFocused={activeOptionIndex === index}
                     title={label}
                     showIcons={showIcons}
@@ -147,7 +193,11 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       return;
     }
 
-    if (option.checked === 'on') {
+    const { allowExclusions } = this.props;
+
+    if (option.checked === 'on' && allowExclusions) {
+      this.onExcludeOption(option);
+    } else if (option.checked === 'on' || option.checked === 'off') {
       this.onRemoveOption(option);
     } else {
       this.onAddOption(option);
@@ -168,6 +218,12 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     if (singleSelection !== 'always') {
       delete removedOption.checked;
     }
+    onOptionClick(options);
+  };
+
+  private onExcludeOption = (excludedOption: Option) => {
+    const { onOptionClick, options } = this.props;
+    excludedOption.checked = 'off';
     onOptionClick(options);
   };
 }

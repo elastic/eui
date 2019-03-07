@@ -3,3 +3,15 @@
     @include euiScrollBar;
   }
 }
+
+// Expand height of list via flex box
+.euiSelectableList-fullHeight {
+  flex-grow: 1;
+}
+
+.euiSelectableList__groupLabel {
+  @include euiTitle('xxxs');
+  display: flex;
+  align-items: center;
+  border-bottom: $euiSelectableListItemBorder;
+}

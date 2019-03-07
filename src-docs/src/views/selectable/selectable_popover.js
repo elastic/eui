@@ -1,81 +1,76 @@
 import React, { Component, Fragment } from 'react';
+import { orderBy } from 'lodash';
 import {
   EuiPopover,
   EuiPopoverTitle,
-  // EuiPopoverFooter,
+  EuiPopoverFooter,
   EuiButton,
+  EuiFlyout,
+  EuiTitle,
+  EuiFlyoutHeader,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
+import { Options } from './data';
+import { createDataStore } from '../tables/data_store';
+import { EuiFlyoutFooter } from '../../../../src/components/flyout/flyout_footer';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [
-      {
-        label: 'Titan',
-        'data-test-subj': 'titanOption',
-      },
-      {
-        label: 'Enceladus is disabled',
-        disabled: true,
-      },
-      {
-        label: 'Mimas',
-      },
-      {
-        label: 'Dione',
-      },
-      {
-        label: 'Iapetus',
-        checked: 'on',
-      },
-      {
-        label: 'Phoebe',
-      },
-      {
-        label: 'Rhea',
-      },
-      {
-        label:
-          'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
-      },
-      {
-        label: 'Tethys',
-      },
-      {
-        label: 'Hyperion',
-      },
-    ];
+    this.countries = createDataStore().countries.map(country => {
+      return {
+        id: country.code,
+        label: `${country.name}`,
+        append: country.flag,
+      };
+    });
 
     this.state = {
-      selectedOptions: [this.options[4]],
+      options: Options,
+      countries: this.countries,
       isPopoverOpen: false,
+      isFlyoutVisible: false,
     };
   }
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
+  onButtonClick = () => {
+    this.setState(prevState => ({
+      options: orderBy(prevState.options, ['checked'], ['asc']),
+      isPopoverOpen: !prevState.isPopoverOpen,
+    }));
   }
 
-  closePopover() {
+  closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
   }
 
-  onChange = selectedOptions => {
+  onChange = options => {
     this.setState({
-      selectedOptions,
-      isPopoverOpen: false,
+      options,
     });
   };
 
+  onFlyoutChange = options => {
+    this.setState({
+      countries: options,
+    });
+  };
+
+  closeFlyout = () => {
+    this.setState({ isFlyoutVisible: false });
+  }
+
+  showFlyout = () => {
+    this.setState({ isFlyoutVisible: true });
+  }
+
   render() {
-    const { selectedOptions, isPopoverOpen } = this.state;
+    const { isPopoverOpen, options, countries } = this.state;
 
     const button = (
       <EuiButton
@@ -88,38 +83,80 @@ export default class extends Component {
     );
 
     return (
-      <EuiPopover
-        id="popover"
-        panelPaddingSize="none"
-        button={button}
-        isOpen={isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
-      >
-        <EuiSelectable
-          searchable
-          searchProps={{
-            placeholder: 'Filter list',
-            compressed: true,
-          }}
-          options={this.options}
-          selectedOptions={selectedOptions}
-          singleSelection
-          style={{ width: 300 }}
-          onChange={this.onChange}
+      <Fragment>
+        <EuiPopover
+          id="popover"
+          panelPaddingSize="none"
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={this.closePopover}
         >
-          {(search, list) => (
-            <Fragment>
-              <EuiPopoverTitle>{search}</EuiPopoverTitle>
-              {list}
-              <EuiPopoverTitle>
-                <EuiButton size="s" fullWidth>
-                  Manage this list
-                </EuiButton>
-              </EuiPopoverTitle>
-            </Fragment>
-          )}
-        </EuiSelectable>
-      </EuiPopover>
+          <EuiSelectable
+            searchable
+            searchProps={{
+              placeholder: 'Filter list',
+              compressed: true,
+            }}
+            options={options}
+            onChange={this.onChange}
+            width={300}
+          >
+            {(list, search) => (
+              <div style={{ width: 240 }}>
+                <EuiPopoverTitle>{search}</EuiPopoverTitle>
+                {list}
+                <EuiPopoverFooter>
+                  <EuiButton size="s" fullWidth>
+                    Manage this list
+                  </EuiButton>
+                </EuiPopoverFooter>
+              </div>
+            )}
+          </EuiSelectable>
+        </EuiPopover>
+
+        <EuiSpacer />
+
+        <EuiButton onClick={this.showFlyout}>
+          Show flyout
+        </EuiButton>
+
+
+        {this.state.isFlyoutVisible &&
+          <EuiFlyout
+            ownFocus
+            onClose={this.closeFlyout}
+            aria-labelledby="flyoutTitle"
+          >
+            <EuiSelectable
+              searchable
+              options={countries}
+              onChange={this.onFlyoutChange}
+              height="full"
+            >
+              {(list, search) => (
+                <Fragment>
+                  <EuiFlyoutHeader hasBorder>
+                    <EuiTitle size="m">
+                      <h2 id="flyoutTitle">
+                        Be mindful of the flexbox
+                      </h2>
+                    </EuiTitle>
+                    <EuiSpacer />
+                    {search}
+                  </EuiFlyoutHeader>
+                  <EuiSpacer size="xs" />
+                  {list}
+                </Fragment>
+              )}
+            </EuiSelectable>
+            <EuiSpacer size="xs" />
+            <EuiFlyoutFooter>
+              <EuiButton fill>Some extra action</EuiButton>
+            </EuiFlyoutFooter>
+          </EuiFlyout>
+        }
+      </Fragment>
     );
   }
 }

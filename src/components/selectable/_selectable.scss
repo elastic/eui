@@ -1,3 +1,8 @@
-// .euiSelectable {
+.euiSelectable {
+  display: flex;
+  flex-direction: column;
+}
 
-// }
+.euiSelectable-fullHeight {
+  height: 100%;
+}

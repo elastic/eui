@@ -58,8 +58,8 @@ export default class extends Component {
 
     this.state = {
       spaces: this.spaces,
+      selectedSpace: this.spaces.filter(option => option.checked)[0],
       isOpen: false,
-      selectedSpaces: [this.spaces[0]],
     };
   }
 
@@ -79,9 +79,10 @@ export default class extends Component {
     });
   };
 
-  onChange = selectedOptions => {
+  onChange = options => {
     this.setState({
-      selectedSpaces: selectedOptions,
+      spaces: options,
+      selectedSpace: options.filter(option => option.checked)[0],
       isOpen: false,
     });
   };
@@ -93,8 +94,7 @@ export default class extends Component {
   }
 
   render() {
-    const { selectedSpaces, isOpen, spaces } = this.state;
-
+    const { selectedSpace, isOpen, spaces } = this.state;
     const button = (
       <EuiHeaderSectionItemButton
         aria-controls="headerSpacesMenuList"
@@ -103,7 +103,7 @@ export default class extends Component {
         aria-label="Apps menu"
         onClick={this.onMenuButtonClick}
       >
-        {selectedSpaces[0].prepend}
+        {selectedSpace.prepend}
       </EuiHeaderSectionItemButton>
     );
 
@@ -124,7 +124,6 @@ export default class extends Component {
             compressed: true,
           }}
           options={spaces}
-          selectedOptions={selectedSpaces}
           singleSelection="always"
           style={{ width: 300 }}
           onChange={this.onChange}
@@ -133,7 +132,7 @@ export default class extends Component {
             showIcons: false,
           }}
         >
-          {(search, list) => (
+          {(list, search) => (
             <Fragment>
               <EuiPopoverTitle>{search || 'Your spaces'}</EuiPopoverTitle>
               {list}

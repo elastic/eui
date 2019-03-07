@@ -83,9 +83,11 @@ export class EuiSelectableSearch extends Component<
       <div>
         <EuiFieldSearch
           className={classes}
+          placeholder="Filter options"
           onSearch={this.onSearchChange}
           incremental
           defaultValue={defaultValue}
+          fullWidth
           {...rest}
         />
       </div>

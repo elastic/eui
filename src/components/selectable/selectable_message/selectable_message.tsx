@@ -7,11 +7,9 @@ import { EuiText } from '../../text';
 export type EuiSelectableMessageProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {};
 
-export const EuiSelectableMessage: React.SFC<EuiSelectableMessageProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiSelectableMessage: React.FunctionComponent<
+  EuiSelectableMessageProps
+> = ({ children, className, ...rest }) => {
   const classes = classNames('euiSelectableMessage', className);
 
   return (
