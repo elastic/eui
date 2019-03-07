@@ -103,13 +103,20 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     const optionArray = visibleOptions || options;
 
     const heightIsFull = forcedHeight === 'full';
+    let calculatedHeight: any = !heightIsFull && forcedHeight;
 
-    let calculatedHeight: any;
-    if (!heightIsFull) {
-      const numVisibleOptions = optionArray.length < 7 ? optionArray.length : 7;
-      calculatedHeight = forcedHeight
-        ? forcedHeight
-        : (numVisibleOptions + 0.5) * rowHeight;
+    // If calculatedHeight is still undefined, then calculate it
+    if (!calculatedHeight) {
+      const maxVisibleOptions = 7;
+      const numVisibleOptions = optionArray.length;
+      const numVisibleMoreThanMax = optionArray.length > maxVisibleOptions;
+
+      if (numVisibleMoreThanMax) {
+        // Show only half of the last one to indicate there's more to scroll to
+        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
+      } else {
+        calculatedHeight = numVisibleOptions * rowHeight;
+      }
     }
 
     const classes = classNames(
