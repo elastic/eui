@@ -1,0 +1,12 @@
+.euiDroppable {
+  $euiDroppableColor: $euiColorSecondary;
+  transition: background-color .7s ease;
+
+  &.euiDroppable--isDraggingType {
+    background-color: transparentize($euiDroppableColor, .9);
+
+    &.euiDroppable--isDraggingOver {
+      background-color: transparentize($euiDroppableColor, .75);
+    }
+  }
+}

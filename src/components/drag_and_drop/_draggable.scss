@@ -1,0 +1,20 @@
+.euiDraggable {
+  padding: 5px 0;
+  z-index: 9000; // EuiFlyout has a z-index of 8000
+
+  .euiDraggable__item {
+    &:hover {
+      @include euiSlightShadowHover;
+    }
+
+    &.euiDraggable__item--isDisabled {
+      cursor: not-allowed;
+    }
+
+    &:focus,
+    &.euiDraggable__item--isDragging {
+      @include euiBottomShadow;
+      border: 1px solid lighten(desaturate($euiColorPrimary, 40%), 40%);
+    }
+  }
+}
