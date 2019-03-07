@@ -4,7 +4,6 @@ export {
 
 export {
   EuiAvatar,
-  EuiAvatarGroup,
 } from './avatar';
 
 export {

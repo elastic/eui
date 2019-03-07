@@ -4,7 +4,6 @@ import {
   EuiAvatar,
   EuiSpacer,
   EuiTitle,
-  EuiAvatarGroup,
 } from '../../../../src/components';
 
 export default () => (
@@ -29,14 +28,5 @@ export default () => (
     &emsp;
     <EuiAvatar size="xl" name="Cat" imageUrl="https://source.unsplash.com/64x64/?cat" />
 
-
-    <EuiAvatarGroup
-      avatars={[
-        <EuiAvatar key="1" name="Rafael"/>,
-        <EuiAvatar key="2" name="Donatello" />,
-        <EuiAvatar key="3" name="Leornardo" color="#BD10E0" />,
-        <EuiAvatar key="4" name="Michaelangelo" />
-      ]}
-    />
   </div>
 );
