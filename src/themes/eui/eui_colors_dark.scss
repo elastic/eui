@@ -1,29 +1,24 @@
 // Dark theme overides
 
-$euiColorEmptyShade: #222;
-$euiColorLightestShade: #242424;
-$euiColorLightShade: #333;
-$euiColorMediumShade: #444;
-$euiColorDarkShade: #8A8A8A;
-$euiColorDarkestShade: #F5F5F5;
+$euiColorEmptyShade: #1D1E24;
+$euiColorLightestShade: #25262E;
+$euiColorLightShade: #343741;
+$euiColorMediumShade: #535966;
+$euiColorDarkShade: #D4DAE5;
+$euiColorDarkestShade: #F5F7FA;
 $euiColorFullShade: #FFF;
-$euiColorMediumShade: #494E51;
-$euiColorPrimary: #4DA1C0;
-$euiColorWarning: #C06C4C;
-$euiColorDanger: #BF4D4D;
+$euiColorPrimary: #1BA9F5;
+$euiColorSecondary: #7DE2D1;
+$euiColorWarning: #FF977A;
+$euiColorDanger: #F990C0;
 $euiTextColor: #DDD;
 
-$euiFocusBackgroundColor: #191919;
+$euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
-$euiModalBorderColor: $euiColorLightShade;
-$euiFlyoutBorderColor: $euiColorLightShade;
 
 // Code
 
-$euiCodeBlockBackgroundColor: #2B2B2D;
-$euiCodeBlockColor: #CDD3D8;
-$euiCodeBlockSelectedBackgroundColor: #3E4451;
 $euiCodeBlockCommentColor: #656565;
 $euiCodeBlockSelectorTagColor: #C792EA;
 $euiCodeBlockStringColor: #C3E88D;
