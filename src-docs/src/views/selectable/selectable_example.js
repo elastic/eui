@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -45,9 +46,14 @@ export const SelectableExample = {
       <p>
         EuiSelectable aims to make the pattern of a selectable list (with or
         without search) consistent across implementations. It is the same
-        concept used in EuiComboBox and EuiFilterGroup. This is not intended for
-        primary navigation but can be used to simplify the construction of
-        popover navigational menus; i.e. the spaces menu in the header.
+        concept used in <Link to="/forms/combo-box">EuiComboBox</Link> and{' '}
+        <Link to="/forms/filter-group">EuiFilterGroup</Link>.{' '}
+        <strong>
+          This is not intended for <Link to="/display/list-group">primary navigation</Link>
+        </strong>{' '}
+        but can be used to simplify the construction of popover navigational
+        menus; i.e. the spaces menu in the{' '}
+        <Link to="/layout/header">header</Link>.
       </p>
 
       <EuiSpacer size="s" />
