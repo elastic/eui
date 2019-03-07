@@ -12,6 +12,7 @@
 **Bug fixes**
 
 - Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
+- Fixed `EuiComboBox` `activeOptonIndex` error with empty search results ([#1695](https://github.com/elastic/eui/pull/1695))
 
 ## [`9.0.2`](https://github.com/elastic/eui/tree/v9.0.2)
 
