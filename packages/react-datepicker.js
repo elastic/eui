@@ -3278,22 +3278,12 @@ var Time = function (_React$Component) {
     while (
     // look for the first element with an overflowY of scroll
     window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
-    // fallback condition in case there is no scrolling parent
+    // fallback condition in case there is no scrolling parent, avoid an infinite loop
     scrollParent !== document.body) {
       scrollParent = scrollParent.parentNode;
     }
 
     scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
-
-    // const scrollToElement = this.selectedLi || this.preselectedLi;
-    // if (scrollToElement) {
-    //   // an element matches the selected time, scroll to it
-    //   scrollToElement.scrollIntoView({
-    //     behavior: "instant",
-    //     block: "nearest",
-    //     inline: "nearest"
-    //   });
-    // }
   };
 
   Time.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
@@ -4452,17 +4442,24 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
+var _toInteger$1 = /*#__PURE__*/Object.freeze({
+  default: _toInteger,
+  __moduleExports: _toInteger
+});
+
+var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = _toInteger(index);
+  index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
 
@@ -4607,7 +4604,14 @@ var assign$2 = createCommonjsModule(function (module) {
 module.exports = { "default": require$$0, __esModule: true };
 });
 
-unwrapExports(assign$2);
+var assign$3 = unwrapExports(assign$2);
+
+var assign$4 = /*#__PURE__*/Object.freeze({
+  default: assign$3,
+  __moduleExports: assign$2
+});
+
+var _assign = ( assign$4 && assign$3 ) || assign$4;
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4615,7 +4619,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$2);
+var _assign2 = _interopRequireDefault(_assign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4654,7 +4658,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = _toInteger(pos);
+    var i = toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -5360,11 +5364,18 @@ _export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = createCommonjsModule(function (module) {
-module.exports = { "default": setPrototypeOf, __esModule: true };
+var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
+  default: setPrototypeOf,
+  __moduleExports: setPrototypeOf
 });
 
-unwrapExports(setPrototypeOf$1);
+var require$$0$1 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
+
+var setPrototypeOf$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0$1, __esModule: true };
+});
+
+unwrapExports(setPrototypeOf$2);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5386,7 +5397,7 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
 
 
 
@@ -8018,13 +8029,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var warning$1 = /*#__PURE__*/Object.freeze({
-  default: warning_1,
-  __moduleExports: warning_1
-});
-
-var _warning = ( warning$1 && warning_1 ) || warning$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8043,7 +8047,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warning2 = _interopRequireDefault(warning_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8472,10 +8476,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$2 = function() {};
+var warning$1 = function() {};
 
 if (__DEV__) {
-  warning$2 = function(condition, format, args) {
+  warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8513,7 +8517,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$2;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);
@@ -8687,7 +8691,6 @@ var DatePicker = function (_React$Component) {
     key: "defaultProps",
     get: function get$$1() {
       return {
-        accessibleMode: true,
         allowSameDay: false,
         dateFormat: "L",
         dateFormatCalendar: "MMMM YYYY",
@@ -8711,7 +8714,7 @@ var DatePicker = function (_React$Component) {
         monthsShown: 1,
         readOnly: false,
         withPortal: false,
-        shouldCloseOnSelect: false,
+        shouldCloseOnSelect: true,
         showTimeSelect: false,
         timeIntervals: 30,
         timeCaption: "Time",

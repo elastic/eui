@@ -26690,7 +26690,6 @@
 	    key: "defaultProps",
 	    get: function get() {
 	      return {
-	        accessibleMode: true,
 	        allowSameDay: false,
 	        dateFormat: "L",
 	        dateFormatCalendar: "MMMM YYYY",
@@ -26714,7 +26713,7 @@
 	        monthsShown: 1,
 	        readOnly: false,
 	        withPortal: false,
-	        shouldCloseOnSelect: false,
+	        shouldCloseOnSelect: true,
 	        showTimeSelect: false,
 	        timeIntervals: 30,
 	        timeCaption: "Time",
@@ -48743,22 +48742,12 @@
 	    while (
 	    // look for the first element with an overflowY of scroll
 	    window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
-	    // fallback condition in case there is no scrolling parent
+	    // fallback condition in case there is no scrolling parent, avoid an infinite loop
 	    scrollParent !== document.body) {
 	      scrollParent = scrollParent.parentNode;
 	    }
 
 	    scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
-
-	    // const scrollToElement = this.selectedLi || this.preselectedLi;
-	    // if (scrollToElement) {
-	    //   // an element matches the selected time, scroll to it
-	    //   scrollToElement.scrollIntoView({
-	    //     behavior: "instant",
-	    //     block: "nearest",
-	    //     inline: "nearest"
-	    //   });
-	    // }
 	  };
 
 	  Time.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
