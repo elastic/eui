@@ -39,15 +39,21 @@ export class EuiNavDrawer extends Component {
   expandDrawer = () => {
     this.setState({
       isCollapsed: false,
-      toolTipsEnabled: false,
+      outsideClickDisabled: false,
     });
+
+    setTimeout(() => {
+      this.setState({
+        toolTipsEnabled: false,
+      });
+    }, 150);
   };
 
   collapseDrawer = () => {
     this.setState({
       isCollapsed: true,
       mobileIsHidden: true,
-      outsideClickDisabled: true,
+      outsideClickDisabled: this.state.flyoutIsCollapsed ? true : false,
       toolTipsEnabled: true,
     });
 
@@ -100,6 +106,7 @@ export class EuiNavDrawer extends Component {
       navFlyoutContent: content,
       isCollapsed: true,
       toolTipsEnabled: false,
+      outsideClickDisabled: false,
     });
   };
 
@@ -170,7 +177,6 @@ export class EuiNavDrawer extends Component {
         title={this.state.navFlyoutTitle}
         isCollapsed={this.state.flyoutIsCollapsed}
         listItems={this.state.navFlyoutContent}
-        onMouseLeave={() => this.collapseFlyout()}
         wrapText
       />
     );
@@ -208,7 +214,6 @@ export class EuiNavDrawer extends Component {
           className={classes}
           onBlur={this.focusOut}
           onFocus={this.manageFocus}
-          onMouseLeave={this.collapseDrawer}
           {...rest}
         >
           <EuiFlexGroup gutterSize="none" responsive={false} className="euiNavDrawer--inner">

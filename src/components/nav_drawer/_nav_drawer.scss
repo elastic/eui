@@ -38,6 +38,10 @@
         max-width: $euiSizeXL;
       }
 
+      .euiListGroup-isFooter .euiListGroupItem__button {
+        max-width: $euiNavDrawerWidthCollapsed;
+      }
+
       .euiListGroupItem__label {
         width: 0;
       }
