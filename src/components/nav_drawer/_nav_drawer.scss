@@ -1,6 +1,7 @@
 // Nav drawer. Global application navigation.
 
 .euiNavDrawer {
+  @include euiScrollBar;
   width: $euiNavDrawerWidthCollapsed;
   height: calc(100% - #{$euiNavDrawerTopPosition});
   position: fixed;
@@ -12,16 +13,58 @@
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
   transition-delay: $euiNavDrawerContractingDelay;
+  // Prevents scrollbar from overlapping nav links in IE. Scrollbar still shows on hover
+  // sass-lint:disable no-vendor-prefixes
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  &:hover,
+  &:focus {
+    overflow-y: auto;
+  }
+
+  .euiNavDrawer--inner {
+    min-height: 100%;
+  }
 
   &.euiNavDrawer-isCollapsed  {
+    transition-delay: 0s;
+
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+    }
+
+    .euiNavDrawerMenu {
+      width: $euiNavDrawerWidthCollapsed; // for IE
+
+      .euiListGroupItem__label {
+        width: 0;
+      }
+
+      .euiListGroupItem__icon {
+        margin-right: 0;
+      }
+
+      .euiListGroupItem__button:focus {
+        background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
+      }
+    }
+
     .euiListGroupItem-hasExtraAction .euiListGroupItem__button {
       max-width: 100%;
+    }
+
+    .euiListGroup-isFooter {
+      transition-delay: 0s;
     }
   }
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
     transition-delay: $euiNavDrawerExpandingDelay;
+
+    .euiNavDrawerMenu {
+      width: $euiNavDrawerWidthExpanded;
+    }
 
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
@@ -31,12 +74,27 @@
     }
 
     &.euiNavDrawer-flyoutIsExpanded {
-      width: $euiNavDrawerWidthExpanded * 2;
+      width: $euiNavDrawerWidthExpanded + $euiNavDrawerWidthCollapsed;
     }
 
-    &.euiNavDrawer-flyoutIsAnimating {
-      transition-delay: 0s;
+    .euiListGroup-isFooter {
+      width: $euiNavDrawerWidthExpanded;
     }
+  }
+
+  .euiListGroup-isFooter {
+    @include euiBottomShadowFlat;
+    background-color: $euiColorEmptyShade;
+    position: fixed;
+    bottom: 0;
+    width: $euiNavDrawerWidthCollapsed;
+    transition: width $euiAnimSpeedExtraFast $euiNavDrawerExpandingDelay;
+  }
+
+  .euiNavDrawerMenu {
+    @include euiScrollBar;
+    width: $euiNavDrawerWidthCollapsed;
+    padding-bottom: $euiSizeXXL;
   }
 
   .euiNavDrawerMenu .euiListGroupItem__label {
@@ -48,25 +106,12 @@
     );
   }
 
-  &.euiNavDrawer-showScrollbar .euiNavDrawerMenu,
-  &.euiNavDrawer-showScrollbar .euiNavDrawerFlyout {
-    height: 100%;
-    overflow-y: auto;
-    // This prevents the scrollbar from overlapping the nav links. Scrollbars still show on hover
-    // sass-lint:disable no-vendor-prefixes
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
-
   .euiListGroupItem__label {
     line-height: $euiSize;
   }
 
   .euiListGroupItem__extraAction {
     visibility: hidden;
-  }
-
-  &.euiNavDrawer-showScrollbar .euiListGroupItem__extraAction {
-    visibility: visible;
   }
 }
 
@@ -78,27 +123,21 @@
       width: 0;
     }
 
-    &.euiNavDrawer-isExpanded.euiNavDrawer-flyoutIsExpanded {
-      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+    &.euiNavDrawer-isCollapsed .euiNavDrawerMenu {
+      width: $euiNavDrawerWidthExpanded;
+      padding-bottom: 0;
 
-      .euiNavDrawerFlyout {
-        left: $euiNavDrawerWidthCollapsed;
+      .euiListGroupItem__label {
+        width: 100%;
+      }
+
+      .euiListGroupItem__icon {
+        margin-right: $euiSizeM;
       }
     }
 
-    &.euiNavDrawer-flyoutIsExpanded {
-      .euiNavDrawerMenu {
-        width: $euiNavDrawerWidthCollapsed;
-        overflow-y: hidden;
-
-        .euiListGroupItem__extraAction {
-          visibility: hidden;
-        }
-      }
-
-      .euiNavDrawerMenu .euiListGroupItem__label {
-        display: none;
-      }
+    &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerMenu .euiListGroupItem__label {
+      opacity: 1;
     }
 
     &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
@@ -107,12 +146,25 @@
       transition-duration: 0s;
     }
 
-    .euiNavDrawerMenu .euiListGroupItem__label {
-      opacity: 1;
+    &.euiNavDrawer-flyoutIsExpanded .euiNavDrawerMenu {
+      width: $euiNavDrawerWidthCollapsed;
+      overflow-y: hidden;
+
+      .euiListGroupItem__extraAction {
+        visibility: hidden;
+      }
+
+      .euiListGroupItem__label {
+        display: none;
+      }
     }
 
     .euiListGroupItem__extraAction {
       visibility: visible;
+    }
+
+    .euiListGroup-isFooter {
+      display: none;
     }
   }
 }

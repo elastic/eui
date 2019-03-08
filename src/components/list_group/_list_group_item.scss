@@ -1,6 +1,6 @@
 .euiListGroupItem {
   padding: 0;
-  margin-top: $euiSizeXS;
+  margin-top: $euiSizeS;
   border-radius: $euiBorderRadius;
   overflow: hidden;
   display: flex;
@@ -38,7 +38,7 @@
 
 .euiListGroupItem__text,
 .euiListGroupItem__button {
-  padding: $euiSizeM $euiSizeS;
+  padding: $euiSizeS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
@@ -47,6 +47,10 @@
 
   .euiListGroupItem-hasExtraAction & {
     max-width: calc(100% - #{$euiSizeXL});
+  }
+
+  .euiListGroup-isFooter & {
+    padding: $euiSizeM $euiSize;
   }
 }
 

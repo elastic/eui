@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiButtonIcon } from '../button';
 import { ICON_TYPES, EuiIcon } from '../icon';
+import { EuiToolTip } from '../tool_tip';
 
 const sizeToClassNameMap = {
   xs: 'euiListGroupItem--xSmall',
@@ -24,6 +25,8 @@ export const EuiListGroupItem = ({
   extraAction,
   onClick,
   size,
+  showToolTip,
+  flyoutMenu, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames(
@@ -96,11 +99,30 @@ export const EuiListGroupItem = ({
     );
   }
 
+  if (showToolTip) {
+    itemContent = (
+      <li className={classes}>
+        <EuiToolTip
+          content={label}
+          position="right"
+          delay="long"
+          size="s"
+        >
+          {itemContent}
+        </EuiToolTip>
+      </li>
+    );
+  } else {
+    itemContent = (
+      <li className={classes}>
+        {itemContent}
+        {extraActionNode}
+      </li>
+    );
+  }
+
   return (
-    <li className={classes}>
-      {itemContent}
-      {extraActionNode}
-    </li>
+    <Fragment>{itemContent}</Fragment>
   );
 };
 
@@ -138,12 +160,26 @@ EuiListGroupItem.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
 
   /**
+   * Display tooltip on list item
+   */
+  showToolTip: PropTypes.bool,
+
+  /**
    * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
    * pass `alwaysShow` if you don't want the default behavior of only showing on hover
    */
   extraAction: PropTypes.shape({
     iconType: PropTypes.oneOf(ICON_TYPES).isRequired,
     alwaysShow: PropTypes.bool,
+  }),
+
+  /**
+   * See `EuiNavDrawer`. `flyoutMenu` provides a `title` and `listItems` to the
+   * `EuiNavDrawerFlyout` component while also overriding the `EuiListGroupItem` `onClick` prop
+   */
+  flyoutMenu: PropTypes.shape({
+    title: PropTypes.string,
+    listItems: PropTypes.array,
   }),
 
   onClick: PropTypes.func,
@@ -153,4 +189,5 @@ EuiListGroupItem.defaultProps = {
   isActive: false,
   isDisabled: false,
   size: 'm',
+  showToolTip: false,
 };

@@ -15,6 +15,8 @@ export const EuiListGroup = ({
   listItems,
   maxWidth,
   style,
+  isFooter,
+  showToolTips,
   ...rest,
 }) => {
 
@@ -33,6 +35,7 @@ export const EuiListGroup = ({
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
       'euiListGroup-wrapText': wrapText,
+      'euiListGroup-isFooter': isFooter,
     },
     widthClassName,
     className
@@ -45,13 +48,22 @@ export const EuiListGroup = ({
         return [
           <EuiListGroupItem
             key={`title-${index}`}
+            showToolTip={showToolTips}
             {...item}
           />
         ];
       })
     );
   } else {
-    childrenOrListItems = children;
+    if (showToolTips) {
+      childrenOrListItems = React.Children.map(children, child => {
+        return React.cloneElement(child, {
+          showToolTip: true
+        });
+      });
+    } else {
+      childrenOrListItems = children;
+    }
   }
 
   return (
@@ -73,6 +85,7 @@ EuiListGroup.propTypes = {
     iconType: PropTypes.string,
     isActive: PropTypes.boolean,
     isDisabled: PropTypes.boolean,
+    showToolTip: PropTypes.boolean,
   })),
   children: PropTypes.node,
   className: PropTypes.string,
@@ -93,6 +106,16 @@ EuiListGroup.propTypes = {
   wrapText: PropTypes.bool,
 
   /**
+   * For use with 'EuiNavDrawer'. Fixes group to bottom.
+   */
+  isFooter: PropTypes.bool,
+
+  /**
+   * Display tooltips on all list items
+   */
+  showToolTips: PropTypes.bool,
+
+  /**
    * Sets the max-width of the page,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
@@ -111,4 +134,6 @@ EuiListGroup.defaultProps = {
   bordered: false,
   wrapText: false,
   maxWidth: true,
+  isFooter: false,
+  showToolTips: false,
 };
