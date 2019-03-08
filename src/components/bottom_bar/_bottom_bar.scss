@@ -1,6 +1,6 @@
 .euiBottomBar {
   @include euiBottomShadowFlat($euiShadowColorLarge);
-  background: tintOrShade($euiColorFullShade, 25%, 90%);
+  background: tintOrShade($euiColorFullShade, 25%, 100%);
   color: $euiColorEmptyShade;
   position: fixed;
   bottom: 0;
