@@ -23,7 +23,7 @@
     position: absolute;
     transform-origin: center;
     border-radius: 2px;
-    background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+    background-color: $euiTooltipBackgroundColor;
     width: $arrowSize;
     height: $arrowSize;
 
