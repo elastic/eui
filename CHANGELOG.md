@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.2.0`.
+
+## [`9.2.0`](https://github.com/elastic/eui/tree/v9.2.0)
+
 - Adjusted the dark theme palette a bit more and adjusted a few components ([#1700](https://github.com/elastic/eui/pull/1700))
 
 
