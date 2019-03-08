@@ -18,9 +18,10 @@
 
 **Bug fixes**
 
-- Fixed IE11 rendering issue in `EuiLoadingKibana` ([#1683](https://github.com/elastic/eui/pull/1683))
+- Added button to `EuiSuperDatePicker`'s “Now” tab to trigger the "now" time selection ([#1620](https://github.com/elastic/eui/pull/1620))
 - Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
 - Fixed `EuiComboBox` `activeOptonIndex` error with empty search results ([#1695](https://github.com/elastic/eui/pull/1695))
+- Fixed IE11 rendering issue in `EuiLoadingKibana` ([#1683](https://github.com/elastic/eui/pull/1683))
 
 ## [`9.0.2`](https://github.com/elastic/eui/tree/v9.0.2)
 
