@@ -17,4 +17,11 @@
       border: 1px solid lighten(desaturate($euiColorPrimary, 40%), 40%);
     }
   }
+
+  &.euiDraggable--clone {
+    + div {
+      // Overriding generated HTML elements using inline styles
+      display: none !important; // sass-lint:disable-line no-important
+    }
+  }
 }
