@@ -33,34 +33,28 @@ export class EuiNavDrawer extends Component {
       this.setState({
         outsideClickDisabled: this.state.mobileIsHidden ? true : false,
       });
-    }, 350);
+    }, 150);
   };
 
   expandDrawer = () => {
-    this.setState({ isCollapsed: false });
-
-    setTimeout(() => {
-      this.setState({
-        toolTipsEnabled: false,
-      });
-    }, 350);
+    this.setState({
+      isCollapsed: false,
+      toolTipsEnabled: false,
+    });
   };
 
   collapseDrawer = () => {
-
-    setTimeout(() => {
-      this.setState({
-        isCollapsed: true,
-        mobileIsHidden: true,
-        outsideClickDisabled: true,
-        toolTipsEnabled: true,
-      });
-    }, 350);
+    this.setState({
+      isCollapsed: true,
+      mobileIsHidden: true,
+      outsideClickDisabled: true,
+      toolTipsEnabled: true,
+    });
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
       document.getElementById('navDrawer').scrollTop = 0;
-    }, 300);
+    }, 50);
   };
 
   manageFocus = () => {
@@ -111,14 +105,12 @@ export class EuiNavDrawer extends Component {
 
   collapseFlyout = () => {
 
-    setTimeout(() => {
-      this.setState({
-        flyoutIsCollapsed: true,
-        navFlyoutTitle: null,
-        navFlyoutContent: null,
-        toolTipsEnabled: true,
-      });
-    }, 250);
+    this.setState({
+      flyoutIsCollapsed: true,
+      navFlyoutTitle: null,
+      navFlyoutContent: null,
+      toolTipsEnabled: true,
+    });
   };
 
   closeBoth = () => {

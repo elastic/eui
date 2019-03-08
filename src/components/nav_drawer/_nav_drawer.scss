@@ -12,7 +12,6 @@
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
-  transition-delay: $euiNavDrawerContractingDelay;
   // Prevents scrollbar from overlapping nav links in IE. Scrollbar still shows on hover
   // sass-lint:disable no-vendor-prefixes
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -27,7 +26,6 @@
   }
 
   &.euiNavDrawer-isCollapsed  {
-    transition-delay: 0s;
 
     &.euiNavDrawer-flyoutIsExpanded {
       width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
@@ -36,31 +34,22 @@
     .euiNavDrawerMenu {
       width: $euiNavDrawerWidthCollapsed; // for IE
 
-      .euiListGroupItem__label {
-        width: 0;
+      .euiListGroupItem__button {
+        max-width: $euiSizeXL;
       }
 
-      .euiListGroupItem__icon {
-        margin-right: 0;
+      .euiListGroupItem__label {
+        width: 0;
       }
 
       .euiListGroupItem__button:focus {
         background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
       }
     }
-
-    .euiListGroupItem-hasExtraAction .euiListGroupItem__button {
-      max-width: 100%;
-    }
-
-    .euiListGroup-isFooter {
-      transition-delay: 0s;
-    }
   }
 
   &.euiNavDrawer-isExpanded {
     width: $euiNavDrawerWidthExpanded;
-    transition-delay: $euiNavDrawerExpandingDelay;
 
     .euiNavDrawerMenu {
       width: $euiNavDrawerWidthExpanded;
@@ -68,9 +57,7 @@
 
     .euiNavDrawerMenu .euiListGroupItem__label {
       opacity: 1;
-      transition-delay: (
-        $euiNavDrawerExpandingDelay + $euiNavDrawerMenuAddedDelay
-      );
+      width: $euiNavDrawerWidthExpanded;
     }
 
     &.euiNavDrawer-flyoutIsExpanded {
@@ -88,7 +75,7 @@
     position: fixed;
     bottom: 0;
     width: $euiNavDrawerWidthCollapsed;
-    transition: width $euiAnimSpeedExtraFast $euiNavDrawerExpandingDelay;
+    transition: width $euiAnimSpeedExtraFast;
   }
 
   .euiNavDrawerMenu {
@@ -100,10 +87,7 @@
   .euiNavDrawerMenu .euiListGroupItem__label {
     white-space: nowrap;
     opacity: 0;
-    transition: opacity $euiAnimSpeedNormal;
-    transition-delay: (
-      $euiNavDrawerContractingDelay + $euiNavDrawerMenuAddedDelay
-    );
+    transition: all $euiAnimSpeedExtraFast;
   }
 
   .euiListGroupItem__label {
@@ -127,6 +111,11 @@
       width: $euiNavDrawerWidthExpanded;
       padding-bottom: 0;
 
+      .euiListGroupItem__button {
+        width: 100%;
+        max-width: 100%;
+      }
+
       .euiListGroupItem__label {
         width: 100%;
       }
@@ -142,7 +131,6 @@
 
     &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
       width: 0;
-      transition-delay: 0s;
       transition-duration: 0s;
     }
 
