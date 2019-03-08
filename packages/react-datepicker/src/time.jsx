@@ -69,6 +69,7 @@ export default class Time extends React.Component {
     this.timeFormat = "hh:mm A";
     this.state = {
       preSelection,
+      needsScrollToPreSelection: false,
       readInstructions: false,
       isFocused: false
     };
@@ -105,17 +106,39 @@ export default class Time extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    // scroll to the preSelected time
-    const scrollToElement = this.preselectedLi;
+  componentDidUpdate(prevProps) {
+    // if selection changed, scroll to the selected item
+    if (this.props.selected && this.props.selected.isSame(prevProps.selected) === false) {
+      const scrollToElement = this.selectedLi;
 
-    if (scrollToElement) {
-      // an element matches the selected time, scroll to it
-      scrollToElement.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+      if (scrollToElement) {
+        // an element matches the selected time, scroll to it
+        scrollToElement.scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "nearest"
+        });
+      }
+
+      // update preSelection to the selection
+      this.setState({
+        preSelection: this.props.selected,
       });
+    }
+
+    if (this.state.needsScrollToPreSelection) {
+      const scrollToElement = this.preselectedLi;
+
+      if (scrollToElement) {
+        // an element matches the selected time, scroll to it
+        scrollToElement.scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "nearest"
+        });
+      }
+
+      this.setState({ needsScrollToPreSelection: false });
     }
   }
 
@@ -150,7 +173,10 @@ export default class Time extends React.Component {
     }
     if (!newSelection) return; // Let the input component handle this keydown
     event.preventDefault();
-    this.setState({ preSelection: newSelection });
+    this.setState({
+      preSelection: newSelection,
+      needsScrollToPreSelection: true,
+    });
   };
 
   handleClick = time => {
@@ -246,6 +272,15 @@ export default class Time extends React.Component {
             (currH === getHour(time) && !this.centerLi)
           ) {
             this.centerLi = li;
+          }
+
+          if (
+            li &&
+            li.classList.contains(
+              "react-datepicker__time-list-item--selected"
+            )
+          ) {
+            this.selectedLi = li;
           }
 
           if (
