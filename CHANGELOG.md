@@ -2,7 +2,8 @@
 
 **Note: this release is a backport containing changes originally made in `9.0.0`, `9.1.0`, and `9.4.0`**
 
-- Adjusted the dark theme palette to have a slight blue titn ([#1691](https://github.com/elastic/eui/pull/1691))
+- Adjusted the dark theme palette to have a slight blue tint ([#1691](https://github.com/elastic/eui/pull/1691))
+- Added button to `EuiSuperDatePicker`'s “Now” tab to trigger the "now" time selection ([#1620](https://github.com/elastic/eui/pull/1620))
 
 **Bug fixes**
 
