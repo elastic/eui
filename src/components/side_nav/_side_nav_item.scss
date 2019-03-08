@@ -11,7 +11,7 @@
   color: $euiColorFullShade; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
-    &:hover {
+    &:hover .euiSideNavItemButton__label {
       text-decoration: underline;
     }
 
@@ -19,7 +19,6 @@
     &:focus {
       // sass-lint:disable-block no-important
       background-color: $euiFocusBackgroundColor !important;
-      color: $euiColorPrimary !important;
     }
   }
 
