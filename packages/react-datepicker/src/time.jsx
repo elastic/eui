@@ -59,12 +59,32 @@ export default class Time extends React.Component {
     super(...args);
 
     const times = this.generateTimes();
-    const preSelection = times.reduce((preSelection, time) => {
+    let preSelection = times.reduce((preSelection, time) => {
       if (preSelection) return preSelection;
       if (doHoursAndMinutesAlign(time, this.props.selected)) {
         return time;
       }
     }, null);
+
+    if (preSelection == null) {
+      // there is no exact pre-selection, find the element closest to the selected time and preselect it
+      const currH = this.props.selected
+        ? getHour(this.props.selected)
+        : getHour(newDate());
+      const currM = this.props.selected
+        ? getMinute(this.props.selected)
+        : getMinute(newDate());
+      const closestTimeIndex = Math.floor(
+        (60 * currH + currM) / this.props.intervals
+      );
+      const closestMinutes = closestTimeIndex * this.props.intervals;
+      preSelection = setTime(newDate(), {
+        hour: Math.floor(closestMinutes / 60),
+        minute: closestMinutes % 60,
+        second: 0,
+        millisecond: 0,
+      });
+    }
 
     this.timeFormat = "hh:mm A";
     this.state = {
@@ -77,33 +97,24 @@ export default class Time extends React.Component {
 
   componentDidMount() {
     // code to ensure selected time will always be in focus within time window when it first appears
-    this.list.scrollTop = Time.calcCenterPosition(
+
+    // find the scroll parent
+    let scrollParent = this.list;
+    while(
+      // look for the first element with an overflowY of scroll
+      window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
+      // fallback condition in case there is no scrolling parent, avoid an infinite loop
+      scrollParent !== document.body
+    ) {
+      scrollParent = scrollParent.parentNode;
+    }
+
+    scrollParent.scrollTop = Time.calcCenterPosition(
       this.props.monthRef
         ? this.props.monthRef.clientHeight - this.header.clientHeight
         : this.list.clientHeight,
-      this.centerLi
+      this.selectedLi || this.preselectedLi
     );
-
-    if (this.state.preSelection == null) {
-      // there is no pre-selection, find the element closest to the selected time and preselect it
-      const currH = this.props.selected
-        ? getHour(this.props.selected)
-        : getHour(newDate());
-      const currM = this.props.selected
-        ? getMinute(this.props.selected)
-        : getMinute(newDate());
-      const closestTimeIndex = Math.floor(
-        (60 * currH + currM) / this.props.intervals
-      );
-      const closestMinutes = closestTimeIndex * this.props.intervals;
-      const closestTime = setTime(newDate(), {
-        hour: Math.floor(closestMinutes / 60),
-        minute: closestMinutes % 60,
-        second: 0,
-        millisecond: 0,
-      });
-      this.setState({ preSelection: closestTime });
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -268,10 +279,12 @@ export default class Time extends React.Component {
         className={this.liClasses(time, activeTime)}
         ref={li => {
           if (
-            (currH === getHour(time) && currM === getMinute(time)) ||
-            (currH === getHour(time) && !this.centerLi)
+            li &&
+            li.classList.contains(
+              "react-datepicker__time-list-item--preselected"
+            )
           ) {
-            this.centerLi = li;
+            this.preselectedLi = li;
           }
 
           if (
@@ -281,15 +294,6 @@ export default class Time extends React.Component {
             )
           ) {
             this.selectedLi = li;
-          }
-
-          if (
-            li &&
-            li.classList.contains(
-              "react-datepicker__time-list-item--preselected"
-            )
-          ) {
-            this.preselectedLi = li;
           }
         }}
         role="option"

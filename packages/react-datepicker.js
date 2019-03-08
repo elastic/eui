@@ -3246,6 +3246,20 @@ var Time = function (_React$Component) {
       }
     }, null);
 
+    if (preSelection == null) {
+      // there is no exact pre-selection, find the element closest to the selected time and preselect it
+      var currH = _this.props.selected ? getHour(_this.props.selected) : getHour(newDate());
+      var currM = _this.props.selected ? getMinute(_this.props.selected) : getMinute(newDate());
+      var closestTimeIndex = Math.floor((60 * currH + currM) / _this.props.intervals);
+      var closestMinutes = closestTimeIndex * _this.props.intervals;
+      preSelection = setTime(newDate(), {
+        hour: Math.floor(closestMinutes / 60),
+        minute: closestMinutes % 60,
+        second: 0,
+        millisecond: 0
+      });
+    }
+
     _this.timeFormat = "hh:mm A";
     _this.state = {
       preSelection: preSelection,
@@ -3258,22 +3272,28 @@ var Time = function (_React$Component) {
 
   Time.prototype.componentDidMount = function componentDidMount() {
     // code to ensure selected time will always be in focus within time window when it first appears
-    this.list.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.centerLi);
 
-    if (this.state.preSelection == null) {
-      // there is no pre-selection, find the element closest to the selected time and preselect it
-      var currH = this.props.selected ? getHour(this.props.selected) : getHour(newDate());
-      var currM = this.props.selected ? getMinute(this.props.selected) : getMinute(newDate());
-      var closestTimeIndex = Math.floor((60 * currH + currM) / this.props.intervals);
-      var closestMinutes = closestTimeIndex * this.props.intervals;
-      var closestTime = setTime(newDate(), {
-        hour: Math.floor(closestMinutes / 60),
-        minute: closestMinutes % 60,
-        second: 0,
-        millisecond: 0
-      });
-      this.setState({ preSelection: closestTime });
+    // find the scroll parent
+    var scrollParent = this.list;
+    while (
+    // look for the first element with an overflowY of scroll
+    window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
+    // fallback condition in case there is no scrolling parent
+    scrollParent !== document.body) {
+      scrollParent = scrollParent.parentNode;
     }
+
+    scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
+
+    // const scrollToElement = this.selectedLi || this.preselectedLi;
+    // if (scrollToElement) {
+    //   // an element matches the selected time, scroll to it
+    //   scrollToElement.scrollIntoView({
+    //     behavior: "instant",
+    //     block: "nearest",
+    //     inline: "nearest"
+    //   });
+    // }
   };
 
   Time.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
@@ -3518,16 +3538,12 @@ var _initialiseProps = function _initialiseProps() {
           onClick: _this3.handleClick.bind(_this3, time),
           className: _this3.liClasses(time, activeTime),
           ref: function ref(li) {
-            if (currH === getHour(time) && currM === getMinute(time) || currH === getHour(time) && !_this3.centerLi) {
-              _this3.centerLi = li;
+            if (li && li.classList.contains("react-datepicker__time-list-item--preselected")) {
+              _this3.preselectedLi = li;
             }
 
             if (li && li.classList.contains("react-datepicker__time-list-item--selected")) {
               _this3.selectedLi = li;
-            }
-
-            if (li && li.classList.contains("react-datepicker__time-list-item--preselected")) {
-              _this3.preselectedLi = li;
             }
           },
           role: "option",
@@ -4580,11 +4596,18 @@ _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
-var assign$1 = createCommonjsModule(function (module) {
-module.exports = { "default": assign, __esModule: true };
+var assign$1 = /*#__PURE__*/Object.freeze({
+  default: assign,
+  __moduleExports: assign
 });
 
-unwrapExports(assign$1);
+var require$$0 = ( assign$1 && assign ) || assign$1;
+
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0, __esModule: true };
+});
+
+unwrapExports(assign$2);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4592,7 +4615,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$1);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7995,6 +8018,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var warning$1 = /*#__PURE__*/Object.freeze({
+  default: warning_1,
+  __moduleExports: warning_1
+});
+
+var _warning = ( warning$1 && warning_1 ) || warning$1;
+
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8013,7 +8043,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(warning_1);
+var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8442,10 +8472,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$1 = function() {};
+var warning$2 = function() {};
 
 if (__DEV__) {
-  warning$1 = function(condition, format, args) {
+  warning$2 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8483,7 +8513,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$1;
+var warning_1$1 = warning$2;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);
@@ -8657,6 +8687,7 @@ var DatePicker = function (_React$Component) {
     key: "defaultProps",
     get: function get$$1() {
       return {
+        accessibleMode: true,
         allowSameDay: false,
         dateFormat: "L",
         dateFormatCalendar: "MMMM YYYY",
@@ -8680,7 +8711,7 @@ var DatePicker = function (_React$Component) {
         monthsShown: 1,
         readOnly: false,
         withPortal: false,
-        shouldCloseOnSelect: true,
+        shouldCloseOnSelect: false,
         showTimeSelect: false,
         timeIntervals: 30,
         timeCaption: "Time",

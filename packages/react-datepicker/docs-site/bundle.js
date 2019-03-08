@@ -26690,6 +26690,7 @@
 	    key: "defaultProps",
 	    get: function get() {
 	      return {
+	        accessibleMode: true,
 	        allowSameDay: false,
 	        dateFormat: "L",
 	        dateFormatCalendar: "MMMM YYYY",
@@ -26713,7 +26714,7 @@
 	        monthsShown: 1,
 	        readOnly: false,
 	        withPortal: false,
-	        shouldCloseOnSelect: true,
+	        shouldCloseOnSelect: false,
 	        showTimeSelect: false,
 	        timeIntervals: 30,
 	        timeCaption: "Time",
@@ -48710,6 +48711,20 @@
 	      }
 	    }, null);
 
+	    if (preSelection == null) {
+	      // there is no exact pre-selection, find the element closest to the selected time and preselect it
+	      var currH = _this.props.selected ? (0, _date_utils.getHour)(_this.props.selected) : (0, _date_utils.getHour)((0, _date_utils.newDate)());
+	      var currM = _this.props.selected ? (0, _date_utils.getMinute)(_this.props.selected) : (0, _date_utils.getMinute)((0, _date_utils.newDate)());
+	      var closestTimeIndex = Math.floor((60 * currH + currM) / _this.props.intervals);
+	      var closestMinutes = closestTimeIndex * _this.props.intervals;
+	      preSelection = (0, _date_utils.setTime)((0, _date_utils.newDate)(), {
+	        hour: Math.floor(closestMinutes / 60),
+	        minute: closestMinutes % 60,
+	        second: 0,
+	        millisecond: 0
+	      });
+	    }
+
 	    _this.timeFormat = "hh:mm A";
 	    _this.state = {
 	      preSelection: preSelection,
@@ -48722,22 +48737,28 @@
 
 	  Time.prototype.componentDidMount = function componentDidMount() {
 	    // code to ensure selected time will always be in focus within time window when it first appears
-	    this.list.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.centerLi);
 
-	    if (this.state.preSelection == null) {
-	      // there is no pre-selection, find the element closest to the selected time and preselect it
-	      var currH = this.props.selected ? (0, _date_utils.getHour)(this.props.selected) : (0, _date_utils.getHour)((0, _date_utils.newDate)());
-	      var currM = this.props.selected ? (0, _date_utils.getMinute)(this.props.selected) : (0, _date_utils.getMinute)((0, _date_utils.newDate)());
-	      var closestTimeIndex = Math.floor((60 * currH + currM) / this.props.intervals);
-	      var closestMinutes = closestTimeIndex * this.props.intervals;
-	      var closestTime = (0, _date_utils.setTime)((0, _date_utils.newDate)(), {
-	        hour: Math.floor(closestMinutes / 60),
-	        minute: closestMinutes % 60,
-	        second: 0,
-	        millisecond: 0
-	      });
-	      this.setState({ preSelection: closestTime });
+	    // find the scroll parent
+	    var scrollParent = this.list;
+	    while (
+	    // look for the first element with an overflowY of scroll
+	    window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
+	    // fallback condition in case there is no scrolling parent
+	    scrollParent !== document.body) {
+	      scrollParent = scrollParent.parentNode;
 	    }
+
+	    scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
+
+	    // const scrollToElement = this.selectedLi || this.preselectedLi;
+	    // if (scrollToElement) {
+	    //   // an element matches the selected time, scroll to it
+	    //   scrollToElement.scrollIntoView({
+	    //     behavior: "instant",
+	    //     block: "nearest",
+	    //     inline: "nearest"
+	    //   });
+	    // }
 	  };
 
 	  Time.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
@@ -48982,16 +49003,12 @@
 	          onClick: _this3.handleClick.bind(_this3, time),
 	          className: _this3.liClasses(time, activeTime),
 	          ref: function ref(li) {
-	            if (currH === (0, _date_utils.getHour)(time) && currM === (0, _date_utils.getMinute)(time) || currH === (0, _date_utils.getHour)(time) && !_this3.centerLi) {
-	              _this3.centerLi = li;
+	            if (li && li.classList.contains("react-datepicker__time-list-item--preselected")) {
+	              _this3.preselectedLi = li;
 	            }
 
 	            if (li && li.classList.contains("react-datepicker__time-list-item--selected")) {
 	              _this3.selectedLi = li;
-	            }
-
-	            if (li && li.classList.contains("react-datepicker__time-list-item--preselected")) {
-	              _this3.preselectedLi = li;
 	            }
 	          },
 	          role: "option",

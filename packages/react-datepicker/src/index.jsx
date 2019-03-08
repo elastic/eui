@@ -173,6 +173,7 @@ export default class DatePicker extends React.Component {
 
   static get defaultProps() {
     return {
+      accessibleMode: true,
       allowSameDay: false,
       dateFormat: "L",
       dateFormatCalendar: "MMMM YYYY",
@@ -193,7 +194,7 @@ export default class DatePicker extends React.Component {
       monthsShown: 1,
       readOnly: false,
       withPortal: false,
-      shouldCloseOnSelect: true,
+      shouldCloseOnSelect: false,
       showTimeSelect: false,
       timeIntervals: 30,
       timeCaption: "Time",
