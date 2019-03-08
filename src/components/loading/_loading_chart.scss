@@ -41,15 +41,15 @@
     }
 
     &:nth-child(2) {
-      background-color: darken($euiColorLightShade, 4%);
+      background-color: shadeOrTint($euiColorLightShade, 4%, 4%);
     }
 
     &:nth-child(3) {
-      background-color: darken($euiColorLightShade, 8%);
+      background-color: shadeOrTint($euiColorLightShade, 8%, 8%);
     }
 
     &:nth-child(4) {
-      background-color: darken($euiColorLightShade, 12%);
+      background-color: shadeOrTint($euiColorLightShade, 12%, 12%);
     }
   }
 }

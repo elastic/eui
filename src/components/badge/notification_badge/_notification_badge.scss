@@ -3,7 +3,7 @@
   display: inline-block;
   border-radius: $euiBorderRadius;
   background: $euiColorAccent;
-  color: lightOrDarkTheme($euiColorEmptyShade, $euiColorFullShade);
+  color: $euiColorEmptyShade;
   font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize;

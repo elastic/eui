@@ -2,7 +2,7 @@
   @if (map-has-key($euiCallOutTypes, $type)) {
     $color: map-get($euiCallOutTypes, $type);
     $backgroundColor: tintOrShade($color, 90%, 70%);
-    $foregroundColor: makeHighContrastColor($color, $backgroundColor);
+    $foregroundColor: shadeOrTint(makeHighContrastColor($color, $backgroundColor), 0, 20%);
 
     @if ($returnBackgroundOrForeground == 'background') {
       @return $backgroundColor;
