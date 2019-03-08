@@ -4,7 +4,7 @@ No public interface changes since `9.1.0`.
 
 ## [`9.1.0`](https://github.com/elastic/eui/tree/v9.1.0)
 
-- Adjusted the dark theme palette to have a slight blue titn ([#1691](https://github.com/elastic/eui/pull/1691))
+- Adjusted the dark theme palette to have a slight blue tint ([#1691](https://github.com/elastic/eui/pull/1691))
 - Added `repositionOnScroll` property to the `EuiPopoverProps` type definition ([#1628](https://github.com/elastic/eui/pull/1628))
 - Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
 - Converted `EuiFlexGrid`, `EuiFlexGroup`, `EuiFlexItem`, `EuiDescriptionList`, `EuiDescriptionListTitle`, and `EuiDescriptionListDescription` to TypeScript ([#1365](https://github.com/elastic/eui/pull/1365))
@@ -18,8 +18,6 @@ No public interface changes since `9.1.0`.
 **Bug fixes**
 
 - Fixed IE11 rendering issue in `EuiLoadingKibana` ([#1683](https://github.com/elastic/eui/pull/1683))
-
-**Bug fixes**
 
 - Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
 - Fixed `EuiComboBox` `activeOptonIndex` error with empty search results ([#1695](https://github.com/elastic/eui/pull/1695))
