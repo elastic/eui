@@ -27,7 +27,7 @@ export const TitleExample = {
     }],
     text: (
       <p>
-        <EuiCode>EuiTitle</EuiCode> style the page, section and content
+        <EuiCode>EuiTitle</EuiCode> styles the page, section, and content
         headings we use in Kibana. They can contain any markup, but usually
         contain a heading tag of some sort. Unlike <EuiCode>EuiText</EuiCode>
         they are margin neutral and more suitable for general layout design.

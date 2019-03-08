@@ -14,7 +14,7 @@ $euiSwitchThumbSize: $euiSwitchHeight !default;
 $euiSwitchIconHeight: $euiSize !default;
 
 // Coloring
-$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%) !default;
+$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 40%) !default;
 $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
 $euiFormBorderColor: transparentize($euiColorFullShade, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiColorFullShade, .92) !default;

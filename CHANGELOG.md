@@ -1,11 +1,45 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.2.1`.
+
+## [`9.2.1`](https://github.com/elastic/eui/tree/v9.2.1)
+
+**Bug fixes**
+
+- Make `EuiPopover`'s repositionOnScroll prop optional in TS ([#1705](https://github.com/elastic/eui/pull/1705))
+
+## [`9.2.0`](https://github.com/elastic/eui/tree/v9.2.0)
+
+- Adjusted the dark theme palette a bit more and adjusted a few components ([#1700](https://github.com/elastic/eui/pull/1700))
+
+
+## [`9.1.0`](https://github.com/elastic/eui/tree/v9.1.0)
+
+- Adjusted the dark theme palette to have a slight blue tint ([#1691](https://github.com/elastic/eui/pull/1691))
+- Added `repositionOnScroll` property to the `EuiPopoverProps` type definition ([#1628](https://github.com/elastic/eui/pull/1628))
 - Added support to `findTestSubject` for an optional `matcher` argument, which defaults to `~=`, enabling it to identify an element based on one of multiple space-separated values within its `data-test-subj` attribute ([#1587](https://github.com/elastic/eui/pull/1587))
 - Converted `EuiFlexGrid`, `EuiFlexGroup`, `EuiFlexItem`, `EuiDescriptionList`, `EuiDescriptionListTitle`, and `EuiDescriptionListDescription` to TypeScript ([#1365](https://github.com/elastic/eui/pull/1365))
 - Converted `EuiAvatar` to Typescript ([#1654](https://github.com/elastic/eui/pull/1654))
 - Added missing `anchorClassName` prop to `EuiToolTip` definition ([#1657](https://github.com/elastic/eui/pull/1657))
 - Added `fullWidth` prop to `EuiButton` ([#1665](https://github.com/elastic/eui/pull/1665))
 - Added `.eui-fullWidth` utility class ([#1665](https://github.com/elastic/eui/pull/1665))
+- Added `EuiPopoverFooter` and converted `EuiPopoverTitle` to TS ([#1666](https://github.com/elastic/eui/pull/1666))
+- Converted `EuiLoadingSpinner`, `EuiLoadingKibana`, and `EuiLoadingChart` to TS ([#1683](https://github.com/elastic/eui/pull/1683))
+
+**Bug fixes**
+
+- Added button to `EuiSuperDatePicker`'s “Now” tab to trigger the "now" time selection ([#1620](https://github.com/elastic/eui/pull/1620))
+- Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
+- Fixed `EuiComboBox` `activeOptonIndex` error with empty search results ([#1695](https://github.com/elastic/eui/pull/1695))
+- Fixed IE11 rendering issue in `EuiLoadingKibana` ([#1683](https://github.com/elastic/eui/pull/1683))
+
+## [`9.0.2`](https://github.com/elastic/eui/tree/v9.0.2)
+
+**Note: this release is a backport containing changes originally made in `9.1.0`**
+
+**Bug fixes**
+
+- Fixed floating point arithmetic bug in `EuiRangeTrack`'s value validation ([#1687](https://github.com/elastic/eui/pull/1687))
 
 ## [`9.0.1`](https://github.com/elastic/eui/tree/v9.0.1)
 

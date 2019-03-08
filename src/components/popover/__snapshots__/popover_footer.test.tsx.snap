@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiLoadingSpinner is rendered 1`] = `
+exports[`EuiPopoverFooter is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiLoadingSpinner testClass1 testClass2"
+  class="euiPopoverFooter testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;

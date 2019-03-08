@@ -42,6 +42,7 @@ export const LoadingExample = {
     ),
     props: { EuiLoadingKibana },
     demo: <LoadingKibana />,
+    snippet: `<EuiLoadingKibana size="m" />`
   }, {
     title: 'Chart',
     source: [{
@@ -61,6 +62,7 @@ export const LoadingExample = {
     ),
     props: { EuiLoadingChart },
     demo: <LoadingChart />,
+    snippet: `<EuiLoadingChart size="m" />`
   }, {
     title: 'Spinner',
     source: [{
@@ -77,5 +79,6 @@ export const LoadingExample = {
     ),
     props: { EuiLoadingSpinner },
     demo: <LoadingSpinner />,
+    snippet: `<EuiLoadingSpinner size="m" />`
   }],
 };

@@ -5,6 +5,7 @@ import {
 } from 'react-router';
 
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
+import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import { calculateContrast, rgbToHex } from '../../../../src/services';
 
 import {
@@ -60,14 +61,14 @@ const ratingAA = <EuiBadge color="#333">AA</EuiBadge>;
 
 const ratingAA18 = <EuiBadge color="#666">AA18</EuiBadge>;
 
-function renderPaletteColor(color, index) {
+function renderPaletteColor(palette, color, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiFlexGroup responsive={false} alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiCopy beforeMessage="Click to copy color name" textToCopy={color}>
             {(copy) => (
-              <EuiIcon onClick={copy} size="xl" type="stopFilled" color={rgbToHex(lightColors[color].rgba)} />
+              <EuiIcon onClick={copy} size="xl" type="stopFilled" color={rgbToHex(palette[color].rgba)} />
             )}
           </EuiCopy>
         </EuiFlexItem>
@@ -78,13 +79,13 @@ function renderPaletteColor(color, index) {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiText size="s" color="subdued">
-            <p><code>{rgbToHex(lightColors[color].rgba).toUpperCase()}</code></p>
+            <p><code>{rgbToHex(palette[color].rgba).toUpperCase()}</code></p>
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiText size="s" color="subdued">
             <p>
-              <code>rgb({lightColors[color].r}, {lightColors[color].g}, {lightColors[color].b})</code>
+              <code>rgb({palette[color].r}, {palette[color].g}, {palette[color].b})</code>
             </p>
           </EuiText>
         </EuiFlexItem>
@@ -146,6 +147,7 @@ export default class extends Component {
   };
 
   render() {
+    const palette = (this.props.selectedTheme === 'light') ? lightColors : darkColors;
     const { value } = this.state;
 
     return (
@@ -167,7 +169,7 @@ export default class extends Component {
 
         <EuiFlexGroup direction="column" gutterSize="s">
           {allowedColors.map(function (color, index) {
-            return renderPaletteColor(color, index);
+            return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexGroup>
 
@@ -230,8 +232,8 @@ export default class extends Component {
                   {allowedColors.map(function (color2, index) {
                     const contrast = (
                       calculateContrast(
-                        [lightColors[color].r, lightColors[color].g, lightColors[color].b],
-                        [lightColors[color2].r, lightColors[color2].g, lightColors[color2].b],
+                        [palette[color].r, palette[color].g, palette[color].b],
+                        [palette[color2].r, palette[color2].g, palette[color2].b],
                       )
                     );
 
@@ -275,8 +277,8 @@ color: $${color2};`
                           <p
                             onClick={copy}
                             style={{
-                              backgroundColor: lightColors[color].rgba,
-                              color: lightColors[color2].rgba,
+                              backgroundColor: palette[color].rgba,
+                              color: palette[color2].rgba,
                               padding: 6,
                               marginBottom: 2,
                               borderRadius: 4
@@ -312,7 +314,7 @@ color: $${color2};`
 
         <EuiFlexGroup direction="column" gutterSize="s">
           {visColors.map(function (color, index) {
-            return renderPaletteColor(color, index);
+            return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexGroup>
       </GuidePage>

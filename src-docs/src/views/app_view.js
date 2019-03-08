@@ -80,7 +80,7 @@ export class AppView extends Component {
 
           <div className="guidePageContent">
             <EuiContext i18n={i18n}>
-              {children}
+              {React.cloneElement(children, { selectedTheme: theme })}
             </EuiContext>
           </div>
         </EuiPageBody>

@@ -50,15 +50,15 @@ export const SearchBarExample = {
           <ul>
             <li>
               Search <EuiCode>terms</EuiCode> - one can simply type search terms (free text words) - Example,
-              <EuiCode>website -production</EuiCode>. In this example the intention is to find all items that has the
+              <EuiCode>website -production</EuiCode>. In this example the intention is to find all items that have the
               &quot;website&quot; terms in them but do not have the word &quot;production&quot;
             </li>
             <li>
               Field/value search - one can search for terms within specific fields - Example,
-              <EuiCode>tag:bug -severity:high</EuiCode>. In this example the intention is to find all items that has
+              <EuiCode>tag:bug -severity:high</EuiCode>. In this example the intention is to find all items that have
               &quot;bug&quot; in their <EuiCode>tag</EuiCode> field but do not have &quot;high&quot; in their
               <EuiCode>severity</EuiCode> field. It is also possible to define range queries on numeric and date fields.
-              For example, <EuiCode>followers&gt;=10</EuiCode> will only match items that have 10 follower or above. And
+              For example, <EuiCode>followers&gt;=10</EuiCode> will only match items that have 10 followers or above. And
               <EuiCode>created&gt;&#39;12 Jan 2018&#39;</EuiCode> will only match items that were created after 12th
               January 2018.
             </li>
@@ -75,7 +75,7 @@ export const SearchBarExample = {
           </ul>
           <p>
             While the user can use the syntax described above to enter queries in the search box, it is possible
-            provide the user help with the syntax using filters. The filters are UI controls that can manipulate
+            to provide the user help with the syntax using filters. The filters are UI controls that can manipulate
             the query. The available filters are:
           </p>
           <ul>
@@ -84,7 +84,7 @@ export const SearchBarExample = {
               associated with a field name, and provides the user a list of value options to choose from. This
               filter can be configured to be single or multi select. In a single select mode, only one field filter
               will be added and replaced when the user changes the selection. In multi-select mode, a new filter
-              will be added for each of value selection. It is the intention for all these field clauses  to be ANDed.
+              will be added for each value selection. It is the intention for all these field clauses  to be ANDed.
             </li>
             <li>
               <EuiCode>field_value_toggle</EuiCode> - A filter to manipulate a single field/value clause. The filter is
@@ -93,7 +93,7 @@ export const SearchBarExample = {
             </li>
             <li>
               <EuiCode>field_value_toggle_group</EuiCode> - Similar to the <EuiCode>field_value_toggle</EuiCode> above,
-              except here you can define multiple values they will be displayed as a group of toggle buttons.
+              except here you can define multiple values that will be displayed as a group of toggle buttons.
             </li>
             <li>
               <EuiCode>is</EuiCode> - A toggle button that is associated with a flag name and when clicked it toggles
@@ -165,7 +165,7 @@ export const SearchBarExample = {
           <p>
             A <EuiCode>EuiSearchBar</EuiCode> can have its query controlled by a parent component by
             passing the <EuiCode>query</EuiCode> prop. Changes to the query will be passed back up through
-            the <EuiCode>onChange</EuiCode> callback where the new Query must be stored in state and
+            the <EuiCode>onChange</EuiCode> callback where the new query must be stored in state and
             passed back into the search bar.
           </p>
         </div>
@@ -186,7 +186,7 @@ export const SearchBarExample = {
       text: (
         <div>
           <p>
-            A <EuiCode>EuiSearchBar</EuiCode> can have custom filter drop downs that control how a user can search.
+            A <EuiCode>EuiSearchBar</EuiCode> can have custom filter dropdowns that control how a user can search.
           </p>
         </div>
       ),

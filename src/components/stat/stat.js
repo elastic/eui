@@ -7,7 +7,7 @@ import { EuiTitle, TITLE_SIZES } from '../title/title';
 
 const colorToClassNameMap = {
   default: null,
-  subdued: 'euiStat__title--dark',
+  subdued: 'euiStat__title--subdued',
   primary: 'euiStat__title--primary',
   secondary: 'euiStat__title--secondary',
   danger: 'euiStat__title--danger',

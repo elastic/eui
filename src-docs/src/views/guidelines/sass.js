@@ -1,5 +1,6 @@
 import React from 'react';
 import lightColors from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_colors.scss';
+import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
 import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_animations.scss';
@@ -116,7 +117,7 @@ const euiOverFlowShadows = [
 
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
-function renderPaletteColor(color) {
+function renderPaletteColor(palette, color) {
   let optionalDefault;
   if (color === 'euiTextColor') {
     optionalDefault = (
@@ -129,7 +130,7 @@ function renderPaletteColor(color) {
   return (
     <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" className="guideSass__swatchItem"  key={color}>
       <EuiFlexItem grow={false}>
-        <div className="guideSass__swatch" style={{ background: rgbToHex(lightColors[color].rgba).toUpperCase() }} />
+        <div className="guideSass__swatch" style={{ background: rgbToHex(palette[color].rgba).toUpperCase() }} />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiCode>${color}</EuiCode>
@@ -331,604 +332,609 @@ const contrastExample = (`// Make sure text passes a contrast check
 }
 `);
 
-export default() => (
+export const SassGuidelines = ({
+  selectedTheme
+}) => {
 
-  <GuidePage title="Sass guidelines">
+  const palette = (selectedTheme === 'light') ? lightColors : darkColors;
 
+  return (
+    <GuidePage title="Sass guidelines">
 
-    <EuiTitle>
-      <h2>Core variables</h2>
-    </EuiTitle>
+      <EuiTitle>
+        <h2>Core variables</h2>
+      </EuiTitle>
 
-    <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <div>
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <div>
+            <EuiTitle size="s">
+              <h4>Sizing</h4>
+            </EuiTitle>
+
+            <EuiSpacer />
+
+            {euiSizes.map(function (size, index) {
+              return renderSize(size, index);
+            })}
+
+            <EuiSpacer />
+
+            <EuiTitle size="s">
+              <h4>Z-index</h4>
+            </EuiTitle>
+
+            <EuiSpacer />
+
+            {euiLevels.map(function (level, index) {
+              return renderLevel(level, index);
+            })}
+          </div>
+
+        </EuiFlexItem>
+        <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Sizing</h4>
+            <h4>Color</h4>
           </EuiTitle>
 
           <EuiSpacer />
 
-          {euiSizes.map(function (size, index) {
-            return renderSize(size, index);
+          {euiColors.map(function (color, index) {
+            return renderPaletteColor(palette, color, index);
           })}
 
-          <EuiSpacer />
+        </EuiFlexItem>
+      </EuiFlexGrid>
 
+      <EuiSpacer size="xxl"/>
+
+      <GuideRuleTitle>Going beyond the provided colors</GuideRuleTitle>
+
+      <EuiSpacer size="xxl"/>
+
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Z-index</h4>
+            <h4>Theming patterns</h4>
           </EuiTitle>
 
           <EuiSpacer />
-
-          {euiLevels.map(function (level, index) {
-            return renderLevel(level, index);
-          })}
-        </div>
-
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Color</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-
-        {euiColors.map(function (color, index) {
-          return renderPaletteColor(color, index);
-        })}
-
-      </EuiFlexItem>
-    </EuiFlexGrid>
-
-    <EuiSpacer size="xxl"/>
-
-    <GuideRuleTitle>Going beyond the provided colors</GuideRuleTitle>
-
-    <EuiSpacer size="xxl"/>
-
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Theming patterns</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-        <EuiText>
-          <p>
-            Often you need to go beyond the provided color set. When doing so <strong>always</strong> use
-            color functions to modify the base set. Here are some examples.
-          </p>
-        </EuiText>
-        <EuiSpacer />
-
-        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <div className="guideSass__swatch guideSass__swatch--danger" />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiCode>$euiCodeDanger</EuiCode>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer />
-        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <div className="guideSass__swatch guideSass__swatch--dangerTint" />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiCode>tint($euiCodeDanger, 30%)</EuiCode>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer />
-        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <div className="guideSass__swatch guideSass__swatch--dangerShade" />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiCode>shade($euiCodeDanger, 30%)</EuiCode>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-
-        <EuiSpacer />
-        <EuiText>
-          <p>
-            Remember that EUI provides dark and light mode theming support. Sometimes the traditional
-            color functions don&apos;t give enough flexibility for both modes.
-          </p>
-          <p>
-            For example, depending upon what theme you use <EuiCode>$EuiColorPrimary</EuiCode> will be a different
-            hex value.
-          </p>
-        </EuiText>
-        <EuiSpacer />
-
-        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
-          <EuiFlexItem grow={false} style={{ background: '#FFF', padding: 8 }}>
-            <div className="guideSass__swatch guideSass__swatch--primaryLight" />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiCode>$euiColorPrimary</EuiCode>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiText size="s">
-              <p>
-                is #0079A5 in the light theme
-              </p>
-            </EuiText>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer />
-        <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
-          <EuiFlexItem grow={false} style={{ background: '#222', padding: 8 }}>
-            <div className="guideSass__swatch guideSass__swatch--primaryDark" />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiCode>$euiColorPrimary</EuiCode>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiText size="s">
-              <p>
-                is #4da1c0 in the dark theme
-              </p>
-            </EuiText>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-
-        <EuiSpacer />
-        <EuiText>
-          <p>
-            Taking the default primary color above we want to tint the color
-            in the light mode, but shade it in the dark mode. This makes the
-            background color more subtle in both use cases.
-          </p>
-        </EuiText>
-
-        <EuiSpacer />
-
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{tintOrShadeExample}</EuiCodeBlock>
-
-        <EuiSpacer />
-
-        <EuiFlexGrid columns={2}>
-          <EuiFlexItem style={{ background: '#FFF', padding: 16 }}>
-            <div className="guideSass__themedBox guideSass__themedBox--light">Light theme</div>
-          </EuiFlexItem>
-          <EuiFlexItem style={{ background: '#222', padding: 16 }}>
-            <div className="guideSass__themedBox guideSass__themedBox--dark">Dark theme</div>
-          </EuiFlexItem>
-        </EuiFlexGrid>
-
-      </EuiFlexItem>
-
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Color contrast patterns</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-
-        <EuiText>
-          <p>
-            EUI provides some nifty color functions for auto-adjusting color to pass AA contrast checks.
-            Often this is needed when using the base colors on top of each other. Here is an example
-            similar to our callouts with a pesky orange.
-          </p>
-        </EuiText>
-
-        <EuiSpacer />
-
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{contrastExample}</EuiCodeBlock>
-
-        <EuiSpacer />
-
-        <div className="guideSass__contrastExample">
-          This orange text now passes a contrast check!
-        </div>
-
-        <EuiSpacer />
-
-        <EuiTitle size="s">
-          <h4>More on color contrast</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-
-        <EuiText>
-          <p>
-            Consult the larger <Link to="/guidelines/colors">color guidelines</Link> page
-            for a better explanation about passing color contrast.
-          </p>
-        </EuiText>
-
-
-        <EuiSpacer />
-      </EuiFlexItem>
-    </EuiFlexGrid>
-
-    <GuideRuleTitle>Typography</GuideRuleTitle>
-
-    <EuiText grow={false} className="guideSection__text">
-      <p>
-        View the <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</EuiLink>
-        {' '} and <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">mixins</EuiLink>
-        {' '}Sass code for typography.
-        For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
-        {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
-      </p>
-    </EuiText>
-
-    <EuiSpacer />
-    <EuiCallOut
-      size="s"
-      color="warning"
-      title={
-        <span>
-          It is more common to use these as a mixin (e.g. <EuiCode language="css">@include euiFontSizeS;</EuiCode>)
-          to automatically apply line-height as well as size.
-        </span>
-      }
-    />
-
-    <EuiSpacer />
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Text sizes</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-        {euiFontSizes.map(function (size, index) {
-          return renderFontSize(size, index);
-        })}
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <div>
-          <EuiTitle size="s">
-            <h4>Text colors</h4>
-          </EuiTitle>
-
-          <EuiSpacer />
-
-          {euiTextColors.map(function (color, index) {
-            return renderPaletteColor(color, index);
-          })}
-
-          <EuiSpacer />
-
-          <EuiTitle>
-            <h4>Font families</h4>
-          </EuiTitle>
-
-          <EuiSpacer />
-
-          <EuiFlexGroup responsive={false} alignItems="center">
-            <EuiFlexItem grow={false} className="guideSass__fontFamily">
-              Abc
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiCode language="css">@include euiFont;</EuiCode>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-
-          <EuiFlexGroup responsive={false} alignItems="center">
-            <EuiFlexItem grow={false} className="guideSass__fontFamily guideSass__fontFamily--code">
-              Abc
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiCode language="css">@include euiCodeFont;</EuiCode>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </div>
-      </EuiFlexItem>
-    </EuiFlexGrid>
-
-    <EuiSpacer size="xxl"/>
-
-    <GuideRuleTitle>Borders</GuideRuleTitle>
-
-    <EuiSpacer size="xxl"/>
-
-    <EuiText grow={false}>
-      <p>EUI provides some helper variables for setting common border types.</p>
-    </EuiText>
-
-    <EuiSpacer />
-
-    <EuiFlexGrid columns={3}>
-      {euiBorders.map(function (border, index) {
-        return renderBorder(border, index);
-      })}
-    </EuiFlexGrid>
-
-    <EuiSpacer />
-
-    <EuiText grow={false}>
-      <p>In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> to round the corners.</p>
-    </EuiText>
-
-    <EuiSpacer />
-
-    <EuiFlexGrid columns={3}>
-      <EuiFlexItem className="guideSass__border guideSass__border--radius">
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
-          {borderRadiusExample}
-        </EuiCodeBlock>
-      </EuiFlexItem>
-    </EuiFlexGrid>
-
-    <GuideRuleTitle>Shadow and Depth</GuideRuleTitle>
-
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-
-        <EuiTitle size="s">
-          <h4>Use mixins for shadows</h4>
-        </EuiTitle>
-
-        <EuiText>
-          <p>
-            <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">View the Sass code for shadow mixins</EuiLink>.
-          </p>
-        </EuiText>
-
-        <EuiSpacer />
-
-        {euiShadows.map(function (shadow, index) {
-          return renderShadow(shadow, index);
-        })}
-      </EuiFlexItem>
-      <EuiFlexItem>
-
-        <EuiTitle size="s">
-          <h4>Shadows to create graceful overflows</h4>
-        </EuiTitle>
-
-        <EuiText>
-          <p>
-            Primarily used in modals and flyouts, the overflow shadows add a white
-            glow to subtly hide the content they float above.
-          </p>
-        </EuiText>
-
-        <EuiSpacer />
-
-        <div className="guideSass__overflowShadows">
-          <EuiText className="guideSass__overflowShadowText" size="s">
+          <EuiText>
             <p>
-              Minima reprehenderit aperiam at in ea. Veniam nihil quod tempore.
-              Dolores sit quo expedita voluptate libero.
-              Consequuntur atque nulla atque nemo tenetur numquam.
-              Assumenda aspernatur qui aut sit. Aliquam doloribus iure sint id.
-              Possimus dolor qui soluta cum id tempore ea illum.
-              Facilis voluptatem aut aut ut similique ut.
-              Sed repellendus commodi iure officiis exercitationem praesentium
-              dolor. Ratione non ut nulla accusamus et. Optio laboriosam id
-              incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
-              voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
-              tempore sit placeat maxime laudantium.
-              Mollitia tempore minus qui autem modi adipisci ad. Iste reprehenderit
-              accusamus voluptatem velit. Quidem delectus eos veritatis et vitae
-              et nisi. Doloribus ut corrupti voluptates qui exercitationem dolores.
+              Often you need to go beyond the provided color set. When doing so <strong>always</strong> use
+              color functions to modify the base set. Here are some examples.
             </p>
           </EuiText>
-          {euiOverFlowShadows.map(function (shadow, index) {
-            return renderShadow(shadow, index);
-          })}
-        </div>
+          <EuiSpacer />
 
-        <EuiSpacer />
+          <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <div className="guideSass__swatch guideSass__swatch--danger" />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>$euiCodeDanger</EuiCode>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer />
+          <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <div className="guideSass__swatch guideSass__swatch--dangerTint" />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>tint($euiCodeDanger, 30%)</EuiCode>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer />
+          <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <div className="guideSass__swatch guideSass__swatch--dangerShade" />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>shade($euiCodeDanger, 30%)</EuiCode>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
-        <EuiTitle size="s">
-          <h4>Adding color to shadows</h4>
-        </EuiTitle>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Remember that EUI provides dark and light mode theming support. Sometimes the traditional
+              color functions don&apos;t give enough flexibility for both modes.
+            </p>
+            <p>
+              For example, depending upon what theme you use <EuiCode>$EuiColorPrimary</EuiCode> will be a different
+              hex value.
+            </p>
+          </EuiText>
+          <EuiSpacer />
 
-        <EuiText>
-          <p>Most shadow mixins can also accept color.</p>
-        </EuiText>
+          <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+            <EuiFlexItem grow={false} style={{ background: '#FFF', padding: 8 }}>
+              <div className="guideSass__swatch guideSass__swatch--primaryLight" />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>$euiColorPrimary</EuiCode>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiText size="s">
+                <p>
+                  is #0079A5 in the light theme
+                </p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer />
+          <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
+            <EuiFlexItem grow={false} style={{ background: '#222', padding: 8 }}>
+              <div className="guideSass__swatch guideSass__swatch--primaryDark" />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiCode>$euiColorPrimary</EuiCode>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiText size="s">
+                <p>
+                  is #4da1c0 in the dark theme
+                </p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
 
-        <EuiSpacer />
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Taking the default primary color above we want to tint the color
+              in the light mode, but shade it in the dark mode. This makes the
+              background color more subtle in both use cases.
+            </p>
+          </EuiText>
 
-        <div className="guideSass__shadow guideSass__shadow--color eui-textBreakAll">
-          <EuiCodeBlock
-            language="scss"
-            paddingSize="none"
-            transparentBackground
-          >
-              @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
-          </EuiCodeBlock>
-        </div>
-      </EuiFlexItem>
-    </EuiFlexGrid>
+          <EuiSpacer />
 
-    <EuiSpacer size="xxl"/>
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{tintOrShadeExample}</EuiCodeBlock>
 
-    <GuideRuleTitle>Media queries and breakpoints</GuideRuleTitle>
+          <EuiSpacer />
 
-    <EuiText className="guideSection__text">
-      <p>
-        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the Sass code for media queries</EuiLink>.
-      </p>
-      <p>
-        Breakpoints in EUI are provided through the use of a Sass
-        mixin <EuiCode>@include euiBreakpoint()</EuiCode> that
-        accepts an array of sizes.
-      </p>
-    </EuiText>
+          <EuiFlexGrid columns={2}>
+            <EuiFlexItem style={{ background: '#FFF', padding: 16 }}>
+              <div className="guideSass__themedBox guideSass__themedBox--light">Light theme</div>
+            </EuiFlexItem>
+            <EuiFlexItem style={{ background: '#222', padding: 16 }}>
+              <div className="guideSass__themedBox guideSass__themedBox--dark">Dark theme</div>
+            </EuiFlexItem>
+          </EuiFlexGrid>
 
-    <EuiSpacer />
-    <div className="guideSass__breakpointExample" />
-    <EuiSpacer />
+        </EuiFlexItem>
 
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <div>
+        <EuiFlexItem>
           <EuiTitle size="s">
-            <h4>Breakpoint sizing</h4>
+            <h4>Color contrast patterns</h4>
           </EuiTitle>
 
           <EuiSpacer />
 
-          {euiBreakPoints.map(function (size, index) {
-            return renderBreakpoint(size, index);
+          <EuiText>
+            <p>
+              EUI provides some nifty color functions for auto-adjusting color to pass AA contrast checks.
+              Often this is needed when using the base colors on top of each other. Here is an example
+              similar to our callouts with a pesky orange.
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{contrastExample}</EuiCodeBlock>
+
+          <EuiSpacer />
+
+          <div className="guideSass__contrastExample">
+            This orange text now passes a contrast check!
+          </div>
+
+          <EuiSpacer />
+
+          <EuiTitle size="s">
+            <h4>More on color contrast</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          <EuiText>
+            <p>
+              Consult the larger <Link to="/guidelines/colors">color guidelines</Link> page
+              for a better explanation about passing color contrast.
+            </p>
+          </EuiText>
+
+
+          <EuiSpacer />
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+      <GuideRuleTitle>Typography</GuideRuleTitle>
+
+      <EuiText grow={false} className="guideSection__text">
+        <p>
+          View the <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">variable</EuiLink>
+          {' '} and <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">mixins</EuiLink>
+          {' '}Sass code for typography.
+          For most of your components we recommend using <Link to="/display/text">EuiText</Link> or
+          {' '}<Link to="/display/title">EuiTitle</Link> instead of these Sass variables.
+        </p>
+      </EuiText>
+
+      <EuiSpacer />
+      <EuiCallOut
+        size="s"
+        color="warning"
+        title={
+          <span>
+            It is more common to use these as a mixin (e.g. <EuiCode language="css">@include euiFontSizeS;</EuiCode>)
+            to automatically apply line-height as well as size.
+          </span>
+        }
+      />
+
+      <EuiSpacer />
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h4>Text sizes</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+          {euiFontSizes.map(function (size, index) {
+            return renderFontSize(size, index);
           })}
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <div>
+            <EuiTitle size="s">
+              <h4>Text colors</h4>
+            </EuiTitle>
 
+            <EuiSpacer />
 
-        </div>
+            {euiTextColors.map(function (color, index) {
+              return renderPaletteColor(palette, color, index);
+            })}
 
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Mixin usage</h4>
-        </EuiTitle>
+            <EuiSpacer />
 
-        <EuiSpacer />
+            <EuiTitle>
+              <h4>Font families</h4>
+            </EuiTitle>
 
-        <EuiText><p>Target mobile devices only</p></EuiText>
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
-          {'@include euiBreakpoint(\'xs\',\'s\') {...}'}
-        </EuiCodeBlock>
+            <EuiSpacer />
 
-        <EuiSpacer />
+            <EuiFlexGroup responsive={false} alignItems="center">
+              <EuiFlexItem grow={false} className="guideSass__fontFamily">
+                Abc
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiCode language="css">@include euiFont;</EuiCode>
+              </EuiFlexItem>
+            </EuiFlexGroup>
 
-        <EuiText><p>Target mobile and tablets</p></EuiText>
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
-          {'@include euiBreakpoint(\'xs\', \'s\', \'m\') {...}'}
-        </EuiCodeBlock>
+            <EuiFlexGroup responsive={false} alignItems="center">
+              <EuiFlexItem grow={false} className="guideSass__fontFamily guideSass__fontFamily--code">
+                Abc
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiCode language="css">@include euiCodeFont;</EuiCode>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGrid>
 
-        <EuiSpacer />
+      <EuiSpacer size="xxl"/>
 
-        <EuiText><p>Target tablets only</p></EuiText>
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
-          {'@include euiBreakpoint(\'m\') {...}'}
-        </EuiCodeBlock>
+      <GuideRuleTitle>Borders</GuideRuleTitle>
 
-        <EuiSpacer />
+      <EuiSpacer size="xxl"/>
 
-        <EuiText><p>Target very wide displays only</p></EuiText>
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
-          {'@include euiBreakpoint(\'xl\') {...}'}
-        </EuiCodeBlock>
+      <EuiText grow={false}>
+        <p>EUI provides some helper variables for setting common border types.</p>
+      </EuiText>
 
-        <EuiSpacer />
-      </EuiFlexItem>
-    </EuiFlexGrid>
+      <EuiSpacer />
 
-    <EuiSpacer size="xxl"/>
-
-    <GuideRuleTitle>Animation</GuideRuleTitle>
-    <EuiText grow={false} className="guideSection__text">
-      <p>
-        <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the Sass code for animation</EuiLink>.
-      </p>
-      <p>
-        EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.
-        That said, animations are tricky, and if they aren&apos;t working for your specific application
-        this is the one place where we think it&apos;s OK to come up with your own rules.
-      </p>
-    </EuiText>
-    <EuiSpacer />
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Speed</h4>
-        </EuiTitle>
-
-        <EuiSpacer />
-
-        {euiAnimationSpeeds.map(function (speed, index) {
-          return renderAnimationSpeed(speed, index);
+      <EuiFlexGrid columns={3}>
+        {euiBorders.map(function (border, index) {
+          return renderBorder(border, index);
         })}
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiTitle size="s">
-          <h4>Timing</h4>
-        </EuiTitle>
+      </EuiFlexGrid>
 
-        <EuiSpacer />
+      <EuiSpacer />
 
-        {euiAnimationTimings.map(function (speed, index) {
-          return renderAnimationTiming(speed, index);
-        })}
-      </EuiFlexItem>
-    </EuiFlexGrid>
+      <EuiText grow={false}>
+        <p>In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> to round the corners.</p>
+      </EuiText>
 
-    <EuiSpacer size="xl" />
+      <EuiSpacer />
 
-    <GuideRuleTitle>Sass best practices</GuideRuleTitle>
+      <EuiFlexGrid columns={3}>
+        <EuiFlexItem className="guideSass__border guideSass__border--radius">
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+            {borderRadiusExample}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+      </EuiFlexGrid>
 
-    <EuiSpacer size="xl" />
+      <GuideRuleTitle>Shadow and Depth</GuideRuleTitle>
 
-    <EuiFlexGrid columns={2}>
-      <EuiFlexItem>
-        <EuiText>
-          <h3>Component based naming</h3>
-          <p>
-            EUI is written in a <EuiLink href="http://getbem.com/introduction/">BEM</EuiLink>ish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
-            Below is an example of proper formatting.
-          </p>
-        </EuiText>
-        <EuiSpacer />
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{bemExample}</EuiCodeBlock>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiText grow={false} className="guideSection__text">
-          <h3>Writing Sass the EUI way</h3>
-          <p>
-            In general, when writing new SCSS in a project that installs EUI as a dependency
-            try to follow these best practices:
-          </p>
-        </EuiText>
-        <EuiSpacer />
-        <EuiText size="s" grow={false} className="guideSection__text">
-          <ul>
-            <li>Utilize color variables and functions rather than hard-coded values</li>
-            <li>Utilize the sizing variables for padding and margins</li>
-            <li>Utilize the animation variables for animations when possible</li>
-            <li>Utilize the responsive mixins for all screen width calculations</li>
-            <li>Utilize the typography mixins and variables for all font family, weight, and sizing</li>
-            <li>Utilize the shadow mixins and z-index variables to manage depth</li>
-            <li>Utilize the border and border-radius variable to handle border usage</li>
-            <li>Minimize your overwrites and try to make new Sass additive in nature</li>
-          </ul>
-        </EuiText>
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
 
-        <EuiSpacer />
+          <EuiTitle size="s">
+            <h4>Use mixins for shadows</h4>
+          </EuiTitle>
 
-        <EuiTitle size="s">
-          <h3>Importing EUI global Sass</h3>
-        </EuiTitle>
+          <EuiText>
+            <p>
+              <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">View the Sass code for shadow mixins</EuiLink>.
+            </p>
+          </EuiText>
 
-        <EuiSpacer />
+          <EuiSpacer />
 
-        <EuiText grow={false} className="guideSection__text">
-          <p>
-            Most EUI based projects should already import the EUI global
-            scope. For example, Kibana has its own
-            liner that will give you everything on this page.
-          </p>
-        </EuiText>
-        <EuiSpacer />
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
-          {importKibanaExample}
-        </EuiCodeBlock>
-        <EuiSpacer />
-        <EuiText grow={false} className="guideSection__text">
-          <p>
-            If you want to construct your own import, you would just need to
-            import the following core files into a fresh Sass project.
-          </p>
-        </EuiText>
+          {euiShadows.map(function (shadow, index) {
+            return renderShadow(shadow, index);
+          })}
+        </EuiFlexItem>
+        <EuiFlexItem>
 
-        <EuiSpacer />
+          <EuiTitle size="s">
+            <h4>Shadows to create graceful overflows</h4>
+          </EuiTitle>
 
-        <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
-          {importOutsideExample}
-        </EuiCodeBlock>
+          <EuiText>
+            <p>
+              Primarily used in modals and flyouts, the overflow shadows add a white
+              glow to subtly hide the content they float above.
+            </p>
+          </EuiText>
 
-      </EuiFlexItem>
-    </EuiFlexGrid>
+          <EuiSpacer />
 
-  </GuidePage>
-);
+          <div className="guideSass__overflowShadows">
+            <EuiText className="guideSass__overflowShadowText" size="s">
+              <p>
+                Minima reprehenderit aperiam at in ea. Veniam nihil quod tempore.
+                Dolores sit quo expedita voluptate libero.
+                Consequuntur atque nulla atque nemo tenetur numquam.
+                Assumenda aspernatur qui aut sit. Aliquam doloribus iure sint id.
+                Possimus dolor qui soluta cum id tempore ea illum.
+                Facilis voluptatem aut aut ut similique ut.
+                Sed repellendus commodi iure officiis exercitationem praesentium
+                dolor. Ratione non ut nulla accusamus et. Optio laboriosam id
+                incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
+                voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
+                tempore sit placeat maxime laudantium.
+                Mollitia tempore minus qui autem modi adipisci ad. Iste reprehenderit
+                accusamus voluptatem velit. Quidem delectus eos veritatis et vitae
+                et nisi. Doloribus ut corrupti voluptates qui exercitationem dolores.
+              </p>
+            </EuiText>
+            {euiOverFlowShadows.map(function (shadow, index) {
+              return renderShadow(shadow, index);
+            })}
+          </div>
+
+          <EuiSpacer />
+
+          <EuiTitle size="s">
+            <h4>Adding color to shadows</h4>
+          </EuiTitle>
+
+          <EuiText>
+            <p>Most shadow mixins can also accept color.</p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <div className="guideSass__shadow guideSass__shadow--color eui-textBreakAll">
+            <EuiCodeBlock
+              language="scss"
+              paddingSize="none"
+              transparentBackground
+            >
+                @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
+            </EuiCodeBlock>
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+      <EuiSpacer size="xxl"/>
+
+      <GuideRuleTitle>Media queries and breakpoints</GuideRuleTitle>
+
+      <EuiText className="guideSection__text">
+        <p>
+          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">View the Sass code for media queries</EuiLink>.
+        </p>
+        <p>
+          Breakpoints in EUI are provided through the use of a Sass
+          mixin <EuiCode>@include euiBreakpoint()</EuiCode> that
+          accepts an array of sizes.
+        </p>
+      </EuiText>
+
+      <EuiSpacer />
+      <div className="guideSass__breakpointExample" />
+      <EuiSpacer />
+
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <div>
+            <EuiTitle size="s">
+              <h4>Breakpoint sizing</h4>
+            </EuiTitle>
+
+            <EuiSpacer />
+
+            {euiBreakPoints.map(function (size, index) {
+              return renderBreakpoint(size, index);
+            })}
+
+
+          </div>
+
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h4>Mixin usage</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          <EuiText><p>Target mobile devices only</p></EuiText>
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+            {'@include euiBreakpoint(\'xs\',\'s\') {...}'}
+          </EuiCodeBlock>
+
+          <EuiSpacer />
+
+          <EuiText><p>Target mobile and tablets</p></EuiText>
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+            {'@include euiBreakpoint(\'xs\', \'s\', \'m\') {...}'}
+          </EuiCodeBlock>
+
+          <EuiSpacer />
+
+          <EuiText><p>Target tablets only</p></EuiText>
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+            {'@include euiBreakpoint(\'m\') {...}'}
+          </EuiCodeBlock>
+
+          <EuiSpacer />
+
+          <EuiText><p>Target very wide displays only</p></EuiText>
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="s">
+            {'@include euiBreakpoint(\'xl\') {...}'}
+          </EuiCodeBlock>
+
+          <EuiSpacer />
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+      <EuiSpacer size="xxl"/>
+
+      <GuideRuleTitle>Animation</GuideRuleTitle>
+      <EuiText grow={false} className="guideSection__text">
+        <p>
+          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animation.scss">View the Sass code for animation</EuiLink>.
+        </p>
+        <p>
+          EUI utilizes the following constants to maintain a similar &apos;bounce&apos; to its animations.
+          That said, animations are tricky, and if they aren&apos;t working for your specific application
+          this is the one place where we think it&apos;s OK to come up with your own rules.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h4>Speed</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          {euiAnimationSpeeds.map(function (speed, index) {
+            return renderAnimationSpeed(speed, index);
+          })}
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiTitle size="s">
+            <h4>Timing</h4>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          {euiAnimationTimings.map(function (speed, index) {
+            return renderAnimationTiming(speed, index);
+          })}
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+      <EuiSpacer size="xl" />
+
+      <GuideRuleTitle>Sass best practices</GuideRuleTitle>
+
+      <EuiSpacer size="xl" />
+
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <EuiText>
+            <h3>Component based naming</h3>
+            <p>
+              EUI is written in a <EuiLink href="http://getbem.com/introduction/">BEM</EuiLink>ish style with the addition of verb states (ex: <EuiCode>*-isLoading</EuiCode>).
+              Below is an example of proper formatting.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">{bemExample}</EuiCodeBlock>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText grow={false} className="guideSection__text">
+            <h3>Writing Sass the EUI way</h3>
+            <p>
+              In general, when writing new SCSS in a project that installs EUI as a dependency
+              try to follow these best practices:
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText size="s" grow={false} className="guideSection__text">
+            <ul>
+              <li>Utilize color variables and functions rather than hard-coded values</li>
+              <li>Utilize the sizing variables for padding and margins</li>
+              <li>Utilize the animation variables for animations when possible</li>
+              <li>Utilize the responsive mixins for all screen width calculations</li>
+              <li>Utilize the typography mixins and variables for all font family, weight, and sizing</li>
+              <li>Utilize the shadow mixins and z-index variables to manage depth</li>
+              <li>Utilize the border and border-radius variable to handle border usage</li>
+              <li>Minimize your overwrites and try to make new Sass additive in nature</li>
+            </ul>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiTitle size="s">
+            <h3>Importing EUI global Sass</h3>
+          </EuiTitle>
+
+          <EuiSpacer />
+
+          <EuiText grow={false} className="guideSection__text">
+            <p>
+              Most EUI based projects should already import the EUI global
+              scope. For example, Kibana has its own
+              liner that will give you everything on this page.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+            {importKibanaExample}
+          </EuiCodeBlock>
+          <EuiSpacer />
+          <EuiText grow={false} className="guideSection__text">
+            <p>
+              If you want to construct your own import, you would just need to
+              import the following core files into a fresh Sass project.
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiCodeBlock language="scss" transparentBackground paddingSize="none">
+            {importOutsideExample}
+          </EuiCodeBlock>
+
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+    </GuidePage>
+  );
+};
