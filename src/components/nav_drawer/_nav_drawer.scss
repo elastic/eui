@@ -1,7 +1,6 @@
 // Nav drawer. Global application navigation.
 
 .euiNavDrawer {
-  @include euiScrollBar;
   width: $euiNavDrawerWidthCollapsed;
   height: calc(100% - #{$euiNavDrawerTopPosition});
   position: fixed;
@@ -12,65 +11,25 @@
   background: $euiHeaderBackgroundColor;
   box-shadow: $euiNavDrawerSideShadow;
   transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
-  // Prevents scrollbar from overlapping nav links in IE. Scrollbar still shows on hover
-  // sass-lint:disable no-vendor-prefixes
-  -ms-overflow-style: -ms-autohiding-scrollbar;
+  display: flex;
 
-  &:hover,
-  &:focus {
+  .euiNavDrawerMenu {
+    @include euiScrollBar;
     overflow-y: auto;
-  }
+    width: $euiNavDrawerWidthCollapsed;
+    height: 100%;
 
-  .euiNavDrawer--inner {
-    min-height: 100%;
-  }
-
-  &.euiNavDrawer-isCollapsed  {
-
-    &.euiNavDrawer-flyoutIsExpanded {
-      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+    &-hasFooter {
+      padding-bottom: $euiSizeXXL;
     }
 
-    .euiNavDrawerMenu {
-      width: $euiNavDrawerWidthCollapsed; // for IE
-
-      .euiListGroupItem__button {
-        max-width: $euiSizeXL;
-      }
-
-      .euiListGroup-isFooter .euiListGroupItem__button {
-        max-width: $euiNavDrawerWidthCollapsed;
-      }
-
-      .euiListGroupItem__label {
-        width: 0;
-      }
-
-      .euiListGroupItem__button:focus {
-        background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
-      }
+    .euiListGroupItem__label {
+      transition: all $euiAnimSpeedExtraFast;
     }
   }
 
-  &.euiNavDrawer-isExpanded {
-    width: $euiNavDrawerWidthExpanded;
-
-    .euiNavDrawerMenu {
-      width: $euiNavDrawerWidthExpanded;
-    }
-
-    .euiNavDrawerMenu .euiListGroupItem__label {
-      opacity: 1;
-      width: $euiNavDrawerWidthExpanded;
-    }
-
-    &.euiNavDrawer-flyoutIsExpanded {
-      width: $euiNavDrawerWidthExpanded + $euiNavDrawerWidthCollapsed;
-    }
-
-    .euiListGroup-isFooter {
-      width: $euiNavDrawerWidthExpanded;
-    }
+  .euiListGroupItem__label {
+    line-height: $euiSize;
   }
 
   .euiListGroup-isFooter {
@@ -80,57 +39,60 @@
     bottom: 0;
     width: $euiNavDrawerWidthCollapsed;
     transition: width $euiAnimSpeedExtraFast;
+    z-index: $euiZHeader + 1;
   }
 
-  .euiNavDrawerMenu {
-    @include euiScrollBar;
-    width: $euiNavDrawerWidthCollapsed;
-    padding-bottom: $euiSizeXXL;
+  &.euiNavDrawer-isCollapsed  {
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+    }
+
+    .euiNavDrawerMenu {
+      // Prevents scrollbar from overlapping links in collapsed form
+      // sass-lint:disable-block no-vendor-prefixes
+      // sass-lint:disable-block no-misspelled-properties
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      .euiListGroupItem__button {
+        max-width: $euiSizeXL;
+      }
+
+      .euiNavDrawer__expandButton .euiListGroupItem__button {
+        max-width: $euiNavDrawerWidthCollapsed;
+      }
+    }
   }
 
-  .euiNavDrawerMenu .euiListGroupItem__label {
-    white-space: nowrap;
-    opacity: 0;
-    transition: all $euiAnimSpeedExtraFast;
-  }
+  &.euiNavDrawer-isExpanded {
+    width: $euiNavDrawerWidthExpanded;
 
-  .euiListGroupItem__label {
-    line-height: $euiSize;
-  }
+    .euiNavDrawerMenu,
+    .euiListGroup-isFooter {
+      width: $euiNavDrawerWidthExpanded;
+    }
 
-  .euiListGroupItem__extraAction {
-    visibility: hidden;
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthExpanded + $euiNavDrawerWidthCollapsed;
+    }
   }
 }
 
 @include euiBreakpoint('xs', 's') {
   .euiNavDrawer {
-    width: $euiNavDrawerWidthExpanded;
+    width: 0;
 
-    &.euiNavDrawer-mobileIsHidden {
-      width: 0;
-    }
-
-    &.euiNavDrawer-isCollapsed .euiNavDrawerMenu {
-      width: $euiNavDrawerWidthExpanded;
-      padding-bottom: 0;
-
-      .euiListGroupItem__button {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .euiListGroupItem__label {
-        width: 100%;
-      }
+    &.euiNavDrawer-isExpanded .euiNavDrawerMenu {
+      // width: $euiNavDrawerWidthExpanded;
 
       .euiListGroupItem__icon {
         margin-right: $euiSizeM;
       }
-    }
-
-    &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerMenu .euiListGroupItem__label {
-      opacity: 1;
     }
 
     &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
@@ -138,21 +100,10 @@
       transition-duration: 0s;
     }
 
-    &.euiNavDrawer-flyoutIsExpanded .euiNavDrawerMenu {
-      width: $euiNavDrawerWidthCollapsed;
-      overflow-y: hidden;
+    // No expand toggle on mobile
 
-      .euiListGroupItem__extraAction {
-        visibility: hidden;
-      }
-
-      .euiListGroupItem__label {
-        display: none;
-      }
-    }
-
-    .euiListGroupItem__extraAction {
-      visibility: visible;
+    .euiNavDrawerMenu-hasFooter {
+      padding-bottom: 0;
     }
 
     .euiListGroup-isFooter {

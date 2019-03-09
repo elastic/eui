@@ -103,6 +103,7 @@ export const EuiListGroupItem = ({
     itemContent = (
       <li className={classes}>
         <EuiToolTip
+          anchorClassName="euiListGroupItem__tooltip"
           content={label}
           position="right"
           delay="long"

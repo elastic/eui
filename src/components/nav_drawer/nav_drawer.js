@@ -5,7 +5,7 @@ import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiFlexItem } from '../flex';
 
 
 export class EuiNavDrawer extends Component {
@@ -15,7 +15,6 @@ export class EuiNavDrawer extends Component {
     this.state = {
       isCollapsed: true,
       flyoutIsCollapsed: true,
-      mobileIsHidden: true,
       outsideClickDisabled: true,
       isManagingFocus: false,
       toolTipsEnabled: true,
@@ -26,12 +25,13 @@ export class EuiNavDrawer extends Component {
 
   toggleOpen = () => {
     this.setState({
-      mobileIsHidden: !this.state.mobileIsHidden
+      isCollapsed: !this.state.isCollapsed
     });
 
     setTimeout(() => {
       this.setState({
-        outsideClickDisabled: this.state.mobileIsHidden ? true : false,
+        outsideClickDisabled: this.state.isCollapsed ? true : false,
+        toolTipsEnabled: this.state.isCollapsed ? true : false,
       });
     }, 150);
   };
@@ -52,14 +52,13 @@ export class EuiNavDrawer extends Component {
   collapseDrawer = () => {
     this.setState({
       isCollapsed: true,
-      mobileIsHidden: true,
       outsideClickDisabled: this.state.flyoutIsCollapsed ? true : false,
       toolTipsEnabled: true,
     });
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
-      document.getElementById('navDrawer').scrollTop = 0;
+      document.getElementById('navDrawerMenu').scrollTop = 0;
     }, 50);
   };
 
@@ -97,11 +96,8 @@ export class EuiNavDrawer extends Component {
   expandFlyout = (links, title) => {
     const content = links;
 
-    this.setState(prevState => ({
-      flyoutIsCollapsed: prevState.navFlyoutTitle === title ? !this.state.flyoutIsCollapsed : false,
-    }));
-
     this.setState({
+      flyoutIsCollapsed: false,
       navFlyoutTitle: title,
       navFlyoutContent: content,
       isCollapsed: true,
@@ -111,7 +107,6 @@ export class EuiNavDrawer extends Component {
   };
 
   collapseFlyout = () => {
-
     this.setState({
       flyoutIsCollapsed: true,
       navFlyoutTitle: null,
@@ -141,7 +136,6 @@ export class EuiNavDrawer extends Component {
         'euiNavDrawer-isExpanded': !this.state.isCollapsed,
         'euiNavDrawer-flyoutIsCollapsed': this.state.flyoutIsCollapsed,
         'euiNavDrawer-flyoutIsExpanded': !this.state.flyoutIsCollapsed,
-        'euiNavDrawer-mobileIsHidden': this.state.mobileIsHidden,
       },
       className
     );
@@ -203,6 +197,9 @@ export class EuiNavDrawer extends Component {
       }
     });
 
+    const menuClasses = classNames(
+      'euiNavDrawerMenu', { 'euiNavDrawerMenu-hasFooter': footerContent, },
+    );
 
     return (
       <EuiOutsideClickDetector
@@ -210,23 +207,21 @@ export class EuiNavDrawer extends Component {
         isDisabled={this.state.outsideClickDisabled}
       >
         <div
-          id="navDrawer"
           className={classes}
           onBlur={this.focusOut}
           onFocus={this.manageFocus}
           {...rest}
         >
-          <EuiFlexGroup gutterSize="none" responsive={false} className="euiNavDrawer--inner">
-            <EuiFlexItem grow={false}>
-              <div className="euiNavDrawerMenu">
-                {modifiedChildren}
-                {footerContent}
-              </div>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              {flyoutContent}
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <div id="navDrawerMenu" className={menuClasses}>
+              {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
+              {/* TODO: Add a "skip navigation" keyboard only button */}
+              {footerContent}
+              {modifiedChildren}
+            </div>
+          </EuiFlexItem>
+
+          {flyoutContent}
         </div>
       </EuiOutsideClickDetector>
     );

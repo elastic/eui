@@ -1,10 +1,9 @@
 .euiNavDrawerFlyout {
   @include euiScrollBar;
-  left: $euiNavDrawerWidthCollapsed;
-  top: 0;
   width: 0;
   height: 100%;
-  padding: $euiSize;
+  padding: $euiSizeM $euiSizeS;
+  overflow-y: auto;
   background-color: $euiNavDrawerBackgroundColor;
   border-left: $euiBorderThin;
   box-shadow: $euiNavDrawerSideShadow;
