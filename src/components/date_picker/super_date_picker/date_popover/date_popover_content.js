@@ -4,7 +4,6 @@ import React from 'react';
 
 import { EuiTabbedContent } from '../../../tabs';
 import { EuiText } from '../../../text';
-import { EuiButton } from '../../../button';
 
 import { EuiAbsoluteTab } from './absolute_tab';
 import { EuiRelativeTab } from './relative_tab';
@@ -25,6 +24,9 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
         break;
       case DATE_MODES.RELATIVE:
         onChange(toRelativeString(value));
+        break;
+      case DATE_MODES.NOW:
+        onChange('now');
         break;
     }
   };
@@ -60,20 +62,11 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
         id: DATE_MODES.NOW,
         name: 'Now',
         content: (
-          <EuiText size="s" color="subdued" className="euiDatePopoverContent__padded--large">
+          <EuiText size="s" color="subdued" className="euiDatePopoverContent__padded">
             <p>
-              Setting the time to &quot;now&quot; means that on every refresh
+              Setting the time to &quot;Now&quot; means that on every refresh
               this time will be set to the time of the refresh.
             </p>
-            <EuiButton
-              data-test-subj="superDatePickerNowButton"
-              onClick={() => onChange('now')}
-              fullWidth
-              size="s"
-              fill
-            >
-              Set date and time to now
-            </EuiButton>
           </EuiText>
         ),
         'data-test-subj': 'superDatePickerNowTab',
