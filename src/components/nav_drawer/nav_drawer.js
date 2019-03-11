@@ -188,12 +188,20 @@ export class EuiNavDrawer extends Component {
         // 3a. Loop through list items passed as an array on EuiListGroup
         if (typeof child.props.listItems !== 'undefined') {
           const listItemArray = child.props.listItems;
-          listItemArray.map((item) => {
+          const modifiedListItems = listItemArray.map((item) => {
             // 4. If there is a flyoutMenu prop, then add an onClick prop
             if (item.flyoutMenu) {
-              item.onClick = () => this.expandFlyout(item.flyoutMenu.listItems, item.flyoutMenu.title);
+              const { flyoutMenu, ...itemProps } = item;
+              return {
+                onClick: () => this.expandFlyout(flyoutMenu.listItems, flyoutMenu.title),
+                ...itemProps
+              };
             }
+            return item;
           });
+          child = ({ ...child, ...{
+            props: ({ ...child.props, ...{ listItems: modifiedListItems } })
+          } });
         }
 
         // 3b. Loop through list itmes passed as separate EuiListGroupItem components
@@ -212,9 +220,15 @@ export class EuiNavDrawer extends Component {
                 : null,
             });
 
+            // Remove `flyoutMenu` so it doesn't get passed to the DOM
+            const {
+              flyoutMenu,  // eslint-disable-line no-unused-vars
+              ...itemProps
+            } = item.props;
+
             child = React.cloneElement(child, {
               key: childIndex,
-              children: item
+              children: ({ ...item, ...{ props: { ...itemProps } } })
             });
           // If more than one child, then there is an index
           } else {
@@ -231,7 +245,13 @@ export class EuiNavDrawer extends Component {
                     : null,
                 });
 
-                return item;
+                // Remove `flyoutMenu` so it doesn't get passed to the DOM
+                const {
+                  flyoutMenu,  // eslint-disable-line no-unused-vars
+                  ...itemProps
+                } = item.props;
+
+                return ({ ...item, ...{ props: { ...itemProps } } });
               })
             });
           }

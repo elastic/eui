@@ -26,7 +26,6 @@ export const EuiListGroupItem = ({
   onClick,
   size,
   showToolTip,
-  flyoutMenu, // eslint-disable-line no-unused-vars
   ...rest
 }) => {
   const classes = classNames(
@@ -172,15 +171,6 @@ EuiListGroupItem.propTypes = {
   extraAction: PropTypes.shape({
     iconType: PropTypes.oneOf(ICON_TYPES).isRequired,
     alwaysShow: PropTypes.bool,
-  }),
-
-  /**
-   * See `EuiNavDrawer`. `flyoutMenu` provides a `title` and `listItems` to the
-   * `EuiNavDrawerFlyout` component while also overriding the `EuiListGroupItem` `onClick` prop
-   */
-  flyoutMenu: PropTypes.shape({
-    title: PropTypes.string,
-    listItems: PropTypes.array,
   }),
 
   onClick: PropTypes.func,
