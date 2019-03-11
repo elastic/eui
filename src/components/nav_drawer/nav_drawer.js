@@ -158,6 +158,7 @@ export class EuiNavDrawer extends Component {
                 size="s"
                 showToolTip={this.state.isCollapsed}
                 onClick={this.state.isCollapsed ? () => {this.expandDrawer(); this.collapseFlyout();} : () => this.collapseDrawer()}
+                data-test-subj={this.state.isCollapsed ? 'navDrawerExpandButton-isCollapsed' : 'navDrawerExpandButton-isExpanded'}
               />
             )}
           </EuiI18n>
