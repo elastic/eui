@@ -48736,16 +48736,7 @@
 
 	  Time.prototype.componentDidMount = function componentDidMount() {
 	    // code to ensure selected time will always be in focus within time window when it first appears
-
-	    // find the scroll parent
 	    var scrollParent = this.list;
-	    while (
-	    // look for the first element with an overflowY of scroll
-	    window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
-	    // fallback condition in case there is no scrolling parent, avoid an infinite loop
-	    scrollParent !== document.body) {
-	      scrollParent = scrollParent.parentNode;
-	    }
 
 	    scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
 	  };

@@ -97,17 +97,7 @@ export default class Time extends React.Component {
 
   componentDidMount() {
     // code to ensure selected time will always be in focus within time window when it first appears
-
-    // find the scroll parent
-    let scrollParent = this.list;
-    while(
-      // look for the first element with an overflowY of scroll
-      window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
-      // fallback condition in case there is no scrolling parent, avoid an infinite loop
-      scrollParent !== document.body
-    ) {
-      scrollParent = scrollParent.parentNode;
-    }
+    const scrollParent = this.list;
 
     scrollParent.scrollTop = Time.calcCenterPosition(
       this.props.monthRef

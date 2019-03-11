@@ -3272,16 +3272,7 @@ var Time = function (_React$Component) {
 
   Time.prototype.componentDidMount = function componentDidMount() {
     // code to ensure selected time will always be in focus within time window when it first appears
-
-    // find the scroll parent
     var scrollParent = this.list;
-    while (
-    // look for the first element with an overflowY of scroll
-    window.getComputedStyle(scrollParent).overflowY !== 'scroll' &&
-    // fallback condition in case there is no scrolling parent, avoid an infinite loop
-    scrollParent !== document.body) {
-      scrollParent = scrollParent.parentNode;
-    }
 
     scrollParent.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.selectedLi || this.preselectedLi);
   };
@@ -4442,24 +4433,17 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-var _toInteger$1 = /*#__PURE__*/Object.freeze({
-  default: _toInteger,
-  __moduleExports: _toInteger
-});
-
-var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
-
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = toInteger(index);
+  index = _toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
 
@@ -4593,25 +4577,11 @@ _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
-var assign$1 = /*#__PURE__*/Object.freeze({
-  default: assign,
-  __moduleExports: assign
+var assign$1 = createCommonjsModule(function (module) {
+module.exports = { "default": assign, __esModule: true };
 });
 
-var require$$0 = ( assign$1 && assign ) || assign$1;
-
-var assign$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0, __esModule: true };
-});
-
-var assign$3 = unwrapExports(assign$2);
-
-var assign$4 = /*#__PURE__*/Object.freeze({
-  default: assign$3,
-  __moduleExports: assign$2
-});
-
-var _assign = ( assign$4 && assign$3 ) || assign$4;
+unwrapExports(assign$1);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4619,7 +4589,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(_assign);
+var _assign2 = _interopRequireDefault(assign$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4658,7 +4628,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = toInteger(pos);
+    var i = _toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -5364,18 +5334,11 @@ _export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$1 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
-
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
-});
-
-unwrapExports(setPrototypeOf$2);
+unwrapExports(setPrototypeOf$1);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5397,7 +5360,7 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
@@ -8029,6 +7992,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var warning$1 = /*#__PURE__*/Object.freeze({
+  default: warning_1,
+  __moduleExports: warning_1
+});
+
+var _warning = ( warning$1 && warning_1 ) || warning$1;
+
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8047,7 +8017,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(warning_1);
+var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8227,7 +8197,14 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-unwrapExports(implementation);
+var implementation$1 = unwrapExports(implementation);
+
+var implementation$2 = /*#__PURE__*/Object.freeze({
+  default: implementation$1,
+  __moduleExports: implementation
+});
+
+var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8239,7 +8216,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(implementation);
+var _implementation2 = _interopRequireDefault(_implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8476,10 +8453,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$1 = function() {};
+var warning$2 = function() {};
 
 if (__DEV__) {
-  warning$1 = function(condition, format, args) {
+  warning$2 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8517,7 +8494,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$1;
+var warning_1$1 = warning$2;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);
