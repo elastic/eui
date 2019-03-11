@@ -302,13 +302,21 @@
     flex-grow: 1;
     display: flex;
     padding-left: $euiSizeXS;
-    overflow-y: scroll;
-    @include euiScrollBar;
+    flex-direction: column;
 
     .react-datepicker__time-box {
       width: auto;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
       ul.react-datepicker__time-list {
+        @include euiScrollBar;
         height: 204px !important;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto;
 
         li.react-datepicker__time-list-item {
           padding: $euiSizeXS $euiSizeS;
