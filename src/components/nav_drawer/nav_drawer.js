@@ -96,18 +96,14 @@ export class EuiNavDrawer extends Component {
   expandFlyout = (links, title) => {
     const content = links;
 
-    if (this.state.navFlyoutTitle === title) {
-      this.collapseFlyout();
-    } else {
-      this.setState({
-        flyoutIsCollapsed: false,
-        navFlyoutTitle: title,
-        navFlyoutContent: content,
-        isCollapsed: true,
-        toolTipsEnabled: false,
-        outsideClickDisabled: false,
-      });
-    }
+    this.setState({
+      flyoutIsCollapsed: false,
+      navFlyoutTitle: title,
+      navFlyoutContent: content,
+      isCollapsed: true,
+      toolTipsEnabled: false,
+      outsideClickDisabled: false,
+    });
   };
 
   collapseFlyout = () => {
