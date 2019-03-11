@@ -83,10 +83,10 @@
   }
 }
 
-.euiNavDrawer-page {
+.euiNavDrawerPage {
   height: 100%;
 
-  .euiNavDrawer-pageBody {
+  .euiNavDrawerPage__pageBody {
     margin-left: $euiNavDrawerWidthCollapsed;
   }
 }
@@ -118,7 +118,7 @@
     }
   }
 
-  .euiNavDrawer-page .euiNavDrawer-pageBody {
+  .euiNavDrawerPage .euiNavDrawerPage__pageBody {
     margin-left: 0;
   }
 }

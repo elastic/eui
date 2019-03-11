@@ -21,7 +21,7 @@ export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, w
       aria-labelledby="navDrawerFlyoutTitle"
       {...rest}
     >
-      <EuiTitle tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
+      <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
       <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} wrapText={wrapText} />
     </div>
   );

@@ -501,8 +501,8 @@ export default class extends Component {
               <EuiHorizontalRule margin="none" />
               <EuiListGroup listItems={this.adminLinks} />
             </EuiNavDrawer>
-            <EuiPage className="euiNavDrawer-page">
-              <EuiPageBody className="euiNavDrawer-pageBody">
+            <EuiPage className="euiNavDrawerPage">
+              <EuiPageBody className="euiNavDrawerPage__pageBody">
                 <EuiPageHeader>
                   <EuiPageHeaderSection>
                     <EuiTitle size="l">

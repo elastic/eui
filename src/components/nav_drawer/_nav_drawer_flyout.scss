@@ -21,6 +21,10 @@
     transition: opacity $euiAnimSpeedFast, width $euiAnimSpeedFast;
   }
 
+  .euiNavDrawerFlyout__title {
+    margin: 0 $euiSizeS $euiSizeS;
+  }
+
   .euiNavDrawerFlyout__listGroup {
     padding-left: 0;
     padding-right: 0;
