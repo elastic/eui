@@ -124,7 +124,7 @@ export class EuiNavDrawer extends Component {
     const {
       children,
       className,
-      footerLink,
+      showExpandButton,
       showToolTips,
       ...rest
     } = this.props;
@@ -141,7 +141,7 @@ export class EuiNavDrawer extends Component {
     );
 
     let footerContent;
-    if (footerLink) {
+    if (showExpandButton) {
       footerContent = (
         <EuiListGroup
           className="euiNavDrawer__expandButton"
@@ -290,7 +290,7 @@ EuiNavDrawer.propTypes = {
   /**
    * Adds fixed toggle button to bottom of menu area
    */
-  footerLink: PropTypes.bool,
+  showExpandButton: PropTypes.bool,
 
   /**
    * Display tooltips on side nav items
@@ -299,6 +299,6 @@ EuiNavDrawer.propTypes = {
 };
 
 EuiNavDrawer.defaultProps = {
-  footerLink: true,
+  showExpandButton: true,
   showToolTips: true,
 };
