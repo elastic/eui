@@ -32,7 +32,7 @@
     line-height: $euiSize;
   }
 
-  .euiListGroup-isFooter {
+  .euiNavDrawer__expandButton {
     @include euiBottomShadowFlat;
     background-color: $euiColorEmptyShade;
     position: fixed;
@@ -40,6 +40,10 @@
     width: $euiNavDrawerWidthCollapsed;
     transition: width $euiAnimSpeedExtraFast;
     z-index: $euiZHeader + 1;
+
+    .euiListGroupItem__button {
+      padding: $euiSizeM $euiSize;
+    }
   }
 
   &.euiNavDrawer-isCollapsed  {
@@ -62,10 +66,6 @@
       .euiListGroupItem__button {
         max-width: $euiSizeXL;
       }
-
-      .euiNavDrawer__expandButton .euiListGroupItem__button {
-        max-width: $euiNavDrawerWidthCollapsed;
-      }
     }
   }
 
@@ -73,7 +73,7 @@
     width: $euiNavDrawerWidthExpanded;
 
     .euiNavDrawerMenu,
-    .euiListGroup-isFooter {
+    .euiNavDrawer__expandButton {
       width: $euiNavDrawerWidthExpanded;
     }
 
@@ -83,12 +83,19 @@
   }
 }
 
+.euiNavDrawer-page {
+  height: 100%;
+
+  .euiNavDrawer-pageBody {
+    margin-left: $euiNavDrawerWidthCollapsed;
+  }
+}
+
 @include euiBreakpoint('xs', 's') {
   .euiNavDrawer {
     width: 0;
 
     &.euiNavDrawer-isExpanded .euiNavDrawerMenu {
-      // width: $euiNavDrawerWidthExpanded;
 
       .euiListGroupItem__icon {
         margin-right: $euiSizeM;
@@ -106,8 +113,12 @@
       padding-bottom: 0;
     }
 
-    .euiListGroup-isFooter {
+    .euiNavDrawer__expandButton {
       display: none;
     }
+  }
+
+  .euiNavDrawer-page .euiNavDrawer-pageBody {
+    margin-left: 0;
   }
 }

@@ -48,10 +48,6 @@
   .euiListGroupItem-hasExtraAction & {
     max-width: calc(100% - #{$euiSizeXL});
   }
-
-  .euiListGroup-isFooter & {
-    padding: $euiSizeM $euiSize;
-  }
 }
 
 .euiListGroupItem__label {

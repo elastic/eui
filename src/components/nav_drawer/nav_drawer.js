@@ -144,7 +144,7 @@ export class EuiNavDrawer extends Component {
     if (footerLink) {
       footerContent = (
         <EuiListGroup
-          isFooter
+          className="euiNavDrawer__expandButton"
           flush
         >
           <EuiI18n

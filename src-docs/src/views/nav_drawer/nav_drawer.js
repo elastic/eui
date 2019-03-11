@@ -21,7 +21,6 @@ import {
   EuiListGroup,
   EuiHorizontalRule,
   EuiShowFor,
-  EuiHideFor,
   EuiFocusTrap,
   EuiButton
 } from '../../../../src/components';
@@ -93,14 +92,6 @@ export default class extends Component {
             },
           ],
         },
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Expand to view recent apps and objects',
-          onClick: () => this.expandFlyout(this.recentLinks, 'Recent items'),
-          alwaysShow: true,
-        },
       },
       {
         label: 'Favorites',
@@ -142,14 +133,6 @@ export default class extends Component {
               },
             },
           ],
-        },
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Expand to view favorited apps and objects',
-          onClick: () => this.expandFlyout(this.favoriteLinks, 'Favorite items'),
-          alwaysShow: true,
         },
       },
     ];
@@ -384,14 +367,6 @@ export default class extends Component {
             },
           ]
         },
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-          alwaysShow: true,
-          onClick: () => this.expandFlyout(this.adminSubLinks, 'Tools and settings'),
-        },
       },
     ];
   }
@@ -526,36 +501,34 @@ export default class extends Component {
               <EuiHorizontalRule margin="none" />
               <EuiListGroup listItems={this.adminLinks} />
             </EuiNavDrawer>
-            <EuiPage style={{ height: '100%' }}>
-              <EuiPageBody style={{ marginLeft: '64px' }}>
-                <EuiHideFor sizes={['xs', 's']}>
-                  <EuiPageHeader>
-                    <EuiPageHeaderSection>
-                      <EuiTitle size="l">
-                        <h1>Page title</h1>
+            <EuiPage className="euiNavDrawer-page">
+              <EuiPageBody className="euiNavDrawer-pageBody">
+                <EuiPageHeader>
+                  <EuiPageHeaderSection>
+                    <EuiTitle size="l">
+                      <h1>Page title</h1>
+                    </EuiTitle>
+                  </EuiPageHeaderSection>
+                </EuiPageHeader>
+                <EuiPageContent>
+                  <EuiPageContentHeader>
+                    <EuiPageContentHeaderSection>
+                      <EuiTitle>
+                        <h2>Content title</h2>
                       </EuiTitle>
-                    </EuiPageHeaderSection>
-                  </EuiPageHeader>
-                  <EuiPageContent>
-                    <EuiPageContentHeader>
-                      <EuiPageContentHeaderSection>
-                        <EuiTitle>
-                          <h2>Content title</h2>
-                        </EuiTitle>
-                      </EuiPageContentHeaderSection>
-                    </EuiPageContentHeader>
-                    <EuiPageContentBody>
-                      <EuiButton
-                        fill
-                        onClick={this.toggleFullScreen}
-                        iconType="exit"
-                        aria-label="Exit fullscreen demo"
-                      >
-                        Exit fullscreen demo
-                      </EuiButton>
-                    </EuiPageContentBody>
-                  </EuiPageContent>
-                </EuiHideFor>
+                    </EuiPageContentHeaderSection>
+                  </EuiPageContentHeader>
+                  <EuiPageContentBody>
+                    <EuiButton
+                      fill
+                      onClick={this.toggleFullScreen}
+                      iconType="exit"
+                      aria-label="Exit fullscreen demo"
+                    >
+                      Exit fullscreen demo
+                    </EuiButton>
+                  </EuiPageContentBody>
+                </EuiPageContent>
               </EuiPageBody>
             </EuiPage>
           </div>

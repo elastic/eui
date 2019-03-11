@@ -15,7 +15,6 @@ export const EuiListGroup = ({
   listItems,
   maxWidth,
   style,
-  isFooter,
   showToolTips,
   ...rest,
 }) => {
@@ -35,7 +34,6 @@ export const EuiListGroup = ({
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
       'euiListGroup-wrapText': wrapText,
-      'euiListGroup-isFooter': isFooter,
     },
     widthClassName,
     className
@@ -106,11 +104,6 @@ EuiListGroup.propTypes = {
   wrapText: PropTypes.bool,
 
   /**
-   * For use with 'EuiNavDrawer'. Fixes group to bottom.
-   */
-  isFooter: PropTypes.bool,
-
-  /**
    * Display tooltips on all list items
    */
   showToolTips: PropTypes.bool,
@@ -134,6 +127,5 @@ EuiListGroup.defaultProps = {
   bordered: false,
   wrapText: false,
   maxWidth: true,
-  isFooter: false,
   showToolTips: false,
 };
