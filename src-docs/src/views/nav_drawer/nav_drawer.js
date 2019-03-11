@@ -17,8 +17,8 @@ import {
   EuiHeaderLogo,
   EuiIcon,
   EuiTitle,
+  EuiNavDrawerGroup,
   EuiNavDrawer,
-  EuiListGroup,
   EuiHorizontalRule,
   EuiShowFor,
   EuiFocusTrap,
@@ -493,13 +493,13 @@ export default class extends Component {
               </EuiHeaderSection>
             </EuiHeader>
             <EuiNavDrawer ref={this.setNavDrawerRef}>
-              <EuiListGroup listItems={this.topLinks} />
+              <EuiNavDrawerGroup listItems={this.topLinks} />
               <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.exploreLinks} />
+              <EuiNavDrawerGroup listItems={this.exploreLinks} />
               <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.solutionsLinks} />
+              <EuiNavDrawerGroup listItems={this.solutionsLinks} />
               <EuiHorizontalRule margin="none" />
-              <EuiListGroup listItems={this.adminLinks} />
+              <EuiNavDrawerGroup listItems={this.adminLinks}/>
             </EuiNavDrawer>
             <EuiPage className="euiNavDrawerPage">
               <EuiPageBody className="euiNavDrawerPage__pageBody">

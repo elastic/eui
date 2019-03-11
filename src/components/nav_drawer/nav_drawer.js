@@ -181,73 +181,14 @@ export class EuiNavDrawer extends Component {
     let modifiedChildren = children;
 
     // 1. Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
-    modifiedChildren = React.Children.map(this.props.children, (child, childIndex) => {
-
-      // 2a. Check if child is an EuiListGroup (i.e. not an EuiHorizontalRule)
-      if (child.type.name === 'EuiListGroup') {
-
-        // 3a. Loop through list items passed as an array on EuiListGroup
-        if (typeof child.props.listItems !== 'undefined') {
-          const listItemArray = child.props.listItems;
-          listItemArray.map((item) => {
-            // 4. If there is a flyoutMenu prop, then add an onClick prop
-            if (item.flyoutMenu) {
-              item.onClick = () => this.expandFlyout(item.flyoutMenu.listItems, item.flyoutMenu.title);
-            }
-          });
-        }
-
-        // 3b. Loop through list itmes passed as separate EuiListGroupItem components
-        if (typeof child.props.children !== 'undefined') {
-          const listGroupItems = child.props.children;
-
-          // 4. If there is a flyoutMenu prop, then add an onClick prop
-          // If only one child, then there is no index; props is top level
-          if (listGroupItems.props) {
-            const item = React.cloneElement(listGroupItems, {
-              onClick: listGroupItems.props.flyoutMenu ?
-                () => this.expandFlyout(
-                  listGroupItems.props.flyoutMenu.listItems,
-                  listGroupItems.props.flyoutMenu.title
-                )
-                : null,
-            });
-
-            child = React.cloneElement(child, {
-              key: childIndex,
-              children: item
-            });
-          // If more than one child, then there is an index
-          } else {
-            child = React.cloneElement(child, {
-              key: childIndex,
-              children: Object.keys(listGroupItems).map((key, itemIndex) => {
-                const item = React.cloneElement(listGroupItems[key], {
-                  key: itemIndex,
-                  onClick: listGroupItems[itemIndex].props.flyoutMenu ?
-                    () => this.expandFlyout(
-                      listGroupItems[itemIndex].props.flyoutMenu.listItems,
-                      listGroupItems[itemIndex].props.flyoutMenu.title
-                    )
-                    : null,
-                });
-
-                return item;
-              })
-            });
-          }
-        }
-
-        // 5. If showToolTips passed and currently enabled, add showToolTips prop to EuiListGroup
-        if (this.state.toolTipsEnabled && showToolTips) {
-          return React.cloneElement(child, {
-            showToolTips: true
-          });
-        } else {
-          return child;
-        }
-
-      // 2b. Child is not an EuiListGroup, so just return it as-is
+    modifiedChildren = React.Children.map(this.props.children, child => {
+      // 2. Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
+      if (child.type.name === 'EuiNavDrawerGroup') {
+        const item = React.cloneElement(child, {
+          flyoutMenuButtonClick: this.expandFlyout,
+          showToolTips: this.state.toolTipsEnabled && showToolTips,
+        });
+        return item;
       } else {
         return child;
       }
