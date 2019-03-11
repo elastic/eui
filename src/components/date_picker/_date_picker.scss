@@ -317,6 +317,7 @@
         flex-direction: column;
         flex-grow: 1;
         overflow-y: auto;
+        align-items: center;
 
         li.react-datepicker__time-list-item {
           padding: $euiSizeXS $euiSizeS;
@@ -324,6 +325,8 @@
           text-align: right;
           color: $euiColorDarkShade;
           white-space: nowrap;
+          // IE needs this to fix collapsing flex
+          line-height: $euiSizeM;
 
           &:hover,
           &:focus {
