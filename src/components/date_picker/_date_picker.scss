@@ -628,12 +628,17 @@
 }
 
 .react-datepicker__month-read-view:focus,
-.react-datepicker__year-read-view:focus, {
+.react-datepicker__year-read-view:focus {
   text-decoration: underline;
 }
 
 .react-datepicker__month--accessible:focus {
   background: $euiFocusBackgroundColor;
+
+  .react-datepicker__day--in-range {
+    border-top-color: $euiFocusBackgroundColor;
+    border-bottom-color: $euiFocusBackgroundColor;
+  }
 }
 .react-datepicker__navigation:focus {
   background-color: $euiFocusBackgroundColor;
