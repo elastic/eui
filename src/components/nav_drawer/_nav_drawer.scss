@@ -28,6 +28,11 @@
     }
   }
 
+  .euiListGroupItem__button:focus {
+    background-color: $euiFocusBackgroundColor;
+    border-radius: $euiBorderRadius;
+  }
+
   .euiListGroupItem__label {
     line-height: $euiSize;
   }
@@ -63,7 +68,7 @@
         height: 0;
       }
 
-      .euiListGroupItem__button {
+      .euiListGroup:not(.euiNavDrawer__expandButton) .euiListGroupItem__button {
         max-width: $euiSizeXL;
       }
     }
