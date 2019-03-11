@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.2.1`.
+
+## [`9.2.1`](https://github.com/elastic/eui/tree/v9.2.1)
+
 **Bug fixes**
 
 - Make `EuiPopover`'s repositionOnScroll prop optional in TS ([#1705](https://github.com/elastic/eui/pull/1705))

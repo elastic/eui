@@ -2053,6 +2053,30 @@ FooComponent.propTypes = {
 };`);
       });
 
+      it('annotates indirected FunctionComponent components', () => {
+        const result = transform(
+          `
+import React, { FunctionComponent } from 'react';
+type FooType = FunctionComponent<{foo: string, bar?: number}>;
+const FooComponent: FooType = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
       it('annotates React.FunctionComponent components', () => {
         const result = transform(
           `
