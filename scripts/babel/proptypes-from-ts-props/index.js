@@ -1159,46 +1159,63 @@ module.exports = function propTypesFromTypeScript({ types }) {
         // only process typescript files
         if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
 
-        const variableDeclarator = nodePath.node;
-        const { id } = variableDeclarator;
-        const idTypeAnnotation = id.typeAnnotation;
+        const resolveVariableDeclarator = variableDeclarator => {
+          const { id } = variableDeclarator;
+          const idTypeAnnotation = id.typeAnnotation;
 
-        if (idTypeAnnotation) {
-          let fileCodeNeedsUpdating = false;
+          if (idTypeAnnotation) {
+            let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
-            if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
-              const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
+            if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
+              if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
+                const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
 
-              if (left.name === 'React') {
-                const rightName = right.name;
-                if (rightName === 'SFC' || rightName === 'FunctionComponent') {
-                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                  fileCodeNeedsUpdating = true;
+                if (left.name === 'React') {
+                  const rightName = right.name;
+                  if (rightName === 'SFC' || rightName === 'FunctionComponent') {
+                    processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                    fileCodeNeedsUpdating = true;
+                  } else {
+                    // throw new Error(`Cannot process annotation id React.${right.name}`);
+                  }
+                }
+              } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
+                const typeName = idTypeAnnotation.typeAnnotation.typeName.name;
+                if (typeName === 'SFC' || typeName === 'FunctionComponent') {
+                  if (state.get('importsFromReact').has(typeName)) {
+                    processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                    fileCodeNeedsUpdating = true;
+                  }
                 } else {
-                  // throw new Error(`Cannot process annotation id React.${right.name}`);
+                  // reprocess this variable declaration but use the identifier lookup
+                  const nextTypeDefinition = state.get('typeDefinitions')[typeName];
+                  const types = state.get('types');
+                  if (nextTypeDefinition && types.isTSType(nextTypeDefinition)) {
+                    const newId = types.cloneDeep(id);
+                    newId.typeAnnotation = types.TSTypeAnnotation(nextTypeDefinition);
+                    const newNode = types.VariableDeclarator(
+                      newId,
+                      variableDeclarator.init
+                    );
+                    resolveVariableDeclarator(newNode);
+                  }
                 }
+              } else {
+                throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
               }
-            } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
-              const typeName = idTypeAnnotation.typeAnnotation.typeName.name;
-              if (typeName === 'SFC' || typeName === 'FunctionComponent') {
-                if (state.get('importsFromReact').has(typeName)) {
-                  processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                  fileCodeNeedsUpdating = true;
-                }
-              }
-            } else {
-              throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
+            }
+
+            if (fileCodeNeedsUpdating) {
+              // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+              // instead of using the modified AST; to expose our changes to react-docgen
+              // they need to be rendered to a string
+              this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
             }
           }
+        };
 
-          if (fileCodeNeedsUpdating) {
-            // babel-plugin-react-docgen passes `this.file.code` to react-docgen
-            // instead of using the modified AST; to expose our changes to react-docgen
-            // they need to be rendered to a string
-            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
-          }
-        }
+        // kick off the recursive search for a React component in this node
+        resolveVariableDeclarator(nodePath.node);
       },
     },
   };

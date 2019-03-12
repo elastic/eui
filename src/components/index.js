@@ -241,7 +241,7 @@ export {
 
 export {
   EuiNavDrawer,
-  EuiNavDrawerMenu,
+  EuiNavDrawerGroup,
   EuiNavDrawerFlyout,
 } from './nav_drawer';
 

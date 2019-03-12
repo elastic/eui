@@ -55,7 +55,7 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiListGroup flush={flushWidth} bordered={showBorder}>
+        <EuiListGroup flush={flushWidth} bordered={showBorder} showToolTips>
           <EuiListGroupItem
             label="First item"
           />

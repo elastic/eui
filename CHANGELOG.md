@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.2.1`.
+- Added `footerLink` and `showToolTips` to `EuiNavDrawer` and added `EuiNavDrawerGroup` ([#1701](https://github.com/elastic/eui/pull/1701))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` time selection jumping on focus ([#1704](https://github.com/elastic/eui/pull/1704))
 
 ## [`9.2.1`](https://github.com/elastic/eui/tree/v9.2.1)
 
@@ -11,7 +15,6 @@ No public interface changes since `9.2.1`.
 ## [`9.2.0`](https://github.com/elastic/eui/tree/v9.2.0)
 
 - Adjusted the dark theme palette a bit more and adjusted a few components ([#1700](https://github.com/elastic/eui/pull/1700))
-
 
 ## [`9.1.0`](https://github.com/elastic/eui/tree/v9.1.0)
 

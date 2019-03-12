@@ -9,6 +9,7 @@ exports[`EuiListGroupItem is rendered 1`] = `
   >
     <span
       class="euiListGroupItem__label"
+      title="Label"
     >
       Label
     </span>
@@ -26,6 +27,7 @@ exports[`EuiListGroupItem renders href 1`] = `
   >
     <span
       class="euiListGroupItem__label"
+      title="Label"
     >
       Label
     </span>
