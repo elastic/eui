@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import {
+  EuiCode,
   EuiGlobalToastList,
   EuiLink,
 } from '../../../../src/components';
@@ -95,6 +96,16 @@ export default class extends Component {
       text: (
         <p>
           Sorry. We&rsquo;ll try not to let it happen it again.
+        </p>
+      ),
+    }, {
+      title: 'Long toast',
+      color: 'warning',
+      iconType: 'clock',
+      toastLifeTimeMs: 15000,
+      text: (
+        <p>
+          This toast overrides the default <EuiCode>toastLifeTimeMs</EuiCode> value and will be around for 15 seconds.
         </p>
       ),
     }];
