@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { Droppable, DroppableProps } from 'react-beautiful-dnd';
-import { EuiDragDropContextContext } from './drag_drop_context';
 import classNames from 'classnames';
+import { EuiDragDropContextContext } from './drag_drop_context';
 
 export interface EuiDroppableProps extends DroppableProps {
   className?: string;
   cloneDraggables?: boolean;
+  style?: {};
 }
 
 export const EuiDroppableContext = React.createContext({
@@ -19,6 +20,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
   children,
   className,
   cloneDraggables = false,
+  style,
   type = 'EUI_DEFAULT',
   ...rest
 }) => {
@@ -45,6 +47,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
+            style={style}
             className={classes}>
             <EuiDroppableContext.Provider
               value={{

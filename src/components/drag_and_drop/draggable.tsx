@@ -1,4 +1,10 @@
-import React, { FunctionComponent, cloneElement, useContext } from 'react';
+import React, {
+  Fragment,
+  FunctionComponent,
+  ReactElement,
+  cloneElement,
+  useContext,
+} from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
 import { EuiDroppableContext } from './droppable';
@@ -6,6 +12,7 @@ import { EuiDroppableContext } from './droppable';
 export interface EuiDraggableProps extends DraggableProps {
   className?: string;
   customDragHandle?: boolean;
+  style?: {};
 }
 
 export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
@@ -15,6 +22,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   index,
   children,
   className,
+  style,
   ...rest
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
@@ -32,16 +40,16 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
         const DraggableElement =
           typeof children === 'function'
             ? children(provided, snapshot)
-            : (children as React.ReactElement); // as specified by `DraggableProps`
+            : (children as ReactElement); // as specified by `DraggableProps`
         return (
-          <React.Fragment>
+          <Fragment>
             <div
               {...provided.draggableProps}
               {...(!customDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
               data-test-subj="draggable"
               className={classes}
-              style={provided.draggableProps.style}>
+              style={{ ...style, ...provided.draggableProps.style }}>
               {cloneElement(DraggableElement, {
                 className: classNames(
                   DraggableElement.props.className,
@@ -57,7 +65,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                   {provided.placeholder}
                 </div>
               ))}
-          </React.Fragment>
+          </Fragment>
         );
       }}
     </Draggable>
