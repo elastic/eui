@@ -10,10 +10,10 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
     className
   );
 
-  const listItemsExists = listItems && listItems.length;
+  const listItemsExists = listItems && !!listItems.length;
 
   // Alter listItems object with prop flyoutMenu and extra props
-  const newListItems = listItemsExists && listItems.map((item) => {
+  const newListItems = !listItemsExists ? undefined : listItems.map((item) => {
     // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
     const { flyoutMenu, ...itemProps } = item;
     if (flyoutMenu && flyoutMenuButtonClick) {
