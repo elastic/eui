@@ -81,14 +81,17 @@
 
 .euiListGroupItem--xSmall {
   font-size: $euiFontSizeXS;
+  line-height: $euiSizeM;
 }
 
 .euiListGroupItem--small {
   font-size: $euiFontSizeS;
+  line-height: $euiSize;
 }
 
 .euiListGroupItem--large {
   font-size: $euiFontSizeL;
+  line-height: $euiSize;
 }
 
 .euiListGroupItem--wrapText {

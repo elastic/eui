@@ -58,6 +58,10 @@
       .euiListGroup:not(.euiNavDrawer__expandButton) .euiListGroupItem__button {
         max-width: $euiSizeXL;
       }
+
+      .euiListGroupItem__extraAction {
+        visibility: hidden;
+      }
     }
   }
 
