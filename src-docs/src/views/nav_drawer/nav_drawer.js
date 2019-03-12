@@ -42,9 +42,6 @@ export default class extends Component {
       {
         label: 'Recently viewed',
         iconType: 'clock',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Recently viewed items',
         flyoutMenu: {
           title: 'Recent items',
           listItems: [
@@ -52,9 +49,6 @@ export default class extends Component {
               label: 'My dashboard',
               href: '/#/layout/nav-drawer',
               iconType: 'dashboardApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'My dashboard',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',
@@ -66,9 +60,6 @@ export default class extends Component {
               label: 'Workpad with title that wraps',
               href: '/#/layout/nav-drawer',
               iconType: 'canvasApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'Workpad with title that wraps',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',
@@ -80,9 +71,7 @@ export default class extends Component {
               label: 'My logs',
               href: '/#/layout/nav-drawer',
               iconType: 'loggingApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'My logs',
+              'aria-label': 'This is an alternate aria-label',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',
@@ -96,9 +85,6 @@ export default class extends Component {
       {
         label: 'Favorites',
         iconType: 'starEmpty',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Favorited items',
         flyoutMenu: {
           title: 'Favorite items',
           listItems: [
@@ -106,9 +92,6 @@ export default class extends Component {
               label: 'My workpad',
               href: '/#/layout/nav-drawer',
               iconType: 'canvasApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'My workpad',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starFilled',
@@ -121,9 +104,6 @@ export default class extends Component {
               label: 'My logs',
               href: '/#/layout/nav-drawer',
               iconType: 'loggingApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'My logs',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starFilled',
@@ -142,9 +122,6 @@ export default class extends Component {
         label: 'Canvas',
         href: '/#/layout/nav-drawer',
         iconType: 'canvasApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Canvas',
         isActive: true,
         extraAction: {
           color: 'subdued',
@@ -158,9 +135,6 @@ export default class extends Component {
         label: 'Discover',
         href: '/#/layout/nav-drawer',
         iconType: 'discoverApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Discover',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -172,9 +146,6 @@ export default class extends Component {
         label: 'Visualize',
         href: '/#/layout/nav-drawer',
         iconType: 'visualizeApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Visualize',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -186,9 +157,6 @@ export default class extends Component {
         label: 'Dashboard',
         href: '/#/layout/nav-drawer',
         iconType: 'dashboardApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Dashboard',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -200,9 +168,6 @@ export default class extends Component {
         label: 'Machine learning',
         href: '/#/layout/nav-drawer',
         iconType: 'machineLearningApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Machine learning',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -214,9 +179,6 @@ export default class extends Component {
         label: 'Graph',
         href: '/#/layout/nav-drawer',
         iconType: 'graphApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Graph',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -231,9 +193,6 @@ export default class extends Component {
         label: 'APM',
         href: '/#/layout/nav-drawer',
         iconType: 'apmApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'APM',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -245,9 +204,6 @@ export default class extends Component {
         label: 'Infrastructure',
         href: '/#/layout/nav-drawer',
         iconType: 'infraApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Infra',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -259,9 +215,6 @@ export default class extends Component {
         label: 'Log viewer',
         href: '/#/layout/nav-drawer',
         iconType: 'loggingApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Logs',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -273,9 +226,6 @@ export default class extends Component {
         label: 'Uptime',
         href: '/#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Graph',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -287,9 +237,6 @@ export default class extends Component {
         label: 'Maps',
         href: '/#/layout/nav-drawer',
         iconType: 'gisApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Maps',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -301,9 +248,6 @@ export default class extends Component {
         label: 'SIEM',
         href: '/#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'SIEM',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -317,9 +261,6 @@ export default class extends Component {
       {
         label: 'Admin',
         iconType: 'managementApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Admin',
         flyoutMenu: {
           title: 'Tools and settings',
           listItems: [
@@ -327,9 +268,6 @@ export default class extends Component {
               label: 'Dev tools',
               href: '/#/layout/nav-drawer',
               iconType: 'devToolsApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'Dev tools',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',
@@ -341,9 +279,6 @@ export default class extends Component {
               label: 'Stack Monitoring',
               href: '/#/layout/nav-drawer',
               iconType: 'monitoringApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'Monitoring',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',
@@ -355,9 +290,6 @@ export default class extends Component {
               label: 'Stack Management',
               href: '/#/layout/nav-drawer',
               iconType: 'managementApp',
-              size: 's',
-              style: { color: 'inherit' },
-              'aria-label': 'Management',
               extraAction: {
                 color: 'subdued',
                 iconType: 'starEmpty',

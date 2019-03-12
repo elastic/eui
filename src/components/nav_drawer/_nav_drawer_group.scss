@@ -1,0 +1,16 @@
+.euiNavDrawerGroup__item {
+  line-height: $euiSize;
+
+  .euiListGroupItem__label {
+    transition: all $euiAnimSpeedExtraFast;
+  }
+
+  .euiListGroupItem__button {
+    color: inherit; // Force color to inherit from regular text color in case it's an anchor tag
+
+    &:focus {
+      background-color: $euiFocusBackgroundColor;
+      border-radius: $euiBorderRadius;
+    }
+  }
+}

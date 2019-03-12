@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiTitle } from '../title';
-import { EuiListGroup } from '../list_group';
+import { EuiNavDrawerGroup } from './nav_drawer_group';
+import { EuiListGroup } from '../list_group/list_group';
 
 export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, wrapText, ...rest }) => {
   const classes = classNames(
@@ -22,7 +23,7 @@ export const EuiNavDrawerFlyout = ({ className, title, isCollapsed, listItems, w
       {...rest}
     >
       <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs"><h5 id="navDrawerFlyoutTitle">{title}</h5></EuiTitle>
-      <EuiListGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} wrapText={wrapText} />
+      <EuiNavDrawerGroup className="euiNavDrawerFlyout__listGroup" listItems={listItems} wrapText={wrapText} />
     </div>
   );
 };

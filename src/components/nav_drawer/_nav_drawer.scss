@@ -22,19 +22,6 @@
     &-hasFooter {
       padding-bottom: $euiSizeXXL;
     }
-
-    .euiListGroupItem__label {
-      transition: all $euiAnimSpeedExtraFast;
-    }
-  }
-
-  .euiListGroupItem__button:focus {
-    background-color: $euiFocusBackgroundColor;
-    border-radius: $euiBorderRadius;
-  }
-
-  .euiListGroupItem__label {
-    line-height: $euiSize;
   }
 
   .euiNavDrawer__expandButton {
@@ -101,7 +88,6 @@
     width: 0;
 
     &.euiNavDrawer-isExpanded .euiNavDrawerMenu {
-
       .euiListGroupItem__icon {
         margin-right: $euiSizeM;
       }
