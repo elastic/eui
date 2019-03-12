@@ -10,8 +10,10 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
     className
   );
 
-  // Create handlers if flyoutMenu exists
-  const newListItems = listItems.map((item) => {
+  const listItemsExists = listItems && listItems.length;
+
+  // Alter listItems object with prop flyoutMenu and extra props
+  const newListItems = listItemsExists && listItems.map((item) => {
     // If the flyout menu exists, pass back the list of times and the title with the onClick handler of the item
     const { flyoutMenu, ...itemProps } = item;
     if (flyoutMenu && flyoutMenuButtonClick) {
@@ -19,6 +21,11 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
       const title = `${flyoutMenu.title}`;
       itemProps.onClick = () => flyoutMenuButtonClick(items, title);
     }
+
+    // Make some declarations of props for the side nav implementation
+    itemProps.className = classNames('euiNavDrawerGroup__item', item.className);
+    itemProps.size = item.size || 's';
+    itemProps['aria-label'] = item['aria-label'] || item.label;
 
     // And return the item with conditional `onClick` and without `flyoutMenu`
     return { ...itemProps };
@@ -37,7 +44,7 @@ EuiNavDrawerGroup.propTypes = {
       title: PropTypes.string.isRequired,
       listItems: EuiListGroup.propTypes.listItems.isRequired,
     }),
-  })).isRequired,
+  })),
   /**
    * While not normally required, it is required to pass a function for handling
    * of the flyout menu button click
