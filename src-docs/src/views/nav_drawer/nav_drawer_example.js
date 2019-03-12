@@ -34,7 +34,7 @@ export const NavDrawerExample = {
         <p>
           <EuiCode>EuiNavDrawer</EuiCode> provides a side navigation feature that
           is complete with interactions and a mobile-friendly design. It can
-          contain one or more <EuiCode>EuiListGroup</EuiCode> components and is
+          contain one or more <EuiCode>EuiNavDrawerGroup</EuiCode> components and is
           designed to be used in conjunction with <EuiCode>EuiHeader</EuiCode>.
         </p>
         <EuiCallOut
@@ -43,9 +43,10 @@ export const NavDrawerExample = {
         >
           <p>
             Providing a <EuiCode>flyoutMenu</EuiCode> prop on
-            an <EuiCode>EuiListGroupItem</EuiCode> will result in that link
-            opening a secondary menu. Note that this will also override the
-            <EuiCode>onClick</EuiCode> event. See sample data in the Demo JS tab.
+            the <EuiCode>listItems</EuiCode> object of
+            an <EuiCode>EuiNavDrawerGroup</EuiCode> will result in that link
+            opening a secondary menu. Note that this will also override
+            the <EuiCode>onClick</EuiCode> event. See sample data in the Demo JS tab.
           </p>
         </EuiCallOut>
       </div>

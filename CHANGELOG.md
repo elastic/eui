@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `footerLink` and `showToolTips` to `EuiNavDrawer` ([#1701](https://github.com/elastic/eui/pull/1701))
+- Added `footerLink` and `showToolTips` to `EuiNavDrawer` and added `EuiNavDrawerGroup` ([#1701](https://github.com/elastic/eui/pull/1701))
 
 ## [`9.2.1`](https://github.com/elastic/eui/tree/v9.2.1)
 
