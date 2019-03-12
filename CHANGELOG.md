@@ -2,6 +2,10 @@
 
 - Allow toasts in `EuiGlobalToastList` to override `toastLifeTimeMs` ([#1720](https://github.com/elastic/eui/pull/1720))
 
+## [`9.3.0`](https://github.com/elastic/eui/tree/v9.3.0)
+
+- Added `footerLink` and `showToolTips` to `EuiNavDrawer` and added `EuiNavDrawerGroup` ([#1701](https://github.com/elastic/eui/pull/1701))
+
 **Bug fixes**
 
 - Fixed `EuiSuperDatePicker` time selection jumping on focus ([#1704](https://github.com/elastic/eui/pull/1704))
@@ -15,7 +19,6 @@
 ## [`9.2.0`](https://github.com/elastic/eui/tree/v9.2.0)
 
 - Adjusted the dark theme palette a bit more and adjusted a few components ([#1700](https://github.com/elastic/eui/pull/1700))
-
 
 ## [`9.1.0`](https://github.com/elastic/eui/tree/v9.1.0)
 

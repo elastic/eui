@@ -3,8 +3,8 @@ export {
 } from './nav_drawer';
 
 export {
-  EuiNavDrawerMenu,
-} from './nav_drawer_menu';
+  EuiNavDrawerGroup,
+} from './nav_drawer_group';
 
 export {
   EuiNavDrawerFlyout,

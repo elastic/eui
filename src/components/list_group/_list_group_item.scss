@@ -1,6 +1,6 @@
 .euiListGroupItem {
   padding: 0;
-  margin-top: $euiSizeXS;
+  margin-top: $euiSizeS;
   border-radius: $euiBorderRadius;
   overflow: hidden;
   display: flex;
@@ -38,7 +38,7 @@
 
 .euiListGroupItem__text,
 .euiListGroupItem__button {
-  padding: $euiSizeM $euiSizeS;
+  padding: $euiSizeS;
   display: flex;
   align-items: center;
   flex: 1 0 auto; // The flex-shrink and flex-basis values are needed for IE11
@@ -81,17 +81,20 @@
 
 .euiListGroupItem--xSmall {
   font-size: $euiFontSizeXS;
+  line-height: $euiSizeM;
 }
 
 .euiListGroupItem--small {
   font-size: $euiFontSizeS;
+  line-height: $euiSize;
 }
 
 .euiListGroupItem--large {
   font-size: $euiFontSizeL;
+  line-height: $euiSize;
 }
 
-.euiListGroup-wrapText {
+.euiListGroupItem--wrapText {
   .euiListGroupItem__button,
   .euiListGroupItem__text {
     width: 100%;
@@ -99,7 +102,7 @@
   }
 
   .euiListGroupItem__label {
-    white-space: initial;
+    white-space: inherit;
   }
 }
 
@@ -119,4 +122,8 @@
     border-bottom-left-radius: $euiBorderRadius;
     border-bottom-right-radius: $euiBorderRadius;
   }
+}
+
+.euiListGroupItem__tooltip {
+  width: 100%;
 }
