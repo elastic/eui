@@ -33,7 +33,6 @@ export const EuiListGroup = ({
     {
       'euiListGroup-flush': flush,
       'euiListGroup-bordered': bordered,
-      'euiListGroup-wrapText': wrapText,
     },
     widthClassName,
     className
@@ -47,6 +46,7 @@ export const EuiListGroup = ({
           <EuiListGroupItem
             key={`title-${index}`}
             showToolTip={showToolTips}
+            wrapText={wrapText}
             {...item}
           />
         ];

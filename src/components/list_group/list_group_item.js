@@ -26,6 +26,7 @@ export const EuiListGroupItem = ({
   onClick,
   size,
   showToolTip,
+  wrapText,
   ...rest
 }) => {
   const classes = classNames(
@@ -36,6 +37,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-isDisabled': isDisabled,
       'euiListGroupItem-isClickable': href || onClick,
       'euiListGroupItem-hasExtraAction': extraAction,
+      'euiListGroupItem--wrapText': wrapText,
     },
     className
   );
@@ -67,6 +69,16 @@ export const EuiListGroupItem = ({
     );
   }
 
+  // Only add the label as the title attribute if it's possibly truncated
+  const labelContent = (
+    <span
+      className="euiListGroupItem__label"
+      title={wrapText ? undefined : label}
+    >
+      {label}
+    </span>
+  );
+
   // Handle the variety of interaction behavior
   let itemContent;
 
@@ -74,7 +86,7 @@ export const EuiListGroupItem = ({
     itemContent = (
       <a href={href} className="euiListGroupItem__button" {...rest}>
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -86,14 +98,14 @@ export const EuiListGroupItem = ({
         {...rest}
       >
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </button>
     );
   } else {
     itemContent = (
       <span className="euiListGroupItem__text" {...rest}>
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </span>
     );
   }
@@ -174,6 +186,11 @@ EuiListGroupItem.propTypes = {
   }),
 
   onClick: PropTypes.func,
+
+  /**
+   * Allow link text to wrap
+   */
+  wrapText: PropTypes.bool,
 };
 
 EuiListGroupItem.defaultProps = {
