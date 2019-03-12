@@ -17,15 +17,15 @@ import {
   EuiHeaderLogo,
   EuiIcon,
   EuiTitle,
+  EuiNavDrawerGroup,
   EuiNavDrawer,
-  EuiNavDrawerMenu,
-  EuiNavDrawerFlyout,
-  EuiListGroup,
   EuiHorizontalRule,
   EuiShowFor,
-  EuiHideFor,
-  EuiOutsideClickDetector,
+  EuiFocusTrap,
+  EuiButton
 } from '../../../../src/components';
+
+import { keyCodes } from '../../../../src/services';
 
 import HeaderUserMenu from '../header/header_user_menu';
 import HeaderSpacesMenu from '../header/header_spaces_menu';
@@ -35,48 +35,84 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      isCollapsed: true,
-      flyoutIsCollapsed: true,
-      flyoutIsAnimating: false,
-      navFlyoutTitle: undefined,
-      navFlyoutContent: [],
-      mobileIsHidden: true,
-      showScrollbar: false,
-      outsideClickDisabled: true,
-      isManagingFocus: false,
+      isFullScreen: false,
     };
 
     this.topLinks = [
       {
         label: 'Recently viewed',
         iconType: 'clock',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Recently viewed items',
-        onClick: () => this.expandFlyout(this.recentLinks, 'Recent items'),
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Expand to view recent apps and objects',
-          onClick: () => this.expandFlyout(this.recentLinks, 'Recent items'),
-          alwaysShow: true,
+        flyoutMenu: {
+          title: 'Recent items',
+          listItems: [
+            {
+              label: 'My dashboard',
+              href: '/#/layout/nav-drawer',
+              iconType: 'dashboardApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+            {
+              label: 'Workpad with title that wraps',
+              href: '/#/layout/nav-drawer',
+              iconType: 'canvasApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+            {
+              label: 'My logs',
+              href: '/#/layout/nav-drawer',
+              iconType: 'loggingApp',
+              'aria-label': 'This is an alternate aria-label',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+          ],
         },
       },
       {
         label: 'Favorites',
         iconType: 'starEmpty',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Favorited items',
-        onClick: () => this.expandFlyout(this.favoriteLinks, 'Favorite items'),
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Expand to view favorited apps and objects',
-          onClick: () => this.expandFlyout(this.favoriteLinks, 'Favorite items'),
-          alwaysShow: true,
+        flyoutMenu: {
+          title: 'Favorite items',
+          listItems: [
+            {
+              label: 'My workpad',
+              href: '/#/layout/nav-drawer',
+              iconType: 'canvasApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starFilled',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+                alwaysShow: true,
+              },
+            },
+            {
+              label: 'My logs',
+              href: '/#/layout/nav-drawer',
+              iconType: 'loggingApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starFilled',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+                alwaysShow: true,
+              },
+            },
+          ],
         },
       },
     ];
@@ -86,9 +122,6 @@ export default class extends Component {
         label: 'Canvas',
         href: '/#/layout/nav-drawer',
         iconType: 'canvasApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Canvas',
         isActive: true,
         extraAction: {
           color: 'subdued',
@@ -102,9 +135,6 @@ export default class extends Component {
         label: 'Discover',
         href: '/#/layout/nav-drawer',
         iconType: 'discoverApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Discover',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -116,9 +146,6 @@ export default class extends Component {
         label: 'Visualize',
         href: '/#/layout/nav-drawer',
         iconType: 'visualizeApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Visualize',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -130,9 +157,6 @@ export default class extends Component {
         label: 'Dashboard',
         href: '/#/layout/nav-drawer',
         iconType: 'dashboardApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Dashboard',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -144,9 +168,6 @@ export default class extends Component {
         label: 'Machine learning',
         href: '/#/layout/nav-drawer',
         iconType: 'machineLearningApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Machine learning',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -158,9 +179,6 @@ export default class extends Component {
         label: 'Graph',
         href: '/#/layout/nav-drawer',
         iconType: 'graphApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Graph',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -175,9 +193,6 @@ export default class extends Component {
         label: 'APM',
         href: '/#/layout/nav-drawer',
         iconType: 'apmApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'APM',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -189,9 +204,6 @@ export default class extends Component {
         label: 'Infrastructure',
         href: '/#/layout/nav-drawer',
         iconType: 'infraApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Infra',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -203,9 +215,6 @@ export default class extends Component {
         label: 'Log viewer',
         href: '/#/layout/nav-drawer',
         iconType: 'loggingApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Logs',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -217,9 +226,6 @@ export default class extends Component {
         label: 'Uptime',
         href: '/#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Graph',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -231,9 +237,6 @@ export default class extends Component {
         label: 'Maps',
         href: '/#/layout/nav-drawer',
         iconType: 'gisApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Maps',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -245,9 +248,6 @@ export default class extends Component {
         label: 'SIEM',
         href: '/#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'SIEM',
         extraAction: {
           color: 'subdued',
           iconType: 'pin',
@@ -261,144 +261,67 @@ export default class extends Component {
       {
         label: 'Admin',
         iconType: 'managementApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Admin',
-        onClick: () => this.expandFlyout(this.adminSubLinks, 'Tools and settings'),
-        extraAction: {
-          color: 'subdued',
-          iconType: 'arrowRight',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-          alwaysShow: true,
-          onClick: () => this.expandFlyout(this.adminSubLinks, 'Tools and settings'),
-        },
-      },
-    ];
-
-    this.adminSubLinks = [
-      {
-        label: 'Dev tools',
-        href: '/#/layout/nav-drawer',
-        iconType: 'devToolsApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Dev tools',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Stack Monitoring',
-        href: '/#/layout/nav-drawer',
-        iconType: 'monitoringApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Monitoring',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Stack Management',
-        href: '/#/layout/nav-drawer',
-        iconType: 'managementApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Management',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-    ];
-
-    this.recentLinks = [
-      {
-        label: 'My dashboard',
-        href: '/#/layout/nav-drawer',
-        iconType: 'dashboardApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'My dashboard',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'Workpad with title that wraps',
-        href: '/#/layout/nav-drawer',
-        iconType: 'canvasApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'Workpad with title that wraps',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-      {
-        label: 'My logs',
-        href: '/#/layout/nav-drawer',
-        iconType: 'loggingApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'My logs',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starEmpty',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-        },
-      },
-    ];
-
-    this.favoriteLinks = [
-      {
-        label: 'My workpad',
-        href: '/#/layout/nav-drawer',
-        iconType: 'canvasApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'My workpad',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starFilled',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-          alwaysShow: true,
-        },
-      },
-      {
-        label: 'My logs',
-        href: '/#/layout/nav-drawer',
-        iconType: 'loggingApp',
-        size: 's',
-        style: { color: 'inherit' },
-        'aria-label': 'My logs',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'starFilled',
-          iconSize: 's',
-          'aria-label': 'Add to favorites',
-          alwaysShow: true,
+        flyoutMenu: {
+          title: 'Tools and settings',
+          listItems: [
+            {
+              label: 'Dev tools',
+              href: '/#/layout/nav-drawer',
+              iconType: 'devToolsApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+            {
+              label: 'Stack Monitoring',
+              href: '/#/layout/nav-drawer',
+              iconType: 'monitoringApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+            {
+              label: 'Stack Management',
+              href: '/#/layout/nav-drawer',
+              iconType: 'managementApp',
+              extraAction: {
+                color: 'subdued',
+                iconType: 'starEmpty',
+                iconSize: 's',
+                'aria-label': 'Add to favorites',
+              },
+            },
+          ]
         },
       },
     ];
   }
+
+  onKeyDown = event => {
+    if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.closeFullScreen();
+    }
+  };
+
+  toggleFullScreen = () => {
+    this.setState(prevState => ({
+      isFullScreen: !prevState.isFullScreen,
+    }));
+  };
+
+  closeFullScreen = () => {
+    this.setState({
+      isFullScreen: false,
+    });
+  };
 
   renderLogo() {
     return (
@@ -414,7 +337,7 @@ export default class extends Component {
     return (
       <EuiHeaderSectionItemButton
         aria-label="Open nav"
-        onClick={this.toggleOpen}
+        onClick={() => this.navDrawerRef.toggleOpen()}
       >
         <EuiIcon type="apps" href="#" size="m" />
       </EuiHeaderSectionItemButton>
@@ -469,181 +392,49 @@ export default class extends Component {
     );
   }
 
-  timeoutID;
-
-  toggleOpen = () => {
-    this.setState({
-      mobileIsHidden: !this.state.mobileIsHidden
-    });
-
-    setTimeout(() => {
-      this.setState({
-        outsideClickDisabled: this.state.mobileIsHidden ? true : false,
-      });
-    }, 350);
-  };
-
-  expandDrawer = () => {
-    this.setState({ isCollapsed: false });
-
-    setTimeout(() => {
-      this.setState({
-        showScrollbar: true,
-      });
-    }, 350);
-
-    // This prevents the drawer from collapsing when tabbing through children
-    // by clearing the timeout thus cancelling the onBlur event (see focusOut).
-    // This means isManagingFocus remains true as long as a child element
-    // has focus. This is the case since React bubbles up onFocus and onBlur
-    // events from the child elements.
-    clearTimeout(this.timeoutID);
-
-    if (!this.state.isManagingFocus) {
-      this.setState({
-        isManagingFocus: true,
-      });
-    }
-  };
-
-  collapseDrawer = () => {
-    this.setState({
-      flyoutIsAnimating: false,
-    });
-
-    setTimeout(() => {
-      this.setState({
-        isCollapsed: true,
-        flyoutIsCollapsed: true,
-        mobileIsHidden: true,
-        showScrollbar: false,
-        outsideClickDisabled: true,
-      });
-    }, 350);
-
-    // Scrolls the menu and flyout back to top when the nav drawer collapses
-    setTimeout(() => {
-      document.getElementById('navDrawerMenu').scrollTop = 0;
-      document.getElementById('navDrawerFlyout').scrollTop = 0;
-    }, 300);
-  };
-
-  focusOut = () => {
-    // This collapses the drawer when no children have focus (i.e. tabbed out).
-    // In other words, if focus does not bubble up from a child element, then
-    // the drawer will collapse. See the corresponding block in expandDrawer
-    // (called by onFocus) which cancels this operation via clearTimeout.
-    this.timeoutID = setTimeout(() => {
-      if (this.state.isManagingFocus) {
-        this.setState({
-          isManagingFocus: false,
-        });
-
-        this.collapseDrawer();
-      }
-    }, 0);
-  }
-
-  expandFlyout = (links, title) => {
-    const content = links;
-
-    this.setState(prevState => ({
-      flyoutIsCollapsed: prevState.navFlyoutTitle === title ? !this.state.flyoutIsCollapsed : false,
-    }));
-
-    this.setState({
-      flyoutIsAnimating: true,
-      navFlyoutTitle: title,
-      navFlyoutContent: content
-    });
-  };
-
-  collapseFlyout = () => {
-    this.setState({ flyoutIsAnimating: true });
-
-    setTimeout(() => {
-      this.setState({
-        flyoutIsCollapsed: true,
-        navFlyoutTitle: null,
-        navFlyoutContent: null
-      });
-    }, 250);
-  };
+  setNavDrawerRef = ref => this.navDrawerRef = ref;
 
   render() {
-    const {
-      isCollapsed,
-      flyoutIsCollapsed,
-      flyoutIsAnimating,
-      navFlyoutTitle,
-      navFlyoutContent,
-      mobileIsHidden,
-      showScrollbar,
-      outsideClickDisabled,
-    } = this.state;
 
-    return (
-      <Fragment>
-        <div style={{ position: 'relative' }}>
-          <EuiHeader>
-            <EuiHeaderSection grow={false}>
-              <EuiShowFor sizes={['xs', 's']}>
+    let fullScreenDisplay;
+
+    if (this.state.isFullScreen) {
+
+      fullScreenDisplay = (
+        <EuiFocusTrap>
+          <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: '100%' }} onKeyDown={this.onKeyDown}>
+            <EuiHeader>
+              <EuiHeaderSection grow={false}>
+                <EuiShowFor sizes={['xs', 's']}>
+                  <EuiHeaderSectionItem border="right">
+                    {this.renderMenuTrigger()}
+                  </EuiHeaderSectionItem>
+                </EuiShowFor>
+                <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
                 <EuiHeaderSectionItem border="right">
-                  {this.renderMenuTrigger()}
+                  <HeaderSpacesMenu />
                 </EuiHeaderSectionItem>
-              </EuiShowFor>
-              <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
-              <EuiHeaderSectionItem border="right">
-                <HeaderSpacesMenu />
-              </EuiHeaderSectionItem>
-            </EuiHeaderSection>
+              </EuiHeaderSection>
 
-            {this.renderBreadcrumbs()}
+              {this.renderBreadcrumbs()}
 
-            <EuiHeaderSection side="right">
-              <EuiHeaderSectionItem>
-                <HeaderUserMenu />
-              </EuiHeaderSectionItem>
-            </EuiHeaderSection>
-          </EuiHeader>
-          <EuiOutsideClickDetector
-            onOutsideClick={() => this.collapseDrawer()}
-            isDisabled={outsideClickDisabled}
-          >
-            <EuiNavDrawer
-              isCollapsed={isCollapsed}
-              flyoutIsCollapsed={flyoutIsCollapsed}
-              flyoutIsAnimating={flyoutIsAnimating}
-              onMouseOver={this.expandDrawer}
-              onFocus={this.expandDrawer}
-              onBlur={this.focusOut}
-              onMouseLeave={this.collapseDrawer}
-              mobileIsHidden={mobileIsHidden}
-              showScrollbar={showScrollbar}
-              style={{ position: 'absolute' }} // This is for the embedded docs example only
-            >
-              <EuiNavDrawerMenu id="navDrawerMenu">
-                <EuiListGroup listItems={this.topLinks} />
-                <EuiHorizontalRule margin="none" />
-                <EuiListGroup listItems={this.exploreLinks} />
-                <EuiHorizontalRule margin="none" />
-                <EuiListGroup listItems={this.solutionsLinks} />
-                <EuiHorizontalRule margin="none" />
-                <EuiListGroup listItems={this.adminLinks} />
-              </EuiNavDrawerMenu>
-              <EuiNavDrawerFlyout
-                id="navDrawerFlyout"
-                title={navFlyoutTitle}
-                isCollapsed={flyoutIsCollapsed}
-                listItems={navFlyoutContent}
-                onMouseLeave={this.collapseFlyout}
-                wrapText={true}
-              />
+              <EuiHeaderSection side="right">
+                <EuiHeaderSectionItem>
+                  <HeaderUserMenu />
+                </EuiHeaderSectionItem>
+              </EuiHeaderSection>
+            </EuiHeader>
+            <EuiNavDrawer ref={this.setNavDrawerRef}>
+              <EuiNavDrawerGroup listItems={this.topLinks} />
+              <EuiHorizontalRule margin="none" />
+              <EuiNavDrawerGroup listItems={this.exploreLinks} />
+              <EuiHorizontalRule margin="none" />
+              <EuiNavDrawerGroup listItems={this.solutionsLinks} />
+              <EuiHorizontalRule margin="none" />
+              <EuiNavDrawerGroup listItems={this.adminLinks}/>
             </EuiNavDrawer>
-          </EuiOutsideClickDetector>
-          <EuiPage style={{ minHeight: '600px' }}>
-            <EuiPageBody style={{ marginLeft: '64px' }}>
-              <EuiHideFor sizes={['xs', 's']}>
+            <EuiPage className="euiNavDrawerPage">
+              <EuiPageBody className="euiNavDrawerPage__pageBody">
                 <EuiPageHeader>
                   <EuiPageHeaderSection>
                     <EuiTitle size="l">
@@ -660,13 +451,38 @@ export default class extends Component {
                     </EuiPageContentHeaderSection>
                   </EuiPageContentHeader>
                   <EuiPageContentBody>
-                    Body content
+                    <EuiButton
+                      fill
+                      onClick={this.toggleFullScreen}
+                      iconType="exit"
+                      aria-label="Exit fullscreen demo"
+                    >
+                      Exit fullscreen demo
+                    </EuiButton>
                   </EuiPageContentBody>
                 </EuiPageContent>
-              </EuiHideFor>
-            </EuiPageBody>
-          </EuiPage>
-        </div>
+              </EuiPageBody>
+            </EuiPage>
+          </div>
+        </EuiFocusTrap>
+      );
+    }
+    return (
+      <Fragment>
+        <EuiButton
+          onClick={this.toggleFullScreen}
+          iconType="fullScreen"
+          aria-label="Show fullscreen demo"
+        >
+          Show fullscreen demo
+        </EuiButton>
+
+        {/*
+          If the below fullScreen code renders, it actually attaches to the body because of
+          EuiOverlayMask's React portal usage.
+        */}
+
+        {fullScreenDisplay}
       </Fragment>
     );
   }

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiButtonIcon } from '../button';
 import { ICON_TYPES, EuiIcon } from '../icon';
+import { EuiToolTip } from '../tool_tip';
 
 const sizeToClassNameMap = {
   xs: 'euiListGroupItem--xSmall',
@@ -24,6 +25,8 @@ export const EuiListGroupItem = ({
   extraAction,
   onClick,
   size,
+  showToolTip,
+  wrapText,
   ...rest
 }) => {
   const classes = classNames(
@@ -34,6 +37,7 @@ export const EuiListGroupItem = ({
       'euiListGroupItem-isDisabled': isDisabled,
       'euiListGroupItem-isClickable': href || onClick,
       'euiListGroupItem-hasExtraAction': extraAction,
+      'euiListGroupItem--wrapText': wrapText,
     },
     className
   );
@@ -65,6 +69,16 @@ export const EuiListGroupItem = ({
     );
   }
 
+  // Only add the label as the title attribute if it's possibly truncated
+  const labelContent = (
+    <span
+      className="euiListGroupItem__label"
+      title={wrapText ? undefined : label}
+    >
+      {label}
+    </span>
+  );
+
   // Handle the variety of interaction behavior
   let itemContent;
 
@@ -72,7 +86,7 @@ export const EuiListGroupItem = ({
     itemContent = (
       <a href={href} className="euiListGroupItem__button" {...rest}>
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -84,23 +98,43 @@ export const EuiListGroupItem = ({
         {...rest}
       >
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </button>
     );
   } else {
     itemContent = (
       <span className="euiListGroupItem__text" {...rest}>
         {iconNode}
-        <span className="euiListGroupItem__label">{label}</span>
+        {labelContent}
       </span>
     );
   }
 
+  if (showToolTip) {
+    itemContent = (
+      <li className={classes}>
+        <EuiToolTip
+          anchorClassName="euiListGroupItem__tooltip"
+          content={label}
+          position="right"
+          delay="long"
+          size="s"
+        >
+          {itemContent}
+        </EuiToolTip>
+      </li>
+    );
+  } else {
+    itemContent = (
+      <li className={classes}>
+        {itemContent}
+        {extraActionNode}
+      </li>
+    );
+  }
+
   return (
-    <li className={classes}>
-      {itemContent}
-      {extraActionNode}
-    </li>
+    <Fragment>{itemContent}</Fragment>
   );
 };
 
@@ -138,6 +172,11 @@ EuiListGroupItem.propTypes = {
   iconType: PropTypes.oneOf(ICON_TYPES),
 
   /**
+   * Display tooltip on list item
+   */
+  showToolTip: PropTypes.bool,
+
+  /**
    * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
    * pass `alwaysShow` if you don't want the default behavior of only showing on hover
    */
@@ -147,10 +186,16 @@ EuiListGroupItem.propTypes = {
   }),
 
   onClick: PropTypes.func,
+
+  /**
+   * Allow link text to wrap
+   */
+  wrapText: PropTypes.bool,
 };
 
 EuiListGroupItem.defaultProps = {
   isActive: false,
   isDisabled: false,
   size: 'm',
+  showToolTip: false,
 };
