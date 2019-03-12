@@ -23,8 +23,8 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
     }
 
     // Make some declarations of props for the side nav implementation
-    itemProps.className = classNames('euiNavDrawerGroup__item', itemProps.className);
-    itemProps.size = itemProps.size || 's';
+    itemProps.className = classNames('euiNavDrawerGroup__item', item.className);
+    itemProps.size = item.size || 's';
     itemProps['aria-label'] = item['aria-label'] || item.label;
 
     // And return the item with conditional `onClick` and without `flyoutMenu`
