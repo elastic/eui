@@ -302,13 +302,22 @@
     flex-grow: 1;
     display: flex;
     padding-left: $euiSizeXS;
-    overflow-y: scroll;
-    @include euiScrollBar;
+    flex-direction: column;
 
     .react-datepicker__time-box {
       width: auto;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
       ul.react-datepicker__time-list {
+        @include euiScrollBar;
         height: 204px !important;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto;
+        align-items: center;
 
         li.react-datepicker__time-list-item {
           padding: $euiSizeXS $euiSizeS;
@@ -316,6 +325,8 @@
           text-align: right;
           color: $euiColorDarkShade;
           white-space: nowrap;
+          // IE needs this to fix collapsing flex
+          line-height: $euiSizeM;
 
           &:hover,
           &:focus {
@@ -617,12 +628,17 @@
 }
 
 .react-datepicker__month-read-view:focus,
-.react-datepicker__year-read-view:focus, {
+.react-datepicker__year-read-view:focus {
   text-decoration: underline;
 }
 
 .react-datepicker__month--accessible:focus {
   background: $euiFocusBackgroundColor;
+
+  .react-datepicker__day--in-range {
+    border-top-color: $euiFocusBackgroundColor;
+    border-bottom-color: $euiFocusBackgroundColor;
+  }
 }
 .react-datepicker__navigation:focus {
   background-color: $euiFocusBackgroundColor;

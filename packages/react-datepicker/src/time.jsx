@@ -59,32 +59,15 @@ export default class Time extends React.Component {
     super(...args);
 
     const times = this.generateTimes();
-    const preSelection = times.reduce((preSelection, time) => {
+    let preSelection = times.reduce((preSelection, time) => {
       if (preSelection) return preSelection;
       if (doHoursAndMinutesAlign(time, this.props.selected)) {
         return time;
       }
     }, null);
 
-    this.timeFormat = "hh:mm A";
-    this.state = {
-      preSelection,
-      readInstructions: false,
-      isFocused: false
-    };
-  }
-
-  componentDidMount() {
-    // code to ensure selected time will always be in focus within time window when it first appears
-    this.list.scrollTop = Time.calcCenterPosition(
-      this.props.monthRef
-        ? this.props.monthRef.clientHeight - this.header.clientHeight
-        : this.list.clientHeight,
-      this.centerLi
-    );
-
-    if (this.state.preSelection == null) {
-      // there is no pre-selection, find the element closest to the selected time and preselect it
+    if (preSelection == null) {
+      // there is no exact pre-selection, find the element closest to the selected time and preselect it
       const currH = this.props.selected
         ? getHour(this.props.selected)
         : getHour(newDate());
@@ -95,27 +78,68 @@ export default class Time extends React.Component {
         (60 * currH + currM) / this.props.intervals
       );
       const closestMinutes = closestTimeIndex * this.props.intervals;
-      const closestTime = setTime(newDate(), {
+      preSelection = setTime(newDate(), {
         hour: Math.floor(closestMinutes / 60),
         minute: closestMinutes % 60,
         second: 0,
         millisecond: 0,
       });
-      this.setState({ preSelection: closestTime });
     }
+
+    this.timeFormat = "hh:mm A";
+    this.state = {
+      preSelection,
+      needsScrollToPreSelection: false,
+      readInstructions: false,
+      isFocused: false
+    };
   }
 
-  componentDidUpdate() {
-    // scroll to the preSelected time
-    const scrollToElement = this.preselectedLi;
+  componentDidMount() {
+    // code to ensure selected time will always be in focus within time window when it first appears
+    const scrollParent = this.list;
 
-    if (scrollToElement) {
-      // an element matches the selected time, scroll to it
-      scrollToElement.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "nearest"
+    scrollParent.scrollTop = Time.calcCenterPosition(
+      this.props.monthRef
+        ? this.props.monthRef.clientHeight - this.header.clientHeight
+        : this.list.clientHeight,
+      this.selectedLi || this.preselectedLi
+    );
+  }
+
+  componentDidUpdate(prevProps) {
+    // if selection changed, scroll to the selected item
+    if (this.props.selected && this.props.selected.isSame(prevProps.selected) === false) {
+      const scrollToElement = this.selectedLi;
+
+      if (scrollToElement) {
+        // an element matches the selected time, scroll to it
+        scrollToElement.scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "nearest"
+        });
+      }
+
+      // update preSelection to the selection
+      this.setState({
+        preSelection: this.props.selected,
       });
+    }
+
+    if (this.state.needsScrollToPreSelection) {
+      const scrollToElement = this.preselectedLi;
+
+      if (scrollToElement) {
+        // an element matches the selected time, scroll to it
+        scrollToElement.scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "nearest"
+        });
+      }
+
+      this.setState({ needsScrollToPreSelection: false });
     }
   }
 
@@ -150,7 +174,10 @@ export default class Time extends React.Component {
     }
     if (!newSelection) return; // Let the input component handle this keydown
     event.preventDefault();
-    this.setState({ preSelection: newSelection });
+    this.setState({
+      preSelection: newSelection,
+      needsScrollToPreSelection: true,
+    });
   };
 
   handleClick = time => {
@@ -242,19 +269,21 @@ export default class Time extends React.Component {
         className={this.liClasses(time, activeTime)}
         ref={li => {
           if (
-            (currH === getHour(time) && currM === getMinute(time)) ||
-            (currH === getHour(time) && !this.centerLi)
-          ) {
-            this.centerLi = li;
-          }
-
-          if (
             li &&
             li.classList.contains(
               "react-datepicker__time-list-item--preselected"
             )
           ) {
             this.preselectedLi = li;
+          }
+
+          if (
+            li &&
+            li.classList.contains(
+              "react-datepicker__time-list-item--selected"
+            )
+          ) {
+            this.selectedLi = li;
           }
         }}
         role="option"
