@@ -11,4 +11,30 @@
       border-radius: $euiBorderRadius;
     }
   }
+
+  .euiListGroupItem__icon {
+    max-width: $euiSize;
+  }
+}
+
+// Default icon will simulate an avatar but with coloring specific to
+.euiNavDrawerGroup__itemDefaultIcon {
+  @include innerBorder('dark', 50%, .05);
+  @include size($euiSize);
+  line-height: $euiSize;
+  font-size: $euiSizeM;
+  flex-shrink: 0; // Ensures it never scales down below it's intended size
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+  font-weight: $euiFontWeightMedium; // Explicitly state so it doesn't get overridden by inheritence
+  border-radius: 50%;
+
+  &:after {
+    top: -$euiSizeXS;
+    left: -$euiSizeXS;
+    right: -$euiSizeXS;
+    bottom: -$euiSizeXS;
+  }
 }
