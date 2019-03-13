@@ -81,7 +81,7 @@
   },
   {
     "token": "euiBottomBar.screenReaderAnnouncement",
-    "defString": "There is a new menu opening with page level controls at the bottom of the document.",
+    "defString": "There is a new menu opening with page level controls at the end of document.",
     "highlighting": "string",
     "loc": {
       "start": {

@@ -56,7 +56,7 @@ export class EuiBottomBar extends Component {
           <p aria-live="assertive">
             <EuiI18n
               token="euiBottomBar.screenReaderAnnouncement"
-              default="There is a new menu opening with page level controls at the bottom of the document."
+              default="There is a new menu opening with page level controls at the end of document."
             />
           </p>
         </EuiScreenReaderOnly>
