@@ -18,8 +18,8 @@
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
-  &.euiListGroupItem-isClickable:hover,
-  &.euiListGroupItem-isClickable:focus {
+  &.euiListGroupItem-isClickable:hover .euiListGroupItem__label,
+  &.euiListGroupItem-isClickable:focus .euiListGroupItem__label {
     text-decoration: underline;
   }
 
@@ -54,10 +54,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.euiListGroupItem__button:focus {
-  text-decoration: underline;
 }
 
 .euiListGroupItem__extraAction {
