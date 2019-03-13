@@ -22,6 +22,7 @@ export const EuiListGroupItem = ({
   href,
   className,
   iconType,
+  icon,
   extraAction,
   onClick,
   size,
@@ -48,6 +49,13 @@ export const EuiListGroupItem = ({
     iconNode = (
       <EuiIcon className="euiListGroupItem__icon" type={iconType} />
     );
+
+    if (icon) {
+      console.warn('Both `iconType` and `icon` were passed to EuiListGroupItem but only one can exist. The `iconType` was used.');
+    }
+  } else if (icon) {
+    iconNode = React.cloneElement(icon,
+      { className: classNames('euiListGroupItem__icon', icon.props.className) });
   }
 
   let extraActionNode;
@@ -89,6 +97,10 @@ export const EuiListGroupItem = ({
         {labelContent}
       </a>
     );
+
+    if (onClick) {
+      console.warn('Both `href` and `onClick` were passed to EuiListGroupItem but only one can exist. The `href` was used.');
+    }
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
       <button
@@ -167,9 +179,15 @@ EuiListGroupItem.propTypes = {
   href: PropTypes.string,
 
   /**
-   * See `EuiIcon`
+   * Adds `EuiIcon` of `EuiIcon.type`
    */
   iconType: PropTypes.oneOf(ICON_TYPES),
+
+  /**
+   * Custom node to pass as the icon. Cannot be used in conjunction
+   * with `iconType`.
+   */
+  icon: PropTypes.element,
 
   /**
    * Display tooltip on list item
