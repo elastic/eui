@@ -16,6 +16,7 @@ import {
   EuiHeaderBreadcrumbs,
   EuiHeaderLogo,
   EuiIcon,
+  EuiImage,
   EuiTitle,
   EuiNavDrawerGroup,
   EuiNavDrawer,
@@ -38,6 +39,20 @@ export default class extends Component {
       isFullScreen: false,
     };
 
+    const faveExtraAction = {
+      color: 'subdued',
+      iconType: 'starEmpty',
+      iconSize: 's',
+      'aria-label': 'Add to favorites',
+    };
+
+    const pinExtraAction = {
+      color: 'subdued',
+      iconType: 'pin',
+      iconSize: 's',
+      'aria-label': 'Pin to top',
+    };
+
     this.topLinks = [
       {
         label: 'Recently viewed',
@@ -49,35 +64,20 @@ export default class extends Component {
               label: 'My dashboard',
               href: '/#/layout/nav-drawer',
               iconType: 'dashboardApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add to favorites',
-              },
+              extraAction: faveExtraAction,
             },
             {
               label: 'Workpad with title that wraps',
               href: '/#/layout/nav-drawer',
               iconType: 'canvasApp',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add to favorites',
-              },
+              extraAction: faveExtraAction,
             },
             {
               label: 'My logs',
               href: '/#/layout/nav-drawer',
               iconType: 'loggingApp',
               'aria-label': 'This is an alternate aria-label',
-              extraAction: {
-                color: 'subdued',
-                iconType: 'starEmpty',
-                iconSize: 's',
-                'aria-label': 'Add to favorites',
-              },
+              extraAction: faveExtraAction,
             },
           ],
         },
@@ -96,7 +96,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starFilled',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Remove from favorites',
                 alwaysShow: true,
               },
             },
@@ -108,7 +108,7 @@ export default class extends Component {
                 color: 'subdued',
                 iconType: 'starFilled',
                 iconSize: 's',
-                'aria-label': 'Add to favorites',
+                'aria-label': 'Remove from favorites',
                 alwaysShow: true,
               },
             },
@@ -124,10 +124,7 @@ export default class extends Component {
         iconType: 'canvasApp',
         isActive: true,
         extraAction: {
-          color: 'subdued',
-          iconType: 'pinFilled',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
+          ...pinExtraAction,
           alwaysShow: true,
         },
       },
@@ -135,56 +132,42 @@ export default class extends Component {
         label: 'Discover',
         href: '/#/layout/nav-drawer',
         iconType: 'discoverApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Visualize',
         href: '/#/layout/nav-drawer',
         iconType: 'visualizeApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Dashboard',
         href: '/#/layout/nav-drawer',
         iconType: 'dashboardApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Machine learning',
         href: '/#/layout/nav-drawer',
         iconType: 'machineLearningApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
-        label: 'Graph',
+        label: 'Custom Plugin (no icon)',
         href: '/#/layout/nav-drawer',
-        iconType: 'graphApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
+      },
+      {
+        label: 'Nature Plugin (image as icon)',
+        href: '/#/layout/nav-drawer',
+        extraAction: pinExtraAction,
+        icon: (
+          <EuiImage
+            size="s"
+            alt="Random nature image"
+            url="https://source.unsplash.com/300x300/?Nature"
+          />
+        ),
       }
     ];
 
@@ -193,67 +176,37 @@ export default class extends Component {
         label: 'APM',
         href: '/#/layout/nav-drawer',
         iconType: 'apmApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Infrastructure',
         href: '/#/layout/nav-drawer',
         iconType: 'infraApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Log viewer',
         href: '/#/layout/nav-drawer',
         iconType: 'loggingApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Uptime',
         href: '/#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'Maps',
         href: '/#/layout/nav-drawer',
         iconType: 'gisApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       },
       {
         label: 'SIEM',
         href: '/#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
-        extraAction: {
-          color: 'subdued',
-          iconType: 'pin',
-          iconSize: 's',
-          'aria-label': 'Pin to top',
-        },
+        extraAction: pinExtraAction,
       }
     ];
 

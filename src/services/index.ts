@@ -39,6 +39,8 @@ export { Random } from './random';
 
 export { getSecureRelForTarget } from './security';
 
+export { toInitials } from './string';
+
 export {
   PropertySortType,
   SortDirectionType,
