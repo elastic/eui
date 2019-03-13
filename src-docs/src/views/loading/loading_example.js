@@ -10,6 +10,7 @@ import {
   EuiLoadingKibana,
   EuiLoadingSpinner,
   EuiLoadingChart,
+  EuiLoadingContent,
 } from '../../../../src/components';
 
 import LoadingKibana from './loading_kibana';
@@ -23,6 +24,10 @@ const loadingChartHtml = renderToHtml(LoadingChart);
 import LoadingSpinner from './loading_spinner';
 const loadingSpinnerSource = require('!!raw-loader!./loading_spinner');
 const loadingSpinnerHtml = renderToHtml(LoadingSpinner);
+
+import LoadingContent from './loading_content';
+const loadingContentSource = require('!!raw-loader!./loading_content');
+const loadingContentHtml = renderToHtml(LoadingContent);
 
 export const LoadingExample = {
   title: 'Loading',
@@ -80,5 +85,20 @@ export const LoadingExample = {
     props: { EuiLoadingSpinner },
     demo: <LoadingSpinner />,
     snippet: `<EuiLoadingSpinner size="m" />`
+  }, {
+    title: 'Content',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: loadingContentSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: loadingContentHtml,
+    }],
+    text: (
+      <p>A simple loading animation for displaying placeholder content. You can pass in a number of lines — the default is 3.</p>
+    ),
+    props: { EuiLoadingContent },
+    demo: <LoadingContent />,
+    snippet: `<EuiLoadingContent lines={3} />`
   }],
 };
