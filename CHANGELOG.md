@@ -2,6 +2,8 @@
 
 - Allow toasts in `EuiGlobalToastList` to override `toastLifeTimeMs` ([#1720](https://github.com/elastic/eui/pull/1720))
 - Allow `EuiListGroupItem` to pass a custom element as the `icon` ([#1726](https://github.com/elastic/eui/pull/1726))
+- Added default icon for `EuiListGroupItem` if one is not passed ([#1729](https://github.com/elastic/eui/pull/1729))
+- Added `toInitials` string service ([#1729](https://github.com/elastic/eui/pull/1729))
 
 **Bug fixes**
 
