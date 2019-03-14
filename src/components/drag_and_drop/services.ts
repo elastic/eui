@@ -1,7 +1,7 @@
 import { DraggableLocation } from 'react-beautiful-dnd';
 
 interface DropResult {
-  [droppableId: string]: never[];
+  [droppableId: string]: any[];
 }
 
 export const reorder = (
@@ -17,39 +17,47 @@ export const reorder = (
 };
 
 export const move = (
-  sourceList: [],
-  destinationList: [],
+  sourceList: any[],
+  destinationList: any[],
   dropResultSource: DraggableLocation,
   dropResultDestination: DraggableLocation
 ): DropResult => {
-  const sourceClone = Array.from(sourceList);
-  const destClone = Array.from(destinationList);
+  const sourceClone = [...sourceList];
+  const destClone = [...destinationList];
   const [removed] = sourceClone.splice(dropResultSource.index, 1);
 
   destClone.splice(dropResultDestination.index, 0, removed);
 
-  const result: DropResult = {};
-  result[dropResultSource.droppableId] = sourceClone;
-  result[dropResultDestination.droppableId] = destClone;
-
-  return result;
+  return {
+    [dropResultSource.droppableId]: sourceClone,
+    [dropResultDestination.droppableId]: destClone,
+  };
 };
 
 export const copy = (
-  sourceList: [],
-  destinationList: [],
+  sourceList: any[],
+  destinationList: any[],
   dropResultSource: DraggableLocation,
-  dropResultDestination: DraggableLocation
+  dropResultDestination: DraggableLocation,
+  /* Each EuiDraggable needs a unique ID, otherwise subsequent drag attempts on the to-be-copied
+   * element may result instead in dragging a previously created duplicate of that Draggable.
+   * `idModification` gives implementers better control over creating unique IDs on copy.
+   */
+  idModification: {
+    property: string | number;
+    modifier: () => string | number;
+  }
 ): DropResult => {
-  const sourceClone = Array.from(sourceList);
-  const destClone = Array.from(destinationList);
-  const copied = sourceClone[dropResultSource.index];
+  const sourceClone = [...sourceList];
+  const destClone = [...destinationList];
 
-  destClone.splice(dropResultDestination.index, 0, copied);
+  destClone.splice(dropResultDestination.index, 0, {
+    ...sourceList[dropResultSource.index],
+    [idModification.property]: idModification.modifier(),
+  });
 
-  const result: DropResult = {};
-  result[dropResultSource.droppableId] = sourceClone;
-  result[dropResultDestination.droppableId] = destClone;
-
-  return result;
+  return {
+    [dropResultSource.droppableId]: sourceClone,
+    [dropResultDestination.droppableId]: destClone,
+  };
 };
