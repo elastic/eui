@@ -1,11 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**Note: this release is a backport containing changes originally made in `9.0.0` and `9.1.0`**
+**Note: this release is a backport containing changes originally made in `9.0.0`, `9.1.0`, and `9.4.0`**
 
 **Bug fixes**
 
 - Fixed keyboard navigation and UI of `EuiComboBox` items in single selection mode ([#1619](https://github.com/elastic/eui/pull/1619))
 - Fixed `EuiComboBox` `activeOptonIndex` error with empty search results ([#1695](https://github.com/elastic/eui/pull/1695))
+- Prevent `EuiComboBox` from creating a custom option value when user clicks on a value in the dropdown ([#1728](https://github.com/elastic/eui/pull/1728))
 
 ## [`6.10.4`](https://github.com/elastic/eui/tree/v6.10.4)
 
