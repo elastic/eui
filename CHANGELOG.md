@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.4.0`.
+**Bug fixes**
+
+- Adds missing type and fixes closure-scope problem for `SuperDatePicker`'s `onRefresh` callback ([#1732](https://github.com/elastic/eui/pull/1732))
 
 ## [`9.4.0`](https://github.com/elastic/eui/tree/v9.4.0)
 
