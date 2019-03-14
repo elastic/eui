@@ -17,7 +17,39 @@ exports[`EuiListGroupItem is rendered 1`] = `
 </li>
 `;
 
-exports[`EuiListGroupItem renders href 1`] = `
+exports[`EuiListGroupItem props extraAction is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+  <button
+    aria-label="label"
+    class="euiButtonIcon euiButtonIcon--primary euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiButtonIcon__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </button>
+</li>
+`;
+
+exports[`EuiListGroupItem props href is rendered 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
 >
@@ -31,6 +63,261 @@ exports[`EuiListGroupItem renders href 1`] = `
     >
       Label
     </span>
+  </a>
+</li>
+`;
+
+exports[`EuiListGroupItem props icon is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__icon"
+    />
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props iconType is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiListGroupItem__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props isActive is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isDisabled"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props onClick is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+>
+  <button
+    class="euiListGroupItem__button"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </button>
+</li>
+`;
+
+exports[`EuiListGroupItem props size l is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--large"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props size m is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props size s is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--small"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props size xs is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--xSmall"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props wrapText is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--wrapText"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <span
+      class="euiListGroupItem__label"
+    >
+      Label
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem renders a disabled button even if provided an href 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isDisabled euiListGroupItem-isClickable"
+>
+  <button
+    class="euiListGroupItem__button"
+    disabled=""
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </button>
+</li>
+`;
+
+exports[`EuiListGroupItem renders a disabled button even if provided an href 2`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isDisabled euiListGroupItem-isClickable"
+>
+  <button
+    class="euiListGroupItem__button"
+    disabled=""
+  >
+    <span
+      class="euiListGroupItem__label"
+      title="Label"
+    >
+      Label
+    </span>
+  </button>
+</li>
+`;
+
+exports[`EuiListGroupItem throws an warning if both iconType and icon are provided but still renders 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium"
+>
+  <span
+    class="euiListGroupItem__text"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiListGroupItem__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+    <span
+      class="euiListGroupItem__label"
+      title=""
+    />
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem throws an warning if both onClick and href are provided but still renders 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+>
+  <a
+    class="euiListGroupItem__button"
+    href="#"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title=""
+    />
   </a>
 </li>
 `;

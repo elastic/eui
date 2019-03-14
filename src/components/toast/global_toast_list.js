@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Timer } from '../../services/time';
+import { ICON_TYPES } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
 
@@ -32,7 +33,14 @@ export class EuiGlobalToastList extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    toasts: PropTypes.array,
+    toasts: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      title: PropTypes.string,
+      text: PropTypes.node,
+      color: PropTypes.string,
+      iconType: PropTypes.oneOf(ICON_TYPES),
+      toastLifeTimeMs: PropTypes.number,
+    }).isRequired),
     dismissToast: PropTypes.func.isRequired,
     toastLifeTimeMs: PropTypes.number.isRequired,
   };
@@ -111,7 +119,7 @@ export class EuiGlobalToastList extends Component {
   scheduleToastForDismissal = (toast) => {
     // Start fading the toast out once its lifetime elapses.
     this.toastIdToTimerMap[toast.id] =
-      new Timer(this.dismissToast.bind(this, toast), this.props.toastLifeTimeMs);
+      new Timer(this.dismissToast.bind(this, toast), toast.toastLifeTimeMs != null ? toast.toastLifeTimeMs : this.props.toastLifeTimeMs);
   };
 
   dismissToast = (toast) => {
@@ -201,6 +209,7 @@ export class EuiGlobalToastList extends Component {
     const renderedToasts = toasts.map(toast => {
       const {
         text,
+        toastLifeTimeMs, // eslint-disable-line no-unused-vars
         ...rest
       } = toast;
 

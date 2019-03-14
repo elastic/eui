@@ -18,8 +18,8 @@
     background-color: tintOrShade($euiColorLightestShade, 0%, 30%);
   }
 
-  &.euiListGroupItem-isClickable:hover,
-  &.euiListGroupItem-isClickable:focus {
+  &.euiListGroupItem-isClickable:hover .euiListGroupItem__label,
+  &.euiListGroupItem-isClickable:focus .euiListGroupItem__label {
     text-decoration: underline;
   }
 
@@ -56,10 +56,6 @@
   text-overflow: ellipsis;
 }
 
-.euiListGroupItem__button:focus {
-  text-decoration: underline;
-}
-
 .euiListGroupItem__extraAction {
   opacity: 0;
   margin-right: $euiSizeS;
@@ -74,8 +70,8 @@
 }
 
 .euiListGroupItem__icon {
-  flex-grow: 0;
   margin-right: $euiSizeM;
+  flex-grow: 0;
   flex-shrink: 0;
 }
 

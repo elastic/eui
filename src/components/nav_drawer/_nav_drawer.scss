@@ -60,6 +60,7 @@
       }
 
       .euiListGroupItem__extraAction {
+        // Hides extra action from scrolling into view when tabbing in the collapsed view
         visibility: hidden;
       }
     }

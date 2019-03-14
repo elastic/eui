@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiListGroup } from '../list_group/list_group';
+import { toInitials } from '../../services';
 
 export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick, ...rest }) => {
   const classes = classNames(
@@ -26,6 +27,16 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
     itemProps.className = classNames('euiNavDrawerGroup__item', item.className);
     itemProps.size = item.size || 's';
     itemProps['aria-label'] = item['aria-label'] || item.label;
+
+    // Add an avatar in place of non-existent icons
+    const itemProvidesIcon = !!item.iconType || !!item.icon;
+    if (!itemProvidesIcon) {
+      itemProps.icon = (
+        <span className="euiNavDrawerGroup__itemDefaultIcon">
+          {toInitials(item.label)}
+        </span>
+      );
+    }
 
     // And return the item with conditional `onClick` and without `flyoutMenu`
     return { ...itemProps };

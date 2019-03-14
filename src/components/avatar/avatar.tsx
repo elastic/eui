@@ -3,7 +3,7 @@ import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb } from '../../services/color';
-import { VISUALIZATION_COLORS } from '../../services';
+import { VISUALIZATION_COLORS, toInitials } from '../../services';
 
 const sizeToClassNameMap = {
   none: null,
@@ -79,35 +79,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   let optionalInitial;
   if (name && !imageUrl) {
-    // Calculate the number of initials to show, maxing out at 2
-    let calculatedInitialsLength = initials
-      ? initials.split(' ').length
-      : name.split(' ').length;
-    calculatedInitialsLength =
-      calculatedInitialsLength > 2 ? 2 : calculatedInitialsLength;
-
-    // Check if initialsLength was passed and set to calculated, unless greater than 2
-    if (initialsLength) {
-      calculatedInitialsLength = initialsLength <= 2 ? initialsLength : 2;
-    }
-
-    let calculatedInitials;
-    // A. Set to initials prop if exists (but trancate to 2 characters max unless length is supplied)
-    if (initials) {
-      calculatedInitials = initials.substring(0, calculatedInitialsLength);
-    } else {
-      if (name.trim() && name.split(' ').length > 1) {
-        // B. If there are any spaces in the name, set to first letter of each word
-        calculatedInitials = name.match(/\b(\w)/g);
-        calculatedInitials =
-          calculatedInitials &&
-          calculatedInitials.join('').substring(0, calculatedInitialsLength);
-      } else {
-        // C. Set to the name's initials truncated based on calculated length
-        calculatedInitials = name.substring(0, calculatedInitialsLength);
-      }
-    }
-
+    // Create the initials
+    const calculatedInitials = toInitials(name, initialsLength, initials);
     optionalInitial = <span aria-hidden="true">{calculatedInitials}</span>;
   }
 
@@ -152,7 +125,7 @@ function checkValidInitials(initials: EuiAvatarProps['initials']) {
   if (initials && initials.length > 2) {
     // tslint:disable-next-line:no-console
     console.warn(
-      `EuiAvatar only accepts a max of 2 characters for the initials as a string`
+      `EuiAvatar only accepts a max of 2 characters for the initials as a string. It is displaying only the first 2 characters.`
     );
   }
 }
