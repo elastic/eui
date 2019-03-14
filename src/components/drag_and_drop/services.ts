@@ -41,7 +41,7 @@ export const copy = (
   dropResultDestination: DraggableLocation,
   /* Each EuiDraggable needs a unique ID, otherwise subsequent drag attempts on the to-be-copied
    * element may result instead in dragging a previously created duplicate of that Draggable.
-   * `idModification` gives implementers better control over creating unique IDs on copy.
+   * `idModification` gives implementers better control over creating unique IDs when copying.
    */
   idModification: {
     property: string | number;
