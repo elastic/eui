@@ -50,10 +50,12 @@ export const DragAndDropExample = {
             <EuiCode>{`<EuiDragDropContext />`}</EuiCode>: Defines the part of your application that has drag and drop enabled.
           </li>
           <li>
-            <EuiCode>{`<EuiDroppable />`}</EuiCode>: Defines the area into which items can be dropped. Contains {`<EuiDraggable />`}s.
+            <EuiCode>{`<EuiDroppable />`}</EuiCode>: Defines the area into which items can be dropped.
+            Contains <EuiCode>{`<EuiDraggable />`}</EuiCode>s.
           </li>
           <li>
-            <EuiCode>{`<EuiDraggable />`}</EuiCode>: Defines the items that can be dragged
+            <EuiCode>{`<EuiDraggable />`}</EuiCode>: Defines the items that can be dragged.
+            Must be part of an <EuiCode>{`<EuiDroppable />`}</EuiCode>
           </li>
         </ul>
       </EuiText>
@@ -133,10 +135,17 @@ export const DragAndDropExample = {
         }
       ],
       text: (
-        <p>
+        <React.Fragment>
+          <p>
           The simplest case, demonstrating a single <EuiCode>EuiDroppable</EuiCode> with <EuiCode>reorder</EuiCode> behavior.
-          Notice the ability to change rendered content based on dragging state.
-        </p>
+          </p>
+          <p>
+            Notice the ability to change rendered content based on dragging state.
+            <EuiCode>EuiDraggable</EuiCode> <EuiCode>children</EuiCode> is a render prop that mush return a <EuiCode>ReactElement</EuiCode>.
+            The <EuiCode>snapshot</EuiCode> parameter on that function has state data that can be used to alter appearance or behavior
+            (e.g., <EuiCode>isDragging</EuiCode>).
+          </p>
+        </React.Fragment>
       ),
       props: { EuiDragDropContext, EuiDraggable, EuiDroppable },
       demo: <DragAndDrop />
@@ -154,9 +163,18 @@ export const DragAndDropExample = {
         }
       ],
       text: (
-        <p>
-          Coming soon.
-        </p>
+        <React.Fragment>
+          <p>
+            By default the entire element surface can initiate a drag.
+            To specify a certain element within as the handle, set
+            <EuiCode>customDragHandle=true</EuiCode> on the <EuiCode>EuiDraggable</EuiCode>.
+          </p>
+          <p>
+            The <EuiCode>provided</EuiCode> parameter on the <EuiCode>EuiDraggable</EuiCode> <EuiCode>children</EuiCode> render prop has all
+            data required for functionality. Along with the <EuiCode>customDragHandle</EuiCode> flag,
+            <EuiCode>provided.dragHandleProps</EuiCode> needs to be added to the intended handle element.
+          </p>
+        </React.Fragment>
       ),
       demo: <DragAndDropCustomHandle />
     },
@@ -173,9 +191,15 @@ export const DragAndDropExample = {
         }
       ],
       text: (
-        <p>
-          Coming soon.
-        </p>
+        <React.Fragment>
+          <p>
+            By default, all <EuiCode>EuiDroppable</EuiCode> elements are of the same type and will
+            accept <EuiCode>EuiDraggable</EuiCode> elements from others in the same <EuiCode>EuiDragDropContext</EuiCode>.
+          </p>
+          <p>
+            The EUI <EuiCode>move</EuiCode> method is demonstrated in this example.
+          </p>
+        </React.Fragment>
       ),
       demo: <DragAndDropMoveLists />
     },
@@ -192,9 +216,16 @@ export const DragAndDropExample = {
         }
       ],
       text: (
-        <p>
-          Coming soon.
-        </p>
+        <React.Fragment>
+          <p>
+            Setting the <EuiCode>type</EuiCode> prop on an <EuiCode>EuiDroppable</EuiCode> element will ensure that it will only accept
+            <EuiCode>EuiDraggable</EuiCode> elements from the same type of <EuiCode>EuiDroppable</EuiCode>.
+          </p>
+          <p>
+            Notice that the enabled, compatible <EuiCode>EuiDroppable</EuiCode> elements have a visual change that indicates they can accept
+            the actively moving/focused <EuiCode>EuiDraggable</EuiCode> element.
+          </p>
+        </React.Fragment>
       ),
       demo: <DragAndDropTypes />
     },
@@ -211,9 +242,16 @@ export const DragAndDropExample = {
         }
       ],
       text: (
-        <p>
-          Coming soon.
-        </p>
+        <React.Fragment>
+          <p>
+            For cases where collections of <EuiCode>EuiDraggable</EuiCode> elements are static or can be used in multiple places
+            set <EuiCode>cloneDraggables=true</EuiCode> on the parent <EuiCode>EuiDroppable</EuiCode>.
+          </p>
+          <p>
+            The EUI <EuiCode>copy</EuiCode> method is available and demonstrated in the example below. Note that the data point used as
+            <EuiCode>draggableId</EuiCode> in <EuiCode>EuiDraggable</EuiCode> must change to allow for real duplication.
+          </p>
+        </React.Fragment>
       ),
       demo: <DragAndDropClone />
     }
