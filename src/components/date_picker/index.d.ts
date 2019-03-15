@@ -1,7 +1,9 @@
 import React from 'react';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
-import _ReactDatePicker, { ReactDatePickerProps as _ReactDatePickerProps } from './react-datepicker';
+import _ReactDatePicker, {
+  ReactDatePickerProps as _ReactDatePickerProps,
+} from './react-datepicker';
 import { Moment } from 'moment';
 
 declare module '@elastic/eui' {
@@ -10,6 +12,12 @@ declare module '@elastic/eui' {
     end: string;
     isInvalid: boolean;
     isQuickSelection: boolean;
+  }
+
+  interface OnRefreshProps {
+    start: string;
+    end: string;
+    refreshInterval: number;
   }
 
   interface OnRefreshChangeProps {
@@ -63,6 +71,7 @@ declare module '@elastic/eui' {
     isPaused?: boolean;
     refreshInterval?: number;
     onTimeChange: (props: OnTimeChangeProps) => void;
+    onRefresh: (props: OnRefreshProps) => void;
     onRefreshChange?: (props: OnRefreshChangeProps) => void;
     commonlyUsedRanges?: EuiSuperDatePickerCommonRange[];
     dateFormat?: string;
