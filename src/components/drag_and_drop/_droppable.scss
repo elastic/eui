@@ -1,6 +1,6 @@
 .euiDroppable {
   $euiDroppableColor: $euiColorSecondary;
-  transition: background-color .7s ease;
+  transition: background-color $euiAnimSpeedExtraSlow ease;
 
   &.euiDroppable--isDraggingType:not(.euiDroppable--isDisabled) {
     background-color: transparentize($euiDroppableColor, .9);
