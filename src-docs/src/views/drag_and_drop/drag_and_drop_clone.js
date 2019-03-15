@@ -69,13 +69,20 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel paddingSize="none">
             <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" style={{ padding: '10px', height: '100%' }}>
-              {list2.map(({ content, id }, idx) => (
-                <EuiDraggable key={id} index={idx} draggableId={id}>
-                  <EuiPanel>
-                    {content}
-                  </EuiPanel>
-                </EuiDraggable>
-              ))}
+              {list2.length ?
+                (
+                  list2.map(({ content, id }, idx) => (
+                    <EuiDraggable key={id} index={idx} draggableId={id}>
+                      <EuiPanel>
+                        {content}
+                      </EuiPanel>
+                    </EuiDraggable>
+                  ))
+                ) : (
+                  <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
+                    <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
+                  </EuiFlexGroup>
+                )}
             </EuiDroppable>
           </EuiPanel>
         </EuiFlexItem>
