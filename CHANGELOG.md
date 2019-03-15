@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Adds missing type and fixes closure-scope problem for `SuperDatePicker`'s `onRefresh` callback ([#1732](https://github.com/elastic/eui/pull/1732))
+- Changed `EuiBottomBar` to refer to the end of document ([#1727](https://github.com/elastic/eui/pull/1727))
 
 ## [`9.4.0`](https://github.com/elastic/eui/tree/v9.4.0)
 
