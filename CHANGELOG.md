@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Adds missing type and fixes closure-scope problem for `SuperDatePicker`'s `onRefresh` callback ([#1732](https://github.com/elastic/eui/pull/1732))
+- Changed `EuiBottomBar` to refer to the end of document ([#1727](https://github.com/elastic/eui/pull/1727))
 
 ## [`9.4.0`](https://github.com/elastic/eui/tree/v9.4.0)
 
@@ -15,7 +16,6 @@
 
 - Removed all `lodash` imports in `eui.d.ts` to avoid namespace pollution ([#1723](https://github.com/elastic/eui/pull/1723))
 - Prevent `EuiComboBox` from creating a custom option value when user clicks on a value in the dropdown ([#1728](https://github.com/elastic/eui/pull/1728))
-- Changed `EuiBottomBar` to refer to the end of document ([#1727](https://github.com/elastic/eui/pull/1727))
 
 ## [`9.3.0`](https://github.com/elastic/eui/tree/v9.3.0)
 
