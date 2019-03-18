@@ -8,6 +8,7 @@
   "types": "eui.d.ts",
   "postcss": {},
   "docker_image": "node:8",
+  "sideEffects": false,
   "scripts": {
     "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
