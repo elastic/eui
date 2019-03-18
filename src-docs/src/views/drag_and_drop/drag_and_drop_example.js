@@ -107,7 +107,7 @@ export const DragAndDropExample = {
             <li><EuiCode>onBeforeDragStart</EuiCode></li>
             <li><EuiCode>onDragStart</EuiCode></li>
             <li><EuiCode>onDragUpdate</EuiCode></li>
-            <li><EuiCode>onDragEnd</EuiCode></li>
+            <li><EuiCode>onDragEnd</EuiCode> (required)</li>
           </ul>
           <p>
             EUI also provides methods for helping to deal to common action types (none of which are in use in the following example):

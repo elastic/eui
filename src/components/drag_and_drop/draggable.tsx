@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   Fragment,
   FunctionComponent,
   ReactElement,
@@ -7,12 +8,16 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
+import { CommonProps, Omit } from '../common';
 import { EuiDroppableContext } from './droppable';
 
-export interface EuiDraggableProps extends DraggableProps {
+export interface EuiDraggableProps
+  extends CommonProps,
+    Omit<DraggableProps, 'children'> {
+  children: ReactElement | DraggableProps['children'];
   className?: string;
   customDragHandle?: boolean;
-  style?: {};
+  style?: CSSProperties;
 }
 
 export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
