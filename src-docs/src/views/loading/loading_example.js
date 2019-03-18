@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiCode,
   EuiLoadingKibana,
   EuiLoadingSpinner,
   EuiLoadingChart,
@@ -86,7 +87,7 @@ export const LoadingExample = {
     demo: <LoadingSpinner />,
     snippet: `<EuiLoadingSpinner size="m" />`
   }, {
-    title: 'Content',
+    title: 'Text Content',
     source: [{
       type: GuideSectionTypes.JS,
       code: loadingContentSource,
@@ -95,7 +96,7 @@ export const LoadingExample = {
       code: loadingContentHtml,
     }],
     text: (
-      <p>A simple loading animation for displaying placeholder content. You can pass in a number of lines — the default is 3.</p>
+      <p>A simple loading animation for displaying placeholder text content. You can pass in a number of <EuiCode>lines</EuiCode> between 1 and 10.</p>
     ),
     props: { EuiLoadingContent },
     demo: <LoadingContent />,

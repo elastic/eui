@@ -1,6 +1,9 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { htmlIdGenerator } from '../../services';
+
+const getMaskId = htmlIdGenerator('euiLoadingContent__mask--');
 
 export const EuiLoadingContent: FunctionComponent<
   CommonProps &
@@ -9,28 +12,29 @@ export const EuiLoadingContent: FunctionComponent<
     }
 > = ({ lines = 3, className, ...rest }) => {
   const classes = classNames('euiLoadingContent', className);
-  // We need an array for mapping the lines
-  const newLineArray = Array(lines).fill(undefined);
+  const maskId = getMaskId();
+  const lineElements = [];
+  for (let i = 0; i < lines; i++) {
+    lineElements.push(
+      <rect
+        key={i}
+        className="euiLoadingContent__single-line"
+        y={i * 24}
+        width={lines === i + 1 ? '75%' : '100%'}
+        height="16"
+        rx="4"
+      />
+    );
+  }
   return (
-    <div className={classes} {...rest}>
+    // TODO: Remove the styles! They're only there for 👇development
+    <div className={classes} {...rest} style={{ marginBottom: '800px' }}>
       <svg
         viewBox="0 0"
-        height={newLineArray.length * 32}
+        height={lineElements.length * 24}
         fill="none"
         className="euiLoadingContent__loader">
-        <mask id="euiLoadingContent__mask">
-          {newLineArray.map((line: undefined, index) => {
-            return (
-              <rect
-                className="euiLoadingContent__single-line"
-                y={index * 32}
-                width={newLineArray.length === index + 1 ? '75%' : '100%'}
-                height="24"
-                rx="4"
-              />
-            );
-          })}
-        </mask>
+        <mask id={maskId}>{lineElements}</mask>
 
         <linearGradient
           id="euiLoadingContent__gradient"
@@ -63,7 +67,7 @@ export const EuiLoadingContent: FunctionComponent<
           width="100%"
           height="100%"
           fill="url(#euiLoadingContent__gradient)"
-          mask="url(#euiLoadingContent__mask)"
+          mask={`url(#${maskId}`}
         />
       </svg>
     </div>
