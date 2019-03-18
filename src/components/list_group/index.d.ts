@@ -1,4 +1,5 @@
-import { IconType } from '../icon'
+import { EuiButtonIconProps, EuiButtonPropsForButtonOrLink } from '@elastic/eui';
+import { IconType } from '../icon';
 import { CommonProps } from '../common';
 import { FunctionComponent, ReactNode, ReactPropTypes } from 'react';
 
@@ -35,10 +36,13 @@ declare module '@elastic/eui' {
     iconType?: IconType;
     icon?: ReactPropTypes['element'];
     showToolTip?: boolean;
-    extraAction?: {
-      iconType: IconType;
-      alwaysShow?: boolean;
-    };
+    extraAction?: EuiButtonPropsForButtonOrLink<
+      CommonProps &
+        EuiButtonIconProps & {
+          iconType: IconType;
+          alwaysShow?: boolean;
+        }
+    >;
     onClick?(): void;
     wrapText?: boolean;
   };
