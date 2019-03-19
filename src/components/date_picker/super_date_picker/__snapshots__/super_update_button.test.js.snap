@@ -14,6 +14,7 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
+    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
@@ -41,6 +42,7 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
     isDisabled={true}
     isLoading={false}
     onClick={[Function]}
+    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
@@ -67,6 +69,7 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
     isDisabled={false}
     isLoading={true}
     onClick={[Function]}
+    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
@@ -94,6 +97,7 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
+    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
