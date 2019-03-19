@@ -95,7 +95,7 @@ EuiButtonGroup.propTypes = {
 
   /**
    * Most button groups should be the small button size,
-   * but if you NEED to bump it to regular, change this to 'l'
+   * but if you NEED to bump it to regular, change this to 'm'
    */
   buttonSize: PropTypes.string,
 
