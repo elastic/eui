@@ -71,7 +71,7 @@ declare module '@elastic/eui' {
     isPaused?: boolean;
     refreshInterval?: number;
     onTimeChange: (props: OnTimeChangeProps) => void;
-    onRefresh: (props: OnRefreshProps) => void;
+    onRefresh?: (props: OnRefreshProps) => void;
     onRefreshChange?: (props: OnRefreshChangeProps) => void;
     commonlyUsedRanges?: EuiSuperDatePickerCommonRange[];
     dateFormat?: string;
