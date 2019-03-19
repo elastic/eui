@@ -1,13 +1,14 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "9.4.0",
+  "version": "9.4.2",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
   "postcss": {},
   "docker_image": "node:8",
+  "sideEffects": false,
   "scripts": {
     "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",

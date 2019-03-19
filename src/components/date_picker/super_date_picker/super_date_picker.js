@@ -257,9 +257,12 @@ export class EuiSuperDatePicker extends Component {
   }
 
   startInterval = (refreshInterval) => {
-    const { start, end, onRefresh } = this.props;
+    const { onRefresh } = this.props;
     if(onRefresh) {
-      const handler = () => onRefresh({ start, end, refreshInterval });
+      const handler = () => {
+        const { start, end } = this.props;
+        onRefresh({ start, end, refreshInterval });
+      };
       this.asyncInterval = new AsyncInterval(handler, refreshInterval);
     }
   }

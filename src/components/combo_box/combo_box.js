@@ -286,19 +286,20 @@ export class EuiComboBox extends Component {
     const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
-    }
 
-    // If the user tabs away or changes focus to another element, take whatever input they've
-    // typed and convert it into a pill, to prevent the combo box from looking like a text input.
-    if (!this.hasActiveOption() && !focusedInInput && !focusedInOptionsList) {
-      this.addCustomOption();
+      if (this.props.onBlur) {
+        this.props.onBlur();
+      }
+
+      // If the user tabs away or changes focus to another element, take whatever input they've
+      // typed and convert it into a pill, to prevent the combo box from looking like a text input.
+      if (!this.hasActiveOption()) {
+        this.addCustomOption();
+      }
     }
   }
 
   onComboBoxBlur = () => {
-    if (this.props.onBlur) {
-      this.props.onBlur();
-    }
     this.setState({ hasFocus: false });
   }
 
@@ -571,6 +572,7 @@ export class EuiComboBox extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
+      onBlur, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
       isClearable,

@@ -1,6 +1,22 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.4.0`.
+No public interface changes since `9.4.2`.
+
+## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
+
+**Bug fixes**
+
+- Fixed `hexToRgb` from erroring on an incorrect string input ([#1741](https://github.com/elastic/eui/pull/1741))
+- Fixed `EuiBadge` custom `color` prop type ([#1741](https://github.com/elastic/eui/pull/1741))
+- Fixed inaccurately required `onRefresh` prop (should be optional) that was introduced in types in version 9.4.1 ([#1743](https://github.com/elastic/eui/pull/1743))
+
+## [`9.4.1`](https://github.com/elastic/eui/tree/v9.4.1)
+
+**Bug fixes**
+
+- Adds missing type and fixes closure-scope problem for `SuperDatePicker`'s `onRefresh` callback ([#1732](https://github.com/elastic/eui/pull/1732))
+- Changed `EuiBottomBar` to refer to the end of document ([#1727](https://github.com/elastic/eui/pull/1727))
+- Fixed `EuiComboBox`'s calls to its `onBlur` prop ([#1739](https://github.com/elastic/eui/pull/1739))
 
 ## [`9.4.0`](https://github.com/elastic/eui/tree/v9.4.0)
 
