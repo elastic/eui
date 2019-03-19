@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added documentation entry in `EuiPagination` for `activePage` prop. ([#1740](https://github.com/elastic/eui/pull/1740))
 - Changed `EuiButton` to use "m" as it's default `size` prop ([#1742](https://github.com/elastic/eui/pull/1742))
 
 ## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
@@ -17,7 +18,6 @@
 - Adds missing type and fixes closure-scope problem for `SuperDatePicker`'s `onRefresh` callback ([#1732](https://github.com/elastic/eui/pull/1732))
 - Changed `EuiBottomBar` to refer to the end of document ([#1727](https://github.com/elastic/eui/pull/1727))
 - Fixed `EuiComboBox`'s calls to its `onBlur` prop ([#1739](https://github.com/elastic/eui/pull/1739))
-- Added documentation entry in `EuiPagination` for `activePage` prop. ([#1740](https://github.com/elastic/eui/pull/1740))
 
 ## [`9.4.0`](https://github.com/elastic/eui/tree/v9.4.0)
 
