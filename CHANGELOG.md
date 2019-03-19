@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.4.2`.
+
+## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
+
 **Bug fixes**
 
 - Fixed `hexToRgb` from erroring on an incorrect string input ([#1741](https://github.com/elastic/eui/pull/1741))
