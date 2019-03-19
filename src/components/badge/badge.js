@@ -135,7 +135,7 @@ export const EuiBadge = ({
 
 function checkValidColor(props, propName, componentName) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
-  if (props.color && !validHex && !COLORS.includes(props.color)) {
+  if (props.color != null && !validHex && !COLORS.includes(props.color)) {
     throw new Error(
       `${componentName} needs to pass a valid color. This can either be a three ` +
       `or six character hex value or one of the following: ${COLORS}`
