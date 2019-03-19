@@ -16,8 +16,8 @@ export function hexToRgb(hex: string): rgbDef {
   if (result) {
     const [, r, g, b] = result;
     return [parseInt(r, 16), parseInt(g, 16), parseInt(b, 16)];
-  } else {
-    // fallback to prevent errors
-    return [0, 0, 0];
   }
+
+  // fallback to prevent errors
+  return [0, 0, 0];
 }
