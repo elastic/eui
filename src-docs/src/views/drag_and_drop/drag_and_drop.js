@@ -26,7 +26,6 @@ export default () => {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiPanel paddingSize="none">
-        {/* Do we want to add padding prop similar to EuiPanel? */}
         <EuiDroppable droppableId="DROPPABLE_AREA" style={{ padding: '10px' }}>
           {list.map(({ content, id }, idx) => (
             <EuiDraggable key={id} index={idx} draggableId={id}>

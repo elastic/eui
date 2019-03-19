@@ -63,12 +63,17 @@ export const DragAndDropExample = {
       <EuiSpacer />
 
       <EuiCallOut
-        title="We have concerns"
+        title="Consider your users, use case"
         color="warning"
       >
         <p>
-          {`Several things to discuss here, including usability, a11y, and the early nature (dare we say "beta"?) of these comopnents.
-            Coming soon.`}
+          Drag and drop interfaces are not suitable in many cases, and may be less reliable than other form types for data operations.
+          For instance, drag and drop interaction relies heavily on spatial information that may not be entirelty valid to all
+          users (e.g., screen readers as the source of information). Similarly, users navigating by keyboard may not be afforded nuanced
+          drag item manipulation.
+        </p>
+        <p>
+          EUI (largely via the great work already in react-beautiful-dnd) has and will continue to ensure accessibility where possible.
         </p>
       </EuiCallOut>
 
@@ -245,7 +250,8 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             For cases where collections of <EuiCode>EuiDraggable</EuiCode> elements are static or can be used in multiple places
-            set <EuiCode>cloneDraggables=true</EuiCode> on the parent <EuiCode>EuiDroppable</EuiCode>.
+            set <EuiCode>cloneDraggables=true</EuiCode> on the parent <EuiCode>EuiDroppable</EuiCode>. The <EuiCode>EuiDroppable</EuiCode>
+            becomes disabled (does not accept new <EuiCode>EuiDraggable</EuiCode> elements) in this scenario to avoid mixed content types.
           </p>
           <p>
             The EUI <EuiCode>copy</EuiCode> method is available and demonstrated in the example below. Note that the data point used as
