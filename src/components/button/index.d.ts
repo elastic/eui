@@ -124,7 +124,7 @@ declare module '@elastic/eui' {
    */
 
   export type EuiButtonGroupIdToSelectedMap = { [id: string]: boolean };
-  export type GroupButtonSize = 's' | 'm';
+  export type GroupButtonSize = 's' | 'l';
 
   export interface EuiButtonGroupOption {
     id: string,
