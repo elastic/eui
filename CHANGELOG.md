@@ -3,6 +3,10 @@
 - Added documentation entry in `EuiPagination` for `activePage` prop. ([#1740](https://github.com/elastic/eui/pull/1740))
 - Changed `EuiButton` to use "m" as it's default `size` prop ([#1742](https://github.com/elastic/eui/pull/1742))
 
+**Bug fixes**
+
+- Fixed `EuiToolTip` potentially having incorrect position calculations near the window edge  ([#1744](https://github.com/elastic/eui/pull/1744)) 
+
 ## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
 
 **Bug fixes**

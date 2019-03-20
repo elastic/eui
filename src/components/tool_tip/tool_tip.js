@@ -11,7 +11,7 @@ import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition } from '../../services';
 
 import makeId from '../form/form_row/make_id';
-import { EuiMutationObserver } from '../observer/mutation_observer';
+import { EuiResizeObserver } from '../observer/resize_observer';
 
 const positionsToClassNameMap = {
   top: 'euiToolTip--top',
@@ -114,9 +114,19 @@ export class EuiToolTip extends Component {
       }
     });
 
+    // If encroaching the right edge of the window:
+    // When `props.content` changes and is longer than `prevProps.content`, the tooltip width remains and
+    // the resizeObserver callback will fire twice (once for vertical resize caused by text line wrapping,
+    // once for a subsequent position correction) and cause a flash rerender and reposition.
+    // To prevent this, we can orient from the right so that text line wrapping does not occur, negating
+    // the second resizeObserver callback call.
+    const windowWidth = document.documentElement.clientWidth || window.innerWidth;
+    const useRightValue = (windowWidth / 2) < left;
+
     const toolTipStyles = {
       top,
-      left,
+      left: useRightValue ? 'auto' : left,
+      right: useRightValue ? (windowWidth - left - this.popover.offsetWidth) : 'auto',
     };
 
     this.setState({
@@ -201,12 +211,11 @@ export class EuiToolTip extends Component {
             {...rest}
           >
             <div style={arrowStyles} className="euiToolTip__arrow"/>
-            <EuiMutationObserver
-              observerOptions={{ subtree: true, childList: true, characterData: true, attributes: true }}
-              onMutation={this.positionToolTip}
+            <EuiResizeObserver
+              onResize={this.positionToolTip}
             >
-              {mutationRef => <div ref={mutationRef}>{content}</div>}
-            </EuiMutationObserver>
+              {resizeRef => <div ref={resizeRef}>{content}</div>}
+            </EuiResizeObserver>
           </EuiToolTipPopover>
         </EuiPortal>
       );
