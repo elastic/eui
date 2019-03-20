@@ -186,9 +186,14 @@ EuiPagination.propTypes = {
   className: PropTypes.string,
 
   /**
-   * The total number of pages
+   * The total number of pages.
    */
   pageCount: PropTypes.number,
+
+  /**
+   * The current page using a zero based index.
+   * So if you set the activePage to 1, it will activate the second page.
+   */
   activePage: PropTypes.number,
   onPageClick: PropTypes.func,
 
