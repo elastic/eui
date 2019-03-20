@@ -1,6 +1,6 @@
 import { EuiButtonIconProps, EuiButtonPropsForButtonOrLink } from '@elastic/eui';
 import { IconType } from '../icon';
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -35,7 +35,7 @@ declare module '@elastic/eui' {
    * @see './list_group_item.js'
    */
 
-  type EuiListGroupItemProps = {
+  type EuiListGroupItemPropsBasics = {
     size?: 'xs' | 's' | 'm' | 'l';
     label: ReactNode;
     isActive?: boolean;
@@ -55,16 +55,15 @@ declare module '@elastic/eui' {
     wrapText?: boolean;
   };
 
-  type EuiListGroupItemExtendedProps = EuiListGroupItemProps & CommonProps & (
-    ({
-      onClick: MouseEventHandler<HTMLButtonElement>;
-    } & ButtonHTMLAttributes<HTMLButtonElement>) |
-    ({
-      href: string;
-      onClick: MouseEventHandler<HTMLAnchorElement>;
-    } & AnchorHTMLAttributes<HTMLAnchorElement>) |
+  type EuiListGroupItemProps = EuiListGroupItemPropsBasics &
+  CommonProps &
+  ExclusiveUnion<
+    ExclusiveUnion<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      AnchorHTMLAttributes<HTMLAnchorElement>
+    >,
     HTMLAttributes<HTMLSpanElement>
-  );
+  >;
 
-  export const EuiListGroupItem: FunctionComponent<EuiListGroupItemExtendedProps>;
+  export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps>;
 }
