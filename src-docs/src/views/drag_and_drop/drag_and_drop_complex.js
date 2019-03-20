@@ -3,6 +3,7 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  EuiIcon,
   EuiPanel
 } from '../../../../src/components';
 
@@ -53,17 +54,22 @@ export default () => {
         >
           {list.map((did, didx) => (
             <EuiDraggable key={did} index={didx} draggableId={`COMPLEX_DRAGGABLE_${did}`} style={{ width: '50%', padding: '0 5px' }}>
-              <EuiPanel paddingSize="none">
-                <EuiDroppable droppableId={`COMPLEX_DROPPABLE_AREA_${did}`} type="MICRO" style={{ padding: '10px' }}>
-                  {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(({ content, id }, idx) => (
-                    <EuiDraggable key={id} index={idx} draggableId={id}>
-                      <EuiPanel>
-                        {content}
-                      </EuiPanel>
-                    </EuiDraggable>
-                  ))}
-                </EuiDroppable>
-              </EuiPanel>
+              {(provided) => (
+                <EuiPanel paddingSize="s">
+                  <div {...provided.dragHandleProps}>
+                    <EuiIcon type="grab" />
+                  </div>
+                  <EuiDroppable droppableId={`COMPLEX_DROPPABLE_AREA_${did}`} type="MICRO" style={{ padding: '5px' }}>
+                    {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(({ content, id }, idx) => (
+                      <EuiDraggable key={id} index={idx} draggableId={id}>
+                        <EuiPanel>
+                          {content}
+                        </EuiPanel>
+                      </EuiDraggable>
+                    ))}
+                  </EuiDroppable>
+                </EuiPanel>
+              )}
             </EuiDraggable>
           ))}
         </EuiDroppable>

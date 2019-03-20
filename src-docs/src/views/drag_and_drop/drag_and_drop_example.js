@@ -282,8 +282,8 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             <EuiCode>EuiDraggable</EuiCode>s in <EuiCode>EuiDroppables</EuiCode>, <EuiCode>EuiDroppable</EuiCode>s in
-            <EuiCode>EuiDraggable</EuiCode>s, horizontal movement, vertical movement, flexbox, <EuiCode>EuiPanel</EuiCode>
-            <em>Inception</em>, you name it.
+            <EuiCode>EuiDraggable</EuiCode>s, custom drag handles, horizontal movement, vertical movement, flexbox,
+            <EuiCode>EuiPanel</EuiCode> <em>Inception</em>, you name it.
           </p>
         </React.Fragment>
       ),

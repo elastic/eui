@@ -1,11 +1,10 @@
 .euiDraggable {
-  $euiDraggableFocus: 1px solid lighten(desaturate($euiColorPrimary, 40%), 40%);
+  $euiDraggableFocusColor: lighten(desaturate($euiColorPrimary, 40%), 40%);
   padding: 5px 0;
 
   &.euiDraggable--isDragging {
-    // EuiFlyout has a z-index of 8000
     // Overriding inline styles on JS-inserted HTML elements
-    z-index: 9000 !important; // sass-lint:disable-line no-important
+    z-index: $euiZLevel9 !important; // sass-lint:disable-line no-important
   }
 
   &.euiDraggable--hasClone:not(.euiDraggable--isDragging) {
@@ -13,8 +12,13 @@
     transform: none !important; // sass-lint:disable-line no-important
   }
 
-  &:focus > .euiDraggable__item {
-    border: $euiDraggableFocus;
+  &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle] {
+    border: 1px solid transparent;
+  }
+
+  &:focus > .euiDraggable__item,
+  &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
+    border: 1px solid $euiDraggableFocusColor;
   }
 
   .euiDraggable__item {
@@ -28,7 +32,7 @@
 
     &.euiDraggable__item--isDragging {
       @include euiBottomShadow;
-      border: $euiDraggableFocus;
+      border: 1px solid $euiDraggableFocusColor;
     }
   }
 }

@@ -39,6 +39,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           'euiDraggable',
           {
             'euiDraggable--hasClone': cloneItems,
+            'euiDraggable--hasCustomDragHandle': customDragHandle,
             'euiDraggable--isDragging': snapshot.isDragging,
           },
           className
