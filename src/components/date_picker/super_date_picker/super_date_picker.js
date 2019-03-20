@@ -351,6 +351,15 @@ export class EuiSuperDatePicker extends Component {
     );
   }
 
+  handleClickUpdateButton = () => {
+    if(!this.state.hasChanged && this.props.onRefresh) {
+      const { start, end, refreshInterval } = this.props;
+      this.props.onRefresh({ start, end, refreshInterval });
+    }else{
+      this.applyTime();
+    }
+  }
+
   renderUpdateButton = () => {
     if (!this.props.showUpdateButton || this.props.isAutoRefreshOnly) {
       return;
@@ -362,7 +371,7 @@ export class EuiSuperDatePicker extends Component {
           needsUpdate={this.state.hasChanged}
           isLoading={this.props.isLoading}
           isDisabled={this.state.isInvalid}
-          onClick={this.applyTime}
+          onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
         />
       </EuiFlexItem>
