@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Fixed callback handler for `EuiSuperDatePicker` so `onRefresh` is called instead of `onTimeChanged` when clicking "Refresh" ([#1745](https://github.com/elastic/eui/pull/1745))
+- Changed callback handler for `EuiSuperDatePicker` to call `onRefresh` instead of `onTimeChanged` when user clicks "Refresh" ([#1745](https://github.com/elastic/eui/pull/1745))
+- Added documentation entry in `EuiPagination` for `activePage` prop. ([#1740](https://github.com/elastic/eui/pull/1740))
+- Changed `EuiButton` to use "m" as it's default `size` prop ([#1742](https://github.com/elastic/eui/pull/1742))
 
 ## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
 
