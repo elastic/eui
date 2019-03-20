@@ -9,4 +9,11 @@
       background-color: transparentize($euiDroppableColor, .75);
     }
   }
+
+  .euiDroppable__placeholder {
+    &.euiDroppable__placeholder--isHidden {
+      // Overriding generated HTML elements that use inline styles
+      display: none !important; // sass-lint:disable-line no-important
+    }
+  }
 }

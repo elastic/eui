@@ -31,11 +31,18 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   ...rest
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
-  const classes = classNames('euiDraggable', className);
 
   return (
     <Draggable draggableId={draggableId} index={index} {...rest}>
       {(provided, snapshot) => {
+        const classes = classNames(
+          'euiDraggable',
+          {
+            'euiDraggable--hasClone': cloneItems,
+            'euiDraggable--isDragging': snapshot.isDragging,
+          },
+          className
+        );
         const childClasses = classNames('euiDraggable__item', {
           'euiDraggable__item--hasCustomDragHandle': customDragHandle,
           'euiDraggable__item--isDisabled': isDragDisabled,
@@ -61,13 +68,11 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                   childClasses
                 ),
               })}
-              {provided.placeholder}
             </div>
             {cloneItems &&
               (snapshot.isDragging && (
                 <div className={classNames(classes, 'euiDraggable--clone')}>
                   {DraggableElement}
-                  {provided.placeholder}
                 </div>
               ))}
           </Fragment>

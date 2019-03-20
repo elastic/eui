@@ -7,6 +7,9 @@ exports[`EuiDroppable can be given ReactElement children 1`] = `
   data-test-subj="droppable"
 >
   <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;
 
@@ -17,5 +20,8 @@ exports[`EuiDroppable is rendered 1`] = `
   data-test-subj="droppable"
 >
   <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;

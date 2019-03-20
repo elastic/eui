@@ -3,6 +3,11 @@
   padding: 5px 0;
   z-index: 9000; // EuiFlyout has a z-index of 8000
 
+  &.euiDraggable--hasClone:not(.euiDraggable--isDragging) {
+    // Overriding inline styles on JS-inserted HTML elements
+    transform: none !important; // sass-lint:disable-line no-important
+  }
+
   &:focus > .euiDraggable__item {
     border: $euiDraggableFocus;
   }
@@ -19,13 +24,6 @@
     &.euiDraggable__item--isDragging {
       @include euiBottomShadow;
       border: $euiDraggableFocus;
-    }
-  }
-
-  &.euiDraggable--clone {
-    + div {
-      // Overriding generated HTML elements using inline styles
-      display: none !important; // sass-lint:disable-line no-important
     }
   }
 }

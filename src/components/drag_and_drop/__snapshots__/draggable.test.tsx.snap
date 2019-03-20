@@ -21,6 +21,9 @@ exports[`EuiDraggable can be given ReactElement children 1`] = `
       Hello
     </div>
   </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;
 
@@ -45,5 +48,8 @@ exports[`EuiDraggable is rendered 1`] = `
       Hello
     </div>
   </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;
