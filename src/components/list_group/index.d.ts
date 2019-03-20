@@ -51,7 +51,7 @@ declare module '@elastic/eui' {
           alwaysShow?: boolean;
         }
     >;
-    onClick?(): void;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     wrapText?: boolean;
   };
 
