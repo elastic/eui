@@ -1,22 +1,38 @@
+$gradientStartStop: shadeOrTint($euiColorLightShade, 0%, 15%);
+$gradientMiddle: shadeOrTint($euiColorLightestShade, 0%, 5%);
+
 .euiLoadingContent__loader {
   width: 100%;
 }
 
 .euiLoadingContent__single-line {
+  height: $euiSize;
+  margin-bottom: $euiSizeS;
+  border-radius: $euiBorderRadius;
   width: 100%;
-  fill: shadeOrTint($euiColorLightShade, 0%, 15%);
+  background-size: 400% 100% !important; // sass-lint:disable-line no-important
+  background-position: 0% 0%;
+  background: linear-gradient(
+    90deg,
+    $gradientStartStop 0%,
+    $gradientStartStop 25%,
+    $gradientMiddle 50%,
+    $gradientStartStop 75%,
+    $gradientStartStop 100%,
+  );
+  animation: GradientLoad 1s $euiAnimSlightResistance infinite;
 
-  &:last-child {
+  &:last-child:not(:only-child) {
     width: 75%;
   }
 }
 
-.euiLoadingContent__gradient--start-end {
-  stop-color: shadeOrTint($euiColorLightShade, 0%, 35%);
-  stop-opacity: 1;
-}
+@keyframes GradientLoad {
+  0% {
+    background-position: 100% 0%;
+  }
 
-.euiLoadingContent__gradient--middle {
-  stop-color: shadeOrTint($euiColorLightestShade, 0%, 15%);
-  stop-opacity: 1;
+  100% {
+    background-position: 0% 0%;
+  }
 }

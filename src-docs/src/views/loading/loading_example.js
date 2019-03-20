@@ -96,7 +96,10 @@ export const LoadingExample = {
       code: loadingContentHtml,
     }],
     text: (
-      <p>A simple loading animation for displaying placeholder text content. You can pass in a number of <EuiCode>lines</EuiCode> between 1 and 10.</p>
+      <p>
+        A simple loading animation for displaying placeholder text content.
+        You can pass in a number of <EuiCode>lines</EuiCode> between 1 and 10.
+      </p>
     ),
     props: { EuiLoadingContent },
     demo: <LoadingContent />,
