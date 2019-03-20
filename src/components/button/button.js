@@ -26,6 +26,7 @@ export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
   s: 'euiButton--small',
+  m: null,
   l: 'euiButton--large',
 };
 
@@ -198,6 +199,7 @@ EuiButton.propTypes = {
 };
 
 EuiButton.defaultProps = {
+  size: 'm',
   type: 'button',
   iconSide: 'left',
   color: 'primary',
