@@ -36,6 +36,10 @@ import DragAndDropClone from './drag_and_drop_clone';
 const dragAndDropCloneSource = require('!!raw-loader!./drag_and_drop_clone');
 const dragAndDropCloneHtml = renderToHtml(DragAndDropClone);
 
+import DragAndDropComplex from './drag_and_drop_complex';
+const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex');
+const dragAndDropComplexHtml = renderToHtml(DragAndDropComplex);
+
 export const DragAndDropExample = {
   title: 'Drag And Drop',
   intro: (
@@ -67,13 +71,14 @@ export const DragAndDropExample = {
         color="warning"
       >
         <p>
-          Drag and drop interfaces are not suitable in many cases, and may be less reliable than other form types for data operations.
-          For instance, drag and drop interaction relies heavily on spatial information that may not be entirelty valid to all
-          users (e.g., screen readers as the source of information). Similarly, users navigating by keyboard may not be afforded nuanced
-          drag item manipulation.
+          Drag and drop interfaces are not well-adatped to many cases, and may be less suitable than other form types for data operations.
+          For instance, drag and drop interaction relies heavily on spatial orientation that may not be entirelty valid to all
+          users (e.g., screen readers as the sole source of information). Similarly, users navigating by keyboard may not be afforded
+          nuanced, dual-axis drag item manipulation.
         </p>
         <p>
-          EUI (largely via the great work already in react-beautiful-dnd) has and will continue to ensure accessibility where possible.
+          {`EUI (largely due to the great work already in react-beautiful-dnd) has and will continue to ensure accessibility where possible.
+          With that in mind, keep your users' working context in mind.`}
         </p>
       </EuiCallOut>
 
@@ -209,7 +214,7 @@ export const DragAndDropExample = {
       demo: <DragAndDropMoveLists />
     },
     {
-      title: 'Distinguishing droppable areas by type',
+      title: 'Distinguish droppable areas by type',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -251,7 +256,8 @@ export const DragAndDropExample = {
           <p>
             For cases where collections of <EuiCode>EuiDraggable</EuiCode> elements are static or can be used in multiple places
             set <EuiCode>cloneDraggables=true</EuiCode> on the parent <EuiCode>EuiDroppable</EuiCode>. The <EuiCode>EuiDroppable</EuiCode>
-            becomes disabled (does not accept new <EuiCode>EuiDraggable</EuiCode> elements) in this scenario to avoid mixed content types.
+            becomes disabled (does not accept new <EuiCode>EuiDraggable</EuiCode> elements)
+            in this scenario to avoid mixed content intentions.
           </p>
           <p>
             The EUI <EuiCode>copy</EuiCode> method is available and demonstrated in the example below. Note that the data point used as
@@ -260,6 +266,28 @@ export const DragAndDropExample = {
         </React.Fragment>
       ),
       demo: <DragAndDropClone />
+    }, {
+      title: 'We have fun',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dragAndDropComplexSource
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dragAndDropComplexHtml
+        }
+      ],
+      text: (
+        <React.Fragment>
+          <p>
+            <EuiCode>EuiDraggable</EuiCode>s in <EuiCode>EuiDroppables</EuiCode>, <EuiCode>EuiDroppable</EuiCode>s in
+            <EuiCode>EuiDraggable</EuiCode>s, horizontal movement, vertical movement, flexbox, <EuiCode>EuiPanel</EuiCode>
+            <em>Inception</em>, you name it.
+          </p>
+        </React.Fragment>
+      ),
+      demo: <DragAndDropComplex />
     }
   ]
 };

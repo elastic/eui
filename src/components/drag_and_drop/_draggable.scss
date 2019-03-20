@@ -3,7 +3,7 @@
   padding: 5px 0;
   z-index: 9000; // EuiFlyout has a z-index of 8000
 
-  &:focus .euiDraggable__item {
+  &:focus > .euiDraggable__item {
     border: $euiDraggableFocus;
   }
 

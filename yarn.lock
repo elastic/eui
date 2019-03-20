@@ -751,12 +751,12 @@
     "@babel/plugin-transform-typescript" "^7.1.0"
 
 "@babel/runtime-corejs2@^7.3.4":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.3.4.tgz#63f8bbc77622da202e9ea6f8f6e3bf28991832d9"
-  integrity sha512-QwPuQE65kNxjsNKk34Rfgen2R5fk0J2So99SD45uXBp34QOfyz11SqVgJ4xvyCpnCIieSQ0X0hSSc9z/ymlJJw==
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.4.0.tgz#72e94a5b59300482c2a334c06958021057c30da8"
+  integrity sha512-54PQxRRKLRYTrF89Z9tyjJ+uoxyn05Avt1Ou6UT1x5QWpdo1FPQ15i/lGL+ZLvE5yxzlTO7u2oE06VCU9IYijA==
   dependencies:
-    core-js "^2.5.7"
-    regenerator-runtime "^0.12.0"
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.2"
 
 "@babel/runtime@^7.0.0":
   version "7.3.1"
@@ -3226,6 +3226,11 @@ core-js@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
   integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
+
+core-js@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
+  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -11929,6 +11934,11 @@ regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
   integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-transform@^0.13.3:
   version "0.13.3"
