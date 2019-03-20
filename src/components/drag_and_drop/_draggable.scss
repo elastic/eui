@@ -1,7 +1,12 @@
 .euiDraggable {
   $euiDraggableFocus: 1px solid lighten(desaturate($euiColorPrimary, 40%), 40%);
   padding: 5px 0;
-  z-index: 9000; // EuiFlyout has a z-index of 8000
+
+  &.euiDraggable--isDragging {
+    // EuiFlyout has a z-index of 8000
+    // Overriding inline styles on JS-inserted HTML elements
+    z-index: 9000 !important; // sass-lint:disable-line no-important
+  }
 
   &.euiDraggable--hasClone:not(.euiDraggable--isDragging) {
     // Overriding inline styles on JS-inserted HTML elements

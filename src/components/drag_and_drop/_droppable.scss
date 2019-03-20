@@ -12,7 +12,7 @@
 
   .euiDroppable__placeholder {
     &.euiDroppable__placeholder--isHidden {
-      // Overriding generated HTML elements that use inline styles
+      // Overriding inline styles on JS-inserted HTML elements
       display: none !important; // sass-lint:disable-line no-important
     }
   }
