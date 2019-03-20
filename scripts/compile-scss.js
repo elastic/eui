@@ -18,7 +18,7 @@ const postcssConfigurationWithMinification = {
   ...postcssConfiguration,
   plugins: [
     ...postcssConfiguration.plugins,
-    require('cssnano')({ preset: 'default' })
+    require('cssnano')({ preset: 'default' }),
   ],
 };
 
@@ -51,14 +51,25 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
             .join(', ')}`
         );
       } catch (error) {
-        console.log(chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${error.stack}`);
+        console.log(
+          chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${
+            error.stack
+          }`
+        );
       }
     })
   );
 }
 
-async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilename) {
-  const outputCssMinifiedFilename = outputCssFilename.replace(/\.css$/, '.min.css');
+async function compileScssFile(
+  inputFilename,
+  outputCssFilename,
+  outputVarsFilename
+) {
+  const outputCssMinifiedFilename = outputCssFilename.replace(
+    /\.css$/,
+    '.min.css'
+  );
 
   const { css: renderedCss, vars: extractedVars } = await sassExtract.render(
     {
@@ -70,12 +81,17 @@ async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilen
     }
   );
 
-  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(renderedCss, {
-    from: outputCssFilename,
-    to: outputCssFilename,
-  });
+  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(
+    renderedCss,
+    {
+      from: outputCssFilename,
+      to: outputCssFilename,
+    }
+  );
 
-  const { css: postprocessedMinifiedCss } = await postcss(postcssConfigurationWithMinification).process(renderedCss, {
+  const { css: postprocessedMinifiedCss } = await postcss(
+    postcssConfigurationWithMinification
+  ).process(renderedCss, {
     from: outputCssFilename,
     to: outputCssMinifiedFilename,
   });
