@@ -15,7 +15,7 @@
     "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test && npm run build'",
     "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "webpack --config=src-docs/webpack.config.js",
-    "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js",
+    "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js $npm_package_name",
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn lint-es && yarn lint-ts && yarn lint-sass && yarn lint-framer",
     "lint-fix": "yarn lint-es-fix && yarn lint-ts-fix",

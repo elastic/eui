@@ -6,6 +6,7 @@ const globModule = require('glob');
 const chalk = require('chalk');
 const postcss = require('postcss');
 const sassExtract = require('sass-extract');
+const { deriveSassVariableTypes } = require('./derive-sass-variable-types');
 const sassExtractJsPlugin = require('./sass-extract-js-plugin');
 
 const postcssConfiguration = require('../src-docs/postcss.config.js');
@@ -22,7 +23,11 @@ const postcssConfigurationWithMinification = {
   ],
 };
 
-async function compileScssFiles(sourcePattern, destinationDirectory) {
+async function compileScssFiles(
+  sourcePattern,
+  destinationDirectory,
+  packageName
+) {
   try {
     await mkdir(destinationDirectory);
   } catch (err) {
@@ -42,7 +47,9 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
         const outputFilenames = await compileScssFile(
           inputFilename,
           path.join(destinationDirectory, `eui_${name}.css`),
-          path.join(destinationDirectory, `eui_${name}.json`)
+          path.join(destinationDirectory, `eui_${name}.json`),
+          path.join(destinationDirectory, `eui_${name}.json.d.ts`),
+          packageName
         );
 
         console.log(
@@ -64,7 +71,9 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
 async function compileScssFile(
   inputFilename,
   outputCssFilename,
-  outputVarsFilename
+  outputVarsFilename,
+  outputVarTypesFilename,
+  packageName
 ) {
   const outputCssMinifiedFilename = outputCssFilename.replace(
     /\.css$/,
@@ -79,6 +88,12 @@ async function compileScssFile(
     {
       plugins: [sassExtractJsPlugin],
     }
+  );
+
+  const extractedVarTypes = await deriveSassVariableTypes(
+    extractedVars,
+    `${packageName}/${outputVarsFilename}`,
+    outputVarTypesFilename
   );
 
   const { css: postprocessedCss } = await postcss(postcssConfiguration).process(
@@ -100,9 +115,24 @@ async function compileScssFile(
     writeFile(outputCssFilename, postprocessedCss),
     writeFile(outputCssMinifiedFilename, postprocessedMinifiedCss),
     writeFile(outputVarsFilename, JSON.stringify(extractedVars, undefined, 2)),
+    writeFile(outputVarTypesFilename, extractedVarTypes),
   ]);
 
-  return [outputCssFilename, outputVarsFilename];
+  return [
+    outputCssFilename,
+    outputCssMinifiedFilename,
+    outputVarsFilename,
+    outputVarTypesFilename,
+  ];
 }
 
-compileScssFiles(path.join('src', 'theme_*.scss'), 'dist');
+if (require.main === module) {
+  const [nodeBin, scriptName, euiPackageName] = process.argv;
+
+  if (process.argv.length < 3) {
+    console.log(chalk`{bold Usage:} ${nodeBin} ${scriptName} eui-package-name`);
+    process.exit(1);
+  }
+
+  compileScssFiles(path.join('src', 'theme_*.scss'), 'dist', euiPackageName);
+}
