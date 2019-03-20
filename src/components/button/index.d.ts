@@ -24,7 +24,7 @@ declare module '@elastic/eui' {
     | 'warning'
     | 'danger'
     | 'ghost';
-  export type ButtonSize = 's' | 'l';
+  export type ButtonSize = 's' | 'm' | 'l';
 
   export interface EuiButtonProps {
     iconType?: IconType;
