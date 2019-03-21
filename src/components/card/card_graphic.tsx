@@ -55,22 +55,18 @@ export const EuiCardGraphic: FunctionComponent<EuiCardGraphicProps> = ({
   color = 'blue',
 }) => {
   // Set the svg gradient colors
-  // @ts-ignore
   const graphicStartColor: string = graphicColorsToCodes.find(
     w => w.color === color
-  ).start;
-  // @ts-ignore
+  )!.start;
   const graphicEndColor: string = graphicColorsToCodes.find(
     x => x.color === color
-  ).end;
-  // @ts-ignore
+  )!.end;
   const graphicSVGPath: string = graphicColorsToCodes.find(
     y => y.color === color
-  ).path;
-  // @ts-ignore
+  )!.path;
   const graphicSVGPathLight: string = graphicColorsToCodes.find(
     z => z.color === color
-  ).pathLight;
+  )!.pathLight;
 
   return (
     <svg
