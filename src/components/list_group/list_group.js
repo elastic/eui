@@ -76,15 +76,7 @@ export const EuiListGroup = ({
 };
 
 EuiListGroup.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.node,
-    href: PropTypes.string,
-    extraAction: PropTypes.object,
-    iconType: PropTypes.string,
-    isActive: PropTypes.boolean,
-    isDisabled: PropTypes.boolean,
-    showToolTip: PropTypes.boolean,
-  })),
+  listItems: PropTypes.arrayOf(PropTypes.shape(EuiListGroupItem.propTypes)),
   children: PropTypes.node,
   className: PropTypes.string,
 
