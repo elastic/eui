@@ -3,31 +3,37 @@
 }
 
 .euiLoadingContent__singleLine {
+  width: 100%;
   height: $euiSize;
   margin-bottom: $euiSizeS;
   border-radius: $euiBorderRadius;
-  width: 100%;
-  background: linear-gradient(
-    to right,
-    $euiGradientStartStop 8%,
-    $euiGradientMiddle 18%,
-    $euiGradientStartStop 33%,
-    );
-  background-size: 200% 100%;
-  animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
+  overflow: hidden;
 
   &:last-child:not(:only-child) {
     width: 75%;
   }
+
+}
+
+.euiLoadingContent__singleLine--background {
+  width: 220%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    $euiGradientStartStop 45%,
+    $euiGradientMiddle 50%,
+    $euiGradientStartStop 55%,
+    );
+  animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
 }
 
 @keyframes euiLoadingContentGradientLoad {
   0% {
-    background-position: 100% 0%;
+    transform: translateX(-53%);
   }
 
   100% {
-    background-position: -100% 0%;
+    transform: translateX(0);
   }
 }
 
