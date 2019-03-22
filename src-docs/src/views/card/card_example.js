@@ -152,14 +152,6 @@ export const CardExample = {
             <EuiCode>EuiButton</EuiCode> you <strong>must not</strong> also give
             it an <EuiCode>onClick</EuiCode>.
           </p>
-          <EuiCallOut
-            title={
-              <span>
-                You can bind a button and a description for Screen Reader by
-                providing <strong>descriptionId</strong>
-              </span>
-            }
-          />
         </div>
       ),
       components: { EuiCard },
