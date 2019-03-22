@@ -172,6 +172,11 @@ EuiCard.propTypes = {
    */
   titleElement: PropTypes.oneOf(['h2', 'h3', 'h4', 'h5', 'h6', 'span']),
   description: PropTypes.node.isRequired,
+  /**
+   * Allows you to bind a button from `footer` value to a description
+   * to make ScreenReader able to explain where that button refers.
+   */
+  descriptionId: PropTypes.string,
 
   /**
    * Requires a <EuiIcon> node
