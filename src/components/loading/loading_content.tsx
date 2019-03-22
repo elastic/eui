@@ -16,7 +16,7 @@ export const EuiLoadingContent: FunctionComponent<
   for (let i = 0; i < lines; i++) {
     lineElements.push(
       <div key={i} className="euiLoadingContent__singleLine">
-        <div className="euiLoadingContent__singleLine--background" />
+        <div className="euiLoadingContent__singleLineBackground" />
       </div>
     );
   }

@@ -12,10 +12,9 @@
   &:last-child:not(:only-child) {
     width: 75%;
   }
-
 }
 
-.euiLoadingContent__singleLine--background {
+.euiLoadingContent__singleLineBackground {
   width: 220%;
   height: 100%;
   background: linear-gradient(
