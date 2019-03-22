@@ -1,5 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiCardGraphic` to TS ([#1751](https://github.com/elastic/eui/pull/1751))
+- Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
+
+## [`9.5.0`](https://github.com/elastic/eui/tree/v9.5.0)
+
 - Changed `EuiSuperDatePicker` to call `onRefresh` instead of `onTimeChanged` when user clicks "Refresh" button ([#1745](https://github.com/elastic/eui/pull/1745))
 - Added documentation entry in `EuiPagination` for `activePage` prop. ([#1740](https://github.com/elastic/eui/pull/1740))
 - Changed `EuiButton` to use "m" as it's default `size` prop ([#1742](https://github.com/elastic/eui/pull/1742))
