@@ -33,11 +33,14 @@ code, pre, kbd, samp {
   font-family: $euiCodeFontFamily;
 }
 
-h1, h2, h3, h4, h5, h6, p,
-input, textarea, select, button {
+h1, h2, h3, h4, h5, h6, p {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
   font-size: $euiFontSize;
+}
+
+input, textarea, select, button {
+  font-family: $euiFontFamily;
 }
 
 em {
