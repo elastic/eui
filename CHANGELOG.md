@@ -2,6 +2,7 @@
 
 - Converted `EuiCardGraphic` to TS ([#1751](https://github.com/elastic/eui/pull/1751))
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
+- Added support for passing descriptionID to bind a button to a description inside a card component ([#1758](https://github.com/elastic/eui/pull/1758))
 
 ## [`9.5.0`](https://github.com/elastic/eui/tree/v9.5.0)
 
