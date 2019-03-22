@@ -39,6 +39,7 @@ const cardLayout = (props, propName, componentName, ...rest) => {
 export const EuiCard = ({
   className,
   description,
+  descriptionId,
   title,
   titleElement,
   icon,
@@ -55,7 +56,7 @@ export const EuiCard = ({
   betaBadgeTitle,
   layout,
   bottomGraphic,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiCard',
@@ -67,7 +68,7 @@ export const EuiCard = ({
       'euiCard--hasIcon': icon,
       'euiCard--hasBottomGraphic': bottomGraphic,
     },
-    className,
+    className
   );
 
   let secureRel;
@@ -77,17 +78,14 @@ export const EuiCard = ({
 
   let imageNode;
   if (image && layout === 'vertical') {
-    imageNode = (
-      <img className="euiCard__image" src={image} alt="" />
-    );
+    imageNode = <img className="euiCard__image" src={image} alt="" />;
   }
 
   let iconNode;
   if (icon) {
-    iconNode = React.cloneElement(
-      icon,
-      { className: classNames(icon.props.className, 'euiCard__icon') }
-    );
+    iconNode = React.cloneElement(icon, {
+      className: classNames(icon.props.className, 'euiCard__icon'),
+    });
   }
 
   let OuterElement = 'div';
@@ -129,9 +127,7 @@ export const EuiCard = ({
   let optionalBottomGraphic;
   if (bottomGraphic) {
     optionalBottomGraphic = (
-      <span className="euiCard__graphic">
-        {bottomGraphic}
-      </span>
+      <span className="euiCard__graphic">{bottomGraphic}</span>
     );
   }
 
@@ -154,15 +150,13 @@ export const EuiCard = ({
         </EuiTitle>
 
         <EuiText size="s" className="euiCard__description">
-          <p>{description}</p>
+          <p id={descriptionId}>{description}</p>
         </EuiText>
       </span>
 
-      {layout === 'vertical' &&
-        <span className="euiCard__footer">
-          {footer}
-        </span>
-      }
+      {layout === 'vertical' && (
+        <span className="euiCard__footer">{footer}</span>
+      )}
 
       {optionalBottomGraphic}
     </OuterElement>
