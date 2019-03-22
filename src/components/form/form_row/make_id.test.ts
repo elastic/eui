@@ -1,4 +1,4 @@
-import {makeId} from "./make_id";
+import makeId from './make_id';
 
 describe('makeId', () => {
   let ids: Map<string, boolean>;
