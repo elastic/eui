@@ -1,6 +1,7 @@
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+export { makeId } from './make_id';
 
 declare module '@elastic/eui' {
   /**
