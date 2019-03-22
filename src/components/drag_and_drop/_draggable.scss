@@ -11,11 +11,6 @@
     transform: none !important; // sass-lint:disable-line no-important
   }
 
-  &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle] {
-    // What was the reason for the transparent border?
-    // border: 1px solid transparent;
-  }
-
   &:focus > .euiDraggable__item,
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
     @include euiFocusRing;
@@ -27,6 +22,7 @@
     }
 
     &.euiDraggable__item--isDragging {
+      // TODO: Resolve below
       // Commenting this out for now,
       // I'm thinking about adding an optional prop to auto-add these styles versus always having them
       // @include euiBottomShadow;

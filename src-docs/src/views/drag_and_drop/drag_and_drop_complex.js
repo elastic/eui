@@ -55,11 +55,19 @@ export default () => {
         style={{ display: 'flex' }}
       >
         {list.map((did, didx) => (
-          <EuiDraggable key={did} index={didx} draggableId={`COMPLEX_DRAGGABLE_${did}`} spacing="l" style={{ flex: '1 0 50%' }}>
+          <EuiDraggable
+            key={did}
+            index={didx}
+            draggableId={`COMPLEX_DRAGGABLE_${did}`}
+            spacing="l"
+            style={{ flex: '1 0 50%' }}
+            disableInteractiveElementBlocking // Allows button to be drag handle
+          >
             {(provided) => (
               <EuiPanel paddingSize="s">
                 <EuiButtonIcon
                   iconType="grab"
+                  aria-label="Drag Handle"
                   {...provided.dragHandleProps}
                 />
                 <EuiDroppable droppableId={`COMPLEX_DROPPABLE_AREA_${did}`} type="MICRO" spacing="m" style={{ flex: '1 0 50%' }}>
