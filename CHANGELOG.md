@@ -3,6 +3,11 @@
 - Converted `EuiCardGraphic` to TS ([#1751](https://github.com/elastic/eui/pull/1751))
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
 
+**Bug fixes**
+
+- Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
+- Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))
+
 ## [`9.5.0`](https://github.com/elastic/eui/tree/v9.5.0)
 
 - Changed `EuiSuperDatePicker` to call `onRefresh` instead of `onTimeChanged` when user clicks "Refresh" button ([#1745](https://github.com/elastic/eui/pull/1745))
@@ -12,7 +17,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiToolTip` potentially having incorrect position calculations near the window edge  ([#1744](https://github.com/elastic/eui/pull/1744)) 
+- Fixed `EuiToolTip` potentially having incorrect position calculations near the window edge  ([#1744](https://github.com/elastic/eui/pull/1744))
 
 ## [`9.4.2`](https://github.com/elastic/eui/tree/v9.4.2)
 
