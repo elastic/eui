@@ -6,6 +6,7 @@ const globModule = require('glob');
 const chalk = require('chalk');
 const postcss = require('postcss');
 const sassExtract = require('sass-extract');
+const { deriveSassVariableTypes } = require('./derive-sass-variable-types');
 const sassExtractJsPlugin = require('./sass-extract-js-plugin');
 
 const postcssConfiguration = require('../src-docs/postcss.config.js');
@@ -18,11 +19,15 @@ const postcssConfigurationWithMinification = {
   ...postcssConfiguration,
   plugins: [
     ...postcssConfiguration.plugins,
-    require('cssnano')({ preset: 'default' })
+    require('cssnano')({ preset: 'default' }),
   ],
 };
 
-async function compileScssFiles(sourcePattern, destinationDirectory) {
+async function compileScssFiles(
+  sourcePattern,
+  destinationDirectory,
+  packageName
+) {
   try {
     await mkdir(destinationDirectory);
   } catch (err) {
@@ -42,7 +47,9 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
         const outputFilenames = await compileScssFile(
           inputFilename,
           path.join(destinationDirectory, `eui_${name}.css`),
-          path.join(destinationDirectory, `eui_${name}.json`)
+          path.join(destinationDirectory, `eui_${name}.json`),
+          path.join(destinationDirectory, `eui_${name}.json.d.ts`),
+          packageName
         );
 
         console.log(
@@ -51,14 +58,27 @@ async function compileScssFiles(sourcePattern, destinationDirectory) {
             .join(', ')}`
         );
       } catch (error) {
-        console.log(chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${error.stack}`);
+        console.log(
+          chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${
+            error.stack
+          }`
+        );
       }
     })
   );
 }
 
-async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilename) {
-  const outputCssMinifiedFilename = outputCssFilename.replace(/\.css$/, '.min.css');
+async function compileScssFile(
+  inputFilename,
+  outputCssFilename,
+  outputVarsFilename,
+  outputVarTypesFilename,
+  packageName
+) {
+  const outputCssMinifiedFilename = outputCssFilename.replace(
+    /\.css$/,
+    '.min.css'
+  );
 
   const { css: renderedCss, vars: extractedVars } = await sassExtract.render(
     {
@@ -70,12 +90,23 @@ async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilen
     }
   );
 
-  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(renderedCss, {
-    from: outputCssFilename,
-    to: outputCssFilename,
-  });
+  const extractedVarTypes = await deriveSassVariableTypes(
+    extractedVars,
+    `${packageName}/${outputVarsFilename}`,
+    outputVarTypesFilename
+  );
 
-  const { css: postprocessedMinifiedCss } = await postcss(postcssConfigurationWithMinification).process(renderedCss, {
+  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(
+    renderedCss,
+    {
+      from: outputCssFilename,
+      to: outputCssFilename,
+    }
+  );
+
+  const { css: postprocessedMinifiedCss } = await postcss(
+    postcssConfigurationWithMinification
+  ).process(renderedCss, {
     from: outputCssFilename,
     to: outputCssMinifiedFilename,
   });
@@ -84,9 +115,24 @@ async function compileScssFile(inputFilename, outputCssFilename, outputVarsFilen
     writeFile(outputCssFilename, postprocessedCss),
     writeFile(outputCssMinifiedFilename, postprocessedMinifiedCss),
     writeFile(outputVarsFilename, JSON.stringify(extractedVars, undefined, 2)),
+    writeFile(outputVarTypesFilename, extractedVarTypes),
   ]);
 
-  return [outputCssFilename, outputVarsFilename];
+  return [
+    outputCssFilename,
+    outputCssMinifiedFilename,
+    outputVarsFilename,
+    outputVarTypesFilename,
+  ];
 }
 
-compileScssFiles(path.join('src', 'theme_*.scss'), 'dist');
+if (require.main === module) {
+  const [nodeBin, scriptName, euiPackageName] = process.argv;
+
+  if (process.argv.length < 3) {
+    console.log(chalk`{bold Usage:} ${nodeBin} ${scriptName} eui-package-name`);
+    process.exit(1);
+  }
+
+  compileScssFiles(path.join('src', 'theme_*.scss'), 'dist', euiPackageName);
+}
