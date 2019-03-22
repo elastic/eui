@@ -51,14 +51,15 @@ export const DragAndDropExample = {
         </p>
         <ul>
           <li>
-            <EuiCode>{`<EuiDragDropContext />`}</EuiCode>: Defines the part of your application that has drag and drop enabled.
+            <EuiCode>{`<EuiDragDropContext />`}</EuiCode>:
+              Section of your application containing the draggable elements and the drop targets.
           </li>
           <li>
-            <EuiCode>{`<EuiDroppable />`}</EuiCode>: Defines the area into which items can be dropped.
+            <EuiCode>{`<EuiDroppable />`}</EuiCode>: Area into which items can be dropped.
             Contains <EuiCode>{`<EuiDraggable />`}</EuiCode>s.
           </li>
           <li>
-            <EuiCode>{`<EuiDraggable />`}</EuiCode>: Defines the items that can be dragged.
+            <EuiCode>{`<EuiDraggable />`}</EuiCode>: Items that can be dragged.
             Must be part of an <EuiCode>{`<EuiDroppable />`}</EuiCode>
           </li>
         </ul>
@@ -71,7 +72,7 @@ export const DragAndDropExample = {
         color="warning"
       >
         <p>
-          Drag and drop interfaces are not well-adatped to many cases, and may be less suitable than other form types for data operations.
+          Drag and drop interfaces are not well-adapted to many cases, and may be less suitable than other form types for data operations.
           For instance, drag and drop interaction relies heavily on spatial orientation that may not be entirelty valid to all
           users (e.g., screen readers as the sole source of information). Similarly, users navigating by keyboard may not be afforded
           nuanced, dual-axis drag item manipulation.
@@ -102,7 +103,7 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             <EuiCode>EuiDraggable</EuiCode> makes very few assumptions about what content it contains.
-            To give affordance to draggbale elements and to ensure a consistent experience, child elements
+            To give affordance to draggable elements and to ensure a consistent experience, child elements
             must be able to accept a border and drop shadow (automatically applied via CSS). No other style opinions are applied, however.
           </p>
           <p>
@@ -111,7 +112,7 @@ export const DragAndDropExample = {
           </p>
           <p>
             <EuiCode>EuiDragDropContext</EuiCode> handles all eventing but makes no assumptions about the result of a drop event.
-            As such, the following event responder props are available (none of which are in use in the following example):
+            As such, the following event handlers are available (none of which are in use in the following example):
           </p>
           <ul>
             <li><EuiCode>onBeforeDragStart</EuiCode></li>
