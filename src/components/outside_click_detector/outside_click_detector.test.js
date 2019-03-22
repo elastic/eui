@@ -24,14 +24,23 @@ describe('EuiOutsideClickDetector', () => {
       // enzyme doesn't mount the components into the global jsdom `document`
       // but that's where the click detector listener is,
       // pass the top-level mounted component's click event on to document
-      const triggerDocumentClick = e => {
-        const event = new Event('click');
+      const triggerDocumentMouseDown = e => {
+        const event = new Event('mousedown');
+        event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
+        document.dispatchEvent(event);
+      };
+
+      const triggerDocumentMouseUp = e => {
+        const event = new Event('mouseup');
         event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
       const component = mount(
-        <div onClick={triggerDocumentClick}>
+        <div
+          onMouseDown={triggerDocumentMouseDown}
+          onMouseUp={triggerDocumentMouseUp}
+        >
           <div>
             <EuiOutsideClickDetector onOutsideClick={parentDetector}>
               <div>
@@ -48,7 +57,8 @@ describe('EuiOutsideClickDetector', () => {
         </div>
       );
 
-      component.find('[data-test-subj="target"]').simulate('click');
+      component.find('[data-test-subj="target"]').simulate('mousedown');
+      component.find('[data-test-subj="target"]').simulate('mouseup');
 
       expect(unrelatedDetector).toHaveBeenCalledTimes(1);
       expect(parentDetector).toHaveBeenCalledTimes(0);
