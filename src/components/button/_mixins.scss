@@ -1,5 +1,6 @@
 @mixin euiButton {
   @include euiFont;
+  @include euiFontSize;
 
   display: inline-block;
   appearance: none;
