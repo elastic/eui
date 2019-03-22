@@ -13,7 +13,7 @@ import {
 
 const cardFooterContent = (
   <div>
-    <EuiButton aria-labelledby="example.cards.developerTools.screenReader">
+    <EuiButton>
       Go for it
     </EuiButton>
     <EuiSpacer size="xs" />
@@ -32,7 +32,6 @@ export default () => (
         icon={<EuiIcon size="xxl" type="devToolsApp" />}
         title="Developers Tools"
         description="Example of a short card description."
-        descriptionId="example.cards.developerTools.screenReader"
         footer={cardFooterContent}
       />
     </EuiFlexItem>
