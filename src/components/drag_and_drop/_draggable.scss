@@ -1,7 +1,6 @@
-.euiDraggable {
-  $euiDraggableFocusColor: lighten(desaturate($euiColorPrimary, 40%), 40%);
-  padding: 5px 0;
+// sass-lint:disable no-empty-rulesets
 
+.euiDraggable {
   &.euiDraggable--isDragging {
     // Overriding inline styles on JS-inserted HTML elements
     z-index: $euiZLevel9 !important; // sass-lint:disable-line no-important
@@ -13,26 +12,31 @@
   }
 
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle] {
-    border: 1px solid transparent;
+    // What was the reason for the transparent border?
+    // border: 1px solid transparent;
   }
 
   &:focus > .euiDraggable__item,
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
-    border: 1px solid $euiDraggableFocusColor;
+    @include euiFocusRing;
   }
 
   .euiDraggable__item {
-    &:hover {
-      @include euiSlightShadowHover;
-    }
-
     &.euiDraggable__item--isDisabled {
       cursor: not-allowed;
     }
 
     &.euiDraggable__item--isDragging {
-      @include euiBottomShadow;
-      border: 1px solid $euiDraggableFocusColor;
+      // Commenting this out for now,
+      // I'm thinking about adding an optional prop to auto-add these styles versus always having them
+      // @include euiBottomShadow;
+      // @include euiFocusRing;
     }
+  }
+}
+
+@each $size, $spacing in $euiDragAndDropSpacing {
+  .euiDraggable--#{$size} {
+    padding: $spacing;
   }
 }

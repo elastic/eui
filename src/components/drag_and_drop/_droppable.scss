@@ -1,3 +1,5 @@
+@import '../panel/mixins';
+
 .euiDroppable {
   $euiDroppableColor: $euiColorSecondary;
   transition: background-color $euiAnimSpeedExtraSlow ease;
@@ -15,5 +17,21 @@
       // Overriding inline styles on JS-inserted HTML elements
       display: none !important; // sass-lint:disable-line no-important
     }
+  }
+}
+
+@include euiPanel('euiDroppable--withPanel');
+
+.euiDroppable--noGrow {
+  flex-grow: 0;
+}
+
+.euiDroppable--grow {
+  flex-grow: 1;
+}
+
+@each $size, $spacing in $euiDragAndDropSpacing {
+  .euiDroppable--#{$size} {
+    padding: $spacing;
   }
 }

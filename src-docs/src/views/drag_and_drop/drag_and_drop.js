@@ -25,19 +25,17 @@ export default () => {
   };
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
-      <EuiPanel paddingSize="none">
-        <EuiDroppable droppableId="DROPPABLE_AREA" style={{ padding: '10px' }}>
-          {list.map(({ content, id }, idx) => (
-            <EuiDraggable key={id} index={idx} draggableId={id}>
-              {(provided, state) => (
-                <EuiPanel>
-                  {content}{state.isDragging && ' ✨'}
-                </EuiPanel>
-              )}
-            </EuiDraggable>
-          ))}
-        </EuiDroppable>
-      </EuiPanel>
+      <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+            {(provided, state) => (
+              <EuiPanel hasShadow={state.isDragging}>
+                {content}{state.isDragging && ' ✨'}
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
     </EuiDragDropContext>
   );
 };

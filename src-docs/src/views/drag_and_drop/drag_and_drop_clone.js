@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  EuiButtonIcon,
   EuiDragDropContext,
   EuiFlexGroup,
   EuiFlexItem,
@@ -54,37 +55,40 @@ export default () => {
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiFlexGroup>
         <EuiFlexItem>
-          <EuiPanel paddingSize="none" grow={false}>
-            <EuiDroppable droppableId="DROPPABLE_AREA_COPY_1" cloneDraggables={true} style={{ padding: '10px' }}>
-              {list1.map(({ content, id }, idx) => (
-                <EuiDraggable key={id} index={idx} draggableId={id}>
-                  <EuiPanel>
-                    {content}
-                  </EuiPanel>
-                </EuiDraggable>
-              ))}
-            </EuiDroppable>
-          </EuiPanel>
+
+          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_1" cloneDraggables={true}>
+            {list1.map(({ content, id }, idx) => (
+              <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
+                <EuiPanel>
+                  {content}
+                </EuiPanel>
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel paddingSize="none">
-            <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" style={{ padding: '10px', height: '100%' }}>
-              {list2.length ?
-                (
-                  list2.map(({ content, id }, idx) => (
-                    <EuiDraggable key={id} index={idx} draggableId={id}>
-                      <EuiPanel>
-                        {content}
-                      </EuiPanel>
-                    </EuiDraggable>
-                  ))
-                ) : (
-                  <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
-                    <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
-                  </EuiFlexGroup>
-                )}
-            </EuiDroppable>
-          </EuiPanel>
+
+          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel spacing="l" grow>
+            {list2.length ?
+              (
+                list2.map(({ content, id }, idx) => (
+                  <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
+                    <EuiPanel>
+                      <EuiFlexGroup gutterSize="none" alignItems="center">
+                        <EuiFlexItem>{content}</EuiFlexItem>
+                        <EuiFlexItem grow={false}><EuiButtonIcon iconType="cross" /></EuiFlexItem>
+                      </EuiFlexGroup>
+                    </EuiPanel>
+                  </EuiDraggable>
+                ))
+              ) : (
+                <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
+                  <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
+                </EuiFlexGroup>
+              )}
+          </EuiDroppable>
+
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiDragDropContext>
