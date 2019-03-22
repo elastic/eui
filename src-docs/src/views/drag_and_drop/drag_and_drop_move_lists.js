@@ -50,34 +50,34 @@ export default () => {
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiFlexGroup>
         <EuiFlexItem>
-          <EuiPanel paddingSize="none" grow={false}>
-            <EuiDroppable droppableId="DROPPABLE_AREA_1" style={{ padding: '10px' }}>
-              {list1.map(({ content, id }, idx) => (
-                <EuiDraggable key={id} index={idx} draggableId={id}>
-                  {(provided, state) => (
-                    <EuiPanel>
-                      {content}{state.isDragging && ' ✨'}
-                    </EuiPanel>
-                  )}
-                </EuiDraggable>
-              ))}
-            </EuiDroppable>
-          </EuiPanel>
+
+          <EuiDroppable droppableId="DROPPABLE_AREA_1">
+            {list1.map(({ content, id }, idx) => (
+              <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                {(provided, state) => (
+                  <EuiPanel>
+                    {content}{state.isDragging && ' ✨'}
+                  </EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel paddingSize="none" grow={false}>
-            <EuiDroppable droppableId="DROPPABLE_AREA_2" style={{ padding: '10px' }}>
-              {list2.map(({ content, id }, idx) => (
-                <EuiDraggable key={id} index={idx} draggableId={id}>
-                  {(provided, state) => (
-                    <EuiPanel>
-                      {content}{state.isDragging && ' ✨'}
-                    </EuiPanel>
-                  )}
-                </EuiDraggable>
-              ))}
-            </EuiDroppable>
-          </EuiPanel>
+
+          <EuiDroppable droppableId="DROPPABLE_AREA_2">
+            {list2.map(({ content, id }, idx) => (
+              <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                {(provided, state) => (
+                  <EuiPanel>
+                    {content}{state.isDragging && ' ✨'}
+                  </EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiDragDropContext>

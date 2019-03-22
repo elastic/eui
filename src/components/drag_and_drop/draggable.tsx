@@ -8,8 +8,18 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps, Omit, keysOf } from '../common';
 import { EuiDroppableContext } from './droppable';
+
+const spacingToClassNameMap = {
+  none: null,
+  s: 'euiDraggable--s',
+  m: 'euiDraggable--m',
+  l: 'euiDraggable--l',
+};
+
+export const SPACING = keysOf(spacingToClassNameMap);
+export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
 
 export interface EuiDraggableProps
   extends CommonProps,
@@ -17,6 +27,7 @@ export interface EuiDraggableProps
   children: ReactElement | DraggableProps['children'];
   className?: string;
   customDragHandle?: boolean;
+  spacing?: EuiDraggableSpacing;
   style?: CSSProperties;
 }
 
@@ -27,6 +38,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   index,
   children,
   className,
+  spacing = 'none',
   style,
   ...rest
 }) => {
@@ -42,6 +54,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
             'euiDraggable--hasCustomDragHandle': customDragHandle,
             'euiDraggable--isDragging': snapshot.isDragging,
           },
+          spacingToClassNameMap[spacing],
           className
         );
         const childClasses = classNames('euiDraggable__item', {

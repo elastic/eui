@@ -3,10 +3,9 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiIcon,
-  EuiPanel
+  EuiListGroup,
+  EuiListGroupItem,
 } from '../../../../src/components';
 
 import { reorder } from '../../../../src/components/drag_and_drop';
@@ -28,29 +27,22 @@ export default () => {
   };
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
-      <EuiPanel paddingSize="none">
-        {/* Do we want to add padding prop similar to EuiPanel? */}
-        <EuiDroppable droppableId="CUSTOM_HANDLE_DROPPABLE_AREA" style={{ padding: '10px' }}>
+      <EuiListGroup bordered flush>
+        <EuiDroppable droppableId="CUSTOM_HANDLE_DROPPABLE_AREA">
           {list.map(({ content, id }, idx) => (
             <EuiDraggable key={id} index={idx} draggableId={id} customDragHandle={true}>
               {(provided) => (
-                <EuiPanel className="custom" paddingSize="m">
-                  <EuiFlexGroup>
-                    <EuiFlexItem grow={false}>
-                      <div {...provided.dragHandleProps}>
-                        <EuiIcon type="grab" />
-                      </div>
-                    </EuiFlexItem>
-                    <EuiFlexItem>
-                      {content}
-                    </EuiFlexItem>
-                  </EuiFlexGroup>
-                </EuiPanel>
+
+                <EuiListGroupItem
+                  icon={<div {...provided.dragHandleProps}><EuiIcon type="grab" /></div>}
+                  label={content}
+                />
+
               )}
             </EuiDraggable>
           ))}
         </EuiDroppable>
-      </EuiPanel>
+      </EuiListGroup>
     </EuiDragDropContext>
   );
 };

@@ -3,7 +3,7 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
-  EuiIcon,
+  EuiButtonIcon,
   EuiPanel
 } from '../../../../src/components';
 
@@ -45,35 +45,38 @@ export default () => {
   };
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
-      <EuiPanel paddingSize="none">
-        <EuiDroppable
-          droppableId="COMPLEX_DROPPABLE_PARENT"
-          type="MACRO"
-          direction="horizontal"
-          style={{ padding: '10px', display: 'flex' }}
-        >
-          {list.map((did, didx) => (
-            <EuiDraggable key={did} index={didx} draggableId={`COMPLEX_DRAGGABLE_${did}`} style={{ width: '50%', padding: '0 5px' }}>
-              {(provided) => (
-                <EuiPanel paddingSize="s">
-                  <div {...provided.dragHandleProps}>
-                    <EuiIcon type="grab" />
-                  </div>
-                  <EuiDroppable droppableId={`COMPLEX_DROPPABLE_AREA_${did}`} type="MICRO" style={{ padding: '5px' }}>
-                    {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(({ content, id }, idx) => (
-                      <EuiDraggable key={id} index={idx} draggableId={id}>
-                        <EuiPanel>
-                          {content}
-                        </EuiPanel>
-                      </EuiDraggable>
-                    ))}
-                  </EuiDroppable>
-                </EuiPanel>
-              )}
-            </EuiDraggable>
-          ))}
-        </EuiDroppable>
-      </EuiPanel>
+
+      <EuiDroppable
+        droppableId="COMPLEX_DROPPABLE_PARENT"
+        type="MACRO"
+        direction="horizontal"
+        withPanel
+        spacing="l"
+        style={{ display: 'flex' }}
+      >
+        {list.map((did, didx) => (
+          <EuiDraggable key={did} index={didx} draggableId={`COMPLEX_DRAGGABLE_${did}`} spacing="l" style={{ flex: '1 0 50%' }}>
+            {(provided) => (
+              <EuiPanel paddingSize="s">
+                <EuiButtonIcon
+                  iconType="grab"
+                  {...provided.dragHandleProps}
+                />
+                <EuiDroppable droppableId={`COMPLEX_DROPPABLE_AREA_${did}`} type="MICRO" spacing="m" style={{ flex: '1 0 50%' }}>
+                  {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(({ content, id }, idx) => (
+                    <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
+                      <EuiPanel>
+                        {content}
+                      </EuiPanel>
+                    </EuiDraggable>
+                  ))}
+                </EuiDroppable>
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+
     </EuiDragDropContext>
   );
 };
