@@ -6,7 +6,6 @@ declare module '@elastic/eui' {
   /**
    * @see './form_row.js'
    */
-
   export type EuiFormRowCommonProps = CommonProps & {
     error?: ReactNode | ReactNode[];
     fullWidth?: boolean;
