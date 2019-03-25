@@ -252,6 +252,9 @@ import { ToggleExample }
 import { WindowEventExample }
   from './views/window_event/window_event_example';
 
+import { ElasticChartBarExample }
+  from './views/elastic_charts/bar_example';
+
 import { XYChartExample }
   from './views/series_chart/series_chart_example';
 
@@ -414,6 +417,12 @@ const navigation = [{
     FilterGroupExample,
     RangeControlExample,
     SearchBarExample,
+  ].map(example => createExample(example)),
+},
+{
+  name: 'Elastic-Charts',
+  items: [
+    ElasticChartBarExample,
   ].map(example => createExample(example)),
 },
 {
