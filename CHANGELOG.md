@@ -8,6 +8,7 @@
 
 - Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
 - Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))
+- Updated button elements in `EuiFilePicker`, `EuiFormControlLayoutClearButton`, `EuiFormControlLayoutCustomIcon`, `EuiListGroupItem`, and `EuiSideNavItem` to type=button ([#1764](https://github.com/elastic/eui/pull/1764))
 
 ## [`9.5.0`](https://github.com/elastic/eui/tree/v9.5.0)
 
