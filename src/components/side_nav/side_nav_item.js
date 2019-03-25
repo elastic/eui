@@ -26,6 +26,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   if (onClick) {
     return (
       <button
+        type="button"
         className={className}
         onClick={onClick}
         role="menuitem"

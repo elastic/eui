@@ -28,6 +28,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
         aria-label="Clear input"
         class="euiFormControlLayoutClearButton customClass"
         data-test-subj="clearButton"
+        type="button"
       >
         <svg
           class="euiIcon euiIcon--medium euiFormControlLayoutClearButton__icon"

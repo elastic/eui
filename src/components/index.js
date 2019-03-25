@@ -206,6 +206,7 @@ export {
 export {
   EuiLoadingKibana,
   EuiLoadingChart,
+  EuiLoadingContent,
   EuiLoadingSpinner,
 } from './loading';
 

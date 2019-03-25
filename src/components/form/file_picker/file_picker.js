@@ -106,6 +106,7 @@ export class EuiFilePicker extends Component {
             if (compressed) {
               clearButton = (
                 <button
+                  type="button"
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
                   onClick={this.removeFiles}

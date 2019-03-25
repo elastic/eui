@@ -1,0 +1,486 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiLoadingContent is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiLoadingContent testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 1 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 2 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 3 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 4 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 5 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 6 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 7 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 8 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 9 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiLoadingContent lines 10 is rendered 1`] = `
+<div
+  class="euiLoadingContent"
+>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+  <div
+    class="euiLoadingContent__singleLine"
+  >
+    <div
+      class="euiLoadingContent__singleLineBackground"
+    />
+  </div>
+</div>
+`;

@@ -22,6 +22,7 @@ export const EuiFormControlLayoutCustomIcon = ({
   if (onClick) {
     return (
       <button
+        type="button"
         onClick={onClick}
         className={classes}
         ref={iconRef}
