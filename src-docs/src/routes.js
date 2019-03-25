@@ -178,6 +178,8 @@ import { ToggleExample } from './views/toggle/toggle_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
+import { ElasticChartBarExample } from './views/elastic_charts/bar_example';
+
 import { Changelog } from './views/package/changelog';
 
 import { I18nTokens } from './views/package/i18n_tokens';
@@ -341,6 +343,10 @@ const navigation = [
       SelectableExample,
       // SuggestExample,
     ].map(example => createExample(example)),
+  },
+  {
+    name: 'Elastic-Charts',
+    items: [ElasticChartBarExample].map(example => createExample(example)),
   },
   {
     name: 'Utilities',
