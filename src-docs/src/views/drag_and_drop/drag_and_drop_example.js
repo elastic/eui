@@ -111,8 +111,14 @@ export const DragAndDropExample = {
             but has no other restrictions.
           </p>
           <p>
+            All <EuiCode>EuiDragDropContext</EuiCode> elements are discrete and isolated; <EuiCode>EuiDroppable</EuiCode>s and
+            <EuiCode>EuiDraggable</EuiCode>s cannot be shared/transferred between instances. Also, <EuiCode>EuiDragDropContext</EuiCode>s
+            cannot be nested. It is recommended that a single, high-level <EuiCode>EuiDragDropContext</EuiCode> is used and
+            <EuiCode>EuiDroppable</EuiCode>s account for categorical and functional separation (see later examples).
+          </p>
+          <p>
             <EuiCode>EuiDragDropContext</EuiCode> handles all eventing but makes no assumptions about the result of a drop event.
-            As such, the following event handlers are available (none of which are in use in the following example):
+            As such, the following event handlers are available:
           </p>
           <ul>
             <li><EuiCode>onBeforeDragStart</EuiCode></li>
@@ -121,7 +127,7 @@ export const DragAndDropExample = {
             <li><EuiCode>onDragEnd</EuiCode> (required)</li>
           </ul>
           <p>
-            EUI also provides methods for helping to deal to common action types (none of which are in use in the following example):
+            EUI also provides methods for helping to deal to common action types:
           </p>
           <ul>
             <li><EuiCode>reorder</EuiCode>: {`change an item's location in a droppable area`}</li>
