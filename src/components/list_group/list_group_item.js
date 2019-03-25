@@ -104,6 +104,7 @@ export const EuiListGroupItem = ({
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
       <button
+        type="button"
         className="euiListGroupItem__button"
         disabled={isDisabled}
         onClick={onClick}

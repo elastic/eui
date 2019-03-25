@@ -152,6 +152,7 @@ exports[`EuiListGroupItem props onClick is rendered 1`] = `
 >
   <button
     class="euiListGroupItem__button"
+    type="button"
   >
     <span
       class="euiListGroupItem__label"
@@ -254,6 +255,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 1`]
   <button
     class="euiListGroupItem__button"
     disabled=""
+    type="button"
   >
     <span
       class="euiListGroupItem__label"
@@ -272,6 +274,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
   <button
     class="euiListGroupItem__button"
     disabled=""
+    type="button"
   >
     <span
       class="euiListGroupItem__label"
