@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.10.6`.
+
+## [`6.10.6`](https://github.com/elastic/eui/tree/v6.10.6)
+
 **Bug fixes**
 
 - Fixed outside click detection inconsistencies by comparing `mouseup` and `mousedown` event targets rather than using `click` event target ([#1761](https://github.com/elastic/eui/pull/1761))
