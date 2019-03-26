@@ -524,8 +524,11 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
     >
       <div
         className="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
-        onClick={[Function]}
         onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
       >
         <div
           className="euiPopover__anchor euiSuperSelect__popoverAnchor"
@@ -686,11 +689,15 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
             >
               <OutsideEventDetector
                 handleEvent={[Function]}
-                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
               >
                 <div
-                  onClick={[Function]}
                   onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
                   onTouchStart={[Function]}
                 >
                   <FocusLock
