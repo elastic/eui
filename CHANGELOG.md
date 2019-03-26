@@ -200,6 +200,14 @@ No public interface changes since `9.6.0`.
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
+## [`6.10.6`](https://github.com/elastic/eui/tree/v6.10.6)
+
+**Note: this release is a backport containing changes originally made in `9.6.0`**
+
+**Bug fixes**
+
+- Fixed outside click detection inconsistencies by comparing `mouseup` and `mousedown` event targets rather than using `click` event target ([#1761](https://github.com/elastic/eui/pull/1761))
+
 ## [`6.10.5`](https://github.com/elastic/eui/tree/v6.10.5)
 
 **Note: this release is a backport containing changes originally made in `9.0.0`, `9.1.0`, `9.3.0`, and `9.4.0`**
