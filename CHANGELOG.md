@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.6.0`.
+
+## [`9.6.0`](https://github.com/elastic/eui/tree/v9.6.0)
+
 - Converted `makeId` to TS ([#1759](https://github.com/elastic/eui/pull/1759))
 - Converted `EuiCardGraphic` to TS ([#1751](https://github.com/elastic/eui/pull/1751))
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
