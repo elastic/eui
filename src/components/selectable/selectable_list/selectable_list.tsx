@@ -11,6 +11,7 @@ import { Option } from '../types';
 
 export type EuiSelectableSingleOptionProps = 'always' | boolean;
 
+// Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
@@ -32,6 +33,11 @@ export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
      * Any props to send specifically to the react-virtualized `List`
      */
     virtualizedProps?: ListProps;
+    /**
+     * Adds a border around the list to indicate the bounds.
+     * Useful when the list scrolls, otherwise use your own container.
+     */
+    bordered?: boolean;
   };
 
 export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
@@ -97,6 +103,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       singleSelection,
       visibleOptions,
       allowExclusions,
+      bordered,
       ...rest
     } = this.props;
 
@@ -105,6 +112,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     const heightIsFull = forcedHeight === 'full';
 
     let calculatedHeight: any = !heightIsFull && forcedHeight;
+    let isOverflowing: boolean = false;
 
     // If calculatedHeight is still undefined, then calculate it
     if (!calculatedHeight && !heightIsFull) {
@@ -115,6 +123,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       if (numVisibleMoreThanMax) {
         // Show only half of the last one to indicate there's more to scroll to
         calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
+        isOverflowing = true;
       } else {
         calculatedHeight = numVisibleOptions * rowHeight;
       }
@@ -124,6 +133,8 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       'euiSelectableList',
       {
         'euiSelectableList-fullHeight': heightIsFull,
+        'euiSelectableList-bordered': bordered,
+        'euiSelectableList-overflowing': heightIsFull || isOverflowing,
       },
       className
     );

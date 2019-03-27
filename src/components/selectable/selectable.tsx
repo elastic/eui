@@ -23,6 +23,17 @@ import {
   EuiSelectableSingleOptionProps,
 } from './selectable_list/selectable_list';
 
+type RequiredEuiSelectableOptionsListProps = Omit<
+  EuiSelectableOptionsListProps,
+  keyof typeof EuiSelectableList['defaultProps']
+>;
+type OptionalEuiSelectableOptionsListProps = Omit<
+  EuiSelectableOptionsListProps,
+  keyof RequiredEuiSelectableOptionsListProps
+>;
+type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
+  Partial<OptionalEuiSelectableOptionsListProps>;
+
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'children'
@@ -73,7 +84,7 @@ export type EuiSelectableProps = Omit<
     /**
      * See `EuiSelectableList`
      */
-    listProps?: EuiSelectableOptionsListProps;
+    listProps?: EuiSelectableOptionsListPropsWithDefaults;
     /**
      * Custom render function for each option.
      * Returns (option, searchValue)

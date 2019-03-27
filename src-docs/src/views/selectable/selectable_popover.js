@@ -1,20 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import { orderBy } from 'lodash';
 import {
-  EuiPopover,
-  EuiPopoverTitle,
-  EuiPopoverFooter,
   EuiButton,
+  EuiCode,
   EuiFlyout,
-  EuiTitle,
+  EuiFlyoutFooter,
   EuiFlyoutHeader,
+  EuiPopover,
+  EuiPopoverFooter,
+  EuiPopoverTitle,
+  EuiSelectable,
   EuiSpacer,
+  EuiTitle,
 } from '../../../../src/components';
 
-import { EuiSelectable } from '../../../../src/components/selectable';
 import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
-import { EuiFlyoutFooter } from '../../../../src/components/flyout/flyout_footer';
 
 export default class extends Component {
   constructor(props) {
@@ -99,7 +100,6 @@ export default class extends Component {
             }}
             options={options}
             onChange={this.onChange}
-            width={300}
           >
             {(list, search) => (
               <div style={{ width: 240 }}>
@@ -120,7 +120,6 @@ export default class extends Component {
         <EuiButton onClick={this.showFlyout}>
           Show flyout
         </EuiButton>
-
 
         {this.state.isFlyoutVisible &&
           <EuiFlyout
@@ -156,6 +155,22 @@ export default class extends Component {
             </EuiFlyoutFooter>
           </EuiFlyout>
         }
+
+        <EuiSpacer />
+
+        <EuiTitle size="xxs"><h4>Using <EuiCode>listProps.bordered = true</EuiCode></h4></EuiTitle>
+
+        <EuiSpacer />
+
+        <EuiSelectable
+          options={options}
+          onChange={() => {}}
+          style={{ width: 300 }}
+          listProps={{ bordered: true }}
+        >
+          {list => list}
+        </EuiSelectable>
+
       </Fragment>
     );
   }

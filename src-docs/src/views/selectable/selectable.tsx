@@ -29,7 +29,8 @@ export default class extends Component<{}, { selectedOptions: Option[] }> {
     return (
       <EuiSelectable
         options={this.options}
-        onChange={() => this.onChange(selectedOptions)}>
+        onChange={() => this.onChange(selectedOptions)}
+        listProps={{ bordered: true }}>
         {list => list}
       </EuiSelectable>
     );

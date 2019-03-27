@@ -118,7 +118,8 @@ export const SelectableExample = {
       demo: <Selectable />,
       snippet: `<EuiSelectable
   options={[{ label: '' }, { label: '' }]}
-  onChange={() => this.onChange(options)}>
+  onChange={() => this.onChange(options)}
+  listProps={{ bordered: true }}>
   {list => list}
 </EuiSelectable>`,
     },

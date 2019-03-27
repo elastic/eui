@@ -84,3 +84,28 @@
   box-shadow: 0 $euiSize $euiSize (-$euiSize / 2) $euiColorEmptyShade;
   z-index: 2;
 }
+
+@mixin euiOverflowShadow($color: $euiColorEmptyShade) {
+  // Only allow the shadow if we can properly remove pointer events
+  // from it since it will overlay the contents
+  @supports (pointer-events: none) {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      // Stops match scrollbar corner so it doesn't overlap
+      background: linear-gradient(to bottom,
+                    transparentize($color, .1) 0%,
+                    transparentize($color, 1) $euiScrollBarCorner,
+                    transparentize($color, 1) calc(100% - #{$euiScrollBarCorner}),
+                    transparentize($color, .1) 100%
+                  );
+      pointer-events: none;
+    }
+  }
+}
