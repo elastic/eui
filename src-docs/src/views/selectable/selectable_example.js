@@ -41,6 +41,7 @@ const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
 export const SelectableExample = {
   title: 'Selectable',
+  beta: true,
   intro: (
     <EuiText>
       <p>
