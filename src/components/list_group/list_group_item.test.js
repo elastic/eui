@@ -156,18 +156,6 @@ describe('EuiListGroupItem', () => {
       console.warn = oldConsoleError;
     });
 
-    test('if both onClick and href are provided but still renders', () => {
-      const component = render(
-        <EuiListGroupItem label="" onClick={() => {}} href="#" />
-      );
-
-      expect(consoleStub).toBeCalled();
-      expect(consoleStub.mock.calls[0][0]).toMatch(
-        '`href` and `onClick` were passed'
-      );
-      expect(component).toMatchSnapshot();
-    });
-
     test('if both iconType and icon are provided but still renders', () => {
       const component = render(
         <EuiListGroupItem label="" iconType="empty" icon={<span/>} />

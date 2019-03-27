@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { EuiListGroup } from '../list_group/list_group';
 import { toInitials } from '../../services';
 
-export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick, ...rest }) => {
+export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick, drawerItemClick, ...rest }) => {
   const classes = classNames(
     'euiNavDrawerGroup',
     className
@@ -21,6 +21,9 @@ export const EuiNavDrawerGroup = ({ className, listItems, flyoutMenuButtonClick,
       const items = [...flyoutMenu.listItems];
       const title = `${flyoutMenu.title}`;
       itemProps.onClick = () => flyoutMenuButtonClick(items, title);
+    // If not a flyout, close the nav drawer and flyout on any list item click
+    } else if (drawerItemClick) {
+      itemProps.onClick = () => drawerItemClick();
     }
 
     // Make some declarations of props for the side nav implementation
@@ -61,4 +64,9 @@ EuiNavDrawerGroup.propTypes = {
    * of the flyout menu button click
    */
   flyoutMenuButtonClick: PropTypes.func,
+  /**
+   * For items that don't open flyouts, it is required to pass a function for
+   * handling of the drawer item click to collapse the drawer
+   */
+  drawerItemClick: PropTypes.func,
 };

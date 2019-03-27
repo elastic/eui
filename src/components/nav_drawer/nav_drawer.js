@@ -191,6 +191,7 @@ export class EuiNavDrawer extends Component {
         const item = React.cloneElement(child, {
           flyoutMenuButtonClick: this.expandFlyout,
           showToolTips: this.state.toolTipsEnabled && showToolTips,
+          drawerItemClick: this.closeBoth,
         });
         return item;
       } else {
