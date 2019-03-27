@@ -90,7 +90,6 @@ export type EuiSelectableProps = Omit<
      * Returns (option, searchValue)
      */
     renderOption?: (option: Option, searchValue?: string) => {};
-    async?: boolean;
   };
 
 export interface EuiSelectableState {
@@ -114,15 +113,11 @@ export class EuiSelectable extends Component<
   constructor(props: EuiSelectableProps) {
     super(props);
 
-    const { options, singleSelection, async } = props;
+    const { options, singleSelection } = props;
 
     const initialSearchValue = '';
 
-    const visibleOptions = getMatchingOptions(
-      options,
-      initialSearchValue,
-      async
-    );
+    const visibleOptions = getMatchingOptions(options, initialSearchValue);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
     const selectedOptions = options.filter(option => option.checked);
@@ -268,7 +263,6 @@ export class EuiSelectable extends Component<
       renderOption,
       height,
       allowExclusions,
-      async,
       ...rest
     } = this.props;
 
@@ -323,7 +317,6 @@ export class EuiSelectable extends Component<
         key="listSearch"
         options={options}
         onChange={this.onSearchChange}
-        async={async}
         {...searchProps}
       />
     ) : (

@@ -1,0 +1,283 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectableListItem is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props allowExclusions 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props bordered 1`] = `
+<div
+  class="euiSelectableList euiSelectableList-bordered"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props height is forced 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:200px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props height is full 1`] = `
+<div
+  class="euiSelectableList euiSelectableList-fullHeight euiSelectableList-overflowing"
+>
+  <div
+    style="overflow:visible;height:0;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:0;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:auto"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props renderOption 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props rowHeight 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:120px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props searchValue 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props searchValue 2`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props singleSelection can be forced so that at least one must be selected 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:192px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem props visibleOptions 1`] = `
+<div
+  class="euiSelectableList"
+>
+  <div
+    style="overflow:visible;width:0"
+  >
+    <div
+      aria-label="grid"
+      aria-readonly="true"
+      class="ReactVirtualized__Grid ReactVirtualized__List"
+      id="htmlid_listbox"
+      role="listbox"
+      style="box-sizing:border-box;direction:ltr;height:128px;position:relative;width:0;-webkit-overflow-scrolling:touch;will-change:transform;overflow-x:hidden;overflow-y:hidden"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;

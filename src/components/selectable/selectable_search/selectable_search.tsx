@@ -17,7 +17,6 @@ export type EuiSelectableSearchProps = Omit<
      */
     onChange?: (matchingOptions: Option[], searchValue: string) => void;
     options: Option[];
-    async?: boolean;
     defaultValue: string;
   };
 
@@ -42,16 +41,16 @@ export class EuiSelectableSearch extends Component<
   }
 
   componentDidMount() {
-    const { options, async } = this.props;
+    const { options } = this.props;
     const { searchValue } = this.state;
-    const matchingOptions = getMatchingOptions(options, searchValue, async);
+    const matchingOptions = getMatchingOptions(options, searchValue);
     this.passUpMatches(matchingOptions, searchValue);
   }
 
   onSearchChange = (value: string) => {
     this.setState({ searchValue: value });
-    const { options, async } = this.props;
-    const matchingOptions = getMatchingOptions(options, value, async);
+    const { options } = this.props;
+    const matchingOptions = getMatchingOptions(options, value);
     this.passUpMatches(matchingOptions, value);
   };
 
@@ -62,29 +61,20 @@ export class EuiSelectableSearch extends Component<
   };
 
   render() {
-    const {
-      className,
-      onChange,
-      options,
-      async,
-      defaultValue,
-      ...rest
-    } = this.props;
+    const { className, onChange, options, defaultValue, ...rest } = this.props;
 
     const classes = classNames('euiSelectableSearch', className);
 
     return (
-      <div>
-        <EuiFieldSearch
-          className={classes}
-          placeholder="Filter options"
-          onSearch={this.onSearchChange}
-          incremental
-          defaultValue={defaultValue}
-          fullWidth
-          {...rest}
-        />
-      </div>
+      <EuiFieldSearch
+        className={classes}
+        placeholder="Filter options"
+        onSearch={this.onSearchChange}
+        incremental
+        defaultValue={defaultValue}
+        fullWidth
+        {...rest}
+      />
     );
   }
 }

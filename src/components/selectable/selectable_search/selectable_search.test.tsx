@@ -12,4 +12,14 @@ describe('EuiSelectableSearch', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('defaultValue', () => {
+      const component = render(
+        <EuiSelectableSearch options={[]} defaultValue="Mi" />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
