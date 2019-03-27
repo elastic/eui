@@ -13,7 +13,7 @@ import { EuiSelectableList } from './selectable_list';
 // @ts-ignore
 import { EuiLoadingChart } from '../loading';
 // @ts-ignore
-import { getMatchingOptions } from '../combo_box/matching_options';
+import { getMatchingOptions } from './matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
 import { EuiI18n } from '../i18n';
@@ -120,10 +120,8 @@ export class EuiSelectable extends Component<
 
     const visibleOptions = getMatchingOptions(
       options,
-      [],
       initialSearchValue,
-      async,
-      true
+      async
     );
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
@@ -235,7 +233,7 @@ export class EuiSelectable extends Component<
     });
   };
 
-  onSearchChange = (visibleOptions: [], searchValue: string) => {
+  onSearchChange = (visibleOptions: Option[], searchValue: string) => {
     this.setState({
       visibleOptions,
       searchValue,

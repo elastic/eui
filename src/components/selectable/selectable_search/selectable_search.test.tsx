@@ -6,7 +6,9 @@ import { EuiSelectableSearch } from './selectable_search';
 
 describe('EuiSelectableSearch', () => {
   test('is rendered', () => {
-    const component = render(<EuiSelectableSearch {...requiredProps} />);
+    const component = render(
+      <EuiSelectableSearch options={[]} {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });

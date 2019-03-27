@@ -4,7 +4,7 @@ import { CommonProps, Omit } from '../../common';
 // @ts-ignore
 import { EuiFieldSearch } from '../../form/field_search';
 // @ts-ignore
-import { getMatchingOptions } from '../../combo_box/matching_options';
+import { getMatchingOptions } from '../matching_options';
 import { Option } from '../types';
 
 export type EuiSelectableSearchProps = Omit<
@@ -15,8 +15,8 @@ export type EuiSelectableSearchProps = Omit<
     /**
      * Passes back (matchingOptions, searchValue)
      */
-    onChange?: (matchingOptions: [], searchValue: string) => void;
-    options?: Option[];
+    onChange?: (matchingOptions: Option[], searchValue: string) => void;
+    options: Option[];
     async?: boolean;
     defaultValue: string;
   };
@@ -44,24 +44,18 @@ export class EuiSelectableSearch extends Component<
   componentDidMount() {
     const { options, async } = this.props;
     const { searchValue } = this.state;
-    const matchingOptions = getMatchingOptions(
-      options,
-      [],
-      searchValue,
-      async,
-      true
-    );
+    const matchingOptions = getMatchingOptions(options, searchValue, async);
     this.passUpMatches(matchingOptions, searchValue);
   }
 
   onSearchChange = (value: string) => {
     this.setState({ searchValue: value });
     const { options, async } = this.props;
-    const matchingOptions = getMatchingOptions(options, [], value, async, true);
+    const matchingOptions = getMatchingOptions(options, value, async);
     this.passUpMatches(matchingOptions, value);
   };
 
-  passUpMatches = (matches: [], searchValue: string) => {
+  passUpMatches = (matches: Option[], searchValue: string) => {
     if (this.props.onChange) {
       this.props.onChange(matches, searchValue);
     }
