@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.7.0`.
+
+## [`9.7.0`](https://github.com/elastic/eui/tree/v9.7.0)
+
 - Changed `EuiNavDrawer` to close on any link click ([#1773](https://github.com/elastic/eui/pull/1773))
 
 ## [`9.6.0`](https://github.com/elastic/eui/tree/v9.6.0)
