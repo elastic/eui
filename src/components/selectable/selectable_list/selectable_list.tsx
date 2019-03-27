@@ -103,10 +103,11 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     const optionArray = visibleOptions || options;
 
     const heightIsFull = forcedHeight === 'full';
+
     let calculatedHeight: any = !heightIsFull && forcedHeight;
 
     // If calculatedHeight is still undefined, then calculate it
-    if (!calculatedHeight) {
+    if (!calculatedHeight && !heightIsFull) {
       const maxVisibleOptions = 7;
       const numVisibleOptions = optionArray.length;
       const numVisibleMoreThanMax = optionArray.length > maxVisibleOptions;
