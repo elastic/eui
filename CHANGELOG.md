@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.7.0`.
+**Bug fixes**
+
+- Fixed heading and paragraph tag font style inherits ([#1776](https://github.com/elastic/eui/pull/1776))
 
 ## [`9.7.0`](https://github.com/elastic/eui/tree/v9.7.0)
 
@@ -13,6 +15,8 @@ No public interface changes since `9.7.0`.
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
 
 **Bug fixes**
+
+**Note: this release creates a minor regression to text scales where paragraph and heading tags were no longer inheriting from their container. This is fixed in `master`.**
 
 - Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
 - Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))
