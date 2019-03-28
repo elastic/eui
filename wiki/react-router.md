@@ -12,6 +12,10 @@ under the hood. The `onClick` is used to push a new `history` location, and the 
 open the link in a new tab. Any mechanism for integrating EUI with `react-router` needs to bridge
 this `to` prop with EUI components' `href` and `onClick` props.
 
+- [`react-router` 3.x](#react-router-3x)
+- [`react-router` 4.x](#react-router-4x)
+- [`react-router` 5.x](#react-router-5x)
+
 ## Techniques
 
 There are many techniques for integrating EUI with `react-router` ([see below](#techniques-we-dont-recommend) for some techniques we don't recommend), but we think these two are the strongest:
@@ -70,16 +74,13 @@ class App extends Component {
 
   constructor(...args) {
     super(...args);
-    this.registerRouter();
-  }
 
-  registerRouter() {
     // Share the router with the app without requiring React or context.
-    const { router } = this.context;
-    registerRouter(router);
+    registerRouter(this.context.router);
   }
 }
 
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
 ReactDOM.render(
   <Router history={history}>
     <Route path="/" component={App} />,
@@ -149,11 +150,11 @@ export const getRouterLinkProps = to => {
 };
 ```
 
-## react-router 4.x / 5.x
+## react-router 4.x
 
 ### Share `router` globally
 
-Setup is slightly different with `react-router` 4.x and 5.x. To enable these techniques, you'll need to make
+Setup is slightly different with `react-router` 4.x. To enable these techniques, you'll need to make
 the `router` instance available outside of React's `context`. One method for doing this is to assign
 it to a globally-available singleton within your app's root component.
 
@@ -173,18 +174,15 @@ class App extends Component {
 
   constructor(...args) {
     super(...args);
-    this.registerRouter();
-  }
-  
-  registerRouter() {
+
     // Share the router with the app without requiring React or context.
-    const { router } = this.context;
-    registerRouter(router);
+    registerRouter(this.context.router);
   }
 }
 
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
 ReactDOM.render(
-  <Router}>
+  <Router>
     <App />,
   </Router>,
   appRoot
@@ -246,8 +244,17 @@ export const getRouterLinkProps = to => {
 
   return {href, onClick}
 };
-
 ```
+
+## react-router 5.x
+
+`react-router` 5.0 was released and it was supposed to be completely backward compatible with
+4.x.
+
+However, they changed something about their React Context handling in 5.0, [which may be
+a bug](https://github.com/ReactTraining/react-router/issues/6672), but it completely breaks
+the 4.x variant of this code. Use [`react-router` 4.x](#react-router-4x) until this is
+clarified.
 
 ## Techniques we don't recommend
 
