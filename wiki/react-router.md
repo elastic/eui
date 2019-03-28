@@ -80,7 +80,7 @@ class App extends Component {
   }
 }
 
-// It is critical that the <Router> wrapping the component expecting it as part of its context!
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
 ReactDOM.render(
   <Router history={history}>
     <Route path="/" component={App} />,
@@ -180,7 +180,7 @@ class App extends Component {
   }
 }
 
-// It is critical that the <Router> wrapping the component expecting it as part of its context!
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
 ReactDOM.render(
   <Router>
     <App />,
