@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.7.1`.
+
+## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
+
 **Bug fixes**
 
 - Fixed heading and paragraph tag font style inherits ([#1776](https://github.com/elastic/eui/pull/1776))
