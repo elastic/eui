@@ -149,11 +149,11 @@ export const getRouterLinkProps = to => {
 };
 ```
 
-## react-router 4.x
+## react-router 4.x / 5.x
 
 ### Share `router` globally
 
-Setup is slightly different with `react-router` 4.x. To enable these techniques, you'll need to make
+Setup is slightly different with `react-router` 4.x and 5.x. To enable these techniques, you'll need to make
 the `router` instance available outside of React's `context`. One method for doing this is to assign
 it to a globally-available singleton within your app's root component.
 
