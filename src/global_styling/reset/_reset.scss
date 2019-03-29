@@ -34,9 +34,9 @@ code, pre, kbd, samp {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  font-family: $euiFontFamily;
-  font-weight: $euiFontWeightRegular;
-  font-size: $euiFontSize;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 input, textarea, select, button {

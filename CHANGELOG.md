@@ -1,14 +1,31 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.7.1`.
+
+## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
+
+**Bug fixes**
+
+- Fixed heading and paragraph tag font style inherits ([#1776](https://github.com/elastic/eui/pull/1776))
+
+## [`9.7.0`](https://github.com/elastic/eui/tree/v9.7.0)
+
+- Changed `EuiNavDrawer` to close on any link click ([#1773](https://github.com/elastic/eui/pull/1773))
+
+## [`9.6.0`](https://github.com/elastic/eui/tree/v9.6.0)
+
 - Converted `makeId` to TS ([#1759](https://github.com/elastic/eui/pull/1759))
 - Converted `EuiCardGraphic` to TS ([#1751](https://github.com/elastic/eui/pull/1751))
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
 
 **Bug fixes**
 
+**Note: this release creates a minor regression to text scales where paragraph and heading tags were no longer inheriting from their container. This is fixed in `master`.**
+
 - Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
 - Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))
 - Updated button elements in `EuiFilePicker`, `EuiFormControlLayoutClearButton`, `EuiFormControlLayoutCustomIcon`, `EuiListGroupItem`, and `EuiSideNavItem` to type=button ([#1764](https://github.com/elastic/eui/pull/1764))
+- Fixed outside click detection inconsistencies by comparing `mouseup` and `mousedown` event targets rather than using `click` event target ([#1761](https://github.com/elastic/eui/pull/1761))
 
 ## [`9.5.0`](https://github.com/elastic/eui/tree/v9.5.0)
 
@@ -194,6 +211,14 @@
 **Breaking changes**
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
+## [`6.10.6`](https://github.com/elastic/eui/tree/v6.10.6)
+
+**Note: this release is a backport containing changes originally made in `9.6.0`**
+
+**Bug fixes**
+
+- Fixed outside click detection inconsistencies by comparing `mouseup` and `mousedown` event targets rather than using `click` event target ([#1761](https://github.com/elastic/eui/pull/1761))
 
 ## [`6.10.5`](https://github.com/elastic/eui/tree/v6.10.5)
 

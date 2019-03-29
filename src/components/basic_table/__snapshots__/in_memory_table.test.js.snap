@@ -357,8 +357,11 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <div
                           className="euiPopover euiPopover--anchorUpRight euiPopover--withTitle"
                           id="customizablePagination"
-                          onClick={[Function]}
                           onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onMouseUp={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
                         >
                           <div
                             className="euiPopover__anchor"

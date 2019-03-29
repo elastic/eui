@@ -124,6 +124,22 @@ export class EuiNavDrawer extends Component {
     this.collapseFlyout();
   }
 
+  handleDrawerMenuClick = e => {
+    // walk up e.target until either:
+    // 1. a[href] - close the menu
+    // 2. document.body - do nothing
+
+    let element = e.target;
+    while (element !== undefined && element !== document.body && (element.tagName !== 'A' || element.getAttribute('href') === undefined)) {
+      element = element.parentElement;
+    }
+
+    if (element !== document.body) {
+      // this is an anchor with an href
+      this.closeBoth();
+    }
+  }
+
   render() {
     const {
       children,
@@ -214,7 +230,7 @@ export class EuiNavDrawer extends Component {
           {...rest}
         >
           <EuiFlexItem grow={false}>
-            <div id="navDrawerMenu" className={menuClasses}>
+            <div id="navDrawerMenu" className={menuClasses} onClick={this.handleDrawerMenuClick}>
               {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
               {/* TODO: Add a "skip navigation" keyboard only button */}
               {footerContent}
