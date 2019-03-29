@@ -74,7 +74,7 @@ export default class extends Component {
         <EuiSelectable
           searchable
           options={options}
-          onChange={() => this.onChange(options)}
+          onChange={this.onChange}
           {...customProps}
         >
           {(list, search) => (

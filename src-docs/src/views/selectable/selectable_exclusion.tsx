@@ -5,13 +5,11 @@ import { Option } from '../../../../src/components/selectable/types';
 import { Options } from './data';
 
 export default class extends Component<{}, { options: Option[] }> {
-  options: Option[] = [];
   constructor(props: any) {
     super(props);
 
-    this.options = Options as Option[];
     this.state = {
-      options: this.options,
+      options: Options as Option[],
     };
   }
 
@@ -25,10 +23,7 @@ export default class extends Component<{}, { options: Option[] }> {
     const { options } = this.state;
 
     return (
-      <EuiSelectable
-        allowExclusions
-        options={options}
-        onChange={() => this.onChange(options)}>
+      <EuiSelectable allowExclusions options={options} onChange={this.onChange}>
         {list => list}
       </EuiSelectable>
     );

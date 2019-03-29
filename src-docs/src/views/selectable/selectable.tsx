@@ -4,32 +4,28 @@ import { EuiSelectable } from '../../../../src/components/selectable';
 import { Option } from '../../../../src/components/selectable/types';
 import { Options } from './data';
 
-export default class extends Component<{}, { selectedOptions: Option[] }> {
-  options: Option[] = [];
+export default class extends Component<{}, { options: Option[] }> {
   constructor(props: any) {
     super(props);
 
-    this.options = Options as Option[];
-    const selectedOptions = this.options.filter(option => option.checked);
-
     this.state = {
-      selectedOptions,
+      options: Options as Option[],
     };
   }
 
-  onChange = (selectedOptions: Option[]) => {
+  onChange = (options: Option[]) => {
     this.setState({
-      selectedOptions,
+      options,
     });
   };
 
   render() {
-    const { selectedOptions } = this.state;
+    const { options } = this.state;
 
     return (
       <EuiSelectable
-        options={this.options}
-        onChange={() => this.onChange(selectedOptions)}
+        options={options}
+        onChange={this.onChange}
         listProps={{ bordered: true }}>
         {list => list}
       </EuiSelectable>

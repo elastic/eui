@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Fragment } from 'react-is';
 
 import { renderToHtml } from '../../services';
 
@@ -23,9 +24,12 @@ const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
 const selectablePopoverHtml = renderToHtml(SelectablePopover);
 
 import SelectableSearch from './selectable_search';
-import { Fragment } from 'react-is';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
 const selectableSearchHtml = renderToHtml(SelectableSearch);
+
+import SelectableSingle from './selectable_single';
+const selectableSingleSource = require('!!raw-loader!./selectable_single');
+const selectableSingleHtml = renderToHtml(SelectableSingle);
 
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
@@ -168,6 +172,40 @@ export const SelectableExample = {
     </Fragment>
   )}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Single Selection',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: selectableSingleSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: selectableSingleHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Selection can be restricted to a single option at a time with the <EuiCode>singleSelection</EuiCode> prop.
+            Passing <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected, while
+            <EuiCode>`always`</EuiCode> requires 1 option to be selected at all times.
+            The default value is <EuiCode>false</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiSelectable },
+      demo: <SelectableSingle />,
+      snippet: `
+      <EuiSelectable
+        options={options}
+        onChange={this.onChange}
+        singleSelection={true}
+        listProps={{ bordered: true }}>
+        {list => list}
+      </EuiSelectable>
+    `,
     },
     {
       title: 'Sizing and containers',

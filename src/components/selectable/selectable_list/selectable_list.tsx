@@ -225,24 +225,55 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
   private onAddOption = (addedOption: Option) => {
     const { onOptionClick, options, singleSelection } = this.props;
-    if (singleSelection) {
-      options.map(option => delete option.checked);
-    }
-    addedOption.checked = 'on';
-    onOptionClick(options);
+
+    const updatedOptions = options.map(option => {
+      // if singleSelection is enabled, uncheck any selected option(s)
+      const updatedOption = { ...option };
+      if (singleSelection) {
+        delete updatedOption.checked;
+      }
+
+      // if this is the now-selected option, check it
+      if (option === addedOption) {
+        updatedOption.checked = 'on';
+      }
+
+      return updatedOption;
+    });
+
+    onOptionClick(updatedOptions);
   };
 
   private onRemoveOption = (removedOption: Option) => {
     const { onOptionClick, singleSelection, options } = this.props;
-    if (singleSelection !== 'always') {
-      delete removedOption.checked;
-    }
-    onOptionClick(options);
+
+    const updatedOptions = options.map(option => {
+      const updatedOption = { ...option };
+
+      if (option === removedOption && singleSelection !== 'always') {
+        delete updatedOption.checked;
+      }
+
+      return updatedOption;
+    });
+
+    onOptionClick(updatedOptions);
   };
 
   private onExcludeOption = (excludedOption: Option) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
-    onOptionClick(options);
+
+    const updatedOptions = options.map(option => {
+      const updatedOption = { ...option };
+
+      if (option === excludedOption) {
+        updatedOption.checked = 'off';
+      }
+
+      return updatedOption;
+    });
+
+    onOptionClick(updatedOptions);
   };
 }

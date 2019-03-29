@@ -36,7 +36,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
 
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'children'
+  'children' | 'onChange'
 > &
   CommonProps & {
     /**
@@ -240,9 +240,10 @@ export class EuiSelectable extends Component<
   };
 
   onOptionClick = (options: Option[]) => {
-    this.setState({
+    this.setState(state => ({
       options,
-    });
+      visibleOptions: getMatchingOptions(options, state.searchValue),
+    }));
     if (this.props.onChange) {
       this.props.onChange(options);
     }

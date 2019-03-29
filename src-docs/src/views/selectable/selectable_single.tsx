@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { Option } from '../../../../src/components/selectable/types';
@@ -9,7 +9,10 @@ export default class extends Component<{}, { options: Option[] }> {
     super(props);
 
     this.state = {
-      options: Options as Option[],
+      options: Options.map(option => {
+        const { checked, ...checklessOption } = option;
+        return { ...checklessOption };
+      }) as Option[],
     };
   }
 
@@ -24,18 +27,11 @@ export default class extends Component<{}, { options: Option[] }> {
 
     return (
       <EuiSelectable
-        searchable
-        searchProps={{
-          'data-test-subj': 'selectableSearchHere',
-        }}
         options={options}
-        onChange={this.onChange}>
-        {(list, search) => (
-          <Fragment>
-            {search}
-            {list}
-          </Fragment>
-        )}
+        onChange={this.onChange}
+        singleSelection={true}
+        listProps={{ bordered: true }}>
+        {list => list}
       </EuiSelectable>
     );
   }
