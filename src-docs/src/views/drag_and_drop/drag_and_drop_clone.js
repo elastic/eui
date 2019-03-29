@@ -28,6 +28,7 @@ export default () => {
     actions[droppableId](list);
   };
   const onDragEnd = ({ source, destination }) => {
+    console.log(source, destination);
     if (source && destination) {
       if (source.droppableId === destination.droppableId) {
         const items = reorder(
@@ -54,7 +55,7 @@ export default () => {
         actions[sourceId](result[sourceId]);
         actions[destinationId](result[destinationId]);
       }
-    } else if (!destination) {
+    } else if (!destination && source.droppableId === 'DROPPABLE_AREA_COPY_2') {
       remove(source.droppableId, source.index);
     }
   };
