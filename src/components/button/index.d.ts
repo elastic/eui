@@ -49,11 +49,14 @@ declare module '@elastic/eui' {
    */
 
   export type ButtonIconColor =
-    | 'primary'
     | 'danger'
     | 'disabled'
     | 'ghost'
-    | 'text';
+    | 'primary'
+    | 'subdued'
+    | 'success'
+    | 'text'
+    | 'warning';
 
   export interface EuiButtonIconProps {
     iconType?: IconType;
