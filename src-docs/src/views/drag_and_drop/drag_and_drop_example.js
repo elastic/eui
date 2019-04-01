@@ -24,6 +24,10 @@ import DragAndDropCustomHandle from './drag_and_drop_custom_handle';
 const dragAndDropCustomHandleSource = require('!!raw-loader!./drag_and_drop_custom_handle');
 const dragAndDropCustomHandleHtml = renderToHtml(DragAndDropCustomHandle);
 
+import DragAndDropDisableBlocking from './drag_and_drop_disable_blocking';
+const dragAndDropDisableBlockingSource = require('!!raw-loader!./drag_and_drop_disable_blocking');
+const dragAndDropDisableBlockingHtml = renderToHtml(DragAndDropDisableBlocking);
+
 import DragAndDropMoveLists from './drag_and_drop_move_lists';
 const dragAndDropMoveListsSource = require('!!raw-loader!./drag_and_drop_move_lists');
 const dragAndDropMoveListsHtml = renderToHtml(DragAndDropMoveLists);
@@ -42,6 +46,7 @@ const dragAndDropComplexHtml = renderToHtml(DragAndDropComplex);
 
 export const DragAndDropExample = {
   title: 'Drag And Drop',
+  beta: true,
   intro: (
     <React.Fragment>
       <EuiText>
@@ -194,6 +199,29 @@ export const DragAndDropExample = {
         </React.Fragment>
       ),
       demo: <DragAndDropCustomHandle />
+    },
+    {
+      title: 'Interactive elements',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dragAndDropDisableBlockingSource
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dragAndDropDisableBlockingHtml
+        }
+      ],
+      text: (
+        <React.Fragment>
+          <p>
+            <EuiCode>EuiDraggable</EuiCode> elements can contain interactive elements such as buttons and form fields by adding the
+            <EuiCode>disableInteractiveElementBlocking</EuiCode> prop. This will keep drag functionality while also enabling click, etc.,
+            events on the interactive child elements.
+          </p>
+        </React.Fragment>
+      ),
+      demo: <DragAndDropDisableBlocking />
     },
     {
       title: 'Move between lists',
