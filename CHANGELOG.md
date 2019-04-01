@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.7.1`.
+- Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
 
 ## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
 
