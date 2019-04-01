@@ -4,7 +4,8 @@
 
 **Bug fixes**
 
-Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+- Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+- Prevent calculation on `null` ref during `EuiResizeObserver` observation ([#1784](https://github.com/elastic/eui/pull/1784))
 
 ## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
 
