@@ -665,8 +665,7 @@ export class EuiIcon extends Component<Props, State> {
   componentDidMount() {
     if (this.state.icon === undefined && typeof this.props.type === 'string') {
       import(`./assets/${decamelize(this.props.type)}.svg`).then(icon => {
-        console.log(icon);
-        this.setState({ icon });
+        this.setState({ icon: icon.default });
       });
     }
   }
@@ -708,8 +707,7 @@ export class EuiIcon extends Component<Props, State> {
     );
 
     // const Svg = (type && typeToIconMap[type]) || empty;
-    // const Svg = this.state.icon || empty;
-    const Svg = empty;
+    const Svg = this.state.icon || empty;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
@@ -718,6 +716,17 @@ export class EuiIcon extends Component<Props, State> {
     //   - If tab index is -1, then the consumer wants the icon to not be focusable.
     //   - For all other values, the consumer wants the icon to be focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
+
+    if (typeof Svg === 'string') {
+      // @ts-ignore
+      return (<img src={Svg}
+          className={classes}
+          tabIndex={tabIndex}
+          focusable={focusable}
+          {...rest}
+        />
+      );
+    }
 
     return (
       <Svg
@@ -729,8 +738,4 @@ export class EuiIcon extends Component<Props, State> {
       />
     );
   }
-}
-
-export async function dothing(thing: string) {
-  return import(`./assets/${thing}.svg`);
 }
