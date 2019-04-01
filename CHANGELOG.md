@@ -2,6 +2,10 @@
 
 - Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
 
+**Bug fixes**
+
+Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+
 ## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
 
 **Bug fixes**
