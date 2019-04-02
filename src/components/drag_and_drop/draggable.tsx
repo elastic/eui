@@ -29,11 +29,13 @@ export interface EuiDraggableProps
   customDragHandle?: boolean;
   spacing?: EuiDraggableSpacing;
   style?: CSSProperties;
+  hasDropAnimation?: boolean;
 }
 
 export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   customDragHandle = false,
   draggableId,
+  hasDropAnimation = true,
   isDragDisabled = false,
   index,
   children,
@@ -53,6 +55,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
             'euiDraggable--hasClone': cloneItems,
             'euiDraggable--hasCustomDragHandle': customDragHandle,
             'euiDraggable--isDragging': snapshot.isDragging,
+            'euiDraggable--withoutDropAnimation': !hasDropAnimation,
           },
           spacingToClassNameMap[spacing],
           className

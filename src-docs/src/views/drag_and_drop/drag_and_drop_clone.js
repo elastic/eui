@@ -17,6 +17,7 @@ import {
 import { makeId, makeList } from './helper';
 
 export default () => {
+  const [removeDropAnimation, setRemoveDropAnimation] = useState(false);
   const [list1, setList1] = useState(makeList(3));
   const [list2, setList2] = useState([]);
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
@@ -27,8 +28,11 @@ export default () => {
 
     actions[droppableId](list);
   };
+  const onDragUpdate = ({ source, destination }) => {
+    const shouldRemove = !destination && source.droppableId === 'DROPPABLE_AREA_COPY_2';
+    setRemoveDropAnimation(shouldRemove);
+  };
   const onDragEnd = ({ source, destination }) => {
-    console.log(source, destination);
     if (source && destination) {
       if (source.droppableId === destination.droppableId) {
         const items = reorder(
@@ -60,11 +64,11 @@ export default () => {
     }
   };
   return (
-    <EuiDragDropContext onDragEnd={onDragEnd}>
+    <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
         <EuiFlexItem>
 
-          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_1" cloneDraggables={true}>
+          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_1" cloneDraggables={true} spacing="l" grow>
             {list1.map(({ content, id }, idx) => (
               <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
                 <EuiPanel>
@@ -77,11 +81,16 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
 
-          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel spacing="l" grow>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_COPY_2"
+            withPanel
+            grow
+            style={{ padding: '8px 7px' /* account for the width difference with DROPPABLE_AREA_COPY_1 due to border */ }}
+          >
             {list2.length ?
               (
                 list2.map(({ content, id }, idx) => (
-                  <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
+                  <EuiDraggable key={id} index={idx} draggableId={id} spacing="l" hasDropAnimation={!removeDropAnimation}>
                     <EuiPanel>
                       <EuiFlexGroup gutterSize="none" alignItems="center">
                         <EuiFlexItem>{content}</EuiFlexItem>
