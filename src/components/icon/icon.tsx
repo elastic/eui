@@ -1,4 +1,4 @@
-import React, { Component, ReactElement, SVGAttributes } from 'react';
+import React, { Component, HTMLAttributes, ReactElement, SVGAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -651,10 +651,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 }
 
 function decamelize(x: string) {
-  return x.replace(
-    /[A-Z]/g,
-    match => `_${match.toLowerCase()}`
-  );
+  return x.replace(/[A-Z]/g, match => `_${match.toLowerCase()}`);
 }
 
 export class EuiIcon extends Component<Props, State> {
@@ -715,27 +712,18 @@ export class EuiIcon extends Component<Props, State> {
     //     which is how SVGs behave in Chrome, Safari, and FF.
     //   - If tab index is -1, then the consumer wants the icon to not be focusable.
     //   - For all other values, the consumer wants the icon to be focusable.
-    const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
+    // const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
     if (typeof Svg === 'string') {
       // @ts-ignore
-      return (<img src={Svg}
+      return (
+        <img
+          src={Svg}
           className={classes}
           tabIndex={tabIndex}
-          focusable={focusable}
-          {...rest}
+          {...rest as HTMLAttributes<HTMLImageElement>}
         />
       );
     }
-
-    return (
-      <Svg
-        className={classes}
-        style={optionalCustomStyles}
-        tabIndex={tabIndex}
-        focusable={focusable}
-        {...rest}
-      />
-    );
   }
 }
