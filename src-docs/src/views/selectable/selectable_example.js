@@ -361,7 +361,6 @@ export const SelectableExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiSelectableMessage },
       demo: <SelectableCustomRender />,
       snippet: `<EuiSelectable
   searchable

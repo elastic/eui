@@ -7,7 +7,7 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit } from '../common';
+import { CommonProps, Omit, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
@@ -33,11 +33,29 @@ type OptionalEuiSelectableOptionsListProps = Omit<
 type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
   Partial<OptionalEuiSelectableOptionsListProps>;
 
+// `searchProps` can only be specified when `searchable` is true
+type EuiSelectableSearchableProps = ExclusiveUnion<
+  {
+    searchable?: false;
+  },
+  {
+    /**
+     * Hooks up a search box to filter the list
+     */
+    searchable: true;
+    /**
+     * Passes props down to the `EuiFieldSearch`
+     */
+    searchProps?: {};
+  }
+>;
+
 export type EuiSelectableProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'children' | 'onChange'
 > &
-  CommonProps & {
+  CommonProps &
+  EuiSelectableSearchableProps & {
     /**
      * Function that takes the `list` node and then
      * the `search` node (if `searchable` is applied)
@@ -56,14 +74,6 @@ export type EuiSelectableProps = Omit<
      * Passes back the altered `options` array with selected options as
      */
     onChange?: (options: Option[]) => void;
-    /**
-     * Hooks up a search box to filter the list
-     */
-    searchable?: boolean;
-    /**
-     * Passes props down to the `EuiFieldSearch`
-     */
-    searchProps?: {};
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
