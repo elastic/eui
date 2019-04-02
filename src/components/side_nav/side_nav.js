@@ -155,6 +155,7 @@ EuiSideNav.propTypes = {
   /**
    * `items` is an array of objects (navigation menu `item`s).
    * Each `item` may contain the following properties (this is an incomplete list):
+   * `item.id` is a required value that is passed to React as the `key` for this item
    * `item.forceOpen` is an optional boolean; if set to true it will force the item to display in an "open" state at all times.
    * `item.href` is an optional string to be passed as the navigation item's `href` prop, and by default it will force rendering of the item as an `<a>`.
    * `item.icon` is an optional React node which will be rendered as a small icon to the left of the navigation item text.
@@ -164,7 +165,9 @@ EuiSideNav.propTypes = {
    * `item.onClick` is an optional callback function to be passed as the navigation item's `onClick` prop, and by default it will force rendering of the item as a `<button>` instead of a link.
    * `item.renderItem` is an optional function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired
+  }).isRequired),
   /**
    * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
    */
