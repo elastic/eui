@@ -27,5 +27,5 @@ export interface Option extends CommonProps {
    * Node to add to the far right of the item
    */
   append?: React.ReactNode;
-  ref?: () => void;
+  ref?: (optionIndex: number) => void;
 }

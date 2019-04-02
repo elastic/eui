@@ -47,7 +47,6 @@ export class EuiSelectableListItem extends Component<
 
   constructor(props: EuiSelectableListItemProps) {
     super(props);
-    this.state = { hasFocus: false };
   }
 
   render() {

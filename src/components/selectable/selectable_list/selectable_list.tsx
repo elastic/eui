@@ -1,9 +1,8 @@
-import React, { Component, HTMLAttributes } from 'react';
+import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { List, AutoSizer, ListProps } from 'react-virtualized';
-// @ts-ignore
-import { htmlIdGenerator, comboBoxKeyCodes } from '../../../services';
+import { htmlIdGenerator } from '../../../services';
 import { EuiSelectableListItem } from './selectable_list_item';
 // @ts-ignore
 import { EuiHighlight } from '../../highlight';
@@ -15,7 +14,7 @@ export type EuiSelectableSingleOptionProps = 'always' | boolean;
 export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
-     * The index of the option to be highlighted as pseudo-focused.
+     * The index of the option to be highlighted as pseudo-focused;
      * Good for use when only one selection is allowed and needing to open
      * directly to that option
      */
@@ -34,8 +33,8 @@ export type EuiSelectableOptionsListProps = HTMLAttributes<HTMLDivElement> &
      */
     virtualizedProps?: ListProps;
     /**
-     * Adds a border around the list to indicate the bounds.
-     * Useful when the list scrolls, otherwise use your own container.
+     * Adds a border around the list to indicate the bounds;
+     * Useful when the list scrolls, otherwise use your own container
      */
     bordered?: boolean;
   };
@@ -58,10 +57,10 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
    */
   onOptionClick: (options: Option[]) => void;
   /**
-   * Custom render for the label portion of the option.
-   * Returns (option, searchValue)
+   * Custom render for the label portion of the option;
+   * Takes (option, searchValue), returns ReactNode
    */
-  renderOption?: (option: Option, searchValue?: string) => {};
+  renderOption?: (option: Option, searchValue: string) => ReactNode;
   /**
    * Sets the max height in pixels or pass `full` to allow
    * the whole group to fill the height of its container and
@@ -112,7 +111,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
     const heightIsFull = forcedHeight === 'full';
 
     let calculatedHeight: any = !heightIsFull && forcedHeight;
-    let isOverflowing: boolean = false;
+    let isOverflowing = false;
 
     // If calculatedHeight is still undefined, then calculate it
     if (!calculatedHeight && !heightIsFull) {
@@ -149,7 +148,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
               width={width}
               height={calculatedHeight || height}
               rowCount={optionArray.length}
-              rowHeight={Number(rowHeight)}
+              rowHeight={rowHeight}
               scrollToIndex={activeOptionIndex}
               {...virtualizedProps}
               rowRenderer={({ key, index, style }) => {

@@ -4,15 +4,14 @@ import React, {
   ReactNode,
   createRef,
   Fragment,
+  ReactElement,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, Omit } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import { EuiSelectableList } from './selectable_list';
-// @ts-ignore
 import { EuiLoadingChart } from '../loading';
-// @ts-ignore
 import { getMatchingOptions } from './matching_options';
 import { comboBoxKeyCodes } from '../../services';
 import { TAB } from '../../services/key_codes';
@@ -40,10 +39,15 @@ export type EuiSelectableProps = Omit<
 > &
   CommonProps & {
     /**
-     * Function that returns the `list` node and then
+     * Function that takes the `list` node and then
      * the `search` node (if `searchable` is applied)
      */
-    children?: (list: ReactNode, search: ReactNode) => ReactNode;
+    children?: (
+      list: ReactElement<
+        typeof EuiSelectableMessage | typeof EuiSelectableList
+      >,
+      search: ReactElement<EuiSelectableSearch> | undefined
+    ) => ReactNode;
     /**
      * Array or Option objects, see docs for props
      */
@@ -89,7 +93,7 @@ export type EuiSelectableProps = Omit<
      * Custom render function for each option.
      * Returns (option, searchValue)
      */
-    renderOption?: (option: Option, searchValue?: string) => {};
+    renderOption?: (option: Option, searchValue: string) => {};
   };
 
 export interface EuiSelectableState {
@@ -278,7 +282,7 @@ export class EuiSelectable extends Component<
           <br />
           <p>
             <EuiI18n
-              token="euiComboBoxOptionsList.loadingOptions"
+              token="euiSelectable.loadingOptions"
               default="Loading options"
             />
           </p>
@@ -288,7 +292,7 @@ export class EuiSelectable extends Component<
       messageContent = (
         <p>
           <EuiI18n
-            token="euiComboBoxOptionsList.noMatchingOptions"
+            token="euiSelectable.noMatchingOptions"
             default="{searchValue} doesn't match any options"
             values={{ searchValue: <strong>{searchValue}</strong> }}
           />
@@ -298,7 +302,7 @@ export class EuiSelectable extends Component<
       messageContent = (
         <p>
           <EuiI18n
-            token="euiComboBoxOptionsList.noAvailableOptions"
+            token="euiSelectable.noAvailableOptions"
             default="No options available"
           />
         </p>
