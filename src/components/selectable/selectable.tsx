@@ -100,7 +100,6 @@ export interface EuiSelectableState {
   activeOptionIndex?: number;
   searchValue: string;
   visibleOptions: Option[];
-  options: Option[];
 }
 
 export class EuiSelectable extends Component<
@@ -133,7 +132,6 @@ export class EuiSelectable extends Component<
     }
 
     this.state = {
-      options,
       activeOptionIndex,
       searchValue: initialSearchValue,
       visibleOptions,
@@ -245,7 +243,6 @@ export class EuiSelectable extends Component<
 
   onOptionClick = (options: Option[]) => {
     this.setState(state => ({
-      options,
       visibleOptions: getMatchingOptions(options, state.searchValue),
     }));
     if (this.props.onChange) {

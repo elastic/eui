@@ -72,15 +72,16 @@ export type EuiSelectableListProps = EuiSelectableOptionsListProps & {
    * and not just on and undefined
    */
   allowExclusions?: boolean;
-  rootId: (appendix?: string) => string;
+  rootId?: (appendix?: string) => string;
 };
 
 export class EuiSelectableList extends Component<EuiSelectableListProps> {
   static defaultProps = {
     rowHeight: 32,
-    rootId: htmlIdGenerator(),
     searchValue: '',
   };
+
+  rootId = this.props.rootId || htmlIdGenerator();
 
   constructor(props: EuiSelectableListProps) {
     super(props);
@@ -110,11 +111,14 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
 
     const heightIsFull = forcedHeight === 'full';
 
-    let calculatedHeight: any = !heightIsFull && forcedHeight;
+    let calculatedHeight = (heightIsFull ? false : forcedHeight) as
+      | false
+      | number
+      | undefined;
     let isOverflowing = false;
 
     // If calculatedHeight is still undefined, then calculate it
-    if (!calculatedHeight && !heightIsFull) {
+    if (calculatedHeight === undefined) {
       const maxVisibleOptions = 7;
       const numVisibleOptions = optionArray.length;
       const numVisibleMoreThanMax = optionArray.length > maxVisibleOptions;
@@ -143,7 +147,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
         <AutoSizer disableHeight={!heightIsFull}>
           {({ width, height }) => (
             <List
-              id={rootId('listbox')}
+              id={this.rootId('listbox')}
               role="listbox"
               width={width}
               height={calculatedHeight || height}
@@ -178,11 +182,11 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
                 }
                 return (
                   <EuiSelectableListItem
-                    id={rootId(`_option-${index}`)}
+                    id={this.rootId(`_option-${index}`)}
                     style={style}
                     key={option.label.toLowerCase()}
                     onClick={() => this.onAddOrRemoveOption(option)}
-                    ref={ref ? ref.bind(this, index) : undefined}
+                    ref={ref ? ref.bind(null, index) : undefined}
                     isFocused={activeOptionIndex === index}
                     title={label}
                     showIcons={showIcons}
