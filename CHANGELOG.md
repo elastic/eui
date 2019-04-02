@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
 - Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
 
 **Bug fixes**
