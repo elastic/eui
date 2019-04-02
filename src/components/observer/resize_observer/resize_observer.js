@@ -11,12 +11,14 @@ class EuiResizeObserver extends EuiObserver {
   }
 
   onResize = () => {
-    // Eventually use `clientRect` on the `entries[]` returned natively
-    const { height, width } = this.childNode.getBoundingClientRect();
-    this.props.onResize({
-      height,
-      width
-    });
+    if (this.childNode != null) {
+      // Eventually use `clientRect` on the `entries[]` returned natively
+      const { height, width } = this.childNode.getBoundingClientRect();
+      this.props.onResize({
+        height,
+        width
+      });
+    }
   }
 
   beginObserve = () => {
