@@ -3,9 +3,10 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiIcon,
-  EuiListGroup,
-  EuiListGroupItem,
+  EuiPanel
 } from '../../../../src/components';
 
 import { reorder } from '../../../../src/components/drag_and_drop';
@@ -27,22 +28,26 @@ export default () => {
   };
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
-      <EuiListGroup bordered flush>
-        <EuiDroppable droppableId="CUSTOM_HANDLE_DROPPABLE_AREA">
-          {list.map(({ content, id }, idx) => (
-            <EuiDraggable key={id} index={idx} draggableId={id} customDragHandle={true}>
-              {(provided) => (
-
-                <EuiListGroupItem
-                  icon={<div {...provided.dragHandleProps}><EuiIcon type="grab" /></div>}
-                  label={content}
-                />
-
-              )}
-            </EuiDraggable>
-          ))}
-        </EuiDroppable>
-      </EuiListGroup>
+      <EuiDroppable droppableId="CUSTOM_HANDLE_DROPPABLE_AREA" spacing="m" withPanel>
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable spacing="m" key={id} index={idx} draggableId={id} customDragHandle={true}>
+            {(provided) => (
+              <EuiPanel className="custom" paddingSize="m">
+                <EuiFlexGroup>
+                  <EuiFlexItem grow={false}>
+                    <div {...provided.dragHandleProps}>
+                      <EuiIcon type="grab" />
+                    </div>
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    {content}
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
     </EuiDragDropContext>
   );
 };
