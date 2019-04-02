@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, Omit, PropsOf } from '../../common';
+import { CommonProps, Omit } from '../../common';
 // @ts-ignore
 import { EuiFieldSearch } from '../../form/field_search';
 import { getMatchingOptions } from '../matching_options';
 import { Option } from '../types';
 
+/// <reference path="../../form/field_search/index.d.ts" />
+import { EuiFieldSearchProps } from '@elastic/eui';
+
 export type EuiSelectableSearchProps = Omit<
-  PropsOf<EuiFieldSearch>,
+  InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
   'onChange'
 > &
   CommonProps & {
