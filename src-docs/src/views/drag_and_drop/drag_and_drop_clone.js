@@ -66,7 +66,7 @@ export default () => {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
-        <EuiFlexItem>
+        <EuiFlexItem style={{ width: '50%' }}>
 
           <EuiDroppable droppableId="DROPPABLE_AREA_COPY_1" cloneDraggables={true} spacing="l" grow>
             {list1.map(({ content, id }, idx) => (
@@ -79,14 +79,9 @@ export default () => {
           </EuiDroppable>
 
         </EuiFlexItem>
-        <EuiFlexItem>
+        <EuiFlexItem style={{ width: '50%' }}>
 
-          <EuiDroppable
-            droppableId="DROPPABLE_AREA_COPY_2"
-            withPanel
-            grow
-            style={{ padding: '8px 7px' /* account for the width difference with DROPPABLE_AREA_COPY_1 due to border */ }}
-          >
+          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
             {list2.length ?
               (
                 list2.map(({ content, id }, idx) => (
