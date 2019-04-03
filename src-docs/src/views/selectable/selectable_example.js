@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router';
-import { Fragment } from 'react-is';
 
 import { renderToHtml } from '../../services';
 

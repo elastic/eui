@@ -395,7 +395,6 @@ const navigation = [{
     ListGroupExample,
     LoadingExample,
     ProgressExample,
-    SelectableExample,
     StatExample,
     TableExample,
     TextExample,
@@ -418,6 +417,7 @@ const navigation = [{
     FilterGroupExample,
     RangeControlExample,
     SearchBarExample,
+    SelectableExample,
   ].map(example => createExample(example)),
 },
 {
