@@ -300,7 +300,7 @@ const createExample = (example) => {
     throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
   }
 
-  const { title, intro, sections, beta } = example;
+  const { title, intro, sections } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -312,7 +312,7 @@ const createExample = (example) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro} isBeta={beta}>
+      <GuidePage title={title} intro={intro}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>

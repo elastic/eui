@@ -11,23 +11,16 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiButton,
-  EuiBetaBadge,
 } from '../../../../src/components';
 
-export const GuidePage = ({ children, title, intro, componentLinkTo, isBeta }) => {
-  const betaBadge = isBeta ?
-    (<EuiBetaBadge
-      label="Beta"
-      tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
-    />) : undefined;
-
+export const GuidePage = ({ children, title, intro, componentLinkTo }) => {
   return (
     <Fragment>
       <div className="guideSection__text">
         <EuiFlexGroup>
           <EuiFlexItem>
             <EuiTitle size="l">
-              <h1>{title} {betaBadge}</h1>
+              <h1>{title}</h1>
             </EuiTitle>
           </EuiFlexItem>
           { componentLinkTo &&
@@ -57,5 +50,4 @@ GuidePage.propTypes = {
   title: PropTypes.string,
   intro: PropTypes.node,
   componentLinkTo: PropTypes.string,
-  isBeta: PropTypes.bool,
 };
