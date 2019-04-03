@@ -24,8 +24,14 @@ export interface EuiDroppableProps
     Omit<DroppableProps, 'children'> {
   children: ReactElement | DroppableProps['children'];
   className?: string;
+  /**
+   * Makes its items immutable. Dragging creates cloned items that can be dropped elsewhere.
+   */
   cloneDraggables?: boolean;
   style?: CSSProperties;
+  /**
+   * Adds padding to the droppable area
+   */
   spacing?: EuiDroppableSpacing;
   /**
    * Adds an EuiPanel style to the droppable area

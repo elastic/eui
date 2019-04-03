@@ -26,8 +26,17 @@ export interface EuiDraggableProps
     Omit<DraggableProps, 'children'> {
   children: ReactElement | DraggableProps['children'];
   className?: string;
+  /**
+   * Whether the `children` will provide and set up its own drag handle
+   */
   customDragHandle?: boolean;
+  /**
+   * Whether the item is currently in a position to be removed
+   */
   isRemovable?: boolean;
+  /**
+   * Adds padding to the draggable item
+   */
   spacing?: EuiDraggableSpacing;
   style?: CSSProperties;
 }
