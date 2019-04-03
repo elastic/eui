@@ -1,0 +1,8 @@
+/**
+  * 1. Prevent really long input from overflowing the container.
+  */
+.euiSelectableMessage {
+  padding: $euiSizeS;
+  text-align: center;
+  word-wrap: break-word; /* 1 */
+}

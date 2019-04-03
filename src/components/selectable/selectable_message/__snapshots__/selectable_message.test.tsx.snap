@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectableMessage is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiText euiText--extraSmall euiSelectableMessage testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiTextColor euiTextColor--subdued"
+  />
+</div>
+`;
