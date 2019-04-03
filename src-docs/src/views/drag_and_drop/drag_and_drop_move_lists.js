@@ -5,6 +5,7 @@ import {
   EuiFlexItem,
   EuiDraggable,
   EuiDroppable,
+  EuiIcon,
   EuiPanel
 } from '../../../../src/components';
 
@@ -51,31 +52,43 @@ export default () => {
       <EuiFlexGroup>
         <EuiFlexItem>
 
-          <EuiDroppable droppableId="DROPPABLE_AREA_1">
-            {list1.map(({ content, id }, idx) => (
-              <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
-                {(provided, state) => (
-                  <EuiPanel>
-                    {content}{state.isDragging && ' ✨'}
-                  </EuiPanel>
-                )}
-              </EuiDraggable>
-            ))}
+          <EuiDroppable droppableId="DROPPABLE_AREA_1" spacing="m" withPanel grow={false}>
+            {list1.length > 0 ? (
+              list1.map(({ content, id }, idx) => (
+                <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                  {(provided, state) => (
+                    <EuiPanel>
+                      {content}{state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))
+            ) : (
+              <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
+                <EuiFlexItem grow={false}><EuiIcon type="faceSad" /></EuiFlexItem>
+              </EuiFlexGroup>
+            )}
           </EuiDroppable>
 
         </EuiFlexItem>
         <EuiFlexItem>
 
-          <EuiDroppable droppableId="DROPPABLE_AREA_2">
-            {list2.map(({ content, id }, idx) => (
-              <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
-                {(provided, state) => (
-                  <EuiPanel>
-                    {content}{state.isDragging && ' ✨'}
-                  </EuiPanel>
-                )}
-              </EuiDraggable>
-            ))}
+          <EuiDroppable droppableId="DROPPABLE_AREA_2" spacing="m" withPanel grow={false}>
+            {list2.length > 0 ? (
+              list2.map(({ content, id }, idx) => (
+                <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                  {(provided, state) => (
+                    <EuiPanel>
+                      {content}{state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))
+            ) : (
+              <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
+                <EuiFlexItem grow={false}><EuiIcon type="faceSad" /></EuiFlexItem>
+              </EuiFlexGroup>
+            )}
           </EuiDroppable>
 
         </EuiFlexItem>
