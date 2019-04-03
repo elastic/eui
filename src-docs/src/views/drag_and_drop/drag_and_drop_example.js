@@ -298,6 +298,10 @@ export const DragAndDropExample = {
             The EUI <EuiCode>copy</EuiCode> method is available and demonstrated in the example below. Note that the data point used as
             <EuiCode>draggableId</EuiCode> in <EuiCode>EuiDraggable</EuiCode> must change to allow for real duplication.
           </p>
+          <p>
+            <EuiCode>isRemovable</EuiCode> is used in the example for cloned items. This API is likely to change, but currently provides
+            the visual changes with drop-to-remove interactions.
+          </p>
         </React.Fragment>
       ),
       demo: <DragAndDropClone />
