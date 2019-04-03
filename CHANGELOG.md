@@ -2,6 +2,7 @@
 
 - Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
 - Added `data-test-subj`s to `EuiSuperDatePicker`'s `EuiRelativeTab` inputs  ([#1782](https://github.com/elastic/eui/pull/1782))
+
 **Bug fixes**
 
 - Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
