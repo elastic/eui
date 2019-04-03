@@ -38,13 +38,13 @@
 
   // sass-lint:disable-block no-vendor-prefixes
   &::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
+    width: $euiScrollBar;
+    height: $euiScrollBar;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: transparentize($euiColorDarkShade, .5);
-    border: 6px solid transparent;
+    border: $euiScrollBarCorner solid transparent;
     background-clip: content-box;
   }
 

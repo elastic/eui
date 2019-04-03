@@ -1,0 +1,27 @@
+.euiSelectableList {
+  .ReactVirtualized__List {
+    @include euiScrollBar;
+  }
+}
+
+// Expand height of list via flex box
+.euiSelectableList-fullHeight {
+  flex-grow: 1;
+}
+
+.euiSelectableList-bordered {
+  overflow: hidden;
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+}
+
+.euiSelectableList-overflowing {
+  @include euiOverflowShadow;
+}
+
+.euiSelectableList__groupLabel {
+  @include euiTitle('xxxs');
+  display: flex;
+  align-items: center;
+  border-bottom: $euiSelectableListItemBorder;
+}

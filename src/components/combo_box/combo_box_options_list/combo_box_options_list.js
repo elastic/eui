@@ -9,9 +9,9 @@ import { EuiHighlight } from '../../highlight';
 import { EuiPanel } from '../../panel';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
-import { EuiComboBoxOption } from './combo_box_option';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
+import { EuiFilterSelectItem } from '../../filter_group/filter_select_item';
 
 const positionToClassNameMap = {
   top: 'euiComboBoxOptionsList--top',
@@ -103,7 +103,7 @@ export class EuiComboBoxOptionsList extends Component {
       matchingOptions,
       optionRef,
       onOptionClick,
-      onOptionEnterKey,
+      onOptionEnterKey, // eslint-disable-line no-unused-vars
       areAllOptionsSelected,
       getSelectedOptionForSearchValue,
       position,
@@ -223,21 +223,22 @@ export class EuiComboBoxOptionsList extends Component {
           }
 
           return (
-            <EuiComboBoxOption
+            <EuiFilterSelectItem
               style={style}
-              option={option}
               key={option.label.toLowerCase()}
-              onClick={onOptionClick}
-              onEnterKey={onOptionEnterKey}
-              optionRef={optionRef.bind(this, index)}
+              onClick={() => onOptionClick(option)}
+              // onEnterKey={onOptionEnterKey}
+              ref={optionRef.bind(this, index)}
               isFocused={activeOptionIndex === index}
               id={rootId(`_option-${index}`)}
+              title={label}
+              showIcons={false}
               {...rest}
             >
               {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
                 <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
               )}
-            </EuiComboBoxOption>
+            </EuiFilterSelectItem>
           );
         }}
       />

@@ -5,6 +5,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
   aria-label="aria-label"
   class="euiFilterSelectItem testClass1 testClass2"
   data-test-subj="test subject string"
+  role="option"
   type="button"
 >
   <span
@@ -23,7 +24,7 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem"
+      class="euiFlexItem euiFilterSelectItem__content"
     />
   </span>
 </button>
