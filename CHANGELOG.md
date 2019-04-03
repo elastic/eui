@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `9.7.2`.
+
+## [`9.7.2`](https://github.com/elastic/eui/tree/v9.7.2)
+
 - Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
+- Added `data-test-subj`s to `EuiSuperDatePicker`'s `EuiRelativeTab` inputs  ([#1782](https://github.com/elastic/eui/pull/1782))
 
 **Bug fixes**
 
