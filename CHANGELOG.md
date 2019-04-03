@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
+
+## [`9.7.2`](https://github.com/elastic/eui/tree/v9.7.2)
+
 - Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
+- Added `data-test-subj`s to `EuiSuperDatePicker`'s `EuiRelativeTab` inputs  ([#1782](https://github.com/elastic/eui/pull/1782))
 
 **Bug fixes**
 
-Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+- Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+- Prevent calculation on `null` ref during `EuiResizeObserver` observation ([#1784](https://github.com/elastic/eui/pull/1784))
 
 ## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
 
