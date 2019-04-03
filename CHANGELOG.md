@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.7.2`.
+- **[Beta]** Added new `EuiSelectable` component  ([#1699](https://github.com/elastic/eui/pull/1699))
+
 
 ## [`9.7.2`](https://github.com/elastic/eui/tree/v9.7.2)
 
