@@ -5,7 +5,7 @@ import { CommonProps } from '../../common';
 export const EuiTableHeaderMobile: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement>
 > = ({ children, className, ...rest }) => {
-  const classes: string = classNames('euiTableHeaderMobile', className);
+  const classes = classNames('euiTableHeaderMobile', className);
 
   return (
     <div className={classes} {...rest}>
