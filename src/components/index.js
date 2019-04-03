@@ -93,6 +93,12 @@ export {
 } from './description_list';
 
 export {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+} from './drag_and_drop';
+
+export {
   EuiEmptyPrompt,
 } from './empty_prompt';
 

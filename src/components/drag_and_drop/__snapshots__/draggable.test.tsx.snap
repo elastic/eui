@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDraggable can be given ReactElement children 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-react-beautiful-dnd-droppable="1"
+  data-test-subj="droppable"
+>
+  <div
+    aria-roledescription="Draggable item. Press space bar to lift"
+    class="euiDraggable"
+    data-react-beautiful-dnd-drag-handle="1"
+    data-react-beautiful-dnd-draggable="1"
+    data-test-subj="draggable"
+    draggable="false"
+    tabindex="0"
+  >
+    <div
+      class="euiDraggable__item"
+    >
+      Hello
+    </div>
+  </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`EuiDraggable is rendered 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-react-beautiful-dnd-droppable="0"
+  data-test-subj="droppable"
+>
+  <div
+    aria-roledescription="Draggable item. Press space bar to lift"
+    class="euiDraggable"
+    data-react-beautiful-dnd-drag-handle="0"
+    data-react-beautiful-dnd-draggable="0"
+    data-test-subj="draggable"
+    draggable="false"
+    tabindex="0"
+  >
+    <div
+      class="euiDraggable__item"
+    >
+      Hello
+    </div>
+  </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;

@@ -184,7 +184,7 @@ export class GuideSection extends Component {
 
     const rows = propNames.map(propName => {
       const {
-        description: propDescription,
+        description: propDescription = '',
         required,
         defaultValue,
         type,
