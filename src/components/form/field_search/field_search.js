@@ -23,11 +23,12 @@ const propTypes = {
   isLoading: PropTypes.bool,
   inputRef: PropTypes.func,
   /**
-   * called when the user presses [Enter] OR on change if the incremental prop is `true`. if you don't need the on[Enter] functionality, prefer using onChange
+   * Called when the user presses [Enter] OR on change if the incremental prop is `true`.
+   * If you don't need the on[Enter] functionality, prefer using onChange
    */
   onSearch: PropTypes.func,
   /**
-   * when `true` the search will be executed (that is, the `onSearch` will be called) as the
+   * When `true` the search will be executed (that is, the `onSearch` will be called) as the
    * user types.
    */
   incremental: PropTypes.bool,

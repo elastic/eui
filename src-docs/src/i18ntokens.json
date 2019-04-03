@@ -544,6 +544,54 @@
     "filepath": "src/components/popover/popover.js"
   },
   {
+    "token": "euiSelectable.loadingOptions",
+    "defString": "Loading options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 291,
+        "column": 12
+      },
+      "end": {
+        "line": 294,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noMatchingOptions",
+    "defString": "{searchValue} doesn't match any options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 301,
+        "column": 10
+      },
+      "end": {
+        "line": 305,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noAvailableOptions",
+    "defString": "No options available",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 311,
+        "column": 10
+      },
+      "end": {
+        "line": 314,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
     "token": "euiStepHorizontal.buttonTitle",
     "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
     "highlighting": "code",

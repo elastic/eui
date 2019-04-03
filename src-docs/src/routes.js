@@ -108,6 +108,9 @@ import { DelayHideExample }
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
 
+import { DragAndDropExample }
+  from './views/drag_and_drop/drag_and_drop_example';
+
 import { EmptyPromptExample }
   from './views/empty_prompt/empty_prompt_example';
 
@@ -216,6 +219,9 @@ import { ResponsiveExample }
 import { SearchBarExample }
   from './views/search_bar/search_bar_example';
 
+import { SelectableExample }
+  from './views/selectable/selectable_example';
+
 import { SideNavExample }
   from './views/side_nav/side_nav_example';
 
@@ -297,7 +303,7 @@ const createExample = (example) => {
     throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
   }
 
-  const { title, intro, sections } = example;
+  const { title, intro, sections, beta } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -309,7 +315,7 @@ const createExample = (example) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro}>
+      <GuidePage title={title} intro={intro} isBeta={beta}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -385,6 +391,7 @@ const navigation = [{
     CardExample,
     CodeExample,
     DescriptionListExample,
+    DragAndDropExample,
     EmptyPromptExample,
     HealthExample,
     IconExample,
@@ -414,6 +421,7 @@ const navigation = [{
     FilterGroupExample,
     RangeControlExample,
     SearchBarExample,
+    SelectableExample,
   ].map(example => createExample(example)),
 },
 {

@@ -93,6 +93,12 @@ export {
 } from './description_list';
 
 export {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+} from './drag_and_drop';
+
+export {
   EuiEmptyPrompt,
 } from './empty_prompt';
 
@@ -293,6 +299,14 @@ export {
   Query,
   Ast
 } from './search_bar';
+
+export {
+  EuiSelectable,
+  EuiSelectableList,
+  EuiSelectableListItem,
+  EuiSelectableMessage,
+  EuiSelectableSearch,
+} from './selectable';
 
 export {
   EuiSideNav,
