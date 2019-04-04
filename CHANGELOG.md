@@ -37,7 +37,7 @@
 
 **Bug fixes**
 
-**Note: this release creates a minor regression to text scales where paragraph and heading tags were no longer inheriting from their container. This is fixed in `master`.**
+**Note: this release creates a minor regression to text scales where paragraph and heading tags were no longer inheriting from their container. This is fixed in `9.7.1`.**
 
 - Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
 - Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))
