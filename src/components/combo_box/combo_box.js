@@ -290,6 +290,7 @@ export class EuiComboBox extends Component {
       if (this.props.onBlur) {
         this.props.onBlur();
       }
+      this.setState({ hasFocus: false });
 
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
@@ -297,10 +298,6 @@ export class EuiComboBox extends Component {
         this.addCustomOption();
       }
     }
-  }
-
-  onComboBoxBlur = () => {
-    this.setState({ hasFocus: false });
   }
 
   onKeyDown = (e) => {
@@ -573,6 +570,7 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
+      inputRef, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
       isClearable,
@@ -583,6 +581,8 @@ export class EuiComboBox extends Component {
     } = this.props;
     const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
+    // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input
+    // this can occur when custom options are disabled and the user leaves the combo box after entering text that does not match any options
     const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
 
     const classes = classNames('euiComboBox', className, {
@@ -646,7 +646,6 @@ export class EuiComboBox extends Component {
           placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}
-          onBlur={this.onComboBoxBlur}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.onComboBoxFocus}
