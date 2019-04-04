@@ -108,6 +108,8 @@ const iconTypes = [
   'mapMarker',
   'memory',
   'merge',
+  'menuLeft',
+  'menuRight',
   'minusInCircle',
   'minusInCircleFilled',
   'node',
