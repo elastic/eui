@@ -180,6 +180,8 @@ import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
 import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
+import menuLeft from './assets/menuLeft.svg';
+import menuRight from './assets/menuRight.svg';
 import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import minusInCircleFilled from './assets/minus_in_circle_filled.svg';
@@ -475,6 +477,8 @@ const typeToIconMap = {
   mapMarker,
   memory,
   merge,
+  menuLeft,
+  menuRight,
   metricbeatApp,
   minusInCircle,
   minusInCircleFilled,

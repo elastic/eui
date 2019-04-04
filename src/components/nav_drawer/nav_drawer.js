@@ -174,7 +174,7 @@ export class EuiNavDrawer extends Component {
             {([sideNavCollapse, sideNavExpand]) => (
               <EuiListGroupItem
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
-                iconType={this.state.isCollapsed ? 'sortRight' : 'sortLeft'}
+                iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
                 size="s"
                 showToolTip={this.state.isCollapsed}
                 onClick={this.state.isCollapsed ? () => {this.expandDrawer(); this.collapseFlyout();} : () => this.collapseDrawer()}
