@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.8.0`.
+**Bug fixes**
+
+- Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
 
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
