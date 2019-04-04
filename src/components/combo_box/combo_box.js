@@ -581,8 +581,9 @@ export class EuiComboBox extends Component {
     } = this.props;
     const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
-    // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input
-    // this can occur when custom options are disabled and the user leaves the combo box after entering text that does not match any options
+    // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
+    // When custom options are disabled and the user leaves the combo box after entering text that does not match any
+    // options, this tells the user that they've entered invalid input.
     const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
 
     const classes = classNames('euiComboBox', className, {
