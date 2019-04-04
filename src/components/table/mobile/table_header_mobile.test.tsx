@@ -6,11 +6,8 @@ import { EuiTableHeaderMobile } from './table_header_mobile';
 
 describe('EuiTableHeaderMobile', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableHeaderMobile {...requiredProps} />
-    );
+    const component = render(<EuiTableHeaderMobile {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
