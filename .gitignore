@@ -19,6 +19,7 @@ es/
 npm-debug.log
 yarn-error.log
 eui.d.ts
+src/components/icon/assets/**/*.tsx
 
 # typescript output
 types/

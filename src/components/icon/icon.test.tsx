@@ -1,25 +1,33 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import cheerio from 'cheerio';
 
-import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
+import { EuiIcon, IconType, SIZES, TYPES, COLORS } from './icon';
+import { PropsOf } from '../common';
+
+function testIcon(type: IconType, props: PropsOf<EuiIcon> = {}) {
+  return () => {
+    const component = mount(
+      <EuiIcon type={type} {...props} />
+    );
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        component.update();
+        expect(cheerio.load('')(component.html())).toMatchSnapshot();
+        resolve();
+      }, 1000);
+    });
+  };
+}
 
 describe('EuiIcon', () => {
-  test('is rendered', () => {
-    const component = render(<EuiIcon type="search" {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
-  });
+  test('is rendered', testIcon('search', requiredProps));
 
   describe('props', () => {
     describe('other props', () => {
-      test('are passed through to the icon', () => {
-        const component = render(
-          <EuiIcon type="search" aria-label="a custom title" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
+      test('are passed through to the icon', testIcon('search', {'aria-label': 'a custom title'}));
     });
 
     describe('size', () => {
@@ -34,11 +42,7 @@ describe('EuiIcon', () => {
 
     describe('type', () => {
       TYPES.forEach(type => {
-        test(`${type} is rendered`, () => {
-          const component = render(<EuiIcon type={type} />);
-
-          expect(component).toMatchSnapshot();
-        });
+        test(`${type} is rendered`, testIcon(type));
       });
     });
 

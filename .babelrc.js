@@ -41,5 +41,11 @@ module.exports = {
         }
       }
     ]
-  ]
+  ],
+
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    }
+  }
 };

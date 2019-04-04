@@ -1,3 +1,7 @@
+linterOptions:
+  exclude:
+    - "**/assets/**/*.tsx"
+
 extends:
   - tslint:recommended
   - tslint-plugin-prettier
