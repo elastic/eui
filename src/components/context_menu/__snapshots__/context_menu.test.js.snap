@@ -32,7 +32,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <defs>
             <path
@@ -88,7 +87,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <defs>
             <path
@@ -136,7 +134,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
           viewBox="0 0 16 16"
           width="16"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <defs>
             <path
@@ -178,7 +175,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <defs>
                 <path
@@ -213,7 +209,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <defs>
                 <path
@@ -248,7 +243,6 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <defs>
                 <path
@@ -292,21 +286,8 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
           height="16"
           viewBox="0 0 16 16"
           width="16"
-          xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <path
-              d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-              id="arrow_left-a"
-            />
-          </defs>
-          <use
-            fill-rule="nonzero"
-            href="#arrow_left-a"
-            transform="rotate(90 8 8)"
-          />
-        </svg>
+        />
         <span
           class="euiContextMenu__text"
         >

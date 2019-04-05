@@ -10,21 +10,8 @@ exports[`EuiToken is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -38,21 +25,8 @@ exports[`EuiToken props color tokenTint01 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -66,21 +40,8 @@ exports[`EuiToken props color tokenTint02 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -94,21 +55,8 @@ exports[`EuiToken props color tokenTint03 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -122,21 +70,8 @@ exports[`EuiToken props color tokenTint04 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -150,21 +85,8 @@ exports[`EuiToken props color tokenTint05 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -178,21 +100,8 @@ exports[`EuiToken props color tokenTint06 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -206,21 +115,8 @@ exports[`EuiToken props color tokenTint07 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -234,21 +130,8 @@ exports[`EuiToken props color tokenTint08 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -262,21 +145,8 @@ exports[`EuiToken props color tokenTint09 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -290,21 +160,8 @@ exports[`EuiToken props color tokenTint10 is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -318,21 +175,8 @@ exports[`EuiToken props shape circle is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -346,21 +190,8 @@ exports[`EuiToken props shape rectangle is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -374,21 +205,8 @@ exports[`EuiToken props shape square is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -402,21 +220,8 @@ exports[`EuiToken props size l is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -430,21 +235,8 @@ exports[`EuiToken props size m is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -458,20 +250,7 @@ exports[`EuiToken props size s is rendered 1`] = `
     height="16"
     viewBox="0 0 16 16"
     width="16"
-    xlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <circle
-        cx="8"
-        cy="8"
-        id="dot-a"
-        r="4"
-      />
-    </defs>
-    <use
-      href="#dot-a"
-    />
-  </svg>
+  />
 </div>
 `;

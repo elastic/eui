@@ -1,10 +1,12 @@
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import cheerio from 'cheerio';
 
 import { EuiIcon, IconType, SIZES, TYPES, COLORS } from './icon';
 import { PropsOf } from '../common';
+
+const prettyHtml = cheerio.load('');
 
 function testIcon(type: IconType, props: PropsOf<EuiIcon> = {}) {
   return () => {
@@ -15,9 +17,9 @@ function testIcon(type: IconType, props: PropsOf<EuiIcon> = {}) {
     return new Promise(resolve => {
       setTimeout(() => {
         component.update();
-        expect(cheerio.load('')(component.html())).toMatchSnapshot();
+        expect(prettyHtml(component.html())).toMatchSnapshot();
         resolve();
-      }, 1000);
+      }, 0);
     });
   };
 }
@@ -32,11 +34,7 @@ describe('EuiIcon', () => {
 
     describe('size', () => {
       SIZES.forEach(size => {
-        test(`${size} is rendered`, () => {
-          const component = render(<EuiIcon type="search" size={size} />);
-
-          expect(component).toMatchSnapshot();
-        });
+        test('${size} is rendered', testIcon('search', { size }));
       });
     });
 
@@ -53,29 +51,16 @@ describe('EuiIcon', () => {
         'rgb(100, 150, 200)',
         'hsla(270, 60%, 70%, 0.9)',
       ]).forEach(color => {
-        test(`${color} is rendered`, () => {
-          const component = render(<EuiIcon color={color} />);
-
-          expect(component).toMatchSnapshot();
-        });
+        testIcon(`${color} is rendered`, { color });
       });
     });
 
     describe('tabIndex', () => {
-      test('renders focusable="false" when not provided', () => {
-        const component = render(<EuiIcon type="search" />);
-        expect(component).toMatchSnapshot();
-      });
+      testIcon('renders focusable="false" when not provided', {type: 'search'});
 
-      test('renders focusable="false" when -1', () => {
-        const component = render(<EuiIcon type="search" tabIndex={-1} />);
-        expect(component).toMatchSnapshot();
-      });
+      testIcon('renders focusable="false" when -1', {type: 'search', tabIndex: -1});
 
-      test('renders focusable="true" when 0', () => {
-        const component = render(<EuiIcon type="search" tabIndex={0} />);
-        expect(component).toMatchSnapshot();
-      });
+      testIcon('renders focusable="true" when 0', {type: 'search', tabIndex: 0});
     });
   });
 });

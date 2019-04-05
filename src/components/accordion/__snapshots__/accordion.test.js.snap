@@ -46,7 +46,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                         size="m"
                         type="arrowRight"
                       >
-                        <arrowRight
+                        <empty
                           className="euiIcon euiIcon--medium"
                           focusable="false"
                           height="16"
@@ -54,7 +54,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
@@ -64,21 +63,8 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                          >
-                            <defs>
-                              <path
-                                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                                id="arrow_right-a"
-                              />
-                            </defs>
-                            <use
-                              fillRule="nonzero"
-                              transform="matrix(0 1 1 0 0 0)"
-                              xlinkHref="#arrow_right-a"
-                            />
-                          </svg>
-                        </arrowRight>
+                          />
+                        </empty>
                       </EuiIcon>
                     </div>
                   </EuiFlexItem>
@@ -166,7 +152,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                         size="m"
                         type="arrowDown"
                       >
-                        <arrowDown
+                        <empty
                           className="euiIcon euiIcon--medium"
                           focusable="false"
                           height="16"
@@ -174,7 +160,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                           viewBox="0 0 16 16"
                           width="16"
                           xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
@@ -184,20 +169,8 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                             viewBox="0 0 16 16"
                             width="16"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                          >
-                            <defs>
-                              <path
-                                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                                id="arrow_down-a"
-                              />
-                            </defs>
-                            <use
-                              fillRule="nonzero"
-                              xlinkHref="#arrow_down-a"
-                            />
-                          </svg>
-                        </arrowDown>
+                          />
+                        </empty>
                       </EuiIcon>
                     </div>
                   </EuiFlexItem>
@@ -269,21 +242,8 @@ exports[`EuiAccordion is rendered 1`] = `
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
+            />
           </div>
           <div
             class="euiFlexItem euiAccordion__buttonContent"
@@ -333,21 +293,8 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
+            />
           </div>
           <div
             class="euiFlexItem euiAccordion__buttonContent"
@@ -401,21 +348,8 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
+            />
           </div>
           <div
             class="euiFlexItem euiAccordion__buttonContent button content class name"
@@ -465,21 +399,8 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_right-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_right-a"
-                transform="matrix(0 1 1 0 0 0)"
-              />
-            </svg>
+            />
           </div>
           <div
             class="euiFlexItem euiAccordion__buttonContent"
@@ -536,20 +457,8 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
+            />
           </div>
           <div
             class="euiFlexItem euiAccordion__buttonContent"
