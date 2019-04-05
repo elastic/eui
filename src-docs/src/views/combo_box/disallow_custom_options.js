@@ -40,20 +40,17 @@ export default class extends Component {
 
   onChange = (selectedOptions) => {
     this.setState({
+      error: undefined,
       selectedOptions,
     });
   }
 
   onBlur = () => {
     const { value } = this.inputRef;
-    if (value.length !== 0) {
-      this.setState({
-        error: `"${value}" is not a valid option`,
-      });
-    }
+    this.setState({
+      error: value.length === 0 ? undefined : `"${value}" is not a valid option`,
+    });
   }
-
-  clearError = () => this.setState({ error: undefined });
 
   setInputRef = ref => this.inputRef = ref;
 
@@ -67,7 +64,6 @@ export default class extends Component {
           inputRef={this.setInputRef}
           onChange={this.onChange}
           onBlur={this.onBlur}
-          onFocus={this.clearError}
         />
       </EuiFormRow>
     );
