@@ -45,6 +45,7 @@ import cross from './assets/cross.svg';
 import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
 import crosshairs from './assets/crosshairs.svg';
 import crossInACircleFilled from './assets/crossInACircleFilled.svg';
+import cut from './assets/cut.svg';
 import dashboardApp from './assets/app_dashboard.svg';
 import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
@@ -342,6 +343,7 @@ const typeToIconMap = {
   crossClusterReplicationApp,
   crosshairs,
   crossInACircleFilled,
+  cut,
   dashboardApp,
   database,
   dataVisualizer,
