@@ -159,6 +159,7 @@ export class EuiSuperSelect extends Component {
       valueOfSelected,
       onChange,
       isOpen,
+      isInvalid,
       hasDividers,
       itemClassName,
       itemLayoutAlign,
@@ -199,6 +200,7 @@ export class EuiSuperSelect extends Component {
         onKeyDown={this.onSelectKeyDown}
         className={buttonClasses}
         fullWidth={fullWidth}
+        isInvalid={isInvalid}
         {...rest}
       />
     );
@@ -302,6 +304,10 @@ EuiSuperSelect.propTypes = {
    * Make it wide
    */
   fullWidth: PropTypes.bool,
+  /**
+   * Provides invalid styling
+   */
+  isInvalid: PropTypes.bool,
   /**
    * Make it short
    */
