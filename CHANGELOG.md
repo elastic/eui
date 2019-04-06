@@ -4,6 +4,10 @@
 - Added `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
 - Updated EuiNavDrawer’s collapse/expand button to use `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
 
+**Bug fixes**
+
+- Fixed issue where toasts would dismiss when they have focus ([#1803](https://github.com/elastic/eui/pull/1803))
+
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
 - **[Beta]** Added new `EuiSelectable` component  ([#1699](https://github.com/elastic/eui/pull/1699))
