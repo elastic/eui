@@ -180,6 +180,13 @@
     &[readOnly] {
       @include euiFormControlReadOnlyStyle;
     }
+
+    // Needs to be set for autofill in dark mode
+    // sass-lint:disable-block no-vendor-prefixes
+    &:-webkit-autofill {
+      -webkit-text-fill-color: $euiTextColor;
+    }
+
   }
 
 }
