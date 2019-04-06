@@ -7,6 +7,7 @@
 **Bug fixes**
 
 - Fixed issue where toasts would dismiss when they have focus ([#1803](https://github.com/elastic/eui/pull/1803))
+- Fixed issue where placeholder was not read with combo box ([#1803](https://github.com/elastic/eui/pull/1803))
 
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
