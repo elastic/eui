@@ -6,11 +6,11 @@ export type EuiToolTipPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     positionToolTip: (rect: ClientRect | DOMRect) => void;
     children?: ReactNode;
-    title?: string;
+    title?: ReactNode;
     popoverRef?: (ref: HTMLDivElement) => void;
   };
 
-export class EuiToolTipPopover extends Component<EuiToolTipPopoverProps, {}> {
+export class EuiToolTipPopover extends Component<EuiToolTipPopoverProps> {
   private popover: HTMLDivElement | undefined;
 
   updateDimensions = () => {
