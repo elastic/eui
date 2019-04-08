@@ -143,12 +143,12 @@ export class EuiComboBoxInput extends Component {
     let removeOptionMessageId;
 
     if (this.state.hasFocus) {
-      const readPlaceholder = (placeholder ? `The placeholder for the input says ${placeholder}` : null);
+      const readPlaceholder = (placeholder ? `The placeholder for the input says ${placeholder}.` : '');
       const removeOptionMessageContent =
         `Combo box. Selected. ${
           searchValue ? `${searchValue}. Selected. ` : ''
         }${selectedOptions.length ? `${value}. Press Backspace to delete ${selectedOptions[selectedOptions.length - 1].label}. ` : ''
-        }You are currently on a combo box. ${readPlaceholder}. Type some text or, to display a list of choices, press Down Arrow. ` +
+        }You are currently on a combo box. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         `To exit the list of choices, press Escape.`;
 
       removeOptionMessageId = makeId();
