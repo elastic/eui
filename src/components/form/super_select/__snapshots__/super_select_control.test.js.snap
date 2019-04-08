@@ -3,7 +3,6 @@
 exports[`EuiSuperSelectControl is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -65,7 +64,6 @@ Array [
 exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -125,7 +123,6 @@ Array [
 exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -185,7 +182,6 @@ Array [
 exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -245,7 +241,6 @@ Array [
 exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -305,7 +300,6 @@ Array [
 exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
 Array [
   <input
-    invalid="true"
     type="hidden"
     value=""
   />,
@@ -365,7 +359,6 @@ Array [
 exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value=""
   />,
@@ -428,7 +421,6 @@ Array [
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
 Array [
   <input
-    invalid="false"
     type="hidden"
     value="1"
   />,
