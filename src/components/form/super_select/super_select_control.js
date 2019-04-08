@@ -61,6 +61,7 @@ export const EuiSuperSelectControl = ({
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
+        invalid={isInvalid}
       />
 
       <EuiFormControlLayout
