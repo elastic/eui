@@ -10,9 +10,7 @@ const prettyHtml = cheerio.load('');
 
 function testIcon(type: IconType, props: PropsOf<EuiIcon> = {}) {
   return () => {
-    const component = mount(
-      <EuiIcon type={type} {...props} />
-    );
+    const component = mount(<EuiIcon type={type} {...props} />);
 
     return new Promise(resolve => {
       setTimeout(() => {
@@ -29,7 +27,10 @@ describe('EuiIcon', () => {
 
   describe('props', () => {
     describe('other props', () => {
-      test('are passed through to the icon', testIcon('search', {'aria-label': 'a custom title'}));
+      test(
+        'are passed through to the icon',
+        testIcon('search', { 'aria-label': 'a custom title' })
+      );
     });
 
     describe('size', () => {
@@ -56,11 +57,19 @@ describe('EuiIcon', () => {
     });
 
     describe('tabIndex', () => {
-      testIcon('renders focusable="false" when not provided', {type: 'search'});
+      testIcon('renders focusable="false" when not provided', {
+        type: 'search',
+      });
 
-      testIcon('renders focusable="false" when -1', {type: 'search', tabIndex: -1});
+      testIcon('renders focusable="false" when -1', {
+        type: 'search',
+        tabIndex: -1,
+      });
 
-      testIcon('renders focusable="true" when 0', {type: 'search', tabIndex: 0});
+      testIcon('renders focusable="true" when 0', {
+        type: 'search',
+        tabIndex: 0,
+      });
     });
   });
 });

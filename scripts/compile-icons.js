@@ -16,6 +16,21 @@ const iconFiles = glob.sync(
   { cwd: iconsDir, realpath: true }
 );
 
+function defaultTemplate({
+                           template
+                         }, opts, {
+                           imports,
+                           componentName,
+                           props,
+                           jsx,
+                           exports
+                         }) {
+  return template.ast`${imports}
+const ${componentName} = (${props}) => ${jsx}
+${exports}
+`;
+}
+
 iconFiles.forEach(async filePath => {
   const svgSource = fs.readFileSync(filePath);
 
@@ -33,14 +48,19 @@ iconFiles.forEach(async filePath => {
         },
         svgProps: {
           xmlns: 'http://www.w3.org/2000/svg'
-        }
+        },
+        template: ({ template }, opts, { imports, componentName, props, jsx }) => template.ast`
+${imports}
+const ${componentName} = (${props}) => ${jsx}
+export const icon = ${componentName};
+        `
       },
       {
         componentName: `EuiIcon${pascalCase(path.basename(filePath, '.svg'))}`
       }
-    )).replace('props =>', '(props: any) =>');
+    ));
 
-    const outputFilePath = filePath.replace(/\.svg$/, '.tsx');
+    const outputFilePath = filePath.replace(/\.svg$/, '.js');
     fs.writeFileSync(outputFilePath, jsxSource);
   } catch (e) {
     console.error(`Error processing ${filePath}`);
