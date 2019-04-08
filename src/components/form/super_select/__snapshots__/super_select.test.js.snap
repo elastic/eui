@@ -8,6 +8,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value=""
     />
@@ -75,6 +76,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value=""
     />
@@ -231,6 +233,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value=""
     />
@@ -298,6 +301,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value="1"
     />
@@ -462,6 +466,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
   data-test-subj="superSelect"
   fullWidth={false}
   hasDividers={false}
+  isInvalid={false}
   onChange={[Function]}
   options={
     Array [
@@ -488,6 +493,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
         compressed={false}
         data-test-subj="superSelect"
         fullWidth={false}
+        isInvalid={false}
         isLoading={false}
         onChange={[Function]}
         onClick={[Function]}
@@ -538,6 +544,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
             compressed={false}
             data-test-subj="superSelect"
             fullWidth={false}
+            isInvalid={false}
             isLoading={false}
             onChange={[Function]}
             onClick={[Function]}
@@ -559,6 +566,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
             value="1"
           >
             <input
+              invalid="false"
               type="hidden"
               value="1"
             />
@@ -1173,6 +1181,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value=""
     />
@@ -1329,6 +1338,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value=""
     />
@@ -1394,6 +1404,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
     class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
+      invalid="false"
       type="hidden"
       value="2"
     />

@@ -61,7 +61,7 @@ export const EuiSuperSelectControl = ({
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
-        invalid={isInvalid}
+        invalid={`${isInvalid}`}
       />
 
       <EuiFormControlLayout
@@ -121,5 +121,6 @@ EuiSuperSelectControl.defaultProps = {
   options: [],
   fullWidth: false,
   isLoading: false,
+  isInvalid: false,
   compressed: false,
 };
