@@ -28,7 +28,7 @@ export const EuiSuperSelectControl = ({
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
       'euiSuperSelectControl-isLoading': isLoading,
-      'euiSuperSelectControl--isInvalid': isInvalid,
+      'euiSuperSelectControl-isInvalid': isInvalid,
     },
     className
   );

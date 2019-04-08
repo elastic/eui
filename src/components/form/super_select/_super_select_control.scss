@@ -19,7 +19,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  &--isInvalid {
+  &-isInvalid {
     @include euiFormControlInvalidStyle;
   }
 
