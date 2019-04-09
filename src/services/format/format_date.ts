@@ -71,7 +71,11 @@ export const formatDate = (
     return moment(value).format(dateFormatStr);
   }
 
-  const { format = 'dateTime', nil = '', options } = dateFormatKeyOrConfig;
+  const {
+    format = 'dateTime',
+    nil = '',
+    options,
+  } = dateFormatKeyOrConfig as FormatDateConfig;
 
   const dateFormat = dateFormatAliases[format] || format;
 

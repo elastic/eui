@@ -9,7 +9,15 @@ import {
 
 // export interface EuiDragDropContextProps extends DragDropContextProps {}
 
-export const EuiDragDropContextContext = React.createContext({
+type EuiDraggingType = string | null;
+
+interface EuiDraggingContext {
+  isDraggingType: EuiDraggingType;
+}
+
+export const EuiDragDropContextContext = React.createContext<
+  EuiDraggingContext
+>({
   isDraggingType: null,
 });
 
@@ -21,7 +29,7 @@ export const EuiDragDropContext: FunctionComponent<DragDropContextProps> = ({
   children,
   ...rest
 }) => {
-  const [isDraggingType, setIsDraggingType] = useState();
+  const [isDraggingType, setIsDraggingType] = useState<EuiDraggingType>(null);
   const euiOnDragStart = (
     start: DragStart,
     provided: ResponderProvided
