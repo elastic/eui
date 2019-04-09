@@ -29,7 +29,6 @@
 /// <reference path="./table/index.d.ts" />
 /// <reference path="./tabs/index.d.ts" />
 /// <reference path="./text/index.d.ts" />
-/// <reference path="./title/index.d.ts" />
 /// <reference path="./toast/index.d.ts" />
 /// <reference path="./tool_tip/index.d.ts" />
 
