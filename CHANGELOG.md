@@ -1,12 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Add `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
+- Added `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
 - Converted `EuiToolTipPopover` to TS ([#1800](https://github.com/elastic/eui/pull/1800))
 - Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
 - Added `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
 - Updated EuiNavDrawer’s collapse/expand button to use `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
 - Added `isInvalid` prop to `EuiSuperSelect` ([#1804](https://github.com/elastic/eui/pull/1804))
 - Added `cut` glyph to `EuiIcon` ([#1802](https://github.com/elastic/eui/pull/1802))
+
+**Bug fixes**
+
+- Added `isLoading` prop typedef to `EuiSuperDatePickerProps` ([#1812](https://github.com/elastic/eui/pull/1812))
 
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
