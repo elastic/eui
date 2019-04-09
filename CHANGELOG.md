@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 - Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
 
 **Bug fixes**
