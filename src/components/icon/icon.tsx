@@ -87,6 +87,7 @@ import folderOpen from './assets/folder_open.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
 import gisApp from './assets/app_gis.svg';
+import glasses from './assets/glasses.svg';
 import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
 import grabHorizontal from './assets/grab_horizontal.svg';
@@ -385,6 +386,7 @@ const typeToIconMap = {
   fullScreen,
   gear,
   gisApp,
+  glasses,
   globe,
   grab,
   grabHorizontal,
