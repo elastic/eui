@@ -46,25 +46,21 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                         size="m"
                         type="arrowRight"
                       >
-                        <empty
+                        <EuiIconEmpty
                           className="euiIcon euiIcon--medium"
                           focusable="false"
-                          height="16"
                           style={null}
-                          viewBox="0 0 16 16"
-                          width="16"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
                             focusable="false"
-                            height="16"
+                            height={16}
                             style={null}
                             viewBox="0 0 16 16"
-                            width="16"
+                            width={16}
                             xmlns="http://www.w3.org/2000/svg"
                           />
-                        </empty>
+                        </EuiIconEmpty>
                       </EuiIcon>
                     </div>
                   </EuiFlexItem>
@@ -152,25 +148,21 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                         size="m"
                         type="arrowDown"
                       >
-                        <empty
+                        <EuiIconEmpty
                           className="euiIcon euiIcon--medium"
                           focusable="false"
-                          height="16"
                           style={null}
-                          viewBox="0 0 16 16"
-                          width="16"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             className="euiIcon euiIcon--medium"
                             focusable="false"
-                            height="16"
+                            height={16}
                             style={null}
                             viewBox="0 0 16 16"
-                            width="16"
+                            width={16}
                             xmlns="http://www.w3.org/2000/svg"
                           />
-                        </empty>
+                        </EuiIconEmpty>
                       </EuiIcon>
                     </div>
                   </EuiFlexItem>
