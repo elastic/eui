@@ -9,6 +9,11 @@
 - Added `cut` glyph to `EuiIcon` ([#1802](https://github.com/elastic/eui/pull/1802))
 - Added `glasses` glyph to `EuiIcon` ([#1813](https://github.com/elastic/eui/pull/1813))
 
+**Bug fixes**
+
+- Fixed issue where toasts would dismiss when they have focus ([#1803](https://github.com/elastic/eui/pull/1803))
+- Fixed issue where `EuiComboBox` placeholder was not read by screen readers ([#1803](https://github.com/elastic/eui/pull/1803))
+
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
 - **[Beta]** Added new `EuiSelectable` component  ([#1699](https://github.com/elastic/eui/pull/1699))

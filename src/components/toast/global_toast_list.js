@@ -220,6 +220,8 @@ export class EuiGlobalToastList extends Component {
         >
           <EuiToast
             onClose={this.dismissToast.bind(this, toast)}
+            onFocus={this.onMouseEnter}
+            onBlur={this.onMouseLeave}
             {...rest}
           >
             {text}
