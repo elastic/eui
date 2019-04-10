@@ -1,50 +1,37 @@
 import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
-import ElasticChartExample from './simple_bars';
+import { renderToHtml } from '../../services';
+
+import Bars from './simple_bars';
+const barsSource = require('!!raw-loader!./simple_bars');
+const barsHtml = renderToHtml(Bars);
+
+import Lines from './line';
+const linesSource = require('!!raw-loader!./line');
+const linesHtml = renderToHtml(Bars);
+
+import Area from './area';
+const areaSource = require('!!raw-loader!./area');
+const areaHtml = renderToHtml(Area);
 
 import {
-  EuiCallOut,
   EuiSpacer,
-  EuiLink,
   EuiCode,
 } from '../../../../src/components';
-import { EuiBarSeries } from '../../../../src/experimental';
 
 export const ElasticChartBarExample = {
-  title: 'Bar charts',
+  title: 'Types',
   intro: (
     <Fragment>
       <p>
-        You can use <EuiCode>Elastic-Charts</EuiCode> with{' '}
-        <EuiCode>BarSeries</EuiCode> to displaying bar charts.
+        You can use <EuiCode>Elastic-Charts</EuiCode>.
       </p>
-      <EuiSpacer size="l" />
-      <EuiCallOut title="What is a bar chart?" iconType="pin">
-        <Fragment>
-          <p>
-            A bar chart or bar graph is a chart or graph that presents{' '}
-            <em>categorical</em> data with rectangular bars with heights or
-            lengths proportional to the values that they represent. The bars can
-            be plotted vertically or horizontally. [...]
-          </p>
-          <p>
-            A bar graph shows comparisons among <em>discrete categories</em>.
-            One axis of the chart shows the specific categories being compared,
-            and the other axis represents a measured value. Some bar graphs
-            present bars clustered in groups of more than one, showing the
-            values of more than one measured variable.
-          </p>
-          <EuiLink href="https://en.wikipedia.org/wiki/Bar_chart">
-            Wikipedia
-          </EuiLink>
-        </Fragment>
-      </EuiCallOut>
       <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [
     {
-      title: 'Simple vertical bar chart',
+      title: 'Bar',
       text: (
         <p>
           You can create out-of-the-box vertical bar charts just adding a{' '}
@@ -52,18 +39,59 @@ export const ElasticChartBarExample = {
           component into your <EuiCode>Chart</EuiCode>.
         </p>
       ),
-      props: { EuiBarSeries },
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: require('!!raw-loader!./simple_bars'),
+          code: barsSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: 'This component can only be used from React',
+          code: barsHtml,
         },
       ],
-      demo: <ElasticChartExample />,
-    }
+      demo: <Bars />,
+    },
+    {
+      title: 'Line',
+      text: (
+        <p>
+          You can create out-of-the-box vertical line charts just adding a{' '}
+          <EuiCode>LineSeries</EuiCode>
+          component into your <EuiCode>Chart</EuiCode>.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: linesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: linesHtml,
+        },
+      ],
+      demo: <Lines />,
+    },
+    {
+      title: 'Area',
+      text: (
+        <p>
+          You can create out-of-the-box vertical area charts just adding a{' '}
+          <EuiCode>AreaSeries</EuiCode>
+          component into your <EuiCode>Chart</EuiCode>.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: areaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: areaHtml,
+        },
+      ],
+      demo: <Area />,
+    },
   ],
 };

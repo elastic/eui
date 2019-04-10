@@ -1,9 +1,10 @@
 import React from 'react';
 import {
   Chart,
-  BarSeries,
+  AreaSeries,
   getSpecId,
   Settings,
+  CurveType,
 } from '@elastic/charts';
 import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
 import { DATA, SETTINGS } from './data';
@@ -43,28 +44,30 @@ export default () => (
       <EuiCard
         textAlign="left"
         icon={
-          <Chart size={[undefined, 140]}>
+          <Chart renderer="canvas" size={[undefined, 140]}>
             <Settings {...SETTINGS} />
-            <BarSeries
-              id={getSpecId('bars')}
-              name={'Simple bar'}
+            <AreaSeries
+              id={getSpecId('areas')}
+              name={'Simple area'}
               data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
               xAccessor="x"
               yAccessors={['y']}
+              curve={CurveType.CURVE_CATMULL_ROM}
             />
           </Chart>
         }
-        title="Simple bar"
+        title="Simple area"
         description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Bar%20Chart&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
-          `<Chart size={[undefined, 140]}>
+        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Area%20Chart&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+          `<Chart renderer="canvas" size={[undefined, 140]}>
   <Settings {...SETTINGS} />
-  <BarSeries
-    id={getSpecId('bars')}
-    name={'Simple bar'}
+  <AreaSeries
+    id={getSpecId('areas')}
+    name={'Simple area'}
     data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
     xAccessor="x"
     yAccessors={['y']}
+    curve={CurveType.CURVE_CATMULL_ROM}
   />
 </Chart>`)}
       />
@@ -73,30 +76,32 @@ export default () => (
       <EuiCard
         textAlign="left"
         icon={
-          <Chart size={[undefined, 140]}>
+          <Chart renderer="canvas" size={[undefined, 140]}>
             <Settings {...SETTINGS} />
-            <BarSeries
-              id={getSpecId('bars')}
-              name={'Simple bar series'}
+            <AreaSeries
+              id={getSpecId('areas')}
+              name={'Simple area series'}
               data={DATA}
               xAccessor="x"
               yAccessors={['y']}
               splitSeriesAccessors={['g']}
+              curve={CurveType.CURVE_CATMULL_ROM}
             />
           </Chart>
         }
-        title="Simple bar series"
+        title="Simple area series"
         description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Bar%20Chart&selectedStory=clustered%20with%20axis%20and%20legend&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybook%2Fstories%2Fstories-panel',
-          `<Chart size={[undefined, 140]}>
+        footer={cardFooterContent(null,
+          `<Chart renderer="canvas" size={[undefined, 140]}>
   <Settings {...SETTINGS} />
-  <BarSeries
-    id={getSpecId('bars')}
-    name={'Simple bar series'}
+  <AreaSeries
+    id={getSpecId('areas')}
+    name={'Simple area series'}
     data={${JSON.stringify(DATA)}}
     xAccessor="x"
     yAccessors={['y']}
     splitSeriesAccessors={['g']}
+    curve={CurveType.CURVE_CATMULL_ROM}
   />
 </Chart>`)}
       />
@@ -105,32 +110,34 @@ export default () => (
       <EuiCard
         textAlign="left"
         icon={
-          <Chart size={[undefined, 140]}>
+          <Chart renderer="canvas" size={[undefined, 140]}>
             <Settings {...SETTINGS} />
-            <BarSeries
-              id={getSpecId('bars')}
-              name={'Stacked bar series'}
+            <AreaSeries
+              id={getSpecId('areas')}
+              name={'Stacked area series'}
               data={DATA}
               xAccessor="x"
               yAccessors={['y']}
               stackAccessors={['x']}
               splitSeriesAccessors={['g']}
+              curve={CurveType.CURVE_CATMULL_ROM}
             />
           </Chart>
         }
-        title="Stacked bar series"
+        title="Stacked area series"
         description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Bar%20Chart&selectedStory=stacked%20with%20axis%20and%20legend&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybook%2Fstories%2Fstories-panel',
-          `<Chart size={[undefined, 140]}>
+        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Area%20Chart&selectedStory=stacked%20with%20separated%20specs&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+          `<Chart renderer="canvas" size={[undefined, 140]}>
   <Settings {...SETTINGS} />
-  <BarSeries
-    id={getSpecId('bars')}
-    name={'Stacked bar series'}
+  <AreaSeries
+    id={getSpecId('areas')}
+    name={'Stacked area series'}
     data={${JSON.stringify(DATA)}}
     xAccessor="x"
     yAccessors={['y']}
     stackAccessors={['x']}
     splitSeriesAccessors={['g']}
+    curve={CurveType.CURVE_CATMULL_ROM}
   />
 </Chart>`)}
       />
