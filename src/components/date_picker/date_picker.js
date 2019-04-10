@@ -23,6 +23,7 @@ export class EuiDatePicker extends Component {
 
   render() {
     const {
+      adjustDateOnChange,
       calendarClassName,
       className,
       customInput,
@@ -135,6 +136,7 @@ export class EuiDatePicker extends Component {
               isInvalid={isInvalid}
             >
               <DatePicker
+                adjustDateOnChange={adjustDateOnChange}
                 calendarClassName={calendarClassName}
                 className={datePickerClasses}
                 customInput={customInput}
@@ -176,6 +178,10 @@ export class EuiDatePicker extends Component {
 }
 
 EuiDatePicker.propTypes = {
+  /**
+   * Whether changes to Year and Month (via dropdowns) should trigger `onChange`
+   */
+  adjustDateOnChange: PropTypes.bool,
   /**
    * Optional class added to the calendar portion of datepicker
    */
@@ -289,6 +295,7 @@ EuiDatePicker.propTypes = {
 };
 
 EuiDatePicker.defaultProps = {
+  adjustDateOnChange: true,
   dateFormat: 'MM/DD/YYYY hh:mm A',
   fullWidth: false,
   isLoading: false,
