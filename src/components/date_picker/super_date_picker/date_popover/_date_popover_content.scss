@@ -14,6 +14,6 @@
 @include euiBreakpoint('xs', 's') {
   .euiDatePopoverContent {
     // Small screens drop the time selector
-    width: 284px;
+    width: $euiDatePickerCalendarWidth;
   }
 }
