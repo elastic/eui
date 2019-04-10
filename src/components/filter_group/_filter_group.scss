@@ -3,10 +3,11 @@
 .euiFilterGroup {
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow;
-  @include euiFormControlSize;
+  @include euiFormControlSize(auto);
   max-width: none;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1px; /* 1 */
 
   > * {
