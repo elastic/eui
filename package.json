@@ -10,7 +10,6 @@
   "docker_image": "node:8",
   "sideEffects": false,
   "scripts": {
-    "preinstall": "node ./preinstall_check",
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
     "test-docker": "docker pull $npm_package_docker_image && docker run --rm -i -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test --user=$(id -u):$(id -g) -e HOME=/tmp -v $(pwd):/app -w /app $npm_package_docker_image bash -c 'npm config set spin false && /opt/yarn*/bin/yarn && npm run test && npm run build'",
     "sync-docs": "node ./scripts/docs-sync.js",
