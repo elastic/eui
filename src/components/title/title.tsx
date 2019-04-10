@@ -15,7 +15,6 @@ export const TITLE_SIZES = keysOf(titleSizeToClassNameMap);
 export type EuiTitleSize = keyof typeof titleSizeToClassNameMap;
 
 const textTransformToClassNameMap = {
-  none: '',
   uppercase: 'euiTitle--uppercase',
 };
 
@@ -33,13 +32,13 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   size = 'm',
   children,
   className,
-  textTransform = 'none',
+  textTransform,
   ...rest
 }) => {
   const classes = classNames(
     'euiTitle',
     titleSizeToClassNameMap[size],
-    textTransformToClassNameMap[textTransform],
+    textTransform ? textTransformToClassNameMap[textTransform] : undefined,
     className
   );
 
