@@ -1003,7 +1003,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
 />
 `;
 
-exports[`EuiInMemoryTable with pagination and default page size 1`] = `
+exports[`EuiInMemoryTable with pagination and default page size and index 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
   className="testClass1 testClass2"
@@ -1021,14 +1021,6 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
   items={
     Array [
       Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
         "id": "3",
         "name": "name3",
       },
@@ -1039,12 +1031,12 @@ exports[`EuiInMemoryTable with pagination and default page size 1`] = `
   pagination={
     Object {
       "hidePerPageOptions": undefined,
-      "pageIndex": 0,
-      "pageSize": 4,
+      "pageIndex": 1,
+      "pageSize": 2,
       "pageSizeOptions": Array [
+        1,
         2,
-        4,
-        6,
+        3,
       ],
       "totalItemCount": 3,
     }
