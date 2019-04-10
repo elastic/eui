@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Re-enable installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
+- Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
 
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 
