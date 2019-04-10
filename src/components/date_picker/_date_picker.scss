@@ -661,6 +661,14 @@
 
 // We drop the time picker on mobile. They can still type in the time directly.
 @include euiBreakpoint('xs','s') {
+
+  // This resizes EUI's normal form control to be the width of the calendar
+  .euiDatePicker--inline {
+    max-width: 284px;
+    display: block;
+  }
+
+  // This hides the time entirely
   .react-datepicker__time-container {
     display: none;
   }
