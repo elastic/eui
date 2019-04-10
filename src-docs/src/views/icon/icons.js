@@ -74,6 +74,7 @@ const iconTypes = [
   'folderOpen',
   'fullScreen',
   'gear',
+  'glasses',
   'globe',
   'grab',
   'grabHorizontal',

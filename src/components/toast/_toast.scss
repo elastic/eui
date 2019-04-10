@@ -10,7 +10,7 @@
   width: 100%;
 
   &:hover .euiToast__closeButton,
-  &:focus .euiToast__closeButton, {
+  &:focus .euiToast__closeButton {
     opacity: 1;
   }
 }
