@@ -358,6 +358,7 @@ export interface EuiIconProps {
 type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
 interface State {
   icon: undefined | ReactElement<any>;
+  isLoading: boolean;
 }
 
 function getInitialIcon(icon: EuiIconProps['type']) {
@@ -374,17 +375,25 @@ export class EuiIcon extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      icon: getInitialIcon(this.props.type),
-    };
+    const initialIcon = getInitialIcon(this.props.type);
+    let isLoading = false;
 
-    if (this.state.icon === undefined && typeof this.props.type === 'string') {
+    if (initialIcon === undefined && typeof this.props.type === 'string') {
+      isLoading = true;
       import(`./assets/${typeToPathMap[this.props.type]}.js`).then(
         ({ icon }) => {
-          this.setState({ icon });
+          this.setState({
+            icon,
+            isLoading: false,
+          });
         }
       );
     }
+
+    this.state = {
+      icon: initialIcon,
+      isLoading,
+    };
   }
 
   render() {
@@ -396,6 +405,8 @@ export class EuiIcon extends Component<Props, State> {
       tabIndex,
       ...rest
     } = this.props;
+
+    const { isLoading } = this.state;
 
     let optionalColorClass = null;
     let optionalCustomStyles = null;
@@ -419,6 +430,7 @@ export class EuiIcon extends Component<Props, State> {
       optionalColorClass,
       {
         'euiIcon--app': isAppIcon,
+        'euiIcon--loading': isLoading,
       },
       className
     );
