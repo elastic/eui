@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.9.1`.
+- Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 
 ## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
 

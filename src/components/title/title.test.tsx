@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../test';
 
 import { EuiTitle } from './title';
 
@@ -12,7 +12,6 @@ describe('EuiTitle', () => {
       </EuiTitle>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

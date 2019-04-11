@@ -1,0 +1,1 @@
+export { EuiTitle } from './title';
