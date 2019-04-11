@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
 - Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
 
 **Bug fixes**
@@ -9,6 +8,7 @@
 
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 
+- Added `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
 - Converted `EuiToolTipPopover` to TS ([#1800](https://github.com/elastic/eui/pull/1800))
 - Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
 - Added `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
