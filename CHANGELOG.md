@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
+
+## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
+
 - Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
 
 **Bug fixes**
 
 - Added `isLoading` prop typedef to `EuiSuperDatePickerProps` ([#1812](https://github.com/elastic/eui/pull/1812))
+- Fix `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
+- Fix `EuiSearchBar` filter button highlighting ([#1824](https://github.com/elastic/eui/pull/1824))
 
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 
