@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 const titleSizeToClassNameMap = {
   xxxs: 'euiTitle--xxxsmall',
@@ -21,14 +21,16 @@ const textTransformToClassNameMap = {
 export const TEXT_TRANSFORM = keysOf(textTransformToClassNameMap);
 export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
 
-export interface EuiTitleProps {
-  children: ReactElement<any>;
-  className?: string;
-  size?: EuiTitleSize;
-  textTransform?: EuiTitleTextTransform;
-}
+export type EuiTitleProps = FunctionComponent<
+  CommonProps & {
+    children: ReactElement<any>;
+    className?: string;
+    size?: EuiTitleSize;
+    textTransform?: EuiTitleTextTransform;
+  }
+>;
 
-export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
+export const EuiTitle: EuiTitleProps = ({
   size = 'm',
   children,
   className,
