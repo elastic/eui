@@ -1,1 +1,1 @@
-export { EuiTitle, EuiTitleSize, EuiTitleTextTransform } from './title';
+export { EuiTitle, EuiTitleSize } from './title';

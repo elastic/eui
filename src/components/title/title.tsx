@@ -21,16 +21,14 @@ const textTransformToClassNameMap = {
 export const TEXT_TRANSFORM = keysOf(textTransformToClassNameMap);
 export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
 
-export type EuiTitleProps = FunctionComponent<
-  CommonProps & {
-    children: ReactElement<any>;
-    className?: string;
-    size?: EuiTitleSize;
-    textTransform?: EuiTitleTextTransform;
-  }
->;
+export type EuiTitleProps = CommonProps & {
+  children: ReactElement<any>;
+  className?: string;
+  size?: EuiTitleSize;
+  textTransform?: EuiTitleTextTransform;
+};
 
-export const EuiTitle: EuiTitleProps = ({
+export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   size = 'm',
   children,
   className,
