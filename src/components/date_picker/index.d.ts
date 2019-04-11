@@ -66,6 +66,7 @@ declare module '@elastic/eui' {
   }
 
   export type EuiSuperDatePickerProps = CommonProps & {
+    isLoading?: boolean;
     start?: string;
     end?: string;
     isPaused?: boolean;
