@@ -82,10 +82,6 @@ export const formatDate = (
       ? dateFormatAliases[dateFormatKeyOrConfig]
       : dateFormatKeyOrConfig;
 
-    if (isString(dateFormatStrOrFunc)) {
-      return moment(value).format(dateFormatStrOrFunc);
-    }
-
     if (isFunction(dateFormatStrOrFunc)) {
       return dateFormatStrOrFunc(value, {});
     }
