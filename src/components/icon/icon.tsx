@@ -619,7 +619,7 @@ const colorToClassMap: { [color: string]: string | null } = {
 export const COLORS: IconColor[] = keysOf(colorToClassMap);
 
 // We accept arbitrary color strings, which are impossible to type.
-export type IconColor = string | Extract<keyof typeof colorToClassMap, string>;
+export type IconColor = string | keyof typeof colorToClassMap;
 
 const sizeToClassNameMap = {
   original: null,
