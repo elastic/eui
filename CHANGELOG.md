@@ -1,10 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.9.0`.
+No public interface changes since `9.9.1`.
+
+## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
+
+- Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
+
+**Bug fixes**
+
+- Added `isLoading` prop typedef to `EuiSuperDatePickerProps` ([#1812](https://github.com/elastic/eui/pull/1812))
+- Fix `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
+- Fix `EuiSearchBar` filter button highlighting ([#1824](https://github.com/elastic/eui/pull/1824))
 
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 
-- Add `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
+- Added `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
 - Converted `EuiToolTipPopover` to TS ([#1800](https://github.com/elastic/eui/pull/1800))
 - Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
 - Added `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
