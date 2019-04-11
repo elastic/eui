@@ -2,6 +2,10 @@
 
 - Re-enable installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
 
+**Bug fixes**
+
+- Fix `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
+
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 
 - Add `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
