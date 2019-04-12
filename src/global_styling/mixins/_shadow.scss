@@ -52,7 +52,6 @@
   $adjustBorders: false,
   $reverse: false
 ) {
-
   @if ($reverse) {
     box-shadow:
       0 -40px 64px 0 rgba($color, $opacity),
