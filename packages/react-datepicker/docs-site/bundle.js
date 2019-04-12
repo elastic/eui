@@ -27703,7 +27703,7 @@
 	        _this.props.onYearChange(date);
 	      }
 	      if (_this.props.accessibleMode) {
-	        _this.props.updateSelection((0, _date_utils.getStartOfMonth)((0, _date_utils.cloneDate)(date)));
+	        _this.handleSelectionChange(date);
 	      }
 	    };
 
@@ -27720,6 +27720,14 @@
 	        }
 	      }
 	      if (_this.props.accessibleMode) {
+	        _this.handleSelectionChange(date);
+	      }
+	    };
+
+	    _this.handleSelectionChange = function (date) {
+	      if (_this.props.adjustDateOnChange) {
+	        _this.props.updateSelection(date);
+	      } else {
 	        _this.props.updateSelection((0, _date_utils.getStartOfMonth)((0, _date_utils.cloneDate)(date)));
 	      }
 	    };
