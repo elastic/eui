@@ -110,11 +110,6 @@ const euiAnimationTimings = [
   'euiAnimSlightResistance',
 ];
 
-const euiOverFlowShadows = [
-  'euiOverflowShadowBottom',
-  'euiOverflowShadowTop',
-];
-
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
 
 function renderPaletteColor(palette, color) {
@@ -693,7 +688,7 @@ export const SassGuidelines = ({
           <EuiText>
             <p>
               Primarily used in modals and flyouts, the overflow shadows add a white
-              glow to subtly hide the content they float above.
+              glow to subtly indicate there is more content below/above.
             </p>
           </EuiText>
 
@@ -701,9 +696,23 @@ export const SassGuidelines = ({
 
           <div className="guideSass__overflowShadows">
             <EuiText className="guideSass__overflowShadowText" size="s">
+              <p>It requires a wrapper with <EuiCode>overflow: hidden</EuiCode> and the content to
+                have <EuiCode>overflow-y: auto; height: 100%;</EuiCode>.
+              </p>
+              <p><b>Example:</b></p>
+              <EuiCodeBlock language="sass" isCopyable paddingSize="s">
+                {`.bodyContent {
+  @include euiOverflowShadow;
+  height: 200px;
+  overflow: hidden;
+
+  .bodyContent__overflow {
+    height: 100%;
+    overflow-y: auto;
+  }
+}`}
+              </EuiCodeBlock>
               <p>
-                Minima reprehenderit aperiam at in ea. Veniam nihil quod tempore.
-                Dolores sit quo expedita voluptate libero.
                 Consequuntur atque nulla atque nemo tenetur numquam.
                 Assumenda aspernatur qui aut sit. Aliquam doloribus iure sint id.
                 Possimus dolor qui soluta cum id tempore ea illum.
@@ -718,9 +727,6 @@ export const SassGuidelines = ({
                 et nisi. Doloribus ut corrupti voluptates qui exercitationem dolores.
               </p>
             </EuiText>
-            {euiOverFlowShadows.map(function (shadow, index) {
-              return renderShadow(shadow, index);
-            })}
           </div>
 
           <EuiSpacer />
