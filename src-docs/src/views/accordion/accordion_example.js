@@ -16,6 +16,23 @@ import {
 import Accordion from './accordion';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
+const accordionSnippet = `<EuiAccordion
+  id="accordion1"
+  buttonContent="Clickable title text for first accordion"
+  paddingSize="m"
+  >
+    <!-- Content for first accordion -->
+</EuiAccordion>
+<!-- Optional, recommended spacer -->
+<EuiSpacer size="m" />
+<EuiAccordion
+  id="accordion2"
+  buttonContent="Clickable title text for second accordion"
+  paddingSize="m"
+  >
+    <!-- Content for second accordion -->
+</EuiAccordion>
+`;
 
 import AccordionForm from './accordion_form';
 const accordionFormSource = require('!!raw-loader!./accordion_form');
@@ -24,10 +41,27 @@ const accordionFormHtml = renderToHtml(AccordionForm);
 import AccordionExtra from './accordion_extra';
 const accordionExtraSource = require('!!raw-loader!./accordion_extra');
 const accordionExtraHtml = renderToHtml(AccordionExtra);
+const accordionExtraSnippet = `<EuiAccordion
+  id="accordionExtra"
+  buttonContent="Click to open"
+  extraAction={<EuiButton size="s">Extra action!</EuiButton>}
+  paddingSize="l"
+  >
+    <!-- Content for accordion -->
+</EuiAccordion>
+`;
 
 import AccordionOpen from './accordion_open';
 const accordionOpenSource = require('!!raw-loader!./accordion_open');
 const accordionOpenHtml = renderToHtml(AccordionOpen);
+const accordionOpenSnippet = `<EuiAccordion
+  id="accordionOpen"
+  buttonContent="Click to toggle"
+  initialIsOpen={true}
+  >
+    <!-- Content for accordion -->
+</EuiAccordion>
+`;
 
 import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
@@ -82,6 +116,7 @@ export const AccordionExample = {
       </div>
     ),
     props: { EuiAccordion },
+    snippet: accordionSnippet,
     demo: <Accordion />,
   }, {
     title: 'Accordion can have extra actions',
@@ -101,6 +136,7 @@ export const AccordionExample = {
         it accessible.
       </p>
     ),
+    snippet: accordionExtraSnippet,
     demo: <AccordionExtra />,
   },  {
     title: 'Accordion can be opened on initial render',
@@ -116,6 +152,7 @@ export const AccordionExample = {
         Use the <EuiCode>initialIsOpen</EuiCode> prop to open the accordion when first rendered.
       </p>
     ),
+    snippet: accordionOpenSnippet,
     demo: <AccordionOpen />,
   }, {
     title: 'Accordion content can dynamically change height',
