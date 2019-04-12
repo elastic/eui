@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
+- Updated the overflow shadows for `EuiModal` and `EuiFlyout` ([#1829](https://github.com/elastic/eui/pull/1829))
+- Added `confirmButtonDisabled` prop to `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
+
+**Bug fixes**
+
+- Fixed mobile layout for `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
 
 ## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
 
