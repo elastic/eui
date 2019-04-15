@@ -16,6 +16,33 @@ import {
 import Accordion from './accordion';
 const accordionSource = require('!!raw-loader!./accordion');
 const accordionHtml = renderToHtml(Accordion);
+const accordionSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
+
+import AccordionMultiple from './accordion_multiple';
+const accordionMultipleSource = require('!!raw-loader!./accordion');
+const accordionMultipleHtml = renderToHtml(Accordion);
+const accordionMultipleSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title for first item"
+  paddingSize="l"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+<EuiSpacer />
+<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title for second item"
+  paddingSize="l"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
 
 import AccordionForm from './accordion_form';
 const accordionFormSource = require('!!raw-loader!./accordion_form');
@@ -24,10 +51,27 @@ const accordionFormHtml = renderToHtml(AccordionForm);
 import AccordionExtra from './accordion_extra';
 const accordionExtraSource = require('!!raw-loader!./accordion_extra');
 const accordionExtraHtml = renderToHtml(AccordionExtra);
+const accordionExtraSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  extraAction={<EuiButton size="s">Extra action!</EuiButton>}
+  paddingSize="l"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
 
 import AccordionOpen from './accordion_open';
 const accordionOpenSource = require('!!raw-loader!./accordion_open');
 const accordionOpenHtml = renderToHtml(AccordionOpen);
+const accordionOpenSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  initialIsOpen={true}
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
 
 import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
@@ -64,10 +108,10 @@ export const AccordionExample = {
     text: (
       <div>
         <p>
-          <EuiCode>EuiAccordion</EuiCode> is purposely bare so that you can
-          put whatever styling you need on it (see the accordion form example). The only
-          styling we force on you is the caret, which gives the user an understanding
-          that the content will open up.
+          <EuiCode>EuiAccordion</EuiCode> has been purposely designed with
+          minimal styles, allowing you to visually enhance it as needed (see the
+          accordion form example). The only styling enforced by EUI is the
+          caret icon, which indicates to users that the item can be opened.
         </p>
         <p>
           A <EuiCode>buttonContent</EuiCode> prop defines the content of the
@@ -75,14 +119,40 @@ export const AccordionExample = {
           based on the height of those children.
         </p>
         <p>
-          For styling needs, classes can be individually applied with
-          <EuiCode>className</EuiCode> (for the entire accordion),
+          For styling needs, classes can be individually applied
+          with <EuiCode>className</EuiCode> (for the entire accordion),
           and <EuiCode>buttonClassName</EuiCode> (for the clickable area).
         </p>
       </div>
     ),
     props: { EuiAccordion },
+    snippet: accordionSnippet,
     demo: <Accordion />,
+  }, {
+    title: 'Multiple accordions',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: accordionMultipleSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: accordionMultipleHtml,
+    }],
+    text: (
+      <div>
+        <p>
+          Use any number of <EuiCode>EuiAccordion</EuiCode> elements to visually
+          display them as a group.
+        </p>
+        <p>
+          Due to the previously mentioned bare styles, it is recommended to place
+          an <EuiCode>EuiSpacer</EuiCode> between accordion items. Padding
+          within each accordion item can be applied via
+          the <EuiCode>paddingSize</EuiCode> prop.
+        </p>
+      </div>
+    ),
+    snippet: accordionMultipleSnippet,
+    demo: <AccordionMultiple />,
   }, {
     title: 'Accordion can have extra actions',
     source: [{
@@ -101,6 +171,7 @@ export const AccordionExample = {
         it accessible.
       </p>
     ),
+    snippet: accordionExtraSnippet,
     demo: <AccordionExtra />,
   },  {
     title: 'Accordion can be opened on initial render',
@@ -116,6 +187,7 @@ export const AccordionExample = {
         Use the <EuiCode>initialIsOpen</EuiCode> prop to open the accordion when first rendered.
       </p>
     ),
+    snippet: accordionOpenSnippet,
     demo: <AccordionOpen />,
   }, {
     title: 'Accordion content can dynamically change height',
