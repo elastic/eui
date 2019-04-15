@@ -57,12 +57,16 @@ Array [
           class="euiModalBody"
         >
           <div
-            class="euiText euiText--medium"
-            data-test-subj="confirmModalBodyText"
+            class="euiModalBody__overflow"
           >
-            <p>
-              This is a confirmation modal example
-            </p>
+            <div
+              class="euiText euiText--medium"
+              data-test-subj="confirmModalBodyText"
+            >
+              <p>
+                This is a confirmation modal example
+              </p>
+            </div>
           </div>
         </div>
         <div

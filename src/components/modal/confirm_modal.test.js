@@ -62,6 +62,22 @@ test('onConfirm', () => {
   sinon.assert.notCalled(onCancel);
 });
 
+test('onConfirm can be disabled', () => {
+  const component = mount(
+    <EuiConfirmModal
+      onCancel={onCancel}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+      confirmButtonDisabled={true}
+    />
+  );
+
+  findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+  sinon.assert.notCalled(onConfirm);
+  sinon.assert.notCalled(onCancel);
+});
+
 describe('onCancel', () => {
   test('triggerd by click', () => {
     const component = mount(

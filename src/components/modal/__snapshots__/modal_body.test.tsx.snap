@@ -6,6 +6,10 @@ exports[`renders EuiModalBody 1`] = `
   class="euiModalBody testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  children
+  <div
+    class="euiModalBody__overflow"
+  >
+    children
+  </div>
 </div>
 `;

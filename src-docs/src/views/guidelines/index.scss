@@ -157,33 +157,19 @@
 .guideSass__shadow--euiBottomShadowFlat { @include euiBottomShadowFlat; }
 .guideSass__shadow--euiBottomShadow { @include euiBottomShadow; }
 .guideSass__shadow--euiBottomShadowLarge { @include euiBottomShadowLarge; }
-.guideSass__shadow--euiOverflowShadowTop { @include euiOverflowShadowTop; }
-.guideSass__shadow--euiOverflowShadowBottom { @include euiOverflowShadowBottom; }
 
 .guideSass__overflowShadows {
+  @include euiOverflowShadow;
+  overflow-y: hidden;
   margin-top: $euiSize;
-  border: $euiBorderThin;
-  position: relative;
+  border: 1px solid $euiColorLightestShade;
   height: 200px;
 
   .guideSass__overflowShadowText {
-    height: 100px;
-    padding: $euiSize;
+    @include euiScrollBar;
+    height: 100%;
     overflow-y: auto;
-    position: absolute;
-    top: 50px;
-  }
-
-  .guideSass__shadow {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-  }
-
-  .guideSass__shadow + .guideSass__shadow {
-    bottom: 0;
-    top: auto;
+    padding: $euiSize;
   }
 }
 

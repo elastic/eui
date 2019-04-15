@@ -46,7 +46,7 @@ export class OverflowTest extends Component {
           >
             <EuiModalHeader>
               <EuiModalHeaderTitle >
-                Form in a modal
+                Overflow test
               </EuiModalHeaderTitle>
             </EuiModalHeader>
 
