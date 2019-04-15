@@ -430,7 +430,8 @@ export class EuiIcon extends Component<Props, State> {
       optionalColorClass,
       {
         'euiIcon--app': isAppIcon,
-        'euiIcon--loading': isLoading,
+        'euiIcon-isLoading': isLoading,
+        'euiIcon-isLoaded': !isLoading,
       },
       className
     );

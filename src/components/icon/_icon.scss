@@ -3,10 +3,7 @@
   display: inline-block;
   vertical-align: middle;
   fill: currentColor;
-
-  svg {
-    transform: translate(0, 0); // Hack to fix Firefox "softness"
-  }
+  transform: translate(0, 0); // Hack to fix Firefox "softness"
 
   &:focus {
     opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
@@ -22,67 +19,35 @@
   .euiIcon__fillSecondary {
     fill: $euiColorSecondary;
   }
+}
 
-  // Primary icons are mono of that color
-  &.euiIcon--primary {
-    fill: $euiColorPrimary;
+.euiIcon-isLoading {
+  opacity: $euiIconLoadingOpacity;
+  background-color: currentColor;
+  border-radius: $euiBorderRadius;
+}
 
-    // Provides a way to make app icons close to our primary
-    .euiIcon__fillSecondary {
-      fill: $euiColorPrimary;
-    }
+.euiIcon-isLoaded {
+  animation: euiIconLoadingBackgroundColor $euiAnimSpeedNormal ease-in 0s 1 forwards;
+}
+
+// COLORS
+
+@each $name, $color in $euiIconColors {
+  .euiIcon--#{$name} {
+    // Use color attribute so currentColor can be used in more properties
+    color: $color;
   }
 }
 
-.euiIcon--loading {
-  background-color: $euiColorDanger;
-}
-
-.euiIcon--text {
-  fill: $euiTextColor;
-
-  // Text icons are fully mono
-  .euiIcon__fillSecondary {
-    fill: $euiTextColor;
-  }
-}
-
+// App icon special cases for fully mono
+.euiIcon--text,
+.euiIcon--subdued,
 .euiIcon--primary {
-  fill: $euiColorPrimary;
-}
-
-.euiIcon--subdued {
-  fill: $euiColorMediumShade;
-
-  // Text icons are fully mono
+  &,
   .euiIcon__fillSecondary {
-    fill: $euiColorMediumShade;
+    fill: currentColor;
   }
-}
-
-
-.euiIcon--secondary {
-  fill: $euiColorSecondary;
-}
-
-.euiIcon--success {
-  fill: $euiColorSuccess;
-}
-
-.euiIcon--accent {
-  fill: $euiColorAccent;
-}
-
-.euiIcon--warning {
-  fill: $euiColorWarning;
-}
-
-.euiIcon--danger {
-  fill: $euiColorDanger;
-}
-
-.euiIcon--ghost {
-  fill: $euiColorGhost;
 }
 
 // Use the negative fill on SVG elements that need to flip portions
@@ -92,22 +57,37 @@
   fill: $euiColorDarkestShade;
 }
 
-.euiIcon--small {
-  @include size($euiSizeM);
+// SIZES
+
+@each $name, $size in $euiIconSizes {
+  .euiIcon--#{$name} {
+    @include size($size);
+  }
 }
 
-.euiIcon--medium {
-  @include size($euiSize);
-}
+// LOADING ANIMATION
+// Fades the background color out first/quickly
+// as the opacity of the new icon fades in
 
-.euiIcon--large {
-  @include size($euiSizeL);
-}
+@keyframes euiIconLoadingBackgroundColor {
+  0% {
+    background-color: currentColor;
+    border-radius: $euiBorderRadius;
+    opacity: $euiIconLoadingOpacity;
+  }
 
-.euiIcon--xLarge {
-  @include size($euiSizeXL);
-}
+  35% {
+    border-radius: $euiBorderRadius;
+    background-color: transparent;
+  }
 
-.euiIcon--xxLarge {
-  @include size($euiSizeXXL);
+  36% {
+    // Don't let the border-radius animate,
+    // so remove it after the background color is gone
+    border-radius: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
