@@ -43,7 +43,7 @@ const items = times(10, (id) => {
     id,
     status: random.oneOf(['open', 'closed']),
     type: random.oneOf(types),
-    tag: random.setOf(tags.map(tag => tag.name), { min: 0, max: 3 }),
+    tag: random.setOf(tags.map(tag => tag.name), { min: 0, max: 1 }),
     active: random.boolean(),
     owner: random.oneOf(users),
     followers: random.integer({ min: 0, max: 20 }),
@@ -167,7 +167,7 @@ export class SearchBar extends Component {
         tag: {
           type: 'string',
           validate: (value) => {
-            if (!tags.some(tag => tag.name === value)) {
+            if (value !== '' && !tags.some(tag => tag.name === value)) {
               throw new Error(`unknown tag (possible values: ${tags.map(tag => tag.name).join(',')})`);
             }
           }

@@ -71,7 +71,11 @@ export const eq = (fieldValue, clauseValue, options = {}) => {
   }
 
   if (isArray(fieldValue)) {
-    return fieldValue.some(item => eq(item, clauseValue, options));
+    if (fieldValue.length > 0) {
+      return fieldValue.some(item => eq(item, clauseValue, options));
+    } else {
+      return eq('', clauseValue, options);
+    }
   }
 
   return false; // unknown value type
