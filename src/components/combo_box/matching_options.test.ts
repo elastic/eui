@@ -1,11 +1,11 @@
+import { EuiComboBoxOptionProps } from '@elastic/eui';
 import {
-  EuiComboBoxOption,
   flattenOptionGroups,
   getSelectedOptionForSearchValue,
   getMatchingOptions,
 } from './matching_options';
 
-const options: EuiComboBoxOption[] = [
+const options: EuiComboBoxOptionProps[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -51,7 +51,7 @@ describe('flattenOptionGroups', () => {
 describe('getSelectedOptionForSearchValue', () => {
   test('gets the first matching selected option for search value', () => {
     // Assemble
-    const expected: EuiComboBoxOption = {
+    const expected: EuiComboBoxOptionProps = {
       label: 'Saturn',
       'data-test-subj': 'saturnOption',
     };
@@ -71,7 +71,7 @@ describe('getSelectedOptionForSearchValue', () => {
   });
   test('gets the first matching selected option for search value', () => {
     // Assemble
-    const expected: EuiComboBoxOption = {
+    const expected: EuiComboBoxOptionProps = {
       label: 'Saturn',
       'data-test-subj': 'saturnOption',
     };
@@ -83,12 +83,12 @@ describe('getSelectedOptionForSearchValue', () => {
 });
 
 interface GetMatchingOptionsTestCase {
-  options: EuiComboBoxOption[];
-  selectedOptions: EuiComboBoxOption[];
+  options: EuiComboBoxOptionProps[];
+  selectedOptions: EuiComboBoxOptionProps[];
   searchValue: string;
   isPreFiltered: boolean;
   showPrevSelected: boolean;
-  expected: EuiComboBoxOption[];
+  expected: EuiComboBoxOptionProps[];
 }
 
 const testCases: GetMatchingOptionsTestCase[] = [

@@ -1,11 +1,13 @@
-export interface EuiComboBoxOption {
-  label: string;
-  [prop: string]: any;
-}
+import { EuiComboBoxOptionProps } from '@elastic/eui';
 
-export const flattenOptionGroups = (optionsOrGroups: EuiComboBoxOption[]) => {
+export const flattenOptionGroups = (
+  optionsOrGroups: EuiComboBoxOptionProps[]
+) => {
   return optionsOrGroups.reduce(
-    (options: EuiComboBoxOption[], optionOrGroup: EuiComboBoxOption) => {
+    (
+      options: EuiComboBoxOptionProps[],
+      optionOrGroup: EuiComboBoxOptionProps
+    ) => {
       if (optionOrGroup.options) {
         options.push(...optionOrGroup.options);
       } else {
@@ -19,18 +21,18 @@ export const flattenOptionGroups = (optionsOrGroups: EuiComboBoxOption[]) => {
 
 export const getSelectedOptionForSearchValue = (
   searchValue: string,
-  selectedOptions: EuiComboBoxOption[]
+  selectedOptions: EuiComboBoxOptionProps[]
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
-    (option: any) => option.label.toLowerCase() === normalizedSearchValue
+    option => option.label.toLowerCase() === normalizedSearchValue
   );
 };
 
 const collectMatchingOption = (
-  accumulator: EuiComboBoxOption[],
-  option: EuiComboBoxOption,
-  selectedOptions: EuiComboBoxOption[],
+  accumulator: EuiComboBoxOptionProps[],
+  option: EuiComboBoxOptionProps,
+  selectedOptions: EuiComboBoxOptionProps[],
   normalizedSearchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
@@ -62,19 +64,19 @@ const collectMatchingOption = (
 };
 
 export const getMatchingOptions = (
-  options: EuiComboBoxOption[],
-  selectedOptions: EuiComboBoxOption[],
+  options: EuiComboBoxOptionProps[],
+  selectedOptions: EuiComboBoxOptionProps[],
   searchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const matchingOptions: EuiComboBoxOption[] = [];
+  const matchingOptions: EuiComboBoxOptionProps[] = [];
 
   options.forEach(option => {
     if (option.options) {
-      const matchingOptionsForGroup: EuiComboBoxOption[] = [];
-      option.options.forEach((groupOption: EuiComboBoxOption) => {
+      const matchingOptionsForGroup: EuiComboBoxOptionProps[] = [];
+      option.options.forEach((groupOption: EuiComboBoxOptionProps) => {
         collectMatchingOption(
           matchingOptionsForGroup,
           groupOption,
