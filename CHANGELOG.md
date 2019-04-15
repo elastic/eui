@@ -3,6 +3,10 @@
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 - Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
 
+**Breaking changes**
+
+- Removed transitional `keyOfStringsOnly` option from TypeScript configuration ([#1814](https://github.com/elastic/eui/pull/1814))
+
 ## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
 
 - Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
