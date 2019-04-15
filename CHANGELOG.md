@@ -2,6 +2,7 @@
 
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 - Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
+- Convert `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
 
 ## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
 
