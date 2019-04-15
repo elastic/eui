@@ -108,10 +108,10 @@ export const AccordionExample = {
     text: (
       <div>
         <p>
-          <EuiCode>EuiAccordion</EuiCode> is purposely bare so that you can
-          put whatever styling you need on it (see the accordion form example). The only
-          styling we force on you is the caret, which gives the user an understanding
-          that the content will open up.
+          <EuiCode>EuiAccordion</EuiCode> has been purposely designed with
+          minimal styles, allowing you to visually enhance it as needed (see the
+          accordion form example). The only styling enforced by EUI is the
+          caret icon, which indicates to users that the item can be opened.
         </p>
         <p>
           A <EuiCode>buttonContent</EuiCode> prop defines the content of the
@@ -144,7 +144,7 @@ export const AccordionExample = {
           display them as a group.
         </p>
         <p>
-          Due to the aforementioned bare styles, it is recommended to place
+          Due to the previously mentioned bare styles, it is recommended to place
           an <EuiCode>EuiSpacer</EuiCode> between accordion items. Padding
           within each accordion item can be applied via
           the <EuiCode>paddingSize</EuiCode> prop.
