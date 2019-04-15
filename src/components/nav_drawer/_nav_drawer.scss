@@ -20,7 +20,7 @@
     height: 100%;
 
     &-hasFooter {
-      padding-bottom: $euiSizeXXL;
+      margin-bottom: $euiSizeXXL;
     }
   }
 
@@ -106,7 +106,7 @@
     // No expand toggle on mobile
 
     .euiNavDrawerMenu-hasFooter {
-      padding-bottom: 0;
+      margin-bottom: 0;
     }
 
     .euiNavDrawer__expandButton {
