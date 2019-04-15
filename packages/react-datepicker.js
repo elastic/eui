@@ -3660,7 +3660,7 @@ var Calendar = function (_React$Component) {
         _this.props.onYearChange(date);
       }
       if (_this.props.accessibleMode) {
-        _this.props.updateSelection(getStartOfMonth(cloneDate(date)));
+        _this.handleSelectionChange(date);
       }
     };
 
@@ -3677,6 +3677,14 @@ var Calendar = function (_React$Component) {
         }
       }
       if (_this.props.accessibleMode) {
+        _this.handleSelectionChange(date);
+      }
+    };
+
+    _this.handleSelectionChange = function (date) {
+      if (_this.props.adjustDateOnChange) {
+        _this.props.updateSelection(date);
+      } else {
         _this.props.updateSelection(getStartOfMonth(cloneDate(date)));
       }
     };
@@ -4440,12 +4448,26 @@ var _toLength = function (it) {
   return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
+var _toLength$1 = /*#__PURE__*/Object.freeze({
+  default: _toLength,
+  __moduleExports: _toLength
+});
+
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
   index = _toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
+
+var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
+  default: _toAbsoluteIndex,
+  __moduleExports: _toAbsoluteIndex
+});
+
+var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
+
+var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
 // true  -> Array#includes
@@ -4455,8 +4477,8 @@ var _toAbsoluteIndex = function (index, length) {
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = _toLength(O.length);
-    var index = _toAbsoluteIndex(fromIndex, length);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
@@ -5279,7 +5301,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-unwrapExports(_typeof_1);
+var _typeof$1 = unwrapExports(_typeof_1);
+
+var _typeof$2 = /*#__PURE__*/Object.freeze({
+  default: _typeof$1,
+  __moduleExports: _typeof_1
+});
+
+var _typeof2 = ( _typeof$2 && _typeof$1 ) || _typeof$2;
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -5287,7 +5316,7 @@ exports.__esModule = true;
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof_1);
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5348,11 +5377,18 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = createCommonjsModule(function (module) {
-module.exports = { "default": create, __esModule: true };
+var create$1 = /*#__PURE__*/Object.freeze({
+  default: create,
+  __moduleExports: create
 });
 
-unwrapExports(create$1);
+var require$$0 = ( create$1 && create ) || create$1;
+
+var create$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0, __esModule: true };
+});
+
+unwrapExports(create$2);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5364,11 +5400,11 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$1);
+var _create2 = _interopRequireDefault(create$2);
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof_1);
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7992,13 +8028,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var warning$1 = /*#__PURE__*/Object.freeze({
-  default: warning_1,
-  __moduleExports: warning_1
-});
-
-var _warning = ( warning$1 && warning_1 ) || warning$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8017,7 +8046,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warning2 = _interopRequireDefault(warning_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8453,10 +8482,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$2 = function() {};
+var warning$1 = function() {};
 
 if (__DEV__) {
-  warning$2 = function(condition, format, args) {
+  warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8494,7 +8523,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$2;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);
