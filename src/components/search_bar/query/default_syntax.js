@@ -134,7 +134,7 @@ containsValue
 
 phrase
   = '"' space? phrase:(
-  	phraseWord (space phraseWord)* { return unescapeValue(text()); }
+  	phraseWord? (space phraseWord)* { return unescapeValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
 phraseWord
