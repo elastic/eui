@@ -1,4 +1,4 @@
-export { EuiText, TEXT_SIZES } from './text';
+export { EuiText, TextSize, TEXT_SIZES } from './text';
 
 export { EuiTextColor, TextColor, COLORS } from './text_color';
 
