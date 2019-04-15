@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.0.0`.
+
+## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
+
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 - Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
 - Updated the overflow shadows for `EuiModal` and `EuiFlyout` ([#1829](https://github.com/elastic/eui/pull/1829))
