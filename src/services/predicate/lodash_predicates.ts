@@ -9,7 +9,8 @@ import _isNaN from 'lodash/isNaN';
 // exported, which can conflict with the lodash namespace if other versions are used
 
 // tslint:disable-next-line:ban-types
-export const isFunction = (value: any): value is Function => _isFunction(value);
+export const isFunction = (value: any): value is (...args: any[]) => any =>
+  _isFunction(value);
 export const isArray = (value: any): value is any[] => _isArray(value);
 export const isString = (value: any): value is string => _isString(value);
 export const isBoolean = (value: any): value is boolean => _isBoolean(value);

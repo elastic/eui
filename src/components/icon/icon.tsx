@@ -1,7 +1,7 @@
 import React, { FunctionComponent, SVGAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, Omit, keysOf } from '../common';
 
 import addDataApp from './assets/app_add_data.svg';
 import advancedSettingsApp from './assets/app_advanced_settings.svg';
@@ -643,7 +643,9 @@ export interface EuiIconProps {
   size?: IconSize;
 }
 
-type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
+type Props = CommonProps &
+  Omit<SVGAttributes<SVGElement>, 'color'> &
+  EuiIconProps;
 
 export const EuiIcon: FunctionComponent<Props> = ({
   type,
