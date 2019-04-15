@@ -51,6 +51,7 @@ declare module '@elastic/eui' {
     buttonColor?: ButtonColor;
     cancelButtonText?: ReactNode;
     confirmButtonText?: ReactNode;
+    confirmButtonDisabled?: boolean;
     defaultFocusedButton?: 'confirm' | 'cancel';
     title?: ReactNode;
     onCancel?: () => void;
