@@ -19,6 +19,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  &-isInvalid {
+    @include euiFormControlInvalidStyle;
+  }
+
   &--compressed {
     line-height: $euiFormControlCompressedHeight; /* 2 */
     padding-top: 0; /* 2 */

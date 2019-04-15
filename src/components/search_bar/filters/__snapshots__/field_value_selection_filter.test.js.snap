@@ -23,24 +23,38 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      checked="on"
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;
@@ -68,24 +82,38 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      checked="on"
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;
@@ -113,24 +141,37 @@ exports[`FieldValueSelectionFilter inactive - field is global 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;
@@ -158,24 +199,37 @@ exports[`FieldValueSelectionFilter inactive - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;
@@ -248,24 +302,37 @@ exports[`FieldValueSelectionFilter render - fields in options 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;
@@ -383,24 +450,37 @@ exports[`FieldValueSelectionFilter render - options as an array 1`] = `
   ownFocus={true}
   panelClassName="euiFilterGroup__popoverPanel"
   panelPaddingSize="none"
-  withTitle={null}
+  withTitle={false}
 >
   <div
-    className="euiFilterSelect__note"
+    className="euiFilterSelect__items"
   >
-    <div
-      className="euiFilterSelect__noteContent"
+    <EuiFilterSelectItem
+      key="0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
     >
-      <EuiLoadingChart
-        size="m"
-      />
-      <EuiSpacer
-        size="xs"
-      />
-      <p>
-        Loading...
-      </p>
-    </div>
+      feature
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      Text
+    </EuiFilterSelectItem>
+    <EuiFilterSelectItem
+      key="2"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      showIcons={true}
+    >
+      <div>
+        bug
+      </div>
+    </EuiFilterSelectItem>
   </div>
 </EuiPopover>
 `;

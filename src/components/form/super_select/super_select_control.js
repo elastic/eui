@@ -16,6 +16,7 @@ export const EuiSuperSelectControl = ({
   name,
   fullWidth,
   isLoading,
+  isInvalid,
   defaultValue,
   compressed,
   value,
@@ -27,6 +28,7 @@ export const EuiSuperSelectControl = ({
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
       'euiSuperSelectControl-isLoading': isLoading,
+      'euiSuperSelectControl-isInvalid': isInvalid,
     },
     className
   );
@@ -118,5 +120,6 @@ EuiSuperSelectControl.defaultProps = {
   options: [],
   fullWidth: false,
   isLoading: false,
+  isInvalid: false,
   compressed: false,
 };

@@ -1,17 +1,17 @@
-import React, {
-  Component,
-} from 'react';
-import PropTypes from 'prop-types';
+import React, { HTMLAttributes, Component, ReactNode } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
 
-export class EuiToolTipPopover extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    title: PropTypes.node,
-    positionToolTip: PropTypes.func.isRequired,
-    popoverRef: PropTypes.func,
-  }
+export type EuiToolTipPopoverProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    positionToolTip: (rect: ClientRect | DOMRect) => void;
+    children?: ReactNode;
+    title?: ReactNode;
+    popoverRef?: (ref: HTMLDivElement) => void;
+  };
+
+export class EuiToolTipPopover extends Component<EuiToolTipPopoverProps> {
+  private popover: HTMLDivElement | undefined;
 
   updateDimensions = () => {
     requestAnimationFrame(() => {
@@ -22,12 +22,12 @@ export class EuiToolTipPopover extends Component {
     });
   };
 
-  setPopoverRef = ref => {
+  setPopoverRef = (ref: HTMLDivElement) => {
     this.popover = ref;
     if (this.props.popoverRef) {
       this.props.popoverRef(ref);
     }
-  }
+  };
 
   componentDidMount() {
     document.body.classList.add('euiBody-hasPortalContent');
@@ -46,29 +46,20 @@ export class EuiToolTipPopover extends Component {
       children,
       title,
       className,
-      positionToolTip, // eslint-disable-line no-unused-vars
-      popoverRef, // eslint-disable-line no-unused-vars
+      positionToolTip,
+      popoverRef,
       ...rest
     } = this.props;
 
-    const classes = classNames(
-      'euiToolTipPopover',
-      className
-    );
+    const classes = classNames('euiToolTipPopover', className);
 
     let optionalTitle;
     if (title) {
-      optionalTitle = (
-        <div className="euiToolTip__title">{title}</div>
-      );
+      optionalTitle = <div className="euiToolTip__title">{title}</div>;
     }
 
     return (
-      <div
-        className={classes}
-        ref={this.setPopoverRef}
-        {...rest}
-      >
+      <div className={classes} ref={this.setPopoverRef} {...rest}>
         {optionalTitle}
         {children}
       </div>

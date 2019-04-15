@@ -45,6 +45,7 @@ import cross from './assets/cross.svg';
 import crossClusterReplicationApp from './assets/app_cross_cluster_replication.svg';
 import crosshairs from './assets/crosshairs.svg';
 import crossInACircleFilled from './assets/crossInACircleFilled.svg';
+import cut from './assets/cut.svg';
 import dashboardApp from './assets/app_dashboard.svg';
 import database from './assets/database.svg';
 import dataVisualizer from './assets/ml_data_visualizer.svg';
@@ -86,6 +87,7 @@ import folderOpen from './assets/folder_open.svg';
 import fullScreen from './assets/full_screen.svg';
 import gear from './assets/gear.svg';
 import gisApp from './assets/app_gis.svg';
+import glasses from './assets/glasses.svg';
 import globe from './assets/globe.svg';
 import grab from './assets/grab.svg';
 import grabHorizontal from './assets/grab_horizontal.svg';
@@ -180,6 +182,8 @@ import managementApp from './assets/app_management.svg';
 import mapMarker from './assets/map_marker.svg';
 import memory from './assets/memory.svg';
 import merge from './assets/merge.svg';
+import menuLeft from './assets/menuLeft.svg';
+import menuRight from './assets/menuRight.svg';
 import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import minusInCircleFilled from './assets/minus_in_circle_filled.svg';
@@ -340,6 +344,7 @@ const typeToIconMap = {
   crossClusterReplicationApp,
   crosshairs,
   crossInACircleFilled,
+  cut,
   dashboardApp,
   database,
   dataVisualizer,
@@ -381,6 +386,7 @@ const typeToIconMap = {
   fullScreen,
   gear,
   gisApp,
+  glasses,
   globe,
   grab,
   grabHorizontal,
@@ -475,6 +481,8 @@ const typeToIconMap = {
   mapMarker,
   memory,
   merge,
+  menuLeft,
+  menuRight,
   metricbeatApp,
   minusInCircle,
   minusInCircleFilled,

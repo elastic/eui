@@ -1,3 +1,0 @@
-export {
-  EuiTitle,
-} from './title';

@@ -66,16 +66,28 @@ export class FieldValueSelectionFilter extends Component {
 
   constructor(props) {
     super(props);
+
+    const { options } = props.config;
+
+    const preloadedOptions = (
+      isArray(options)
+        ? {
+          all: options,
+          shown: options
+        }
+        : null
+    );
+
     this.selectItems = [];
     this.state = {
       popoverOpen: false,
-      options: null,
-      error: null
+      error: null,
+      options: preloadedOptions
     };
   }
 
   closePopover() {
-    this.setState({ popoverOpen: false, options: null });
+    this.setState({ popoverOpen: false });
   }
 
   onButtonClick() {
@@ -88,7 +100,7 @@ export class FieldValueSelectionFilter extends Component {
       }
       return {
         options: null,
-        error: undefined,
+        error: null,
         popoverOpen: !prevState.popoverOpen
       };
     });
@@ -96,10 +108,10 @@ export class FieldValueSelectionFilter extends Component {
 
   loadOptions() {
     const loader = this.resolveOptionsLoader();
-    this.setState({ options: null, error: undefined });
+    this.setState({ options: null, error: null });
     loader().then((options) => {
       this.setState({
-        error: undefined,
+        error: null,
         options: {
           all: options,
           shown: options
@@ -397,6 +409,10 @@ export class FieldValueSelectionFilter extends Component {
   }
 
   isActiveField(field) {
+    if (typeof field !== 'string') {
+      return false;
+    }
+
     const { query } = this.props;
     const multiSelect = this.resolveMultiSelect();
 

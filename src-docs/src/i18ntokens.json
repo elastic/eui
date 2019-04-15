@@ -357,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
+        "line": 79,
         "column": 12
       },
       "end": {
-        "line": 81,
+        "line": 83,
         "column": 14
       }
     },
@@ -373,11 +373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 249,
+        "line": 251,
         "column": 12
       },
       "end": {
-        "line": 254,
+        "line": 256,
         "column": 14
       }
     },
@@ -542,6 +542,54 @@
       }
     },
     "filepath": "src/components/popover/popover.js"
+  },
+  {
+    "token": "euiSelectable.loadingOptions",
+    "defString": "Loading options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 291,
+        "column": 12
+      },
+      "end": {
+        "line": 294,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noMatchingOptions",
+    "defString": "{searchValue} doesn't match any options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 301,
+        "column": 10
+      },
+      "end": {
+        "line": 305,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.noAvailableOptions",
+    "defString": "No options available",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 311,
+        "column": 10
+      },
+      "end": {
+        "line": 314,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
   },
   {
     "token": "euiStepHorizontal.buttonTitle",

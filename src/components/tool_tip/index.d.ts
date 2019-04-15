@@ -1,3 +1,4 @@
+export { EuiToolTipPopover } from './tool_tip_popover';
 import { ReactElement, ReactNode, FunctionComponent } from 'react';
 import { EuiIcon } from '../icon';
 import { Omit, PropsOf } from '../common';

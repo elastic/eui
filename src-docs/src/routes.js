@@ -108,6 +108,9 @@ import { DelayHideExample }
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
 
+import { DragAndDropExample }
+  from './views/drag_and_drop/drag_and_drop_example';
+
 import { EmptyPromptExample }
   from './views/empty_prompt/empty_prompt_example';
 
@@ -388,6 +391,7 @@ const navigation = [{
     CardExample,
     CodeExample,
     DescriptionListExample,
+    DragAndDropExample,
     EmptyPromptExample,
     HealthExample,
     IconExample,
