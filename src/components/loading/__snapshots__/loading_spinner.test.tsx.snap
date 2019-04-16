@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiLoadingSpinner component div is rendered 1`] = `
+<div
+  class="euiLoadingSpinner euiLoadingSpinner--medium"
+/>
+`;
+
+exports[`EuiLoadingSpinner component figure is rendered 1`] = `
+<figure
+  class="euiLoadingSpinner euiLoadingSpinner--medium"
+/>
+`;
+
+exports[`EuiLoadingSpinner component span is rendered 1`] = `
+<span
+  class="euiLoadingSpinner euiLoadingSpinner--medium"
+/>
+`;
+
 exports[`EuiLoadingSpinner is rendered 1`] = `
 <div
   aria-label="aria-label"

@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.0.0`.
+- `EuiLoadingSpinner` now accept a `component` prop which you can set to `span` or `div` (default).
 
 ## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
 
