@@ -43,12 +43,13 @@ describe('EuiIcon', () => {
     });
 
     describe('color', () => {
-      COLORS.concat([
+      [
+        ...COLORS,
         '#fde',
         '#885522',
         'rgb(100, 150, 200)',
         'hsla(270, 60%, 70%, 0.9)',
-      ]).forEach(color => {
+      ].forEach(color => {
         test(`${color} is rendered`, () => {
           const component = render(<EuiIcon color={color} />);
 

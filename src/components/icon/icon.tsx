@@ -603,7 +603,7 @@ export const TYPES: IconType[] = keysOf(typeToIconMap);
 
 export type IconType = keyof typeof typeToIconMap;
 
-const colorToClassMap: { [color: string]: string | null } = {
+const colorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
@@ -616,10 +616,20 @@ const colorToClassMap: { [color: string]: string | null } = {
   ghost: 'euiIcon--ghost',
 };
 
-export const COLORS: IconColor[] = keysOf(colorToClassMap);
+const indexedColorToClassMap: {
+  [color: string]: string | null;
+} = colorToClassMap;
+
+export const COLORS: NamedColor[] = keysOf(colorToClassMap);
+
+type NamedColor = keyof typeof colorToClassMap;
+
+function isNamedColor(name: string): name is NamedColor {
+  return Object.keys(colorToClassMap).indexOf(name) !== -1;
+}
 
 // We accept arbitrary color strings, which are impossible to type.
-export type IconColor = string | keyof typeof colorToClassMap;
+export type IconColor = string | NamedColor;
 
 const sizeToClassNameMap = {
   original: null,
@@ -659,8 +669,8 @@ export const EuiIcon: FunctionComponent<Props> = ({
   let optionalCustomStyles = null;
 
   if (color) {
-    if (COLORS.indexOf(color) > -1) {
-      optionalColorClass = colorToClassMap[color];
+    if (isNamedColor(color)) {
+      optionalColorClass = indexedColorToClassMap[color];
     } else {
       optionalCustomStyles = { fill: color };
     }
