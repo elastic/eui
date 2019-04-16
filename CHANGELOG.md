@@ -1,8 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.0.0`.
+
+## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
+
 - Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
 - Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
+- Updated the overflow shadows for `EuiModal` and `EuiFlyout` ([#1829](https://github.com/elastic/eui/pull/1829))
+- Added `confirmButtonDisabled` prop to `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
+- Fixed `EuiNavDrawer` overflow scroll behavior on Firefox ([#1837](https://github.com/elastic/eui/pull/1837))
 - Convert `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
+
+**Bug fixes**
+
+- Fixed mobile layout for `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
+
+**Deprecations**
+
+- Replaced the following SASS mixins `euiOverflowShadowTop`, `euiOverflowShadowBottom` with `euiOverflowShadow`. ([#1829](https://github.com/elastic/eui/pull/1829))
+
+
+**Breaking changes**
+
+- Removed transitional `keyOfStringsOnly` option from TypeScript configuration ([#1814](https://github.com/elastic/eui/pull/1814))
 
 ## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
 
@@ -11,8 +31,8 @@
 **Bug fixes**
 
 - Added `isLoading` prop typedef to `EuiSuperDatePickerProps` ([#1812](https://github.com/elastic/eui/pull/1812))
-- Fix `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
-- Fix `EuiSearchBar` filter button highlighting ([#1824](https://github.com/elastic/eui/pull/1824))
+- Fixed `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
+- Fixed `EuiSearchBar` filter button highlighting ([#1824](https://github.com/elastic/eui/pull/1824))
 
 ## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
 

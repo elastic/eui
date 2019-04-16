@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps, Omit, keysOf } from '../../common';
 
 const colorToClassMap: { [color: string]: string | null } = {
   accent: null,
@@ -20,7 +20,7 @@ export type BadgeNotificationSize = keyof typeof sizeToClassNameMap;
 
 export interface EuiNotificationBadgeProps
   extends CommonProps,
-    HTMLAttributes<HTMLSpanElement> {
+    Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
   children: ReactNode;
   size?: BadgeNotificationSize;
   color?: BadgeNotificationColor;

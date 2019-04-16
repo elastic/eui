@@ -5,5 +5,9 @@ exports[`EuiFlyoutBody is rendered 1`] = `
   aria-label="aria-label"
   class="euiFlyoutBody testClass1 testClass2"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiFlyoutBody__overflow"
+  />
+</div>
 `;
