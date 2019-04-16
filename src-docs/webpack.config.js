@@ -26,15 +26,15 @@ module.exports = {
   module: {
     rules: [{
       test: /\.(js|tsx?)$/,
-      loader: 'babel-loader',
+      loaders: ['cache-loader', 'babel-loader'],
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],
+      loaders: ['cache-loader', 'style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loaders: ['style-loader/useable', 'css-loader'],
+      loaders: ['cache-loader', 'style-loader/useable', 'css-loader'],
       exclude: /node_modules/
     }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
@@ -57,10 +57,12 @@ module.exports = {
       cache: true,
       showErrors: true
     }),
+
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
     }),
+
     // run TypeScript and tslint during webpack build
     new ForkTsCheckerWebpackPlugin({
       tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),

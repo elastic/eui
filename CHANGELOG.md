@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.0.0`.
+- Use `cache-loader` to speed up development docs site build ([#1840](https://github.com/elastic/eui/pull/1840)
 
 ## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
 

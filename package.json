@@ -96,6 +96,7 @@
     "babel-plugin-pegjs-inline-precompile": "^0.1.0",
     "babel-plugin-react-docgen": "^2.0.0",
     "babel-template": "^6.26.0",
+    "cache-loader": "^2.0.1",
     "chai": "^4.1.2",
     "chai-webdriverio": "^0.4.3",
     "chalk": "^2.4.1",
