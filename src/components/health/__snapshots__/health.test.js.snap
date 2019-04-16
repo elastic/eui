@@ -13,7 +13,7 @@ exports[`EuiHealth is rendered 1`] = `
       class="euiFlexItem euiFlexItem--flexGrowZero"
     >
       <svg
-        class="euiIcon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiIcon-isLoading"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"

@@ -47,7 +47,7 @@ exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
       class="euiContextMenuItem__text"
     />
     <svg
-      class="euiIcon euiIcon--medium euiContextMenu__arrow"
+      class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__arrow"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"

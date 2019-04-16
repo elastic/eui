@@ -31,7 +31,7 @@ exports[`EuiCard icon 1`] = `
     class="euiCard__top"
   >
     <svg
-      class="euiIcon euiIcon--medium euiIcon--app myIconClass euiCard__icon"
+      class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoading myIconClass euiCard__icon"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"

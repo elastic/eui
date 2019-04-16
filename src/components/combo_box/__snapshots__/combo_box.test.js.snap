@@ -46,7 +46,7 @@ exports[`EuiComboBox is rendered 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
             viewBox="0 0 16 16"
@@ -269,7 +269,7 @@ exports[`props options list is rendered 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
             focusable="false"
             height="16"
             viewBox="0 0 16 16"

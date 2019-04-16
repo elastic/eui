@@ -189,13 +189,13 @@ exports[`EuiToast Props iconType is rendered 1`] = `
         >
           <EuiIconEmpty
             aria-hidden="true"
-            className="euiIcon euiIcon--medium euiToastHeader__icon"
+            className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
             focusable="false"
             style={null}
           >
             <svg
               aria-hidden="true"
-              className="euiIcon euiIcon--medium euiToastHeader__icon"
+              className="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
               focusable="false"
               height={16}
               style={null}

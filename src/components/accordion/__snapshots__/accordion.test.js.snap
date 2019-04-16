@@ -47,12 +47,12 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
                         type="arrowRight"
                       >
                         <EuiIconEmpty
-                          className="euiIcon euiIcon--medium"
+                          className="euiIcon euiIcon--medium euiIcon-isLoading"
                           focusable="false"
                           style={null}
                         >
                           <svg
-                            className="euiIcon euiIcon--medium"
+                            className="euiIcon euiIcon--medium euiIcon-isLoading"
                             focusable="false"
                             height={16}
                             style={null}
@@ -149,12 +149,12 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
                         type="arrowDown"
                       >
                         <EuiIconEmpty
-                          className="euiIcon euiIcon--medium"
+                          className="euiIcon euiIcon--medium euiIcon-isLoading"
                           focusable="false"
                           style={null}
                         >
                           <svg
-                            className="euiIcon euiIcon--medium"
+                            className="euiIcon euiIcon--medium euiIcon-isLoading"
                             focusable="false"
                             height={16}
                             style={null}
@@ -229,7 +229,7 @@ exports[`EuiAccordion is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
-              class="euiIcon euiIcon--medium"
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
@@ -280,7 +280,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
-              class="euiIcon euiIcon--medium"
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
@@ -335,7 +335,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
-              class="euiIcon euiIcon--medium"
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
@@ -386,7 +386,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
-              class="euiIcon euiIcon--medium"
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
@@ -444,7 +444,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
             class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
           >
             <svg
-              class="euiIcon euiIcon--medium"
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"

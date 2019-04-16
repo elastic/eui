@@ -10,7 +10,7 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--medium"
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -29,7 +29,7 @@ exports[`EuiLoadingKibana size l is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--large"
+      class="euiIcon euiIcon--large euiIcon-isLoading"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -48,7 +48,7 @@ exports[`EuiLoadingKibana size m is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--medium"
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
@@ -67,7 +67,7 @@ exports[`EuiLoadingKibana size xl is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--xLarge"
+      class="euiIcon euiIcon--xLarge euiIcon-isLoading"
       focusable="false"
       height="16"
       viewBox="0 0 16 16"
