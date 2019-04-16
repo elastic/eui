@@ -616,16 +616,12 @@ const colorToClassMap = {
   ghost: 'euiIcon--ghost',
 };
 
-const indexedColorToClassMap: {
-  [color: string]: string | null;
-} = colorToClassMap;
-
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
 
 type NamedColor = keyof typeof colorToClassMap;
 
 function isNamedColor(name: string): name is NamedColor {
-  return Object.keys(colorToClassMap).indexOf(name) !== -1;
+  return colorToClassMap.hasOwnProperty(name);
 }
 
 // We accept arbitrary color strings, which are impossible to type.
@@ -670,7 +666,7 @@ export const EuiIcon: FunctionComponent<Props> = ({
 
   if (color) {
     if (isNamedColor(color)) {
-      optionalColorClass = indexedColorToClassMap[color];
+      optionalColorClass = colorToClassMap[color];
     } else {
       optionalCustomStyles = { fill: color };
     }
