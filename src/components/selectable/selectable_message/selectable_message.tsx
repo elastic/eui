@@ -1,10 +1,12 @@
 import React, { HTMLAttributes } from 'react';
-import { CommonProps } from '../../common';
+import { CommonProps, Omit } from '../../common';
 import classNames from 'classnames';
-// @ts-ignore
 import { EuiText } from '../../text';
 
-export type EuiSelectableMessageProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSelectableMessageProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'color'
+> &
   CommonProps & {};
 
 export const EuiSelectableMessage: React.FunctionComponent<

@@ -6,11 +6,8 @@ import { EuiTextAlign } from './text_align';
 
 describe('EuiTextAlign', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTextAlign {...requiredProps} />
-    );
+    const component = render(<EuiTextAlign {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
