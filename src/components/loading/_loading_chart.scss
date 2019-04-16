@@ -1,5 +1,5 @@
 .euiLoadingChart {
-  height: 32px;
+  height: $euiSizeXL;
   z-index: 500;
   overflow: hidden;
   display: inline-block;
@@ -7,11 +7,10 @@
 
 .euiLoadingChart__bar {
   height: 100%;
-  width: 8px;
+  width: $euiSizeS;
   display: inline-block;
-  float: left;
-  margin-bottom: -16px;
-  margin-left: 2px;
+  margin-bottom: -$euiSize;
+  margin-left: $euiSizeXS / 2;
   animation: euiLoadingChart 1s infinite;
 
   &:nth-child(1) {
@@ -57,7 +56,7 @@
 .euiLoadingChart--medium {
   height: $euiSize;
 
-  > div {
+  > span {
     width: $euiSizeXS / 2;
     margin-left: $euiSizeXS / 2;
     margin-bottom: $euiSizeS;
@@ -67,7 +66,7 @@
 .euiLoadingChart--large {
   height: $euiSizeL;
 
-  > div {
+  > span {
     width: $euiSizeXS;
     margin-left: $euiSizeXS / 2;
     margin-bottom: $euiSizeL / 2;
@@ -77,7 +76,7 @@
 .euiLoadingChart--xLarge {
   height: $euiSizeXL;
 
-  > div {
+  > span {
     width: $euiSizeS;
     margin-left: $euiSizeXS;
     margin-bottom: $euiSizeXL / 2;

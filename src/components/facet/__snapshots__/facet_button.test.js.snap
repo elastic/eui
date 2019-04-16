@@ -93,7 +93,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
     >
       Content
     </span>
-    <div
+    <span
       class="euiLoadingSpinner euiLoadingSpinner--medium euiFacetButton__spinner"
     />
   </span>

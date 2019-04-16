@@ -25,5 +25,5 @@ export const EuiLoadingSpinner: FunctionComponent<
     className
   );
 
-  return <div className={classes} {...rest} />;
+  return <span className={classes} {...rest} />;
 };

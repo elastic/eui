@@ -201,7 +201,7 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
     <div
       class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
     >
-      <div
+      <span
         class="euiLoadingSpinner euiLoadingSpinner--medium"
       />
     </div>

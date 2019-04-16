@@ -22,12 +22,18 @@
     background-color: $euiColorFullShade;
     animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
   }
+
+  .euiLoadingKibana__icon {
+    display: block;
+  }
 }
 
 /**
  * 1. Requires pixel math for animation.
  */
 .euiLoadingKibana--medium {
+  width: $euiSize;
+
   &:before,
   &:after {
     height: $euiSizeXS - 1; /* 1 */
@@ -44,6 +50,8 @@
  * 1. Requires pixel math for animation.
  */
 .euiLoadingKibana--large {
+  width: $euiSizeL;
+
   &:before,
   &:after {
     height: $euiSizeS - 2; /* 1 */
@@ -56,6 +64,8 @@
 }
 
 .euiLoadingKibana--xLarge {
+  width: $euiSizeXL;
+
   &:before,
   &:after {
     height: $euiSizeS;

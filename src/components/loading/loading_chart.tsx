@@ -30,11 +30,11 @@ export const EuiLoadingChart: FunctionComponent<
   );
 
   return (
-    <div className={classes} {...rest}>
-      <div className="euiLoadingChart__bar" />
-      <div className="euiLoadingChart__bar" />
-      <div className="euiLoadingChart__bar" />
-      <div className="euiLoadingChart__bar" />
-    </div>
+    <span className={classes} {...rest}>
+      <span className="euiLoadingChart__bar" />
+      <span className="euiLoadingChart__bar" />
+      <span className="euiLoadingChart__bar" />
+      <span className="euiLoadingChart__bar" />
+    </span>
   );
 };
