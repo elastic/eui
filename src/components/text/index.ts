@@ -1,5 +1,3 @@
-export { EuiText, TextSize, TEXT_SIZES } from './text';
-
-export { EuiTextColor, TextColor, COLORS } from './text_color';
-
-export { EuiTextAlign, TextAlignment, ALIGNMENTS } from './text_align';
+export { EuiText } from './text';
+export { EuiTextColor } from './text_color';
+export { EuiTextAlign } from './text_align';
