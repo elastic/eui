@@ -121,4 +121,12 @@ export const TOKEN_MAP = {
     'color': 'tokenTint12',
     'fill': true,
   },
+  tokenNamespace: {
+    'shape': 'square',
+    'color': 'tokenTint01'
+  },
+  tokenModule: {
+    'shape': 'square',
+    'color': 'tokenTint09'
+  }
 };
