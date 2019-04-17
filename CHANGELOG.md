@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Use `cache-loader` to speed up development docs site build ([#1840](https://github.com/elastic/eui/pull/1840)
+- Use `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
+
+## [`10.0.1`](https://github.com/elastic/eui/tree/v10.0.1)
+
+- Convert `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
+- Updated `IconColor` type to better distinguish between accepted types ([#1842](https://github.com/elastic/eui/pull/1842))
 
 ## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
 
