@@ -6,7 +6,7 @@ No public interface changes since `10.0.1`.
 
 - Convert `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
 - Updated `IconColor` type to better distinguish between accepted types ([#1842](https://github.com/elastic/eui/pull/1842))
-- Changed `EuiLoding` components to use spans instead of divs  ([#1845](https://github.com/elastic/eui/pull/1845))
+- Changed `EuiLoading` components to use spans instead of divs  ([#1845](https://github.com/elastic/eui/pull/1845))
 
 **Bug fixes**
 
