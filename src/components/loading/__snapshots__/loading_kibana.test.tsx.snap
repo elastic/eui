@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiLoadingKibana is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiLoadingKibana euiLoadingKibana--medium testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     class="euiLoadingKibana__icon"
   >
     <svg
@@ -35,15 +35,15 @@ exports[`EuiLoadingKibana is rendered 1`] = `
         />
       </g>
     </svg>
-  </div>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiLoadingKibana size l is rendered 1`] = `
-<div
+<span
   class="euiLoadingKibana euiLoadingKibana--large"
 >
-  <div
+  <span
     class="euiLoadingKibana__icon"
   >
     <svg
@@ -72,15 +72,15 @@ exports[`EuiLoadingKibana size l is rendered 1`] = `
         />
       </g>
     </svg>
-  </div>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiLoadingKibana size m is rendered 1`] = `
-<div
+<span
   class="euiLoadingKibana euiLoadingKibana--medium"
 >
-  <div
+  <span
     class="euiLoadingKibana__icon"
   >
     <svg
@@ -109,15 +109,15 @@ exports[`EuiLoadingKibana size m is rendered 1`] = `
         />
       </g>
     </svg>
-  </div>
-</div>
+  </span>
+</span>
 `;
 
 exports[`EuiLoadingKibana size xl is rendered 1`] = `
-<div
+<span
   class="euiLoadingKibana euiLoadingKibana--xLarge"
 >
-  <div
+  <span
     class="euiLoadingKibana__icon"
   >
     <svg
@@ -146,6 +146,6 @@ exports[`EuiLoadingKibana size xl is rendered 1`] = `
         />
       </g>
     </svg>
-  </div>
-</div>
+  </span>
+</span>
 `;

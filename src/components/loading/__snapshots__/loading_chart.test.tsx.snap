@@ -1,98 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiLoadingChart is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium"
   data-test-subj="test subject string"
 >
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-</div>
+</span>
 `;
 
 exports[`EuiLoadingChart mono is rendered 1`] = `
-<div
+<span
   class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium"
 >
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-</div>
+</span>
 `;
 
 exports[`EuiLoadingChart size l is rendered 1`] = `
-<div
+<span
   class="euiLoadingChart euiLoadingChart--large"
 >
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-</div>
+</span>
 `;
 
 exports[`EuiLoadingChart size m is rendered 1`] = `
-<div
+<span
   class="euiLoadingChart euiLoadingChart--medium"
 >
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-</div>
+</span>
 `;
 
 exports[`EuiLoadingChart size xl is rendered 1`] = `
-<div
+<span
   class="euiLoadingChart euiLoadingChart--xLarge"
 >
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-  <div
+  <span
     class="euiLoadingChart__bar"
   />
-</div>
+</span>
 `;

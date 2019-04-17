@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiLoadingSpinner is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
   class="euiLoadingSpinner euiLoadingSpinner--medium testClass1 testClass2"
   data-test-subj="test subject string"
@@ -9,25 +9,25 @@ exports[`EuiLoadingSpinner is rendered 1`] = `
 `;
 
 exports[`EuiLoadingSpinner size l is rendered 1`] = `
-<div
+<span
   class="euiLoadingSpinner euiLoadingSpinner--large"
 />
 `;
 
 exports[`EuiLoadingSpinner size m is rendered 1`] = `
-<div
+<span
   class="euiLoadingSpinner euiLoadingSpinner--medium"
 />
 `;
 
 exports[`EuiLoadingSpinner size s is rendered 1`] = `
-<div
+<span
   class="euiLoadingSpinner euiLoadingSpinner--small"
 />
 `;
 
 exports[`EuiLoadingSpinner size xl is rendered 1`] = `
-<div
+<span
   class="euiLoadingSpinner euiLoadingSpinner--xLarge"
 />
 `;

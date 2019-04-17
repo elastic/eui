@@ -1,8 +1,10 @@
 .euiLoadingContent__loader {
+  display: block;
   width: 100%;
 }
 
 .euiLoadingContent__singleLine {
+  display: block;
   width: 100%;
   height: $euiSize;
   margin-bottom: $euiSizeS;
@@ -15,6 +17,7 @@
 }
 
 .euiLoadingContent__singleLineBackground {
+  display: block;
   width: 220%;
   height: 100%;
   background: linear-gradient(
