@@ -4,7 +4,7 @@ exports[`TermToggleGroupFilter render - active 1`] = `
 Array [
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
@@ -16,7 +16,7 @@ Array [
   </EuiFilterButton>,
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
@@ -33,7 +33,7 @@ exports[`TermToggleGroupFilter render - active negated - custom negated name 1`]
 Array [
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
@@ -45,7 +45,7 @@ Array [
   </EuiFilterButton>,
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
@@ -62,7 +62,7 @@ exports[`TermToggleGroupFilter render - active negated 1`] = `
 Array [
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={true}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
@@ -74,7 +74,7 @@ Array [
   </EuiFilterButton>,
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"
@@ -91,7 +91,7 @@ exports[`TermToggleGroupFilter render 1`] = `
 Array [
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_0"
@@ -103,7 +103,7 @@ Array [
   </EuiFilterButton>,
   <EuiFilterButton
     color="text"
-    grow={false}
+    grow={true}
     hasActiveFilters={false}
     iconSide="right"
     key="field_value_toggle_filter_item_1"

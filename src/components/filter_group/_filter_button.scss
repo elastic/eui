@@ -7,12 +7,12 @@
  */
 
 .euiFilterButton {
-  flex-grow: 0; // Shrink by default
-  height: $euiFormControlHeight - 2px; /* 1 */
+  // flex-grow: 0; // Shrink by default
+  // height: $euiFormControlHeight - 2px; /* 1 */
   font-size: $euiFontSizeS;
 
-  &:not(:last-child):not(.euiFilterButton--noDivider) {
-    border-right: 1px solid $euiFormBorderColor;
+  &.euiFilterButton--noDivider {
+    border-right: none;
   }
 
   &:disabled {
@@ -36,24 +36,8 @@
   }
 }
 
-.euiFilterButton--grow {
-  flex-grow: 1;
-  width: 100%;
-  text-align: left;
-
-  // Force content to space out icon
-  .euiButtonEmpty__content {
-    justify-content: space-between;
-  }
-}
-
 .euiFilterButton-hasActiveFilters {
   font-weight: $euiFontWeightBold;
-}
-
-.euiFilterButton__notification {
-  margin-left: $euiSizeS;
-  vertical-align: text-bottom;
 }
 
 .euiFilterButton--noDivider + .euiFilterButton {
@@ -66,10 +50,17 @@
 
 .euiFilterButton__text-hasNotification {
   display: flex;
+  // flex-direction: row-reverse;
   align-items: center;
+}
+
+.euiFilterButton__notification {
+  margin-right: $euiSizeS;
+  vertical-align: text-bottom;
 }
 
 .euiFilterButton__textShift {
   @include euiTextShift;
-  vertical-align: middle;
+  @include euiTextTruncate;
+  min-width: $euiSize * 3;
 }

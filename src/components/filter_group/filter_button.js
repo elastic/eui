@@ -31,21 +31,24 @@ export const EuiFilterButton = ({
   textProps,
   ...rest
 }) => {
+  // != instead of !== to allow for null and undefined
+  const numFiltersDefined = numFilters != null;
 
   const classes = classNames(
     'euiFilterButton',
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
-      'euiFilterButton--grow': grow,
+      'euiFilterButton-hasNotification': numFiltersDefined,
+      'euiFilterButton--hasIcon': iconType,
+      'euiFilterButton--noGrow': !grow,
       'euiFilterButton--noDivider': noDivider,
     },
     className,
   );
 
-  // != instead of !== to allow for null and undefined
-  const numFiltersDefined = numFilters != null;
   const buttonTextClassNames = classNames(
+    // 'euiFilterButton__textShift',
     { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
     textProps && textProps.className,
   );
@@ -57,18 +60,20 @@ export const EuiFilterButton = ({
 
   const buttonContents = (
     <Fragment>
-      <span className="euiFilterButton__textShift" data-text={dataText}>
-        {children}
-      </span>
       {numFiltersDefined &&
         <EuiNotificationBadge
           className="euiFilterButton__notification"
           size="m"
+          aria-label={!hasActiveFilters ? 'Available filters' : 'Active filters'}
           color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
         >
           {numActiveFilters || numFilters}
         </EuiNotificationBadge>
       }
+
+      <span className="euiFilterButton__textShift" data-text={dataText}>
+        {children}
+      </span>
     </Fragment>
   );
 
@@ -135,5 +140,5 @@ EuiFilterButton.defaultProps = {
   type: 'button',
   iconSide: 'right',
   color: 'text',
-  grow: false,
+  grow: true,
 };

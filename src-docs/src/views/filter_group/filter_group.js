@@ -91,7 +91,6 @@ export default class extends Component {
         numFilters={items.length}
         hasActiveFilters={true}
         numActiveFilters={2}
-        grow={true}
       >
         Composers
       </EuiFilterButton>
@@ -99,13 +98,13 @@ export default class extends Component {
 
     return (
       <EuiFilterGroup>
-        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+        <EuiFilterButton grow={false} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Filter
         </EuiFilterButton>
-        <EuiFilterButton noDivider hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+        <EuiFilterButton noDivider grow={false} hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
           On
         </EuiFilterButton>
-        <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+        <EuiFilterButton grow={false} hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
           Off
         </EuiFilterButton>
         <EuiPopover
@@ -151,6 +150,9 @@ export default class extends Component {
             </div>
           </div>
         </EuiPopover>
+        <EuiFilterButton numFilters={items.length} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+          Filter with a very long name
+        </EuiFilterButton>
       </EuiFilterGroup>
     );
   }

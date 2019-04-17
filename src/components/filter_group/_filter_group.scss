@@ -1,28 +1,60 @@
+@import '../form/variables';
 @import '../form/mixins';
 
 .euiFilterGroup {
-  // Match just the regular drop shadow of inputs
-  @include euiFormControlDefaultShadow;
-  @include euiFormControlSize;
-  max-width: none;
   display: flex;
-  align-items: center;
-  padding: 1px; /* 1 */
+  max-width: 100%;
+  border-left: 1px solid $euiFormBorderColor;
+  border-bottom: 1px solid $euiFormBorderColor;
+  box-shadow: #{$euiFormControlBoxShadow};
+  overflow-x: auto;
 
   > * {
-    // defaults to growing children
-    // though filter buttons don't grow by default
-    flex-grow: 1;
+    flex: 1 1 auto;
+    min-width: $euiSize * 3;
+  }
+
+  > .euiFilterButton--noGrow  {
+    flex-grow: 0;
+  }
+
+  > .euiFilterButton-hasNotification {
+    min-width: $euiSize * 6;
+  }
+
+  > .euiFilterButton--hasIcon {
+    min-width: $euiSize * 8;
   }
 
   // Force popover anchors to expand for now
   .euiPopover__anchor {
     display: block;
+
+    .euiFilterButton {
+      width: 100%;
+    }
   }
+}
+
+.euiFilterButton {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow($borderOnly: true);
+  @include euiFormControlSize;
+  width: auto;
+  max-width: none;
+  box-shadow: none;
+  border-right: 1px solid $euiFormBorderColor;
+  border-top: 1px solid $euiFormBorderColor;
 }
 
 // A fixed width is required in IE11 because of the shift in widths that can be caused
 // by the loading animation that precedes the results.
 .euiFilterGroup__popoverPanel {
   width: $euiSize * 18;
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiFilterGroup {
+    flex-wrap: wrap;
+  }
 }
