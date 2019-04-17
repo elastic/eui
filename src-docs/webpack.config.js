@@ -3,6 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const isDevelopment = process.env.NODE_ENV !== 'production' && process.env.CI == null;
+
+function useCache(loaders) {
+  if (isDevelopment) {
+    return ['cache-loader'].concat(loaders);
+  }
+
+  return loaders;
+}
+
 module.exports = {
   mode: 'development',
 
@@ -26,15 +36,15 @@ module.exports = {
   module: {
     rules: [{
       test: /\.(js|tsx?)$/,
-      loader: 'babel-loader',
+      loaders: useCache(['babel-loader']),
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],
+      loaders: useCache(['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader']),
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loaders: ['style-loader/useable', 'css-loader'],
+      loaders: useCache(['style-loader/useable', 'css-loader']),
       exclude: /node_modules/
     }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
@@ -57,10 +67,12 @@ module.exports = {
       cache: true,
       showErrors: true
     }),
+
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
     }),
+
     // run TypeScript and tslint during webpack build
     new ForkTsCheckerWebpackPlugin({
       tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
