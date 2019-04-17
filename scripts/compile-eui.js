@@ -44,10 +44,10 @@ function compileBundle() {
   shell.mkdir('-p', 'dist');
 
   console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js');
+  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js');
+  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 }
 
 compileLib();

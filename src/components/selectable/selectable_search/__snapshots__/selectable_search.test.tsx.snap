@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectableSearch is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <input
+      aria-label="aria-label"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+      data-test-subj="test subject string"
+      placeholder="Filter options"
+      type="search"
+      value=""
+    />
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableSearch props defaultValue 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <input
+      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+      placeholder="Filter options"
+      type="search"
+      value="Mi"
+    />
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;

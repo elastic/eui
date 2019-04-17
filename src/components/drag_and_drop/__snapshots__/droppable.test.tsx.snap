@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDroppable can be given ReactElement children 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-react-beautiful-dnd-droppable="2"
+  data-test-subj="droppable"
+>
+  <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`EuiDroppable is rendered 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-react-beautiful-dnd-droppable="1"
+  data-test-subj="droppable"
+>
+  <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;

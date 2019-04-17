@@ -23,6 +23,304 @@ exports[`EuiIcon is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props color #885522 is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  style="fill: #885522;"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color #fde is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  style="fill: #fde;"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color accent is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color danger is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color default is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color ghost is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  style="fill: hsla(270, 60%, 70%, 0.9);"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color primary is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--primary euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  style="fill: rgb(100, 150, 200);"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color secondary is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--secondary euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color subdued is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--subdued euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color success is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--success euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color text is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color warning is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon--warning euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props other props are passed through to the icon 1`] = `
 <svg
   aria-label="a custom title"
@@ -155,6 +453,71 @@ exports[`EuiIcon props size \${size} is rendered 6`] = `
   class="euiIcon euiIcon--xxLarge euiIcon-isLoaded"
   focusable="false"
   height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  tabindex="-1"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="true"
+  height="16"
+  tabindex="0"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
@@ -964,6 +1327,22 @@ exports[`EuiIcon props type crosshairs is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type cut is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5.142 11.074l-1.912.548a2.532 2.532 0 1 1-1.395-4.867l1.947-.559a2.532 2.532 0 0 1 2.555.713l1.53-5.335c.139-.485.6-.897 1.159-1.238.27-.164.52-.278.779-.32.814-.132 1.503.558 1.261 1.422L9.574 6.643l4.988-1.43c.864-.242 1.554.447 1.422 1.26-.042.26-.156.51-.32.78-.341.56-.753 1.02-1.238 1.16L9.523 9.817a2.53 2.53 0 0 1 .56 2.4l-.56 1.947a2.532 2.532 0 1 1-4.867-1.395l.486-1.696zm.33-1.148l.48-1.673a1.52 1.52 0 0 0-1.89-1.083l-1.948.558a1.52 1.52 0 0 0 .837 2.92l2.52-.722zm3.773-2.135l-.33 1.148 5.232-1.5c.324-.093 1.182-1.39.694-1.253L9.245 7.791zM5.63 13.049a1.52 1.52 0 0 0 2.92.837l.559-1.947a1.52 1.52 0 0 0-1.553-1.935l2.537-8.845c.136-.488-1.16.37-1.253.694L5.63 13.05zm.973.279l.559-1.947a.506.506 0 1 1 .973.279l-.558 1.947a.506.506 0 1 1-.974-.28zm-3.93-3.653a.506.506 0 1 1-.28-.973l1.947-.558a.506.506 0 0 1 .28.973l-1.948.558z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
@@ -1716,6 +2095,21 @@ exports[`EuiIcon props type gisApp is rendered 1`] = `
   />
   <path
     d="M18 9a2 2 0 1 0-4 0 2 2 0 0 0 4 0zm2 0a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-3.268 12.681l-.732.787-.732-.787c-3.557-3.824-5.817-6.462-6.81-7.96A8.746 8.746 0 0 1 7 8.875C7 3.97 11.033 0 16 0s9 3.97 9 8.875a8.746 8.746 0 0 1-1.459 4.846c-.992 1.498-3.252 4.136-6.809 7.96zm5.142-9.064A6.747 6.747 0 0 0 23 8.875C23 5.081 19.87 2 16 2S9 5.081 9 8.875c0 1.349.394 2.636 1.126 3.742.846 1.277 2.812 3.593 5.874 6.912 3.062-3.32 5.028-5.635 5.874-6.912z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type glasses is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.035 9A3.5 3.5 0 0 1 15 7.05V4.5c0-1.072-.648-1.72-2.098-2.01a.5.5 0 0 1 .196-.98C14.981 1.886 16 2.905 16 4.5v4.25c0 .072-.015.14-.043.202A3.5 3.5 0 0 1 9.035 10h-2.07A3.5 3.5 0 1 1 .043 8.952.498.498 0 0 1 0 8.75V4.5c0-1.595 1.019-2.614 2.902-2.99a.5.5 0 0 1 .196.98C1.648 2.78 1 3.428 1 4.5v2.55A3.5 3.5 0 0 1 6.965 9h2.07zM3.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm9 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"
   />
 </svg>
 `;
@@ -4312,6 +4706,37 @@ exports[`EuiIcon props type memory is rendered 1`] = `
   />
   <path
     d="M0 3v7.05h1v3.698h1v-3.699h12v3.699h1v-3.699h1V3H0zm1 6h14V4H1v5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type menuLeft is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1.014 7.382a.501.501 0 0 0-.013.152c-.014.4.133.806.439 1.112l2.12 2.122a.5.5 0 1 0 .708-.708L2.208 8H14.5a.5.5 0 0 0 0-1H2.379l1.889-1.89a.5.5 0 0 0-.707-.706L1.44 6.524c-.241.242-.383.544-.426.858zM14.5 3h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1zm0 8h-7a.5.5 0 1 0 0 1h7a.5.5 0 1 0 0-1z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type menuRight is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14.986 7.382a.501.501 0 0 1 .013.152c.014.4-.133.806-.439 1.112l-2.12 2.122a.5.5 0 1 1-.708-.708L13.792 8H1.5a.5.5 0 0 1 0-1h12.121l-1.889-1.89a.5.5 0 0 1 .707-.706l2.121 2.12c.241.242.383.544.426.858zM1.5 3h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1zm0 8h7a.5.5 0 1 1 0 1h-7a.5.5 0 1 1 0-1z"
   />
 </svg>
 `;

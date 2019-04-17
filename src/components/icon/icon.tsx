@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, Omit, keysOf } from '../common';
 
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
@@ -15,7 +15,7 @@ import { CommonProps, keysOf } from '../common';
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
 
-const typeToPathMap: { [key: string]: string } = {
+const typeToPathMap = {
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
   alert: 'alert',
@@ -58,6 +58,7 @@ const typeToPathMap: { [key: string]: string } = {
   crossClusterReplicationApp: 'app_cross_cluster_replication',
   crosshairs: 'crosshairs',
   crossInACircleFilled: 'crossInACircleFilled',
+  cut: 'cut',
   dashboardApp: 'app_dashboard',
   database: 'database',
   dataVisualizer: 'ml_data_visualizer',
@@ -99,6 +100,7 @@ const typeToPathMap: { [key: string]: string } = {
   fullScreen: 'full_screen',
   gear: 'gear',
   gisApp: 'app_gis',
+  glasses: 'glasses',
   globe: 'globe',
   grab: 'grab',
   grabHorizontal: 'grab_horizontal',
@@ -192,6 +194,8 @@ const typeToPathMap: { [key: string]: string } = {
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',
+  menuLeft: 'menuLeft',
+  menuRight: 'menuRight',
   merge: 'merge',
   metricbeatApp: 'app_metricbeat',
   minusInCircle: 'minus_in_circle',
@@ -279,8 +283,7 @@ const typeToPathMap: { [key: string]: string } = {
   visVisualBuilder: 'vis_visual_builder',
   watchesApp: 'app_watches',
   wrench: 'wrench',
-  //
-  // // Token Icon Imports
+  // Token Icon Imports
   tokenClass: 'tokens/tokenClass',
   tokenProperty: 'tokens/tokenProperty',
   tokenEnum: 'tokens/tokenEnum',
@@ -315,7 +318,7 @@ export const TYPES: IconType[] = keysOf(typeToPathMap);
 
 export type IconType = keyof typeof typeToPathMap;
 
-const colorToClassMap: { [color: string]: string | null } = {
+const colorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
@@ -328,10 +331,16 @@ const colorToClassMap: { [color: string]: string | null } = {
   ghost: 'euiIcon--ghost',
 };
 
-export const COLORS: IconColor[] = keysOf(colorToClassMap);
+export const COLORS: NamedColor[] = keysOf(colorToClassMap);
+
+type NamedColor = keyof typeof colorToClassMap;
+
+function isNamedColor(name: string): name is NamedColor {
+  return colorToClassMap.hasOwnProperty(name);
+}
 
 // We accept arbitrary color strings, which are impossible to type.
-export type IconColor = string | keyof typeof colorToClassMap;
+export type IconColor = string | NamedColor;
 
 const sizeToClassNameMap = {
   original: null,
@@ -347,7 +356,7 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 export type IconSize = keyof typeof sizeToClassNameMap;
 
 export interface EuiIconProps {
-  type?: IconType | ReactElement<SVGElement>;
+  type: IconType | ReactElement<SVGElement> | string;
   /**
    * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
    */
@@ -355,17 +364,24 @@ export interface EuiIconProps {
   size?: IconSize;
 }
 
-type Props = CommonProps & SVGAttributes<SVGElement> & EuiIconProps;
+type Props = CommonProps &
+  Omit<SVGAttributes<SVGElement>, 'color'> &
+  EuiIconProps;
+
 interface State {
-  icon: undefined | ReactElement<any>;
+  icon: undefined | ReactElement<any> | string;
   isLoading: boolean;
+}
+
+function isIconType(x: EuiIconProps['type']): x is IconType {
+  return typeof x === 'string' && typeToPathMap.hasOwnProperty(x);
 }
 
 function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
     return undefined;
   }
-  if (typeof icon === 'string') {
+  if (isIconType(icon)) {
     return undefined;
   }
   return icon;
@@ -378,7 +394,7 @@ export class EuiIcon extends Component<Props, State> {
     const initialIcon = getInitialIcon(this.props.type);
     let isLoading = false;
 
-    if (initialIcon === undefined && typeof this.props.type === 'string') {
+    if (isIconType(this.props.type)) {
       isLoading = true;
       import(`./assets/${typeToPathMap[this.props.type]}.js`).then(
         ({ icon }) => {
@@ -412,7 +428,7 @@ export class EuiIcon extends Component<Props, State> {
     let optionalCustomStyles = null;
 
     if (color) {
-      if (COLORS.indexOf(color) > -1) {
+      if (isNamedColor(color)) {
         optionalColorClass = colorToClassMap[color];
       } else {
         optionalCustomStyles = { fill: color };
@@ -436,8 +452,7 @@ export class EuiIcon extends Component<Props, State> {
       className
     );
 
-    // const Svg = (type && typeToIconMap[type]) || empty;
-    const Svg = this.state.icon || empty;
+    const icon = this.state.icon || empty;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
@@ -447,17 +462,18 @@ export class EuiIcon extends Component<Props, State> {
     //   - For all other values, the consumer wants the icon to be focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
-    if (typeof Svg === 'string') {
+    if (typeof icon === 'string') {
       // @ts-ignore
       return (
         <img
-          src={Svg}
+          src={icon}
           className={classes}
           tabIndex={tabIndex}
           {...rest as HTMLAttributes<HTMLImageElement>}
         />
       );
     } else {
+      const Svg = icon;
       return (
         <Svg
           className={classes}

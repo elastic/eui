@@ -1,6 +1,83 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `9.6.0`.
+- Use `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
+
+## [`10.0.1`](https://github.com/elastic/eui/tree/v10.0.1)
+
+- Convert `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
+- Updated `IconColor` type to better distinguish between accepted types ([#1842](https://github.com/elastic/eui/pull/1842))
+
+## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
+
+- Converted `EuiTitle` to TS ([#1810](https://github.com/elastic/eui/pull/1810))
+- Added `adjustDateOnChange` prop to date pickers, enabling month and year changes to trigger `onChange` ([#1817](https://github.com/elastic/eui/pull/1817))
+- Updated the overflow shadows for `EuiModal` and `EuiFlyout` ([#1829](https://github.com/elastic/eui/pull/1829))
+- Added `confirmButtonDisabled` prop to `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
+- Fixed `EuiNavDrawer` overflow scroll behavior on Firefox ([#1837](https://github.com/elastic/eui/pull/1837))
+
+**Bug fixes**
+
+- Fixed mobile layout for `EuiConfirmModal` ([#1829](https://github.com/elastic/eui/pull/1829))
+
+**Deprecations**
+
+- Replaced the following SASS mixins `euiOverflowShadowTop`, `euiOverflowShadowBottom` with `euiOverflowShadow`. ([#1829](https://github.com/elastic/eui/pull/1829))
+
+
+**Breaking changes**
+
+- Removed transitional `keyOfStringsOnly` option from TypeScript configuration ([#1814](https://github.com/elastic/eui/pull/1814))
+
+## [`9.9.1`](https://github.com/elastic/eui/tree/v9.9.1)
+
+- Re-enabled installation of `@elastic/eui` via npm ([#1811](https://github.com/elastic/eui/pull/1811))
+
+**Bug fixes**
+
+- Added `isLoading` prop typedef to `EuiSuperDatePickerProps` ([#1812](https://github.com/elastic/eui/pull/1812))
+- Fixed `EuiSearchBox` query input resetting on prop updates ([#1823](https://github.com/elastic/eui/pull/1823))
+- Fixed `EuiSearchBar` filter button highlighting ([#1824](https://github.com/elastic/eui/pull/1824))
+
+## [`9.9.0`](https://github.com/elastic/eui/tree/v9.9.0)
+
+- Added `initialPageIndex` pagination prop to `EuiInMemoryTable` ([#1798](https://github.com/elastic/eui/pull/1798))
+- Converted `EuiToolTipPopover` to TS ([#1800](https://github.com/elastic/eui/pull/1800))
+- Converted `EuiTableHeaderMobile` to TS ([#1786](https://github.com/elastic/eui/pull/1786))
+- Added `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
+- Updated EuiNavDrawer’s collapse/expand button to use `menuLeft` and `menuRight` icons ([#1797](https://github.com/elastic/eui/pull/1797))
+- Added `isInvalid` prop to `EuiSuperSelect` ([#1804](https://github.com/elastic/eui/pull/1804))
+- Added `cut` glyph to `EuiIcon` ([#1802](https://github.com/elastic/eui/pull/1802))
+- Added `glasses` glyph to `EuiIcon` ([#1813](https://github.com/elastic/eui/pull/1813))
+
+**Bug fixes**
+
+- Fixed issue where toasts would dismiss when they have focus ([#1803](https://github.com/elastic/eui/pull/1803))
+- Fixed issue where `EuiComboBox` placeholder was not read by screen readers ([#1803](https://github.com/elastic/eui/pull/1803))
+
+## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
+
+- **[Beta]** Added new `EuiSelectable` component  ([#1699](https://github.com/elastic/eui/pull/1699))
+- **[Beta]** Added new drag and drop components: `EuiDragDropContext`, `EuiDraggable`, and `EuiDroppable` ([#1733](https://github.com/elastic/eui/pull/1733))
+
+## [`9.7.2`](https://github.com/elastic/eui/tree/v9.7.2)
+
+- Converted `EuiFormErrorText` to TS ([#1772](https://github.com/elastic/eui/pull/1772))
+- Added `data-test-subj`s to `EuiSuperDatePicker`'s `EuiRelativeTab` inputs  ([#1782](https://github.com/elastic/eui/pull/1782))
+
+**Bug fixes**
+
+- Update ButtonIconColor type to provide all available options ([#1783](https://github.com/elastic/eui/pull/1783))
+- Prevent calculation on `null` ref during `EuiResizeObserver` observation ([#1784](https://github.com/elastic/eui/pull/1784))
+
+## [`9.7.1`](https://github.com/elastic/eui/tree/v9.7.1)
+
+**Bug fixes**
+
+- Fixed heading and paragraph tag font style inherits ([#1776](https://github.com/elastic/eui/pull/1776))
+
+## [`9.7.0`](https://github.com/elastic/eui/tree/v9.7.0)
+
+- Changed `EuiNavDrawer` to close on any link click ([#1773](https://github.com/elastic/eui/pull/1773))
 
 ## [`9.6.0`](https://github.com/elastic/eui/tree/v9.6.0)
 
@@ -9,6 +86,8 @@ No public interface changes since `9.6.0`.
 - Enhanced the build process to emit TypeScript types for the variables extracted from the themes ([#1750](https://github.com/elastic/eui/pull/1750))
 
 **Bug fixes**
+
+**Note: this release creates a minor regression to text scales where paragraph and heading tags were no longer inheriting from their container. This is fixed in `9.7.1`.**
 
 - Set `h1 through h6, p` tags font reset based on family, size, and weight ([#1760](https://github.com/elastic/eui/pull/1760))
 - Fixed `EuiButton` font size inheritence ([#1760](https://github.com/elastic/eui/pull/1760))

@@ -69,6 +69,7 @@ export class EuiRelativeTab extends Component {
             >
               <EuiFieldNumber
                 aria-label="Count of"
+                data-test-subj={`superDatePickerRelativeDateInputNumber`}
                 value={this.state.count}
                 onChange={this.onCountChange}
                 isInvalid={isInvalid}
@@ -78,6 +79,7 @@ export class EuiRelativeTab extends Component {
           <EuiFlexItem>
             <EuiFormRow>
               <EuiSelect
+                data-test-subj={`superDatePickerRelativeDateInputUnitSelector`}
                 value={this.state.unit}
                 options={relativeOptions}
                 onChange={this.onUnitChange}
@@ -90,6 +92,7 @@ export class EuiRelativeTab extends Component {
         </EuiFormRow>
         <EuiFormRow>
           <EuiSwitch
+            data-test-subj={`superDatePickerRelativeDateRoundSwitch`}
             label={`Round to the ${timeUnits[this.state.unit.substring(0, 1)]}`}
             checked={this.state.round}
             onChange={this.onRoundChange}

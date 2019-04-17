@@ -15,7 +15,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
 
   return (
     <div className={classes} {...rest}>
-      {children}
+      <div className="euiFlyoutBody__overflow">{children}</div>
     </div>
   );
 };

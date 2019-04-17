@@ -5,12 +5,12 @@ type CalendarOptions = CalendarSpec & {
   refTime?: MomentInput;
 };
 
-const calendar = (value: Date, options: CalendarOptions = {}) => {
+const calendar = (value: MomentInput, options: CalendarOptions = {}) => {
   const refTime = options.refTime;
   return moment(value).calendar(refTime, options);
 };
 
-export const dateFormatAliases: { [alias: string]: any } = {
+export const dateFormatAliases = {
   date: 'D MMM YYYY',
   longDate: 'DD MMMM YYYY',
   shortDate: 'D MMM YY',
@@ -21,7 +21,7 @@ export const dateFormatAliases: { [alias: string]: any } = {
   dobLong: 'Do MMMM YYYY',
   iso8601: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
   calendar,
-  calendarDateTime: (value: Date, options: CalendarSpec) => {
+  calendarDateTime: (value: MomentInput, options: CalendarSpec) => {
     return calendar(value, {
       sameDay: '[Today at] H:mmA',
       nextDay: '[Tomorrow at] H:mmA',
@@ -32,7 +32,7 @@ export const dateFormatAliases: { [alias: string]: any } = {
       ...options,
     });
   },
-  calendarDate: (value: Date, options: CalendarSpec) => {
+  calendarDate: (value: MomentInput, options: CalendarSpec) => {
     return calendar(value, {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -53,6 +53,19 @@ interface FormatDateConfig {
   options: any;
 }
 
+function isStringADateFormat(x: string): x is DateFormat {
+  return dateFormatAliases.hasOwnProperty(x);
+}
+
+function instanceOfFormatDateConfig(x: any): x is Partial<FormatDateConfig> {
+  return (
+    typeof x === 'object' &&
+    (x.hasOwnProperty('format') ||
+      x.hasOwnProperty('nil') ||
+      x.hasOwnProperty('options'))
+  );
+}
+
 export const formatDate = (
   value?: MomentInput,
   dateFormatKeyOrConfig:
@@ -65,23 +78,34 @@ export const formatDate = (
       return '';
     }
 
-    const dateFormatStr =
-      dateFormatAliases[dateFormatKeyOrConfig] || dateFormatKeyOrConfig;
+    const dateFormatStrOrFunc = isStringADateFormat(dateFormatKeyOrConfig)
+      ? dateFormatAliases[dateFormatKeyOrConfig]
+      : dateFormatKeyOrConfig;
 
-    return moment(value).format(dateFormatStr);
+    if (isFunction(dateFormatStrOrFunc)) {
+      return dateFormatStrOrFunc(value, {});
+    }
+
+    if (isString(dateFormatStrOrFunc)) {
+      return moment(value).format(dateFormatStrOrFunc);
+    }
   }
 
-  const { format = 'dateTime', nil = '', options } = dateFormatKeyOrConfig;
+  if (instanceOfFormatDateConfig(dateFormatKeyOrConfig)) {
+    const { format = 'dateTime', nil = '', options } = dateFormatKeyOrConfig;
 
-  const dateFormat = dateFormatAliases[format] || format;
+    const dateFormat = dateFormatAliases[format] || format;
 
-  if (isNil(value)) {
-    return nil;
+    if (isNil(value)) {
+      return nil;
+    }
+
+    if (isFunction(dateFormat)) {
+      return dateFormat(value, options);
+    }
+
+    if (isString(dateFormat)) {
+      return moment(value).format(dateFormat);
+    }
   }
-
-  if (isFunction(dateFormat)) {
-    return dateFormat(value, options);
-  }
-
-  return moment(value).format(dateFormat);
 };

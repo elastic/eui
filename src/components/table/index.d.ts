@@ -1,4 +1,5 @@
 /// <reference path="./table_pagination/index.d.ts" />
+/// <reference path="./mobile/index.d.ts" />
 import { CommonProps, NoArgCallback } from '../common';
 import { IconType } from '../icon';
 import { HorizontalAlignment } from '../../services/alignment';

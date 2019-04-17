@@ -44,6 +44,15 @@ describe('EuiSuperSelectControl', () => {
         .toMatchSnapshot();
     });
 
+    test('isInvalid is rendered', () => {
+      const component = render(
+        <EuiSuperSelectControl isInvalid/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('disabled options are rendered', () => {
       const component = render(
         <EuiSuperSelectControl

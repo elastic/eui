@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSelectable is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSelectable testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiSelectable props allowExclusions 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
+exports[`EuiSelectable props height can be forced 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
+exports[`EuiSelectable props height can be full 1`] = `
+<div
+  class="euiSelectable euiSelectable-fullHeight"
+/>
+`;
+
+exports[`EuiSelectable props isLoading 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
+exports[`EuiSelectable props renderOption 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
+exports[`EuiSelectable props searchable 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;
+
+exports[`EuiSelectable props singleSelection 1`] = `
+<div
+  class="euiSelectable"
+/>
+`;

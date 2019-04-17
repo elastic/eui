@@ -10,7 +10,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
     <EuiFlexItem>
       <EuiTitle
         size="xxxs"
-        textTransform="none"
       >
         <span>
           Quick select
@@ -201,7 +200,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     <EuiFlexItem>
       <EuiTitle
         size="xxxs"
-        textTransform="none"
       >
         <span>
           Quick select

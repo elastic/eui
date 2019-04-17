@@ -62,6 +62,7 @@ const InMemoryTablePropTypes = {
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     }),
     PropTypes.shape({
+      initialPageIndex: PropTypes.number,
       initialPageSize: PropTypes.number,
       pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
     })
@@ -101,6 +102,7 @@ const getInitialPagination = (pagination) => {
   }
 
   const {
+    initialPageIndex = 0,
     initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
     hidePerPageOptions
@@ -114,7 +116,7 @@ const getInitialPagination = (pagination) => {
   const defaultPageSize = pageSizeOptions ? pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0];
 
   return {
-    pageIndex: 0,
+    pageIndex: initialPageIndex,
     pageSize: initialPageSize || defaultPageSize,
     pageSizeOptions,
     hidePerPageOptions
@@ -170,6 +172,7 @@ export class EuiInMemoryTable extends Component {
     const { search, pagination, sorting, allowNeutralSort } = props;
     const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
+
 
     this.state = {
       prevProps: {
