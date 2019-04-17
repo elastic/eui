@@ -28,7 +28,7 @@
 }
 
 .euiIcon-isLoaded {
-  animation: euiIconLoadingBackgroundColor $euiAnimSpeedNormal ease-in 0s 1 forwards;
+  animation: euiIconLoading $euiAnimSpeedNormal ease-in 0s 1 forwards;
 }
 
 // COLORS
@@ -69,22 +69,9 @@
 // Fades the background color out first/quickly
 // as the opacity of the new icon fades in
 
-@keyframes euiIconLoadingBackgroundColor {
+@keyframes euiIconLoading {
   0% {
-    background-color: currentColor;
-    border-radius: $euiBorderRadius;
     opacity: $euiIconLoadingOpacity;
-  }
-
-  35% {
-    border-radius: $euiBorderRadius;
-    background-color: transparent;
-  }
-
-  36% {
-    // Don't let the border-radius animate,
-    // so remove it after the background color is gone
-    border-radius: 0;
   }
 
   100% {
