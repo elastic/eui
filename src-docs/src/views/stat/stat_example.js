@@ -35,6 +35,10 @@ import StatCombos from './stat_combos';
 const statCombosSource = require('!!raw-loader!./stat_combos');
 const statCombosHtml = renderToHtml(StatCombos);
 
+import StatLoading from './stat_loading';
+const statLoadingSource = require('!!raw-loader!./stat_loading');
+const statLoadingHtml = renderToHtml(StatLoading);
+
 export const StatExample = {
   title: 'Stat',
   sections: [{
@@ -118,6 +122,21 @@ export const StatExample = {
       </p>
     ),
     demo: <StatOrder />,
+  }, {
+    title: 'Stat loading',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: statLoadingSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: statLoadingHtml,
+    }],
+    text: (
+      <p>
+        If you apply the <EuiCode>isLoading</EuiCode> prop, the title will animate.
+      </p>
+    ),
+    demo: <StatLoading />,
   }, {
     title: 'Putting it all together',
     source: [{

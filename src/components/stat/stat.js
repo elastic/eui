@@ -33,6 +33,7 @@ export const EuiStat = ({
   titleColor,
   textAlign,
   reverse,
+  isLoading,
   ...rest,
 }) => {
 
@@ -45,6 +46,9 @@ export const EuiStat = ({
   const titleClasses = classNames(
     'euiStat__title',
     colorToClassNameMap[titleColor],
+    {
+      'euiStat__title-isLoading': isLoading,
+    }
   );
 
   const descriptionDisplay = (
@@ -55,7 +59,7 @@ export const EuiStat = ({
 
   const titleDisplay = (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p>{title}</p>
+      <p>{isLoading ? '--' : title}</p>
     </EuiTitle>
   );
 
@@ -125,6 +129,11 @@ EuiStat.propTypes = {
   className: PropTypes.string,
 
   /**
+   * Will show a loader in place of the title while true
+   */
+  isLoading: PropTypes.bool,
+
+  /**
    * Additional content that appears after the title and description
    */
   children: PropTypes.node,
@@ -135,4 +144,5 @@ EuiStat.defaultProps = {
   textAlign: 'left',
   titleSize: 'l',
   reverse: false,
+  isLoading: false,
 };
