@@ -18,7 +18,7 @@ es/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
-eui.d.ts
+.cache-loader
 
 # typescript output
 types/
