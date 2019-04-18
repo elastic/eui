@@ -25,6 +25,8 @@ const tokens = [
   'tokenInterface',
   'tokenKey',
   'tokenMethod',
+  'tokenModule',
+  'tokenNamespace',
   'tokenNull',
   'tokenNumber',
   'tokenObject',
