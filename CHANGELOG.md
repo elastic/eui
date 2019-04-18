@@ -2,6 +2,9 @@
 
 - Use `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
+- Added `list_alt` glyph to `EuiIcon` ([#1850](https://github.com/elastic/eui/pull/1850))
+- Added `moon` glyph to `EuiIcon` ([#1850](https://github.com/elastic/eui/pull/1850))
+- Added `logo_azure` and `logo_azure_mono` glyph to `EuiIcon` ([#1850](https://github.com/elastic/eui/pull/1850))
 
 **Bug fixes**
 
