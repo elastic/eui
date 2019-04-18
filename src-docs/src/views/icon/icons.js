@@ -100,7 +100,6 @@ const iconTypes = [
   'link',
   'list',
   'listAdd',
-  'listAlt',
   'lock',
   'lockOpen',
   'logstashFilter',
