@@ -72,6 +72,11 @@ export const SearchBarExample = {
               <EuiCode>(is:active OR owner:dewey) followers&gt;5</EuiCode>. In this example the intention is to find all items that are
               <EuiCode>active</EuiCode> OR owned by <EuiCode>dewey</EuiCode>, and have more than 5 <EuiCode>followers</EuiCode>
             </li>
+            <li>
+              Operators for partial text match <EuiCode>:</EuiCode>, exact text match <EuiCode>=</EuiCode>, greater
+              than <EuiCode>&gt;</EuiCode>, greater than or equal <EuiCode>&gt;=</EuiCode>, less than <EuiCode>&lt;</EuiCode>,
+              and less than or equal <EuiCode>&lt;=</EuiCode>.
+            </li>
           </ul>
           <p>
             While the user can use the syntax described above to enter queries in the search box, it is possible

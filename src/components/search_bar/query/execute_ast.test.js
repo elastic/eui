@@ -100,6 +100,23 @@ describe('execute ast', () => {
     expect(result).toHaveLength(1);
   });
 
+  test('single exact matching field clause', () => {
+    const items = [
+      { name: 'john doe' },
+      { name: 'joe' }
+    ];
+    let result = executeAst(AST.create([
+      AST.Field.must.exact('name', 'john')
+    ]), items);
+    expect(result).toHaveLength(0);
+
+    result = executeAst(AST.create([
+      AST.Field.must.exact('name', 'john doe')
+    ]), items);
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('john doe');
+  });
+
   test('term clauses - no default fields specified', () => {
     const items = [
       { name: 'john', description: 'doe', age: 5 },
@@ -372,5 +389,83 @@ describe('execute ast', () => {
     const names = result.map(item => item.name);
     expect(names).toContain('john doe');
     expect(names).toContain('foo bar');
+  });
+
+  describe('array field values', () => {
+    describe('eq operator', () => {
+      test('full match', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.eq('colors', 'red'),
+        ]), items);
+        expect(result).toEqual([items[0]]);
+      });
+
+      test('partial match', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.eq('colors', 'e'),
+        ]), items);
+        expect(result).toEqual([items[0], items[1]]);
+      });
+
+      test('empty search phrase', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.eq('colors', ''),
+        ]), items);
+        expect(result).toEqual(items);
+      });
+    });
+
+    describe('exact operator', () => {
+      test('full match', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.exact('colors', 'red'),
+        ]), items);
+        expect(result).toEqual([items[0]]);
+      });
+
+      test('partial match', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.exact('colors', 'e'),
+        ]), items);
+        expect(result).toHaveLength(0);
+      });
+
+      test('empty search phrase', () => {
+        const items = [
+          { colors: ['red', 'blue'] },
+          { colors: ['blue', 'black'] },
+          { colors: [] },
+        ];
+        const result = executeAst(AST.create([
+          AST.Field.must.exact('colors', ''),
+        ]), items);
+        expect(result).toEqual([items[2]]);
+      });
+    });
   });
 });

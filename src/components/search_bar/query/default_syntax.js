@@ -154,7 +154,7 @@ word
 
 wordChar
   = alnum
-  / [-_*:]
+  / [-_*:/]
   / escapedChar
   / extendedGlyph
   
@@ -314,7 +314,7 @@ const printValue = (value, options) => {
   }
 
   const escapeFn = options.escapeValue || escapeValue;
-  if (value.match(/\s/) || value.toLowerCase() === 'or') {
+  if (value.length === 0 || value.match(/\s/) || value.toLowerCase() === 'or') {
     return `"${escapeFn(value)}"`;
   }
   return escapeFn(value);
