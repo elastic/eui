@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Added `toastLifeTimeMs` typescript definition for individual toasts in `EuiGlobalToastList` ([#1846](https://github.com/elastic/eui/pull/1846))
+- Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
 
 ## [`10.0.1`](https://github.com/elastic/eui/tree/v10.0.1)
 
@@ -63,10 +64,6 @@
 
 - Fixed issue where toasts would dismiss when they have focus ([#1803](https://github.com/elastic/eui/pull/1803))
 - Fixed issue where `EuiComboBox` placeholder was not read by screen readers ([#1803](https://github.com/elastic/eui/pull/1803))
-
-**Bug fixes**
-
-- Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
 
 ## [`9.8.0`](https://github.com/elastic/eui/tree/v9.8.0)
 
