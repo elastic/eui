@@ -384,7 +384,7 @@ Array [
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
       >
-        <div
+        <span
           class="euiLoadingSpinner euiLoadingSpinner--medium"
         />
         <span

@@ -15,15 +15,15 @@ export const EuiLoadingContent: FunctionComponent<
 
   for (let i = 0; i < lines; i++) {
     lineElements.push(
-      <div key={i} className="euiLoadingContent__singleLine">
-        <div className="euiLoadingContent__singleLineBackground" />
-      </div>
+      <span key={i} className="euiLoadingContent__singleLine">
+        <span className="euiLoadingContent__singleLineBackground" />
+      </span>
     );
   }
 
   return (
-    <div className={classes} {...rest}>
+    <span className={classes} {...rest}>
       {lineElements}
-    </div>
+    </span>
   );
 };

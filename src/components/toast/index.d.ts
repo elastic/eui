@@ -38,14 +38,15 @@ declare module '@elastic/eui' {
    * @see './global_toast_list.js'
    */
   export interface Toast extends EuiToastProps {
-    id: string,
-    text?: ReactChild,
+    id: string;
+    text?: ReactChild;
+    toastLifeTimeMs?: number;
   }
 
   export interface EuiGlobalToastListProps {
     toasts?: Toast[];
     dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
-    toastLifeTimeMs: number
+    toastLifeTimeMs: number;
   }
 
   export class EuiGlobalToastList extends Component<EuiGlobalToastListProps> {

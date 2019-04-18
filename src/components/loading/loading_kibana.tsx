@@ -25,10 +25,10 @@ export const EuiLoadingKibana: FunctionComponent<
   );
 
   return (
-    <div className={classes} {...rest}>
-      <div className="euiLoadingKibana__icon">
+    <span className={classes} {...rest}>
+      <span className="euiLoadingKibana__icon">
         <EuiIcon type="logoKibana" size={size} />
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
