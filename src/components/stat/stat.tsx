@@ -26,12 +26,30 @@ const textAlignToClassNameMap = {
 export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
 
 export interface EuiStatProps {
+  /**
+   * Set the description (label) text
+   */
   description: string;
+  /**
+   * Will hide the title with an animation until true
+   */
   isLoading?: boolean;
+  /**
+   * Flips the order of the description and title
+   */
   reverse?: boolean;
   textAlign?: keyof typeof textAlignToClassNameMap;
+  /**
+   * The (value) text
+   */
   title: string;
+  /**
+   * The color of the title text
+   */
   titleColor?: keyof typeof colorToClassNameMap;
+  /**
+   * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
+   */
   titleSize?: EuiTitleSize;
 }
 
