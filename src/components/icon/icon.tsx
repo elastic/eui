@@ -120,7 +120,6 @@ import kqlValue from './assets/kql_value.svg';
 import link from './assets/link.svg';
 import list from './assets/list.svg';
 import listAdd from './assets/list_add.svg';
-import listAlt from './assets/list_alt.svg';
 import lock from './assets/lock.svg';
 import lockOpen from './assets/lockOpen.svg';
 import loggingApp from './assets/app_logging.svg';
@@ -425,7 +424,6 @@ const typeToIconMap = {
   link,
   list,
   listAdd,
-  listAlt,
   lock,
   lockOpen,
   loggingApp,
