@@ -300,6 +300,8 @@ import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
 import tokenRepo from './assets/tokens/tokenRepo.svg';
 import tokenSymbol from './assets/tokens/tokenSymbol.svg';
 import tokenFile from './assets/tokens/tokenFile.svg';
+import tokenModule from './assets/tokens/tokenModule.svg';
+import tokenNamespace from './assets/tokens/tokenNamespace.svg';
 
 const typeToIconMap = {
   addDataApp,
@@ -557,6 +559,8 @@ const typeToIconMap = {
   tokenInterface,
   tokenKey,
   tokenMethod,
+  tokenModule,
+  tokenNamespace,
   tokenNull,
   tokenNumber,
   tokenObject,
