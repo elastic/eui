@@ -2567,29 +2567,6 @@ exports[`EuiIcon props type listAdd is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type listAlt is rendered 1`] = `
-<svg
-  class="euiIcon euiIcon--medium"
-  focusable="false"
-  height="16"
-  viewBox="0 0 16 16"
-  width="16"
-  xlink="http://www.w3.org/1999/xlink"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <defs>
-    <path
-      d="M13.937 4.5a2 2 0 0 1-3.874 0H1.5a.5.5 0 0 1 0-1h8.563a2 2 0 0 1 3.874 0h.563a.5.5 0 1 1 0 1h-.563zm-8 4a2 2 0 0 1-3.874 0H1.5a.5.5 0 0 1 0-1h.563a2 2 0 0 1 3.874 0H14.5a.5.5 0 1 1 0 1H5.937zm8 4a2 2 0 0 1-3.874 0H1.5a.5.5 0 1 1 0-1h8.563a2 2 0 0 1 3.874 0h.563a.5.5 0 1 1 0 1h-.563zM12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM4 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm8-4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-      id="list_alt-a"
-    />
-  </defs>
-  <use
-    fill-rule="evenodd"
-    href="#list_alt-a"
-  />
-</svg>
-`;
-
 exports[`EuiIcon props type lock is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -4798,18 +4775,10 @@ exports[`EuiIcon props type moon is rendered 1`] = `
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <defs>
-    <path
-      d="M9 9.068C7.049 7.167 6.807 4.071 8.054 1 4.624 1.544 2 4.45 2 7.955 2 11.845 5.234 15 9.226 15A7.226 7.226 0 0 0 16 10.405c-2.71.707-5.309.307-7-1.337z"
-      id="moon-a"
-    />
-  </defs>
-  <use
-    href="#moon-a"
-    transform="rotate(19 9 8)"
+  <path
+    d="M8.796 9.048c-1.552-2.238-1.199-5.323.61-8.1-3.47-.12-6.6 2.232-7.269 5.672-.742 3.82 1.83 7.533 5.749 8.294a7.226 7.226 0 0 0 7.526-3.218c-2.794.177-5.27-.711-6.616-2.648z"
   />
 </svg>
 `;
