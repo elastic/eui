@@ -1,6 +1,4 @@
 .euiFlyoutFooter {
-  @include euiOverflowShadowTop;
-
   background: $euiColorLightestShade;
   flex-grow: 0;
   padding: $euiSize $euiSizeL;

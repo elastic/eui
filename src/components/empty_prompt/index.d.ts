@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../common';
-import { IconColor, IconType } from '../icon'
-/// <reference path="../title/index.d.ts" />
+import { IconColor, IconType } from '../icon';
+import { EuiTitleSize } from '../title/title';
 
 import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 

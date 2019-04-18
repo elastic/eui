@@ -196,7 +196,7 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination and default page size', () => {
+  test('with pagination and default page size and index', () => {
 
     const props = {
       ...requiredProps,
@@ -213,8 +213,9 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
-        initialPageSize: 4,
-        pageSizeOptions: [2, 4, 6]
+        initialPageIndex: 1,
+        initialPageSize: 2,
+        pageSizeOptions: [1, 2, 3]
       }
     };
     const component = shallow(

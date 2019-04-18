@@ -14,7 +14,7 @@ export const EuiModalBody: EuiModalBodyProps = ({
   const classes = classnames('euiModalBody', className);
   return (
     <div className={classes} {...rest}>
-      {children}
+      <div className="euiModalBody__overflow">{children}</div>
     </div>
   );
 };

@@ -35,8 +35,6 @@
 }
 
 .euiModalHeader {
-  @include euiOverflowShadowBottom;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,16 +48,19 @@
 }
 
 .euiModalBody {
-  @include euiScrollBar;
-
-  padding: $euiSizeL;
+  @include euiOverflowShadow;
   flex-grow: 1;
-  overflow-y: auto;
+  overflow: hidden;
+
+  .euiModalBody__overflow {
+    @include euiScrollBar;
+    height: 100%;
+    overflow-y: auto;
+    padding: $euiSizeL;
+  }
 }
 
 .euiModalFooter {
-  @include euiOverflowShadowTop;
-
   display: flex;
   justify-content: flex-end;
   padding: $euiSizeL;
@@ -73,7 +74,7 @@
 
 // When both a header and body exist, drop the top padding so the overflow on
 // the body is spaced correctly.
-.euiModalHeader + .euiModalBody {
+.euiModalHeader + .euiModalBody .euiModalBody__overflow {
   padding-top: $euiSizeM;
 }
 
@@ -104,15 +105,20 @@
   .euiModal {
     // sass-lint:disable-block no-important
     position: fixed;
-    width: calc(100vw + 2px) !important;
+    width: 100vw !important;
     max-width: none !important;
+    min-width: 0 !important;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
     border-radius: 0;
-    box-shadow: none;
     border: none;
+
+    &.euiModal--confirmation {
+      @include euiBottomShadowLarge($euiShadowColorLarge, .1, false, true);
+      top: auto;
+    }
 
     .euiModal__flex { /* 1 */
       max-height: 100vh;
@@ -136,11 +142,6 @@
         margin-left: 0;
       }
     }
-  }
-
-  .euiModal__closeIcon {
-    position: fixed;
-    top: $euiSizeL + $euiSizeXS;
   }
 
   .euiModalBody {
