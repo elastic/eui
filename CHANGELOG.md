@@ -4,6 +4,7 @@
 - Used `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
 - Converted `EuiFormHelpText` to TS ([#1852](https://github.com/elastic/eui/pull/1852))
+- Added `onSearch` to `EuiFieldSearchProps`'s type defintion ([#1627](https://github.com/elastic/eui/pull/1627))
 
 **Bug fixes**
 
