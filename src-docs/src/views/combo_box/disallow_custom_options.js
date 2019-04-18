@@ -45,6 +45,12 @@ export default class extends Component {
     });
   }
 
+  onSearchChange = (value, hasMatchingOptions) => {
+    this.setState({
+      error: value.length === 0 || hasMatchingOptions ? undefined : `"${value}" is not a valid option`,
+    });
+  }
+
   onBlur = () => {
     const { value } = this.inputRef;
     this.setState({
@@ -63,6 +69,7 @@ export default class extends Component {
           selectedOptions={this.state.selectedOptions}
           inputRef={this.setInputRef}
           onChange={this.onChange}
+          onSearchChange={this.onSearchChange}
           onBlur={this.onBlur}
         />
       </EuiFormRow>

@@ -422,7 +422,8 @@ export class EuiComboBox extends Component {
 
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
-      this.props.onSearchChange(searchValue);
+      const hasMatchingOptions = this.state.matchingOptions.length > 0;
+      this.props.onSearchChange(searchValue, hasMatchingOptions);
     }
 
     this.setState(
