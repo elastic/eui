@@ -76,13 +76,12 @@ export const ToastExample = {
       <div>
         <p>
           <EuiCode>EuiToast</EuiCode> allows for small notes that appear in
-          the bottom right of the screen. They should be used for emphemeral,
-          live actions (think <strong>save complete</strong> or
-          <strong>something just finished right now</strong>).
+          the bottom right of the screen. They should be used for ephemeral,
+          live actions (think <strong>save complete</strong> or <strong>something just finished right now</strong>).
         </p>
         <p>They should not be used for historical actions
           (<strong>your report built 30 minutes ago</strong>).
-          This means that a user should never be greated with toasts when
+          This means that a user should never be greeted with toasts when
           starting a session. Toasts should be brief and avoid long paragraphs
           of text or titling.
         </p>

@@ -60,6 +60,28 @@ describe('EuiFormRow', () => {
         .toMatchSnapshot();
     });
 
+    test('label append is rendered', () => {
+      const component = shallow(
+        <EuiFormRow label="label" labelAppend="append">
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('label renders as a legend and subsquently a fieldset wrapper', () => {
+      const component = shallow(
+        <EuiFormRow label="label" labelType="legend">
+          <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('describedByIds is rendered', () => {
       const component = shallow(
         <EuiFormRow describedByIds={['generated-id-additional']}>
@@ -152,6 +174,17 @@ describe('EuiFormRow', () => {
       const component = render(
         <EuiFormRow fullWidth>
           <input/>
+        </EuiFormRow>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('displayOnly is rendered', () => {
+      const component = render(
+        <EuiFormRow displayOnly>
+          <span>just some text</span>
         </EuiFormRow>
       );
 

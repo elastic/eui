@@ -5,53 +5,18 @@
  * 3. Make sure the quantity doesn't get an underline on hover
  */
 .euiFacetButton {
+  // sass-lint:disable-block no-important
   @include euiButton;
   @include euiFontSizeS;
   text-align: left;
   border: none;
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
-  transition-timing-function: ease-in; /* 2 */
-  transition-duration: $euiAnimSpeedFast; /* 2 */
+  transition: all $euiAnimSpeedFast ease-in; /* 2 */
 
-  .euiFacetButton__content {
-    @include euiButtonContent;
-  }
-
-  .euiFacetButton__text {
-    flex-grow: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: $euiButtonHeight; // For better alignment with icon/quantity
-  }
-
-  .euiFacetButton__spinner,
-  .euiFacetButton__quantity,
-  .euiFacetButton__icon {
-    flex-shrink: 0; // Ensures they don't scale down below their intended size
-  }
-
-  .euiFacetButton__quantity,
-  .euiFacetButton__icon {
-    transition: all $euiAnimSpeedFast ease-in;
-  }
-
-  .euiFacetButton__quantity {
-    // Increase the default size a bit
-    $size: $euiSize + $euiSizeXS;
-    line-height:$size;
-    height: $size;
-    min-width: $euiSizeL;
-  }
-
-  &.euiFacetButton--unSelected .euiFacetButton__quantity,
-  &:disabled .euiFacetButton__quantity {
-    // Change the default coloring when it's not selected
-    background-color: tint($euiColorLightShade, 30%);
-    color: $euiColorFullShade;
-  }
-
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
+    // sass-lint:disable-block no-important
     text-decoration: none !important; /* 3 */
 
     &:not(:disabled) .euiFacetButton__text {
@@ -81,12 +46,28 @@
       background-color: transparent;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }
 }
 
-.euiFacetButton--isSelected .euiFacetButton__text {
-  font-weight: $euiFontWeightBold;
+.euiFacetButton__content {
+  @include euiButtonContent;
+}
+
+.euiFacetButton__text {
+  @include euiTextShift;
+  @include euiTextTruncate;
+  flex-grow: 1;
+  vertical-align: middle;
+
+  .euiFacetButton--isSelected & {
+    font-weight: $euiFontWeightBold;
+  }
+}
+
+.euiFacetButton__icon {
+  transition: all $euiAnimSpeedFast ease-in;
 }

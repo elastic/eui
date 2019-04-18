@@ -1,3 +1,0 @@
-export {
-  EuiSpacer,
-} from './spacer';

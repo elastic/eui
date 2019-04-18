@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Timer } from '../../services/time';
+import { ICON_TYPES } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
 
@@ -23,11 +24,23 @@ export class EuiGlobalToastList extends Component {
 
     this.isScrollingToBottom = false;
     this.isScrolledToBottom = true;
+
+    // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
+    // for information on initial value of 0
+    this.isScrollingAnimationFrame = 0;
+    this.startScrollingAnimationFrame = 0;
   }
 
   static propTypes = {
     className: PropTypes.string,
-    toasts: PropTypes.array,
+    toasts: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      title: PropTypes.string,
+      text: PropTypes.node,
+      color: PropTypes.string,
+      iconType: PropTypes.oneOf(ICON_TYPES),
+      toastLifeTimeMs: PropTypes.number,
+    }).isRequired),
     dismissToast: PropTypes.func.isRequired,
     toastLifeTimeMs: PropTypes.number.isRequired,
   };
@@ -40,6 +53,10 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingToBottom = true;
 
     const scrollToBottom = () => {
+      // Although we cancel the requestAnimationFrame in componentWillUnmount,
+      // it's possible for this.listElement to become null in the meantime
+      if (!this.listElement) return;
+
       const position = this.listElement.scrollTop;
       const destination = this.listElement.scrollHeight - this.listElement.clientHeight;
       const distanceToDestination = destination - position;
@@ -54,11 +71,11 @@ export class EuiGlobalToastList extends Component {
       this.listElement.scrollTop = position + distanceToDestination * 0.25;
 
       if (this.isScrollingToBottom) {
-        window.requestAnimationFrame(scrollToBottom);
+        this.isScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
       }
     };
 
-    window.requestAnimationFrame(scrollToBottom);
+    this.startScrollingAnimationFrame = window.requestAnimationFrame(scrollToBottom);
   }
 
   onMouseEnter = () => {
@@ -102,7 +119,7 @@ export class EuiGlobalToastList extends Component {
   scheduleToastForDismissal = (toast) => {
     // Start fading the toast out once its lifetime elapses.
     this.toastIdToTimerMap[toast.id] =
-      new Timer(this.dismissToast.bind(this, toast), this.props.toastLifeTimeMs);
+      new Timer(this.dismissToast.bind(this, toast), toast.toastLifeTimeMs != null ? toast.toastLifeTimeMs : this.props.toastLifeTimeMs);
   };
 
   dismissToast = (toast) => {
@@ -162,6 +179,12 @@ export class EuiGlobalToastList extends Component {
   }
 
   componentWillUnmount() {
+    if (this.isScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.isScrollingAnimationFrame);
+    }
+    if (this.startScrollingAnimationFrame !== 0) {
+      window.cancelAnimationFrame(this.startScrollingAnimationFrame);
+    }
     this.listElement.removeEventListener('scroll', this.onScroll);
     this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
     this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
@@ -186,6 +209,7 @@ export class EuiGlobalToastList extends Component {
     const renderedToasts = toasts.map(toast => {
       const {
         text,
+        toastLifeTimeMs, // eslint-disable-line no-unused-vars
         ...rest
       } = toast;
 
@@ -196,6 +220,8 @@ export class EuiGlobalToastList extends Component {
         >
           <EuiToast
             onClose={this.dismissToast.bind(this, toast)}
+            onFocus={this.onMouseEnter}
+            onBlur={this.onMouseLeave}
             {...rest}
           >
             {text}

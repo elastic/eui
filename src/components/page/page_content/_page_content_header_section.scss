@@ -7,12 +7,12 @@
 }
 
 // Adjust vertical spacing based on content padding prop
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   @each $modifier, $amount in $euiPanelPaddingModifiers {
-    .euiPageContent[class*="#{$modifier}"] .euiPageContentHeader--responsive {
+    .euiPageContent[class*='#{$modifier}'] .euiPageContentHeader--responsive {
       .euiPageContentHeaderSection + .euiPageContentHeaderSection {
         margin-left: 0;
-        margin-top: $amount/2;
+        margin-top: $amount / 2;
       }
     }
   }

@@ -1,10 +1,10 @@
 // Hide mobile-only elements by default
 .euiTableHeaderMobile,
-.euiTableHeaderCell--isMobileHeader {
+.euiTableHeaderCell--hideForDesktop {
   display: none;
 }
 
-@include euiBreakpoint('xs','s'){
+@include euiBreakpoint('xs', 's') {
 
   .euiTableHeaderMobile {
     display: flex;

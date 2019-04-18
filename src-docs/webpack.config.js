@@ -1,8 +1,21 @@
 const path = require('path');
-const HtmlWebpackPlugin = require(`html-webpack-plugin`);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production' && process.env.CI == null;
+
+function useCache(loaders) {
+  if (isDevelopment) {
+    return ['cache-loader'].concat(loaders);
+  }
+
+  return loaders;
+}
 
 module.exports = {
+  mode: 'development',
+
   devtool: 'source-map',
 
   entry: {
@@ -16,18 +29,22 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
+    rules: [{
+      test: /\.(js|tsx?)$/,
+      loaders: useCache(['babel-loader']),
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader'],
+      loaders: useCache(['style-loader/useable', 'css-loader', 'postcss-loader', 'sass-loader']),
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loaders: ['style-loader/useable', 'css-loader'],
+      loaders: useCache(['style-loader/useable', 'css-loader']),
       exclude: /node_modules/
     }, {
       test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
@@ -50,15 +67,24 @@ module.exports = {
       cache: true,
       showErrors: true
     }),
+
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
+    }),
+
+    // run TypeScript and tslint during webpack build
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+      tslint: path.resolve(__dirname, 'tslint.yaml'),
+      async: false, // makes errors more visible, but potentially less performant
     }),
   ],
 
   devServer: {
     contentBase: 'src-docs/build',
     host: '0.0.0.0',
+    allowedHosts: ['*'],
     port: 8030,
     disableHostCheck: true
   }

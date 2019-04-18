@@ -55,7 +55,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
     </button>
     <div>
       <div>
-        2
+        <div>
+          2
+        </div>
       </div>
     </div>
   </div>
@@ -109,7 +111,9 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
     </button>
     <div>
       <div>
-        2
+        <div>
+          2
+        </div>
       </div>
     </div>
   </div>
@@ -154,111 +158,113 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       </span>
     </button>
     <div>
-      <button
-        class="euiContextMenuItem"
-        type="button"
-      >
-        <span
-          class="euiContextMenu__itemLayout"
+      <div>
+        <button
+          class="euiContextMenuItem"
+          type="button"
         >
           <span
-            class="euiContextMenuItem__text"
+            class="euiContextMenu__itemLayout"
           >
-            2a
-          </span>
-          <svg
-            class="euiIcon euiIcon--medium euiContextMenu__arrow"
-            focusable="false"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <defs>
-              <path
-                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                id="arrow_right-a"
+            <span
+              class="euiContextMenuItem__text"
+            >
+              2a
+            </span>
+            <svg
+              class="euiIcon euiIcon--medium euiContextMenu__arrow"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_right-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                transform="matrix(0 1 1 0 0 0)"
+                xlink:href="#arrow_right-a"
               />
-            </defs>
-            <use
-              fill-rule="nonzero"
-              transform="matrix(0 1 1 0 0 0)"
-              xlink:href="#arrow_right-a"
-            />
-          </svg>
-        </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
-      >
-        <span
-          class="euiContextMenu__itemLayout"
+            </svg>
+          </span>
+        </button>
+        <button
+          class="euiContextMenuItem"
+          type="button"
         >
           <span
-            class="euiContextMenuItem__text"
+            class="euiContextMenu__itemLayout"
           >
-            2b
-          </span>
-          <svg
-            class="euiIcon euiIcon--medium euiContextMenu__arrow"
-            focusable="false"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <defs>
-              <path
-                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                id="arrow_right-a"
+            <span
+              class="euiContextMenuItem__text"
+            >
+              2b
+            </span>
+            <svg
+              class="euiIcon euiIcon--medium euiContextMenu__arrow"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_right-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                transform="matrix(0 1 1 0 0 0)"
+                xlink:href="#arrow_right-a"
               />
-            </defs>
-            <use
-              fill-rule="nonzero"
-              transform="matrix(0 1 1 0 0 0)"
-              xlink:href="#arrow_right-a"
-            />
-          </svg>
-        </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
-      >
-        <span
-          class="euiContextMenu__itemLayout"
+            </svg>
+          </span>
+        </button>
+        <button
+          class="euiContextMenuItem"
+          type="button"
         >
           <span
-            class="euiContextMenuItem__text"
+            class="euiContextMenu__itemLayout"
           >
-            2c
-          </span>
-          <svg
-            class="euiIcon euiIcon--medium euiContextMenu__arrow"
-            focusable="false"
-            height="16"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <defs>
-              <path
-                d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                id="arrow_right-a"
+            <span
+              class="euiContextMenuItem__text"
+            >
+              2c
+            </span>
+            <svg
+              class="euiIcon euiIcon--medium euiContextMenu__arrow"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_right-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                transform="matrix(0 1 1 0 0 0)"
+                xlink:href="#arrow_right-a"
               />
-            </defs>
-            <use
-              fill-rule="nonzero"
-              transform="matrix(0 1 1 0 0 0)"
-              xlink:href="#arrow_right-a"
-            />
-          </svg>
-        </span>
-      </button>
+            </svg>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -310,7 +316,9 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
     </button>
     <div>
       <div>
-        2
+        <div>
+          2
+        </div>
       </div>
     </div>
   </div>
@@ -325,7 +333,9 @@ exports[`EuiContextMenuPanel is rendered 1`] = `
   tabindex="0"
 >
   <div>
-    Hello
+    <div>
+      Hello
+    </div>
   </div>
 </div>
 `;
@@ -371,7 +381,9 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
       </span>
     </span>
   </button>
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -389,7 +401,9 @@ exports[`EuiContextMenuPanel props title is rendered 1`] = `
       Title
     </span>
   </div>
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -398,7 +412,9 @@ exports[`EuiContextMenuPanel props transitionDirection next with transitionType 
   class="euiContextMenuPanel euiContextMenuPanel-txInLeft"
   tabindex="0"
 >
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -407,7 +423,9 @@ exports[`EuiContextMenuPanel props transitionDirection next with transitionType 
   class="euiContextMenuPanel euiContextMenuPanel-txOutLeft"
   tabindex="0"
 >
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -416,7 +434,9 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
   class="euiContextMenuPanel euiContextMenuPanel-txInRight"
   tabindex="0"
 >
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -425,7 +445,9 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
   class="euiContextMenuPanel euiContextMenuPanel-txOutRight"
   tabindex="0"
 >
-  <div />
+  <div>
+    <div />
+  </div>
 </div>
 `;
 
@@ -433,24 +455,28 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel items={{...}} hasFocus={true}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option A
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
-      <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option B
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option A
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+          <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option B
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"
@@ -460,24 +486,28 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel items={{...}} hasFocus={true}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option A
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
-      <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option B
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option A
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+          <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option B
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"
@@ -487,7 +517,11 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel hasFocus={true} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      Hello World
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          Hello World
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"
@@ -497,7 +531,11 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel hasFocus={true} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      More Salutations
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          More Salutations
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"
@@ -507,24 +545,28 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option A
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
-      <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option B
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          <EuiContextMenuItem data-counter={0} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option A
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+          <EuiContextMenuItem data-counter={1} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option B
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"
@@ -534,24 +576,28 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 "<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex=\\"0\\" onAnimationEnd={[Function]}>
     <div>
-      <EuiContextMenuItem data-counter={2} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option A
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
-      <EuiContextMenuItem data-counter={3} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
-        <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
-          <span className=\\"euiContextMenu__itemLayout\\">
-            <span className=\\"euiContextMenuItem__text\\">
-              Option B
-            </span>
-          </span>
-        </button>
-      </EuiContextMenuItem>
+      <EuiResizeObserver onResize={[Function: onResize]}>
+        <div>
+          <EuiContextMenuItem data-counter={2} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option A
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+          <EuiContextMenuItem data-counter={3} toolTipPosition=\\"right\\" layoutAlign=\\"center\\" buttonRef={[Function: bound ]}>
+            <button disabled={[undefined]} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
+              <span className=\\"euiContextMenu__itemLayout\\">
+                <span className=\\"euiContextMenuItem__text\\">
+                  Option B
+                </span>
+              </span>
+            </button>
+          </EuiContextMenuItem>
+        </div>
+      </EuiResizeObserver>
     </div>
   </div>
 </EuiContextMenuPanel>"

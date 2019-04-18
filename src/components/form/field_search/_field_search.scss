@@ -8,6 +8,7 @@
   @include euiFormControlWithIcon($isIconOptional: false);
   @include euiFormControlIsLoading;
 
+  // sass-lint:disable-block no-vendor-prefixes
   -webkit-appearance: textfield; /* 1 */
 
   &::-webkit-search-decoration {

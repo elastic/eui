@@ -1,0 +1,16 @@
+@import '../panel/variables'; // grab the $euiPanelPaddingModifiers map
+
+.euiPopoverFooter {
+  @include euiPopoverFooter;
+
+  // If the popover's containing panel has padding applied,
+  // ensure the footer expands to cover that padding and
+  // take on the same amount of padding horizontally
+
+  @each $modifier, $amount in $euiPanelPaddingModifiers {
+    .euiPopover__panel.euiPanel--#{$modifier} & {
+      padding: $euiSizeM $amount;
+      margin: $amount ($amount * -1) ($amount * -1);
+    }
+  }
+}

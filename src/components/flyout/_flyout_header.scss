@@ -1,7 +1,6 @@
 .euiFlyoutHeader {
   flex-grow: 0;
   padding: $euiSizeL $euiSizeXXL 0 $euiSizeL;
-  @include euiOverflowShadowBottom;
 }
 
 .euiFlyoutHeader--hasBorder {

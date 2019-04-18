@@ -3,11 +3,14 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import FocusTrap from 'focus-trap-react';
 
 import { keyCodes } from '../../services';
 
 import { EuiButtonIcon } from '../button';
+
+import { EuiFocusTrap } from '../focus_trap';
+
+import { EuiI18n } from '../i18n';
 
 export class EuiModal extends Component {
   onKeyDown = event => {
@@ -41,12 +44,7 @@ export class EuiModal extends Component {
     const classes = classnames('euiModal', widthClassName, className);
 
     return (
-      <FocusTrap
-        focusTrapOptions={{
-          fallbackFocus: () => this.modal,
-          initialFocus,
-        }}
-      >
+      <EuiFocusTrap initialFocus={initialFocus}>
         {
           // Create a child div instead of applying these props directly to FocusTrap, or else
           // fallbackFocus won't work.
@@ -59,18 +57,22 @@ export class EuiModal extends Component {
           style={newStyle || style}
           {...rest}
         >
-          <EuiButtonIcon
-            iconType="cross"
-            onClick={onClose}
-            className="euiModal__closeIcon"
-            color="text"
-            aria-label="Closes this modal window"
-          />
+          <EuiI18n token="euiModal.closeModal" default="Closes this modal window">
+            {closeModal => (
+              <EuiButtonIcon
+                iconType="cross"
+                onClick={onClose}
+                className="euiModal__closeIcon"
+                color="text"
+                aria-label={closeModal}
+              />
+            )}
+          </EuiI18n>
           <div className="euiModal__flex">
             {children}
           </div>
         </div>
-      </FocusTrap>
+      </EuiFocusTrap>
     );
   }
 }

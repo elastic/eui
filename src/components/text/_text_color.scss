@@ -16,8 +16,8 @@ $textColors: (
     // The below function makes sure the color is accessible on our default background.
     color: makeHighContrastColor($color, $euiColorEmptyShade);
 
-    @if $name == "ghost" {
-      color: $color !important;
+    @if $name == 'ghost' {
+      color: $color !important; // sass-lint:disable-line no-important
     }
   }
 }

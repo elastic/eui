@@ -1,7 +1,7 @@
-/// <reference path="../common.d.ts" />
+import { CommonProps, RefCallback, NoArgCallback, Omit } from '../common';
 
 import {
-  SFC,
+  FunctionComponent,
   ButtonHTMLAttributes,
   HTMLAttributes,
   ReactElement,
@@ -38,7 +38,7 @@ declare module '@elastic/eui' {
     initialFocusedItemIndex?: number;
   }
 
-  export const EuiContextMenuPanel: SFC<
+  export const EuiContextMenuPanel: FunctionComponent<
     CommonProps &
       Omit<
         HTMLAttributes<HTMLDivElement>,
@@ -70,7 +70,7 @@ declare module '@elastic/eui' {
     children?: ReactNode;
   }
 
-  export const EuiContextMenuItem: SFC<
+  export const EuiContextMenuItem: FunctionComponent<
     CommonProps &
       Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> &
       EuiContextMenuItemProps
@@ -94,7 +94,7 @@ declare module '@elastic/eui' {
 
   interface EuiContextMenuPanelDescriptor {
     id: EuiContextMenuPanelId;
-    title: string;
+    title?: string;
     items?: EuiContextMenuPanelItemDescriptor[];
     content?: React.ReactNode;
     width?: number;
@@ -106,5 +106,5 @@ declare module '@elastic/eui' {
       initialPanelId?: EuiContextMenuPanelId;
     };
 
-  export const EuiContextMenu: SFC<EuiContextMenuProps>;
+  export const EuiContextMenu: FunctionComponent<EuiContextMenuProps>;
 }

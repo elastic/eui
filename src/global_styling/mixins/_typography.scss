@@ -1,13 +1,19 @@
+// sass-lint:disable no-vendor-prefixes
 
 // Our base fonts
 
 @mixin euiFont {
   font-family: $euiFontFamily;
   font-weight: $euiFontWeightRegular;
+  letter-spacing: -.005em;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-kerning: normal;
 }
 
 @mixin euiCodeFont {
   font-family: $euiCodeFontFamily;
+  letter-spacing: normal;
 }
 
 @mixin euiText {
@@ -15,29 +21,32 @@
   font-weight: $euiFontWeightRegular;
 }
 
-@mixin euiTitle($size: "m") {
+@mixin euiTitle($size: 'm') {
   color: $euiTitleColor;
 
-  @if $size == "xxxs" {
+  @if $size == 'xxxs' {
     @include euiFontSizeXS;
-    font-weight: $euiFontWeightBold;
     @include lineHeightFromBaseline(3);
-  } @else if $size == "xxs" {
+    font-weight: $euiFontWeightBold;
+  } @else if $size == 'xxs' {
     @include euiFontSizeS;
+    @include lineHeightFromBaseline(3);
     font-weight: $euiFontWeightBold;
-    @include lineHeightFromBaseline(3);
-  } @else if $size == "xs" {
+  } @else if $size == 'xs' {
     @include euiFontSize;
-    font-weight: $euiFontWeightMedium;
     @include lineHeightFromBaseline(3);
-  } @else if $size == "s" {
+    font-weight: $euiFontWeightSemiBold;
+    letter-spacing: -.02em;
+  } @else if $size == 's' {
     @include euiFontSizeL;
-    font-weight: $euiFontWeightMedium;
     @include lineHeightFromBaseline(4);
-  } @else if $size == "m" {
+    font-weight: $euiFontWeightMedium;
+    letter-spacing: -.025em;
+  } @else if $size == 'm' {
     @include euiFontSizeXL;
     @include lineHeightFromBaseline(5);
-  } @else if $size == "l" {
+    letter-spacing: -.04em;
+  } @else if $size == 'l' {
     @include euiFontSizeXXL;
     @include lineHeightFromBaseline(6);
   } @else {
@@ -77,12 +86,23 @@
   @include fontSize($euiFontSizeXL);
   line-height: 1.25;
   font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  letter-spacing: -.05em;
 }
 
 @mixin euiFontSizeXXL {
   @include fontSize($euiFontSizeXXL);
   line-height: 1.25;
-  font-weight: $euiFontWeightLight; // always apply light weight to x-large type
+  font-weight: $euiFontWeightLight; // always apply light weight to xx-large type
+  letter-spacing: -.03em;
+}
+
+// Overflow-wrap for breaking on word
+// Does not work on `display: flex` items
+@mixin euiTextOverflowWrap  {
+  @include internetExplorerOnly {
+    word-break: break-all;
+  }
+  overflow-wrap: break-word;
 }
 
 // Text truncation
@@ -96,9 +116,33 @@
 //    nodes.
 
 @mixin euiTextTruncate {
+  // sass-lint:disable-block no-important
   max-width: 100%; /* 1 */
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   word-wrap: normal !important; /* 2 */
 }
+
+@mixin euiNumberFormat {
+  font-feature-settings: $euiFontFeatureSettings, 'tnum' 1; // Fixed-width numbers for tabular data
+}
+
+
+// Text weight shifting
+//
+// When changing the font-weight based the state of the component
+// this mixin will ensure that the sizing is dependent on the boldest
+// weight so it doesn't shifter sibling content.
+
+@mixin euiTextShift($fontWeight: $euiFontWeightBold, $attr: 'data-text') {
+  &::after {
+    display: block;
+    content: attr(#{$attr});
+    font-weight: $fontWeight;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+

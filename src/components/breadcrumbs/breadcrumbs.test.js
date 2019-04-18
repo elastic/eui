@@ -18,6 +18,7 @@ describe('EuiBreadcrumbs', () => {
     }, {
       text: 'Boa constrictor',
       href: '#',
+      truncate: true,
     }, {
       text: 'Edit',
     }];
@@ -47,9 +48,9 @@ describe('EuiBreadcrumbs', () => {
       });
     });
 
-    describe('truncate', () => {
+    describe('truncate as false', () => {
       test('is rendered', () => {
-        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate />);
+        const component = render(<EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate={false} />);
         expect(component).toMatchSnapshot();
       });
     });

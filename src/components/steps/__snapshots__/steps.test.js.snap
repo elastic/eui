@@ -12,7 +12,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -38,7 +38,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -64,7 +64,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-      Incomplete Step 
+      Incomplete Step 
     </span>
     <div
       class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
@@ -97,7 +97,7 @@ exports[`EuiSteps renders steps 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -123,7 +123,7 @@ exports[`EuiSteps renders steps 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -149,7 +149,7 @@ exports[`EuiSteps renders steps 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-      Incomplete Step 
+      Incomplete Step 
     </span>
     <div
       class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
@@ -182,7 +182,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -208,7 +208,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-       Step 
+      Step 
     </span>
     <div
       class="euiStepNumber euiStep__circle"
@@ -234,7 +234,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-      Incomplete Step 
+      Incomplete Step 
     </span>
     <div
       class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"

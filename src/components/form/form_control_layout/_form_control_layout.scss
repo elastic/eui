@@ -16,7 +16,7 @@
 
 .euiFormControlLayout--group {
   // Match just the regular drop shadow of inputs
-  @include euiFormControlDefaultShadow();
+  @include euiFormControlDefaultShadow;
   display: flex;
   align-items: center;
   padding: 1px; /* 1 */

@@ -11,14 +11,14 @@
   color: $euiColorFullShade; /* 2 */
 
   &.euiSideNavItemButton--isClickable {
-    &:hover {
+    &:hover .euiSideNavItemButton__label {
       text-decoration: underline;
     }
 
     // Focus state background regardless of index/selected state.
     &:focus {
+      // sass-lint:disable-block no-important
       background-color: $euiFocusBackgroundColor !important;
-      color: $euiColorPrimary !important;
     }
   }
 
@@ -31,29 +31,29 @@
   }
 }
 
-  .euiSideNavItemButton__content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.euiSideNavItemButton__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .euiSideNavItemButton__icon {
-    margin-right: $euiSizeS;
-  }
+.euiSideNavItemButton__icon {
+  margin-right: $euiSizeS;
+}
 
-  /**
-   * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
-   */
-  .euiSideNavItemButton__labelContainer {
-    min-width: 0; /* 1 */
-  }
+/**
+  * 1. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
+  */
+.euiSideNavItemButton__labelContainer {
+  min-width: 0; /* 1 */
+}
 
-  .euiSideNavItemButton__label {
-    color: $euiColorDarkShade;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.euiSideNavItemButton__label {
+  color: $euiColorDarkShade;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /**
  * 1. Draw the vertical line to group an expanded item's child items together.
@@ -63,12 +63,12 @@
 
   &:after { /* 1 */
     position: absolute;
-    content: "";
+    content: '';
     top: 0;
     bottom: $euiSizeM;
     width: 1px;
     background: $euiBorderColor;
-    left: 0px;
+    left: 0;
   }
 }
 
@@ -94,7 +94,7 @@
     }
 
     .euiSideNavItemButton__label {
-      @include euiTitle("xs");
+      @include euiTitle('xs');
     }
   }
 
@@ -141,7 +141,7 @@
 
     &:after {
       position: absolute; /* 1 */
-      content: "";
+      content: '';
       top: 50%;
       left: 0;
       width: $euiSizeXS;

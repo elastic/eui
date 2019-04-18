@@ -1,3 +1,6 @@
+// This file allows mutli-line selectors to make it more readible
+// sass-lint:disable single-line-per-selector
+
 /**
  * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
  *
@@ -7,12 +10,6 @@
   box-sizing: border-box;
 }
 
-/**
- * 1. Inheriting the font will allow some browser defaults to take effect, e.g. Chrome applies
- *    `font: 11px system-ui` to the button element. We can't hardcode the font-family here because
- *    that will disrupt components which rely upon a different inherited font-family, e.g. code
- *    blocks.
- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,14 +25,22 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
-  border: 0;
-  font: inherit; /* 1 */
-  font-family: inherit; /* 1 */
+  border: none;
   vertical-align: baseline;
 }
 
+code, pre, kbd, samp {
+  font-family: $euiCodeFontFamily;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
 input, textarea, select, button {
-  font-family: inherit; /* 1 */
+  font-family: $euiFontFamily;
 }
 
 em {
@@ -53,12 +58,11 @@ footer, header, hgroup, menu, nav, section {
 }
 
 html {
-  font-family: $euiFontFamily;
-  font-weight: $euiFontWeightRegular;
+  @include euiFont;
   font-size: $euiFontSize;
   color: $euiTextColor;
   height: 100%;
-  background-color: $euiColorLightestShade;
+  background-color: $euiPageBackgroundColor;
 }
 
 body {
@@ -83,7 +87,7 @@ a {
   }
 }
 
-a:hover, button, [role=button] {
+a:hover, button, [role='button'] {
   cursor: pointer;
 }
 
@@ -98,9 +102,8 @@ button {
   padding: 0;
   margin: 0;
   outline: none;
-  font-size: $euiFontSize;
-  color: inherit;
   font-size: inherit;
+  color: inherit;
   border-radius: 0;
 
   &:hover {
@@ -119,7 +122,7 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none;
+  content: none; // sass-lint:disable-line no-duplicate-properties
 }
 
 table {
@@ -129,4 +132,8 @@ table {
 
 hr {
   margin: 0;
+}
+
+fieldset {
+  min-inline-size: auto;
 }

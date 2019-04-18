@@ -1,8 +1,8 @@
-/// <reference path="../common.d.ts" />
-/// <reference path="../icon/index.d.ts" />
-/// <reference path="../title/index.d.ts" />
+import { CommonProps, Omit } from '../common';
+import { IconColor, IconType } from '../icon';
+import { EuiTitleSize } from '../title/title';
 
-import { SFC, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -20,7 +20,7 @@ declare module '@elastic/eui' {
     actions?: ReactNode;
   }
 
-  export const EuiEmptyPrompt: SFC<
+  export const EuiEmptyPrompt: FunctionComponent<
     CommonProps & EuiEmptyPromptProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
   >;
 

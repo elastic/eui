@@ -49,11 +49,11 @@ module.exports = class extends Generator {
       const vars = config.vars = {
         componentName,
         cssClassName,
-        fileName,
+        fileName: fileName.replace('.ts', ''),
       };
 
-      const componentPath = config.componentPath = `${path}/${fileName}.js`;
-      const testPath = config.testPath = `${path}/${fileName}.test.js`;
+      const componentPath = config.componentPath = `${path}/${fileName}.tsx`;
+      const testPath = config.testPath = `${path}/${fileName}.test.tsx`;
       const stylesPath = config.stylesPath = `${path}/_${fileName}.scss`;
       config.stylesImportPath = `./_${fileName}.scss`;
 
@@ -66,8 +66,8 @@ module.exports = class extends Generator {
         );
 
         this.fs.copyTpl(
-          this.templatePath('index.js'),
-          this.destinationPath(`${path}/index.js`),
+          this.templatePath('index.ts'),
+          this.destinationPath(`${path}/index.ts`),
           vars
         );
       }
@@ -75,15 +75,15 @@ module.exports = class extends Generator {
       // Create component file.
       this.fs.copyTpl(
         isStatelessFunction ?
-          this.templatePath('stateless_function.js') :
-          this.templatePath('component.js'),
+          this.templatePath('stateless_function.tsx') :
+          this.templatePath('component.tsx'),
         this.destinationPath(componentPath),
         vars
       );
 
       // Create component test file.
       this.fs.copyTpl(
-        this.templatePath('test.js'),
+        this.templatePath('test.tsx'),
         this.destinationPath(testPath),
         vars
       );
@@ -110,9 +110,8 @@ module.exports = class extends Generator {
   end() {
     const showImportComponentSnippet = () => {
       const componentName = this.config.vars.componentName;
-      const componentPath = this.config.componentPath;
 
-      this.log(chalk.white(`\n// Export component (e.. from component's index.js).`));
+      this.log(chalk.white(`\n// Export component (e.. from component's index.ts).`));
       this.log(
         `${chalk.magenta('export')} {\n` +
         `  ${componentName},\n` +

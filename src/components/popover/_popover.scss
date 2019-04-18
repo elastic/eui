@@ -21,6 +21,8 @@
  * 3. Make sure the panel stays within the window.
  */
 .euiPopover__panel {
+  // Ignore linting for legibility of transition property, and the mixin performs an overwrite
+  // sass-lint:disable-block indentation, mixins-before-declarations
   position: absolute;
   z-index: $euiZContentMenu;
   min-width: $euiButtonMinWidth; /* 1 */
@@ -50,7 +52,7 @@
     // This fakes a border on the arrow.
     &:before {
       position: absolute;
-      content: "";
+      content: '';
       height: 0;
       width: 0;
     }
@@ -58,7 +60,7 @@
     // This part of the arrow matches the panel.
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       height: 0;
       width: 0;
     }
@@ -135,22 +137,6 @@
 
   &.euiPopover__panel-noArrow .euiPopover__panelArrow {
     display: none;
-  }
-}
-
-.euiPopover__panel.euiPopover__panel-withTitle {
-  .euiPopover__panelArrow {
-    &.euiPopover__panelArrow--bottom:after {
-      border-bottom-color: $euiColorLightestShade;
-    }
-
-    &.euiPopover__panelArrow--right:after {
-      border-right-color: $euiColorLightestShade;
-    }
-
-    &.euiPopover__panelArrow--left:after {
-      border-left-color: $euiColorLightestShade;
-    }
   }
 }
 

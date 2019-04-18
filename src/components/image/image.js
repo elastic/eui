@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import FocusTrap from 'focus-trap-react';
 
 import {
   EuiOverlayMask,
@@ -12,6 +11,10 @@ import {
 import {
   EuiIcon,
 } from '../icon';
+
+import {
+  EuiFocusTrap,
+} from '../focus_trap';
 
 import { keyCodes } from '../../services';
 
@@ -102,13 +105,8 @@ export class EuiImage extends Component {
 
     if (this.state.isFullScreen) {
       fullScreenDisplay = (
-        <FocusTrap
-          focusTrapOptions={{
-            clickOutsideDeactivates: true,
-            initialFocus: () => this.figure,
-          }}
-        >
-          <EuiOverlayMask onClick={this.closeFullScreen}>
+        <EuiOverlayMask onClick={this.closeFullScreen}>
+          <EuiFocusTrap clickOutsideDisables={true}>
             <figure
               ref={node => { this.figure = node; }}
               className="euiImageFullScreen"
@@ -119,8 +117,8 @@ export class EuiImage extends Component {
               <img src={url} className="euiImageFullScreen__img" alt={alt} />
               {optionalCaption}
             </figure>
-          </EuiOverlayMask>
-        </FocusTrap>
+          </EuiFocusTrap>
+        </EuiOverlayMask>
       );
     }
 

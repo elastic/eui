@@ -8,13 +8,13 @@ import {
 
 export default () => (
   <div>
-    <EuiAvatar size="s" name="Rafael"/>
+    <EuiAvatar size="s" name="Raphael"/>
     &emsp;
     <EuiAvatar size="m" name="Donatello" />
     &emsp;
-    <EuiAvatar size="l" name="Leornardo" color="#BD10E0" />
+    <EuiAvatar size="l" name="Leonardo" color="#BD10E0" />
     &emsp;
-    <EuiAvatar size="xl" name="Michaelangelo" />
+    <EuiAvatar size="xl" name="Michelangelo" />
 
     <EuiSpacer />
     <EuiTitle size="xs"><h3>With image</h3></EuiTitle>

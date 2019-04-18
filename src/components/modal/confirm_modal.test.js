@@ -33,6 +33,20 @@ test('renders EuiConfirmModal', () => {
   expect(component).toMatchSnapshot();
 });
 
+test('renders EuiConfirmModal without EuiModalBody, if empty', () => {
+  const component = render(
+    <EuiConfirmModal
+      title="A confirmation modal"
+      onCancel={() => {}}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+      {...requiredProps}
+    />
+  );
+  expect(component).toMatchSnapshot();
+});
+
 test('onConfirm', () => {
   const component = mount(
     <EuiConfirmModal
@@ -45,6 +59,22 @@ test('onConfirm', () => {
 
   findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
   sinon.assert.calledOnce(onConfirm);
+  sinon.assert.notCalled(onCancel);
+});
+
+test('onConfirm can be disabled', () => {
+  const component = mount(
+    <EuiConfirmModal
+      onCancel={onCancel}
+      onConfirm={onConfirm}
+      cancelButtonText="Cancel Button Text"
+      confirmButtonText="Confirm Button Text"
+      confirmButtonDisabled={true}
+    />
+  );
+
+  findTestSubject(component, 'confirmModalConfirmButton').simulate('click');
+  sinon.assert.notCalled(onConfirm);
   sinon.assert.notCalled(onCancel);
 });
 
@@ -116,23 +146,6 @@ describe('defaultFocusedButton', () => {
     requestAnimationFrame(() => {
       const button = findTestSubject(component, 'confirmModalConfirmButton').getDOMNode();
       expect(document.activeElement).toEqual(button);
-      done();
-    });
-  });
-
-  test('when not given gives focus to the modal', done => {
-    const component = mount(
-      <EuiConfirmModal
-        onCancel={onCancel}
-        onConfirm={onConfirm}
-        cancelButtonText="Cancel Button Text"
-        confirmButtonText="Confirm Button Text"
-      />
-    );
-
-    // The auto-focus implementation waits a frame before focusing.
-    requestAnimationFrame(() => {
-      expect(document.activeElement).toEqual(component.getDOMNode().firstChild);
       done();
     });
   });

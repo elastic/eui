@@ -1,3 +1,9 @@
+import { CommonProps } from '../common';
+
+import { EuiFlyoutFooterProps } from './flyout_footer';
+import { EuiFlyoutHeaderProps } from './flyout_header';
+import { EuiFlyoutBodyProps } from './flyout_body';
+
 declare module '@elastic/eui' {
   export interface EuiFlyoutProps {
     onClose: () => void;
@@ -24,17 +30,26 @@ declare module '@elastic/eui' {
     maxWidth?: boolean | number | string;
   }
 
-  export const EuiFlyout: React.SFC<
-    CommonProps &
-    EuiFlyoutProps
-  >;
+  export const EuiFlyout: React.FunctionComponent<CommonProps & EuiFlyoutProps>;
 
-  export const EuiFlyoutBody: React.SFC<CommonProps>;
+  /**
+   * Flyout body type defs
+   *
+   * @see './flyout_body.js'
+   */
+  export const EuiFlyoutBody: EuiFlyoutBodyProps;
 
-  export interface EuiFlyoutHeaderProps {
-    hasBorder?: boolean;
-  }
-  export const EuiFlyoutHeader: React.SFC<CommonProps & EuiFlyoutHeaderProps>;
+  /**
+   * Flyout footer type defs
+   *
+   * @see './flyout_footer.js'
+   */
+  export const EuiFlyoutFooter: EuiFlyoutFooterProps;
 
-  export const EuiFlyoutFooter: React.SFC<CommonProps>;
+  /**
+   * Flyout header type defs
+   *
+   * @see './flyout_header.js'
+   */
+  export const EuiFlyoutHeader: EuiFlyoutHeaderProps;
 }

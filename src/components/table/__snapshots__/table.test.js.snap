@@ -10,6 +10,7 @@ exports[`renders EuiTable 1`] = `
     <tr>
       <th
         class="euiTableHeaderCell"
+        role="columnheader"
         scope="col"
       >
         <div
@@ -24,6 +25,7 @@ exports[`renders EuiTable 1`] = `
       </th>
       <th
         class="euiTableHeaderCell"
+        role="columnheader"
         scope="col"
       >
         <div

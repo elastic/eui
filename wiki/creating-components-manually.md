@@ -12,8 +12,8 @@ This makes your styles available to your project and to the [EUI documentation][
 
 ## Create the React component
 
-1. Create the React component(s) in the same directory as the related SCSS file(s).
-2. Export these components from an `index.js` file.
+1. Create the React component(s) (preferably as TypeScript) in the same directory as the related SCSS file(s).
+2. Export these components from an `index.ts` file.
 3. Re-export these components from `src/components/index.js`.
 
 This makes your React component available for import into your project.

@@ -17,6 +17,9 @@
  * 2. If it has a BetaBadge, make sure only the first letter shows
  */
 .euiKeyPadMenuItem {
+  @include euiFont; /* 1 */
+  // Disable indentation for transition legibility
+  // sass-lint:disable-block indentation
   display: block;
   padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
@@ -25,14 +28,14 @@
   border: $euiBorderThin;
   border-color: transparent;
   border-radius: $euiBorderRadius;
-  font-family: $euiFontFamily; /* 1 */
   transition:
     border-color $euiAnimSpeedFast ease-in,
     box-shadow $euiAnimSpeedFast ease-in;
 
-  &:hover, &:focus {
-    border-color: $euiBorderColor;
+  &:hover,
+  &:focus {
     @include euiSlightShadow;
+    border-color: $euiBorderColor;
 
     .euiKeyPadMenuItem__icon {
       transform: translateY(0);
@@ -40,42 +43,43 @@
   }
 }
 
-  .euiKeyPadMenuItem__inner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.euiKeyPadMenuItem__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    .euiKeyPadMenuItem--hasBetaBadge & {
-      position: relative;
+  .euiKeyPadMenuItem--hasBetaBadge & {
+    position: relative;
 
-      .euiKeyPadMenuItem__betaBadgeWrapper {
-        position: absolute;
-        top: $euiSizeS;
-        right: $euiSizeS;
-        z-index: 3;
+    .euiKeyPadMenuItem__betaBadgeWrapper {
+      position: absolute;
+      top: $euiSizeS;
+      right: $euiSizeS;
+      z-index: 3;
 
-        .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
-          width: $euiSizeL;
-          padding: 0 ($euiSizeL - $euiFontSizeXS)/1.5;  /* 2 */
-          overflow: hidden;  /* 2 */
-          letter-spacing: 3rem;  /* 2 */
-        }
+      // sass-lint:disable-block nesting-depth
+      .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
+        width: $euiSizeL;
+        padding: 0 (($euiSizeL - $euiFontSizeXS) / 1.5);  /* 2 */
+        overflow: hidden;  /* 2 */
+        letter-spacing: 3rem;  /* 2 */
       }
     }
   }
+}
 
-  .euiKeyPadMenuItem__icon {
-    transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
-    transform: translateY(2px);
-    margin-bottom: $euiSizeM;
-  }
+.euiKeyPadMenuItem__icon {
+  transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+  transform: translateY(2px);
+  margin-bottom: $euiSizeM;
+}
 
-  .euiKeyPadMenuItem__label {
-    font-size: $euiFontSizeXS;
-    font-weight: $euiFontWeightMedium;
-    line-height: $euiSize;
-    text-align: center;
-  }
+.euiKeyPadMenuItem__label {
+  font-size: $euiFontSizeXS;
+  font-weight: $euiFontWeightMedium;
+  line-height: $euiSize;
+  text-align: center;
+}

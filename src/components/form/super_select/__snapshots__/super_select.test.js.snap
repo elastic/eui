@@ -5,7 +5,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"
@@ -72,7 +72,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"
@@ -132,70 +132,158 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
   </div>
   <div>
     <div
-      aria-live="assertive"
-      class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-      style="top: 8px; left: -22px; z-index: 0;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-      />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
+        aria-live="assertive"
+        class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+        style="top: 8px; left: -22px; z-index: 0;"
       >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
+        <div
+          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+        />
+        <div>
+          <p
+            class="euiScreenReaderOnly"
+            role="alert"
+          >
+            You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          </p>
+          <div
+            role="listbox"
+          >
+            <button
+              class="euiContextMenuItem euiSuperSelect__item"
+              id="1"
+              role="option"
+              type="button"
+            >
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Custom Display #1
+                </span>
+              </span>
+            </button>
+            <button
+              class="euiContextMenuItem euiSuperSelect__item"
+              id="2"
+              role="option"
+              type="button"
+            >
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Custom Display #2
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect euiSuperSelect--fullWidth"
+>
+  <div
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+  >
+    <input
+      type="hidden"
+      value=""
+    />
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
       <div
-        role="listbox"
+        class="euiFormControlLayout__childrenWrapper"
       >
+        <span
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          Select an option: , is selected
+        </span>
         <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="1"
+          aria-haspopup="true"
+          aria-label="aria-label"
+          aria-labelledby="undefined generated-id"
+          class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
+          data-test-subj="test subject string"
           role="option"
           type="button"
+        />
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiFormControlLayoutCustomIcon"
           >
             <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
+              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
             >
-              Custom Display #1
-            </span>
+              <defs>
+                <path
+                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
+                  id="arrow_down-a"
+                />
+              </defs>
+              <use
+                fill-rule="nonzero"
+                href="#arrow_down-a"
+              />
+            </svg>
           </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="2"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Custom Display #2
-            </span>
-          </span>
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -207,7 +295,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"
@@ -269,86 +357,112 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
   </div>
   <div>
     <div
-      aria-live="assertive"
-      class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-      style="top: 8px; left: -22px; z-index: 0;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-      />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
+        aria-live="assertive"
+        class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+        style="top: 8px; left: -22px; z-index: 0;"
       >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
-      <div
-        aria-activedescendant="1"
-        role="listbox"
-      >
-        <button
-          class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
-          disabled=""
-          id="1"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
+        <div
+          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+        />
+        <div>
+          <p
+            class="euiScreenReaderOnly"
+            role="alert"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-              />
-            </svg>
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Option #1
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          data-test-subj="option two"
-          id="2"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
+            You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          </p>
+          <div
+            aria-activedescendant="1"
+            role="listbox"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
+            <button
+              class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+              disabled=""
+              id="1"
+              role="option"
+              type="button"
             >
-              Option #2
-            </span>
-          </span>
-        </button>
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Option #1
+                </span>
+              </span>
+            </button>
+            <button
+              class="euiContextMenuItem euiSuperSelect__item"
+              data-test-subj="option two"
+              id="2"
+              role="option"
+              type="button"
+            >
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Option #2
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
 </div>
 `;
 
 exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
 <EuiSuperSelect
+  compressed={false}
   data-test-subj="superSelect"
+  fullWidth={false}
+  hasDividers={false}
+  isInvalid={false}
   onChange={[Function]}
   options={
     Array [
@@ -367,6 +481,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
   valueOfSelected="1"
 >
   <EuiPopover
+    anchorClassName="euiSuperSelect__popoverAnchor"
     anchorPosition="downCenter"
     button={
       <EuiSuperSelectControl
@@ -374,6 +489,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
         compressed={false}
         data-test-subj="superSelect"
         fullWidth={false}
+        isInvalid={false}
         isLoading={false}
         onChange={[Function]}
         onClick={[Function]}
@@ -405,21 +521,26 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
     popoverRef={[Function]}
   >
     <EuiOutsideClickDetector
+      isDisabled={false}
       onOutsideClick={[Function]}
     >
       <div
         className="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
-        onClick={[Function]}
         onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
       >
         <div
-          className="euiPopover__anchor"
+          className="euiPopover__anchor euiSuperSelect__popoverAnchor"
         >
           <EuiSuperSelectControl
             className="euiSuperSelect--isOpen__button"
             compressed={false}
             data-test-subj="superSelect"
             fullWidth={false}
+            isInvalid={false}
             isLoading={false}
             onChange={[Function]}
             onClick={[Function]}
@@ -466,9 +587,17 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       className="euiScreenReaderOnly"
                       id="generated-id"
                     >
-                      Select an option: 
-                      Option #1
-                      , is selected
+                      <EuiI18n
+                        default="Select an option: {selectedValue}, is selected"
+                        token="euiSuperSelectControl.selectAnOption"
+                        values={
+                          Object {
+                            "selectedValue": "Option #1",
+                          }
+                        }
+                      >
+                        Select an option: Option #1, is selected
+                      </EuiI18n>
                     </span>
                   </EuiScreenReaderOnly>
                   <button
@@ -505,7 +634,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           <EuiIcon
                             aria-hidden="true"
                             className="euiFormControlLayoutCustomIcon__icon"
-                            size="m"
                             type="arrowDown"
                           >
                             <arrowDown
@@ -513,11 +641,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
                               focusable="false"
                               height="16"
-                              style={
-                                Object {
-                                  "fill": undefined,
-                                }
-                              }
+                              style={null}
                               viewBox="0 0 16 16"
                               width="16"
                               xmlns="http://www.w3.org/2000/svg"
@@ -528,11 +652,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                 className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
                                 focusable="false"
                                 height="16"
-                                style={
-                                  Object {
-                                    "fill": undefined,
-                                  }
-                                }
+                                style={null}
                                 viewBox="0 0 16 16"
                                 width="16"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -561,262 +681,486 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
           </EuiSuperSelectControl>
         </div>
         <EuiPortal>
-          <FocusTrap
-            _createFocusTrap={[Function]}
-            active={false}
-            focusTrapOptions={
-              Object {
-                "clickOutsideDeactivates": true,
-                "initialFocus": undefined,
-              }
-            }
-            paused={false}
-            tag="div"
+          <EuiFocusTrap
+            clickOutsideDisables={true}
+            disabled={true}
+            returnFocus={true}
           >
-            <div>
-              <EuiPanel
-                aria-live="assertive"
-                className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-                grow={true}
-                hasShadow={false}
-                paddingSize="none"
-                panelRef={[Function]}
-                style={
-                  Object {
-                    "left": -22,
-                    "top": 8,
-                    "zIndex": "0",
-                  }
-                }
+            <EuiOutsideClickDetector
+              isDisabled={true}
+              onOutsideClick={[Function]}
+            >
+              <OutsideEventDetector
+                handleEvent={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
               >
                 <div
-                  aria-live="assertive"
-                  className="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-                  style={
-                    Object {
-                      "left": -22,
-                      "top": 8,
-                      "zIndex": "0",
-                    }
-                  }
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
                 >
-                  <div
-                    className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-                    style={null}
-                  />
-                  <EuiMutationObserver
-                    observerOptions={
-                      Object {
-                        "attributes": true,
-                        "characterData": true,
-                        "childList": true,
-                        "subtree": true,
-                      }
-                    }
-                    onMutation={[Function]}
+                  <FocusLock
+                    as="div"
+                    autoFocus={true}
+                    disabled={true}
+                    lockProps={Object {}}
+                    noFocusGuards={false}
+                    persistentFocus={false}
+                    returnFocus={true}
                   >
-                    <EuiMutationObserver
-                      key=".0"
-                      observerOptions={
+                    <div
+                      data-focus-guard={true}
+                      key="guard-first"
+                      style={
                         Object {
-                          "attributes": true,
-                          "characterData": true,
-                          "childList": true,
-                          "subtree": true,
+                          "height": "0px",
+                          "left": "1px",
+                          "overflow": "hidden",
+                          "padding": 0,
+                          "position": "fixed",
+                          "top": "1px",
+                          "width": "1px",
                         }
                       }
-                      onMutation={[Function]}
-                    >
-                      <EuiScreenReaderOnly>
-                        <p
-                          className="euiScreenReaderOnly"
-                          role="alert"
-                        >
-                          You are in a form selector of 
-                          2
-                           items and must select a single option. Use the up and down keys to navigate or escape to close.
-                        </p>
-                      </EuiScreenReaderOnly>
-                    </EuiMutationObserver>
-                    <EuiMutationObserver
-                      key=".1"
-                      observerOptions={
+                      tabIndex={-1}
+                    />
+                    <div
+                      data-focus-guard={true}
+                      key="guard-nearest"
+                      style={
                         Object {
-                          "attributes": true,
-                          "characterData": true,
-                          "childList": true,
-                          "subtree": true,
+                          "height": "0px",
+                          "left": "1px",
+                          "overflow": "hidden",
+                          "padding": 0,
+                          "position": "fixed",
+                          "top": "1px",
+                          "width": "1px",
                         }
                       }
-                      onMutation={[Function]}
+                      tabIndex={-1}
+                    />
+                    <div
+                      data-focus-lock-disabled="disabled"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
                     >
-                      <div
-                        aria-activedescendant="1"
-                        role="listbox"
-                      >
-                        <EuiContextMenuItem
-                          buttonRef={[Function]}
-                          className="euiSuperSelect__item"
-                          disabled={true}
-                          icon="check"
-                          id="1"
-                          key="0"
-                          layoutAlign="center"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
-                          role="option"
-                          style={
-                            Object {
-                              "width": null,
-                            }
-                          }
-                          toolTipPosition="right"
-                        >
-                          <button
-                            className="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
-                            disabled={true}
-                            id="1"
-                            onClick={[Function]}
-                            onKeyDown={[Function]}
-                            role="option"
-                            style={
-                              Object {
-                                "width": null,
-                              }
-                            }
-                            type="button"
+                      <SideEffect(FocusWatcher)
+                        autoFocus={true}
+                        disabled={true}
+                        observed={
+                          <div
+                            data-focus-lock-disabled="disabled"
                           >
-                            <span
-                              className="euiContextMenu__itemLayout"
+                            <div
+                              aria-live="assertive"
+                              class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                              style="top: 8px; left: -22px; z-index: 0;"
                             >
-                              <EuiIcon
-                                className="euiContextMenu__icon"
-                                size="m"
-                                type="check"
-                              >
-                                <check
-                                  className="euiIcon euiIcon--medium euiContextMenu__icon"
-                                  focusable="false"
-                                  height="16"
-                                  style={
-                                    Object {
-                                      "fill": undefined,
-                                    }
-                                  }
-                                  viewBox="0 0 16 16"
-                                  width="16"
-                                  xmlns="http://www.w3.org/2000/svg"
+                              <div
+                                class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                              />
+                              <div>
+                                <p
+                                  class="euiScreenReaderOnly"
+                                  role="alert"
                                 >
-                                  <svg
-                                    className="euiIcon euiIcon--medium euiContextMenu__icon"
-                                    focusable="false"
-                                    height="16"
-                                    style={
-                                      Object {
-                                        "fill": undefined,
-                                      }
-                                    }
-                                    viewBox="0 0 16 16"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                  You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                </p>
+                                <div
+                                  aria-activedescendant="1"
+                                  role="listbox"
+                                >
+                                  <button
+                                    class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+                                    disabled=""
+                                    id="1"
+                                    role="option"
+                                    type="button"
                                   >
-                                    <path
-                                      d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-                                    />
-                                  </svg>
-                                </check>
-                              </EuiIcon>
-                              <span
-                                className="euiContextMenuItem__text"
+                                    <span
+                                      class="euiContextMenu__itemLayout"
+                                    >
+                                      <svg
+                                        class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        focusable="false"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+                                          fill-rule="evenodd"
+                                        />
+                                      </svg>
+                                      <span
+                                        class="euiContextMenuItem__text"
+                                      >
+                                        Option #1
+                                      </span>
+                                    </span>
+                                  </button>
+                                  <button
+                                    class="euiContextMenuItem euiSuperSelect__item"
+                                    data-test-subj="option two"
+                                    id="2"
+                                    role="option"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="euiContextMenu__itemLayout"
+                                    >
+                                      <svg
+                                        class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        focusable="false"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      />
+                                      <span
+                                        class="euiContextMenuItem__text"
+                                      >
+                                        Option #2
+                                      </span>
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                        onActivation={[Function]}
+                        onDeactivation={[Function]}
+                        persistentFocus={false}
+                      >
+                        <FocusWatcher
+                          autoFocus={true}
+                          disabled={true}
+                          observed={
+                            <div
+                              data-focus-lock-disabled="disabled"
+                            >
+                              <div
+                                aria-live="assertive"
+                                class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                                style="top: 8px; left: -22px; z-index: 0;"
                               >
-                                Option #1
-                              </span>
-                            </span>
-                          </button>
-                        </EuiContextMenuItem>
-                        <EuiContextMenuItem
-                          buttonRef={[Function]}
-                          className="euiSuperSelect__item"
-                          data-test-subj="option two"
-                          icon="empty"
-                          id="2"
-                          key="1"
-                          layoutAlign="center"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
-                          role="option"
+                                <div
+                                  class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                                />
+                                <div>
+                                  <p
+                                    class="euiScreenReaderOnly"
+                                    role="alert"
+                                  >
+                                    You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                  </p>
+                                  <div
+                                    aria-activedescendant="1"
+                                    role="listbox"
+                                  >
+                                    <button
+                                      class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+                                      disabled=""
+                                      id="1"
+                                      role="option"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="euiContextMenu__itemLayout"
+                                      >
+                                        <svg
+                                          class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          focusable="false"
+                                          height="16"
+                                          viewBox="0 0 16 16"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+                                            fill-rule="evenodd"
+                                          />
+                                        </svg>
+                                        <span
+                                          class="euiContextMenuItem__text"
+                                        >
+                                          Option #1
+                                        </span>
+                                      </span>
+                                    </button>
+                                    <button
+                                      class="euiContextMenuItem euiSuperSelect__item"
+                                      data-test-subj="option two"
+                                      id="2"
+                                      role="option"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="euiContextMenu__itemLayout"
+                                      >
+                                        <svg
+                                          class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          focusable="false"
+                                          height="16"
+                                          viewBox="0 0 16 16"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        />
+                                        <span
+                                          class="euiContextMenuItem__text"
+                                        >
+                                          Option #2
+                                        </span>
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          }
+                          onActivation={[Function]}
+                          onDeactivation={[Function]}
+                          persistentFocus={false}
+                        />
+                      </SideEffect(FocusWatcher)>
+                      <EuiPanel
+                        aria-live="assertive"
+                        className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+                        grow={true}
+                        hasShadow={false}
+                        paddingSize="none"
+                        panelRef={[Function]}
+                        style={
+                          Object {
+                            "left": -22,
+                            "top": 8,
+                            "zIndex": "0",
+                          }
+                        }
+                      >
+                        <div
+                          aria-live="assertive"
+                          className="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
                           style={
                             Object {
-                              "width": null,
+                              "left": -22,
+                              "top": 8,
+                              "zIndex": "0",
                             }
                           }
-                          toolTipPosition="right"
                         >
-                          <button
-                            className="euiContextMenuItem euiSuperSelect__item"
-                            data-test-subj="option two"
-                            id="2"
-                            onClick={[Function]}
-                            onKeyDown={[Function]}
-                            role="option"
-                            style={
+                          <div
+                            className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                            style={null}
+                          />
+                          <EuiMutationObserver
+                            observerOptions={
                               Object {
-                                "width": null,
+                                "attributes": true,
+                                "characterData": true,
+                                "childList": true,
+                                "subtree": true,
                               }
                             }
-                            type="button"
+                            onMutation={[Function]}
                           >
-                            <span
-                              className="euiContextMenu__itemLayout"
-                            >
-                              <EuiIcon
-                                className="euiContextMenu__icon"
-                                size="m"
-                                type="empty"
-                              >
-                                <empty
-                                  className="euiIcon euiIcon--medium euiContextMenu__icon"
-                                  focusable="false"
-                                  height="16"
-                                  style={
-                                    Object {
-                                      "fill": undefined,
-                                    }
-                                  }
-                                  viewBox="0 0 16 16"
-                                  width="16"
-                                  xmlns="http://www.w3.org/2000/svg"
+                            <div>
+                              <EuiScreenReaderOnly>
+                                <p
+                                  className="euiScreenReaderOnly"
+                                  role="alert"
                                 >
-                                  <svg
-                                    className="euiIcon euiIcon--medium euiContextMenu__icon"
-                                    focusable="false"
-                                    height="16"
-                                    style={
+                                  <EuiI18n
+                                    default="You are in a form selector of {optionsCount} items and must select a single option. Use the up and down keys to navigate or escape to close."
+                                    token="euiSuperSelect.screenReaderAnnouncement"
+                                    values={
                                       Object {
-                                        "fill": undefined,
+                                        "optionsCount": 2,
                                       }
                                     }
-                                    viewBox="0 0 16 16"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  />
-                                </empty>
-                              </EuiIcon>
-                              <span
-                                className="euiContextMenuItem__text"
+                                  >
+                                    You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+                                  </EuiI18n>
+                                </p>
+                              </EuiScreenReaderOnly>
+                              <div
+                                aria-activedescendant="1"
+                                role="listbox"
                               >
-                                Option #2
-                              </span>
-                            </span>
-                          </button>
-                        </EuiContextMenuItem>
-                      </div>
-                    </EuiMutationObserver>
-                  </EuiMutationObserver>
+                                <EuiContextMenuItem
+                                  buttonRef={[Function]}
+                                  className="euiSuperSelect__item"
+                                  disabled={true}
+                                  icon="check"
+                                  id="1"
+                                  key="0"
+                                  layoutAlign="center"
+                                  onClick={[Function]}
+                                  onKeyDown={[Function]}
+                                  role="option"
+                                  style={
+                                    Object {
+                                      "width": null,
+                                    }
+                                  }
+                                  toolTipPosition="right"
+                                >
+                                  <button
+                                    className="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+                                    disabled={true}
+                                    id="1"
+                                    onClick={[Function]}
+                                    onKeyDown={[Function]}
+                                    role="option"
+                                    style={
+                                      Object {
+                                        "width": null,
+                                      }
+                                    }
+                                    type="button"
+                                  >
+                                    <span
+                                      className="euiContextMenu__itemLayout"
+                                    >
+                                      <EuiIcon
+                                        className="euiContextMenu__icon"
+                                        size="m"
+                                        type="check"
+                                      >
+                                        <check
+                                          className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          focusable="false"
+                                          height="16"
+                                          style={null}
+                                          viewBox="0 0 16 16"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <svg
+                                            className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                            focusable="false"
+                                            height="16"
+                                            style={null}
+                                            viewBox="0 0 16 16"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+                                              fillRule="evenodd"
+                                            />
+                                          </svg>
+                                        </check>
+                                      </EuiIcon>
+                                      <span
+                                        className="euiContextMenuItem__text"
+                                      >
+                                        Option #1
+                                      </span>
+                                    </span>
+                                  </button>
+                                </EuiContextMenuItem>
+                                <EuiContextMenuItem
+                                  buttonRef={[Function]}
+                                  className="euiSuperSelect__item"
+                                  data-test-subj="option two"
+                                  icon="empty"
+                                  id="2"
+                                  key="1"
+                                  layoutAlign="center"
+                                  onClick={[Function]}
+                                  onKeyDown={[Function]}
+                                  role="option"
+                                  style={
+                                    Object {
+                                      "width": null,
+                                    }
+                                  }
+                                  toolTipPosition="right"
+                                >
+                                  <button
+                                    className="euiContextMenuItem euiSuperSelect__item"
+                                    data-test-subj="option two"
+                                    id="2"
+                                    onClick={[Function]}
+                                    onKeyDown={[Function]}
+                                    role="option"
+                                    style={
+                                      Object {
+                                        "width": null,
+                                      }
+                                    }
+                                    type="button"
+                                  >
+                                    <span
+                                      className="euiContextMenu__itemLayout"
+                                    >
+                                      <EuiIcon
+                                        className="euiContextMenu__icon"
+                                        size="m"
+                                        type="empty"
+                                      >
+                                        <empty
+                                          className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          focusable="false"
+                                          height="16"
+                                          style={null}
+                                          viewBox="0 0 16 16"
+                                          width="16"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <svg
+                                            className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                            focusable="false"
+                                            height="16"
+                                            style={null}
+                                            viewBox="0 0 16 16"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          />
+                                        </empty>
+                                      </EuiIcon>
+                                      <span
+                                        className="euiContextMenuItem__text"
+                                      >
+                                        Option #2
+                                      </span>
+                                    </span>
+                                  </button>
+                                </EuiContextMenuItem>
+                              </div>
+                            </div>
+                          </EuiMutationObserver>
+                        </div>
+                      </EuiPanel>
+                    </div>
+                    <div
+                      data-focus-guard={true}
+                      style={
+                        Object {
+                          "height": "0px",
+                          "left": "1px",
+                          "overflow": "hidden",
+                          "padding": 0,
+                          "position": "fixed",
+                          "top": "1px",
+                          "width": "1px",
+                        }
+                      }
+                      tabIndex={-1}
+                    />
+                  </FocusLock>
                 </div>
-              </EuiPanel>
-            </div>
-          </FocusTrap>
+              </OutsideEventDetector>
+            </EuiOutsideClickDetector>
+          </EuiFocusTrap>
         </EuiPortal>
       </div>
     </EuiOutsideClickDetector>
@@ -829,7 +1173,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"
@@ -889,72 +1233,93 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
   </div>
   <div>
     <div
-      aria-live="assertive"
-      class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-      style="top: 8px; left: -22px; z-index: 0;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-      />
-      <p
-        class="euiScreenReaderOnly"
-        role="alert"
+        aria-live="assertive"
+        class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
+        style="top: 8px; left: -22px; z-index: 0;"
       >
-        You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
-      </p>
-      <div
-        role="listbox"
-      >
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="1"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
+        <div
+          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+        />
+        <div>
+          <p
+            class="euiScreenReaderOnly"
+            role="alert"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Option #1
-            </span>
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem euiSuperSelect__item"
-          id="2"
-          role="option"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
+            You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+          </p>
+          <div
+            role="listbox"
           >
-            <svg
-              class="euiIcon euiIcon--medium euiContextMenu__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiContextMenuItem__text"
+            <button
+              class="euiContextMenuItem euiSuperSelect__item"
+              id="1"
+              role="option"
+              type="button"
             >
-              Option #2
-            </span>
-          </span>
-        </button>
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Option #1
+                </span>
+              </span>
+            </button>
+            <button
+              class="euiContextMenuItem euiSuperSelect__item"
+              id="2"
+              role="option"
+              type="button"
+            >
+              <span
+                class="euiContextMenu__itemLayout"
+              >
+                <svg
+                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiContextMenuItem__text"
+                >
+                  Option #2
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
 </div>
 `;
@@ -964,7 +1329,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"
@@ -1029,7 +1394,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
   class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
   >
     <input
       type="hidden"

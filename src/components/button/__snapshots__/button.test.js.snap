@@ -124,6 +124,21 @@ exports[`EuiButton props fill is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props fullWidth is rendered 1`] = `
+<button
+  class="euiButton euiButton--primary euiButton--fullWidth"
+  type="button"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButton props href secures the rel attribute when the target is _blank 1`] = `
 <a
   class="euiButton euiButton--primary"
@@ -291,7 +306,7 @@ exports[`EuiButton props isLoading is rendered 1`] = `
   <span
     class="euiButton__content"
   >
-    <div
+    <span
       class="euiLoadingSpinner euiLoadingSpinner--medium euiButton__spinner"
     />
     <span
@@ -304,6 +319,21 @@ exports[`EuiButton props isLoading is rendered 1`] = `
 exports[`EuiButton props size l is rendered 1`] = `
 <button
   class="euiButton euiButton--primary euiButton--large"
+  type="button"
+>
+  <span
+    class="euiButton__content"
+  >
+    <span
+      class="euiButton__text"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiButton props size m is rendered 1`] = `
+<button
+  class="euiButton euiButton--primary"
   type="button"
 >
   <span

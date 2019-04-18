@@ -1,3 +1,6 @@
+// This file utilizes !importants on purpose
+// sass-lint:disable no-important
+
 // Vertical alignment
 .eui-alignBaseline { vertical-align: baseline !important; }
 .eui-alignBottom { vertical-align: bottom !important; }
@@ -8,6 +11,11 @@
 .eui-displayBlock {display: block !important;}
 .eui-displayInline {display: inline !important;}
 .eui-displayInlineBlock {display: inline-block !important;}
+
+.eui-fullWidth {
+  display: block !important;
+  width: 100% !important;
+}
 
 // Text
 .eui-textCenter {text-align: center !important;}
@@ -23,6 +31,13 @@
 .eui-textBreakAll {word-break: break-all !important;}
 .eui-textBreakNormal {word-break: normal !important;}
 
+.eui-textOverflowWrap {
+  @include internetExplorerOnly {
+    word-break: break-all !important;
+  }
+  overflow-wrap: break-word !important;
+}
+
 .eui-textTruncate {
   @include euiTextTruncate;
 }
@@ -32,17 +47,19 @@
  *
  *  3. Be sure to hide/show the element initially
  */
-[class*="eui-hideFor"] {
+[class*='eui-hideFor'] {
   display: inline !important; /* 3 */
 }
-[class*="eui-showFor"] {
- display: none !important; /* 3 */
+
+[class*='eui-showFor'] {
+  display: none !important; /* 3 */
 }
 
 @each $size in $euiBreakpointKeys {
   .eui-hideFor--#{$size} {
     @include euiBreakpoint($size) { display: none !important; }
   }
+
   .eui-showFor--#{$size} {
     @include  euiBreakpoint($size) { display: inline !important; }
   }

@@ -15,20 +15,22 @@
     }
 
     + .euiRadio__circle {
+      @include euiCustomControl($type: 'round', $size: $euiRadioSize);
+
       display: inline-block;
       position: absolute;
       left: 0;
-      top: ($euiSizeL - $euiRadioSize)/2 - 1px;
-      @include euiCustomControl($type: 'round', $size: $euiRadioSize);
+      top: (($euiSizeL - $euiRadioSize) / 2) - 1px;
     }
 
     &:checked {
       + .euiRadio__circle {
-        @include euiCustomControl--selected($type: 'dot');
+        @include euiCustomControlSelected($type: 'dot');
       }
     }
 
     &[disabled] {
+      //sass-lint:disable no-important
       cursor: not-allowed !important;
 
       ~ .euiRadio__label {
@@ -37,20 +39,20 @@
       }
 
       + .euiRadio__circle {
-        @include euiCustomControl--disabled;
+        @include euiCustomControlDisabled;
       }
     }
 
     &:checked[disabled] {
       + .euiRadio__circle {
-        @include euiCustomControl--disabled($type: 'dot');
+        @include euiCustomControlDisabled($type: 'dot');
       }
     }
 
     &:focus,
     &:active:not(:disabled) {
       + .euiRadio__circle {
-        @include euiCustomControl--focused;
+        @include euiCustomControlFocused;
       }
     }
   }
@@ -70,9 +72,10 @@
     }
 
     .euiRadio__input {
+      @include size($euiRadioSize); /* 1 */
+
       position: absolute; /* 1 */
       opacity: 0; /* 1 */
-      @include size($euiRadioSize); /* 1 */
       z-index: 1; /* 1 */
       margin: 0; /* 1 */
       left: 0; /* 1 */

@@ -15,7 +15,6 @@
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
-  white-space: nowrap;
   overflow: hidden;
 
   + .euiBadge {
@@ -35,7 +34,7 @@
   }
 
   &:focus {
-    @include euiFocusRing("small");
+    @include euiFocusRing('small');
   }
 
   .euiBadge__icon {
@@ -43,8 +42,8 @@
     margin-right: $euiSizeXS;
 
     &:focus {
-      background-color: rgba(255,255,255,.8);
-      color: #000;
+      background-color: transparentize($euiColorGhost, .2);
+      color: #000; // sass-lint:disable-line no-color-literals
       border-radius: 2px;
     }
   }
@@ -63,15 +62,16 @@
 // Modifier naming and colors.
 $badgeTypes: (
   default: $euiColorLightShade,
-  primary: lighten(desaturate($euiColorPrimary, 40%), 40%),
-  secondary: lighten(desaturate($euiColorSecondary, 40%), 40%),
-  warning: lighten(desaturate($euiColorWarning, 30%), 20%),
-  danger: lighten(desaturate($euiColorDanger, 40%), 40%),
-  accent: lighten(desaturate($euiColorAccent, 40%), 40%),
+  primary: tintOrShade(desaturate($euiColorPrimary, 30%), 30%, 10%),
+  secondary: tintOrShade(desaturate($euiColorSecondary, 40%), 40%, 0%),
+  warning: tintOrShade(desaturate($euiColorWarning, 30%), 20%, 0%),
+  danger: tintOrShade(desaturate($euiColorDanger, 0%), 30%, 10%),
+  accent: tintOrShade(desaturate($euiColorAccent, 40%), 40%, 0%),
 );
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
+    // sass-lint:disable-block no-color-literals
     background-color: $color;
     @if (lightness($color) > 50) {
       color: #000;

@@ -12,7 +12,7 @@
     text-decoration: underline;
   }
 
-  &:focus {
+  &.euiComboBoxOption-isFocused {
     cursor: pointer;
     color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
@@ -21,14 +21,15 @@
   &.euiComboBoxOption-isDisabled {
     color: $euiColorMediumShade;
     cursor: not-allowed;
+
     &:hover {
       text-decoration: none;
     }
   }
 }
 
-  .euiComboBoxOption__content {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+.euiComboBoxOption__content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

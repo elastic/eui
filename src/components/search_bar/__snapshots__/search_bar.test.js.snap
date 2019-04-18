@@ -3,15 +3,9 @@
 exports[`SearchBar render - box 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
-  direction="row"
   gutterSize="m"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -31,15 +25,9 @@ exports[`SearchBar render - box 1`] = `
 exports[`SearchBar render - no config, no query 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
-  direction="row"
   gutterSize="m"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -56,15 +44,9 @@ exports[`SearchBar render - no config, no query 1`] = `
 exports[`SearchBar render - provided query, filters 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
-  direction="row"
   gutterSize="m"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -76,7 +58,6 @@ exports[`SearchBar render - provided query, filters 1`] = `
     />
   </EuiFlexItem>
   <EuiFlexItem
-    component="div"
     grow={false}
   >
     <EuiSearchFilters
@@ -123,6 +104,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
             ],
             "_indexedClauses": Object {
               "field": Object {},
+              "group": Array [],
               "is": Object {},
               "term": Array [
                 Object {
@@ -151,6 +133,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
           "syntax": Object {
             "parse": [Function],
             "print": [Function],
+            "printClause": [Function],
           },
           "text": "this is a query",
         }
@@ -163,15 +146,9 @@ exports[`SearchBar render - provided query, filters 1`] = `
 exports[`SearchBar render - tools 1`] = `
 <EuiFlexGroup
   alignItems="center"
-  component="div"
-  direction="row"
   gutterSize="m"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
 >
   <EuiFlexItem
-    component="div"
     grow={false}
   >
     <div>
@@ -179,7 +156,6 @@ exports[`SearchBar render - tools 1`] = `
     </div>
   </EuiFlexItem>
   <EuiFlexItem
-    component="div"
     grow={true}
   >
     <EuiSearchBox
@@ -191,7 +167,6 @@ exports[`SearchBar render - tools 1`] = `
     />
   </EuiFlexItem>
   <EuiFlexItem
-    component="div"
     grow={false}
   >
     <div>

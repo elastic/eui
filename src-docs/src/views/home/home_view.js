@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import imageIcons from '../../images/icons.jpg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
@@ -36,9 +40,9 @@ export const HomeView = () => (
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
-              <EuiLink href="#/package/changelog">
+              <Link to="/package/changelog">
                 <strong>v{ pkg.version }</strong>
-              </EuiLink>
+              </Link>
             </p>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -59,13 +63,25 @@ export const HomeView = () => (
                 This will provide symbols that match against their EUI component
                 counterparts."
             >
-              <EuiLink href="https://github.com/elastic/eui/releases/download/v4.0.0/eui_sketch_4.0.0.zip">
+              <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
                 <strong>Sketch libraries</strong>
               </EuiLink>
             </EuiToolTip>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiIcon type="logoSketch" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiLink href="https://codesandbox.io/s/ll7lnlpm97">
+              <strong>Codesandbox</strong>
+            </EuiLink>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="logoCodesandbox" />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
@@ -104,7 +120,7 @@ export const HomeView = () => (
           image={imageButtons}
           title="Buttons"
           isClickable
-          description="Buttons for every usage you might need."
+          description="Buttons for every usage you might need"
         />
       </EuiFlexItem>
       <EuiFlexItem>
@@ -113,7 +129,7 @@ export const HomeView = () => (
           textAlign="left"
           image={imageFlexgrid}
           title="Flexible layouts"
-          description="Create layouts by using flex groups, grids and items"
+          description="Create layouts by using flex groups, grids, and items"
           isClickable
         />
       </EuiFlexItem>
@@ -144,7 +160,7 @@ export const HomeView = () => (
           image={imageForms}
           title="Forms"
           isClickable
-          description="Input tags, layouts and validation for your forms"
+          description="Input tags, layouts, and validation for your forms"
         />
       </EuiFlexItem>
     </EuiFlexGrid>
@@ -156,9 +172,9 @@ export const HomeView = () => (
         <dt>EUI is accessible to everyone.</dt>
         <dd>Use high contrast, color-blind safe palettes and proper aria labels.</dd>
         <dt>EUI is themable.</dt>
-        <dd>Theming should involve changing less than a dozen lines of code. This means strict variable usage.</dd>
+        <dd>Theming should involve changing fewer than a dozen lines of code. This means strict variable usage.</dd>
         <dt>EUI is responsive.</dt>
-        <dd>Currently we target mobile, laptop, desktop and wide desktop breakpoints.</dd>
+        <dd>Currently we target mobile, laptop, desktop, and wide desktop breakpoints.</dd>
         <dt>EUI is playful.</dt>
         <dd>Consistent use of animation can bring life to our design.</dd>
         <dt>EUI is documented and has tests.</dt>

@@ -33,8 +33,10 @@ export class EuiSearchBox extends Component {
     super(props);
   }
 
-  componentDidUpdate() {
-    this.inputElement.value = this.props.query;
+  componentDidUpdate(oldProps) {
+    if (oldProps.query !== this.props.query) {
+      this.inputElement.value = this.props.query;
+    }
   }
 
   render() {

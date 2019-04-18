@@ -1,3 +1,8 @@
+// This file uses RGBA literal values responsibly
+// This file uses off-pattern indedentation to be more readible
+
+// sass-lint:disable no-color-literals, indentation
+
 @mixin euiSlightShadow($color: $euiShadowColor, $opacity: .3) {
   box-shadow: 0 2px 2px -1px rgba($color, $opacity);
 }
@@ -19,9 +24,9 @@
 // that drop UP rather than DOWN.
 @mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: .2) {
   box-shadow:
-    0 0px 12px -1px rgba($color, $opacity),
-    0 0px 4px -1px rgba($color, $opacity),
-    0 0px 2px 0 rgba($color, $opacity);
+    0 0 12px -1px rgba($color, $opacity),
+    0 0 4px -1px rgba($color, $opacity),
+    0 0 2px 0 rgba($color, $opacity);
 }
 
 // adjustBorder allows the border color to match the drop shadow better so that there's better
@@ -41,14 +46,27 @@
   }
 }
 
-@mixin euiBottomShadowLarge($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
-  box-shadow:
-    0 40px 64px 0 rgba($color, $opacity),
-    0 24px 32px 0 rgba($color, $opacity),
-    0 16px 16px 0 rgba($color, $opacity),
-    0 8px 8px 0 rgba($color, $opacity),
-    0 4px 4px 0 rgba($color, $opacity),
-    0 2px 2px 0 rgba($color, $opacity);
+@mixin euiBottomShadowLarge(
+  $color: $euiShadowColorLarge,
+  $opacity: .1,
+  $adjustBorders: false,
+  $reverse: false
+) {
+  @if ($reverse) {
+    box-shadow:
+      0 -40px 64px 0 rgba($color, $opacity),
+      0 -24px 32px 0 rgba($color, $opacity),
+      0 -16px 16px 0 rgba($color, $opacity),
+      0 -8px 8px 0 rgba($color, $opacity);
+  } @else {
+    box-shadow:
+      0 40px 64px 0 rgba($color, $opacity),
+      0 24px 32px 0 rgba($color, $opacity),
+      0 16px 16px 0 rgba($color, $opacity),
+      0 8px 8px 0 rgba($color, $opacity),
+      0 4px 4px 0 rgba($color, $opacity),
+      0 2px 2px 0 rgba($color, $opacity);
+  }
 
   // Never adjust borders if the border color is already on the dark side (dark theme)
   @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
@@ -60,7 +78,7 @@
 
 @mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
   box-shadow:
-    0 4px 8px 0px rgba($color, $opacity/2),
+    0 4px 8px 0 rgba($color, $opacity/2),
     0 2px 2px -1px rgba($color, $opacity);
 }
 
@@ -68,14 +86,44 @@
   @include euiSlightShadowHover($color, $opacity);
 }
 
-// Overflow shadows are useful when a middle element scrolls independently from
-// any top and/or bottom elements
+@mixin euiOverflowShadow($color: $euiColorEmptyShade) {
+  // Only allow the shadow if we can properly remove pointer events
+  // from it since it will overlay the contents
+  @supports (pointer-events: none) {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      // Stops match scrollbar corner so it doesn't overlap
+      background: linear-gradient(to bottom,
+                    transparentize($color, .1) 0%,
+                    transparentize($color, 1) $euiScrollBarCorner,
+                    transparentize($color, 1) calc(100% - #{$euiScrollBarCorner}),
+                    transparentize($color, .1) 100%
+                  );
+      pointer-events: none;
+    }
+  }
+}
+
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+//** DEPRECATED **//
+
 @mixin euiOverflowShadowTop {
-  box-shadow: 0 ($euiSize *-1) $euiSize (-$euiSize / 2) $euiColorEmptyShade;
+  box-shadow: 0 ($euiSize * -1) $euiSize (-$euiSize / 2) $euiColorEmptyShade;
   z-index: 2;
+  @warn '`euiOverflowShadowTop()` is deprecated. Please use `euiOverflowShadow()` on a wrapping element instead.';
 }
 
 @mixin euiOverflowShadowBottom {
   box-shadow: 0 $euiSize $euiSize (-$euiSize / 2) $euiColorEmptyShade;
   z-index: 2;
+  @warn '`euiOverflowShadowBottom()` is deprecated. Please use `euiOverflowShadow()` on a wrapping element instead.';
 }

@@ -1,32 +1,32 @@
 // Core
 
-$euiColorPrimary: #0079a5 !default;
-$euiColorSecondary: #017F75 !default;
+$euiColorPrimary: #006BB4 !default;
+$euiColorSecondary: #017D73 !default;
 $euiColorAccent: #DD0A73 !default;
 $euiColorHighlight: #FFFBF1 !default;
 $euiColorGhost: #FFF !default;
 
 // Status
 $euiColorSuccess: $euiColorSecondary !default;
-$euiColorDanger: #A30000 !default;
-$euiColorWarning: #E5830E !default;
+$euiColorDanger: #BD271E !default;
+$euiColorWarning: #F5A700 !default;
 
 // Grays
 $euiColorEmptyShade: #FFF !default;
-$euiColorLightestShade: #F5F5F5 !default;
-$euiColorLightShade: #D9D9D9 !default;
-$euiColorMediumShade: #999 !default;
-$euiColorDarkShade: #666 !default;
-$euiColorDarkestShade: #3F3F3F !default;
+$euiColorLightestShade: #F5F7FA !default;
+$euiColorLightShade: #D3DAE6 !default;
+$euiColorMediumShade: #98A2B3 !default;
+$euiColorDarkShade: #69707D !default;
+$euiColorDarkestShade: #343741 !default;
 $euiColorFullShade: #000 !default;
-$euiColorSlightHue: #909AA1 !default;
 
 // Every color below must be based mathmatically on the set above.
 
 $euiTextColor: $euiColorDarkestShade !default;
-$euiTitleColor: tintOrShade($euiColorFullShade, 10%, 0%) !default;
+$euiTitleColor: shadeOrTint($euiTextColor, 50%, 0%) !default;
 $euiLinkColor: $euiColorPrimary !default;
 $euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%) !default;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%) !default;
 
 // Visualization colors
 
@@ -52,20 +52,20 @@ $euiCodeBlockStringColor: #DD0A73 !default;
 $euiCodeBlockNumberColor: #00A69B !default;
 $euiCodeBlockKeywordColor: #333 !default;
 $euiCodeBlockFunctionTitleColor: inherit !default;
-$euiCodeBlockTagColor: #0079a5 !default;
+$euiCodeBlockTagColor: #0079A5 !default;
 $euiCodeBlockNameColor: inherit !default;
-$euiCodeBlockTypeColor: #0079a5 !default;
+$euiCodeBlockTypeColor: #0079A5 !default;
 $euiCodeBlockAttributeColor: inherit !default;
 $euiCodeBlockSymbolColor: #990073 !default;
 $euiCodeBlockParamsColor: inherit !default;
 $euiCodeBlockMetaColor: #999 !default;
 $euiCodeBlockTitleColor: #900 !default;
 $euiCodeBlockRegexpColor: #009926 !default;
-$euiCodeBlockBuiltInColor: #0086b3 !default;
-$euiCodeBlockSectionColor: #ffc66d !default;
-$euiCodeBlockAdditionBackgroundColor: #dfd !default;
+$euiCodeBlockBuiltInColor: #0086B3 !default;
+$euiCodeBlockSectionColor: #FFC66D !default;
+$euiCodeBlockAdditionBackgroundColor: #DFD !default;
 $euiCodeBlockAdditionColor: inherit !default;
-$euiCodeBlockDeletionBackgroundColor: #fdd !default;
+$euiCodeBlockDeletionBackgroundColor: #FDD !default;
 $euiCodeBlockDeletionColor: inherit !default;
 $euiCodeBlockSelectorClassColor: inherit !default;
 $euiCodeBlockSelectorIdColor: inherit !default;

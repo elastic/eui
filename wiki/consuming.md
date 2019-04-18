@@ -33,13 +33,15 @@ Test utilities are published from the `lib/test` directory.
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
 
-## Requirements
+## Requirements and dependencies
 
 EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
 
+EUI also has `moment` and `@elastic/datemath` as dependencies itself. These are already loaded in most Elastic repos, but make sure to install them if you are starting from scratch.
+
 ## Using EUI in Kibana
 
-The EUI CSS is included in [Kibana's](https://www..github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
+The EUI CSS is included in [Kibana's](https://www.github.com/elastic/kibana) CSS bundle. To use EUI code in Kibana, simply import the components and services you want.
 
 ## Using EUI in a standalone project
 
@@ -58,6 +60,14 @@ If you want access to the Sass variables, functions, and mixins in EUI then you'
 ```scss
 // index.scss
 @import '../node_modules/@elastic/eui/src/theme_light.scss';
+```
+
+By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
+
+```scss
+// index.scss
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');
 ```
 
 ### Reusing the variables in JavaScript

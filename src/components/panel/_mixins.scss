@@ -3,11 +3,10 @@
  *  - EuiCard
  *  - EuiPageContent
 */
-@mixin euiPanel($selector){
+@mixin euiPanel($selector) {
   @if variable-exists(selector) == false {
-    @error "A $selector must be provided to @mixin euiPanel().";
-  }
-  @else {
+    @error 'A $selector must be provided to @mixin euiPanel().';
+  } @else {
     .#{$selector} {
 
       @include euiBottomShadowSmall;
@@ -15,6 +14,7 @@
       border: $euiBorderThin;
       border-radius: $euiBorderRadius;
       flex-grow: 1;
+
       &.#{$selector}--flexGrowZero {
         flex-grow: 0;
       }
@@ -40,7 +40,7 @@
         @include euiBottomShadowMedium;
 
         @if (lightness($euiTextColor) < 50) {
-          border-bottom-color: rgba($euiShadowColor, .5);
+          border-bottom-color: transparentize($euiShadowColor, .5);
         } @else {
           // Applied again here in case dark theme overrides light
           border-bottom-color: $euiBorderColor;

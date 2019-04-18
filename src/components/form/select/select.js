@@ -48,7 +48,7 @@ export const EuiSelect = ({
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
   let selectDefaultValue;
-  if (!value) {
+  if (value == null) {
     selectDefaultValue = defaultValue || '';
   }
 

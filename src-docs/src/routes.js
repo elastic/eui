@@ -25,10 +25,13 @@ import ColorGuidelines
 import ModalGuidelines
   from './views/guidelines/modals';
 
+import { SassGuidelines }
+  from './views/guidelines/sass';
+
 import TextScales
   from './views/text_scaling/text_scaling_sandbox';
 
-import ToastGuidelines
+import { ToastGuidelines }
   from './views/guidelines/toasts';
 
 import WritingGuidelines
@@ -87,6 +90,9 @@ import { ColorPickerExample }
 import { ComboBoxExample }
   from './views/combo_box/combo_box_example';
 
+import { ContextExample }
+  from './views/context/context_example';
+
 import { ContextMenuExample }
   from './views/context_menu/context_menu_example';
 
@@ -101,6 +107,9 @@ import { DelayHideExample }
 
 import { DescriptionListExample }
   from './views/description_list/description_list_example';
+
+import { DragAndDropExample }
+  from './views/drag_and_drop/drag_and_drop_example';
 
 import { EmptyPromptExample }
   from './views/empty_prompt/empty_prompt_example';
@@ -123,6 +132,9 @@ import { FlexExample }
 import { FlyoutExample }
   from './views/flyout/flyout_example';
 
+import { FocusTrapExample }
+  from './views/focus_trap/focus_trap_example';
+
 import { FormControlsExample }
   from './views/form_controls/form_controls_example';
 
@@ -144,6 +156,9 @@ import { HighlightExample }
 import { HorizontalRuleExample }
   from './views/horizontal_rule/horizontal_rule_example';
 
+import { I18nExample }
+  from './views/i18n/i18n_example';
+
 import { IconExample }
   from './views/icon/icon_example';
 
@@ -156,6 +171,9 @@ import { KeyPadMenuExample }
 import { LinkExample }
   from './views/link/link_example';
 
+import { ListGroupExample }
+  from './views/list_group/list_group_example';
+
 import { LoadingExample }
   from './views/loading/loading_example';
 
@@ -164,6 +182,9 @@ import { ModalExample }
 
 import { MutationObserverExample }
   from './views/mutation_observer/mutation_observer_example';
+
+import { NavDrawerExample }
+  from './views/nav_drawer/nav_drawer_example';
 
 import { OutsideClickDetectorExample }
   from './views/outside_click_detector/outside_click_detector_example';
@@ -186,11 +207,20 @@ import { PortalExample }
 import { ProgressExample }
   from './views/progress/progress_example';
 
+import { RangeControlExample }
+  from './views/range/range_example';
+
+import { ResizeObserverExample }
+  from './views/resize_observer/resize_observer_example';
+
 import { ResponsiveExample }
   from './views/responsive/responsive_example';
 
 import { SearchBarExample }
   from './views/search_bar/search_bar_example';
+
+import { SelectableExample }
+  from './views/selectable/selectable_example';
 
 import { SideNavExample }
   from './views/side_nav/side_nav_example';
@@ -249,6 +279,9 @@ import { XYChartLineExample }
 import { Changelog }
   from './views/package/changelog';
 
+import { I18nTokens }
+  from './views/package/i18n_tokens';
+
 import { SuperSelectExample }
   from './views/super_select/super_select_example';
 
@@ -270,7 +303,7 @@ const createExample = (example) => {
     throw new Error(`One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`);
   }
 
-  const { title, intro, sections } = example;
+  const { title, intro, sections, beta } = example;
   sections.forEach(section => {
     section.id = slugify(section.title || title);
   });
@@ -282,7 +315,7 @@ const createExample = (example) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage title={title} intro={intro}>
+      <GuidePage title={title} intro={intro} isBeta={beta}>
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -307,6 +340,9 @@ const navigation = [{
     name: 'Modals',
     component: ModalGuidelines,
   }, {
+    name: 'Sass',
+    component: SassGuidelines,
+  }, {
     name: 'Text scales',
     component: TextScales,
   }, {
@@ -326,6 +362,7 @@ const navigation = [{
     HeaderExample,
     HorizontalRuleExample,
     ModalExample,
+    NavDrawerExample,
     PageExample,
     PanelExample,
     PopoverExample,
@@ -354,10 +391,12 @@ const navigation = [{
     CardExample,
     CodeExample,
     DescriptionListExample,
+    DragAndDropExample,
     EmptyPromptExample,
     HealthExample,
     IconExample,
     ImageExample,
+    ListGroupExample,
     LoadingExample,
     ProgressExample,
     StatExample,
@@ -380,11 +419,13 @@ const navigation = [{
     DatePickerExample,
     ExpressionExample,
     FilterGroupExample,
+    RangeControlExample,
     SearchBarExample,
+    SelectableExample,
   ].map(example => createExample(example)),
 },
 {
-  name: 'Series charts (beta)',
+  name: 'Charts (deprecated)',
   items: [
     XYChartExample,
     XYChartAxisExample,
@@ -399,15 +440,19 @@ const navigation = [{
   items: [
     AccessibilityExample,
     ColorPaletteExample,
+    ContextExample,
     CopyExample,
     UtilityClassesExample,
     DelayHideExample,
     ErrorBoundaryExample,
+    FocusTrapExample,
     HighlightExample,
+    I18nExample,
     IsColorDarkExample,
     MutationObserverExample,
     OutsideClickDetectorExample,
     PortalExample,
+    ResizeObserverExample,
     ResponsiveExample,
     ToggleExample,
     WindowEventExample,
@@ -415,7 +460,8 @@ const navigation = [{
 }, {
   name: 'Package',
   items: [
-    Changelog
+    Changelog,
+    I18nTokens,
   ]
 }].map(({ name, items, ...rest }) => ({
   name,

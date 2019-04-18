@@ -44,6 +44,15 @@ describe('EuiSuperSelectControl', () => {
         .toMatchSnapshot();
     });
 
+    test('isInvalid is rendered', () => {
+      const component = render(
+        <EuiSuperSelectControl isInvalid/>
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
     test('disabled options are rendered', () => {
       const component = render(
         <EuiSuperSelectControl
@@ -66,6 +75,22 @@ describe('EuiSuperSelectControl', () => {
             { value: '2', inputDisplay: 'Option #2' }
           ]}
           value={'1'}
+          onChange={() => {}}
+        />
+      );
+
+      expect(component)
+        .toMatchSnapshot();
+    });
+
+    test('empty value option is rendered', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' }
+          ]}
+          value={''}
           onChange={() => {}}
         />
       );

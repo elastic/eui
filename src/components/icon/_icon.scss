@@ -1,7 +1,12 @@
 .euiIcon {
+  flex-shrink: 0; // Ensures it never scales down below it's intended size
   display: inline-block;
   vertical-align: middle;
   fill: currentColor;
+
+  svg {
+    transform: translate(0, 0); // Hack to fix Firefox "softness"
+  }
 
   &:focus {
     opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
@@ -9,17 +14,48 @@
   }
 }
 
-.euiIcon--text {
+// App icons are two-toned so get an extra class. This provides the base color.
+.euiIcon--app {
   fill: $euiTextColor;
+
+  // This provides the default secondary color
+  .euiIcon__fillSecondary {
+    fill: $euiColorSecondary;
+  }
+
+  // Primary icons are mono of that color
+  &.euiIcon--primary {
+    fill: $euiColorPrimary;
+
+    // Provides a way to make app icons close to our primary
+    .euiIcon__fillSecondary {
+      fill: $euiColorPrimary;
+    }
+  }
 }
 
-.euiIcon--subdued {
-  fill: $euiColorMediumShade;
+.euiIcon--text {
+  fill: $euiTextColor;
+
+  // Text icons are fully mono
+  .euiIcon__fillSecondary {
+    fill: $euiTextColor;
+  }
 }
 
 .euiIcon--primary {
   fill: $euiColorPrimary;
 }
+
+.euiIcon--subdued {
+  fill: $euiColorMediumShade;
+
+  // Text icons are fully mono
+  .euiIcon__fillSecondary {
+    fill: $euiColorMediumShade;
+  }
+}
+
 
 .euiIcon--secondary {
   fill: $euiColorSecondary;
@@ -43,6 +79,13 @@
 
 .euiIcon--ghost {
   fill: $euiColorGhost;
+}
+
+// Use the negative fill on SVG elements that need to flip portions
+// of the icon to light and dark compatible modes. You can see this
+// in use on the Elastic logo icons.
+.euiIcon__fillNegative {
+  fill: $euiColorDarkestShade;
 }
 
 .euiIcon--small {

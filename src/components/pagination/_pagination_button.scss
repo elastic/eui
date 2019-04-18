@@ -17,7 +17,7 @@
   cursor: default;
 }
 
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiPaginationButton--hideOnMobile {
     display: none;
   }

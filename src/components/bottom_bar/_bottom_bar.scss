@@ -1,5 +1,6 @@
 .euiBottomBar {
-  background: tintOrShade($euiColorFullShade, 25%, 90%);
+  @include euiBottomShadowFlat($euiShadowColorLarge);
+  background: tintOrShade($euiColorFullShade, 25%, 100%);
   color: $euiColorEmptyShade;
   position: fixed;
   bottom: 0;
@@ -26,6 +27,7 @@
     transform: translateY(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(00%);
     opacity: 1;

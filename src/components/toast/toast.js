@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 import {
   ICON_TYPES,
@@ -45,19 +46,23 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
 
   if (onClose) {
     closeButton = (
-      <button
-        type="button"
-        className="euiToast__closeButton"
-        aria-label="Dismiss toast"
-        onClick={onClose}
-        data-test-subj="toastCloseButton"
-      >
-        <EuiIcon
-          type="cross"
-          size="m"
-          aria-hidden="true"
-        />
-      </button>
+      <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
+        {dismissToast => (
+          <button
+            type="button"
+            className="euiToast__closeButton"
+            aria-label={dismissToast}
+            onClick={onClose}
+            data-test-subj="toastCloseButton"
+          >
+            <EuiIcon
+              type="cross"
+              size="m"
+              aria-hidden="true"
+            />
+          </button>
+        )}
+      </EuiI18n>
     );
   }
 
@@ -78,16 +83,24 @@ export const EuiToast = ({ title, color, iconType, onClose, children, className,
       {...rest}
     >
       <EuiScreenReaderOnly>
-        <p>A new notification appears</p>
+        <p><EuiI18n token="euiToast.newNotification" default="A new notification appears"/></p>
       </EuiScreenReaderOnly>
 
-      <div className={headerClasses} aria-label="Notification">
-        {headerIcon}
+      <EuiI18n token="euiToast.notification" default="Notification">
+        {notification => (
+          <div
+            className={headerClasses}
+            aria-label={notification}
+            data-test-subj="euiToastHeader"
+          >
+            {headerIcon}
 
-        <span className="euiToastHeader__title">
-          {title}
-        </span>
-      </div>
+            <span className="euiToastHeader__title">
+              {title}
+            </span>
+          </div>
+        )}
+      </EuiI18n>
 
       {closeButton}
       {optionalBody}

@@ -22,7 +22,7 @@
 }
 
 .euiButtonToggle {
-  @include euiButtonToggleStates() {
+  @include euiButtonToggleStates {
     text-decoration: underline;
   }
 
@@ -57,19 +57,18 @@ $buttonTypes: (
 
 // Add hover states based on input state
 @each $name, $color in $buttonTypes {
-  .euiButtonToggle[class*="#{$name}"] {
-    @include euiButtonToggleStates() {
+  .euiButtonToggle[class*='#{$name}'] {
+    @include euiButtonToggleStates {
       background-color: transparentize($color, .9);
     }
 
     // Not using the full button class here as it's targeting a different component,
     // instead we know what the modifier is, so just look for that somwhere in the classNames
-    &[class*="fill"] {
-      @include euiButtonToggleStates() {
+    &[class*='fill'] {
+      @include euiButtonToggleStates {
         background-color: darken($color, 5%);
         border-color: darken($color, 5%);
       }
     }
   }
 }
-

@@ -8,7 +8,7 @@
   align-items: center;
 
   > * + * {
-    margin-left: $euiFormControlPadding/2;
+    margin-left: $euiFormControlPadding / 2;
   }
 }
 

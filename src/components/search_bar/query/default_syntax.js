@@ -25,6 +25,14 @@ Clause
   = IsClause
   / FieldClause
   / TermClause
+  / GroupClause
+
+GroupClause
+  = "(" head:Clause tail:(
+    space? orWord space? clause:Clause { return clause }
+  )* ")" {
+    return AST.Group.must([head, ...tail]);
+  }
 
 TermClause
   = space? "-" value:termValue { return AST.Term.mustNot(value); }
@@ -40,7 +48,7 @@ IsFlag
     return flag;
   }
 
-FieldClause
+FieldClause "field"
   = space? "-" fv:FieldEQValue { return AST.Field.mustNot.eq(fv.field, fv.value); }
   / space? "-" fv:FieldGTValue { return AST.Field.mustNot.gt(fv.field, fv.value); }
   / space? "-" fv:FieldGTEValue { return AST.Field.mustNot.gte(fv.field, fv.value); }
@@ -103,7 +111,7 @@ termValue "term"
 
 containsOrValues
   = "(" space? head:containsValue tail:(
-  	space ([oO][rR]) space value:containsValue { return value; }
+  	space orWord space value:containsValue { return value; }
   )* space? ")" { return [ head, ...tail ]; }
   
 rangeValue
@@ -114,27 +122,52 @@ containsValue
   = numberWord
   / date
   / booleanWord
-  / word
   / phrase
+  / word
 
 phrase
   = '"' space? phrase:(
-  	word (space word)* { return unescapeValue(text()); }
+  	phraseWord (space phraseWord)* { return unescapeValue(text()); }
   ) space? '"' { return Exp.string(phrase, location()); }
 
+phraseWord
+  = orWord
+  / word
+
 word
-  = wordChar+ { return Exp.string(unescapeValue(text()), location()); }
+  = wordChar+ {
+      if (text().toLowerCase() === 'or') {
+        error(
+          'To use OR in a text search, put it inside quotes: "or". To ' +
+          'perform a logical OR, enclose the words in parenthesis: (foo:bar or bar).'
+        );
+      }
+      return Exp.string(unescapeValue(text()), location());
+    }
 
 wordChar
   = alnum
   / [-_*:]
   / escapedChar
+  / extendedGlyph
+  
+// This isn't _strictly_ correct:
+// for our purposes, a non-ascii word character is considered to
+// be anything above \`Latin-1 Punctuation & Symbols\`, which ends at U+00BF
+// This allows any non-ascii character, including the full set of unicode characters
+// even those in the supplementary planes (U+010000 → U+10FFFF) as those will be seen individually
+// in their surrogate pairs which are of the format /[\uD800-\uDBFF][\uDC00-\uDFFF]/
+extendedGlyph
+  = [\u00C0-\uFFFF]
 
 escapedChar
   = "\\\\" reservedChar
 
 reservedChar
   = [\-:\\\\]
+
+orWord
+  = ([oO][rR])
 
 // only match booleans followed by whitespace or end of input
 booleanWord
@@ -274,7 +307,7 @@ const printValue = (value, options) => {
   }
 
   const escapeFn = options.escapeValue || escapeValue;
-  if (value.match(/\s/)) {
+  if (value.match(/\s/) || value.toLowerCase() === 'or') {
     return `"${escapeFn(value)}"`;
   }
   return escapeFn(value);
@@ -315,27 +348,33 @@ export const defaultSyntax = Object.freeze({
     return AST.create(clauses);
   },
 
+  printClause: (clause, text, options) => {
+    const prefix = AST.Match.isMustClause(clause) ? '' : '-';
+    switch (clause.type) {
+      case AST.Field.TYPE:
+        const op = resolveOperator(clause.operator);
+        const printFieldValueOptions = {
+          ...options,
+          escapeValue: escapeFieldValue,
+        };
+        if (isArray(clause.value)) {
+          return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, printFieldValueOptions)).join(' or ')})`; // eslint-disable-line max-len
+        }
+        return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, printFieldValueOptions)}`;
+      case AST.Is.TYPE:
+        return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
+      case AST.Term.TYPE:
+        return `${text} ${prefix}${printValue(clause.value, options)}`;
+      case AST.Group.TYPE:
+        return `(${clause.value.map(clause => defaultSyntax.printClause(clause, text, options).trim()).join(' OR ')})`;
+      default:
+        return text;
+    }
+  },
+
   print: (ast, options = {}) => {
     return ast.clauses.reduce((text, clause) => {
-      const prefix = AST.Match.isMustClause(clause) ? '' : '-';
-      switch (clause.type) {
-        case AST.Field.TYPE:
-          const op = resolveOperator(clause.operator);
-          const printFieldValueOptions = {
-            ...options,
-            escapeValue: escapeFieldValue,
-          };
-          if (isArray(clause.value)) {
-            return `${text} ${prefix}${escapeValue(clause.field)}${op}(${clause.value.map(val => printValue(val, printFieldValueOptions)).join(' or ')})`; // eslint-disable-line max-len
-          }
-          return `${text} ${prefix}${escapeValue(clause.field)}${op}${printValue(clause.value, printFieldValueOptions)}`;
-        case AST.Is.TYPE:
-          return `${text} ${prefix}is:${escapeValue(clause.flag)}`;
-        case AST.Term.TYPE:
-          return `${text} ${prefix}${printValue(clause.value, options)}`;
-        default:
-          return text;
-      }
+      return defaultSyntax.printClause(clause, text, options);
     }, '').trim();
   }
 

@@ -9,22 +9,30 @@
   border-bottom: $euiBorderThin;
   border-color: darken($euiColorLightestShade, 2%);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 
-  &:focus {
+  &:focus,
+  &-isFocused {
+    cursor: pointer;
+    color: $euiColorPrimary;
     background-color: $euiFocusBackgroundColor;
   }
 
-  &.euiContextMenuItem-isDisabled {
-    color: $euiButtonColorDisabled;
-    cursor: default;
+  &[disabled] {
+    color: $euiColorMediumShade;
+    cursor: not-allowed;
 
-    &:hover, &:focus {
+    &:hover {
       text-decoration: none;
     }
   }
+}
+
+.euiFilterSelectItem__content {
+  @include euiTextTruncate;
 }
 
 

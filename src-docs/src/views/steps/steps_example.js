@@ -112,7 +112,7 @@ export const StepsExample = {
       <p>
         Steps can optionally include <EuiCode>status</EuiCode> prop that will alter the look of the number prefix.
         The options
-        are <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>, <EuiCode>warning</EuiCode> and <EuiCode>danger</EuiCode>.
+        are <EuiCode>incomplete</EuiCode>, <EuiCode>complete</EuiCode>, <EuiCode>warning</EuiCode>, and <EuiCode>danger</EuiCode>.
         This is used mostly as a final step when you need to make some sort of final check.
       </p>
     ),

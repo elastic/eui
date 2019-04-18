@@ -5,13 +5,11 @@
   &:before,
   &:after {
     position: absolute;
-    content: "";
+    content: '';
     width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 5%;
     border-radius: 50%;
-    opacity: 0.2;
-    transform-origin: -50% -50%;
+    opacity: .2;
     z-index: 1;
   }
 
@@ -24,17 +22,24 @@
     background-color: $euiColorFullShade;
     animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
   }
+
+  .euiLoadingKibana__icon {
+    display: block;
+  }
 }
 
 /**
  * 1. Requires pixel math for animation.
  */
 .euiLoadingKibana--medium {
+  width: $euiSize;
+
   &:before,
   &:after {
     height: $euiSizeXS - 1; /* 1 */
     bottom: -$euiSizeXS;
   }
+
   .euiLoadingKibana__icon {
     z-index: 999;
     animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
@@ -45,22 +50,28 @@
  * 1. Requires pixel math for animation.
  */
 .euiLoadingKibana--large {
+  width: $euiSizeL;
+
   &:before,
   &:after {
     height: $euiSizeS - 2; /* 1 */
     bottom: -$euiSizeS;
   }
+
   .euiLoadingKibana__icon {
     animation: 1s euiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
   }
 }
 
 .euiLoadingKibana--xLarge {
+  width: $euiSizeXL;
+
   &:before,
   &:after {
     height: $euiSizeS;
     bottom: -$euiSizeM;
   }
+
   .euiLoadingKibana__icon {
     animation: 1s euiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
   }
@@ -90,8 +101,8 @@
   }
 
   50% {
-    transform: scale(0.5);
-    opacity: 0.1;
+    transform: scale(.5);
+    opacity: .1;
   }
 
   100% {
@@ -101,15 +112,15 @@
 
 @keyframes euiLoadingKibanaPulsate {
   0% {
-    opacity: 0.15;
+    opacity: .15;
   }
 
   50% {
-    transform: scale(0.5);
-    opacity: 0.05;
+    transform: scale(.5);
+    opacity: .05;
   }
 
   100% {
-    opacity: 0.15;
+    opacity: .15;
   }
 }

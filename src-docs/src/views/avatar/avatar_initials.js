@@ -26,7 +26,7 @@ export default () => (
 
     <EuiAvatar size="m" type="space" name="Kibana" initialsLength={2} />
     &emsp;
-    <EuiAvatar size="m" type="space" name="Leornardo Dude" initialsLength={1} />
+    <EuiAvatar size="m" type="space" name="Leonardo Dude" initialsLength={1} />
     &emsp;
     <EuiAvatar size="m" type="space" name="Not provided" initials="?" />
     &emsp;

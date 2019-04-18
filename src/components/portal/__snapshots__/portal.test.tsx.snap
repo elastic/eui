@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPortal is rendered 1`] = `
+<div>
+  <EuiPortal>
+    <Portal
+      containerInfo={
+        <div>
+          Content
+        </div>
+      }
+    >
+      Content
+    </Portal>
+  </EuiPortal>
+</div>
+`;

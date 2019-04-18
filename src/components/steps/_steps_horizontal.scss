@@ -1,4 +1,4 @@
-@mixin makeLineProgress(){
+@mixin makeLineProgress {
   height: 2px;
   background-color: $euiColorPrimary;
 }
@@ -14,7 +14,7 @@
   display: flex;
   align-items: stretch;
   flex-grow: 1;
-  background: rgba($euiColorLightestShade, .5);
+  background: transparentize($euiColorLightestShade, .5);
 }
 
 // Button containing item
@@ -27,14 +27,17 @@
   align-items: center; /* 3 */
   justify-content: flex-start; /* 3 */
   cursor: pointer;
+  position: relative;
 
   // focus & hover state
   &:focus:not(.euiStepHorizontal-isDisabled),
   &:hover:not(.euiStepHorizontal-isDisabled) {
     .euiStepHorizontal__number {
+      @include euiFocusRing(large);
+
+      // sass-lint:disable-block indentation
       transition: background-color $euiAnimSpeedNormal $euiAnimSlightResistance,
                   color $euiAnimSpeedNormal $euiAnimSlightResistance;
-      @include euiFocusRing(large);
     }
 
     .euiStepHorizontal__title {
@@ -48,10 +51,9 @@
   }
 
   // create the connecting lines
-  position: relative;
   &::before,
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 50%;
     height: 1px;
@@ -85,7 +87,7 @@
 }
 
 .euiStepHorizontal__title {
-  @include euiTitle("xs");
+  @include euiTitle('xs');
   margin-top: $euiSizeS;
   font-weight: $euiFontWeightRegular;
   text-align: center;
@@ -106,7 +108,7 @@
 
 // Selected state
 .euiStepHorizontal-isSelected {
-  .euiStepHorizontal__number:not([class*="danger"]):not([class*="warning"]) {
+  .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']) {
     @include euiSlightShadow(desaturate($euiColorPrimary, 20%));
   }
 
@@ -116,14 +118,14 @@
 }
 
 // RESPONSIVE
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
   .euiStepHorizontal {
     // reduce top padding and shift lines
     padding-top: $euiSize;
 
     &:before,
     &:after {
-      top: $euiSize + $euiStepNumberSize/2;
+      top: $euiSize + $euiStepNumberSize / 2;
     }
   }
 

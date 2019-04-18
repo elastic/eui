@@ -1,47 +1,65 @@
-// Dark theme overides
+// Code
+$euiColorPrimary: #1BA9F5;
+$euiColorSecondary: #7DE2D1;
+$euiColorAccent: #F990C0;
+$euiColorGhost: #FFF;
 
-$euiColorEmptyShade: #222;
-$euiColorLightestShade: #242424;
-$euiColorLightShade: #333;
-$euiColorMediumShade: #444;
-$euiColorDarkShade: #8A8A8A;
-$euiColorDarkestShade: #F5F5F5;
+// Status
+$euiColorSuccess: $euiColorSecondary;
+$euiColorWarning: #FFCE7A;
+$euiColorDanger: #F66;
+
+// Grays
+$euiColorEmptyShade: #1D1E24;
+$euiColorLightestShade: #25262E;
+$euiColorLightShade: #343741;
+$euiColorMediumShade: #535966;
+$euiColorDarkShade: #98A2B3;
+$euiColorDarkestShade: #D4DAE5;
 $euiColorFullShade: #FFF;
-$euiColorSlightHue: #494E51;
-$euiColorPrimary: #4da1c0;
-$euiColorWarning: #c06c4c;
-$euiColorDanger: #bf4d4d;
-$euiTextColor: #DDD;
 
-$euiFocusBackgroundColor: #191919;
+// Variations from core
+
+$euiTextColor: #DFE5EF;
+$euiLinkColor: $euiColorPrimary;
+$euiFocusBackgroundColor: #232635;
 $euiShadowColor: #000;
 $euiShadowColorLarge: #000;
-$euiModalBorderColor: $euiColorLightShade;
-$euiFlyoutBorderColor: $euiColorLightShade;
+
+// Visualization colors
+// Currently this is the same as light. It is required to list them for our docs to work
+
+$euiColorVis0: #00B3A4;
+$euiColorVis1: #3185FC;
+$euiColorVis2: #DB1374;
+$euiColorVis3: #490092;
+$euiColorVis4: #FEB6DB;
+$euiColorVis5: #E6C220;
+$euiColorVis6: #BFA180;
+$euiColorVis7: #F98510;
+$euiColorVis8: #461A0A;
+$euiColorVis9: #920000;
 
 // Code
 
-$euiCodeBlockBackgroundColor: #2B2B2D;
-$euiCodeBlockColor: #CDD3D8;
-$euiCodeBlockSelectedBackgroundColor: #3e4451;
 $euiCodeBlockCommentColor: #656565;
 $euiCodeBlockSelectorTagColor: #C792EA;
 $euiCodeBlockStringColor: #C3E88D;
 $euiCodeBlockNumberColor: #F77669;
 $euiCodeBlockKeywordColor: #C792EA;
 $euiCodeBlockFunctionTitleColor: #75A5FF;
-$euiCodeBlockTagColor: #abb2bf;
-$euiCodeBlockNameColor: #e06c75;
-$euiCodeBlockTypeColor: #da4939;
+$euiCodeBlockTagColor: #ABB2BF;
+$euiCodeBlockNameColor: #E06C75;
+$euiCodeBlockTypeColor: #DA4939;
 $euiCodeBlockAttributeColor: #80CBBF;
 $euiCodeBlockSymbolColor: #C792EA;
 $euiCodeBlockParamsColor: #EEFFF7;
 $euiCodeBlockMetaColor: #75A5FF;
 $euiCodeBlockTitleColor: #75A5FF;
-$euiCodeBlockSectionColor: #ffc66d;
+$euiCodeBlockSectionColor: #FFC66D;
 $euiCodeBlockAdditionBackgroundColor: #144212;
-$euiCodeBlockAdditionColor: #e6e1dc;
+$euiCodeBlockAdditionColor: #E6E1DC;
 $euiCodeBlockDeletionBackgroundColor: #600;
-$euiCodeBlockDeletionColor: #e6e1dc;
+$euiCodeBlockDeletionColor: #E6E1DC;
 $euiCodeBlockSelectorClassColor: #FFCB68;
 $euiCodeBlockSelectorIdColor: #F77669;

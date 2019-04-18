@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { flatten } from 'lodash';
 
 import {
   EuiCode,
@@ -87,20 +86,33 @@ export class GuideSection extends Component {
     super(props);
 
     this.componentNames = Object.keys(props.props);
+    const hasSnippet = 'snippet' in props;
 
     this.tabs = [{
-      name: 'Demo',
+      name: 'demo',
+      displayName: 'Demo',
     }, {
-      name: 'JavaScript',
+      name: 'javascript',
+      displayName: 'Demo JS',
       isCode: true,
     }, {
-      name: 'HTML',
+      name: 'html',
+      displayName: 'Demo HTML',
       isCode: true,
     }];
 
+    if (hasSnippet) {
+      this.tabs.push({
+        name: 'snippet',
+        displayName: 'Snippet',
+        isCode: true,
+      });
+    }
+
     if (this.componentNames.length) {
       this.tabs.push({
-        name: 'Props',
+        name: 'props',
+        displayName: 'Props',
       });
     }
 
@@ -122,7 +134,7 @@ export class GuideSection extends Component {
         isSelected={tab === this.state.selectedTab}
         key={tab.name}
       >
-        {tab.name}
+        {tab.displayName}
       </EuiTab>
     ));
   }
@@ -136,6 +148,23 @@ export class GuideSection extends Component {
 
     return [
       <EuiText key="text">{text}</EuiText>,
+    ];
+  }
+
+  renderSnippet() {
+    const { snippet } = this.props;
+
+    if (!snippet) {
+      return;
+    }
+
+    return [
+      <Fragment key="snippet">
+        <EuiSpacer size="m" />
+        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+          {snippet}
+        </EuiCodeBlock>
+      </Fragment>
     ];
   }
 
@@ -155,7 +184,7 @@ export class GuideSection extends Component {
 
     const rows = propNames.map(propName => {
       const {
-        description: propDescription,
+        description: propDescription = '',
         required,
         defaultValue,
         type,
@@ -273,9 +302,9 @@ export class GuideSection extends Component {
 
   renderProps() {
     const { props } = this.props;
-    return flatten(
-      this.componentNames.map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
-    );
+    return this.componentNames
+      .map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
+      .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
 
   renderChrome() {
@@ -309,8 +338,8 @@ export class GuideSection extends Component {
 
   renderCode(name) {
     const nameToCodeClassMap = {
-      JavaScript: 'javascript',
-      HTML: 'html',
+      javascript: 'javascript',
+      html: 'html',
     };
 
     const codeClass = nameToCodeClassMap[name];
@@ -318,7 +347,8 @@ export class GuideSection extends Component {
     const npmImports = code
       .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
       .replace(/(from )'(..\/)+src\/services(\/?';)/, `from '@elastic/eui/lib/services';`)
-      .replace(/(from )'(..\/)+src\/experimental(\/?';)/, `from '@elastic/eui/lib/experimental';`);
+      .replace(/(from )'(..\/)+src\/experimental(\/?';)/, `from '@elastic/eui/lib/experimental';`)
+      .replace(/(from )'(..\/)+src\/components\/.*?';/, `from '@elastic/eui';`);
 
     return (
       <div key={name} ref={name}>
@@ -333,6 +363,14 @@ export class GuideSection extends Component {
   }
 
   renderContent() {
+    if (this.state.selectedTab.name === 'snippet') {
+      return (
+        <EuiErrorBoundary>
+          {this.renderSnippet()}
+        </EuiErrorBoundary>
+      );
+    }
+
     if (this.state.selectedTab.isCode) {
       return (
         <EuiErrorBoundary>
@@ -341,7 +379,7 @@ export class GuideSection extends Component {
       );
     }
 
-    if (this.state.selectedTab.name === 'Props') {
+    if (this.state.selectedTab.name === 'props') {
       return (
         <EuiErrorBoundary>
           {this.renderProps()}
@@ -375,6 +413,7 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
+  snippet: PropTypes.string,
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,

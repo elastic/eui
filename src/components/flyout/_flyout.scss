@@ -1,5 +1,7 @@
 .euiFlyout {
   border-left: $euiBorderThin;
+  // The mixin augments the above
+  // sass-lint:disable mixins-before-declarations
   @include euiBottomShadowLarge($adjustBorders: true);
   position: fixed;
   top: 0;
@@ -27,20 +29,20 @@
  * 1. Calculating the minimum width based on the screen takover breakpoint
  */
 $flyoutSizes: (
-  "small": (
-    min: map-get($euiBreakpoints, "m") * .5, /* 1 */
+  'small': (
+    min: map-get($euiBreakpoints, 'm') * .5, /* 1 */
     width: 25vw,
-    max: map-get($euiBreakpoints, "s"),
+    max: map-get($euiBreakpoints, 's'),
   ),
-  "medium": (
-    min:  map-get($euiBreakpoints, "m") * .7, /* 1 */
+  'medium': (
+    min:  map-get($euiBreakpoints, 'm') * .7, /* 1 */
     width: 50vw,
-    max: map-get($euiBreakpoints, "m"),
+    max: map-get($euiBreakpoints, 'm'),
   ),
-  "large": (
-    min:  map-get($euiBreakpoints, "m") * .9, /* 1 */
+  'large': (
+    min:  map-get($euiBreakpoints, 'm') * .9, /* 1 */
     width: 75vw,
-    max: map-get($euiBreakpoints, "l"),
+    max: map-get($euiBreakpoints, 'l'),
   )
 );
 
@@ -60,6 +62,7 @@ $flyoutSizes: (
     opacity: 0;
     transform: translateX(100%);
   }
+
   75% {
     opacity: 1;
     transform: translateX(0%);
@@ -70,7 +73,8 @@ $flyoutSizes: (
  * 1. Only small flyouts should NOT takover the entire screen
  * 2. If a custom maxWidth is set, we need to override it.
  */
-@include euiBreakpoint('xs','s') {
+@include euiBreakpoint('xs', 's') {
+  // sass-lint:disable-block no-important
   .euiFlyout:not(.euiFlyout--small) {  /* 1 */
     left: 0;
     min-width: 0;

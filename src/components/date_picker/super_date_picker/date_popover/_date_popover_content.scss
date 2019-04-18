@@ -1,0 +1,12 @@
+.euiDatePopoverContent {
+  width: $euiFormMaxWidth;
+  max-width: 100%;
+}
+
+.euiDatePopoverContent__padded {
+  padding: $euiSizeS;
+}
+
+.euiDatePopoverContent__padded--large {
+  padding: $euiSize;
+}

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EuiModalBody 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiModalBody testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiModalBody__overflow"
+  >
+    children
+  </div>
+</div>
+`;

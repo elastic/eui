@@ -5,10 +5,12 @@ test/spec/screenshots/diff/**/*.png
 test/spec/screenshots/screen/**/*.png
 test/failure-screenshots/**/*.png
 
+coverage/
 reports/
 tmp/
 dist/
 lib/
+es/
 .idea
 .vscode/
 .DS_Store
@@ -16,3 +18,8 @@ lib/
 .yo-rc.json
 npm-debug.log
 yarn-error.log
+.cache-loader
+
+# typescript output
+types/
+eui.d.ts

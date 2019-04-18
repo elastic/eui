@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 
+import {
+  Link,
+} from 'react-router';
+
 import { renderToHtml } from '../../services';
 
 import {
@@ -21,7 +25,6 @@ import {
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
-  EuiRange,
   EuiSelect,
   EuiSwitch,
   EuiTextArea,
@@ -70,10 +73,6 @@ const radioHtml = renderToHtml(Radio);
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
 const radioGroupHtml = renderToHtml(RadioGroup);
-
-import RangeExample from './range';
-const rangeSource = require('!!raw-loader!./range');
-const rangeHtml = renderToHtml(RangeExample);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
@@ -185,8 +184,8 @@ export const FormControlsExample = {
     text: (
       <p>
         This component renders a basic HTML <code>&lt;select&gt;</code> element. If you need more customization
-        for how the options and/or selected values render, use the <EuiLink href="/#/forms/superselect">EuiSuperSelect</EuiLink>.
-        Another option is to use the <EuiLink href="/#/forms/combo-box">EuiComboBox</EuiLink>, which has search and multi-select
+        for how the options and/or selected values render, use the <Link to="/forms/superselect">EuiSuperSelect</Link>.
+        Another option is to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has search and multi-select
         capabilities, but also has restrictions on how items are rendered.
       </p>
     ),
@@ -247,36 +246,6 @@ export const FormControlsExample = {
     },
     demo: <RadioGroup />,
   }, {
-    title: 'Range',
-    text: (
-      <Fragment>
-        <EuiCallOut color="warning" title="Understanding precision">
-          <p>
-            The base slider should only be used
-            when <strong>the precise value is not considered important</strong>. If
-            the precise value does matter, add the <code>showInput</code> prop or use
-            a <code>EuiFieldNumber</code> instead.
-          </p>
-        </EuiCallOut>
-        <br/>
-        <p>
-          While currently considered optional, the <code>showLabels</code> property should
-          be added to explicitly state the range to the user.
-        </p>
-      </Fragment>
-    ),
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: rangeSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: rangeHtml,
-    }],
-    props: {
-      EuiRange,
-    },
-    demo: <RangeExample />,
-  }, {
     title: 'Switch',
     source: [{
       type: GuideSectionTypes.JS,
@@ -328,4 +297,3 @@ export const FormControlsExample = {
     demo: <FormControlLayout />,
   }],
 };
-

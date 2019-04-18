@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiQuickSelect is rendered 1`] = `
+<Fragment>
+  <EuiFlexGroup
+    alignItems="center"
+    gutterSize="s"
+    responsive={false}
+  >
+    <EuiFlexItem>
+      <EuiTitle
+        size="xxxs"
+      >
+        <span>
+          Quick select
+        </span>
+      </EuiTitle>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiToolTip
+        content="Previous time window"
+        delay="regular"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Previous time window"
+          color="primary"
+          iconSize="m"
+          iconType="arrowLeft"
+          onClick={[Function]}
+          type="button"
+        />
+      </EuiToolTip>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiToolTip
+        content="Next time window"
+        delay="regular"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Next time window"
+          color="primary"
+          iconSize="m"
+          iconType="arrowRight"
+          onClick={[Function]}
+          type="button"
+        />
+      </EuiToolTip>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+  <EuiSpacer
+    size="s"
+  />
+  <EuiFlexGroup
+    gutterSize="s"
+    responsive={false}
+  >
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiSelect
+          aria-label="Quick time tense"
+          compressed={false}
+          fullWidth={false}
+          hasNoInitialSelection={false}
+          isLoading={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "text": "Last",
+                "value": "last",
+              },
+              Object {
+                "text": "Next",
+                "value": "next",
+              },
+            ]
+          }
+          value="last"
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiFieldNumber
+          aria-label="Quick time value"
+          compressed={false}
+          fullWidth={false}
+          isLoading={false}
+          onChange={[Function]}
+          value={15}
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiSelect
+          aria-label="Quick time units"
+          compressed={false}
+          fullWidth={false}
+          hasNoInitialSelection={false}
+          isLoading={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "text": "seconds",
+                "value": "s",
+              },
+              Object {
+                "text": "minutes",
+                "value": "m",
+              },
+              Object {
+                "text": "hours",
+                "value": "h",
+              },
+              Object {
+                "text": "days",
+                "value": "d",
+              },
+              Object {
+                "text": "weeks",
+                "value": "w",
+              },
+              Object {
+                "text": "months",
+                "value": "M",
+              },
+              Object {
+                "text": "years",
+                "value": "y",
+              },
+            ]
+          }
+          value="m"
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiFormRow
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiButton
+          className="euiQuickSelect__applyButton"
+          color="primary"
+          disabled={false}
+          fill={false}
+          iconSide="left"
+          onClick={[Function]}
+          size="s"
+          type="button"
+        >
+          Apply
+        </EuiButton>
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+  <EuiHorizontalRule
+    margin="s"
+  />
+</Fragment>
+`;
+
+exports[`EuiQuickSelect prevQuickSelect 1`] = `
+<Fragment>
+  <EuiFlexGroup
+    alignItems="center"
+    gutterSize="s"
+    responsive={false}
+  >
+    <EuiFlexItem>
+      <EuiTitle
+        size="xxxs"
+      >
+        <span>
+          Quick select
+        </span>
+      </EuiTitle>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiToolTip
+        content="Previous time window"
+        delay="regular"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Previous time window"
+          color="primary"
+          iconSize="m"
+          iconType="arrowLeft"
+          onClick={[Function]}
+          type="button"
+        />
+      </EuiToolTip>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiToolTip
+        content="Next time window"
+        delay="regular"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Next time window"
+          color="primary"
+          iconSize="m"
+          iconType="arrowRight"
+          onClick={[Function]}
+          type="button"
+        />
+      </EuiToolTip>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+  <EuiSpacer
+    size="s"
+  />
+  <EuiFlexGroup
+    gutterSize="s"
+    responsive={false}
+  >
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiSelect
+          aria-label="Quick time tense"
+          compressed={false}
+          fullWidth={false}
+          hasNoInitialSelection={false}
+          isLoading={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "text": "Last",
+                "value": "last",
+              },
+              Object {
+                "text": "Next",
+                "value": "next",
+              },
+            ]
+          }
+          value="Next"
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiFieldNumber
+          aria-label="Quick time value"
+          compressed={false}
+          fullWidth={false}
+          isLoading={false}
+          onChange={[Function]}
+          value={32}
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow
+        compressed={true}
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiSelect
+          aria-label="Quick time units"
+          compressed={false}
+          fullWidth={false}
+          hasNoInitialSelection={false}
+          isLoading={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "text": "seconds",
+                "value": "s",
+              },
+              Object {
+                "text": "minutes",
+                "value": "m",
+              },
+              Object {
+                "text": "hours",
+                "value": "h",
+              },
+              Object {
+                "text": "days",
+                "value": "d",
+              },
+              Object {
+                "text": "weeks",
+                "value": "w",
+              },
+              Object {
+                "text": "months",
+                "value": "M",
+              },
+              Object {
+                "text": "years",
+                "value": "y",
+              },
+            ]
+          }
+          value="M"
+        />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiFormRow
+        describedByIds={Array []}
+        fullWidth={false}
+        hasEmptyLabelSpace={false}
+        labelType="label"
+      >
+        <EuiButton
+          className="euiQuickSelect__applyButton"
+          color="primary"
+          disabled={false}
+          fill={false}
+          iconSide="left"
+          onClick={[Function]}
+          size="s"
+          type="button"
+        >
+          Apply
+        </EuiButton>
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+  <EuiHorizontalRule
+    margin="s"
+  />
+</Fragment>
+`;

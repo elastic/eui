@@ -4,6 +4,15 @@
 
 .euiHeaderBreadcrumbs {
   margin-left: $euiSize;
+  margin-right: $euiSize;
   display: flex;
   align-items: center;
+  flex-grow: 1;
+}
+
+@include euiBreakpoint('xs') {
+  .euiHeaderBreadcrumbs {
+    margin-left: $euiSizeS;
+    margin-right: $euiSizeS;
+  }
 }

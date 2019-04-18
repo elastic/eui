@@ -99,6 +99,32 @@ describe('EuiGlobalToastList', () => {
           done();
         }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS + 10);
       });
+
+      test('toastLifeTimeMs is overrideable by individidual toasts', done => {
+        const TOAST_LIFE_TIME_MS = 10;
+        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
+        const dismissToastSpy = sinon.spy();
+        mount(
+          <EuiGlobalToastList
+            toasts={[{
+              'data-test-subj': 'b',
+              id: 'b',
+              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE
+            }]}
+            dismissToast={dismissToastSpy}
+            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
+          />
+        );
+
+        // The callback is invoked once the toast fades from view.
+        setTimeout(() => {
+          expect(dismissToastSpy.called).toBe(false);
+        }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS + 10);
+        setTimeout(() => {
+          expect(dismissToastSpy.called).toBe(true);
+          done();
+        }, TOAST_LIFE_TIME_MS_OVERRIDE + TOAST_FADE_OUT_MS + 10);
+      });
     });
   });
 });

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { EuiButtonEmpty } from '../../button/button_empty';
 import { EuiPopover } from '../../popover';
 import { EuiContextMenuPanel } from '../../context_menu';
+import { EuiI18n } from '../../i18n';
 import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 export class EuiTableSortMobile extends Component {
@@ -20,10 +21,6 @@ export class EuiTableSortMobile extends Component {
     this.state = {
       isPopoverOpen: false,
     };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return JSON.stringify(nextProps) !== JSON.stringify(this.props) || JSON.stringify(nextState) !== JSON.stringify(this.state);
   }
 
   onButtonClick = () => {
@@ -59,7 +56,7 @@ export class EuiTableSortMobile extends Component {
         flush="right"
         size="xs"
       >
-        Sorting
+        <EuiI18n token="euiTableSortMobile.sorting" default="Sorting"/>
       </EuiButtonEmpty>
     );
 

@@ -7,6 +7,7 @@ import makeId from '../form_row/make_id';
 import {
   EuiFormControlLayout,
 } from '../form_control_layout';
+import { EuiI18n } from '../../i18n';
 
 export const EuiSuperSelectControl = ({
   className,
@@ -15,6 +16,7 @@ export const EuiSuperSelectControl = ({
   name,
   fullWidth,
   isLoading,
+  isInvalid,
   defaultValue,
   compressed,
   value,
@@ -26,6 +28,7 @@ export const EuiSuperSelectControl = ({
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
       'euiSuperSelectControl-isLoading': isLoading,
+      'euiSuperSelectControl-isInvalid': isInvalid,
     },
     className
   );
@@ -33,11 +36,11 @@ export const EuiSuperSelectControl = ({
   // React HTML input can not have both value and defaultValue properties.
   // https://reactjs.org/docs/uncontrolled-components.html#default-values
   let selectDefaultValue;
-  if (!value) {
+  if (value == null) {
     selectDefaultValue = defaultValue || '';
   }
 
-  let selectedValue;
+  let selectedValue = '';
   if (value) {
     const selectedOption = options.find(option => option.value === value);
     selectedValue = selectedOption.inputDisplay;
@@ -73,7 +76,11 @@ export const EuiSuperSelectControl = ({
         */}
         <EuiScreenReaderOnly>
           <span id={screenReaderId}>
-            Select an option: {selectedValue}, is selected
+            <EuiI18n
+              token="euiSuperSelectControl.selectAnOption"
+              default="Select an option: {selectedValue}, is selected"
+              values={{ selectedValue }}
+            />
           </span>
         </EuiScreenReaderOnly>
 
@@ -113,5 +120,6 @@ EuiSuperSelectControl.defaultProps = {
   options: [],
   fullWidth: false,
   isLoading: false,
+  isInvalid: false,
   compressed: false,
 };

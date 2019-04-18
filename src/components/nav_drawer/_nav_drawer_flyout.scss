@@ -1,0 +1,32 @@
+.euiNavDrawerFlyout {
+  @include euiScrollBar;
+  width: 0;
+  height: 100%;
+  padding: $euiSizeM $euiSizeS;
+  overflow-y: auto;
+  background-color: $euiNavDrawerBackgroundColor;
+  border-left: $euiBorderThin;
+  box-shadow: $euiNavDrawerSideShadow;
+  visibility: hidden;
+  opacity: 0;
+
+  &.euiNavDrawerFlyout-isExpanded {
+    visibility: visible;
+    opacity: 1;
+    width: $euiNavDrawerWidthExpanded;
+    transition: opacity $euiAnimSpeedFast $euiNavDrawerContractingDelay, width $euiAnimSpeedNormal;
+  }
+
+  &.euiNavDrawerFlyout-isCollapsed {
+    transition: opacity $euiAnimSpeedFast, width $euiAnimSpeedFast;
+  }
+
+  .euiNavDrawerFlyout__title {
+    margin: 0 $euiSizeS $euiSizeXS;
+  }
+
+  .euiNavDrawerFlyout__listGroup {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

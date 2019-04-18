@@ -61,12 +61,16 @@ export const EuiBadge = ({
     optionalCustomStyles = { backgroundColor: color, color: textColor };
   }
 
-
   const classes = classNames(
     'euiBadge',
     iconSideToClassNameMap[iconSide],
     optionalColorClass,
     className
+  );
+
+  const closeClassNames = classNames(
+    'euiBadge__icon',
+    closeButtonProps && closeButtonProps.className,
   );
 
   let optionalIcon = null;
@@ -78,9 +82,9 @@ export const EuiBadge = ({
             onClick={iconOnClick}
             type={iconType}
             size="s"
-            className="euiBadge__icon"
             aria-label={iconOnClickAriaLabel}
             {...closeButtonProps}
+            className={closeClassNames}
           />
         </EuiKeyboardAccessible>
       );
@@ -131,7 +135,7 @@ export const EuiBadge = ({
 
 function checkValidColor(props, propName, componentName) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
-  if (props.color && !validHex && !COLORS.includes(props.color)) {
+  if (props.color != null && !validHex && !COLORS.includes(props.color)) {
     throw new Error(
       `${componentName} needs to pass a valid color. This can either be a three ` +
       `or six character hex value or one of the following: ${COLORS}`

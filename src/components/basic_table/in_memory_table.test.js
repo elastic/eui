@@ -70,6 +70,28 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with executeQueryOptions', () => {
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description'
+        }
+      ],
+      executeQueryOptions: {
+        defaultFields: ['name']
+      }
+    };
+    const component = shallow(
+      <EuiInMemoryTable {...props} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with items', () => {
 
     const props = {
@@ -174,7 +196,7 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with pagination and default page size', () => {
+  test('with pagination and default page size and index', () => {
 
     const props = {
       ...requiredProps,
@@ -191,8 +213,9 @@ describe('EuiInMemoryTable', () => {
         }
       ],
       pagination: {
-        initialPageSize: 4,
-        pageSizeOptions: [2, 4, 6]
+        initialPageIndex: 1,
+        initialPageSize: 2,
+        pageSizeOptions: [1, 2, 3]
       }
     };
     const component = shallow(
@@ -624,6 +647,63 @@ describe('EuiInMemoryTable', () => {
 
       // should render with the one inactive result
       expect(component.find('.testTable EuiTableRow').length).toBe(1);
+    });
+
+    it('passes down the executeQueryOptions properly', () => {
+      const items = [
+        {
+          active: true,
+          complex: {
+            name: 'Kansas'
+          }
+        },
+        {
+          active: true,
+          complex: {
+            name: 'North Dakota'
+          }
+        },
+        {
+          active: false,
+          complex: {
+            name: 'Florida'
+          }
+        },
+      ];
+
+      const columns = [
+        {
+          field: 'active',
+          name: 'Is Active'
+        },
+        {
+          field: 'complex.name',
+          name: 'Name'
+        }
+      ];
+
+      const search = {
+        defaultQuery: 'No',
+        executeQueryOptions: {
+          defaultFields: ['complex.name']
+        }
+      };
+
+      const message = (
+        <span className="customMessage">No items found!</span>
+      );
+
+      const noDefaultFieldsComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search: { defaultQuery: 'No' }, className: 'testTable', message }} />
+      );
+      // should render with the no items found text
+      expect(noDefaultFieldsComponent.find('.customMessage').length).toBe(1);
+
+      // With defaultFields and a search query, we should only see one
+      const defaultFieldComponent = mount(
+        <EuiInMemoryTable {...{ items, columns, search, className: 'testTable', message }} />
+      );
+      expect(defaultFieldComponent.find('.testTable EuiTableRow').length).toBe(1);
     });
   });
 

@@ -7,29 +7,18 @@
   }
 }
 
-// Modifier naming and colors.
-$callOutTypes: (
-  primary: $euiColorPrimary,
-  success: $euiColorSecondary,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-);
-
-// Create button modifiders based upon the map.
-@each $name, $color in $callOutTypes {
+// Create callout modifiders based upon the map.
+@each $name, $color in $euiCallOutTypes {
   .euiCallOut--#{$name} {
-    $backgroundColor: tintOrShade($color, 90%, 70%);
-    $textColor: makeHighContrastColor($color, $backgroundColor);
-
     border-color: $color;
-    background-color: $backgroundColor;
+    background-color: euiCallOutColor($name, 'background');
 
     .euiCallOutHeader__icon {
-      fill: $textColor;
+      fill: euiCallOutColor($name, 'foreground');
     }
 
     .euiCallOutHeader__title {
-      color: $textColor;
+      color: euiCallOutColor($name, 'foreground');
     }
   }
 }
@@ -40,8 +29,7 @@ $callOutTypes: (
  * 3. Apply margin to all but last item in the flex.
  */
 .euiCallOutHeader {
-  @include euiTitle("xs");
-  font-weight: $euiFontWeightRegular;
+  @include euiCallOutTitle;
   display: flex;
   align-items: baseline; /* 1 */
 
@@ -55,15 +43,14 @@ $callOutTypes: (
 
   // smaller font size for headers in small callout
   .euiCallOut--small & {
-    @include euiTitle("xxs");
-    font-weight: $euiFontWeightRegular;
+    @include euiCallOutTitle('s');
   }
 }
 
-  /**
-   * 1. Vertically center icon with first line of title.
-   */
-  .euiCallOutHeader__icon {
-    flex: 0 0 auto;
-    transform: translateY(2px); /* 1 */
-  }
+/**
+  * 1. Vertically center icon with first line of title.
+  */
+.euiCallOutHeader__icon {
+  flex: 0 0 auto;
+  transform: translateY(2px); /* 1 */
+}

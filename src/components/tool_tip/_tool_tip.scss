@@ -3,18 +3,10 @@
  */
 
 .euiToolTip {
-  @include euiBottomShadow($color: $euiShadowColor);
-  @include euiFontSizeS();
-
-  position: absolute; /* 1 */
-  border-radius: $euiBorderRadius;
-  padding: $euiSizeM;
-  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
-  color: $euiColorGhost;
-  max-width: 256px;
+  @include euiToolTipStyle;
+  @include euiToolTipAnimation('top');
+  position: absolute;
   opacity: 0;
-  animation: euiToolTipTop $euiAnimSpeedSlow ease-out $euiAnimSpeedNormal forwards;
-  z-index: $euiZLevel9;
 
   // Animation delays
   &.euiToolTip--delayLong {
@@ -27,11 +19,11 @@
   $arrowMinusSize: (($arrowSize/2) - 1px) * -1; /* 1 */
 
   .euiToolTip__arrow {
-    content: "";
+    content: '';
     position: absolute;
     transform-origin: center;
     border-radius: 2px;
-    background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+    background-color: $euiTooltipBackgroundColor;
     width: $arrowSize;
     height: $arrowSize;
 
@@ -64,10 +56,7 @@
   }
 
   .euiToolTip__title {
-    font-weight: $euiFontWeightBold;
-    border-bottom: solid 1px tintOrShade($euiColorFullShade, 35%, 80%);
-    padding-bottom: $euiSizeXS;
-    margin-bottom: $euiSizeXS;
+    @include euiToolTipTitle;
   }
 }
 
@@ -78,7 +67,7 @@
   // wouldn't trigger the onMouseOut and hide the tooltip; disabling pointer events
   // on disabled elements means any mouse events remain handled by parent elements
   // https://jakearchibald.com/2017/events-and-disabled-form-fields/
-  > *[disabled] {
+  *[disabled] {
     pointer-events: none;
   }
 }
@@ -89,6 +78,7 @@
     opacity: 0;
     transform: translateY(-$euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -100,6 +90,7 @@
     opacity: 0;
     transform: translateY($euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -111,6 +102,7 @@
     opacity: 0;
     transform: translateX(-$euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -122,6 +114,7 @@
     opacity: 0;
     transform: translateX($euiSize);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

@@ -1,6 +1,7 @@
-/// <reference path="../icon/index.d.ts" />
+import { IconColor } from '../icon'
 
-import { SFC, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
   /**
@@ -14,5 +15,5 @@ declare module '@elastic/eui' {
       color: IconColor;
     };
 
-  export const EuiHealth: SFC<EuiHealthProps>;
+  export const EuiHealth: FunctionComponent<EuiHealthProps>;
 }

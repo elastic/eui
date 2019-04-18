@@ -1,0 +1,120 @@
+// Nav drawer. Global application navigation.
+
+.euiNavDrawer {
+  width: $euiNavDrawerWidthCollapsed;
+  height: calc(100% - #{$euiNavDrawerTopPosition});
+  position: fixed;
+  left: 0;
+  top: $euiNavDrawerTopPosition;
+  overflow: hidden;
+  z-index: $euiZHeader;
+  background: $euiHeaderBackgroundColor;
+  box-shadow: $euiNavDrawerSideShadow;
+  transition: width $euiAnimSpeedExtraFast $euiAnimSlightResistance;
+  display: flex;
+
+  .euiNavDrawerMenu {
+    @include euiScrollBar;
+    overflow-y: auto;
+    width: $euiNavDrawerWidthCollapsed;
+    height: 100%;
+
+    &-hasFooter {
+      margin-bottom: $euiSizeXXL;
+    }
+  }
+
+  .euiNavDrawer__expandButton {
+    @include euiBottomShadowFlat;
+    background-color: $euiColorEmptyShade;
+    position: fixed;
+    bottom: 0;
+    width: $euiNavDrawerWidthCollapsed;
+    transition: width $euiAnimSpeedExtraFast;
+    z-index: $euiZHeader + 1;
+
+    .euiListGroupItem__button {
+      padding: $euiSizeM $euiSize;
+    }
+  }
+
+  &.euiNavDrawer-isCollapsed  {
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthCollapsed + $euiNavDrawerWidthExpanded;
+    }
+
+    .euiNavDrawerMenu {
+      // Prevents scrollbar from overlapping links in collapsed form
+      // sass-lint:disable-block no-vendor-prefixes
+      // sass-lint:disable-block no-misspelled-properties
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      .euiListGroup:not(.euiNavDrawer__expandButton) .euiListGroupItem__button {
+        max-width: $euiSizeXL;
+      }
+
+      .euiListGroupItem__extraAction {
+        // Hides extra action from scrolling into view when tabbing in the collapsed view
+        visibility: hidden;
+      }
+    }
+  }
+
+  &.euiNavDrawer-isExpanded {
+    width: $euiNavDrawerWidthExpanded;
+
+    .euiNavDrawerMenu,
+    .euiNavDrawer__expandButton {
+      width: $euiNavDrawerWidthExpanded;
+    }
+
+    &.euiNavDrawer-flyoutIsExpanded {
+      width: $euiNavDrawerWidthExpanded + $euiNavDrawerWidthCollapsed;
+    }
+  }
+}
+
+.euiNavDrawerPage {
+  height: 100%;
+
+  .euiNavDrawerPage__pageBody {
+    margin-left: $euiNavDrawerWidthCollapsed;
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiNavDrawer {
+    width: 0;
+
+    &.euiNavDrawer-isExpanded .euiNavDrawerMenu {
+      .euiListGroupItem__icon {
+        margin-right: $euiSizeM;
+      }
+    }
+
+    &.euiNavDrawer-flyoutIsCollapsed .euiNavDrawerFlyout {
+      width: 0;
+      transition-duration: 0s;
+    }
+
+    // No expand toggle on mobile
+
+    .euiNavDrawerMenu-hasFooter {
+      margin-bottom: 0;
+    }
+
+    .euiNavDrawer__expandButton {
+      display: none;
+    }
+  }
+
+  .euiNavDrawerPage .euiNavDrawerPage__pageBody {
+    margin-left: 0;
+  }
+}

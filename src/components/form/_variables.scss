@@ -14,7 +14,7 @@ $euiSwitchThumbSize: $euiSwitchHeight !default;
 $euiSwitchIconHeight: $euiSize !default;
 
 // Coloring
-$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 25%) !default;
+$euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 40%) !default;
 $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
 $euiFormBorderColor: transparentize($euiColorFullShade, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiColorFullShade, .92) !default;
@@ -27,16 +27,16 @@ $euiFormControlDisabledColor: $euiColorMediumShade !default;
 //** DEPRECATED **//
 
 @if variable-exists(euiFormControlHeight--compressed) {
-  $euiFormControlCompressedHeight: $euiFormControlHeight--compressed !global;
-  @warn '`$euiFormControlHeight--compressed` is deprecated. Please use `$euiFormControlCompressedHeight` instead';
+  $euiFormControlCompressedHeight: $euiFormControlHeightCompressed !global;
+  @warn '`$euiFormControlHeightCompressed` is deprecated. Please use `$euiFormControlCompressedHeight` instead';
 }
 
 @if variable-exists(euiFormControlPadding--compressed) {
-  $euiFormControlCompressedPadding: $euiFormControlPadding--compressed !global;
-  @warn '`$euiFormControlPadding--compressed` is deprecated. Please use `$euiFormControlCompressedPadding` instead';
+  $euiFormControlCompressedPadding: $euiFormControlPaddingCompressed !global;
+  @warn '`$euiFormControlPaddingCompressed` is deprecated. Please use `$euiFormControlCompressedPadding` instead';
 }
 
-@if variable-exists(euiFormBorderColor--disabled) {
-  $euiFormBorderDisabledColor: $euiFormBorderColor--disabled !global;
-  @warn '`$euiFormBorderColor--disabled` is deprecated. Please use `$euiFormBorderDisabledColor` instead';
+@if variable-exists(euiFormBorderColorDisabled) {
+  $euiFormBorderDisabledColor: $euiFormBorderColorDisabled !global;
+  @warn '`$euiFormBorderColorDisabled` is deprecated. Please use `$euiFormBorderDisabledColor` instead';
 }

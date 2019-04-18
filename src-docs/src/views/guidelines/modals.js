@@ -98,7 +98,7 @@ export default () => (
       heading=""
       description="A modal can gather input necessary for continuing the current workflow.
       This type of modal works best for a short, focused task.
-      Use input modals sparingly&mdash;they interrput the user's workflow.
+      Use input modals sparingly&mdash;they interrupt the user's workflow.
       "
     >
 
@@ -204,8 +204,8 @@ export default () => (
 
     <GuideRule
       heading=""
-      description="The most common use of modal in the EUI Framework is
-      to cofirm a user action.
+      description="The most common use of modals in the EUI Framework is
+      to confirm a user action.
       This modal should start with a question, give
       users enough information to make a decision,
       and restate the action in the button label."

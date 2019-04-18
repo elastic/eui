@@ -10,18 +10,9 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -34,7 +25,6 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        grow={true}
         id="generated-id"
         size="s"
       >
@@ -43,13 +33,12 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -67,18 +56,9 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -91,13 +71,12 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -116,18 +95,9 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -140,7 +110,6 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        grow={true}
         id="generated-id"
         size="s"
       >
@@ -149,13 +118,12 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
         fullWidth={true}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -174,18 +142,9 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="s"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -198,7 +157,6 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        grow={true}
         id="generated-id"
         size="s"
       >
@@ -207,13 +165,12 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -232,18 +189,9 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   role="group"
 >
   <EuiFlexGroup
-    alignItems="stretch"
-    component="div"
-    direction="row"
     gutterSize="l"
-    justifyContent="flexStart"
-    responsive={true}
-    wrap={false}
   >
-    <EuiFlexItem
-      component="div"
-      grow={true}
-    >
+    <EuiFlexItem>
       <EuiTitle
         className="euiDescribedFormGroup__title"
         id="generated-id-title"
@@ -256,7 +204,6 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
-        grow={true}
         id="generated-id"
         size="s"
       >
@@ -265,13 +212,12 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
-      component="div"
-      grow={true}
     >
       <EuiFormRow
         describedByIds={Array []}
         fullWidth={false}
         hasEmptyLabelSpace={false}
+        labelType="label"
       >
         <input />
       </EuiFormRow>
@@ -305,21 +251,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     role="group"
   >
     <EuiFlexGroup
-      alignItems="stretch"
-      component="div"
-      direction="row"
       gutterSize="l"
-      justifyContent="flexStart"
-      responsive={true}
-      wrap={false}
     >
       <div
         className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
-        <EuiFlexItem
-          component="div"
-          grow={true}
-        >
+        <EuiFlexItem>
           <div
             className="euiFlexItem"
           >
@@ -338,7 +275,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
             <EuiText
               className="euiDescribedFormGroup__description"
               color="subdued"
-              grow={true}
               id="test-id"
               size="s"
             >
@@ -362,8 +298,6 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
         </EuiFlexItem>
         <EuiFlexItem
           className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
-          component="div"
-          grow={true}
         >
           <div
             className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
@@ -385,25 +319,29 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
               helpText="Help text"
               isInvalid={true}
               label="Label"
+              labelType="label"
             >
               <div
                 className="euiFormRow"
                 id="generated-id-row"
               >
-                <EuiFormLabel
-                  aria-invalid={true}
-                  htmlFor="generated-id"
-                  isFocused={false}
-                  isInvalid={true}
-                >
-                  <label
+                <div>
+                  <EuiFormLabel
                     aria-invalid={true}
-                    className="euiFormLabel euiFormLabel-isInvalid"
                     htmlFor="generated-id"
+                    isFocused={false}
+                    isInvalid={true}
+                    type="label"
                   >
-                    Label
-                  </label>
-                </EuiFormLabel>
+                    <label
+                      aria-invalid={true}
+                      className="euiFormLabel euiFormLabel-isInvalid"
+                      htmlFor="generated-id"
+                    >
+                      Label
+                    </label>
+                  </EuiFormLabel>
+                </div>
                 <input
                   aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
                   id="generated-id"

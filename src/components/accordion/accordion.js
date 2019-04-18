@@ -15,7 +15,7 @@ import {
 
 import {
   EuiMutationObserver,
-} from '../mutation_observer';
+} from '../observer/mutation_observer';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -127,6 +127,7 @@ export class EuiAccordion extends Component {
               aria-expanded={!!this.state.isOpen}
               onClick={this.onToggle}
               className={buttonClasses}
+              type="button"
             >
               <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
                 <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
@@ -152,11 +153,13 @@ export class EuiAccordion extends Component {
             observerOptions={{ childList: true, subtree: true }}
             onMutation={this.setChildContentHeight}
           >
-            <div ref={this.setChildContentRef}>
-              <div className={paddingClass}>
-                {children}
+            {mutationRef => (
+              <div ref={ref => {this.setChildContentRef(ref); mutationRef(ref);}}>
+                <div className={paddingClass}>
+                  {children}
+                </div>
               </div>
-            </div>
+            )}
           </EuiMutationObserver>
         </div>
       </div>

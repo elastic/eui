@@ -9,7 +9,7 @@
 
   &:after {
     position: absolute;
-    content: "";
+    content: '';
     top: $euiSize;
     bottom: 0;
     background: $euiBorderColor;
@@ -45,16 +45,15 @@
 
 .euiHeaderNotification {
   position: absolute;
-  top: 18%;
-  right: 18%;
+  top: 9%;
+  right: 9%;
   box-shadow: 0 0 0 1px $euiHeaderBackgroundColor;
 }
 
 @include euiBreakpoint('xs') {
   .euiHeaderSectionItem,
   .euiHeaderSectionItem__button {
-    height: $euiHeaderChildSize*.75;
-    min-width: $euiHeaderChildSize*.75;
+    min-width: $euiHeaderChildSize * .75;
   }
 
   .euiHeaderSectionItem--borderLeft,
@@ -66,9 +65,10 @@
 
   // On small screens just show a small dot indicating there are notifications
   .euiHeaderNotification {
+    @include size($euiSizeS);
+    top: 20%;
     min-width: 0;
     border-radius: $euiSizeS;
-    @include size($euiSizeS);
     color: $euiColorAccent;
     overflow: hidden;
   }

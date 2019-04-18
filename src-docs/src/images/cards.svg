@@ -1,26 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" style="background:#d9d9d9" viewBox="0 0 300 150">
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
   <g fill="none" fill-rule="evenodd">
+    <rect width="300" height="150" fill="#D3DAE6"/>
     <g transform="translate(24 32)">
       <path fill="#FFF" d="M0,0 L72,0 L72,86 L0,86 L0,0 Z"/>
-      <polygon fill="#B8B8B8" points="12 62 60 62 60 66 12 66" opacity=".418"/>
-      <polygon fill="#B8B8B8" points="12 70 54 70 54 74 12 74" opacity=".418"/>
-      <rect width="42" height="8" x="12" y="46" fill="#666"/>
-      <rect width="72" height="36.424" fill="#0079A5"/>
+      <polygon fill="#98A2B3" points="12 62 60 62 60 66 12 66" opacity=".418"/>
+      <polygon fill="#98A2B3" points="12 70 54 70 54 74 12 74" opacity=".418"/>
+      <rect width="42" height="8" x="12" y="46" fill="#343741"/>
+      <rect width="72" height="36.424" fill="#006BB4"/>
     </g>
     <g transform="translate(114 32)">
       <path fill="#FFF" d="M0,0 L72,0 L72,86 L0,86 L0,0 Z"/>
-      <polygon fill="#B8B8B8" points="12 62 60 62 60 66 12 66" opacity=".418"/>
-      <polygon fill="#B8B8B8" points="12 70 54 70 54 74 12 74" opacity=".418"/>
-      <rect width="42" height="8" x="12" y="46" fill="#666"/>
-      <rect width="72" height="36.424" fill="#0079A5"/>
-      <rect width="72" height="36.424" fill="#00A69B"/>
+      <polygon fill="#98A2B3" points="12 62 60 62 60 66 12 66" opacity=".418"/>
+      <polygon fill="#98A2B3" points="12 70 54 70 54 74 12 74" opacity=".418"/>
+      <rect width="42" height="8" x="12" y="46" fill="#343741"/>
+      <rect width="72" height="36.424" fill="#006BB4"/>
+      <rect width="72" height="36.424" fill="#017D73"/>
     </g>
     <g transform="translate(204 32)">
       <path fill="#FFF" d="M0,0 L72,0 L72,86 L0,86 L0,0 Z"/>
-      <polygon fill="#B8B8B8" points="12 62 60 62 60 66 12 66" opacity=".418"/>
-      <polygon fill="#B8B8B8" points="12 70 54 70 54 74 12 74" opacity=".418"/>
-      <rect width="42" height="8" x="12" y="46" fill="#666"/>
-      <rect width="72" height="36.424" fill="#0079A5"/>
+      <polygon fill="#98A2B3" points="12 62 60 62 60 66 12 66" opacity=".418"/>
+      <polygon fill="#98A2B3" points="12 70 54 70 54 74 12 74" opacity=".418"/>
+      <rect width="42" height="8" x="12" y="46" fill="#343741"/>
+      <rect width="72" height="36.424" fill="#006BB4"/>
       <rect width="72" height="36.424" fill="#DD0A73"/>
     </g>
   </g>

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { EuiPaginationButton } from './pagination_button';
 import { EuiButtonIcon } from '../button';
+import { EuiI18n } from '../i18n';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -24,43 +25,63 @@ export const EuiPagination = ({
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
     pages.push(
-      <EuiPaginationButton
-        isActive={i === activePage}
+      <EuiI18n
         key={index}
-        onClick={onPageClick.bind(null, i)}
-        hideOnMobile
-        aria-label={`Page ${i + 1} of ${lastPageInRange}`}
-        data-test-subj={`pagination-button-${i}`}
+        token="euiPagination.pageOfTotal"
+        default="Page {page} of {total}"
+        values={{ page: i + 1, total: lastPageInRange }}
       >
-        {i + 1}
-      </EuiPaginationButton>
+        {pageOfTotal => (
+          <EuiPaginationButton
+            isActive={i === activePage}
+            onClick={onPageClick.bind(null, i)}
+            hideOnMobile
+            aria-label={pageOfTotal}
+            data-test-subj={`pagination-button-${i}`}
+          >
+            {i + 1}
+          </EuiPaginationButton>
+        )}
+      </EuiI18n>
     );
   }
 
 
   const previousButton = (
-    <EuiButtonIcon
-      onClick={onPageClick.bind(null, activePage - 1)}
-      iconType="arrowLeft"
-      disabled={activePage === 0}
-      color="text"
-      aria-label="Previous page"
-      data-test-subj="pagination-button-previous"
-    />
+    <EuiI18n token="euiPagination.previousPage" default="Previous page">
+      {previousPage => (
+        <EuiButtonIcon
+          onClick={onPageClick.bind(null, activePage - 1)}
+          iconType="arrowLeft"
+          disabled={activePage === 0}
+          color="text"
+          aria-label={previousPage}
+          data-test-subj="pagination-button-previous"
+        />
+      )}
+    </EuiI18n>
   );
 
   const firstPageButtons = [];
 
   if (firstPageInRange > 0) {
     firstPageButtons.push(
-      <EuiPaginationButton
+      <EuiI18n
         key="0"
-        onClick={onPageClick.bind(null, 0)}
-        hideOnMobile
-        aria-label={`Page 1 of ${lastPageInRange}`}
+        token="euiPagination.pageOfTotal"
+        default="Page {page} of {total}"
+        values={{ page: 1, total: lastPageInRange }}
       >
-        1
-      </EuiPaginationButton>
+        {pageOfTotal => (
+          <EuiPaginationButton
+            onClick={onPageClick.bind(null, 0)}
+            hideOnMobile
+            aria-label={pageOfTotal}
+          >
+            1
+          </EuiPaginationButton>
+        )}
+      </EuiI18n>
     );
 
     if (firstPageInRange > 1) {
@@ -94,26 +115,38 @@ export const EuiPagination = ({
     }
 
     lastPageButtons.push(
-      <EuiPaginationButton
+      <EuiI18n
         key={pageCount - 1}
-        onClick={onPageClick.bind(null, pageCount - 1)}
-        hideOnMobile
-        aria-label={`Jump to the last page, number ${pageCount}`}
+        token="euiPagination.jumpToLastPage"
+        default="Jump to the last page, number {pageCount}"
+        values={{ pageCount }}
       >
-        {pageCount}
-      </EuiPaginationButton>
+        {jumpToLastPage => (
+          <EuiPaginationButton
+            onClick={onPageClick.bind(null, pageCount - 1)}
+            hideOnMobile
+            aria-label={jumpToLastPage}
+          >
+            {pageCount}
+          </EuiPaginationButton>
+        )}
+      </EuiI18n>
     );
   }
 
   const nextButton = (
-    <EuiButtonIcon
-      onClick={onPageClick.bind(null, activePage + 1)}
-      iconType="arrowRight"
-      aria-label="Next page"
-      disabled={activePage === pageCount - 1}
-      color="text"
-      data-test-subj="pagination-button-next"
-    />
+    <EuiI18n token="euiPagination.nextPage" default="Next page">
+      {nextPage => (
+        <EuiButtonIcon
+          onClick={onPageClick.bind(null, activePage + 1)}
+          iconType="arrowRight"
+          aria-label={nextPage}
+          disabled={activePage === pageCount - 1}
+          color="text"
+          data-test-subj="pagination-button-next"
+        />
+      )}
+    </EuiI18n>
   );
 
   if (pages.length > 1) {
@@ -153,9 +186,14 @@ EuiPagination.propTypes = {
   className: PropTypes.string,
 
   /**
-   * The total number of pages
+   * The total number of pages.
    */
   pageCount: PropTypes.number,
+
+  /**
+   * The current page using a zero based index.
+   * So if you set the activePage to 1, it will activate the second page.
+   */
   activePage: PropTypes.number,
   onPageClick: PropTypes.func,
 

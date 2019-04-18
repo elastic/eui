@@ -1,55 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsedItemActions render 1`] = `
-<EuiPopover
-  anchorPosition="leftCenter"
-  button={
-    <EuiToolTip
-      content="All actions"
-      delay="long"
-      position="top"
-    >
-      <EuiButtonIcon
-        aria-label="All actions"
-        className={undefined}
-        color="text"
-        iconSize="m"
-        iconType="boxesHorizontal"
-        isDisabled={false}
-        onClick={[Function]}
-        onFocus={[Function]}
-        type="button"
-      />
-    </EuiToolTip>
-  }
-  closePopover={[Function]}
-  hasArrow={true}
+<div
+  class="euiPopover euiPopover--anchorLeftCenter"
   id="id-actions"
-  isOpen={false}
-  ownFocus={false}
-  panelPaddingSize="none"
-  popoverRef={[Function]}
 >
-  <EuiContextMenuPanel
-    hasFocus={true}
-    items={
-      Array [
-        <EuiContextMenuItem
-          disabled={false}
-          icon={undefined}
-          layoutAlign="center"
-          onClick={[Function]}
-          toolTipPosition="right"
+  <div
+    class="euiPopover__anchor"
+  >
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button
+        aria-label="All actions"
+        class="euiButtonIcon euiButtonIcon--text"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiButtonIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          default1
-        </EuiContextMenuItem>,
-        <EuiContextMenuItem
-          layoutAlign="center"
-          onClick={[Function]}
-          toolTipPosition="right"
-        />,
-      ]
-    }
-  />
-</EuiPopover>
+          <defs>
+            <path
+              d="M0 6h4v4H0V6zm1 1v2h2V7H1zm5-1h4v4H6V6zm1 1v2h2V7H7zm5-1h4v4h-4V6zm1 3h2V7h-2v2z"
+              id="boxes_horizontal-a"
+            />
+          </defs>
+          <use
+            href="#boxes_horizontal-a"
+          />
+        </svg>
+      </button>
+    </span>
+  </div>
+</div>
 `;

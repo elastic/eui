@@ -2,29 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../flex';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
 const CHECKED_ON = 'on';
 const CHECKED_OFF = 'off';
 
-const resolveIconAndColor = (checked) => {
+const resolveIconAndColor = checked => {
   if (!checked) {
     return { icon: 'empty' };
   }
-  return checked === CHECKED_ON ?
-    { icon: 'check', color: 'text' } :
-    { icon: 'cross', color: 'text' };
+  return checked === CHECKED_ON
+    ? { icon: 'check', color: 'text' }
+    : { icon: 'cross', color: 'text' };
 };
 
 export class EuiFilterSelectItem extends Component {
-
   constructor(props) {
     super(props);
     this.state = { hasFocus: false };
@@ -53,15 +47,42 @@ export class EuiFilterSelectItem extends Component {
   };
 
   render() {
-    const { children, className, disabled, checked, ...rest } = this.props;
-    const classes = classNames('euiFilterSelectItem', className);
-    const { icon, color } = resolveIconAndColor(checked);
+    const {
+      children,
+      className,
+      disabled,
+      checked,
+      isFocused,
+      showIcons,
+      ...rest
+    } = this.props;
+    const classes = classNames(
+      'euiFilterSelectItem',
+      {
+        'euiFilterSelectItem-isFocused': isFocused,
+      },
+      className
+    );
+
+    let iconNode;
+    if (showIcons) {
+      const { icon, color } = resolveIconAndColor(checked);
+      iconNode = (
+        <EuiFlexItem grow={false}>
+          <EuiIcon color={color} type={icon} />
+        </EuiFlexItem>
+      );
+    }
+
     return (
       <button
-        ref={(ref) => this.buttonRef = ref}
-        className={classes}
+        ref={ref => (this.buttonRef = ref)}
+        role="option"
         type="button"
+        aria-selected={isFocused}
+        className={classes}
         disabled={disabled}
+        aria-disabled={disabled}
         {...rest}
       >
         <EuiFlexGroup
@@ -70,12 +91,8 @@ export class EuiFilterSelectItem extends Component {
           component="span"
           responsive={false}
         >
-          <EuiFlexItem grow={false}>
-            <EuiIcon color={color} type={icon}/>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            {children}
-          </EuiFlexItem>
+          {iconNode}
+          <EuiFlexItem className="euiFilterSelectItem__content">{children}</EuiFlexItem>
         </EuiFlexGroup>
       </button>
     );
@@ -88,5 +105,10 @@ EuiFilterSelectItem.propTypes = {
   /**
    * Applies an icon and visual styling to activated items
    */
-  checked: PropTypes.oneOf([ CHECKED_ON, CHECKED_OFF ]),
+  checked: PropTypes.oneOf([CHECKED_ON, CHECKED_OFF]),
+  showIcons: PropTypes.bool,
+};
+
+EuiFilterSelectItem.defaultProps = {
+  showIcons: true,
 };

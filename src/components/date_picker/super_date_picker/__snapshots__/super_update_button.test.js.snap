@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuperUpdateButton is rendered 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconSide="left"
+    iconType="refresh"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    size="m"
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+    type="button"
+  >
+    Refresh
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton isDisabled 1`] = `
+<EuiToolTip
+  content="Cannot update"
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconSide="left"
+    iconType="refresh"
+    isDisabled={true}
+    isLoading={false}
+    onClick={[Function]}
+    size="m"
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+    type="button"
+  >
+    Refresh
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton isLoading 1`] = `
+<EuiToolTip
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="secondary"
+    fill={true}
+    iconSide="left"
+    iconType="kqlFunction"
+    isDisabled={false}
+    isLoading={true}
+    onClick={[Function]}
+    size="m"
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+    type="button"
+  >
+    Updating
+  </EuiButton>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton needsUpdate 1`] = `
+<EuiToolTip
+  content="Click to apply"
+  delay="regular"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="secondary"
+    fill={true}
+    iconSide="left"
+    iconType="kqlFunction"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    size="m"
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+    type="button"
+  >
+    Update
+  </EuiButton>
+</EuiToolTip>
+`;

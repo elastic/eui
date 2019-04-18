@@ -33,19 +33,18 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <div>
+          <div
+            class="react-datepicker-wrapper"
+          >
             <div
-              class="react-datepicker-wrapper"
+              class="react-datepicker__input-container"
             >
-              <div
-                class="react-datepicker__input-container"
-              >
-                <input
-                  class="euiDatePicker euiFieldText"
-                  type="text"
-                  value=""
-                />
-              </div>
+              <input
+                aria-label=""
+                class="euiDatePicker euiFieldText"
+                type="text"
+                value=""
+              />
             </div>
           </div>
         </div>
@@ -71,19 +70,18 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <div>
+          <div
+            class="react-datepicker-wrapper"
+          >
             <div
-              class="react-datepicker-wrapper"
+              class="react-datepicker__input-container"
             >
-              <div
-                class="react-datepicker__input-container"
-              >
-                <input
-                  class="euiDatePicker euiFieldText"
-                  type="text"
-                  value=""
-                />
-              </div>
+              <input
+                aria-label=""
+                class="euiDatePicker euiFieldText"
+                type="text"
+                value=""
+              />
             </div>
           </div>
         </div>

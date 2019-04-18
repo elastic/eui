@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { EuiIcon } from '../icon';
 import { EuiToolTip } from './tool_tip';
 
-export const EuiIconTip = ({ type, 'aria-label': ariaLabel, color, size, ...rest }) => (
+export const EuiIconTip = ({ type, 'aria-label': ariaLabel, color, size, iconProps, ...rest }) => (
   <EuiToolTip {...rest}>
-    <EuiIcon tabIndex="0" type={type} color={color} size={size} aria-label={ariaLabel} />
+    <EuiIcon tabIndex="0" type={type} color={color} size={size} aria-label={ariaLabel} {...iconProps} />
   </EuiToolTip>
 );
 
@@ -30,6 +30,11 @@ EuiIconTip.propTypes = {
    * Explain what this icon means for screen readers.
    */
   'aria-label': PropTypes.string,
+
+  /**
+   * Pass certain props down to `EuiIcon`
+   */
+  iconProps: PropTypes.object,
 };
 
 EuiIconTip.defaultProps = {

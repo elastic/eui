@@ -9,6 +9,7 @@
   max-width: 100%;
   position: relative;
   min-height: 1px; /* 1 */
+  line-height: 0; // Fixes cropping when image is resized by forcing it's height to be determined by the image not line-height
 
   &.euiImage--hasShadow {
     .euiImage__img {
@@ -55,8 +56,8 @@
 }
 
 .euiImage__caption {
-  text-align: center;
   @include euiFontSizeS;
+  text-align: center;
 }
 
 .euiImage__icon {
@@ -92,6 +93,7 @@
     opacity: 0;
     transform: translateY($euiSizeXL * 2);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

@@ -11,8 +11,11 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFieldNumber,
-
+  EuiRange,
+  EuiSwitch,
 } from '../../../../src/components';
+
+import makeId from '../../../../src/components/form/form_row/make_id';
 
 export default class extends Component {
   constructor(props) {
@@ -21,6 +24,8 @@ export default class extends Component {
     this.state = {
       isPopoverOpen: false,
       isSwitchChecked: true,
+      isPopover2Open: false,
+      isSwitch2Checked: true,
     };
   }
 
@@ -42,6 +47,24 @@ export default class extends Component {
     });
   }
 
+  onSwitch2Change = () => {
+    this.setState({
+      isSwitch2Checked: !this.state.isSwitch2Checked,
+    });
+  }
+
+  onButton2Click = () => {
+    this.setState({
+      isPopover2Open: !this.state.isPopover2Open,
+    });
+  }
+
+  closePopover2 = () => {
+    this.setState({
+      isPopover2Open: false,
+    });
+  }
+
   render() {
     const button = (
       <EuiButton
@@ -50,7 +73,7 @@ export default class extends Component {
         iconType="arrowDown"
         onClick={this.onButtonClick}
       >
-        Form in a popover
+        Inline form in a popover
       </EuiButton>
     );
 
@@ -76,18 +99,77 @@ export default class extends Component {
       </EuiForm>
     );
 
-    return (
-      <EuiPopover
-        id="inlineFormPopover"
-        ownFocus
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}
+    const button2 = (
+      <EuiButton
+        iconSide="right"
+        fill
+        iconType="arrowDown"
+        onClick={this.onButton2Click}
       >
-        <div style={{ width: 500 }}>
-          {formSample}
-        </div>
-      </EuiPopover>
+        Vertical form in a popover
+      </EuiButton>
+    );
+
+    const formSample2 = (
+      <EuiForm>
+        <EuiFormRow>
+          <EuiSwitch
+            id={makeId()}
+            name="popswitch"
+            label="Isn't this popover form cool?"
+            checked={this.state.isSwitch2Checked}
+            onChange={this.onSwitch2Change}
+          />
+        </EuiFormRow>
+
+        <EuiFormRow
+          label="A text field"
+        >
+          <EuiFieldText name="popfirst" />
+        </EuiFormRow>
+
+        <EuiFormRow
+          label="Range"
+          helpText="Some help text for the range"
+        >
+          <EuiRange
+            min={0}
+            max={100}
+            name="poprange"
+          />
+        </EuiFormRow>
+        <EuiButton fullWidth>Save</EuiButton>
+      </EuiForm>
+    );
+
+    return (
+      <div>
+        <EuiPopover
+          id="inlineFormPopover"
+          ownFocus
+          button={button}
+          isOpen={this.state.isPopoverOpen}
+          closePopover={this.closePopover.bind(this)}
+        >
+          <div style={{ width: 500 }}>
+            {formSample}
+          </div>
+        </EuiPopover>
+
+        &emsp;
+
+        <EuiPopover
+          id="formPopover"
+          ownFocus
+          button={button2}
+          isOpen={this.state.isPopover2Open}
+          closePopover={this.closePopover2.bind(this)}
+        >
+          <div style={{ width: '300px' }}>
+            {formSample2}
+          </div>
+        </EuiPopover>
+      </div>
     );
   }
 }

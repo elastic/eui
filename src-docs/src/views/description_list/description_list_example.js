@@ -9,6 +9,8 @@ import {
 import {
   EuiCode,
   EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 
 import DescriptionList from './description_list';
@@ -31,6 +33,10 @@ import DescriptionListReverse from './description_list_reverse';
 const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
 const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
 
+import DescriptionListClasses from './description_list_classes';
+const descriptionListClassesSource = require('!!raw-loader!./description_list_classes');
+const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
+
 export const DescriptionListExample = {
   title: 'Description List',
   sections: [{
@@ -50,7 +56,7 @@ export const DescriptionListExample = {
         components separately to build a list manually.
       </p>
     ),
-    props: { EuiDescriptionList },
+    props: { EuiDescriptionList, EuiDescriptionListTitle, EuiDescriptionListDescription },
     demo: <DescriptionList />,
   }, {
     title: 'Reverse style',
@@ -103,7 +109,7 @@ export const DescriptionListExample = {
       <p>
         Using a prop <EuiCode>type</EuiCode> set to <EuiCode>inline</EuiCode> description lists
         can be presented in an inline, blob format. This is useful for JSON code blocks. Inline
-        description lists are sized smaller then normal lists due to their compact nature.
+        description lists are sized smaller than normal lists due to their compact nature.
       </p>
     ),
     demo: <DescriptionListInline />,
@@ -124,5 +130,23 @@ export const DescriptionListExample = {
       </p>
     ),
     demo: <DescriptionListStyling />,
+  }, {
+    title: 'Passing className',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: descriptionListClassesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: descriptionListClassesHtml,
+    }],
+    text: (
+      <p>
+        When using the <EuiCode>listItems</EuiCode> prop to pass an object of items and you
+        need to also add <EuiCode>className</EuiCode>s (or other available props) to the individual
+        pieces, you can use the <EuiCode>titleProps</EuiCode> and <EuiCode>descriptionProps</EuiCode> to
+        do so.
+      </p>
+    ),
+    demo: <DescriptionListClasses />,
   }],
 };

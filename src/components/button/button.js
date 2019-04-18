@@ -26,6 +26,7 @@ export const COLORS = Object.keys(colorToClassNameMap);
 
 const sizeToClassNameMap = {
   s: 'euiButton--small',
+  m: null,
   l: 'euiButton--large',
 };
 
@@ -53,6 +54,9 @@ export const EuiButton = ({
   rel,
   type,
   buttonRef,
+  contentProps,
+  textProps,
+  fullWidth,
   ...rest
 }) => {
 
@@ -67,7 +71,18 @@ export const EuiButton = ({
     className,
     {
       'euiButton--fill': fill,
+      'euiButton--fullWidth': fullWidth,
     },
+  );
+
+  const contentClassNames = classNames(
+    'euiButton__content',
+    contentProps && contentProps.className,
+  );
+
+  const textClassNames = classNames(
+    'euiButton__text',
+    textProps && textProps.className,
   );
 
   // Add an icon to the button if one exists.
@@ -91,10 +106,17 @@ export const EuiButton = ({
     );
   }
 
+  const innerNode = (
+    <span {...contentProps} className={contentClassNames}>
+      {buttonIcon}
+      <span {...textProps} className={textClassNames}>{children}</span>
+    </span>
+  );
+
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
   if (href && !isDisabled) {
-    const secureRel = getSecureRelForTarget(target, rel);
+    const secureRel = getSecureRelForTarget({ href, target, rel });
 
     return (
       <a
@@ -105,10 +127,7 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content">
-          {buttonIcon}
-          <span className="euiButton__text">{children}</span>
-        </span>
+        {innerNode}
       </a>
     );
   } else {
@@ -120,10 +139,7 @@ export const EuiButton = ({
         ref={buttonRef}
         {...rest}
       >
-        <span className="euiButton__content">
-          {buttonIcon}
-          <span className="euiButton__text">{children}</span>
-        </span>
+        {innerNode}
       </button>
     );
   }
@@ -149,6 +165,11 @@ EuiButton.propTypes = {
    */
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
+
+  /**
+   * Expands button to fill the width of the parent
+   */
+  fullWidth: PropTypes.bool,
   isDisabled: PropTypes.bool,
   href: PropTypes.string,
   target: PropTypes.string,
@@ -165,9 +186,20 @@ EuiButton.propTypes = {
    */
   type: PropTypes.string,
   buttonRef: PropTypes.func,
+
+  /**
+   * Passes props to `euiButton__content` span
+   */
+  contentProps: PropTypes.object,
+
+  /**
+   * Passes props to `euiButton__text` span
+   */
+  textProps: PropTypes.object,
 };
 
 EuiButton.defaultProps = {
+  size: 'm',
   type: 'button',
   iconSide: 'left',
   color: 'primary',

@@ -19,12 +19,13 @@
 }
 
 .euiBreadcrumbSeparator {
+  flex-shrink: 0;
   pointer-events: none;
   display: inline-block;
   margin-right: $euiBreadcrumbSpacing;
   width: 1px;
   height: $euiSize;
-  transform: translateY(0.2em) rotate(15deg);
+  transform: translateY(.2em) rotate(15deg);
   background: $euiColorLightShade;
 }
 
@@ -62,20 +63,48 @@
   }
 
   // Mobile
-  @include euiBreakpoint('xs','s') {
+  @include euiBreakpoint('xs', 's') {
     .euiBreadcrumbSeparator,
     .euiBreadcrumb {
       display: none;
+
+      // Only show last 1 breadcrumb
+      &:nth-last-child(-n+1) { /* 1 */
+        display: inline-block;
+      }
     }
   }
 }
 
 .euiBreadcrumbs--truncate {
-  .euiBreadcrumb {
-    white-space: nowrap;
-    max-width: 150px;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
+    max-width: $euiBreadcrumbTruncateWidth;
+    min-width: $euiBreadcrumbMinWidth;
     overflow: hidden;
-    vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
+    text-overflow: ellipsis;
+    text-align: center;
+
+    &.euiBreadcrumb--last {
+      max-width: none;
+    }
   }
+
+  .euiBreadcrumbSeparator {
+    // Align with flex versus inline-block misaligns the separator slightly
+    transform: translateY(0) rotate(15deg);
+  }
+}
+
+.euiBreadcrumb--truncate {
+  white-space: nowrap;
+  max-width: $euiBreadcrumbTruncateWidth;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
 }

@@ -64,6 +64,17 @@ describe('EuiButton', () => {
       });
     });
 
+    describe('fullWidth', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiButton fullWidth />
+        );
+
+        expect(component)
+          .toMatchSnapshot();
+      });
+    });
+
     describe('iconType', () => {
       it('is rendered', () => {
         const component = render(
