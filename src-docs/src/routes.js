@@ -175,10 +175,11 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
+import { ElasticChartsTypesExample } from './views/elastic_charts_types/types_example';
+
+import { ElasticChartsExtrasExample } from './views/elastic_charts_extras/extras_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
-
-import { ElasticChartBarExample } from './views/elastic_charts/bar_example';
 
 import { Changelog } from './views/package/changelog';
 
@@ -346,7 +347,9 @@ const navigation = [
   },
   {
     name: 'Elastic-Charts',
-    items: [ElasticChartBarExample].map(example => createExample(example)),
+    items: [ElasticChartsTypesExample, ElasticChartsExtrasExample].map(
+      example => createExample(example)
+    ),
   },
   {
     name: 'Utilities',

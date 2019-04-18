@@ -19,7 +19,7 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
-export const ElasticChartBarExample = {
+export const ElasticChartsTypesExample = {
   title: 'Types',
   intro: (
     <Fragment>
