@@ -312,6 +312,8 @@ const typeToPathMap = {
   tokenRepo: 'tokens/tokenRepo',
   tokenSymbol: 'tokens/tokenSymbol',
   tokenFile: 'tokens/tokenFile',
+  tokenModule: 'tokens/tokenModule',
+  tokenNamespace: 'tokens/tokenNamespace',
 };
 
 export const TYPES: IconType[] = keysOf(typeToPathMap);
