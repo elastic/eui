@@ -20,7 +20,6 @@
 /// <reference path="./modal/index.d.ts" />
 /// <reference path="./observer/mutation_observer/index.d.ts" />
 /// <reference path="./observer/resize_observer/index.d.ts" />
-/// <reference path="./overlay_mask/index.d.ts" />
 /// <reference path="./page/index.d.ts" />
 /// <reference path="./pagination/index.d.ts" />
 /// <reference path="./panel/index.d.ts" />
