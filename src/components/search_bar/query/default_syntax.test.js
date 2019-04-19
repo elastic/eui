@@ -471,6 +471,43 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  describe('empty phrases', () => {
+    test('empty term phrase', () => {
+      const query = `""`;
+      const ast = defaultSyntax.parse(query);
+
+      expect(ast).toBeDefined();
+      expect(ast.clauses).toHaveLength(1);
+
+      const clause = ast.getTermClause('');
+      expect(clause).toBeDefined();
+      expect(AST.Term.isInstance(clause)).toBe(true);
+      expect(AST.Match.isMustClause(clause)).toBe(true);
+      expect(clause.value).toBe('');
+
+      const printedQuery = defaultSyntax.print(ast);
+      expect(printedQuery).toBe(query);
+    });
+
+    test('empty field phrase', () => {
+      const query = `field:""`;
+      const ast = defaultSyntax.parse(query);
+
+      expect(ast).toBeDefined();
+      expect(ast.clauses).toHaveLength(1);
+
+      const clause = ast.getSimpleFieldClause('field', '');
+      expect(clause).toBeDefined();
+      expect(AST.Field.isInstance(clause)).toBe(true);
+      expect(AST.Match.isMustClause(clause)).toBe(true);
+      expect(clause.field).toBe('field');
+      expect(clause.value).toBe('');
+
+      const printedQuery = defaultSyntax.print(ast);
+      expect(printedQuery).toBe(query);
+    });
+  });
+
   test('field or clause', () => {
 
     const query = `field:(foo or bar)`;
@@ -753,6 +790,25 @@ describe('defaultSyntax', () => {
         match: 'must',
       }]);
     });
+  });
+
+  test('exact match operator', () => {
+    const query = `name=john`;
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const clause = ast.getSimpleFieldClause('name', 'john');
+    expect(clause).toBeDefined();
+    expect(AST.Field.isInstance(clause)).toBe(true);
+    expect(AST.Match.isMustClause(clause)).toBe(true);
+    expect(AST.Operator.isEXACTClause(clause)).toBe(true);
+    expect(clause.field).toBe('name');
+    expect(clause.value).toBe('john');
+
+    const printedQuery = defaultSyntax.print(ast);
+    expect(printedQuery).toBe(query);
   });
 
   test('number range expressions', () => {
