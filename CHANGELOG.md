@@ -11,6 +11,7 @@
 **Bug fixes**
 
 - Added `toastLifeTimeMs` typescript definition for individual toasts in `EuiGlobalToastList` ([#1846](https://github.com/elastic/eui/pull/1846))
+- Added logic to prevent refocusing `EuiComboBox` input after container blur event ([#1863](https://github.com/elastic/eui/pull/1863))
 
 ## [`10.0.1`](https://github.com/elastic/eui/tree/v10.0.1)
 
