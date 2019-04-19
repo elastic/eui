@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
+
 **Bug fixes**
 
 - Fixed `EuiComboBox` to not pass its `inputRef` prop down to the DOM ([#1867](https://github.com/elastic/eui/pull/1867))
