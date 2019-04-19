@@ -5,6 +5,7 @@
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
 - Converted `EuiFormHelpText` to TS ([#1852](https://github.com/elastic/eui/pull/1852))
 - Added exact-text matching operator to `EuiSearchBar` / `Query` and allow empty phrases, e.g. `""` ([#1843](https://github.com/elastic/eui/pull/1843))
+- Allow forward-slash character in `EuiSearchBar` / `Query` search values ([#1843](https://github.com/elastic/eui/pull/1843))
 
 **Bug fixes**
 
