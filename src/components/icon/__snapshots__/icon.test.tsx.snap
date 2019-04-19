@@ -2963,6 +2963,37 @@ exports[`EuiIcon props type logoAppSearch is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoAzure is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M17.448 4l-9.414 8.01L0 26.157h7.243L17.448 4zM18.7 5.874l-4.018 11.11 7.704 9.497L7.441 29h24.494L18.7 5.874z"
+    fill="#0072C6"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type logoAzureMono is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M17.448 4l-9.414 8.01L0 26.157h7.243L17.448 4zM18.7 5.874l-4.018 11.11 7.704 9.497L7.441 29h24.494L18.7 5.874z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoBeats is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium"
@@ -4733,6 +4764,21 @@ exports[`EuiIcon props type monitoringApp is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M16.16 23.29l-4.1-7.17L10.62 19H0v-2h9.38l2.56-5.12 3.9 6.83 4.13-10.32L23.66 17H32v2h-9.66l-2.31-5.39z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type moon is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8.796 9.048c-1.552-2.238-1.199-5.323.61-8.1-3.47-.12-6.6 2.232-7.269 5.672-.742 3.82 1.83 7.533 5.749 8.294a7.226 7.226 0 0 0 7.526-3.218c-2.794.177-5.27-.711-6.616-2.648z"
   />
 </svg>
 `;
