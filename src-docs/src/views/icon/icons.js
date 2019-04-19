@@ -114,6 +114,7 @@ const iconTypes = [
   'menuRight',
   'minusInCircle',
   'minusInCircleFilled',
+  'moon',
   'node',
   'number',
   'offline',
