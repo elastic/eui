@@ -213,7 +213,7 @@ export class EuiComboBox extends Component {
     this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
   };
 
-  addCustomOption = () => {
+  addCustomOption = (isContainerBlur) => {
     const {
       options,
       selectedOptions,
@@ -226,7 +226,7 @@ export class EuiComboBox extends Component {
     } = this.state;
 
     if (this.doesSearchMatchOnlyOption()) {
-      this.onAddOption(matchingOptions[0]);
+      this.onAddOption(matchingOptions[0], isContainerBlur);
       return;
     }
 
@@ -294,7 +294,7 @@ export class EuiComboBox extends Component {
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        this.addCustomOption();
+        this.addCustomOption(true);
       }
     }
   }
@@ -367,7 +367,7 @@ export class EuiComboBox extends Component {
     this.onAddOption(option);
   }
 
-  onAddOption = (addedOption) => {
+  onAddOption = (addedOption, isContainerBlur) => {
     if (addedOption.disabled) {
       return;
     }
@@ -384,7 +384,9 @@ export class EuiComboBox extends Component {
     }
 
     this.clearActiveOption();
-    this.searchInput.focus();
+    if (!isContainerBlur) {
+      this.searchInput.focus();
+    }
   };
 
   onRemoveOption = (removedOption) => {
