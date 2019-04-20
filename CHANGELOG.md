@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.1.0`.
+
+## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
+
 - Added `tokenModule` and `tokenNamespace` icons to `EuiToken` ([#1839](https://github.com/elastic/eui/pull/1839))
 - Used `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
