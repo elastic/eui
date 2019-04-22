@@ -54,6 +54,9 @@ export {
 
 export {
   EuiColorPicker,
+  EuiColorPickerSwatch,
+  EuiHue,
+  EuiSaturation
 } from './color_picker';
 
 export {

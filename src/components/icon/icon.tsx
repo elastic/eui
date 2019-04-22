@@ -237,6 +237,7 @@ import starPlusFilled from './assets/starPlusFilled.svg';
 import stats from './assets/stats.svg';
 import stop from './assets/stop.svg';
 import stopFilled from './assets/stop_filled.svg';
+import stopSlash from './assets/stop_slash.svg';
 import storage from './assets/storage.svg';
 import string from './assets/string.svg';
 import submodule from './assets/submodule.svg';
@@ -540,6 +541,7 @@ const typeToIconMap = {
   stats,
   stop,
   stopFilled,
+  stopSlash,
   storage,
   string,
   submodule,

@@ -6,17 +6,21 @@ import {
   GuideSectionTypes,
 } from '../../components';
 
+import {
+  EuiCode,
+} from '../../../../src/components';
+
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
 const colorPickerHtml = renderToHtml(ColorPicker);
 
-import { ColorPickerLabelAndClear } from './color_picker_clear';
-const colorPickerClearSource = require('!!raw-loader!./color_picker_clear');
-const colorPickerClearHtml = renderToHtml(ColorPickerLabelAndClear);
+import { CustomSwatches } from './custom_swatches';
+const customSwatchesSource = require('!!raw-loader!./custom_swatches');
+const customSwatchesHtml = renderToHtml(CustomSwatches);
 
-import { ColorPickerNoColorLabel } from './color_picker_no_color_label';
-const colorPickerNoColorLabelSource = require('!!raw-loader!./color_picker_no_color_label');
-const colorPickerNoColorLabelHtml = renderToHtml(ColorPickerNoColorLabel);
+import { CustomButton } from './custom_button';
+const customButtonSource = require('!!raw-loader!./custom_button');
+const customButtonHtml = renderToHtml(CustomButton);
 
 export const ColorPickerExample = {
   title: 'Color Picker',
@@ -30,24 +34,37 @@ export const ColorPickerExample = {
     }],
     demo: <ColorPicker />,
   }, {
-    title: 'With label and reset link',
+    title: 'Custom color swatches',
     source: [{
       type: GuideSectionTypes.JS,
-      code: colorPickerClearSource,
+      code: customSwatchesSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: colorPickerClearHtml,
+      code: customSwatchesHtml,
     }],
-    demo: <ColorPickerLabelAndClear />,
+    text: (
+      <p>
+        By default the colors provided are the ten color blind safe visualization colors.
+        You can however pass in your own color set with the <EuiCode>swatches</EuiCode> prop.
+      </p>
+    ),
+    demo: <CustomSwatches />,
   }, {
-    title: 'Without a color label',
+    title: 'Custom button',
     source: [{
       type: GuideSectionTypes.JS,
-      code: colorPickerNoColorLabelSource,
+      code: customButtonSource,
     }, {
       type: GuideSectionTypes.HTML,
-      code: colorPickerNoColorLabelHtml,
+      code: customButtonHtml,
     }],
-    demo: <ColorPickerNoColorLabel />,
+    text: (
+      <p>
+        You can optionally use a custom button as the trigger for selection using
+        the <EuiCode>button</EuiCode> prop. Please remember to add accessibility to this
+        component, using proper button markup and aria labeling.
+      </p>
+    ),
+    demo: <CustomButton />,
   }],
 };

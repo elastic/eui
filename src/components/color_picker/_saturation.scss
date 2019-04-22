@@ -1,0 +1,28 @@
+$lightnessRange0: rgba(255, 255, 255, 1);
+$lightnessRange1: rgba(255, 255, 255, 0);
+$saturationRange0: rgba(0, 0, 0, 1);
+$saturationRange1: rgba(0, 0, 0, 0);
+
+.euiSaturation {
+  position: relative;
+  height: 300px;
+  width: 300px;
+
+  .euiSaturation__lightness,
+  .euiSaturation__saturation {
+    height: 100%;
+    width: 100%;
+  }
+
+  .euiSaturation__lightness {
+    background: linear-gradient(to right, $lightnessRange0, $lightnessRange1);
+  }
+
+  .euiSaturation__saturation {
+    background: linear-gradient(to top, $saturationRange0, $saturationRange1);
+  }
+
+  .euiSaturation__indicator {
+    position: absolute;
+  }
+}

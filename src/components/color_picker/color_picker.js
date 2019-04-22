@@ -1,14 +1,17 @@
 import React, {
   Component,
+  cloneElement,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ChromePicker } from 'react-color';
-
-import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
-import { EuiI18n } from '../i18n';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiFieldText } from '../form';
+import { EuiPanel } from '../panel';
+import { EuiOutsideClickDetector } from '../outside_click_detector';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 
 export class EuiColorPicker extends Component {
   constructor(props) {
@@ -16,82 +19,142 @@ export class EuiColorPicker extends Component {
     this.state = {
       showColorSelector: false,
     };
+
   }
 
   closeColorSelector = () => {
+    // To do proper label coloring if used as a child of EuiFormRow
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
+
     this.setState({ showColorSelector: false });
   };
 
-  toggleColorSelector = () => {
-    this.setState({ showColorSelector: !this.state.showColorSelector });
+  showColorSelector = () => {
+    // To do proper label coloring if used as a child of EuiFormRow
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
+
+    this.setState({ showColorSelector: true });
   };
 
-  handleColorSelection = (color) => {
-    this.props.onChange(color.hex);
+  handleColorSelection = (e) => {
+    this.props.onChange(e.target.value);
   };
 
-  getColorLabel() {
-    return (
-      <EuiI18n
-        token="euiColorPicker.transparentColor"
-        default="transparent"
-      >
-        {transparentColor => {
-          const { color } = this.props;
-          const colorValue = color === null ? `(${transparentColor})` : color;
-          return (
-            <EuiI18n
-              token="euiColorPicker.colorSelectionLabel"
-              default="Color selection is {colorValue}"
-              values={{ colorValue }}
-            >
-              {colorSelectionLabel => (
-                <div
-                  className="euiColorPicker__label"
-                  aria-label={colorSelectionLabel}
-                >
-                  { colorValue }
-                </div>
-              )}
-            </EuiI18n>
-          );
-        }}
-      </EuiI18n>
-    );
+  handleSwatchSelection(color) {
+    this.props.onChange(color);
+
+    // When the trigger is an input, focus the input so you can adjust
+    if (this.input) {
+      this.input.focus();
+    }
+
+    // When the trigger is a button it makes sense to close the popover
+    if (this.props.button) {
+      this.closeColorSelector();
+    }
   }
 
+  onKeyDown = event => {
+    if (event.keyCode === keyCodes.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.closeColorSelector();
+    }
+  };
+
   render() {
-    const { color, className, showColorLabel } = this.props;
+    const {
+      className,
+      color,
+      compressed,
+      disabled,
+      id,
+      isInvalid,
+      swatches,
+      button,
+    } = this.props;
     const classes = classNames('euiColorPicker', className);
-    return (
-      <EuiOutsideClickDetector
-        isDisabled={!this.state.showColorSelector}
-        onOutsideClick={this.closeColorSelector}
-      >
-        <div
-          className={classes}
-          data-test-subj={this.props['data-test-subj']}
+    const swatchOptions = swatches || VISUALIZATION_COLORS;
+
+    const swatchButtons = swatchOptions.map((swatch) => (
+      <EuiFlexItem grow={false} key={swatch}>
+        <EuiColorPickerSwatch
+          className="euiColorPicker__swatchSelect"
+          color={swatch}
+          onClick={this.handleSwatchSelection.bind(this, swatch)}
+          aria-label={`Select ${swatch} as the color`}
+        />
+      </EuiFlexItem>
+    ));
+
+    let swatchesPanel;
+    if (this.state.showColorSelector) {
+      swatchesPanel = (
+        <EuiPanel
+          className="euiColorPicker__panel"
+          paddingSize="s"
         >
-          <div
-            className="euiColorPicker__preview"
-            onClick={this.toggleColorSelector}
-          >
-            <EuiColorPickerSwatch color={color} aria-label={this.props['aria-label']} />
-            { showColorLabel ? this.getColorLabel() : null }
+          <EuiScreenReaderOnly>
+            <p aria-live="polite">
+              A popup with a range of selectable colors opened.
+              Tab forward to cycle through colors choices or press
+              escape to close this popup.
+            </p>
+          </EuiScreenReaderOnly>
+          <EuiFlexGroup wrap responsive={false} gutterSize="s">
+            {swatchButtons}
+          </EuiFlexGroup>
+        </EuiPanel>
+      );
+    }
+
+    const input = (
+      <div style={{ color: color }}>
+        <EuiFieldText
+          onFocus={this.showColorSelector}
+          value={color ? color.toUpperCase() : ''}
+          placeholder={!color ? 'Transparent' : null}
+          id={id}
+          onChange={this.handleColorSelection}
+          maxLength="7"
+          icon={color ? 'stopFilled' : 'stopSlash'}
+          inputRef={(input) => { this.input = input; }}
+          isInvalid={isInvalid}
+          compressed={compressed}
+          disabled={disabled}
+        />
+      </div>
+    );
+
+    let buttonOrInput;
+    if (button) {
+      buttonOrInput = (
+        cloneElement(button, {
+          onClick: this.state.showColorSelector ? this.closeColorSelector : this.showColorSelector,
+          id: id,
+          disabled: disabled
+        }
+        ));
+    } else {
+      buttonOrInput = input;
+    }
+
+    return (
+      <div
+        className={classes}
+        onKeyDown={this.onKeyDown}
+      >
+        <EuiOutsideClickDetector onOutsideClick={this.closeColorSelector}>
+          <div>
+            {buttonOrInput}
+            {swatchesPanel}
           </div>
-          {
-            this.state.showColorSelector ?
-              <div className="euiColorPickerPopUp" data-test-subj="colorPickerPopup">
-                <ChromePicker
-                  color={color ? color : '#ffffff'}
-                  disableAlpha={true}
-                  onChange={this.handleColorSelection}
-                />
-              </div>
-              : null
-          }
-        </div>
-      </EuiOutsideClickDetector>
+        </EuiOutsideClickDetector>
+      </div>
     );
   }
 }
@@ -100,10 +163,4 @@ EuiColorPicker.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  showColorLabel: PropTypes.bool,
-};
-
-EuiColorPicker.defaultProps = {
-  'aria-label': 'Select a color',
-  showColorLabel: true,
 };

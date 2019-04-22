@@ -3,7 +3,6 @@ import { CommonProps } from '../common';
 import { FunctionComponent, HTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * EuiOverlayMask type defs
    *
@@ -13,8 +12,9 @@ declare module '@elastic/eui' {
     onClick?: () => void;
   }
 
+  export type Others = CommonProps & HTMLAttributes<HTMLDivElement>;
+
   export const EuiOverlayMask: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiOverlayMaskProps
-    >;
-
+  >;
 }

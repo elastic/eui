@@ -1,44 +1,14 @@
+
 .euiColorPicker {
   position: relative;
-  cursor: pointer;
-}
+  max-width: 400px;
 
-.euiColorPicker__preview {
-  display: flex;
-  align-items: center;
-}
-
-.euiColorPicker__swatch {
-  width: $colorPickerSize;
-  height: $colorPickerSize;
-  border-radius: $euiBorderRadius;
-  box-shadow: inset 0 0 0 1px $euiShadowColor;
-  display: inline-block;
-}
-
-.euiColorPicker__emptySwatch {
-  svg {
+  .euiColorPicker__panel {
+    // max-width: 400px;
+    border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     position: absolute;
-    width: $colorPickerSize;
-    height: $colorPickerSize;
-  }
-
-  svg line {
-    stroke: $euiColorDanger;
-    stroke-width: 2;
+    top: 100%;
+    // 5 columns of swatches + margins + border
+    max-width: ($euiSizeL * 5) + ($euiSizeS * 6) + 2px;
   }
 }
-
-.euiColorPicker__label {
-  font-size: $euiFontSize;
-  line-height: $euiLineHeight;
-  margin-left: 10px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.euiColorPickerPopUp {
-  position: absolute;
-  z-index: 10;
-}
-
