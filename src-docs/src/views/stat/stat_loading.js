@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 
 import {
-  EuiButtonToggle,
+  EuiSwitch,
   EuiStat,
   EuiSpacer,
 } from '../../../../src/components';
@@ -30,7 +30,11 @@ export default class extends Component {
           isLoading={this.state.isLoading}
         />
         <EuiSpacer />
-        <EuiButtonToggle onChange={this.onToggleChange} label={`isLoading: ${this.state.isLoading}`} isSelected={this.state.isLoading} />
+        <EuiSwitch
+          label="Show as loading"
+          checked={this.state.isLoading}
+          onChange={this.onToggleChange}
+        />
       </div>
     );
   }

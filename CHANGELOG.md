@@ -2,6 +2,8 @@
 
 - Use `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
+- Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
+- Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
 
 **Bug fixes**
 

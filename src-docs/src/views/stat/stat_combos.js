@@ -8,7 +8,7 @@ import {
   EuiFlexGroup,
   EuiPanel,
   EuiIcon,
-  EuiButtonToggle,
+  EuiSwitch,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -82,7 +82,11 @@ export default class extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer />
-        <EuiButtonToggle onChange={this.onToggleChange} label={`isLoading: ${this.state.isLoading}`} isSelected={this.state.isLoading} />
+        <EuiSwitch
+          label="Show as loading"
+          checked={this.state.isLoading}
+          onChange={this.onToggleChange}
+        />
       </div>
     );
   }
