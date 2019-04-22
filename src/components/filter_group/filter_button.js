@@ -71,7 +71,7 @@ export const EuiFilterButton = ({
         </EuiNotificationBadge>
       }
 
-      <span className="euiFilterButton__textShift" data-text={dataText}>
+      <span className="euiFilterButton__textShift" data-text={dataText} title={dataText}>
         {children}
       </span>
     </Fragment>

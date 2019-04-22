@@ -6,7 +6,7 @@
   max-width: 100%;
   border-left: 1px solid $euiFormBorderColor;
   border-bottom: 1px solid $euiFormBorderColor;
-  box-shadow: #{$euiFormControlBoxShadow};
+  box-shadow: $euiFormControlBoxShadow;
   overflow-x: auto;
 
   > * {
