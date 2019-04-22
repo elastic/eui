@@ -31,7 +31,7 @@ export interface EuiStatProps {
    */
   description: string;
   /**
-   * Will hide the title with an animation until true
+   * Will hide the title with an animation until false
    */
   isLoading?: boolean;
   /**
