@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSearchFilters render - no filters 1`] = `<EuiFilterGroup />`;
+exports[`EuiSearchFilters render - no filters 1`] = `
+<EuiFilterGroup
+  fullWidth={false}
+/>
+`;
 
 exports[`EuiSearchFilters render - with filters 1`] = `
-<EuiFilterGroup>
+<EuiFilterGroup
+  fullWidth={false}
+>
   <IsFilter
     config={
       Object {

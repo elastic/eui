@@ -41,8 +41,8 @@ export default class extends Component {
 
   render() {
     return (
-      <EuiFilterGroup style={{ maxWidth: 200 }}>
-        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+      <EuiFilterGroup>
+        <EuiFilterButton  grow={false} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Single filter
         </EuiFilterButton>
         <EuiFilterButton noDivider grow={false} hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>

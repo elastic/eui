@@ -97,7 +97,7 @@ export default class extends Component {
     );
 
     return (
-      <EuiFilterGroup>
+      <EuiFilterGroup fullWidth={true}>
         <EuiFilterButton grow={false} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Filter
         </EuiFilterButton>

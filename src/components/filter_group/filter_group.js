@@ -5,9 +5,12 @@ import classNames from 'classnames';
 export const EuiFilterGroup = ({
   children,
   className,
+  fullWidth,
   ...rest,
 }) => {
-  const classes = classNames('euiFilterGroup', className);
+  const classes = classNames('euiFilterGroup', {
+    'euiFilterGroup--fullWidth': fullWidth,
+  }, className);
 
   return (
     <div
@@ -22,4 +25,9 @@ export const EuiFilterGroup = ({
 EuiFilterGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  fullWidth: PropTypes.bool,
+};
+
+EuiFilterGroup.defaultProps = {
+  fullWidth: false,
 };

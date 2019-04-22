@@ -28,6 +28,7 @@ export const EuiFilterButton = ({
   type,
   grow,
   noDivider,
+  withNext,
   textProps,
   ...rest
 }) => {
@@ -42,7 +43,7 @@ export const EuiFilterButton = ({
       'euiFilterButton-hasNotification': numFiltersDefined,
       'euiFilterButton--hasIcon': iconType,
       'euiFilterButton--noGrow': !grow,
-      'euiFilterButton--noDivider': noDivider,
+      'euiFilterButton--withNext': noDivider || withNext,
     },
     className,
   );
@@ -60,20 +61,20 @@ export const EuiFilterButton = ({
 
   const buttonContents = (
     <Fragment>
+      <span className="euiFilterButton__textShift" data-text={dataText} title={dataText}>
+        {children}
+      </span>
+
       {numFiltersDefined &&
         <EuiNotificationBadge
           className="euiFilterButton__notification"
           size="m"
-          aria-label={!hasActiveFilters ? 'Available filters' : 'Active filters'}
+          aria-label={`${numActiveFilters || numFilters} ${!hasActiveFilters ? 'available' : 'active'} filters`}
           color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
         >
           {numActiveFilters || numFilters}
         </EuiNotificationBadge>
       }
-
-      <span className="euiFilterButton__textShift" data-text={dataText} title={dataText}>
-        {children}
-      </span>
     </Fragment>
   );
 
@@ -131,6 +132,11 @@ EuiFilterButton.propTypes = {
    */
   grow: PropTypes.bool,
   /**
+   * Remove border after button, good for opposite filters
+   */
+  withNext: PropTypes.bool,
+  /**
+   * _DEPRECATED: use `withNext`_
    * Remove border after button, good for opposite filters
    */
   noDivider: PropTypes.bool,

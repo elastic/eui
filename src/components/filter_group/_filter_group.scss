@@ -2,11 +2,10 @@
 @import '../form/mixins';
 
 .euiFilterGroup {
-  display: flex;
+  display: inline-flex;
   max-width: 100%;
-  border-left: 1px solid $euiFormBorderColor;
-  border-bottom: 1px solid $euiFormBorderColor;
-  box-shadow: $euiFormControlBoxShadow;
+  border-right: 1px solid $euiFormBorderColor;
+  box-shadow: 0 1px 2px -1px transparentize($euiShadowColor, .8), 0 3px 3px -2px transparentize($euiShadowColor, .8);
   overflow-x: auto;
 
   > * {
@@ -36,15 +35,8 @@
   }
 }
 
-.euiFilterButton {
-  // Match just the regular drop shadow of inputs
-  @include euiFormControlDefaultShadow($borderOnly: true);
-  @include euiFormControlSize;
-  width: auto;
-  max-width: none;
-  box-shadow: none;
-  border-right: 1px solid $euiFormBorderColor;
-  border-top: 1px solid $euiFormBorderColor;
+.euiFilterGroup--fullWidth {
+  display: flex;
 }
 
 // A fixed width is required in IE11 because of the shift in widths that can be caused
@@ -56,5 +48,17 @@
 @include euiBreakpoint('xs', 's') {
   .euiFilterGroup {
     flex-wrap: wrap;
+  }
+}
+
+@include euiBreakpoint('xs') {
+  // Force all tiny screens to take up the entire width
+  .euiFilterGroup {
+    display: flex;
+
+    .euiFilterButton {
+      // sass-lint:disable-block no-important
+      flex-grow: 1 !important;
+    }
   }
 }
