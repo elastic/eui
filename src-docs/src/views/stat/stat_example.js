@@ -133,7 +133,7 @@ export const StatExample = {
     }],
     text: (
       <p>
-        If you apply the <EuiCode>isLoading</EuiCode> prop, the title will animate.
+        If you apply the <EuiCode>isLoading</EuiCode> prop, the title will indicate the loading status by swapping the provided title with two flashing dashes.
       </p>
     ),
     demo: <StatLoading />,
