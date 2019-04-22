@@ -11,7 +11,7 @@
   .euiStat__title {
     color: $euiColorFullShade;
 
-    &.euiStat__title-isLoading {
+    &-isLoading {
       animation: euiStatPulse 1.5s infinite ease-in-out;
     }
 
@@ -41,10 +41,10 @@
     text-align: right;
     align-items: flex-end;
   }
+}
 
-  @keyframes euiStatPulse {
-    0% { opacity: 1; }
-    50% { opacity: .25; }
-    100% { opacity: 1; }
-  }
+@keyframes euiStatPulse {
+  0% { opacity: 1; }
+  50% { opacity: .25; }
+  100% { opacity: 1; }
 }
