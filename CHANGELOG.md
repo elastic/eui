@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.1.0`.
+**Bug fixes**
+
+- Fixed `EuiComboBox` to not pass its `inputRef` prop down to the DOM ([#1867](https://github.com/elastic/eui/pull/1867))
 
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
