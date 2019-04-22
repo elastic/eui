@@ -14,6 +14,9 @@ import Axes from './axes';
 const axesSource = require('!!raw-loader!./axes');
 const axesHtml = renderToHtml(Axes);
 
+import Grid from './grid';
+import Crosshair from './crosshair';
+
 export const ElasticChartsExtrasExample = {
   title: 'Extras',
   sections: [{
@@ -31,5 +34,24 @@ export const ElasticChartsExtrasExample = {
       </p>
     ),
     demo: <Axes />,
-  }],
+  },
+  {
+    title: 'Grid',
+    text: (
+      <p>
+        Description needed: how to use the <EuiCode>Grid</EuiCode> component.
+      </p>
+    ),
+    demo: <Grid />,
+  },
+  {
+    title: 'Crosshair',
+    text: (
+      <p>
+        Description needed: how to use the <EuiCode>Crosshair</EuiCode> component.
+      </p>
+    ),
+    demo: <Crosshair />,
+  },
+  ],
 };

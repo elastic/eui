@@ -5,6 +5,7 @@ import {
   getSpecId,
   Settings,
   CurveType,
+  ScaleType,
 } from '@elastic/charts';
 import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
 import { DATA, SETTINGS } from './data';
@@ -53,6 +54,8 @@ export default () => (
               xAccessor="x"
               yAccessors={['y']}
               curve={CurveType.CURVE_CATMULL_ROM}
+              xScaleType={ScaleType.Linear}
+              yScaleType={ScaleType.Linear}
             />
           </Chart>
         }
@@ -68,6 +71,8 @@ export default () => (
     xAccessor="x"
     yAccessors={['y']}
     curve={CurveType.CURVE_CATMULL_ROM}
+    xScaleType={ScaleType.Linear}
+    yScaleType={ScaleType.Linear}
   />
 </Chart>`)}
       />
@@ -86,6 +91,8 @@ export default () => (
               yAccessors={['y']}
               splitSeriesAccessors={['g']}
               curve={CurveType.CURVE_CATMULL_ROM}
+              xScaleType={ScaleType.Linear}
+              yScaleType={ScaleType.Linear}
             />
           </Chart>
         }
@@ -102,6 +109,8 @@ export default () => (
     yAccessors={['y']}
     splitSeriesAccessors={['g']}
     curve={CurveType.CURVE_CATMULL_ROM}
+    xScaleType={ScaleType.Linear}
+    yScaleType={ScaleType.Linear}
   />
 </Chart>`)}
       />
@@ -121,6 +130,8 @@ export default () => (
               stackAccessors={['x']}
               splitSeriesAccessors={['g']}
               curve={CurveType.CURVE_CATMULL_ROM}
+              xScaleType={ScaleType.Linear}
+              yScaleType={ScaleType.Linear}
             />
           </Chart>
         }
@@ -138,6 +149,8 @@ export default () => (
     stackAccessors={['x']}
     splitSeriesAccessors={['g']}
     curve={CurveType.CURVE_CATMULL_ROM}
+    xScaleType={ScaleType.Linear}
+    yScaleType={ScaleType.Linear}
   />
 </Chart>`)}
       />

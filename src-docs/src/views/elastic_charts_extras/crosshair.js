@@ -2,15 +2,17 @@ import React from 'react';
 import {
   Axis,
   Chart,
-  AreaSeries,
+  BarSeries,
   getSpecId,
   Settings,
   getAxisId,
   Position,
   ScaleType,
+  TooltipType,
+  LineSeries,
 } from '@elastic/charts';
 import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
-import { SETTINGS } from './data';
+import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from './data';
 
 import { EuiFlexGrid, EuiFlexItem, EuiFlexGroup, EuiLink, EuiButton, EuiCard, EuiCopy } from '../../../../src/components';
 
@@ -46,16 +48,16 @@ const lineDataSeriesColorValues = {
   colorValues: [],
   specId: getSpecId('hidden'),
 };
-lineCustomSeriesColors.set(lineDataSeriesColorValues, '#00000000');
+lineCustomSeriesColors.set(lineDataSeriesColorValues, '#D3DAE600');
 
 export default () => (
-  <EuiFlexGrid columns={3}>
+  <EuiFlexGrid columns={3} className="euiGuide__chartsPageCrosshairSection">
     <EuiFlexItem>
       <EuiCard
         textAlign="left"
         icon={
           <Chart renderer="canvas" size={[undefined, 140]}>
-            <Settings {...SETTINGS} />
+            <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs} />
             <Axis
               id={getAxisId('bottom-axis')}
               position={Position.Bottom}
@@ -63,8 +65,10 @@ export default () => (
             <Axis
               id={getAxisId('left-axis')}
               position={Position.Left}
+              showGridLines
+              gridLineStyle={gridHorizontalSettings}
             />
-            <AreaSeries
+            <BarSeries
               id={getSpecId('hidden')}
               xScaleType={ScaleType.Linear}
               yScaleType={ScaleType.Linear}
@@ -75,9 +79,9 @@ export default () => (
             />
           </Chart>
         }
-        title="Axes ticks"
+        title="Lines"
         description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Axis&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybook%2Fstories%2Fstories-panel',
+        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
           `<Chart renderer="canvas" size={[undefined, 140]}>
   <Settings {...SETTINGS} />
   <Axis
@@ -87,119 +91,126 @@ export default () => (
   <Axis
     id={getAxisId('left-axis')}
     position={Position.Left}
+    showGridLines
+    gridLineStyle={gridHorizontalSettings}
   />
-  <AreaSeries
-    data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
-    xScaleType={ScaleType.Linear}
-    yScaleType={ScaleType.Linear}
-  />
-</Chart>`)}
-      />
-    </EuiFlexItem>
-    <EuiFlexItem>
-      <EuiCard
-        textAlign="left"
-        icon={
-          <Chart renderer="canvas" size={[undefined, 140]}>
-            <Settings {...SETTINGS}/>
-            <Axis
-              id={getAxisId('bottom-axis')}
-              position={Position.Bottom}
-              title={'First Quarter 2019'}
-            />
-            <Axis
-              id={getAxisId('left-axis')}
-              position={Position.Left}
-              title={'Rain in inches'}
-              domain={{ max: 14 }}
-            />
-            <AreaSeries
-              id={getSpecId('hidden')}
-              xScaleType={ScaleType.Ordinal}
-              yScaleType={ScaleType.Linear}
-              data={[{ x: 'JAN', y: 2 }, { x: 'FEB', y: 7 }, { x: 'MAR', y: 3 }, { x: 'APR', y: 6 }]}
-              xAccessor="x"
-              yAccessors={['y']}
-              customSeriesColors={lineCustomSeriesColors}
-            />
-          </Chart>
-        }
-        title="Axes labels and values"
-        description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Axis&selectedStory=customizing%20domain%20limits%20%5Bonly%20one%20bound%20defined%5D&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybook%2Fstories%2Fstories-panel',
-          `<Chart renderer="canvas" size={[undefined, 140]}>
-  <Settings {...SETTINGS} xDomain={[0, 1, 2, 3]} />
-  <Axis
-    id={getAxisId('bottom-axis')}
-    position={Position.Bottom}
-    title={'First Quarter 2019'}
-  />
-  <Axis
-    id={getAxisId('left-axis')}
-    position={Position.Left}
-    title={'Rain in inches'}
-    domain={{ max: 14 }}
-  />
-  <AreaSeries
-    xScaleType={ScaleType.Ordinal}
-    yScaleType={ScaleType.Linear}
-    data={[{ x: 'JAN', y: 2 }, { x: 'FEB', y: 7 }, { x: 'MAR', y: 3 }, { x: 'APR', y: 6 }]}
-  />
-</Chart>`)}
-      />
-    </EuiFlexItem>
-    <EuiFlexItem>
-      <EuiCard
-        textAlign="left"
-        icon={
-          <Chart renderer="canvas" size={[undefined, 140]}>
-            <Settings {...SETTINGS}/>
-            <Axis
-              id={getAxisId('bottom-axis')}
-              position={Position.Bottom}
-              tickFormat={d => `${d}k mb/s`}
-            />
-            <Axis
-              id={getAxisId('left-axis')}
-              position={Position.Left}
-              tickFormat={d => `${d}1 GB`}
-              domain={[0, 1, 2, 3]}
-            />
-            <AreaSeries
-              id={getSpecId('hidden')}
-              xScaleType={ScaleType.Linear}
-              yScaleType={ScaleType.Linear}
-              data={[{ x: 1, y: 2 }, { x: 2, y: 3 }, { x: 3, y: 2 }, { x: 4, y: 1 }]}
-              xAccessor="x"
-              yAccessors={['y']}
-              customSeriesColors={lineCustomSeriesColors}
-            />
-          </Chart>
-        }
-        title="Axes format"
-        description="Example of a card's description. Stick to one or two sentences."
-        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Area%20Chart&selectedStory=stacked%20with%20separated%20specs&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
-          `<Chart renderer="canvas" size={[undefined, 140]}>
-  <Settings {...SETTINGS} />
-  <Axis
-    id={getAxisId('bottom-axis')}
-    position={Position.Bottom}
-    tickFormat={d => \`\${d}k mb/s\`}
-  />
-  <Axis
-    id={getAxisId('left-axis')}
-    position={Position.Left}
-    tickFormat={d => \`\${d}1 GB\`}
-    domain={[0, 1, 2, 3]}
-  />
-  <AreaSeries
+  <BarSeries
     id={getSpecId('hidden')}
     xScaleType={ScaleType.Linear}
     yScaleType={ScaleType.Linear}
-    data={[{ x: 1, y: 2 }, { x: 2, y: 3 }, { x: 3, y: 2 }, { x: 4, y: 1 }]}
+    data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
     xAccessor="x"
     yAccessors={['y']}
-    customSeriesColors={lineCustomSeriesColors}
+  />
+</Chart>`)}
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        textAlign="left"
+        icon={
+          <Chart renderer="canvas" size={[undefined, 140]}>
+            <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs}/>
+            <Axis
+              id={getAxisId('bottom-axis')}
+              position={Position.Bottom}
+              showGridLines
+              gridLineStyle={gridVerticalSettings}
+            />
+            <Axis
+              id={getAxisId('left-axis')}
+              position={Position.Left}
+            />
+            <LineSeries
+              id={getSpecId('hidden')}
+              xScaleType={ScaleType.Linear}
+              yScaleType={ScaleType.Linear}
+              data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+              xAccessor="x"
+              yAccessors={['y']}
+              customSeriesColors={lineCustomSeriesColors}
+            />
+          </Chart>
+        }
+        title="Vertical grid"
+        description="Example of a card's description. Stick to one or two sentences."
+        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+          `<Chart renderer="canvas" size={[undefined, 140]}>
+  <Settings {...SETTINGS} />
+  <Axis
+    id={getAxisId('bottom-axis')}
+    position={Position.Bottom}
+    showGridLines
+    gridLineStyle={gridVerticalSettings}
+  />
+  <Axis
+    id={getAxisId('left-axis')}
+    position={Position.Left}
+  />
+  <BarSeries
+    id={getSpecId('hidden')}
+    xScaleType={ScaleType.Linear}
+    yScaleType={ScaleType.Linear}
+    data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+    xAccessor="x"
+    yAccessors={['y']}
+  />
+</Chart>`)}
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        textAlign="left"
+        icon={
+          <Chart renderer="canvas" size={[undefined, 140]}>
+            <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs}/>
+            <Axis
+              id={getAxisId('bottom-axis')}
+              position={Position.Bottom}
+              showGridLines
+              gridLineStyle={gridVerticalSettings}
+            />
+            <Axis
+              id={getAxisId('left-axis')}
+              position={Position.Left}
+              showGridLines
+              gridLineStyle={gridHorizontalSettings}
+            />
+            <BarSeries
+              id={getSpecId('hidden')}
+              xScaleType={ScaleType.Linear}
+              yScaleType={ScaleType.Linear}
+              data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+              xAccessor="x"
+              yAccessors={['y']}
+              customSeriesColors={lineCustomSeriesColors}
+            />
+          </Chart>
+        }
+        title="Both"
+        description="Example of a card's description. Stick to one or two sentences."
+        footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+          `<Chart renderer="canvas" size={[undefined, 140]}>
+  <Settings {...SETTINGS} />
+  <Axis
+    id={getAxisId('bottom-axis')}
+    position={Position.Bottom}
+    showGridLines
+    gridLineStyle={gridVerticalSettings}
+  />
+  <Axis
+    id={getAxisId('left-axis')}
+    position={Position.Left}
+    showGridLines
+    gridLineStyle={gridHorizontalSettings}
+  />
+  <BarSeries
+    id={getSpecId('hidden')}
+    xScaleType={ScaleType.Linear}
+    yScaleType={ScaleType.Linear}
+    data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+    xAccessor="x"
+    yAccessors={['y']}
   />
 </Chart>`)}
       />

@@ -11,6 +11,22 @@ export const DATA = [
   { x: 0, y: 2, g: 'data 1' }, { x: 1, y: 7, g: 'data 1' }, { x: 2, y: 3, g: 'data 1' }, { x: 3, y: 6, g: 'data 1' },
   { x: 0, y: 1, g: 'data 2' }, { x: 1, y: 3, g: 'data 2' }, { x: 2, y: 4.5, g: 'data 2' }, { x: 3, y: 2, g: 'data 2' }];
 
+const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
+
+export const gridHorizontalSettings = {
+  stroke: '#EFF1F4',
+  strokeWidth: 1,
+  opacity: 1,
+  dash: [0, 0],
+};
+
+export const gridVerticalSettings = {
+  stroke: '#EFF1F4',
+  strokeWidth: 1,
+  opacity: 1,
+  dash: [4, 4],
+};
 /**
  * Temporary placement for EUI specific theming
  */
@@ -75,26 +91,26 @@ export const EUI_LIGHT_THEME = {
   },
   axes: {
     axisTitleStyle: {
-      fontSize: 12,
+      fontSize: 10,
       fontStyle: 'bold',
-      fontFamily: `'Open Sans', Helvetica, Arial, sans-serif`,
+      fontFamily: fontFamily,
       padding: 5,
-      fill: 'gray',
+      fill: '#69707D',
     },
     axisLineStyle: {
-      stroke: 'gray',
+      stroke: '#EFF1F4',
       strokeWidth: 1,
     },
     tickLabelStyle: {
-      fontSize: 10,
-      fontFamily: `'Open Sans', Helvetica, Arial, sans-serif`,
+      fontSize: 8,
+      fontFamily: fontFamily,
       fontStyle: 'normal',
-      fill: 'gray',
+      fill: '#69707D',
       padding: 0,
     },
     tickLineStyle: {
-      stroke: 'gray',
-      strokeWidth: 1,
+      stroke: '#00000000',
+      strokeWidth: 0,
     },
   },
   colors: {
@@ -107,13 +123,13 @@ export const EUI_LIGHT_THEME = {
   },
   crosshair: {
     band: {
-      fill: 'lightgray',
+      fill: '#FAFBFD',
       visible: true,
     },
     line: {
-      stroke: 'gray',
+      stroke: '#69707D',
       strokeWidth: 1,
-      dash: [5, 5],
+      dash: [4, 4],
       visible: true,
     },
   },
