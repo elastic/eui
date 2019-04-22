@@ -575,6 +575,7 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
+      inputRef, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
       isClearable,
