@@ -5,6 +5,8 @@ import { requiredProps } from '../../test';
 import { EuiStat, COLORS, ALIGNMENTS } from './stat';
 import { TITLE_SIZES } from '../title/title';
 
+jest.mock(`./../form/form_row/make_id`, () => () => `generated-id`);
+
 describe('EuiStat', () => {
   test('is rendered', () => {
     const component = render(

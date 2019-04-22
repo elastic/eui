@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiI18n } from '../i18n';
+import makeId from '../form/form_row/make_id';
 
 const colorToClassNameMap = {
   default: null,
@@ -73,6 +74,8 @@ export const EuiStat: FunctionComponent<
     className
   );
 
+  const ariaId = makeId();
+
   const titleClasses = classNames(
     'euiStat__title',
     colorToClassNameMap[titleColor],
@@ -83,7 +86,7 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      <p>{description}</p>
+      <p id={ariaId}>{description}</p>
     </EuiText>
   );
 
@@ -103,7 +106,7 @@ export const EuiStat: FunctionComponent<
 
   const titleDisplay = (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p>{titleText}</p>
+      <p aria-describedby={ariaId}>{titleText}</p>
     </EuiTitle>
   );
 

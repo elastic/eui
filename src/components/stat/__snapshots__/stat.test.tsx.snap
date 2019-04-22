@@ -9,11 +9,14 @@ exports[`EuiStat is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -30,11 +33,14 @@ exports[`EuiStat props accent is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--accent"
   >
     title
@@ -51,11 +57,14 @@ exports[`EuiStat props center is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -72,11 +81,14 @@ exports[`EuiStat props danger is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--danger"
   >
     title
@@ -93,11 +105,14 @@ exports[`EuiStat props default is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -114,11 +129,14 @@ exports[`EuiStat props l is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -135,11 +153,14 @@ exports[`EuiStat props left is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -156,11 +177,14 @@ exports[`EuiStat props loading is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title-isLoading"
   />
   <p
@@ -181,11 +205,14 @@ exports[`EuiStat props m is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--medium euiStat__title"
   >
     title
@@ -202,11 +229,14 @@ exports[`EuiStat props primary is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--primary"
   >
     title
@@ -223,11 +253,14 @@ exports[`EuiStat props right is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -244,11 +277,14 @@ exports[`EuiStat props s is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--small euiStat__title"
   >
     title
@@ -265,11 +301,14 @@ exports[`EuiStat props secondary is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--secondary"
   >
     title
@@ -286,11 +325,14 @@ exports[`EuiStat props subdued is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
   >
     title
@@ -305,6 +347,7 @@ exports[`EuiStat props title and description are reversed 1`] = `
   data-test-subj="test subject string"
 >
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -312,7 +355,9 @@ exports[`EuiStat props title and description are reversed 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
@@ -328,11 +373,14 @@ exports[`EuiStat props xs is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--xsmall euiStat__title"
   >
     title
@@ -349,11 +397,14 @@ exports[`EuiStat props xxs is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--xxsmall euiStat__title"
   >
     title
@@ -370,11 +421,14 @@ exports[`EuiStat props xxxs is rendered 1`] = `
   <div
     class="euiText euiText--small euiStat__description"
   >
-    <p>
+    <p
+      id="generated-id"
+    >
       description
     </p>
   </div>
   <p
+    aria-describedby="generated-id"
     class="euiTitle euiTitle--xxxsmall euiStat__title"
   >
     title
