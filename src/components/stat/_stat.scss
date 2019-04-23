@@ -19,6 +19,10 @@
     }
   }
 
+  .euiStat__title-isLoading {
+    animation: euiStatPulse 1.5s infinite ease-in-out;
+  }
+
   .euiStat__description {
     color: map-get($titleColors, dark);
   }
@@ -37,4 +41,10 @@
     text-align: right;
     align-items: flex-end;
   }
+}
+
+@keyframes euiStatPulse {
+  0% { opacity: 1; }
+  50% { opacity: .25; }
+  100% { opacity: 1; }
 }
