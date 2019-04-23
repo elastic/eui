@@ -1,5 +1,35 @@
 [
   {
+    "version": "9.8.0",
+    "changes": [
+      {
+        "token": "euiSelectable.loadingOptions",
+        "changeType": "added",
+        "value": "Loading options"
+      },
+      {
+        "token": "euiSelectable.noMatchingOptions",
+        "changeType": "added",
+        "value": "{searchValue} doesn't match any options"
+      },
+      {
+        "token": "euiSelectable.noAvailableOptions",
+        "changeType": "added",
+        "value": "No options available"
+      }
+    ]
+  },
+  {
+    "version": "9.4.1",
+    "changes": [
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "There is a new menu opening with page level controls at the end of the document."
+      }
+    ]
+  },
+  {
     "version": "9.0.0",
     "changes": [
       {

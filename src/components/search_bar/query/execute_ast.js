@@ -1,12 +1,13 @@
 import { get } from '../../../services/objects';
 import { isString, isArray } from '../../../services/predicate';
-import { eq, gt, gte, lt, lte } from './operators';
+import { eq, exact, gt, gte, lt, lte } from './operators';
 import { AST } from './ast';
 
 const EXPLAIN_FIELD = '__explain';
 
 const nameToOperatorMap = {
   [AST.Operator.EQ]: eq,
+  [AST.Operator.EXACT]: exact,
   [AST.Operator.GT]: gt,
   [AST.Operator.GTE]: gte,
   [AST.Operator.LT]: lt,
