@@ -150,7 +150,9 @@ exports[`EuiI18n reading values from context mappingFunc calls the mapping funct
     default="This is the basic string."
     token="test1"
   >
-    <div>
+    <div
+      aria-label="THIS IS THE BASIC STRING."
+    >
       THIS IS THE BASIC STRING.
     </div>
   </EuiI18n>
