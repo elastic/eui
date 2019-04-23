@@ -14,7 +14,7 @@ export class EuiDelayRender extends Component<
   EuiDelayRenderState
 > {
   static defaultProps = {
-    delay: 2000,
+    delay: 500,
   };
 
   private delayID: number | undefined;
