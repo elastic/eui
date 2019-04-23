@@ -21,6 +21,10 @@ declare module '@elastic/eui' {
     isDisabled?: boolean;
     type?: string;
     grow?: boolean;
+    withNext?: boolean;
+    /**
+     * _DEPRECATED use `withNext`_
+     */
     noDivider?: boolean;
   }
   export const EuiFilterButton: FunctionComponent<EuiButtonEmptyProps & EuiFilterButtonProps>;

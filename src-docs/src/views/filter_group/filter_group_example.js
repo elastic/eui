@@ -139,7 +139,7 @@ export const FilterGroupExample = {
   <EuiFilterButton>
     Single filter
   </EuiFilterButton>
-  <EuiFilterButton grow={false} noDivider>
+  <EuiFilterButton grow={false} withNext>
     On
   </EuiFilterButton>
   <EuiFilterButton grow={false}>

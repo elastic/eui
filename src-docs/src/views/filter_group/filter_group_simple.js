@@ -45,7 +45,7 @@ export default class extends Component {
         <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Single filter
         </EuiFilterButton>
-        <EuiFilterButton noDivider hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+        <EuiFilterButton withNext hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
           On
         </EuiFilterButton>
         <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
