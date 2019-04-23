@@ -40,7 +40,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 }
 
 .guidePageContent {
-  width: calc(100vw - 240px);
+  flex: 1 1 auto;
   padding: $euiSize $euiSizeXL;
   min-height: 100vh;
   background-color: $euiColorEmptyShade;
