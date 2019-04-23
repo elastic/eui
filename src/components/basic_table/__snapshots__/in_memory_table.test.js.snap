@@ -140,7 +140,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 role="status"
               >
                 <EuiDelayRender
-                  delay={2000}
+                  delay={500}
                 />
               </caption>
             </EuiScreenReaderOnly>
