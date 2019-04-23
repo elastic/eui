@@ -32,12 +32,7 @@ describe('EuiStat', () => {
 
     test('title and description are reversed', () => {
       const component = render(
-        <EuiStat
-          title="title"
-          description="description"
-          reverse
-          {...requiredProps}
-        />
+        <EuiStat title="title" description="description" reverse />
       );
 
       expect(component).toMatchSnapshot();
@@ -50,7 +45,6 @@ describe('EuiStat', () => {
             title="title"
             description="description"
             textAlign={alignment}
-            {...requiredProps}
           />
         );
 
@@ -61,12 +55,7 @@ describe('EuiStat', () => {
     COLORS.forEach(color => {
       test(`${color} is rendered`, () => {
         const component = render(
-          <EuiStat
-            title="title"
-            description="description"
-            titleColor={color}
-            {...requiredProps}
-          />
+          <EuiStat title="title" description="description" titleColor={color} />
         );
 
         expect(component).toMatchSnapshot();
@@ -76,12 +65,7 @@ describe('EuiStat', () => {
     TITLE_SIZES.forEach(size => {
       test(`${size} is rendered`, () => {
         const component = render(
-          <EuiStat
-            title="title"
-            description="description"
-            titleSize={size}
-            {...requiredProps}
-          />
+          <EuiStat title="title" description="description" titleSize={size} />
         );
 
         expect(component).toMatchSnapshot();

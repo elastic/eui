@@ -1,17 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
-- Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
-
 **Bug fixes**
 
 - Fixed `EuiComboBox` to not pass its `inputRef` prop down to the DOM ([#1867](https://github.com/elastic/eui/pull/1867))
+- Fixed `euiBreakpoint()` warning to give accurate feedback ([#1874](https://github.com/elastic/eui/pull/1874))
+- Fixed type definitions around `EuiI18n`'s `default` prop to better support use cases ([#1861](https://github.com/elastic/eui/pull/1861))
+- Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
+- Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
 
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
 - Added `tokenModule` and `tokenNamespace` icons to `EuiToken` ([#1839](https://github.com/elastic/eui/pull/1839))
 - Used `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
+- Converted `EuiFormHelpText` to TS ([#1852](https://github.com/elastic/eui/pull/1852))
 - Added `onSearch` to `EuiFieldSearchProps`'s type defintion ([#1627](https://github.com/elastic/eui/pull/1627))
 - Added `moon` glyph to `EuiIcon` ([#1859](https://github.com/elastic/eui/pull/1859))
 - Added `logoAzure` and `logoAzureMono` logos to `EuiIcon` ([#1859](https://github.com/elastic/eui/pull/1859))

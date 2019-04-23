@@ -106,7 +106,7 @@ export const EuiStat: FunctionComponent<
 
   const titleDisplay = (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p aria-describedby={ariaId}>{titleText}</p>
+      <p aria-labelledby={ariaId}>{titleText}</p>
     </EuiTitle>
   );
 
