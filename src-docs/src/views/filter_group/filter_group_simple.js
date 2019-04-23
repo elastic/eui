@@ -42,13 +42,13 @@ export default class extends Component {
   render() {
     return (
       <EuiFilterGroup>
-        <EuiFilterButton  grow={false} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
           Single filter
         </EuiFilterButton>
-        <EuiFilterButton noDivider grow={false} hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+        <EuiFilterButton noDivider hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
           On
         </EuiFilterButton>
-        <EuiFilterButton grow={false} hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+        <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
           Off
         </EuiFilterButton>
       </EuiFilterGroup>

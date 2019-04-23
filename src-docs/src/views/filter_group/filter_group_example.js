@@ -38,10 +38,9 @@ export const FilterGroupExample = {
       <p>
         Use <EuiCode>EuiFilterGroup</EuiCode> to wrap <EuiCode>EuiFilterButton</EuiCode>s
         into a container that looks nice against form fields (like search). These buttons
-        are used in two different patterns. The first, as a simple on/off pattern to show
-        whether a setting is on. The second is as delivery for a popover for filtering an
-        array of passed items. This mostly uses standard popover mechanics, but the
-        component <EuiCode>EuiFilterSelectItem</EuiCode> is used for the items themselves.
+        are used in two different patterns. The most simplest use is that of an on/off pattern to show
+        whether a filter is on. Add the prop <EuiCode>withNext</EuiCode> to remove the border between it
+        and the next EuiFilterButton to visually group similar or opposite style filters.
       </p>
     ),
     props: { EuiFilterGroup, EuiFilterButton },
