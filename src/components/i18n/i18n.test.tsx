@@ -67,7 +67,7 @@ describe('EuiI18n', () => {
         );
         const component = mount(
           <EuiI18n token="test" default={renderCallback} values={values}>
-            {(result: ReactChild) => `Here's something neat: ${result}`}
+            {(result: string) => `Here's something neat: ${result}`}
           </EuiI18n>
         );
         expect(component).toMatchSnapshot();
@@ -226,7 +226,7 @@ describe('EuiI18n', () => {
               mappingFunc: (value: string) => value.toUpperCase(),
             }}>
             <EuiI18n token="test1" default="This is the basic string.">
-              {(one: ReactChild) => <div>{one}</div>}
+              {(one: string) => <div aria-label={one}>{one}</div>}
             </EuiI18n>
           </EuiContext>
         );
