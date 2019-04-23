@@ -6,14 +6,17 @@
 import { Component, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, keysOf, Omit } from '../common';
 
 export interface EuiOverlayMaskProps {
   onClick?: () => void;
 }
 
 export type Props = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
+  Omit<
+    Partial<Record<keyof HTMLAttributes<HTMLDivElement>, string>>,
+    keyof EuiOverlayMaskProps
+  > &
   EuiOverlayMaskProps;
 
 export class EuiOverlayMask extends Component<Props> {
@@ -29,16 +32,13 @@ export class EuiOverlayMask extends Component<Props> {
     if (onClick) {
       this.overlayMaskNode.addEventListener('click', onClick);
     }
-    interface RestType {
-      [key: string]: any;
-    }
-    Object.keys(rest).forEach((key: string) => {
-      if (typeof (rest as RestType)[key] !== 'string') {
+    keysOf(rest).forEach(key => {
+      if (typeof rest[key] !== 'string') {
         throw new Error(
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
         );
       }
-      this.overlayMaskNode!.setAttribute(key, (rest as RestType)[key]);
+      this.overlayMaskNode!.setAttribute(key, rest[key]!);
     });
 
     document.body.appendChild(this.overlayMaskNode);
