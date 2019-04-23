@@ -11,16 +11,16 @@
   .euiStat__title {
     color: $euiColorFullShade;
 
-    &-isLoading {
-      animation: euiStatPulse 1.5s infinite ease-in-out;
-    }
-
     // Create color classes based upon the map.
     @each $name, $color in $titleColors {
       &--#{$name} {
         color: $color;
       }
     }
+  }
+
+  .euiStat__title-isLoading {
+    animation: euiStatPulse 1.5s infinite ease-in-out;
   }
 
   .euiStat__description {
