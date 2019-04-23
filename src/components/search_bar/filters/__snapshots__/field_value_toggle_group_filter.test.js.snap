@@ -3,6 +3,7 @@
 exports[`TermToggleGroupFilter render - active 1`] = `
 Array [
   <EuiFilterButton
+    aria-pressed="true"
     color="text"
     grow={false}
     hasActiveFilters={true}
@@ -15,6 +16,7 @@ Array [
     Kibana
   </EuiFilterButton>,
   <EuiFilterButton
+    aria-pressed="false"
     color="text"
     grow={false}
     hasActiveFilters={false}
@@ -32,6 +34,7 @@ Array [
 exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
 Array [
   <EuiFilterButton
+    aria-pressed="true"
     color="text"
     grow={false}
     hasActiveFilters={true}
@@ -44,6 +47,7 @@ Array [
     -Kibana
   </EuiFilterButton>,
   <EuiFilterButton
+    aria-pressed="false"
     color="text"
     grow={false}
     hasActiveFilters={false}
@@ -61,6 +65,7 @@ Array [
 exports[`TermToggleGroupFilter render - active negated 1`] = `
 Array [
   <EuiFilterButton
+    aria-pressed="true"
     color="text"
     grow={false}
     hasActiveFilters={true}
@@ -73,6 +78,7 @@ Array [
     Not Kibana
   </EuiFilterButton>,
   <EuiFilterButton
+    aria-pressed="false"
     color="text"
     grow={false}
     hasActiveFilters={false}
@@ -90,6 +96,7 @@ Array [
 exports[`TermToggleGroupFilter render 1`] = `
 Array [
   <EuiFilterButton
+    aria-pressed="false"
     color="text"
     grow={false}
     hasActiveFilters={false}
@@ -102,6 +109,7 @@ Array [
     Kibana
   </EuiFilterButton>,
   <EuiFilterButton
+    aria-pressed="false"
     color="text"
     grow={false}
     hasActiveFilters={false}
