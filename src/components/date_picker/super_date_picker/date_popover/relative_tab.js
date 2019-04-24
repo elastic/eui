@@ -88,15 +88,15 @@ export class EuiRelativeTab extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiFormRow>
-          <EuiFieldText value={formatedValue} readOnly />
-        </EuiFormRow>
-        <EuiFormRow>
           <EuiSwitch
             data-test-subj={`superDatePickerRelativeDateRoundSwitch`}
             label={`Round to the ${timeUnits[this.state.unit.substring(0, 1)]}`}
             checked={this.state.round}
             onChange={this.onRoundChange}
           />
+        </EuiFormRow>
+        <EuiFormRow>
+          <EuiFieldText value={formatedValue} readOnly />
         </EuiFormRow>
       </EuiForm>
     );
