@@ -8,7 +8,7 @@ export type Renderable<T> = ReactChild | ((values: T) => ReactChild);
 
 export interface I18nShape {
   mapping?: {
-    [key: string]: Renderable<any>;
+    [key: string]: Renderable<object>;
   };
   mappingFunc?: (value: string) => string;
   formatNumber?: (x: number) => string;
