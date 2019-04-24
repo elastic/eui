@@ -48,7 +48,7 @@ export function EuiDatePopoverButton(props) {
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}
     >
-      {formatTimeString(value, dateFormat)}
+      {formatTimeString(value, dateFormat, roundUp)}
     </button>
   );
 
