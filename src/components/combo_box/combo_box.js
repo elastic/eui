@@ -212,7 +212,7 @@ export class EuiComboBox extends Component {
     // Delete last pill.
     this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
 
-    if (this.props.singleSelection) {
+    if (this.props.singleSelection && !this.state.isListOpen) {
       this.openList();
     }
   };
@@ -422,7 +422,9 @@ export class EuiComboBox extends Component {
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
     this.searchInput.focus();
-    this.openList();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   }
 
   onComboBoxClick = () => {
@@ -441,6 +443,9 @@ export class EuiComboBox extends Component {
 
   onOpenListClick = () => {
     this.searchInput.focus();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   };
 
   onCloseListClick = () => {
