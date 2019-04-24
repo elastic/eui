@@ -55,7 +55,7 @@ export class EuiRelativeTab extends Component {
 
   render() {
     const isInvalid = this.state.count < 0;
-    const parsedValue = dateMath.parse(this.props.value);
+    const parsedValue = dateMath.parse(this.props.value, { roundUp: this.props.roundUp });
     const formatedValue = isInvalid || !parsedValue || !parsedValue.isValid()
       ? ''
       : parsedValue.format(this.props.dateFormat);
@@ -107,4 +107,5 @@ EuiRelativeTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  roundUp: PropTypes.bool
 };
