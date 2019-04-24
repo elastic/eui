@@ -90,14 +90,7 @@ async function getDirtyFiles(repo) {
   const diff = await git.Diff.indexToWorkdir(repo, null, { FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED });
   const patches = await diff.patches();
 
-  return patches.reduce(
-    (dirtyFiles, patch) => {
-      dirtyFiles.add(patch.oldFile().path());
-
-      return dirtyFiles;
-    },
-    new Set()
-  );
+  return new Set(patches.map(patch => patch.oldFile().path()));
 }
 
 async function commitTokenChanges(repo) {
@@ -126,13 +119,13 @@ async function commitTokenChanges(repo) {
 
     const userSignature = await repo.defaultSignature();
 
-    return await repo.createCommit('HEAD', userSignature, userSignature, 'update i18ntokens', oid, [parent]);
+    return repo.createCommit('HEAD', userSignature, userSignature, 'update i18ntokens', oid, [parent]);
   }
 }
 
 async function getCommitForTagName(repo, tagname) {
   const tag = await repo.getTagByName(tagname);
-  return await git.Commit.lookup(repo, tag.targetId());
+  return git.Commit.lookup(repo, tag.targetId());
 }
 
 async function main() {
