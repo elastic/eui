@@ -1,12 +1,11 @@
 import { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
-import { EuiTokenMapDisplayOptions } from './token_map';
-export {
-  EuiTokenMapDisplayOptions,
-  TokenShape,
-  TokenColor,
-  EuiTokenMapType,
+import {
+  EuiTokenMapDisplayOptions as DisplayOptions,
+  TokenShape as TkShape,
+  TokenColor as TkColor,
+  EuiTokenMapType as TkMapType,
 } from './token_map';
 
 declare module '@elastic/eui' {
@@ -19,8 +18,13 @@ declare module '@elastic/eui' {
   export interface EuiTokenProps {
     iconType: IconType;
     size?: TokenSize;
-    displayOptions?: EuiTokenMapDisplayOptions;
+    displayOptions?: DisplayOptions;
   }
+
+  export type TokenShape = TkShape;
+  export type TokenColor = TkColor;
+  export type TokenType = TkMapType;
+  export interface EuiTokenMapDisplayOptions extends DisplayOptions {}
 
   export const EuiToken: FunctionComponent<
     CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>
