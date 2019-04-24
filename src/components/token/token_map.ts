@@ -5,7 +5,28 @@
 //   fill: false,
 // },
 
-import { EuiTokenMapDisplayOptions } from '@elastic/eui';
+export type TokenColor =
+  | 'tokenTint01'
+  | 'tokenTint02'
+  | 'tokenTint03'
+  | 'tokenTint04'
+  | 'tokenTint05'
+  | 'tokenTint06'
+  | 'tokenTint07'
+  | 'tokenTint08'
+  | 'tokenTint09'
+  | 'tokenTint10'
+  | 'tokenTint11'
+  | 'tokenTint12';
+
+export type TokenShape = 'circle' | 'square' | 'rectangle';
+
+export interface EuiTokenMapDisplayOptions {
+  color?: TokenColor;
+  shape?: TokenShape;
+  fill?: boolean;
+  hasBorder?: boolean;
+}
 
 export type EuiTokenMapType =
   | 'tokenClass'
@@ -39,10 +60,7 @@ export type EuiTokenMapType =
   | 'tokenNamespace'
   | 'tokenModule';
 
-export const TOKEN_MAP: Record<
-  EuiTokenMapType,
-  Partial<EuiTokenMapDisplayOptions>
-> = {
+export const TOKEN_MAP: Record<EuiTokenMapType, EuiTokenMapDisplayOptions> = {
   tokenClass: {
     shape: 'circle',
     color: 'tokenTint01',
