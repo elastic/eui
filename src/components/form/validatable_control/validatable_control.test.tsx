@@ -11,7 +11,6 @@ describe('EuiValidatableControl', () => {
       </EuiValidatableControl>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
