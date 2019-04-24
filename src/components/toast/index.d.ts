@@ -1,7 +1,16 @@
+export {
+  EuiGlobalToastListItemProps,
+  EuiGlobalToastListItem,
+} from './global_toast_list_item';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
-import { Component, FunctionComponent, HTMLAttributes, ReactChild } from 'react';
+import {
+  Component,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactChild,
+} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -9,7 +18,9 @@ declare module '@elastic/eui' {
    *
    * @see './toast.js'
    */
-  export interface EuiToastProps extends CommonProps, HTMLAttributes<HTMLDivElement> {
+  export interface EuiToastProps
+    extends CommonProps,
+      HTMLAttributes<HTMLDivElement> {
     title?: string,
     color?: 'primary' | 'success' | 'warning' | 'danger',
     iconType?: IconType,
@@ -17,20 +28,6 @@ declare module '@elastic/eui' {
   }
 
   export const EuiToast: FunctionComponent<EuiToastProps>;
-
-
-  /**
-   * EuiGlobalToastListItem type def
-   *
-   * @see './global_toast_list_item.js'
-   */
-  export interface EuiGlobalToastListItemProps {
-    isDismissed?: boolean;
-  }
-
-  export const EuiGlobalToastListItem: FunctionComponent<
-    EuiGlobalToastListItemProps
-  >
 
   /**
    * EuiGlobalToastList type def
