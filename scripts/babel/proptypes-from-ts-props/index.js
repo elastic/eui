@@ -12,7 +12,8 @@ function stripTypeScript(filename, ast) {
     {
       filename: filename,
       babelrc: false,
-      presets: ['@babel/typescript']
+      presets: ['@babel/typescript'],
+      plugins: ['@babel/plugin-syntax-dynamic-import'],
     }
   ).code;
 }

@@ -10,31 +10,13 @@ exports[`EuiLoadingKibana is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--medium"
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
-      height="32"
-      viewBox="0 0 32 32"
-      width="32"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
-    >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <path
-          d="M4 0v28.789L28.935.017z"
-          fill="#F04E98"
-        />
-        <path
-          class="euiIcon__fillNegative"
-          d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
-        />
-        <path
-          d="M18.479 16.664L6.268 30.754l-1.073 1.237h23.191c-1.252-6.292-4.883-11.719-9.908-15.327"
-          fill="#00BFB3"
-        />
-      </g>
-    </svg>
+    />
   </span>
 </span>
 `;
@@ -47,31 +29,13 @@ exports[`EuiLoadingKibana size l is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--large"
+      class="euiIcon euiIcon--large euiIcon-isLoading"
       focusable="false"
-      height="32"
-      viewBox="0 0 32 32"
-      width="32"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
-    >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <path
-          d="M4 0v28.789L28.935.017z"
-          fill="#F04E98"
-        />
-        <path
-          class="euiIcon__fillNegative"
-          d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
-        />
-        <path
-          d="M18.479 16.664L6.268 30.754l-1.073 1.237h23.191c-1.252-6.292-4.883-11.719-9.908-15.327"
-          fill="#00BFB3"
-        />
-      </g>
-    </svg>
+    />
   </span>
 </span>
 `;
@@ -84,31 +48,13 @@ exports[`EuiLoadingKibana size m is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--medium"
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
       focusable="false"
-      height="32"
-      viewBox="0 0 32 32"
-      width="32"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
-    >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <path
-          d="M4 0v28.789L28.935.017z"
-          fill="#F04E98"
-        />
-        <path
-          class="euiIcon__fillNegative"
-          d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
-        />
-        <path
-          d="M18.479 16.664L6.268 30.754l-1.073 1.237h23.191c-1.252-6.292-4.883-11.719-9.908-15.327"
-          fill="#00BFB3"
-        />
-      </g>
-    </svg>
+    />
   </span>
 </span>
 `;
@@ -121,31 +67,13 @@ exports[`EuiLoadingKibana size xl is rendered 1`] = `
     class="euiLoadingKibana__icon"
   >
     <svg
-      class="euiIcon euiIcon--xLarge"
+      class="euiIcon euiIcon--xLarge euiIcon-isLoading"
       focusable="false"
-      height="32"
-      viewBox="0 0 32 32"
-      width="32"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
       xmlns="http://www.w3.org/2000/svg"
-    >
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
-        <path
-          d="M4 0v28.789L28.935.017z"
-          fill="#F04E98"
-        />
-        <path
-          class="euiIcon__fillNegative"
-          d="M4 12v16.789l11.906-13.738A24.721 24.721 0 0 0 4 12"
-        />
-        <path
-          d="M18.479 16.664L6.268 30.754l-1.073 1.237h23.191c-1.252-6.292-4.883-11.719-9.908-15.327"
-          fill="#00BFB3"
-        />
-      </g>
-    </svg>
+    />
   </span>
 </span>
 `;

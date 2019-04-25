@@ -30,18 +30,13 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiToastHeader__icon"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-          fill-rule="evenodd"
-        />
-      </svg>
+      />
       <span
         class="euiToastHeader__title"
       >
@@ -56,17 +51,13 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiIcon-isLoading"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
-        />
-      </svg>
+      />
     </button>
     <div
       class="euiText euiText--small euiToastBody"
@@ -92,18 +83,13 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiIcon--medium euiToastHeader__icon"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiToastHeader__icon"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8.378 1.496l6.695 10.984A1 1 0 0 1 14.22 14H1.667a1 1 0 0 1-.883-1.47L6.642 1.545a1 1 0 0 1 1.736-.05zm-.853.52L1.667 13h12.552L7.525 2.016zM7.14 10.06L6.9 5.18h1.3l-.25 4.878h-.81zm.394 1.901a.61.61 0 0 1-.448-.186.606.606 0 0 1-.186-.444c0-.174.062-.323.186-.446a.614.614 0 0 1 .448-.184c.169 0 .315.06.44.182.124.122.186.27.186.448a.6.6 0 0 1-.189.446.607.607 0 0 1-.437.184z"
-          fill-rule="evenodd"
-        />
-      </svg>
+      />
       <span
         class="euiToastHeader__title"
       >
@@ -118,17 +104,13 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="euiIcon euiIcon--medium"
+        class="euiIcon euiIcon--medium euiIcon-isLoading"
         focusable="false"
         height="16"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
-        />
-      </svg>
+      />
     </button>
     <div
       class="euiText euiText--small euiToastBody"

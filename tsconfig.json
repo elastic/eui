@@ -16,7 +16,7 @@
     "strict": true,
 
     // Output as ES Modules & esnext code, webpack will handle further conversion
-    "module": "es6",
+    "module": "esnext",
     "target": "esnext",
 
     // Allows default imports from modules with no default export. This does not affect code emit, just type checking.
