@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-// import { getSecureRelForTarget } from '../../services';
+import { EuiI18n } from '../i18n';
 import { EuiNotificationBadge } from '../badge/notification_badge';
 import {
   COLORS,
@@ -66,14 +66,24 @@ export const EuiFilterButton = ({
       </span>
 
       {numFiltersDefined &&
-        <EuiNotificationBadge
-          className="euiFilterButton__notification"
-          size="m"
-          aria-label={`${numActiveFilters || numFilters} ${!hasActiveFilters ? 'available' : 'active'} filters`}
-          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+        <EuiI18n
+          token="euiFilterButton.filterBadge"
+          values={{ count: numActiveFilters || numFilters, hasActiveFilters }}
+          default={({ count, hasActiveFilters }) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`}
         >
-          {numActiveFilters || numFilters}
-        </EuiNotificationBadge>
+          {
+            filterBadge => (
+              <EuiNotificationBadge
+                className="euiFilterButton__notification"
+                size="m"
+                aria-label={filterBadge}
+                color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+              >
+                {numActiveFilters || numFilters}
+              </EuiNotificationBadge>
+            )
+          }
+        </EuiI18n>
       }
     </Fragment>
   );
