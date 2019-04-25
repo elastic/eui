@@ -129,6 +129,8 @@ import logoAPM from './assets/logo_apm.svg';
 import logoAppSearch from './assets/logo_app_search.svg';
 import logoAWS from './assets/logo_aws.svg';
 import logoAWSMono from './assets/logo_aws_mono.svg';
+import logoAzure from './assets/logo_azure.svg';
+import logoAzureMono from './assets/logo_azure_mono.svg';
 import logoBeats from './assets/logo_beats.svg';
 import logoBusinessAnalytics from './assets/logo_business_analytics.svg';
 import logoCeph from './assets/logo_ceph.svg';
@@ -188,6 +190,7 @@ import metricbeatApp from './assets/app_metricbeat.svg';
 import minusInCircle from './assets/minus_in_circle.svg';
 import minusInCircleFilled from './assets/minus_in_circle_filled.svg';
 import monitoringApp from './assets/app_monitoring.svg';
+import moon from './assets/moon.svg';
 import node from './assets/node.svg';
 import notebookApp from './assets/app_notebook.svg';
 import number from './assets/number.svg';
@@ -300,6 +303,8 @@ import tokenEnumMember from './assets/tokens/tokenEnumMember.svg';
 import tokenRepo from './assets/tokens/tokenRepo.svg';
 import tokenSymbol from './assets/tokens/tokenSymbol.svg';
 import tokenFile from './assets/tokens/tokenFile.svg';
+import tokenModule from './assets/tokens/tokenModule.svg';
+import tokenNamespace from './assets/tokens/tokenNamespace.svg';
 
 const typeToIconMap = {
   addDataApp,
@@ -428,6 +433,8 @@ const typeToIconMap = {
   logoAppSearch,
   logoAWS,
   logoAWSMono,
+  logoAzure,
+  logoAzureMono,
   logoBeats,
   logoBusinessAnalytics,
   logoCeph,
@@ -487,6 +494,7 @@ const typeToIconMap = {
   minusInCircle,
   minusInCircleFilled,
   monitoringApp,
+  moon,
   node,
   notebookApp,
   number,
@@ -557,6 +565,8 @@ const typeToIconMap = {
   tokenInterface,
   tokenKey,
   tokenMethod,
+  tokenModule,
+  tokenNamespace,
   tokenNull,
   tokenNumber,
   tokenObject,
