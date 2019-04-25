@@ -303,8 +303,11 @@ export class EuiComboBox extends Component {
 
   onContainerBlur = (e) => {
     // close the options list, unless the use clicked on an option
-    const focusedInOptionsList = this.optionsList && this.optionsList.contains(e.relatedTarget);
-    const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
+
+    // FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    const focusedInOptionsList = relatedTarget && this.optionsList && this.optionsList.contains(relatedTarget);
+    const focusedInInput = relatedTarget && this.comboBox && this.comboBox.contains(relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
 
