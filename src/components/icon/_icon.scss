@@ -65,10 +65,6 @@
   }
 }
 
-// LOADING ANIMATION
-// Fades the background color out first/quickly
-// as the opacity of the new icon fades in
-
 @keyframes euiIconLoading {
   0% {
     opacity: $euiIconLoadingOpacity;

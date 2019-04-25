@@ -10,7 +10,7 @@ import { CommonProps, Omit, keysOf } from '../common';
 
 // @ts-ignore-next-line
 // not generating typescript files or definitions for the generated JS components
-// not typescript, because we'd need to dynamically know if we're importing the
+// because we'd need to dynamically know if we're importing the
 // TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
 // to generate & git track a TS module definition for each icon component
 import { icon as empty } from './assets/empty.js';
@@ -398,7 +398,7 @@ export class EuiIcon extends Component<Props, State> {
 
     if (isIconType(this.props.type)) {
       isLoading = true;
-      import(`./assets/${typeToPathMap[this.props.type]}.js`).then(
+      import('./assets/' + typeToPathMap[this.props.type] + '.js').then(
         ({ icon }) => {
           this.setState({
             icon,
@@ -465,7 +465,6 @@ export class EuiIcon extends Component<Props, State> {
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
     if (typeof icon === 'string') {
-      // @ts-ignore
       return (
         <img
           src={icon}
