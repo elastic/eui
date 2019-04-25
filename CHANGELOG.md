@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `token_map` to TS ([#1870](https://github.com/elastic/eui/pull/1870))
 - Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
 - Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
 - Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
@@ -10,6 +11,7 @@
 - Fixed `euiBreakpoint()` warning to give accurate feedback ([#1874](https://github.com/elastic/eui/pull/1874))
 - Fixed type definitions around `EuiI18n`'s `default` prop to better support use cases ([#1861](https://github.com/elastic/eui/pull/1861))
 - Localized `EuiTablePagination`'s row count selection ([#1883](https://github.com/elastic/eui/pull/1883))
+- Fixed `EuiComboBox` with `singleSelection` and `onAddCustomOption` reopening the options list after adding a custom option ([#1882](https://github.com/elastic/eui/pull/1882))
 
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
