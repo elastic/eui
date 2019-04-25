@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `token_map` to TS ([#1870](https://github.com/elastic/eui/pull/1870))
 - Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
 - Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
 - Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
