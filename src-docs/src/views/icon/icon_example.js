@@ -11,6 +11,7 @@ import {
   EuiIcon,
   EuiToken,
   EuiLink,
+  EuiText,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -25,12 +26,34 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
+const iconsSnippet = `<EuiIcon type="alert" />`;
 
 import Tokens from './tokens';
 const tokensSource = require('!!raw-loader!./tokens');
+const tokensSnippet = `<EuiToken type="tokenAnnotation" />
+
+<EuiToken
+  iconType="visMapCoordinate"
+  displayOptions={{
+    color: 'tokenTint05',
+    shape: 'circle',
+  }}
+/>
+
+<EuiToken
+  iconType="tokenElement"
+  size="l"
+  displayOptions={{
+    color: 'tokenTint07',
+    shape: 'rectangle',
+    hideBorder: true
+  }}
+/>`;
+
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
+const appsSnippet = `<EuiIcon type="addDataApp" size="xl" />`;
 
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
@@ -50,9 +73,42 @@ const iconColorsSource = require('!!raw-loader!./icon_colors');
 import Accessibility from './accessibility';
 const accessibilitySource = require('!!raw-loader!./accessibility');
 
+import IconTypes from './icon_types';
+const iconTypesSource = require('!!raw-loader!./icon_types');
+const iconTypesSnippet = `<EuiIcon type="logoElastic" size="xl" />
+
+<EuiIcon type={reactSVGElement} size="xl" />
+
+<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />`;
+
 export const IconExample = {
   title: 'Icons',
+  intro: (
+    <EuiText>
+      <p>
+        <EuiCode>EuiIcon</EuiCode> is a handy component for using our
+        custom icons and logos. The <EuiCode>type</EuiCode> prop accepts either
+        an enumerated name from one of the sets below, or can alternatively accept a
+        location to a custom SVG asset, or lastly a React Element.
+      </p>
+      <p>
+        When using custom SVGs please <strong>remove all fill attributes</strong> on the SVG and
+        utilize the CSS helpers if you have complex logos that need to work with theming.
+      </p>
+    </EuiText>
+  ),
   sections: [{
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: iconTypesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: iconsHtml,
+    }],
+    props: { EuiIcon },
+    snippet: iconTypesSnippet,
+    demo: <IconTypes />,
+  }, {
     source: [{
       type: GuideSectionTypes.JS,
       code: iconsSource,
@@ -60,29 +116,18 @@ export const IconExample = {
       type: GuideSectionTypes.HTML,
       code: iconsHtml,
     }],
+    title: 'Glyphs',
     text: (
       <div>
         <p>
-          <EuiCode>EuiIcon</EuiCode> can build out an icon from our SVG
-          icon library. Icons are resized and recolored through a
-          CSS <EuiCode>Fill</EuiCode> declaration.
-        </p>
-        <p>
-          New icons should be placed in
-          the <EuiCode>/icons/assets/</EuiCode> folder on
-          a <EuiCode>16x16</EuiCode> empty canvas.
-          Icons in the general set should be monochromatic and the code
-          itself <strong>should not contain any fill attributes</strong>. Use the SVGO plugin
-          for Sketch when exporting to compress / clean your SVG of junk.
-        </p>
-        <p>
-          Note: <EuiCode>guideDemo__icon</EuiCode> styling is applied on the
-          below grid for documentation presentation only. Do not copy
-          this class into production.
+          Glyphs are small, monochromatic icons that typically should always use the default size
+          of <EuiCode>size=&quot;m&quot;</EuiCode>. They tend to be pixel perfect and don&apos;t
+          scale very well into larger sizes.
         </p>
       </div>
     ),
     props: { EuiIcon },
+    snippet: iconsSnippet,
     demo: <Icons />,
   }, {
     title: 'Apps',
@@ -99,6 +144,7 @@ export const IconExample = {
         and can contain multiple colors.
       </p>
     ),
+    snippet: appsSnippet,
     demo: <Apps />,
   }, {
     title: 'Tokens',
@@ -130,6 +176,7 @@ export const IconExample = {
       </div>
     ),
     props: { EuiToken },
+    snippet: tokensSnippet,
     demo: <Tokens />,
   }, {
     title: 'Machine learning icons',

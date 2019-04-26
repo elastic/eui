@@ -358,11 +358,18 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 export type IconSize = keyof typeof sizeToClassNameMap;
 
 export interface EuiIconProps {
+  /**
+   * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+   */
   type: IconType | ReactElement<SVGElement> | string;
   /**
-   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
+   * Note that coloring only works if your SVG is removed of fill attributes.
    */
   color?: IconColor;
+  /**
+   * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
+   */
   size?: IconSize;
 }
 
