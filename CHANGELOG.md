@@ -4,6 +4,8 @@
 - Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
 - Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
 - Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
+- Added `roundUp` prop to relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
+- Changed position of `EuiSwitch` for date rounding used at relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
 
 **Bug fixes**
 

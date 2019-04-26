@@ -52,6 +52,7 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
             dateFormat={dateFormat}
             value={value}
             onChange={onChange}
+            roundUp={roundUp}
           />
         ),
         'data-test-subj': 'superDatePickerRelativeTab',
