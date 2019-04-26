@@ -13,6 +13,7 @@
 - Fixed `euiBreakpoint()` warning to give accurate feedback ([#1874](https://github.com/elastic/eui/pull/1874))
 - Fixed type definitions around `EuiI18n`'s `default` prop to better support use cases ([#1861](https://github.com/elastic/eui/pull/1861))
 - Localized `EuiTablePagination`'s row count selection ([#1883](https://github.com/elastic/eui/pull/1883))
+- Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
 - Fixed `EuiComboBox` with `singleSelection` and `onAddCustomOption` reopening the options list after adding a custom option ([#1882](https://github.com/elastic/eui/pull/1882))
 - Fixed `EuiComboBox` reopening the options list in Firefox when closing via the dropdown arrow button ([#1885](https://github.com/elastic/eui/pull/1885))
 
