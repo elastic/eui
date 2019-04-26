@@ -8,43 +8,58 @@ function throwError(): never {
   throw new Error('asdf');
 }
 
-function lookupToken<T extends RenderableValues>(
+function lookupToken<
+  T extends RenderableValues,
+  DEFAULT extends Renderable<T>,
+  RESOLVED extends ResolvedType<DEFAULT>
+>(
   token: string,
   i18nMapping: I18nShape['mapping'],
-  valueDefault: Renderable<T>,
+  valueDefault: DEFAULT,
   i18nMappingFunc?: (token: string) => string,
-  values?: I18nTokenShape<T>['values']
-): ReactChild {
+  values?: I18nTokenShape<T, DEFAULT>['values']
+): RESOLVED {
   let renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
 
   if (typeof renderable === 'function') {
     if (values === undefined) {
       return throwError();
     } else {
+      // @ts-ignore-next-line
+      // TypeScript complains that `DEFAULT` doesn't have a call signature
+      // but we verified `renderable` is a function
       return renderable(values);
     }
   } else if (values === undefined || typeof renderable !== 'string') {
     if (i18nMappingFunc && typeof valueDefault === 'string') {
       renderable = i18nMappingFunc(valueDefault);
     }
-    return renderable;
+    // there's a hole in the typings here as there is no guarantee that i18nMappingFunc
+    // returned the same type of the default value, but we need to keep that assumption
+    return renderable as RESOLVED;
   }
 
   const children = processStringToChildren(renderable, values, i18nMappingFunc);
   if (typeof children === 'string') {
-    return children;
+    // likewise, `processStringToChildren` returns a string or ReactChild[] depending on
+    // the type of `values`, so we will make the assumption that the default value is correct.
+    return children as RESOLVED;
   }
 
   const Component: FunctionComponent<any> = () => {
     return <Fragment>{children}</Fragment>;
   };
-  return React.createElement(Component, values);
+
+  // same reasons as above, we can't promise the transforms match the default's type
+  return React.createElement(Component, values) as RESOLVED;
 }
 
-interface I18nTokenShape<T> {
+type ResolvedType<T> = T extends (...args: any[]) => any ? ReturnType<T> : T;
+
+interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
   token: string;
-  default: Renderable<T>;
-  children?: (x: ReactChild) => ReactChild;
+  default: DEFAULT;
+  children?: (x: ResolvedType<DEFAULT>) => ReactChild;
   values?: T;
 }
 
@@ -54,16 +69,21 @@ interface I18nTokensShape {
   children: (x: ReactChild[]) => ReactChild;
 }
 
-type EuiI18nProps<T> = ExclusiveUnion<I18nTokenShape<T>, I18nTokensShape>;
+type EuiI18nProps<T, DEFAULT extends Renderable<T>> = ExclusiveUnion<
+  I18nTokenShape<T, DEFAULT>,
+  I18nTokensShape
+>;
 
-function hasTokens(x: EuiI18nProps<any>): x is I18nTokensShape {
+function hasTokens(x: EuiI18nProps<any, any>): x is I18nTokensShape {
   return x.tokens != null;
 }
 
 // Must use the generics <T extends {}>
 // If instead typed with React.FunctionComponent there isn't feedback given back to the dev
 // when using a `values` object with a renderer callback.
-const EuiI18n = <T extends {}>(props: EuiI18nProps<T>) => (
+const EuiI18n = <T extends {}, DEFAULT extends Renderable<T>>(
+  props: EuiI18nProps<T, DEFAULT>
+) => (
   <EuiI18nConsumer>
     {i18nConfig => {
       const { mapping, mappingFunc } = i18nConfig;

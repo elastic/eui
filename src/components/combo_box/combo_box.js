@@ -211,6 +211,10 @@ export class EuiComboBox extends Component {
 
     // Delete last pill.
     this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
+
+    if (this.props.singleSelection && !this.state.isListOpen) {
+      this.openList();
+    }
   };
 
   addCustomOption = (isContainerBlur) => {
@@ -218,6 +222,7 @@ export class EuiComboBox extends Component {
       options,
       selectedOptions,
       onCreateOption,
+      singleSelection
     } = this.props;
 
     const {
@@ -253,6 +258,11 @@ export class EuiComboBox extends Component {
     }
 
     this.clearSearchValue();
+
+    if (this.isSingleSelectionCustomOption() || (singleSelection && matchingOptions.length < 1)) {
+      // Adding a custom option to a single select that does not appear in the list of options
+      this.closeList();
+    }
   };
 
   doesSearchMatchOnlyOption = () => {
@@ -272,18 +282,32 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
+  isSingleSelectionCustomOption = () => {
+    const { onCreateOption, options, selectedOptions, singleSelection } = this.props;
+    // The selected option of a single select is custom and does not appear in the list of options
+    return singleSelection
+    && onCreateOption
+    && selectedOptions.length > 0
+    && !options.includes(selectedOptions[0]);
+  }
+
   onComboBoxFocus = () => {
     if (this.props.onFocus) {
       this.props.onFocus();
     }
-    this.openList();
+    if (!this.isSingleSelectionCustomOption()) {
+      this.openList();
+    }
     this.setState({ hasFocus: true });
   }
 
   onContainerBlur = (e) => {
     // close the options list, unless the use clicked on an option
-    const focusedInOptionsList = this.optionsList && this.optionsList.contains(e.relatedTarget);
-    const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
+
+    // FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    const focusedInOptionsList = relatedTarget && this.optionsList && this.optionsList.contains(relatedTarget);
+    const focusedInInput = relatedTarget && this.comboBox && this.comboBox.contains(relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
 
@@ -401,6 +425,9 @@ export class EuiComboBox extends Component {
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
     this.searchInput.focus();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   }
 
   onComboBoxClick = () => {
@@ -419,6 +446,9 @@ export class EuiComboBox extends Component {
 
   onOpenListClick = () => {
     this.searchInput.focus();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   };
 
   onCloseListClick = () => {

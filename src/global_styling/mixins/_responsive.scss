@@ -46,8 +46,7 @@
       }
     // If it's not a known breakpoint, throw a warning
     } @else {
-      @warn "euiBreakpoint(): '#{$size}' is not a valid size in $euiBreakpoints.
-        The acceptable values are '#{$euiBreakpointKeys}'";
+      @warn "euiBreakpoint(): '#{$size}' is not a valid size in $euiBreakpoints. Accepted values are '#{$euiBreakpointKeys}'";
     }
   }
 }

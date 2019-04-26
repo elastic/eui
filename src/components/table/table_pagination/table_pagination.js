@@ -60,7 +60,7 @@ export class EuiTablePagination extends Component {
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
         onClick={() => { this.closePopover(); onChangeItemsPerPage(itemsPerPageOption); }}
       >
-        {`${itemsPerPageOption} rows`}
+        <EuiI18n token="euiTablePagination.rowsPerPageOption" values={{ rowsPerPage: itemsPerPageOption }} default="{rowsPerPage} rows"/>
       </EuiContextMenuItem>
     ));
 
