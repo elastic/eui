@@ -45,7 +45,6 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
         }}
         {...rest}
       />
-      <span>{hue}</span>
     </React.Fragment>
   );
 };

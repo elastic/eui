@@ -8,16 +8,20 @@ import classNames from 'classnames';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiFieldText } from '../form';
-import { EuiPanel } from '../panel';
-import { EuiOutsideClickDetector } from '../outside_click_detector';
+import { EuiPopover } from '../popover';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { VISUALIZATION_COLORS, keyCodes } from '../../services';
+import { EuiSpacer } from '../spacer';
+import { VISUALIZATION_COLORS, keyCodes, hexToHsl, hslToHex } from '../../services';
+
+import { EuiHue } from './hue';
+import { EuiSaturation } from './saturation';
 
 export class EuiColorPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showColorSelector: false,
+      colorAsHsl: hexToHsl(props.color)
     };
 
   }
@@ -40,12 +44,19 @@ export class EuiColorPicker extends Component {
     this.setState({ showColorSelector: true });
   };
 
-  handleColorSelection = (e) => {
+  handleColorInput = (e) => {
     this.props.onChange(e.target.value);
+    this.setState({ colorAsHsl: hexToHsl(e.target.value) });
+  };
+
+  handleColorSelection = (color) => {
+    this.props.onChange(hslToHex(color));
+    this.setState({ colorAsHsl: color });
   };
 
   handleSwatchSelection(color) {
     this.props.onChange(color);
+    this.setState({ colorAsHsl: hexToHsl(color) });
 
     // When the trigger is an input, focus the input so you can adjust
     if (this.input) {
@@ -91,27 +102,6 @@ export class EuiColorPicker extends Component {
       </EuiFlexItem>
     ));
 
-    let swatchesPanel;
-    if (this.state.showColorSelector) {
-      swatchesPanel = (
-        <EuiPanel
-          className="euiColorPicker__panel"
-          paddingSize="s"
-        >
-          <EuiScreenReaderOnly>
-            <p aria-live="polite">
-              A popup with a range of selectable colors opened.
-              Tab forward to cycle through colors choices or press
-              escape to close this popup.
-            </p>
-          </EuiScreenReaderOnly>
-          <EuiFlexGroup wrap responsive={false} gutterSize="s">
-            {swatchButtons}
-          </EuiFlexGroup>
-        </EuiPanel>
-      );
-    }
-
     const input = (
       <div style={{ color: color }}>
         <EuiFieldText
@@ -144,16 +134,38 @@ export class EuiColorPicker extends Component {
     }
 
     return (
-      <div
-        className={classes}
-        onKeyDown={this.onKeyDown}
-      >
-        <EuiOutsideClickDetector onOutsideClick={this.closeColorSelector}>
-          <div>
-            {buttonOrInput}
-            {swatchesPanel}
+      <div onKeyDown={this.onKeyDown}>
+        <EuiPopover
+          id="popover"
+          button={buttonOrInput}
+          isOpen={this.state.showColorSelector}
+          closePopover={this.closeColorSelector}
+        >
+          <div className={classes}>
+            <EuiScreenReaderOnly>
+              <p aria-live="polite">
+                A popup with a range of selectable colors opened.
+                Tab forward to cycle through colors choices or press
+                escape to close this popup.
+              </p>
+            </EuiScreenReaderOnly>
+            <EuiFlexGroup wrap responsive={false} gutterSize="s">
+              {swatchButtons}
+            </EuiFlexGroup>
+            <EuiSpacer size="s" />
+            <EuiSaturation
+              color={this.state.colorAsHsl}
+              onChange={this.handleColorSelection}
+            />
+            <EuiSpacer size="s" />
+            <EuiHue
+              hue={this.state.colorAsHsl.h}
+              onChange={
+                (hue) => this.handleColorSelection({ ...this.state.colorAsHsl, h: hue })
+              }
+            />
           </div>
-        </EuiOutsideClickDetector>
+        </EuiPopover>
       </div>
     );
   }

@@ -2,16 +2,22 @@ $lightnessRange0: rgba(255, 255, 255, 1);
 $lightnessRange1: rgba(255, 255, 255, 0);
 $saturationRange0: rgba(0, 0, 0, 1);
 $saturationRange1: rgba(0, 0, 0, 0);
+$indicatorSize: 10px;
 
 .euiSaturation {
   position: relative;
-  height: 300px;
-  width: 300px;
+  width: 100%;
+  padding-bottom: 100%;
 
   .euiSaturation__lightness,
   .euiSaturation__saturation {
     height: 100%;
     width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .euiSaturation__lightness {
@@ -24,5 +30,28 @@ $saturationRange1: rgba(0, 0, 0, 0);
 
   .euiSaturation__indicator {
     position: absolute;
+    height: $indicatorSize;
+    width: $indicatorSize;
+    border-radius: 100%;
+    margin-top: $indicatorSize * -.5;
+    margin-left: $indicatorSize * -.5;
+    border: 1px solid $euiColorDarkestShade;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 100%;
+      border: 1px solid $euiColorLightestShade;
+    }
+  }
+
+  &:focus {
+    .euiSaturation__indicator {
+      @include euiFocusRing;
+    }
   }
 }

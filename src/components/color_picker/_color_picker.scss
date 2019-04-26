@@ -1,14 +1,6 @@
 
 .euiColorPicker {
   position: relative;
-  max-width: 400px;
-
-  .euiColorPicker__panel {
-    // max-width: 400px;
-    border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
-    position: absolute;
-    top: 100%;
-    // 5 columns of swatches + margins + border
-    max-width: ($euiSizeL * 5) + ($euiSizeS * 6) + 2px;
-  }
+  // 5 columns of swatches + margins + border
+  width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }

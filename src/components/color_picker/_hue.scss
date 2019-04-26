@@ -1,6 +1,36 @@
+@import '../form/_mixins';
+@import '../form/range/_variables';
+@import '../form/range/_mixins';
+
 .euiHue {
+  @include euiRangeThumbPerBrowser {
+    @include euiCustomControl($type: 'round');
+    @include euiRangeThumbStyle;
+  }
+
   position: relative;
   height: 15px;
   width: 100%;
   appearance: none;
+
+  // Resets
+
+  // Disable linter for these very unique vendor controls
+  // sass-lint:disable-block no-vendor-prefixes
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -1px;
+  }
+
+  &::-ms-thumb {
+    margin-top: 0;
+  }
+
+  &::-ms-track {
+    @include euiRangeTrackSize;
+    background: transparent;
+    border-color: transparent;
+    border-width: ($euiRangeThumbHeight / 2) 0;
+    color: transparent;
+  }
 }

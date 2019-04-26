@@ -8,10 +8,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
+// import throttle from 'lodash/throttle';
 import { CommonProps } from '../common';
-import { keyCodes } from '../../services';
+import { keyCodes, hslToHsv, hsvToHsl } from '../../services';
+import { HSL } from '../../services/color';
 import { isNil } from '../../services/predicate';
-import { getEventPosition, HSLtoHSV, HSVtoHSL, HSL } from './utils';
+import { getEventPosition } from './utils';
 
 function isMouseEvent(
   event: ReactMouseEvent | TouchEvent
@@ -26,7 +28,7 @@ export type EuiSaturationProps = HTMLAttributes<HTMLDivElement> &
   };
 
 export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
-  color = { h: 180, s: 100, l: 50 },
+  color = { h: 180, s: 1, l: 0.5 },
   onChange,
   ...rest
 }) => {
@@ -44,7 +46,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       Object.values(lastColor).join() !== Object.values(color).join()
     ) {
       const { height, width } = boxRef.current.getBoundingClientRect();
-      const hsv = HSLtoHSV({ h, s: s / 100, l: l / 100 });
+      const hsv = hslToHsv({ h, s, l });
       setIndicator({
         left: hsv.s * width,
         top: (1 - hsv.v) * height,
@@ -63,9 +65,14 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     const { left, top, width, height } = box;
     setIndicator({ left, top });
     const v = 1 - top / height;
-    const newhsl = HSVtoHSL({ h, s: left / width, v });
-    setlastColor({ h, s: newhsl.s * 100, l: newhsl.l * 100 });
-    onChange({ h, s: newhsl.s * 100, l: newhsl.l * 100 });
+    const newhsl = hsvToHsl({ h, s: left / width, v });
+    const newColor = {
+      h,
+      s: newhsl.s,
+      l: newhsl.l,
+    };
+    setlastColor(newColor);
+    onChange(newColor);
   };
   const handleChange = (location: { x: number; y: number }) => {
     if (isNil(boxRef) || isNil(boxRef.current)) {
@@ -109,26 +116,26 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
 
     switch (e.keyCode) {
       case keyCodes.DOWN:
-        newTop = top < height ? top + 1 : height;
+        newTop = top < height ? top + height / 100 : height;
         break;
       case keyCodes.LEFT:
-        newLeft = left > 0 ? left - 1 : 0;
+        newLeft = left > 0 ? left - width / 100 : 0;
         break;
       case keyCodes.UP:
-        newTop = top > 0 ? top - 1 : 0;
+        newTop = top > 0 ? top - height / 100 : 0;
         break;
       case keyCodes.RIGHT:
-        newLeft = left < width ? left + 1 : width;
+        newLeft = left < width ? left + width / 100 : width;
         break;
       default:
         return;
     }
-
+    // TODO: This is wrong
     setIndicator({ left: newLeft, top: newTop });
-    const newS = (newLeft * 100) / width;
-    const newL = -((newTop * 100) / height) + 100;
-    const newhsl = HSVtoHSL({ h, s: newS / 100, v: newL / 100 });
-    onChange({ h, s: newhsl.s * 100, l: newhsl.l * 100 });
+    const newS = newLeft / width;
+    const newL = 1 - newTop / height;
+    const newhsl = hsvToHsl({ h, s: newS, v: newL });
+    onChange({ h, s: newhsl.s, l: newhsl.l });
   };
   return (
     <div
@@ -146,9 +153,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       <div className="euiSaturation__lightness">
         <div className="euiSaturation__saturation" />
       </div>
-      <div className="euiSaturation__indicator" style={{ ...indicator }}>
-        X
-      </div>
+      <div className="euiSaturation__indicator" style={{ ...indicator }} />
     </div>
   );
 };
