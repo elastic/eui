@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.2.0`.
+
+## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
+
 - Converted `EuiGlobalToastListItem` to TS ([#1880](https://github.com/elastic/eui/pull/1880))
 - Converted `token_map` to TS ([#1870](https://github.com/elastic/eui/pull/1870))
 - Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
