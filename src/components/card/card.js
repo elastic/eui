@@ -6,6 +6,7 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiButtonEmpty, COLORS as SELECTABLE_COLORS } from '../button/button_empty';
 
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
@@ -55,6 +56,7 @@ export const EuiCard = ({
   betaBadgeTitle,
   layout,
   bottomGraphic,
+  selectable,
   ...rest,
 }) => {
   const classes = classNames(
@@ -66,6 +68,8 @@ export const EuiCard = ({
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasBottomGraphic': bottomGraphic,
+      'euiCard--isSelectable': selectable,
+      'euiCard-isSelected': selectable && selectable.isSelected,
     },
     className,
   );
@@ -135,6 +139,44 @@ export const EuiCard = ({
     );
   }
 
+  let optionalSelectButton;
+  if (selectable) {
+    if (bottomGraphic) {
+      console.warn('EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.');
+    }
+
+    const child = euiCardSelectableText(selectable);
+
+    let color;
+    if (selectable.color) {
+      color = selectable.color;
+    } else if (selectable.isSelected) {
+      color = 'success';
+    } else {
+      color = 'text';
+    }
+
+    const selectClasses = classNames(
+      'euiCard__selectButton',
+      `euiCard__selectButton--${color}`,
+      selectable.buttonProps && selectable.buttonProps.className
+    );
+
+    optionalSelectButton = (
+      <EuiButtonEmpty
+        color={selectable.color || 'text'}
+        size="xs"
+        onClick={selectable.onClick}
+        isDisabled={selectable.isDisabled}
+        iconType={selectable.isSelected ? 'check' : undefined}
+        {...selectable.buttonProps}
+        className={selectClasses}
+      >
+        {child}
+      </EuiButtonEmpty>
+    );
+  }
+
   return (
     <OuterElement
       onClick={onClick}
@@ -164,7 +206,7 @@ export const EuiCard = ({
         </span>
       }
 
-      {optionalBottomGraphic}
+      {optionalSelectButton || optionalBottomGraphic}
     </OuterElement>
   );
 };
@@ -224,6 +266,18 @@ EuiCard.propTypes = {
   betaBadgeTitle: PropTypes.string,
 
   /**
+   * Adds a button to the bottom of the card to allow for in-place selection.
+   */
+  selectable: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    isSelected: PropTypes.bool,
+    isDisabled: PropTypes.bool,
+    color: PropTypes.oneOf(SELECTABLE_COLORS),
+    buttonProps: PropTypes.object,
+    children: PropTypes.node,
+  }),
+
+  /**
    * Add a decorative bottom graphic to the card.
    * This should be used sparingly, consult the Kibana Design team before use.
    */
@@ -235,3 +289,27 @@ EuiCard.defaultProps = {
   layout: 'vertical',
   titleElement: 'span',
 };
+
+function euiCardSelectableText(selectableProp) {
+  const {
+    isSelected,
+    isDisabled,
+    children,
+  } = selectableProp;
+
+  if (children) {
+    return children;
+  }
+
+  let text;
+
+  if (isSelected) {
+    text = 'Selected';
+  } else if (isDisabled) {
+    text = 'Unavailable';
+  } else {
+    text = 'Select';
+  }
+
+  return text;
+}

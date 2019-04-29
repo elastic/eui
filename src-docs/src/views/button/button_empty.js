@@ -336,5 +336,97 @@ export default () => (
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="success"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          Success
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="success"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="success"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          Disabled
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="success"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="warning"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          Warning
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="warning"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="warning"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          Disabled
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="warning"
+          size="s"
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowDown"
+          iconSide="right"
+        >
+          small
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

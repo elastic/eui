@@ -1,10 +1,5 @@
-@import '../panel/variables';
 @import '../panel/mixins';
 @import '../badge/beta_badge/mixins';
-
-$euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
-$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
-$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
 
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
@@ -62,9 +57,14 @@ $euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
     }
   }
 
-  &.euiCard--hasBottomGraphic {
+  &.euiCard--hasBottomGraphic,
+  &.euiCard--isSelectable {
     position: relative;
     padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
+  }
+
+  &.euiCard-isSelected {
+    @include euiBottomShadowMedium;
   }
 }
 
@@ -151,14 +151,37 @@ $euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
   }
 }
 
+// Option select button that expands to sides and bottom
+.euiCard__selectButton {
+  font-weight: $euiFontWeightBold;
+
+  // Create button modifiers based upon the map.
+  @each $name, $color in $euiCardSelectButtonBackgrounds {
+    &--#{$name}:enabled {
+      background-color: $color;
+
+      // Custom success text color since it doesn't exist on EuiButtonEmpty
+      @if ($name == 'success') {
+        color: makeHighContrastColor($euiColorSuccess, $color);
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: $euiPageBackgroundColor;
+  }
+}
+
 // Optional decorative graphics
-.euiCard__graphic {
+.euiCard__graphic,
+.euiCard__selectButton {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: $euiCardGraphicHeight;
+  height: $euiCardGraphicHeight !important;  // sass-lint:disable-line no-important -- To override .euiButtonEmpty--xSmall
   width: 100%;
   overflow: hidden;
-  border-bottom-left-radius: $euiBorderRadius;
-  border-bottom-right-radius: $euiBorderRadius;
+  // Subtract 1px from border radius since it sits inside a border-radius
+  border-bottom-left-radius: $euiBorderRadius - 1px;
+  border-bottom-right-radius: $euiBorderRadius - 1px;
 }

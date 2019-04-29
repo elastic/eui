@@ -32,6 +32,10 @@ import CardLayout from './card_layout';
 const cardLayoutSource = require('!!raw-loader!./card_layout');
 const cardLayoutHtml = renderToHtml(CardLayout);
 
+import CardSelectable from './card_selectable';
+const cardSelectableSource = require('!!raw-loader!./card_selectable');
+const cardSelectableHtml = renderToHtml(CardSelectable);
+
 export const CardExample = {
   title: 'Card',
   sections: [{
@@ -158,5 +162,24 @@ export const CardExample = {
     ),
     components: { EuiCard },
     demo: <CardBeta />,
-  }],
+  },
+  {
+    title: 'Selectable',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: cardSelectableSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: cardSelectableHtml,
+    }],
+    text: (
+      <p>
+        When you have a list of cards that can be selected but do not navigate anywhere, you
+        can add the `selectable` prop.
+      </p>
+    ),
+    components: { EuiCard },
+    demo: <CardSelectable />,
+  },
+  ],
 };
