@@ -3,7 +3,7 @@
 exports[`IsFilter render 1`] = `
 <EuiFilterButton
   color="text"
-  grow={false}
+  grow={true}
   hasActiveFilters={false}
   iconSide="right"
   onClick={[Function]}

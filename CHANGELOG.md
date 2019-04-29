@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.2.0`.
+**Bug fixes**
+
+- Fixed responsiveness of `EuiFilterGroup` ([#1849](https://github.com/elastic/eui/pull/1849))
+
+**Deprecations**
+
+- Replaced `EuiFilterButton`'s `noDivider` prop with `withNext` ([#1849](https://github.com/elastic/eui/pull/1849))
 
 ## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
 

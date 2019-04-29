@@ -67,7 +67,7 @@ export class FieldValueToggleGroupFilter extends Component {
           key={key}
           onClick={onClick}
           hasActiveFilters={active}
-          noDivider={!isLastItem}
+          withNext={!isLastItem}
         >
           {name}
         </EuiFilterButton>
