@@ -11,9 +11,12 @@ export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
     fullWidth?: boolean;
   };
 
-export const EuiFilterGroup: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiFilterGroupProps
-> = ({ children, className, fullWidth = false, ...rest }) => {
+export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
+  children,
+  className,
+  fullWidth = false,
+  ...rest
+}) => {
   const classes = classNames(
     'euiFilterGroup',
     {

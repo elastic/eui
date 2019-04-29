@@ -34,7 +34,7 @@ declare module '@elastic/eui' {
    *
    * @see './filter_group.js'
    */
-  export const EuiFilterGroup: EuiFilterGroupProps;
+  export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps>;
 
   /**
    * Filter select item type defs
