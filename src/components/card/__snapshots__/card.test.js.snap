@@ -141,7 +141,7 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiCard euiCard--centerAligned euiCard--isSelectable"
+  class="euiCard euiCard--centerAligned euiCard--isSelectable euiCard--isSelectable--text"
 >
   <span
     class="euiCard__content"

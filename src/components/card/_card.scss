@@ -65,7 +65,13 @@
 
   &.euiCard-isSelected {
     @include euiBottomShadowMedium;
-    transition: box-shadow $euiAnimSpeedFast $euiAnimSlightResistance;
+    transition: box-shadow $euiAnimSpeedFast $euiAnimSlightResistance, border-color $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+}
+
+@each $name, $color in $euiCardSelectButtonBorders {
+  .euiCard--isSelectable--#{$name}.euiCard-isSelected {
+    border-color: $color;
   }
 }
 

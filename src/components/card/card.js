@@ -6,7 +6,7 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
-import { EuiCardSelect, EuiCardSelectProps } from './card_select';
+import { EuiCardSelect, EuiCardSelectProps, euiCardSelectableColor } from './card_select';
 import makeId from '../form/form_row/make_id';
 
 const textAlignToClassNameMap = {
@@ -60,6 +60,9 @@ export const EuiCard = ({
   selectable,
   ...rest,
 }) => {
+  const selectableColorClass = selectable ?
+    `euiCard--isSelectable--${euiCardSelectableColor(selectable.color, selectable.isSelected)}` : undefined;
+
   const classes = classNames(
     'euiCard',
     textAlignToClassNameMap[textAlign],
@@ -72,6 +75,7 @@ export const EuiCard = ({
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
     },
+    selectableColorClass,
     className,
   );
 

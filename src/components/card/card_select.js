@@ -20,18 +20,9 @@ export const EuiCardSelect = ({
 }) => {
   const child = euiCardSelectableText(isSelected, isDisabled, children);
 
-  let calculatedColor;
-  if (color) {
-    calculatedColor = color;
-  } else if (isSelected) {
-    calculatedColor = 'success';
-  } else {
-    calculatedColor = 'text';
-  }
-
   const selectClasses = classNames(
     'euiCardSelect',
-    `euiCardSelect--${calculatedColor}`,
+    `euiCardSelect--${euiCardSelectableColor(color, isSelected)}`,
     className
   );
 
@@ -98,4 +89,17 @@ function euiCardSelectableText(isSelected, isDisabled, children) {
   }
 
   return text;
+}
+
+export function euiCardSelectableColor(color, isSelected) {
+  let calculatedColor;
+  if (color) {
+    calculatedColor = color;
+  } else if (isSelected) {
+    calculatedColor = 'success';
+  } else {
+    calculatedColor = 'text';
+  }
+
+  return calculatedColor;
 }

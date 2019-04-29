@@ -105,7 +105,7 @@ export default class extends Component {
                 isSelected: this.state.card2Selected,
                 color: 'danger',
                 children: 'Custom text and icon',
-                iconType: 'bell'
+                iconType: this.state.card2Selected ? 'check' : 'bell',
               }}
             />
           </EuiFlexItem>
