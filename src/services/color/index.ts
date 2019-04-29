@@ -1,12 +1,10 @@
 export { isColorDark } from './is_color_dark';
-export { hexToHsl } from './hex_to_hsl';
+export { hexToHsv } from './hex_to_hsv';
 export { hexToRgb } from './hex_to_rgb';
-export { hslToHex } from './hsl_to_hex';
-export { hslToHsv } from './hsl_to_hsv';
-export { hslToRgb } from './hsl_to_rgb';
-export { hsvToHsl } from './hsv_to_hsl';
+export { hsvToHex } from './hsv_to_hex';
+export { hsvToRgb } from './hsv_to_rgb';
 export { rgbToHex } from './rgb_to_hex';
-export { rgbToHsl } from './rgb_to_hsl';
+export { rgbToHsv } from './rgb_to_hsv';
 export {
   calculateContrast,
   calculateLuminance,

@@ -8,10 +8,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-// import throttle from 'lodash/throttle';
+
 import { CommonProps } from '../common';
-import { keyCodes, hslToHsv, hsvToHsl } from '../../services';
-import { HSL } from '../../services/color';
+import { keyCodes } from '../../services';
+import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
 import { getEventPosition } from './utils';
 
@@ -23,22 +23,22 @@ function isMouseEvent(
 
 export type EuiSaturationProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    color?: HSL;
-    onChange: (color: HSL) => void;
+    color?: HSV;
+    onChange: (color: HSV) => void;
   };
 
 export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
-  color = { h: 180, s: 1, l: 0.5 },
+  color = { h: 180, s: 1, v: 0.5 },
   onChange,
   ...rest
 }) => {
   const boxRef = useRef<HTMLDivElement>(null);
-  const [indicator, setIndicator] = useState<{
-    left: number;
-    top: number;
-  }>({ left: 0, top: 0 });
-  const [lastColor, setlastColor] = useState<HSL | {}>({});
-  const { h, s, l } = color;
+  const [indicator, setIndicator] = useState<Pick<ClientRect, 'left' | 'top'>>({
+    left: 0,
+    top: 0,
+  });
+  const [lastColor, setlastColor] = useState<HSV | {}>({});
+  const { h, s, v } = color;
   useEffect(() => {
     // Mimics `componentDidMount` and `componentDidUpdate`
     if (
@@ -46,10 +46,9 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       Object.values(lastColor).join() !== Object.values(color).join()
     ) {
       const { height, width } = boxRef.current.getBoundingClientRect();
-      const hsv = hslToHsv({ h, s, l });
       setIndicator({
-        left: hsv.s * width,
-        top: (1 - hsv.v) * height,
+        left: s * width,
+        top: (1 - v) * height,
       });
     }
   }, [color]);
@@ -64,13 +63,8 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
   ) => {
     const { left, top, width, height } = box;
     setIndicator({ left, top });
-    const v = 1 - top / height;
-    const newhsl = hsvToHsl({ h, s: left / width, v });
-    const newColor = {
-      h,
-      s: newhsl.s,
-      l: newhsl.l,
-    };
+    const newV = 1 - top / height;
+    const newColor = { h, s: left / width, v: newV };
     setlastColor(newColor);
     onChange(newColor);
   };
@@ -130,12 +124,11 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       default:
         return;
     }
-    // TODO: This is wrong
     setIndicator({ left: newLeft, top: newTop });
     const newS = newLeft / width;
-    const newL = 1 - newTop / height;
-    const newhsl = hsvToHsl({ h, s: newS, v: newL });
-    onChange({ h, s: newhsl.s, l: newhsl.l });
+    const newV = 1 - newTop / height;
+    const newColor = { h, s: newS, v: newV };
+    onChange(newColor);
   };
   return (
     <div

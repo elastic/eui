@@ -11,7 +11,7 @@ import { EuiFieldText } from '../form';
 import { EuiPopover } from '../popover';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keyCodes, hexToHsl, hslToHex } from '../../services';
+import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -21,9 +21,8 @@ export class EuiColorPicker extends Component {
     super(props);
     this.state = {
       showColorSelector: false,
-      colorAsHsl: hexToHsl(props.color)
+      colorAsHsv: hexToHsv(props.color)
     };
-
   }
 
   closeColorSelector = () => {
@@ -46,17 +45,24 @@ export class EuiColorPicker extends Component {
 
   handleColorInput = (e) => {
     this.props.onChange(e.target.value);
-    this.setState({ colorAsHsl: hexToHsl(e.target.value) });
+    this.setState({ colorAsHsv: hexToHsv(e.target.value) });
   };
 
   handleColorSelection = (color) => {
-    this.props.onChange(hslToHex(color));
-    this.setState({ colorAsHsl: color });
+    const newHsv = { ...color, h: this.state.colorAsHsv.h };
+    this.props.onChange(hsvToHex(newHsv));
+    this.setState({ colorAsHsv: newHsv });
+  };
+
+  handleHueSelection= (hue) => {
+    const newHsv = { ...this.state.colorAsHsv, h: hue };
+    this.props.onChange(hsvToHex(newHsv));
+    this.setState({ colorAsHsv: newHsv });
   };
 
   handleSwatchSelection(color) {
     this.props.onChange(color);
-    this.setState({ colorAsHsl: hexToHsl(color) });
+    this.setState({ colorAsHsv: hexToHsv(color) });
 
     // When the trigger is an input, focus the input so you can adjust
     if (this.input) {
@@ -149,21 +155,19 @@ export class EuiColorPicker extends Component {
                 escape to close this popup.
               </p>
             </EuiScreenReaderOnly>
-            <EuiFlexGroup wrap responsive={false} gutterSize="s">
-              {swatchButtons}
-            </EuiFlexGroup>
-            <EuiSpacer size="s" />
             <EuiSaturation
-              color={this.state.colorAsHsl}
+              color={this.state.colorAsHsv}
               onChange={this.handleColorSelection}
             />
             <EuiSpacer size="s" />
             <EuiHue
-              hue={this.state.colorAsHsl.h}
-              onChange={
-                (hue) => this.handleColorSelection({ ...this.state.colorAsHsl, h: hue })
-              }
+              hue={this.state.colorAsHsv.h}
+              onChange={this.handleHueSelection}
             />
+            <EuiSpacer size="s" />
+            <EuiFlexGroup wrap responsive={false} gutterSize="s">
+              {swatchButtons}
+            </EuiFlexGroup>
           </div>
         </EuiPopover>
       </div>
