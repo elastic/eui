@@ -592,6 +592,22 @@
     "filepath": "src/components/selectable/selectable.tsx"
   },
   {
+    "token": "euiStat.loadingText",
+    "defString": "Statistic is loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 98,
+        "column": 6
+      },
+      "end": {
+        "line": 98,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/stat/stat.tsx"
+  },
+  {
     "token": "euiStepHorizontal.buttonTitle",
     "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
     "highlighting": "code",
@@ -731,6 +747,22 @@
       "end": {
         "line": 53,
         "column": 81
+      }
+    },
+    "filepath": "src/components/table/table_pagination/table_pagination.js"
+  },
+  {
+    "token": "euiTablePagination.rowsPerPageOption",
+    "defString": "{rowsPerPage} rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 63,
+        "column": 8
+      },
+      "end": {
+        "line": 63,
+        "column": 137
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.js"
