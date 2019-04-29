@@ -7,6 +7,7 @@
 - Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
 - Added `roundUp` prop to relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
 - Changed position of `EuiSwitch` for date rounding used at relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 
 **Bug fixes**
 
