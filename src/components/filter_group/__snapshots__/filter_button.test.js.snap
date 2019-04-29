@@ -21,9 +21,9 @@ exports[`EuiFilterButton is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiFilterButton props grow is rendered 1`] = `
+exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton euiFilterButton--noGrow"
   type="button"
 >
   <span

@@ -90,9 +90,9 @@ describe('EuiFilterButton', () => {
     });
 
     describe('grow', () => {
-      it('is rendered', () => {
+      it('can be turned off', () => {
         const component = render(
-          <EuiFilterButton grow />
+          <EuiFilterButton grow={false} />
         );
 
         expect(component)
