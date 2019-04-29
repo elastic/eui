@@ -12,6 +12,10 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
+import {
+  EuiCardSelect
+} from '../../../../src/components/card/card_select';
+
 import Card from './card';
 const cardSource = require('!!raw-loader!./card');
 const cardHtml = renderToHtml(Card);
@@ -94,7 +98,7 @@ export const CardExample = {
         />
       </div>
     ),
-    components: { EuiCard },
+    props: { EuiCard },
     demo: <CardLayout />,
   },
   {
@@ -121,7 +125,7 @@ export const CardExample = {
         />
       </div>
     ),
-    components: { EuiCard },
+    props: { EuiCard },
     demo: <CardImage />,
   },
   {
@@ -160,7 +164,7 @@ export const CardExample = {
         change the title of the tooltip, supply a <EuiCode>betaBadgeTitle</EuiCode> prop.
       </p>
     ),
-    components: { EuiCard },
+    props: { EuiCard },
     demo: <CardBeta />,
   },
   {
@@ -174,11 +178,11 @@ export const CardExample = {
     }],
     text: (
       <p>
-        When you have a list of cards that can be selected but do not navigate anywhere, you
+        When you have a list of cards that can be selected but <strong>do not navigate anywhere</strong>, you
         can add the `selectable` prop.
       </p>
     ),
-    components: { EuiCard },
+    props: { EuiCardSelect },
     demo: <CardSelectable />,
   },
   ],

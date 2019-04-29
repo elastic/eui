@@ -6,7 +6,7 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
-import { EuiButtonEmpty, COLORS as SELECTABLE_COLORS } from '../button/button_empty';
+import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
@@ -145,36 +145,7 @@ export const EuiCard = ({
       console.warn('EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.');
     }
 
-    const child = euiCardSelectableText(selectable);
-
-    let color;
-    if (selectable.color) {
-      color = selectable.color;
-    } else if (selectable.isSelected) {
-      color = 'success';
-    } else {
-      color = 'text';
-    }
-
-    const selectClasses = classNames(
-      'euiCard__selectButton',
-      `euiCard__selectButton--${color}`,
-      selectable.buttonProps && selectable.buttonProps.className
-    );
-
-    optionalSelectButton = (
-      <EuiButtonEmpty
-        color={selectable.color || 'text'}
-        size="xs"
-        onClick={selectable.onClick}
-        isDisabled={selectable.isDisabled}
-        iconType={selectable.isSelected ? 'check' : undefined}
-        {...selectable.buttonProps}
-        className={selectClasses}
-      >
-        {child}
-      </EuiButtonEmpty>
-    );
+    optionalSelectButton = <EuiCardSelect {...selectable} />;
   }
 
   return (
@@ -268,14 +239,7 @@ EuiCard.propTypes = {
   /**
    * Adds a button to the bottom of the card to allow for in-place selection.
    */
-  selectable: PropTypes.shape({
-    onClick: PropTypes.func.isRequired,
-    isSelected: PropTypes.bool,
-    isDisabled: PropTypes.bool,
-    color: PropTypes.oneOf(SELECTABLE_COLORS),
-    buttonProps: PropTypes.object,
-    children: PropTypes.node,
-  }),
+  selectable: PropTypes.shape(EuiCardSelectProps),
 
   /**
    * Add a decorative bottom graphic to the card.
@@ -289,27 +253,3 @@ EuiCard.defaultProps = {
   layout: 'vertical',
   titleElement: 'span',
 };
-
-function euiCardSelectableText(selectableProp) {
-  const {
-    isSelected,
-    isDisabled,
-    children,
-  } = selectableProp;
-
-  if (children) {
-    return children;
-  }
-
-  let text;
-
-  if (isSelected) {
-    text = 'Selected';
-  } else if (isDisabled) {
-    text = 'Unavailable';
-  } else {
-    text = 'Select';
-  }
-
-  return text;
-}

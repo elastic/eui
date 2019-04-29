@@ -105,9 +105,7 @@ export default class extends Component {
                 isSelected: this.state.card2Selected,
                 color: 'danger',
                 children: 'Custom text and icon',
-                buttonProps: {
-                  iconType: 'bell'
-                }
+                iconType: 'bell'
               }}
             />
           </EuiFlexItem>
@@ -120,7 +118,8 @@ export default class extends Component {
               selectable={{
                 onClick: () => {},
                 isDisabled: true,
-                color: 'danger'
+                color: 'danger',
+                iconType: 'minusInCircle'
               }}
             />
           </EuiFlexItem>
@@ -150,9 +149,7 @@ export default class extends Component {
                 isSelected: this.state.card2Selected,
                 color: 'primary',
                 children: 'Custom text, and className',
-                buttonProps: {
-                  className: 'eui-textAlignLeft'
-                }
+                className: 'eui-textAlignLeft'
               }}
             />
           </EuiFlexItem>
@@ -165,7 +162,7 @@ export default class extends Component {
               selectable={{
                 onClick: () => {},
                 isDisabled: true,
-                color: 'primary'
+                color: 'primary',
               }}
             />
           </EuiFlexItem>
@@ -195,9 +192,7 @@ export default class extends Component {
                 isSelected: this.state.card2Selected,
                 color: 'ghost',
                 children: 'Custom text and style tag',
-                buttonProps: {
-                  style: { textTransform: 'uppercase' }
-                }
+                style: { textTransform: 'uppercase' }
               }}
             />
           </EuiFlexItem>
@@ -210,6 +205,7 @@ export default class extends Component {
               selectable={{
                 onClick: () => {},
                 isDisabled: true,
+                children: 'Custom disabled text',
                 color: 'ghost'
               }}
             />
