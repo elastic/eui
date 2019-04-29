@@ -14,7 +14,6 @@ export type RefCallback<Element extends HTMLElement> = (
 
 // utility types:
 
-export type Filter<T, U> = T extends U ? T : never; // Remove types from T that are not assignable to U
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 /**

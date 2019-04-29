@@ -1,6 +1,6 @@
-export {
-  EuiGlobalToastListItemProps,
-  EuiGlobalToastListItem,
+import {
+  EuiGlobalToastListItemProps as ToastListItemProps,
+  EuiGlobalToastListItem as ToastListItem,
 } from './global_toast_list_item';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
@@ -28,6 +28,8 @@ declare module '@elastic/eui' {
   }
 
   export const EuiToast: FunctionComponent<EuiToastProps>;
+  export interface EuiGlobalToastListItem extends ToastListItemProps {}
+  export const EuiGlobalToastListItem: typeof ToastListItem;
 
   /**
    * EuiGlobalToastList type def
