@@ -28,46 +28,6 @@ exports[`EuiCard is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCard props betaBadgeLabel 1`] = `
-<div
-  class="euiCard euiCard--centerAligned euiCard--hasBetaBadge"
->
-  <span
-    class="euiCard__betaBadgeWrapper"
-  >
-    <span
-      class="euiToolTipAnchor"
-    >
-      <span
-        aria-describedby="p7rfxm4p"
-        class="euiBetaBadge euiCard__betaBadge"
-      >
-        Beta
-      </span>
-    </span>
-  </span>
-  <span
-    class="euiCard__content"
-  >
-    <span
-      class="euiTitle euiTitle--medium euiCard__title"
-    >
-      Card title
-    </span>
-    <div
-      class="euiText euiText--small euiCard__description"
-    >
-      <p>
-        Card description
-      </p>
-    </div>
-  </span>
-  <span
-    class="euiCard__footer"
-  />
-</div>
-`;
-
 exports[`EuiCard props footer 1`] = `
 <div
   class="euiCard euiCard--centerAligned"

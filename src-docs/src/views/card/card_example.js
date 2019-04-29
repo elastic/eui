@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -177,13 +177,32 @@ export const CardExample = {
       code: cardSelectableHtml,
     }],
     text: (
-      <p>
-        When you have a list of cards that can be selected but <strong>do not navigate anywhere</strong>, you
-        can add the `selectable` prop.
-      </p>
+      <Fragment>
+        <p>
+          When you have a list of cards that can be selected but <strong>do not navigate anywhere</strong>, you
+          can add the <EuiCode>selectable</EuiCode> prop. The prop is an object that requires an <EuiCode>onClick</EuiCode>.
+          It will apply the button as seen below, and passing <EuiCode>selectable.isSelected = true</EuiCode> will alter the
+          styles of the card and button to look selected.
+        </p>
+        <p>
+          The select button is essentially an EuiButtonEmpty and so the <EuiCode>selectable</EuiCode> object can
+          also accept any props that EuiButtonEmpty can.
+        </p>
+      </Fragment>
     ),
     props: { EuiCardSelect },
     demo: <CardSelectable />,
+    snippet: `<EuiCard
+  icon={<EuiIcon />}
+  title="Title"
+  description="Example of a short card description."
+  footer={cardFooterContent}
+  selectable={{
+    onClick: this.cardClicked,
+    isSelected: this.state.cardIsSelected,
+    isDisabled: this.state.cardIsDisabled,
+  }}
+/>`
   },
   ],
 };

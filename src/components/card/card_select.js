@@ -7,6 +7,8 @@ import {
   COLORS as BUTTON_EMPTY_COLORS,
 } from '../button/button_empty';
 
+import { EuiI18n } from '../i18n';
+
 export const EuiCardSelect = ({
   className,
   onClick,
@@ -79,11 +81,20 @@ function euiCardSelectableText(isSelected, isDisabled, children) {
   let text;
 
   if (isSelected) {
-    text = 'Selected';
+    text = (<EuiI18n
+      token="euiCardSelect.selected"
+      default="Selected"
+    />);
   } else if (isDisabled) {
-    text = 'Unavailable';
+    text = (<EuiI18n
+      token="euiCardSelect.unavailable"
+      default="Unavailable"
+    />);
   } else {
-    text = 'Select';
+    text = (<EuiI18n
+      token="euiCardSelect.select"
+      default="Select"
+    />);
   }
 
   return text;

@@ -117,20 +117,6 @@ describe('EuiCard', () => {
         .toMatchSnapshot();
     });
 
-    test('betaBadgeLabel', () => {
-      const component = render(
-        <EuiCard
-          title="Card title"
-          description="Card description"
-          betaBadgeLabel="Beta"
-          betaBadgeTooltipContent="Beta tooltip"
-        />
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
     test('selectable', () => {
       const component = render(
         <EuiCard
