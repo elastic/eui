@@ -7,6 +7,7 @@ import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
 import { EuiCardSelect, EuiCardSelectProps } from './card_select';
+import makeId from '../form/form_row/make_id';
 
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
@@ -73,6 +74,8 @@ export const EuiCard = ({
     },
     className,
   );
+
+  const ariaId = makeId();
 
   let secureRel;
   if (href) {
@@ -145,7 +148,7 @@ export const EuiCard = ({
       console.warn('EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.');
     }
 
-    optionalSelectButton = <EuiCardSelect {...selectable} />;
+    optionalSelectButton = <EuiCardSelect aria-describedby={`${ariaId}Title ${ariaId}Description`} {...selectable} />;
   }
 
   return (
@@ -162,11 +165,11 @@ export const EuiCard = ({
       {optionalCardTop}
 
       <span className="euiCard__content">
-        <EuiTitle className="euiCard__title">
+        <EuiTitle id={`${ariaId}Title`} className="euiCard__title">
           <TitleElement>{title}</TitleElement>
         </EuiTitle>
 
-        <EuiText size="s" className="euiCard__description">
+        <EuiText id={`${ariaId}Description`} size="s" className="euiCard__description">
           <p>{description}</p>
         </EuiText>
       </span>

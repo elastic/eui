@@ -11,11 +11,13 @@ exports[`EuiCard is rendered 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -37,11 +39,13 @@ exports[`EuiCard props footer 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -67,11 +71,13 @@ exports[`EuiCard props horizontal 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -114,11 +120,13 @@ exports[`EuiCard props icon 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -140,11 +148,13 @@ exports[`EuiCard props selectable 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -155,6 +165,7 @@ exports[`EuiCard props selectable 1`] = `
     class="euiCard__footer"
   />
   <button
+    aria-describedby="generated-idTitle generated-idDescription"
     class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
     type="button"
   >
@@ -180,11 +191,13 @@ exports[`EuiCard props textAlign 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -206,11 +219,13 @@ exports[`EuiCard props titleElement 1`] = `
   >
     <h4
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </h4>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description

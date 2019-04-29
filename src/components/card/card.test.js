@@ -10,6 +10,8 @@ import {
   EuiIcon,
 } from '../icon';
 
+jest.mock(`./../form/form_row/make_id`, () => () => `generated-id`);
+
 describe('EuiCard', () => {
   test('is rendered', () => {
     const component = render(
