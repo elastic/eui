@@ -28,7 +28,7 @@ declare module '@elastic/eui' {
   }
 
   export const EuiToast: FunctionComponent<EuiToastProps>;
-  export interface EuiGlobalToastListItem extends ToastListItemProps {}
+  export interface EuiGlobalToastListItemProps extends ToastListItemProps {}
   export const EuiGlobalToastListItem: typeof ToastListItem;
 
   /**
