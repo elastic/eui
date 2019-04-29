@@ -320,6 +320,22 @@
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
   },
   {
+    "token": "euiFilterButton.filterBadge",
+    "defString": "({\n  count,\n  hasActiveFilters\n}) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 69,
+        "column": 8
+      },
+      "end": {
+        "line": 73,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/filter_group/filter_button.js"
+  },
+  {
     "token": "euiFormControlLayoutClearButton.label",
     "defString": "Clear input",
     "highlighting": "string",
