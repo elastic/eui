@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.2.1`.
+
+## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
+
 **Bug fixes**
 
 - Fixed responsiveness of `EuiFilterGroup` ([#1849](https://github.com/elastic/eui/pull/1849))
