@@ -1,4 +1,7 @@
-import { EuiHeaderLogo as HeaderLogo } from './header_logo';
+import {
+  EuiHeaderLogoProps as HeaderLogoProps,
+  EuiHeaderLogo as HeaderLogo,
+} from './header_logo';
 
 declare module '@elastic/eui' {
   /**
@@ -6,5 +9,6 @@ declare module '@elastic/eui' {
    *
    * @see './header_logo.js'
    */
+  export interface EuiHeaderLogoProps extends HeaderLogoProps {}
   export const EuiHeaderLogo: typeof HeaderLogo;
 }
