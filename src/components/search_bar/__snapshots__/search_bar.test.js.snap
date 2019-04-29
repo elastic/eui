@@ -4,8 +4,10 @@ exports[`SearchBar render - box 1`] = `
 <EuiFlexGroup
   alignItems="center"
   gutterSize="m"
+  wrap={true}
 >
   <EuiFlexItem
+    className="euiSearchBar__searchHolder"
     grow={true}
   >
     <EuiSearchBox
@@ -26,8 +28,10 @@ exports[`SearchBar render - no config, no query 1`] = `
 <EuiFlexGroup
   alignItems="center"
   gutterSize="m"
+  wrap={true}
 >
   <EuiFlexItem
+    className="euiSearchBar__searchHolder"
     grow={true}
   >
     <EuiSearchBox
@@ -45,8 +49,10 @@ exports[`SearchBar render - provided query, filters 1`] = `
 <EuiFlexGroup
   alignItems="center"
   gutterSize="m"
+  wrap={true}
 >
   <EuiFlexItem
+    className="euiSearchBar__searchHolder"
     grow={true}
   >
     <EuiSearchBox
@@ -58,6 +64,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
     />
   </EuiFlexItem>
   <EuiFlexItem
+    className="euiSearchBar__filtersHolder"
     grow={false}
   >
     <EuiSearchFilters
@@ -147,6 +154,7 @@ exports[`SearchBar render - tools 1`] = `
 <EuiFlexGroup
   alignItems="center"
   gutterSize="m"
+  wrap={true}
 >
   <EuiFlexItem
     grow={false}
@@ -156,6 +164,7 @@ exports[`SearchBar render - tools 1`] = `
     </div>
   </EuiFlexItem>
   <EuiFlexItem
+    className="euiSearchBar__searchHolder"
     grow={true}
   >
     <EuiSearchBox

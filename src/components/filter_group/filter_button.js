@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-// import { getSecureRelForTarget } from '../../services';
+import { EuiI18n } from '../i18n';
 import { EuiNotificationBadge } from '../badge/notification_badge';
 import {
   COLORS,
@@ -28,24 +28,28 @@ export const EuiFilterButton = ({
   type,
   grow,
   noDivider,
+  withNext,
   textProps,
   ...rest
 }) => {
+  // != instead of !== to allow for null and undefined
+  const numFiltersDefined = numFilters != null;
 
   const classes = classNames(
     'euiFilterButton',
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
-      'euiFilterButton--grow': grow,
-      'euiFilterButton--noDivider': noDivider,
+      'euiFilterButton-hasNotification': numFiltersDefined,
+      'euiFilterButton--hasIcon': iconType,
+      'euiFilterButton--noGrow': !grow,
+      'euiFilterButton--withNext': noDivider || withNext,
     },
     className,
   );
 
-  // != instead of !== to allow for null and undefined
-  const numFiltersDefined = numFilters != null;
   const buttonTextClassNames = classNames(
+    // 'euiFilterButton__textShift',
     { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
     textProps && textProps.className,
   );
@@ -57,17 +61,29 @@ export const EuiFilterButton = ({
 
   const buttonContents = (
     <Fragment>
-      <span className="euiFilterButton__textShift" data-text={dataText}>
+      <span className="euiFilterButton__textShift" data-text={dataText} title={dataText}>
         {children}
       </span>
+
       {numFiltersDefined &&
-        <EuiNotificationBadge
-          className="euiFilterButton__notification"
-          size="m"
-          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+        <EuiI18n
+          token="euiFilterButton.filterBadge"
+          values={{ count: numActiveFilters || numFilters, hasActiveFilters }}
+          default={({ count, hasActiveFilters }) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`}
         >
-          {numActiveFilters || numFilters}
-        </EuiNotificationBadge>
+          {
+            filterBadge => (
+              <EuiNotificationBadge
+                className="euiFilterButton__notification"
+                size="m"
+                aria-label={filterBadge}
+                color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+              >
+                {numActiveFilters || numFilters}
+              </EuiNotificationBadge>
+            )
+          }
+        </EuiI18n>
       }
     </Fragment>
   );
@@ -128,6 +144,11 @@ EuiFilterButton.propTypes = {
   /**
    * Remove border after button, good for opposite filters
    */
+  withNext: PropTypes.bool,
+  /**
+   * _DEPRECATED: use `withNext`_
+   * Remove border after button, good for opposite filters
+   */
   noDivider: PropTypes.bool,
 };
 
@@ -135,5 +156,5 @@ EuiFilterButton.defaultProps = {
   type: 'button',
   iconSide: 'right',
   color: 'text',
-  grow: false,
+  grow: true,
 };

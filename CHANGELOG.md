@@ -2,6 +2,14 @@
 
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 
+**Bug fixes**
+
+- Fixed responsiveness of `EuiFilterGroup` ([#1849](https://github.com/elastic/eui/pull/1849))
+
+**Deprecations**
+
+- Replaced `EuiFilterButton`'s `noDivider` prop with `withNext` ([#1849](https://github.com/elastic/eui/pull/1849))
+
 ## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
 
 - Converted `EuiGlobalToastListItem` to TS ([#1880](https://github.com/elastic/eui/pull/1880))

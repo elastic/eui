@@ -20,6 +20,7 @@ $euiFormBorderColor: transparentize($euiColorFullShade, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiColorFullShade, .92) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
+$euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8);
 
 //** DEPRECATED **//
 //** DEPRECATED **//

@@ -1,19 +1,12 @@
 @import '../form/variables';
-@import '../form/mixins';
-@import '../form/form_control_layout/mixins';
-
-/**
- * 1. Account for inner box-shadow style border
- */
 
 .euiFilterButton {
-  flex-grow: 0; // Shrink by default
-  height: $euiFormControlHeight - 2px; /* 1 */
+  background-color: $euiFormBackgroundColor;
+  height: $euiFormControlHeight;
+  width: auto;
+  border: 1px solid $euiFormBorderColor;
+  border-right: none;
   font-size: $euiFontSizeS;
-
-  &:not(:last-child):not(.euiFilterButton--noDivider) {
-    border-right: 1px solid $euiFormBorderColor;
-  }
 
   &:disabled {
     color: $euiButtonColorDisabled;
@@ -36,28 +29,17 @@
   }
 }
 
-.euiFilterButton--grow {
-  flex-grow: 1;
-  width: 100%;
-  text-align: left;
-
-  // Force content to space out icon
-  .euiButtonEmpty__content {
-    justify-content: space-between;
-  }
-}
-
 .euiFilterButton-hasActiveFilters {
   font-weight: $euiFontWeightBold;
 }
 
-.euiFilterButton__notification {
-  margin-left: $euiSizeS;
-  vertical-align: text-bottom;
+.euiFilterButton--hasIcon .euiButtonEmpty__content {
+  justify-content: space-between;
 }
 
-.euiFilterButton--noDivider + .euiFilterButton {
+.euiFilterButton--withNext + .euiFilterButton {
   margin-left: $euiSizeXS * -1;
+  border-left: none;
 }
 
 .euiFilterButton-isSelected {
@@ -69,7 +51,13 @@
   align-items: center;
 }
 
+.euiFilterButton__notification {
+  margin-left: $euiSizeS;
+  vertical-align: text-bottom;
+}
+
 .euiFilterButton__textShift {
   @include euiTextShift;
-  vertical-align: middle;
+  @include euiTextTruncate;
+  min-width: $euiSize * 3;
 }

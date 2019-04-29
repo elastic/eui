@@ -3,7 +3,7 @@
 exports[`FieldValueToggleFilter render - active 1`] = `
 <EuiFilterButton
   color="text"
-  grow={false}
+  grow={true}
   hasActiveFilters={true}
   iconSide="right"
   onClick={[Function]}
@@ -16,7 +16,7 @@ exports[`FieldValueToggleFilter render - active 1`] = `
 exports[`FieldValueToggleFilter render - active negated - custom negated name 1`] = `
 <EuiFilterButton
   color="text"
-  grow={false}
+  grow={true}
   hasActiveFilters={true}
   iconSide="right"
   onClick={[Function]}
@@ -29,7 +29,7 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
 exports[`FieldValueToggleFilter render - active negated 1`] = `
 <EuiFilterButton
   color="text"
-  grow={false}
+  grow={true}
   hasActiveFilters={true}
   iconSide="right"
   onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
 exports[`FieldValueToggleFilter render 1`] = `
 <EuiFilterButton
   color="text"
-  grow={false}
+  grow={true}
   hasActiveFilters={false}
   iconSide="right"
   onClick={[Function]}
