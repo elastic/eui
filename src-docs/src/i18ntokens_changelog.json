@@ -1,5 +1,20 @@
 [
   {
+    "version": "10.2.0",
+    "changes": [
+      {
+        "token": "euiStat.loadingText",
+        "changeType": "added",
+        "value": "Statistic is loading"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOption",
+        "changeType": "added",
+        "value": "{rowsPerPage} rows"
+      }
+    ]
+  },
+  {
     "version": "9.8.0",
     "changes": [
       {

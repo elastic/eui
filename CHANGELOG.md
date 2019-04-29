@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
+
+## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
+
 - Converted `EuiGlobalToastListItem` to TS ([#1880](https://github.com/elastic/eui/pull/1880))
 - Converted `token_map` to TS ([#1870](https://github.com/elastic/eui/pull/1870))
 - Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
@@ -7,7 +11,8 @@
 - Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
 - Added `roundUp` prop to relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
 - Changed position of `EuiSwitch` for date rounding used at relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
-- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
+- Added `bug`, `flag`, and `heart` glyphs to `EuiIcon` ([#1887](https://github.com/elastic/eui/pull/1887))
+- Updated `alert` glyph in `EuiIcon` ([#1887](https://github.com/elastic/eui/pull/1887))
 
 **Bug fixes**
 
@@ -18,6 +23,7 @@
 - Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
 - Fixed `EuiComboBox` with `singleSelection` and `onAddCustomOption` reopening the options list after adding a custom option ([#1882](https://github.com/elastic/eui/pull/1882))
 - Fixed `EuiComboBox` reopening the options list in Firefox when closing via the dropdown arrow button ([#1885](https://github.com/elastic/eui/pull/1885))
+- Fixed running the dev server and building on Windows ([#1891](https://github.com/elastic/eui/pull/1891))
 
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
