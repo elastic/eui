@@ -8,7 +8,6 @@
 
 - Replaced `EuiFilterButton`'s `noDivider` prop with `withNext` ([#1849](https://github.com/elastic/eui/pull/1849))
 
-
 ## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
 
 - Converted `EuiGlobalToastListItem` to TS ([#1880](https://github.com/elastic/eui/pull/1880))
@@ -31,7 +30,6 @@
 - Fixed `EuiComboBox` with `singleSelection` and `onAddCustomOption` reopening the options list after adding a custom option ([#1882](https://github.com/elastic/eui/pull/1882))
 - Fixed `EuiComboBox` reopening the options list in Firefox when closing via the dropdown arrow button ([#1885](https://github.com/elastic/eui/pull/1885))
 - Fixed running the dev server and building on Windows ([#1891](https://github.com/elastic/eui/pull/1891))
-
 
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
