@@ -32,6 +32,10 @@
 - Fixed `EuiComboBox` reopening the options list in Firefox when closing via the dropdown arrow button ([#1885](https://github.com/elastic/eui/pull/1885))
 - Fixed running the dev server and building on Windows ([#1891](https://github.com/elastic/eui/pull/1891))
 
+**Deprecations**
+
+- Replaced `EuiFilterButton`'s `noDivider` prop with `withNext` ([#1849](https://github.com/elastic/eui/pull/1849))
+
 ## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
 
 - Added `tokenModule` and `tokenNamespace` icons to `EuiToken` ([#1839](https://github.com/elastic/eui/pull/1839))
