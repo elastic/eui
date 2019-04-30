@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.2.1`.
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
 ## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
 
