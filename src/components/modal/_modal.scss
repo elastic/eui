@@ -27,7 +27,6 @@
 }
 
 .euiModal--maxWidth-default {
-  width: 100%; // Needed for IE
   max-width: map-get($euiBreakpoints, 'm');
 }
 
