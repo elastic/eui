@@ -2,6 +2,8 @@
 
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 
+## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
+
 **Bug fixes**
 
 - Fixed responsiveness of `EuiFilterGroup` ([#1849](https://github.com/elastic/eui/pull/1849))
