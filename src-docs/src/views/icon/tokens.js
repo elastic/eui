@@ -7,6 +7,8 @@ import {
   EuiText,
   EuiToken,
   EuiSpacer,
+  EuiCopy,
+  EuiCode,
 } from '../../../../src/components';
 
 const tokens = [
@@ -50,19 +52,40 @@ export default () => (
           <EuiFlexItem
             className="guideDemo__icon"
             key={token}
+            style={{ width: '200px' }}
           >
-            <EuiPanel>
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
-                <EuiToken iconType={token}/>
-              </div>
-              <EuiText size="s">
-                <p>{token}</p>
-              </EuiText>
-            </EuiPanel>
+            <EuiCopy
+              textToCopy={token}
+              afterMessage={`${token} copied`}
+            >
+              {(copy) => (
+                <EuiPanel
+                  className="eui-textCenter"
+                  onClick={copy}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+                    <EuiToken iconType={token}/>
+                  </div>
+                  <EuiText size="s">
+                    <p>{token}</p>
+                  </EuiText>
+                </EuiPanel>
+              )}
+            </EuiCopy>
           </EuiFlexItem>
         ))
       }
     </EuiFlexGrid>
+
+    <EuiSpacer />
+
+    <EuiText size="s">
+      <p>
+        By default the <EuiCode>iconType</EuiCode> prop defines the styling of the token.
+        However, <EuiCode>displayOptions</EuiCode> allows you to overwrite the color, shape and fill used
+        if you need a more custom token using any of the EUI glyph set.
+      </p>
+    </EuiText>
 
     <EuiSpacer />
 

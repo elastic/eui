@@ -6,6 +6,7 @@ import {
   EuiIcon,
   EuiPanel,
   EuiText,
+  EuiCopy,
 } from '../../../../src/components';
 
 const iconTypes = [
@@ -35,15 +36,25 @@ export default () => (
           key={iconType}
           style={{ width: '200px' }}
         >
-          <EuiPanel>
-            <EuiIcon
-              type={iconType}
-              size="xl"
-            />
-            <EuiText size="s">
-              <p>{iconType}</p>
-            </EuiText>
-          </EuiPanel>
+          <EuiCopy
+            textToCopy={iconType}
+            afterMessage={`${iconType} copied`}
+          >
+            {(copy) => (
+              <EuiPanel
+                onClick={copy}
+                className="eui-textCenter"
+              >
+                <EuiIcon
+                  type={iconType}
+                  size="xl"
+                />
+                <EuiText size="s">
+                  <p>{iconType}</p>
+                </EuiText>
+              </EuiPanel>
+            )}
+          </EuiCopy>
         </EuiFlexItem>
       ))
     }

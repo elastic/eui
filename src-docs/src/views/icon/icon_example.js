@@ -58,18 +58,27 @@ const appsSnippet = `<EuiIcon type="addDataApp" size="xl" />`;
 
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
+const mlSnippet = `<EuiIcon type="dataVisualizer" size="xl" />`;
 
 import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
+const logosSnippet = `<EuiIcon type="logoElasticsearch" size="xl" />`;
 
 import LogosThird from './logos_third';
 const logosThirdSource = require('!!raw-loader!./logos_third');
+const logosThirdSnippet = `<EuiIcon type="logoApache" size="xl" />`;
 
 import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
+const iconSizesSnippet = `<EuiIcon type="logoElasticStack" size="xl" />`;
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
+const iconColorsSnippet = `// Colors can be used on glyphs
+
+<EuiIcon type="brush" color="primary" />
+
+<EuiIcon type="brush" color="#F98510" />`;
 
 import Accessibility from './accessibility';
 const accessibilitySource = require('!!raw-loader!./accessibility');
@@ -190,6 +199,7 @@ export const IconExample = {
         Again, these are made for <EuiCode>32x32</EuiCode>.
       </p>
     ),
+    snippet: mlSnippet,
     demo: <Ml />,
   }, {
     title: 'Elastic logos',
@@ -206,6 +216,7 @@ export const IconExample = {
         portions of the SVGs to handle flipping colors for dark mode.
       </p>
     ),
+    snippet: logosSnippet,
     demo: <Logos />,
   }, {
     title: 'Third party logos',
@@ -216,6 +227,7 @@ export const IconExample = {
       type: GuideSectionTypes.HTML,
       code: iconsHtml,
     }],
+    snippet: logosThirdSnippet,
     demo: <LogosThird />,
   }, {
     title: 'Sizes',
@@ -232,6 +244,7 @@ export const IconExample = {
         Medium is the default, and will output a <EuiCode>16x16</EuiCode> icon.
       </p>
     ),
+    snippet: iconSizesSnippet,
     demo: <IconSizes />,
   }, {
     title: 'Colors',
@@ -253,6 +266,7 @@ export const IconExample = {
         unless the custom color is initiated by the user (like as a graph color).
       </p>
     ),
+    snippet: iconColorsSnippet,
     demo: <IconColors />,
   }, {
     title: 'Accessibility',
