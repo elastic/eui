@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+
 **Bug fixes**
 
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
