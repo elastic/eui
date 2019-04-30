@@ -6,17 +6,14 @@
 import { Component, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import { CommonProps, keysOf, Omit } from '../common';
+import { CommonProps, keysOf } from '../common';
 
 export interface EuiOverlayMaskProps {
   onClick?: () => void;
 }
 
 export type Props = CommonProps &
-  Omit<
-    Partial<Record<keyof HTMLAttributes<HTMLDivElement>, string>>,
-    keyof EuiOverlayMaskProps
-  > &
+  HTMLAttributes<HTMLDivElement> &
   EuiOverlayMaskProps;
 
 export class EuiOverlayMask extends Component<Props> {
