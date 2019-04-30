@@ -3,17 +3,21 @@
  * into portals.
  */
 
-import { Component, HTMLAttributes } from 'react';
+import { Component, HTMLAttributes, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { CommonProps, keysOf, Omit } from '../common';
 
 export interface EuiOverlayMaskProps {
   onClick?: () => void;
+  children?: ReactNode;
 }
 
 export type Props = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> &
+  Omit<
+    Partial<Record<keyof HTMLAttributes<HTMLDivElement>, string>>,
+    keyof EuiOverlayMaskProps
+  > &
   EuiOverlayMaskProps;
 
 export class EuiOverlayMask extends Component<Props> {
