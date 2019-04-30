@@ -200,11 +200,9 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 `;
 
 exports[`EuiTabbedContent props display is rendered 1`] = `
-<div
-  display="condensed"
->
+<div>
   <div
-    class="euiTabs"
+    class="euiTabs euiTabs--condensed"
     role="tablist"
   >
     <button
