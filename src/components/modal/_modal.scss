@@ -51,6 +51,9 @@
   @include euiOverflowShadow;
   flex-grow: 1;
   overflow: hidden;
+  // The below fixes scroll on Chrome and Safari
+  display: flex;
+  flex-direction: column;
 
   .euiModalBody__overflow {
     @include euiScrollBar;
