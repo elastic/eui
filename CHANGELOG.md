@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.2.1`.
+**Bug fixes**
+
+- Fixed prompt text rendering in `EuiFilePicker` when a React element is passed ([#1903](https://github.com/elastic/eui/pull/1903))
 
 ## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
 
