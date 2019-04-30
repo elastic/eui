@@ -12,6 +12,7 @@ import {
   EuiToken,
   EuiLink,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 const iconHtmlWarning = () => (
@@ -79,36 +80,32 @@ const iconTypesSnippet = `<EuiIcon type="logoElastic" size="xl" />
 
 <EuiIcon type={reactSVGElement} size="xl" />
 
-<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />`;
+<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />
+
+<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>
+`;
 
 export const IconExample = {
   title: 'Icons',
   intro: (
-    <EuiText>
-      <p>
-        <EuiCode>EuiIcon</EuiCode> is a handy component for using our
-        custom icons and logos. The <EuiCode>type</EuiCode> prop accepts either
-        an enumerated name from one of the sets below, or can alternatively accept a
-        location to a custom SVG asset, or lastly a React Element.
-      </p>
-      <p>
-        When using custom SVGs please <strong>remove all fill attributes</strong> on the SVG and
-        utilize the CSS helpers if you have complex logos that need to work with theming.
-      </p>
-    </EuiText>
+    <div>
+      <EuiText>
+        <p>
+          <EuiCode>EuiIcon</EuiCode> is a handy component for using our
+          custom icons and logos. The <EuiCode>type</EuiCode> prop accepts either
+          an enumerated name from one of the sets below, or can alternatively accept a
+          location to a custom SVG asset, or lastly a React Element.
+        </p>
+        <p>
+          When using custom SVGs please <strong>remove all fill attributes</strong> on the SVG and
+          utilize the CSS helpers if you have complex logos that need to work with theming.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+    </div>
+
   ),
   sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: iconTypesSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: iconsHtml,
-    }],
-    props: { EuiIcon },
-    snippet: iconTypesSnippet,
-    demo: <IconTypes />,
-  }, {
     source: [{
       type: GuideSectionTypes.JS,
       code: iconsSource,
@@ -272,5 +269,20 @@ export const IconExample = {
       </p>
     ),
     demo: <Accessibility />,
+  }, {
+    title: 'Custom SVGs',
+    text: (
+      <p>The <EuiCode>type</EuiCode> prop can accept a valid enum, string or React SVG Element.</p>
+    ),
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: iconTypesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: iconsHtml,
+    }],
+    props: { EuiIcon },
+    snippet: iconTypesSnippet,
+    demo: <IconTypes />,
   }],
 };

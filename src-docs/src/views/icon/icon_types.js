@@ -1,24 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import {
   EuiFlexGrid,
+  EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
   EuiPanel,
   EuiText,
   EuiCode,
   EuiSpacer,
+  EuiButton,
 } from '../../../../src/components';
 
 import reactSvg from '../../images/custom.svg';
 
 
 export default () => (
-  <Fragment>
-    <EuiText>
-      <p>The <EuiCode>type</EuiCode> prop can accept a valid enum, string or React SVG Element.</p>
-    </EuiText>
-    <EuiSpacer />
+  <div>
     <EuiFlexGrid columns={4}>
       <EuiFlexItem
         className="guideDemo__icon"
@@ -63,5 +61,23 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
     </EuiFlexGrid>
-  </Fragment>
+
+    <EuiSpacer />
+
+    <EuiText>
+      <p>Any component that utlizes <EuiCode>EuiIcon</EuiCode> can use custom SVGs as well</p>
+    </EuiText>
+
+    <EuiSpacer />
+
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg">http://some.svg</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType={reactSvg}>{`{reactSvg}`}</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+  </div>
 );

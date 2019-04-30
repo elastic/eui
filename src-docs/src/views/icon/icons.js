@@ -204,8 +204,8 @@ export default () => (
           style={{ width: '200px' }}
         >
           <EuiCopy
-            textToCopy={`<EuiIcon type="${iconType}" />`}
-            afterMessage="React code copied"
+            textToCopy={iconType}
+            afterMessage={`${iconType} copied`}
           >
             {(copy) => (
               <EuiPanel
