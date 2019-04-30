@@ -1,29 +1,17 @@
-import {
-  Children,
-  cloneElement,
-  Component,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import { Children, cloneElement, Component, ReactElement } from 'react';
 import { CommonProps } from '../../common';
 
-export type HTMLConstraintValidityElement =
-  | HTMLButtonElement
-  | HTMLFieldSetElement
-  | HTMLInputElement
-  | HTMLObjectElement
-  | HTMLOutputElement
-  | HTMLSelectElement
-  | HTMLTextAreaElement
-  | Element & { setCustomValidity?: any };
+export interface HTMLConstraintValidityElement extends Element {
+  setCustomValidity: (error: string) => void;
+}
 
-export type EuiNodeWithRef = ReactNode & {
-  ref?: (node: ReactNode) => void;
-};
+export interface ReactElementWithRef extends ReactElement {
+  ref?: (element: HTMLConstraintValidityElement) => void;
+}
 
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
-  children?: EuiNodeWithRef;
+  children: ReactElementWithRef;
 }
 
 export class EuiValidatableControl extends Component<
@@ -54,19 +42,19 @@ export class EuiValidatableControl extends Component<
     this.updateValidity();
   }
 
-  setRef = (node: HTMLConstraintValidityElement) => {
-    this.control = node;
+  setRef = (element: HTMLConstraintValidityElement) => {
+    this.control = element;
 
     // Call the original ref, if any
-    const { ref } = this.props.children as EuiNodeWithRef;
+    const { ref } = this.props.children;
     if (typeof ref === 'function') {
-      ref(node);
+      ref(element);
     }
   };
 
   render() {
     const child = Children.only(this.props.children);
-    return cloneElement(child as ReactElement<any>, {
+    return cloneElement(child, {
       ref: this.setRef,
     });
   }
