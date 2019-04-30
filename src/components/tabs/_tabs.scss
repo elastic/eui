@@ -1,13 +1,18 @@
 .euiTabs {
   @include euiScrollBar;
-
   display: flex;
   position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
 
-  &:before {
+  // Changing height of scrollbar so it sits flush with border
+  // sass-lint:disable no-vendor-prefixes
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  &:not(.euiTabs--condensed)::before {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -16,32 +21,11 @@
     background-color: $euiColorLightShade;
     content: '';
   }
-
-  // Changing height of scrollbar so it sits flush with border
-  // sass-lint:disable no-vendor-prefixes
-  &::-webkit-scrollbar {
-    height: 3px;
-  }
-
-  &.euiTabs--small {
-    .euiTab {
-      @include fontSize($euiTabFontSizeS);
-      padding: $euiSizeS;
-    }
-  }
-
-  &.euiTabs--expand {
-    .euiTab {
-      flex-grow: 1;
-      flex-basis: 0%;
-    }
-  }
 }
 
 .euiTab {
   @include fontSize($euiTabFontSize);
   line-height: $euiLineHeight;
-
   position: relative;
   cursor: pointer;
   padding: $euiSizeM $euiSize;
@@ -54,17 +38,20 @@
   }
 
   &:focus {
-    background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
 
-    &:before {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background-color: $euiColorLightShade;
-      content: '';
+    .euiTabs:not(.euiTabs--condensed) & {
+      background-color: $euiFocusBackgroundColor;
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: $euiColorLightShade;
+        content: '';
+      }
     }
   }
 
@@ -82,7 +69,7 @@
     cursor: default;
     color: $euiColorPrimary;
 
-    &:after {
+    &::after {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -94,6 +81,24 @@
     }
   }
 
+  .euiTabs--small & {
+    @include fontSize($euiTabFontSizeS);
+    padding: $euiSizeS;
+  }
+
+  .euiTabs--condensed & {
+    font-weight: 600;
+    padding: $euiSizeS 0;
+
+    & + .euiTab {
+      margin-left: $euiSizeL;
+    }
+  }
+
+  .euiTabs--expand & {
+    flex-grow: 1;
+    flex-basis: 0%;
+  }
 }
 
 .euiTab__content {

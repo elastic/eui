@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 
-import {
-  EuiTabs,
-  EuiTab,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiTabs, EuiTab, EuiSpacer } from '../../../../src/components';
 
 class EuiTabsExample extends Component {
   constructor(props) {
     super(props);
 
-    this.tabs = [{
-      id: 'cobalt',
-      name: 'Cobalt',
-      disabled: false,
-    }, {
-      id: 'dextrose',
-      name: 'Dextrose',
-      disabled: false,
-    }, {
-      id: 'hydrogen',
-      name: 'Hydrogen',
-      disabled: true,
-    }, {
-      id: 'monosodium_glutammate',
-      name: 'Monosodium Glutamate',
-      disabled: false,
-    }];
+    this.tabs = [
+      {
+        id: 'cobalt',
+        name: 'Cobalt',
+        disabled: false,
+      },
+      {
+        id: 'dextrose',
+        name: 'Dextrose',
+        disabled: false,
+      },
+      {
+        id: 'hydrogen',
+        name: 'Hydrogen',
+        disabled: true,
+      },
+      {
+        id: 'monosodium_glutammate',
+        name: 'Monosodium Glutamate',
+        disabled: false,
+      },
+    ];
 
     this.state = {
       selectedTabId: 'cobalt',
@@ -37,7 +38,7 @@ class EuiTabsExample extends Component {
     this.setState({
       selectedTabId: id,
     });
-  }
+  };
 
   renderTabs() {
     return this.tabs.map((tab, index) => (
@@ -55,13 +56,19 @@ class EuiTabsExample extends Component {
   render() {
     return (
       <div>
-        <EuiTabs>
-          {this.renderTabs()}
-        </EuiTabs>
+        <EuiTabs>{this.renderTabs()}</EuiTabs>
 
         <EuiSpacer />
 
-        <EuiTabs size="s">
+        <EuiTabs size="s">{this.renderTabs()}</EuiTabs>
+
+        <EuiSpacer />
+
+        <EuiTabs display="condensed">{this.renderTabs()}</EuiTabs>
+
+        <EuiSpacer />
+
+        <EuiTabs display="condensed" size="s">
           {this.renderTabs()}
         </EuiTabs>
       </div>
