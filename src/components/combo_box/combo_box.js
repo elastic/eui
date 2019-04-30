@@ -314,6 +314,7 @@ export class EuiComboBox extends Component {
       if (this.props.onBlur) {
         this.props.onBlur();
       }
+      this.setState({ hasFocus: false });
 
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
@@ -321,10 +322,6 @@ export class EuiComboBox extends Component {
         this.addCustomOption(true);
       }
     }
-  }
-
-  onComboBoxBlur = () => {
-    this.setState({ hasFocus: false });
   }
 
   onKeyDown = (e) => {
@@ -457,7 +454,8 @@ export class EuiComboBox extends Component {
 
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
-      this.props.onSearchChange(searchValue);
+      const hasMatchingOptions = this.state.matchingOptions.length > 0;
+      this.props.onSearchChange(searchValue, hasMatchingOptions);
     }
 
     this.setState(
@@ -616,7 +614,10 @@ export class EuiComboBox extends Component {
     } = this.props;
     const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
-    const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
+    // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
+    // When custom options are disabled and the user leaves the combo box after entering text that does not match any
+    // options, this tells the user that they've entered invalid input.
+    const markAsInvalid = isInvalid || ((hasFocus === false || isListOpen === false) && searchValue);
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -679,7 +680,6 @@ export class EuiComboBox extends Component {
           placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}
-          onBlur={this.onComboBoxBlur}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.onComboBoxFocus}

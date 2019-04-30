@@ -162,6 +162,9 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 @import 'guide_rule/index';
 
 @include euiBreakpoint('xs', 's') {
+  .guidePage {
+    display: block; // Fixes IE
+  }
 
   .guideBody {
     background: none;
@@ -199,6 +202,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 
   .guidePageContent {
     margin-left: 0;
+    width: 100%;
   }
 
   .euiFlexGroup--responsive > .euiFlexItem.guideColorPalette__swatch {
@@ -216,11 +220,5 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     &:last-child span {
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
-  }
-}
-
-@include euiBreakpoint('xs', 's') {
-  .guidePage {
-    display: block; // Fixes IE
   }
 }

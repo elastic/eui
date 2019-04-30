@@ -1,5 +1,30 @@
 [
   {
+    "version": "10.2.1",
+    "changes": [
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "added",
+        "value": "({\n  count,\n  hasActiveFilters\n}) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`;"
+      }
+    ]
+  },
+  {
+    "version": "10.2.0",
+    "changes": [
+      {
+        "token": "euiStat.loadingText",
+        "changeType": "added",
+        "value": "Statistic is loading"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOption",
+        "changeType": "added",
+        "value": "{rowsPerPage} rows"
+      }
+    ]
+  },
+  {
     "version": "9.8.0",
     "changes": [
       {
