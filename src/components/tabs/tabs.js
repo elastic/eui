@@ -44,6 +44,9 @@ export const EuiTabs = ({
 EuiTabs.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Choose default or alternative condensed display styles
+   */
   display: PropTypes.oneOf(DISPLAYS),
   /**
    * Evenly stretches each tab to fill the
