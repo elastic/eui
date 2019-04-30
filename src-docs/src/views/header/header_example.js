@@ -2,9 +2,7 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
 
 import {
   EuiHeader,
@@ -39,76 +37,87 @@ const globalQueryHtml = renderToHtml(GlobalQuery);
 
 export const HeaderExample = {
   title: 'Header',
-  sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: headerSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: headerHtml,
-    }],
-    text: (
-      <p>
-        The header is made up of several individual components.
-      </p>
-    ),
-    props: {
-      EuiHeader,
-      EuiHeaderBreadcrumbs,
-      EuiHeaderSection,
-      EuiHeaderSectionItem,
-      EuiHeaderSectionItemButton,
-      EuiHeaderLogo,
+  sections: [
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerHtml,
+        },
+      ],
+      text: <p>The header is made up of several individual components.</p>,
+      props: {
+        EuiHeader,
+        EuiHeaderBreadcrumbs,
+        EuiHeaderSection,
+        EuiHeaderSectionItem,
+        EuiHeaderSectionItemButton,
+        EuiHeaderLogo,
+      },
+      demo: <Header />,
     },
-    demo: <Header />,
-  }, {
-    title: 'Links',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: headerLinksSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: headerLinksHtml,
-    }],
-    text: (
-      <p>
-        If you&rsquo;re using EUI in a one-off site or page, you can use <EuiCode>EuiHeaderLinks</EuiCode>,
-        &nbsp;<EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
-      </p>
-    ),
-    props: {
-      EuiHeaderLinks,
-      EuiHeaderLink
+    {
+      title: 'Links',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: headerLinksSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: headerLinksHtml,
+        },
+      ],
+      text: (
+        <p>
+          If you&rsquo;re using EUI in a one-off site or page, you can use{' '}
+          <EuiCode>EuiHeaderLinks</EuiCode>, &nbsp;
+          <EuiCode>EuiHeaderLink</EuiCode>s instead of breadcrumbs.
+        </p>
+      ),
+      props: {
+        EuiHeaderLinks,
+        EuiHeaderLink,
+      },
+      demo: <HeaderLinks />,
     },
-    demo: <HeaderLinks />,
-  }, {
-    title: 'Global query and filters',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: globalQuerySource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: globalQueryHtml,
-    }],
-    text: (
-      <div>
-        <EuiCallOut color="warning" title="Demo of visual pattern only">
-          <p>
-            This documents a <strong>visual</strong> pattern for the eventual replacement of Kibana&apos;s
-            global query and filter bars. The filter bar has been broken down into multiple components. There
-            are still bugs and not all the logic is well-formed.
-          </p>
-        </EuiCallOut>
-      </div>
-    ),
-    props: {
-      GlobalQuery,
-      GlobalFilterBar,
-      GlobalFilterOptions,
-      GlobalFilterAdd,
-      GlobalFilterForm,
-      GlobalFilterItem,
+    {
+      title: 'Global query and filters',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: globalQuerySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: globalQueryHtml,
+        },
+      ],
+      text: (
+        <div>
+          <EuiCallOut color="warning" title="Demo of visual pattern only">
+            <p>
+              This documents a <strong>visual</strong> pattern for the eventual
+              replacement of Kibana&apos;s global query and filter bars. The
+              filter bar has been broken down into multiple components. There
+              are still bugs and not all the logic is well-formed.
+            </p>
+          </EuiCallOut>
+        </div>
+      ),
+      props: {
+        GlobalQuery,
+        GlobalFilterBar,
+        GlobalFilterOptions,
+        GlobalFilterAdd,
+        GlobalFilterForm,
+        GlobalFilterItem,
+      },
+      demo: <GlobalQuery />,
     },
-    demo: <GlobalQuery />,
-  }],
+  ],
 };

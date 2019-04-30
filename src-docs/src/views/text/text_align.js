@@ -22,7 +22,10 @@ export default () => (
     </EuiText>
     <EuiSpacer />
     <EuiText textAlign="center">
-      <p>You can also pass alignment to <EuiCode>EuiText</EuiCode> directly with a prop</p>
+      <p>
+        You can also pass alignment to <EuiCode>EuiText</EuiCode> directly with
+        a prop
+      </p>
     </EuiText>
     <EuiText textAlign="center" color="secondary">
       <p>And in conjunction with coloring.</p>

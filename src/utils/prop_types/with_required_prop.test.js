@@ -6,10 +6,10 @@ describe('withRequiredProp', () => {
     expect(() => {
       PropTypes.checkPropTypes(
         {
-          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp')
+          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp'),
         },
         {
-          exampleProp: 15
+          exampleProp: 15,
         },
         'exampleProp',
         'ExampleComponent'
@@ -21,10 +21,10 @@ describe('withRequiredProp', () => {
     expect(() => {
       PropTypes.checkPropTypes(
         {
-          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp')
+          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp'),
         },
         {
-          exampleProp: 'hello'
+          exampleProp: 'hello',
         },
         'exampleProp',
         'ExampleComponent'
@@ -36,10 +36,14 @@ describe('withRequiredProp', () => {
     expect(() => {
       PropTypes.checkPropTypes(
         {
-          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp', 'a custom message')
+          exampleProp: withRequiredProp(
+            PropTypes.string,
+            'requiredProp',
+            'a custom message'
+          ),
         },
         {
-          exampleProp: 'hello'
+          exampleProp: 'hello',
         },
         'exampleProp',
         'ExampleComponent'
@@ -51,7 +55,7 @@ describe('withRequiredProp', () => {
     expect(() => {
       PropTypes.checkPropTypes(
         {
-          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp')
+          exampleProp: withRequiredProp(PropTypes.string, 'requiredProp'),
         },
         {},
         'exampleProp',
@@ -65,11 +69,11 @@ describe('withRequiredProp', () => {
       PropTypes.checkPropTypes(
         {
           exampleProp: withRequiredProp(PropTypes.string, 'requiredProp'),
-          requiredProp: PropTypes.number
+          requiredProp: PropTypes.number,
         },
         {
           exampleProp: 'hello',
-          requiredProp: 5
+          requiredProp: 5,
         },
         'exampleProp',
         'ExampleComponent'

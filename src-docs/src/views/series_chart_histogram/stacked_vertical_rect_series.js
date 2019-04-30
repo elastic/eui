@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { EuiSeriesChart, EuiHistogramSeries } from '../../../../src/experimental';
+import {
+  EuiSeriesChart,
+  EuiHistogramSeries,
+} from '../../../../src/experimental';
 
 const dataA = [
   { x0: 0, x: 1, y: 1 },
@@ -20,7 +23,7 @@ const dataB = [
 
 export default () => (
   <EuiSeriesChart width={600} height={200} stackBy="y">
-    <EuiHistogramSeries name={`Tag A`} data={dataA} />
-    <EuiHistogramSeries name={`Tag B`} data={dataB} />
+    <EuiHistogramSeries name={'Tag A'} data={dataA} />
+    <EuiHistogramSeries name={'Tag B'} data={dataB} />
   </EuiSeriesChart>
 );

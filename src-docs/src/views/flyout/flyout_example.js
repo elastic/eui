@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiFlyout, EuiFlyoutHeader, EuiFlyoutFooter } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutFooter,
+} from '../../../../src/components';
 
 import { Flyout } from './flyout';
 const flyoutSource = require('!!raw-loader!./flyout');
@@ -43,30 +48,32 @@ export const FlyoutExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiFlyout</EuiCode> is a fixed position panel that pops in from the right side
-            of the screen. It should be used any time you need to perform quick, individual actions
-            to a larger page or list.
+            <EuiCode>EuiFlyout</EuiCode> is a fixed position panel that pops in
+            from the right side of the screen. It should be used any time you
+            need to perform quick, individual actions to a larger page or list.
           </p>
 
           <ul>
             <li>
-              <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l</EuiCode> and defines the width of
-              the panel.
+              <EuiCode>size</EuiCode> accepts <EuiCode>s / m / l</EuiCode> and
+              defines the width of the panel.
             </li>
             <li>
-              <EuiCode>ownFocus</EuiCode> is a boolean that when <EuiCode>true</EuiCode> will lock
-              the mouse / keyboard focus to within the flyout. It is off by default.
+              <EuiCode>ownFocus</EuiCode> is a boolean that when{' '}
+              <EuiCode>true</EuiCode> will lock the mouse / keyboard focus to
+              within the flyout. It is off by default.
             </li>
             <li>
-              <EuiCode>maxWidth</EuiCode> accepts a boolean or number. When set to{' '}
-              <EuiCode>true</EuiCode>, it adds a predefined maxWidth, or you can pass an integer to set
-              the max width to a custom pixel value or pass a string to set it to a custom measurement.
+              <EuiCode>maxWidth</EuiCode> accepts a boolean or number. When set
+              to <EuiCode>true</EuiCode>, it adds a predefined maxWidth, or you
+              can pass an integer to set the max width to a custom pixel value
+              or pass a string to set it to a custom measurement.
             </li>
           </ul>
 
           <p>
-            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> to announce the flyout
-            to screen readers when the user opens it.
+            Notice how these examples use <EuiCode>aria-labelledby</EuiCode> to
+            announce the flyout to screen readers when the user opens it.
           </p>
         </div>
       ),
@@ -88,9 +95,9 @@ export const FlyoutExample = {
       text: (
         <p>
           In this example we use <EuiCode>EuiFlyoutHeader</EuiCode> and
-          <EuiCode>EuiFlyoutFooter</EuiCode> to allow for fixed position navigation and actions
-          within a flyout. Note that any content within <EuiCode>EuiContentBody</EuiCode> will
-          automatically overflow.
+          <EuiCode>EuiFlyoutFooter</EuiCode> to allow for fixed position
+          navigation and actions within a flyout. Note that any content within{' '}
+          <EuiCode>EuiContentBody</EuiCode> will automatically overflow.
         </p>
       ),
       props: { EuiFlyoutFooter },
@@ -110,9 +117,10 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>size</EuiCode> to <EuiCode>s</EuiCode> and apply the{' '}
-          <EuiCode>ownFocus</EuiCode> prop. The latter not only traps the focus of our flyout, but
-          also adds background overlay to reinforce your boundaries.
+          In this example, we set <EuiCode>size</EuiCode> to{' '}
+          <EuiCode>s</EuiCode> and apply the <EuiCode>ownFocus</EuiCode> prop.
+          The latter not only traps the focus of our flyout, but also adds
+          background overlay to reinforce your boundaries.
         </p>
       ),
       demo: <FlyoutSmall />,
@@ -131,7 +139,8 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>size</EuiCode> to <EuiCode>l</EuiCode>.
+          In this example, we set <EuiCode>size</EuiCode> to{' '}
+          <EuiCode>l</EuiCode>.
         </p>
       ),
       demo: <FlyoutLarge />,
@@ -150,8 +159,9 @@ export const FlyoutExample = {
       ],
       text: (
         <p>
-          In this example, we set <EuiCode>maxWidth</EuiCode> to <EuiCode>448px</EuiCode>, to
-          set the width of the flyout at the ideal width for a form.
+          In this example, we set <EuiCode>maxWidth</EuiCode> to{' '}
+          <EuiCode>448px</EuiCode>, to set the width of the flyout at the ideal
+          width for a form.
         </p>
       ),
       demo: <FlyoutMaxWidth />,

@@ -1,3 +1,1 @@
-export {
-  EuiBottomBar,
-} from './bottom_bar';
+export { EuiBottomBar } from './bottom_bar';

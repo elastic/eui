@@ -30,19 +30,28 @@ import { CURVE } from '../utils/chart_utils';
 export class EuiAreaSeries extends AbstractSeries {
   state = {
     isMouseOverSeries: false,
-  }
+  };
 
   _onSeriesMouseOver = () => {
     this.setState(() => ({ isMouseOverSeries: true }));
-  }
+  };
 
   _onSeriesMouseOut = () => {
     this.setState(() => ({ isMouseOverSeries: false }));
-  }
+  };
 
   render() {
     const { isMouseOverSeries } = this.state;
-    const { name, data, curve, color, lineSize, onSeriesClick, fillOpacity, ...rest } = this.props;
+    const {
+      name,
+      data,
+      curve,
+      color,
+      lineSize,
+      onSeriesClick,
+      fillOpacity,
+      ...rest
+    } = this.props;
     return (
       <React.Fragment>
         <LineSeries
@@ -55,7 +64,7 @@ export class EuiAreaSeries extends AbstractSeries {
           color={color}
           style={{
             pointerEvents: 'visiblestroke',
-            strokeWidth: lineSize
+            strokeWidth: lineSize,
           }}
         />
         <AreaSeries

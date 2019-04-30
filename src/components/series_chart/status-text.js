@@ -11,12 +11,17 @@ function StatusText({ width, height, text }) {
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: `translate(-50%, -50%)`,
-          color: 'rgb(53, 129, 255)'
-        }}
-      >
+          transform: 'translate(-50%, -50%)',
+          color: 'rgb(53, 129, 255)',
+        }}>
         <div className="euiToastHeader--withBody">
-          <EuiIcon className="euiToastHeader__icon" type="visualizeApp" color="subdued" size="m" aria-hidden="true" />
+          <EuiIcon
+            className="euiToastHeader__icon"
+            type="visualizeApp"
+            color="subdued"
+            size="m"
+            aria-hidden="true"
+          />
           <span className="euiToastHeader__title">Graph not avaliable</span>
         </div>
         {text && <EuiText size="s">{text}</EuiText>}
@@ -26,7 +31,7 @@ function StatusText({ width, height, text }) {
 }
 
 StatusText.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 };
 
 export default StatusText;

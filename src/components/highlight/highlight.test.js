@@ -7,7 +7,9 @@ import { EuiHighlight } from './highlight';
 describe('EuiHighlight', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiHighlight {...requiredProps} search="">value</EuiHighlight>
+      <EuiHighlight {...requiredProps} search="">
+        value
+      </EuiHighlight>
     );
 
     expect(component).toMatchSnapshot();
@@ -35,9 +37,11 @@ describe('EuiHighlight', () => {
     });
 
     describe('strict matching', () => {
-      test(`doesn't match strings with different casing`, () => {
+      test("doesn't match strings with different casing", () => {
         const component = render(
-          <EuiHighlight search="CASE" strict>different case match</EuiHighlight>
+          <EuiHighlight search="CASE" strict>
+            different case match
+          </EuiHighlight>
         );
 
         expect(component).toMatchSnapshot();

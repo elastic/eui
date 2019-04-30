@@ -1,5 +1,7 @@
-
-import { parseRelativeParts, toRelativeStringFromParts } from './relative_utils';
+import {
+  parseRelativeParts,
+  toRelativeStringFromParts,
+} from './relative_utils';
 import moment from 'moment';
 
 describe('parseRelativeParts', () => {
@@ -9,7 +11,7 @@ describe('parseRelativeParts', () => {
       expect(out).toEqual({
         count: 0,
         unit: 's',
-        round: false
+        round: false,
       });
     });
 
@@ -18,7 +20,7 @@ describe('parseRelativeParts', () => {
       expect(out).toEqual({
         count: 2,
         unit: 'h',
-        round: false
+        round: false,
       });
     });
 
@@ -45,38 +47,57 @@ describe('parseRelativeParts', () => {
 
   describe('absolute', () => {
     it('should parse now', () => {
-      const out = parseRelativeParts(moment().toDate().toISOString());
+      const out = parseRelativeParts(
+        moment()
+          .toDate()
+          .toISOString()
+      );
       expect(out).toEqual({
         count: 0,
         unit: 's',
-        round: false
+        round: false,
       });
     });
 
     it('should parse 3 months ago', () => {
-      const out = parseRelativeParts(moment().subtract(3, 'M').toDate().toISOString());
+      const out = parseRelativeParts(
+        moment()
+          .subtract(3, 'M')
+          .toDate()
+          .toISOString()
+      );
       expect(out).toEqual({
         count: 3,
         unit: 'M',
-        round: false
+        round: false,
       });
     });
 
     it('should parse 15 minutes ago', () => {
-      const out = parseRelativeParts(moment().subtract(15, 'm').toDate().toISOString());
+      const out = parseRelativeParts(
+        moment()
+          .subtract(15, 'm')
+          .toDate()
+          .toISOString()
+      );
       expect(out).toEqual({
         count: 15,
         unit: 'm',
-        round: false
+        round: false,
       });
     });
 
     it('should parse 2 hours from now', () => {
-      const out = parseRelativeParts(moment().add(2, 'h').toDate().toISOString());
+      const out = parseRelativeParts(
+        moment()
+          .add(2, 'h')
+          .toDate()
+          .toISOString()
+      );
       expect(out).toEqual({
         count: 2,
         unit: 'h+',
-        round: false
+        round: false,
       });
     });
   });
@@ -87,7 +108,7 @@ describe('toRelativeStringFromParts', () => {
     const out = toRelativeStringFromParts({
       count: 0,
       unit: 's',
-      round: false
+      round: false,
     });
     expect(out).toEqual('now');
   });
@@ -96,7 +117,7 @@ describe('toRelativeStringFromParts', () => {
     const out = toRelativeStringFromParts({
       count: 2,
       unit: 'h',
-      round: false
+      round: false,
     });
     expect(out).toEqual('now-2h');
   });
@@ -105,7 +126,7 @@ describe('toRelativeStringFromParts', () => {
     const out = toRelativeStringFromParts({
       count: 2,
       unit: 'h',
-      round: true
+      round: true,
     });
     expect(out).toEqual('now-2h/h');
   });
@@ -114,7 +135,7 @@ describe('toRelativeStringFromParts', () => {
     const out = toRelativeStringFromParts({
       count: 10,
       unit: 'm+',
-      round: true
+      round: true,
     });
     expect(out).toEqual('now+10m/m');
   });

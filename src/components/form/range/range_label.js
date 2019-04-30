@@ -4,18 +4,14 @@ import classNames from 'classnames';
 
 export const EuiRangeLabel = ({ children, disabled, side }) => {
   const classes = classNames('euiRangeLabel', `euiRangeLabel--${side}`, {
-    'euiRangeLabel--isDisabled': disabled
+    'euiRangeLabel--isDisabled': disabled,
   });
-  return (
-    <label className={classes}>
-      {children}
-    </label>
-  );
+  return <label className={classes}>{children}</label>;
 };
 
 EuiRangeLabel.propTypes = {
-  side: PropTypes.oneOf(['min', 'max'])
+  side: PropTypes.oneOf(['min', 'max']),
 };
 EuiRangeLabel.defaultProps = {
-  side: 'max'
+  side: 'max',
 };

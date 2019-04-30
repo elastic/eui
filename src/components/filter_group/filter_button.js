@@ -4,15 +4,9 @@ import classNames from 'classnames';
 
 // import { getSecureRelForTarget } from '../../services';
 import { EuiNotificationBadge } from '../badge/notification_badge';
-import {
-  COLORS,
-  ICON_SIDES,
-  EuiButtonEmpty,
-} from '../button/button_empty';
+import { COLORS, ICON_SIDES, EuiButtonEmpty } from '../button/button_empty';
 
-import {
-  ICON_TYPES,
-} from '../icon';
+import { ICON_TYPES } from '../icon';
 
 export const EuiFilterButton = ({
   children,
@@ -31,7 +25,6 @@ export const EuiFilterButton = ({
   textProps,
   ...rest
 }) => {
-
   const classes = classNames(
     'euiFilterButton',
     {
@@ -40,14 +33,14 @@ export const EuiFilterButton = ({
       'euiFilterButton--grow': grow,
       'euiFilterButton--noDivider': noDivider,
     },
-    className,
+    className
   );
 
   // != instead of !== to allow for null and undefined
   const numFiltersDefined = numFilters != null;
   const buttonTextClassNames = classNames(
-    { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
-    textProps && textProps.className,
+    { 'euiFilterButton__text-hasNotification': numFiltersDefined },
+    textProps && textProps.className
   );
 
   let dataText;
@@ -60,15 +53,14 @@ export const EuiFilterButton = ({
       <span className="euiFilterButton__textShift" data-text={dataText}>
         {children}
       </span>
-      {numFiltersDefined &&
+      {numFiltersDefined && (
         <EuiNotificationBadge
           className="euiFilterButton__notification"
           size="m"
-          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
-        >
+          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
           {numActiveFilters || numFilters}
         </EuiNotificationBadge>
-      }
+      )}
     </Fragment>
   );
 
@@ -81,8 +73,7 @@ export const EuiFilterButton = ({
       iconType={iconType}
       type={type}
       textProps={{ ...textProps, className: buttonTextClassNames }}
-      {...rest}
-    >
+      {...rest}>
       {buttonContents}
     </EuiButtonEmpty>
   );

@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -12,7 +10,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiSwitch
+  EuiSwitch,
 } from '../../../../../src/components';
 
 /*
@@ -46,15 +44,12 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      showPerPageOptions: true
+      showPerPageOptions: true,
     };
   }
 
   onTableChange = ({ page = {} }) => {
-    const {
-      index: pageIndex,
-      size: pageSize,
-    } = page;
+    const { index: pageIndex, size: pageSize } = page;
 
     this.setState({
       pageIndex,
@@ -62,97 +57,109 @@ export class Table extends Component {
     });
   };
 
-  renderStatus = (online) => {
+  renderStatus = online => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
-  }
+  };
 
-  togglePerPageOptions = () => this.setState((state) => ({ showPerPageOptions: !state.showPerPageOptions }));
+  togglePerPageOptions = () =>
+    this.setState(state => ({ showPerPageOptions: !state.showPerPageOptions }));
 
   render() {
-    const {
+    const { pageIndex, pageSize, showPerPageOptions } = this.state;
+
+    const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
-      pageSize,
-      showPerPageOptions
-    } = this.state;
+      pageSize
+    );
 
-    const {
-      pageOfItems,
-      totalItemCount,
-    } = store.findUsers(pageIndex, pageSize);
-
-    const columns = [{
-      field: 'firstName',
-      name: 'First Name',
-      truncateText: true,
-      hideForMobile: true,
-      mobileOptions: {
-        show: false,
-      }
-    }, {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      }
-    }, {
-      field: 'firstName',
-      name: 'Full Name',
-      mobileOptions: {
-        header: false,
-        only: true,
-        enlarge: true,
-        fullWidth: true,
+    const columns = [
+      {
+        field: 'firstName',
+        name: 'First Name',
+        truncateText: true,
+        hideForMobile: true,
+        mobileOptions: {
+          show: false,
+        },
       },
-      render: (name, item) => (
-        <EuiFlexGroup responsive={false} alignItems="center">
-          <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{this.renderStatus(item.online)}</EuiFlexItem>
-        </EuiFlexGroup>
-      ),
-    }, {
-      field: 'github',
-      name: 'Github',
-      render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      )
-    }, {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong')
-    }, {
-      field: 'nationality',
-      name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
-      }
-    }, {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online) => (
-        this.renderStatus(online)
-      )
-    }];
+      {
+        field: 'lastName',
+        name: 'Last Name',
+        truncateText: true,
+        mobileOptions: {
+          show: false,
+        },
+      },
+      {
+        field: 'firstName',
+        name: 'Full Name',
+        mobileOptions: {
+          header: false,
+          only: true,
+          enlarge: true,
+          fullWidth: true,
+        },
+        render: (name, item) => (
+          <EuiFlexGroup responsive={false} alignItems="center">
+            <EuiFlexItem>
+              {item.firstName} {item.lastName}
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              {this.renderStatus(item.online)}
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
+      },
+      {
+        field: 'github',
+        name: 'Github',
+        render: username => (
+          <EuiLink href={`https://github.com/${username}`} target="_blank">
+            {username}
+          </EuiLink>
+        ),
+      },
+      {
+        field: 'dateOfBirth',
+        name: 'Date of Birth',
+        dataType: 'date',
+        render: date => formatDate(date, 'dobLong'),
+      },
+      {
+        field: 'nationality',
+        name: 'Nationality',
+        render: countryCode => {
+          const country = store.getCountry(countryCode);
+          return `${country.flag} ${country.name}`;
+        },
+      },
+      {
+        field: 'online',
+        name: 'Online',
+        dataType: 'boolean',
+        render: online => this.renderStatus(online),
+      },
+    ];
 
     const pagination = {
       pageIndex,
       pageSize,
       totalItemCount,
       pageSizeOptions: [3, 5, 8],
-      hidePerPageOptions: !showPerPageOptions
+      hidePerPageOptions: !showPerPageOptions,
     };
 
     return (
       <div>
         <EuiSwitch
-          label={<span>Hide per page options with <EuiCode>pagination.hidePerPageOptions = true</EuiCode></span>}
+          label={
+            <span>
+              Hide per page options with{' '}
+              <EuiCode>pagination.hidePerPageOptions = true</EuiCode>
+            </span>
+          }
           onChange={this.togglePerPageOptions}
         />
         <EuiSpacer size="xl" />

@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  EuiI18n,
-} from '../../../../src/components';
+import { EuiI18n } from '../../../../src/components';
 
 export default () => {
   return (

@@ -12,7 +12,7 @@ import { VISUALIZATION_COLORS } from '../../../services';
 beforeEach(patchRandom);
 afterEach(unpatchRandom);
 
-const AREA_SERIES_PROPS =  {
+const AREA_SERIES_PROPS = {
   name: 'name',
   data: [{ x: 0, y: 5 }, { x: 1, y: 10 }],
   color: VISUALIZATION_COLORS[0],
@@ -24,9 +24,7 @@ describe('EuiAreaSeries', () => {
   test('all props are rendered', () => {
     const component = mount(
       <EuiSeriesChart width={600} height={200} {...requiredProps}>
-        <EuiAreaSeries
-          {...AREA_SERIES_PROPS}
-        />
+        <EuiAreaSeries {...AREA_SERIES_PROPS} />
       </EuiSeriesChart>
     );
 
@@ -37,10 +35,7 @@ describe('EuiAreaSeries', () => {
     const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
     const onSeriesClick = jest.fn();
     const component = mount(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-      >
+      <EuiSeriesChart width={600} height={200}>
         <EuiAreaSeries
           name="test-series-a"
           data={data}
@@ -49,7 +44,10 @@ describe('EuiAreaSeries', () => {
         />
       </EuiSeriesChart>
     );
-    component.find('path').at(0).simulate('click');
+    component
+      .find('path')
+      .at(0)
+      .simulate('click');
     expect(onSeriesClick.mock.calls).toHaveLength(1);
   });
 
@@ -61,7 +59,7 @@ describe('EuiAreaSeries', () => {
         [250, '250'],
         [500, '500'],
         [750, '750'],
-        [1000, '1000']
+        [1000, '1000'],
       ];
       const data = [];
 
@@ -71,8 +69,12 @@ describe('EuiAreaSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiAreaSeries name="somename" data={data}/>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
+            <EuiAreaSeries name="somename" data={data} />
           </EuiSeriesChart>
         );
       }
@@ -90,7 +92,7 @@ describe('EuiAreaSeries', () => {
         [125, '125'],
         [250, '240'],
         [375, '375'],
-        [500, '500']
+        [500, '500'],
       ];
 
       const linesData = [];
@@ -106,9 +108,17 @@ describe('EuiAreaSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiAreaSeries name={`somename-${index}`} key={index} data={data}/>
+              <EuiAreaSeries
+                name={`somename-${index}`}
+                key={index}
+                data={data}
+              />
             ))}
           </EuiSeriesChart>
         );

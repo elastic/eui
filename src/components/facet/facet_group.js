@@ -11,7 +11,11 @@ const layoutToClassNameMap = {
 export const LAYOUTS = Object.keys(layoutToClassNameMap);
 
 export const EuiFacetGroup = ({ children, className, layout, ...rest }) => {
-  const classes = classNames('euiFacetGroup', layoutToClassNameMap[layout], className);
+  const classes = classNames(
+    'euiFacetGroup',
+    layoutToClassNameMap[layout],
+    className
+  );
   const direction = layout === 'vertical' ? 'column' : 'row';
   const wrap = layout === 'vertical' ? false : true;
 
@@ -21,8 +25,7 @@ export const EuiFacetGroup = ({ children, className, layout, ...rest }) => {
       direction={direction}
       wrap={wrap}
       gutterSize="none"
-      {...rest}
-    >
+      {...rest}>
       {children}
     </EuiFlexGroup>
   );
@@ -37,4 +40,3 @@ EuiFacetGroup.propTypes = {
 EuiFacetGroup.defaultProps = {
   layout: 'vertical',
 };
-

@@ -1,7 +1,4 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiBottomBar,
@@ -41,26 +38,33 @@ export default class extends Component {
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="s">
                 <EuiFlexItem grow={false}>
-                  <EuiButton color="ghost" size="s" iconType="help">Help</EuiButton>
+                  <EuiButton color="ghost" size="s" iconType="help">
+                    Help
+                  </EuiButton>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
-                  <EuiButton color="ghost" size="s" iconType="user">Add user</EuiButton>
+                  <EuiButton color="ghost" size="s" iconType="user">
+                    Add user
+                  </EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiFlexGroup gutterSize="s">
                 <EuiFlexItem grow={false}>
-                  <EuiButtonEmpty color="ghost" size="s" iconType="cross">Discard</EuiButtonEmpty>
+                  <EuiButtonEmpty color="ghost" size="s" iconType="cross">
+                    Discard
+                  </EuiButtonEmpty>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
-                  <EuiButton color="primary" fill size="s" iconType="check">Save</EuiButton>
+                  <EuiButton color="primary" fill size="s" iconType="check">
+                    Save
+                  </EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiBottomBar>
-
       );
     }
 

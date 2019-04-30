@@ -42,13 +42,13 @@ export default class extends Component {
       options: orderBy(prevState.options, ['checked'], ['asc']),
       isPopoverOpen: !prevState.isPopoverOpen,
     }));
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   onChange = options => {
     this.setState({
@@ -64,11 +64,11 @@ export default class extends Component {
 
   closeFlyout = () => {
     this.setState({ isFlyoutVisible: false });
-  }
+  };
 
   showFlyout = () => {
     this.setState({ isFlyoutVisible: true });
-  }
+  };
 
   render() {
     const { isPopoverOpen, options, countries } = this.state;
@@ -77,8 +77,7 @@ export default class extends Component {
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick.bind(this)}
-      >
+        onClick={this.onButtonClick.bind(this)}>
         Show popover
       </EuiButton>
     );
@@ -90,8 +89,7 @@ export default class extends Component {
           panelPaddingSize="none"
           button={button}
           isOpen={isPopoverOpen}
-          closePopover={this.closePopover}
-        >
+          closePopover={this.closePopover}>
           <EuiSelectable
             searchable
             searchProps={{
@@ -99,8 +97,7 @@ export default class extends Component {
               compressed: true,
             }}
             options={options}
-            onChange={this.onChange}
-          >
+            onChange={this.onChange}>
             {(list, search) => (
               <div style={{ width: 240 }}>
                 <EuiPopoverTitle>{search}</EuiPopoverTitle>
@@ -117,29 +114,23 @@ export default class extends Component {
 
         <EuiSpacer />
 
-        <EuiButton onClick={this.showFlyout}>
-          Show flyout
-        </EuiButton>
+        <EuiButton onClick={this.showFlyout}>Show flyout</EuiButton>
 
-        {this.state.isFlyoutVisible &&
+        {this.state.isFlyoutVisible && (
           <EuiFlyout
             ownFocus
             onClose={this.closeFlyout}
-            aria-labelledby="flyoutTitle"
-          >
+            aria-labelledby="flyoutTitle">
             <EuiSelectable
               searchable
               options={countries}
               onChange={this.onFlyoutChange}
-              height="full"
-            >
+              height="full">
               {(list, search) => (
                 <Fragment>
                   <EuiFlyoutHeader hasBorder>
                     <EuiTitle size="m">
-                      <h2 id="flyoutTitle">
-                        Be mindful of the flexbox
-                      </h2>
+                      <h2 id="flyoutTitle">Be mindful of the flexbox</h2>
                     </EuiTitle>
                     <EuiSpacer />
                     {search}
@@ -154,11 +145,15 @@ export default class extends Component {
               <EuiButton fill>Some extra action</EuiButton>
             </EuiFlyoutFooter>
           </EuiFlyout>
-        }
+        )}
 
         <EuiSpacer />
 
-        <EuiTitle size="xxs"><h4>Using <EuiCode>listProps.bordered = true</EuiCode></h4></EuiTitle>
+        <EuiTitle size="xxs">
+          <h4>
+            Using <EuiCode>listProps.bordered = true</EuiCode>
+          </h4>
+        </EuiTitle>
 
         <EuiSpacer />
 
@@ -166,11 +161,9 @@ export default class extends Component {
           options={options}
           onChange={() => {}}
           style={{ width: 300 }}
-          listProps={{ bordered: true }}
-        >
+          listProps={{ bordered: true }}>
           {list => list}
         </EuiSelectable>
-
       </Fragment>
     );
   }

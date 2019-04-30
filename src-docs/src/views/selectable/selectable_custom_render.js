@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
-import { EuiBadge, EuiHighlight, EuiSpacer, EuiTextColor, EuiSwitch } from '../../../../src/components';
+import {
+  EuiBadge,
+  EuiHighlight,
+  EuiSpacer,
+  EuiTextColor,
+  EuiSwitch,
+} from '../../../../src/components';
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { createDataStore } from '../tables/data_store';
 
@@ -28,27 +34,29 @@ export default class extends Component {
     };
   }
 
-  onChange = (options) => {
+  onChange = options => {
     this.setState({
       options,
     });
   };
 
-  onCustom = (e) => {
+  onCustom = e => {
     this.setState({
       useCustomContent: e.currentTarget.checked,
     });
-  }
+  };
 
   renderCountryOption = (option, searchValue) => {
     return (
       <Fragment>
         <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
         <br />
-        <EuiTextColor color="subdued"><small>I am secondary content, I am!</small></EuiTextColor>
+        <EuiTextColor color="subdued">
+          <small>I am secondary content, I am!</small>
+        </EuiTextColor>
       </Fragment>
     );
-  }
+  };
 
   render() {
     const { options, useCustomContent } = this.state;
@@ -61,13 +69,17 @@ export default class extends Component {
         listProps: {
           rowHeight: 50,
           showIcons: false,
-        }
+        },
       };
     }
 
     return (
       <Fragment>
-        <EuiSwitch label="Custom content with no icons" checked={useCustomContent} onChange={this.onCustom} />
+        <EuiSwitch
+          label="Custom content with no icons"
+          checked={useCustomContent}
+          onChange={this.onCustom}
+        />
 
         <EuiSpacer />
 
@@ -75,8 +87,7 @@ export default class extends Component {
           searchable
           options={options}
           onChange={this.onChange}
-          {...customProps}
-        >
+          {...customProps}>
           {(list, search) => (
             <Fragment>
               {search}

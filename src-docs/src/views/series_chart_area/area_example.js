@@ -4,20 +4,23 @@ import AreaSeriesExample from './area';
 import StackedAreaSeriesExample from './stacked_area';
 import CurvedAreaExample from './curved_area';
 import RangeAreaExample from './range_area';
-import { EuiCode, EuiLink, EuiCallOut, EuiSpacer } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiLink,
+  EuiCallOut,
+  EuiSpacer,
+} from '../../../../src/components';
 import { EuiAreaSeries } from '../../../../src/experimental';
 
 export const XYChartAreaExample = {
   title: 'Area chart',
   intro: (
     <Fragment>
-      <EuiCallOut
-        title="Set for deprecation"
-        color="danger"
-      >
+      <EuiCallOut title="Set for deprecation" color="danger">
         <p>
-          This component will be replaced in the near future and managed outside of EUI. We do not recommend using it at this time
-          and it will be removed by June 2019.
+          This component will be replaced in the near future and managed outside
+          of EUI. We do not recommend using it at this time and it will be
+          removed by June 2019.
         </p>
       </EuiCallOut>
 
@@ -52,8 +55,9 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            Use multiple <EuiCode>EuiAreaSeries</EuiCode> to display stacked area charts specifying the{' '}
-            <EuiCode>stackBy:y</EuiCode> prop on the <EuiCode>EuiSeriesChart</EuiCode>
+            Use multiple <EuiCode>EuiAreaSeries</EuiCode> to display stacked
+            area charts specifying the <EuiCode>stackBy:y</EuiCode> prop on the{' '}
+            <EuiCode>EuiSeriesChart</EuiCode>
             to enable stacking.
           </p>
         </div>
@@ -76,11 +80,15 @@ export const XYChartAreaExample = {
       text: (
         <div>
           <p>
-            Use the <EuiCode>curve</EuiCode> prop to change the curve representation. Visit{' '}
-            <EuiLink href="https://github.com/d3/d3-shape#curves" target="_blank">
+            Use the <EuiCode>curve</EuiCode> prop to change the curve
+            representation. Visit{' '}
+            <EuiLink
+              href="https://github.com/d3/d3-shape#curves"
+              target="_blank">
               d3-shape#curves
             </EuiLink>
-            for available values (the bundle curve does not work with area chart).
+            for available values (the bundle curve does not work with area
+            chart).
           </p>
         </div>
       ),
@@ -101,7 +109,8 @@ export const XYChartAreaExample = {
       title: 'Range area chart',
       text: (
         <p>
-          Each point in the chart is specified by two y values <EuiCode>y0</EuiCode> (lower value) and
+          Each point in the chart is specified by two y values{' '}
+          <EuiCode>y0</EuiCode> (lower value) and
           <EuiCode>y</EuiCode> (upper value) to display a range area chart.
         </p>
       ),
@@ -116,7 +125,7 @@ export const XYChartAreaExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: <RangeAreaExample/>,
+      demo: <RangeAreaExample />,
     },
   ],
 };

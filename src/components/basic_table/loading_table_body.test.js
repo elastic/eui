@@ -5,11 +5,9 @@ import { requiredProps } from '../../test';
 import { LoadingTableBody } from './loading_table_body';
 
 describe('LoadingTableBody', () => {
-
   test('render', () => {
-
     const props = {
-      ...requiredProps
+      ...requiredProps,
     };
     const component = mount(
       <table>
@@ -19,5 +17,4 @@ describe('LoadingTableBody', () => {
 
     expect(component).toMatchSnapshot();
   });
-
 });

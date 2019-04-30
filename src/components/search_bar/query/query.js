@@ -12,7 +12,6 @@ import { AST, Operator } from './ast';
  * It is immutable - all mutating operations return a new (mutated) query instance.
  */
 export class Query {
-
   static parse(text, options, syntax = defaultSyntax) {
     return new Query(syntax.parse(text, options), syntax, text);
   }
@@ -176,5 +175,4 @@ export class Query {
     const q = isString(query) ? Query.parse(query) : query;
     return astToEsQueryString(q.ast, options);
   }
-
 }

@@ -1,11 +1,11 @@
 import { isNil, isFunction, isString } from '../predicate';
-import moment, { CalendarSpec, MomentInput } from 'moment';
+import moment from 'moment';
 
-type CalendarOptions = CalendarSpec & {
-  refTime?: MomentInput;
+type CalendarOptions = moment.CalendarSpec & {
+  refTime?: moment.MomentInput;
 };
 
-const calendar = (value: MomentInput, options: CalendarOptions = {}) => {
+const calendar = (value: moment.MomentInput, options: CalendarOptions = {}) => {
   const refTime = options.refTime;
   return moment(value).calendar(refTime, options);
 };
@@ -21,7 +21,10 @@ export const dateFormatAliases = {
   dobLong: 'Do MMMM YYYY',
   iso8601: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
   calendar,
-  calendarDateTime: (value: MomentInput, options: CalendarSpec) => {
+  calendarDateTime: (
+    value: moment.MomentInput,
+    options: moment.CalendarSpec
+  ) => {
     return calendar(value, {
       sameDay: '[Today at] H:mmA',
       nextDay: '[Tomorrow at] H:mmA',
@@ -32,7 +35,7 @@ export const dateFormatAliases = {
       ...options,
     });
   },
-  calendarDate: (value: MomentInput, options: CalendarSpec) => {
+  calendarDate: (value: moment.MomentInput, options: moment.CalendarSpec) => {
     return calendar(value, {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -67,7 +70,7 @@ function instanceOfFormatDateConfig(x: any): x is Partial<FormatDateConfig> {
 }
 
 export const formatDate = (
-  value?: MomentInput,
+  value?: moment.MomentInput,
   dateFormatKeyOrConfig:
     | DateFormat
     | string

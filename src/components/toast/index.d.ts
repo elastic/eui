@@ -1,7 +1,12 @@
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
-import { Component, FunctionComponent, HTMLAttributes, ReactChild } from 'react';
+import {
+  Component,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactChild,
+} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -9,15 +14,16 @@ declare module '@elastic/eui' {
    *
    * @see './toast.js'
    */
-  export interface EuiToastProps extends CommonProps, HTMLAttributes<HTMLDivElement> {
-    title?: string,
-    color?: 'primary' | 'success' | 'warning' | 'danger',
-    iconType?: IconType,
-    onClose?: () => void,
+  export interface EuiToastProps
+    extends CommonProps,
+      HTMLAttributes<HTMLDivElement> {
+    title?: string;
+    color?: 'primary' | 'success' | 'warning' | 'danger';
+    iconType?: IconType;
+    onClose?: () => void;
   }
 
   export const EuiToast: FunctionComponent<EuiToastProps>;
-
 
   /**
    * EuiGlobalToastListItem type def
@@ -30,7 +36,7 @@ declare module '@elastic/eui' {
 
   export const EuiGlobalToastListItem: FunctionComponent<
     EuiGlobalToastListItemProps
-  >
+  >;
 
   /**
    * EuiGlobalToastList type def

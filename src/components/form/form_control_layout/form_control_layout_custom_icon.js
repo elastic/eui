@@ -11,13 +11,9 @@ export const EuiFormControlLayoutCustomIcon = ({
   iconRef,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiFormControlLayoutCustomIcon',
-    className,
-    {
-      'euiFormControlLayoutCustomIcon--clickable': onClick,
-    },
-  );
+  const classes = classNames('euiFormControlLayoutCustomIcon', className, {
+    'euiFormControlLayoutCustomIcon--clickable': onClick,
+  });
 
   if (onClick) {
     return (
@@ -26,8 +22,7 @@ export const EuiFormControlLayoutCustomIcon = ({
         onClick={onClick}
         className={classes}
         ref={iconRef}
-        {...rest}
-      >
+        {...rest}>
         <EuiIcon
           className="euiFormControlLayoutCustomIcon__icon"
           aria-hidden="true"
@@ -38,11 +33,7 @@ export const EuiFormControlLayoutCustomIcon = ({
   }
 
   return (
-    <span
-      className={classes}
-      ref={iconRef}
-      {...rest}
-    >
+    <span className={classes} ref={iconRef} {...rest}>
       <EuiIcon
         className="euiFormControlLayoutCustomIcon__icon"
         aria-hidden="true"

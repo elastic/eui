@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
@@ -11,12 +9,11 @@ import {
 } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +21,7 @@ export default class extends Component {
 
   handleChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 
@@ -58,7 +55,9 @@ export default class extends Component {
             selected={this.state.startDate}
             showTimeSelect
             onChange={this.handleChange}
-            dayClassName={date => date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined}
+            dayClassName={date =>
+              date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined
+            }
           />
         </EuiFormRow>
 
@@ -72,7 +71,6 @@ export default class extends Component {
             popperClassName="dpTest__purplePopper"
           />
         </EuiFormRow>
-
       </div>
     );
   }

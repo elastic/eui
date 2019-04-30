@@ -9,7 +9,7 @@ import moment from 'moment';
 export class EuiCrosshairX extends AbstractSeries {
   state = {
     values: [],
-  }
+  };
 
   static get requiresSVG() {
     return false;
@@ -36,7 +36,11 @@ export class EuiCrosshairX extends AbstractSeries {
       .map((series, seriesIndex) => {
         return series
           .filter(dataPoint => dataPoint.x === crosshairValue)
-          .map(dataPoint => ({ ...dataPoint, originalValues: { ...dataPoint }, seriesIndex }));
+          .map(dataPoint => ({
+            ...dataPoint,
+            originalValues: { ...dataPoint },
+            seriesIndex,
+          }));
       })
       .reduce((acc, val) => acc.concat(val), []);
     return filteredAndFlattenDataByX;
@@ -51,34 +55,39 @@ export class EuiCrosshairX extends AbstractSeries {
       this.props.onCrosshairUpdate(null);
     }
     this.setState({
-      values: []
+      values: [],
     });
   }
 
-  _formatXValue = (x) => {
+  _formatXValue = x => {
     const { xType, xCrosshairFormat } = this.props;
     if (xType === SCALE.TIME || xType === SCALE.TIME_UTC) {
-      return xCrosshairFormat ? moment(x).format(xCrosshairFormat) : new Date(x).toISOString();
+      return xCrosshairFormat
+        ? moment(x).format(xCrosshairFormat)
+        : new Date(x).toISOString();
     } else {
       return x;
     }
-  }
+  };
 
   _titleFormat = (dataPoints = []) => {
     if (dataPoints.length > 0) {
-      const [ firstDataPoint ] = dataPoints;
+      const [firstDataPoint] = dataPoints;
       const { originalValues } = firstDataPoint;
-      const value = (typeof originalValues.x0 === 'number')
-        ? `${this._formatXValue(originalValues.x0)} to ${this._formatXValue(originalValues.x)}`
-        : this._formatXValue(originalValues.x);
+      const value =
+        typeof originalValues.x0 === 'number'
+          ? `${this._formatXValue(originalValues.x0)} to ${this._formatXValue(
+              originalValues.x
+            )}`
+          : this._formatXValue(originalValues.x);
       return {
         title: 'X Value',
         value,
       };
     }
-  }
+  };
 
-  _itemsFormat = (dataPoints) => {
+  _itemsFormat = dataPoints => {
     const { seriesNames } = this.props;
 
     return dataPoints.map(d => {
@@ -87,10 +96,12 @@ export class EuiCrosshairX extends AbstractSeries {
         value: d.y,
       };
     });
-  }
+  };
 
   _handleNearestX(event) {
-    const cleanedDataSeries = this.props._allData.filter(dataSeries => dataSeries);
+    const cleanedDataSeries = this.props._allData.filter(
+      dataSeries => dataSeries
+    );
     if (cleanedDataSeries.length === 0) {
       return;
     }
@@ -118,7 +129,7 @@ export class EuiCrosshairX extends AbstractSeries {
         // starting from the assumption that we will always have the same length for
         // for each series and we can assume that the scale x index can reflect more or less
         // the position of the mouse inside the array.
-        data.forEach((item) => {
+        data.forEach(item => {
           let itemXCoords;
           const xCoord = xScaleFn(item);
           // check the right item coordinate if we use x0 and x value (e.g. on histograms)
@@ -156,12 +167,8 @@ export class EuiCrosshairX extends AbstractSeries {
       .map(value => {
         // check if we are on histograms and we need to show the right x and y values
         const d = value.value;
-        const x = typeof d.x0 === 'number'
-          ? (d.x - d.x0) / 2 + d.x0
-          : d.x;
-        const y = typeof d.y0 === 'number'
-          ? (d.y - d.y0)
-          : d.y;
+        const x = typeof d.x0 === 'number' ? (d.x - d.x0) / 2 + d.x0 : d.x;
+        const y = typeof d.y0 === 'number' ? d.y - d.y0 : d.y;
         return { x, y, originalValues: d, seriesIndex: value.seriesIndex };
       });
     const { onCrosshairUpdate } = this.props;
@@ -194,10 +201,7 @@ EuiCrosshairX.propTypes = {
   /**
    * The crosshair value used to display this crosshair (doesn't depend on mouse position)
    */
-  crosshairValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  crosshairValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * The ordered array of series names
    */

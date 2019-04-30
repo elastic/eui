@@ -1,20 +1,12 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiOverlayMask,
-} from '../overlay_mask';
+import { EuiOverlayMask } from '../overlay_mask';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-import {
-  EuiFocusTrap,
-} from '../focus_trap';
+import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
 
@@ -89,16 +81,20 @@ export class EuiImage extends Component {
     let optionalCaption;
     if (caption) {
       optionalCaption = (
-        <figcaption className="euiImage__caption">
-          {caption}
-        </figcaption>
+        <figcaption className="euiImage__caption">{caption}</figcaption>
       );
     }
 
     let optionalIcon;
 
     if (allowFullScreen) {
-      optionalIcon = <EuiIcon type="fullScreen" color={fullScreenIconColorMap[fullScreenIconColor]} className="euiImage__icon" />;
+      optionalIcon = (
+        <EuiIcon
+          type="fullScreen"
+          color={fullScreenIconColorMap[fullScreenIconColor]}
+          className="euiImage__icon"
+        />
+      );
     }
 
     let fullScreenDisplay;
@@ -108,12 +104,13 @@ export class EuiImage extends Component {
         <EuiOverlayMask onClick={this.closeFullScreen}>
           <EuiFocusTrap clickOutsideDisables={true}>
             <figure
-              ref={node => { this.figure = node; }}
+              ref={node => {
+                this.figure = node;
+              }}
               className="euiImageFullScreen"
               onClick={this.closeFullScreen}
               tabIndex={0}
-              onKeyDown={this.onKeyDown}
-            >
+              onKeyDown={this.onKeyDown}>
               <img src={url} className="euiImageFullScreen__img" alt={alt} />
               {optionalCaption}
             </figure>
@@ -126,8 +123,7 @@ export class EuiImage extends Component {
       <figure
         className={classes}
         onClick={allowFullScreen ? this.openFullScreen : undefined}
-        {...rest}
-      >
+        {...rest}>
         <img src={url} className="euiImage__img" alt={alt} />
         {optionalCaption}
 

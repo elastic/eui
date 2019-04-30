@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import { calculateContrast, rgbToHex } from '../../../../src/services';
 
-import {
-  GuidePage,
-} from '../../components';
+import { GuidePage } from '../../components';
 
 import {
   EuiText,
@@ -67,8 +63,13 @@ function renderPaletteColor(palette, color, index) {
       <EuiFlexGroup responsive={false} alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiCopy beforeMessage="Click to copy color name" textToCopy={color}>
-            {(copy) => (
-              <EuiIcon onClick={copy} size="xl" type="stopFilled" color={rgbToHex(palette[color].rgba)} />
+            {copy => (
+              <EuiIcon
+                onClick={copy}
+                size="xl"
+                type="stopFilled"
+                color={rgbToHex(palette[color].rgba)}
+              />
             )}
           </EuiCopy>
         </EuiFlexItem>
@@ -79,13 +80,17 @@ function renderPaletteColor(palette, color, index) {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiText size="s" color="subdued">
-            <p><code>{rgbToHex(palette[color].rgba).toUpperCase()}</code></p>
+            <p>
+              <code>{rgbToHex(palette[color].rgba).toUpperCase()}</code>
+            </p>
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiText size="s" color="subdued">
             <p>
-              <code>rgb({palette[color].r}, {palette[color].g}, {palette[color].b})</code>
+              <code>
+                rgb({palette[color].r}, {palette[color].g}, {palette[color].b})
+              </code>
             </p>
           </EuiText>
         </EuiFlexItem>
@@ -102,37 +107,37 @@ export default class extends Component {
       {
         min: 0,
         max: 2.8,
-        color: 'danger'
+        color: 'danger',
       },
       {
         min: 2.8,
         max: 4.3,
-        color: 'warning'
+        color: 'warning',
       },
       {
         min: 4.3,
         max: 7,
-        color: 'success'
-      }
+        color: 'success',
+      },
     ];
 
     this.ticks = [
       {
         value: 0,
-        label: <EuiBadge color="#eee">ALL</EuiBadge>
+        label: <EuiBadge color="#eee">ALL</EuiBadge>,
       },
       {
         value: 3,
-        label: ratingAA18
+        label: ratingAA18,
       },
       {
         value: 4.5,
-        label: ratingAA
+        label: ratingAA,
       },
       {
         value: 7,
-        label: ratingAAA
-      }
+        label: ratingAAA,
+      },
     ];
 
     this.state = {
@@ -147,28 +152,29 @@ export default class extends Component {
   };
 
   render() {
-    const palette = (this.props.selectedTheme === 'light') ? lightColors : darkColors;
+    const palette =
+      this.props.selectedTheme === 'light' ? lightColors : darkColors;
     const { value } = this.state;
 
     return (
       <GuidePage title="Color guidelines">
-
         <EuiSpacer size="xl" />
 
         <EuiText grow={false} className="guideSection__text">
           <h2>Core palette</h2>
           <p>
-            Elastic UI builds with a very limited palette. We use a core set of three colors,
-            combined with a green / orange / red qualitative set of three, and finally combine
-            those against a six-color grayscale. Variation beyond these colors is minimal and
-            always done with math manipulation against the original set.
+            Elastic UI builds with a very limited palette. We use a core set of
+            three colors, combined with a green / orange / red qualitative set
+            of three, and finally combine those against a six-color grayscale.
+            Variation beyond these colors is minimal and always done with math
+            manipulation against the original set.
           </p>
         </EuiText>
 
         <EuiSpacer />
 
         <EuiFlexGroup direction="column" gutterSize="s">
-          {allowedColors.map(function (color, index) {
+          {allowedColors.map(function(color, index) {
             return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexGroup>
@@ -180,22 +186,26 @@ export default class extends Component {
           <p>
             <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
               WCAG specifications
-            </EuiLink> defines specific contrast ratios between foreground text and a background color.
-            The grid below displays which color combinations pass that rating. In general you should try to use
-            a color combination that is <EuiBadge color="#333">AA</EuiBadge> or above with the exception of using
-            large text.
+            </EuiLink>{' '}
+            defines specific contrast ratios between foreground text and a
+            background color. The grid below displays which color combinations
+            pass that rating. In general you should try to use a color
+            combination that is <EuiBadge color="#333">AA</EuiBadge> or above
+            with the exception of using large text.
           </p>
           <h3>Rating definitions</h3>
           <ul>
             <li>
-              <EuiIcon type="checkInCircleFilled" /> : {ratingAA} {ratingAAA} Passes with a contrast of 4.5+ (7+ for AAA)
+              <EuiIcon type="checkInCircleFilled" /> : {ratingAA} {ratingAAA}{' '}
+              Passes with a contrast of 4.5+ (7+ for AAA)
             </li>
             <li>
-              <EuiIcon type="editorBold" />
-              : {ratingAA18} Passes with a contrast of 3+, but only if the text is at least 18px or 14px and bold
+              <EuiIcon type="editorBold" />: {ratingAA18} Passes with a contrast
+              of 3+, but only if the text is at least 18px or 14px and bold
             </li>
             <li>
-              <EuiIcon type="minusInCircle" /> : Use only for disabled or inconsequential content
+              <EuiIcon type="minusInCircle" /> : Use only for disabled or
+              inconsequential content
             </li>
           </ul>
         </EuiText>
@@ -204,11 +214,13 @@ export default class extends Component {
 
         <EuiFlexGroup className="eui-textCenter" justifyContent="center">
           <EuiFlexItem grow={false}>
-            <EuiFormRow id="ratingsRange" label="Minimum color contrast combinations to show">
+            <EuiFormRow
+              id="ratingsRange"
+              label="Minimum color contrast combinations to show">
               <EuiRange
                 min={0}
                 max={7}
-                step={.5}
+                step={0.5}
                 value={value}
                 onChange={this.onChange}
                 showTicks
@@ -224,17 +236,15 @@ export default class extends Component {
         <EuiSpacer size="xxl" />
 
         <EuiFlexGrid columns={3}>
-          {allowedColors.map(function (color, index) {
+          {allowedColors.map(function(color, index) {
             return (
               <EuiFlexItem key={index}>
                 <EuiText size="xs">
                   <h3>{color}</h3>
-                  {allowedColors.map(function (color2, index) {
-                    const contrast = (
-                      calculateContrast(
-                        [palette[color].r, palette[color].g, palette[color].b],
-                        [palette[color2].r, palette[color2].g, palette[color2].b],
-                      )
+                  {allowedColors.map(function(color2, index) {
+                    const contrast = calculateContrast(
+                      [palette[color].r, palette[color].g, palette[color].b],
+                      [palette[color2].r, palette[color2].g, palette[color2].b]
                     );
 
                     if (contrast < value) {
@@ -244,36 +254,35 @@ export default class extends Component {
                     let contrastRating;
                     let contrastRatingBadge;
                     if (contrast >= 7) {
-                      contrastRating = (<EuiIcon type="checkInCircleFilled" />);
+                      contrastRating = <EuiIcon type="checkInCircleFilled" />;
                       contrastRatingBadge = ratingAAA;
                     } else if (contrast >= 4.5) {
-                      contrastRating = (<EuiIcon type="checkInCircleFilled" />);
+                      contrastRating = <EuiIcon type="checkInCircleFilled" />;
                       contrastRatingBadge = ratingAA;
                     } else if (contrast >= 3) {
-                      contrastRating = (<EuiIcon type="editorBold" />);
+                      contrastRating = <EuiIcon type="editorBold" />;
                       contrastRatingBadge = ratingAA18;
                     } else if (color2.includes('Shade') && contrast >= 2) {
-                      contrastRating = (<EuiIcon type="minusInCircle" />);
+                      contrastRating = <EuiIcon type="minusInCircle" />;
                     } else {
-                      contrastRating = (<EuiIcon type="cross" />);
+                      contrastRating = <EuiIcon type="cross" />;
                     }
 
                     const tooltipContent = (
-                      <div>{contrastRatingBadge} Contrast is {contrast.toFixed(1)}</div>
+                      <div>
+                        {contrastRatingBadge} Contrast is {contrast.toFixed(1)}
+                      </div>
                     );
-                    const textToCopy = (
-                      `background-color: $${color};
-color: $${color2};`
-                    );
+                    const textToCopy = `background-color: $${color};
+color: $${color2};`;
 
                     return (
                       <EuiCopy
                         key={index}
                         anchorClassName="eui-displayBlock"
                         beforeMessage={tooltipContent}
-                        textToCopy={textToCopy}
-                      >
-                        {(copy) => (
+                        textToCopy={textToCopy}>
+                        {copy => (
                           <p
                             onClick={copy}
                             style={{
@@ -281,9 +290,8 @@ color: $${color2};`
                               color: palette[color2].rgba,
                               padding: 6,
                               marginBottom: 2,
-                              borderRadius: 4
-                            }}
-                          >
+                              borderRadius: 4,
+                            }}>
                             {contrastRating} &ensp; {color2}
                           </p>
                         )}
@@ -305,15 +313,16 @@ color: $${color2};`
             qualitative visualizations.
           </p>
           <p>
-            For more visualization palettes and rendering services, go to
-            the <Link to="/utilities/color-palettes">Color Palettes</Link> utility page.
+            For more visualization palettes and rendering services, go to the{' '}
+            <Link to="/utilities/color-palettes">Color Palettes</Link> utility
+            page.
           </p>
         </EuiText>
 
         <EuiSpacer />
 
         <EuiFlexGroup direction="column" gutterSize="s">
-          {visColors.map(function (color, index) {
+          {visColors.map(function(color, index) {
             return renderPaletteColor(palette, color, index);
           })}
         </EuiFlexGroup>

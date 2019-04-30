@@ -61,10 +61,7 @@ describe('EuiVerticalRectSeries', () => {
     const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
     const onValueClick = jest.fn();
     const component = mount(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-      >
+      <EuiSeriesChart width={600} height={200}>
         <EuiVerticalRectSeries
           name="test-series-a"
           data={data}
@@ -73,19 +70,17 @@ describe('EuiVerticalRectSeries', () => {
         />
       </EuiSeriesChart>
     );
-    component.find('rect').at(0).simulate('click');
+    component
+      .find('rect')
+      .at(0)
+      .simulate('click');
     expect(onValueClick.mock.calls).toHaveLength(1);
     expect(onValueClick.mock.calls[0][0]).toEqual(data[0]);
   });
 
   test('renders stacked vertical histogram', () => {
     const component = render(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-        xType="ordinal"
-        stackBy="y"
-      >
+      <EuiSeriesChart width={600} height={200} xType="ordinal" stackBy="y">
         <EuiVerticalRectSeries
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}
@@ -114,7 +109,7 @@ describe('EuiVerticalRectSeries', () => {
         [250, '250'],
         [500, '500'],
         [750, '750'],
-        [1000, '1000']
+        [1000, '1000'],
       ];
       const data = [];
 
@@ -124,8 +119,12 @@ describe('EuiVerticalRectSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiVerticalRectSeries name="barchart" data={data}/>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
+            <EuiVerticalRectSeries name="barchart" data={data} />
           </EuiSeriesChart>
         );
       }
@@ -143,7 +142,7 @@ describe('EuiVerticalRectSeries', () => {
         [125, '125'],
         [250, '240'],
         [375, '375'],
-        [500, '500']
+        [500, '500'],
       ];
 
       const linesData = [];
@@ -159,9 +158,17 @@ describe('EuiVerticalRectSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiVerticalRectSeries key={index} name={`barchart-${index}`} data={data}/>
+              <EuiVerticalRectSeries
+                key={index}
+                name={`barchart-${index}`}
+                data={data}
+              />
             ))}
           </EuiSeriesChart>
         );

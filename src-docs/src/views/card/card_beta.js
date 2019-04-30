@@ -10,7 +10,7 @@ import {
 const icons = ['dashboard', 'monitoring', 'watches'];
 const badges = [null, 'Beta', 'Lab'];
 
-const cardNodes = icons.map(function (item, index) {
+const cardNodes = icons.map(function(item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
@@ -18,15 +18,15 @@ const cardNodes = icons.map(function (item, index) {
         title={`Kibana ${item}`}
         description="Example of a card's description. Stick to one or two sentences."
         betaBadgeLabel={badges[index]}
-        betaBadgeTooltipContent={badges[index] ? 'This module is not GA. Please help us by reporting any bugs.' : undefined}
+        betaBadgeTooltipContent={
+          badges[index]
+            ? 'This module is not GA. Please help us by reporting any bugs.'
+            : undefined
+        }
         onClick={() => window.alert('Card clicked')}
       />
     </EuiFlexItem>
   );
 });
 
-export default () => (
-  <EuiFlexGroup gutterSize="l">
-    {cardNodes}
-  </EuiFlexGroup>
-);
+export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;

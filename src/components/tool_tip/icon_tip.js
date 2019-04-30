@@ -4,9 +4,23 @@ import PropTypes from 'prop-types';
 import { EuiIcon } from '../icon';
 import { EuiToolTip } from './tool_tip';
 
-export const EuiIconTip = ({ type, 'aria-label': ariaLabel, color, size, iconProps, ...rest }) => (
+export const EuiIconTip = ({
+  type,
+  'aria-label': ariaLabel,
+  color,
+  size,
+  iconProps,
+  ...rest
+}) => (
   <EuiToolTip {...rest}>
-    <EuiIcon tabIndex="0" type={type} color={color} size={size} aria-label={ariaLabel} {...iconProps} />
+    <EuiIcon
+      tabIndex="0"
+      type={type}
+      color={color}
+      size={size}
+      aria-label={ariaLabel}
+      {...iconProps}
+    />
   </EuiToolTip>
 );
 

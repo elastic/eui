@@ -1,3 +1,5 @@
+// We don't normally use 'I' prefixes
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
 interface IBrowser {
   isEventSupported: (name: string, element: EventTarget) => boolean;
 }

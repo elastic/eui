@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiAvatar,
@@ -43,11 +41,12 @@ export default class extends Component {
         aria-expanded={this.state.isOpen}
         aria-haspopup="true"
         aria-label="Account menu"
-        onClick={this.onMenuButtonClick}
-      >
+        onClick={this.onMenuButtonClick}>
         <EuiAvatar name="John Username" size="s" />
 
-        <EuiNotificationBadge className="euiHeaderNotification">3</EuiNotificationBadge>
+        <EuiNotificationBadge className="euiHeaderNotification">
+          3
+        </EuiNotificationBadge>
       </EuiHeaderSectionItemButton>
     );
 
@@ -59,10 +58,12 @@ export default class extends Component {
         isOpen={this.state.isOpen}
         anchorPosition="downRight"
         closePopover={this.closeMenu}
-        panelPaddingSize="none"
-      >
+        panelPaddingSize="none">
         <div style={{ width: 320 }}>
-          <EuiFlexGroup gutterSize="m" className="euiHeaderProfile" responsive={false}>
+          <EuiFlexGroup
+            gutterSize="m"
+            className="euiHeaderProfile"
+            responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiAvatar name="John Username" size="xl" />
             </EuiFlexItem>

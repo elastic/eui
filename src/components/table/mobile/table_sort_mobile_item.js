@@ -13,7 +13,6 @@ export const EuiTableSortMobileItem = ({
   ariaLabel,
   ...rest
 }) => {
-
   let sortIcon = 'empty';
   if (isSorted) {
     sortIcon = isSortAscending ? 'sortUp' : 'sortDown';
@@ -24,7 +23,9 @@ export const EuiTableSortMobileItem = ({
   });
 
   const columnTitle = ariaLabel ? ariaLabel : children;
-  const statefulAriaLabel = `Sort ${columnTitle} ${isSortAscending ? 'descending' : 'ascending'}`;
+  const statefulAriaLabel = `Sort ${columnTitle} ${
+    isSortAscending ? 'descending' : 'ascending'
+  }`;
 
   return (
     <EuiContextMenuItem
@@ -32,12 +33,10 @@ export const EuiTableSortMobileItem = ({
       icon={sortIcon}
       onClick={onSort}
       aria-label={statefulAriaLabel}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </EuiContextMenuItem>
   );
-
 };
 
 EuiTableSortMobileItem.propTypes = {

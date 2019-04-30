@@ -1,3 +1,1 @@
-export {
-  EuiBetaBadge,
-} from './beta_badge';
+export { EuiBetaBadge } from './beta_badge';

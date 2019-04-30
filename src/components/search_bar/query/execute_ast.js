@@ -29,16 +29,18 @@ const fieldClauseMatcher = (item, field, clauses = [], explain) => {
   return clauses.every(clause => {
     const { type, value, match } = clause;
     let operator = nameToOperatorMap[clause.operator];
-    if (!operator) { // unknown matcher
+    if (!operator) {
+      // unknown matcher
       return true;
     }
     if (!AST.Match.isMust(match)) {
-      operator = (value, token) => !nameToOperatorMap[clause.operator](value, token);
+      operator = (value, token) =>
+        !nameToOperatorMap[clause.operator](value, token);
     }
     const itemValue = get(item, field);
-    const hit = isArray(value) ?
-      value.some(v => operator(itemValue, v)) :
-      operator(itemValue, value);
+    const hit = isArray(value)
+      ? value.some(v => operator(itemValue, v))
+      : operator(itemValue, value);
     if (explain && hit) {
       explain.push({ hit, type, field, value, match, operator });
     }
@@ -46,7 +48,7 @@ const fieldClauseMatcher = (item, field, clauses = [], explain) => {
   });
 };
 
-const extractStringFieldsFromItem = (item) => {
+const extractStringFieldsFromItem = item => {
   return Object.keys(item).reduce((fields, key) => {
     if (isString(item[key])) {
       fields.push(key);
@@ -89,10 +91,15 @@ const termClauseMatcher = (item, fields, clauses = [], explain) => {
   });
 };
 
-export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClauseMatcher, explain = false) => {
+export const createFilter = (
+  ast,
+  defaultFields,
+  isClauseMatcher = defaultIsClauseMatcher,
+  explain = false
+) => {
   // Return items which pass ALL conditions: matches the terms entered, the specified field values,
   // and the specified "is" clauses.
-  return (item) => {
+  return item => {
     const explainLines = explain ? [] : undefined;
 
     if (explainLines) {
@@ -104,17 +111,26 @@ export const createFilter = (ast, defaultFields, isClauseMatcher = defaultIsClau
     const isClauses = ast.getIsClauses();
     const groupClauses = ast.getGroupClauses();
 
-    const isTermMatch = termClauseMatcher(item, defaultFields, termClauses, explainLines);
+    const isTermMatch = termClauseMatcher(
+      item,
+      defaultFields,
+      termClauses,
+      explainLines
+    );
     if (!isTermMatch) {
       return false;
     }
 
-    const isFieldsMatch = fields.every(field => fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines));
+    const isFieldsMatch = fields.every(field =>
+      fieldClauseMatcher(item, field, ast.getFieldClauses(field), explainLines)
+    );
     if (!isFieldsMatch) {
       return false;
     }
 
-    const isIsMatch = isClauses.every(clause => isClauseMatcher(item, clause, explainLines));
+    const isIsMatch = isClauses.every(clause =>
+      isClauseMatcher(item, clause, explainLines)
+    );
     if (!isIsMatch) {
       return false;
     }

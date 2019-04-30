@@ -15,7 +15,8 @@ const favoriteVideoGames = [
   },
   {
     title: 'TIE Fighter',
-    description: 'The sequel to XWING, join the dark side and fly for the Emporer.',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emporer.',
   },
   {
     title: 'Quake 2',
@@ -29,15 +30,11 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiDescriptionList>
-        <EuiDescriptionListTitle>
-          Dota 2
-        </EuiDescriptionListTitle>
+        <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
         <EuiDescriptionListDescription>
           A videogame that I have spent way too much time on over the years.
         </EuiDescriptionListDescription>
-        <EuiDescriptionListTitle>
-          Kings Quest VI
-        </EuiDescriptionListTitle>
+        <EuiDescriptionListTitle>Kings Quest VI</EuiDescriptionListTitle>
         <EuiDescriptionListDescription>
           The game that forced me to learn DOS.
         </EuiDescriptionListDescription>

@@ -2,22 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiScreenReaderOnly,
-} from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 
-import {
-  EuiTitle,
-} from '../title';
+import { EuiTitle } from '../title';
 
-import {
-  STATUS,
-  EuiStepNumber,
-} from './step_number';
+import { STATUS, EuiStepNumber } from './step_number';
 
-import {
-  EuiI18n,
-} from '../i18n';
+import { EuiI18n } from '../i18n';
 
 export const EuiStep = ({
   className,
@@ -32,29 +23,31 @@ export const EuiStep = ({
 
   let screenReaderStep;
   if (status === 'incomplete') {
-    screenReaderStep = <EuiI18n token="euiStep.incompleteStep" default="Incomplete Step"/>;
+    screenReaderStep = (
+      <EuiI18n token="euiStep.incompleteStep" default="Incomplete Step" />
+    );
   } else {
-    screenReaderStep = <EuiI18n token="euiStep.completeStep" default="Step"/>;
+    screenReaderStep = <EuiI18n token="euiStep.completeStep" default="Step" />;
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
+      <EuiScreenReaderOnly>
+        <span>{screenReaderStep}&nbsp;</span>
+      </EuiScreenReaderOnly>
 
-      <EuiScreenReaderOnly><span>{screenReaderStep}&nbsp;</span></EuiScreenReaderOnly>
-
-      <EuiStepNumber className="euiStep__circle" number={step} status={status} isHollow={status === 'incomplete'}/>
+      <EuiStepNumber
+        className="euiStep__circle"
+        number={step}
+        status={status}
+        isHollow={status === 'incomplete'}
+      />
 
       <EuiTitle size="s" className="euiStep__title">
         {React.createElement(headingElement, null, title)}
       </EuiTitle>
 
-      <div className="euiStep__content">
-        {children}
-      </div>
-
+      <div className="euiStep__content">{children}</div>
     </div>
   );
 };
@@ -78,5 +71,5 @@ EuiStep.propTypes = {
 };
 
 EuiStep.defaultProps = {
-  headingElement: 'p'
+  headingElement: 'p',
 };

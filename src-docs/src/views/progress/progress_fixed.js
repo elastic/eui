@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiProgress,
@@ -36,7 +34,6 @@ export default class extends Component {
   toggleProgress() {
     const currentState = this.state.showProgress;
 
-
     if (!currentState) {
       this.timer = setTimeout(() => this.progress(0), 250);
     } else {
@@ -46,7 +43,7 @@ export default class extends Component {
 
     this.setState({
       showProgress: !this.state.showProgress,
-      showHeader: false
+      showHeader: false,
     });
   }
 
@@ -77,16 +74,15 @@ export default class extends Component {
     if (this.state.showProgress) {
       progress = (
         <div>
-          <EuiCallOut
-            title="Look up!"
-            color="warning"
-            iconType="sortUp"
-          >
-            <p>
-              The progress bar is fixed to the top of your browser.
-            </p>
+          <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
+            <p>The progress bar is fixed to the top of your browser.</p>
           </EuiCallOut>
-          <EuiProgress value={this.state.value} max={100} size="s" position="fixed"/>
+          <EuiProgress
+            value={this.state.value}
+            max={100}
+            size="s"
+            position="fixed"
+          />
         </div>
       );
     }
@@ -94,20 +90,21 @@ export default class extends Component {
     if (this.state.showHeader) {
       progress = (
         <div>
-          <EuiCallOut
-            title="Look up!"
-            color="warning"
-            iconType="sortUp"
-          >
+          <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
             <p>
               The progress bar is fixed to the top of your browser and
               positioned above an <EuiCode>EuiHeader</EuiCode>.
             </p>
           </EuiCallOut>
-          <EuiHeader style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
+          <EuiHeader
+            style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
             <EuiHeaderSection grow={false}>
               <EuiHeaderSectionItem border="right">
-                <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />
+                <EuiHeaderLogo
+                  iconType="logoKibana"
+                  href="#"
+                  aria-label="Go to home page"
+                />
               </EuiHeaderSectionItem>
             </EuiHeaderSection>
           </EuiHeader>
@@ -122,7 +119,6 @@ export default class extends Component {
 
     return (
       <div>
-
         <EuiPanel style={{ width: 300, position: 'relative' }}>
           <EuiProgress size="xs" color="accent" position="absolute" />
           <EuiText>

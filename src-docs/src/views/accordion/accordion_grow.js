@@ -12,18 +12,18 @@ import {
 
 class Rows extends Component {
   state = {
-    counter: 1
-  }
+    counter: 1,
+  };
 
   onIncrease() {
     this.setState(prevState => ({
-      counter: prevState.counter + 1
+      counter: prevState.counter + 1,
     }));
   }
 
   onDecrease() {
     this.setState(prevState => ({
-      counter: Math.max(0, prevState.counter - 1)
+      counter: Math.max(0, prevState.counter - 1),
     }));
   }
 
@@ -36,11 +36,14 @@ class Rows extends Component {
       <EuiText>
         <EuiSpacer size="s" />
         <p>
-          <EuiButton onClick={() => this.onIncrease()}>Increase height</EuiButton>
-          {' '}
-          <EuiButton onClick={() => this.onDecrease()}>Decrease height</EuiButton>
+          <EuiButton onClick={() => this.onIncrease()}>
+            Increase height
+          </EuiButton>{' '}
+          <EuiButton onClick={() => this.onDecrease()}>
+            Decrease height
+          </EuiButton>
         </p>
-        { rows }
+        {rows}
       </EuiText>
     );
   }
@@ -53,9 +56,8 @@ class AccordionGrow extends Component {
         id="accordion1"
         buttonContent="Click me to toggle close / open"
         initialIsOpen={true}
-        paddingSize="l"
-      >
-        <Rows/>
+        paddingSize="l">
+        <Rows />
       </EuiAccordion>
     );
   }

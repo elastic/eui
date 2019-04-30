@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -8,7 +6,7 @@ import {
   EuiIcon,
   EuiPopover,
   EuiSpacer,
-  EuiText
+  EuiText,
 } from '../../../../src/components';
 
 import EuiTabsExample from '../tabs/tabbed_content';
@@ -36,40 +34,44 @@ export default class extends Component {
       isPopoverOpen: false,
     };
 
-    this.createPanelTree = (Content) => {
+    this.createPanelTree = Content => {
       return flattenPanelTree({
         id: 0,
         title: 'View options',
-        items: [{
-          name: 'Show fullscreen',
-          icon: (
-            <EuiIcon
-              type="search"
-              size="m"
-            />
-          ),
-          onClick: () => { this.closePopover(); window.alert('Show fullscreen'); },
-        }, {
-          name: 'See more',
-          icon: 'plusInCircle',
-          panel: {
-            id: 1,
-            width: 400,
-            title: 'See more',
-            content: <Content />
+        items: [
+          {
+            name: 'Show fullscreen',
+            icon: <EuiIcon type="search" size="m" />,
+            onClick: () => {
+              this.closePopover();
+              window.alert('Show fullscreen');
+            },
           },
-        }],
+          {
+            name: 'See more',
+            icon: 'plusInCircle',
+            panel: {
+              id: 1,
+              width: 400,
+              title: 'See more',
+              content: <Content />,
+            },
+          },
+        ],
       });
     };
 
     this.panels = this.createPanelTree(() => (
       <EuiText style={{ padding: 24 }} textAlign="center">
-        <p><EuiIcon type="faceHappy" size="xxl" /></p>
+        <p>
+          <EuiIcon type="faceHappy" size="xxl" />
+        </p>
 
         <h3>Context panels can contain anything</h3>
         <p>
-          You can stuff just about anything into these panels. Be mindful of size though.
-          This panel is set to 400px and the height will grow as space allows.
+          You can stuff just about anything into these panels. Be mindful of
+          size though. This panel is set to 400px and the height will grow as
+          space allows.
         </p>
       </EuiText>
     ));
@@ -106,8 +108,7 @@ export default class extends Component {
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick}
-      >
+        onClick={this.onButtonClick}>
         Click me to load mixed content menu
       </EuiButton>
     );
@@ -116,8 +117,7 @@ export default class extends Component {
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onDynamicButtonClick}
-      >
+        onClick={this.onDynamicButtonClick}>
         Click me to load dynamic mixed content menu
       </EuiButton>
     );
@@ -131,12 +131,8 @@ export default class extends Component {
           closePopover={this.closePopover}
           panelPaddingSize="none"
           withTitle
-          anchorPosition="upLeft"
-        >
-          <EuiContextMenu
-            initialPanelId={0}
-            panels={this.panels}
-          />
+          anchorPosition="upLeft">
+          <EuiContextMenu initialPanelId={0} panels={this.panels} />
         </EuiPopover>
 
         <EuiSpacer size="l" />
@@ -148,12 +144,8 @@ export default class extends Component {
           closePopover={this.closeDynamicPopover}
           panelPaddingSize="none"
           withTitle
-          anchorPosition="upLeft"
-        >
-          <EuiContextMenu
-            initialPanelId={0}
-            panels={this.dynamicPanels}
-          />
+          anchorPosition="upLeft">
+          <EuiContextMenu initialPanelId={0} panels={this.dynamicPanels} />
         </EuiPopover>
       </React.Fragment>
     );

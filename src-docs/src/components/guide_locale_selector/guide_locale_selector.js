@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  EuiSwitch,
-  EuiFormRow,
-} from '../../../../src/components';
+import { EuiSwitch, EuiFormRow } from '../../../../src/components';
 
 export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
-
   return (
-    <EuiFormRow
-      label="Translations for development"
-    >
+    <EuiFormRow label="Translations for development">
       <EuiSwitch
         label="Activate babelfish"
         checked={selectedLocale === 'en-xa'}
-        onChange={() => onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')}
+        onChange={() =>
+          onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')
+        }
         compressed={true}
       />
     </EuiFormRow>

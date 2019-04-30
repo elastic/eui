@@ -4,27 +4,18 @@ import classNames from 'classnames';
 
 export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
 
-export const EuiRangeWrapper = ({
-  children,
-  className,
-  fullWidth
-}) => {
-
+export const EuiRangeWrapper = ({ children, className, fullWidth }) => {
   const classes = classNames(
     'euiRangeWrapper',
     {
-      'euiRangeWrapper--fullWidth': fullWidth
+      'euiRangeWrapper--fullWidth': fullWidth,
     },
     className
   );
 
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 };
 
 EuiRangeWrapper.propTypes = {
-  fullWidth: PropTypes.bool
+  fullWidth: PropTypes.bool,
 };

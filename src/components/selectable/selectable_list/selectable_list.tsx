@@ -1,6 +1,8 @@
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+// ESLint seems to struggle with exported types at the moment.
+// eslint-disable-next-line import/named
 import { List, AutoSizer, ListProps } from 'react-virtualized';
 import { htmlIdGenerator } from '../../../services';
 import { EuiSelectableListItem } from './selectable_list_item';
@@ -92,20 +94,21 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       className,
       options,
       searchValue,
-      onOptionClick,
       renderOption,
       height: forcedHeight,
       virtualizedProps,
       rowHeight,
       activeOptionIndex,
-      rootId,
       showIcons,
-      singleSelection,
       visibleOptions,
-      allowExclusions,
       bordered,
       ...rest
     } = this.props;
+
+    delete rest.onOptionClick;
+    delete rest.rootId;
+    delete rest.singleSelection;
+    delete rest.allowExclusions;
 
     const optionArray = visibleOptions || options;
 

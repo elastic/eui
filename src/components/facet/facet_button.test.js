@@ -8,13 +8,10 @@ import { EuiIcon } from '../icon';
 describe('EuiFacetButton', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFacetButton {...requiredProps}>
-        Content
-      </EuiFacetButton>
+      <EuiFacetButton {...requiredProps}>Content</EuiFacetButton>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -24,8 +21,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton isDisabled>Content</EuiFacetButton>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -35,8 +31,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton isLoading>Content</EuiFacetButton>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -46,8 +41,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton isSelected>Content</EuiFacetButton>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -57,8 +51,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton quantity={60}>Content</EuiFacetButton>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -68,8 +61,7 @@ describe('EuiFacetButton', () => {
           <EuiFacetButton icon={<EuiIcon type="dot" />}>Content</EuiFacetButton>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 

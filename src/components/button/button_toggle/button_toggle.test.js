@@ -10,7 +10,6 @@ describe('EuiButtonToggle', () => {
       <EuiButtonToggle {...requiredProps} label="Label me" />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

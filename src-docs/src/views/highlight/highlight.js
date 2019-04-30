@@ -15,21 +15,18 @@ export class Highlight extends Component {
     };
   }
 
-  onSearchChange = (e) => {
+  onSearchChange = e => {
     const searchValue = e.target.value;
     this.setState({
       searchValue,
     });
-  }
+  };
 
   render() {
     const { searchValue } = this.state;
     return (
       <Fragment>
-        <EuiFieldSearch
-          value={searchValue}
-          onChange={this.onSearchChange}
-        />
+        <EuiFieldSearch value={searchValue} onChange={this.onSearchChange} />
 
         <EuiSpacer size="m" />
 

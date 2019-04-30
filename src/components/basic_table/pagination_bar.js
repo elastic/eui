@@ -7,17 +7,21 @@ export const PaginationType = PropTypes.shape({
   pageIndex: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   totalItemCount: PropTypes.number.isRequired,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
+  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
 });
 
 export const defaults = {
-  pageSizeOptions: [10, 25, 50]
+  pageSizeOptions: [10, 25, 50],
 };
 
-export const PaginationBar = ({ pagination, onPageSizeChange, onPageChange }) => {
-  const pageSizeOptions = pagination.pageSizeOptions ?
-    pagination.pageSizeOptions :
-    defaults.pageSizeOptions;
+export const PaginationBar = ({
+  pagination,
+  onPageSizeChange,
+  onPageChange,
+}) => {
+  const pageSizeOptions = pagination.pageSizeOptions
+    ? pagination.pageSizeOptions
+    : defaults.pageSizeOptions;
   const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
   return (
     <div>
@@ -38,5 +42,5 @@ export const PaginationBar = ({ pagination, onPageSizeChange, onPageChange }) =>
 PaginationBar.propTypes = {
   pagination: PaginationType.isRequired,
   onPageSizeChange: PropTypes.func.isRequired,
-  onPageChange: PropTypes.func.isRequired
+  onPageChange: PropTypes.func.isRequired,
 };

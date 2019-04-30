@@ -2,18 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiButtonIcon,
-} from '../../button';
+import { EuiButtonIcon } from '../../button';
 
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../flex';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
-import {
-  EuiI18n,
-} from '../../i18n';
+import { EuiI18n } from '../../i18n';
 
 export const EuiHeaderAlert = ({
   action,
@@ -28,10 +21,7 @@ export const EuiHeaderAlert = ({
   return (
     <EuiI18n token="euiHeaderAlert.dismiss" default="Dismiss">
       {dismiss => (
-        <div
-          className={classes}
-          {...rest}
-        >
+        <div className={classes} {...rest}>
           <EuiButtonIcon
             aria-label={dismiss}
             iconType="cross"
@@ -49,9 +39,7 @@ export const EuiHeaderAlert = ({
             </EuiFlexItem>
 
             <EuiFlexItem grow={false}>
-              <div className="euiHeaderAlert__date">
-                {date}
-              </div>
+              <div className="euiHeaderAlert__date">{date}</div>
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>

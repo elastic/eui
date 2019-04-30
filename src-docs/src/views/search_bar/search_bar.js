@@ -21,24 +21,14 @@ const tags = [
   { name: 'finance', color: 'success' },
   { name: 'eng', color: 'success' },
   { name: 'sales', color: 'warning' },
-  { name: 'ga', color: 'success' }
+  { name: 'ga', color: 'success' },
 ];
 
-const types = [
-  'dashboard',
-  'visualization',
-  'watch',
-];
+const types = ['dashboard', 'visualization', 'watch'];
 
-const users = [
-  'dewey',
-  'wanda',
-  'carrie',
-  'jmack',
-  'gabic',
-];
+const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
 
-const items = times(10, (id) => {
+const items = times(10, id => {
   return {
     id,
     status: random.oneOf(['open', 'closed']),
@@ -48,17 +38,19 @@ const items = times(10, (id) => {
     owner: random.oneOf(users),
     followers: random.integer({ min: 0, max: 20 }),
     comments: random.integer({ min: 0, max: 10 }),
-    stars: random.integer({ min: 0, max: 5 })
+    stars: random.integer({ min: 0, max: 5 }),
   };
 });
 
 const loadTags = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
-      resolve(tags.map(tag => ({
-        value: tag.name,
-        view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>
-      })));
+      resolve(
+        tags.map(tag => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        }))
+      );
     }, 2000);
   });
 };
@@ -66,14 +58,13 @@ const loadTags = () => {
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
 export class SearchBar extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       query: initialQuery,
       result: items,
       error: null,
-      incremental: false
+      incremental: false,
     };
   }
 
@@ -83,8 +74,10 @@ export class SearchBar extends Component {
     } else {
       this.setState({
         error: null,
-        result: EuiSearchBar.Query.execute(query, items, { defaultFields: ['owner', 'tag', 'type'] }),
-        query
+        result: EuiSearchBar.Query.execute(query, items, {
+          defaultFields: ['owner', 'tag', 'type'],
+        }),
+        query,
       });
     }
   };
@@ -103,32 +96,32 @@ export class SearchBar extends Component {
         items: [
           {
             value: 'open',
-            name: 'Open'
+            name: 'Open',
           },
           {
             value: 'closed',
-            name: 'Closed'
-          }
-        ]
+            name: 'Closed',
+          },
+        ],
       },
       {
         type: 'is',
         field: 'active',
         name: 'Active',
-        negatedName: 'Inactive'
+        negatedName: 'Inactive',
       },
       {
         type: 'field_value_toggle',
         name: 'Mine',
         field: 'owner',
-        value: 'dewey'
+        value: 'dewey',
       },
       {
         type: 'field_value_toggle',
         name: 'Popular',
         field: 'followers',
         value: 5,
-        operator: 'gt'
+        operator: 'gt',
       },
       {
         type: 'field_value_selection',
@@ -136,43 +129,47 @@ export class SearchBar extends Component {
         name: 'Tag',
         multiSelect: 'or',
         cache: 10000, // will cache the loaded tags for 10 sec
-        options: () => loadTags()
-      }
+        options: () => loadTags(),
+      },
     ];
 
     const schema = {
       strict: true,
       fields: {
         active: {
-          type: 'boolean'
+          type: 'boolean',
         },
         status: {
-          type: 'string'
+          type: 'string',
         },
         followers: {
-          type: 'number'
+          type: 'number',
         },
         comments: {
-          type: 'number'
+          type: 'number',
         },
         stars: {
-          type: 'number'
+          type: 'number',
         },
         created: {
-          type: 'date'
+          type: 'date',
         },
         owner: {
-          type: 'string'
+          type: 'string',
         },
         tag: {
           type: 'string',
-          validate: (value) => {
+          validate: value => {
             if (value !== '' && !tags.some(tag => tag.name === value)) {
-              throw new Error(`unknown tag (possible values: ${tags.map(tag => tag.name).join(',')})`);
+              throw new Error(
+                `unknown tag (possible values: ${tags
+                  .map(tag => tag.name)
+                  .join(',')})`
+              );
             }
-          }
-        }
-      }
+          },
+        },
+      },
     };
 
     return (
@@ -181,7 +178,7 @@ export class SearchBar extends Component {
         box={{
           placeholder: 'e.g. type:visualization -is:active joe',
           incremental,
-          schema
+          schema,
         }}
         filters={filters}
         onChange={this.onChange}
@@ -201,7 +198,7 @@ export class SearchBar extends Component {
           color="danger"
           title={`Invalid search: ${error.message}`}
         />
-        <EuiSpacer size="l"/>
+        <EuiSpacer size="l" />
       </Fragment>
     );
   }
@@ -210,30 +207,30 @@ export class SearchBar extends Component {
     const columns = [
       {
         name: 'Type',
-        field: 'type'
+        field: 'type',
       },
       {
         name: 'Open',
         field: 'status',
-        render: (status) => status === 'open' ? 'Yes' : 'No'
+        render: status => (status === 'open' ? 'Yes' : 'No'),
       },
       {
         name: 'Active',
         field: 'active',
-        dataType: 'boolean'
+        dataType: 'boolean',
       },
       {
         name: 'Tags',
-        field: 'tag'
+        field: 'tag',
       },
       {
         name: 'Owner',
-        field: 'owner'
+        field: 'owner',
       },
       {
         name: 'Stats',
         width: '150px',
-        render: (item) => {
+        render: item => {
           return (
             <div>
               <div>{`${item.stars} Stars`}</div>
@@ -241,27 +238,19 @@ export class SearchBar extends Component {
               <div>{`${item.comments} Comments`}</div>
             </div>
           );
-        }
-      }
+        },
+      },
     ];
 
     const queriedItems = EuiSearchBar.Query.execute(this.state.query, items, {
-      defaultFields: ['owner', 'tag', 'type']
+      defaultFields: ['owner', 'tag', 'type'],
     });
 
-    return (
-      <EuiBasicTable
-        items={queriedItems}
-        columns={columns}
-      />
-    );
+    return <EuiBasicTable items={queriedItems} columns={columns} />;
   }
 
   render() {
-    const {
-      incremental,
-      query,
-    } = this.state;
+    const { incremental, query } = this.state;
 
     let esQueryDsl;
     let esQueryString;
@@ -280,25 +269,23 @@ export class SearchBar extends Component {
     const content = this.renderError() || (
       <EuiFlexGroup>
         <EuiFlexItem grow={4}>
-
           <EuiTitle size="s">
             <h3>Elasticsearch Query String</h3>
           </EuiTitle>
-          <EuiSpacer size="s"/>
+          <EuiSpacer size="s" />
           <EuiCodeBlock language="js">
             {esQueryString ? esQueryString : ''}
           </EuiCodeBlock>
 
-          <EuiSpacer size="l"/>
+          <EuiSpacer size="l" />
 
           <EuiTitle size="s">
             <h3>Elasticsearch Query DSL</h3>
           </EuiTitle>
-          <EuiSpacer size="s"/>
+          <EuiSpacer size="s" />
           <EuiCodeBlock language="js">
             {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
           </EuiCodeBlock>
-
         </EuiFlexItem>
 
         <EuiFlexItem grow={6}>
@@ -306,7 +293,7 @@ export class SearchBar extends Component {
             <h3>JS execution</h3>
           </EuiTitle>
 
-          <EuiSpacer size="s"/>
+          <EuiSpacer size="s" />
 
           {this.renderTable()}
         </EuiFlexItem>
@@ -316,9 +303,7 @@ export class SearchBar extends Component {
     return (
       <Fragment>
         <EuiFlexGroup alignItems="center">
-          <EuiFlexItem>
-            {this.renderSearch()}
-          </EuiFlexItem>
+          <EuiFlexItem>{this.renderSearch()}</EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             <EuiSwitch
@@ -328,7 +313,7 @@ export class SearchBar extends Component {
             />
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="l"/>
+        <EuiSpacer size="l" />
         {content}
       </Fragment>
     );

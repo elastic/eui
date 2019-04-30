@@ -1,15 +1,8 @@
-import React, {
-  Fragment,
-} from 'react';
+import React, { Fragment } from 'react';
 
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-} from '../../../../src/components';
+import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components';
 
-import {
-  isColorDark,
-} from '../../../../src/services';
+import { isColorDark } from '../../../../src/services';
 
 const SWATCH_STYLE = {
   width: 100,
@@ -29,7 +22,7 @@ export default () => {
     [219, 19, 116],
     [73, 0, 146],
     [70, 26, 10],
-    [146, 0, 0]
+    [146, 0, 0],
   ];
 
   const LIGHT_COLORS = [
@@ -39,31 +32,35 @@ export default () => {
     [212, 157, 170],
     [255, 255, 255],
     [254, 182, 219],
-    [230, 194, 32]
+    [230, 194, 32],
   ];
 
   return (
     <Fragment>
       <EuiFlexGrid>
         {DARK_COLORS.map(color => (
-          <EuiFlexItem style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }} key={color.join('')}>
-            {
-              isColorDark(...color)
-                ? <div style={{ color: 'white' }}>Dark</div>
-                : <div style={{ color: 'black' }}>Light</div>
-            }
+          <EuiFlexItem
+            style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
+            key={color.join('')}>
+            {isColorDark(...color) ? (
+              <div style={{ color: 'white' }}>Dark</div>
+            ) : (
+              <div style={{ color: 'black' }}>Light</div>
+            )}
           </EuiFlexItem>
         ))}
       </EuiFlexGrid>
 
       <EuiFlexGrid>
         {LIGHT_COLORS.map(color => (
-          <EuiFlexItem style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }} key={color.join('')}>
-            {
-              isColorDark(...color)
-                ? <div style={{ color: 'white' }}>Dark</div>
-                : <div style={{ color: 'black' }}>Light</div>
-            }
+          <EuiFlexItem
+            style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
+            key={color.join('')}>
+            {isColorDark(...color) ? (
+              <div style={{ color: 'white' }}>Dark</div>
+            ) : (
+              <div style={{ color: 'black' }}>Light</div>
+            )}
           </EuiFlexItem>
         ))}
       </EuiFlexGrid>

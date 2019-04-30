@@ -9,7 +9,7 @@ import {
 
 const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
 
-const cardNodes = icons.map(function (item, index) {
+const cardNodes = icons.map(function(item, index) {
   return (
     <EuiFlexItem key={index}>
       <EuiCard
@@ -22,8 +22,4 @@ const cardNodes = icons.map(function (item, index) {
   );
 });
 
-export default () => (
-  <EuiFlexGroup gutterSize="l">
-    {cardNodes}
-  </EuiFlexGroup>
-);
+export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;

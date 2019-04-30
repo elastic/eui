@@ -15,9 +15,7 @@ afterEach(() => {
   moment.now = originalMomentNow;
 });
 
-
 describe('date format', () => {
-
   test.skip('parse - explicit date', () => {
     const parsed = dateFormat.parse('2018-01-02T22:33:44.555Z');
     expect(parsed.utcOffset()).toBe(0);
@@ -96,7 +94,6 @@ describe('date format', () => {
   });
 
   test.skip('parse - day granularity', () => {
-
     [
       '2 Jan 18',
       '2nd Jan 18',
@@ -171,7 +168,9 @@ describe('date format', () => {
 
   test.skip('parse - week granularity', () => {
     const weekNumber = random.integer({ min: 0, max: 50 });
-    const week = moment(now).week(weekNumber).startOf('week');
+    const week = moment(now)
+      .week(weekNumber)
+      .startOf('week');
     let parsed = dateFormat.parse(`Week ${weekNumber}`);
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(week.year());
@@ -193,7 +192,9 @@ describe('date format', () => {
     expect(parsed.seconds()).toBe(0);
     expect(dateGranularity(parsed)).toBe(Granularity.WEEK);
 
-    const nextWeek = moment(now).add(1, 'week').startOf('week');
+    const nextWeek = moment(now)
+      .add(1, 'week')
+      .startOf('week');
     parsed = dateFormat.parse('next week');
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(nextWeek.year());
@@ -204,7 +205,9 @@ describe('date format', () => {
     expect(parsed.seconds()).toBe(0);
     expect(dateGranularity(parsed)).toBe(Granularity.WEEK);
 
-    const lastWeek = moment(now).subtract(1, 'week').startOf('week');
+    const lastWeek = moment(now)
+      .subtract(1, 'week')
+      .startOf('week');
     parsed = dateFormat.parse('last week');
     expect(parsed.utcOffset()).toBe(0);
     expect(parsed.year()).toBe(lastWeek.year());
@@ -217,11 +220,7 @@ describe('date format', () => {
   });
 
   test.skip('parse - month granularity', () => {
-
-    [
-      'Feb',
-      'February'
-    ].forEach(date => {
+    ['Feb', 'February'].forEach(date => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(now.year());
@@ -233,12 +232,7 @@ describe('date format', () => {
       expect(dateGranularity(parsed)).toBe(Granularity.MONTH);
     });
 
-    [
-      'Feb 17',
-      'February 17',
-      'Feb 2017',
-      'February 2017',
-    ].forEach(date => {
+    ['Feb 17', 'February 17', 'Feb 2017', 'February 2017'].forEach(date => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
       expect(parsed.year()).toBe(2017);
@@ -301,7 +295,7 @@ describe('date format', () => {
     const year = random.integer({ min: 1970, max: new Date().getFullYear() });
     [
       year.toString(),
-      year % 100 < 10 ? `0${year % 100}` : (year % 100).toString() // YY format (padding with 0s)
+      year % 100 < 10 ? `0${year % 100}` : (year % 100).toString(), // YY format (padding with 0s)
     ].forEach(date => {
       const parsed = dateFormat.parse(date);
       expect(parsed.utcOffset()).toBe(0);
@@ -347,5 +341,4 @@ describe('date format', () => {
     expect(parsed.seconds()).toBe(0);
     expect(dateGranularity(parsed)).toBe(Granularity.YEAR);
   });
-
 });

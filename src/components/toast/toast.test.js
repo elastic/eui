@@ -1,15 +1,9 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import sinon from 'sinon';
-import {
-  findTestSubject,
-  requiredProps
-} from '../../test';
+import { findTestSubject, requiredProps } from '../../test';
 
-import {
-  COLORS,
-  EuiToast
-} from './toast';
+import { COLORS, EuiToast } from './toast';
 
 describe('EuiToast', () => {
   test('is rendered', () => {
@@ -19,8 +13,7 @@ describe('EuiToast', () => {
       </EuiToast>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('Props', () => {
@@ -51,9 +44,7 @@ describe('EuiToast', () => {
       test('is called when the close button is clicked', () => {
         const onCloseHandler = sinon.stub();
 
-        const component = mount(
-          <EuiToast onClose={onCloseHandler} />
-        );
+        const component = mount(<EuiToast onClose={onCloseHandler} />);
         const closeButton = findTestSubject(component, 'toastCloseButton');
         closeButton.simulate('click');
 

@@ -17,18 +17,12 @@ export class EuiWrappingPopover extends Component {
   }
 
   componentDidMount() {
-    this.anchor.insertAdjacentElement(
-      'beforebegin',
-      this.props.button
-    );
+    this.anchor.insertAdjacentElement('beforebegin', this.props.button);
   }
 
   componentWillUnmount() {
     if (this.props.button.parentNode) {
-      this.portal.insertAdjacentElement(
-        'beforebegin',
-        this.props.button
-      );
+      this.portal.insertAdjacentElement('beforebegin', this.props.button);
     }
   }
 
@@ -38,21 +32,25 @@ export class EuiWrappingPopover extends Component {
 
   setAnchorRef = node => {
     this.anchor = node;
-  }
+  };
 
   render() {
-    const {
-      button, // eslint-disable-line no-unused-vars
-      ...rest
-    } = this.props;
+    const { ...rest } = this.props;
+
+    delete rest.button;
+
     return (
       <EuiPortal
         portalRef={this.setPortalRef}
-        insert={{ sibling: this.props.button, position: 'after' }}
-      >
+        insert={{ sibling: this.props.button, position: 'after' }}>
         <EuiPopover
           {...rest}
-          button={<div ref={this.setAnchorRef} className="euiWrappingPopover__anchor"/>}
+          button={
+            <div
+              ref={this.setAnchorRef}
+              className="euiWrappingPopover__anchor"
+            />
+          }
         />
       </EuiPortal>
     );

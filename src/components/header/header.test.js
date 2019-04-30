@@ -6,12 +6,9 @@ import { EuiHeader } from './header';
 
 describe('EuiHeader', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeader {...requiredProps} />
-    );
+    const component = render(<EuiHeader {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders children', () => {
@@ -21,7 +18,6 @@ describe('EuiHeader', () => {
       </EuiHeader>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

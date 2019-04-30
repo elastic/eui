@@ -5,7 +5,7 @@ import { requiredProps } from '../../../test';
 import { EuiFormRow } from '../form_row';
 import { EuiDescribedFormGroup } from './described_form_group';
 
-jest.mock(`../form_row/make_id`, () => () => `generated-id`);
+jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiDescribedFormGroup', () => {
   const props = {
@@ -22,8 +22,7 @@ describe('EuiDescribedFormGroup', () => {
       </EuiDescribedFormGroup>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('ties together parts for accessibility', () => {
@@ -32,26 +31,25 @@ describe('EuiDescribedFormGroup', () => {
     };
 
     const formRowProps = {
-      label: `Label`,
-      helpText: `Help text`,
+      label: 'Label',
+      helpText: 'Help text',
       isInvalid: true,
-      error: [
-        `Error one`,
-        `Error two`
-      ],
+      error: ['Error one', 'Error two'],
       describedByIds: ['test-id'],
     };
 
     const tree = mount(
-      <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
+      <EuiDescribedFormGroup
+        {...requiredProps}
+        {...props}
+        {...describedFormGroupProps}>
         <EuiFormRow {...formRowProps}>
           <input />
         </EuiFormRow>
       </EuiDescribedFormGroup>
     );
 
-    expect(tree)
-      .toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -61,15 +59,17 @@ describe('EuiDescribedFormGroup', () => {
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
+        <EuiDescribedFormGroup
+          {...requiredProps}
+          {...props}
+          {...describedFormGroupProps}>
           <EuiFormRow fullWidth>
             <input />
           </EuiFormRow>
         </EuiDescribedFormGroup>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('gutterSize is rendered', () => {
@@ -78,15 +78,17 @@ describe('EuiDescribedFormGroup', () => {
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
+        <EuiDescribedFormGroup
+          {...requiredProps}
+          {...props}
+          {...describedFormGroupProps}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
         </EuiDescribedFormGroup>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('titleSize is rendered', () => {
@@ -95,31 +97,29 @@ describe('EuiDescribedFormGroup', () => {
       };
 
       const component = shallow(
-        <EuiDescribedFormGroup {...requiredProps} {...props} {...describedFormGroupProps}>
-          <EuiFormRow>
-            <input />
-          </EuiFormRow>
-        </EuiDescribedFormGroup>
-      );
-
-      expect(component)
-        .toMatchSnapshot();
-    });
-
-    test(`description is not rendered when it's not provided`, () => {
-      const component = shallow(
         <EuiDescribedFormGroup
           {...requiredProps}
-          title={<h3>Title</h3>}
-        >
+          {...props}
+          {...describedFormGroupProps}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
         </EuiDescribedFormGroup>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test("description is not rendered when it's not provided", () => {
+      const component = shallow(
+        <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
+          <EuiFormRow>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

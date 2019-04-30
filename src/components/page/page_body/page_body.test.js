@@ -13,19 +13,25 @@ describe('EuiPageBody', () => {
 
   describe('restrict width', () => {
     test('can be set to a default', () => {
-      const component = render(<EuiPageBody {...requiredProps} restrictWidth={true} />);
+      const component = render(
+        <EuiPageBody {...requiredProps} restrictWidth={true} />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(<EuiPageBody {...requiredProps} restrictWidth={1024} />);
+      const component = render(
+        <EuiPageBody {...requiredProps} restrictWidth={1024} />
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('can be set to a custom value and measurement', () => {
-      const component = render(<EuiPageBody {...requiredProps} restrictWidth="24rem" />);
+      const component = render(
+        <EuiPageBody {...requiredProps} restrictWidth="24rem" />
+      );
 
       expect(component).toMatchSnapshot();
     });

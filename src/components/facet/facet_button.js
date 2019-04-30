@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import  {
-  EuiNotificationBadge
-} from '../badge';
+import { EuiNotificationBadge } from '../badge';
 
-import {
-  EuiLoadingSpinner
-} from '../loading';
+import { EuiLoadingSpinner } from '../loading';
 
 export const EuiFacetButton = ({
   children,
@@ -21,7 +17,6 @@ export const EuiFacetButton = ({
   buttonRef,
   ...rest
 }) => {
-
   // If in the loading state, force disabled to true
   isDisabled = isLoading ? true : isDisabled;
 
@@ -31,7 +26,7 @@ export const EuiFacetButton = ({
       'euiFacetButton--isSelected': isSelected,
       'euiFacetButton--unSelected': !isSelected,
     },
-    className,
+    className
   );
 
   // Add quanity number if provided or loading indicator
@@ -39,18 +34,14 @@ export const EuiFacetButton = ({
 
   if (isLoading) {
     buttonQuantity = (
-      <EuiLoadingSpinner
-        className="euiFacetButton__spinner"
-        size="m"
-      />
+      <EuiLoadingSpinner className="euiFacetButton__spinner" size="m" />
     );
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
         className="euiFacetButton__quantity"
         size="m"
-        color={!isSelected || isDisabled ? 'subdued' : 'accent'}
-      >
+        color={!isSelected || isDisabled ? 'subdued' : 'accent'}>
         {quantity}
       </EuiNotificationBadge>
     );
@@ -60,10 +51,9 @@ export const EuiFacetButton = ({
   let buttonIcon;
 
   if (icon) {
-    buttonIcon = React.cloneElement(
-      icon,
-      { className: 'euiFacetButton__icon' },
-    );
+    buttonIcon = React.cloneElement(icon, {
+      className: 'euiFacetButton__icon',
+    });
   }
 
   let dataText;
@@ -77,11 +67,12 @@ export const EuiFacetButton = ({
       disabled={isDisabled}
       type="button"
       ref={buttonRef}
-      {...rest}
-    >
+      {...rest}>
       <span className="euiFacetButton__content">
         {buttonIcon}
-        <span data-text={dataText} className="euiFacetButton__text">{children}</span>
+        <span data-text={dataText} className="euiFacetButton__text">
+          {children}
+        </span>
         {buttonQuantity}
       </span>
     </button>

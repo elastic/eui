@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VerticalBarSeries, HorizontalBarSeries, AbstractSeries } from 'react-vis';
+import {
+  VerticalBarSeries,
+  HorizontalBarSeries,
+  AbstractSeries,
+} from 'react-vis';
 import { ORIENTATION } from '../utils/chart_utils';
 import classNames from 'classnames';
 
 export class EuiBarSeries extends AbstractSeries {
   state = {
     isMouseOverValue: false,
-  }
-  static getParentConfig(attr, props)  {
+  };
+  static getParentConfig(attr, props) {
     const { _orientation } = props;
     return _orientation === ORIENTATION.HORIZONTAL
       ? HorizontalBarSeries.getParentConfig(attr)
@@ -16,21 +20,31 @@ export class EuiBarSeries extends AbstractSeries {
   }
   _onValueMouseOver = () => {
     this.setState(() => ({ isMouseOverValue: true }));
-  }
+  };
 
   _onValueMouseOut = () => {
     this.setState(() => ({ isMouseOverValue: false }));
-  }
+  };
   render() {
-    const { _orientation, name, data, color, onValueClick, ...rest } = this.props;
+    const {
+      _orientation,
+      name,
+      data,
+      color,
+      onValueClick,
+      ...rest
+    } = this.props;
     const { isMouseOverValue } = this.state;
     const isHighDataVolume = data.length > 80 ? true : false;
     const classes = classNames(
       'euiBarSeries',
       isHighDataVolume && 'euiBarSeries--highDataVolume',
-      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled',
+      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled'
     );
-    const BarSeriesComponent = _orientation === ORIENTATION.HORIZONTAL ? HorizontalBarSeries : VerticalBarSeries;
+    const BarSeriesComponent =
+      _orientation === ORIENTATION.HORIZONTAL
+        ? HorizontalBarSeries
+        : VerticalBarSeries;
     return (
       <BarSeriesComponent
         name={name}
@@ -56,16 +70,12 @@ EuiBarSeries.propTypes = {
   /**
    * Array<{x: string|number, y: string|number}> depending on XYChart xType scale and yType scale
    */
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    y: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    })
+  ).isRequired,
   /** See eui_palettes.js or colorPalette service for recommended colors */
   color: PropTypes.string,
   /**

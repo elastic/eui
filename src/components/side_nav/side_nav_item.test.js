@@ -12,19 +12,17 @@ describe('EuiSideNavItem', () => {
       </EuiSideNavItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
-  test(`preserves child's classes`, () => {
+  test("preserves child's classes", () => {
     const component = render(
       <EuiSideNavItem>
         <button className="test" />
       </EuiSideNavItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('isSelected', () => {
@@ -35,8 +33,7 @@ describe('EuiSideNavItem', () => {
         </EuiSideNavItem>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('is rendered when specified as true', () => {
@@ -46,8 +43,7 @@ describe('EuiSideNavItem', () => {
         </EuiSideNavItem>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

@@ -14,24 +14,24 @@ export const DelayHideExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: delayHideSource
+          code: delayHideSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: delayHideHtml
-        }
+          code: delayHideHtml,
+        },
       ],
       text: (
         <p>
-          <EuiCode>EuiDelayHide</EuiCode> is a component for conditionally toggling
-          the visibility of a child component. It will ensure that the child is
-          visible for at least 1000ms (default). This avoids UI glitches that
-          are common with loading spinners and other elements that are rendered
-          conditionally and potentially for a short amount of time.
+          <EuiCode>EuiDelayHide</EuiCode> is a component for conditionally
+          toggling the visibility of a child component. It will ensure that the
+          child is visible for at least 1000ms (default). This avoids UI
+          glitches that are common with loading spinners and other elements that
+          are rendered conditionally and potentially for a short amount of time.
         </p>
       ),
       props: { EuiDelayHide },
-      demo: <DelayHide />
-    }
-  ]
+      demo: <DelayHide />,
+    },
+  ],
 };

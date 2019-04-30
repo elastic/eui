@@ -19,17 +19,17 @@ export default class extends Component {
     };
   }
 
-  onToggle0Change = (e) => {
+  onToggle0Change = e => {
     this.setState({ toggle0On: e.target.checked });
-  }
+  };
 
-  onToggle1Change = (e) => {
+  onToggle1Change = e => {
     this.setState({ toggle1On: e.target.checked });
-  }
+  };
 
-  onToggle4Change = (e) => {
+  onToggle4Change = e => {
     this.setState({ toggle4On: e.target.checked });
-  }
+  };
 
   render() {
     return (
@@ -40,18 +40,18 @@ export default class extends Component {
           onChange={this.onToggle0Change}
           isSelected={this.state.toggle0On}
         />
-
         &emsp;
-
         <EuiButtonToggle
-          label={this.state.toggle1On ? 'I\'m a filled toggle' : 'I\'m a primary toggle'}
+          label={
+            this.state.toggle1On
+              ? "I'm a filled toggle"
+              : "I'm a primary toggle"
+          }
           fill={this.state.toggle1On}
           onChange={this.onToggle1Change}
           isSelected={this.state.toggle1On}
         />
-
         &emsp;
-
         <EuiButtonToggle
           label="Toggle Me"
           iconType={this.state.toggle4On ? 'eye' : 'eyeClosed'}
@@ -60,22 +60,18 @@ export default class extends Component {
           isEmpty
           isIconOnly
         />
-
         <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs"><h3>Disabled</h3></EuiTitle>
-
+        <EuiTitle size="xxs">
+          <h3>Disabled</h3>
+        </EuiTitle>
         <EuiSpacer size="s" />
-
         <EuiButtonToggle
           isDisabled
           label="Can't toggle this"
           fill={this.state.toggle2On}
           isSelected={this.state.toggle2On}
         />
-
         &emsp;
-
         <EuiButtonToggle
           isDisabled
           label="Can't toggle this either"

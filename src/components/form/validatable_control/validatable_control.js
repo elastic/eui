@@ -1,17 +1,17 @@
-import {
-  cloneElement,
-  Component,
-} from 'react';
+import { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class EuiValidatableControl extends Component {
   static propTypes = {
     children: PropTypes.node,
     isInvalid: PropTypes.bool,
-  }
+  };
 
   updateValidity() {
-    if (this.control == null || typeof this.control.setCustomValidity !== 'function') {
+    if (
+      this.control == null ||
+      typeof this.control.setCustomValidity !== 'function'
+    ) {
       return; // jsdom doesn't polyfill this for the server-side
     }
 
@@ -38,14 +38,11 @@ export class EuiValidatableControl extends Component {
     if (typeof ref === 'function') {
       ref(node);
     }
-  }
+  };
 
   render() {
-    return cloneElement(
-      this.props.children,
-      {
-        ref: this.setRef,
-      }
-    );
+    return cloneElement(this.props.children, {
+      ref: this.setRef,
+    });
   }
 }

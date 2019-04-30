@@ -9,7 +9,7 @@ export const Match = Object.freeze({
   },
   isMustClause(clause) {
     return Match.isMust(clause.match);
-  }
+  },
 });
 
 export const Operator = Object.freeze({
@@ -32,7 +32,12 @@ export const Operator = Object.freeze({
     return Operator.isEXACT(clause.operator);
   },
   isRange(match) {
-    return Operator.isGT(match) || Operator.isGTE(match) || Operator.isLT(match) || Operator.isLTE(match);
+    return (
+      Operator.isGT(match) ||
+      Operator.isGTE(match) ||
+      Operator.isLT(match) ||
+      Operator.isLTE(match)
+    );
   },
   isRangeClause(clause) {
     return Operator.isRange(clause.operator);
@@ -60,66 +65,138 @@ export const Operator = Object.freeze({
   },
   isLTEClause(clause) {
     return Operator.isLTE(clause.operator);
-  }
+  },
 });
 
 const Term = Object.freeze({
   TYPE: 'term',
-  isInstance: (clause) => {
+  isInstance: clause => {
     return clause.type === Term.TYPE;
   },
-  must: (value) => {
+  must: value => {
     return { type: Term.TYPE, value, match: Match.MUST };
   },
-  mustNot: (value) => {
+  mustNot: value => {
     return { type: Term.TYPE, value, match: Match.MUST_NOT };
-  }
+  },
 });
 
 const Group = Object.freeze({
   TYPE: 'group',
-  isInstance: (clause) => {
+  isInstance: clause => {
     return clause.type === Group.TYPE;
   },
-  must: (value) => {
+  must: value => {
     return { type: Group.TYPE, value, match: Match.MUST };
   },
 });
 
 const Field = Object.freeze({
   TYPE: 'field',
-  isInstance: (clause) => {
+  isInstance: clause => {
     return clause.type === Field.TYPE;
   },
   must: {
-    eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.EQ }),
-    exact: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.EXACT }),
-    gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GT }),
-    gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.GTE }),
-    lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.LT }),
-    lte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST, operator: Operator.LTE })
+    eq: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.EQ,
+    }),
+    exact: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.EXACT,
+    }),
+    gt: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.GT,
+    }),
+    gte: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.GTE,
+    }),
+    lt: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.LT,
+    }),
+    lte: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST,
+      operator: Operator.LTE,
+    }),
   },
   mustNot: {
-    eq: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.EQ }),
-    exact: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.EXACT }),
-    gt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GT }),
-    gte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.GTE }),
-    lt: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.LT }),
-    lte: (field, value) => ({ type: Field.TYPE, field, value, match: Match.MUST_NOT, operator: Operator.LTE })
-  }
+    eq: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.EQ,
+    }),
+    exact: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.EXACT,
+    }),
+    gt: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.GT,
+    }),
+    gte: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.GTE,
+    }),
+    lt: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.LT,
+    }),
+    lte: (field, value) => ({
+      type: Field.TYPE,
+      field,
+      value,
+      match: Match.MUST_NOT,
+      operator: Operator.LTE,
+    }),
+  },
 });
 
 const Is = Object.freeze({
   TYPE: 'is',
-  isInstance: (clause) => {
+  isInstance: clause => {
     return clause.type === Is.TYPE;
   },
-  must: (flag) => {
+  must: flag => {
     return { type: Is.TYPE, flag, match: Match.MUST };
   },
-  mustNot: (flag) => {
+  mustNot: flag => {
     return { type: Is.TYPE, flag, match: Match.MUST_NOT };
-  }
+  },
 });
 
 const valuesEqual = (v1, v2) => {
@@ -152,34 +229,36 @@ const arrayIncludesValue = (array, value) => {
  * This AST is immutable - every "mutating" operation returns a newly mutated AST.
  */
 export class _AST {
-
   static create(clauses) {
     return new _AST(clauses);
   }
 
   constructor(clauses = []) {
     this._clauses = clauses;
-    this._indexedClauses = clauses.reduce((map, clause) => {
-      switch (clause.type) {
-        case Field.TYPE:
-          if (!map.field[clause.field]) {
-            map.field[clause.field] = [];
-          }
-          map.field[clause.field].push(clause);
-          return map;
-        case Is.TYPE:
-          map.is[clause.flag] = clause;
-          return map;
-        case Term.TYPE:
-          map.term.push(clause);
-          return map;
-        case Group.TYPE:
-          map.group.push(clause);
-          return map;
-        default:
-          throw new Error(`Unknown query clause type [${clause.type}]`);
-      }
-    }, { field: {}, is: {}, term: [], group: [] });
+    this._indexedClauses = clauses.reduce(
+      (map, clause) => {
+        switch (clause.type) {
+          case Field.TYPE:
+            if (!map.field[clause.field]) {
+              map.field[clause.field] = [];
+            }
+            map.field[clause.field].push(clause);
+            return map;
+          case Is.TYPE:
+            map.is[clause.flag] = clause;
+            return map;
+          case Term.TYPE:
+            map.term.push(clause);
+            return map;
+          case Group.TYPE:
+            map.group.push(clause);
+            return map;
+          default:
+            throw new Error(`Unknown query clause type [${clause.type}]`);
+        }
+      },
+      { field: {}, is: {}, term: [], group: [] }
+    );
   }
 
   get clauses() {
@@ -200,9 +279,9 @@ export class _AST {
   }
 
   getFieldClauses(field = undefined) {
-    return field ?
-      this._indexedClauses.field[field] :
-      this._clauses.filter(Field.isInstance);
+    return field
+      ? this._indexedClauses.field[field]
+      : this._clauses.filter(Field.isInstance);
   }
 
   getFieldClause(field, predicate) {
@@ -217,17 +296,27 @@ export class _AST {
     if (!clauses) {
       return false;
     }
-    return isNil(value) || clauses.some(clause => arrayIncludesValue(clause.value, value));
+    return (
+      isNil(value) ||
+      clauses.some(clause => arrayIncludesValue(clause.value, value))
+    );
   }
 
   getOrFieldClause(field, value = undefined) {
-    return this.getFieldClause(field, clause => isArray(clause.value) && (isNil(value) || arrayIncludesValue(clause.value, value)));
+    return this.getFieldClause(
+      field,
+      clause =>
+        isArray(clause.value) &&
+        (isNil(value) || arrayIncludesValue(clause.value, value))
+    );
   }
 
   addOrFieldValue(field, value, must = true, operator = Operator.EQ) {
     const existingClause = this.getOrFieldClause(field);
     if (!existingClause) {
-      const newClause = must ? Field.must[operator](field, [value]) : Field.mustNot[operator](field, [value]);
+      const newClause = must
+        ? Field.must[operator](field, [value])
+        : Field.mustNot[operator](field, [value]);
       return new _AST([...this._clauses, newClause]);
     }
     const clauses = this._clauses.map(clause => {
@@ -249,7 +338,9 @@ export class _AST {
         clauses.push(clause);
         return clauses;
       }
-      const filteredValue = clause.value.filter(val => !valuesEqual(val, value));
+      const filteredValue = clause.value.filter(
+        val => !valuesEqual(val, value)
+      );
       if (filteredValue.length === 0) {
         return clauses;
       }
@@ -261,25 +352,41 @@ export class _AST {
 
   removeOrFieldClauses(field) {
     const clauses = this._clauses.filter(clause => {
-      return !Field.isInstance(clause) || clause.field !== field || !isArray(clause.value);
+      return (
+        !Field.isInstance(clause) ||
+        clause.field !== field ||
+        !isArray(clause.value)
+      );
     });
     return new _AST(clauses);
   }
 
   hasSimpleFieldClause(field, value = undefined) {
-    const clauses = this.getFieldClause(field, clause => !isArray(clause.value));
+    const clauses = this.getFieldClause(
+      field,
+      clause => !isArray(clause.value)
+    );
     if (!clauses) {
       return false;
     }
-    return isNil(value) || clauses.some(clause => valuesEqual(clause.value, value));
+    return (
+      isNil(value) || clauses.some(clause => valuesEqual(clause.value, value))
+    );
   }
 
   getSimpleFieldClause(field, value = undefined) {
-    return this.getFieldClause(field, clause => !isArray(clause.value) && (isNil(value) || valuesEqual(clause.value, value)));
+    return this.getFieldClause(
+      field,
+      clause =>
+        !isArray(clause.value) &&
+        (isNil(value) || valuesEqual(clause.value, value))
+    );
   }
 
   addSimpleFieldValue(field, value, must = true, operator = Operator.EQ) {
-    const clause = must ? Field.must[operator](field, value) : Field.mustNot[operator](field, value);
+    const clause = must
+      ? Field.must[operator](field, value)
+      : Field.mustNot[operator](field, value);
     return this.addClause(clause);
   }
 
@@ -294,7 +401,11 @@ export class _AST {
 
   removeSimpleFieldClauses(field) {
     const clauses = this._clauses.filter(clause => {
-      return !Field.isInstance(clause) || clause.field !== field || isArray(clause.value);
+      return (
+        !Field.isInstance(clause) ||
+        clause.field !== field ||
+        isArray(clause.value)
+      );
     });
     return new _AST(clauses);
   }
@@ -308,7 +419,11 @@ export class _AST {
   }
 
   removeIsClause(flag) {
-    return new _AST(this._clauses.filter(clause => !Is.isInstance(clause) || clause.flag !== flag));
+    return new _AST(
+      this._clauses.filter(
+        clause => !Is.isInstance(clause) || clause.flag !== flag
+      )
+    );
   }
 
   getGroupClauses() {
@@ -349,7 +464,10 @@ export class _AST {
           }
           break;
         case Field.TYPE:
-          if (newClause.field !== clause.field || newClause.value !== clause.value) {
+          if (
+            newClause.field !== clause.field ||
+            newClause.value !== clause.value
+          ) {
             clauses.push(clause);
             return clauses;
           }
@@ -381,5 +499,5 @@ export const AST = Object.freeze({
   Group,
   Field,
   Is,
-  create: (clauses) => new _AST(clauses)
+  create: clauses => new _AST(clauses),
 });

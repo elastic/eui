@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -13,32 +11,32 @@ export class ConfirmModal extends Component {
   state = {
     isModalVisible: false,
     isDestroyModalVisible: false,
-    isEmptyModalVisible: false
-  }
+    isEmptyModalVisible: false,
+  };
 
   closeModal = () => {
     this.setState({ isModalVisible: false });
-  }
+  };
 
   showModal = () => {
     this.setState({ isModalVisible: true });
-  }
+  };
 
   closeDestroyModal = () => {
     this.setState({ isDestroyModalVisible: false });
-  }
+  };
 
   showDestroyModal = () => {
     this.setState({ isDestroyModalVisible: true });
-  }
+  };
 
   closeEmptyModal = () => {
     this.setState({ isEmptyModalVisible: false });
-  }
+  };
 
   showEmptyModal = () => {
     this.setState({ isEmptyModalVisible: true });
-  }
+  };
 
   render() {
     let modal;
@@ -52,8 +50,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
-          >
+            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -73,8 +70,7 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             buttonColor="danger"
-            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
-          >
+            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
             <p>You&rsquo;re about to destroy something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -101,22 +97,15 @@ export class ConfirmModal extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showModal}>
-          Show ConfirmModal
-        </EuiButton>
-
+        <EuiButton onClick={this.showModal}>Show ConfirmModal</EuiButton>
         &nbsp;
-
         <EuiButton onClick={this.showDestroyModal}>
           Show dangerous ConfirmModal
         </EuiButton>
-
         &nbsp;
-
         <EuiButton onClick={this.showEmptyModal}>
           Show title-only ConfirmModal
         </EuiButton>
-
         {modal}
         {destroyModal}
         {emptyModal}

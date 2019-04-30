@@ -3,7 +3,6 @@ import { CommonProps } from '../../common';
 import { FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * text field type defs
    *
@@ -21,5 +20,5 @@ declare module '@elastic/eui' {
 
   export const EuiFieldText: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldTextProps
-    >;
+  >;
 }

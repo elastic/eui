@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  EuiImage,
-} from '../../../../src/components';
+import { EuiImage } from '../../../../src/components';
 
 export default () => (
   <EuiImage

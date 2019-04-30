@@ -51,8 +51,7 @@ export class EuiComboBoxPill extends Component {
         <EuiI18n
           token="euiComboBoxPill.removeSelection"
           default="Remove {children} from selection in this group"
-          values={{ children }}
-        >
+          values={{ children }}>
           {removeSelection => (
             <EuiBadge
               className={classes}
@@ -67,8 +66,7 @@ export class EuiComboBoxPill extends Component {
               }}
               onClick={onClick}
               onClickAriaLabel={onClickAriaLabel}
-              {...rest}
-            >
+              {...rest}>
               {children}
             </EuiBadge>
           )}
@@ -91,8 +89,7 @@ export class EuiComboBoxPill extends Component {
         color={color}
         {...rest}
         onClick={onClick}
-        onClickAriaLabel={onClickAriaLabel}
-      >
+        onClickAriaLabel={onClickAriaLabel}>
         {children}
       </EuiBadge>
     );

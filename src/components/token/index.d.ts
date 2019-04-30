@@ -3,12 +3,11 @@ import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
 declare module '@elastic/eui' {
-
   /**
    * token type defs
    *
    * @see './token.js'
-  */
+   */
 
   export type TokenSize = 's' | 'm' | 'l';
 
@@ -24,12 +23,9 @@ declare module '@elastic/eui' {
     | 'tokenTint09'
     | 'tokenTint10'
     | 'tokenTint11'
-    | 'tokenTint12'
+    | 'tokenTint12';
 
-  export type TokenShape =
-    | 'circle'
-    | 'square'
-    | 'rectangle'
+  export type TokenShape = 'circle' | 'square' | 'rectangle';
 
   export interface EuiTokenProps {
     iconType: IconType;
@@ -42,5 +38,7 @@ declare module '@elastic/eui' {
     };
   }
 
-  export const EuiToken: FunctionComponent<CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiToken: FunctionComponent<
+    CommonProps & EuiTokenProps & HTMLAttributes<HTMLDivElement>
+  >;
 }

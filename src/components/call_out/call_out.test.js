@@ -7,49 +7,37 @@ import { EuiCallOut, COLORS } from './call_out';
 describe('EuiCallOut', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCallOut {...requiredProps}>
-        Content
-      </EuiCallOut>
+      <EuiCallOut {...requiredProps}>Content</EuiCallOut>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('title', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCallOut title="Title">
-            Content
-          </EuiCallOut>
+          <EuiCallOut title="Title">Content</EuiCallOut>
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiCallOut iconType="user" />
-        );
+        const component = render(<EuiCallOut iconType="user" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach(color => {
         test(`${color} is rendered`, () => {
-          const component = render(
-            <EuiCallOut color={color} />
-          );
+          const component = render(<EuiCallOut color={color} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

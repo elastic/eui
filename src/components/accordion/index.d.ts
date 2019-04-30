@@ -16,5 +16,5 @@ declare module '@elastic/eui' {
 
   export class EuiAccordion extends Component<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiAccordionProps
-    > {}
+  > {}
 }

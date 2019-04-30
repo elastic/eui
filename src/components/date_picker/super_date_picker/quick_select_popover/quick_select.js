@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
@@ -37,31 +36,27 @@ export class EuiQuickSelect extends Component {
     };
   }
 
-  onTimeTenseChange = (evt) => {
+  onTimeTenseChange = evt => {
     this.setState({
       timeTense: evt.target.value,
     });
-  }
+  };
 
-  onTimeValueChange = (evt) => {
+  onTimeValueChange = evt => {
     const sanitizedValue = parseInt(evt.target.value, 10);
     this.setState({
       timeValue: isNaN(sanitizedValue) ? '' : sanitizedValue,
     });
-  }
+  };
 
-  onTimeUnitsChange = (evt) => {
+  onTimeUnitsChange = evt => {
     this.setState({
       timeUnits: evt.target.value,
     });
-  }
+  };
 
   applyQuickSelect = () => {
-    const {
-      timeTense,
-      timeValue,
-      timeUnits,
-    } = this.state;
+    const { timeTense, timeValue, timeUnits } = this.state;
 
     if (timeTense === NEXT) {
       this.props.applyTime({
@@ -77,43 +72,56 @@ export class EuiQuickSelect extends Component {
       end: 'now',
       quickSelect: { ...this.state },
     });
-  }
+  };
 
   getBounds = () => {
     const startMoment = dateMath.parse(this.props.start);
     const endMoment = dateMath.parse(this.props.end, { roundUp: true });
     return {
-      min: startMoment && startMoment.isValid() ? startMoment : moment().subtract(15, 'minute'),
+      min:
+        startMoment && startMoment.isValid()
+          ? startMoment
+          : moment().subtract(15, 'minute'),
       max: endMoment && endMoment.isValid() ? endMoment : moment(),
     };
-  }
+  };
 
   stepForward = () => {
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      start: moment(max).add(1, 'ms').toISOString(),
-      end: moment(max).add(diff + 1, 'ms').toISOString(),
+      start: moment(max)
+        .add(1, 'ms')
+        .toISOString(),
+      end: moment(max)
+        .add(diff + 1, 'ms')
+        .toISOString(),
       keepPopoverOpen: true,
     });
-  }
+  };
 
   stepBackward = () => {
     const { min, max } = this.getBounds();
     const diff = max.diff(min);
     this.props.applyTime({
-      start: moment(min).subtract(diff + 1, 'ms').toISOString(),
-      end: moment(min).subtract(1, 'ms').toISOString(),
+      start: moment(min)
+        .subtract(diff + 1, 'ms')
+        .toISOString(),
+      end: moment(min)
+        .subtract(1, 'ms')
+        .toISOString(),
       keepPopoverOpen: true,
     });
-  }
+  };
 
   render() {
     return (
       <Fragment>
         <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
           <EuiFlexItem>
-            <EuiTitle size="xxxs"><span>Quick select</span></EuiTitle>
+            <EuiTitle size="xxxs">
+              <span>Quick select</span>
+            </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiToolTip content="Previous time window">
@@ -171,8 +179,9 @@ export class EuiQuickSelect extends Component {
                 className="euiQuickSelect__applyButton"
                 size="s"
                 onClick={this.applyQuickSelect}
-                disabled={this.state.timeValue === '' || this.state.timeValue <= 0}
-              >
+                disabled={
+                  this.state.timeValue === '' || this.state.timeValue <= 0
+                }>
                 Apply
               </EuiButton>
             </EuiFormRow>

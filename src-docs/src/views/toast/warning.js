@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  EuiToast,
-} from '../../../../src/components';
+import { EuiToast } from '../../../../src/components';
 
 export default () => (
   <EuiToast

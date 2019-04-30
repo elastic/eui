@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -33,37 +31,37 @@ export default class extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   onButtonClick = () => {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   onSwitch2Change = () => {
     this.setState({
       isSwitch2Checked: !this.state.isSwitch2Checked,
     });
-  }
+  };
 
   onButton2Click = () => {
     this.setState({
       isPopover2Open: !this.state.isPopover2Open,
     });
-  }
+  };
 
   closePopover2 = () => {
     this.setState({
       isPopover2Open: false,
     });
-  }
+  };
 
   render() {
     const button = (
@@ -71,8 +69,7 @@ export default class extends Component {
         iconSide="right"
         fill
         iconType="arrowDown"
-        onClick={this.onButtonClick}
-      >
+        onClick={this.onButtonClick}>
         Inline form in a popover
       </EuiButton>
     );
@@ -104,8 +101,7 @@ export default class extends Component {
         iconSide="right"
         fill
         iconType="arrowDown"
-        onClick={this.onButton2Click}
-      >
+        onClick={this.onButton2Click}>
         Vertical form in a popover
       </EuiButton>
     );
@@ -122,21 +118,12 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="A text field"
-        >
+        <EuiFormRow label="A text field">
           <EuiFieldText name="popfirst" />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Range"
-          helpText="Some help text for the range"
-        >
-          <EuiRange
-            min={0}
-            max={100}
-            name="poprange"
-          />
+        <EuiFormRow label="Range" helpText="Some help text for the range">
+          <EuiRange min={0} max={100} name="poprange" />
         </EuiFormRow>
         <EuiButton fullWidth>Save</EuiButton>
       </EuiForm>
@@ -149,25 +136,17 @@ export default class extends Component {
           ownFocus
           button={button}
           isOpen={this.state.isPopoverOpen}
-          closePopover={this.closePopover.bind(this)}
-        >
-          <div style={{ width: 500 }}>
-            {formSample}
-          </div>
+          closePopover={this.closePopover.bind(this)}>
+          <div style={{ width: 500 }}>{formSample}</div>
         </EuiPopover>
-
         &emsp;
-
         <EuiPopover
           id="formPopover"
           ownFocus
           button={button2}
           isOpen={this.state.isPopover2Open}
-          closePopover={this.closePopover2.bind(this)}
-        >
-          <div style={{ width: '300px' }}>
-            {formSample2}
-          </div>
+          closePopover={this.closePopover2.bind(this)}>
+          <div style={{ width: '300px' }}>{formSample2}</div>
         </EuiPopover>
       </div>
     );

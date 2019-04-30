@@ -1,11 +1,16 @@
-import { ButtonHTMLAttributes, ReactNode, FunctionComponent, FocusEventHandler } from 'react';
-import { ListProps } from 'react-virtualized';
+import {
+  ButtonHTMLAttributes,
+  ReactNode,
+  FunctionComponent,
+  FocusEventHandler,
+} from 'react';
+import { ListProps } from 'react-virtualized'; // eslint-disable-line import/named
 import {
   EuiComboBoxOption,
   EuiComboBoxOptionProps,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxOptionsListProps,
-} from '@elastic/eui';
+} from '@elastic/eui'; // eslint-disable-line import/no-unresolved
 import { RefCallback, CommonProps } from '../common';
 
 declare module '@elastic/eui' {
@@ -61,7 +66,9 @@ declare module '@elastic/eui' {
     EuiComboBoxOptionsListProps
   >;
 
-  export type EuiComboBoxSingleSelectionShape = { asPlainText?: boolean; };
+  export interface EuiComboBoxSingleSelectionShape {
+    asPlainText?: boolean;
+  }
 
   export interface EuiComboBoxProps {
     id?: string;
@@ -75,7 +82,7 @@ declare module '@elastic/eui' {
     options?: EuiComboBoxOptionsListProps['options'];
     selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'];
     onBlur?: FocusEventHandler<HTMLInputElement>;
-    onChange?: (options: Array<EuiComboBoxOptionProps>) => any;
+    onChange?: (options: EuiComboBoxOptionProps[]) => any;
     onFocus?: FocusEventHandler<HTMLInputElement>;
     onSearchChange?: (searchValue: string) => any;
     onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'];

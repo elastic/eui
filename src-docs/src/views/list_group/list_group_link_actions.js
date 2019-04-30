@@ -37,7 +37,9 @@ export default class extends Component {
         favorite1: prevState.favorite1 === 'link1' ? undefined : 'link1',
       };
     });
-    if (this.favorite1 === undefined) { document.activeElement.blur(); }
+    if (this.favorite1 === undefined) {
+      document.activeElement.blur();
+    }
   };
 
   link2Clicked = () => {
@@ -46,7 +48,9 @@ export default class extends Component {
         favorite2: prevState.favorite2 === 'link2' ? undefined : 'link2',
       };
     });
-    if (this.favorite2 === undefined) { document.activeElement.blur(); }
+    if (this.favorite2 === undefined) {
+      document.activeElement.blur();
+    }
   };
 
   link3Clicked = () => {
@@ -55,7 +59,9 @@ export default class extends Component {
         favorite3: prevState.favorite3 === 'link3' ? undefined : 'link3',
       };
     });
-    if (this.favorite3 === undefined) { document.activeElement.blur(); }
+    if (this.favorite3 === undefined) {
+      document.activeElement.blur();
+    }
   };
 
   render() {
@@ -72,14 +78,22 @@ export default class extends Component {
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label={<span>Show as <EuiCode>flush</EuiCode></span>}
+              label={
+                <span>
+                  Show as <EuiCode>flush</EuiCode>
+                </span>
+              }
               checked={this.state.flushWidth}
               onChange={this.toggleFlushWidth}
             />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label={<span>Show as <EuiCode>bordered</EuiCode></span>}
+              label={
+                <span>
+                  Show as <EuiCode>bordered</EuiCode>
+                </span>
+              }
               checked={this.state.showBorder}
               onChange={this.toggleBorder}
             />

@@ -1,16 +1,10 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-import {
-  EuiSideNavItem,
-} from './side_nav_item';
+import { EuiSideNavItem } from './side_nav_item';
 
 export class EuiSideNav extends Component {
   isItemOpen = item => {
@@ -33,7 +27,7 @@ export class EuiSideNav extends Component {
   renderTree = (items, depth = 0) => {
     const { renderItem } = this.props;
 
-    return items.map((item) => {
+    return items.map(item => {
       const {
         id,
         name,
@@ -42,9 +36,10 @@ export class EuiSideNav extends Component {
         icon,
         onClick,
         href,
-        forceOpen, // eslint-disable-line no-unused-vars
         ...rest
       } = item;
+
+      delete rest.forceOpen;
 
       // Root items are always open.
       const isOpen = depth === 0 ? true : this.isItemOpen(item);
@@ -67,8 +62,7 @@ export class EuiSideNav extends Component {
           key={id}
           depth={depth}
           renderItem={renderItem}
-          {...rest}
-        >
+          {...rest}>
           {name}
         </EuiSideNavItem>
       );
@@ -82,36 +76,27 @@ export class EuiSideNav extends Component {
       toggleOpenOnMobile,
       isOpenOnMobile,
       mobileTitle,
-      // Extract this one out so it isn't passed to <nav>
-      renderItem, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    const classes = classNames(
-      'euiSideNav',
-      className,
-      {
-        'euiSideNav-isOpenMobile': isOpenOnMobile,
-      },
-    );
+    // Remote this one so it isn't passed to <nav>
+    delete rest.renderItem;
+
+    const classes = classNames('euiSideNav', className, {
+      'euiSideNav-isOpenMobile': isOpenOnMobile,
+    });
 
     const nav = this.renderTree(items);
 
     return (
-      <nav
-        className={classes}
-        {...rest}
-      >
+      <nav className={classes} {...rest}>
         {/* Hidden from view, except in mobile */}
         <button
           type="button"
           className="euiSideNav__mobileToggle euiLink"
-          onClick={toggleOpenOnMobile}
-        >
+          onClick={toggleOpenOnMobile}>
           <span className="euiSideNav__mobileWrap">
-            <span className="euiSideNav__mobileTitle">
-              {mobileTitle}
-            </span>
+            <span className="euiSideNav__mobileTitle">{mobileTitle}</span>
 
             <EuiIcon
               className="euiSideNav__mobileIcon"
@@ -165,9 +150,14 @@ EuiSideNav.propTypes = {
    * `item.onClick` is an optional callback function to be passed as the navigation item's `onClick` prop, and by default it will force rendering of the item as a `<button>` instead of a link.
    * `item.renderItem` is an optional function overriding default rendering for this navigation item — when called, it should return a React node representing a replacement navigation item.
    */
-  items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.number.isRequired]).isRequired
-  }).isRequired),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired,
+      ]).isRequired,
+    }).isRequired
+  ),
   /**
    * Overrides default navigation menu item rendering. When called, it should return a React node representing a replacement navigation item.
    */

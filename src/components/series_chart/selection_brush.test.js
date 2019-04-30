@@ -11,12 +11,11 @@ const DEFAULT_MARGINS = {
   left: 40,
   right: 10,
   top: 10,
-  bottom: 40
+  bottom: 40,
 };
 
 describe('EuiSelectionBrush', () => {
-
-  test(`renders an horizontal selection brush`, () => {
+  test('renders an horizontal selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -25,39 +24,98 @@ describe('EuiSelectionBrush', () => {
         showDefaultAxis={false}
         showCrosshair={false}
         enableSelectionBrush={true}
-        onSelectionBrushEnd={NOOP}
-      >
+        onSelectionBrushEnd={NOOP}>
         <EuiVerticalBarSeries name="series" data={data} />
       </EuiSeriesChart>
     );
 
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousedown', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousedown', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(200 - DEFAULT_MARGINS.top - DEFAULT_MARGINS.bottom);
-    component.find('svg').at(0).simulate('mouseup', { nativeEvent: { offsetX: 100, offsetY: 100 } });
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(200 - DEFAULT_MARGINS.top - DEFAULT_MARGINS.bottom);
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mouseup', { nativeEvent: { offsetX: 100, offsetY: 100 } });
     selectionBrush = component.find(EuiSelectionBrush);
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(0);
-
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(0);
   });
-  test(`renders an vertical selection brush`, () => {
+  test('renders an vertical selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -67,39 +125,102 @@ describe('EuiSelectionBrush', () => {
         showCrosshair={false}
         selectionBrushOrientation={ORIENTATION.VERTICAL}
         enableSelectionBrush={true}
-        onSelectionBrushEnd={NOOP}
-      >
+        onSelectionBrushEnd={NOOP}>
         <EuiVerticalBarSeries name="series" data={data} />
       </EuiSeriesChart>
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousedown', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100
-      } });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousedown', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(600 - DEFAULT_MARGINS.left - DEFAULT_MARGINS.right);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(50);
-    component.find('svg').at(0).simulate('mouseup', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(600 - DEFAULT_MARGINS.left - DEFAULT_MARGINS.right);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(50);
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mouseup', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(0);
   });
-  test(`renders free form selection brush`, () => {
+  test('renders free form selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -109,39 +230,102 @@ describe('EuiSelectionBrush', () => {
         showCrosshair={false}
         selectionBrushOrientation={ORIENTATION.BOTH}
         enableSelectionBrush={true}
-        onSelectionBrushEnd={NOOP}
-      >
+        onSelectionBrushEnd={NOOP}>
         <EuiVerticalBarSeries name="series" data={data} />
       </EuiSeriesChart>
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousedown', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousedown', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
 
     expect(selectionBrush).toMatchSnapshot();
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(50);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(50);
-    component.find('svg').at(0).simulate('mouseup', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(50);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(50);
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mouseup', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
-    expect(selectionBrush.find('rect').at(0).props().x).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().y).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().width).toBe(0);
-    expect(selectionBrush.find('rect').at(0).props().height).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().x
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().y
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().width
+    ).toBe(0);
+    expect(
+      selectionBrush
+        .find('rect')
+        .at(0)
+        .props().height
+    ).toBe(0);
   });
-  test(`get onSelectionBrushEnd call on linear x scale`, () => {
+  test('get onSelectionBrushEnd call on linear x scale', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const onSelectionBrushEndMock = jest.fn();
     const component = mount(
@@ -153,25 +337,48 @@ describe('EuiSelectionBrush', () => {
         selectionBrushOrientation={ORIENTATION.VERTICAL}
         enableSelectionBrush={true}
         onSelectionBrushEnd={onSelectionBrushEndMock}
-        xType={SCALE.LINEAR}
-      >
+        xType={SCALE.LINEAR}>
         <EuiVerticalBarSeries name="series" data={data} />
       </EuiSeriesChart>
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousedown', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 50, offsetY: DEFAULT_MARGINS.top + 50 }
-    });
-    component.find('svg').at(0).simulate('mousemove', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
-    component.find('svg').at(0).simulate('mouseup', {
-      nativeEvent: { offsetX: DEFAULT_MARGINS.left + 100, offsetY: DEFAULT_MARGINS.top + 100 }
-    });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousedown', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 50,
+          offsetY: DEFAULT_MARGINS.top + 50,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mouseup', {
+        nativeEvent: {
+          offsetX: DEFAULT_MARGINS.left + 100,
+          offsetY: DEFAULT_MARGINS.top + 100,
+        },
+      });
     selectionBrush = component.find(EuiSelectionBrush);
     expect(onSelectionBrushEndMock.mock.calls.length).toBe(1);
     const expectedBrush = {
@@ -186,11 +393,11 @@ describe('EuiSelectionBrush', () => {
         x1: 600,
         y0: 50,
         y1: 100,
-      }
+      },
     };
     expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush);
   });
-  test.skip(`get onSelectionBrushEnd call on ordinal x scale`, () => {
+  test.skip('get onSelectionBrushEnd call on ordinal x scale', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const onSelectionBrushEndMock = jest.fn();
     const component = mount(
@@ -202,17 +409,28 @@ describe('EuiSelectionBrush', () => {
         selectionBrushOrientation={ORIENTATION.VERTICAL}
         enableSelectionBrush={true}
         onSelectionBrushEnd={onSelectionBrushEndMock}
-        xType={SCALE.ORDINAL}
-      >
+        xType={SCALE.ORDINAL}>
         <EuiVerticalBarSeries name="series" data={data} />
       </EuiSeriesChart>
     );
     let selectionBrush = component.find(EuiSelectionBrush);
     expect(selectionBrush.exists()).toBe(true);
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: 50, offsetY: 50 } });
-    component.find('svg').at(0).simulate('mousedown', { nativeEvent: { offsetX: 50, offsetY: 50 } });
-    component.find('svg').at(0).simulate('mousemove', { nativeEvent: { offsetX: 100, offsetY: 100 } });
-    component.find('svg').at(0).simulate('mouseup', { nativeEvent: { offsetX: 100, offsetY: 100 } });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', { nativeEvent: { offsetX: 50, offsetY: 50 } });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousedown', { nativeEvent: { offsetX: 50, offsetY: 50 } });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mousemove', { nativeEvent: { offsetX: 100, offsetY: 100 } });
+    component
+      .find('svg')
+      .at(0)
+      .simulate('mouseup', { nativeEvent: { offsetX: 100, offsetY: 100 } });
     selectionBrush = component.find(EuiSelectionBrush);
     expect(onSelectionBrushEndMock.mock.calls.length).toBe(1);
     const expectedBrush = {
@@ -228,7 +446,7 @@ describe('EuiSelectionBrush', () => {
         x1: 600,
         y0: 50,
         y1: 100,
-      }
+      },
     };
     expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush);
   });

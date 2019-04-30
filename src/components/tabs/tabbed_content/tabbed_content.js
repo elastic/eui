@@ -16,11 +16,13 @@ export class EuiTabbedContent extends Component {
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
      * The name property is also required to display to the user.
      */
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      content: PropTypes.node.isRequired,
-    })).isRequired,
+    tabs: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        content: PropTypes.node.isRequired,
+      })
+    ).isRequired,
     onTabClick: PropTypes.func,
 
     /**
@@ -50,12 +52,13 @@ export class EuiTabbedContent extends Component {
     // Only track selection state if it's not controlled externally.
     if (!selectedTab) {
       this.state = {
-        selectedTabId: (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
+        selectedTabId:
+          (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
       };
     }
   }
 
-  onTabClick = (selectedTab) => {
+  onTabClick = selectedTab => {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
@@ -72,34 +75,30 @@ export class EuiTabbedContent extends Component {
     const {
       className,
       tabs,
-      onTabClick, // eslint-disable-line no-unused-vars
-      initialSelectedTab, // eslint-disable-line no-unused-vars
       selectedTab: externalSelectedTab,
       size,
       expand,
       ...rest
     } = this.props;
 
-    // Allow the consumer to control tab selection.
-    const selectedTab = externalSelectedTab || tabs.find(
-      tab => tab.id === this.state.selectedTabId
-    );
+    delete rest.onTabClick;
+    delete rest.initialSelectedTab;
 
-    const {
-      content: selectedTabContent,
-      id: selectedTabId,
-    } = selectedTab;
+    // Allow the consumer to control tab selection.
+    const selectedTab =
+      externalSelectedTab ||
+      tabs.find(tab => tab.id === this.state.selectedTabId);
+
+    const { content: selectedTabContent, id: selectedTabId } = selectedTab;
 
     return (
       <div className={className} {...rest}>
         <EuiTabs size={size} expand={expand}>
-          {tabs.map((tab) => {
-            const {
-              id,
-              name,
-              content, // eslint-disable-line no-unused-vars
-              ...tabProps
-            } = tab;
+          {tabs.map(tab => {
+            const { id, name, ...tabProps } = tab;
+
+            delete tabProps.content;
+
             const props = {
               key: id,
               id,
@@ -116,8 +115,7 @@ export class EuiTabbedContent extends Component {
         <div
           role="tabpanel"
           id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}
-        >
+          aria-labelledby={selectedTabId}>
           {selectedTabContent}
         </div>
       </div>

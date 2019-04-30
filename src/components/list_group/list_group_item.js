@@ -46,34 +46,35 @@ export const EuiListGroupItem = ({
   let iconNode;
 
   if (iconType) {
-    iconNode = (
-      <EuiIcon className="euiListGroupItem__icon" type={iconType} />
-    );
+    iconNode = <EuiIcon className="euiListGroupItem__icon" type={iconType} />;
 
     if (icon) {
-      console.warn('Both `iconType` and `icon` were passed to EuiListGroupItem but only one can exist. The `iconType` was used.');
+      console.warn(
+        'Both `iconType` and `icon` were passed to EuiListGroupItem but only one can exist. The `iconType` was used.'
+      );
     }
   } else if (icon) {
-    iconNode = React.cloneElement(icon,
-      { className: classNames('euiListGroupItem__icon', icon.props.className) });
+    iconNode = React.cloneElement(icon, {
+      className: classNames('euiListGroupItem__icon', icon.props.className),
+    });
   }
 
   let extraActionNode;
 
   if (extraAction) {
-    const {
-      iconType,
-      alwaysShow,
-      ...rest
-    } = extraAction;
+    const { iconType, alwaysShow, ...rest } = extraAction;
 
-    const extraActionClasses = classNames(
-      'euiListGroupItem__extraAction',
-      { 'euiListGroupItem__extraAction-alwaysShow': alwaysShow }
-    );
+    const extraActionClasses = classNames('euiListGroupItem__extraAction', {
+      'euiListGroupItem__extraAction-alwaysShow': alwaysShow,
+    });
 
     extraActionNode = (
-      <EuiButtonIcon className={extraActionClasses} iconType={iconType} {...rest} disabled={isDisabled} />
+      <EuiButtonIcon
+        className={extraActionClasses}
+        iconType={iconType}
+        {...rest}
+        disabled={isDisabled}
+      />
     );
   }
 
@@ -81,8 +82,7 @@ export const EuiListGroupItem = ({
   const labelContent = (
     <span
       className="euiListGroupItem__label"
-      title={wrapText ? undefined : label}
-    >
+      title={wrapText ? undefined : label}>
       {label}
     </span>
   );
@@ -99,7 +99,9 @@ export const EuiListGroupItem = ({
     );
 
     if (onClick) {
-      console.warn('Both `href` and `onClick` were passed to EuiListGroupItem but only one can exist. The `href` was used.');
+      console.warn(
+        'Both `href` and `onClick` were passed to EuiListGroupItem but only one can exist. The `href` was used.'
+      );
     }
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
@@ -108,8 +110,7 @@ export const EuiListGroupItem = ({
         className="euiListGroupItem__button"
         disabled={isDisabled}
         onClick={onClick}
-        {...rest}
-      >
+        {...rest}>
         {iconNode}
         {labelContent}
       </button>
@@ -131,8 +132,7 @@ export const EuiListGroupItem = ({
           content={label}
           position="right"
           delay="long"
-          size="s"
-        >
+          size="s">
           {itemContent}
         </EuiToolTip>
       </li>
@@ -146,9 +146,7 @@ export const EuiListGroupItem = ({
     );
   }
 
-  return (
-    <Fragment>{itemContent}</Fragment>
-  );
+  return <Fragment>{itemContent}</Fragment>;
 };
 
 EuiListGroupItem.propTypes = {

@@ -6,12 +6,9 @@ import { EuiFilterButton } from './filter_button';
 
 describe('EuiFilterButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFilterButton {...requiredProps} />
-    );
+    const component = render(<EuiFilterButton {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders zero properly', () => {
@@ -29,19 +26,15 @@ describe('EuiFilterButton', () => {
           <EuiFilterButton iconType="user" iconSide="right" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('numFilters', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton numFilters={5} />
-        );
+        const component = render(<EuiFilterButton numFilters={5} />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -51,63 +44,47 @@ describe('EuiFilterButton', () => {
           <EuiFilterButton numActiveFilters={5} hasActiveFilters />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('isSelected', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton isSelected />
-        );
+        const component = render(<EuiFilterButton isSelected />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton isDisabled />
-        );
+        const component = render(<EuiFilterButton isDisabled />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('type', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton type="button" />
-        );
+        const component = render(<EuiFilterButton type="button" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('grow', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton grow />
-        );
+        const component = render(<EuiFilterButton grow />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('noDivider', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFilterButton noDivider />
-        );
+        const component = render(<EuiFilterButton noDivider />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });

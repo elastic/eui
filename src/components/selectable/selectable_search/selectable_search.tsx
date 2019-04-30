@@ -7,7 +7,7 @@ import { getMatchingOptions } from '../matching_options';
 import { Option } from '../types';
 
 /// <reference path="../../form/field_search/index.d.ts" />
-import { EuiFieldSearchProps } from '@elastic/eui';
+import { EuiFieldSearchProps } from '@elastic/eui'; // eslint-disable-line
 
 export type EuiSelectableSearchProps = Omit<
   InputHTMLAttributes<HTMLInputElement> & EuiFieldSearchProps,
@@ -63,7 +63,10 @@ export class EuiSelectableSearch extends Component<
   };
 
   render() {
-    const { className, onChange, options, defaultValue, ...rest } = this.props;
+    const { className, defaultValue, ...rest } = this.props;
+
+    delete rest.onChange;
+    delete rest.options;
 
     const classes = classNames('euiSelectableSearch', className);
 
