@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
+- Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
 
 ## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
 
