@@ -74,9 +74,7 @@ const iconSizesSnippet = `<EuiIcon type="logoElasticStack" size="xl" />`;
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
-const iconColorsSnippet = `// Colors can be used on glyphs
-
-<EuiIcon type="brush" color="primary" />
+const iconColorsSnippet = `<EuiIcon type="brush" color="primary" />
 
 <EuiIcon type="brush" color="#F98510" />`;
 
@@ -100,10 +98,9 @@ export const IconExample = {
     <div>
       <EuiText>
         <p>
-          <EuiCode>EuiIcon</EuiCode> is a handy component for using our
-          custom icons and logos. The <EuiCode>type</EuiCode> prop accepts either
-          an enumerated name from one of the sets below, or can alternatively accept a
-          location to a custom SVG asset, or lastly a React Element.
+          <EuiCode>EuiIcon</EuiCode> is a handy component for using our custom glyphs and logos.
+          The <EuiCode>type</EuiCode> prop accepts either an enumerated name from one of the sets below,
+          a location to a custom SVG asset, or a React Element.
         </p>
         <p>
           When using custom SVGs please <strong>remove all fill attributes</strong> on the SVG and
@@ -286,7 +283,10 @@ export const IconExample = {
   }, {
     title: 'Custom SVGs',
     text: (
-      <p>The <EuiCode>type</EuiCode> prop can accept a valid enum, string or React SVG Element.</p>
+      <p>
+        The <EuiCode>type</EuiCode> prop can accept a valid enum, string or React SVG Element. When using a custom SVG, please make sure
+        it sits on a square canvas and preferably utilizes one of EUI&apos;s sizes (16x16, 32x32...etc).
+      </p>
     ),
     source: [{
       type: GuideSectionTypes.JS,
