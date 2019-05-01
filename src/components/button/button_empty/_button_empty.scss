@@ -76,10 +76,15 @@ $buttonTypes: (
 // Create button modifiders based upon the map.
 @each $name, $color in $buttonTypes {
   .euiButtonEmpty--#{$name} {
-    color: $color;
-
-    .euiButtonEmpty__icon {
-      fill: $color;
+    @if ($name == 'ghost') {
+      // Ghost is unique and ALWAYS sits against a dark background.
+      color: $color;
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make the it the text color
+      color: $euiTextColor;
+    } @else {
+      // Other colors need to check their contrast against the page background color.
+      color: makeHighContrastColor($color, $euiColorEmptyShade);
     }
 
     &:focus {

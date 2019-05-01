@@ -6,6 +6,8 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiCardSelect, EuiCardSelectProps, euiCardSelectableColor } from './card_select';
+import makeId from '../form/form_row/make_id';
 
 const textAlignToClassNameMap = {
   left: 'euiCard--leftAligned',
@@ -55,8 +57,12 @@ export const EuiCard = ({
   betaBadgeTitle,
   layout,
   bottomGraphic,
+  selectable,
   ...rest,
 }) => {
+  const selectableColorClass = selectable ?
+    `euiCard--isSelectable--${euiCardSelectableColor(selectable.color, selectable.isSelected)}` : undefined;
+
   const classes = classNames(
     'euiCard',
     textAlignToClassNameMap[textAlign],
@@ -66,9 +72,14 @@ export const EuiCard = ({
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
       'euiCard--hasBottomGraphic': bottomGraphic,
+      'euiCard--isSelectable': selectable,
+      'euiCard-isSelected': selectable && selectable.isSelected,
     },
+    selectableColorClass,
     className,
   );
+
+  const ariaId = makeId();
 
   let secureRel;
   if (href) {
@@ -135,6 +146,15 @@ export const EuiCard = ({
     );
   }
 
+  let optionalSelectButton;
+  if (selectable) {
+    if (bottomGraphic) {
+      console.warn('EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.');
+    }
+
+    optionalSelectButton = <EuiCardSelect aria-describedby={`${ariaId}Title ${ariaId}Description`} {...selectable} />;
+  }
+
   return (
     <OuterElement
       onClick={onClick}
@@ -149,11 +169,11 @@ export const EuiCard = ({
       {optionalCardTop}
 
       <span className="euiCard__content">
-        <EuiTitle className="euiCard__title">
+        <EuiTitle id={`${ariaId}Title`} className="euiCard__title">
           <TitleElement>{title}</TitleElement>
         </EuiTitle>
 
-        <EuiText size="s" className="euiCard__description">
+        <EuiText id={`${ariaId}Description`} size="s" className="euiCard__description">
           <p>{description}</p>
         </EuiText>
       </span>
@@ -164,7 +184,7 @@ export const EuiCard = ({
         </span>
       }
 
-      {optionalBottomGraphic}
+      {optionalSelectButton || optionalBottomGraphic}
     </OuterElement>
   );
 };
@@ -222,6 +242,11 @@ EuiCard.propTypes = {
    * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
    */
   betaBadgeTitle: PropTypes.string,
+
+  /**
+   * Adds a button to the bottom of the card to allow for in-place selection.
+   */
+  selectable: PropTypes.shape(EuiCardSelectProps),
 
   /**
    * Add a decorative bottom graphic to the card.
