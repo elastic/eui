@@ -1,9 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
 **Bug fixes**
 
+- Fixed prompt text rendering in `EuiFilePicker` when a React element is passed ([#1903](https://github.com/elastic/eui/pull/1903))
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
 - Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
 
