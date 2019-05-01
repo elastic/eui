@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Format all JavaScript files with Prettier through ESLint ([#1906](https://github.com/elastic/eui/pull/1906))
+
 **Bug fixes**
 
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
