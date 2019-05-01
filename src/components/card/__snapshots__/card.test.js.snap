@@ -1,6 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCard horizontal 1`] = `
+exports[`EuiCard is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCard euiCard--centerAligned testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+  <span
+    class="euiCard__footer"
+  />
+</div>
+`;
+
+exports[`EuiCard props footer 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+  <span
+    class="euiCard__footer"
+  >
+    <span>
+      Footer
+    </span>
+  </span>
+</div>
+`;
+
+exports[`EuiCard props horizontal 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--horizontal"
 >
@@ -9,11 +71,13 @@ exports[`EuiCard horizontal 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -23,7 +87,7 @@ exports[`EuiCard horizontal 1`] = `
 </div>
 `;
 
-exports[`EuiCard icon 1`] = `
+exports[`EuiCard props icon 1`] = `
 <div
   class="euiCard euiCard--centerAligned euiCard--hasIcon"
 >
@@ -56,11 +120,13 @@ exports[`EuiCard icon 1`] = `
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description
@@ -73,22 +139,93 @@ exports[`EuiCard icon 1`] = `
 </div>
 `;
 
-exports[`EuiCard is rendered 1`] = `
+exports[`EuiCard props selectable 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiCard euiCard--centerAligned testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiCard euiCard--centerAligned euiCard--isSelectable euiCard--isSelectable--text"
 >
   <span
     class="euiCard__content"
   >
     <span
       class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
     >
       Card title
     </span>
     <div
       class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+  <span
+    class="euiCard__footer"
+  />
+  <button
+    aria-describedby="generated-idTitle generated-idDescription"
+    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        Select
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiCard props textAlign 1`] = `
+<div
+  class="euiCard euiCard--rightAligned"
+>
+  <span
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </span>
+  <span
+    class="euiCard__footer"
+  />
+</div>
+`;
+
+exports[`EuiCard props titleElement 1`] = `
+<div
+  class="euiCard euiCard--centerAligned"
+>
+  <span
+    class="euiCard__content"
+  >
+    <h4
+      class="euiTitle euiTitle--medium euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </h4>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
     >
       <p>
         Card description

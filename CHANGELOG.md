@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 - Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
 **Bug fixes**
