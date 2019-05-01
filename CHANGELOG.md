@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- The last item in breadcrumbs is now clickable when an `href` is provided ([#1905](https://github.com/elastic/eui/pull/1905))
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
 - Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
 

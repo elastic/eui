@@ -39,8 +39,10 @@ export const BreadcrumbsExample = {
       text: (
         <p>
           <EuiCode>EuiBreadcrumbs</EuiCode> let the user track their progress within and back out of
-          a UX flow. They work well within <EuiCode>EuiPageContentHeader</EuiCode> but be careful
-          not to be use them within an app that also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
+          a UX flow. You can provide an <EuiCode>href</EuiCode> prop on any breadcrumb item that you
+          wish to make clickable, including the last item. They work well within
+          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to be use them within an app that
+          also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
