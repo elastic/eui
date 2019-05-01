@@ -41,177 +41,44 @@ export default class extends Component {
     );
 
     return (
-      <div>
-        <EuiFlexGroup gutterSize="l">
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoSketch" />}
-              title="Sketch"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card1Clicked,
-                isSelected: this.state.card1Selected,
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoGCP" />}
-              title="Google"
-              description="Example of a longer card description. See how the footers stay lined up."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card2Clicked,
-                isSelected: this.state.card2Selected,
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoAerospike" />}
-              title="Not Adobe"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: () => {},
-                isDisabled: true,
-              }}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup gutterSize="l">
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoSketch" />}
-              title="Sketch"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card1Clicked,
-                isSelected: this.state.card1Selected,
-                color: 'danger'
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoGCP" />}
-              title="Google"
-              description="Example of a longer card description. See how the footers stay lined up."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card2Clicked,
-                isSelected: this.state.card2Selected,
-                color: 'danger',
-                children: 'Custom text and icon',
-                iconType: this.state.card2Selected ? 'check' : 'bell',
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoAerospike" />}
-              title="Not Adobe"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: () => {},
-                isDisabled: true,
-                color: 'danger',
-                iconType: 'minusInCircle'
-              }}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup gutterSize="l">
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoSketch" />}
-              title="Sketch"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card1Clicked,
-                isSelected: this.state.card1Selected,
-                color: 'primary'
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoGCP" />}
-              title="Google"
-              description="Example of a longer card description. See how the footers stay lined up."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card2Clicked,
-                isSelected: this.state.card2Selected,
-                color: 'primary',
-                children: 'Custom text, and className',
-                className: 'eui-textAlignLeft'
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoAerospike" />}
-              title="Not Adobe"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: () => {},
-                isDisabled: true,
-                color: 'primary',
-              }}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiFlexGroup gutterSize="l">
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoSketch" />}
-              title="Sketch"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card1Clicked,
-                isSelected: this.state.card1Selected,
-                color: 'ghost'
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoGCP" />}
-              title="Google"
-              description="Example of a longer card description. See how the footers stay lined up."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: this.card2Clicked,
-                isSelected: this.state.card2Selected,
-                color: 'ghost',
-                children: 'Custom text and style tag',
-                style: { textTransform: 'uppercase' }
-              }}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiCard
-              icon={<EuiIcon size="xxl" type="logoAerospike" />}
-              title="Not Adobe"
-              description="Example of a short card description."
-              footer={cardFooterContent}
-              selectable={{
-                onClick: () => {},
-                isDisabled: true,
-                children: 'Custom disabled text',
-                color: 'ghost'
-              }}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </div>
+      <EuiFlexGroup gutterSize="l">
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="xxl" type="logoSketch" />}
+            title="Sketch"
+            description="Example of a short card description."
+            footer={cardFooterContent}
+            selectable={{
+              onClick: this.card1Clicked,
+              isSelected: this.state.card1Selected,
+            }}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="xxl" type="logoGCP" />}
+            title="Google"
+            description="Example of a longer card description. See how the footers stay lined up."
+            footer={cardFooterContent}
+            selectable={{
+              onClick: this.card2Clicked,
+              isSelected: this.state.card2Selected,
+            }}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiCard
+            icon={<EuiIcon size="xxl" type="logoAerospike" />}
+            title="Not Adobe"
+            description="Example of a short card description."
+            footer={cardFooterContent}
+            selectable={{
+              onClick: () => {},
+              isDisabled: true,
+            }}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }
