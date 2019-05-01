@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCardSelect is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      Select
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props can override color 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--danger euiButtonEmpty--xSmall euiCardSelect euiCardSelect--danger"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      Select
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props can override text 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      Custom text
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props isDisabled 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      Unavailable
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props isSelected 1`] = `
+<button
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--success"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content"
+  >
+    <svg
+      aria-hidden="true"
+      class="euiIcon euiIcon--medium euiButtonEmpty__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <span
+      class="euiButtonEmpty__text"
+    >
+      Selected
+    </span>
+  </span>
+</button>
+`;

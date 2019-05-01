@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 - Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
 **Bug fixes**
