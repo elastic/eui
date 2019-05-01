@@ -1,9 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
 **Bug fixes**
 
+- Fixed prompt text rendering in `EuiFilePicker` when a React element is passed ([#1903](https://github.com/elastic/eui/pull/1903))
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
 - Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
 
