@@ -316,9 +316,11 @@ const typeToPathMap = {
   tokenNamespace: 'tokens/tokenNamespace',
 };
 
-export const TYPES: IconType[] = keysOf(typeToPathMap);
+export const TYPES = keysOf(typeToPathMap);
 
-export type IconType = keyof typeof typeToPathMap;
+export type EuiIconType = keyof typeof typeToPathMap;
+
+export type IconType = EuiIconType | string;
 
 const colorToClassMap = {
   default: null,
@@ -361,7 +363,7 @@ export interface EuiIconProps {
   /**
    * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
    */
-  type: IconType | ReactElement<SVGElement> | string;
+  type: IconType | ReactElement<SVGElement>;
   /**
    * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
    * Note that coloring only works if your SVG is removed of fill attributes.
@@ -382,7 +384,7 @@ interface State {
   isLoading: boolean;
 }
 
-function isIconType(x: EuiIconProps['type']): x is IconType {
+function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
   return typeof x === 'string' && typeToPathMap.hasOwnProperty(x);
 }
 
@@ -390,7 +392,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
     return undefined;
   }
-  if (isIconType(icon)) {
+  if (isEuiIconType(icon)) {
     return undefined;
   }
   return icon;
@@ -403,7 +405,7 @@ export class EuiIcon extends Component<Props, State> {
     const initialIcon = getInitialIcon(this.props.type);
     let isLoading = false;
 
-    if (isIconType(this.props.type)) {
+    if (isEuiIconType(this.props.type)) {
       isLoading = true;
       import('./assets/' + typeToPathMap[this.props.type] + '.js').then(
         ({ icon }) => {
