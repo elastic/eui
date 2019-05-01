@@ -12,7 +12,7 @@ export class EuiTabbedContent extends Component {
   static propTypes = {
     className: PropTypes.string,
     /**
-     * Choose default or alternative condensed display styles
+     * Choose `default` or alternative `condensed` display styles
      */
     display: PropTypes.oneOf(DISPLAYS),
     /**

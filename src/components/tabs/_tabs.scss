@@ -81,10 +81,14 @@
     }
   }
 
+  // Small Tabs Group Modifier
+
   .euiTabs--small & {
     @include fontSize($euiTabFontSizeS);
     padding: $euiSizeS;
   }
+
+  // Condensed Tabs Group Modifier
 
   .euiTabs--condensed & {
     font-weight: 600;
@@ -94,6 +98,8 @@
       margin-left: $euiSizeL;
     }
   }
+
+  // Expand Tabs Group Modifier
 
   .euiTabs--expand & {
     flex-basis: 0%;
