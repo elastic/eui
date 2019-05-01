@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiRange,
@@ -20,13 +17,13 @@ export default class extends Component {
       {
         min: 0,
         max: 20,
-        color: 'danger'
+        color: 'danger',
       },
       {
         min: 20,
         max: 100,
-        color: 'success'
-      }
+        color: 'success',
+      },
     ];
 
     this.state = {
@@ -41,9 +38,9 @@ export default class extends Component {
     });
   };
 
-  onDualChange = (value) => {
+  onDualChange = value => {
     this.setState({
-      dualValue: value
+      dualValue: value,
     });
   };
 
@@ -66,7 +63,9 @@ export default class extends Component {
           levels={this.levels}
           aria-describedby="levelsHelp4"
         />
-        <EuiFormHelpText id="levelsHelp4">Recommended levels are {this.levels[1].min} and above.</EuiFormHelpText>
+        <EuiFormHelpText id="levelsHelp4">
+          Recommended levels are {this.levels[1].min} and above.
+        </EuiFormHelpText>
 
         <EuiSpacer size="xl" />
 
@@ -84,7 +83,9 @@ export default class extends Component {
           levels={this.levels}
           aria-describedby="levelsHelp5"
         />
-        <EuiFormHelpText id="levelsHelp5">Recommended size is {this.levels[1].min}kb and above.</EuiFormHelpText>
+        <EuiFormHelpText id="levelsHelp5">
+          Recommended size is {this.levels[1].min}kb and above.
+        </EuiFormHelpText>
       </Fragment>
     );
   }

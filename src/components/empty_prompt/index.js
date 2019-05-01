@@ -1,3 +1,1 @@
-export {
-  EuiEmptyPrompt,
-} from './empty_prompt';
+export { EuiEmptyPrompt } from './empty_prompt';

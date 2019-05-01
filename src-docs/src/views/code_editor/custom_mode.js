@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import 'brace/mode/text';
 
-import {
-  EuiCodeEditor,
-} from '../../../../src/components';
+import { EuiCodeEditor } from '../../../../src/components';
 
 const TextMode = window.ace.acequire('ace/mode/text').Mode;
 class MyCustomAceMode extends TextMode {
@@ -13,7 +11,7 @@ class MyCustomAceMode extends TextMode {
 
 export default class extends Component {
   state = {
-    value: ''
+    value: '',
   };
 
   render() {

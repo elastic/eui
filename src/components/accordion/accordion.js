@@ -1,21 +1,12 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../flex';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-import {
-  EuiMutationObserver,
-} from '../observer/mutation_observer';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -41,10 +32,14 @@ export class EuiAccordion extends Component {
 
   setChildContentHeight = () => {
     requestAnimationFrame(() => {
-      const height = this.childContent && this.state.isOpen ? this.childContent.clientHeight : 0;
-      this.childWrapper && this.childWrapper.setAttribute('style', `height: ${height}px`);
+      const height =
+        this.childContent && this.state.isOpen
+          ? this.childContent.clientHeight
+          : 0;
+      this.childWrapper &&
+        this.childWrapper.setAttribute('style', `height: ${height}px`);
     });
-  }
+  };
 
   componentDidMount() {
     this.setChildContentHeight();
@@ -56,13 +51,13 @@ export class EuiAccordion extends Component {
 
   onToggle() {
     this.setState(prevState => ({
-      isOpen: !prevState.isOpen
+      isOpen: !prevState.isOpen,
     }));
   }
 
-  setChildContentRef = (node) => {
+  setChildContentRef = node => {
     this.childContent = node;
-  }
+  };
 
   render() {
     const {
@@ -78,27 +73,21 @@ export class EuiAccordion extends Component {
       ...rest
     } = this.props;
 
-
     const classes = classNames(
       'euiAccordion',
       {
         'euiAccordion-isOpen': this.state.isOpen,
       },
-      className,
+      className
     );
 
-    const paddingClass = classNames(
-      paddingSizeToClassNameMap[paddingSize],
-    );
+    const paddingClass = classNames(paddingSizeToClassNameMap[paddingSize]);
 
-    const buttonClasses = classNames(
-      'euiAccordion__button',
-      buttonClassName,
-    );
+    const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
     const buttonContentClasses = classNames(
       'euiAccordion__buttonContent',
-      buttonContentClassName,
+      buttonContentClassName
     );
 
     const icon = (
@@ -108,18 +97,11 @@ export class EuiAccordion extends Component {
     let optionalAction = null;
 
     if (extraAction) {
-      optionalAction = (
-        <EuiFlexItem grow={false}>
-          {extraAction}
-        </EuiFlexItem>
-      );
+      optionalAction = <EuiFlexItem grow={false}>{extraAction}</EuiFlexItem>;
     }
 
     return (
-      <div
-        className={classes}
-        {...rest}
-      >
+      <div className={classes} {...rest}>
         <EuiFlexGroup gutterSize="none" alignItems="center">
           <EuiFlexItem>
             <button
@@ -127,9 +109,11 @@ export class EuiAccordion extends Component {
               aria-expanded={!!this.state.isOpen}
               onClick={this.onToggle}
               className={buttonClasses}
-              type="button"
-            >
-              <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
+              type="button">
+              <EuiFlexGroup
+                gutterSize="s"
+                alignItems="center"
+                responsive={false}>
                 <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
                   {icon}
                 </EuiFlexItem>
@@ -146,18 +130,20 @@ export class EuiAccordion extends Component {
 
         <div
           className="euiAccordion__childWrapper"
-          ref={node => { this.childWrapper = node; }}
-          id={id}
-        >
+          ref={node => {
+            this.childWrapper = node;
+          }}
+          id={id}>
           <EuiMutationObserver
             observerOptions={{ childList: true, subtree: true }}
-            onMutation={this.setChildContentHeight}
-          >
+            onMutation={this.setChildContentHeight}>
             {mutationRef => (
-              <div ref={ref => {this.setChildContentRef(ref); mutationRef(ref);}}>
-                <div className={paddingClass}>
-                  {children}
-                </div>
+              <div
+                ref={ref => {
+                  this.setChildContentRef(ref);
+                  mutationRef(ref);
+                }}>
+                <div className={paddingClass}>{children}</div>
               </div>
             )}
           </EuiMutationObserver>

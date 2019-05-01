@@ -26,7 +26,7 @@ function wordWrap(text, width = 75, cut = false) {
   if (!text) {
     return text;
   }
-  const regex = `.{1,${  width  }}(s|$)${  cut ? `|.{${  width  }}|.+$` : '|S+?(s|$)'}`;
+  const regex = `.{1,${width}}(s|$)${cut ? `|.{${width}}|.+$` : '|S+?(s|$)'}`;
   return text.match(RegExp(regex, 'g'));
 }
 export const EuiSeriesChartTextUtils = {

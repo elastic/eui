@@ -2,22 +2,21 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiCard,
-} from './card';
+import { EuiCard } from './card';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiCard title="Card title" description="Card description" {...requiredProps} />
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        {...requiredProps}
+      />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('icon', () => {
@@ -25,12 +24,11 @@ describe('EuiCard', () => {
       <EuiCard
         title="Card title"
         description="Card description"
-        icon={<EuiIcon className="myIconClass" type="apmApp"/>}
+        icon={<EuiIcon className="myIconClass" type="apmApp" />}
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('horizontal', () => {
@@ -42,20 +40,14 @@ describe('EuiCard', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('onClick', () => {
     it('supports onClick as a link', () => {
       const handler = jest.fn();
       const component = mount(
-        <EuiCard
-          title="Hoi"
-          description="There"
-          href="#"
-          onClick={handler}
-        />
+        <EuiCard title="Hoi" description="There" href="#" onClick={handler} />
       );
       component.find('a').simulate('click');
       expect(handler.mock.calls.length).toEqual(1);
@@ -64,11 +56,7 @@ describe('EuiCard', () => {
     it('supports onClick as a button', () => {
       const handler = jest.fn();
       const component = mount(
-        <EuiCard
-          title="Hoi"
-          description="There"
-          onClick={handler}
-        />
+        <EuiCard title="Hoi" description="There" onClick={handler} />
       );
       component.find('button').simulate('click');
       expect(handler.mock.calls.length).toEqual(1);

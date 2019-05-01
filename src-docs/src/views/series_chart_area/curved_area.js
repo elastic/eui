@@ -7,14 +7,22 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import {
-  EuiSeriesChart,
-  EuiAreaSeries,
-} from '../../../../src/experimental';
+import { EuiSeriesChart, EuiAreaSeries } from '../../../../src/experimental';
 
-
-const DATA_A = [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: -1 }, { x: 5, y: 2 }];
-const DATA_B = [{ x: 0, y: 3 }, { x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 1 }, { x: 5, y: 3 }];
+const DATA_A = [
+  { x: 0, y: 1 },
+  { x: 1, y: 1 },
+  { x: 2, y: 2 },
+  { x: 3, y: -1 },
+  { x: 5, y: 2 },
+];
+const DATA_B = [
+  { x: 0, y: 3 },
+  { x: 1, y: 2 },
+  { x: 2, y: 4 },
+  { x: 3, y: 1 },
+  { x: 5, y: 3 },
+];
 
 export default class extends Component {
   constructor(props) {
@@ -49,15 +57,27 @@ export default class extends Component {
       <Fragment>
         <EuiForm>
           <EuiFormRow label="Line Mode">
-            <EuiSelect options={this.options} value={this.state.value} onChange={this.onChange} />
+            <EuiSelect
+              options={this.options}
+              value={this.state.value}
+              onChange={this.onChange}
+            />
           </EuiFormRow>
         </EuiForm>
 
         <EuiSpacer size="xl" />
 
         <EuiSeriesChart width={600} height={200} stackBy="y">
-          <EuiAreaSeries name="Total Bytes A" data={DATA_A} curve={this.state.value} />
-          <EuiAreaSeries name="Total Bytes B" data={DATA_B} curve={this.state.value} />
+          <EuiAreaSeries
+            name="Total Bytes A"
+            data={DATA_A}
+            curve={this.state.value}
+          />
+          <EuiAreaSeries
+            name="Total Bytes B"
+            data={DATA_B}
+            curve={this.state.value}
+          />
         </EuiSeriesChart>
       </Fragment>
     );

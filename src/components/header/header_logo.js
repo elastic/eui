@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, ...rest }) => {
+export const EuiHeaderLogo = ({
+  iconType,
+  iconTitle,
+  href,
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiHeaderLogo', className);
 
   return (
@@ -18,9 +23,7 @@ export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, 
         title={iconTitle}
       />
 
-      {children &&
-        <span className="euiHeaderLogo__text">{children}</span>
-      }
+      {children && <span className="euiHeaderLogo__text">{children}</span>}
     </a>
   );
 };

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export function makeFlexible(WrappedComponent) {
-
   return class FlexibleEuiSeriesChart extends PureComponent {
     constructor(props) {
       super(props);
@@ -22,8 +21,8 @@ export function makeFlexible(WrappedComponent) {
       this.ro.unobserve(this.containerRef.current);
     }
 
-    onResize = (entries) => {
-      entries.forEach((entry) => {
+    onResize = entries => {
+      entries.forEach(entry => {
         const { width, height } = entry.contentRect;
         const notifyWidth = this.state.width !== width;
         const notifyHeight = this.state.height !== height;
@@ -35,10 +34,7 @@ export function makeFlexible(WrappedComponent) {
 
     render() {
       return (
-        <div
-          ref={this.containerRef}
-          style={{ width: '100%', height: '100%' }}
-        >
+        <div ref={this.containerRef} style={{ width: '100%', height: '100%' }}>
           <WrappedComponent {...this.state} {...this.props} />
         </div>
       );

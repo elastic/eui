@@ -6,11 +6,8 @@ import { EuiTableHeaderButton } from './table_header_button';
 
 describe('EuiTableHeaderButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableHeaderButton {...requiredProps} />
-    );
+    const component = render(<EuiTableHeaderButton {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

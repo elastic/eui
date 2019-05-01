@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -16,10 +15,14 @@ import {
   toRelativeString,
 } from '../date_modes';
 
-export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) {
-
-  const onTabClick = (selectedTab) => {
-    switch(selectedTab.id) {
+export function EuiDatePopoverContent({
+  value,
+  roundUp,
+  onChange,
+  dateFormat,
+}) {
+  const onTabClick = selectedTab => {
+    switch (selectedTab.id) {
       case DATE_MODES.ABSOLUTE:
         onChange(toAbsoluteString(value, roundUp));
         break;
@@ -61,7 +64,10 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
         id: DATE_MODES.NOW,
         name: 'Now',
         content: (
-          <EuiText size="s" color="subdued" className="euiDatePopoverContent__padded--large">
+          <EuiText
+            size="s"
+            color="subdued"
+            className="euiDatePopoverContent__padded--large">
             <p>
               Setting the time to &quot;now&quot; means that on every refresh
               this time will be set to the time of the refresh.
@@ -71,14 +77,13 @@ export function EuiDatePopoverContent({ value, roundUp, onChange, dateFormat }) 
               onClick={() => onChange('now')}
               fullWidth
               size="s"
-              fill
-            >
+              fill>
               Set date and time to now
             </EuiButton>
           </EuiText>
         ),
         'data-test-subj': 'superDatePickerNowTab',
-      }
+      },
     ];
   };
 

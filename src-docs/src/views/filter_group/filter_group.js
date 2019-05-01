@@ -1,7 +1,4 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiPopover,
@@ -27,21 +24,27 @@ export default class extends Component {
     this.setState(prevState => ({
       isFilterOn: !prevState.isFilterOn,
     }));
-  }
+  };
 
   toggleOnFilter = () => {
     this.setState(prevState => ({
       isOnFilterOn: !prevState.isOnFilterOn,
-      isOffFilterOn: prevState.isOffFilterOn && !prevState.isOnFilterOn ? false : prevState.isOffFilterOn,
+      isOffFilterOn:
+        prevState.isOffFilterOn && !prevState.isOnFilterOn
+          ? false
+          : prevState.isOffFilterOn,
     }));
-  }
+  };
 
   toggleOffFilter = () => {
     this.setState(prevState => ({
       isOffFilterOn: !prevState.isOffFilterOn,
-      isOnFilterOn: prevState.isOnFilterOn && !prevState.isOffFilterOn ? false : prevState.isOnFilterOn,
+      isOnFilterOn:
+        prevState.isOnFilterOn && !prevState.isOffFilterOn
+          ? false
+          : prevState.isOnFilterOn,
     }));
-  }
+  };
 
   onButtonClick() {
     this.setState({
@@ -56,7 +59,6 @@ export default class extends Component {
   }
 
   render() {
-
     const button = (
       <EuiFilterButton
         iconType="arrowDown"
@@ -64,21 +66,30 @@ export default class extends Component {
         isSelected={this.state.isPopoverOpen}
         numFilters={12}
         hasActiveFilters={true}
-        numActiveFilters={2}
-      >
+        numActiveFilters={2}>
         Composers
       </EuiFilterButton>
     );
 
     return (
       <EuiFilterGroup fullWidth={true}>
-        <EuiFilterButton grow={false} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+        <EuiFilterButton
+          grow={false}
+          hasActiveFilters={this.state.isFilterOn}
+          onClick={this.toggleFilter}>
           Filter
         </EuiFilterButton>
-        <EuiFilterButton withNext grow={false} hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+        <EuiFilterButton
+          withNext
+          grow={false}
+          hasActiveFilters={this.state.isOnFilterOn}
+          onClick={this.toggleOnFilter}>
           On
         </EuiFilterButton>
-        <EuiFilterButton grow={false} hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+        <EuiFilterButton
+          grow={false}
+          hasActiveFilters={this.state.isOffFilterOn}
+          onClick={this.toggleOffFilter}>
           Off
         </EuiFilterButton>
         <EuiPopover
@@ -88,8 +99,7 @@ export default class extends Component {
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover.bind(this)}
           panelPaddingSize="none"
-          withTitle
-        >
+          withTitle>
           <div className="euiFilterSelect__note">
             <div className="euiFilterSelect__noteContent">
               <EuiIcon type="minusInCircle" />
@@ -98,7 +108,10 @@ export default class extends Component {
             </div>
           </div>
         </EuiPopover>
-        <EuiFilterButton numFilters={12} hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+        <EuiFilterButton
+          numFilters={12}
+          hasActiveFilters={this.state.isFilterOn}
+          onClick={this.toggleFilter}>
           Filter with a very long name
         </EuiFilterButton>
       </EuiFilterGroup>

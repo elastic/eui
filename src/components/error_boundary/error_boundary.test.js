@@ -1,17 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import {
-  requiredProps,
-  takeMountedSnapshot,
-} from '../../test';
+import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiErrorBoundary } from './error_boundary';
 
-const GoodComponent = () => (
-  <div>No error</div>
-);
+const GoodComponent = () => <div>No error</div>;
 
-const errorMessage = 'I\'m here to kick butt and chew bubblegum.\n\n\And I\'m all out of gum.';
+const errorMessage =
+  "I'm here to kick butt and chew bubblegum.\n\nAnd I'm all out of gum.";
 
 const BadComponent = () => {
   throw new Error(errorMessage);
@@ -19,11 +15,13 @@ const BadComponent = () => {
 
 describe('EuiErrorBoundary', () => {
   test('is rendered without an error', () => {
-    const component = takeMountedSnapshot(mount(
-      <EuiErrorBoundary {...requiredProps}>
-        <GoodComponent />
-      </EuiErrorBoundary>
-    ));
+    const component = takeMountedSnapshot(
+      mount(
+        <EuiErrorBoundary {...requiredProps}>
+          <GoodComponent />
+        </EuiErrorBoundary>
+      )
+    );
 
     expect(component).toMatchSnapshot();
   });

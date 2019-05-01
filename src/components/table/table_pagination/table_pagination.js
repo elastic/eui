@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { EuiButtonEmpty } from '../../button';
@@ -48,9 +46,12 @@ export class EuiTablePagination extends Component {
         color="text"
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick}
-      >
-        <EuiI18n token="euiTablePagination.rowsPerPage" default="Rows per page"/>: {itemsPerPage}
+        onClick={this.onButtonClick}>
+        <EuiI18n
+          token="euiTablePagination.rowsPerPage"
+          default="Rows per page"
+        />
+        : {itemsPerPage}
       </EuiButtonEmpty>
     );
 
@@ -58,9 +59,15 @@ export class EuiTablePagination extends Component {
       <EuiContextMenuItem
         key={itemsPerPageOption}
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => { this.closePopover(); onChangeItemsPerPage(itemsPerPageOption); }}
-      >
-        <EuiI18n token="euiTablePagination.rowsPerPageOption" values={{ rowsPerPage: itemsPerPageOption }} default="{rowsPerPage} rows"/>
+        onClick={() => {
+          this.closePopover();
+          onChangeItemsPerPage(itemsPerPageOption);
+        }}>
+        <EuiI18n
+          token="euiTablePagination.rowsPerPageOption"
+          values={{ rowsPerPage: itemsPerPageOption }}
+          default="{rowsPerPage} rows"
+        />
       </EuiContextMenuItem>
     ));
 
@@ -72,16 +79,16 @@ export class EuiTablePagination extends Component {
         closePopover={this.closePopover}
         panelPaddingSize="none"
         withTitle
-        anchorPosition="upRight"
-      >
-        <EuiContextMenuPanel
-          items={items}
-        />
+        anchorPosition="upRight">
+        <EuiContextMenuPanel items={items} />
       </EuiPopover>
     );
 
     return (
-      <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" responsive={false}>
+      <EuiFlexGroup
+        justifyContent="spaceBetween"
+        alignItems="center"
+        responsive={false}>
         <EuiFlexItem grow={false}>
           {hidePerPageOptions ? null : itemsPerPagePopover}
         </EuiFlexItem>
@@ -111,5 +118,5 @@ EuiTablePagination.propTypes = {
 EuiTablePagination.defaultProps = {
   itemsPerPage: 50,
   itemsPerPageOptions: [10, 20, 50, 100],
-  hidePerPageOptions: false
+  hidePerPageOptions: false,
 };

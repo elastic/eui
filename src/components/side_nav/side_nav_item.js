@@ -1,12 +1,8 @@
-import React, {
-  cloneElement,
-} from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
 const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
   if (href) {
@@ -16,8 +12,7 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
         href={href}
         onClick={onClick}
         role="menuitem"
-        {...rest}
-      >
+        {...rest}>
         {children}
       </a>
     );
@@ -30,19 +25,14 @@ const defaultRenderItem = ({ href, onClick, className, children, ...rest }) => {
         className={className}
         onClick={onClick}
         role="menuitem"
-        {...rest}
-      >
+        {...rest}>
         {children}
       </button>
     );
   }
 
   return (
-    <div
-      className={className}
-      aria-label={children}
-      {...rest}
-    >
+    <div className={className} aria-label={children} {...rest}>
       {children}
     </div>
   );
@@ -59,16 +49,12 @@ export const EuiSideNavItem = ({
   children,
   depth,
   renderItem = defaultRenderItem,
-  ...rest,
+  ...rest
 }) => {
   let childItems;
 
   if (items && isOpen) {
-    childItems = (
-      <div className="euiSideNavItem__items">
-        {items}
-      </div>
-    );
+    childItems = <div className="euiSideNavItem__items">{items}</div>;
   }
 
   let buttonIcon;
@@ -84,7 +70,7 @@ export const EuiSideNavItem = ({
     'euiSideNavItem--rootIcon': depth === 0 && icon,
     'euiSideNavItem--trunk': depth === 1,
     'euiSideNavItem--branch': depth > 1,
-    'euiSideNavItem--hasChildItems': !!childItems
+    'euiSideNavItem--hasChildItems': !!childItems,
   });
 
   const buttonClasses = classNames('euiSideNavItemButton', {
@@ -103,9 +89,7 @@ export const EuiSideNavItem = ({
     <span className="euiSideNavItemButton__content">
       {buttonIcon}
 
-      <span className="euiSideNavItemButton__label">
-        {children}
-      </span>
+      <span className="euiSideNavItemButton__label">{children}</span>
 
       {caret}
     </span>
@@ -113,7 +97,13 @@ export const EuiSideNavItem = ({
 
   return (
     <div className={classes}>
-      {renderItem({ href, onClick, className: buttonClasses, children: buttonContent, ...rest })}
+      {renderItem({
+        href,
+        onClick,
+        className: buttonClasses,
+        children: buttonContent,
+        ...rest,
+      })}
       {childItems}
     </div>
   );

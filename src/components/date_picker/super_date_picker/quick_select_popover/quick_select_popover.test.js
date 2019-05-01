@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import {
-  EuiQuickSelectPopover,
-} from './quick_select_popover';
+import { EuiQuickSelectPopover } from './quick_select_popover';
 
 const noop = () => {};
 
@@ -14,37 +12,24 @@ const defaultProps = {
   end: 'now',
   isPaused: true,
   refreshInterval: 0,
-  commonlyUsedRanges: [
-    { start: 'now/d', end: 'now/d', label: 'Today' },
-  ],
+  commonlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],
   dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
-  recentlyUsedRanges: [
-    { start: 'now/d', end: 'now/d', label: 'Today' },
-  ],
-  isAutoRefreshOnly: false
+  recentlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],
+  isAutoRefreshOnly: false,
 };
 
 describe('EuiQuickSelectPopover', () => {
   test('is rendered', () => {
-    const component = shallow(
-      <EuiQuickSelectPopover
-        {...defaultProps}
-      />
-    );
+    const component = shallow(<EuiQuickSelectPopover {...defaultProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('isAutoRefreshOnly', () => {
     const component = shallow(
-      <EuiQuickSelectPopover
-        {...defaultProps}
-        isAutoRefreshOnly={true}
-      />
+      <EuiQuickSelectPopover {...defaultProps} isAutoRefreshOnly={true} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -6,12 +6,9 @@ import { EuiHeaderSectionItem } from './header_section_item';
 
 describe('EuiHeaderSectionItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderSectionItem {...requiredProps} />
-    );
+    const component = render(<EuiHeaderSectionItem {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders children', () => {
@@ -21,27 +18,20 @@ describe('EuiHeaderSectionItem', () => {
       </EuiHeaderSectionItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('border', () => {
     test('defaults to left', () => {
-      const component = render(
-        <EuiHeaderSectionItem />
-      );
+      const component = render(<EuiHeaderSectionItem />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('renders right', () => {
-      const component = render(
-        <EuiHeaderSectionItem border="right" />
-      );
+      const component = render(<EuiHeaderSectionItem border="right" />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

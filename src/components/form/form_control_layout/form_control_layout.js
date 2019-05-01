@@ -1,7 +1,4 @@
-import React, {
-  cloneElement,
-  Component,
-} from 'react';
+import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -40,7 +37,9 @@ export class EuiFormControlLayout extends Component {
     let clonedChildren;
     if ((prepend || append) && children) {
       clonedChildren = cloneElement(children, {
-        className: `${children.props.className} euiFormControlLayout__child--noStyle`,
+        className: `${
+          children.props.className
+        } euiFormControlLayout__child--noStyle`,
       });
     }
 
@@ -74,9 +73,7 @@ export class EuiFormControlLayout extends Component {
       prependNodes = prepend.map((item, index) => {
         return this.createSideNode(item, 'prepend', index);
       });
-    }
-
-    else {
+    } else {
       prependNodes = this.createSideNode(prepend, 'prepend');
     }
 
@@ -96,9 +93,7 @@ export class EuiFormControlLayout extends Component {
       appendNodes = append.map((item, index) => {
         return this.createSideNode(item, 'append', index);
       });
-    }
-
-    else {
+    } else {
       appendNodes = this.createSideNode(append, 'append');
     }
 
@@ -108,7 +103,7 @@ export class EuiFormControlLayout extends Component {
   createSideNode(node, side, key) {
     return cloneElement(node, {
       className: `euiFormControlLayout__${side}`,
-      key: key
+      key: key,
     });
   }
 }

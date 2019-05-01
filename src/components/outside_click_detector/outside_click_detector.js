@@ -1,8 +1,4 @@
-import {
-  Children,
-  cloneElement,
-  Component,
-} from 'react';
+import { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { htmlIdGenerator } from '../../services/accessibility';
 
@@ -22,7 +18,7 @@ export class EuiOutsideClickDetector extends Component {
     children: PropTypes.node.isRequired,
     onOutsideClick: PropTypes.func.isRequired,
     isDisabled: PropTypes.bool,
-  }
+  };
 
   constructor(...args) {
     super(...args);
@@ -49,10 +45,7 @@ export class EuiOutsideClickDetector extends Component {
   }
 
   onClickOutside = event => {
-    const {
-      isDisabled,
-      onOutsideClick,
-    } = this.props;
+    const { isDisabled, onOutsideClick } = this.props;
 
     if (isDisabled) {
       this.capturedDownIds = [];
@@ -60,8 +53,8 @@ export class EuiOutsideClickDetector extends Component {
     }
 
     if (
-      (event.euiGeneratedBy && event.euiGeneratedBy.includes(this.id))
-      || this.capturedDownIds.includes(this.id)
+      (event.euiGeneratedBy && event.euiGeneratedBy.includes(this.id)) ||
+      this.capturedDownIds.includes(this.id)
     ) {
       this.capturedDownIds = [];
       return;
@@ -90,7 +83,7 @@ export class EuiOutsideClickDetector extends Component {
       event.nativeEvent.euiGeneratedBy = [this.id];
     }
     if (cb) cb(event);
-  }
+  };
 
   onChildMouseDown = event => {
     this.onChildClick(event, e => {
@@ -98,23 +91,25 @@ export class EuiOutsideClickDetector extends Component {
       if (this.props.onMouseDown) this.props.onMouseDown(e);
       if (this.props.onTouchStart) this.props.onTouchStart(e);
     });
-
-  }
+  };
 
   onChildMouseUp = event => {
     this.onChildClick(event, e => {
       if (this.props.onMouseUp) this.props.onMouseUp(e);
       if (this.props.onTouchEnd) this.props.onTouchEnd(e);
     });
-  }
+  };
 
   render() {
-    const props = ({ ...this.props.children.props, ...{
-      onMouseDown: this.onChildMouseDown,
-      onTouchStart: this.onChildMouseDown,
-      onMouseUp: this.onChildMouseUp,
-      onTouchEnd: this.onChildMouseUp,
-    } });
+    const props = {
+      ...this.props.children.props,
+      ...{
+        onMouseDown: this.onChildMouseDown,
+        onTouchStart: this.onChildMouseDown,
+        onMouseUp: this.onChildMouseUp,
+        onTouchEnd: this.onChildMouseUp,
+      },
+    };
 
     const child = Children.only(this.props.children);
     return cloneElement(child, props);

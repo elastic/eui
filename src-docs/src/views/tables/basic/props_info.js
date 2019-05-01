@@ -1,67 +1,72 @@
 export const propsInfo = {
-
   EuiBasicTable: {
     __docgenInfo: {
       props: {
         items: {
-          description: 'A list of objects to who in the table - an item per row',
+          description:
+            'A list of objects to who in the table - an item per row',
           required: true,
-          type: { name: 'object[]' }
+          type: { name: 'object[]' },
         },
         itemId: {
-          description: 'Describes how to extract a unique ID from each item, used for selections & expanded rows',
+          description:
+            'Describes how to extract a unique ID from each item, used for selections & expanded rows',
           required: false,
-          type: { name: 'string | (item) => string' }
+          type: { name: 'string | (item) => string' },
         },
         itemIdToExpandedRowMap: {
-          description: 'Row expansion uses the `itemId` prop to identify each row',
+          description:
+            'Row expansion uses the `itemId` prop to identify each row',
           required: false,
-          type: { name: 'object[]' }
+          type: { name: 'object[]' },
         },
         cellProps: {
           description: 'Applied to `EuiTableRowCell`',
           required: false,
-          type: { name: 'func | object[]' }
+          type: { name: 'func | object[]' },
         },
         compressed: {
-          description: 'Makes the font and padding smaller for the entire table',
-          type: { name: 'bool' }
+          description:
+            'Makes the font and padding smaller for the entire table',
+          type: { name: 'bool' },
         },
         columns: {
           description: 'Defines the table columns',
           required: true,
-          type: { name: '(#FieldDataColumn | #ComputedColumn | #ActionsColumn)[]' }
+          type: {
+            name: '(#FieldDataColumn | #ComputedColumn | #ActionsColumn)[]',
+          },
         },
         error: {
           description: 'Error message to display',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         hasActions: {
           description: 'Needed at the top level for responsive positioning',
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         isExpandable: {
           description: 'Needed at the top level for responsive positioning',
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         isSelectable: {
           description: 'Needed at the top level for responsive positioning',
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         loading: {
           description: 'Provides an infinite loading indicator',
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         noItemsMessage: {
           description: 'Message to display if table is empty',
           required: false,
-          type: { name: 'node' }
+          type: { name: 'node' },
         },
         pagination: {
           description: 'Configures pagination',
           required: false,
-          type: { name: '#Pagination' }
+          type: { name: '#Pagination' },
         },
         responsive: {
           description: 'If `true`, will convert table to cards in mobile view',
@@ -71,26 +76,27 @@ export const propsInfo = {
         rowProps: {
           description: 'Applied to `EuiTableRow`',
           required: false,
-          type: { name: 'func | object[]' }
+          type: { name: 'func | object[]' },
         },
         sorting: {
           description: 'Configures sorting',
           required: false,
-          type: { name: '#Sorting' }
+          type: { name: '#Sorting' },
         },
         selection: {
           description: 'Configures selection',
           required: false,
-          type: { name: '#Selection' }
+          type: { name: '#Selection' },
         },
         onChange: {
-          description: 'Called whenever pagination or sorting changes (this property is required when either ' +
+          description:
+            'Called whenever pagination or sorting changes (this property is required when either ' +
             'pagination or sorting is configured',
           required: false,
-          type: { name: '(criteria: #Criteria) => void' }
-        }
-      }
-    }
+          type: { name: '(criteria: #Criteria) => void' },
+        },
+      },
+    },
   },
 
   Pagination: {
@@ -100,32 +106,33 @@ export const propsInfo = {
         pageIndex: {
           description: 'The current page (zero-based) index',
           required: true,
-          type: { name: 'number' }
+          type: { name: 'number' },
         },
         pageSize: {
-          description: 'The maximum number if items that can be shown in a single page',
+          description:
+            'The maximum number if items that can be shown in a single page',
           required: true,
-          type: { name: 'number' }
+          type: { name: 'number' },
         },
         totalItemCount: {
           description: 'The total number of items the page is "sliced" of',
           required: true,
-          type: { name: 'number' }
+          type: { name: 'number' },
         },
         pageSizeOptions: {
           description: 'Configures the page size dropdown options',
           required: false,
           defaultValue: { value: '[5, 10, 20]' },
-          type: { name: 'number[]' }
+          type: { name: 'number[]' },
         },
         hidePerPageOptions: {
           description: 'Hides the page size dropdown',
           required: false,
           defaultValue: { value: 'false' },
-          type: { name: 'bool' }
-        }
-      }
-    }
+          type: { name: 'bool' },
+        },
+      },
+    },
   },
 
   Sorting: {
@@ -135,15 +142,16 @@ export const propsInfo = {
         sort: {
           description: 'Indicates the property/field to sort on',
           required: false,
-          type: { name: '{ field: string, direction: "asc" | "desc" }' }
+          type: { name: '{ field: string, direction: "asc" | "desc" }' },
         },
         allowNeutralSort: {
-          description: 'Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.',
+          description:
+            'Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.',
           required: false,
-          type: { name: 'bool' }
-        }
-      }
-    }
+          type: { name: 'bool' },
+        },
+      },
+    },
   },
 
   Selection: {
@@ -151,23 +159,26 @@ export const propsInfo = {
       _euiObjectType: 'type',
       props: {
         onSelectionChanged: {
-          description: 'A callback that will be called whenever the item selection changes',
+          description:
+            'A callback that will be called whenever the item selection changes',
           required: false,
-          type: { name: '(selectedItems) => void' }
+          type: { name: '(selectedItems) => void' },
         },
         selectable: {
-          description: 'A callback that is called per item to indicate whether it is selectable',
+          description:
+            'A callback that is called per item to indicate whether it is selectable',
           required: false,
-          type: { name: '(item) => boolean' }
+          type: { name: '(item) => boolean' },
         },
         selectableMessage: {
-          description: 'A callback that is called per item to retrieve a message for its selectable state.' +
+          description:
+            'A callback that is called per item to retrieve a message for its selectable state.' +
             'We display these messages as a tooltip on an unselectable checkbox',
           required: false,
-          type: { name: '(selectable, item) => string' }
-        }
-      }
-    }
+          type: { name: '(selectable, item) => string' },
+        },
+      },
+    },
   },
 
   Criteria: {
@@ -175,17 +186,19 @@ export const propsInfo = {
       _euiObjectType: 'type',
       props: {
         page: {
-          description: 'If the shown items represents a page (slice) into a bigger set, this describes this page',
+          description:
+            'If the shown items represents a page (slice) into a bigger set, this describes this page',
           required: false,
-          type: { name: '{ index: number, size: number }' }
+          type: { name: '{ index: number, size: number }' },
         },
         sort: {
-          description: 'If the shown items are sorted, this describes the sort criteria',
+          description:
+            'If the shown items are sorted, this describes the sort criteria',
           required: false,
-          type: { name: '{ field: string, direction: "asc" | "desc" }' }
-        }
-      }
-    }
+          type: { name: '{ field: string, direction: "asc" | "desc" }' },
+        },
+      },
+    },
   },
 
   FieldDataColumn: {
@@ -196,59 +209,68 @@ export const propsInfo = {
         field: {
           description: 'A field of the item (may be a nested field)',
           required: true,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         name: {
           description: 'The display name of the column',
           required: true,
-          type: { name: 'PropTypes.node' }
+          type: { name: 'PropTypes.node' },
         },
         description: {
-          description: 'A description of the column (will be presented as a title over the column header',
+          description:
+            'A description of the column (will be presented as a title over the column header',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         dataType: {
-          description: 'Describes the data types of the displayed value (serves as a rendering hint for the table)',
+          description:
+            'Describes the data types of the displayed value (serves as a rendering hint for the table)',
           required: false,
           defaultValue: { value: '"auto"' },
-          type: { name: '"auto" | "string" | "number" | "date" | "boolean"' }
+          type: { name: '"auto" | "string" | "number" | "date" | "boolean"' },
         },
         width: {
-          description: 'A CSS width property. Hints for the required width of the column',
+          description:
+            'A CSS width property. Hints for the required width of the column',
           required: false,
-          type: { name: 'string (e.g. "30%", "100px", etc..)' }
+          type: { name: 'string (e.g. "30%", "100px", etc..)' },
         },
         sortable: {
           description: 'Defines whether the user can sort on this column',
           required: false,
           defaultValue: { value: 'false' },
-          type: { name: 'boolean' }
+          type: { name: 'boolean' },
         },
         align: {
           description: 'Defines the horizontal alignment of the column',
           required: false,
-          defaultValue: { value: '"right"', comment: 'May change when "dataType" is defined' },
-          type: { name: '"left" | "right"' }
+          defaultValue: {
+            value: '"right"',
+            comment: 'May change when "dataType" is defined',
+          },
+          type: { name: '"left" | "right"' },
         },
         truncateText: {
           description: `Indicates whether this column should truncate its content when it doesn't fit`,
           required: false,
           defaultValue: { value: 'false' },
-          type: { name: 'boolean' }
+          type: { name: 'boolean' },
         },
         render: {
           description: `Describe a custom renderer function for the content`,
           required: false,
-          type: { name: '(value, item) => PropTypes.node' }
+          type: { name: '(value, item) => PropTypes.node' },
         },
         footer: {
           description: `Content to display in the footer beneath this column`,
           required: false,
-          type: { name: 'string | PropTypes.element | ({ items, pagination }) => PropTypes.node' }
-        }
-      }
-    }
+          type: {
+            name:
+              'string | PropTypes.element | ({ items, pagination }) => PropTypes.node',
+          },
+        },
+      },
+    },
   },
 
   ComputedColumn: {
@@ -259,31 +281,33 @@ export const propsInfo = {
         render: {
           description: `A function that computes the value for each item and renders it`,
           required: true,
-          type: { name: '(item) => PropTypes.node' }
+          type: { name: '(item) => PropTypes.node' },
         },
         name: {
           description: 'The display name of the column',
           required: false,
-          type: { name: 'PropTypes.node' }
+          type: { name: 'PropTypes.node' },
         },
         description: {
-          description: 'A description of the column (will be presented as a title over the column header',
+          description:
+            'A description of the column (will be presented as a title over the column header',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         width: {
-          description: 'A CSS width property. Hints for the required width of the column',
+          description:
+            'A CSS width property. Hints for the required width of the column',
           required: false,
-          type: { name: 'string (e.g. "30%", "100px", etc..)' }
+          type: { name: 'string (e.g. "30%", "100px", etc..)' },
         },
         truncateText: {
           description: `Indicates whether this column should truncate its content when it doesn't fit`,
           required: false,
           defaultValue: { value: 'false' },
-          type: { name: 'boolean' }
-        }
-      }
-    }
+          type: { name: 'boolean' },
+        },
+      },
+    },
   },
 
   ActionsColumn: {
@@ -294,25 +318,27 @@ export const propsInfo = {
         actions: {
           description: `An array of actions to associate per item`,
           required: true,
-          type: { name: '(#DefaultItemAction | #CustomItemAction)[]' }
+          type: { name: '(#DefaultItemAction | #CustomItemAction)[]' },
         },
         name: {
           description: 'The display name of the column',
           required: false,
-          type: { name: 'PropTypes.node' }
+          type: { name: 'PropTypes.node' },
         },
         description: {
-          description: 'A description of the column (will be presented as a title over the column header',
+          description:
+            'A description of the column (will be presented as a title over the column header',
           required: false,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         width: {
-          description: 'A CSS width property. Hints for the required width of the column',
+          description:
+            'A CSS width property. Hints for the required width of the column',
           required: false,
-          type: { name: 'string (e.g. "30%", "100px", etc..)' }
-        }
-      }
-    }
+          type: { name: 'string (e.g. "30%", "100px", etc..)' },
+        },
+      },
+    },
   },
 
   DefaultItemAction: {
@@ -321,50 +347,53 @@ export const propsInfo = {
       description: `Describes an action that is displayed as a button`,
       props: {
         name: {
-          description: 'The display name of the action (will be the button caption',
+          description:
+            'The display name of the action (will be the button caption',
           required: true,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         description: {
           description: 'Describes the action (will be the button title)',
           required: true,
-          type: { name: 'string' }
+          type: { name: 'string' },
         },
         onClick: {
           description: 'A handler function to execute the action',
           required: true,
-          type: { name: '(item) => void' }
+          type: { name: '(item) => void' },
         },
         type: {
           description: 'The type of action',
           required: false,
           defaultValue: { value: '"button"' },
-          type: { name: '"button" | "icon"' }
+          type: { name: '"button" | "icon"' },
         },
         available: {
-          description: 'A callback function that determines whether the action is available',
+          description:
+            'A callback function that determines whether the action is available',
           required: false,
           defaultValue: { value: '() => true' },
-          type: { name: '(item) => boolean' }
+          type: { name: '(item) => boolean' },
         },
         enabled: {
-          description: 'A callback function that determines whether the action is enabled',
+          description:
+            'A callback function that determines whether the action is enabled',
           required: false,
           defaultValue: { value: '() => true' },
-          type: { name: '(item) => boolean' }
+          type: { name: '(item) => boolean' },
         },
         icon: {
           description: 'Associates an icon with the button',
           required: false,
-          type: { name: 'string (must be one of the supported icon types)' }
+          type: { name: 'string (must be one of the supported icon types)' },
         },
         color: {
           description: 'Defines the color of the button',
           required: false,
-          type: { name: 'string (must be one of the supported button colors)' }
-        }
-      }
-    }
+          type: { name: 'string (must be one of the supported button colors)' },
+        },
+      },
+    },
   },
 
   CustomItemAction: {
@@ -373,22 +402,24 @@ export const propsInfo = {
       description: `Describes a custom action`,
       props: {
         render: {
-          description: 'The function that renders the action. Note that the returned node is ' +
+          description:
+            'The function that renders the action. Note that the returned node is ' +
             'expected to have`onFocus` and `onBlur` functions',
           required: true,
-          type: { name: '(item, enabled) => PropTypes.node' }
+          type: { name: '(item, enabled) => PropTypes.node' },
         },
         available: {
-          description: 'A callback that defines whether the action is available',
+          description:
+            'A callback that defines whether the action is available',
           required: false,
-          type: { name: '(item) => boolean' }
+          type: { name: '(item) => boolean' },
         },
         enabled: {
           description: 'A callback that defines whether the action is enabled',
           required: false,
-          type: { name: '(item) => boolean' }
-        }
-      }
-    }
+          type: { name: '(item) => boolean' },
+        },
+      },
+    },
   },
 };

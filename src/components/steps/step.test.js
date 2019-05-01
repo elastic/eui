@@ -11,8 +11,7 @@ describe('EuiStep', () => {
         {...requiredProps}
         headingElement={'h3'}
         step={1}
-        title={'First step'}
-      >
+        title={'First step'}>
         <p>Do this</p>
       </EuiStep>
     );

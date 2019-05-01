@@ -1,13 +1,9 @@
 /* eslint-disable react/no-multi-comp */
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import { render, unmountComponentAtNode } from 'react-dom';
 
-import {
-  EuiWrappingPopover,
-} from '../../../../src/components';
+import { EuiWrappingPopover } from '../../../../src/components';
 
 class PopoverApp extends Component {
   constructor(props) {
@@ -26,13 +22,13 @@ class PopoverApp extends Component {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
     return (
@@ -40,8 +36,7 @@ class PopoverApp extends Component {
         id="popover"
         button={this.props.anchor}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-      >
+        closePopover={this.closePopover}>
         <div>Normal JSX content populates the popover.</div>
       </EuiWrappingPopover>
     );
@@ -49,7 +44,6 @@ class PopoverApp extends Component {
 }
 
 export default class extends Component {
-
   componentDidMount() {
     const thisAnchor = document.querySelector('#popoverAnchorButton');
 
@@ -58,10 +52,7 @@ export default class extends Component {
     this.container = document.createElement('div');
     document.body.appendChild(this.container);
 
-    render(
-      <PopoverApp anchor={thisAnchor}/>,
-      this.container
-    );
+    render(<PopoverApp anchor={thisAnchor} />, this.container);
   }
 
   componentWillUnmount() {
@@ -70,11 +61,14 @@ export default class extends Component {
 
   render() {
     return (
-      <div dangerouslySetInnerHTML={{ __html: `
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `
 <button id="popoverAnchorButton" class="euiButton euiButton--primary">
   <span class="euiButton__content">This is an HTML button</span>
 </button>
-      ` }}
+      `,
+        }}
       />
     );
   }

@@ -10,7 +10,11 @@
  *
  * this validator warns if ExampleComponent is passed an `items` prop but not `itemId`
  */
-export const withRequiredProp = (proptype, requiredPropName, messageDescription) => {
+export const withRequiredProp = (
+  proptype,
+  requiredPropName,
+  messageDescription
+) => {
   const validator = (...args) => {
     const [props, propName] = args;
 
@@ -23,7 +27,8 @@ export const withRequiredProp = (proptype, requiredPropName, messageDescription)
       if (props[propName] != null && props[requiredPropName] == null) {
         result = new Error(
           `Property "${propName}" was passed without corresponding property "${requiredPropName}"${
-            messageDescription ? `; ${messageDescription}` : ''}`
+            messageDescription ? `; ${messageDescription}` : ''
+          }`
         );
       }
     }

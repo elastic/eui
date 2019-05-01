@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
+import { EuiValidatableControl } from '../validatable_control';
 
 export const EuiSelect = ({
   className,
@@ -41,7 +37,9 @@ export const EuiSelect = ({
   let emptyOptionNode;
   if (hasNoInitialSelection) {
     emptyOptionNode = (
-      <option value="" disabled hidden style={{ display: 'none' }}>&nbsp;</option>
+      <option value="" disabled hidden style={{ display: 'none' }}>
+        &nbsp;
+      </option>
     );
   }
 
@@ -64,8 +62,7 @@ export const EuiSelect = ({
       isLoading={isLoading}
       compressed={compressed}
       prepend={prepend}
-      append={append}
-    >
+      append={append}>
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
           id={id}
@@ -74,15 +71,15 @@ export const EuiSelect = ({
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
-          {...rest}
-        >
+          {...rest}>
           {emptyOptionNode}
           {options.map((option, index) => {
-            const {
-              text,
-              ...rest
-            } = option;
-            return <option {...rest} key={index}>{text}</option>;
+            const { text, ...rest } = option;
+            return (
+              <option {...rest} key={index}>
+                {text}
+              </option>
+            );
           })}
         </select>
       </EuiValidatableControl>
@@ -93,9 +90,11 @@ export const EuiSelect = ({
 EuiSelect.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.node.isRequired
-  })).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.node.isRequired,
+    })
+  ).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,

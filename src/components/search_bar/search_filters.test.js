@@ -5,26 +5,20 @@ import { EuiSearchFilters } from './search_filters';
 import { Query } from './query';
 
 describe('EuiSearchFilters', () => {
-
   test('render - no filters', () => {
-
     const props = {
       ...requiredProps,
       onChange: () => {},
       query: Query.parse(''),
-      filters: []
+      filters: [],
     };
 
-    const component = shallow(
-      <EuiSearchFilters {...props} />
-    );
+    const component = shallow(<EuiSearchFilters {...props} />);
 
     expect(component).toMatchSnapshot();
-
   });
 
   test('render - with filters', () => {
-
     const props = {
       ...requiredProps,
       onChange: () => {},
@@ -33,22 +27,19 @@ describe('EuiSearchFilters', () => {
         {
           type: 'is',
           field: 'open',
-          name: 'Open'
+          name: 'Open',
         },
         {
           type: 'field_value_selection',
           field: 'tag',
           name: 'Tag',
-          options: () => {}
-        }
-      ]
+          options: () => {},
+        },
+      ],
     };
 
-    const component = shallow(
-      <EuiSearchFilters {...props} />
-    );
+    const component = shallow(<EuiSearchFilters {...props} />);
 
     expect(component).toMatchSnapshot();
   });
-
 });

@@ -19,11 +19,7 @@ export class EuiFormControlLayoutIcons extends Component {
     let leftIcons;
 
     if (customIcon && iconSide === 'left') {
-      leftIcons = (
-        <div className="euiFormControlLayoutIcons">
-          {customIcon}
-        </div>
-      );
+      leftIcons = <div className="euiFormControlLayoutIcons">{customIcon}</div>;
     }
 
     let rightIcons;
@@ -55,9 +51,12 @@ export class EuiFormControlLayoutIcons extends Component {
     }
 
     // Normalize the icon to an object if it's a string.
-    const iconProps = typeof icon === 'string' ? {
-      type: icon,
-    } : icon;
+    const iconProps =
+      typeof icon === 'string'
+        ? {
+            type: icon,
+          }
+        : icon;
 
     const {
       ref: iconRef,
@@ -65,12 +64,7 @@ export class EuiFormControlLayoutIcons extends Component {
       ...iconRest
     } = iconProps;
 
-    return (
-      <EuiFormControlLayoutCustomIcon
-        iconRef={iconRef}
-        {...iconRest}
-      />
-    );
+    return <EuiFormControlLayoutCustomIcon iconRef={iconRef} {...iconRest} />;
   }
 
   renderLoadingSpinner() {
@@ -80,9 +74,7 @@ export class EuiFormControlLayoutIcons extends Component {
       return null;
     }
 
-    return (
-      <EuiLoadingSpinner size="m" />
-    );
+    return <EuiLoadingSpinner size="m" />;
   }
 
   renderClearButton() {
@@ -92,9 +84,7 @@ export class EuiFormControlLayoutIcons extends Component {
       return null;
     }
 
-    return (
-      <EuiFormControlLayoutClearButton {...clear} />
-    );
+    return <EuiFormControlLayoutClearButton {...clear} />;
   }
 }
 

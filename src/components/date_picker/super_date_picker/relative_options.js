@@ -1,4 +1,3 @@
-
 export const relativeOptions = [
   { text: 'Seconds ago', value: 's' },
   { text: 'Minutes ago', value: 'm' },

@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { EuiBreadcrumbs, EuiShowFor, EuiText } from '../../../../src/components';
+import {
+  EuiBreadcrumbs,
+  EuiShowFor,
+  EuiText,
+} from '../../../../src/components';
 
 export default () => {
   const breadcrumbs = [

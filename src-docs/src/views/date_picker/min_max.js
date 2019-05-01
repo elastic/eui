@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
@@ -11,7 +9,6 @@ import {
 } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
@@ -32,31 +29,31 @@ export default class extends Component {
 
   handleChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 
   handleChange2(date) {
     this.setState({
-      startDate2: date
+      startDate2: date,
     });
   }
 
   handleChange3(date) {
     this.setState({
-      startDate3: date
+      startDate3: date,
     });
   }
 
   handleChange4(date) {
     this.setState({
-      startDate4: date
+      startDate4: date,
     });
   }
 
   handleChange5(date) {
     this.setState({
-      startDate5: date
+      startDate5: date,
     });
   }
 
@@ -85,8 +82,12 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate2}
             onChange={this.handleChange2}
-            minTime={moment().hours(17).minutes(0)}
-            maxTime={moment().hours(20).minutes(30)}
+            minTime={moment()
+              .hours(17)
+              .minutes(0)}
+            maxTime={moment()
+              .hours(20)
+              .minutes(30)}
           />
         </EuiFormRow>
 
@@ -108,7 +109,14 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate4}
             onChange={this.handleChange4}
-            excludeTimes={[moment().hours(0).minutes(0), moment().hours(17).minutes(0)]}
+            excludeTimes={[
+              moment()
+                .hours(0)
+                .minutes(0),
+              moment()
+                .hours(17)
+                .minutes(0),
+            ]}
           />
         </EuiFormRow>
 
@@ -122,7 +130,6 @@ export default class extends Component {
             filterDate={this.isWeekday}
           />
         </EuiFormRow>
-
       </div>
     );
   }

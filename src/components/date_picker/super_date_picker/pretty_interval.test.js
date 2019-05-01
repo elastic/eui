@@ -1,4 +1,3 @@
-
 import { prettyInterval } from './pretty_interval';
 
 const IS_NOT_PAUSED = false;

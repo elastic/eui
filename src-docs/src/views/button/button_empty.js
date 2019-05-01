@@ -10,18 +10,13 @@ export default () => (
   <div>
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButtonEmpty onClick={() => window.alert('Button clicked')}>
           Primary
         </EuiButtonEmpty>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+        <EuiButtonEmpty size="s" onClick={() => window.alert('Button clicked')}>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -29,8 +24,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
           size="xs"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           extra small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -40,8 +34,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           Primary
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -50,8 +43,7 @@ export default () => (
         <EuiButtonEmpty
           size="s"
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -60,8 +52,7 @@ export default () => (
         <EuiButtonEmpty
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           Primary
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -71,8 +62,7 @@ export default () => (
           size="s"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -82,8 +72,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
           color="danger"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           Danger
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -92,8 +81,7 @@ export default () => (
         <EuiButtonEmpty
           color="danger"
           size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -102,8 +90,7 @@ export default () => (
         <EuiButtonEmpty
           color="danger"
           size="xs"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           extra small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -114,8 +101,7 @@ export default () => (
         <EuiButtonEmpty
           color="danger"
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           Danger
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -125,8 +111,7 @@ export default () => (
           color="danger"
           size="s"
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -136,8 +121,7 @@ export default () => (
           color="danger"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           Danger
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -148,8 +132,7 @@ export default () => (
           size="s"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -159,8 +142,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
           color="text"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           Text
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -169,8 +151,7 @@ export default () => (
         <EuiButtonEmpty
           color="text"
           size="s"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -179,8 +160,7 @@ export default () => (
         <EuiButtonEmpty
           color="text"
           size="xs"
-          onClick={() => window.alert('Button clicked')}
-        >
+          onClick={() => window.alert('Button clicked')}>
           extra small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -191,8 +171,7 @@ export default () => (
         <EuiButtonEmpty
           color="text"
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           Text
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -202,8 +181,7 @@ export default () => (
           color="text"
           size="s"
           onClick={() => window.alert('Button clicked')}
-          iconType="arrowDown"
-        >
+          iconType="arrowDown">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -213,8 +191,7 @@ export default () => (
           color="text"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           Text
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -225,8 +202,7 @@ export default () => (
           size="s"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          iconSide="right"
-        >
+          iconSide="right">
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -237,8 +213,7 @@ export default () => (
         <EuiButtonEmpty
           color="danger"
           onClick={() => window.alert('Button clicked')}
-          isDisabled
-        >
+          isDisabled>
           Disabled
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -248,8 +223,7 @@ export default () => (
           color="danger"
           size="s"
           onClick={() => window.alert('Button clicked')}
-          isDisabled
-        >
+          isDisabled>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -259,8 +233,7 @@ export default () => (
           color="danger"
           size="xs"
           onClick={() => window.alert('Button clicked')}
-          isDisabled
-        >
+          isDisabled>
           extra small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -270,8 +243,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
           onClick={() => window.alert('Button clicked')}
-          isLoading
-        >
+          isLoading>
           Loading
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -280,8 +252,7 @@ export default () => (
         <EuiButtonEmpty
           onClick={() => window.alert('Button clicked')}
           isLoading
-          iconSide="right"
-        >
+          iconSide="right">
           Loading
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -293,8 +264,7 @@ export default () => (
           color="danger"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          isDisabled
-        >
+          isDisabled>
           Disabled
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -305,8 +275,7 @@ export default () => (
           size="s"
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
-          isDisabled
-        >
+          isDisabled>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -317,8 +286,7 @@ export default () => (
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
           iconSide="right"
-          isDisabled
-        >
+          isDisabled>
           Disabled
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -330,8 +298,7 @@ export default () => (
           onClick={() => window.alert('Button clicked')}
           iconType="arrowDown"
           iconSide="right"
-          isDisabled
-        >
+          isDisabled>
           small
         </EuiButtonEmpty>
       </EuiFlexItem>

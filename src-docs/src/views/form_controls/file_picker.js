@@ -9,7 +9,6 @@ import {
 } from '../../../../src/components';
 
 export class FilePicker extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +16,7 @@ export class FilePicker extends Component {
     };
   }
 
-  onChange = (files) => {
+  onChange = files => {
     this.setState({
       files: files,
     });
@@ -29,13 +28,16 @@ export class FilePicker extends Component {
         <ul>
           {Object.keys(this.state.files).map((item, i) => (
             <li key={i}>
-              <strong>{this.state.files[item].name}</strong> ({this.state.files[item].size} bytes)
-            </li>)
-          )}
+              <strong>{this.state.files[item].name}</strong> (
+              {this.state.files[item].size} bytes)
+            </li>
+          ))}
         </ul>
       );
     } else {
-      return <p>Add some files to see a demo of retrieving from the FileList</p>;
+      return (
+        <p>Add some files to see a demo of retrieving from the FileList</p>
+      );
     }
   }
 
@@ -48,7 +50,9 @@ export class FilePicker extends Component {
               id="asdf2"
               multiple
               initialPromptText="Select or drag and drop multiple files"
-              onChange={files => { this.onChange(files); }}
+              onChange={files => {
+                this.onChange(files);
+              }}
             />
           </EuiFlexItem>
           <EuiFlexItem>
@@ -61,10 +65,7 @@ export class FilePicker extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiFilePicker
-          disabled
-          initialPromptText="Disabled"
-        />
+        <EuiFilePicker disabled initialPromptText="Disabled" />
 
         <EuiSpacer size="m" />
 
@@ -73,7 +74,9 @@ export class FilePicker extends Component {
           multiple
           compressed
           initialPromptText="Select some files"
-          onChange={files => { this.onChange(files); }}
+          onChange={files => {
+            this.onChange(files);
+          }}
         />
       </Fragment>
     );

@@ -32,7 +32,6 @@ describe('EuiStepsHorizontal', () => {
       <EuiStepsHorizontal {...requiredProps} steps={steps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

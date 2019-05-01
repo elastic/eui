@@ -10,12 +10,10 @@ describe('SearchBar', () => {
   test('render - no config, no query', () => {
     const props = {
       ...requiredProps,
-      onChange: () => {}
+      onChange: () => {},
     };
 
-    const component = shallow(
-      <EuiSearchBar {...props} />
-    );
+    const component = shallow(<EuiSearchBar {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -28,9 +26,7 @@ describe('SearchBar', () => {
       toolsRight: <div>Right</div>,
     };
 
-    const component = shallow(
-      <EuiSearchBar {...props} />
-    );
+    const component = shallow(<EuiSearchBar {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -40,14 +36,12 @@ describe('SearchBar', () => {
       box: {
         placeholder: 'find something...',
         incremental: false,
-        ...requiredProps
+        ...requiredProps,
       },
-      onChange: () => {}
+      onChange: () => {},
     };
 
-    const component = shallow(
-      <EuiSearchBar {...props} />
-    );
+    const component = shallow(<EuiSearchBar {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -59,22 +53,20 @@ describe('SearchBar', () => {
         {
           type: 'is',
           field: 'open',
-          name: 'Open'
+          name: 'Open',
         },
         {
           type: 'field_value_selection',
           field: 'tag',
           name: 'Tag',
-          options: () => {}
-        }
+          options: () => {},
+        },
       ],
       query: 'this is a query',
-      onChange: () => {}
+      onChange: () => {},
     };
 
-    const component = shallow(
-      <EuiSearchBar {...props} />
-    );
+    const component = shallow(<EuiSearchBar {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -91,7 +83,10 @@ describe('SearchBar', () => {
         />
       );
 
-      component.find('input[data-test-subj="searchbar"]').simulate('keyup', { keyCode: ENTER, target: { value: 'status:inactive' } });
+      component.find('input[data-test-subj="searchbar"]').simulate('keyup', {
+        keyCode: ENTER,
+        target: { value: 'status:inactive' },
+      });
 
       expect(onChange).toHaveBeenCalledTimes(1);
       const [[{ query, queryText }]] = onChange.mock.calls;

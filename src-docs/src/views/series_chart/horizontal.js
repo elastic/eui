@@ -18,22 +18,15 @@ const data = new Array(80).fill(0).map((d, i) => {
   return data;
 });
 
-export default function () {
+export default function() {
   return (
     <EuiSeriesChart
       width={600}
       height={600}
       orientation={ORIENTATION.HORIZONTAL}
-      animateData={false}
-    >
-      <EuiAreaSeries
-        name="Quitters"
-        data={data}
-      />
-      <EuiLineSeries
-        name="Quitters"
-        data={data}
-      />
+      animateData={false}>
+      <EuiAreaSeries name="Quitters" data={data} />
+      <EuiLineSeries name="Quitters" data={data} />
     </EuiSeriesChart>
   );
 }

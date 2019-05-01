@@ -6,11 +6,7 @@ import { HorizontalGridLines } from 'react-vis';
  */
 export class EuiHorizontalGrid extends PureComponent {
   render() {
-    return (
-      <HorizontalGridLines
-        {...this.props}
-      />
-    );
+    return <HorizontalGridLines {...this.props} />;
   }
 }
 

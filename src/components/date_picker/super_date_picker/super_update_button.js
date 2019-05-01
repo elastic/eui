@@ -15,13 +15,13 @@ export class EuiSuperUpdateButton extends Component {
      * Passes props to `EuiToolTip`
      */
     toolTipProps: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     needsUpdate: false,
     isLoading: false,
     isDisabled: false,
-  }
+  };
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -32,7 +32,11 @@ export class EuiSuperUpdateButton extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.needsUpdate && !this.props.isDisabled && !this.props.isLoading) {
+    if (
+      this.props.needsUpdate &&
+      !this.props.isDisabled &&
+      !this.props.isLoading
+    ) {
       this.showTooltip();
       this.tooltipTimeout = setTimeout(() => {
         this.hideTooltip();
@@ -47,14 +51,14 @@ export class EuiSuperUpdateButton extends Component {
       return;
     }
     this.tooltip.showToolTip();
-  }
+  };
 
   hideTooltip = () => {
     if (!this._isMounted || !this.tooltip) {
       return;
     }
     this.tooltip.hideToolTip();
-  }
+  };
 
   render() {
     const {
@@ -86,8 +90,7 @@ export class EuiSuperUpdateButton extends Component {
         ref={this.setTootipRef}
         content={tooltipContent}
         position="bottom"
-        {...toolTipProps}
-      >
+        {...toolTipProps}>
         <EuiButton
           className={classes}
           color={needsUpdate || isLoading ? 'secondary' : 'primary'}
@@ -97,8 +100,7 @@ export class EuiSuperUpdateButton extends Component {
           isDisabled={isDisabled}
           onClick={onClick}
           isLoading={isLoading}
-          {...rest}
-        >
+          {...rest}>
           {buttonText}
         </EuiButton>
       </EuiToolTip>

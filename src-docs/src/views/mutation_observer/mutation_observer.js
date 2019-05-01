@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -25,56 +23,61 @@ export class MutationObserver extends Component {
 
   toggleButtonColor = () => {
     this.setState(({ buttonColor }) => ({
-      buttonColor: buttonColor === 'primary' ? 'warning' : 'primary'
+      buttonColor: buttonColor === 'primary' ? 'warning' : 'primary',
     }));
-  }
+  };
 
   addItem = () => {
     this.setState(({ items }) => ({
-      items: [...items, `Item ${items.length + 1}`]
+      items: [...items, `Item ${items.length + 1}`],
     }));
-  }
+  };
 
   onMutation = ([{ type }]) => {
     this.setState({
-      lastMutation: type === 'attributes'
-        ? 'button class name changed'
-        : 'DOM tree changed'
+      lastMutation:
+        type === 'attributes'
+          ? 'button class name changed'
+          : 'DOM tree changed',
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <p>{this.state.lastMutation}</p>
 
-        <EuiSpacer/>
+        <EuiSpacer />
 
         <EuiMutationObserver
           observerOptions={{ subtree: true, attributes: true, childList: true }}
-          onMutation={this.onMutation}
-        >
+          onMutation={this.onMutation}>
           {mutationRef => (
             <div ref={mutationRef}>
-
-              <EuiButton color={this.state.buttonColor} fill={true} onClick={this.toggleButtonColor}>
+              <EuiButton
+                color={this.state.buttonColor}
+                fill={true}
+                onClick={this.toggleButtonColor}>
                 Toggle button color
               </EuiButton>
 
-              <EuiSpacer/>
+              <EuiSpacer />
 
               <EuiFlexGroup>
                 <EuiFlexItem grow={false}>
                   <EuiPanel grow={false}>
                     <ul>
-                      {this.state.items.map(item => <li key={item}>{item}</li>)}
+                      {this.state.items.map(item => (
+                        <li key={item}>{item}</li>
+                      ))}
                     </ul>
-                    <EuiSpacer size="s"/>
-                    <EuiButtonEmpty onClick={this.addItem}>add item</EuiButtonEmpty>
+                    <EuiSpacer size="s" />
+                    <EuiButtonEmpty onClick={this.addItem}>
+                      add item
+                    </EuiButtonEmpty>
                   </EuiPanel>
                 </EuiFlexItem>
               </EuiFlexGroup>
-
             </div>
           )}
         </EuiMutationObserver>

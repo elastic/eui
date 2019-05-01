@@ -1,20 +1,12 @@
 import React from 'react';
 
-import {
-  EuiStat,
-  EuiFlexItem,
-  EuiFlexGroup,
-} from '../../../../src/components';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiStat
-          title="$ 1,000.00"
-          description="Left align"
-          textAlign="left"
-        />
+        <EuiStat title="$ 1,000.00" description="Left align" textAlign="left" />
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiStat

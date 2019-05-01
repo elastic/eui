@@ -8,7 +8,11 @@ import { Query } from '../query';
 export const FieldValueToggleFilterConfigType = PropTypes.shape({
   type: EuiPropTypes.is('field_value_toggle').isRequired,
   field: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   negatedName: PropTypes.string,
   available: PropTypes.func, // () => boolean
@@ -23,7 +27,6 @@ const FieldValueToggleFilterPropTypes = {
 };
 
 export class FieldValueToggleFilter extends Component {
-
   static propTypes = FieldValueToggleFilterPropTypes;
 
   constructor(props) {
@@ -35,16 +38,19 @@ export class FieldValueToggleFilter extends Component {
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
-    return  Query.isMust(clause) ?
-      { hasActiveFilters: true, name } :
-      { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
+    return Query.isMust(clause)
+      ? { hasActiveFilters: true, name }
+      : {
+          hasActiveFilters: true,
+          name: negatedName ? negatedName : `Not ${name}`,
+        };
   }
 
   valueChanged(checked) {
     const { field, value, operator } = this.props.config;
-    const query = checked ?
-      this.props.query.removeSimpleFieldValue(field, value) :
-      this.props.query.addSimpleFieldValue(field, value, true, operator);
+    const query = checked
+      ? this.props.query.removeSimpleFieldValue(field, value)
+      : this.props.query.addSimpleFieldValue(field, value, true, operator);
     this.props.onChange(query);
   }
 
@@ -57,10 +63,7 @@ export class FieldValueToggleFilter extends Component {
       this.valueChanged(checked);
     };
     return (
-      <EuiFilterButton
-        onClick={onClick}
-        hasActiveFilters={hasActiveFilters}
-      >
+      <EuiFilterButton onClick={onClick} hasActiveFilters={hasActiveFilters}>
         {name}
       </EuiFilterButton>
     );

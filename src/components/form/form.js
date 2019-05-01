@@ -4,13 +4,7 @@ import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
 
-export const EuiForm = ({
-  children,
-  className,
-  isInvalid,
-  error,
-  ...rest
-}) => {
+export const EuiForm = ({ children, className, isInvalid, error, ...rest }) => {
   const classes = classNames('euiForm', className);
 
   let optionalErrors;
@@ -32,13 +26,14 @@ export const EuiForm = ({
 
   if (isInvalid) {
     optionalErrorAlert = (
-      <EuiI18n token="euiForm.addressFormErrors" default="Please address the errors in your form.">
+      <EuiI18n
+        token="euiForm.addressFormErrors"
+        default="Please address the errors in your form.">
         {addressFormErrors => (
           <EuiCallOut
             className="euiForm__errors"
             title={addressFormErrors}
-            color="danger"
-          >
+            color="danger">
             {optionalErrors}
           </EuiCallOut>
         )}
@@ -47,10 +42,7 @@ export const EuiForm = ({
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {optionalErrorAlert}
       {children}
     </div>
@@ -59,5 +51,8 @@ export const EuiForm = ({
 
 EuiForm.propTypes = {
   isInvalid: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+  error: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };

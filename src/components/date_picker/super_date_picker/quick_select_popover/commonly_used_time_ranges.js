@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { commonlyUsedRangeShape } from '../types';
@@ -19,8 +18,10 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
       <EuiFlexItem key={label}>
         <EuiLink
           onClick={applyCommonlyUsed}
-          data-test-subj={`superDatePickerCommonlyUsed_${label.replace(' ', '_')}`}
-        >
+          data-test-subj={`superDatePickerCommonlyUsed_${label.replace(
+            ' ',
+            '_'
+          )}`}>
           {label}
         </EuiLink>
       </EuiFlexItem>
@@ -29,7 +30,9 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
 
   return (
     <Fragment>
-      <EuiTitle size="xxxs"><span>Commonly used</span></EuiTitle>
+      <EuiTitle size="xxxs">
+        <span>Commonly used</span>
+      </EuiTitle>
       <EuiSpacer size="s" />
       <EuiText size="s" className="euiQuickSelectPopover__section">
         <EuiFlexGrid gutterSize="s" columns={2} responsive={false}>

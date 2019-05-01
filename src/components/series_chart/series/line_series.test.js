@@ -15,10 +15,7 @@ describe('EuiLineSeries', () => {
   test('is rendered', () => {
     const component = mount(
       <EuiSeriesChart width={600} height={200} {...requiredProps}>
-        <EuiLineSeries
-          name="test"
-          data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]}
-        />
+        <EuiLineSeries name="test" data={[{ x: 0, y: 5 }, { x: 1, y: 15 }]} />
       </EuiSeriesChart>
     );
 
@@ -50,10 +47,7 @@ describe('EuiLineSeries', () => {
     const onValueClick = jest.fn();
     const onSeriesClick = jest.fn();
     const component = mount(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-      >
+      <EuiSeriesChart width={600} height={200}>
         <EuiLineSeries
           name="test-series-a"
           data={data}
@@ -64,15 +58,20 @@ describe('EuiLineSeries', () => {
         />
       </EuiSeriesChart>
     );
-    component.find('path').at(0).simulate('click');
+    component
+      .find('path')
+      .at(0)
+      .simulate('click');
     expect(onSeriesClick.mock.calls).toHaveLength(1);
-    component.find('circle').at(0).simulate('click');
+    component
+      .find('circle')
+      .at(0)
+      .simulate('click');
     expect(onValueClick.mock.calls).toHaveLength(1);
     expect(onValueClick.mock.calls[0][0]).toEqual(data[0]);
     // check if onSeriesClick is fired after clicking on marker
     expect(onSeriesClick.mock.calls).toHaveLength(1);
   });
-
 
   describe('performance', () => {
     it.skip('renders 1000 items in under 1 second', () => {
@@ -82,7 +81,7 @@ describe('EuiLineSeries', () => {
         [250, '250'],
         [500, '500'],
         [750, '750'],
-        [1000, '1000']
+        [1000, '1000'],
       ];
       const data = [];
 
@@ -92,8 +91,12 @@ describe('EuiLineSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
-            <EuiLineSeries name="test" data={data}/>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
+            <EuiLineSeries name="test" data={data} />
           </EuiSeriesChart>
         );
       }
@@ -111,7 +114,7 @@ describe('EuiLineSeries', () => {
         [125, '125'],
         [250, '240'],
         [375, '375'],
-        [500, '500']
+        [500, '500'],
       ];
 
       const linesData = [];
@@ -127,9 +130,13 @@ describe('EuiLineSeries', () => {
 
       function renderChart() {
         render(
-          <EuiSeriesChart width={600} height={200} yTicks={yTicks} xTicks={xTicks}>
+          <EuiSeriesChart
+            width={600}
+            height={200}
+            yTicks={yTicks}
+            xTicks={xTicks}>
             {linesData.map((data, index) => (
-              <EuiLineSeries name="test" key={index} data={data}/>
+              <EuiLineSeries name="test" key={index} data={data} />
             ))}
           </EuiSeriesChart>
         );

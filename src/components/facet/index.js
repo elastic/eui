@@ -1,7 +1,3 @@
-export {
-  EuiFacetButton,
-} from './facet_button';
+export { EuiFacetButton } from './facet_button';
 
-export {
-  EuiFacetGroup,
-} from './facet_group';
+export { EuiFacetGroup } from './facet_group';

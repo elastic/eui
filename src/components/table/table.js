@@ -14,7 +14,11 @@ export const EuiTable = ({
     'euiTable--responsive': responsive,
   });
 
-  return <table className={classes} {...rest} >{children}</table>;
+  return (
+    <table className={classes} {...rest}>
+      {children}
+    </table>
+  );
 };
 
 EuiTable.propTypes = {
@@ -27,4 +31,3 @@ EuiTable.propTypes = {
 EuiTable.defaultProps = {
   responsive: true,
 };
-

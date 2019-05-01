@@ -18,7 +18,7 @@ export const EuiButtonToggle = ({
   toggleClassName,
   type,
   value,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames(
     'euiButtonToggle',
@@ -26,7 +26,7 @@ export const EuiButtonToggle = ({
       'euiButtonToggle--isIconOnly': isIconOnly,
       'euiButtonToggle--isEmpty': isEmpty,
     },
-    className,
+    className
   );
 
   const wrapperClasses = classNames(
@@ -50,16 +50,14 @@ export const EuiButtonToggle = ({
       onChange={onChange}
       type={type}
       title={label}
-      value={value}
-    >
+      value={value}>
       <EuiButton
         tabIndex="-1" // prevents double focus from input to button
         className={classes}
         color={color}
         disabled={isDisabled}
         size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
-        {...rest}
-      >
+        {...rest}>
         {buttonContent}
       </EuiButton>
     </EuiToggle>

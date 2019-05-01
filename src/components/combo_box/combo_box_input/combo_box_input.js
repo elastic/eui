@@ -43,7 +43,7 @@ export class EuiComboBoxInput extends Component {
     rootId: PropTypes.func.isRequired,
     focusedOptionId: PropTypes.string,
     compressed: PropTypes.bool.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -113,27 +113,23 @@ export class EuiComboBoxInput extends Component {
       compressed,
     } = this.props;
 
-    const pills = selectedOptions.map((option) => {
-      const {
-        label,
-        color,
-        onClick,
-        ...rest
-      } = option;
+    const pills = selectedOptions.map(option => {
+      const { label, color, onClick, ...rest } = option;
 
       const asPlainText = singleSelection && singleSelection.asPlainText;
 
       return (
         <EuiComboBoxPill
           option={option}
-          onClose={(isDisabled || singleSelection || onClick) ? null : onRemoveOption}
+          onClose={
+            isDisabled || singleSelection || onClick ? null : onRemoveOption
+          }
           key={label.toLowerCase()}
           color={color}
           onClick={onClick}
           onClickAriaLabel={onClick ? 'Change' : null}
           asPlainText={asPlainText}
-          {...rest}
-        >
+          {...rest}>
           {label}
         </EuiComboBoxPill>
       );
@@ -143,11 +139,16 @@ export class EuiComboBoxInput extends Component {
     let removeOptionMessageId;
 
     if (this.state.hasFocus) {
-      const readPlaceholder = (placeholder ? `${placeholder}.` : '');
+      const readPlaceholder = placeholder ? `${placeholder}.` : '';
       const removeOptionMessageContent =
         `Combo box. Selected. ${
           searchValue ? `${searchValue}. Selected. ` : ''
-        }${selectedOptions.length ? `${value}. Press Backspace to delete ${selectedOptions[selectedOptions.length - 1].label}. ` : ''
+        }${
+          selectedOptions.length
+            ? `${value}. Press Backspace to delete ${
+                selectedOptions[selectedOptions.length - 1].label
+              }. `
+            : ''
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         `To exit the list of choices, press Escape.`;
 
@@ -190,7 +191,9 @@ export class EuiComboBoxInput extends Component {
         side: 'right',
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
         ref: toggleButtonRef,
-        'aria-label': isListOpen ? 'Close list of options' : 'Open list of options',
+        'aria-label': isListOpen
+          ? 'Close list of options'
+          : 'Open list of options',
         disabled: isDisabled,
         'data-test-subj': 'comboBoxToggleListButton',
       };
@@ -208,14 +211,12 @@ export class EuiComboBoxInput extends Component {
         icon={icon}
         {...clickProps}
         fullWidth={fullWidth}
-        compressed={compressed}
-      >
+        compressed={compressed}>
         <div
           className={wrapClasses}
           onClick={onClick}
           tabIndex="-1" // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
-          data-test-subj="comboBoxInput"
-        >
+          data-test-subj="comboBoxInput">
           {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
@@ -227,7 +228,7 @@ export class EuiComboBoxInput extends Component {
             className="euiComboBox__input"
             onFocus={this.onFocus}
             onBlur={this.onBlur}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={e => onChange(e.target.value)}
             value={searchValue}
             ref={autoSizeInputRef}
             inputRef={inputRef}

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
@@ -11,12 +9,11 @@ import {
 } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +21,7 @@ export default class extends Component {
 
   handleChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 
@@ -73,9 +70,15 @@ export default class extends Component {
             onChange={this.handleChange}
             dateFormat="hh:mm a"
             injectTimes={[
-              moment().hours(0).minutes(1),
-              moment().hours(0).minutes(5),
-              moment().hours(23).minutes(59)
+              moment()
+                .hours(0)
+                .minutes(1),
+              moment()
+                .hours(0)
+                .minutes(5),
+              moment()
+                .hours(23)
+                .minutes(59),
             ]}
           />
         </EuiFormRow>

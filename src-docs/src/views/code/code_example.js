@@ -2,14 +2,9 @@ import React from 'react';
 
 import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiCode,
-  EuiCodeBlockImpl,
-} from '../../../../src/components';
+import { EuiCode, EuiCodeBlockImpl } from '../../../../src/components';
 
 import Code from './code';
 const codeSource = require('!!raw-loader!./code');
@@ -26,42 +21,51 @@ const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyab
 
 export const CodeExample = {
   title: 'Code',
-  sections: [{
-    title: 'Inline',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: codeSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: codeHtml,
-    }],
-    text: (
-      <p>
-        <EuiCode>Code</EuiCode> is for making inline code snippets that can work
-        within or next to bodies of text.
-      </p>
-    ),
-    snippet: codeSnippet,
-    demo: <Code />,
-  }, {
-    title: 'CodeBlock',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: codeBlockSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: codeBlockHtml,
-    }],
-    text: (
-      <p>
-        <EuiCode>EuiCodeBlock</EuiCode> can be used to create multi-line code
-        blocks. Copy and fullscreen buttons can be enabled via the
-        <EuiCode>isCopyable</EuiCode> and <EuiCode>overflowHeight</EuiCode>
-        props, respectively.
-      </p>
-    ),
-    snippet: codeBlockSnippet,
-    props: { EuiCodeBlockImpl },
-    demo: <CodeBlock />,
-  }],
+  sections: [
+    {
+      title: 'Inline',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: codeHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>Code</EuiCode> is for making inline code snippets that can
+          work within or next to bodies of text.
+        </p>
+      ),
+      snippet: codeSnippet,
+      demo: <Code />,
+    },
+    {
+      title: 'CodeBlock',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: codeBlockHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>EuiCodeBlock</EuiCode> can be used to create multi-line code
+          blocks. Copy and fullscreen buttons can be enabled via the
+          <EuiCode>isCopyable</EuiCode> and <EuiCode>overflowHeight</EuiCode>
+          props, respectively.
+        </p>
+      ),
+      snippet: codeBlockSnippet,
+      props: { EuiCodeBlockImpl },
+      demo: <CodeBlock />,
+    },
+  ],
 };

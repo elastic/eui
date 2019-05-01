@@ -72,16 +72,12 @@ EuiLineSeries.propTypes = {
   /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: string|number}> */
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    y: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    })
+  ).isRequired,
   /** See eui_palettes.js or colorPalette service for recommended colors */
   color: PropTypes.string,
   curve: PropTypes.oneOf(Object.values(CURVE)),

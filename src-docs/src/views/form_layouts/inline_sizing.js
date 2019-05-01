@@ -24,7 +24,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiFormRow label="Avatar" displayOnly>
-        <EuiAvatar name="John Doe" size="s"  />
+        <EuiAvatar name="John Doe" size="s" />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>

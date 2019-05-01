@@ -12,8 +12,7 @@ describe('EuiRadioGroup', () => {
       <EuiRadioGroup {...requiredProps} onChange={() => {}} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -22,14 +21,13 @@ describe('EuiRadioGroup', () => {
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2', disabled: true }
+            { id: '2', label: 'Option #2', disabled: true },
           ]}
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('name is propagated to radios', () => {
@@ -38,14 +36,13 @@ describe('EuiRadioGroup', () => {
           name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
+            { id: '2', label: 'Option #2' },
           ]}
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('idSelected is rendered', () => {
@@ -53,15 +50,14 @@ describe('EuiRadioGroup', () => {
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
+            { id: '2', label: 'Option #2' },
           ]}
           idSelected="1"
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('value is propagated to radios', () => {
@@ -70,14 +66,13 @@ describe('EuiRadioGroup', () => {
           name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1', value: 'Value #1' },
-            { id: '2', label: 'Option #2', value: 'Value #2' }
+            { id: '2', label: 'Option #2', value: 'Value #2' },
           ]}
           onChange={() => {}}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 
@@ -90,7 +85,7 @@ describe('EuiRadioGroup', () => {
           name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1' },
-            { id: '2', label: 'Option #2' }
+            { id: '2', label: 'Option #2' },
           ]}
           onChange={callback}
         />
@@ -111,7 +106,7 @@ describe('EuiRadioGroup', () => {
           name="radiogroupname"
           options={[
             { id: '1', label: 'Option #1', value: 'Value #1' },
-            { id: '2', label: 'Option #2', value: 'Value #2' }
+            { id: '2', label: 'Option #2', value: 'Value #2' },
           ]}
           onChange={callback}
         />

@@ -44,7 +44,6 @@ const myContent = [
   },
 ];
 
-
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -64,24 +63,29 @@ export default class extends Component {
   };
 
   render() {
-    const {
-      flushWidth,
-      showBorder,
-    } = this.state;
+    const { flushWidth, showBorder } = this.state;
 
     return (
       <Fragment>
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label={<span>Show as <EuiCode>flush</EuiCode></span>}
+              label={
+                <span>
+                  Show as <EuiCode>flush</EuiCode>
+                </span>
+              }
               checked={this.state.flushWidth}
               onChange={this.toggleFlushWidth}
             />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label={<span>Show as <EuiCode>bordered</EuiCode></span>}
+              label={
+                <span>
+                  Show as <EuiCode>bordered</EuiCode>
+                </span>
+              }
               checked={this.state.showBorder}
               onChange={this.toggleBorder}
             />
@@ -90,7 +94,11 @@ export default class extends Component {
 
         <EuiSpacer size="l" />
 
-        <EuiListGroup flush={flushWidth} bordered={showBorder} listItems={myContent} />
+        <EuiListGroup
+          flush={flushWidth}
+          bordered={showBorder}
+          listItems={myContent}
+        />
       </Fragment>
     );
   }

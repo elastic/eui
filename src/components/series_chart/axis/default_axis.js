@@ -6,22 +6,29 @@ import { EuiHorizontalGrid } from './horizontal_grid';
 import { EuiVerticalGrid } from './vertical_grid';
 import { ORIENTATION } from '../utils/chart_utils';
 
-
 /**
  * The Default Axis component, with X and Y axis on the bottom and left position respectively,
  * and horiznontal or vertical grid depending on the orientation prop.
  */
 export class EuiDefaultAxis extends PureComponent {
   render() {
-    const { showGridLines, orientation, xOnZero, yOnZero, ...rest } = this.props;
+    const {
+      showGridLines,
+      orientation,
+      xOnZero,
+      yOnZero,
+      ...rest
+    } = this.props;
 
     return (
       <Fragment>
-        {showGridLines &&
-          orientation === ORIENTATION.VERTICAL && <EuiHorizontalGrid {...rest} />}
+        {showGridLines && orientation === ORIENTATION.VERTICAL && (
+          <EuiHorizontalGrid {...rest} />
+        )}
 
-        {showGridLines &&
-          orientation === ORIENTATION.HORIZONTAL && <EuiVerticalGrid {...rest} />}
+        {showGridLines && orientation === ORIENTATION.HORIZONTAL && (
+          <EuiVerticalGrid {...rest} />
+        )}
 
         <EuiXAxis onZero={xOnZero} {...rest} />
         <EuiYAxis onZero={yOnZero} {...rest} />

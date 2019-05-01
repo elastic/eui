@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiDatePicker,
@@ -9,7 +7,6 @@ import {
 } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
@@ -22,13 +19,13 @@ export default class extends Component {
 
   handleChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 
   render() {
     const errors = [
-      'Here\'s an example of an error',
+      "Here's an example of an error",
       'You might have more than one error, so pass an array.',
     ];
 
@@ -74,11 +71,7 @@ export default class extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiFormRow
-          label="Form row validation"
-          isInvalid
-          error={errors}
-        >
+        <EuiFormRow label="Form row validation" isInvalid error={errors}>
           <EuiDatePicker
             showTimeSelect
             isInvalid

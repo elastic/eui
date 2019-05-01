@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiSeriesChart, EuiHistogramSeries, EuiSeriesChartUtils } from '../../../../src/experimental';
+import {
+  EuiSeriesChart,
+  EuiHistogramSeries,
+  EuiSeriesChartUtils,
+} from '../../../../src/experimental';
 
 const data = [
   { x: 3, y: 0, y0: 1 },
@@ -10,7 +14,10 @@ const data = [
   { x: 1, y: 4, y0: 5 },
 ];
 export default () => (
-  <EuiSeriesChart width={600} height={200} orientation={EuiSeriesChartUtils.ORIENTATION.HORIZONTAL}>
+  <EuiSeriesChart
+    width={600}
+    height={200}
+    orientation={EuiSeriesChartUtils.ORIENTATION.HORIZONTAL}>
     <EuiHistogramSeries name="Bytes" data={data} />
   </EuiSeriesChart>
 );

@@ -18,78 +18,55 @@ describe('EuiRange', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('disabled should render', () => {
-      const component = render(
-        <EuiRange disabled/>
-      );
+      const component = render(<EuiRange disabled />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('fullWidth should render', () => {
-      const component = render(
-        <EuiRange fullWidth/>
-      );
+      const component = render(<EuiRange fullWidth />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('compressed should render', () => {
-      const component = render(
-        <EuiRange compressed/>
-      );
+      const component = render(<EuiRange compressed />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('labels should render', () => {
-      const component = render(
-        <EuiRange showLabels/>
-      );
+      const component = render(<EuiRange showLabels />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('ticks should render', () => {
-      const component = render(
-        <EuiRange showTicks tickInterval={20}/>
-      );
+      const component = render(<EuiRange showTicks tickInterval={20} />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('custom ticks should render', () => {
       const component = render(
         <EuiRange
           showTicks
-          ticks={[
-            { label: '20kb', value: 20 },
-            { label: '100kb', value: 100 }
-          ]}
+          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('range should render', () => {
-      const component = render(
-        <EuiRange showRange value="8" />
-      );
+      const component = render(<EuiRange showRange value="8" />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('value should render', () => {
@@ -102,8 +79,7 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('input should render', () => {
@@ -120,8 +96,7 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('levels should render', () => {
@@ -131,44 +106,32 @@ describe('EuiRange', () => {
             {
               min: 0,
               max: 20,
-              color: 'danger'
+              color: 'danger',
             },
             {
               min: 20,
               max: 100,
-              color: 'success'
-            }
+              color: 'success',
+            },
           ]}
         />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 
   test('allows value prop to accept a number', () => {
     const component = render(
-      <EuiRange
-        value={8}
-        onChange={() => {}}
-        showValue
-      />
+      <EuiRange value={8} onChange={() => {}} showValue />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('allows value prop to accept empty string', () => {
-    const component = render(
-      <EuiRange
-        value={''}
-        onChange={() => {}}
-      />
-    );
+    const component = render(<EuiRange value={''} onChange={() => {}} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

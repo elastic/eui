@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  EuiDescriptionList,
-} from '../../../../src/components';
+import { EuiDescriptionList } from '../../../../src/components';
 
 const favoriteVideoGame = [
   {

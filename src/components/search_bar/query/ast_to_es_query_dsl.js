@@ -30,7 +30,7 @@ const processDateOperation = (value, operator) => {
 
 export const _termValuesToQuery = (values, options) => {
   const body = {
-    query: values.join(' ')
+    query: values.join(' '),
   };
   if (body.query === '') {
     return;
@@ -39,7 +39,7 @@ export const _termValuesToQuery = (values, options) => {
     body.fields = options.defaultFields;
   }
   return {
-    'simple_query_string': body
+    simple_query_string: body,
   };
 };
 
@@ -49,69 +49,74 @@ export const _fieldValuesToQuery = (field, operations, andOr) => {
   Object.keys(operations).forEach(operator => {
     const values = operations[operator];
     switch (operator) {
-
       case AST.Operator.EQ:
-        const { terms, phrases, dates } = values.reduce((tokenTypes, value) => {
-          if (isDateValue(value)) {
-            tokenTypes.dates.push(value);
-          } else if (isDateLike(value)) {
-            tokenTypes.dates.push(dateValue(value));
-          } else if (isString(value) && value.match(/\s/)) {
-            tokenTypes.phrases.push(value);
-          } else {
-            tokenTypes.terms.push(value);
-          }
-          return tokenTypes;
-        }, { terms: [], phrases: [], dates: [] });
+        const { terms, phrases, dates } = values.reduce(
+          (tokenTypes, value) => {
+            if (isDateValue(value)) {
+              tokenTypes.dates.push(value);
+            } else if (isDateLike(value)) {
+              tokenTypes.dates.push(dateValue(value));
+            } else if (isString(value) && value.match(/\s/)) {
+              tokenTypes.phrases.push(value);
+            } else {
+              tokenTypes.terms.push(value);
+            }
+            return tokenTypes;
+          },
+          { terms: [], phrases: [], dates: [] }
+        );
 
         if (terms.length > 0) {
           queries.push({
             match: {
               [field]: {
                 query: terms.join(' '),
-                operator: andOr
-              }
-            }
+                operator: andOr,
+              },
+            },
           });
         }
 
         if (phrases.length > 0) {
-          queries.push(...phrases.map(phrase => ({
-            match_phrase: {
-              [field]: phrase
-            }
-          })));
+          queries.push(
+            ...phrases.map(phrase => ({
+              match_phrase: {
+                [field]: phrase,
+              },
+            }))
+          );
         }
 
         if (dates.length > 0) {
-          queries.push(...dates.map(value => ({
-            match: {
-              [field]: processDateOperation(value).expression
-            }
-          })));
+          queries.push(
+            ...dates.map(value => ({
+              match: {
+                [field]: processDateOperation(value).expression,
+              },
+            }))
+          );
         }
 
         break;
 
       default:
-
         values.forEach(value => {
           if (isDateValue(value)) {
             const operation = processDateOperation(value, operator);
             queries.push({
               range: {
                 [field]: {
-                  [operation.operator]: operation.expression
-                }
-              }
+                  [operation.operator]: operation.expression,
+                },
+              },
             });
           } else {
             queries.push({
               range: {
                 [field]: {
-                  [operator]: value
-                }
-              }
+                  [operator]: value,
+                },
+              },
             });
           }
         });
@@ -125,30 +130,32 @@ export const _fieldValuesToQuery = (field, operations, andOr) => {
   const key = andOr === 'and' ? 'must' : 'should';
   return {
     bool: {
-      [key]: [...queries]
-    }
+      [key]: [...queries],
+    },
   };
 };
 
 export const _isFlagToQuery = (flag, on) => {
   return {
-    term: { [flag]: on }
+    term: { [flag]: on },
   };
 };
 
-const collectTerms = (clauses) => {
-  return clauses.reduce((values, clause) => {
-    if (AST.Match.isMustClause(clause)) {
-      values.must.push(clause.value);
-    } else {
-      values.mustNot.push(clause.value);
-    }
-    return values;
-  }, { must: [], mustNot: [] });
+const collectTerms = clauses => {
+  return clauses.reduce(
+    (values, clause) => {
+      if (AST.Match.isMustClause(clause)) {
+        values.must.push(clause.value);
+      } else {
+        values.mustNot.push(clause.value);
+      }
+      return values;
+    },
+    { must: [], mustNot: [] }
+  );
 };
 
-const collectFields = (clauses) => {
-
+const collectFields = clauses => {
   const fieldArray = (obj, field, operator) => {
     if (!obj[field]) {
       obj[field] = {};
@@ -159,25 +166,36 @@ const collectFields = (clauses) => {
     return obj[field][operator];
   };
 
-  return clauses.reduce((fields, clause) => {
-    if (AST.Match.isMustClause(clause)) {
-      if (isArray(clause.value)) {
-        fieldArray(fields.must.or, clause.field, clause.operator).push(...clause.value);
+  return clauses.reduce(
+    (fields, clause) => {
+      if (AST.Match.isMustClause(clause)) {
+        if (isArray(clause.value)) {
+          fieldArray(fields.must.or, clause.field, clause.operator).push(
+            ...clause.value
+          );
+        } else {
+          fieldArray(fields.must.and, clause.field, clause.operator).push(
+            clause.value
+          );
+        }
       } else {
-        fieldArray(fields.must.and, clause.field, clause.operator).push(clause.value);
+        if (isArray(clause.value)) {
+          fieldArray(fields.mustNot.or, clause.field, clause.operator).push(
+            ...clause.value
+          );
+        } else {
+          fieldArray(fields.mustNot.and, clause.field, clause.operator).push(
+            clause.value
+          );
+        }
       }
-    } else {
-      if (isArray(clause.value)) {
-        fieldArray(fields.mustNot.or, clause.field, clause.operator).push(...clause.value);
-      } else {
-        fieldArray(fields.mustNot.and, clause.field, clause.operator).push(clause.value);
-      }
+      return fields;
+    },
+    {
+      must: { and: {}, or: {} },
+      mustNot: { and: {}, or: {} },
     }
-    return fields;
-  }, {
-    must: { and: {}, or: {}, },
-    mustNot: { and: {}, or: {} }
-  });
+  );
 };
 
 const clausesToEsQueryDsl = ({ fields, terms, is }, options = {}) => {
@@ -229,8 +247,8 @@ const clausesToEsQueryDsl = ({ fields, terms, is }, options = {}) => {
 
 const EMPTY_TERMS = { must: [], mustNot: [] };
 const EMPTY_FIELDS = {
-  must: { and: {}, or: {}, },
-  mustNot: { and: {}, or: {} }
+  must: { and: {}, or: {} },
+  mustNot: { and: {}, or: {} },
 };
 
 export const astToEsQueryDsl = (ast, options) => {
@@ -253,52 +271,49 @@ export const astToEsQueryDsl = (ast, options) => {
     // there is at least one GroupClause, wrap the above clauses in another layer and append the ORs
     const must = groupClauses.reduce(
       (must, groupClause) => {
-        const clauses = groupClause.value.reduce(
-          (clauses, clause) => {
-            if (AST.Term.isInstance(clause)) {
-              clauses.push(clausesToEsQueryDsl(
-                {
-                  terms: collectTerms([clause]),
-                  fields: EMPTY_FIELDS,
-                  is: []
-                }
-              ));
-            } else if (AST.Field.isInstance(clause)) {
-              clauses.push(clausesToEsQueryDsl(
-                {
-                  terms: EMPTY_TERMS,
-                  fields: collectFields([clause]),
-                  is: []
-                }
-              ));
-            } else if (AST.Is.isInstance(clause)) {
-              clauses.push(clausesToEsQueryDsl(
-                {
-                  terms: EMPTY_TERMS,
-                  fields: EMPTY_FIELDS,
-                  is: [clause]
-                }
-              ));
-            }
-            return clauses;
-          },
-          []
-        );
+        const clauses = groupClause.value.reduce((clauses, clause) => {
+          if (AST.Term.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: collectTerms([clause]),
+                fields: EMPTY_FIELDS,
+                is: [],
+              })
+            );
+          } else if (AST.Field.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: EMPTY_TERMS,
+                fields: collectFields([clause]),
+                is: [],
+              })
+            );
+          } else if (AST.Is.isInstance(clause)) {
+            clauses.push(
+              clausesToEsQueryDsl({
+                terms: EMPTY_TERMS,
+                fields: EMPTY_FIELDS,
+                is: [clause],
+              })
+            );
+          }
+          return clauses;
+        }, []);
 
         must.push({
           bool: {
-            should: [clauses.map(clause => ({ bool: clause }))]
-          }
+            should: [clauses.map(clause => ({ bool: clause }))],
+          },
         });
         return must;
       },
       hasTopMatches // only include the first match group if there are any conditions
-        ? [ { bool: matchesBool } ]
+        ? [{ bool: matchesBool }]
         : []
     );
 
     return {
-      bool: { must }
+      bool: { must },
     };
   }
 };

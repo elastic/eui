@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
+import { EuiValidatableControl } from '../validatable_control';
 
 export const EuiFieldText = ({
   id,
@@ -41,11 +37,8 @@ export const EuiFieldText = ({
       isLoading={isLoading}
       compressed={compressed}
       prepend={prepend}
-      append={append}
-    >
-      <EuiValidatableControl
-        isInvalid={isInvalid}
-      >
+      append={append}>
+      <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="text"
           id={id}

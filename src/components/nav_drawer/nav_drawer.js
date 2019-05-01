@@ -7,7 +7,6 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem } from '../flex';
 
-
 export class EuiNavDrawer extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +24,7 @@ export class EuiNavDrawer extends Component {
 
   toggleOpen = () => {
     this.setState({
-      isCollapsed: !this.state.isCollapsed
+      isCollapsed: !this.state.isCollapsed,
     });
 
     setTimeout(() => {
@@ -75,7 +74,7 @@ export class EuiNavDrawer extends Component {
         isManagingFocus: true,
       });
     }
-  }
+  };
 
   focusOut = () => {
     // This collapses the drawer when no children have focus (i.e. tabbed out).
@@ -91,7 +90,7 @@ export class EuiNavDrawer extends Component {
         this.closeBoth();
       }
     }, 0);
-  }
+  };
 
   expandFlyout = (links, title) => {
     const content = links;
@@ -122,7 +121,7 @@ export class EuiNavDrawer extends Component {
   closeBoth = () => {
     this.collapseDrawer();
     this.collapseFlyout();
-  }
+  };
 
   handleDrawerMenuClick = e => {
     // walk up e.target until either:
@@ -130,7 +129,11 @@ export class EuiNavDrawer extends Component {
     // 2. document.body - do nothing
 
     let element = e.target;
-    while (element !== undefined && element !== document.body && (element.tagName !== 'A' || element.getAttribute('href') === undefined)) {
+    while (
+      element !== undefined &&
+      element !== document.body &&
+      (element.tagName !== 'A' || element.getAttribute('href') === undefined)
+    ) {
       element = element.parentElement;
     }
 
@@ -138,7 +141,7 @@ export class EuiNavDrawer extends Component {
       // this is an anchor with an href
       this.closeBoth();
     }
-  }
+  };
 
   render() {
     const {
@@ -163,22 +166,32 @@ export class EuiNavDrawer extends Component {
     let footerContent;
     if (showExpandButton) {
       footerContent = (
-        <EuiListGroup
-          className="euiNavDrawer__expandButton"
-          flush
-        >
+        <EuiListGroup className="euiNavDrawer__expandButton" flush>
           <EuiI18n
-            tokens={['euiNavDrawer.sideNavCollapse', 'euiNavDrawer.sideNavExpand']}
-            defaults={['Collapse', 'Expand']}
-          >
+            tokens={[
+              'euiNavDrawer.sideNavCollapse',
+              'euiNavDrawer.sideNavExpand',
+            ]}
+            defaults={['Collapse', 'Expand']}>
             {([sideNavCollapse, sideNavExpand]) => (
               <EuiListGroupItem
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
                 iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
                 size="s"
                 showToolTip={this.state.isCollapsed}
-                onClick={this.state.isCollapsed ? () => {this.expandDrawer(); this.collapseFlyout();} : () => this.collapseDrawer()}
-                data-test-subj={this.state.isCollapsed ? 'navDrawerExpandButton-isCollapsed' : 'navDrawerExpandButton-isExpanded'}
+                onClick={
+                  this.state.isCollapsed
+                    ? () => {
+                        this.expandDrawer();
+                        this.collapseFlyout();
+                      }
+                    : () => this.collapseDrawer()
+                }
+                data-test-subj={
+                  this.state.isCollapsed
+                    ? 'navDrawerExpandButton-isCollapsed'
+                    : 'navDrawerExpandButton-isExpanded'
+                }
               />
             )}
           </EuiI18n>
@@ -214,23 +227,24 @@ export class EuiNavDrawer extends Component {
       }
     });
 
-    const menuClasses = classNames(
-      'euiNavDrawerMenu', { 'euiNavDrawerMenu-hasFooter': footerContent, },
-    );
+    const menuClasses = classNames('euiNavDrawerMenu', {
+      'euiNavDrawerMenu-hasFooter': footerContent,
+    });
 
     return (
       <EuiOutsideClickDetector
         onOutsideClick={() => this.closeBoth()}
-        isDisabled={this.state.outsideClickDisabled}
-      >
+        isDisabled={this.state.outsideClickDisabled}>
         <div
           className={classes}
           onBlur={this.focusOut}
           onFocus={this.manageFocus}
-          {...rest}
-        >
+          {...rest}>
           <EuiFlexItem grow={false}>
-            <div id="navDrawerMenu" className={menuClasses} onClick={this.handleDrawerMenuClick}>
+            <div
+              id="navDrawerMenu"
+              className={menuClasses}
+              onClick={this.handleDrawerMenuClick}>
               {/* Put expand button first so it's first in tab order then on toggle starts the tabbing of the items from the top */}
               {/* TODO: Add a "skip navigation" keyboard only button */}
               {footerContent}
