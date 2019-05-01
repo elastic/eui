@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
+
 **Bug fixes**
 
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
