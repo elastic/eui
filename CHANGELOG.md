@@ -2,6 +2,7 @@
 
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 - Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
+- Add type definitions to `EuiSuperSelect` ([##1752](https://github.com/elastic/eui/issues/1752))
 
 **Bug fixes**
 
