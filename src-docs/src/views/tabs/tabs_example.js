@@ -3,7 +3,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTabs, EuiTabbedContent } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiTabs,
+  EuiTab,
+  EuiTabbedContent,
+} from '../../../../src/components';
 
 import Tabs from './tabs';
 const tabsSource = require('!!raw-loader!./tabs');
@@ -45,10 +50,12 @@ export const TabsExample = {
       ),
       props: {
         EuiTabs,
+        EuiTab,
       },
       demo: <Tabs />,
       snippet: `<EuiTabs>
-  <!-- Insert EuiTab components here -->
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
 </EuiTabs>`,
     },
     {
@@ -78,7 +85,8 @@ export const TabsExample = {
       },
       demo: <TabsCondensed />,
       snippet: `<EuiTabs display="condensed">
-  <!-- Insert EuiTab components here -->
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
 </EuiTabs>`,
     },
     {
@@ -108,9 +116,14 @@ export const TabsExample = {
       snippet: `<EuiTabbedContent 
   tabs={[
     {
-      id: 'example',
-      name: 'Example',
-      content: 'Example content.',
+      id: 'example1',
+      name: 'Example 1',
+      content: 'Example 1 content.',
+    },
+    {
+      id: 'example2',
+      name: 'Example 2',
+      content: 'Example 2 content.',
     },
   ]}
 />`,
