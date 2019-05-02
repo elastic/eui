@@ -47,6 +47,9 @@ export const TabsExample = {
         EuiTabs,
       },
       demo: <Tabs />,
+      snippet: `<EuiTabs>
+  <!-- Insert EuiTab components here -->
+</EuiTabs>`,
     },
     {
       title: 'Condensed tabs',
@@ -74,6 +77,9 @@ export const TabsExample = {
         EuiTabs,
       },
       demo: <TabsCondensed />,
+      snippet: `<EuiTabs display="condensed">
+  <!-- Insert EuiTab components here -->
+</EuiTabs>`,
     },
     {
       title: 'Tabbed content',
@@ -99,6 +105,15 @@ export const TabsExample = {
         EuiTabbedContent,
       },
       demo: <TabbedContent />,
+      snippet: `<EuiTabbedContent 
+  tabs={[
+    {
+      id: 'example',
+      name: 'Example',
+      content: 'Example content.',
+    },
+  ]}
+/>`,
     },
     {
       title: 'Controlled tabbed content',
