@@ -96,6 +96,54 @@
     "filepath": "src/components/bottom_bar/bottom_bar.js"
   },
   {
+    "token": "euiCardSelect.selected",
+    "defString": "Selected",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 75,
+        "column": 12
+      },
+      "end": {
+        "line": 78,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
+    "token": "euiCardSelect.unavailable",
+    "defString": "Unavailable",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 80,
+        "column": 12
+      },
+      "end": {
+        "line": 83,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
+    "token": "euiCardSelect.select",
+    "defString": "Select",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 12
+      },
+      "end": {
+        "line": 88,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
     "token": "euiCodeEditor.startInteracting",
     "defString": "Press Enter to start interacting with the code.",
     "highlighting": "string",
