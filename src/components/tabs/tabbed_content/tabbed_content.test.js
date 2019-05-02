@@ -67,14 +67,14 @@ describe('EuiTabbedContent', () => {
     });
 
     describe('size', () => {
-      test('is rendered', () => {
+      test('can be small', () => {
         const component = render(<EuiTabbedContent size="s" tabs={tabs} />);
         expect(component).toMatchSnapshot();
       });
     });
 
     describe('display', () => {
-      test('is rendered', () => {
+      test('can be condensed', () => {
         const component = render(
           <EuiTabbedContent display="condensed" tabs={tabs} />
         );

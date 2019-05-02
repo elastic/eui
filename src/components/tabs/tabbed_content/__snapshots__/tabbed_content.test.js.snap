@@ -199,7 +199,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 </div>
 `;
 
-exports[`EuiTabbedContent props display is rendered 1`] = `
+exports[`EuiTabbedContent props display can be condensed 1`] = `
 <div>
   <div
     class="euiTabs euiTabs--condensed"
@@ -343,7 +343,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 </div>
 `;
 
-exports[`EuiTabbedContent props size is rendered 1`] = `
+exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
     class="euiTabs euiTabs--small"

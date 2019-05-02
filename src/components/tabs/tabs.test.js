@@ -13,14 +13,14 @@ describe('EuiTabs', () => {
 
   describe('props', () => {
     describe('size', () => {
-      test('is rendered', () => {
+      test('can be small', () => {
         const component = render(<EuiTabs size="s" />);
         expect(component).toMatchSnapshot();
       });
     });
 
     describe('display', () => {
-      test('is rendered', () => {
+      test('can be condensed', () => {
         const component = render(<EuiTabs display="condensed" />);
         expect(component).toMatchSnapshot();
       });
