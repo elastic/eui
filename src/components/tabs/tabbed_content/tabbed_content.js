@@ -24,16 +24,16 @@ export class EuiTabbedContent extends Component {
      * control selection state internally
      */
     initialSelectedTab: PropTypes.object,
-    /**
-     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
-     * The name property is also required to display to the user.
-     */
     onTabClick: PropTypes.func,
     /**
      * Use this prop if you want to control selection state within the owner component
      */
     selectedTab: PropTypes.object,
     size: PropTypes.oneOf(SIZES),
+    /**
+     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
+     * The name property is also required to display to the user.
+     */
     tabs: PropTypes.arrayOf(
       PropTypes.shape({
         content: PropTypes.node.isRequired,
