@@ -135,7 +135,6 @@ export const EuiColorPicker = ({
   if (button) {
     buttonOrInput = (
       cloneElement(button, {
-        //change show to something that will prevent close. like check to see if its a click or enter
         onClick: handleButtonClick,
         id: id,
         disabled: disabled
@@ -164,7 +163,10 @@ export const EuiColorPicker = ({
   }
 
   return (
-    <EuiFocusTrap disabled={!isColorSelectorShown} clickOutsideDisables={true}>
+    <EuiFocusTrap
+      disabled={!isColorSelectorShown}
+      returnFocus={false}
+    >
       <div ref={containerRef} onKeyDown={handleOnKeyDown}>
         <EuiPopover
           id="popover"

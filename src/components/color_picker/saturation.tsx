@@ -14,6 +14,9 @@ import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
+import makeId from '../form/form_row/make_id';
+import { EuiScreenReaderOnly } from '../accessibility';
+
 import { getEventPosition } from './utils';
 
 function isMouseEvent(
@@ -69,6 +72,9 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     // Mimic `componentWillUnmount`
     return unbindEventListeners;
   }, []);
+
+  const indicatorId = makeId();
+  const descriptionId = makeId();
 
   const calculateColor = ({
     top,
@@ -161,7 +167,10 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
   const classes = classNames('euiSaturation', className);
   return (
     <div
-      // aria
+      role="application"
+      aria-roledescription="HSV color mode saturation and value selection"
+      aria-activedescendant={indicatorId}
+      aria-describedby={descriptionId}
       onMouseDown={handleMouseDown}
       onTouchStart={handleInteraction}
       onTouchMove={handleInteraction}
@@ -173,10 +182,24 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
         background: `hsl(${color.h}, 100%, 50%)`,
       }}
       {...rest}>
+      <EuiScreenReaderOnly>
+        <p id={descriptionId}>
+          Use the arrow keys to navigate the square color gradient. The
+          coordinates resulting from each key press will be used to calculate
+          HSV color mode 'saturation' and 'value' numbers, in the range of 0 to
+          1. Left and right decrease and increase (respectively) the
+          'saturation' value. Up and down decrease and increase (respectively)
+          the 'value' value.
+        </p>
+      </EuiScreenReaderOnly>
       <div className="euiSaturation__lightness">
         <div className="euiSaturation__saturation" />
       </div>
-      <div className="euiSaturation__indicator" style={{ ...indicator }} />
+      <div
+        id={indicatorId}
+        className="euiSaturation__indicator"
+        style={{ ...indicator }}
+      />
     </div>
   );
 };

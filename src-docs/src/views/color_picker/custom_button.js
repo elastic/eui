@@ -8,11 +8,7 @@ import {
   EuiColorPickerSwatch
 } from '../../../../src/components';
 
-// import { isValidHex } from '../../../../src/services';
-
-function isValidHex(hex) {
-  return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
-}
+import { isValidHex } from '../../../../src/services';
 
 export class CustomButton extends Component {
   constructor(props) {

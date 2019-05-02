@@ -3,10 +3,7 @@ import React, {
 } from 'react';
 
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
-
-function isValidHex(hex) {
-  return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
-}
+import { isValidHex } from '../../../../src/services';
 
 export class ColorPicker extends Component {
   constructor(props) {
@@ -29,19 +26,17 @@ export class ColorPicker extends Component {
     }
 
     return (
-      <React.Fragment>
-        <EuiFormRow
-          label="Pick a color"
+      <EuiFormRow
+        label="Pick a color"
+        isInvalid={hasErrors}
+        error={errors}
+      >
+        <EuiColorPicker
+          onChange={this.handleChange}
+          color={this.state.color}
           isInvalid={hasErrors}
-          error={errors}
-        >
-          <EuiColorPicker
-            onChange={this.handleChange}
-            color={this.state.color}
-            isInvalid={hasErrors}
-          />
-        </EuiFormRow>
-      </React.Fragment>
+        />
+      </EuiFormRow>
     );
   }
 }
