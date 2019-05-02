@@ -11,6 +11,7 @@ import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiI18n } from '../i18n';
 import makeId from '../form/form_row/make_id';
+import { Omit } from '../common';
 
 const colorToClassNameMap = {
   default: null,
@@ -60,7 +61,7 @@ export interface EuiStatProps {
 }
 
 export const EuiStat: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStatProps
+  CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiStatProps
 > = ({
   children,
   className,
