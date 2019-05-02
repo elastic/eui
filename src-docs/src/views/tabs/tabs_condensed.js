@@ -54,11 +54,7 @@ class EuiTabsExample extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <EuiTabs display="condensed">{this.renderTabs()}</EuiTabs>
-      </div>
-    );
+    return <EuiTabs display="condensed">{this.renderTabs()}</EuiTabs>;
   }
 }
 
