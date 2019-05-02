@@ -31,17 +31,15 @@ const iconsSnippet = `<EuiIcon type="alert" />`;
 
 import Tokens from './tokens';
 const tokensSource = require('!!raw-loader!./tokens');
-const tokensSnippet = `<EuiToken type="tokenAnnotation" />
-
-<EuiToken
+const tokensSnippet = [`<EuiToken type="tokenAnnotation" />`,
+  `<EuiToken
   iconType="visMapCoordinate"
   displayOptions={{
     color: 'tokenTint05',
     shape: 'circle',
   }}
-/>
-
-<EuiToken
+/>`,
+  `<EuiToken
   iconType="tokenElement"
   size="l"
   displayOptions={{
@@ -49,7 +47,7 @@ const tokensSnippet = `<EuiToken type="tokenAnnotation" />
     shape: 'rectangle',
     hideBorder: true
   }}
-/>`;
+/>`];
 
 
 import Apps from './apps';
@@ -74,23 +72,18 @@ const iconSizesSnippet = `<EuiIcon type="logoElasticStack" size="xl" />`;
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
-const iconColorsSnippet = `<EuiIcon type="brush" color="primary" />
-
-<EuiIcon type="brush" color="#F98510" />`;
+const iconColorsSnippet = [`<EuiIcon type="brush" color="primary" />`,
+  `<EuiIcon type="brush" color="#F98510" />`];
 
 import Accessibility from './accessibility';
 const accessibilitySource = require('!!raw-loader!./accessibility');
 
 import IconTypes from './icon_types';
 const iconTypesSource = require('!!raw-loader!./icon_types');
-const iconTypesSnippet = `<EuiIcon type="logoElastic" size="xl" />
-
-<EuiIcon type={reactSVGElement} size="xl" />
-
-<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />
-
-<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>
-`;
+const iconTypesSnippet = [`<EuiIcon type="logoElastic" size="xl" />`,
+  `<EuiIcon type={reactSVGElement} size="xl" />`,
+  `<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />`,
+  `<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>`];
 
 export const IconExample = {
   title: 'Icons',
