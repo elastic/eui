@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.3.0`.
+**Bug fixes**
+
+- Fixed a regression where `EuiStat` reported accepting `string` for `title`, `description`, even though `ReactNode` is acceptable ([#1910](https://github.com/elastic/eui/pull/1910))
 
 ## [`10.3.0`](https://github.com/elastic/eui/tree/v10.3.0)
 
