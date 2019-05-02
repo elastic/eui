@@ -1,6 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+
+## [`10.3.1`](https://github.com/elastic/eui/tree/v10.3.1)
+
+**Bug fixes**
+
+- Fixed a regression where `EuiStat` reported accepting `string` for `title`, `description`, even though `ReactNode` is acceptable ([#1910](https://github.com/elastic/eui/pull/1910))
+
+## [`10.3.0`](https://github.com/elastic/eui/tree/v10.3.0)
+
+- Added support for `href` on the last item in `EuiBreadcrumbs` ([#1905](https://github.com/elastic/eui/pull/1905))
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 - Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
 
