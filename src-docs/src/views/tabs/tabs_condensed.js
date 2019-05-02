@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { EuiTabs, EuiTab, EuiSpacer } from '../../../../src/components';
+import { EuiTabs, EuiTab } from '../../../../src/components';
 
 class EuiTabsExample extends Component {
   constructor(props) {
@@ -54,15 +54,7 @@ class EuiTabsExample extends Component {
   }
 
   render() {
-    return (
-      <Fragment>
-        <EuiTabs>{this.renderTabs()}</EuiTabs>
-
-        <EuiSpacer />
-
-        <EuiTabs size="s">{this.renderTabs()}</EuiTabs>
-      </Fragment>
-    );
+    return <EuiTabs display="condensed">{this.renderTabs()}</EuiTabs>;
   }
 }
 
