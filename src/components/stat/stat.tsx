@@ -1,4 +1,9 @@
-import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
+import React, {
+  Fragment,
+  HTMLAttributes,
+  FunctionComponent,
+  ReactNode,
+} from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 
@@ -30,7 +35,7 @@ export interface EuiStatProps {
   /**
    * Set the description (label) text
    */
-  description: string;
+  description: ReactNode;
   /**
    * Will hide the title with an animation until false
    */
@@ -43,7 +48,7 @@ export interface EuiStatProps {
   /**
    * The (value) text
    */
-  title: string;
+  title: ReactNode;
   /**
    * The color of the title text
    */
