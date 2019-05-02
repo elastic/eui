@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { EuiToolTip } from '../../tool_tip';
 
 import {
-  ICON_TYPES,
+  IconPropType,
   EuiIcon,
 } from '../../icon';
 
@@ -78,7 +78,7 @@ EuiBetaBadge.propTypes = {
   /**
    * Supply an icon type if the badge should just be an icon
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 
   /**
    * Content for the tooltip

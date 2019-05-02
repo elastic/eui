@@ -6,7 +6,7 @@ import { getSecureRelForTarget } from '../../../services';
 
 import {
   ICON_SIZES,
-  ICON_TYPES,
+  IconPropType,
   EuiIcon,
 } from '../../icon';
 
@@ -107,7 +107,7 @@ export const EuiButtonIcon = ({
 EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSize: PropTypes.oneOf(ICON_SIZES),
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,

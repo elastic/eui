@@ -4,6 +4,7 @@ import React, {
   ReactElement,
   SVGAttributes,
 } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { CommonProps, Omit, keysOf } from '../common';
@@ -320,7 +321,12 @@ export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string;
+export type IconType = EuiIconType | string | ReactElement;
+
+export const IconPropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.node,
+]);
 
 const colorToClassMap = {
   default: null,
@@ -363,7 +369,7 @@ export interface EuiIconProps {
   /**
    * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
    */
-  type: IconType | ReactElement<SVGElement>;
+  type: IconType;
   /**
    * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
    * Note that coloring only works if your SVG is removed of fill attributes.
@@ -376,11 +382,11 @@ export interface EuiIconProps {
 }
 
 type Props = CommonProps &
-  Omit<SVGAttributes<SVGElement>, 'color'> &
+  Omit<SVGAttributes<SVGElement>, keyof EuiIconProps> &
   EuiIconProps;
 
 interface State {
-  icon: undefined | ReactElement<any> | string;
+  icon: undefined | ReactElement | string;
   isLoading: boolean;
 }
 
@@ -449,6 +455,7 @@ export class EuiIcon extends Component<Props, State> {
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon =
       type &&
+      typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
     const classes = classNames(

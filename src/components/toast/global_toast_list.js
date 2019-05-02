@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Timer } from '../../services/time';
-import { ICON_TYPES } from '../icon';
+import { IconPropType } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
 
@@ -38,7 +38,7 @@ export class EuiGlobalToastList extends Component {
       title: PropTypes.string,
       text: PropTypes.node,
       color: PropTypes.string,
-      iconType: PropTypes.oneOf(ICON_TYPES),
+      iconType: IconPropType,
       toastLifeTimeMs: PropTypes.number,
     }).isRequired),
     dismissToast: PropTypes.func.isRequired,
