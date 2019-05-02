@@ -3,6 +3,7 @@ import React, {
   InputHTMLAttributes,
   FunctionComponent,
 } from 'react';
+import classNames from 'classnames';
 import { CommonProps, Omit } from '../common';
 
 const HUE_RANGE = 360;
@@ -23,28 +24,28 @@ const colorStops = [...Array(numberOfStops).keys()].map(val => {
 });
 
 export const EuiHue: FunctionComponent<EuiHueProps> = ({
-  hue,
+  className,
+  hue = 1,
   onChange,
   ...rest
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(Number(e.target.value));
   };
+  const classes = classNames('euiHue', className);
   return (
-    <React.Fragment>
-      <input
-        min={0}
-        max={360}
-        step={1}
-        type="range"
-        className="euiHue"
-        value={hue}
-        onChange={handleChange}
-        style={{
-          background: `linear-gradient(to right, ${colorStops.join(',')})`,
-        }}
-        {...rest}
-      />
-    </React.Fragment>
+    <input
+      min={0}
+      max={HUE_RANGE}
+      step={1}
+      type="range"
+      className={classes}
+      value={hue}
+      onChange={handleChange}
+      style={{
+        background: `linear-gradient(to right, ${colorStops.join(',')})`,
+      }}
+      {...rest}
+    />
   );
 };

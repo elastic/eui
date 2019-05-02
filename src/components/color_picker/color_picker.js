@@ -1,6 +1,8 @@
 import React, {
-  Component,
   cloneElement,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -8,144 +10,172 @@ import classNames from 'classnames';
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiFieldText } from '../form';
+import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover } from '../popover';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex } from '../../services';
+import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex, isValidHex } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
 
-export class EuiColorPicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showColorSelector: false,
-      colorAsHsv: hexToHsv(props.color)
-    };
-  }
+export const EuiColorPicker = ({
+  button,
+  className,
+  color,
+  compressed,
+  disabled,
+  id,
+  isInvalid,
+  onBlur,
+  onChange,
+  onFocus,
+  swatches,
+  zIndex = 1
+}) => {
+  const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
+  const [colorAsHsv, setColorAsHsv] = useState(color ? hexToHsv(color) : color);
+  const [lastHex, setLastHex] = useState(color);
+  const [inputRef, setInputRef] = useState(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
 
-  closeColorSelector = () => {
-    // To do proper label coloring if used as a child of EuiFormRow
-    if (this.props.onBlur) {
-      this.props.onBlur();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // Mimics `componentDidMount` and `componentDidUpdate`
+    if (lastHex !== color) { // Only react to outside changes
+      const newColorAsHsv = color ? hexToHsv(color) : undefined;
+      setColorAsHsv(newColorAsHsv);
+    }
+  }, [color]);
+
+  const handleOnChange = hex => {
+    setLastHex(hex);
+    onChange(hex);
+  };
+
+  const closeColorSelector = e => {
+    if (onBlur) {
+      onBlur(e);
     }
 
-    this.setState({ showColorSelector: false });
+    setIsColorSelectorShown(false);
   };
 
-  showColorSelector = () => {
-    // To do proper label coloring if used as a child of EuiFormRow
-    if (this.props.onFocus) {
-      this.props.onFocus();
+  const showColorSelector = e => {
+    if (isColorSelectorShown) return;
+    if (onFocus) {
+      onFocus(e);
     }
 
-    this.setState({ showColorSelector: true });
+    setIsColorSelectorShown(true);
   };
 
-  handleColorInput = (e) => {
-    this.props.onChange(e.target.value);
-    this.setState({ colorAsHsv: hexToHsv(e.target.value) });
+  const handleButtonClick = e => {
+    if (e.detail === 0) return; // Enter key used; we'll handle it with handleOnKeyDown
+    if (isColorSelectorShown) {
+      closeColorSelector();
+    } else {
+      showColorSelector();
+    }
   };
 
-  handleColorSelection = (color) => {
-    const newHsv = { ...color, h: this.state.colorAsHsv.h };
-    this.props.onChange(hsvToHex(newHsv));
-    this.setState({ colorAsHsv: newHsv });
-  };
-
-  handleHueSelection= (hue) => {
-    const newHsv = { ...this.state.colorAsHsv, h: hue };
-    this.props.onChange(hsvToHex(newHsv));
-    this.setState({ colorAsHsv: newHsv });
-  };
-
-  handleSwatchSelection(color) {
-    this.props.onChange(color);
-    this.setState({ colorAsHsv: hexToHsv(color) });
-
+  const handleFinalSelection = () => {
     // When the trigger is an input, focus the input so you can adjust
-    if (this.input) {
-      this.input.focus();
+    if (inputRef) {
+      inputRef.focus();
     }
 
-    // When the trigger is a button it makes sense to close the popover
-    if (this.props.button) {
-      this.closeColorSelector();
-    }
-  }
+    closeColorSelector();
+  };
 
-  onKeyDown = event => {
-    if (event.keyCode === keyCodes.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.closeColorSelector();
+  const handleOnKeyDown = e => {
+    if (e.keyCode === keyCodes.ENTER) {
+      if (isColorSelectorShown) {
+        handleFinalSelection();
+      } else {
+        showColorSelector();
+      }
     }
   };
 
-  render() {
-    const {
-      className,
-      color,
-      compressed,
-      disabled,
-      id,
-      isInvalid,
-      swatches,
-      button,
-    } = this.props;
-    const classes = classNames('euiColorPicker', className);
-    const swatchOptions = swatches || VISUALIZATION_COLORS;
+  const handleColorInput = e => {
+    handleOnChange(e.target.value);
+    if (isValidHex(e.target.value)) {
+      setColorAsHsv(hexToHsv(e.target.value));
+    }
+  };
 
-    const swatchButtons = swatchOptions.map((swatch) => (
-      <EuiFlexItem grow={false} key={swatch}>
-        <EuiColorPickerSwatch
-          className="euiColorPicker__swatchSelect"
-          color={swatch}
-          onClick={this.handleSwatchSelection.bind(this, swatch)}
-          aria-label={`Select ${swatch} as the color`}
-        />
-      </EuiFlexItem>
-    ));
+  const handleColorSelection = (color) => {
+    const { h } = colorAsHsv;
+    const hue = h ? h : 1;
+    const newHsv = { ...color, h: hue };
+    handleOnChange(hsvToHex(newHsv));
+    setColorAsHsv(newHsv);
+  };
 
-    const input = (
-      <div style={{ color: color }}>
+  const handleHueSelection = (hue) => {
+    const { s, v } = colorAsHsv;
+    const satVal = s && v ? { s, v } : { s: 1, v: 1 };
+    const newHsv = { ...satVal, h: hue };
+    handleOnChange(hsvToHex(newHsv));
+    setColorAsHsv(newHsv);
+  };
+
+  const handleSwatchSelection = (color) => {
+    handleOnChange(color);
+    setColorAsHsv(hexToHsv(color));
+
+    handleFinalSelection();
+  };
+
+  const classes = classNames('euiColorPicker', className);
+  const swatchOptions = swatches || VISUALIZATION_COLORS;
+
+  let buttonOrInput;
+  if (button) {
+    buttonOrInput = (
+      cloneElement(button, {
+        //change show to something that will prevent close. like check to see if its a click or enter
+        onClick: handleButtonClick,
+        id: id,
+        disabled: disabled
+      }
+      ));
+  } else {
+    const showColor = color && isValidHex(color);
+    buttonOrInput = (
+      <div style={{ color: showColor ? color : undefined }}>
         <EuiFieldText
-          onFocus={this.showColorSelector}
+          onFocus={showColorSelector}
+          onClick={showColorSelector}
           value={color ? color.toUpperCase() : ''}
-          placeholder={!color ? 'Transparent' : null}
+          placeholder={!color ? 'Transparent' : undefined}
           id={id}
-          onChange={this.handleColorSelection}
-          maxLength="7"
-          icon={color ? 'stopFilled' : 'stopSlash'}
-          inputRef={(input) => { this.input = input; }}
+          onChange={handleColorInput}
+          maxLength={7}
+          icon={showColor ? 'stopFilled' : 'stopSlash'}
+          inputRef={setInputRef}
           isInvalid={isInvalid}
           compressed={compressed}
           disabled={disabled}
         />
       </div>
     );
+  }
 
-    let buttonOrInput;
-    if (button) {
-      buttonOrInput = (
-        cloneElement(button, {
-          onClick: this.state.showColorSelector ? this.closeColorSelector : this.showColorSelector,
-          id: id,
-          disabled: disabled
-        }
-        ));
-    } else {
-      buttonOrInput = input;
-    }
-
-    return (
-      <div onKeyDown={this.onKeyDown}>
+  return (
+    <EuiFocusTrap disabled={!isColorSelectorShown} clickOutsideDisables={true}>
+      <div ref={containerRef} onKeyDown={handleOnKeyDown}>
         <EuiPopover
           id="popover"
           button={buttonOrInput}
-          isOpen={this.state.showColorSelector}
-          closePopover={this.closeColorSelector}
+          isOpen={isColorSelectorShown}
+          closePopover={closeColorSelector}
+          zIndex={zIndex}
+          insert={{
+            position: 'after',
+            sibling: containerRef.current
+          }}
         >
           <div className={classes}>
             <EuiScreenReaderOnly>
@@ -156,24 +186,33 @@ export class EuiColorPicker extends Component {
               </p>
             </EuiScreenReaderOnly>
             <EuiSaturation
-              color={this.state.colorAsHsv}
-              onChange={this.handleColorSelection}
+              color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
+              onChange={handleColorSelection}
             />
             <EuiSpacer size="s" />
             <EuiHue
-              hue={this.state.colorAsHsv.h}
-              onChange={this.handleHueSelection}
+              hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+              onChange={handleHueSelection}
             />
             <EuiSpacer size="s" />
             <EuiFlexGroup wrap responsive={false} gutterSize="s">
-              {swatchButtons}
+              {swatchOptions.map((swatch) => (
+                <EuiFlexItem grow={false} key={swatch}>
+                  <EuiColorPickerSwatch
+                    className="euiColorPicker__swatchSelect"
+                    color={swatch}
+                    onClick={() => handleSwatchSelection(swatch)}
+                    aria-label={`Select ${swatch} as the color`}
+                  />
+                </EuiFlexItem>
+              ))}
             </EuiFlexGroup>
           </div>
         </EuiPopover>
       </div>
-    );
-  }
-}
+    </EuiFocusTrap>
+  );
+};
 
 EuiColorPicker.propTypes = {
   className: PropTypes.string,

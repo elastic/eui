@@ -372,6 +372,7 @@ export class EuiPopover extends Component {
       anchorClassName,
       anchorPosition,
       button,
+      insert,
       isOpen,
       ownFocus,
       withTitle,
@@ -445,7 +446,9 @@ export class EuiPopover extends Component {
       );
 
       panel = (
-        <EuiPortal>
+        <EuiPortal
+          insert={insert}
+        >
           <EuiFocusTrap
             clickOutsideDisables={true}
             initialFocus={initialFocus}
