@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.3.0`.
+
+## [`10.3.0`](https://github.com/elastic/eui/tree/v10.3.0)
+
 - Added support for `href` on the last item in `EuiBreadcrumbs` ([#1905](https://github.com/elastic/eui/pull/1905))
 - Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
 - Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
