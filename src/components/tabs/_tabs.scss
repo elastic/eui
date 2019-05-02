@@ -38,20 +38,17 @@
   }
 
   &:focus {
+    background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
 
-    .euiTabs:not(.euiTabs--condensed) & {
-      background-color: $euiFocusBackgroundColor;
-
-      &::before {
-        background-color: $euiColorLightShade;
-        bottom: 0;
-        content: '';
-        height: 1px;
-        left: 0;
-        position: absolute;
-        right: 0;
-      }
+    &::before {
+      background-color: $euiColorLightShade;
+      bottom: 0;
+      content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      right: 0;
     }
   }
 
@@ -91,8 +88,16 @@
   // Condensed Tabs Group Modifier
 
   .euiTabs--condensed & {
-    font-weight: 600;
+    font-weight: $euiFontWeightSemiBold;
     padding: $euiSizeS 0;
+
+    &:focus {
+      background-color: transparent;
+
+      &::before {
+        display: none;
+      }
+    }
 
     & + .euiTab {
       margin-left: $euiSizeL;
