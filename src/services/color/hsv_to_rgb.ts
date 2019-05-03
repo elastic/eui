@@ -2,15 +2,15 @@ import { HSV, RGB } from './color_types';
 
 export function hsvToRgb({ h, s, v }: HSV): RGB {
   h /= 60;
-  const i = Math.floor(h);
-  const f = h - i;
-  const p = v * (1 - s);
-  const q = v * (1 - f * s);
-  const t = v * (1 - (1 - f) * s);
-  const mod = i % 6;
-  const r = [v, q, p, p, t, v][mod];
-  const g = [t, v, v, q, p, p][mod];
-  const b = [p, p, t, v, v, q][mod];
+
+  const fn = (n: number) => {
+    const k = (n + h) % 6;
+    return v - v * s * Math.max(Math.min(k, 4 - k, 1), 0);
+  };
+
+  const r = fn(5);
+  const g = fn(3);
+  const b = fn(1);
 
   return {
     r: Math.round(r * 255),
