@@ -16,4 +16,4 @@ export {
 } from './visualization_colors';
 export { colorPalette } from './color_palette';
 export { palettes } from './eui_palettes';
-export { rgbDef, HSL, HSV, RGB } from './color_types';
+export { rgbDef, HSV, RGB } from './color_types';
