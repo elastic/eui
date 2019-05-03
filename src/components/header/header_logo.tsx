@@ -25,12 +25,7 @@ export const EuiHeaderLogo: FunctionComponent<
 
   return (
     <a href={href} className={classes} {...rest}>
-      <EuiIcon
-        className="euiHeaderLogo__icon"
-        size="l"
-        type={iconType}
-        title={iconTitle}
-      />
+      <EuiIcon className="euiHeaderLogo__icon" size="l" type={iconType} />
 
       {children && <span className="euiHeaderLogo__text">{children}</span>}
     </a>

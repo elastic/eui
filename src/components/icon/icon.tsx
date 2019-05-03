@@ -663,7 +663,6 @@ export interface EuiIconProps {
    */
   color?: IconColor;
   size?: IconSize;
-  title?: string;
 }
 
 type Props = CommonProps &
