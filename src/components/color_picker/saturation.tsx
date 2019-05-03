@@ -14,7 +14,7 @@ import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
-import makeId from '../form/form_row/make_id';
+// import makeId from '../form/form_row/make_id';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { getEventPosition } from './utils';
@@ -73,8 +73,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     return unbindEventListeners;
   }, []);
 
-  const indicatorId = makeId();
-  const descriptionId = makeId();
+  const saturationId = 'saturation';
 
   const calculateColor = ({
     top,
@@ -169,8 +168,8 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     <div
       role="application"
       aria-roledescription="HSV color mode saturation and value selection"
-      aria-activedescendant={indicatorId}
-      aria-describedby={descriptionId}
+      aria-activedescendant={`${saturationId}-indicator`}
+      aria-describedby={`${saturationId}-description`}
       onMouseDown={handleMouseDown}
       onTouchStart={handleInteraction}
       onTouchMove={handleInteraction}
@@ -183,12 +182,12 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       }}
       {...rest}>
       <EuiScreenReaderOnly>
-        <p id={descriptionId}>
+        <p id={`${saturationId}-description`}>
           Use the arrow keys to navigate the square color gradient. The
           coordinates resulting from each key press will be used to calculate
           HSV color mode 'saturation' and 'value' numbers, in the range of 0 to
           1. Left and right decrease and increase (respectively) the
-          'saturation' value. Down and up decrease and increase (respectively)
+          'saturation' value. Up and down decrease and increase (respectively)
           the 'value' value.
         </p>
       </EuiScreenReaderOnly>
@@ -196,7 +195,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
         <div className="euiSaturation__saturation" />
       </div>
       <div
-        id={indicatorId}
+        id={`${saturationId}-indicator`}
         className="euiSaturation__indicator"
         style={{ ...indicator }}
       />
