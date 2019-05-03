@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiCodeBlock,
   EuiLink,
   EuiDatePicker,
   EuiDatePickerRange,
@@ -280,8 +281,28 @@ export const DatePickerExample = {
         <p>
           <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are passed as strings
           in either datemath format (e.g.: now, now-15m, now-15m/m)
-          or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>
+          or as absolute date in the format <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>.
+          Use <EuiLink href="https://github.com/elastic/datemath-js">datemath</EuiLink>{' '}
+          to convert start and end strings into moment objects.
         </p>
+        <EuiCodeBlock paddingSize="none" isCopyable>
+          {`
+import dateMath from '@elastic/datemath';
+
+const startMoment = dateMath.parse(start);
+// dateMath.parse is inconsistent with unparsable strings.
+// Sometimes undefined is returned, other times an invalid moment is returned
+if (!startMoment || !startMoment.isValid()) {
+  throw new Error('Unable to parse start string');
+}
+
+// Pass roundUp when parsing end string
+const endMoment = dateMath.parse(end, { roundUp: true });
+if (!endMoment || !endMoment.isValid()) {
+  throw new Error('Unable to parse end string');
+}
+          `}
+        </EuiCodeBlock>
         <p>
           <EuiCode>onTimeChange</EuiCode> will be immediately invoked when{' '}
           <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from interactions with{' '}
