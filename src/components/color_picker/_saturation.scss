@@ -1,5 +1,5 @@
-$lightnessRange0: rgba(255, 255, 255, 1);
-$lightnessRange1: rgba(255, 255, 255, 0);
+$valueRange0: rgba(255, 255, 255, 1);
+$valueRange1: rgba(255, 255, 255, 0);
 $saturationRange0: rgba(0, 0, 0, 1);
 $saturationRange1: rgba(0, 0, 0, 0);
 $indicatorSize: 10px;
@@ -8,20 +8,20 @@ $indicatorSize: 10px;
   position: relative;
   width: 100%;
   padding-bottom: 100%;
+  border-radius: $euiBorderRadius / 2;
 
   .euiSaturation__lightness,
   .euiSaturation__saturation {
-    height: 100%;
-    width: 100%;
     position: absolute;
-    top: 0;
+    top: -1px; // hides a slight color inconsistency
     bottom: 0;
     left: 0;
     right: 0;
+    border-radius: $euiBorderRadius / 2;
   }
 
   .euiSaturation__lightness {
-    background: linear-gradient(to right, $lightnessRange0, $lightnessRange1);
+    background: linear-gradient(to right, $valueRange0, $valueRange1);
   }
 
   .euiSaturation__saturation {

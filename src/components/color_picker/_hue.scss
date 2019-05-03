@@ -9,11 +9,10 @@
   }
 
   position: relative;
-  height: 15px;
+  height: $euiSizeM;
   width: 100%;
   appearance: none;
-
-  // Resets
+  border-radius: $euiBorderRadius / 2;
 
   // Disable linter for these very unique vendor controls
   // sass-lint:disable-block no-vendor-prefixes
@@ -32,5 +31,11 @@
     border-color: transparent;
     border-width: ($euiRangeThumbHeight / 2) 0;
     color: transparent;
+  }
+
+  &:focus {
+    @include euiRangeThumbPerBrowser {
+      @include euiCustomControlFocused;
+    }
   }
 }
