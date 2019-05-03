@@ -1,0 +1,21 @@
+@import '../panel/variables';
+
+$euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
+$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
+$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
+
+$euiCardSelectButtonBorders: (
+  text: $euiColorSuccess, // Default for selected
+  primary: $euiColorPrimary,
+  success: $euiColorSuccess,
+  danger: $euiColorDanger,
+  ghost: $euiColorDarkShade,
+);
+
+$euiCardSelectButtonBackgrounds: (
+  text: $euiColorLightestShade, // Default for unselected
+  primary: tintOrShade($euiColorPrimary, 90%, 70%),
+  success: tintOrShade($euiColorSuccess, 90%, 70%),
+  danger: tintOrShade($euiColorDanger, 90%, 70%),
+  ghost: $euiColorDarkShade,
+);

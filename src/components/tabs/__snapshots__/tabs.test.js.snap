@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiTabs props display can be condensed 1`] = `
+<div
+  class="euiTabs euiTabs--condensed"
+  role="tablist"
+/>
+`;
+
 exports[`EuiTabs props expand is rendered 1`] = `
 <div
   class="euiTabs euiTabs--expand"
@@ -7,7 +14,7 @@ exports[`EuiTabs props expand is rendered 1`] = `
 />
 `;
 
-exports[`EuiTabs props size is rendered 1`] = `
+exports[`EuiTabs props size can be small 1`] = `
 <div
   class="euiTabs euiTabs--small"
   role="tablist"

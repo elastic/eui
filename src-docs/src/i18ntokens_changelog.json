@@ -1,5 +1,25 @@
 [
   {
+    "version": "10.3.0",
+    "changes": [
+      {
+        "token": "euiCardSelect.selected",
+        "changeType": "added",
+        "value": "Selected"
+      },
+      {
+        "token": "euiCardSelect.unavailable",
+        "changeType": "added",
+        "value": "Unavailable"
+      },
+      {
+        "token": "euiCardSelect.select",
+        "changeType": "added",
+        "value": "Select"
+      }
+    ]
+  },
+  {
     "version": "10.2.1",
     "changes": [
       {
