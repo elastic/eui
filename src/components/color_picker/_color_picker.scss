@@ -4,3 +4,17 @@
   // 5 columns of swatches + margins + border
   width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }
+
+.euiColorPicker__popoverPanel[class*='bottom'] { /* 3 */
+  border-top-color: transparentize($euiBorderColor, .2);
+  border-top-right-radius: 0; /* 2 */
+  border-top-left-radius: 0; /* 2 */
+}
+
+.euiColorPicker__popoverPanel[class*='top'] { /* 3 */
+  @include euiBottomShadowFlat; /* 2 */
+
+  border-bottom-color: transparentize($euiBorderColor, .2);
+  border-bottom-right-radius: 0; /* 2 */
+  border-bottom-left-radius: 0; /* 2 */
+}

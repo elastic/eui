@@ -174,6 +174,11 @@ export const EuiColorPicker = ({
           isOpen={isColorSelectorShown}
           closePopover={closeColorSelector}
           zIndex={zIndex}
+          anchorClassName="euiColorPicker__popoverAnchor"
+          panelClassName="euiColorPicker__popoverPanel"
+          hasArrow={button ? true : false}
+          anchorPosition="downLeft"
+          panelPaddingSize="s"
           insert={{
             position: 'after',
             sibling: containerRef.current

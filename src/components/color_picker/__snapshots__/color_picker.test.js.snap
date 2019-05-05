@@ -17,11 +17,11 @@ Array [
   >
     <div>
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownLeft"
         id="popover"
       >
         <div
-          class="euiPopover__anchor"
+          class="euiPopover__anchor euiColorPicker__popoverAnchor"
         >
           <div
             style="color:#ffeedd"
