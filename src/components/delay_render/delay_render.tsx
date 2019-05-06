@@ -29,7 +29,7 @@ export class EuiDelayRender extends Component<
   }
 
   shouldUpdate() {
-    this.setState({ toggle: !this.state.toggle });
+    this.setState(({ toggle }) => ({toggle: !toggle}));
   }
 
   startDelaying = () => {
