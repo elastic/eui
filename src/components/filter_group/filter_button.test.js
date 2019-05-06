@@ -90,9 +90,9 @@ describe('EuiFilterButton', () => {
     });
 
     describe('grow', () => {
-      it('is rendered', () => {
+      it('can be turned off', () => {
         const component = render(
-          <EuiFilterButton grow />
+          <EuiFilterButton grow={false} />
         );
 
         expect(component)
@@ -100,10 +100,10 @@ describe('EuiFilterButton', () => {
       });
     });
 
-    describe('noDivider', () => {
+    describe('withNext', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFilterButton noDivider />
+          <EuiFilterButton withNext />
         );
 
         expect(component)

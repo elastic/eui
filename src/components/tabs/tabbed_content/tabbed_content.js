@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, SIZES } from '../tabs';
+import { EuiTabs, DISPLAYS, SIZES } from '../tabs';
 import { EuiTab } from '../tab';
 
 const makeId = htmlIdGenerator();
@@ -11,33 +11,36 @@ const makeId = htmlIdGenerator();
 export class EuiTabbedContent extends Component {
   static propTypes = {
     className: PropTypes.string,
-
     /**
-     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
-     * The name property is also required to display to the user.
+     * Choose `default` or alternative `condensed` display styles
      */
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      content: PropTypes.node.isRequired,
-    })).isRequired,
-    onTabClick: PropTypes.func,
-
+    display: PropTypes.oneOf(DISPLAYS),
     /**
-     * Use this prop if you want to control selection state within the owner component
+     * Evenly stretches each tab to fill the horizontal space
      */
-    selectedTab: PropTypes.object,
-
+    expand: PropTypes.bool,
     /**
      * Use this prop to set the initially selected tab while letting the tabbed content component
      * control selection state internally
      */
     initialSelectedTab: PropTypes.object,
+    onTabClick: PropTypes.func,
+    /**
+     * Use this prop if you want to control selection state within the owner component
+     */
+    selectedTab: PropTypes.object,
     size: PropTypes.oneOf(SIZES),
     /**
-     * Evenly stretches each tab to fill the horizontal space
+     * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
+     * The name property is also required to display to the user.
      */
-    expand: PropTypes.bool,
+    tabs: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.node.isRequired,
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
   };
 
   constructor(props) {
@@ -50,12 +53,13 @@ export class EuiTabbedContent extends Component {
     // Only track selection state if it's not controlled externally.
     if (!selectedTab) {
       this.state = {
-        selectedTabId: (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
+        selectedTabId:
+          (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
       };
     }
   }
 
-  onTabClick = (selectedTab) => {
+  onTabClick = selectedTab => {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
 
     if (onTabClick) {
@@ -71,29 +75,27 @@ export class EuiTabbedContent extends Component {
   render() {
     const {
       className,
-      tabs,
-      onTabClick, // eslint-disable-line no-unused-vars
+      display,
+      expand,
       initialSelectedTab, // eslint-disable-line no-unused-vars
+      onTabClick, // eslint-disable-line no-unused-vars
       selectedTab: externalSelectedTab,
       size,
-      expand,
+      tabs,
       ...rest
     } = this.props;
 
     // Allow the consumer to control tab selection.
-    const selectedTab = externalSelectedTab || tabs.find(
-      tab => tab.id === this.state.selectedTabId
-    );
+    const selectedTab =
+      externalSelectedTab ||
+      tabs.find(tab => tab.id === this.state.selectedTabId);
 
-    const {
-      content: selectedTabContent,
-      id: selectedTabId,
-    } = selectedTab;
+    const { content: selectedTabContent, id: selectedTabId } = selectedTab;
 
     return (
       <div className={className} {...rest}>
-        <EuiTabs size={size} expand={expand}>
-          {tabs.map((tab) => {
+        <EuiTabs expand={expand} display={display} size={size}>
+          {tabs.map(tab => {
             const {
               id,
               name,

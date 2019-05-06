@@ -23,6 +23,7 @@ import boxesVertical from './assets/boxes_vertical.svg';
 import branch from './assets/branch.svg';
 import broom from './assets/broom.svg';
 import brush from './assets/brush.svg';
+import bug from './assets/bug.svg';
 import bullseye from './assets/bullseye.svg';
 import calendar from './assets/calendar.svg';
 import canvasApp from './assets/app_canvas.svg';
@@ -82,6 +83,7 @@ import faceNeutral from './assets/faceNeutral.svg';
 import faceSad from './assets/face_sad.svg';
 import filebeatApp from './assets/app_filebeat.svg';
 import filter from './assets/filter.svg';
+import flag from './assets/flag.svg';
 import folderClosed from './assets/folder_closed.svg';
 import folderOpen from './assets/folder_open.svg';
 import fullScreen from './assets/full_screen.svg';
@@ -94,6 +96,7 @@ import grabHorizontal from './assets/grab_horizontal.svg';
 import graphApp from './assets/app_graph.svg';
 import grid from './assets/grid.svg';
 import grokApp from './assets/app_grok.svg';
+import heart from './assets/heart.svg';
 import heartbeatApp from './assets/app_heartbeat.svg';
 import heatmap from './assets/heatmap.svg';
 import help from './assets/help.svg';
@@ -327,6 +330,7 @@ const typeToIconMap = {
   branch,
   broom,
   brush,
+  bug,
   bullseye,
   calendar,
   canvasApp,
@@ -386,6 +390,7 @@ const typeToIconMap = {
   faceSad,
   filebeatApp,
   filter,
+  flag,
   folderClosed,
   folderOpen,
   fullScreen,
@@ -398,6 +403,7 @@ const typeToIconMap = {
   graphApp,
   grid,
   grokApp,
+  heart,
   heartbeatApp,
   heatmap,
   help,

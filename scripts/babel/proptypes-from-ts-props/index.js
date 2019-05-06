@@ -22,7 +22,7 @@ function forceTSXParsing(opts) {
   return {
     ...opts,
     plugins: opts.plugins.map(plugin => {
-      if (plugin.key.indexOf('@babel/preset-typescript') !== -1) {
+      if (plugin.key.indexOf(`@babel${path.sep}preset-typescript`) !== -1) {
         plugin.options.isTSX = true;
         plugin.options.allExtensions = true;
       }
@@ -769,7 +769,7 @@ const typeDefinitionExtractors = {
         const isDirectory = fs.statSync(resolvedPath).isDirectory();
         if (isDirectory) {
           // imported path is a directory, try resolving to the /index.ts
-          resolvedPath = `${resolvedPath}/index.ts`;
+          resolvedPath = `${resolvedPath}${path.sep}index.ts`;
           if (!fs.existsSync(resolvedPath)) {
             // no index file to resolve to, return with no found type definitions
             return [];
