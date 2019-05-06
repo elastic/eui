@@ -15,6 +15,7 @@ import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 import { getEventPosition } from './utils';
 
@@ -181,12 +182,15 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       <div aria-activedescendant={`${id}-saturationIndicator`}>
         <EuiScreenReaderOnly>
           <p id={`${id}-saturationDescription`}>
-            Use the arrow keys to navigate the square color gradient. The
-            coordinates resulting from each key press will be used to calculate
-            HSV color mode 'saturation' and 'value' numbers, in the range of 0
-            to 1. Left and right decrease and increase (respectively) the
-            'saturation' value. Up and down decrease and increase (respectively)
-            the 'value' value.
+            <EuiI18n
+              token="euiColorPicker.screenReaderAnnouncement"
+              default={`Use the arrow keys to navigate the square color gradient. The
+              coordinates resulting from each key press will be used to calculate
+              HSV color mode 'saturation' and 'value' numbers, in the range of 0
+              to 1. Left and right decrease and increase (respectively) the
+              'saturation' value. Up and down decrease and increase (respectively)
+              the 'value' value.`}
+            />
           </p>
         </EuiScreenReaderOnly>
         <div className="euiSaturation__lightness">

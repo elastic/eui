@@ -7,12 +7,13 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiFieldText } from '../form';
-import { EuiFocusTrap } from '../focus_trap';
-import { EuiPopover } from '../popover';
+import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiFieldText } from '../form';
+import { EuiI18n } from '../i18n';
+import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
 import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex, isValidHex } from '../../services';
 
@@ -182,9 +183,12 @@ export const EuiColorPicker = ({
           <div className={classes}>
             <EuiScreenReaderOnly>
               <p aria-live="polite">
-                A popup with a range of selectable colors opened.
-                Tab forward to cycle through colors choices or press
-                escape to close this popup.
+                <EuiI18n
+                  token="euiColorPicker.screenReaderAnnouncement"
+                  default="A popup with a range of selectable colors opened.
+                  Tab forward to cycle through colors choices or press
+                  escape to close this popup."
+                />
               </p>
             </EuiScreenReaderOnly>
             <EuiSaturation

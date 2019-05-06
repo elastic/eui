@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { CommonProps, Omit } from '../common';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 const HUE_RANGE = 360;
 
@@ -40,7 +41,10 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
     <React.Fragment>
       <EuiScreenReaderOnly>
         <label htmlFor={`${id}-hue`}>
-          Select the HSV color mode 'hue' value
+          <EuiI18n
+            token="euiHue.label"
+            default="Select the HSV color mode 'hue' value"
+          />
         </label>
       </EuiScreenReaderOnly>
       <input
