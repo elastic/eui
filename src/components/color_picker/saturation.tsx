@@ -14,7 +14,6 @@ import { CommonProps } from '../common';
 import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
-// import makeId from '../form/form_row/make_id';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 import { getEventPosition } from './utils';
@@ -41,6 +40,7 @@ export type EuiSaturationProps = HTMLAttributes<HTMLDivElement> &
 export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
   className,
   color = { h: 1, s: 0, v: 0 },
+  id,
   onChange,
   tabIndex = 0,
   ...rest
@@ -72,8 +72,6 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     // Mimic `componentWillUnmount`
     return unbindEventListeners;
   }, []);
-
-  const saturationId = 'saturation';
 
   const calculateColor = ({
     top,
@@ -168,8 +166,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
     <div
       role="application"
       aria-roledescription="HSV color mode saturation and value selection"
-      aria-activedescendant={`${saturationId}-indicator`}
-      aria-describedby={`${saturationId}-description`}
+      aria-describedby={`${id}-saturationDescription`}
       onMouseDown={handleMouseDown}
       onTouchStart={handleInteraction}
       onTouchMove={handleInteraction}
@@ -181,24 +178,26 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
         background: `hsl(${color.h}, 100%, 50%)`,
       }}
       {...rest}>
-      <EuiScreenReaderOnly>
-        <p id={`${saturationId}-description`}>
-          Use the arrow keys to navigate the square color gradient. The
-          coordinates resulting from each key press will be used to calculate
-          HSV color mode 'saturation' and 'value' numbers, in the range of 0 to
-          1. Left and right decrease and increase (respectively) the
-          'saturation' value. Up and down decrease and increase (respectively)
-          the 'value' value.
-        </p>
-      </EuiScreenReaderOnly>
-      <div className="euiSaturation__lightness">
-        <div className="euiSaturation__saturation" />
+      <div aria-activedescendant={`${id}-saturationIndicator`}>
+        <EuiScreenReaderOnly>
+          <p id={`${id}-saturationDescription`}>
+            Use the arrow keys to navigate the square color gradient. The
+            coordinates resulting from each key press will be used to calculate
+            HSV color mode 'saturation' and 'value' numbers, in the range of 0
+            to 1. Left and right decrease and increase (respectively) the
+            'saturation' value. Up and down decrease and increase (respectively)
+            the 'value' value.
+          </p>
+        </EuiScreenReaderOnly>
+        <div className="euiSaturation__lightness">
+          <div className="euiSaturation__saturation" />
+        </div>
+        <div
+          id={`${id}-saturationIndicator`}
+          className="euiSaturation__indicator"
+          style={{ ...indicator }}
+        />
       </div>
-      <div
-        id={`${saturationId}-indicator`}
-        className="euiSaturation__indicator"
-        style={{ ...indicator }}
-      />
     </div>
   );
 };

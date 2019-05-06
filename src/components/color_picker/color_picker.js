@@ -188,11 +188,13 @@ export const EuiColorPicker = ({
               </p>
             </EuiScreenReaderOnly>
             <EuiSaturation
+              id={id}
               color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
               onChange={handleColorSelection}
             />
             <EuiSpacer size="s" />
             <EuiHue
+              id={id}
               hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
               onChange={handleHueSelection}
             />
