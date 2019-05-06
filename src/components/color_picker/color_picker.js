@@ -223,7 +223,16 @@ export const EuiColorPicker = ({
 };
 
 EuiColorPicker.propTypes = {
+  button: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.string,
+  color: PropTypes.string.isRequired,
+  compressed: PropTypes.bool,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  isInvalid: PropTypes.bool,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  swatches: PropTypes.arrayOf(PropTypes.string),
+  zIndex: PropTypes.number
 };

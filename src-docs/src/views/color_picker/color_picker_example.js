@@ -36,7 +36,7 @@ export const ColorPickerExample = {
           Spatial selection involves HSV manipulaton, which is converted to hex.
         </p>
         <p>
-          Swatches allow consumers to predefine preferrerd or suggested choices. The swatches must also be entered in hex format.
+          Swatches allow consumers to predefine preferred or suggested choices. The swatches must also be entered in hex format.
         </p>
       </EuiText>
     </React.Fragment>
