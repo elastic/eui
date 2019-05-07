@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { CommonProps, Omit } from '../common';
 
 import { EuiScreenReaderOnly } from '../accessibility';
-import makeId from '../form/form_row/make_id';
+import { EuiI18n } from '../i18n';
 
 const HUE_RANGE = 360;
 
@@ -29,10 +29,10 @@ const colorStops = [...Array(numberOfStops).keys()].map(val => {
 export const EuiHue: FunctionComponent<EuiHueProps> = ({
   className,
   hue = 1,
+  id,
   onChange,
   ...rest
 }) => {
-  const hueId = makeId();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(Number(e.target.value));
   };
@@ -40,10 +40,15 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
   return (
     <React.Fragment>
       <EuiScreenReaderOnly>
-        <label htmlFor={hueId}>Select the HSV color mode 'hue' value</label>
+        <label htmlFor={`${id}-hue`}>
+          <EuiI18n
+            token="euiHue.label"
+            default="Select the HSV color mode 'hue' value"
+          />
+        </label>
       </EuiScreenReaderOnly>
       <input
-        id={hueId}
+        id={`${id}-hue`}
         min={0}
         max={HUE_RANGE}
         step={1}

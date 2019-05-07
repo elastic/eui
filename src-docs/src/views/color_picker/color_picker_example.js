@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiText
 } from '../../../../src/components';
 
 import { ColorPicker } from './color_picker';
@@ -24,6 +25,22 @@ const customButtonHtml = renderToHtml(CustomButton);
 
 export const ColorPickerExample = {
   title: 'Color Picker',
+  intro: (
+    <React.Fragment>
+      <EuiText>
+        <p>
+          Color input component allowing for multiple methods of entry and selection.
+        </p>
+        <p>
+          Direct text entry will only match hexadecimal (hex) colors, and output values only return hex values.
+          Spatial selection involves HSV manipulaton, which is converted to hex.
+        </p>
+        <p>
+          Swatches allow consumers to predefine preferred or suggested choices. The swatches must also be entered in hex format.
+        </p>
+      </EuiText>
+    </React.Fragment>
+  ),
   sections: [{
     source: [{
       type: GuideSectionTypes.JS,
