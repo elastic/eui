@@ -82,7 +82,7 @@ import IconTypes from './icon_types';
 const iconTypesSource = require('!!raw-loader!./icon_types');
 const iconTypesSnippet = [`<EuiIcon type="logoElastic" size="xl" />`,
   `<EuiIcon type={reactSVGElement} size="xl" />`,
-  `<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg" size="xl" />`,
+  `<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />`,
   `<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>`];
 
 export const IconExample = {
@@ -278,7 +278,8 @@ export const IconExample = {
     text: (
       <p>
         The <EuiCode>type</EuiCode> prop can accept a valid enum, string or React SVG Element. When using a custom SVG, please make sure
-        it sits on a square canvas and preferably utilizes one of EUI&apos;s sizes (16x16, 32x32...etc).
+        it sits on a square canvas and preferably utilizes one of EUI&apos;s sizes (16x16, 32x32...etc). For IE11 compatibility, the SVG
+        file <em>must</em> contain a <EuiCode>viewBox</EuiCode>.
       </p>
     ),
     source: [{
