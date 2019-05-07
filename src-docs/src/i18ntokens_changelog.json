@@ -1,5 +1,80 @@
 [
   {
+    "version": "10.3.0",
+    "changes": [
+      {
+        "token": "euiCardSelect.selected",
+        "changeType": "added",
+        "value": "Selected"
+      },
+      {
+        "token": "euiCardSelect.unavailable",
+        "changeType": "added",
+        "value": "Unavailable"
+      },
+      {
+        "token": "euiCardSelect.select",
+        "changeType": "added",
+        "value": "Select"
+      }
+    ]
+  },
+  {
+    "version": "10.2.1",
+    "changes": [
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "added",
+        "value": "({\n  count,\n  hasActiveFilters\n}) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`;"
+      }
+    ]
+  },
+  {
+    "version": "10.2.0",
+    "changes": [
+      {
+        "token": "euiStat.loadingText",
+        "changeType": "added",
+        "value": "Statistic is loading"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOption",
+        "changeType": "added",
+        "value": "{rowsPerPage} rows"
+      }
+    ]
+  },
+  {
+    "version": "9.8.0",
+    "changes": [
+      {
+        "token": "euiSelectable.loadingOptions",
+        "changeType": "added",
+        "value": "Loading options"
+      },
+      {
+        "token": "euiSelectable.noMatchingOptions",
+        "changeType": "added",
+        "value": "{searchValue} doesn't match any options"
+      },
+      {
+        "token": "euiSelectable.noAvailableOptions",
+        "changeType": "added",
+        "value": "No options available"
+      }
+    ]
+  },
+  {
+    "version": "9.4.1",
+    "changes": [
+      {
+        "token": "euiBottomBar.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "There is a new menu opening with page level controls at the end of the document."
+      }
+    ]
+  },
+  {
     "version": "9.0.0",
     "changes": [
       {

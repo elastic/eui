@@ -124,6 +124,13 @@ export class SearchBar extends Component {
         value: 'dewey'
       },
       {
+        type: 'field_value_toggle',
+        name: 'Popular',
+        field: 'followers',
+        value: 5,
+        operator: 'gt'
+      },
+      {
         type: 'field_value_selection',
         field: 'tag',
         name: 'Tag',
@@ -160,7 +167,7 @@ export class SearchBar extends Component {
         tag: {
           type: 'string',
           validate: (value) => {
-            if (!tags.some(tag => tag.name === value)) {
+            if (value !== '' && !tags.some(tag => tag.name === value)) {
               throw new Error(`unknown tag (possible values: ${tags.map(tag => tag.name).join(',')})`);
             }
           }
@@ -256,8 +263,19 @@ export class SearchBar extends Component {
       query,
     } = this.state;
 
-    const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
-    const esQueryString = EuiSearchBar.Query.toESQueryString(query);
+    let esQueryDsl;
+    let esQueryString;
+
+    try {
+      esQueryDsl = EuiSearchBar.Query.toESQuery(query);
+    } catch (e) {
+      esQueryDsl = e.toString();
+    }
+    try {
+      esQueryString = EuiSearchBar.Query.toESQueryString(query);
+    } catch (e) {
+      esQueryString = e.toString();
+    }
 
     const content = this.renderError() || (
       <EuiFlexGroup>

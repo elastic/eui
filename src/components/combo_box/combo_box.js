@@ -211,13 +211,18 @@ export class EuiComboBox extends Component {
 
     // Delete last pill.
     this.onRemoveOption(this.props.selectedOptions[this.props.selectedOptions.length - 1]);
+
+    if (this.props.singleSelection && !this.state.isListOpen) {
+      this.openList();
+    }
   };
 
-  addCustomOption = () => {
+  addCustomOption = (isContainerBlur) => {
     const {
       options,
       selectedOptions,
       onCreateOption,
+      singleSelection
     } = this.props;
 
     const {
@@ -226,7 +231,7 @@ export class EuiComboBox extends Component {
     } = this.state;
 
     if (this.doesSearchMatchOnlyOption()) {
-      this.onAddOption(matchingOptions[0]);
+      this.onAddOption(matchingOptions[0], isContainerBlur);
       return;
     }
 
@@ -253,6 +258,11 @@ export class EuiComboBox extends Component {
     }
 
     this.clearSearchValue();
+
+    if (this.isSingleSelectionCustomOption() || (singleSelection && matchingOptions.length < 1)) {
+      // Adding a custom option to a single select that does not appear in the list of options
+      this.closeList();
+    }
   };
 
   doesSearchMatchOnlyOption = () => {
@@ -272,35 +282,46 @@ export class EuiComboBox extends Component {
     return flattenOptionGroups(options).length === selectedOptions.length;
   };
 
+  isSingleSelectionCustomOption = () => {
+    const { onCreateOption, options, selectedOptions, singleSelection } = this.props;
+    // The selected option of a single select is custom and does not appear in the list of options
+    return singleSelection
+    && onCreateOption
+    && selectedOptions.length > 0
+    && !options.includes(selectedOptions[0]);
+  }
+
   onComboBoxFocus = () => {
     if (this.props.onFocus) {
       this.props.onFocus();
     }
-    this.openList();
+    if (!this.isSingleSelectionCustomOption()) {
+      this.openList();
+    }
     this.setState({ hasFocus: true });
   }
 
   onContainerBlur = (e) => {
     // close the options list, unless the use clicked on an option
-    const focusedInOptionsList = this.optionsList && this.optionsList.contains(e.relatedTarget);
-    const focusedInInput = this.comboBox && this.comboBox.contains(e.relatedTarget);
+
+    // FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    const focusedInOptionsList = relatedTarget && this.optionsList && this.optionsList.contains(relatedTarget);
+    const focusedInInput = relatedTarget && this.comboBox && this.comboBox.contains(relatedTarget);
     if (!focusedInOptionsList && !focusedInInput) {
       this.closeList();
 
       if (this.props.onBlur) {
         this.props.onBlur();
       }
+      this.setState({ hasFocus: false });
 
       // If the user tabs away or changes focus to another element, take whatever input they've
       // typed and convert it into a pill, to prevent the combo box from looking like a text input.
       if (!this.hasActiveOption()) {
-        this.addCustomOption();
+        this.addCustomOption(true);
       }
     }
-  }
-
-  onComboBoxBlur = () => {
-    this.setState({ hasFocus: false });
   }
 
   onKeyDown = (e) => {
@@ -367,7 +388,7 @@ export class EuiComboBox extends Component {
     this.onAddOption(option);
   }
 
-  onAddOption = (addedOption) => {
+  onAddOption = (addedOption, isContainerBlur) => {
     if (addedOption.disabled) {
       return;
     }
@@ -384,7 +405,9 @@ export class EuiComboBox extends Component {
     }
 
     this.clearActiveOption();
-    this.searchInput.focus();
+    if (!isContainerBlur) {
+      this.searchInput.focus();
+    }
   };
 
   onRemoveOption = (removedOption) => {
@@ -399,6 +422,9 @@ export class EuiComboBox extends Component {
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
     this.searchInput.focus();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   }
 
   onComboBoxClick = () => {
@@ -417,6 +443,9 @@ export class EuiComboBox extends Component {
 
   onOpenListClick = () => {
     this.searchInput.focus();
+    if (!this.state.isListOpen) {
+      this.openList();
+    }
   };
 
   onCloseListClick = () => {
@@ -425,7 +454,8 @@ export class EuiComboBox extends Component {
 
   onSearchChange = (searchValue) => {
     if (this.props.onSearchChange) {
-      this.props.onSearchChange(searchValue);
+      const hasMatchingOptions = this.state.matchingOptions.length > 0;
+      this.props.onSearchChange(searchValue, hasMatchingOptions);
     }
 
     this.setState(
@@ -573,6 +603,7 @@ export class EuiComboBox extends Component {
       onSearchChange, // eslint-disable-line no-unused-vars
       async, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
+      inputRef, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
       isClearable,
@@ -583,7 +614,10 @@ export class EuiComboBox extends Component {
     } = this.props;
     const { hasFocus, searchValue, isListOpen, listPosition, width, activeOptionIndex } = this.state;
 
-    const markAsInvalid = isInvalid || (hasFocus === false && searchValue);
+    // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
+    // When custom options are disabled and the user leaves the combo box after entering text that does not match any
+    // options, this tells the user that they've entered invalid input.
+    const markAsInvalid = isInvalid || ((hasFocus === false || isListOpen === false) && searchValue);
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox-isOpen': isListOpen,
@@ -646,7 +680,6 @@ export class EuiComboBox extends Component {
           placeholder={placeholder}
           selectedOptions={selectedOptions}
           onRemoveOption={this.onRemoveOption}
-          onBlur={this.onComboBoxBlur}
           onClick={this.onComboBoxClick}
           onChange={this.onSearchChange}
           onFocus={this.onComboBoxFocus}

@@ -7,3 +7,9 @@ exports[`EuiFilterGroup is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiFilterGroup props fullWidth is rendered 1`] = `
+<div
+  class="euiFilterGroup euiFilterGroup--fullWidth"
+/>
+`;

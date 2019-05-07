@@ -1,23 +1,85 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.4.0`
+
+## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
+
+- Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+
+## [`10.3.1`](https://github.com/elastic/eui/tree/v10.3.1)
+
+**Bug fixes**
+
+- Fixed a regression where `EuiStat` reported accepting `string` for `title`, `description`, even though `ReactNode` is acceptable ([#1910](https://github.com/elastic/eui/pull/1910))
+
+## [`10.3.0`](https://github.com/elastic/eui/tree/v10.3.0)
+
+- Added support for `href` on the last item in `EuiBreadcrumbs` ([#1905](https://github.com/elastic/eui/pull/1905))
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
+
+**Bug fixes**
+
+- Fixed prompt text rendering in `EuiFilePicker` when a React element is passed ([#1903](https://github.com/elastic/eui/pull/1903))
+- Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
+- Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
+
+## [`10.2.1`](https://github.com/elastic/eui/tree/v10.2.1)
+
+**Bug fixes**
+
+- Fixed responsiveness of `EuiFilterGroup` ([#1849](https://github.com/elastic/eui/pull/1849))
+
+**Deprecations**
+
+- Replaced `EuiFilterButton`'s `noDivider` prop with `withNext` ([#1849](https://github.com/elastic/eui/pull/1849))
+
+## [`10.2.0`](https://github.com/elastic/eui/tree/v10.2.0)
+
+- Converted `EuiGlobalToastListItem` to TS ([#1880](https://github.com/elastic/eui/pull/1880))
+- Converted `token_map` to TS ([#1870](https://github.com/elastic/eui/pull/1870))
+- Converted `EuiOverlayMask` to TS ([#1858](https://github.com/elastic/eui/pull/1858))
+- Converted `EuiStat` to TS ([#1848](https://github.com/elastic/eui/pull/1848))
+- Added `isLoading` prop to `EuiStat` ([#1848](https://github.com/elastic/eui/pull/1848))
+- Added `roundUp` prop to relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
+- Changed position of `EuiSwitch` for date rounding used at relative tab of `EuiSuperDatePicker` ([#1827](https://github.com/elastic/eui/pull/1827))
+- Added `bug`, `flag`, and `heart` glyphs to `EuiIcon` ([#1887](https://github.com/elastic/eui/pull/1887))
+- Updated `alert` glyph in `EuiIcon` ([#1887](https://github.com/elastic/eui/pull/1887))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` to not pass its `inputRef` prop down to the DOM ([#1867](https://github.com/elastic/eui/pull/1867))
+- Fixed `euiBreakpoint()` warning to give accurate feedback ([#1874](https://github.com/elastic/eui/pull/1874))
+- Fixed type definitions around `EuiI18n`'s `default` prop to better support use cases ([#1861](https://github.com/elastic/eui/pull/1861))
+- Localized `EuiTablePagination`'s row count selection ([#1883](https://github.com/elastic/eui/pull/1883))
+- Fixed EuiComboBox's internal tracking of its focus state ([#1796](https://github.com/elastic/eui/pull/1796))
+- Fixed `EuiComboBox` with `singleSelection` and `onAddCustomOption` reopening the options list after adding a custom option ([#1882](https://github.com/elastic/eui/pull/1882))
+- Fixed `EuiComboBox` reopening the options list in Firefox when closing via the dropdown arrow button ([#1885](https://github.com/elastic/eui/pull/1885))
+- Fixed running the dev server and building on Windows ([#1891](https://github.com/elastic/eui/pull/1891))
+
+## [`10.1.0`](https://github.com/elastic/eui/tree/v10.1.0)
+
 - Added `tokenModule` and `tokenNamespace` icons to `EuiToken` ([#1839](https://github.com/elastic/eui/pull/1839))
 - Used `cache-loader` to speed up development docs site build ([#1841](https://github.com/elastic/eui/pull/1841)
 - Converted `matching_options` to TS ([#1828](https://github.com/elastic/eui/pull/1828))
 - Converted `EuiFormHelpText` to TS ([#1852](https://github.com/elastic/eui/pull/1852))
+- Added `onSearch` to `EuiFieldSearchProps`'s type defintion ([#1627](https://github.com/elastic/eui/pull/1627))
+- Added `moon` glyph to `EuiIcon` ([#1859](https://github.com/elastic/eui/pull/1859))
+- Added `logoAzure` and `logoAzureMono` logos to `EuiIcon` ([#1859](https://github.com/elastic/eui/pull/1859))
+- Added exact-text matching operator to `EuiSearchBar` / `Query` and allow empty phrases, e.g. `""` ([#1843](https://github.com/elastic/eui/pull/1843))
+- Allow forward-slash character in `EuiSearchBar` / `Query` search values ([#1843](https://github.com/elastic/eui/pull/1843))
+- Changed `EuiLoadingKibana`, `EuiLoadingSpinner`, `EuiLoadingChart` and `EuiLoadingContent` components to use spans instead of divs  ([#1845](https://github.com/elastic/eui/pull/1845))
 
 **Bug fixes**
 
 - Added `toastLifeTimeMs` typescript definition for individual toasts in `EuiGlobalToastList` ([#1846](https://github.com/elastic/eui/pull/1846))
+- Added logic to prevent refocusing `EuiComboBox` input after container blur event ([#1863](https://github.com/elastic/eui/pull/1863))
+- Changed `EuiLoadingKibana` so it could better nest within `EuiFlexItem`  ([#1845](https://github.com/elastic/eui/pull/1845))
 
 ## [`10.0.1`](https://github.com/elastic/eui/tree/v10.0.1)
 
 - Converted `EuiText`, `EuiTextColor` and `EuiTextAlign` to TS ([#1791](https://github.com/elastic/eui/pull/1791))
 - Updated `IconColor` type to better distinguish between accepted types ([#1842](https://github.com/elastic/eui/pull/1842))
-- Changed `EuiLoadingKibana`, `EuiLoadingSpinner`, `EuiLoadingChart` and `EuiLoadingContent` components to use spans instead of divs  ([#1845](https://github.com/elastic/eui/pull/1845))
-
-**Bug fixes**
-
-- Changed `EuiLoadingKibana` so it could better nest within `EuiFlexItem`  ([#1845](https://github.com/elastic/eui/pull/1845))
 
 ## [`10.0.0`](https://github.com/elastic/eui/tree/v10.0.0)
 

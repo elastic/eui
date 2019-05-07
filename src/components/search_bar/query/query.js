@@ -4,7 +4,7 @@ import { isNil, isString } from '../../../services/predicate';
 import { astToEsQueryDsl } from './ast_to_es_query_dsl';
 import { astToEsQueryString } from './ast_to_es_query_string';
 import { dateValueParser } from './date_value';
-import { AST } from './ast';
+import { AST, Operator } from './ast';
 
 /**
  * This is the consumer interface for the query - it's effectively a wrapper construct around
@@ -58,8 +58,8 @@ export class Query {
     return new Query(ast, this.syntax);
   }
 
-  addSimpleFieldValue(field, value, must = true) {
-    const ast = this.ast.addSimpleFieldValue(field, value, must);
+  addSimpleFieldValue(field, value, must = true, operator = Operator.EQ) {
+    const ast = this.ast.addSimpleFieldValue(field, value, must, operator);
     return new Query(ast, this.syntax);
   }
 

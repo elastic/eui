@@ -12,7 +12,7 @@ export default () => (
       <EuiFlexItem>
         <EuiStat
           title="7,600 mm"
-          description="Total People"
+          description="Total people"
         />
       </EuiFlexItem>
     </EuiFlexGroup>

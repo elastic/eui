@@ -115,7 +115,7 @@
       .euiFilePicker--compressed#{&} {
         @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
         position: absolute;
-        top: $euiSizeM / 2;
+        top: $euiSizeS;
         right: $euiSizeM;
       }
     }

@@ -25,6 +25,8 @@ const iconTypes = [
   'logoApache',
   'logoAWS',
   'logoAWSMono',
+  'logoAzure',
+  'logoAzureMono',
   'logoCeph',
   'logoCodesandbox',
   'logoCouchbase',
