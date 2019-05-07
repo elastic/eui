@@ -5,7 +5,6 @@ interface EuiDelayRenderProps {
 }
 
 interface EuiDelayRenderState {
-  delay: number;
   toggle: boolean;
 }
 
@@ -20,10 +19,9 @@ export class EuiDelayRender extends Component<
   private delayID: number | undefined;
   private toBeDelayed: boolean = false;
 
-  constructor(props: EuiDelayRenderProps) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      delay: this.props.delay,
       toggle: false,
     };
   }
@@ -35,7 +33,7 @@ export class EuiDelayRender extends Component<
   startDelaying = () => {
     window.clearTimeout(this.delayID);
     this.toBeDelayed = true;
-    this.delayID = window.setTimeout(this.stopDelaying, this.state.delay);
+    this.delayID = window.setTimeout(this.stopDelaying, this.props.delay);
   };
   stopDelaying = () => {
     window.clearTimeout(this.delayID);
