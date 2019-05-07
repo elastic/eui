@@ -35,7 +35,7 @@ export const EuiColorPicker = ({
   zIndex = 1
 }) => {
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
-  const [colorAsHsv, setColorAsHsv] = useState(color ? hexToHsv(color) : color);
+  const [colorAsHsv, setColorAsHsv] = useState(color ? hexToHsv(color) : hexToHsv(''));
   const [lastHex, setLastHex] = useState(color);
   const [inputRef, setInputRef] = useState(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
 
@@ -44,7 +44,7 @@ export const EuiColorPicker = ({
   useEffect(() => {
     // Mimics `componentDidMount` and `componentDidUpdate`
     if (lastHex !== color) { // Only react to outside changes
-      const newColorAsHsv = color ? hexToHsv(color) : undefined;
+      const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
       setColorAsHsv(newColorAsHsv);
     }
   }, [color]);
@@ -234,7 +234,7 @@ export const EuiColorPicker = ({
 EuiColorPicker.propTypes = {
   button: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   compressed: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,

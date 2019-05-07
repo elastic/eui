@@ -15,7 +15,7 @@ export class CustomButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '',
+      color: null,
     };
   }
 
