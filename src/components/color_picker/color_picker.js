@@ -96,7 +96,7 @@ export const EuiColorPicker = ({
   const handleOnKeyDown = e => {
     if (e.keyCode === keyCodes.ENTER) {
       if (isColorSelectorShown) {
-        if (e.target && e.target.classList.contains(swatchClass) >= 0) return;  // Swatches handle themselves
+        if (e.target && e.target.classList.contains(swatchClass)) return;  // Swatches handle themselves
         handleFinalSelection();
       } else {
         showColorSelector();
