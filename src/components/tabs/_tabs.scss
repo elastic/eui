@@ -1,21 +1,10 @@
 .euiTabs {
   @include euiScrollBar;
-
   display: flex;
-  position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
-
-  &:before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: $euiColorLightShade;
-    content: '';
-  }
+  position: relative;
 
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
@@ -23,29 +12,24 @@
     height: 3px;
   }
 
-  &.euiTabs--small {
-    .euiTab {
-      @include fontSize($euiTabFontSizeS);
-      padding: $euiSizeS;
-    }
-  }
-
-  &.euiTabs--expand {
-    .euiTab {
-      flex-grow: 1;
-      flex-basis: 0%;
-    }
+  &:not(.euiTabs--condensed)::before {
+    background-color: $euiColorLightShade;
+    bottom: 0;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
   }
 }
 
 .euiTab {
   @include fontSize($euiTabFontSize);
-  line-height: $euiLineHeight;
-
-  position: relative;
-  cursor: pointer;
-  padding: $euiSizeM $euiSize;
   background-color: transparent;
+  cursor: pointer;
+  line-height: $euiLineHeight;
+  padding: $euiSizeM $euiSize;
+  position: relative;
   transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:hover:not(.euiTab-isSelected) {
@@ -57,14 +41,14 @@
     background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
 
-    &:before {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
+    &::before {
       background-color: $euiColorLightShade;
+      bottom: 0;
       content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      right: 0;
     }
   }
 
@@ -72,37 +56,69 @@
     color: $euiColorMediumShade;
 
     &:hover {
+      color: $euiColorMediumShade;
       cursor: not-allowed;
       text-decoration: none;
-      color: $euiColorMediumShade;
     }
   }
 
   &.euiTab-isSelected {
-    cursor: default;
     color: $euiColorPrimary;
+    cursor: default;
 
-    &:after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      content: ' ';
-      width: 100%;
-      height: $euiBorderWidthThick;
-      background-color: $euiColorPrimary;
+    &::after {
       animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
+      background-color: $euiColorPrimary;
+      bottom: 0;
+      content: ' ';
+      height: $euiBorderWidthThick;
+      left: 0;
+      position: absolute;
+      width: 100%;
     }
   }
 
+  // Small Tabs Group Modifier
+
+  .euiTabs--small & {
+    @include fontSize($euiTabFontSizeS);
+    padding: $euiSizeS;
+  }
+
+  // Condensed Tabs Group Modifier
+
+  .euiTabs--condensed & {
+    font-weight: $euiFontWeightSemiBold;
+    padding: $euiSizeS 0;
+
+    &:focus {
+      background-color: transparent;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    & + .euiTab {
+      margin-left: $euiSizeL;
+    }
+  }
+
+  // Expand Tabs Group Modifier
+
+  .euiTabs--expand & {
+    flex-basis: 0%;
+    flex-grow: 1;
+  }
 }
 
 .euiTab__content {
   display: block;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
   transform: translateY(0);
+  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
+  white-space: nowrap;
 }
 
 @keyframes euiTab {
