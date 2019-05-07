@@ -5,12 +5,14 @@ import { CommonProps } from '../common';
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
 /// <reference path="./form_help_text/index.d.ts" />
+/// <reference path="./form_control_layout/index.d.ts" />
 /// <reference path="./form_row/index.d.ts" />
 /// <reference path="./radio/index.d.ts" />
 /// <reference path="./range/index.d.ts" />
 /// <reference path="./select/index.d.ts" />
 /// <reference path="./switch/index.d.ts" />
 /// <reference path="./text_area/index.d.ts" />
+
 
 import { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 
