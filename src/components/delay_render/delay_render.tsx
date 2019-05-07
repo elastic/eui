@@ -19,8 +19,8 @@ export class EuiDelayRender extends Component<
   private delayID: number | undefined;
   private toBeDelayed: boolean = false;
 
-  constructor() {
-    super();
+  constructor(props: EuiDelayRenderProps) {
+    super(props);
     this.state = {
       toggle: false,
     };
