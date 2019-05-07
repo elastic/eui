@@ -38,7 +38,7 @@ export default () => (
       >
         <EuiPanel>
           <EuiIcon
-            type="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg"
+            type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
             size="xl"
           />
           <EuiText size="s">
@@ -72,7 +72,7 @@ export default () => (
 
     <EuiFlexGroup>
       <EuiFlexItem grow={false}>
-        <EuiButton iconType="https://upload.wikimedia.org/wikipedia/commons/9/9f/Vimlogo.svg">http://some.svg</EuiButton>
+        <EuiButton iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg">http://some.svg</EuiButton>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButton iconType={reactSvg}>{`{reactSvg}`}</EuiButton>

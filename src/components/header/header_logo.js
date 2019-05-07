@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import {
   EuiIcon,
+  IconPropType,
 } from '../icon';
 
 export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, ...rest }) => {
@@ -28,7 +29,7 @@ export const EuiHeaderLogo = ({ iconType, iconTitle, href, children, className, 
 EuiHeaderLogo.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node,
-  iconType: PropTypes.string,
+  iconType: IconPropType,
   iconTitle: PropTypes.string,
 };
 
