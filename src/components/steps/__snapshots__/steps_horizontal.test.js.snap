@@ -24,19 +24,14 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
     >
       <svg
-        class="euiIcon euiIcon--medium euiStepNumber__icon"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
         focusable="false"
         height="16"
         title="complete"
         viewBox="0 0 16 16"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-          fill-rule="evenodd"
-        />
-      </svg>
+      />
     </div>
     <div
       class="euiStepHorizontal__title"

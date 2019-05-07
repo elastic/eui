@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import {
-  ICON_TYPES,
+  IconPropType,
   EuiIcon,
 } from '../icon';
 
@@ -91,7 +91,7 @@ EuiDatePickerRange.propTypes = {
    */
   iconType: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(ICON_TYPES),
+    IconPropType,
   ]),
   fullWidth: PropTypes.bool,
   /**

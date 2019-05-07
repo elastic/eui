@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { EuiBetaBadge } from '../../components/badge/beta_badge';
 
 import {
-  ICON_TYPES,
+  IconPropType,
 } from '../icon';
 
 const renderContent = (children, label, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType) => (
@@ -43,7 +43,7 @@ const commonPropTypes = {
   /**
    * Supply an icon type if the badge should just be an icon
    */
-  betaBadgeIconType: PropTypes.oneOf(ICON_TYPES),
+  betaBadgeIconType: IconPropType,
 
   /**
    * Add a description to the beta badge (will appear in a tooltip)
