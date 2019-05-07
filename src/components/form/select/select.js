@@ -25,8 +25,16 @@ export const EuiSelect = ({
   value,
   prepend,
   append,
+  onMouseUp,
   ...rest
 }) => {
+
+  const handleMouseUp = e => {
+    // TODO: Add appropriate comment per PR resolution
+    e.nativeEvent.stopImmediatePropagation();
+    if (onMouseUp) onMouseUp(e);
+  };
+
   const classes = classNames(
     'euiSelect',
     {
@@ -74,6 +82,7 @@ export const EuiSelect = ({
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
+          onMouseUp={handleMouseUp}
           {...rest}
         >
           {emptyOptionNode}
