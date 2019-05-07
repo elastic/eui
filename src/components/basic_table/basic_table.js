@@ -241,10 +241,8 @@ export class EuiBasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: [],
-      isDelaying: true,
+      selection: []
     };
-    this.delayID = null;
   }
 
   static buildCriteria(props) {

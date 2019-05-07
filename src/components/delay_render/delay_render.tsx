@@ -46,10 +46,7 @@ export class EuiDelayRender extends Component<
   componentDidMount() {
     this.toBeDelayed = true;
   }
-  shouldComponentUpdate(
-    nextProps: EuiDelayRenderProps,
-    nextState: EuiDelayRenderState
-  ) {
+  shouldComponentUpdate() {
     if (this.toBeDelayed) {
       this.startDelaying();
     }
