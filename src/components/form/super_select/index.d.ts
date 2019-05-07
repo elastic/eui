@@ -9,28 +9,28 @@ declare module '@elastic/eui' {
 
   export type EuiSuperSelectProps = CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & {
     /**
-     * Classes for the context menu item
-     */
-    itemClassName: string;
-
-    /**
-     * You must pass an `onChange` function to handle the update of the value
-     */
-    onChange: (value: string) => void;
-
-    /**
      * Pass an array of options that must at least include:
      * `value`: storing unique value of item,
      * `inputDisplay`: what shows inside the form input when selected
      * `dropdownDisplay` (optional): what shows for the item in the dropdown
      */
-    options?: Array<{
+    options: Array<{
       value: string;
-      inputDisplay: ReactNode;
+      inputDisplay?: ReactNode;
       dropdownDisplay?: ReactNode;
     }>;
 
-    valueOfSelected: string;
+    valueOfSelected?: string;
+
+    /**
+     * Classes for the context menu item
+     */
+    itemClassName?: string;
+
+    /**
+     * You must pass an `onChange` function to handle the update of the value
+     */
+    onChange?: (value: string) => void;
 
     /**
      * Change to `true` if you want horizontal lines between options.
@@ -41,7 +41,7 @@ declare module '@elastic/eui' {
     /**
      * Change `EuiContextMenuItem` layout position of icon
      */
-    itemLayoutAlign: string;
+    itemLayoutAlign?: string;
 
     /**
      * Make it wide. Default: false
@@ -61,7 +61,7 @@ declare module '@elastic/eui' {
     /**
      * Applied to the outermost wrapper (popover)
      */
-    popoverClassName: string;
+    popoverClassName?: string;
 
     /**
      * Controls whether the options are shown. Default: false
