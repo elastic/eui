@@ -9,7 +9,7 @@
   }
 
   position: relative;
-  height: $euiSizeM;
+  height: $euiSizeS;
   width: 100%;
   appearance: none;
   border-radius: $euiBorderRadius / 2;
@@ -33,9 +33,11 @@
     color: transparent;
   }
 
+  // Thumb has trouble with animation, so we make something similar to `@include euiFocusRing`
   &:focus {
     @include euiRangeThumbPerBrowser {
-      @include euiCustomControlFocused;
+      box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
+      border-color: $euiColorPrimary;
     }
   }
 }

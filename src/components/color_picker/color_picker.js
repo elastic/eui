@@ -201,7 +201,7 @@ export const EuiColorPicker = ({
               color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
               onChange={handleColorSelection}
             />
-            <EuiSpacer size="s" />
+            <EuiSpacer size="xs" />
             <EuiHue
               id={id}
               hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}

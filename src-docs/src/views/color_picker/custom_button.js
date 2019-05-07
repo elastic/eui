@@ -1,11 +1,12 @@
 import React, {
-  Component,
+  Component, Fragment,
 } from 'react';
 
 import {
   EuiColorPicker,
   EuiFormRow,
-  EuiColorPickerSwatch
+  EuiColorPickerSwatch,
+  EuiBadge,
 } from '../../../../src/components';
 
 import { isValidHex } from '../../../../src/services';
@@ -31,23 +32,33 @@ export class CustomButton extends Component {
     }
 
     return (
-      <EuiFormRow
-        label="Pick a color"
-        isInvalid={hasErrors}
-        error={errors}
-      >
+      <Fragment>
+        <EuiFormRow
+          label="Pick a color"
+          isInvalid={hasErrors}
+          error={errors}
+        >
+          <EuiColorPicker
+            onChange={this.handleChange}
+            color={this.state.color}
+            isInvalid={hasErrors}
+            button={
+              <EuiColorPickerSwatch
+                color={this.state.color}
+                aria-label="Select a new color"
+              />
+            }
+          />
+        </EuiFormRow>
         <EuiColorPicker
           onChange={this.handleChange}
           color={this.state.color}
           isInvalid={hasErrors}
           button={
-            <EuiColorPickerSwatch
-              color={this.state.color}
-              aria-label="Select a new color"
-            />
+            <EuiBadge color={this.state.color ? this.state.color : 'hollow'}>Color this badge</EuiBadge>
           }
         />
-      </EuiFormRow>
+      </Fragment>
     );
   }
 }
