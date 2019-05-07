@@ -232,16 +232,37 @@ export const EuiColorPicker = ({
 };
 
 EuiColorPicker.propTypes = {
+  /**
+   *  Custom element to use instead of text input
+   */
   button: PropTypes.node,
   className: PropTypes.string,
+  /**
+   *  Hex string (3 or 6 character). Empty string will register as 'transparent'
+   */
   color: PropTypes.string,
+  /**
+   *  Use the compressed style for EuiFieldText
+   */
   compressed: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
+  /**
+   *  Custom validation flag
+   */
   isInvalid: PropTypes.bool,
   onBlur: PropTypes.func,
+  /**
+   *  (hex: string) => void
+   */
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
+  /**
+   *  Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors
+   */
   swatches: PropTypes.arrayOf(PropTypes.string),
+  /**
+   *  Custom z-index for the popover
+   */
   zIndex: PropTypes.number
 };

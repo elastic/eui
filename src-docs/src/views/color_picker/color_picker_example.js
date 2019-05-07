@@ -8,6 +8,7 @@ import {
 
 import {
   EuiCode,
+  EuiColorPicker,
   EuiText
 } from '../../../../src/components';
 
@@ -49,6 +50,7 @@ export const ColorPickerExample = {
       type: GuideSectionTypes.HTML,
       code: colorPickerHtml,
     }],
+    props: { EuiColorPicker },
     demo: <ColorPicker />,
   }, {
     title: 'Custom color swatches',
