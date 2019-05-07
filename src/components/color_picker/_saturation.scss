@@ -2,7 +2,7 @@ $valueRange0: rgba(255, 255, 255, 1);
 $valueRange1: rgba(255, 255, 255, 0);
 $saturationRange0: rgba(0, 0, 0, 1);
 $saturationRange1: rgba(0, 0, 0, 0);
-$indicatorSize: 10px;
+$indicatorSize: $euiSizeM;
 
 .euiSaturation {
   position: relative;

@@ -175,6 +175,11 @@ export const EuiColorPicker = ({
           isOpen={isColorSelectorShown}
           closePopover={closeColorSelector}
           zIndex={zIndex}
+          anchorClassName="euiColorPicker__popoverAnchor"
+          panelClassName="euiColorPicker__popoverPanel"
+          hasArrow={button ? true : false}
+          anchorPosition="downLeft"
+          panelPaddingSize="s"
           insert={{
             position: 'after',
             sibling: containerRef.current
@@ -196,7 +201,7 @@ export const EuiColorPicker = ({
               color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
               onChange={handleColorSelection}
             />
-            <EuiSpacer size="s" />
+            <EuiSpacer size="xs" />
             <EuiHue
               id={id}
               hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}

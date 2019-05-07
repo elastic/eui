@@ -4,3 +4,22 @@
   // 5 columns of swatches + margins + border
   width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }
+
+.euiColorPicker__popoverPanel[class*='bottom'] {
+  border-top-color: transparentize($euiBorderColor, .2);
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.euiColorPicker__popoverPanel[class*='top'] {
+  @include euiBottomShadowFlat;
+
+  border-bottom-color: transparentize($euiBorderColor, .2);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.euiColorPicker__inputField svg {
+  border: solid 1px transparentize($euiColorFullShade, .9);
+  box-shadow: inset 0 0 1px 1px transparentize($euiColorGhost, .95);
+}
