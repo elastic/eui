@@ -93,9 +93,16 @@
 
   transition:
     box-shadow $euiAnimSpeedFast ease-in,
-    background-color $euiAnimSpeedFast ease-in,
     background-image $euiAnimSpeedFast ease-in,
-    background-size $euiAnimSpeedFast ease-in;
+    background-size $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in;
+
+  // Fixes bug in Firefox where adding a transition to the background-color
+  // caused a flash of differently styled dropdown.
+  @supports (-moz-appearance: none) { // sass-lint:disable-line no-vendor-prefixes
+    // List *must* be in the same order as the above.
+    transition-property: box-shadow, background-image, background-size;
+  }
 }
 
 @mixin euiFormControlFocusStyle($borderOnly: false) {
