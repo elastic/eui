@@ -35,12 +35,14 @@ export type SaturationPosition = Pick<SaturationClientRect, 'left' | 'top'>;
 export type EuiSaturationProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     color?: HSV;
+    hex?: string;
     onChange: (color: HSV) => void;
   };
 
 export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
   className,
   color = { h: 1, s: 0, v: 0 },
+  hex,
   id,
   onChange,
   tabIndex = 0,
@@ -168,6 +170,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       role="application"
       aria-roledescription="HSV color mode saturation and value selection"
       aria-describedby={`${id}-saturationDescription`}
+      aria-activedescendant={`${id}-saturationIndicator`}
       onMouseDown={handleMouseDown}
       onTouchStart={handleInteraction}
       onTouchMove={handleInteraction}
@@ -179,29 +182,30 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
         background: `hsl(${color.h}, 100%, 50%)`,
       }}
       {...rest}>
-      <div aria-activedescendant={`${id}-saturationIndicator`}>
-        <EuiScreenReaderOnly>
-          <p id={`${id}-saturationDescription`}>
-            <EuiI18n
-              token="euiSaturation.screenReaderAnnouncement"
-              default={`Use the arrow keys to navigate the square color gradient. The
+      <EuiScreenReaderOnly>
+        <p id={`${id}-saturationDescription`}>
+          <EuiI18n
+            token="euiSaturation.screenReaderAnnouncement"
+            default={`Use the arrow keys to navigate the square color gradient. The
               coordinates resulting from each key press will be used to calculate
               HSV color mode 'saturation' and 'value' numbers, in the range of 0
               to 1. Left and right decrease and increase (respectively) the
               'saturation' value. Up and down decrease and increase (respectively)
               the 'value' value.`}
-            />
-          </p>
-        </EuiScreenReaderOnly>
-        <div className="euiSaturation__lightness">
-          <div className="euiSaturation__saturation" />
-        </div>
-        <div
-          id={`${id}-saturationIndicator`}
-          className="euiSaturation__indicator"
-          style={{ ...indicator }}
-        />
+          />
+        </p>
+      </EuiScreenReaderOnly>
+      <EuiScreenReaderOnly>
+        <p aria-live="polite">{hex}</p>
+      </EuiScreenReaderOnly>
+      <div className="euiSaturation__lightness">
+        <div className="euiSaturation__saturation" />
       </div>
+      <div
+        id={`${id}-saturationIndicator`}
+        className="euiSaturation__indicator"
+        style={{ ...indicator }}
+      />
     </div>
   );
 };

@@ -16,6 +16,7 @@ export type EuiHueProps = Omit<
   'onChange'
 > &
   CommonProps & {
+    hex?: string;
     hue?: string | number;
     onChange: (hue: number) => void;
   };
@@ -28,6 +29,7 @@ const colorStops = [...Array(numberOfStops).keys()].map(val => {
 
 export const EuiHue: FunctionComponent<EuiHueProps> = ({
   className,
+  hex,
   hue = 1,
   id,
   onChange,
@@ -46,6 +48,9 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
             default="Select the HSV color mode 'hue' value"
           />
         </label>
+      </EuiScreenReaderOnly>
+      <EuiScreenReaderOnly>
+        <p aria-live="polite">{hex}</p>
       </EuiScreenReaderOnly>
       <input
         id={`${id}-hue`}

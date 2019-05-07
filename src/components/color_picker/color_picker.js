@@ -49,6 +49,10 @@ export const EuiColorPicker = ({
     }
   }, [color]);
 
+  const classes = classNames('euiColorPicker', className);
+  const swatchClass = 'euiColorPicker__swatchSelect';
+  const swatchOptions = swatches || VISUALIZATION_COLORS;
+
   const handleOnChange = hex => {
     setLastHex(hex);
     onChange(hex);
@@ -92,6 +96,7 @@ export const EuiColorPicker = ({
   const handleOnKeyDown = e => {
     if (e.keyCode === keyCodes.ENTER) {
       if (isColorSelectorShown) {
+        if (e.target && e.target.classList.contains(swatchClass) >= 0) return;  // Swatches handle themselves
         handleFinalSelection();
       } else {
         showColorSelector();
@@ -128,9 +133,6 @@ export const EuiColorPicker = ({
 
     handleFinalSelection();
   };
-
-  const classes = classNames('euiColorPicker', className);
-  const swatchOptions = swatches || VISUALIZATION_COLORS;
 
   let buttonOrInput;
   if (button) {
@@ -199,12 +201,14 @@ export const EuiColorPicker = ({
             <EuiSaturation
               id={id}
               color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
+              hex={color}
               onChange={handleColorSelection}
             />
             <EuiSpacer size="xs" />
             <EuiHue
               id={id}
               hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+              hex={color}
               onChange={handleHueSelection}
             />
             <EuiSpacer size="s" />
@@ -212,7 +216,7 @@ export const EuiColorPicker = ({
               {swatchOptions.map((swatch) => (
                 <EuiFlexItem grow={false} key={swatch}>
                   <EuiColorPickerSwatch
-                    className="euiColorPicker__swatchSelect"
+                    className={swatchClass}
                     color={swatch}
                     onClick={() => handleSwatchSelection(swatch)}
                     aria-label={`Select ${swatch} as the color`}

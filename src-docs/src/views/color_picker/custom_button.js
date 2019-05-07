@@ -55,7 +55,12 @@ export class CustomButton extends Component {
           color={this.state.color}
           isInvalid={hasErrors}
           button={
-            <EuiBadge color={this.state.color ? this.state.color : 'hollow'}>Color this badge</EuiBadge>
+            <EuiBadge
+              color={this.state.color ? this.state.color : 'hollow'}
+              onClickAriaLabel="Select a new color"
+            >
+              Color this badge
+            </EuiBadge>
           }
         />
       </Fragment>
