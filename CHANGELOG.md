@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `10.4.0`
+**Bug fixes**
+
+- Fixed Firefox flash of unstyled select dropdown ([#1927](https://github.com/elastic/eui/pull/1927))
 
 ## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
 
