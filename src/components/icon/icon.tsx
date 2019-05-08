@@ -414,19 +414,13 @@ export class EuiIcon extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const initialIcon = getInitialIcon(this.props.type);
+    const { type } = this.props;
+    const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
-    if (isEuiIconType(this.props.type)) {
+    if (isEuiIconType(type)) {
       isLoading = true;
-      import('./assets/' + typeToPathMap[this.props.type] + '.js').then(
-        ({ icon }) => {
-          this.setState({
-            icon,
-            isLoading: false,
-          });
-        }
-      );
+      this.loadIconComponent(type);
     }
 
     this.state = {
@@ -434,6 +428,32 @@ export class EuiIcon extends Component<Props, State> {
       isLoading,
     };
   }
+
+  componentDidUpdate(prevProps: Props) {
+    const { type } = this.props;
+    if (type !== prevProps.type) {
+      if (isEuiIconType(type)) {
+        this.setState({
+          isLoading: true,
+        });
+        this.loadIconComponent(type);
+      } else {
+        this.setState({
+          icon: type == null ? undefined : type,
+          isLoading: false,
+        });
+      }
+    }
+  }
+
+  loadIconComponent = (iconType: EuiIconType) => {
+    import('./assets/' + typeToPathMap[iconType] + '.js').then(({ icon }) => {
+      this.setState({
+        icon,
+        isLoading: false,
+      });
+    });
+  };
 
   render() {
     const {
