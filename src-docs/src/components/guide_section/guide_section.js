@@ -158,14 +158,28 @@ export class GuideSection extends Component {
       return;
     }
 
-    return [
-      <Fragment key="snippet">
-        <EuiSpacer size="m" />
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {snippet}
-        </EuiCodeBlock>
-      </Fragment>
-    ];
+    let snippetCode;
+    if (typeof snippet === 'string') {
+      snippetCode = (
+        <Fragment key="snippet">
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snippet}
+          </EuiCodeBlock>
+        </Fragment>
+      );
+    } else {
+      snippetCode = snippet.map((snip, index) => (
+        <Fragment key={`snippet${index}`}>
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snip}
+          </EuiCodeBlock>
+        </Fragment>
+      ));
+    }
+
+    return snippetCode;
   }
 
   renderPropsForComponent = (componentName, component) => {
@@ -413,7 +427,10 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
-  snippet: PropTypes.string,
+  snippet: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,

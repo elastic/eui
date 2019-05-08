@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import {
-  ICON_TYPES,
+  IconPropType,
   EuiIcon,
 } from '../icon';
 
@@ -44,5 +44,5 @@ export const EuiTableHeaderButton = ({
 EuiTableHeaderButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 };

@@ -1,0 +1,23 @@
+$euiIconLoadingOpacity: .05;
+
+// Modifier naming and colors.
+
+$euiIconColors: (
+  text: $euiTextColor,
+  primary: $euiColorPrimary,
+  subdued: $euiColorMediumShade,
+  secondary: $euiColorSecondary,
+  success: $euiColorSuccess,
+  accent: $euiColorAccent,
+  warning: $euiColorWarning,
+  danger: $euiColorDanger,
+  ghost: $euiColorGhost,
+);
+
+$euiIconSizes: (
+  small: $euiSizeM,
+  medium: $euiSize,
+  large: $euiSizeL,
+  xLarge: $euiSizeXL,
+  xxLarge: $euiSizeXXL
+);
