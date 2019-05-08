@@ -27,7 +27,6 @@ export const COLORS = Object.keys(colorToClassNameMap);
 const sizeToClassNameMap = {
   s: 'euiButton--small',
   m: null,
-  l: 'euiButton--large',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
