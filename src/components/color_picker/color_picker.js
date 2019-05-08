@@ -212,7 +212,7 @@ export const EuiColorPicker = ({
               onChange={handleHueSelection}
             />
             <EuiSpacer size="s" />
-            <EuiFlexGroup wrap responsive={false} gutterSize="s">
+            <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
               {swatchOptions.map((swatch) => (
                 <EuiFlexItem grow={false} key={swatch}>
                   <EuiColorPickerSwatch
