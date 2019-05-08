@@ -411,10 +411,11 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 }
 
 export class EuiIcon extends Component<Props, State> {
+  isMounted = true;
   constructor(props: Props) {
     super(props);
 
-    const { type } = this.props;
+    const { type } = props;
     const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
@@ -439,19 +440,25 @@ export class EuiIcon extends Component<Props, State> {
         this.loadIconComponent(type);
       } else {
         this.setState({
-          icon: type == null ? undefined : type,
+          icon: type,
           isLoading: false,
         });
       }
     }
   }
 
+  componentWillUnmount() {
+    this.isMounted = false;
+  }
+
   loadIconComponent = (iconType: EuiIconType) => {
     import('./assets/' + typeToPathMap[iconType] + '.js').then(({ icon }) => {
-      this.setState({
-        icon,
-        isLoading: false,
-      });
+      if (this.isMounted) {
+        this.setState({
+          icon,
+          isLoading: false,
+        });
+      }
     });
   };
 
