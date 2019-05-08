@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
+- Removed unused prop enum of `l` in `EuiButton`' ([#1936](https://github.com/elastic/eui/pull/1936))
 
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
