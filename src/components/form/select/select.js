@@ -30,7 +30,10 @@ export const EuiSelect = ({
 }) => {
 
   const handleMouseUp = e => {
-    // TODO: Add appropriate comment per PR resolution
+    // Normalizes cross-browser mouse eventing by preventing propagation,
+    // notably for use in conjunction with EuiOutsideClickDetector.
+    // See https://github.com/elastic/eui/pull/1926 for full discussion on
+    // rationale and alternatives should this intervention become problematic.
     e.nativeEvent.stopImmediatePropagation();
     if (onMouseUp) onMouseUp(e);
   };
