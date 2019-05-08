@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.0.0`.
+**Bug fixes**
+
+- Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
 
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
