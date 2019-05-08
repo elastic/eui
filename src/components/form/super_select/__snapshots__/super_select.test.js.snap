@@ -40,25 +40,13 @@ exports[`EuiSuperSelect is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -106,25 +94,13 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                xlink:href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -172,7 +148,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
@@ -196,7 +172,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
@@ -263,25 +239,13 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -331,25 +295,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                xlink:href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -399,18 +351,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                />
                 <span
                   class="euiContextMenuItem__text"
                 >
@@ -429,7 +376,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
@@ -636,40 +583,23 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             className="euiFormControlLayoutCustomIcon__icon"
                             type="arrowDown"
                           >
-                            <arrowDown
+                            <EuiIconEmpty
                               aria-hidden="true"
-                              className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+                              className="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                               focusable="false"
-                              height="16"
                               style={null}
-                              viewBox="0 0 16 16"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlnsXlink="http://www.w3.org/1999/xlink"
                             >
                               <svg
                                 aria-hidden="true"
-                                className="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+                                className="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
                                 focusable="false"
-                                height="16"
+                                height={16}
                                 style={null}
                                 viewBox="0 0 16 16"
-                                width="16"
+                                width={16}
                                 xmlns="http://www.w3.org/2000/svg"
-                                xmlnsXlink="http://www.w3.org/1999/xlink"
-                              >
-                                <defs>
-                                  <path
-                                    d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                                    id="arrow_down-a"
-                                  />
-                                </defs>
-                                <use
-                                  fillRule="nonzero"
-                                  xlinkHref="#arrow_down-a"
-                                />
-                              </svg>
-                            </arrowDown>
+                              />
+                            </EuiIconEmpty>
                           </EuiIcon>
                         </span>
                       </EuiFormControlLayoutCustomIcon>
@@ -786,18 +716,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       class="euiContextMenu__itemLayout"
                                     >
                                       <svg
-                                        class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                         focusable="false"
                                         height="16"
                                         viewBox="0 0 16 16"
                                         width="16"
                                         xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-                                          fill-rule="evenodd"
-                                        />
-                                      </svg>
+                                      />
                                       <span
                                         class="euiContextMenuItem__text"
                                       >
@@ -816,7 +741,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       class="euiContextMenu__itemLayout"
                                     >
                                       <svg
-                                        class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                         focusable="false"
                                         height="16"
                                         viewBox="0 0 16 16"
@@ -876,18 +801,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         class="euiContextMenu__itemLayout"
                                       >
                                         <svg
-                                          class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
                                           height="16"
                                           viewBox="0 0 16 16"
                                           width="16"
                                           xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-                                            fill-rule="evenodd"
-                                          />
-                                        </svg>
+                                        />
                                         <span
                                           class="euiContextMenuItem__text"
                                         >
@@ -906,7 +826,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         class="euiContextMenu__itemLayout"
                                       >
                                         <svg
-                                          class="euiIcon euiIcon--medium euiContextMenu__icon"
+                                          class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
                                           height="16"
                                           viewBox="0 0 16 16"
@@ -1034,30 +954,21 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         size="m"
                                         type="check"
                                       >
-                                        <check
-                                          className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        <EuiIconEmpty
+                                          className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
-                                          height="16"
                                           style={null}
-                                          viewBox="0 0 16 16"
-                                          width="16"
-                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <svg
-                                            className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                            className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
-                                            height="16"
+                                            height={16}
                                             style={null}
                                             viewBox="0 0 16 16"
-                                            width="16"
+                                            width={16}
                                             xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-                                              fillRule="evenodd"
-                                            />
-                                          </svg>
-                                        </check>
+                                          />
+                                        </EuiIconEmpty>
                                       </EuiIcon>
                                       <span
                                         className="euiContextMenuItem__text"
@@ -1107,25 +1018,21 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                         size="m"
                                         type="empty"
                                       >
-                                        <empty
-                                          className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                        <EuiIconEmpty
+                                          className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                           focusable="false"
-                                          height="16"
                                           style={null}
-                                          viewBox="0 0 16 16"
-                                          width="16"
-                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <svg
-                                            className="euiIcon euiIcon--medium euiContextMenu__icon"
+                                            className="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                                             focusable="false"
-                                            height="16"
+                                            height={16}
                                             style={null}
                                             viewBox="0 0 16 16"
-                                            width="16"
+                                            width={16}
                                             xmlns="http://www.w3.org/2000/svg"
                                           />
-                                        </empty>
+                                        </EuiIconEmpty>
                                       </EuiIcon>
                                       <span
                                         className="euiContextMenuItem__text"
@@ -1207,25 +1114,13 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                xlink:href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -1273,7 +1168,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
@@ -1297,7 +1192,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 class="euiContextMenu__itemLayout"
               >
                 <svg
-                  class="euiIcon euiIcon--medium euiContextMenu__icon"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiContextMenu__icon"
                   focusable="false"
                   height="16"
                   viewBox="0 0 16 16"
@@ -1362,25 +1257,13 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>
@@ -1429,25 +1312,13 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="euiIcon euiIcon--medium euiFormControlLayoutCustomIcon__icon"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
               width="16"
-              xlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <path
-                  d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"
-                  id="arrow_down-a"
-                />
-              </defs>
-              <use
-                fill-rule="nonzero"
-                href="#arrow_down-a"
-              />
-            </svg>
+            />
           </span>
         </div>
       </div>

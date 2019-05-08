@@ -1,6 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `pretty_interval` to TS ([#1920](https://github.com/elastic/eui/pull/1920))
+- Added support for custom React SVG elements and external SVG URLs to `EuiIcon` ([#1924](https://github.com/elastic/eui/pull/1924))
+
+**Bug fixes**
+
+- Fixed Firefox flash of unstyled select dropdown ([#1927](https://github.com/elastic/eui/pull/1927))
+
+**Breaking changes**
+
+- Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
 
 ## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
 

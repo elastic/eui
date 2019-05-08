@@ -11,7 +11,7 @@ import {
 } from '../button/button_empty';
 
 import {
-  ICON_TYPES,
+  IconPropType,
 } from '../icon';
 
 export const EuiFilterButton = ({
@@ -111,7 +111,7 @@ EuiFilterButton.propTypes = {
   /**
    * Use any one of our icons
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
   /**

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiButtonIcon } from '../button';
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 
 const sizeToClassNameMap = {
@@ -182,7 +182,7 @@ EuiListGroupItem.propTypes = {
   /**
    * Adds `EuiIcon` of `EuiIcon.type`
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 
   /**
    * Custom node to pass as the icon. Cannot be used in conjunction
@@ -200,7 +200,7 @@ EuiListGroupItem.propTypes = {
    * pass `alwaysShow` if you don't want the default behavior of only showing on hover
    */
   extraAction: PropTypes.shape({
-    iconType: PropTypes.oneOf(ICON_TYPES).isRequired,
+    iconType: IconPropType.isRequired,
     alwaysShow: PropTypes.bool,
   }),
 

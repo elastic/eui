@@ -19,19 +19,14 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--complete"
 >
   <svg
-    class="euiIcon euiIcon--medium euiStepNumber__icon"
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"
     height="16"
     title="complete"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M6.5 12a.502.502 0 0 1-.354-.146l-4-4a.502.502 0 0 1 .708-.708L6.5 10.793l6.646-6.647a.502.502 0 0 1 .708.708l-7 7A.502.502 0 0 1 6.5 12"
-      fill-rule="evenodd"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -40,18 +35,14 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
   class="euiStepNumber euiStepNumber--danger"
 >
   <svg
-    class="euiIcon euiIcon--medium euiStepNumber__icon"
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"
     height="16"
     title="has errors"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M7.293 8L3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8z"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -76,18 +67,13 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber euiStepNumber--warning"
 >
   <svg
-    class="euiIcon euiIcon--medium euiStepNumber__icon"
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
     focusable="false"
     height="16"
     title="has warnings"
     viewBox="0 0 16 16"
     width="16"
     xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M7.59 10.059L7.35 5.18h1.3L8.4 10.06h-.81zm.394 1.901a.61.61 0 0 1-.448-.186.606.606 0 0 1-.186-.444c0-.174.062-.323.186-.446a.614.614 0 0 1 .448-.184c.169 0 .315.06.44.182.124.122.186.27.186.448a.6.6 0 0 1-.189.446.607.607 0 0 1-.437.184zM2 14a1 1 0 0 1-.878-1.479l6-11a1 1 0 0 1 1.756 0l6 11A1 1 0 0 1 14 14H2zm0-1h12L8 2 2 13z"
-      fill-rule="evenodd"
-    />
-  </svg>
+  />
 </div>
 `;
