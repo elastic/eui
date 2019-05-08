@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.0.0`.
+**Bug fixes**
+
+- Fixed `EuiSelect` browser event inconsistencies by normalizing `mouseup` propagation ([#1926](https://github.com/elastic/eui/pull/1926))
 
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
