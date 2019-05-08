@@ -2,6 +2,10 @@
 
 - Converted `pretty_interval` to TS ([#1920](https://github.com/elastic/eui/pull/1920))
 
+**Bug fixes**
+
+- Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
+
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
 - Added support for custom React SVG elements and external SVG URLs to `EuiIcon` ([#1924](https://github.com/elastic/eui/pull/1924))

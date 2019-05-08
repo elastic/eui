@@ -1,6 +1,6 @@
 export { EuiToolTipPopover } from './tool_tip_popover';
 import { ReactElement, ReactNode, FunctionComponent } from 'react';
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 import { Omit, PropsOf } from '../common';
 
 declare module '@elastic/eui' {
@@ -28,10 +28,15 @@ declare module '@elastic/eui' {
 
   export interface EuiIconTipProps {
     color?: string;
-    type?: string;
+    type?: IconType;
     size?: string;
     'aria-label'?: string;
-    iconProps?: PropsOf<typeof EuiIcon>;
+
+    // EuiIconTip's `type` is passed to EuiIcon, so we want to exclude `type` from
+    // iconProps; however, due to TS's bivariant function arguments `type` could be
+    // passed without any error/feedback so we explicitly set it to `never` type
+    iconProps?: Omit<PropsOf<EuiIcon>, 'type'> & { type?: never };
   }
+
   export const EuiIconTip: FunctionComponent<Omit<EuiToolTipProps, 'children'> & EuiIconTipProps>;
 }
