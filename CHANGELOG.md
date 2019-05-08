@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
 - Added support for custom React SVG elements and external SVG URLs to `EuiIcon` ([#1924](https://github.com/elastic/eui/pull/1924))
 
 **Bug fixes**
