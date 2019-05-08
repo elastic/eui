@@ -220,6 +220,7 @@ export const EuiColorPicker = ({
                     color={swatch}
                     onClick={() => handleSwatchSelection(swatch)}
                     aria-label={`Select ${swatch} as the color`}
+                    role="option"
                   />
                 </EuiFlexItem>
               ))}
