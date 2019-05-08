@@ -1,9 +1,4 @@
-interface RelativeOption {
-  text: string;
-  value: string;
-}
-
-export const relativeOptions: RelativeOption[] = [
+export const relativeOptions = [
   { text: 'Seconds ago', value: 's' },
   { text: 'Minutes ago', value: 'm' },
   { text: 'Hours ago', value: 'h' },
