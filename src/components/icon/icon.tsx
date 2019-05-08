@@ -254,6 +254,7 @@ const typeToPathMap = {
   stats: 'stats',
   stop: 'stop',
   stopFilled: 'stop_filled',
+  stopSlash: 'stop_slash',
   storage: 'storage',
   string: 'string',
   submodule: 'submodule',
