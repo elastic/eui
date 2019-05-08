@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.0.0`.
+**Bug fixes**
+
+- Reinstated `EuiIcon` component ability to handle `type` prop updates ([#1935](https://github.com/elastic/eui/pull/1935))
 
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
