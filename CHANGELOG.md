@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
+- Reinstated `EuiIcon` component ability to handle `type` prop updates ([#1935](https://github.com/elastic/eui/pull/1935))
 
 ## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
 
