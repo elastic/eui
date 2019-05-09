@@ -18,6 +18,7 @@
   margin: $euiSizeXS 0;
   position: relative;
 
+
   // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
   &:before,
   &:after {
@@ -43,7 +44,8 @@
 
   position: relative;
   height: $euiSizeL;
-  width: 100%;
+  width: calc(100% + 2px); // Allow for overlap
+  margin: 0 -1px; // Use ^ overlap to allow thumb to fully cover grandient ends
   appearance: none;
   background: transparent;
   z-index: 2; // Needed to place the thumb above the :after pseduo border from .euiRange
