@@ -1,8 +1,8 @@
-$valueRange0: rgba(255, 255, 255, 1);
-$valueRange1: rgba(255, 255, 255, 0);
-$saturationRange0: rgba(0, 0, 0, 1);
-$saturationRange1: rgba(0, 0, 0, 0);
-$indicatorSize: $euiSizeM;
+$euiColorPickerValueRange0: rgba(255, 255, 255, 1);
+$euiColorPickerValueRange1: rgba(255, 255, 255, 0);
+$euiColorPickerSaturationRange0: rgba(0, 0, 0, 1);
+$euiColorPickerSaturationRange1: rgba(0, 0, 0, 0);
+$euiColorPickerIndicatorSize: $euiSizeM;
 
 .euiSaturation {
   position: relative;
@@ -23,20 +23,20 @@ $indicatorSize: $euiSizeM;
   }
 
   .euiSaturation__lightness {
-    background: linear-gradient(to right, $valueRange0, $valueRange1);
+    background: linear-gradient(to right, $euiColorPickerValueRange0, $euiColorPickerValueRange1);
   }
 
   .euiSaturation__saturation {
-    background: linear-gradient(to top, $saturationRange0, $saturationRange1);
+    background: linear-gradient(to top, $euiColorPickerSaturationRange0, $euiColorPickerSaturationRange1);
   }
 
   .euiSaturation__indicator {
     position: absolute;
-    height: $indicatorSize;
-    width: $indicatorSize;
+    height: $euiColorPickerIndicatorSize;
+    width: $euiColorPickerIndicatorSize;
     border-radius: 100%;
-    margin-top: $indicatorSize * -.5;
-    margin-left: $indicatorSize * -.5;
+    margin-top: $euiColorPickerIndicatorSize * -.5;
+    margin-left: $euiColorPickerIndicatorSize * -.5;
     border: 1px solid $euiColorDarkestShade;
 
     &:before {

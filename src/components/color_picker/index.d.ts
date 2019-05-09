@@ -32,7 +32,9 @@ declare module '@elastic/eui' {
    */
   type HTMLDivElementOverrides = {
     color: string;
+    onBlur: () => void;
     onChange: (hex: string) => void;
+    onFocus: () => void;
   };
   export type EuiColorPickerProps = CommonProps &
     Omit<HTMLAttributes<HTMLDivElement>, keyof HTMLDivElementOverrides> &
@@ -41,8 +43,9 @@ declare module '@elastic/eui' {
       compressed?: boolean;
       disabled?: boolean;
       isInvalid?: boolean;
+      mode?: 'default' | 'swatch' | 'picker';
       swatches?: string[];
-      zIndex?: number;
+      popoverZIndex?: number;
     };
 
   export const EuiColorPicker: FunctionComponent<EuiColorPickerProps>;

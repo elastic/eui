@@ -33,7 +33,7 @@ export const EuiColorPicker = ({
   onChange,
   onFocus,
   swatches,
-  zIndex = 1
+  popoverZIndex = 1
 }) => {
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
   const [colorAsHsv, setColorAsHsv] = useState(color ? hexToHsv(color) : hexToHsv(''));
@@ -62,18 +62,18 @@ export const EuiColorPicker = ({
     onChange(hex);
   };
 
-  const closeColorSelector = e => {
+  const closeColorSelector = () => {
     if (onBlur) {
-      onBlur(e);
+      onBlur();
     }
 
     setIsColorSelectorShown(false);
   };
 
-  const showColorSelector = e => {
+  const showColorSelector = () => {
     if (isColorSelectorShown) return;
     if (onFocus) {
-      onFocus(e);
+      onFocus();
     }
 
     setIsColorSelectorShown(true);
@@ -181,7 +181,7 @@ export const EuiColorPicker = ({
           button={buttonOrInput}
           isOpen={isColorSelectorShown}
           closePopover={closeColorSelector}
-          zIndex={zIndex}
+          zIndex={popoverZIndex}
           anchorClassName="euiColorPicker__popoverAnchor"
           panelClassName={panelClasses}
           hasArrow={button ? true : false}
@@ -223,13 +223,21 @@ export const EuiColorPicker = ({
               <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
                 {swatchOptions.map((swatch) => (
                   <EuiFlexItem grow={false} key={swatch}>
-                    <EuiColorPickerSwatch
-                      className={swatchClass}
-                      color={swatch}
-                      onClick={() => handleSwatchSelection(swatch)}
-                      aria-label={`Select ${swatch} as the color`}
-                      role="option"
-                    />
+                    <EuiI18n
+                      token="euiColorPicker.swatchAriaLabel"
+                      values={{ swatch }}
+                      default="Select {swatch} as the color"
+                    >
+                      {swatchAriaLabel => (
+                        <EuiColorPickerSwatch
+                          className={swatchClass}
+                          color={swatch}
+                          onClick={() => handleSwatchSelection(swatch)}
+                          aria-label={swatchAriaLabel}
+                          role="option"
+                        />
+                      )}
+                    </EuiI18n>
                   </EuiFlexItem>
                 ))}
               </EuiFlexGroup>
@@ -265,11 +273,17 @@ EuiColorPicker.propTypes = {
    * Choice between swatches with gradient picker, swatches only, or gradient picker only.
    */
   mode: PropTypes.oneOf(['default', 'swatch', 'picker']),
+  /**
+   * Function called when the popover closes
+   */
   onBlur: PropTypes.func,
   /**
    *  (hex: string) => void
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Function called when the popover opens
+   */
   onFocus: PropTypes.func,
   /**
    *  Array of hex strings (3 or 6 character) to use as swatch options. Defaults to EUI visualization colors
@@ -278,5 +292,5 @@ EuiColorPicker.propTypes = {
   /**
    *  Custom z-index for the popover
    */
-  zIndex: PropTypes.number
+  popoverZIndex: PropTypes.number
 };
