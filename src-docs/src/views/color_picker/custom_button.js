@@ -35,13 +35,11 @@ export class CustomButton extends Component {
       <Fragment>
         <EuiFormRow
           label="Pick a color"
-          isInvalid={hasErrors}
           error={errors}
         >
           <EuiColorPicker
             onChange={this.handleChange}
             color={this.state.color}
-            isInvalid={hasErrors}
             button={
               <EuiColorPickerSwatch
                 color={this.state.color}

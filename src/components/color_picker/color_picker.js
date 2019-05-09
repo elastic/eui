@@ -24,7 +24,7 @@ export const EuiColorPicker = ({
   button,
   className,
   color,
-  compressed,
+  compressed = false,
   disabled,
   id,
   isInvalid,
@@ -32,7 +32,7 @@ export const EuiColorPicker = ({
   onBlur,
   onChange,
   onFocus,
-  swatches,
+  swatches = VISUALIZATION_COLORS,
   popoverZIndex = 1
 }) => {
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
@@ -55,7 +55,6 @@ export const EuiColorPicker = ({
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker'
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
-  const swatchOptions = swatches || VISUALIZATION_COLORS;
 
   const handleOnChange = hex => {
     setLastHex(hex);
@@ -224,7 +223,7 @@ export const EuiColorPicker = ({
             )}
             {(mode !== 'picker') && (
               <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
-                {swatchOptions.map((swatch) => (
+                {swatches.map((swatch) => (
                   <EuiFlexItem grow={false} key={swatch}>
                     <EuiI18n
                       token="euiColorPicker.swatchAriaLabel"
