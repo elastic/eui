@@ -283,21 +283,6 @@ exports[`EuiButton props isLoading is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButton props size l is rendered 1`] = `
-<button
-  class="euiButton euiButton--primary euiButton--large"
-  type="button"
->
-  <span
-    class="euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
-</button>
-`;
-
 exports[`EuiButton props size m is rendered 1`] = `
 <button
   class="euiButton euiButton--primary"
