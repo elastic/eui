@@ -1,5 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
+
+**Bug fixes**
+
+- Removed unused prop enum of `l` in `EuiButton` ([#1936](https://github.com/elastic/eui/pull/1936))
+- Fixed `EuiSelect` browser event inconsistencies by normalizing `mouseup` propagation ([#1926](https://github.com/elastic/eui/pull/1926))
+
+## [`11.0.1`](https://github.com/elastic/eui/tree/v11.0.1)
+
 **Bug fixes**
 
 - Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
