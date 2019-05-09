@@ -209,13 +209,6 @@ export const ColorPickerExample = {
       type: GuideSectionTypes.HTML,
       code: kitchenSinkHtml,
     }],
-    text: (
-      <p>
-      By default, both swatch selection and the gradient color map will be rendered.
-      Use the <EuiCode>mode</EuiCode> prop to pass `swatch` for swatch-only selection, or
-      pass `picker` for gradient map and hue slider selection without swatches.
-      </p>
-    ),
     snippet: kitchenSinkSnippet,
     demo: <KitchenSink />,
   }
