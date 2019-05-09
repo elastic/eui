@@ -21,3 +21,13 @@ export const getEventPosition = (
 
   return { left: leftPos, top: topPos, width, height };
 };
+
+export const throttle = (fn: (...args: any[]) => void, wait = 50) => {
+  let time = Date.now();
+  return (...args: any[]) => {
+    if (time + wait - Date.now() < 0) {
+      fn(...args);
+      time = Date.now();
+    }
+  };
+};

@@ -33,6 +33,7 @@ Array [
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  autocomplete="off"
                   class="euiFieldText euiFieldText--withIcon"
                   maxlength="7"
                   type="text"

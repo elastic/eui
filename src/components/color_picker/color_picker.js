@@ -1,4 +1,5 @@
 import React, {
+  Fragment,
   cloneElement,
   useEffect,
   useRef,
@@ -27,6 +28,7 @@ export const EuiColorPicker = ({
   disabled,
   id,
   isInvalid,
+  mode = 'default',
   onBlur,
   onChange,
   onFocus,
@@ -49,6 +51,9 @@ export const EuiColorPicker = ({
   }, [color]);
 
   const classes = classNames('euiColorPicker', className);
+  const panelClasses = classNames('euiColorPicker__popoverPanel', {
+    'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker'
+  });
   const swatchClass = 'euiColorPicker__swatchSelect';
   const swatchOptions = swatches || VISUALIZATION_COLORS;
 
@@ -159,6 +164,7 @@ export const EuiColorPicker = ({
           isInvalid={isInvalid}
           compressed={compressed}
           disabled={disabled}
+          autoComplete="off"
         />
       </div>
     );
@@ -177,7 +183,7 @@ export const EuiColorPicker = ({
           closePopover={closeColorSelector}
           zIndex={zIndex}
           anchorClassName="euiColorPicker__popoverAnchor"
-          panelClassName="euiColorPicker__popoverPanel"
+          panelClassName={panelClasses}
           hasArrow={button ? true : false}
           anchorPosition="downLeft"
           panelPaddingSize="s"
@@ -197,31 +203,37 @@ export const EuiColorPicker = ({
                 />
               </p>
             </EuiScreenReaderOnly>
-            <EuiSaturation
-              id={id}
-              color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
-              hex={color}
-              onChange={handleColorSelection}
-            />
-            <EuiHue
-              id={id}
-              hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
-              hex={color}
-              onChange={handleHueSelection}
-            />
-            <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
-              {swatchOptions.map((swatch) => (
-                <EuiFlexItem grow={false} key={swatch}>
-                  <EuiColorPickerSwatch
-                    className={swatchClass}
-                    color={swatch}
-                    onClick={() => handleSwatchSelection(swatch)}
-                    aria-label={`Select ${swatch} as the color`}
-                    role="option"
-                  />
-                </EuiFlexItem>
-              ))}
-            </EuiFlexGroup>
+            {(mode !== 'swatch') && (
+              <Fragment>
+                <EuiSaturation
+                  id={id}
+                  color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
+                  hex={color}
+                  onChange={handleColorSelection}
+                />
+                <EuiHue
+                  id={id}
+                  hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+                  hex={color}
+                  onChange={handleHueSelection}
+                />
+              </Fragment>
+            )}
+            {(mode !== 'picker') && (
+              <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
+                {swatchOptions.map((swatch) => (
+                  <EuiFlexItem grow={false} key={swatch}>
+                    <EuiColorPickerSwatch
+                      className={swatchClass}
+                      color={swatch}
+                      onClick={() => handleSwatchSelection(swatch)}
+                      aria-label={`Select ${swatch} as the color`}
+                      role="option"
+                    />
+                  </EuiFlexItem>
+                ))}
+              </EuiFlexGroup>
+            )}
           </div>
         </EuiPopover>
       </div>
@@ -249,6 +261,10 @@ EuiColorPicker.propTypes = {
    *  Custom validation flag
    */
   isInvalid: PropTypes.bool,
+  /**
+   * Choice between swatches with gradient picker, swatches only, or gradient picker only.
+   */
+  mode: PropTypes.oneOf(['default', 'swatch', 'picker']),
   onBlur: PropTypes.func,
   /**
    *  (hex: string) => void

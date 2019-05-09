@@ -17,7 +17,7 @@ import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { getEventPosition } from './utils';
+import { getEventPosition, throttle } from './utils';
 
 function isMouseEvent(
   event: ReactMouseEvent | TouchEvent
@@ -111,9 +111,9 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       handleChange({ x, y });
     }
   };
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = throttle((e: MouseEvent) => {
     handleChange({ x: e.pageX, y: e.pageY });
-  };
+  });
   const handleMouseUp = () => {
     unbindEventListeners();
   };

@@ -24,6 +24,10 @@ import { CustomButton } from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
 const customButtonHtml = renderToHtml(CustomButton);
 
+import { Modes } from './modes';
+const modesSource = require('!!raw-loader!./modes');
+const modesHtml = renderToHtml(Modes);
+
 export const ColorPickerExample = {
   title: 'Color Picker',
   intro: (
@@ -85,5 +89,23 @@ export const ColorPickerExample = {
       </p>
     ),
     demo: <CustomButton />,
-  }],
+  }, {
+    title: 'Modes',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: modesSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: modesHtml,
+    }],
+    text: (
+      <p>
+        By default, both swatch selection and the gradient color map will be rendered.
+        Use the <EuiCode>mode</EuiCode> prop to pass `swatch` for swatch-only selection, or
+        pass `picker` for gradient map and hue slider selection without swatches.
+      </p>
+    ),
+    demo: <Modes />,
+  }
+  ],
 };

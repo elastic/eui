@@ -5,6 +5,14 @@
   width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }
 
+.euiColorPicker__popoverPanel {
+  &.euiColorPicker__popoverPanel--pickerOnly {
+    // Override of EuiPanel padding
+    // sass-lint:disable no-important
+    padding-bottom: 0 !important;
+  }
+}
+
 .euiColorPicker__popoverPanel[class*='bottom'] {
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0;
