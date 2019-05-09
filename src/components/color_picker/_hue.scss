@@ -14,7 +14,8 @@
     #FF28FB 88%,
     #FF0094 100%
    );
-  height: $euiSizeL;
+  height: $euiSize + $euiSizeXS;
+  margin: $euiSizeXS / 2 0;
   position: relative;
 
   // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
@@ -41,7 +42,7 @@
   }
 
   position: relative;
-  height: $euiSizeL;
+  height: $euiSize + $euiSizeXS;
   width: 100%;
   appearance: none;
   background: transparent;
