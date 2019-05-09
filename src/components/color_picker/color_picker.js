@@ -14,7 +14,6 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiFieldText } from '../form';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import { EuiSpacer } from '../spacer';
 import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex, isValidHex } from '../../services';
 
 import { EuiHue } from './hue';
@@ -204,14 +203,12 @@ export const EuiColorPicker = ({
               hex={color}
               onChange={handleColorSelection}
             />
-            <EuiSpacer size="xs" />
             <EuiHue
               id={id}
               hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
               hex={color}
               onChange={handleHueSelection}
             />
-            <EuiSpacer size="s" />
             <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
               {swatchOptions.map((swatch) => (
                 <EuiFlexItem grow={false} key={swatch}>

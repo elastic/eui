@@ -10,6 +10,7 @@ $indicatorSize: $euiSizeM;
   padding-bottom: 100%;
   border-radius: $euiBorderRadius / 2;
   touch-action: none; // prevent TouchMove events from scrolling page
+  z-index: 3; // Required to be above the hue slider, which can overlap
 
   .euiSaturation__lightness,
   .euiSaturation__saturation {

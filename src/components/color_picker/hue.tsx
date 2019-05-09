@@ -21,12 +21,6 @@ export type EuiHueProps = Omit<
     onChange: (hue: number) => void;
   };
 
-const numberOfStops = 10;
-const colorStops = [...Array(numberOfStops).keys()].map(val => {
-  const stop = val * (100 / numberOfStops);
-  return `hsl(${(stop / 100) * HUE_RANGE}, 100%, 50%) ${stop}%`;
-});
-
 export const EuiHue: FunctionComponent<EuiHueProps> = ({
   className,
   hex,
@@ -52,20 +46,19 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
       <EuiScreenReaderOnly>
         <p aria-live="polite">{hex}</p>
       </EuiScreenReaderOnly>
-      <input
-        id={`${id}-hue`}
-        min={0}
-        max={HUE_RANGE}
-        step={1}
-        type="range"
-        className={classes}
-        value={hue}
-        onChange={handleChange}
-        style={{
-          background: `linear-gradient(to right, ${colorStops.join(',')})`,
-        }}
-        {...rest}
-      />
+      <div className={classes}>
+        <input
+          id={`${id}-hue`}
+          min={0}
+          max={HUE_RANGE}
+          step={1}
+          type="range"
+          className="euiHue__range"
+          value={hue}
+          onChange={handleChange}
+          {...rest}
+        />
+      </div>
     </React.Fragment>
   );
 };
