@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
+
 **Bug fixes**
 
 - Removed unused prop enum of `l` in `EuiButton` ([#1936](https://github.com/elastic/eui/pull/1936))
