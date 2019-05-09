@@ -7,6 +7,7 @@ import {
 } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiOutsideClickDetector,
 } from '../../../../src/components';
@@ -26,10 +27,21 @@ export const OutsideClickDetectorExample = {
       code: outsideClickDetectorHtml,
     }],
     text: (
-      <p>
-        Use <EuiCode>EuiOutsideClickDetector</EuiCode> to trigger a handler when the user clicks outside of the
-        child element.
-      </p>
+      <React.Fragment>
+        <p>
+          Use <EuiCode>EuiOutsideClickDetector</EuiCode> to trigger a handler when the user clicks outside of the
+          child element.
+        </p>
+        <EuiCallOut
+          title="Use with EuiSelect"
+          color="warning"
+        >
+          <p>
+            <EuiCode>EuiSelect</EuiCode> normalizes browser event inconsistencies with <EuiCode>select</EuiCode> elements
+            and as a result may not trigger <EuiCode>EuiOutsideClickDetector</EuiCode> when targeted with mouse events.
+          </p>
+        </EuiCallOut>
+      </React.Fragment>
     ),
     props: { EuiOutsideClickDetector },
     demo: <OutsideClickDetector />,
