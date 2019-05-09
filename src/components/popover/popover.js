@@ -526,6 +526,11 @@ EuiPopover.propTypes = {
     PropTypes.func,
     PropTypes.string,
   ]),
+  /** Passed directly to EuiPortal for DOM positioning. Both properties are required if prop is specified **/
+  insert: PropTypes.shape({
+    sibling: PropTypes.instanceOf(HTMLElement),
+    position: PropTypes.oneOf(['before', 'after'])
+  })
 };
 
 EuiPopover.defaultProps = {
