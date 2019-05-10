@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { keyCodes } from '../../services';
 import { HSV } from '../../services/color';
 import { isNil } from '../../services/predicate';
@@ -32,9 +32,15 @@ export type SaturationClientRect = Pick<
 
 export type SaturationPosition = Pick<SaturationClientRect, 'left' | 'top'>;
 
-export type EuiSaturationProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    color?: HSV;
+interface HTMLDivElementOverrides {
+  color?: HSV;
+}
+export type EuiSaturationProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  keyof HTMLDivElementOverrides
+> &
+  CommonProps &
+  HTMLDivElementOverrides & {
     hex?: string;
     onChange: (color: HSV) => void;
   };
