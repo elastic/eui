@@ -24,6 +24,7 @@ Array [
           class="euiPopover__anchor euiColorPicker__popoverAnchor"
         >
           <div
+            class="euiColorPicker__input-hasValidColor"
             style="color:#ffeedd"
           >
             <div

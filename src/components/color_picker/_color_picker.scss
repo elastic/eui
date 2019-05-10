@@ -5,6 +5,11 @@
   width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }
 
+// Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
+.euiColorPicker__input-hasValidColor svg {
+  stroke: $euiTextColor;
+}
+
 .euiColorPicker__popoverPanel--pickerOnly {
   // Override of EuiPanel padding
   // sass-lint:disable no-important

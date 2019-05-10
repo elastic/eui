@@ -5793,6 +5793,26 @@ exports[`EuiIcon props type submodule is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type swatchInput is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    fill-rule="evenodd"
+    height="11"
+    rx="2"
+    width="11"
+    x="2.5"
+    y="2.5"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type symlink is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
