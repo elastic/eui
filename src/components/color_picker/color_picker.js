@@ -55,6 +55,8 @@ export const EuiColorPicker = ({
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker'
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
+  const testSubjAnchor = 'colorPickerAnchor';
+  const testSubjPopover = 'colorPickerPopover';
 
   const handleOnChange = hex => {
     setLastHex(hex);
@@ -143,7 +145,8 @@ export const EuiColorPicker = ({
       cloneElement(button, {
         onClick: handleButtonClick,
         id: id,
-        disabled: disabled
+        disabled: disabled,
+        'data-test-subj': testSubjAnchor
       }
       ));
   } else {
@@ -167,6 +170,7 @@ export const EuiColorPicker = ({
           compressed={compressed}
           disabled={disabled}
           autoComplete="off"
+          data-test-subj={testSubjAnchor}
         />
       </div>
     );
@@ -194,7 +198,7 @@ export const EuiColorPicker = ({
             sibling: containerRef.current
           }}
         >
-          <div className={classes}>
+          <div className={classes} data-test-subj={testSubjPopover}>
             <EuiScreenReaderOnly>
               <p aria-live="polite">
                 <EuiI18n
