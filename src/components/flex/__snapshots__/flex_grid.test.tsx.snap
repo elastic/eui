@@ -56,7 +56,7 @@ exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
 
 exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterNone euiFlexGrid--wrap euiFlexGrid--responsive"
 />
 `;
 

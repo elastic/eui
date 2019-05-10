@@ -13,7 +13,7 @@ export interface EuiFlexGridProps {
 }
 
 const gutterSizeToClassNameMap = {
-  none: null,
+  none: 'euiFlexGrid--gutterNone',
   s: 'euiFlexGrid--gutterSmall',
   m: 'euiFlexGrid--gutterMedium',
   l: 'euiFlexGrid--gutterLarge',
