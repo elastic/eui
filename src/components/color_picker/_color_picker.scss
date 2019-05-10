@@ -17,6 +17,18 @@
   padding-bottom: 0 !important;
 }
 
+.euiColorPicker__popoverContainer--fullWidth {
+  // Override of EuiPopover display
+  // sass-lint:disable no-important
+  display: block !important;
+}
+
+.euiColorPicker__popoverAnchor--fullWidth {
+  // Override of EuiPopover display
+  // sass-lint:disable no-important
+  display: block !important;
+}
+
 .euiColorPicker__popoverPanel[class*='bottom'] {
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0;

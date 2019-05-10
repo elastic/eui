@@ -41,6 +41,7 @@ export class KitchenSink extends Component {
             onBlur={() => console.log('onBlur')}
             onFocus={() => console.log('onFocus')}
             compressed={isCompressed}
+            fullWidth={true}
             popoverZIndex={10}
             swatches={[
               '#333',
@@ -57,6 +58,15 @@ export class KitchenSink extends Component {
           <EuiColorPicker
             onChange={this.handleChange}
             disabled={true}
+          />
+        </EuiFormRow>
+        <EuiFormRow
+          label="Read a color"
+        >
+          <EuiColorPicker
+            color="#FFF"
+            onChange={this.handleChange}
+            readOnly={true}
           />
         </EuiFormRow>
       </React.Fragment>

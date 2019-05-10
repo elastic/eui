@@ -26,12 +26,14 @@ export const EuiColorPicker = ({
   color,
   compressed = false,
   disabled,
+  fullWidth = false,
   id,
   isInvalid,
   mode = 'default',
   onBlur,
   onChange,
   onFocus,
+  readOnly = false,
   swatches = VISUALIZATION_COLORS,
   popoverZIndex = 1
 }) => {
@@ -54,6 +56,12 @@ export const EuiColorPicker = ({
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker'
   });
+  const popoverClasses = classNames('euiColorPicker__popoverContainer', {
+    'euiColorPicker__popoverContainer--fullWidth': fullWidth && !button
+  });
+  const anchorClasses = classNames('euiColorPicker__popoverAnchor', {
+    'euiColorPicker__popoverAnchor--fullWidth': fullWidth && !button
+  });
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
   const testSubjPopover = 'colorPickerPopover';
@@ -72,7 +80,7 @@ export const EuiColorPicker = ({
   };
 
   const showColorSelector = () => {
-    if (isColorSelectorShown) return;
+    if (isColorSelectorShown || readOnly) return;
     if (onFocus) {
       onFocus();
     }
@@ -169,6 +177,8 @@ export const EuiColorPicker = ({
           isInvalid={isInvalid}
           compressed={compressed}
           disabled={disabled}
+          readOnly={readOnly}
+          fullWidth={fullWidth}
           autoComplete="off"
           data-test-subj={testSubjAnchor}
         />
@@ -188,7 +198,8 @@ export const EuiColorPicker = ({
           isOpen={isColorSelectorShown}
           closePopover={closeColorSelector}
           zIndex={popoverZIndex}
-          anchorClassName="euiColorPicker__popoverAnchor"
+          className={popoverClasses}
+          anchorClassName={anchorClasses}
           panelClassName={panelClasses}
           hasArrow={button ? true : false}
           anchorPosition="downLeft"

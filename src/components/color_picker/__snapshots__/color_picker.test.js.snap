@@ -17,7 +17,7 @@ Array [
   >
     <div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft"
+        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
         id="popover"
       >
         <div
@@ -89,7 +89,7 @@ Array [
   >
     <div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft"
+        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
         id="popover"
       >
         <div
@@ -161,7 +161,7 @@ Array [
   >
     <div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft"
+        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
         id="popover"
       >
         <div
@@ -232,7 +232,7 @@ Array [
   >
     <div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft"
+        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
         id="popover"
       >
         <div
