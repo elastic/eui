@@ -15,6 +15,7 @@
 }
 
 $gutterTypes: (
+  gutterNone: 0px, // sass-lint:disable-line zero-unit
   gutterSmall: $euiSizeS,
   gutterMedium: $euiSize,
   gutterLarge: $euiSizeL,
