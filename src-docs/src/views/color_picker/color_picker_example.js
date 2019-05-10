@@ -15,8 +15,7 @@ import {
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
 const colorPickerHtml = renderToHtml(ColorPicker);
-const colorPickerSnippet = `
-<EuiColorPicker
+const colorPickerSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
   color={chosenColor}
@@ -27,8 +26,7 @@ const colorPickerSnippet = `
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
-const customSwatchesSnippet = `
-<EuiColorPicker
+const customSwatchesSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
   color={chosenColor}
@@ -45,8 +43,7 @@ const customSwatchesSnippet = `
 import { CustomButton } from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
 const customButtonHtml = renderToHtml(CustomButton);
-const customButtonSnippet = `
-<EuiColorPicker
+const customButtonSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   button={
@@ -57,8 +54,7 @@ const customButtonSnippet = `
   }
 />
 `;
-const customBadgeSnippet = `
-// Be sure to provide relevant accessibility to unmanaged elements
+const customBadgeSnippet = `// Be sure to provide relevant accessibility to unmanaged elements
 <EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -77,8 +73,7 @@ const customBadgeSnippet = `
 import { Modes } from './modes';
 const modesSource = require('!!raw-loader!./modes');
 const modesHtml = renderToHtml(Modes);
-const modesSwatchSnippet = `
-// Swatches only
+const modesSwatchSnippet = `// Swatches only
 <EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -86,8 +81,7 @@ const modesSwatchSnippet = `
   mode="swatch"
 />
 `;
-const modesPickerSnippet = `
-// Gradient map only
+const modesPickerSnippet = `// Gradient map only
 <EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -99,8 +93,7 @@ const modesPickerSnippet = `
 import { KitchenSink } from './kitchen_sink';
 const kitchenSinkSource = require('!!raw-loader!./kitchen_sink');
 const kitchenSinkHtml = renderToHtml(KitchenSink);
-const kitchenSinkSnippet = `
-<EuiColorPicker
+const kitchenSinkSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
