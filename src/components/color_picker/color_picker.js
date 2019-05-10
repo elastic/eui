@@ -150,7 +150,6 @@ export const EuiColorPicker = ({
     const showColor = color && isValidHex(color);
     buttonOrInput = (
       <div
-        className={showColor ? `euiColorPicker__input-hasValidColor` : null}
         // Used to pass the chosen color through to form layout SVG using currentColor
         style={{ color: showColor ? color : undefined }}
       >

@@ -6,8 +6,9 @@
 }
 
 // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
-.euiColorPicker__input-hasValidColor svg {
-  stroke: $euiTextColor;
+.euiSwatchInput__stroke {
+  fill: none;
+  stroke: transparentize($euiColorFullShade, .8);
 }
 
 .euiColorPicker__popoverPanel--pickerOnly {

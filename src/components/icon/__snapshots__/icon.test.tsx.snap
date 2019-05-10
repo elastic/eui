@@ -5803,7 +5803,14 @@ exports[`EuiIcon props type swatchInput is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <rect
-    fill-rule="evenodd"
+    height="12"
+    rx="3"
+    width="12"
+    x="2"
+    y="2"
+  />
+  <rect
+    class="euiSwatchInput__stroke"
     height="11"
     rx="2"
     width="11"
