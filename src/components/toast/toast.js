@@ -5,9 +5,14 @@ import classNames from 'classnames';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import {
+  IconPropType,
+  EuiIcon,
+} from '../icon';
 
-import { EuiText } from '../text';
+import {
+  EuiText,
+} from '../text';
 
 const colorToClassNameMap = {
   primary: 'euiToast--primary',
@@ -18,15 +23,7 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
-export const EuiToast = ({
-  title,
-  color,
-  iconType,
-  onClose,
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiToast = ({ title, color, iconType, onClose, children, className, ...rest }) => {
   const classes = classNames('euiToast', colorToClassNameMap[color], className);
   const headerClasses = classNames('euiToastHeader', {
     'euiToastHeader--withBody': children,
@@ -56,8 +53,13 @@ export const EuiToast = ({
             className="euiToast__closeButton"
             aria-label={dismissToast}
             onClick={onClose}
-            data-test-subj="toastCloseButton">
-            <EuiIcon type="cross" size="m" aria-hidden="true" />
+            data-test-subj="toastCloseButton"
+          >
+            <EuiIcon
+              type="cross"
+              size="m"
+              aria-hidden="true"
+            />
           </button>
         )}
       </EuiI18n>
@@ -75,14 +77,13 @@ export const EuiToast = ({
   }
 
   return (
-    <div className={classes} aria-live="polite" {...rest}>
+    <div
+      className={classes}
+      aria-live="polite"
+      {...rest}
+    >
       <EuiScreenReaderOnly>
-        <p>
-          <EuiI18n
-            token="euiToast.newNotification"
-            default="A new notification appears"
-          />
-        </p>
+        <p><EuiI18n token="euiToast.newNotification" default="A new notification appears"/></p>
       </EuiScreenReaderOnly>
 
       <EuiI18n token="euiToast.notification" default="Notification">
@@ -90,10 +91,13 @@ export const EuiToast = ({
           <div
             className={headerClasses}
             aria-label={notification}
-            data-test-subj="euiToastHeader">
+            data-test-subj="euiToastHeader"
+          >
             {headerIcon}
 
-            <span className="euiToastHeader__title">{title}</span>
+            <span className="euiToastHeader__title">
+              {title}
+            </span>
           </div>
         )}
       </EuiI18n>
@@ -106,7 +110,7 @@ export const EuiToast = ({
 
 EuiToast.propTypes = {
   title: PropTypes.node,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   color: PropTypes.oneOf(COLORS),
   onClose: PropTypes.func,
   children: PropTypes.node,

@@ -1,9 +1,54 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `pretty_interval` to TS ([#1920](https://github.com/elastic/eui/pull/1920))
+- Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
+- Added width to `EuiFlexItem` when gutter in `EuiFlexGrid` is set to none. ([#1941](https://github.com/elastic/eui/pull/1941))
 - Format all JavaScript files with Prettier through ESLint ([#1906](https://github.com/elastic/eui/pull/1906))
 
 **Bug fixes**
 
+- Removed unused prop enum of `l` in `EuiButton` ([#1936](https://github.com/elastic/eui/pull/1936))
+- Fixed `EuiSelect` browser event inconsistencies by normalizing `mouseup` propagation ([#1926](https://github.com/elastic/eui/pull/1926))
+- Removed `children` as a required prop for `EuiOverlayMask` ([#1937](https://github.com/elastic/eui/pull/1937))
+
+## [`11.0.1`](https://github.com/elastic/eui/tree/v11.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiIconTip`'s typescript definition ([#1934](https://github.com/elastic/eui/pull/1934))
+- Reinstated `EuiIcon` component ability to handle `type` prop updates ([#1935](https://github.com/elastic/eui/pull/1935))
+
+## [`11.0.0`](https://github.com/elastic/eui/tree/v11.0.0)
+
+- Added support for custom React SVG elements and external SVG URLs to `EuiIcon` ([#1924](https://github.com/elastic/eui/pull/1924))
+
+**Bug fixes**
+
+- Fixed Firefox flash of unstyled select dropdown ([#1927](https://github.com/elastic/eui/pull/1927))
+
+**Breaking changes**
+
+- Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
+
+## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
+
+- Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
+
+## [`10.3.1`](https://github.com/elastic/eui/tree/v10.3.1)
+
+**Bug fixes**
+
+- Fixed a regression where `EuiStat` reported accepting `string` for `title`, `description`, even though `ReactNode` is acceptable ([#1910](https://github.com/elastic/eui/pull/1910))
+
+## [`10.3.0`](https://github.com/elastic/eui/tree/v10.3.0)
+
+- Added support for `href` on the last item in `EuiBreadcrumbs` ([#1905](https://github.com/elastic/eui/pull/1905))
+- Added `selectable` prop to `EuiCard` ([#1895](https://github.com/elastic/eui/pull/1895))
+- Converted `EuiValidatableControl` to TS ([#1879](https://github.com/elastic/eui/pull/1879))
+
+**Bug fixes**
+
+- Fixed prompt text rendering in `EuiFilePicker` when a React element is passed ([#1903](https://github.com/elastic/eui/pull/1903))
 - Fixed overflow scrolling of `EuiModal` and `EuiConfirmModal` for Chrome and Safari ([#1902](https://github.com/elastic/eui/pull/1902))
 - Fixed `EuiOverlayMask` `children` element mismatch TS error ([#1900](https://github.com/elastic/eui/pull/1900))
 

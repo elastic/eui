@@ -18,6 +18,12 @@ const plugins = [
     tslint: path.resolve(__dirname, '..', 'tslint.yaml'),
     async: false, // makes errors more visible, but potentially less performant
   }),
+
+  // Force EuiIcon's dynamic imports to be included in the single eui.js build,
+  // instead of being split out into multiple files
+  new webpack.optimize.LimitChunkCountPlugin({
+    maxChunks: 1,
+  }),
 ];
 
 module.exports = {

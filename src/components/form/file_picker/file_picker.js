@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -33,18 +35,16 @@ export class EuiFilePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      promptText: this.props.initialPromptText,
+      promptText: null,
       isHoveringDrop: false,
     };
   }
 
-  handleChange = filesSelected => {
+  handleChange = (filesSelected) => {
     if (this.fileInput.files && this.fileInput.files.length > 1) {
-      this.setState({
-        promptText: `${this.fileInput.files.length} ${filesSelected}`,
-      });
+      this.setState({ promptText: `${this.fileInput.files.length} ${filesSelected}` });
     } else if (this.fileInput.files.length === 0) {
-      this.setState({ promptText: this.props.initialPromptText });
+      this.setState({ promptText: null });
     } else {
       this.setState({ promptText: this.fileInput.value.split('\\').pop() });
     }
@@ -76,11 +76,9 @@ export class EuiFilePicker extends Component {
   render() {
     return (
       <EuiI18n
-        tokens={[
-          'euiFilePicker.clearSelectedFiles',
-          'euiFilePicker.filesSelected',
-        ]}
-        defaults={['Clear selected files', 'files selected']}>
+        tokens={['euiFilePicker.clearSelectedFiles', 'euiFilePicker.filesSelected']}
+        defaults={['Clear selected files', 'files selected']}
+      >
         {([clearSelectedFiles, filesSelected]) => {
           const {
             id,
@@ -93,27 +91,32 @@ export class EuiFilePicker extends Component {
             ...rest
           } = this.props;
 
+          const isOverridingInitialPrompt = this.state.promptText != null;
+
           const classes = classNames(
             'euiFilePicker',
             {
-              euiFilePicker__showDrop: this.state.isHoveringDrop,
+              'euiFilePicker__showDrop': this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
-              'euiFilePicker-hasFiles':
-                this.state.promptText !== initialPromptText,
+              'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
           );
 
           let clearButton;
-          if (this.state.promptText !== initialPromptText) {
+          if (isOverridingInitialPrompt) {
             if (compressed) {
               clearButton = (
                 <button
                   type="button"
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
-                  onClick={this.removeFiles}>
-                  <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
+                  onClick={this.removeFiles}
+                >
+                  <EuiIcon
+                    className="euiFilePicker__clearIcon"
+                    type="cross"
+                  />
                 </button>
               );
             } else {
@@ -122,7 +125,8 @@ export class EuiFilePicker extends Component {
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
                   size="xs"
-                  onClick={this.removeFiles}>
+                  onClick={this.removeFiles}
+                >
                   Remove
                 </EuiButtonEmpty>
               );
@@ -132,7 +136,9 @@ export class EuiFilePicker extends Component {
           }
 
           return (
-            <div className={classes}>
+            <div
+              className={classes}
+            >
               <div className="euiFilePicker__wrap">
                 <input
                   type="file"
@@ -140,9 +146,7 @@ export class EuiFilePicker extends Component {
                   name={name}
                   className="euiFilePicker__input"
                   onChange={() => this.handleChange(filesSelected)}
-                  ref={input => {
-                    this.fileInput = input;
-                  }}
+                  ref={(input) => { this.fileInput = input; }}
                   onDragOver={this.showDrop}
                   onDragLeave={this.hideDrop}
                   onDrop={this.hideDrop}
@@ -156,8 +160,10 @@ export class EuiFilePicker extends Component {
                     size={compressed ? 'm' : 'l'}
                     aria-hidden="true"
                   />
-                  <div className="euiFilePicker__promptText">
-                    {this.state.promptText}
+                  <div
+                    className="euiFilePicker__promptText"
+                  >
+                    {this.state.promptText || initialPromptText}
                   </div>
                   {clearButton}
                 </div>

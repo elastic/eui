@@ -3,11 +3,20 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTabs, EuiTabbedContent } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiTabs,
+  EuiTab,
+  EuiTabbedContent,
+} from '../../../../src/components';
 
 import Tabs from './tabs';
 const tabsSource = require('!!raw-loader!./tabs');
 const tabsHtml = renderToHtml(Tabs);
+
+import TabsCondensed from './tabs_condensed';
+const tabsCondensedSource = require('!!raw-loader!./tabs_condensed');
+const tabsCondensedHtml = renderToHtml(TabsCondensed);
 
 import TabbedContent from './tabbed_content';
 const tabbedContentSource = require('!!raw-loader!./tabbed_content');
@@ -41,8 +50,44 @@ export const TabsExample = {
       ),
       props: {
         EuiTabs,
+        EuiTab,
       },
       demo: <Tabs />,
+      snippet: `<EuiTabs>
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
+</EuiTabs>`,
+    },
+    {
+      title: 'Condensed tabs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: tabsCondensedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: tabsCondensedHtml,
+        },
+      ],
+      text: (
+        <p>
+          <EuiCode>EuiTabs</EuiCode> allow a <EuiCode>display</EuiCode> prop. In
+          general you should always use the default display. However, it is
+          acceptable to use the alternative <EuiCode>condensed</EuiCode> display
+          in situations where it is desirable to display a bolder, more compact
+          and borderless tab interface (for use as primary navigation within
+          your application or to establish a higher level hierarchy of tabs).
+        </p>
+      ),
+      props: {
+        EuiTabs,
+      },
+      demo: <TabsCondensed />,
+      snippet: `<EuiTabs display="condensed">
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
+</EuiTabs>`,
     },
     {
       title: 'Tabbed content',
@@ -68,6 +113,20 @@ export const TabsExample = {
         EuiTabbedContent,
       },
       demo: <TabbedContent />,
+      snippet: `<EuiTabbedContent 
+  tabs={[
+    {
+      id: 'example1',
+      name: 'Example 1',
+      content: 'Example 1 content.',
+    },
+    {
+      id: 'example2',
+      name: 'Example 2',
+      content: 'Example 2 content.',
+    },
+  ]}
+/>`,
     },
     {
       title: 'Controlled tabbed content',

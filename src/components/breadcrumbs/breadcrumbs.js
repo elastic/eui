@@ -73,7 +73,7 @@ export const EuiBreadcrumbs = ({
 
     let link;
 
-    if (isLastBreadcrumb) {
+    if (isLastBreadcrumb && !href) {
       link = (
         <span
           className={breadcrumbClasses}
@@ -86,9 +86,9 @@ export const EuiBreadcrumbs = ({
     } else {
       link = (
         <EuiLink
-          color="subdued"
-          href={href}
+          color={isLastBreadcrumb ? 'text' : 'subdued'}
           onClick={onClick}
+          href={href}
           className={breadcrumbClasses}
           title={text}
           {...breadcrumbRest}>

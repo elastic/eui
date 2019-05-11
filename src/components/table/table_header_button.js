@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import {
+  IconPropType,
+  EuiIcon,
+} from '../icon';
 
 export const EuiTableHeaderButton = ({
   children,
@@ -27,7 +30,11 @@ export const EuiTableHeaderButton = ({
   }
 
   return (
-    <button type="button" className={classes} {...rest}>
+    <button
+      type="button"
+      className={classes}
+      {...rest}
+    >
       <span>{children}</span>
       {buttonIcon}
     </button>
@@ -37,5 +44,5 @@ export const EuiTableHeaderButton = ({
 EuiTableHeaderButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 };

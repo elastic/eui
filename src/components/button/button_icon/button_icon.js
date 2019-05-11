@@ -4,7 +4,11 @@ import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { ICON_SIZES, ICON_TYPES, EuiIcon } from '../../icon';
+import {
+  ICON_SIZES,
+  IconPropType,
+  EuiIcon,
+} from '../../icon';
 
 const accessibleButtonIcon = (props, propName, componentName) => {
   if (props['aria-label']) {
@@ -47,10 +51,11 @@ export const EuiButtonIcon = ({
   buttonRef,
   ...rest
 }) => {
+
   const classes = classNames(
     'euiButtonIcon',
     colorToClassNameMap[color],
-    className
+    className,
   );
 
   // Add an icon to the button if one exists.
@@ -79,7 +84,8 @@ export const EuiButtonIcon = ({
         target={target}
         rel={secureRel}
         ref={buttonRef}
-        {...rest}>
+        {...rest}
+      >
         {buttonIcon}
       </a>
     );
@@ -90,7 +96,8 @@ export const EuiButtonIcon = ({
         className={classes}
         type={type}
         ref={buttonRef}
-        {...rest}>
+        {...rest}
+      >
         {buttonIcon}
       </button>
     );
@@ -100,7 +107,7 @@ export const EuiButtonIcon = ({
 EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSize: PropTypes.oneOf(ICON_SIZES),
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,

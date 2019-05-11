@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiLoadingSpinner } from '../../loading';
+import {
+  EuiLoadingSpinner
+} from '../../loading';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { ICON_TYPES, EuiIcon } from '../../icon';
+import {
+  IconPropType,
+  EuiIcon,
+} from '../../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButtonEmpty--primary',
@@ -34,8 +39,8 @@ const iconSideToClassNameMap = {
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
 const flushTypeToClassNameMap = {
-  left: 'euiButtonEmpty--flushLeft',
-  right: 'euiButtonEmpty--flushRight',
+  'left': 'euiButtonEmpty--flushLeft',
+  'right': 'euiButtonEmpty--flushRight',
 };
 
 export const FLUSH_TYPES = Object.keys(flushTypeToClassNameMap);
@@ -59,6 +64,7 @@ export const EuiButtonEmpty = ({
   textProps,
   ...rest
 }) => {
+
   // If in the loading state, force disabled to true
   isDisabled = isLoading ? true : isDisabled;
 
@@ -68,24 +74,29 @@ export const EuiButtonEmpty = ({
     sizeToClassNameMap[size],
     iconSideToClassNameMap[iconSide],
     flushTypeToClassNameMap[flush],
-    className
+    className,
   );
 
   const contentClassNames = classNames(
     'euiButtonEmpty__content',
-    contentProps && contentProps.className
+    contentProps && contentProps.className,
   );
 
   const textClassNames = classNames(
     'euiButtonEmpty__text',
-    textProps && textProps.className
+    textProps && textProps.className,
   );
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
   if (isLoading) {
-    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
+    buttonIcon = (
+      <EuiLoadingSpinner
+        className="euiButton__spinner"
+        size="m"
+      />
+    );
   } else if (iconType) {
     buttonIcon = (
       <EuiIcon
@@ -100,9 +111,7 @@ export const EuiButtonEmpty = ({
   const innerNode = (
     <span {...contentProps} className={contentClassNames}>
       {buttonIcon}
-      <span {...textProps} className={textClassNames}>
-        {children}
-      </span>
+      <span {...textProps} className={textClassNames}>{children}</span>
     </span>
   );
 
@@ -118,7 +127,8 @@ export const EuiButtonEmpty = ({
         target={target}
         rel={secureRel}
         ref={buttonRef}
-        {...rest}>
+        {...rest}
+      >
         {innerNode}
       </a>
     );
@@ -129,7 +139,8 @@ export const EuiButtonEmpty = ({
         className={classes}
         type={type}
         ref={buttonRef}
-        {...rest}>
+        {...rest}
+      >
         {innerNode}
       </button>
     );
@@ -139,7 +150,7 @@ export const EuiButtonEmpty = ({
 EuiButtonEmpty.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),

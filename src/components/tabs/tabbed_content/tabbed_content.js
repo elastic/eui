@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, SIZES } from '../tabs';
+import { EuiTabs, DISPLAYS, SIZES } from '../tabs';
 import { EuiTab } from '../tab';
 
 const makeId = htmlIdGenerator();
@@ -11,35 +11,36 @@ const makeId = htmlIdGenerator();
 export class EuiTabbedContent extends Component {
   static propTypes = {
     className: PropTypes.string,
-
+    /**
+     * Choose `default` or alternative `condensed` display styles
+     */
+    display: PropTypes.oneOf(DISPLAYS),
+    /**
+     * Evenly stretches each tab to fill the horizontal space
+     */
+    expand: PropTypes.bool,
+    /**
+     * Use this prop to set the initially selected tab while letting the tabbed content component
+     * control selection state internally
+     */
+    initialSelectedTab: PropTypes.object,
+    onTabClick: PropTypes.func,
+    /**
+     * Use this prop if you want to control selection state within the owner component
+     */
+    selectedTab: PropTypes.object,
+    size: PropTypes.oneOf(SIZES),
     /**
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
      * The name property is also required to display to the user.
      */
     tabs: PropTypes.arrayOf(
       PropTypes.shape({
+        content: PropTypes.node.isRequired,
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        content: PropTypes.node.isRequired,
       })
     ).isRequired,
-    onTabClick: PropTypes.func,
-
-    /**
-     * Use this prop if you want to control selection state within the owner component
-     */
-    selectedTab: PropTypes.object,
-
-    /**
-     * Use this prop to set the initially selected tab while letting the tabbed content component
-     * control selection state internally
-     */
-    initialSelectedTab: PropTypes.object,
-    size: PropTypes.oneOf(SIZES),
-    /**
-     * Evenly stretches each tab to fill the horizontal space
-     */
-    expand: PropTypes.bool,
   };
 
   constructor(props) {
@@ -74,12 +75,13 @@ export class EuiTabbedContent extends Component {
   render() {
     const {
       className,
-      tabs,
-      onTabClick, // eslint-disable-line no-unused-vars
+      display,
+      expand,
       initialSelectedTab, // eslint-disable-line no-unused-vars
+      onTabClick, // eslint-disable-line no-unused-vars
       selectedTab: externalSelectedTab,
       size,
-      expand,
+      tabs,
       ...rest
     } = this.props;
 
@@ -92,7 +94,7 @@ export class EuiTabbedContent extends Component {
 
     return (
       <div className={className} {...rest}>
-        <EuiTabs size={size} expand={expand}>
+        <EuiTabs expand={expand} display={display} size={size}>
           {tabs.map(tab => {
             const {
               id,
@@ -116,7 +118,8 @@ export class EuiTabbedContent extends Component {
         <div
           role="tabpanel"
           id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}>
+          aria-labelledby={selectedTabId}
+        >
           {selectedTabContent}
         </div>
       </div>

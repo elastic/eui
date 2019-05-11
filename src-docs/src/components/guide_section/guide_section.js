@@ -17,7 +17,7 @@ import {
   EuiText,
   EuiTextColor,
   EuiTitle,
-  EuiLink,
+  EuiLink
 } from '../../../../src/components';
 
 function markup(text) {
@@ -31,17 +31,14 @@ function markup(text) {
       const onClick = () => {
         document.getElementById(id).scrollIntoView();
       };
-      return (
-        <EuiLink key={`markup-${index}`} onClick={onClick}>
-          {id}
-        </EuiLink>
-      );
+      return <EuiLink key={`markup-${index}`} onClick={onClick}>{id}</EuiLink>;
     }
     if (token.startsWith('`')) {
       const code = token.substring(1, token.length - 1);
       return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
     }
     return token;
+
   });
 }
 
@@ -64,9 +61,7 @@ const humanizeType = type => {
     case 'union':
       if (Array.isArray(type.value)) {
         const unionValues = type.value.map(({ name }) => name);
-        unionValues[unionValues.length - 1] = `or ${
-          unionValues[unionValues.length - 1]
-        }`;
+        unionValues[unionValues.length - 1] = `or ${unionValues[unionValues.length - 1]}`;
 
         if (unionValues.length > 2) {
           humanizedType = unionValues.join(', ');
@@ -85,6 +80,7 @@ const humanizeType = type => {
   return humanizedType;
 };
 
+
 export class GuideSection extends Component {
   constructor(props) {
     super(props);
@@ -92,22 +88,18 @@ export class GuideSection extends Component {
     this.componentNames = Object.keys(props.props);
     const hasSnippet = 'snippet' in props;
 
-    this.tabs = [
-      {
-        name: 'demo',
-        displayName: 'Demo',
-      },
-      {
-        name: 'javascript',
-        displayName: 'Demo JS',
-        isCode: true,
-      },
-      {
-        name: 'html',
-        displayName: 'Demo HTML',
-        isCode: true,
-      },
-    ];
+    this.tabs = [{
+      name: 'demo',
+      displayName: 'Demo',
+    }, {
+      name: 'javascript',
+      displayName: 'Demo JS',
+      isCode: true,
+    }, {
+      name: 'html',
+      displayName: 'Demo HTML',
+      isCode: true,
+    }];
 
     if (hasSnippet) {
       this.tabs.push({
@@ -133,14 +125,15 @@ export class GuideSection extends Component {
     this.setState({
       selectedTab,
     });
-  };
+  }
 
   renderTabs() {
     return this.tabs.map(tab => (
       <EuiTab
         onClick={() => this.onSelectedTabChanged(tab)}
         isSelected={tab === this.state.selectedTab}
-        key={tab.name}>
+        key={tab.name}
+      >
         {tab.displayName}
       </EuiTab>
     ));
@@ -153,7 +146,9 @@ export class GuideSection extends Component {
       return;
     }
 
-    return [<EuiText key="text">{text}</EuiText>];
+    return [
+      <EuiText key="text">{text}</EuiText>,
+    ];
   }
 
   renderSnippet() {
@@ -163,14 +158,28 @@ export class GuideSection extends Component {
       return;
     }
 
-    return [
-      <Fragment key="snippet">
-        <EuiSpacer size="m" />
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {snippet}
-        </EuiCodeBlock>
-      </Fragment>,
-    ];
+    let snippetCode;
+    if (typeof snippet === 'string') {
+      snippetCode = (
+        <Fragment key="snippet">
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snippet}
+          </EuiCodeBlock>
+        </Fragment>
+      );
+    } else {
+      snippetCode = snippet.map((snip, index) => (
+        <Fragment key={`snippet${index}`}>
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snip}
+          </EuiCodeBlock>
+        </Fragment>
+      ));
+    }
+
+    return snippetCode;
   }
 
   renderPropsForComponent = (componentName, component) => {
@@ -178,9 +187,7 @@ export class GuideSection extends Component {
       return;
     }
 
-    const docgenInfo = Array.isArray(component.__docgenInfo)
-      ? component.__docgenInfo[0]
-      : component.__docgenInfo;
+    const docgenInfo = Array.isArray(component.__docgenInfo) ? component.__docgenInfo[0] : component.__docgenInfo;
     const { _euiObjectType, description, props } = docgenInfo;
 
     if (!props && !description) {
@@ -204,60 +211,56 @@ export class GuideSection extends Component {
       if (required) {
         humanizedName = (
           <span>
-            {humanizedName}{' '}
-            <EuiTextColor color="danger">(required)</EuiTextColor>
+            {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
           </span>
         );
       }
 
       const humanizedType = humanizeType(type);
 
-      const typeMarkup = (
-        <span className="eui-textBreakNormal">{markup(humanizedType)}</span>
-      );
+      const typeMarkup = (<span className="eui-textBreakNormal">{markup(humanizedType)}</span>);
       const descriptionMarkup = markup(propDescription);
       let defaultValueMarkup = '';
       if (defaultValue) {
-        defaultValueMarkup = [
+        defaultValueMarkup = [(
           <EuiCode key={`defaultValue-${propName}`}>
             <span className="eui-textBreakNormal">{defaultValue.value}</span>
-          </EuiCode>,
-        ];
+          </EuiCode>
+        )];
         if (defaultValue.comment) {
           defaultValueMarkup.push(`(${defaultValue.comment})`);
         }
       }
       const cells = [
-        <EuiTableRowCell key="name" header="Prop">
-          {humanizedName}
-        </EuiTableRowCell>,
-        <EuiTableRowCell key="type" header="Type">
-          <EuiCode>{typeMarkup}</EuiCode>
-        </EuiTableRowCell>,
-        <EuiTableRowCell
-          key="defaultValue"
-          header="Default"
-          hideForMobile={!defaultValue}>
-          {defaultValueMarkup}
-        </EuiTableRowCell>,
-        <EuiTableRowCell
-          key="description"
-          header="Note"
-          isMobileFullWidth={true}
-          hideForMobile={!propDescription}>
-          {descriptionMarkup}
-        </EuiTableRowCell>,
+        (
+          <EuiTableRowCell key="name" header="Prop">
+            {humanizedName}
+          </EuiTableRowCell>
+        ), (
+          <EuiTableRowCell key="type" header="Type">
+            <EuiCode>{typeMarkup}</EuiCode>
+          </EuiTableRowCell>
+        ), (
+          <EuiTableRowCell key="defaultValue" header="Default" hideForMobile={!defaultValue}>
+            {defaultValueMarkup}
+          </EuiTableRowCell>
+        ), (
+          <EuiTableRowCell key="description" header="Note" isMobileFullWidth={true} hideForMobile={!propDescription}>
+            {descriptionMarkup}
+          </EuiTableRowCell>
+        )
       ];
 
-      return <EuiTableRow key={propName}>{cells}</EuiTableRow>;
+      return (
+        <EuiTableRow key={propName}>
+          {cells}
+        </EuiTableRow>
+      );
     });
 
-    const title =
-      _euiObjectType === 'type' ? (
-        <EuiCode id={componentName}>{componentName}</EuiCode>
-      ) : (
-        <EuiText>{componentName}</EuiText>
-      );
+    const title = _euiObjectType === 'type' ?
+      <EuiCode id={componentName}>{componentName}</EuiCode> :
+      <EuiText>{componentName}</EuiText>;
 
     let descriptionElement;
 
@@ -276,42 +279,45 @@ export class GuideSection extends Component {
 
     if (rows.length) {
       table = (
-        <EuiTable
-          className="guideSectionPropsTable"
-          compressed
-          key={`propsTable-${componentName}`}>
+        <EuiTable className="guideSectionPropsTable" compressed key={`propsTable-${componentName}`}>
           <EuiTableHeader>
-            <EuiTableHeaderCell>Prop</EuiTableHeaderCell>
+            <EuiTableHeaderCell>
+              Prop
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Type</EuiTableHeaderCell>
+            <EuiTableHeaderCell>
+              Type
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Default</EuiTableHeaderCell>
+            <EuiTableHeaderCell>
+              Default
+            </EuiTableHeaderCell>
 
-            <EuiTableHeaderCell>Note</EuiTableHeaderCell>
+            <EuiTableHeaderCell>
+              Note
+            </EuiTableHeaderCell>
           </EuiTableHeader>
 
-          <EuiTableBody>{rows}</EuiTableBody>
+          <EuiTableBody>
+            {rows}
+          </EuiTableBody>
         </EuiTable>
       );
     }
 
     return [
       <EuiSpacer size="m" key={`propsSpacer-${componentName}-1`} />,
-      <EuiTitle size="s" key={`propsName-${componentName}`}>
-        <h3>{title}</h3>
-      </EuiTitle>,
+      <EuiTitle size="s" key={`propsName-${componentName}`}><h3>{title}</h3></EuiTitle>,
       <EuiSpacer size="s" key={`propsSpacer-${componentName}-2`} />,
       descriptionElement,
       table,
     ];
-  };
+  }
 
   renderProps() {
     const { props } = this.props;
     return this.componentNames
-      .map(componentName =>
-        this.renderPropsForComponent(componentName, props[componentName])
-      )
+      .map(componentName => this.renderPropsForComponent(componentName, props[componentName]))
       .reduce((a, b) => a.concat(b), []); // Flatten the resulting array
   }
 
@@ -337,7 +343,9 @@ export class GuideSection extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiTabs>{this.renderTabs()}</EuiTabs>
+        <EuiTabs>
+          {this.renderTabs()}
+        </EuiTabs>
       </div>
     );
   }
@@ -349,24 +357,19 @@ export class GuideSection extends Component {
     };
 
     const codeClass = nameToCodeClassMap[name];
-    const { code } = this.props.source.find(
-      sourceObject => sourceObject.type === name
-    );
+    const { code } = this.props.source.find(sourceObject => sourceObject.type === name);
     const npmImports = code
       .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
-      .replace(
-        /(from )'(..\/)+src\/services(\/?';)/,
-        `from '@elastic/eui/lib/services';`
-      )
-      .replace(
-        /(from )'(..\/)+src\/experimental(\/?';)/,
-        `from '@elastic/eui/lib/experimental';`
-      )
+      .replace(/(from )'(..\/)+src\/services(\/?';)/, `from '@elastic/eui/lib/services';`)
+      .replace(/(from )'(..\/)+src\/experimental(\/?';)/, `from '@elastic/eui/lib/experimental';`)
       .replace(/(from )'(..\/)+src\/components\/.*?';/, `from '@elastic/eui';`);
 
     return (
       <div key={name} ref={name}>
-        <EuiCodeBlock language={codeClass} overflowHeight={400}>
+        <EuiCodeBlock
+          language={codeClass}
+          overflowHeight={400}
+        >
           {npmImports}
         </EuiCodeBlock>
       </div>
@@ -375,7 +378,11 @@ export class GuideSection extends Component {
 
   renderContent() {
     if (this.state.selectedTab.name === 'snippet') {
-      return <EuiErrorBoundary>{this.renderSnippet()}</EuiErrorBoundary>;
+      return (
+        <EuiErrorBoundary>
+          {this.renderSnippet()}
+        </EuiErrorBoundary>
+      );
     }
 
     if (this.state.selectedTab.isCode) {
@@ -387,7 +394,11 @@ export class GuideSection extends Component {
     }
 
     if (this.state.selectedTab.name === 'props') {
-      return <EuiErrorBoundary>{this.renderProps()}</EuiErrorBoundary>;
+      return (
+        <EuiErrorBoundary>
+          {this.renderProps()}
+        </EuiErrorBoundary>
+      );
     }
 
     return (
@@ -416,7 +427,10 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
-  snippet: PropTypes.string,
+  snippet: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
