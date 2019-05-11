@@ -38,12 +38,15 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiBreadcrumbs</EuiCode> let the user track their progress within and back out of
-          a UX flow. You can provide an <EuiCode>href</EuiCode> prop on any breadcrumb item that you
-          wish to make clickable, including the last item, though we recommend the last item represent
-          the current page and therefore the link is unnecessary. They work well within
-          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to be use them within an app that
-          also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
+          <EuiCode>EuiBreadcrumbs</EuiCode> let the user track their progress
+          within and back out of a UX flow. You can provide an{' '}
+          <EuiCode>href</EuiCode> prop on any breadcrumb item that you wish to
+          make clickable, including the last item, though we recommend the last
+          item represent the current page and therefore the link is unnecessary.
+          They work well within
+          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to be use
+          them within an app that also uses{' '}
+          <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
@@ -63,7 +66,8 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <p>
-          The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on narrower screens.
+          The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on
+          narrower screens.
         </p>
       ),
       props: { EuiBreadcrumbs },
@@ -89,8 +93,9 @@ export const BreadcrumbsExample = {
           <ol>
             <li>on the individual breadrcrumb item,</li>
             <li>
-              on the full <EuiCode>EuiBreadcrumbs</EuiCode> set which will force the full set to a
-              single line, while setting a max width on all items except for the last.
+              on the full <EuiCode>EuiBreadcrumbs</EuiCode> set which will force
+              the full set to a single line, while setting a max width on all
+              items except for the last.
             </li>
           </ol>
         </div>
@@ -112,8 +117,8 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a certain number. By
-          default, this number is 5.
+          Use the <EuiCode>max</EuiCode> prop to cull breadcrumbs beyond a
+          certain number. By default, this number is 5.
         </p>
       ),
       props: { EuiBreadcrumbs },

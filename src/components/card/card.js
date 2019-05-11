@@ -6,7 +6,11 @@ import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
-import { EuiCardSelect, EuiCardSelectProps, euiCardSelectableColor } from './card_select';
+import {
+  EuiCardSelect,
+  EuiCardSelectProps,
+  euiCardSelectableColor,
+} from './card_select';
 import makeId from '../form/form_row/make_id';
 
 const textAlignToClassNameMap = {
@@ -58,10 +62,14 @@ export const EuiCard = ({
   layout,
   bottomGraphic,
   selectable,
-  ...rest,
+  ...rest
 }) => {
-  const selectableColorClass = selectable ?
-    `euiCard--isSelectable--${euiCardSelectableColor(selectable.color, selectable.isSelected)}` : undefined;
+  const selectableColorClass = selectable
+    ? `euiCard--isSelectable--${euiCardSelectableColor(
+        selectable.color,
+        selectable.isSelected
+      )}`
+    : undefined;
 
   const classes = classNames(
     'euiCard',
@@ -76,7 +84,7 @@ export const EuiCard = ({
       'euiCard-isSelected': selectable && selectable.isSelected,
     },
     selectableColorClass,
-    className,
+    className
   );
 
   const ariaId = makeId();
@@ -88,17 +96,14 @@ export const EuiCard = ({
 
   let imageNode;
   if (image && layout === 'vertical') {
-    imageNode = (
-      <img className="euiCard__image" src={image} alt="" />
-    );
+    imageNode = <img className="euiCard__image" src={image} alt="" />;
   }
 
   let iconNode;
   if (icon) {
-    iconNode = React.cloneElement(
-      icon,
-      { className: classNames(icon.props.className, 'euiCard__icon') }
-    );
+    iconNode = React.cloneElement(icon, {
+      className: classNames(icon.props.className, 'euiCard__icon'),
+    });
   }
 
   let OuterElement = 'div';
@@ -140,19 +145,24 @@ export const EuiCard = ({
   let optionalBottomGraphic;
   if (bottomGraphic) {
     optionalBottomGraphic = (
-      <span className="euiCard__graphic">
-        {bottomGraphic}
-      </span>
+      <span className="euiCard__graphic">{bottomGraphic}</span>
     );
   }
 
   let optionalSelectButton;
   if (selectable) {
     if (bottomGraphic) {
-      console.warn('EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.');
+      console.warn(
+        'EuiCard cannot support both `bottomGraphic` and `selectable`. It will ignore the bottomGraphic.'
+      );
     }
 
-    optionalSelectButton = <EuiCardSelect aria-describedby={`${ariaId}Title ${ariaId}Description`} {...selectable} />;
+    optionalSelectButton = (
+      <EuiCardSelect
+        aria-describedby={`${ariaId}Title ${ariaId}Description`}
+        {...selectable}
+      />
+    );
   }
 
   return (
@@ -162,8 +172,7 @@ export const EuiCard = ({
       href={href}
       target={target}
       rel={secureRel}
-      {...rest}
-    >
+      {...rest}>
       {optionalBetaBadge}
 
       {optionalCardTop}
@@ -173,16 +182,17 @@ export const EuiCard = ({
           <TitleElement>{title}</TitleElement>
         </EuiTitle>
 
-        <EuiText id={`${ariaId}Description`} size="s" className="euiCard__description">
+        <EuiText
+          id={`${ariaId}Description`}
+          size="s"
+          className="euiCard__description">
           <p>{description}</p>
         </EuiText>
       </span>
 
-      {layout === 'vertical' &&
-        <span className="euiCard__footer">
-          {footer}
-        </span>
-      }
+      {layout === 'vertical' && (
+        <span className="euiCard__footer">{footer}</span>
+      )}
 
       {optionalSelectButton || optionalBottomGraphic}
     </OuterElement>
