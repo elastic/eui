@@ -17,7 +17,7 @@ export class EuiDelayRender extends Component<
   };
 
   private delayID: number | undefined;
-  private toBeDelayed: boolean = false;
+  private toBeDelayed: boolean = true;
 
   constructor(props: EuiDelayRenderProps) {
     super(props);
@@ -42,7 +42,7 @@ export class EuiDelayRender extends Component<
   };
 
   componentDidMount() {
-    this.toBeDelayed = true;
+    this.startDelaying();
   }
   shouldComponentUpdate() {
     if (this.toBeDelayed) {
