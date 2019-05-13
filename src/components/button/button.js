@@ -6,7 +6,7 @@ import { EuiLoadingSpinner } from '../loading';
 
 import { getSecureRelForTarget } from '../../services';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButton--primary',
@@ -22,7 +22,6 @@ export const COLORS = Object.keys(colorToClassNameMap);
 const sizeToClassNameMap = {
   s: 'euiButton--small',
   m: null,
-  l: 'euiButton--large',
 };
 
 export const SIZES = Object.keys(sizeToClassNameMap);
@@ -141,7 +140,7 @@ EuiButton.propTypes = {
   /**
    * See EuiIcon
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSide: PropTypes.oneOf(ICON_SIDES),
 
   /**

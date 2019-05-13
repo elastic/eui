@@ -15,7 +15,7 @@ const DEFAULT_MARGINS = {
 };
 
 describe('EuiSelectionBrush', () => {
-  test('renders an horizontal selection brush', () => {
+  test(`renders an horizontal selection brush`, () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart

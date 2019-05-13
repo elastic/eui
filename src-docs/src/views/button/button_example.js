@@ -112,7 +112,8 @@ export const ButtonExample = {
           {
             // eslint-disable-next-line react/no-unescaped-entities
           }{' '}
-          to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+          to the other side by passing{' '}
+          <EuiCode>iconSide=&quot;right&quot;</EuiCode>.
         </p>
       ),
       demo: <ButtonWithIcon />,

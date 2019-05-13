@@ -96,6 +96,54 @@
     "filepath": "src/components/bottom_bar/bottom_bar.js"
   },
   {
+    "token": "euiCardSelect.selected",
+    "defString": "Selected",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 75,
+        "column": 12
+      },
+      "end": {
+        "line": 78,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
+    "token": "euiCardSelect.unavailable",
+    "defString": "Unavailable",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 80,
+        "column": 12
+      },
+      "end": {
+        "line": 83,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
+    "token": "euiCardSelect.select",
+    "defString": "Select",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 12
+      },
+      "end": {
+        "line": 88,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/card/card_select.js"
+  },
+  {
     "token": "euiCodeEditor.startInteracting",
     "defString": "Press Enter to start interacting with the code.",
     "highlighting": "string",
@@ -318,6 +366,22 @@
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
+  },
+  {
+    "token": "euiFilterButton.filterBadge",
+    "defString": "({\n  count,\n  hasActiveFilters\n}) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 69,
+        "column": 8
+      },
+      "end": {
+        "line": 73,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/filter_group/filter_button.js"
   },
   {
     "token": "euiFormControlLayoutClearButton.label",
@@ -592,6 +656,22 @@
     "filepath": "src/components/selectable/selectable.tsx"
   },
   {
+    "token": "euiStat.loadingText",
+    "defString": "Statistic is loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 104,
+        "column": 6
+      },
+      "end": {
+        "line": 104,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/stat/stat.tsx"
+  },
+  {
     "token": "euiStepHorizontal.buttonTitle",
     "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
     "highlighting": "code",
@@ -731,6 +811,22 @@
       "end": {
         "line": 53,
         "column": 81
+      }
+    },
+    "filepath": "src/components/table/table_pagination/table_pagination.js"
+  },
+  {
+    "token": "euiTablePagination.rowsPerPageOption",
+    "defString": "{rowsPerPage} rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 63,
+        "column": 8
+      },
+      "end": {
+        "line": 63,
+        "column": 137
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.js"

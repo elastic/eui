@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 export const EuiDatePickerRange = ({
   children,
@@ -88,7 +88,7 @@ EuiDatePickerRange.propTypes = {
   /**
    * Pass either an icon type or set to `false` to remove icon entirely
    */
-  iconType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(ICON_TYPES)]),
+  iconType: PropTypes.oneOfType([PropTypes.bool, IconPropType]),
   fullWidth: PropTypes.bool,
   /**
    * Won't apply any additional props to start and end date components

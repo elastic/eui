@@ -15,6 +15,7 @@
 /// <reference path="./focus_trap/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./health/index.d.ts" />
+/// <reference path="./header/index.d.ts" />
 /// <reference path="./key_pad_menu/index.d.ts" />
 /// <reference path="./link/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />

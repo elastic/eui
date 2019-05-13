@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 
@@ -76,7 +76,7 @@ EuiCallOut.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   title: PropTypes.node,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
 };

@@ -159,7 +159,7 @@ export class EuiSearchBar extends Component {
     const filtersBar = !filters ? (
       undefined
     ) : (
-      <EuiFlexItem grow={false}>
+      <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
         <EuiSearchFilters
           filters={filters}
           query={query}
@@ -171,9 +171,9 @@ export class EuiSearchBar extends Component {
     const toolsRightEl = this.renderTools(toolsRight);
 
     return (
-      <EuiFlexGroup gutterSize="m" alignItems="center">
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
         {toolsLeftEl}
-        <EuiFlexItem grow={true}>
+        <EuiFlexItem className="euiSearchBar__searchHolder" grow={true}>
           <EuiSearchBox
             {...box}
             query={queryText}

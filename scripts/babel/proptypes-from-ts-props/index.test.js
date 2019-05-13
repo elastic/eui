@@ -898,7 +898,7 @@ FooComponent.propTypes = {
 import React from 'react';
 interface iFoo {foo: string}
 interface iBar {bar?: number}
-interface iBuzz extends iFoo, iBar {buzz: boolean} 
+interface iBuzz extends iFoo, iBar {buzz: boolean}
 const FooComponent: React.SFC<iBuzz> = () => {
   return (<div>Hello World</div>);
 }`,
@@ -951,7 +951,7 @@ FooComponent.propTypes = {
           `
 import React from 'react';
 interface iFoo {foo: string, bar?: number}
-type Bar = {name: string, isActive: true | false} 
+type Bar = {name: string, isActive: true | false}
 interface IFooProps {buzz: iFoo | Bar}
 const FooComponent: React.SFC<IFooProps> = () => {
   return (<div>Hello World</div>);
@@ -1693,7 +1693,7 @@ const FooComponent: React.SFC<{foo: Foo, bar?: Bar} & CommonProps> = () => {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => true }),
                         readFileSync: filepath => {
-                          if (filepath !== path.resolve(process.cwd(), 'common/index.ts')) {
+                          if (filepath !== path.resolve(process.cwd(), `common${path.sep}index.ts`)) {
                             throw new Error('Test case should only try to read file unknown/common/index.ts');
                           }
 
@@ -1806,7 +1806,7 @@ const FooComponent: React.SFC<CommonProps & FooProps> = () => {
                             `);
                           } else if (filepath === path.resolve(process.cwd(), 'types.ts')) {
                             return Buffer.from(`
-                              export type FooType = "Foo" | "Bar" | "Fizz"; 
+                              export type FooType = "Foo" | "Bar" | "Fizz";
                             `);
                           }
                         }
@@ -1857,7 +1857,7 @@ const FooComponent: React.SFC<Foo> = () => {
                             `);
                           } else if (filepath === path.resolve(process.cwd(), 'interfaces', 'foo.ts')) {
                             return Buffer.from(`
-                              export interface IFoo { bar: string } 
+                              export interface IFoo { bar: string }
                             `);
                           }
                         }
@@ -1943,13 +1943,13 @@ const FooComponent: React.SFC<{foo: Foo}> = () => {
                         existsSync: () => true,
                         statSync: () => ({ isDirectory: () => false }),
                         readFileSync: filepath => {
-                          if (filepath.endsWith('/foo')) {
+                          if (filepath.endsWith(`${path.sep}foo`)) {
                             return Buffer.from(`
                               export { Foo } from './Foo';
                             `);
                           }
 
-                          if (filepath.endsWith('/Foo')) {
+                          if (filepath.endsWith(`${path.sep}Foo`)) {
                             return Buffer.from(`
                               export type Foo = string;
                             `);
@@ -2357,7 +2357,7 @@ export { Foo, A } from './foo';
                   existsSync: () => true,
                   statSync: () => ({ isDirectory: () => false }),
                   readFileSync: filepath => {
-                    if (filepath.endsWith('/foo')) {
+                    if (filepath.endsWith(`${path.sep}foo`)) {
                       return Buffer.from(`
                         export type Foo = string;
                       `);

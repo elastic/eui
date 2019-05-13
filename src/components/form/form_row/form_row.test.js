@@ -23,7 +23,7 @@ describe('EuiFormRow', () => {
       label: 'Label',
       helpText: 'Help text',
       isInvalid: true,
-      error: ['Error one', 'Error two'],
+      error: [`Error one`, `Error two`],
     };
 
     const tree = shallow(
@@ -37,23 +37,23 @@ describe('EuiFormRow', () => {
     expect(tree.find('EuiFormLabel').prop('htmlFor')).toEqual('generated-id');
 
     // Input is described by help and error text.
-    expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
-      'generated-id-help'
+    expect(tree.find(`EuiFormHelpText`).prop(`id`)).toEqual(
+      `generated-id-help`
     );
     expect(
       tree
-        .find('EuiFormErrorText')
+        .find(`EuiFormErrorText`)
         .at(0)
-        .prop('id')
-    ).toEqual('generated-id-error-0');
+        .prop(`id`)
+    ).toEqual(`generated-id-error-0`);
     expect(
       tree
-        .find('EuiFormErrorText')
+        .find(`EuiFormErrorText`)
         .at(1)
-        .prop('id')
-    ).toEqual('generated-id-error-1');
-    expect(tree.find('input').prop('aria-describedby')).toEqual(
-      'generated-id-help generated-id-error-0 generated-id-error-1'
+        .prop(`id`)
+    ).toEqual(`generated-id-error-1`);
+    expect(tree.find(`input`).prop(`aria-describedby`)).toEqual(
+      `generated-id-help generated-id-error-0 generated-id-error-1`
     );
   });
 

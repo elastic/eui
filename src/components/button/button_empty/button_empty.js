@@ -6,7 +6,7 @@ import { EuiLoadingSpinner } from '../../loading';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { ICON_TYPES, EuiIcon } from '../../icon';
+import { IconPropType, EuiIcon } from '../../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButtonEmpty--primary',
@@ -139,7 +139,7 @@ export const EuiButtonEmpty = ({
 EuiButtonEmpty.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSide: PropTypes.oneOf(ICON_SIDES),
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),

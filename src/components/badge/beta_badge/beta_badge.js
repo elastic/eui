@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { EuiToolTip } from '../../tool_tip';
 
-import { ICON_TYPES, EuiIcon } from '../../icon';
+import { IconPropType, EuiIcon } from '../../icon';
 
 export const EuiBetaBadge = ({
   className,
@@ -66,7 +66,7 @@ EuiBetaBadge.propTypes = {
   /**
    * Supply an icon type if the badge should just be an icon
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 
   /**
    * Content for the tooltip

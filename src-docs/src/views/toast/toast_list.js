@@ -53,8 +53,7 @@ export default class extends Component {
   getRandomToast = () => {
     const toasts = [
       {
-        title:
-          "Check it out, here's a really long title that will wrap within a narrower browser",
+        title: `Check it out, here's a really long title that will wrap within a narrower browser`,
         text: (
           <Fragment>
             <p>

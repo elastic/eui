@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiCard, EuiCallOut } from '../../../../src/components';
+
+import { EuiCardSelect } from '../../../../src/components/card/card_select';
 
 import Card from './card';
 const cardSource = require('!!raw-loader!./card');
@@ -25,6 +27,10 @@ const cardBetaHtml = renderToHtml(CardBeta);
 import CardLayout from './card_layout';
 const cardLayoutSource = require('!!raw-loader!./card_layout');
 const cardLayoutHtml = renderToHtml(CardLayout);
+
+import CardSelectable from './card_selectable';
+const cardSelectableSource = require('!!raw-loader!./card_selectable');
+const cardSelectableHtml = renderToHtml(CardSelectable);
 
 export const CardExample = {
   title: 'Card',
@@ -97,7 +103,7 @@ export const CardExample = {
           />
         </div>
       ),
-      components: { EuiCard },
+      props: { EuiCard },
       demo: <CardLayout />,
     },
     {
@@ -129,7 +135,7 @@ export const CardExample = {
           />
         </div>
       ),
-      components: { EuiCard },
+      props: { EuiCard },
       demo: <CardImage />,
     },
     {
@@ -177,8 +183,52 @@ export const CardExample = {
           <EuiCode>betaBadgeTitle</EuiCode> prop.
         </p>
       ),
-      components: { EuiCard },
+      props: { EuiCard },
       demo: <CardBeta />,
+    },
+    {
+      title: 'Selectable',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: cardSelectableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: cardSelectableHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            When you have a list of cards that can be selected but{' '}
+            <strong>do not navigate anywhere</strong>, you can add the{' '}
+            <EuiCode>selectable</EuiCode> prop. The prop is an object that
+            requires an <EuiCode>onClick</EuiCode>. It will apply the button as
+            seen below, and passing{' '}
+            <EuiCode>selectable.isSelected = true</EuiCode> will alter the
+            styles of the card and button to look selected.
+          </p>
+          <p>
+            The select button is essentially an EuiButtonEmpty and so the{' '}
+            <EuiCode>selectable</EuiCode> object can also accept any props that
+            EuiButtonEmpty can.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiCardSelect },
+      demo: <CardSelectable />,
+      snippet: `<EuiCard
+  icon={<EuiIcon />}
+  title="Title"
+  description="Example of a short card description."
+  footer={cardFooterContent}
+  selectable={{
+    onClick: this.cardClicked,
+    isSelected: this.state.cardIsSelected,
+    isDisabled: this.state.cardIsDisabled,
+  }}
+/>`,
     },
   ],
 };

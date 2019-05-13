@@ -6,7 +6,7 @@ import { EuiPropTypes } from '../../utils';
 import { isColorDark, hexToRgb } from '../../services/color';
 import { EuiKeyboardAccessible } from '../accessibility';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   default: 'euiBadge--default',
@@ -133,7 +133,7 @@ EuiBadge.propTypes = {
   /**
    * Accepts any string from our icon library
    */
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
 
   /**
    * The side of the badge the icon should sit

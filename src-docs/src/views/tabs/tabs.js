@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { EuiTabs, EuiTab, EuiSpacer } from '../../../../src/components';
 
@@ -54,13 +54,13 @@ class EuiTabsExample extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <EuiTabs>{this.renderTabs()}</EuiTabs>
 
         <EuiSpacer />
 
         <EuiTabs size="s">{this.renderTabs()}</EuiTabs>
-      </div>
+      </Fragment>
     );
   }
 }

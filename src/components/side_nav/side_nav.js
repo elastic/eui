@@ -79,9 +79,6 @@ export class EuiSideNav extends Component {
       ...rest
     } = this.props;
 
-    // Remote this one so it isn't passed to <nav>
-    delete rest.renderItem;
-
     const classes = classNames('euiSideNav', className, {
       'euiSideNav-isOpenMobile': isOpenOnMobile,
     });

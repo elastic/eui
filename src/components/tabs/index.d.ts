@@ -9,7 +9,9 @@ import { CommonProps } from '../common';
 declare module '@elastic/eui' {
   type TAB_SIZES = 's' | 'm';
 
-  interface EuiTabProps {
+  type TAB_DISPLAYS = 'default' | 'condensed';
+
+  type EuiTabProps = {
     onClick: MouseEventHandler<HTMLButtonElement>;
     isSelected?: boolean;
     disabled?: boolean;
@@ -17,6 +19,7 @@ declare module '@elastic/eui' {
 
   interface EuiTabsProps {
     size?: TAB_SIZES;
+    display?: TAB_DISPLAYS;
     expand?: boolean;
   }
 
@@ -32,8 +35,9 @@ declare module '@elastic/eui' {
     selectedTab?: EuiTabbedContentTab;
     initialSelectedTab?: EuiTabbedContentTab;
     size?: TAB_SIZES;
+    display?: TAB_DISPLAYS;
     expand?: boolean;
-  }
+  };
 
   export const EuiTab: FunctionComponent<
     EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>

@@ -3,13 +3,12 @@
 exports[`EuiIcon is rendered 1`] = `
 <svg
   aria-label="aria-label"
-  class="euiIcon euiIcon--medium testClass1 testClass2"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded testClass1 testClass2"
   data-test-subj="test subject string"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -26,171 +25,310 @@ exports[`EuiIcon is rendered 1`] = `
 
 exports[`EuiIcon props color #885522 is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
-  style="fill:#885522"
+  style="fill: #885522;"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color #fde is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
-  style="fill:#fde"
+  style="fill: #fde;"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color accent is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--accent"
+  class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color danger is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--danger"
+  class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color default is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color ghost is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--ghost"
+  class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
-  style="fill:hsla(270, 60%, 70%, 0.9)"
+  style="fill: hsla(270, 60%, 70%, 0.9);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color primary is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--primary"
+  class="euiIcon euiIcon--medium euiIcon--primary euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
-  style="fill:rgb(100, 150, 200)"
+  style="fill: rgb(100, 150, 200);"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color secondary is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--secondary"
+  class="euiIcon euiIcon--medium euiIcon--secondary euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color subdued is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--subdued"
+  class="euiIcon euiIcon--medium euiIcon--subdued euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color success is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--success"
+  class="euiIcon euiIcon--medium euiIcon--success euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color text is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--text"
+  class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props color warning is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--warning"
+  class="euiIcon euiIcon--medium euiIcon--warning euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"
-/>
+>
+  <defs>
+    <path
+      d="M11.271 11.978l3.872 3.873a.502.502 0 0 0 .708 0 .502.502 0 0 0 0-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 0 0 4.949 2.05.5.5 0 0 0 0-1 5.96 5.96 0 0 1-4.242-1.757 6.01 6.01 0 0 1 0-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 0 1 0 8.486.5.5 0 0 0 .034.738z"
+      id="search-a"
+    />
+  </defs>
+  <use
+    href="#search-a"
+  />
+</svg>
 `;
 
 exports[`EuiIcon props other props are passed through to the icon 1`] = `
 <svg
   aria-label="a custom title"
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -205,14 +343,13 @@ exports[`EuiIcon props other props are passed through to the icon 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size l is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--large"
+  class="euiIcon euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -227,14 +364,13 @@ exports[`EuiIcon props size l is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size m is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 2`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--small euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -249,14 +385,13 @@ exports[`EuiIcon props size m is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size original is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 3`] = `
 <svg
-  class="euiIcon"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -271,14 +406,13 @@ exports[`EuiIcon props size original is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size s is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 4`] = `
 <svg
-  class="euiIcon euiIcon--small"
+  class="euiIcon euiIcon--large euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -293,14 +427,13 @@ exports[`EuiIcon props size s is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size xl is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 5`] = `
 <svg
-  class="euiIcon euiIcon--xLarge"
+  class="euiIcon euiIcon--xLarge euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -315,14 +448,13 @@ exports[`EuiIcon props size xl is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props size xxl is rendered 1`] = `
+exports[`EuiIcon props size \${size} is rendered 6`] = `
 <svg
-  class="euiIcon euiIcon--xxLarge"
+  class="euiIcon euiIcon--xxLarge euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -339,13 +471,12 @@ exports[`EuiIcon props size xxl is rendered 1`] = `
 
 exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   tabindex="-1"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -362,12 +493,11 @@ exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
 
 exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -384,13 +514,12 @@ exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] 
 
 exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="true"
   height="16"
   tabindex="0"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -407,7 +536,7 @@ exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
 
 exports[`EuiIcon props type addDataApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -426,7 +555,7 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
 
 exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -459,7 +588,7 @@ exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 
 exports[`EuiIcon props type alert is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -467,7 +596,7 @@ exports[`EuiIcon props type alert is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M8.378 1.496l6.695 10.984A1 1 0 0 1 14.22 14H1.667a1 1 0 0 1-.883-1.47L6.642 1.545a1 1 0 0 1 1.736-.05zm-.853.52L1.667 13h12.552L7.525 2.016zM7.14 10.06L6.9 5.18h1.3l-.25 4.878h-.81zm.394 1.901a.61.61 0 0 1-.448-.186.606.606 0 0 1-.186-.444c0-.174.062-.323.186-.446a.614.614 0 0 1 .448-.184c.169 0 .315.06.44.182.124.122.186.27.186.448a.6.6 0 0 1-.189.446.607.607 0 0 1-.437.184z"
+    d="M7.59 10.059L7.35 5.18h1.3L8.4 10.06h-.81zm.394 1.901a.61.61 0 0 1-.448-.186.606.606 0 0 1-.186-.444c0-.174.062-.323.186-.446a.614.614 0 0 1 .448-.184c.169 0 .315.06.44.182.124.122.186.27.186.448a.6.6 0 0 1-.189.446.607.607 0 0 1-.437.184zM2 14a1 1 0 0 1-.878-1.479l6-11a1 1 0 0 1 1.756 0l6 11A1 1 0 0 1 14 14H2zm0-1h12L8 2 2 13z"
     fill-rule="evenodd"
   />
 </svg>
@@ -475,7 +604,7 @@ exports[`EuiIcon props type alert is rendered 1`] = `
 
 exports[`EuiIcon props type apmApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -498,12 +627,11 @@ exports[`EuiIcon props type apmApp is rendered 1`] = `
 
 exports[`EuiIcon props type apmTrace is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -520,12 +648,11 @@ exports[`EuiIcon props type apmTrace is rendered 1`] = `
 
 exports[`EuiIcon props type apps is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -542,12 +669,11 @@ exports[`EuiIcon props type apps is rendered 1`] = `
 
 exports[`EuiIcon props type arrowDown is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -565,12 +691,11 @@ exports[`EuiIcon props type arrowDown is rendered 1`] = `
 
 exports[`EuiIcon props type arrowLeft is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -589,12 +714,11 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
 
 exports[`EuiIcon props type arrowRight is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -613,12 +737,11 @@ exports[`EuiIcon props type arrowRight is rendered 1`] = `
 
 exports[`EuiIcon props type arrowUp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -637,7 +760,7 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
 
 exports[`EuiIcon props type asterisk is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -652,7 +775,7 @@ exports[`EuiIcon props type asterisk is rendered 1`] = `
 
 exports[`EuiIcon props type auditbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -671,7 +794,7 @@ exports[`EuiIcon props type auditbeatApp is rendered 1`] = `
 
 exports[`EuiIcon props type beaker is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -686,7 +809,7 @@ exports[`EuiIcon props type beaker is rendered 1`] = `
 
 exports[`EuiIcon props type bell is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -702,7 +825,7 @@ exports[`EuiIcon props type bell is rendered 1`] = `
 
 exports[`EuiIcon props type bolt is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -717,12 +840,11 @@ exports[`EuiIcon props type bolt is rendered 1`] = `
 
 exports[`EuiIcon props type boxesHorizontal is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -739,12 +861,11 @@ exports[`EuiIcon props type boxesHorizontal is rendered 1`] = `
 
 exports[`EuiIcon props type boxesVertical is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -761,7 +882,7 @@ exports[`EuiIcon props type boxesVertical is rendered 1`] = `
 
 exports[`EuiIcon props type branch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -776,7 +897,7 @@ exports[`EuiIcon props type branch is rendered 1`] = `
 
 exports[`EuiIcon props type broom is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -791,12 +912,11 @@ exports[`EuiIcon props type broom is rendered 1`] = `
 
 exports[`EuiIcon props type brush is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -811,9 +931,24 @@ exports[`EuiIcon props type brush is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type bug is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10.651 5.126l.922-.455.884-2.343a.5.5 0 0 1 .939.344L12.374 5.39l-1.45.717A5.3 5.3 0 0 1 11 7h1.043l2.3 2.198a.5.5 0 0 1-.692.723L11.642 8h-.737c-.09.466-.24.899-.441 1.283l.892.49 1.278 3.554a.5.5 0 0 1-.94.342l-1.15-3.2-.655-.36C9.373 10.665 8.716 11 8 11s-1.374-.335-1.89-.893l-.658.361-1.15 3.201a.5.5 0 1 1-.94-.342l1.279-3.554.895-.491A4.7 4.7 0 0 1 5.095 8h-.74l-2.01 1.92a.5.5 0 0 1-.69-.722L3.952 7H5a5.3 5.3 0 0 1 .075-.892L3.623 5.39 2.6 2.672a.5.5 0 1 1 .939-.344l.884 2.343.924.457c.17-.428.397-.81.668-1.128h.57a1.5 1.5 0 1 1 2.83 0h.568c.27.318.497.699.667 1.126zM8 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm1.751 1.571A3.326 3.326 0 0 0 9.476 5H6.524c-.107.175-.2.367-.276.573-.11.295-.186.618-.223.957a4.354 4.354 0 0 0 .09 1.465c.071.294.172.565.295.806.168.328.38.601.616.803.295.253.631.396.974.396.342 0 .678-.142.973-.394.237-.203.448-.476.616-.803a3.62 3.62 0 0 0 .296-.807 4.263 4.263 0 0 0 .09-1.466 3.988 3.988 0 0 0-.224-.959z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type bullseye is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -828,7 +963,7 @@ exports[`EuiIcon props type bullseye is rendered 1`] = `
 
 exports[`EuiIcon props type calendar is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -844,7 +979,7 @@ exports[`EuiIcon props type calendar is rendered 1`] = `
 
 exports[`EuiIcon props type canvasApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -863,7 +998,7 @@ exports[`EuiIcon props type canvasApp is rendered 1`] = `
 
 exports[`EuiIcon props type check is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -879,7 +1014,7 @@ exports[`EuiIcon props type check is rendered 1`] = `
 
 exports[`EuiIcon props type checkInCircleFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -895,7 +1030,7 @@ exports[`EuiIcon props type checkInCircleFilled is rendered 1`] = `
 
 exports[`EuiIcon props type clock is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -911,7 +1046,7 @@ exports[`EuiIcon props type clock is rendered 1`] = `
 
 exports[`EuiIcon props type codeApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -930,7 +1065,7 @@ exports[`EuiIcon props type codeApp is rendered 1`] = `
 
 exports[`EuiIcon props type compute is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -952,12 +1087,11 @@ exports[`EuiIcon props type compute is rendered 1`] = `
 
 exports[`EuiIcon props type console is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -974,7 +1108,7 @@ exports[`EuiIcon props type console is rendered 1`] = `
 
 exports[`EuiIcon props type consoleApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -996,7 +1130,7 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
 
 exports[`EuiIcon props type controlsHorizontal is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1012,7 +1146,7 @@ exports[`EuiIcon props type controlsHorizontal is rendered 1`] = `
 
 exports[`EuiIcon props type controlsVertical is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1028,12 +1162,11 @@ exports[`EuiIcon props type controlsVertical is rendered 1`] = `
 
 exports[`EuiIcon props type copy is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1053,7 +1186,7 @@ exports[`EuiIcon props type copy is rendered 1`] = `
 
 exports[`EuiIcon props type copyClipboard is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1071,7 +1204,7 @@ exports[`EuiIcon props type copyClipboard is rendered 1`] = `
 
 exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1090,7 +1223,7 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 
 exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1109,7 +1242,7 @@ exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 
 exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1128,7 +1261,7 @@ exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
 
 exports[`EuiIcon props type createSingleMetricJob is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1147,7 +1280,7 @@ exports[`EuiIcon props type createSingleMetricJob is rendered 1`] = `
 
 exports[`EuiIcon props type cross is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1162,7 +1295,7 @@ exports[`EuiIcon props type cross is rendered 1`] = `
 
 exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1181,7 +1314,7 @@ exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
 
 exports[`EuiIcon props type crossInACircleFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1196,7 +1329,7 @@ exports[`EuiIcon props type crossInACircleFilled is rendered 1`] = `
 
 exports[`EuiIcon props type crosshairs is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1211,7 +1344,7 @@ exports[`EuiIcon props type crosshairs is rendered 1`] = `
 
 exports[`EuiIcon props type cut is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1227,7 +1360,7 @@ exports[`EuiIcon props type cut is rendered 1`] = `
 
 exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1253,7 +1386,7 @@ exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 
 exports[`EuiIcon props type dataVisualizer is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1272,7 +1405,7 @@ exports[`EuiIcon props type dataVisualizer is rendered 1`] = `
 
 exports[`EuiIcon props type database is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1287,7 +1420,7 @@ exports[`EuiIcon props type database is rendered 1`] = `
 
 exports[`EuiIcon props type devToolsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1306,7 +1439,7 @@ exports[`EuiIcon props type devToolsApp is rendered 1`] = `
 
 exports[`EuiIcon props type discoverApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1325,12 +1458,11 @@ exports[`EuiIcon props type discoverApp is rendered 1`] = `
 
 exports[`EuiIcon props type document is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1347,12 +1479,11 @@ exports[`EuiIcon props type document is rendered 1`] = `
 
 exports[`EuiIcon props type dot is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1371,12 +1502,11 @@ exports[`EuiIcon props type dot is rendered 1`] = `
 
 exports[`EuiIcon props type editorAlignCenter is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1393,12 +1523,11 @@ exports[`EuiIcon props type editorAlignCenter is rendered 1`] = `
 
 exports[`EuiIcon props type editorAlignLeft is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1415,12 +1544,11 @@ exports[`EuiIcon props type editorAlignLeft is rendered 1`] = `
 
 exports[`EuiIcon props type editorAlignRight is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1437,12 +1565,11 @@ exports[`EuiIcon props type editorAlignRight is rendered 1`] = `
 
 exports[`EuiIcon props type editorBold is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1459,7 +1586,7 @@ exports[`EuiIcon props type editorBold is rendered 1`] = `
 
 exports[`EuiIcon props type editorCodeBlock is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1474,12 +1601,11 @@ exports[`EuiIcon props type editorCodeBlock is rendered 1`] = `
 
 exports[`EuiIcon props type editorComment is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1496,12 +1622,11 @@ exports[`EuiIcon props type editorComment is rendered 1`] = `
 
 exports[`EuiIcon props type editorHeading is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1518,12 +1643,11 @@ exports[`EuiIcon props type editorHeading is rendered 1`] = `
 
 exports[`EuiIcon props type editorItalic is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1540,12 +1664,11 @@ exports[`EuiIcon props type editorItalic is rendered 1`] = `
 
 exports[`EuiIcon props type editorLink is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1562,12 +1685,11 @@ exports[`EuiIcon props type editorLink is rendered 1`] = `
 
 exports[`EuiIcon props type editorOrderedList is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1584,7 +1706,7 @@ exports[`EuiIcon props type editorOrderedList is rendered 1`] = `
 
 exports[`EuiIcon props type editorRedo is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1599,12 +1721,11 @@ exports[`EuiIcon props type editorRedo is rendered 1`] = `
 
 exports[`EuiIcon props type editorStrike is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1621,12 +1742,11 @@ exports[`EuiIcon props type editorStrike is rendered 1`] = `
 
 exports[`EuiIcon props type editorTable is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1643,7 +1763,7 @@ exports[`EuiIcon props type editorTable is rendered 1`] = `
 
 exports[`EuiIcon props type editorUnderline is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1658,7 +1778,7 @@ exports[`EuiIcon props type editorUnderline is rendered 1`] = `
 
 exports[`EuiIcon props type editorUndo is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1673,12 +1793,11 @@ exports[`EuiIcon props type editorUndo is rendered 1`] = `
 
 exports[`EuiIcon props type editorUnorderedList is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1695,12 +1814,11 @@ exports[`EuiIcon props type editorUnorderedList is rendered 1`] = `
 
 exports[`EuiIcon props type email is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1718,7 +1836,7 @@ exports[`EuiIcon props type email is rendered 1`] = `
 
 exports[`EuiIcon props type empty is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1729,7 +1847,7 @@ exports[`EuiIcon props type empty is rendered 1`] = `
 
 exports[`EuiIcon props type emsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1748,7 +1866,7 @@ exports[`EuiIcon props type emsApp is rendered 1`] = `
 
 exports[`EuiIcon props type exit is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1764,7 +1882,7 @@ exports[`EuiIcon props type exit is rendered 1`] = `
 
 exports[`EuiIcon props type expand is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1780,7 +1898,7 @@ exports[`EuiIcon props type expand is rendered 1`] = `
 
 exports[`EuiIcon props type exportAction is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1795,7 +1913,7 @@ exports[`EuiIcon props type exportAction is rendered 1`] = `
 
 exports[`EuiIcon props type eye is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1810,7 +1928,7 @@ exports[`EuiIcon props type eye is rendered 1`] = `
 
 exports[`EuiIcon props type eyeClosed is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1825,7 +1943,7 @@ exports[`EuiIcon props type eyeClosed is rendered 1`] = `
 
 exports[`EuiIcon props type faceHappy is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1840,7 +1958,7 @@ exports[`EuiIcon props type faceHappy is rendered 1`] = `
 
 exports[`EuiIcon props type faceNeutral is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1856,7 +1974,7 @@ exports[`EuiIcon props type faceNeutral is rendered 1`] = `
 
 exports[`EuiIcon props type faceSad is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1871,7 +1989,7 @@ exports[`EuiIcon props type faceSad is rendered 1`] = `
 
 exports[`EuiIcon props type filebeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -1890,7 +2008,7 @@ exports[`EuiIcon props type filebeatApp is rendered 1`] = `
 
 exports[`EuiIcon props type filter is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1904,9 +2022,24 @@ exports[`EuiIcon props type filter is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type flag is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M7.686 8.464c1.547-.619 3.08-.619 4.628 0A.5.5 0 0 0 13 8V2a.5.5 0 0 0-.276-.447C11.259.82 9.458.82 7.342 1.526c-1.884.628-3.417.628-4.618.027A.5.5 0 0 0 2 2v12.5a.5.5 0 1 0 1 0V8.553c1.411.627 2.983.592 4.686-.089zM3 2.741c1.322.42 2.878.327 4.658-.267C9.4 1.894 10.843 1.85 12 2.322v4.975c-1.56-.464-3.128-.384-4.686.239-1.54.616-2.892.616-4.09.017A.498.498 0 0 0 3 7.5V2.74z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type folderClosed is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1921,7 +2054,7 @@ exports[`EuiIcon props type folderClosed is rendered 1`] = `
 
 exports[`EuiIcon props type folderOpen is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -1936,12 +2069,11 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
 
 exports[`EuiIcon props type fullScreen is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1959,12 +2091,11 @@ exports[`EuiIcon props type fullScreen is rendered 1`] = `
 
 exports[`EuiIcon props type gear is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -1981,7 +2112,7 @@ exports[`EuiIcon props type gear is rendered 1`] = `
 
 exports[`EuiIcon props type gisApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2000,7 +2131,7 @@ exports[`EuiIcon props type gisApp is rendered 1`] = `
 
 exports[`EuiIcon props type glasses is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2015,7 +2146,7 @@ exports[`EuiIcon props type glasses is rendered 1`] = `
 
 exports[`EuiIcon props type globe is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2030,7 +2161,7 @@ exports[`EuiIcon props type globe is rendered 1`] = `
 
 exports[`EuiIcon props type grab is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2046,7 +2177,7 @@ exports[`EuiIcon props type grab is rendered 1`] = `
 
 exports[`EuiIcon props type grabHorizontal is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2062,7 +2193,7 @@ exports[`EuiIcon props type grabHorizontal is rendered 1`] = `
 
 exports[`EuiIcon props type graphApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2081,12 +2212,11 @@ exports[`EuiIcon props type graphApp is rendered 1`] = `
 
 exports[`EuiIcon props type grid is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -2103,7 +2233,7 @@ exports[`EuiIcon props type grid is rendered 1`] = `
 
 exports[`EuiIcon props type grokApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2120,9 +2250,24 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type heart is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M7.402 3.098a3.75 3.75 0 0 0-5.304 5.304l5.558 5.27L8 14l5.892-5.588a3.75 3.75 0 0 0-5.294-5.313L8 3.697l-.598-.599zM2.796 7.685a2.747 2.747 0 0 1 .01-3.88 2.75 2.75 0 0 1 3.889 0L8 5.111l1.305-1.306a2.75 2.75 0 1 1 3.89 3.89L8 12.62 2.796 7.685z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type heartbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2141,7 +2286,7 @@ exports[`EuiIcon props type heartbeatApp is rendered 1`] = `
 
 exports[`EuiIcon props type heatmap is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2156,12 +2301,11 @@ exports[`EuiIcon props type heatmap is rendered 1`] = `
 
 exports[`EuiIcon props type help is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -2179,7 +2323,7 @@ exports[`EuiIcon props type help is rendered 1`] = `
 
 exports[`EuiIcon props type iInCircle is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2195,7 +2339,7 @@ exports[`EuiIcon props type iInCircle is rendered 1`] = `
 
 exports[`EuiIcon props type importAction is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2210,7 +2354,7 @@ exports[`EuiIcon props type importAction is rendered 1`] = `
 
 exports[`EuiIcon props type indexClose is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2225,7 +2369,7 @@ exports[`EuiIcon props type indexClose is rendered 1`] = `
 
 exports[`EuiIcon props type indexEdit is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2240,7 +2384,7 @@ exports[`EuiIcon props type indexEdit is rendered 1`] = `
 
 exports[`EuiIcon props type indexFlush is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2256,7 +2400,7 @@ exports[`EuiIcon props type indexFlush is rendered 1`] = `
 
 exports[`EuiIcon props type indexManagementApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2278,7 +2422,7 @@ exports[`EuiIcon props type indexManagementApp is rendered 1`] = `
 
 exports[`EuiIcon props type indexMapping is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2293,7 +2437,7 @@ exports[`EuiIcon props type indexMapping is rendered 1`] = `
 
 exports[`EuiIcon props type indexOpen is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2308,7 +2452,7 @@ exports[`EuiIcon props type indexOpen is rendered 1`] = `
 
 exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2327,7 +2471,7 @@ exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
 
 exports[`EuiIcon props type indexRollupApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2352,7 +2496,7 @@ exports[`EuiIcon props type indexRollupApp is rendered 1`] = `
 
 exports[`EuiIcon props type indexSettings is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2373,7 +2517,7 @@ exports[`EuiIcon props type indexSettings is rendered 1`] = `
 
 exports[`EuiIcon props type infraApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2395,7 +2539,7 @@ exports[`EuiIcon props type infraApp is rendered 1`] = `
 
 exports[`EuiIcon props type inputOutput is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2416,7 +2560,7 @@ exports[`EuiIcon props type inputOutput is rendered 1`] = `
 
 exports[`EuiIcon props type inspect is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2431,7 +2575,7 @@ exports[`EuiIcon props type inspect is rendered 1`] = `
 
 exports[`EuiIcon props type invert is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2449,7 +2593,7 @@ exports[`EuiIcon props type invert is rendered 1`] = `
 
 exports[`EuiIcon props type kqlField is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="10"
   viewBox="0 0 16 10"
@@ -2464,7 +2608,7 @@ exports[`EuiIcon props type kqlField is rendered 1`] = `
 
 exports[`EuiIcon props type kqlFunction is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2479,7 +2623,7 @@ exports[`EuiIcon props type kqlFunction is rendered 1`] = `
 
 exports[`EuiIcon props type kqlOperand is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2494,7 +2638,7 @@ exports[`EuiIcon props type kqlOperand is rendered 1`] = `
 
 exports[`EuiIcon props type kqlSelector is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2509,7 +2653,7 @@ exports[`EuiIcon props type kqlSelector is rendered 1`] = `
 
 exports[`EuiIcon props type kqlValue is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2524,7 +2668,7 @@ exports[`EuiIcon props type kqlValue is rendered 1`] = `
 
 exports[`EuiIcon props type link is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2539,7 +2683,7 @@ exports[`EuiIcon props type link is rendered 1`] = `
 
 exports[`EuiIcon props type list is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2554,7 +2698,7 @@ exports[`EuiIcon props type list is rendered 1`] = `
 
 exports[`EuiIcon props type listAdd is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2569,7 +2713,7 @@ exports[`EuiIcon props type listAdd is rendered 1`] = `
 
 exports[`EuiIcon props type lock is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2584,7 +2728,7 @@ exports[`EuiIcon props type lock is rendered 1`] = `
 
 exports[`EuiIcon props type lockOpen is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -2599,7 +2743,7 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
 
 exports[`EuiIcon props type loggingApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2618,7 +2762,7 @@ exports[`EuiIcon props type loggingApp is rendered 1`] = `
 
 exports[`EuiIcon props type logoAPM is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2642,7 +2786,7 @@ exports[`EuiIcon props type logoAPM is rendered 1`] = `
 
 exports[`EuiIcon props type logoAWS is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2674,7 +2818,7 @@ exports[`EuiIcon props type logoAWS is rendered 1`] = `
 
 exports[`EuiIcon props type logoAWSMono is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2700,7 +2844,7 @@ exports[`EuiIcon props type logoAWSMono is rendered 1`] = `
 
 exports[`EuiIcon props type logoAerospike is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2724,7 +2868,7 @@ exports[`EuiIcon props type logoAerospike is rendered 1`] = `
 
 exports[`EuiIcon props type logoApache is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2941,7 +3085,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
 
 exports[`EuiIcon props type logoAppSearch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2965,7 +3109,7 @@ exports[`EuiIcon props type logoAppSearch is rendered 1`] = `
 
 exports[`EuiIcon props type logoAzure is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2981,7 +3125,7 @@ exports[`EuiIcon props type logoAzure is rendered 1`] = `
 
 exports[`EuiIcon props type logoAzureMono is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -2996,7 +3140,7 @@ exports[`EuiIcon props type logoAzureMono is rendered 1`] = `
 
 exports[`EuiIcon props type logoBeats is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3020,7 +3164,7 @@ exports[`EuiIcon props type logoBeats is rendered 1`] = `
 
 exports[`EuiIcon props type logoBusinessAnalytics is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3049,12 +3193,11 @@ exports[`EuiIcon props type logoBusinessAnalytics is rendered 1`] = `
 
 exports[`EuiIcon props type logoCeph is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <image
@@ -3069,7 +3212,7 @@ exports[`EuiIcon props type logoCeph is rendered 1`] = `
 
 exports[`EuiIcon props type logoCloud is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3098,7 +3241,7 @@ exports[`EuiIcon props type logoCloud is rendered 1`] = `
 
 exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3131,7 +3274,7 @@ exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 
 exports[`EuiIcon props type logoCodesandbox is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3146,7 +3289,7 @@ exports[`EuiIcon props type logoCodesandbox is rendered 1`] = `
 
 exports[`EuiIcon props type logoCouchbase is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3162,7 +3305,7 @@ exports[`EuiIcon props type logoCouchbase is rendered 1`] = `
 
 exports[`EuiIcon props type logoDocker is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   width="32"
@@ -3178,12 +3321,11 @@ exports[`EuiIcon props type logoDocker is rendered 1`] = `
 
 exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <image
@@ -3199,7 +3341,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
 
 exports[`EuiIcon props type logoElastic is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3239,7 +3381,7 @@ exports[`EuiIcon props type logoElastic is rendered 1`] = `
 
 exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3272,7 +3414,7 @@ exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
 
 exports[`EuiIcon props type logoElasticsearch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3301,7 +3443,7 @@ exports[`EuiIcon props type logoElasticsearch is rendered 1`] = `
 
 exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3330,7 +3472,7 @@ exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
 
 exports[`EuiIcon props type logoEtcd is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3352,12 +3494,11 @@ exports[`EuiIcon props type logoEtcd is rendered 1`] = `
 
 exports[`EuiIcon props type logoGCP is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -3388,10 +3529,10 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
     <path
       d="M18.054 29.282l2.875-4.892H17.96l-1.138 5.591c.526 0 .986-.28 1.232-.699M26.678 7.611h-5.749l1.484 2.527L27.91 8.31a1.427 1.427 0 0 0-1.232-.7"
       fill="#000"
-      opacity=".1"
+      opacity="0.1"
     />
     <g
-      opacity=".1"
+      opacity="0.1"
       transform="translate(2.994 9.609)"
     >
       <mask
@@ -3419,7 +3560,7 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
 
 exports[`EuiIcon props type logoGCPMono is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3437,7 +3578,7 @@ exports[`EuiIcon props type logoGCPMono is rendered 1`] = `
 
 exports[`EuiIcon props type logoGithub is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3452,7 +3593,7 @@ exports[`EuiIcon props type logoGithub is rendered 1`] = `
 
 exports[`EuiIcon props type logoGmail is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3496,12 +3637,11 @@ exports[`EuiIcon props type logoGmail is rendered 1`] = `
 
 exports[`EuiIcon props type logoGolang is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <image
@@ -3517,12 +3657,11 @@ exports[`EuiIcon props type logoGolang is rendered 1`] = `
 
 exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <image
@@ -3537,7 +3676,7 @@ exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
 
 exports[`EuiIcon props type logoIBM is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3560,7 +3699,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
       <stop
         offset="30.476%"
         stop-color="#36CEE1"
-        stop-opacity=".383"
+        stop-opacity="0.383"
       />
       <stop
         offset="100%"
@@ -3692,7 +3831,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
 
 exports[`EuiIcon props type logoIBMMono is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3708,7 +3847,7 @@ exports[`EuiIcon props type logoIBMMono is rendered 1`] = `
 
 exports[`EuiIcon props type logoKafka is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3723,7 +3862,7 @@ exports[`EuiIcon props type logoKafka is rendered 1`] = `
 
 exports[`EuiIcon props type logoKibana is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3752,7 +3891,7 @@ exports[`EuiIcon props type logoKibana is rendered 1`] = `
 
 exports[`EuiIcon props type logoKubernetes is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   width="32"
@@ -3767,7 +3906,7 @@ exports[`EuiIcon props type logoKubernetes is rendered 1`] = `
 
 exports[`EuiIcon props type logoLogstash is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3791,7 +3930,7 @@ exports[`EuiIcon props type logoLogstash is rendered 1`] = `
 
 exports[`EuiIcon props type logoMemcached is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3888,12 +4027,12 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
     <path
       d="M24.8 6.345c.707 4.79.873 9.388.86 12.813-.013 3.503-.214 5.78-.214 5.78h-4.128l-.443.332h4.904s.82-9.31-.748-19.254l-.232.329zm-12.996-.121c1.288 1.433 3.516 5.237 3.823 5.237-.817-1.045-2.823-4.378-3.823-5.237zm-1.84 4.852c-1.392.038.282 11.379.749 13.861H6.43l-.29.333h4.904c-.464-2.47-2.123-13.71-.769-13.861-.126-.19-.235-.32-.311-.333zm11.326 0c-.746.119-4.156 9.622-4.156 9.622s-.751-.094-1.507-.094c-.447 0-.832.028-1.092.052l-.082.374s.751-.093 1.507-.093c.755 0 1.506.093 1.506.093s3.385-9.44 4.146-9.621c-.082-.208-.183-.33-.322-.333z"
       fill="#000"
-      opacity=".1"
+      opacity="0.1"
     />
     <path
       d="M6.889 6.016C5.32 15.96 6.14 25.27 6.14 25.27l.289-.325c-.148-2.197-.543-10.14.791-18.597h4.541c.096.002.225.08.374.208-.297-.33-.544-.538-.706-.54H6.889zm13.601 0c-.864.01-4.152 5.777-4.53 5.777.154.197.279.333.332.333.378 0 3.666-5.767 4.53-5.777h4.008l.2-.333h-4.54zm-9.881 5.725c1.103 1.657 3.844 9.29 3.844 9.29l.08-.373c-.676-1.856-3.256-8.814-3.903-8.917h-.021zm11.346 0c.74 1.887-.66 11.295-1.08 13.529l.444-.348c.568-3.331 1.936-13.146.636-13.18z"
       fill="#FFF"
-      opacity=".3"
+      opacity="0.3"
     />
   </g>
 </svg>
@@ -3901,7 +4040,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
 
 exports[`EuiIcon props type logoMetrics is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3930,7 +4069,7 @@ exports[`EuiIcon props type logoMetrics is rendered 1`] = `
 
 exports[`EuiIcon props type logoMongodb is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3970,7 +4109,7 @@ exports[`EuiIcon props type logoMongodb is rendered 1`] = `
 
 exports[`EuiIcon props type logoMySQL is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -3992,7 +4131,7 @@ exports[`EuiIcon props type logoMySQL is rendered 1`] = `
 
 exports[`EuiIcon props type logoNginx is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4018,7 +4157,7 @@ exports[`EuiIcon props type logoNginx is rendered 1`] = `
 
 exports[`EuiIcon props type logoOsquery is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4066,12 +4205,11 @@ exports[`EuiIcon props type logoOsquery is rendered 1`] = `
 
 exports[`EuiIcon props type logoPhp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -4200,7 +4338,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
 
 exports[`EuiIcon props type logoPostgres is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4232,7 +4370,7 @@ exports[`EuiIcon props type logoPostgres is rendered 1`] = `
 
 exports[`EuiIcon props type logoPrometheus is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4248,7 +4386,7 @@ exports[`EuiIcon props type logoPrometheus is rendered 1`] = `
 
 exports[`EuiIcon props type logoRabbitmq is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4264,7 +4402,7 @@ exports[`EuiIcon props type logoRabbitmq is rendered 1`] = `
 
 exports[`EuiIcon props type logoRedis is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   width="32"
@@ -4323,7 +4461,7 @@ exports[`EuiIcon props type logoRedis is rendered 1`] = `
 
 exports[`EuiIcon props type logoSiteSearch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4352,7 +4490,7 @@ exports[`EuiIcon props type logoSiteSearch is rendered 1`] = `
 
 exports[`EuiIcon props type logoSketch is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4392,7 +4530,7 @@ exports[`EuiIcon props type logoSketch is rendered 1`] = `
 
 exports[`EuiIcon props type logoSlack is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4413,7 +4551,7 @@ exports[`EuiIcon props type logoSlack is rendered 1`] = `
 
 exports[`EuiIcon props type logoWebhook is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4441,7 +4579,7 @@ exports[`EuiIcon props type logoWebhook is rendered 1`] = `
 
 exports[`EuiIcon props type logoWindows is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4457,7 +4595,7 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
 
 exports[`EuiIcon props type logoXpack is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4497,7 +4635,7 @@ exports[`EuiIcon props type logoXpack is rendered 1`] = `
 
 exports[`EuiIcon props type logstashFilter is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4512,7 +4650,7 @@ exports[`EuiIcon props type logstashFilter is rendered 1`] = `
 
 exports[`EuiIcon props type logstashIf is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4527,7 +4665,7 @@ exports[`EuiIcon props type logstashIf is rendered 1`] = `
 
 exports[`EuiIcon props type logstashInput is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4542,7 +4680,7 @@ exports[`EuiIcon props type logstashInput is rendered 1`] = `
 
 exports[`EuiIcon props type logstashOutput is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4557,7 +4695,7 @@ exports[`EuiIcon props type logstashOutput is rendered 1`] = `
 
 exports[`EuiIcon props type logstashQueue is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4572,7 +4710,7 @@ exports[`EuiIcon props type logstashQueue is rendered 1`] = `
 
 exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4591,7 +4729,7 @@ exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
 
 exports[`EuiIcon props type managementApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4610,12 +4748,11 @@ exports[`EuiIcon props type managementApp is rendered 1`] = `
 
 exports[`EuiIcon props type mapMarker is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -4633,7 +4770,7 @@ exports[`EuiIcon props type mapMarker is rendered 1`] = `
 
 exports[`EuiIcon props type memory is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4651,7 +4788,7 @@ exports[`EuiIcon props type memory is rendered 1`] = `
 
 exports[`EuiIcon props type menuLeft is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4667,7 +4804,7 @@ exports[`EuiIcon props type menuLeft is rendered 1`] = `
 
 exports[`EuiIcon props type menuRight is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4682,7 +4819,7 @@ exports[`EuiIcon props type menuRight is rendered 1`] = `
 
 exports[`EuiIcon props type merge is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4697,7 +4834,7 @@ exports[`EuiIcon props type merge is rendered 1`] = `
 
 exports[`EuiIcon props type metricbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4719,7 +4856,7 @@ exports[`EuiIcon props type metricbeatApp is rendered 1`] = `
 
 exports[`EuiIcon props type minusInCircle is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4735,7 +4872,7 @@ exports[`EuiIcon props type minusInCircle is rendered 1`] = `
 
 exports[`EuiIcon props type minusInCircleFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4751,7 +4888,7 @@ exports[`EuiIcon props type minusInCircleFilled is rendered 1`] = `
 
 exports[`EuiIcon props type monitoringApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4770,7 +4907,7 @@ exports[`EuiIcon props type monitoringApp is rendered 1`] = `
 
 exports[`EuiIcon props type moon is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4785,7 +4922,7 @@ exports[`EuiIcon props type moon is rendered 1`] = `
 
 exports[`EuiIcon props type node is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4800,7 +4937,7 @@ exports[`EuiIcon props type node is rendered 1`] = `
 
 exports[`EuiIcon props type notebookApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4822,7 +4959,7 @@ exports[`EuiIcon props type notebookApp is rendered 1`] = `
 
 exports[`EuiIcon props type number is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4838,7 +4975,7 @@ exports[`EuiIcon props type number is rendered 1`] = `
 
 exports[`EuiIcon props type offline is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4853,7 +4990,7 @@ exports[`EuiIcon props type offline is rendered 1`] = `
 
 exports[`EuiIcon props type online is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4868,7 +5005,7 @@ exports[`EuiIcon props type online is rendered 1`] = `
 
 exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4887,7 +5024,7 @@ exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 
 exports[`EuiIcon props type pause is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4903,12 +5040,11 @@ exports[`EuiIcon props type pause is rendered 1`] = `
 
 exports[`EuiIcon props type pencil is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -4925,7 +5061,7 @@ exports[`EuiIcon props type pencil is rendered 1`] = `
 
 exports[`EuiIcon props type pin is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4941,7 +5077,7 @@ exports[`EuiIcon props type pin is rendered 1`] = `
 
 exports[`EuiIcon props type pinFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4956,7 +5092,7 @@ exports[`EuiIcon props type pinFilled is rendered 1`] = `
 
 exports[`EuiIcon props type pipelineApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -4975,7 +5111,7 @@ exports[`EuiIcon props type pipelineApp is rendered 1`] = `
 
 exports[`EuiIcon props type play is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -4990,7 +5126,7 @@ exports[`EuiIcon props type play is rendered 1`] = `
 
 exports[`EuiIcon props type plusInCircle is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5006,7 +5142,7 @@ exports[`EuiIcon props type plusInCircle is rendered 1`] = `
 
 exports[`EuiIcon props type plusInCircleFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5021,7 +5157,7 @@ exports[`EuiIcon props type plusInCircleFilled is rendered 1`] = `
 
 exports[`EuiIcon props type popout is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5037,7 +5173,7 @@ exports[`EuiIcon props type popout is rendered 1`] = `
 
 exports[`EuiIcon props type questionInCircle is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5052,7 +5188,7 @@ exports[`EuiIcon props type questionInCircle is rendered 1`] = `
 
 exports[`EuiIcon props type refresh is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5067,7 +5203,7 @@ exports[`EuiIcon props type refresh is rendered 1`] = `
 
 exports[`EuiIcon props type reportingApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5089,7 +5225,7 @@ exports[`EuiIcon props type reportingApp is rendered 1`] = `
 
 exports[`EuiIcon props type save is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5104,7 +5240,7 @@ exports[`EuiIcon props type save is rendered 1`] = `
 
 exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5123,7 +5259,7 @@ exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
 
 exports[`EuiIcon props type scale is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5139,12 +5275,11 @@ exports[`EuiIcon props type scale is rendered 1`] = `
 
 exports[`EuiIcon props type search is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -5161,7 +5296,7 @@ exports[`EuiIcon props type search is rendered 1`] = `
 
 exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5190,7 +5325,7 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
 
 exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5209,7 +5344,7 @@ exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
 
 exports[`EuiIcon props type securityApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5228,7 +5363,7 @@ exports[`EuiIcon props type securityApp is rendered 1`] = `
 
 exports[`EuiIcon props type shard is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5243,7 +5378,7 @@ exports[`EuiIcon props type shard is rendered 1`] = `
 
 exports[`EuiIcon props type share is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5258,7 +5393,7 @@ exports[`EuiIcon props type share is rendered 1`] = `
 
 exports[`EuiIcon props type snowflake is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5274,7 +5409,7 @@ exports[`EuiIcon props type snowflake is rendered 1`] = `
 
 exports[`EuiIcon props type sortDown is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5289,7 +5424,7 @@ exports[`EuiIcon props type sortDown is rendered 1`] = `
 
 exports[`EuiIcon props type sortLeft is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5305,7 +5440,7 @@ exports[`EuiIcon props type sortLeft is rendered 1`] = `
 
 exports[`EuiIcon props type sortRight is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5320,7 +5455,7 @@ exports[`EuiIcon props type sortRight is rendered 1`] = `
 
 exports[`EuiIcon props type sortUp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5335,7 +5470,7 @@ exports[`EuiIcon props type sortUp is rendered 1`] = `
 
 exports[`EuiIcon props type sortable is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5350,7 +5485,7 @@ exports[`EuiIcon props type sortable is rendered 1`] = `
 
 exports[`EuiIcon props type spacesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5373,7 +5508,7 @@ exports[`EuiIcon props type spacesApp is rendered 1`] = `
 
 exports[`EuiIcon props type sqlApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5392,7 +5527,7 @@ exports[`EuiIcon props type sqlApp is rendered 1`] = `
 
 exports[`EuiIcon props type starEmpty is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5408,7 +5543,7 @@ exports[`EuiIcon props type starEmpty is rendered 1`] = `
 
 exports[`EuiIcon props type starEmptySpace is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5424,7 +5559,7 @@ exports[`EuiIcon props type starEmptySpace is rendered 1`] = `
 
 exports[`EuiIcon props type starFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5440,7 +5575,7 @@ exports[`EuiIcon props type starFilled is rendered 1`] = `
 
 exports[`EuiIcon props type starFilledSpace is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5456,7 +5591,7 @@ exports[`EuiIcon props type starFilledSpace is rendered 1`] = `
 
 exports[`EuiIcon props type starMinusEmpty is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5472,7 +5607,7 @@ exports[`EuiIcon props type starMinusEmpty is rendered 1`] = `
 
 exports[`EuiIcon props type starMinusFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5488,7 +5623,7 @@ exports[`EuiIcon props type starMinusFilled is rendered 1`] = `
 
 exports[`EuiIcon props type starPlusEmpty is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5504,7 +5639,7 @@ exports[`EuiIcon props type starPlusEmpty is rendered 1`] = `
 
 exports[`EuiIcon props type starPlusFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5520,7 +5655,7 @@ exports[`EuiIcon props type starPlusFilled is rendered 1`] = `
 
 exports[`EuiIcon props type stats is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5536,7 +5671,7 @@ exports[`EuiIcon props type stats is rendered 1`] = `
 
 exports[`EuiIcon props type stop is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5552,7 +5687,7 @@ exports[`EuiIcon props type stop is rendered 1`] = `
 
 exports[`EuiIcon props type stopFilled is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5572,7 +5707,7 @@ exports[`EuiIcon props type stopFilled is rendered 1`] = `
 
 exports[`EuiIcon props type storage is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5606,7 +5741,7 @@ exports[`EuiIcon props type storage is rendered 1`] = `
 
 exports[`EuiIcon props type string is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5622,7 +5757,7 @@ exports[`EuiIcon props type string is rendered 1`] = `
 
 exports[`EuiIcon props type submodule is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   fill="none"
   focusable="false"
   height="16"
@@ -5639,7 +5774,7 @@ exports[`EuiIcon props type submodule is rendered 1`] = `
 
 exports[`EuiIcon props type symlink is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   fill="none"
   focusable="false"
   height="16"
@@ -5656,7 +5791,7 @@ exports[`EuiIcon props type symlink is rendered 1`] = `
 
 exports[`EuiIcon props type tableOfContents is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5671,7 +5806,7 @@ exports[`EuiIcon props type tableOfContents is rendered 1`] = `
 
 exports[`EuiIcon props type tag is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5686,12 +5821,11 @@ exports[`EuiIcon props type tag is rendered 1`] = `
 
 exports[`EuiIcon props type tear is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -5708,7 +5842,7 @@ exports[`EuiIcon props type tear is rendered 1`] = `
 
 exports[`EuiIcon props type temperature is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5726,7 +5860,7 @@ exports[`EuiIcon props type temperature is rendered 1`] = `
 
 exports[`EuiIcon props type timelionApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -5745,7 +5879,7 @@ exports[`EuiIcon props type timelionApp is rendered 1`] = `
 
 exports[`EuiIcon props type tokenAnnotation is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5761,7 +5895,7 @@ exports[`EuiIcon props type tokenAnnotation is rendered 1`] = `
 
 exports[`EuiIcon props type tokenArray is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5777,7 +5911,7 @@ exports[`EuiIcon props type tokenArray is rendered 1`] = `
 
 exports[`EuiIcon props type tokenBoolean is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5792,7 +5926,7 @@ exports[`EuiIcon props type tokenBoolean is rendered 1`] = `
 
 exports[`EuiIcon props type tokenClass is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5808,7 +5942,7 @@ exports[`EuiIcon props type tokenClass is rendered 1`] = `
 
 exports[`EuiIcon props type tokenConstant is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5824,7 +5958,7 @@ exports[`EuiIcon props type tokenConstant is rendered 1`] = `
 
 exports[`EuiIcon props type tokenElement is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5840,7 +5974,7 @@ exports[`EuiIcon props type tokenElement is rendered 1`] = `
 
 exports[`EuiIcon props type tokenEnum is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5856,7 +5990,7 @@ exports[`EuiIcon props type tokenEnum is rendered 1`] = `
 
 exports[`EuiIcon props type tokenEnumMember is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5872,7 +6006,7 @@ exports[`EuiIcon props type tokenEnumMember is rendered 1`] = `
 
 exports[`EuiIcon props type tokenEvent is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5888,7 +6022,7 @@ exports[`EuiIcon props type tokenEvent is rendered 1`] = `
 
 exports[`EuiIcon props type tokenException is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5903,7 +6037,7 @@ exports[`EuiIcon props type tokenException is rendered 1`] = `
 
 exports[`EuiIcon props type tokenField is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5919,7 +6053,7 @@ exports[`EuiIcon props type tokenField is rendered 1`] = `
 
 exports[`EuiIcon props type tokenFile is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5934,7 +6068,7 @@ exports[`EuiIcon props type tokenFile is rendered 1`] = `
 
 exports[`EuiIcon props type tokenFunction is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5950,7 +6084,7 @@ exports[`EuiIcon props type tokenFunction is rendered 1`] = `
 
 exports[`EuiIcon props type tokenInterface is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5966,7 +6100,7 @@ exports[`EuiIcon props type tokenInterface is rendered 1`] = `
 
 exports[`EuiIcon props type tokenKey is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5982,7 +6116,7 @@ exports[`EuiIcon props type tokenKey is rendered 1`] = `
 
 exports[`EuiIcon props type tokenMethod is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -5998,7 +6132,7 @@ exports[`EuiIcon props type tokenMethod is rendered 1`] = `
 
 exports[`EuiIcon props type tokenModule is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6016,7 +6150,7 @@ exports[`EuiIcon props type tokenModule is rendered 1`] = `
 
 exports[`EuiIcon props type tokenNamespace is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6031,7 +6165,7 @@ exports[`EuiIcon props type tokenNamespace is rendered 1`] = `
 
 exports[`EuiIcon props type tokenNull is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6046,7 +6180,7 @@ exports[`EuiIcon props type tokenNull is rendered 1`] = `
 
 exports[`EuiIcon props type tokenNumber is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6061,7 +6195,7 @@ exports[`EuiIcon props type tokenNumber is rendered 1`] = `
 
 exports[`EuiIcon props type tokenObject is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6077,7 +6211,7 @@ exports[`EuiIcon props type tokenObject is rendered 1`] = `
 
 exports[`EuiIcon props type tokenOperator is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6093,7 +6227,7 @@ exports[`EuiIcon props type tokenOperator is rendered 1`] = `
 
 exports[`EuiIcon props type tokenPackage is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6109,7 +6243,7 @@ exports[`EuiIcon props type tokenPackage is rendered 1`] = `
 
 exports[`EuiIcon props type tokenParameter is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6125,7 +6259,7 @@ exports[`EuiIcon props type tokenParameter is rendered 1`] = `
 
 exports[`EuiIcon props type tokenProperty is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6141,7 +6275,7 @@ exports[`EuiIcon props type tokenProperty is rendered 1`] = `
 
 exports[`EuiIcon props type tokenRepo is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6157,7 +6291,7 @@ exports[`EuiIcon props type tokenRepo is rendered 1`] = `
 
 exports[`EuiIcon props type tokenString is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6172,7 +6306,7 @@ exports[`EuiIcon props type tokenString is rendered 1`] = `
 
 exports[`EuiIcon props type tokenStruct is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6188,7 +6322,7 @@ exports[`EuiIcon props type tokenStruct is rendered 1`] = `
 
 exports[`EuiIcon props type tokenSymbol is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6203,7 +6337,7 @@ exports[`EuiIcon props type tokenSymbol is rendered 1`] = `
 
 exports[`EuiIcon props type tokenVariable is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6219,12 +6353,11 @@ exports[`EuiIcon props type tokenVariable is rendered 1`] = `
 
 exports[`EuiIcon props type trash is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -6241,7 +6374,7 @@ exports[`EuiIcon props type trash is rendered 1`] = `
 
 exports[`EuiIcon props type upgradeAssistantApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -6260,7 +6393,7 @@ exports[`EuiIcon props type upgradeAssistantApp is rendered 1`] = `
 
 exports[`EuiIcon props type uptimeApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -6279,7 +6412,7 @@ exports[`EuiIcon props type uptimeApp is rendered 1`] = `
 
 exports[`EuiIcon props type user is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="18"
   viewBox="0 0 18 18"
@@ -6301,7 +6434,7 @@ exports[`EuiIcon props type user is rendered 1`] = `
 
 exports[`EuiIcon props type usersRolesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -6320,7 +6453,7 @@ exports[`EuiIcon props type usersRolesApp is rendered 1`] = `
 
 exports[`EuiIcon props type vector is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6335,7 +6468,7 @@ exports[`EuiIcon props type vector is rendered 1`] = `
 
 exports[`EuiIcon props type visArea is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6350,7 +6483,7 @@ exports[`EuiIcon props type visArea is rendered 1`] = `
 
 exports[`EuiIcon props type visBarHorizontal is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6365,7 +6498,7 @@ exports[`EuiIcon props type visBarHorizontal is rendered 1`] = `
 
 exports[`EuiIcon props type visBarVertical is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6380,12 +6513,11 @@ exports[`EuiIcon props type visBarVertical is rendered 1`] = `
 
 exports[`EuiIcon props type visControls is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
   width="16"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -6403,7 +6535,7 @@ exports[`EuiIcon props type visControls is rendered 1`] = `
 
 exports[`EuiIcon props type visGauge is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6418,7 +6550,7 @@ exports[`EuiIcon props type visGauge is rendered 1`] = `
 
 exports[`EuiIcon props type visGoal is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6433,7 +6565,7 @@ exports[`EuiIcon props type visGoal is rendered 1`] = `
 
 exports[`EuiIcon props type visHeatmap is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6448,7 +6580,7 @@ exports[`EuiIcon props type visHeatmap is rendered 1`] = `
 
 exports[`EuiIcon props type visLine is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6463,7 +6595,7 @@ exports[`EuiIcon props type visLine is rendered 1`] = `
 
 exports[`EuiIcon props type visMapCoordinate is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6478,7 +6610,7 @@ exports[`EuiIcon props type visMapCoordinate is rendered 1`] = `
 
 exports[`EuiIcon props type visMapRegion is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6493,7 +6625,7 @@ exports[`EuiIcon props type visMapRegion is rendered 1`] = `
 
 exports[`EuiIcon props type visMetric is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6508,7 +6640,7 @@ exports[`EuiIcon props type visMetric is rendered 1`] = `
 
 exports[`EuiIcon props type visPie is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6523,7 +6655,7 @@ exports[`EuiIcon props type visPie is rendered 1`] = `
 
 exports[`EuiIcon props type visTable is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6538,7 +6670,7 @@ exports[`EuiIcon props type visTable is rendered 1`] = `
 
 exports[`EuiIcon props type visTagCloud is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6553,7 +6685,7 @@ exports[`EuiIcon props type visTagCloud is rendered 1`] = `
 
 exports[`EuiIcon props type visText is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6568,7 +6700,7 @@ exports[`EuiIcon props type visText is rendered 1`] = `
 
 exports[`EuiIcon props type visTimelion is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6583,7 +6715,7 @@ exports[`EuiIcon props type visTimelion is rendered 1`] = `
 
 exports[`EuiIcon props type visVega is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6598,7 +6730,7 @@ exports[`EuiIcon props type visVega is rendered 1`] = `
 
 exports[`EuiIcon props type visVisualBuilder is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"
@@ -6613,7 +6745,7 @@ exports[`EuiIcon props type visVisualBuilder is rendered 1`] = `
 
 exports[`EuiIcon props type visualizeApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -6635,7 +6767,7 @@ exports[`EuiIcon props type visualizeApp is rendered 1`] = `
 
 exports[`EuiIcon props type watchesApp is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium euiIcon--app"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
   viewBox="0 0 32 32"
@@ -6660,7 +6792,7 @@ exports[`EuiIcon props type watchesApp is rendered 1`] = `
 
 exports[`EuiIcon props type wrench is rendered 1`] = `
 <svg
-  class="euiIcon euiIcon--medium"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="16"
   viewBox="0 0 16 16"

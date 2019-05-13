@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { ICON_SIZES, ICON_TYPES, EuiIcon } from '../../icon';
+import { ICON_SIZES, IconPropType, EuiIcon } from '../../icon';
 
 const accessibleButtonIcon = (props, propName, componentName) => {
   if (props['aria-label']) {
@@ -100,7 +100,7 @@ export const EuiButtonIcon = ({
 EuiButtonIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   iconSize: PropTypes.oneOf(ICON_SIZES),
   color: PropTypes.oneOf(COLORS),
   isDisabled: PropTypes.bool,

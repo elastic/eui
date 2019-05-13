@@ -163,14 +163,28 @@ export class GuideSection extends Component {
       return;
     }
 
-    return [
-      <Fragment key="snippet">
-        <EuiSpacer size="m" />
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
-          {snippet}
-        </EuiCodeBlock>
-      </Fragment>,
-    ];
+    let snippetCode;
+    if (typeof snippet === 'string') {
+      snippetCode = (
+        <Fragment key="snippet">
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snippet}
+          </EuiCodeBlock>
+        </Fragment>
+      );
+    } else {
+      snippetCode = snippet.map((snip, index) => (
+        <Fragment key={`snippet${index}`}>
+          <EuiSpacer size="m" />
+          <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+            {snip}
+          </EuiCodeBlock>
+        </Fragment>
+      ));
+    }
+
+    return snippetCode;
   }
 
   renderPropsForComponent = (componentName, component) => {
@@ -353,16 +367,16 @@ export class GuideSection extends Component {
       sourceObject => sourceObject.type === name
     );
     const npmImports = code
-      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
+      .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
       .replace(
         /(from )'(..\/)+src\/services(\/?';)/,
-        "from '@elastic/eui/lib/services';"
+        `from '@elastic/eui/lib/services';`
       )
       .replace(
         /(from )'(..\/)+src\/experimental(\/?';)/,
-        "from '@elastic/eui/lib/experimental';"
+        `from '@elastic/eui/lib/experimental';`
       )
-      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
+      .replace(/(from )'(..\/)+src\/components\/.*?';/, `from '@elastic/eui';`);
 
     return (
       <div key={name} ref={name}>
@@ -416,7 +430,10 @@ GuideSection.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   source: PropTypes.array,
-  snippet: PropTypes.string,
+  snippet: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   children: PropTypes.any,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,

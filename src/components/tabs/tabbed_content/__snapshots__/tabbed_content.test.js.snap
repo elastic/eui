@@ -72,6 +72,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
 >
   <div>
     <EuiTabs
+      display="default"
       expand={false}
       size="m"
     >
@@ -154,6 +155,54 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 >
   <div
     class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props display can be condensed 1`] = `
+<div>
+  <div
+    class="euiTabs euiTabs--condensed"
     role="tablist"
   >
     <button
@@ -294,7 +343,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 </div>
 `;
 
-exports[`EuiTabbedContent props size is rendered 1`] = `
+exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
     class="euiTabs euiTabs--small"

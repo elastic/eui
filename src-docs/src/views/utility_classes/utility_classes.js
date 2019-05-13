@@ -8,6 +8,9 @@ import {
   EuiTextColor,
 } from '../../../../src/components';
 
+const longLink =
+  'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool';
+
 export default () => (
   <EuiText>
     <h4>Text</h4>
@@ -78,9 +81,7 @@ export default () => (
       className="eui-textOverflowWrap">
       <EuiCode>.eui-textOverflowWrap</EuiCode> will only break up at the end of
       words. Long urls will still break
-      {
-        'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool'
-      }{' '}
+      {longLink}.
       <strong>
         Falls back to <EuiCode>break-all</EuiCode> on IE11.
       </strong>
@@ -97,10 +98,7 @@ export default () => (
       className="eui-textBreakWord">
       <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of
       words. Long urls will still break
-      {
-        'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool'
-      }
-      .
+      {longLink}.
       <strong>
         Falls back to <EuiCode>break-all</EuiCode> on Firefox and IE11.
       </strong>
@@ -117,9 +115,7 @@ export default () => (
       className="eui-textBreakAll">
       <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful
       for long urls like
-      {
-        'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool'
-      }
+      {longLink}.
     </div>
 
     <EuiSpacer />
@@ -133,9 +129,7 @@ export default () => (
       className="eui-textBreakWord eui-textBreakNormal">
       <EuiCode>.eui-textBreakNormal</EuiCode> revert back to not forcing word
       breaks. It is <strong>not</strong> useful for long urls like
-      {
-        'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool'
-      }
+      {longLink}.
     </div>
 
     <EuiSpacer />

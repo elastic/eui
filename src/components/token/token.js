@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 import { TOKEN_MAP } from './token_map';
 
 const sizeToClassMap = {
@@ -91,7 +91,7 @@ EuiToken.propTypes = {
   /**
    * An EUI icon type
    */
-  iconType: PropTypes.oneOf(ICON_TYPES).isRequired,
+  iconType: IconPropType.isRequired,
   /**
    * Size of the token
    */

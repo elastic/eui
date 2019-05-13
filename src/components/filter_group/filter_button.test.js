@@ -73,16 +73,16 @@ describe('EuiFilterButton', () => {
     });
 
     describe('grow', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton grow />);
+      it('can be turned off', () => {
+        const component = render(<EuiFilterButton grow={false} />);
 
         expect(component).toMatchSnapshot();
       });
     });
 
-    describe('noDivider', () => {
+    describe('withNext', () => {
       it('is rendered', () => {
-        const component = render(<EuiFilterButton noDivider />);
+        const component = render(<EuiFilterButton withNext />);
 
         expect(component).toMatchSnapshot();
       });

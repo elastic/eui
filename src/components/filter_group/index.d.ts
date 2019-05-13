@@ -8,6 +8,8 @@ import {
   HTMLAttributes,
 } from 'react';
 
+import { EuiFilterGroupProps } from './filter_group';
+
 declare module '@elastic/eui' {
   /**
    * Filter button type defs
@@ -23,6 +25,10 @@ declare module '@elastic/eui' {
     isDisabled?: boolean;
     type?: string;
     grow?: boolean;
+    withNext?: boolean;
+    /**
+     * _DEPRECATED use `withNext`_
+     */
     noDivider?: boolean;
   }
   export const EuiFilterButton: FunctionComponent<
@@ -34,10 +40,7 @@ declare module '@elastic/eui' {
    *
    * @see './filter_group.js'
    */
-
-  export const EuiFilterGroup: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement>
-  >;
+  export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps>;
 
   /**
    * Filter select item type defs

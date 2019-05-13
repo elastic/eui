@@ -11,6 +11,7 @@ import {
   EuiFieldText,
   EuiSwitch,
 } from '../../../form';
+import { EuiSpacer } from '../../../spacer';
 
 import { timeUnits } from '../time_units';
 import { relativeOptions } from '../relative_options';
@@ -65,7 +66,9 @@ export class EuiRelativeTab extends Component {
 
   render() {
     const isInvalid = this.state.count < 0;
-    const parsedValue = dateMath.parse(this.props.value);
+    const parsedValue = dateMath.parse(this.props.value, {
+      roundUp: this.props.roundUp,
+    });
     const formatedValue =
       isInvalid || !parsedValue || !parsedValue.isValid()
         ? ''
@@ -97,17 +100,15 @@ export class EuiRelativeTab extends Component {
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiFormRow>
-          <EuiFieldText value={formatedValue} readOnly />
-        </EuiFormRow>
-        <EuiFormRow>
-          <EuiSwitch
-            data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
-            label={`Round to the ${timeUnits[this.state.unit.substring(0, 1)]}`}
-            checked={this.state.round}
-            onChange={this.onRoundChange}
-          />
-        </EuiFormRow>
+        <EuiSpacer size="s" />
+        <EuiSwitch
+          data-test-subj={`superDatePickerRelativeDateRoundSwitch`}
+          label={`Round to the ${timeUnits[this.state.unit.substring(0, 1)]}`}
+          checked={this.state.round}
+          onChange={this.onRoundChange}
+        />
+        <EuiSpacer size="m" />
+        <EuiFieldText value={formatedValue} readOnly />
       </EuiForm>
     );
   }
@@ -117,4 +118,5 @@ EuiRelativeTab.propTypes = {
   dateFormat: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  roundUp: PropTypes.bool,
 };

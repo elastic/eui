@@ -1,10 +1,5 @@
-@import '../panel/variables';
 @import '../panel/mixins';
 @import '../badge/beta_badge/mixins';
-
-$euiCardSpacing: map-get($euiPanelPaddingModifiers, 'paddingMedium');
-$euiCardTitleSize: 18px; // Hardcoded pixel value for theme parity.
-$euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
 
 // Start with a base of EuiPanel styles
 @include euiPanel($selector: 'euiCard');
@@ -62,9 +57,21 @@ $euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
     }
   }
 
-  &.euiCard--hasBottomGraphic {
+  &.euiCard--hasBottomGraphic,
+  &.euiCard--isSelectable {
     position: relative;
     padding-bottom: $euiCardSpacing + $euiCardGraphicHeight;
+  }
+
+  &.euiCard-isSelected {
+    @include euiBottomShadowMedium;
+    transition: box-shadow $euiAnimSpeedFast $euiAnimSlightResistance, border-color $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+}
+
+@each $name, $color in $euiCardSelectButtonBorders {
+  .euiCard--isSelectable--#{$name}.euiCard-isSelected {
+    border-color: $color;
   }
 }
 
@@ -151,14 +158,4 @@ $euiCardGraphicHeight: 40px; // Actual height of the svg used in EuiCardGraphic
   }
 }
 
-// Optional decorative graphics
-.euiCard__graphic {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: $euiCardGraphicHeight;
-  width: 100%;
-  overflow: hidden;
-  border-bottom-left-radius: $euiBorderRadius;
-  border-bottom-right-radius: $euiBorderRadius;
-}
+

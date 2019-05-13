@@ -33,7 +33,7 @@ export class EuiFilePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      promptText: this.props.initialPromptText,
+      promptText: null,
       isHoveringDrop: false,
     };
   }
@@ -44,7 +44,7 @@ export class EuiFilePicker extends Component {
         promptText: `${this.fileInput.files.length} ${filesSelected}`,
       });
     } else if (this.fileInput.files.length === 0) {
-      this.setState({ promptText: this.props.initialPromptText });
+      this.setState({ promptText: null });
     } else {
       this.setState({ promptText: this.fileInput.value.split('\\').pop() });
     }
@@ -92,21 +92,20 @@ export class EuiFilePicker extends Component {
             ...rest
           } = this.props;
 
-          delete rest.onChange;
+          const isOverridingInitialPrompt = this.state.promptText != null;
 
           const classes = classNames(
             'euiFilePicker',
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
-              'euiFilePicker-hasFiles':
-                this.state.promptText !== initialPromptText,
+              'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
           );
 
           let clearButton;
-          if (this.state.promptText !== initialPromptText) {
+          if (isOverridingInitialPrompt) {
             if (compressed) {
               clearButton = (
                 <button
@@ -158,7 +157,7 @@ export class EuiFilePicker extends Component {
                     aria-hidden="true"
                   />
                   <div className="euiFilePicker__promptText">
-                    {this.state.promptText}
+                    {this.state.promptText || initialPromptText}
                   </div>
                   {clearButton}
                 </div>

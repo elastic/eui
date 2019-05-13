@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { ICON_TYPES, EuiIcon } from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 
@@ -106,7 +106,7 @@ export const EuiToast = ({
 
 EuiToast.propTypes = {
   title: PropTypes.node,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   color: PropTypes.oneOf(COLORS),
   onClose: PropTypes.func,
   children: PropTypes.node,
