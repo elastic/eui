@@ -11,8 +11,7 @@ import {
 import GlobalFilterForm from './global_filter_form';
 
 export default class GlobalFilterAdd extends Component {
-  static propTypes = {
-  }
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -45,19 +44,24 @@ export default class GlobalFilterAdd extends Component {
           </EuiButtonEmpty>
         }
         anchorPosition="downCenter"
-        withTitle
-      >
+        withTitle>
         <EuiPopoverTitle>
           <EuiFlexGroup alignItems="baseline">
             <EuiFlexItem>Add a filter</EuiFlexItem>
             <EuiFlexItem grow={false}>
               {/* This button should open a modal */}
-              <EuiButtonEmpty flush="right" size="xs">Edit as Query DSL</EuiButtonEmpty>
+              <EuiButtonEmpty flush="right" size="xs">
+                Edit as Query DSL
+              </EuiButtonEmpty>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPopoverTitle>
 
-        <GlobalFilterForm style={{ width: 400 }} onAdd={this.togglePopover} onCancel={this.togglePopover} />
+        <GlobalFilterForm
+          style={{ width: 400 }}
+          onAdd={this.togglePopover}
+          onCancel={this.togglePopover}
+        />
       </EuiPopover>
     );
   }

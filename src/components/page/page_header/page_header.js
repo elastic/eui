@@ -8,14 +8,11 @@ export const EuiPageHeader = ({ children, className, responsive, ...rest }) => {
     {
       'euiPageHeader--responsive': responsive,
     },
-    className,
+    className
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

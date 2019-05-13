@@ -10,7 +10,7 @@ export const EuiHeaderLink = ({
   isActive,
   children,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiHeaderLink', className);
 
@@ -21,8 +21,7 @@ export const EuiHeaderLink = ({
       onClick={onClick}
       iconType={iconType}
       color={isActive ? 'primary' : 'text'}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </EuiButtonEmpty>
   );

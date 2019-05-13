@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFlexGroup,
@@ -23,7 +21,7 @@ export default class extends Component {
     this.setState({
       activePage: pageNumber,
     });
-  }
+  };
 
   render() {
     return (

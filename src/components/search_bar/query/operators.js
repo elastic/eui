@@ -1,14 +1,17 @@
 import { dateFormat, dateGranularity } from './date_format';
 import { isDateValue } from './date_value';
 import {
-  isArray, isBoolean,
-  isNumber, isString,
-  isDateLike, isNil
+  isArray,
+  isBoolean,
+  isNumber,
+  isString,
+  isDateLike,
+  isNil,
 } from '../../../services/predicate';
 import moment from 'moment';
 const utc = moment.utc;
 
-const resolveValueAsDate = (value) => {
+const resolveValueAsDate = value => {
   if (moment.isMoment(value)) {
     return value;
   }
@@ -19,7 +22,7 @@ const resolveValueAsDate = (value) => {
 };
 
 const defaultEqOptions = {
-  ignoreCase: true
+  ignoreCase: true,
 };
 
 export const eq = (fieldValue, clauseValue, options = {}) => {
@@ -32,20 +35,25 @@ export const eq = (fieldValue, clauseValue, options = {}) => {
   if (isDateValue(clauseValue)) {
     const dateFieldValue = resolveValueAsDate(fieldValue);
     if (clauseValue.granularity) {
-      return clauseValue.granularity.isSame(dateFieldValue, clauseValue.resolve());
+      return clauseValue.granularity.isSame(
+        dateFieldValue,
+        clauseValue.resolve()
+      );
     }
     return dateFieldValue.isSame(clauseValue.resolve());
   }
 
   if (isString(fieldValue)) {
     if (options.exactMatch === true) {
-      return options.ignoreCase ?
-        fieldValue.toLowerCase() === clauseValue.toString().toLowerCase() :
-        fieldValue === clauseValue.toString();
+      return options.ignoreCase
+        ? fieldValue.toLowerCase() === clauseValue.toString().toLowerCase()
+        : fieldValue === clauseValue.toString();
     } else {
-      return options.ignoreCase ?
-        fieldValue.toLowerCase().includes(clauseValue.toString().toLowerCase()) :
-        fieldValue.includes(clauseValue.toString());
+      return options.ignoreCase
+        ? fieldValue
+            .toLowerCase()
+            .includes(clauseValue.toString().toLowerCase())
+        : fieldValue.includes(clauseValue.toString());
     }
   }
 
@@ -89,12 +97,18 @@ const greaterThen = (fieldValue, clauseValue, inclusive = false) => {
   if (isDateValue(clauseValue)) {
     const clauseDateValue = clauseValue.resolve();
     if (!clauseValue.granularity) {
-      return inclusive ? utc(fieldValue).isSameOrAfter(clauseDateValue) : utc(fieldValue).isAfter(clauseDateValue);
+      return inclusive
+        ? utc(fieldValue).isSameOrAfter(clauseDateValue)
+        : utc(fieldValue).isAfter(clauseDateValue);
     }
     if (inclusive) {
-      return utc(fieldValue).isSameOrAfter(clauseValue.granularity.start(clauseDateValue));
+      return utc(fieldValue).isSameOrAfter(
+        clauseValue.granularity.start(clauseDateValue)
+      );
     }
-    return utc(fieldValue).isSameOrAfter(clauseValue.granularity.startOfNext(clauseDateValue));
+    return utc(fieldValue).isSameOrAfter(
+      clauseValue.granularity.startOfNext(clauseDateValue)
+    );
   }
 
   if (isString(fieldValue)) {
@@ -111,7 +125,9 @@ const greaterThen = (fieldValue, clauseValue, inclusive = false) => {
     const date = resolveValueAsDate(clauseValue);
     const granularity = dateGranularity(date);
     if (!granularity) {
-      return inclusive ? utc(fieldValue).isSameOrAfter(date) : utc(fieldValue).isAfter(date);
+      return inclusive
+        ? utc(fieldValue).isSameOrAfter(date)
+        : utc(fieldValue).isAfter(date);
     }
     if (inclusive) {
       return utc(fieldValue).isSameOrAfter(granularity.start(date));

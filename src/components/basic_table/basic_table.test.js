@@ -32,13 +32,11 @@ describe('EuiBasicTable', () => {
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
-        ]
+            description: 'description',
+          },
+        ],
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -50,14 +48,12 @@ describe('EuiBasicTable', () => {
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
-        noItemsMessage: 'where my items at?'
+        noItemsMessage: 'where my items at?',
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -69,14 +65,16 @@ describe('EuiBasicTable', () => {
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
-        noItemsMessage: (<p>no items, click <a href>here</a> to make some</p>)
+        noItemsMessage: (
+          <p>
+            no items, click <a href>here</a> to make some
+          </p>
+        ),
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -88,27 +86,25 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' }
+          { id: '3', name: 'name3' },
         ],
         columns: [
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
-        rowProps: (item) => {
+        rowProps: item => {
           const { id } = item;
           return {
             'data-test-subj': `row-${id}`,
             className: 'customRowClass',
-            onClick: () => { },
+            onClick: () => {},
           };
         },
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -118,24 +114,22 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' }
+          { id: '3', name: 'name3' },
         ],
         columns: [
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
         rowProps: {
           'data-test-subj': `row`,
           className: 'customClass',
-          onClick: () => { },
+          onClick: () => {},
         },
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -147,14 +141,14 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' }
+          { id: '3', name: 'name3' },
         ],
         columns: [
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
         cellProps: (item, column) => {
           const { id } = item;
@@ -162,13 +156,11 @@ describe('EuiBasicTable', () => {
           return {
             'data-test-subj': `cell-${id}-${field}`,
             className: 'customRowClass',
-            onClick: () => { },
+            onClick: () => {},
           };
         },
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -178,24 +170,22 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' }
+          { id: '3', name: 'name3' },
         ],
         columns: [
           {
             field: 'name',
             name: 'Name',
-            description: 'description'
-          }
+            description: 'description',
+          },
         ],
         cellProps: {
           'data-test-subj': `cell`,
           className: 'customClass',
-          onClick: () => { },
+          onClick: () => {},
         },
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -206,24 +196,22 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       itemIdToExpandedRowMap: {
         '1': <div>Expanded row</div>,
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -233,52 +221,45 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
 
   test('with pagination - 2nd page', () => {
     const props = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-      ],
+      items: [{ id: '1', name: 'name1' }, { id: '2', name: 'name2' }],
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       pagination: {
         pageIndex: 1,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -288,26 +269,24 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
-      onChange: () => { },
-      error: 'no can do'
+      onChange: () => {},
+      error: 'no can do',
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -317,26 +296,24 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
         totalItemCount: 5,
-        hidePerPageOptions: true
+        hidePerPageOptions: true,
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -346,24 +323,22 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       columns: [
         {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
       sorting: {
-        sort: { field: 'name', direction: 'asc' }
+        sort: { field: 'name', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -373,21 +348,19 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       columns: [
         {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -397,29 +370,27 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description'
-        }
+          description: 'description',
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -429,7 +400,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
@@ -437,29 +408,26 @@ describe('EuiBasicTable', () => {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' }
+        sort: { field: 'name', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
-
 
   describe('footers', () => {
     test('do not render without a column footer definition', () => {
@@ -467,31 +435,29 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1', age: 20 },
           { id: '2', name: 'name2', age: 21 },
-          { id: '3', name: 'name3', age: 22 }
+          { id: '3', name: 'name3', age: 22 },
         ],
         itemId: 'id',
         columns: [
           {
             field: 'name',
             name: 'Name',
-            description: 'your name'
+            description: 'your name',
           },
           {
             field: 'id',
             name: 'ID',
-            description: 'your id'
+            description: 'your id',
           },
           {
             field: 'age',
             name: 'Age',
-            description: 'your age'
-          }
+            description: 'your age',
+          },
         ],
-        onChange: () => { }
+        onChange: () => {},
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -501,7 +467,7 @@ describe('EuiBasicTable', () => {
         items: [
           { id: '1', name: 'name1', age: 20 },
           { id: '2', name: 'name2', age: 21 },
-          { id: '3', name: 'name3', age: 22 }
+          { id: '3', name: 'name3', age: 22 },
         ],
         itemId: 'id',
         columns: [
@@ -510,13 +476,13 @@ describe('EuiBasicTable', () => {
             name: 'Name',
             description: 'your name',
             sortable: true,
-            footer: <strong>Name</strong>
+            footer: <strong>Name</strong>,
           },
           {
             field: 'id',
             name: 'ID',
             description: 'your id',
-            footer: 'ID'
+            footer: 'ID',
           },
           {
             field: 'age',
@@ -525,29 +491,28 @@ describe('EuiBasicTable', () => {
             footer: ({ items, pagination }) => (
               <strong>
                 sum:
-                {items.reduce((acc, cur) => acc + cur.age, 0)}<br />
+                {items.reduce((acc, cur) => acc + cur.age, 0)}
+                <br />
                 total items:
                 {pagination.totalItemCount}
               </strong>
-            )
-          }
+            ),
+          },
         ],
         pagination: {
           pageIndex: 0,
           pageSize: 3,
-          totalItemCount: 5
+          totalItemCount: 5,
         },
         selection: {
-          onSelectionChanged: () => undefined
+          onSelectionChanged: () => undefined,
         },
         sorting: {
-          sort: { field: 'name', direction: 'asc' }
+          sort: { field: 'name', direction: 'asc' },
         },
-        onChange: () => { }
+        onChange: () => {},
       };
-      const component = shallow(
-        <EuiBasicTable {...props} />
-      );
+      const component = shallow(<EuiBasicTable {...props} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -558,7 +523,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
@@ -567,25 +532,23 @@ describe('EuiBasicTable', () => {
           name: 'Name',
           description: 'description',
           sortable: true,
-          render: (name) => name.toUpperCase()
-        }
+          render: name => name.toUpperCase(),
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' }
+        sort: { field: 'name', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -595,7 +558,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
-        { id: '3', count: 3 }
+        { id: '3', count: 3 },
       ],
       itemId: 'id',
       columns: [
@@ -604,25 +567,23 @@ describe('EuiBasicTable', () => {
           name: 'Count',
           description: 'description of count',
           sortable: true,
-          dataType: 'number'
-        }
+          dataType: 'number',
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' }
+        sort: { field: 'count', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -633,7 +594,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', count: 1 },
         { id: '2', count: 2 },
-        { id: '3', count: 3 }
+        { id: '3', count: 3 },
       ],
       itemId: 'id',
       columns: [
@@ -643,25 +604,23 @@ describe('EuiBasicTable', () => {
           description: 'description of count',
           sortable: true,
           dataType: 'number',
-          render: (count) => 'x'.repeat(count)
-        }
+          render: count => 'x'.repeat(count),
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'count', direction: 'asc' }
+        sort: { field: 'count', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -671,7 +630,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
@@ -679,7 +638,7 @@ describe('EuiBasicTable', () => {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true
+          sortable: true,
         },
         {
           name: 'Actions',
@@ -688,27 +647,25 @@ describe('EuiBasicTable', () => {
               type: 'button',
               name: 'Edit',
               description: 'edit',
-              onClick: () => undefined
-            }
-          ]
-        }
+              onClick: () => undefined,
+            },
+          ],
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' }
+        sort: { field: 'name', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -718,7 +675,7 @@ describe('EuiBasicTable', () => {
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' }
+        { id: '3', name: 'name3' },
       ],
       itemId: 'id',
       columns: [
@@ -726,7 +683,7 @@ describe('EuiBasicTable', () => {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true
+          sortable: true,
         },
         {
           name: 'Actions',
@@ -735,35 +692,32 @@ describe('EuiBasicTable', () => {
               type: 'button',
               name: 'Edit',
               description: 'edit',
-              onClick: () => undefined
+              onClick: () => undefined,
             },
             {
               type: 'button',
               name: 'Delete',
               description: 'delete',
-              onClick: () => undefined
-            }
-          ]
-        }
+              onClick: () => undefined,
+            },
+          ],
+        },
       ],
       pagination: {
         pageIndex: 0,
         pageSize: 3,
-        totalItemCount: 5
+        totalItemCount: 5,
       },
       selection: {
-        onSelectionChanged: () => undefined
+        onSelectionChanged: () => undefined,
       },
       sorting: {
-        sort: { field: 'name', direction: 'asc' }
+        sort: { field: 'name', direction: 'asc' },
       },
-      onChange: () => { }
+      onChange: () => {},
     };
-    const component = shallow(
-      <EuiBasicTable {...props} />
-    );
+    const component = shallow(<EuiBasicTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
-
 });

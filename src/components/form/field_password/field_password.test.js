@@ -4,8 +4,12 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiFieldPassword } from './field_password';
 
-jest.mock('../form_control_layout', () => ({ EuiFormControlLayout: 'eui-form-control-layout' }));
-jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
+jest.mock('../form_control_layout', () => ({
+  EuiFormControlLayout: 'eui-form-control-layout',
+}));
+jest.mock('../validatable_control', () => ({
+  EuiValidatableControl: 'eui-validatable-control',
+}));
 
 describe('EuiFieldPassword', () => {
   test('is rendered', () => {
@@ -20,42 +24,26 @@ describe('EuiFieldPassword', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test(`isInvalid is rendered`, () => {
-      const component = render(
-        <EuiFieldPassword
-          isInvalid
-        />
-      );
+      const component = render(<EuiFieldPassword isInvalid />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`fullWidth is rendered`, () => {
-      const component = render(
-        <EuiFieldPassword
-          fullWidth
-        />
-      );
+      const component = render(<EuiFieldPassword fullWidth />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`isLoading is rendered`, () => {
-      const component = render(
-        <EuiFieldPassword
-          isLoading
-        />
-      );
+      const component = render(<EuiFieldPassword isLoading />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

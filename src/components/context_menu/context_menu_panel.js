@@ -1,7 +1,4 @@
-import React, {
-  cloneElement,
-  Component,
-} from 'react';
+import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
@@ -38,7 +35,7 @@ export class EuiContextMenuPanel extends Component {
     watchedItemProps: PropTypes.array,
     showNextPanel: PropTypes.func,
     showPreviousPanel: PropTypes.func,
-    initialFocusedItemIndex: PropTypes.number
+    initialFocusedItemIndex: PropTypes.number,
   };
 
   static defaultProps = {
@@ -51,12 +48,12 @@ export class EuiContextMenuPanel extends Component {
 
     this.state = {
       prevProps: {
-        items: this.props.items
+        items: this.props.items,
       },
       menuItems: [],
       isTransitioning: Boolean(props.transitionType),
       focusedItemIndex: props.initialFocusedItemIndex,
-      currentHeight: undefined
+      currentHeight: undefined,
     };
   }
 
@@ -88,9 +85,9 @@ export class EuiContextMenuPanel extends Component {
     // since there could be content inside the panel which requires use of the left arrow key,
     // e.g. text inputs.
     if (
-      this.props.items.length
-      || document.activeElement === this.backButton
-      || document.activeElement === this.panel
+      this.props.items.length ||
+      document.activeElement === this.backButton ||
+      document.activeElement === this.panel
     ) {
       if (e.keyCode === cascadingMenuKeyCodes.LEFT) {
         if (this.props.showPreviousPanel) {
@@ -109,11 +106,14 @@ export class EuiContextMenuPanel extends Component {
       switch (e.keyCode) {
         case cascadingMenuKeyCodes.TAB:
           // We need to sync up with the user if s/he is tabbing through the items.
-          const focusedItemIndex = this.state.menuItems.indexOf(document.activeElement);
+          const focusedItemIndex = this.state.menuItems.indexOf(
+            document.activeElement
+          );
 
           this.setState({
             focusedItemIndex:
-              (focusedItemIndex >= 0 && focusedItemIndex < this.state.menuItems.length)
+              focusedItemIndex >= 0 &&
+              focusedItemIndex < this.state.menuItems.length
                 ? focusedItemIndex
                 : undefined,
           });
@@ -213,7 +213,7 @@ export class EuiContextMenuPanel extends Component {
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
     }
-  }
+  };
 
   componentDidMount() {
     this.updateFocus();
@@ -252,15 +252,17 @@ export class EuiContextMenuPanel extends Component {
     const { watchedItemProps } = this.props;
 
     // Create fingerprint of all item's watched properties
-    if(items.length && watchedItemProps && watchedItemProps.length) {
-      return JSON.stringify(items.map(item => {
-        // Create object of item properties and values
-        const props = {
-          key: item.key,
-        };
-        watchedItemProps.forEach(prop => props[prop] = item.props[prop]);
-        return props;
-      }));
+    if (items.length && watchedItemProps && watchedItemProps.length) {
+      return JSON.stringify(
+        items.map(item => {
+          // Create object of item properties and values
+          const props = {
+            key: item.key,
+          };
+          watchedItemProps.forEach(prop => (props[prop] = item.props[prop]));
+          return props;
+        })
+      );
     }
 
     return null;
@@ -273,7 +275,10 @@ export class EuiContextMenuPanel extends Component {
     }
 
     // Check if any watched item properties changed by quick string comparison
-    if(this.getWatchedPropsForItems(nextItems) !== this.getWatchedPropsForItems(prevItems)) {
+    if (
+      this.getWatchedPropsForItems(nextItems) !==
+      this.getWatchedPropsForItems(prevItems)
+    ) {
       return true;
     }
   }
@@ -375,9 +380,10 @@ export class EuiContextMenuPanel extends Component {
             className="euiContextMenuPanelTitle"
             type="button"
             onClick={onClose}
-            ref={node => { this.backButton = node; }}
-            data-test-subj="contextMenuPanelTitleButton"
-          >
+            ref={node => {
+              this.backButton = node;
+            }}
+            data-test-subj="contextMenuPanelTitleButton">
             <span className="euiContextMenu__itemLayout">
               <EuiIcon
                 type="arrowLeft"
@@ -385,33 +391,36 @@ export class EuiContextMenuPanel extends Component {
                 className="euiContextMenu__icon"
               />
 
-              <span className="euiContextMenu__text">
-                {title}
-              </span>
+              <span className="euiContextMenu__text">{title}</span>
             </span>
           </button>
         );
       } else {
         panelTitle = (
           <EuiPopoverTitle>
-            <span className="euiContextMenu__itemLayout">
-              {title}
-            </span>
+            <span className="euiContextMenu__itemLayout">{title}</span>
           </EuiPopoverTitle>
         );
       }
     }
 
-    const classes = classNames('euiContextMenuPanel', className, (
-      this.state.isTransitioning && transitionDirectionAndTypeToClassNameMap[transitionDirection]
-        ? transitionDirectionAndTypeToClassNameMap[transitionDirection][transitionType]
+    const classes = classNames(
+      'euiContextMenuPanel',
+      className,
+      this.state.isTransitioning &&
+        transitionDirectionAndTypeToClassNameMap[transitionDirection]
+        ? transitionDirectionAndTypeToClassNameMap[transitionDirection][
+            transitionType
+          ]
         : undefined
-    ));
+    );
 
     const content = items.length
-      ? items.map((MenuItem, index) => cloneElement(MenuItem, {
-        buttonRef: this.menuItemRef.bind(this, index),
-      }))
+      ? items.map((MenuItem, index) =>
+          cloneElement(MenuItem, {
+            buttonRef: this.menuItemRef.bind(this, index),
+          })
+        )
       : children;
 
     return (
@@ -421,8 +430,7 @@ export class EuiContextMenuPanel extends Component {
         onKeyDown={this.onKeyDown}
         tabIndex="0"
         onAnimationEnd={this.onTransitionComplete}
-        {...rest}
-      >
+        {...rest}>
         {panelTitle}
 
         <div ref={this.contentRef}>

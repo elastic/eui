@@ -8,15 +8,14 @@ import {
   ComputedColumnType,
   ActionsColumnType,
 } from './basic_table';
-import {
-  defaults as paginationBarDefaults
-} from './pagination_bar';
+import { defaults as paginationBarDefaults } from './pagination_bar';
 import { isBoolean, isString } from '../../services/predicate';
 import { Comparators, PropertySortType } from '../../services/sort';
 import {
   QueryType,
   SearchFiltersFiltersType,
-  SearchBoxConfigPropTypes, EuiSearchBar
+  SearchBoxConfigPropTypes,
+  EuiSearchBar,
 } from '../search_bar';
 import { EuiSpacer } from '../spacer/spacer';
 
@@ -24,10 +23,10 @@ import { EuiSpacer } from '../spacer/spacer';
 const ColumnType = PropTypes.oneOfType([
   PropTypes.shape({
     ...FieldDataColumnTypeShape,
-    sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func])
+    sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   }),
   ComputedColumnType,
-  ActionsColumnType
+  ActionsColumnType,
 ]);
 
 const InMemoryTablePropTypes = {
@@ -37,41 +36,44 @@ const InMemoryTablePropTypes = {
   message: PropTypes.node,
   error: PropTypes.string,
   compressed: PropTypes.bool,
-  search: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({
-    defaultQuery: QueryType,
-    box: PropTypes.shape({
-      ...SearchBoxConfigPropTypes,
-      schema: PropTypes.oneOfType([
-        // here we enable the user to just assign 'true' to the schema, in which case
-        // we will auto-generate it out of the columns configuration
-        PropTypes.bool,
-        SearchBoxConfigPropTypes.schema
-      ])
+  search: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      defaultQuery: QueryType,
+      box: PropTypes.shape({
+        ...SearchBoxConfigPropTypes,
+        schema: PropTypes.oneOfType([
+          // here we enable the user to just assign 'true' to the schema, in which case
+          // we will auto-generate it out of the columns configuration
+          PropTypes.bool,
+          SearchBoxConfigPropTypes.schema,
+        ]),
+      }),
+      filters: SearchFiltersFiltersType,
+      onChange: PropTypes.func,
+      executeQueryOptions: PropTypes.shape({
+        defaultFields: PropTypes.arrayOf(PropTypes.string),
+        isClauseMatcher: PropTypes.func,
+        explain: PropTypes.bool,
+      }),
     }),
-    filters: SearchFiltersFiltersType,
-    onChange: PropTypes.func,
-    executeQueryOptions: PropTypes.shape({
-      defaultFields: PropTypes.arrayOf(PropTypes.string),
-      isClauseMatcher: PropTypes.func,
-      explain: PropTypes.bool,
-    })
-  })]),
+  ]),
   pagination: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
+      pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
     }),
     PropTypes.shape({
       initialPageIndex: PropTypes.number,
       initialPageSize: PropTypes.number,
-      pageSizeOptions: PropTypes.arrayOf(PropTypes.number)
-    })
+      pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+    }),
   ]),
   sorting: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      sort: PropertySortType
-    })
+      sort: PropertySortType,
+    }),
   ]),
   /**
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
@@ -84,7 +86,7 @@ const InMemoryTablePropTypes = {
   onTableChange: PropTypes.func,
 };
 
-const getInitialQuery = (search) => {
+const getInitialQuery = search => {
   if (!search) {
     return;
   }
@@ -93,7 +95,7 @@ const getInitialQuery = (search) => {
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
-const getInitialPagination = (pagination) => {
+const getInitialPagination = pagination => {
   if (!pagination) {
     return {
       pageIndex: undefined,
@@ -105,25 +107,32 @@ const getInitialPagination = (pagination) => {
     initialPageIndex = 0,
     initialPageSize,
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
-    hidePerPageOptions
+    hidePerPageOptions,
   } = pagination;
 
-
-  if (!hidePerPageOptions && initialPageSize && (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))) {
-    throw new Error(`EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`);
+  if (
+    !hidePerPageOptions &&
+    initialPageSize &&
+    (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))
+  ) {
+    throw new Error(
+      `EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`
+    );
   }
 
-  const defaultPageSize = pageSizeOptions ? pageSizeOptions[0] : paginationBarDefaults.pageSizeOptions[0];
+  const defaultPageSize = pageSizeOptions
+    ? pageSizeOptions[0]
+    : paginationBarDefaults.pageSizeOptions[0];
 
   return {
     pageIndex: initialPageIndex,
     pageSize: initialPageSize || defaultPageSize,
     pageSizeOptions,
-    hidePerPageOptions
+    hidePerPageOptions,
   };
 };
 
-const getInitialSorting = (sorting) => {
+const getInitialSorting = sorting => {
   if (!sorting || !sorting.sort) {
     return {
       sortField: undefined,
@@ -131,10 +140,7 @@ const getInitialSorting = (sorting) => {
     };
   }
 
-  const {
-    field: sortField,
-    direction: sortDirection,
-  } = sorting.sort;
+  const { field: sortField, direction: sortDirection } = sorting.sort;
 
   return {
     sortField,
@@ -149,7 +155,7 @@ export class EuiInMemoryTable extends Component {
     pagination: false,
     sorting: false,
     responsive: true,
-    executeQueryOptions: {}
+    executeQueryOptions: {},
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -170,9 +176,13 @@ export class EuiInMemoryTable extends Component {
     super(props);
 
     const { search, pagination, sorting, allowNeutralSort } = props;
-    const { pageIndex, pageSize, pageSizeOptions, hidePerPageOptions } = getInitialPagination(pagination);
+    const {
+      pageIndex,
+      pageSize,
+      pageSizeOptions,
+      hidePerPageOptions,
+    } = getInitialPagination(pagination);
     const { sortField, sortDirection } = getInitialSorting(sorting);
-
 
     this.state = {
       prevProps: {
@@ -184,8 +194,8 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
-      allowNeutralSort: (allowNeutralSort === false) ? false : true,
-      hidePerPageOptions
+      allowNeutralSort: allowNeutralSort === false ? false : true,
+      hidePerPageOptions,
     };
   }
 
@@ -194,21 +204,17 @@ export class EuiInMemoryTable extends Component {
       this.props.onTableChange({ page, sort });
     }
 
-    const {
-      index: pageIndex,
-      size: pageSize
-    } = page;
+    const { index: pageIndex, size: pageSize } = page;
 
-    let {
-      field: sortField,
-      direction: sortDirection
-    } = sort;
+    let { field: sortField, direction: sortDirection } = sort;
 
     // Allow going back to 'neutral' sorting
-    if (this.state.allowNeutralSort &&
-      this.state.sortField === sortField
-      && this.state.sortDirection === 'desc'
-      && sortDirection === 'asc') {
+    if (
+      this.state.allowNeutralSort &&
+      this.state.sortField === sortField &&
+      this.state.sortDirection === 'desc' &&
+      sortDirection === 'asc'
+    ) {
       sortField = '';
       sortDirection = '';
     }
@@ -217,13 +223,17 @@ export class EuiInMemoryTable extends Component {
       pageIndex,
       pageSize,
       sortField,
-      sortDirection
+      sortDirection,
     });
   };
 
   onQueryChange = ({ query, queryText, error }) => {
     if (this.props.search.onChange) {
-      const shouldQueryInMemory = this.props.search.onChange({ query, queryText, error });
+      const shouldQueryInMemory = this.props.search.onChange({
+        query,
+        queryText,
+        error,
+      });
       if (!shouldQueryInMemory) {
         return;
       }
@@ -248,31 +258,26 @@ export class EuiInMemoryTable extends Component {
         searchBarProps.box.schema = this.resolveSearchSchema();
       }
 
-      return (
-        <EuiSearchBar
-          onChange={this.onQueryChange}
-          {...searchBarProps}
-        />
-      );
+      return <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />;
     }
   }
 
   resolveSearchSchema() {
     const { columns } = this.props;
-    return columns.reduce((schema, column) => {
-      if (column.field) {
-        const type = column.dataType || 'string';
-        schema.fields[column.field] = { type };
-      }
-      return schema;
-    }, { strict: true, fields: {} });
+    return columns.reduce(
+      (schema, column) => {
+        if (column.field) {
+          const type = column.dataType || 'string';
+          schema.fields[column.field] = { type };
+        }
+        return schema;
+      },
+      { strict: true, fields: {} }
+    );
   }
 
   getItemSorter() {
-    const {
-      sortField,
-      sortDirection
-    } = this.state;
+    const { sortField, sortDirection } = this.state;
 
     const { columns } = this.props;
 
@@ -288,7 +293,9 @@ export class EuiInMemoryTable extends Component {
 
   getItems() {
     const { executeQueryOptions } = this.props;
-    const { prevProps: { items } } = this.state;
+    const {
+      prevProps: { items },
+    } = this.state;
 
     if (!items.length) {
       return {
@@ -297,26 +304,27 @@ export class EuiInMemoryTable extends Component {
       };
     }
 
-    const {
-      query,
-      sortField,
-      pageIndex,
-      pageSize,
-    } = this.state;
+    const { query, sortField, pageIndex, pageSize } = this.state;
 
-    const matchingItems = query ? EuiSearchBar.Query.execute(query, items, executeQueryOptions) : items;
+    const matchingItems = query
+      ? EuiSearchBar.Query.execute(query, items, executeQueryOptions)
+      : items;
 
-    const sortedItems =
-      sortField
-        ? matchingItems
+    const sortedItems = sortField
+      ? matchingItems
           .slice(0) // avoid mutating the source array
           .sort(this.getItemSorter()) // sort, causes mutation
-        : matchingItems;
+      : matchingItems;
 
-    const visibleItems = pageSize ? (() => {
-      const startIndex = pageIndex * pageSize;
-      return sortedItems.slice(startIndex, Math.min(startIndex + pageSize, sortedItems.length));
-    })() : sortedItems;
+    const visibleItems = pageSize
+      ? (() => {
+          const startIndex = pageIndex * pageSize;
+          return sortedItems.slice(
+            startIndex,
+            Math.min(startIndex + pageSize, sortedItems.length)
+          );
+        })()
+      : sortedItems;
 
     return {
       items: visibleItems,
@@ -354,29 +362,36 @@ export class EuiInMemoryTable extends Component {
       pageSizeOptions,
       sortField,
       sortDirection,
-      hidePerPageOptions
+      hidePerPageOptions,
     } = this.state;
 
     const { items, totalItemCount } = this.getItems();
 
-    const pagination = !hasPagination ? undefined : {
-      pageIndex,
-      pageSize,
-      pageSizeOptions,
-      totalItemCount,
-      hidePerPageOptions
-    };
+    const pagination = !hasPagination
+      ? undefined
+      : {
+          pageIndex,
+          pageSize,
+          pageSizeOptions,
+          totalItemCount,
+          hidePerPageOptions,
+        };
 
     // Data loaded from a server can have a default sort order which is meaningful to the
     // user, but can't be reproduced with client-side sort logic. So we allow the table to display
     // rows in the order in which they're initially loaded by providing an undefined sorting prop.
-    const sorting = !hasSorting ? undefined : {
-      sort: (!sortField && !sortDirection) ? undefined : {
-        field: sortField,
-        direction: sortDirection,
-      },
-      allowNeutralSort: this.state.allowNeutralSort,
-    };
+    const sorting = !hasSorting
+      ? undefined
+      : {
+          sort:
+            !sortField && !sortDirection
+              ? undefined
+              : {
+                  field: sortField,
+                  direction: sortDirection,
+                },
+          allowNeutralSort: this.state.allowNeutralSort,
+        };
 
     const searchBar = this.renderSearchBar();
 
@@ -384,7 +399,7 @@ export class EuiInMemoryTable extends Component {
     // EuiBasicTable requires those functions to be cast to a boolean
     const mappedColumns = columns.map(column => ({
       ...column,
-      sortable: !!column.sortable
+      sortable: !!column.sortable,
     }));
 
     const table = (

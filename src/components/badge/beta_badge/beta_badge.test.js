@@ -6,11 +6,8 @@ import { EuiBetaBadge } from './beta_badge';
 
 describe('EuiBetaBadge', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiBetaBadge label="Beta" {...requiredProps} />
-    );
+    const component = render(<EuiBetaBadge label="Beta" {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

@@ -6,41 +6,26 @@ import { EuiBadge, COLORS, ICON_SIDES } from './badge';
 
 describe('EuiBadge', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiBadge {...requiredProps}>
-        Content
-      </EuiBadge>
-    );
+    const component = render(<EuiBadge {...requiredProps}>Content</EuiBadge>);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiBadge iconType="user">
-            Content
-          </EuiBadge>
-        );
+        const component = render(<EuiBadge iconType="user">Content</EuiBadge>);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach(color => {
         it(`${color} is rendered`, () => {
-          const component = render(
-            <EuiBadge color={color}>
-              Content
-            </EuiBadge>
-          );
+          const component = render(<EuiBadge color={color}>Content</EuiBadge>);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -54,8 +39,7 @@ describe('EuiBadge', () => {
             </EuiBadge>
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

@@ -1,20 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import {
-  applyTheme,
-  translateUsingPseudoLocale
-} from '../services';
+import { applyTheme, translateUsingPseudoLocale } from '../services';
 
-import {
-  GuidePageChrome,
-} from '../components';
+import { GuidePageChrome } from '../components';
 
 import {
   EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
-  EuiContext
+  EuiContext,
 } from '../../../src/components';
 
 import { keyCodes } from '../../../src/services';
@@ -22,7 +17,7 @@ import { keyCodes } from '../../../src/services';
 export class AppView extends Component {
   updateTheme = () => {
     applyTheme(this.props.theme);
-  }
+  };
 
   componentDidUpdate(prevProps) {
     this.updateTheme();
@@ -56,12 +51,12 @@ export class AppView extends Component {
     const { navigation } = routes;
 
     const mappingFuncs = {
-      'en-xa': translateUsingPseudoLocale
+      'en-xa': translateUsingPseudoLocale,
     };
 
     const i18n = {
       mappingFunc: mappingFuncs[locale],
-      formatNumber: (value) => new Intl.NumberFormat(locale).format(value),
+      formatNumber: value => new Intl.NumberFormat(locale).format(value),
     };
 
     return (
@@ -89,11 +84,7 @@ export class AppView extends Component {
   }
 
   render() {
-    return (
-      <div className="guide">
-        {this.renderContent()}
-      </div>
-    );
+    return <div className="guide">{this.renderContent()}</div>;
   }
 
   onKeydown = e => {
@@ -105,10 +96,7 @@ export class AppView extends Component {
       return;
     }
 
-    const {
-      routes,
-      currentRoute,
-    } = this.props;
+    const { routes, currentRoute } = this.props;
 
     if (e.keyCode === keyCodes.LEFT) {
       pushRoute(routes.getPreviousRoute);
@@ -126,7 +114,7 @@ export class AppView extends Component {
         routes.history.push(route.path);
       }
     }
-  }
+  };
 }
 
 AppView.propTypes = {

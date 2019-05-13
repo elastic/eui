@@ -13,56 +13,41 @@ import {
 describe('EuiButtonEmpty', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiButtonEmpty {...requiredProps}>
-        Content
-      </EuiButtonEmpty>
+      <EuiButtonEmpty {...requiredProps}>Content</EuiButtonEmpty>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiButtonEmpty isDisabled />
-        );
+        const component = render(<EuiButtonEmpty isDisabled />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       it('renders a button even when href is defined', () => {
-        const component = render(
-          <EuiButtonEmpty href="#" isDisabled />
-        );
+        const component = render(<EuiButtonEmpty href="#" isDisabled />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiButtonEmpty iconType="user" />
-        );
+        const component = render(<EuiButtonEmpty iconType="user" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach(color => {
         test(`${color} is rendered`, () => {
-          const component = render(
-            <EuiButtonEmpty color={color} />
-          );
+          const component = render(<EuiButtonEmpty color={color} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -70,12 +55,9 @@ describe('EuiButtonEmpty', () => {
     describe('size', () => {
       SIZES.forEach(size => {
         test(`${size} is rendered`, () => {
-          const component = render(
-            <EuiButtonEmpty size={size} />
-          );
+          const component = render(<EuiButtonEmpty size={size} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -89,8 +71,7 @@ describe('EuiButtonEmpty', () => {
             </EuiButtonEmpty>
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -98,42 +79,32 @@ describe('EuiButtonEmpty', () => {
     describe('flush', () => {
       FLUSH_TYPES.forEach(flushType => {
         test(`${flushType} is rendered`, () => {
-          const component = render(
-            <EuiButtonEmpty flush={flushType} />
-          );
+          const component = render(<EuiButtonEmpty flush={flushType} />);
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
 
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
-        const component = render(
-          <EuiButtonEmpty href="#" target="_blank" />
-        );
+        const component = render(<EuiButtonEmpty href="#" target="_blank" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('onClick', () => {
       it('supports onClick and href', () => {
         const handler = jest.fn();
-        const component = mount(
-          <EuiButtonEmpty href="#" onClick={handler} />
-        );
+        const component = mount(<EuiButtonEmpty href="#" onClick={handler} />);
         component.find('a').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
 
       it('supports onClick as a button', () => {
         const handler = jest.fn();
-        const component = mount(
-          <EuiButtonEmpty onClick={handler} />
-        );
+        const component = mount(<EuiButtonEmpty onClick={handler} />);
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });

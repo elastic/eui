@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -21,7 +19,7 @@ export default class extends Component {
 
   onButtonClick = () => {
     this.setState(prevState => ({
-      isPopoverOpen: !prevState.isPopoverOpen
+      isPopoverOpen: !prevState.isPopoverOpen,
     }));
   };
 
@@ -37,8 +35,7 @@ export default class extends Component {
         size="s"
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick}
-      >
+        onClick={this.onButtonClick}>
         Click to show some content
       </EuiButton>
     );
@@ -50,10 +47,9 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="s"
-        anchorPosition="downLeft"
-      >
+        anchorPosition="downLeft">
         <EuiContextMenuPanel>
-            This context menu doesn&#39;t render items, it passes a child instead.
+          This context menu doesn&#39;t render items, it passes a child instead.
         </EuiContextMenuPanel>
       </EuiPopover>
     );

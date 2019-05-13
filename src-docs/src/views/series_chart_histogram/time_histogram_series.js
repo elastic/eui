@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiButton,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiButton, EuiSpacer } from '../../../../src/components';
 import {
   EuiSeriesChart,
   EuiHistogramSeries,
@@ -55,8 +52,15 @@ export default class Example extends Component {
         <EuiButton onClick={this.handleRandomize}>Randomize data</EuiButton>
 
         <EuiSpacer size="xl" />
-        <EuiSeriesChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
-          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} />)}
+        <EuiSeriesChart
+          width={600}
+          height={200}
+          xType={SCALE.TIME}
+          stackBy="y"
+          margins={margins}>
+          {data.map((d, i) => (
+            <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} />
+          ))}
         </EuiSeriesChart>
       </Fragment>
     );

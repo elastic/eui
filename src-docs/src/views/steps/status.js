@@ -1,17 +1,8 @@
+import React, { Component, Fragment } from 'react';
 
-import React, {
-  Component,
-  Fragment,
-} from 'react';
-
-import {
-  EuiSpacer,
-  EuiSteps,
-  EuiButton,
-} from '../../../../src/components';
+import { EuiSpacer, EuiSteps, EuiButton } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
@@ -50,7 +41,6 @@ export default class extends Component {
   }
 
   render() {
-
     let completeButton;
     if (this.state.status !== 'complete') {
       completeButton = (
@@ -65,22 +55,30 @@ export default class extends Component {
     let warningButton;
     if (this.state.status !== 'warning') {
       warningButton = (
-        <EuiButton color="warning" onClick={this.handleWarning}>Uh oh!</EuiButton>
+        <EuiButton color="warning" onClick={this.handleWarning}>
+          Uh oh!
+        </EuiButton>
       );
     } else {
       warningButton = (
-        <EuiButton color="warning" onClick={this.makeIncomplete}>Reset</EuiButton>
+        <EuiButton color="warning" onClick={this.makeIncomplete}>
+          Reset
+        </EuiButton>
       );
     }
 
     let dangerButton;
     if (this.state.status !== 'danger') {
       dangerButton = (
-        <EuiButton color="danger" onClick={this.handleDanger}>Something terrible</EuiButton>
+        <EuiButton color="danger" onClick={this.handleDanger}>
+          Something terrible
+        </EuiButton>
       );
     } else {
       dangerButton = (
-        <EuiButton color="danger" onClick={this.makeIncomplete}>Reset</EuiButton>
+        <EuiButton color="danger" onClick={this.makeIncomplete}>
+          Reset
+        </EuiButton>
       );
     }
 
@@ -93,9 +91,7 @@ export default class extends Component {
         title: 'Push the button to complete this final step',
         children: (
           <Fragment>
-            <p>
-              We are fancy buttons just waiting to be pushed!
-            </p>
+            <p>We are fancy buttons just waiting to be pushed!</p>
             <EuiSpacer />
             {completeButton} {warningButton} {dangerButton}
           </Fragment>
@@ -106,10 +102,7 @@ export default class extends Component {
 
     return (
       <div>
-        <EuiSteps
-          steps={firstSetOfSteps}
-        />
-
+        <EuiSteps steps={firstSetOfSteps} />
       </div>
     );
   }

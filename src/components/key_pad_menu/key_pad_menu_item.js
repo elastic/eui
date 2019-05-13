@@ -4,13 +4,17 @@ import classNames from 'classnames';
 
 import { EuiBetaBadge } from '../../components/badge/beta_badge';
 
-import {
-  IconPropType,
-} from '../icon';
+import { IconPropType } from '../icon';
 
-const renderContent = (children, label, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType) => (
+const renderContent = (
+  children,
+  label,
+  betaBadgeLabel,
+  betaBadgeTooltipContent,
+  betaBadgeIconType
+) => (
   <div className="euiKeyPadMenuItem__inner">
-    {betaBadgeLabel &&
+    {betaBadgeLabel && (
       <span className="euiKeyPadMenuItem__betaBadgeWrapper">
         <EuiBetaBadge
           className="euiKeyPadMenuItem__betaBadge"
@@ -19,15 +23,11 @@ const renderContent = (children, label, betaBadgeLabel, betaBadgeTooltipContent,
           tooltipContent={betaBadgeTooltipContent}
         />
       </span>
-    }
+    )}
 
-    <div className="euiKeyPadMenuItem__icon">
-      {children}
-    </div>
+    <div className="euiKeyPadMenuItem__icon">{children}</div>
 
-    <p className="euiKeyPadMenuItem__label">
-      {label}
-    </p>
+    <p className="euiKeyPadMenuItem__label">{label}</p>
   </div>
 );
 
@@ -51,8 +51,16 @@ const commonPropTypes = {
   betaBadgeTooltipContent: PropTypes.node,
 };
 
-export const EuiKeyPadMenuItem = ({ href, label, children, className, betaBadgeLabel,
-  betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
+export const EuiKeyPadMenuItem = ({
+  href,
+  label,
+  children,
+  className,
+  betaBadgeLabel,
+  betaBadgeTooltipContent,
+  betaBadgeIconType,
+  ...rest
+}) => {
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
@@ -62,23 +70,35 @@ export const EuiKeyPadMenuItem = ({ href, label, children, className, betaBadgeL
   );
 
   return (
-    <a
-      href={href}
-      className={classes}
-      role="menuitem"
-      {...rest}
-    >
-      {renderContent(children, label, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType)}
+    <a href={href} className={classes} role="menuitem" {...rest}>
+      {renderContent(
+        children,
+        label,
+        betaBadgeLabel,
+        betaBadgeTooltipContent,
+        betaBadgeIconType
+      )}
     </a>
   );
 };
 
-EuiKeyPadMenuItem.propTypes = ({ ...{
-  href: PropTypes.string,
-}, ...commonPropTypes });
+EuiKeyPadMenuItem.propTypes = {
+  ...{
+    href: PropTypes.string,
+  },
+  ...commonPropTypes,
+};
 
-export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, betaBadgeLabel,
-  betaBadgeTooltipContent, betaBadgeIconType, ...rest }) => {
+export const EuiKeyPadMenuItemButton = ({
+  onClick,
+  label,
+  children,
+  className,
+  betaBadgeLabel,
+  betaBadgeTooltipContent,
+  betaBadgeIconType,
+  ...rest
+}) => {
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
@@ -88,17 +108,21 @@ export const EuiKeyPadMenuItemButton = ({ onClick, label, children, className, b
   );
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={classes}
-      {...rest}
-    >
-      {renderContent(children, label, betaBadgeLabel, betaBadgeTooltipContent, betaBadgeIconType)}
+    <button type="button" onClick={onClick} className={classes} {...rest}>
+      {renderContent(
+        children,
+        label,
+        betaBadgeLabel,
+        betaBadgeTooltipContent,
+        betaBadgeIconType
+      )}
     </button>
   );
 };
 
-EuiKeyPadMenuItemButton.propTypes = ({ ...{
-  onClick: PropTypes.func,
-}, ...commonPropTypes });
+EuiKeyPadMenuItemButton.propTypes = {
+  ...{
+    onClick: PropTypes.func,
+  },
+  ...commonPropTypes,
+};

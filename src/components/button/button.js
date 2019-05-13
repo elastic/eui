@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiLoadingSpinner
-} from '../loading';
+import { EuiLoadingSpinner } from '../loading';
 
 import { getSecureRelForTarget } from '../../services';
 
-import {
-  IconPropType,
-  EuiIcon,
-} from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   primary: 'euiButton--primary',
@@ -58,7 +53,6 @@ export const EuiButton = ({
   fullWidth,
   ...rest
 }) => {
-
   // If in the loading state, force disabled to true
   isDisabled = isLoading ? true : isDisabled;
 
@@ -71,29 +65,24 @@ export const EuiButton = ({
     {
       'euiButton--fill': fill,
       'euiButton--fullWidth': fullWidth,
-    },
+    }
   );
 
   const contentClassNames = classNames(
     'euiButton__content',
-    contentProps && contentProps.className,
+    contentProps && contentProps.className
   );
 
   const textClassNames = classNames(
     'euiButton__text',
-    textProps && textProps.className,
+    textProps && textProps.className
   );
 
   // Add an icon to the button if one exists.
   let buttonIcon;
 
   if (isLoading) {
-    buttonIcon = (
-      <EuiLoadingSpinner
-        className="euiButton__spinner"
-        size="m"
-      />
-    );
+    buttonIcon = <EuiLoadingSpinner className="euiButton__spinner" size="m" />;
   } else if (iconType) {
     buttonIcon = (
       <EuiIcon
@@ -108,7 +97,9 @@ export const EuiButton = ({
   const innerNode = (
     <span {...contentProps} className={contentClassNames}>
       {buttonIcon}
-      <span {...textProps} className={textClassNames}>{children}</span>
+      <span {...textProps} className={textClassNames}>
+        {children}
+      </span>
     </span>
   );
 
@@ -124,8 +115,7 @@ export const EuiButton = ({
         target={target}
         rel={secureRel}
         ref={buttonRef}
-        {...rest}
-      >
+        {...rest}>
         {innerNode}
       </a>
     );
@@ -136,8 +126,7 @@ export const EuiButton = ({
         className={classes}
         type={type}
         ref={buttonRef}
-        {...rest}
-      >
+        {...rest}>
         {innerNode}
       </button>
     );

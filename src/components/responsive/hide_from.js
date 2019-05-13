@@ -12,28 +12,15 @@ const responsiveSizesToClassNameMap = {
 
 export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
-export const EuiHideFor = ({
-  children,
-  className,
-  sizes,
-  ...rest,
-}) => {
-
-  const sizingClasses = sizes.map(function (item) {
+export const EuiHideFor = ({ children, className, sizes, ...rest }) => {
+  const sizingClasses = sizes.map(function(item) {
     return responsiveSizesToClassNameMap[item];
   });
 
-  const classes = classNames(
-    'euiHideFor',
-    sizingClasses,
-    className
-  );
+  const classes = classNames('euiHideFor', sizingClasses, className);
 
   return (
-    <span
-      className={classes}
-      {...rest}
-    >
+    <span className={classes} {...rest}>
       {children}
     </span>
   );

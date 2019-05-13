@@ -6,7 +6,9 @@ import { findTestSubject, requiredProps } from '../../test';
 import { keyCodes } from '../../services';
 
 import {
-  CANCEL_BUTTON, CONFIRM_BUTTON, EuiConfirmModal,
+  CANCEL_BUTTON,
+  CONFIRM_BUTTON,
+  EuiConfirmModal,
 } from './confirm_modal';
 
 let onConfirm;
@@ -25,8 +27,7 @@ test('renders EuiConfirmModal', () => {
       onConfirm={onConfirm}
       cancelButtonText="Cancel Button Text"
       confirmButtonText="Confirm Button Text"
-      {...requiredProps}
-    >
+      {...requiredProps}>
       This is a confirmation modal example
     </EuiConfirmModal>
   );
@@ -105,7 +106,9 @@ describe('onCancel', () => {
       />
     );
 
-    findTestSubject(component, 'modal').simulate('keydown', { keyCode: keyCodes.ESCAPE });
+    findTestSubject(component, 'modal').simulate('keydown', {
+      keyCode: keyCodes.ESCAPE,
+    });
     sinon.assert.notCalled(onConfirm);
     sinon.assert.calledOnce(onCancel);
   });
@@ -125,7 +128,10 @@ describe('defaultFocusedButton', () => {
 
     // The auto-focus implementation waits a frame before focusing.
     requestAnimationFrame(() => {
-      const button = findTestSubject(component, 'confirmModalCancelButton').getDOMNode();
+      const button = findTestSubject(
+        component,
+        'confirmModalCancelButton'
+      ).getDOMNode();
       expect(document.activeElement).toEqual(button);
       done();
     });
@@ -144,7 +150,10 @@ describe('defaultFocusedButton', () => {
 
     // The auto-focus implementation waits a frame before focusing.
     requestAnimationFrame(() => {
-      const button = findTestSubject(component, 'confirmModalConfirmButton').getDOMNode();
+      const button = findTestSubject(
+        component,
+        'confirmModalConfirmButton'
+      ).getDOMNode();
       expect(document.activeElement).toEqual(button);
       done();
     });

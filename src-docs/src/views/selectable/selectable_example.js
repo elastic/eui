@@ -53,7 +53,8 @@ export const SelectableExample = {
         concept used in <Link to="/forms/combo-box">EuiComboBox</Link> and{' '}
         <Link to="/forms/filter-group">EuiFilterGroup</Link>.{' '}
         <strong>
-          This is not intended for <Link to="/display/list-group">primary navigation</Link>
+          This is not intended for{' '}
+          <Link to="/display/list-group">primary navigation</Link>
         </strong>{' '}
         but can be used to simplify the construction of popover navigational
         menus; i.e. the spaces menu in the{' '}
@@ -187,10 +188,12 @@ export const SelectableExample = {
       text: (
         <Fragment>
           <p>
-            Selection can be restricted to a single option at a time with the <EuiCode>singleSelection</EuiCode> prop.
-            Passing <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected, while
-            <EuiCode>`always`</EuiCode> requires 1 option to be selected at all times.
-            The default value is <EuiCode>false</EuiCode>.
+            Selection can be restricted to a single option at a time with the{' '}
+            <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
+            <EuiCode>true</EuiCode> allows for 0 or 1 option to be selected,
+            while
+            <EuiCode>`always`</EuiCode> requires 1 option to be selected at all
+            times. The default value is <EuiCode>false</EuiCode>.
           </p>
         </Fragment>
       ),

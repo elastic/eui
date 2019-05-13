@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiBadge,
@@ -8,7 +6,7 @@ import {
   EuiFocusTrap,
   EuiPanel,
   EuiSpacer,
-  EuiText
+  EuiText,
 } from '../../../../src/components';
 
 import FormExample from '../form_layouts/form_compressed';
@@ -26,7 +24,7 @@ export default class extends Component {
     this.setState(prevState => ({
       isDisabled: !prevState.isDisabled,
     }));
-  }
+  };
 
   render() {
     const { isDisabled } = this.state;
@@ -35,9 +33,7 @@ export default class extends Component {
       <div>
         <EuiBadge>Trap is {isDisabled ? 'disabled' : 'enabled'}</EuiBadge>
         <EuiSpacer size="s" />
-        <EuiFocusTrap
-          disabled={isDisabled}
-        >
+        <EuiFocusTrap disabled={isDisabled}>
           <EuiPanel>
             <FormExample />
 
@@ -47,13 +43,13 @@ export default class extends Component {
               {`${!isDisabled ? 'Disable' : 'Enable'} Focus Trap`}
             </EuiButton>
           </EuiPanel>
-
         </EuiFocusTrap>
 
         <EuiSpacer size="l" />
 
         <EuiText>
-          The button below is not focusable by keyboard as long as the focus trap is enabled.
+          The button below is not focusable by keyboard as long as the focus
+          trap is enabled.
         </EuiText>
 
         <EuiButton onClick={() => alert('External event triggered')}>

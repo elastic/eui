@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -39,7 +37,7 @@ export class EuiSuperSelect extends Component {
 
   setPopoverRef = ref => {
     this.popoverRef = ref;
-  }
+  };
 
   openPopover = () => {
     this.setState({
@@ -83,7 +81,7 @@ export class EuiSuperSelect extends Component {
     });
   };
 
-  itemClicked = (value) => {
+  itemClicked = value => {
     this.setState({
       isPopoverOpen: false,
     });
@@ -96,7 +94,7 @@ export class EuiSuperSelect extends Component {
       e.stopPropagation();
       this.openPopover();
     }
-  }
+  };
 
   onItemKeyDown = e => {
     switch (e.keyCode) {
@@ -125,7 +123,7 @@ export class EuiSuperSelect extends Component {
         this.shiftFocus(SHIFT_FORWARD);
         break;
     }
-  }
+  };
 
   focusItemAt(index) {
     const targetElement = this.itemNodes[index];
@@ -143,9 +141,11 @@ export class EuiSuperSelect extends Component {
       targetElementIndex = 0;
     } else {
       if (direction === SHIFT_BACK) {
-        targetElementIndex = currentIndex === 0 ? this.itemNodes.length - 1 : currentIndex - 1;
+        targetElementIndex =
+          currentIndex === 0 ? this.itemNodes.length - 1 : currentIndex - 1;
       } else {
-        targetElementIndex = currentIndex === this.itemNodes.length - 1 ? 0 : currentIndex + 1;
+        targetElementIndex =
+          currentIndex === this.itemNodes.length - 1 ? 0 : currentIndex + 1;
       }
     }
 
@@ -173,14 +173,14 @@ export class EuiSuperSelect extends Component {
       {
         'euiSuperSelect--fullWidth': fullWidth,
       },
-      popoverClassName,
+      popoverClassName
     );
 
     const buttonClasses = classNames(
       {
         'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
       },
-      className,
+      className
     );
 
     const itemClasses = classNames(
@@ -188,7 +188,7 @@ export class EuiSuperSelect extends Component {
       {
         'euiSuperSelect__item--hasDividers': hasDividers,
       },
-      itemClassName,
+      itemClassName
     );
 
     const button = (
@@ -196,7 +196,9 @@ export class EuiSuperSelect extends Component {
         options={options}
         value={valueOfSelected}
         onChange={onChange}
-        onClick={this.state.isPopoverOpen ? this.closePopover : this.openPopover}
+        onClick={
+          this.state.isPopoverOpen ? this.closePopover : this.openPopover
+        }
         onKeyDown={this.onSelectKeyDown}
         className={buttonClasses}
         fullWidth={fullWidth}
@@ -206,12 +208,7 @@ export class EuiSuperSelect extends Component {
     );
 
     const items = options.map((option, index) => {
-      const {
-        value,
-        dropdownDisplay,
-        inputDisplay,
-        ...optionRest
-      } = option;
+      const { value, dropdownDisplay, inputDisplay, ...optionRest } = option;
 
       return (
         <EuiContextMenuItem
@@ -225,8 +222,7 @@ export class EuiSuperSelect extends Component {
           style={{ width: this.state.menuWidth }}
           role="option"
           id={value}
-          {...optionRest}
-        >
+          {...optionRest}>
           {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
       );
@@ -244,8 +240,7 @@ export class EuiSuperSelect extends Component {
         anchorPosition="downCenter"
         ownFocus={false}
         popoverRef={this.setPopoverRef}
-        hasArrow={false}
-      >
+        hasArrow={false}>
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n
@@ -288,7 +283,7 @@ EuiSuperSelect.propTypes = {
       value: PropTypes.string.isRequired,
       inputDisplay: PropTypes.node,
       dropdownDisplay: PropTypes.node,
-    }),
+    })
   ).isRequired,
   valueOfSelected: PropTypes.string,
   /**

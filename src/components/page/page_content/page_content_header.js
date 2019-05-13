@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiPageContentHeader = ({ children, className, responsive, ...rest }) => {
+export const EuiPageContentHeader = ({
+  children,
+  className,
+  responsive,
+  ...rest
+}) => {
   const classes = classNames(
     'euiPageContentHeader',
     {
       'euiPageContentHeader--responsive': responsive,
     },
-    className,
+    className
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

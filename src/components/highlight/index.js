@@ -1,3 +1,1 @@
-export {
-  EuiHighlight,
-} from './highlight';
+export { EuiHighlight } from './highlight';

@@ -1,14 +1,9 @@
-import React, {
-  cloneElement, Fragment,
-} from 'react';
+import React, { cloneElement, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
-import {
-  IconPropType,
-  EuiIcon,
-} from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 export const EuiDatePickerRange = ({
   children,
@@ -21,7 +16,6 @@ export const EuiDatePickerRange = ({
   readOnly,
   ...rest
 }) => {
-
   const classes = classNames(
     'euiDatePickerRange',
     {
@@ -36,7 +30,9 @@ export const EuiDatePickerRange = ({
   if (iconType) {
     const icon = typeof iconType === 'string' ? iconType : 'calendar';
     optionalIcon = (
-      <span className="euiDatePickerRange__icon"><EuiIcon type={icon} /></span>
+      <span className="euiDatePickerRange__icon">
+        <EuiIcon type={icon} />
+      </span>
     );
   } else {
     optionalIcon = null;
@@ -59,17 +55,20 @@ export const EuiDatePickerRange = ({
     });
   }
 
-
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
-      {children ? (children) : (
+    <div className={classes} {...rest}>
+      {children ? (
+        children
+      ) : (
         <Fragment>
           {optionalIcon}
           {startControl}
-          <EuiText className="euiDatePickerRange__delimeter" size="s" color="subdued">→</EuiText>
+          <EuiText
+            className="euiDatePickerRange__delimeter"
+            size="s"
+            color="subdued">
+            →
+          </EuiText>
           {endControl}
         </Fragment>
       )}
@@ -89,10 +88,7 @@ EuiDatePickerRange.propTypes = {
   /**
    * Pass either an icon type or set to `false` to remove icon entirely
    */
-  iconType: PropTypes.oneOfType([
-    PropTypes.bool,
-    IconPropType,
-  ]),
+  iconType: PropTypes.oneOfType([PropTypes.bool, IconPropType]),
   fullWidth: PropTypes.bool,
   /**
    * Won't apply any additional props to start and end date components

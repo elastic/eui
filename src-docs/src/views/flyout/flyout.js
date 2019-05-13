@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFlyout,
@@ -29,7 +27,7 @@ export class Flyout extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
@@ -56,27 +54,20 @@ export class Flyout extends Component {
 
     if (this.state.isFlyoutVisible) {
       flyout = (
-        <EuiFlyout
-          onClose={this.closeFlyout}
-          aria-labelledby="flyoutTitle"
-        >
+        <EuiFlyout onClose={this.closeFlyout} aria-labelledby="flyoutTitle">
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutTitle">
-                A typical flyout
-              </h2>
+              <h2 id="flyoutTitle">A typical flyout</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>
-                For consistency across the many flyouts, please utilize the following code for
-                implementing the flyout with a header.
+                For consistency across the many flyouts, please utilize the
+                following code for implementing the flyout with a header.
               </p>
             </EuiText>
-            <EuiCodeBlock language="html">
-              {htmlCode}
-            </EuiCodeBlock>
+            <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
           </EuiFlyoutBody>
         </EuiFlyout>
       );
@@ -84,9 +75,7 @@ export class Flyout extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>
-          Show flyout
-        </EuiButton>
+        <EuiButton onClick={this.showFlyout}>Show flyout</EuiButton>
 
         {flyout}
       </div>

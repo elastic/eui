@@ -4,9 +4,7 @@ import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
 import makeId from '../form_row/make_id';
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
 
 export const EuiSuperSelectControl = ({
@@ -67,9 +65,7 @@ export const EuiSuperSelectControl = ({
         icon={icon}
         fullWidth={fullWidth}
         isLoading={isLoading}
-        compressed={compressed}
-      >
-
+        compressed={compressed}>
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -90,11 +86,9 @@ export const EuiSuperSelectControl = ({
           className={classes}
           aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
-          {...rest}
-        >
+          {...rest}>
           {selectedValue}
         </button>
-
       </EuiFormControlLayout>
     </Fragment>
   );
@@ -103,10 +97,12 @@ export const EuiSuperSelectControl = ({
 EuiSuperSelectControl.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.node.isRequired,
-    inputDisplay: PropTypes.node.isRequired
-  })).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.node.isRequired,
+      inputDisplay: PropTypes.node.isRequired,
+    })
+  ).isRequired,
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,

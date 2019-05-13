@@ -55,7 +55,9 @@ export class EuiLineAnnotation extends AbstractSeries {
     const scale = this._getAttributeFunctor(axis);
 
     return (
-      <g className="euiLineAnnotations" transform={`translate(${marginLeft},${marginTop})`}>
+      <g
+        className="euiLineAnnotations"
+        transform={`translate(${marginLeft},${marginTop})`}>
         <g className="euiLineAnnotations__linesGroup">
           {data.map((d, i) => {
             const { value } = d;
@@ -73,33 +75,34 @@ export class EuiLineAnnotation extends AbstractSeries {
           })}
         </g>
         <g className="euiLineAnnotations__textGroup">
-          {data.filter(d => d.text).map((d, i) => {
-            const { value } = d;
-            let x = 0;
-            let y = 0;
-            let rotation = 0;
-            if (orientation === VERTICAL) {
-              x = scale({ [axis]: value });
-              y = this._getTextXY(textPosition, 0, innerHeight);
-              rotation = '-90';
-            } else {
-              x = this._getTextXY(textPosition, innerWidth, 0);
-              y = scale({ [axis]: value });
-            }
+          {data
+            .filter(d => d.text)
+            .map((d, i) => {
+              const { value } = d;
+              let x = 0;
+              let y = 0;
+              let rotation = 0;
+              if (orientation === VERTICAL) {
+                x = scale({ [axis]: value });
+                y = this._getTextXY(textPosition, 0, innerHeight);
+                rotation = '-90';
+              } else {
+                x = this._getTextXY(textPosition, innerWidth, 0);
+                y = scale({ [axis]: value });
+              }
 
-            return (
-              <text
-                key={`annotation-${i}`}
-                className="euiLineAnnotations__text"
-                x={0}
-                y={0}
-                textAnchor={textPosition}
-                transform={`translate(${x},${y}) rotate(${rotation})`}
-              >
-                {d.text}
-              </text>
-            );
-          })}
+              return (
+                <text
+                  key={`annotation-${i}`}
+                  className="euiLineAnnotations__text"
+                  x={0}
+                  y={0}
+                  textAnchor={textPosition}
+                  transform={`translate(${x},${y}) rotate(${rotation})`}>
+                  {d.text}
+                </text>
+              );
+            })}
         </g>
       </g>
     );

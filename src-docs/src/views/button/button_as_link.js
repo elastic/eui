@@ -12,9 +12,7 @@ export default () => (
   <Fragment>
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton href="http://www.elastic.co">
-          Link to elastic.co
-        </EuiButton>
+        <EuiButton href="http://www.elastic.co">Link to elastic.co</EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
@@ -24,7 +22,11 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon href="http://www.elastic.co" iconType="link" aria-label="This is a link" />
+        <EuiButtonIcon
+          href="http://www.elastic.co"
+          iconType="link"
+          aria-label="This is a link"
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
 
@@ -42,7 +44,12 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon href="http://www.elastic.co" iconType="link" aria-label="This is a link" isDisabled />
+        <EuiButtonIcon
+          href="http://www.elastic.co"
+          iconType="link"
+          aria-label="This is a link"
+          isDisabled
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
   </Fragment>

@@ -1,7 +1,3 @@
-export {
-  EuiHeaderLink,
-} from './header_link';
+export { EuiHeaderLink } from './header_link';
 
-export {
-  EuiHeaderLinks,
-} from './header_links';
+export { EuiHeaderLinks } from './header_links';

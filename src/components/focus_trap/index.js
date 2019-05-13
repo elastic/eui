@@ -1,3 +1,1 @@
-export {
-  EuiFocusTrap,
-} from './focus_trap';
+export { EuiFocusTrap } from './focus_trap';

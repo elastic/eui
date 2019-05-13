@@ -1,4 +1,3 @@
-
 import dateMath from '@elastic/datemath';
 import moment from 'moment';
 import { timeUnits, timeUnitsPlural } from './time_units';
@@ -16,8 +15,10 @@ function cantLookup(timeFrom, timeTo, dateFormat) {
 function isRelativeToNow(timeFrom, timeTo) {
   const fromDateMode = getDateMode(timeFrom);
   const toDateMode = getDateMode(timeTo);
-  const isLast = fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
-  const isNext = fromDateMode === DATE_MODES.NOW && toDateMode === DATE_MODES.RELATIVE;
+  const isLast =
+    fromDateMode === DATE_MODES.RELATIVE && toDateMode === DATE_MODES.NOW;
+  const isNext =
+    fromDateMode === DATE_MODES.NOW && toDateMode === DATE_MODES.RELATIVE;
   return isLast || isNext;
 }
 
@@ -40,9 +41,11 @@ export function formatTimeString(timeString, dateFormat, roundUp = false) {
 }
 
 export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
-  const matchingQuickRange = quickRanges.find(({ start: quickFrom, end: quickTo }) => {
-    return timeFrom === quickFrom && timeTo === quickTo;
-  });
+  const matchingQuickRange = quickRanges.find(
+    ({ start: quickFrom, end: quickTo }) => {
+      return timeFrom === quickFrom && timeTo === quickTo;
+    }
+  );
   if (matchingQuickRange) {
     return matchingQuickRange.label;
   }
@@ -58,7 +61,10 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
       relativeParts = parseRelativeParts(timeTo);
     }
     const countTimeUnit = relativeParts.unit.substring(0, 1);
-    const countTimeUnitFullName = relativeParts.count > 1 ? timeUnitsPlural[countTimeUnit] : timeUnits[countTimeUnit];
+    const countTimeUnitFullName =
+      relativeParts.count > 1
+        ? timeUnitsPlural[countTimeUnit]
+        : timeUnits[countTimeUnit];
     let text = `${timeTense} ${relativeParts.count} ${countTimeUnitFullName}`;
     if (relativeParts.round) {
       text += ` rounded to the ${timeUnits[relativeParts.roundUnit]}`;
@@ -70,9 +76,11 @@ export function prettyDuration(timeFrom, timeTo, quickRanges = [], dateFormat) {
 }
 
 export function showPrettyDuration(timeFrom, timeTo, quickRanges = []) {
-  const matchingQuickRange = quickRanges.find(({ start: quickFrom, end: quickTo }) => {
-    return timeFrom === quickFrom && timeTo === quickTo;
-  });
+  const matchingQuickRange = quickRanges.find(
+    ({ start: quickFrom, end: quickTo }) => {
+      return timeFrom === quickFrom && timeTo === quickTo;
+    }
+  );
   if (matchingQuickRange) {
     return true;
   }

@@ -4,14 +4,9 @@ import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { ENTER } from '../../../services/key_codes';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
-
+import { EuiValidatableControl } from '../validatable_control';
 
 const propTypes = {
   name: PropTypes.string,
@@ -46,7 +41,6 @@ const defaultProps = {
 };
 
 export class EuiFieldSearch extends Component {
-
   static propTypes = propTypes;
   static defaultProps = defaultProps;
 
@@ -57,13 +51,15 @@ export class EuiFieldSearch extends Component {
 
   componentDidMount() {
     if (Browser.isEventSupported('search', this.inputElement)) {
-      const onSearch = (event) => {
+      const onSearch = event => {
         if (this.props.onSearch) {
           this.props.onSearch(event.target.value);
         }
       };
       this.inputElement.addEventListener('search', onSearch);
-      this.cleanups.push(() => this.inputElement.removeEventListener('search', onSearch));
+      this.cleanups.push(() =>
+        this.inputElement.removeEventListener('search', onSearch)
+      );
     }
   }
 
@@ -91,8 +87,8 @@ export class EuiFieldSearch extends Component {
   };
 
   render() {
-
-    const { className,
+    const {
+      className,
       id,
       name,
       placeholder,
@@ -104,7 +100,8 @@ export class EuiFieldSearch extends Component {
       incremental,
       compressed,
       onSearch,
-      ...rest } = this.props;
+      ...rest
+    } = this.props;
 
     const classes = classNames(
       'euiFieldSearch',
@@ -121,8 +118,7 @@ export class EuiFieldSearch extends Component {
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
-        compressed={compressed}
-      >
+        compressed={compressed}>
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
             type="search"

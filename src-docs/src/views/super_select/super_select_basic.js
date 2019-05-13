@@ -1,11 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiSuperSelect,
-  EuiHealth,
-} from '../../../../src/components';
+import { EuiSuperSelect, EuiHealth } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -47,7 +42,7 @@ export default class extends Component {
     };
   }
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({
       value: value,
     });

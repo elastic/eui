@@ -2,30 +2,21 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  STATUS,
-  EuiStepNumber,
-} from './step_number';
+import { STATUS, EuiStepNumber } from './step_number';
 
 describe('EuiStepNumber', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiStepNumber {...requiredProps} />
-    );
+    const component = render(<EuiStepNumber {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('isHollow', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiStepNumber number={1} isHollow />
-        );
+        const component = render(<EuiStepNumber number={1} isHollow />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -36,11 +27,9 @@ describe('EuiStepNumber', () => {
             <EuiStepNumber number={1} status={status} />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
-
   });
 });

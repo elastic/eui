@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const EuiTableHeader = ({ children, className, ...rest }) => {
   return (
     <thead className={className} {...rest}>
-      <tr>{ children }</tr>
+      <tr>{children}</tr>
     </thead>
   );
 };

@@ -4,11 +4,10 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 
 const defaults = {
-  color: 'primary'
+  color: 'primary',
 };
 
 export class DefaultItemAction extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -17,7 +16,9 @@ export class DefaultItemAction extends Component {
     const { action, enabled, item, className } = this.props;
 
     if (!action.onClick && !action.href) {
-      throw new Error(`Cannot render item action [${action.name}]. Missing required 'onClick' callback
+      throw new Error(`Cannot render item action [${
+        action.name
+      }]. Missing required 'onClick' callback
         or 'href' string. If you want to provide a custom action control, make sure to define the 'render' callback`);
     }
 
@@ -28,7 +29,9 @@ export class DefaultItemAction extends Component {
     let button;
     if (action.type === 'icon') {
       if (!icon) {
-        throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
+        throw new Error(`Cannot render item action [${
+          action.name
+        }]. It is configured to render as an icon but no
         icon is provided. Make sure to set the 'icon' property of the action`);
       }
       button = (
@@ -54,18 +57,19 @@ export class DefaultItemAction extends Component {
           onClick={onClick}
           href={action.href}
           target={action.target}
-          flush="right"
-        >
+          flush="right">
           {action.name}
         </EuiButtonEmpty>
       );
     }
 
-    return (enabled && action.description) ? (
+    return enabled && action.description ? (
       <EuiToolTip content={action.description} delay="long">
         {button}
       </EuiToolTip>
-    ) : button;
+    ) : (
+      button
+    );
   }
 
   resolveActionIcon() {

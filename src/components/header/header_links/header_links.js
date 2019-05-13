@@ -1,7 +1,4 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -9,7 +6,10 @@ import classNames from 'classnames';
 import { EuiIcon } from '../../icon';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
-import { EuiHeaderSectionItemButton, EuiHeaderSectionItem } from '../header_section';
+import {
+  EuiHeaderSectionItemButton,
+  EuiHeaderSectionItem,
+} from '../header_section';
 
 export class EuiHeaderLinks extends Component {
   constructor(props) {
@@ -33,22 +33,19 @@ export class EuiHeaderLinks extends Component {
   };
 
   render() {
-    const {
-      children,
-      className,
-      ...rest
-    } = this.props;
+    const { children, className, ...rest } = this.props;
 
     const classes = classNames('euiHeaderLinks', className);
 
     const button = (
       <EuiHeaderSectionItem border="left">
-        <EuiI18n token="euiHeaderLinks.openNavigationMenu" default="Open navigation menu">
+        <EuiI18n
+          token="euiHeaderLinks.openNavigationMenu"
+          default="Open navigation menu">
           {openNavigationMenu => (
             <EuiHeaderSectionItemButton
               aria-label={openNavigationMenu}
-              onClick={this.onMenuButtonClick}
-            >
+              onClick={this.onMenuButtonClick}>
               <EuiIcon type="apps" size="m" />
             </EuiHeaderSectionItemButton>
           )}
@@ -59,12 +56,7 @@ export class EuiHeaderLinks extends Component {
     return (
       <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
         {appNavigation => (
-          <nav
-            className={classes}
-            aria-label={appNavigation}
-            {...rest}
-          >
-
+          <nav className={classes} aria-label={appNavigation} {...rest}>
             <div className="euiHeaderLinks__list" role="navigation">
               {children}
             </div>
@@ -77,11 +69,9 @@ export class EuiHeaderLinks extends Component {
               anchorPosition="downRight"
               closePopover={this.closeMenu}
               panelClassName="euiHeaderLinks__mobileList"
-              panelPaddingSize="none"
-            >
+              panelPaddingSize="none">
               {children}
             </EuiPopover>
-
           </nav>
         )}
       </EuiI18n>

@@ -1,17 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiSpacer } from '../../../../src/components';
 import {
   EuiSeriesChart,
   EuiHistogramSeries,
   EuiSeriesChartUtils,
 } from '../../../../src/experimental';
-import {
-  colorPalette,
-  palettes,
-} from '../../../../src/services/color';
+import { colorPalette, palettes } from '../../../../src/services/color';
 
 const { SCALE } = EuiSeriesChartUtils;
 const timestamp = Date.now();
@@ -52,12 +47,36 @@ export default class Example extends Component {
     const { data } = this.state;
     return (
       <Fragment>
-        <EuiSeriesChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
-          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} color={qualColors[i]} />)}
+        <EuiSeriesChart
+          width={600}
+          height={200}
+          xType={SCALE.TIME}
+          stackBy="y"
+          margins={margins}>
+          {data.map((d, i) => (
+            <EuiHistogramSeries
+              key={i}
+              name={`Chart ${i}`}
+              data={d}
+              color={qualColors[i]}
+            />
+          ))}
         </EuiSeriesChart>
         <EuiSpacer size="xl" />
-        <EuiSeriesChart width={600} height={200} xType={SCALE.TIME} stackBy="y" margins={margins}>
-          {data.map((d, i) => <EuiHistogramSeries key={i} name={`Chart ${i}`} data={d} color={quantColors[i]} />)}
+        <EuiSeriesChart
+          width={600}
+          height={200}
+          xType={SCALE.TIME}
+          stackBy="y"
+          margins={margins}>
+          {data.map((d, i) => (
+            <EuiHistogramSeries
+              key={i}
+              name={`Chart ${i}`}
+              data={d}
+              color={quantColors[i]}
+            />
+          ))}
         </EuiSeriesChart>
       </Fragment>
     );

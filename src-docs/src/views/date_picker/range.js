@@ -1,14 +1,8 @@
-
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
-import {
-  EuiDatePicker,
-  EuiDatePickerRange,
-} from '../../../../src/components';
+import { EuiDatePicker, EuiDatePickerRange } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -25,13 +19,13 @@ export default class extends Component {
 
   handleChangeStart(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 
   handleChangeEnd(date) {
     this.setState({
-      endDate: date
+      endDate: date,
     });
   }
 

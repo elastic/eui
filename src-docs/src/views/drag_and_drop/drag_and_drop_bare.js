@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   EuiDragDropContext,
   EuiDraggable,
-  EuiDroppable
+  EuiDroppable,
 } from '../../../../src/components';
 
 import { makeList } from './helper';
@@ -17,11 +17,7 @@ export default () => {
       <EuiDroppable droppableId="DROPPABLE_AREA_BARE">
         {list.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id}>
-            {() => (
-              <div>
-                {content}
-              </div>
-            )}
+            {() => <div>{content}</div>}
           </EuiDraggable>
         ))}
       </EuiDroppable>

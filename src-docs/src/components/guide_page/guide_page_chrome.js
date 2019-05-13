@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import {
   EuiFieldSearch,
@@ -19,12 +17,8 @@ import {
   EuiPopoverTitle,
 } from '../../../../src/components';
 
-import {
-  GuideLocaleSelector,
-} from '../guide_locale_selector';
-import {
-  GuideThemeSelector,
-} from '../guide_theme_selector';
+import { GuideLocaleSelector } from '../guide_locale_selector';
+import { GuideThemeSelector } from '../guide_theme_selector';
 
 export class GuidePageChrome extends Component {
   constructor(props) {
@@ -51,9 +45,12 @@ export class GuidePageChrome extends Component {
   };
 
   scrollTo = position => {
-    $('html, body').animate({
-      scrollTop: position,
-    }, 250);
+    $('html, body').animate(
+      {
+        scrollTop: position,
+      },
+      250
+    );
   };
 
   onClickLink = id => {
@@ -86,7 +83,6 @@ export class GuidePageChrome extends Component {
   }
 
   renderIdentity() {
-
     const button = (
       <EuiButtonIcon
         iconType="gear"
@@ -96,59 +92,51 @@ export class GuidePageChrome extends Component {
       />
     );
     return (
-      <EuiFlexGroup alignItems="center" gutterSize="s" justifyContent="spaceBetween" responsive={false} wrap>
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="s"
+        justifyContent="spaceBetween"
+        responsive={false}
+        wrap>
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false} wrap>
+          <EuiFlexGroup
+            alignItems="center"
+            gutterSize="s"
+            responsive={false}
+            wrap>
             <EuiFlexItem grow={false}>
-              <Link
-                to="/"
-                className="guideLogo"
-                aria-label="Go to home page"
-              >
+              <Link to="/" className="guideLogo" aria-label="Go to home page">
                 <EuiIcon type="logoElastic" size="l" />
               </Link>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <Link
-                to="/"
-                aria-label="Go to home page"
-                className="euiLink"
-              >
-                <strong>
-                  Elastic UI
-                </strong>
+              <Link to="/" aria-label="Go to home page" className="euiLink">
+                <strong>Elastic UI</strong>
               </Link>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-
           <EuiPopover
             id="popover"
             button={button}
             isOpen={this.state.isPopoverOpen}
-            closePopover={this.closePopover.bind(this)}
-          >
-
+            closePopover={this.closePopover.bind(this)}>
             <EuiPopoverTitle>Docs options</EuiPopoverTitle>
             <div className="guideOptionsPopover">
               <GuideThemeSelector
                 onToggleTheme={this.props.onToggleTheme}
                 selectedTheme={this.props.selectedTheme}
               />
-              {
-                location.host === 'localhost:8030' // eslint-disable-line no-restricted-globals
-                  ? (
-                    <EuiFlexItem grow={false}>
-                      <GuideLocaleSelector
-                        onToggleLocale={this.props.onToggleLocale}
-                        selectedLocale={this.props.selectedLocale}
-                      />
-                    </EuiFlexItem>
-                  )
-                  : null
-              }
+              {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
+                <EuiFlexItem grow={false}>
+                  <GuideLocaleSelector
+                    onToggleLocale={this.props.onToggleLocale}
+                    selectedLocale={this.props.selectedLocale}
+                  />
+                </EuiFlexItem>
+              ) : null}
             </div>
           </EuiPopover>
         </EuiFlexItem>
@@ -157,8 +145,7 @@ export class GuidePageChrome extends Component {
   }
 
   renderSubSections = (subSections = []) => {
-
-    const subSectionsWithTitles = subSections.filter(item => (item.title));
+    const subSectionsWithTitles = subSections.filter(item => item.title);
 
     if (subSectionsWithTitles.length <= 1) {
       return;
@@ -169,23 +156,21 @@ export class GuidePageChrome extends Component {
       name: title,
       onClick: this.onClickLink.bind(this, id),
     }));
-  }
+  };
 
   renderSideNav = sideNav => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
     sideNav.forEach(section => {
-      const matchingItems = section.items.filter(item => (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && item.hidden !== true
-      ));
+      const matchingItems = section.items.filter(
+        item =>
+          item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+            -1 && item.hidden !== true
+      );
 
       const items = matchingItems.map(item => {
-        const {
-          name,
-          path,
-          sections,
-        } = item;
+        const { name, path, sections } = item;
 
         return {
           id: `${section.type}-${path}`,
@@ -249,9 +234,7 @@ export class GuidePageChrome extends Component {
           </div>
         </div>
 
-        <div className="guideSideNav__content">
-          {sideNavContent}
-        </div>
+        <div className="guideSideNav__content">{sideNavContent}</div>
       </div>
     );
   }

@@ -1,8 +1,4 @@
-import React, {
-  Component,
-  cloneElement,
-  Fragment,
-} from 'react';
+import React, { Component, cloneElement, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -37,7 +33,7 @@ const DEFAULT_TOOLTIP_STYLES = {
   left: 50,
   // just in case, avoid any potential flicker by hiding
   // the tooltip before it is positioned
-  opacity: 0
+  opacity: 0,
 };
 
 export class EuiToolTip extends Component {
@@ -81,7 +77,7 @@ export class EuiToolTip extends Component {
         requestAnimationFrame(this.testAnchor);
       }
     }
-  }
+  };
 
   setPopoverRef = ref => {
     this.popover = ref;
@@ -91,10 +87,10 @@ export class EuiToolTip extends Component {
     if (ref == null) {
       this.setState({
         toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-        arrowStyles: {}
+        arrowStyles: {},
       });
     }
-  }
+  };
 
   showToolTip = () => {
     this.setState({ visible: true });
@@ -110,8 +106,8 @@ export class EuiToolTip extends Component {
       offset: 16, // offset popover 16px from the anchor
       arrowConfig: {
         arrowWidth: 12,
-        arrowBuffer: 4
-      }
+        arrowBuffer: 4,
+      },
     });
 
     // If encroaching the right edge of the window:
@@ -120,13 +116,16 @@ export class EuiToolTip extends Component {
     // once for a subsequent position correction) and cause a flash rerender and reposition.
     // To prevent this, we can orient from the right so that text line wrapping does not occur, negating
     // the second resizeObserver callback call.
-    const windowWidth = document.documentElement.clientWidth || window.innerWidth;
-    const useRightValue = (windowWidth / 2) < left;
+    const windowWidth =
+      document.documentElement.clientWidth || window.innerWidth;
+    const useRightValue = windowWidth / 2 < left;
 
     const toolTipStyles = {
       top,
       left: useRightValue ? 'auto' : left,
-      right: useRightValue ? (windowWidth - left - this.popover.offsetWidth) : 'auto',
+      right: useRightValue
+        ? windowWidth - left - this.popover.offsetWidth
+        : 'auto',
     };
 
     this.setState({
@@ -157,10 +156,13 @@ export class EuiToolTip extends Component {
     this.hideToolTip();
   };
 
-  onMouseOut = (e) => {
+  onMouseOut = e => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
-    if (this.anchor === e.relatedTarget || !this.anchor.contains(e.relatedTarget)) {
+    if (
+      this.anchor === e.relatedTarget ||
+      !this.anchor.contains(e.relatedTarget)
+    ) {
       if (!this.state.hasFocus) {
         this.hideToolTip();
       }
@@ -191,10 +193,7 @@ export class EuiToolTip extends Component {
       className
     );
 
-    const anchorClasses = classNames(
-      'euiToolTipAnchor',
-      anchorClassName,
-    );
+    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
 
     let tooltip;
     if (visible && (content || title)) {
@@ -208,12 +207,9 @@ export class EuiToolTip extends Component {
             title={title}
             id={id}
             role="tooltip"
-            {...rest}
-          >
-            <div style={arrowStyles} className="euiToolTip__arrow"/>
-            <EuiResizeObserver
-              onResize={this.positionToolTip}
-            >
+            {...rest}>
+            <div style={arrowStyles} className="euiToolTip__arrow" />
+            <EuiResizeObserver onResize={this.positionToolTip}>
               {resizeRef => <div ref={resizeRef}>{content}</div>}
             </EuiResizeObserver>
           </EuiToolTipPopover>
@@ -223,18 +219,17 @@ export class EuiToolTip extends Component {
 
     const anchor = (
       <span
-        ref={anchor => this.anchor = anchor}
+        ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}
-      >
+        onMouseOut={this.onMouseOut}>
         {/**
-          * We apply onFocus, onBlur, etc to the children element because that's the element
-          * the user will be interacting with, as opposed to the enclosing anchor element.
-          * For example, if the inner component is a button and the user tabs to it, we want
-          * the enter key to trigger the button. That won't work if the enclosing anchor
-          * element has focus.
-          */}
+         * We apply onFocus, onBlur, etc to the children element because that's the element
+         * the user will be interacting with, as opposed to the enclosing anchor element.
+         * For example, if the inner component is a button and the user tabs to it, we want
+         * the enter key to trigger the button. That won't work if the enclosing anchor
+         * element has focus.
+         */}
         {cloneElement(children, {
           onFocus: this.showToolTip,
           onBlur: this.hideToolTip,

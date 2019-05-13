@@ -6,10 +6,7 @@ import { EuiPropTypes } from '../../utils';
 import { isColorDark, hexToRgb } from '../../services/color';
 import { EuiKeyboardAccessible } from '../accessibility';
 
-import {
-  IconPropType,
-  EuiIcon,
-} from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
 const colorToClassNameMap = {
   default: 'euiBadge--default',
@@ -43,7 +40,6 @@ export const EuiBadge = ({
   closeButtonProps,
   ...rest
 }) => {
-
   let optionalColorClass = null;
   let optionalCustomStyles = null;
   let textColor = null;
@@ -51,7 +47,6 @@ export const EuiBadge = ({
   if (COLORS.indexOf(color) > -1) {
     optionalColorClass = colorToClassNameMap[color];
   } else {
-
     if (isColorDark(...hexToRgb(color))) {
       textColor = '#FFFFFF';
     } else {
@@ -70,7 +65,7 @@ export const EuiBadge = ({
 
   const closeClassNames = classNames(
     'euiBadge__icon',
-    closeButtonProps && closeButtonProps.className,
+    closeButtonProps && closeButtonProps.className
   );
 
   let optionalIcon = null;
@@ -88,7 +83,6 @@ export const EuiBadge = ({
           />
         </EuiKeyboardAccessible>
       );
-
     } else {
       optionalIcon = (
         <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
@@ -103,42 +97,31 @@ export const EuiBadge = ({
         style={optionalCustomStyles}
         onClick={onClick}
         aria-label={onClickAriaLabel}
-        {...rest}
-      >
+        {...rest}>
         <span className="euiBadge__content">
           {optionalIcon}
-          <span>
-            {children}
-          </span>
+          <span>{children}</span>
         </span>
       </button>
     );
   } else {
     return (
-      <span
-        className={classes}
-        style={optionalCustomStyles}
-        {...rest}
-      >
+      <span className={classes} style={optionalCustomStyles} {...rest}>
         <span className="euiBadge__content">
           {optionalIcon}
-          <span className="euiBadge__text">
-            {children}
-          </span>
+          <span className="euiBadge__text">{children}</span>
         </span>
       </span>
     );
   }
 };
 
-
-
 function checkValidColor(props, propName, componentName) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
   if (props.color != null && !validHex && !COLORS.includes(props.color)) {
     throw new Error(
       `${componentName} needs to pass a valid color. This can either be a three ` +
-      `or six character hex value or one of the following: ${COLORS}`
+        `or six character hex value or one of the following: ${COLORS}`
     );
   }
 }

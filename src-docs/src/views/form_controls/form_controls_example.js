@@ -1,14 +1,10 @@
 import React, { Fragment } from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
 
 import {
   EuiBadge,
@@ -84,216 +80,276 @@ const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
 export const FormControlsExample = {
   title: 'Form controls',
-  sections: [{
-    title: 'Search field',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: fieldSearchSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: fieldSearchHtml,
-    }],
-    props: {
-      EuiFieldSearch,
+  sections: [
+    {
+      title: 'Search field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldSearchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldSearchHtml,
+        },
+      ],
+      props: {
+        EuiFieldSearch,
+      },
+      demo: <FieldSearch />,
     },
-    demo: <FieldSearch />,
-  }, {
-    title: 'Text field',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: fieldTextSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: fieldTextHtml,
-    }],
-    props: {
-      EuiFieldText,
+    {
+      title: 'Text field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldTextSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldTextHtml,
+        },
+      ],
+      props: {
+        EuiFieldText,
+      },
+      demo: <FieldText />,
     },
-    demo: <FieldText />,
-  }, {
-    title: 'Number field',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: fieldNumberSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: fieldNumberHtml,
-    }],
-    props: {
-      EuiFieldNumber,
+    {
+      title: 'Number field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldNumberSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldNumberHtml,
+        },
+      ],
+      props: {
+        EuiFieldNumber,
+      },
+      demo: <FieldNumber />,
     },
-    demo: <FieldNumber />,
-  }, {
-    title: 'Password field',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: fieldPasswordSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: fieldPasswordHtml,
-    }],
-    props: {
-      EuiFieldPassword,
+    {
+      title: 'Password field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldPasswordSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldPasswordHtml,
+        },
+      ],
+      props: {
+        EuiFieldPassword,
+      },
+      demo: <FieldPassword />,
     },
-    demo: <FieldPassword />,
-  }, {
-    title: 'Textarea',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: textAreaSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: textAreaHtml,
-    }],
-    props: {
-      EuiTextArea,
+    {
+      title: 'Textarea',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: textAreaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: textAreaHtml,
+        },
+      ],
+      props: {
+        EuiTextArea,
+      },
+      demo: <TextArea />,
     },
-    demo: <TextArea />,
-  }, {
-    title: 'File Picker',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: filePickerSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: filePickerHtml,
-    }],
-    text: (
-      <p>
-        <EuiCode>EuiFilePicker</EuiCode> is a stylized, but generic
-        HTML <EuiCode>&lt;input type=&quot;file&quot;&gt;</EuiCode> tag.
-        It supports drag and drop as well as on click style selection of files.
-        The example below shows how to grab the files using
-        the <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/API/FileList" target="_blank">FileList API</EuiLink>.
-        Like other form elements, you can wrap it in a <EuiCode>EuiFormRow</EuiCode> to apply
-        a label.
-      </p>
-    ),
-    components: { EuiFilePicker },
-    demo: <FilePicker />,
-    props: { EuiFilePicker }
-  }, {
-    title: 'Select',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: selectSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: selectHtml,
-    }],
-    text: (
-      <p>
-        This component renders a basic HTML <code>&lt;select&gt;</code> element. If you need more customization
-        for how the options and/or selected values render, use the <Link to="/forms/superselect">EuiSuperSelect</Link>.
-        Another option is to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has search and multi-select
-        capabilities, but also has restrictions on how items are rendered.
-      </p>
-    ),
-    props: {
-      EuiSelect,
-    },
-    demo: <Select />,
-  }, {
-    title: 'Checkbox',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: checkboxSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: checkboxHtml,
-    }],
-    props: {
-      EuiCheckbox,
-    },
-    demo: <Checkbox />,
-  }, {
-    title: 'Checkbox group',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: checkboxGroupSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: checkboxGroupHtml,
-    }],
-    props: {
-      EuiCheckboxGroup,
-    },
-    demo: <CheckboxGroup />,
-  }, {
-    title: 'Radio',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: radioSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: radioHtml,
-    }],
-    props: {
-      EuiRadio,
-    },
-    demo: <Radio />,
-  }, {
-    title: 'Radio group',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: radioGroupSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: radioGroupHtml,
-    }],
-    props: {
-      EuiRadioGroup,
-    },
-    demo: <RadioGroup />,
-  }, {
-    title: 'Switch',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: switchSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: switchHtml,
-    }],
-    props: {
-      EuiSwitch,
-    },
-    demo: <Switch />,
-  }, {
-    title: 'Form control layout',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: formControlLayoutSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: formControlLayoutHtml,
-    }],
-    text: (
-      <Fragment>
+    {
+      title: 'File Picker',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: filePickerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: filePickerHtml,
+        },
+      ],
+      text: (
         <p>
-          <EuiBadge color={'warning'}>
-            Building block only
-          </EuiBadge>
+          <EuiCode>EuiFilePicker</EuiCode> is a stylized, but generic HTML{' '}
+          <EuiCode>&lt;input type=&quot;file&quot;&gt;</EuiCode> tag. It
+          supports drag and drop as well as on click style selection of files.
+          The example below shows how to grab the files using the{' '}
+          <EuiLink
+            href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
+            target="_blank">
+            FileList API
+          </EuiLink>
+          . Like other form elements, you can wrap it in a{' '}
+          <EuiCode>EuiFormRow</EuiCode> to apply a label.
         </p>
-
+      ),
+      components: { EuiFilePicker },
+      demo: <FilePicker />,
+      props: { EuiFilePicker },
+    },
+    {
+      title: 'Select',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: selectSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: selectHtml,
+        },
+      ],
+      text: (
         <p>
-          <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally to consistently style
-          form controls, but it&rsquo;s published in case you want to create your own form control
-          which matches those of EUI. The examples below demonstrate its various states.
+          This component renders a basic HTML <code>&lt;select&gt;</code>{' '}
+          element. If you need more customization for how the options and/or
+          selected values render, use the{' '}
+          <Link to="/forms/superselect">EuiSuperSelect</Link>. Another option is
+          to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has
+          search and multi-select capabilities, but also has restrictions on how
+          items are rendered.
         </p>
-
-        <EuiCallOut title="Additional padding required" color="warning">
+      ),
+      props: {
+        EuiSelect,
+      },
+      demo: <Select />,
+    },
+    {
+      title: 'Checkbox',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: checkboxSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: checkboxHtml,
+        },
+      ],
+      props: {
+        EuiCheckbox,
+      },
+      demo: <Checkbox />,
+    },
+    {
+      title: 'Checkbox group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: checkboxGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: checkboxGroupHtml,
+        },
+      ],
+      props: {
+        EuiCheckboxGroup,
+      },
+      demo: <CheckboxGroup />,
+    },
+    {
+      title: 'Radio',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: radioSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: radioHtml,
+        },
+      ],
+      props: {
+        EuiRadio,
+      },
+      demo: <Radio />,
+    },
+    {
+      title: 'Radio group',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: radioGroupSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: radioGroupHtml,
+        },
+      ],
+      props: {
+        EuiRadioGroup,
+      },
+      demo: <RadioGroup />,
+    },
+    {
+      title: 'Switch',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: switchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: switchHtml,
+        },
+      ],
+      props: {
+        EuiSwitch,
+      },
+      demo: <Switch />,
+    },
+    {
+      title: 'Form control layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formControlLayoutSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formControlLayoutHtml,
+        },
+      ],
+      text: (
+        <Fragment>
           <p>
-            The padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t take into account the presence
-            of the various icons supported by <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
-            provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible for its own padding.
+            <EuiBadge color={'warning'}>Building block only</EuiBadge>
           </p>
-        </EuiCallOut>
 
-      </Fragment>
-    ),
-    props: {
-      EuiFormControlLayout,
+          <p>
+            <EuiCode>EuiFormControlLayout</EuiCode> is generally used internally
+            to consistently style form controls, but it&rsquo;s published in
+            case you want to create your own form control which matches those of
+            EUI. The examples below demonstrate its various states.
+          </p>
+
+          <EuiCallOut title="Additional padding required" color="warning">
+            <p>
+              The padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t
+              take into account the presence of the various icons supported by{' '}
+              <EuiCode>EuiFormControlLayout</EuiCode>. Any input component
+              provided to <EuiCode>EuiFormControlLayout</EuiCode> is responsible
+              for its own padding.
+            </p>
+          </EuiCallOut>
+        </Fragment>
+      ),
+      props: {
+        EuiFormControlLayout,
+      },
+      demo: <FormControlLayout />,
     },
-    demo: <FormControlLayout />,
-  }],
+  ],
 };

@@ -11,7 +11,9 @@ jest.mock('../form_control_layout', () => {
     EuiFormControlLayout: 'eui-form-control-layout',
   };
 });
-jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
+jest.mock('../validatable_control', () => ({
+  EuiValidatableControl: 'eui-validatable-control',
+}));
 
 describe('EuiFieldNumber', () => {
   test('is rendered', () => {
@@ -29,68 +31,42 @@ describe('EuiFieldNumber', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test(`isInvalid is rendered`, () => {
-      const component = render(
-        <EuiFieldNumber
-          isInvalid
-        />
-      );
+      const component = render(<EuiFieldNumber isInvalid />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`fullWidth is rendered`, () => {
-      const component = render(
-        <EuiFieldNumber
-          fullWidth
-        />
-      );
+      const component = render(<EuiFieldNumber fullWidth />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`isLoading is rendered`, () => {
-      const component = render(
-        <EuiFieldNumber
-          isLoading
-        />
-      );
+      const component = render(<EuiFieldNumber isLoading />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     describe('value', () => {
       test(`value is number`, () => {
         const component = render(
-          <EuiFieldNumber
-            value={0}
-            onChange={() => {}}
-          />
+          <EuiFieldNumber value={0} onChange={() => {}} />
         );
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test(`no initial value`, () => {
         const component = render(
-          <EuiFieldNumber
-            value={''}
-            onChange={() => {}}
-          />
+          <EuiFieldNumber value={''} onChange={() => {}} />
         );
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
-
     });
-
   });
 });

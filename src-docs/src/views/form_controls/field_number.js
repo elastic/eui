@@ -1,13 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiFieldNumber,
-  EuiSpacer,
-  EuiText,
-} from '../../../../src/components';
+import { EuiFieldNumber, EuiSpacer, EuiText } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -89,7 +82,11 @@ export default class extends Component {
 
         <EuiFieldNumber
           style={{ textAlign: 'right' }}
-          append={<EuiText size="xs"><strong>%</strong></EuiText>}
+          append={
+            <EuiText size="xs">
+              <strong>%</strong>
+            </EuiText>
+          }
           placeholder="0 - 100"
           value={this.state.value}
           onChange={this.onChange}

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiIcon,
@@ -38,8 +36,7 @@ export default class extends Component {
         aria-expanded={this.state.isOpen}
         aria-haspopup="true"
         aria-label="Apps menu"
-        onClick={this.onMenuButtonClick}
-      >
+        onClick={this.onMenuButtonClick}>
         <EuiIcon type="apps" size="m" />
       </EuiHeaderSectionItemButton>
     );
@@ -51,55 +48,33 @@ export default class extends Component {
         button={button}
         isOpen={this.state.isOpen}
         anchorPosition="downRight"
-        closePopover={this.closeMenu}
-      >
+        closePopover={this.closeMenu}>
         <EuiKeyPadMenu id="keyPadMenu" style={{ width: 288 }}>
-          <EuiKeyPadMenuItem
-            label="Discover"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Discover" href="#">
             <EuiIcon type="discoverApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Dashboard"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Dashboard" href="#">
             <EuiIcon type="dashboardApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Dev Tools"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Dev Tools" href="#">
             <EuiIcon type="devToolsApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Machine Learning"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Machine Learning" href="#">
             <EuiIcon type="machineLearningApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Graph"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Graph" href="#">
             <EuiIcon type="graphApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Visualize"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Visualize" href="#">
             <EuiIcon type="visualizeApp" size="l" />
           </EuiKeyPadMenuItem>
 
-          <EuiKeyPadMenuItem
-            label="Timelion"
-            href="#"
-          >
+          <EuiKeyPadMenuItem label="Timelion" href="#">
             <EuiIcon type="timelionApp" size="l" />
           </EuiKeyPadMenuItem>
         </EuiKeyPadMenu>

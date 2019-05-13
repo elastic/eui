@@ -4,9 +4,8 @@ const Container = ({ children, disabled }) => (
   <div
     className="euiLegendItemContainer"
     style={{
-      opacity: disabled ? 0.4 : 1
-    }}
-  >
+      opacity: disabled ? 0.4 : 1,
+    }}>
     {children}
   </div>
 );
@@ -15,19 +14,30 @@ const Indicator = ({ children, color }) => (
   <span
     className="euiLegendItemIndicator"
     style={{
-      background: color
-    }}
-  >
+      background: color,
+    }}>
     {children}
   </span>
 );
 
 export default class Legend extends PureComponent {
   render() {
-    const { onClick, color, text, fontSize, radius, disabled = false, className } = this.props;
+    const {
+      onClick,
+      color,
+      text,
+      fontSize,
+      radius,
+      disabled = false,
+      className,
+    } = this.props;
 
     return (
-      <Container onClick={onClick} disabled={disabled} fontSize={fontSize} className={className}>
+      <Container
+        onClick={onClick}
+        disabled={disabled}
+        fontSize={fontSize}
+        className={className}>
         <Indicator color={color} radius={radius} />
         {text}
       </Container>

@@ -17,7 +17,7 @@ export const EuiEmptyPrompt = ({
   body,
   actions,
   className,
-  ...rest,
+  ...rest
 }) => {
   const classes = classNames('euiEmptyPrompt', className);
 
@@ -40,9 +40,7 @@ export const EuiEmptyPrompt = ({
     if (title) {
       titleEl = (
         <Fragment>
-          <EuiTitle size={titleSize}>
-            {title}
-          </EuiTitle>
+          <EuiTitle size={titleSize}>{title}</EuiTitle>
           <EuiSpacer size="m" />
         </Fragment>
       );
@@ -53,9 +51,7 @@ export const EuiEmptyPrompt = ({
     if (body) {
       bodyEl = (
         <Fragment>
-          <EuiText>
-            {body}
-          </EuiText>
+          <EuiText>{body}</EuiText>
         </Fragment>
       );
     }
@@ -79,8 +75,7 @@ export const EuiEmptyPrompt = ({
           gutterSize="m"
           alignItems="center"
           justifyContent="center"
-          direction="column"
-        >
+          direction="column">
           {actions.map((action, index) => (
             <EuiFlexItem key={index} grow={false}>
               {action}
@@ -101,15 +96,10 @@ export const EuiEmptyPrompt = ({
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {icon}
       {content}
-      {body && actions &&
-        <EuiSpacer size="l" />
-      }
+      {body && actions && <EuiSpacer size="l" />}
       {actionsEl}
     </div>
   );

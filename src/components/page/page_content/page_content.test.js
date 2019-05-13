@@ -6,11 +6,8 @@ import { EuiPageContent } from './page_content';
 
 describe('EuiPageContent', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPageContent {...requiredProps} />
-    );
+    const component = render(<EuiPageContent {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

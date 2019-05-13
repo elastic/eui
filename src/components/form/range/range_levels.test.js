@@ -15,54 +15,55 @@ describe('EuiRangeLevels', () => {
           {
             min: 0,
             max: 20,
-            color: 'danger'
+            color: 'danger',
           },
           {
             min: 20,
             max: 100,
-            color: 'success'
-          }
+            color: 'success',
+          },
         ]}
         {...requiredProps}
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('should throw error if `level.min` is lower than `min`', () => {
-    const component = () => render(
-      <EuiRangeLevels
-        min={0}
-        max={100}
-        levels={[
-          {
-            min: -10,
-            max: 20,
-            color: 'danger'
-          },
-        ]}
-      />
-    );
+    const component = () =>
+      render(
+        <EuiRangeLevels
+          min={0}
+          max={100}
+          levels={[
+            {
+              min: -10,
+              max: 20,
+              color: 'danger',
+            },
+          ]}
+        />
+      );
 
     expect(component).toThrowErrorMatchingSnapshot();
   });
 
   test('should throw error if `level.max` is higher than `max`', () => {
-    const component = () => render(
-      <EuiRangeLevels
-        min={0}
-        max={100}
-        levels={[
-          {
-            min: 20,
-            max: 200,
-            color: 'danger'
-          },
-        ]}
-      />
-    );
+    const component = () =>
+      render(
+        <EuiRangeLevels
+          min={0}
+          max={100}
+          levels={[
+            {
+              min: 20,
+              max: 200,
+              color: 'danger',
+            },
+          ]}
+        />
+      );
 
     expect(component).toThrowErrorMatchingSnapshot();
   });

@@ -18,7 +18,9 @@ const limitBreadcrumbs = (breadcrumbs, max) => {
     // We're picking breadcrumbs from the front AND the back, so we treat each iteration as a
     // half-iteration.
     const normalizedIndex = Math.floor(i * 0.5);
-    const indexOfBreadcrumb = isEven ? breadcrumbs.length - 1 - normalizedIndex : normalizedIndex;
+    const indexOfBreadcrumb = isEven
+      ? breadcrumbs.length - 1 - normalizedIndex
+      : normalizedIndex;
     const breadcrumb = breadcrumbs[indexOfBreadcrumb];
 
     if (isEven) {
@@ -44,7 +46,14 @@ const EuiBreadcrumbCollapsed = () => (
 
 const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
-export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, max, ...rest }) => {
+export const EuiBreadcrumbs = ({
+  breadcrumbs,
+  className,
+  responsive,
+  truncate,
+  max,
+  ...rest
+}) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
@@ -70,8 +79,7 @@ export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, m
           className={breadcrumbClasses}
           title={text}
           aria-current="page"
-          {...breadcrumbRest}
-        >
+          {...breadcrumbRest}>
           {text}
         </span>
       );
@@ -83,8 +91,7 @@ export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, m
           href={href}
           className={breadcrumbClasses}
           title={text}
-          {...breadcrumbRest}
-        >
+          {...breadcrumbRest}>
           {text}
         </EuiLink>
       );
@@ -104,7 +111,9 @@ export const EuiBreadcrumbs = ({ breadcrumbs, className, responsive, truncate, m
     );
   });
 
-  const limitedBreadcrumbs = max ? limitBreadcrumbs(breadcrumbElements, max) : breadcrumbElements;
+  const limitedBreadcrumbs = max
+    ? limitBreadcrumbs(breadcrumbElements, max)
+    : breadcrumbElements;
 
   const classes = classNames('euiBreadcrumbs', className, {
     'euiBreadcrumbs--truncate': truncate,

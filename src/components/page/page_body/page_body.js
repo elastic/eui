@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const EuiPageBody = ({ children, restrictWidth, style, className, ...rest }) => {
-
+export const EuiPageBody = ({
+  children,
+  restrictWidth,
+  style,
+  className,
+  ...rest
+}) => {
   let widthClassname;
   let newStyle;
 
@@ -11,18 +16,15 @@ export const EuiPageBody = ({ children, restrictWidth, style, className, ...rest
     widthClassname = 'euiPageBody--restrictWidth-default';
   } else if (restrictWidth !== false) {
     widthClassname = 'euiPageBody--restrictWidth-custom';
-    const value = typeof maxWidth === 'number' ? `${restrictWidth}px` : restrictWidth;
+    const value =
+      typeof maxWidth === 'number' ? `${restrictWidth}px` : restrictWidth;
     newStyle = { ...style, maxWidth: value };
   }
 
   const classes = classNames('euiPageBody', widthClassname, className);
 
   return (
-    <div
-      className={classes}
-      style={newStyle || style}
-      {...rest}
-    >
+    <div className={classes} style={newStyle || style} {...rest}>
       {children}
     </div>
   );

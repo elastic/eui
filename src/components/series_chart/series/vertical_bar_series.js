@@ -6,15 +6,15 @@ import classNames from 'classnames';
 export class EuiVerticalBarSeries extends VerticalBarSeries {
   state = {
     isMouseOverValue: false,
-  }
+  };
 
   _onValueMouseOver = () => {
     this.setState(() => ({ isMouseOverValue: true }));
-  }
+  };
 
   _onValueMouseOut = () => {
     this.setState(() => ({ isMouseOverValue: false }));
-  }
+  };
 
   render() {
     const { isMouseOverValue } = this.state;
@@ -23,7 +23,7 @@ export class EuiVerticalBarSeries extends VerticalBarSeries {
     const classes = classNames(
       'euiBarSeries',
       isHighDataVolume && 'euiBarSeries--highDataVolume',
-      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled',
+      isMouseOverValue && onValueClick && 'euiBarSeries--hoverEnabled'
     );
     return (
       <VerticalBarSeries
@@ -46,13 +46,12 @@ EuiVerticalBarSeries.propTypes = {
   /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: string|number, y: number}> */
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    y: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      y: PropTypes.number,
+    })
+  ).isRequired,
   /** See eui_palettes.js or colorPalette service for recommended colors */
   color: PropTypes.string,
   /**

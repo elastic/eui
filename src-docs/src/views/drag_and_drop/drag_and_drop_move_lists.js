@@ -6,13 +6,10 @@ import {
   EuiDraggable,
   EuiDroppable,
   EuiIcon,
-  EuiPanel
+  EuiPanel,
 } from '../../../../src/components';
 
-import {
-  move,
-  reorder
-} from '../../../../src/components/drag_and_drop';
+import { move, reorder } from '../../../../src/components/drag_and_drop';
 
 import { makeList } from './helper';
 
@@ -44,53 +41,70 @@ export default () => {
         actions[sourceId](result[sourceId]);
         actions[destinationId](result[destinationId]);
       }
-
     }
   };
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiFlexGroup>
         <EuiFlexItem>
-
-          <EuiDroppable droppableId="DROPPABLE_AREA_1" spacing="m" withPanel grow={false}>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_1"
+            spacing="m"
+            withPanel
+            grow={false}>
             {list1.length > 0 ? (
               list1.map(({ content, id }, idx) => (
                 <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
                   {(provided, state) => (
                     <EuiPanel>
-                      {content}{state.isDragging && ' ✨'}
+                      {content}
+                      {state.isDragging && ' ✨'}
                     </EuiPanel>
                   )}
                 </EuiDraggable>
               ))
             ) : (
-              <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
-                <EuiFlexItem grow={false}><EuiIcon type="faceSad" /></EuiFlexItem>
+              <EuiFlexGroup
+                alignItems="center"
+                justifyContent="spaceAround"
+                gutterSize="none"
+                style={{ height: '100%' }}>
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="faceSad" />
+                </EuiFlexItem>
               </EuiFlexGroup>
             )}
           </EuiDroppable>
-
         </EuiFlexItem>
         <EuiFlexItem>
-
-          <EuiDroppable droppableId="DROPPABLE_AREA_2" spacing="m" withPanel grow={false}>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_2"
+            spacing="m"
+            withPanel
+            grow={false}>
             {list2.length > 0 ? (
               list2.map(({ content, id }, idx) => (
                 <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
                   {(provided, state) => (
                     <EuiPanel>
-                      {content}{state.isDragging && ' ✨'}
+                      {content}
+                      {state.isDragging && ' ✨'}
                     </EuiPanel>
                   )}
                 </EuiDraggable>
               ))
             ) : (
-              <EuiFlexGroup alignItems="center" justifyContent="spaceAround" gutterSize="none" style={{ height: '100%' }}>
-                <EuiFlexItem grow={false}><EuiIcon type="faceSad" /></EuiFlexItem>
+              <EuiFlexGroup
+                alignItems="center"
+                justifyContent="spaceAround"
+                gutterSize="none"
+                style={{ height: '100%' }}>
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="faceSad" />
+                </EuiFlexItem>
               </EuiFlexGroup>
             )}
           </EuiDroppable>
-
         </EuiFlexItem>
       </EuiFlexGroup>
     </EuiDragDropContext>

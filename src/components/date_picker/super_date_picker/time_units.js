@@ -1,4 +1,3 @@
-
 export const timeUnits = {
   s: 'second',
   m: 'minute',
@@ -6,7 +5,7 @@ export const timeUnits = {
   d: 'day',
   w: 'week',
   M: 'month',
-  y: 'year'
+  y: 'year',
 };
 
 export const timeUnitsPlural = {
@@ -16,5 +15,5 @@ export const timeUnitsPlural = {
   d: 'days',
   w: 'weeks',
   M: 'months',
-  y: 'years'
+  y: 'years',
 };

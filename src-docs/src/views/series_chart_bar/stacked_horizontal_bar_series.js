@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiSpacer,
-  EuiButton,
-} from '../../../../src/components';
+import { EuiSpacer, EuiButton } from '../../../../src/components';
 import {
   EuiSeriesChart,
   EuiBarSeries,
@@ -55,8 +52,7 @@ export default class extends Component {
           height={200}
           orientation={ORIENTATION.HORIZONTAL}
           yType={SCALE.ORDINAL}
-          stackBy={stacked ? 'x' : null}
-        >
+          stackBy={stacked ? 'x' : null}>
           <EuiBarSeries name={`Tag A`} data={dataA} />
           <EuiBarSeries name={`Tag B`} data={dataB} />
         </EuiSeriesChart>

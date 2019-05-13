@@ -27,20 +27,20 @@ function fromMilliseconds(milliseconds) {
   if (milliseconds > MILLISECONDS_IN_HOUR) {
     return {
       units: 'h',
-      value: round(milliseconds / MILLISECONDS_IN_HOUR)
+      value: round(milliseconds / MILLISECONDS_IN_HOUR),
     };
   }
 
   if (milliseconds > MILLISECONDS_IN_MINUTE) {
     return {
       units: 'm',
-      value: round(milliseconds / MILLISECONDS_IN_MINUTE)
+      value: round(milliseconds / MILLISECONDS_IN_MINUTE),
     };
   }
 
   return {
     units: 's',
-    value: round(milliseconds / MILLISECONDS_IN_SECOND)
+    value: round(milliseconds / MILLISECONDS_IN_SECOND),
   };
 }
 
@@ -57,7 +57,6 @@ function toMilliseconds(units, value) {
 }
 
 export class EuiRefreshInterval extends Component {
-
   constructor(props) {
     super(props);
 
@@ -68,38 +67,47 @@ export class EuiRefreshInterval extends Component {
     };
   }
 
-  onValueChange = (evt) => {
+  onValueChange = evt => {
     const sanitizedValue = parseFloat(evt.target.value);
-    this.setState({
-      value: isNaN(sanitizedValue) ? '' : sanitizedValue,
-    }, this.applyRefreshInterval);
+    this.setState(
+      {
+        value: isNaN(sanitizedValue) ? '' : sanitizedValue,
+      },
+      this.applyRefreshInterval
+    );
   };
 
-  onUnitsChange = (evt) => {
-    this.setState({
-      units: evt.target.value,
-    }, this.applyRefreshInterval);
-  }
+  onUnitsChange = evt => {
+    this.setState(
+      {
+        units: evt.target.value,
+      },
+      this.applyRefreshInterval
+    );
+  };
 
   applyRefreshInterval = () => {
     if (this.state.value === '') {
       return;
     }
 
-    const valueInMilliSeconds = toMilliseconds(this.state.units, this.state.value);
+    const valueInMilliSeconds = toMilliseconds(
+      this.state.units,
+      this.state.value
+    );
 
     this.props.applyRefreshInterval({
       refreshInterval: valueInMilliSeconds,
       isPaused: valueInMilliSeconds <= 0 ? true : this.props.isPaused,
     });
-  }
+  };
 
   toogleRefresh = () => {
     this.props.applyRefreshInterval({
       refreshInterval: toMilliseconds(this.state.units, this.state.value),
-      isPaused: !this.props.isPaused
+      isPaused: !this.props.isPaused,
     });
-  }
+  };
 
   render() {
     if (!this.props.applyRefreshInterval) {
@@ -108,7 +116,9 @@ export class EuiRefreshInterval extends Component {
 
     return (
       <Fragment>
-        <EuiTitle size="xxxs"><span>Refresh every</span></EuiTitle>
+        <EuiTitle size="xxxs">
+          <span>Refresh every</span>
+        </EuiTitle>
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
@@ -140,8 +150,7 @@ export class EuiRefreshInterval extends Component {
                 size="s"
                 onClick={this.toogleRefresh}
                 disabled={this.state.value === '' || this.state.value <= 0}
-                data-test-subj="superDatePickerToggleRefreshButton"
-              >
+                data-test-subj="superDatePickerToggleRefreshButton">
                 {this.props.isPaused ? 'Start' : 'Stop'}
               </EuiButton>
             </EuiFormRow>

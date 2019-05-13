@@ -4,12 +4,11 @@ import { copyToClipboard } from '../../services';
 import { EuiToolTip } from '../tool_tip';
 
 export class EuiCopy extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      tooltipText: this.props.beforeMessage
+      tooltipText: this.props.beforeMessage,
     };
   }
 
@@ -20,13 +19,13 @@ export class EuiCopy extends React.Component {
         tooltipText: this.props.afterMessage,
       });
     }
-  }
+  };
 
   resetTooltipText = () => {
     this.setState({
       tooltipText: this.props.beforeMessage,
     });
-  }
+  };
 
   render() {
     const {
@@ -41,8 +40,7 @@ export class EuiCopy extends React.Component {
       <EuiToolTip
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
-        {...rest}
-      >
+        {...rest}>
         {children(this.copy)}
       </EuiToolTip>
     );
@@ -50,7 +48,6 @@ export class EuiCopy extends React.Component {
 }
 
 EuiCopy.propTypes = {
-
   /**
    * Text that will be copied to clipboard when copy function is executed.
    */
@@ -77,4 +74,3 @@ EuiCopy.propTypes = {
 EuiCopy.defaultProps = {
   afterMessage: 'Copied',
 };
-

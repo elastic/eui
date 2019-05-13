@@ -34,8 +34,7 @@ export const EuiCardSelect = ({
       onClick={onClick}
       isDisabled={isDisabled}
       iconType={isSelected ? 'check' : undefined}
-      {...rest}
-    >
+      {...rest}>
       {child}
     </EuiButtonEmpty>
   );
@@ -72,20 +71,11 @@ function euiCardSelectableText(isSelected, isDisabled, children) {
   let text;
 
   if (isSelected) {
-    text = (<EuiI18n
-      token="euiCardSelect.selected"
-      default="Selected"
-    />);
+    text = <EuiI18n token="euiCardSelect.selected" default="Selected" />;
   } else if (isDisabled) {
-    text = (<EuiI18n
-      token="euiCardSelect.unavailable"
-      default="Unavailable"
-    />);
+    text = <EuiI18n token="euiCardSelect.unavailable" default="Unavailable" />;
   } else {
-    text = (<EuiI18n
-      token="euiCardSelect.select"
-      default="Select"
-    />);
+    text = <EuiI18n token="euiCardSelect.select" default="Select" />;
   }
 
   return text;

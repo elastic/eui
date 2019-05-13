@@ -10,14 +10,20 @@ const borderToClassNameMap = {
 
 const BORDERS = Object.keys(borderToClassNameMap);
 
-export const EuiHeaderSectionItem = ({ border, children, className, ...rest }) => {
-  const classes = classNames('euiHeaderSectionItem', borderToClassNameMap[border], className);
+export const EuiHeaderSectionItem = ({
+  border,
+  children,
+  className,
+  ...rest
+}) => {
+  const classes = classNames(
+    'euiHeaderSectionItem',
+    borderToClassNameMap[border],
+    className
+  );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

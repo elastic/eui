@@ -1,11 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiIcon,
-  EuiSideNav,
-} from '../../../../src/components';
+import { EuiIcon, EuiSideNav } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -48,10 +43,7 @@ export default class extends Component {
           this.createItem('Has normal children', {
             items: [
               this.createItem('Without forceOpen', {
-                items: [
-                  this.createItem('Child 1'),
-                  this.createItem('Child 2'),
-                ],
+                items: [this.createItem('Child 1'), this.createItem('Child 2')],
               }),
             ],
           }),
@@ -59,10 +51,7 @@ export default class extends Component {
             items: [
               this.createItem('Has forceOpen:true', {
                 forceOpen: true,
-                items: [
-                  this.createItem('Child 3'),
-                  this.createItem('Child 4'),
-                ],
+                items: [this.createItem('Child 3'), this.createItem('Child 4')],
               }),
             ],
           }),
@@ -70,10 +59,7 @@ export default class extends Component {
             forceOpen: true,
             items: [
               this.createItem('Normal child', {
-                items: [
-                  this.createItem('Child 5'),
-                  this.createItem('Child 6'),
-                ],
+                items: [this.createItem('Child 5'), this.createItem('Child 6')],
               }),
             ],
           }),

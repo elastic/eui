@@ -1,16 +1,12 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  EuiText,
-} from '../text';
+import { EuiText } from '../text';
 
 export class EuiErrorBoundary extends Component {
   static propTypes = {
     children: PropTypes.node,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -25,15 +21,12 @@ export class EuiErrorBoundary extends Component {
     // Display fallback UI
     this.setState({
       hasError: true,
-      error
+      error,
     });
   }
 
   render() {
-    const {
-      children,
-      ...rest
-    } = this.props;
+    const { children, ...rest } = this.props;
 
     if (this.state.hasError) {
       // You can render any custom fallback UI
@@ -43,9 +36,7 @@ export class EuiErrorBoundary extends Component {
             <EuiText size="xs">
               <h1>Error</h1>
               <pre className="euiErrorBoundary__stack">
-                <p>
-                  {this.state.error && this.state.error.stack}
-                </p>
+                <p>{this.state.error && this.state.error.stack}</p>
               </pre>
             </EuiText>
           </div>

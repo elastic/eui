@@ -10,12 +10,13 @@ class EuiMutationObserver extends EuiObserver {
   beginObserve = () => {
     this.observer = new MutationObserver(this.props.onMutation);
     this.observer.observe(this.childNode, this.props.observerOptions);
-  }
+  };
 }
 
 EuiMutationObserver.propTypes = {
   children: PropTypes.func.isRequired,
-  observerOptions: PropTypes.shape({ // matches a [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
+  observerOptions: PropTypes.shape({
+    // matches a [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
     attributeFilter: PropTypes.arrayOf(PropTypes.string),
     attributeOldValue: PropTypes.bool,
     attributes: PropTypes.bool,

@@ -11,15 +11,12 @@ import {
 
 import { keyCodes } from '../../services';
 
-jest.mock(
-  '../portal',
-  () => ({
-    EuiPortal: ({ children }) => children
-  })
-);
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }) => children,
+}));
 
 let id = 0;
-const getId = () => (`${id++}`);
+const getId = () => `${id++}`;
 
 describe('EuiPopover', () => {
   test('is rendered', () => {
@@ -32,23 +29,17 @@ describe('EuiPopover', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('children is rendered', () => {
     const component = render(
-      <EuiPopover
-        id={getId()}
-        button={<button />}
-        closePopover={() => {}}
-      >
+      <EuiPopover id={getId()} button={<button />} closePopover={() => {}}>
         Children
       </EuiPopover>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -63,8 +54,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -79,8 +69,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -112,8 +101,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('leftCenter is rendered', () => {
@@ -126,8 +114,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('downRight is rendered', () => {
@@ -140,8 +127,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -155,8 +141,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('renders true', () => {
@@ -173,8 +158,7 @@ describe('EuiPopover', () => {
 
         // console.log(component.debug());
 
-        expect(component.render())
-          .toMatchSnapshot();
+        expect(component.render()).toMatchSnapshot();
       });
     });
 
@@ -191,8 +175,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render())
-          .toMatchSnapshot();
+        expect(component.render()).toMatchSnapshot();
       });
 
       test('renders true', () => {
@@ -208,8 +191,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render())
-          .toMatchSnapshot();
+        expect(component.render()).toMatchSnapshot();
       });
     });
 
@@ -227,8 +209,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render())
-          .toMatchSnapshot();
+        expect(component.render()).toMatchSnapshot();
       });
     });
 
@@ -246,8 +227,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render())
-          .toMatchSnapshot();
+        expect(component.render()).toMatchSnapshot();
       });
     });
   });
@@ -262,7 +242,9 @@ describe('getPopoverPositionFromAnchorPosition', () => {
   });
 
   it('returns undefined when an invalid position is extracted', () => {
-    expect(getPopoverPositionFromAnchorPosition('nowhereNohow')).toBeUndefined();
+    expect(
+      getPopoverPositionFromAnchorPosition('nowhereNohow')
+    ).toBeUndefined();
   });
 });
 

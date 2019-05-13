@@ -19,35 +19,22 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-const iconSizes = [
-  's',
-  'm',
-  'l',
-  'xl',
-  'xxl',
-  'original',
-];
+const iconSizes = ['s', 'm', 'l', 'xl', 'xxl', 'original'];
 
 export default () => (
   <EuiFlexGrid columns={4}>
-    {
-      iconSizes.map(iconSize => (
-        <EuiFlexItem
-          className="guideDemo__icon"
-          key={iconSize}
-          style={{ width: '340px' }}
-        >
-          <EuiPanel>
-            <EuiIcon
-              type="logoElasticStack"
-              size={iconSize}
-            />
-            <EuiText size="s">
-              <p>{iconSize}</p>
-            </EuiText>
-          </EuiPanel>
-        </EuiFlexItem>
-      ))
-    }
+    {iconSizes.map(iconSize => (
+      <EuiFlexItem
+        className="guideDemo__icon"
+        key={iconSize}
+        style={{ width: '340px' }}>
+        <EuiPanel>
+          <EuiIcon type="logoElasticStack" size={iconSize} />
+          <EuiText size="s">
+            <p>{iconSize}</p>
+          </EuiText>
+        </EuiPanel>
+      </EuiFlexItem>
+    ))}
   </EuiFlexGrid>
 );

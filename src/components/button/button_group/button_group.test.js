@@ -10,7 +10,6 @@ describe('EuiButtonGroup', () => {
       <EuiButtonGroup onChange={() => {}} {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

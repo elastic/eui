@@ -13,7 +13,7 @@ export class EuiTableSortMobile extends Component {
     className: PropTypes.string,
     anchorPosition: PropTypes.string,
     items: PropTypes.array,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -27,26 +27,18 @@ export class EuiTableSortMobile extends Component {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
-    const {
-      className,
-      anchorPosition,
-      items,
-      ...rest
-    } = this.props;
+    const { className, anchorPosition, items, ...rest } = this.props;
 
-    const classes = classNames(
-      'euiTableSortMobile',
-      className
-    );
+    const classes = classNames('euiTableSortMobile', className);
 
     const mobileSortButton = (
       <EuiButtonEmpty
@@ -54,9 +46,8 @@ export class EuiTableSortMobile extends Component {
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         flush="right"
-        size="xs"
-      >
-        <EuiI18n token="euiTableSortMobile.sorting" default="Sorting"/>
+        size="xs">
+        <EuiI18n token="euiTableSortMobile.sorting" default="Sorting" />
       </EuiButtonEmpty>
     );
 
@@ -69,31 +60,29 @@ export class EuiTableSortMobile extends Component {
         closePopover={this.closePopover}
         anchorPosition={anchorPosition || 'downRight'}
         panelPaddingSize="none"
-        {...rest}
-      >
+        {...rest}>
         <EuiContextMenuPanel
           style={{ minWidth: 200 }}
-          items={items && items.length ? items.map(item => {
-            return (
-              <EuiTableSortMobileItem
-                key={item.key}
-                onSort={item.onSort}
-                isSorted={item.isSorted}
-                isSortAscending={item.isSortAscending}
-              >
-                {item.name}
-              </EuiTableSortMobileItem>
-            );
-          }) : null}
+          items={
+            items && items.length
+              ? items.map(item => {
+                  return (
+                    <EuiTableSortMobileItem
+                      key={item.key}
+                      onSort={item.onSort}
+                      isSorted={item.isSorted}
+                      isSortAscending={item.isSortAscending}>
+                      {item.name}
+                    </EuiTableSortMobileItem>
+                  );
+                })
+              : null
+          }
           watchedItemProps={['isSorted', 'isSortAscending']}
         />
       </EuiPopover>
     );
 
-    return (
-      <div className={classes}>
-        {mobileSortPopover}
-      </div>
-    );
+    return <div className={classes}>{mobileSortPopover}</div>;
   }
 }

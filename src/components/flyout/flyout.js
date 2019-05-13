@@ -47,7 +47,12 @@ export class EuiFlyout extends Component {
       newStyle = { ...style, maxWidth: value };
     }
 
-    const classes = classnames('euiFlyout', sizeToClassNameMap[size], widthClassName, className);
+    const classes = classnames(
+      'euiFlyout',
+      sizeToClassNameMap[size],
+      widthClassName,
+      className
+    );
 
     let closeButton;
     if (onClose && !hideCloseButton) {
@@ -72,8 +77,7 @@ export class EuiFlyout extends Component {
         className={classes}
         tabIndex={0}
         style={newStyle || style}
-        {...rest}
-      >
+        {...rest}>
         {closeButton}
         {children}
       </div>
@@ -92,9 +96,7 @@ export class EuiFlyout extends Component {
         {optionalOverlay}
         {/* Trap focus even when ownFocus={false}, otherwise closing the flyout won't return focus
         to the originating button */}
-        <EuiFocusTrap clickOutsideDisables={true}>
-          {flyoutContent}
-        </EuiFocusTrap>
+        <EuiFocusTrap clickOutsideDisables={true}>{flyoutContent}</EuiFocusTrap>
       </span>
     );
   }
