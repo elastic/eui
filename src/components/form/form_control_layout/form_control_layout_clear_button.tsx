@@ -14,7 +14,7 @@ export const EuiFormControlLayoutClearButton: FunctionComponent<
     <EuiI18n
       token="euiFormControlLayoutClearButton.label"
       default="Clear input">
-      {label => (
+      {(label: string) => (
         <button
           type="button"
           className={classes}
