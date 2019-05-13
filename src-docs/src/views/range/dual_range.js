@@ -1,10 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiDualRange,
-} from '../../../../src/components';
+import { EuiDualRange } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -17,9 +13,9 @@ export default class extends Component {
     };
   }
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({
-      value
+      value,
     });
   };
 

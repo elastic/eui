@@ -23,11 +23,8 @@ export const EuiTab = ({
       className={classes}
       onClick={onClick}
       disabled={disabled}
-      {...rest}
-    >
-      <span className="euiTab__content">
-        {children}
-      </span>
+      {...rest}>
+      <span className="euiTab__content">{children}</span>
     </button>
   );
 };

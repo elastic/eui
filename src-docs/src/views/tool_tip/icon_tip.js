@@ -43,13 +43,15 @@ export default () => (
 
     <EuiText>
       <p>
-        Pass a position utility class via <EuiCode>iconProps</EuiCode> to shift for
-        better alignment.
+        Pass a position utility class via <EuiCode>iconProps</EuiCode> to shift
+        for better alignment.
         <EuiIconTip
           type="iInCircle"
           color="subdued"
           content={
-            <span>This was passed <EuiCode>.eui-alignTop</EuiCode></span>
+            <span>
+              This was passed <EuiCode>.eui-alignTop</EuiCode>
+            </span>
           }
           iconProps={{
             className: 'eui-alignTop',

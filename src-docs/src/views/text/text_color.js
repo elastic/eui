@@ -23,34 +23,22 @@ export default () => (
 
     <EuiText>
       <p>
-        <EuiTextColor color="default">
-          Default text color
-        </EuiTextColor>
+        <EuiTextColor color="default">Default text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="subdued">
-          Subdued text color
-        </EuiTextColor>
+        <EuiTextColor color="subdued">Subdued text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="secondary">
-          Secondary text color
-        </EuiTextColor>
+        <EuiTextColor color="secondary">Secondary text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="accent">
-          Accent text color
-        </EuiTextColor>
+        <EuiTextColor color="accent">Accent text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="warning">
-          Warning text color
-        </EuiTextColor>
+        <EuiTextColor color="warning">Warning text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="danger">
-          Danger text color
-        </EuiTextColor>
+        <EuiTextColor color="danger">Danger text color</EuiTextColor>
       </p>
       <p>
         <span style={{ background: '#222' }}>
@@ -66,9 +54,10 @@ export default () => (
     <EuiText color="danger">
       <h2>Works on EuiText as well.</h2>
       <p>
-        Sometimes you need to color entire blocks of text, no matter what is in them.
-        You can always apply color directly (versus using the separated component) to
-        make it easy. Links should still <a href="#">properly color</a>.
+        Sometimes you need to color entire blocks of text, no matter what is in
+        them. You can always apply color directly (versus using the separated
+        component) to make it easy. Links should still{' '}
+        <a href="#">properly color</a>.
       </p>
     </EuiText>
   </div>

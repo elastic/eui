@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
-import {
-  EuiI18n,
-} from '../i18n';
+import { EuiI18n } from '../i18n';
 
 const statusToClassNameMap = {
   complete: 'euiStepNumber--complete',
@@ -33,26 +29,44 @@ export const EuiStepNumber = ({
     {
       'euiStepNumber-isHollow': isHollow,
     },
-    className,
+    className
   );
 
   let numberOrIcon;
   if (status === 'complete') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.isComplete" default="complete">
-        {isComplete => <EuiIcon type="check" className="euiStepNumber__icon" title={isComplete} />}
+        {isComplete => (
+          <EuiIcon
+            type="check"
+            className="euiStepNumber__icon"
+            title={isComplete}
+          />
+        )}
       </EuiI18n>
     );
   } else if (status === 'warning') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasWarnings" default="has warnings">
-        {hasWarnings => <EuiIcon type="alert" className="euiStepNumber__icon" title={hasWarnings} />}
+        {hasWarnings => (
+          <EuiIcon
+            type="alert"
+            className="euiStepNumber__icon"
+            title={hasWarnings}
+          />
+        )}
       </EuiI18n>
     );
   } else if (status === 'danger') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasErrors" default="has errors">
-        {hasErrors => <EuiIcon type="cross" className="euiStepNumber__icon" title={hasErrors} />}
+        {hasErrors => (
+          <EuiIcon
+            type="cross"
+            className="euiStepNumber__icon"
+            title={hasErrors}
+          />
+        )}
       </EuiI18n>
     );
   } else if (!isHollow) {
@@ -60,10 +74,7 @@ export const EuiStepNumber = ({
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       {numberOrIcon}
     </div>
   );

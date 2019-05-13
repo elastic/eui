@@ -1,11 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiIcon,
-  EuiSideNav,
-} from '../../../../src/components';
+import { EuiIcon, EuiSideNav } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -49,7 +44,9 @@ export default class extends Component {
           this.createItem('Users'),
           this.createItem('Roles'),
           this.createItem('Watches'),
-          this.createItem('Extremely long title will become truncated when the browser is narrow enough'),
+          this.createItem(
+            'Extremely long title will become truncated when the browser is narrow enough'
+          ),
         ],
       }),
       this.createItem('Kibana', {
@@ -74,9 +71,7 @@ export default class extends Component {
       }),
       this.createItem('Logstash', {
         icon: <EuiIcon type="logoLogstash" />,
-        items: [
-          this.createItem('Pipeline viewer'),
-        ],
+        items: [this.createItem('Pipeline viewer')],
       }),
     ];
 

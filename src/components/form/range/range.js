@@ -13,17 +13,20 @@ import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiRange extends Component {
-  handleOnChange = (e) => {
-    const isValid = isWithinRange(this.props.min, this.props.max, e.target.value);
+  handleOnChange = e => {
+    const isValid = isWithinRange(
+      this.props.min,
+      this.props.max,
+      e.target.value
+    );
     this.props.onChange(e, isValid);
-  }
+  };
 
   get isValid() {
     return isWithinRange(this.props.min, this.props.max, this.props.value);
   }
 
   render() {
-
     const {
       className,
       compressed,
@@ -55,11 +58,12 @@ export class EuiRange extends Component {
     const digitTolerance = Math.max(String(min).length, String(max).length);
 
     return (
-      <EuiRangeWrapper
-        className={classes}
-        fullWidth={fullWidth}
-      >
-        {showLabels && <EuiRangeLabel side="min" disabled={disabled}>{min}</EuiRangeLabel>}
+      <EuiRangeWrapper className={classes} fullWidth={fullWidth}>
+        {showLabels && (
+          <EuiRangeLabel side="min" disabled={disabled}>
+            {min}
+          </EuiRangeLabel>
+        )}
         <EuiRangeTrack
           disabled={disabled}
           max={max}
@@ -70,8 +74,7 @@ export class EuiRange extends Component {
           ticks={ticks}
           levels={levels}
           onChange={this.handleOnChange}
-          value={value}
-        >
+          value={value}>
           <EuiRangeSlider
             id={id}
             name={name}
@@ -84,11 +87,11 @@ export class EuiRange extends Component {
             style={style}
             showTicks={showTicks}
             showRange={showRange}
-            tabIndex={showInput ? '-1' : (tabIndex || null)}
+            tabIndex={showInput ? '-1' : tabIndex || null}
             {...rest}
           />
 
-          {(showValue && !!String(value).length) && (
+          {showValue && !!String(value).length && (
             <EuiRangeTooltip
               value={value}
               max={max}
@@ -100,7 +103,7 @@ export class EuiRange extends Component {
             />
           )}
 
-          {(showRange && this.isValid) && (
+          {showRange && this.isValid && (
             <EuiRangeHighlight
               showTicks={showTicks}
               min={Number(min)}
@@ -110,7 +113,11 @@ export class EuiRange extends Component {
             />
           )}
         </EuiRangeTrack>
-        {showLabels && <EuiRangeLabel side="max" disabled={disabled}>{max}</EuiRangeLabel>}
+        {showLabels && (
+          <EuiRangeLabel side="max" disabled={disabled}>
+            {max}
+          </EuiRangeLabel>
+        )}
         {showInput && (
           <EuiRangeInput
             min={min}
@@ -163,7 +170,7 @@ EuiRange.propTypes = {
     PropTypes.shape({
       value: PropTypes.number.isRequired,
       label: PropTypes.node.isRequired,
-    }),
+    })
   ),
   /**
    * Function signature: `(event, isValid)`
@@ -177,7 +184,7 @@ EuiRange.propTypes = {
       min: PropTypes.number,
       max: PropTypes.number,
       color: PropTypes.oneOf(LEVEL_COLORS),
-    }),
+    })
   ),
   /**
    * Shows a thick line from min to value

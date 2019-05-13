@@ -17,28 +17,40 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [{
-      label: 'Titan',
-      'data-test-subj': 'titanOption',
-    }, {
-      label: 'Enceladus',
-    }, {
-      label: 'Mimas',
-    }, {
-      label: 'Dione',
-    }, {
-      label: 'Iapetus',
-    }, {
-      label: 'Phoebe',
-    }, {
-      label: 'Rhea',
-    }, {
-      label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
-    }, {
-      label: 'Tethys',
-    }, {
-      label: 'Hyperion',
-    }];
+    this.options = [
+      {
+        label: 'Titan',
+        'data-test-subj': 'titanOption',
+      },
+      {
+        label: 'Enceladus',
+      },
+      {
+        label: 'Mimas',
+      },
+      {
+        label: 'Dione',
+      },
+      {
+        label: 'Iapetus',
+      },
+      {
+        label: 'Phoebe',
+      },
+      {
+        label: 'Rhea',
+      },
+      {
+        label:
+          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+      },
+      {
+        label: 'Tethys',
+      },
+      {
+        label: 'Hyperion',
+      },
+    ];
 
     this.state = {
       selectedOptions: [this.options[2], this.options[4]],
@@ -49,11 +61,11 @@ export default class extends Component {
 
   closeModal = () => {
     this.setState({ isModalVisible: false });
-  }
+  };
 
   showModal = () => {
     this.setState({ isModalVisible: true });
-  }
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({
@@ -67,7 +79,7 @@ export default class extends Component {
     });
   };
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });
@@ -89,9 +101,11 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (flattenedOptions.findIndex(option =>
-      option.label.trim().toLowerCase() === normalizedSearchValue
-    ) === -1) {
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
       this.options.push(newOption);
     }
 
@@ -118,8 +132,7 @@ export default class extends Component {
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.togglePopover}
-      >
+        onClick={this.togglePopover}>
         Open popover
       </EuiButton>
     );
@@ -129,19 +142,12 @@ export default class extends Component {
     if (isModalVisible) {
       modal = (
         <EuiOverlayMask>
-          <EuiModal
-            onClose={this.closeModal}
-            style={{ width: '800px' }}
-          >
+          <EuiModal onClose={this.closeModal} style={{ width: '800px' }}>
             <EuiModalHeader>
-              <EuiModalHeaderTitle >
-                Combo box in a modal
-              </EuiModalHeaderTitle>
+              <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
             </EuiModalHeader>
 
-            <EuiModalBody>
-              {comboBox}
-            </EuiModalBody>
+            <EuiModalBody>{comboBox}</EuiModalBody>
           </EuiModal>
         </EuiOverlayMask>
       );
@@ -151,8 +157,7 @@ export default class extends Component {
       <Fragment>
         <EuiFormRow
           label="Combo box"
-          helpText="This combo box is inside of a form row"
-        >
+          helpText="This combo box is inside of a form row">
           {comboBox}
         </EuiFormRow>
 
@@ -161,16 +166,13 @@ export default class extends Component {
           ownFocus
           button={button}
           isOpen={isPopoverOpen}
-          closePopover={this.closePopover}
-        >
+          closePopover={this.closePopover}>
           <div style={{ width: '300px' }}>{comboBox}</div>
         </EuiPopover>
 
         <EuiSpacer size="m" />
 
-        <EuiButton onClick={this.showModal}>
-          Show modal
-        </EuiButton>
+        <EuiButton onClick={this.showModal}>Show modal</EuiButton>
 
         {modal}
       </Fragment>

@@ -40,7 +40,11 @@ EuiXAxis.propTypes = {
   /** The axis title */
   title: PropTypes.string,
   /** The axis title position */
-  titlePosition: PropTypes.oneOf([TITLE_POSITION.START, TITLE_POSITION.MIDDLE, TITLE_POSITION.END]),
+  titlePosition: PropTypes.oneOf([
+    TITLE_POSITION.START,
+    TITLE_POSITION.MIDDLE,
+    TITLE_POSITION.END,
+  ]),
   /** The axis orientation */
   orientation: PropTypes.oneOf([ORIENTATION.TOP, ORIENTATION.BOTTOM]),
   /** Fix the axis at zero value */

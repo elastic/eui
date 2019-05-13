@@ -1,13 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiRange,
-  EuiSpacer,
-  EuiDualRange,
-} from '../../../../src/components';
+import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -27,9 +20,9 @@ export default class extends Component {
     });
   };
 
-  onDualChange = (value) => {
+  onDualChange = value => {
     this.setState({
-      dualValue: value
+      dualValue: value,
     });
   };
 

@@ -6,11 +6,8 @@ import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePicker', () => {
   test('is rendered', () => {
-    const component = shallow(
-      <EuiDatePicker {...requiredProps} />
-    );
+    const component = shallow(<EuiDatePicker {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

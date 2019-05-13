@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -26,29 +24,37 @@ export default class extends Component {
 
     this.state = {
       isSwitchChecked: false,
-      checkboxes: [{
-        id: `${idPrefix}0`,
-        label: 'Option one',
-      }, {
-        id: `${idPrefix}1`,
-        label: 'Option two is checked by default',
-      }, {
-        id: `${idPrefix}2`,
-        label: 'Option three',
-      }],
+      checkboxes: [
+        {
+          id: `${idPrefix}0`,
+          label: 'Option one',
+        },
+        {
+          id: `${idPrefix}1`,
+          label: 'Option two is checked by default',
+        },
+        {
+          id: `${idPrefix}2`,
+          label: 'Option three',
+        },
+      ],
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
       },
-      radios: [{
-        id: `${idPrefix}4`,
-        label: 'Option one',
-      }, {
-        id: `${idPrefix}5`,
-        label: 'Option two is selected by default',
-      }, {
-        id: `${idPrefix}6`,
-        label: 'Option three',
-      }],
+      radios: [
+        {
+          id: `${idPrefix}4`,
+          label: 'Option one',
+        },
+        {
+          id: `${idPrefix}5`,
+          label: 'Option two is selected by default',
+        },
+        {
+          id: `${idPrefix}6`,
+          label: 'Option three',
+        },
+      ],
       radioIdSelected: `${idPrefix}5`,
       comboBoxSelectionOptions: [],
     };
@@ -58,23 +64,26 @@ export default class extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   onCheckboxChange = optionId => {
-    const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
-      [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-    } });
+    const newCheckboxIdToSelectedMap = {
+      ...this.state.checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
     });
-  }
+  };
 
   onRadioChange = optionId => {
     this.setState({
       radioIdSelected: optionId,
     });
-  }
+  };
 
   render() {
     return (
@@ -83,15 +92,11 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            compressed
-          >
+            compressed>
             <EuiFieldText name="first" isLoading />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Select"
-            compressed
-          >
+          <EuiFormRow label="Select" compressed>
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
@@ -101,17 +106,11 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="File picker"
-            compressed
-          >
+          <EuiFormRow label="File picker" compressed>
             <EuiFilePicker />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Combo box"
-            compressed
-          >
+          <EuiFormRow label="Combo box" compressed>
             <EuiComboBox
               options={[
                 { label: 'Option one' },
@@ -119,26 +118,19 @@ export default class extends Component {
                 { label: 'Option three' },
               ]}
               selectedOptions={this.state.comboBoxSelectionOptions}
-              onChange={comboBoxSelectionOptions => this.setState({ comboBoxSelectionOptions })}
+              onChange={comboBoxSelectionOptions =>
+                this.setState({ comboBoxSelectionOptions })
+              }
             />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Range"
-            compressed
-          >
-            <EuiRange
-              min={0}
-              max={100}
-              name="range"
-              id="range"
-            />
+          <EuiFormRow label="Range" compressed>
+            <EuiRange min={0} max={100} name="range" id="range" />
           </EuiFormRow>
 
           <EuiFormRow
             label="Use a switch instead of a single checkbox"
-            compressed
-          >
+            compressed>
             <EuiSwitch
               label="Should we do this?"
               name="switch"
@@ -147,10 +139,7 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Checkboxes"
-            compressed
-          >
+          <EuiFormRow label="Checkboxes" compressed>
             <EuiCheckboxGroup
               options={this.state.checkboxes}
               idToSelectedMap={this.state.checkboxIdToSelectedMap}

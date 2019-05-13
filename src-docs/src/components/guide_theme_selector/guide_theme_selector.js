@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  EuiSelect,
-  EuiFormRow
-} from '../../../../src/components';
+import { EuiSelect, EuiFormRow } from '../../../../src/components';
 
 export class GuideThemeSelector extends Component {
   constructor(props) {
@@ -14,16 +11,19 @@ export class GuideThemeSelector extends Component {
       {
         text: 'Light',
         value: 'light',
-      }, {
+      },
+      {
         text: 'Dark',
         value: 'dark',
-      }, {
+      },
+      {
         text: 'K6',
         value: 'k6',
-      }, {
+      },
+      {
         text: 'K6 dark',
         value: 'k6_dark',
-      }
+      },
     ];
 
     this.state = {
@@ -39,18 +39,16 @@ export class GuideThemeSelector extends Component {
 
   render() {
     return (
-
-      <EuiFormRow
-        label="Theme"
-      >
+      <EuiFormRow label="Theme">
         <EuiSelect
           options={this.themeOptions}
           value={this.props.selectedTheme}
-          onChange={(e) => {this.props.onToggleTheme(e.target.value); }}
+          onChange={e => {
+            this.props.onToggleTheme(e.target.value);
+          }}
           aria-label="Switch the theme"
         />
       </EuiFormRow>
-
     );
   }
 }

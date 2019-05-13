@@ -48,7 +48,9 @@ describe('EuiEmptyPrompt', () => {
       });
 
       test('renders an array', () => {
-        const component = render(<EuiEmptyPrompt actions={[ 'action1', 'action2' ]} />);
+        const component = render(
+          <EuiEmptyPrompt actions={['action1', 'action2']} />
+        );
         expect(component).toMatchSnapshot();
       });
     });

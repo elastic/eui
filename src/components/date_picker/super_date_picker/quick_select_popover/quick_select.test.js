@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import {
-  EuiQuickSelect,
-} from './quick_select';
+import { EuiQuickSelect } from './quick_select';
 
 const noop = () => {};
 const defaultProps = {
@@ -13,14 +11,9 @@ const defaultProps = {
 };
 describe('EuiQuickSelect', () => {
   test('is rendered', () => {
-    const component = shallow(
-      <EuiQuickSelect
-        {...defaultProps}
-      />
-    );
+    const component = shallow(<EuiQuickSelect {...defaultProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('prevQuickSelect', () => {
@@ -35,7 +28,6 @@ describe('EuiQuickSelect', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

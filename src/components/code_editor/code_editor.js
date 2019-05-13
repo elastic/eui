@@ -15,7 +15,6 @@ function setOrRemoveAttribute(element, attributeName, value) {
 }
 
 export class EuiCodeEditor extends Component {
-
   state = {
     isHintActive: true,
     isEditing: false,
@@ -23,19 +22,27 @@ export class EuiCodeEditor extends Component {
 
   idGenerator = htmlIdGenerator();
 
-  aceEditorRef = (aceEditor) => {
+  aceEditorRef = aceEditor => {
     if (aceEditor) {
       this.aceEditor = aceEditor;
       const textbox = aceEditor.editor.textInput.getElement();
       textbox.tabIndex = -1;
       textbox.addEventListener('keydown', this.onKeydownAce);
       setOrRemoveAttribute(textbox, 'aria-label', this.props['aria-label']);
-      setOrRemoveAttribute(textbox, 'aria-labelledby', this.props['aria-labelledby']);
-      setOrRemoveAttribute(textbox, 'aria-describedby', this.props['aria-describedby']);
+      setOrRemoveAttribute(
+        textbox,
+        'aria-labelledby',
+        this.props['aria-labelledby']
+      );
+      setOrRemoveAttribute(
+        textbox,
+        'aria-describedby',
+        this.props['aria-describedby']
+      );
     }
   };
 
-  onKeydownAce = (ev) => {
+  onKeydownAce = ev => {
     if (ev.keyCode === keyCodes.ESCAPE) {
       // If the autocompletion context menu is open then we want to let ESCAPE close it but
       // **not** exit out of editing mode.
@@ -46,7 +53,7 @@ export class EuiCodeEditor extends Component {
         this.editorHint.focus();
       }
     }
-  }
+  };
 
   onFocusAce = (...args) => {
     this.setState({
@@ -55,7 +62,7 @@ export class EuiCodeEditor extends Component {
     if (this.props.onFocus) {
       this.props.onFocus(...args);
     }
-  }
+  };
 
   onBlurAce = (...args) => {
     this.stopEditing();
@@ -64,7 +71,7 @@ export class EuiCodeEditor extends Component {
     }
   };
 
-  onKeyDownHint = (ev) => {
+  onKeyDownHint = ev => {
     if (ev.keyCode === keyCodes.ENTER) {
       ev.preventDefault();
       this.startEditing();
@@ -76,7 +83,7 @@ export class EuiCodeEditor extends Component {
       isHintActive: false,
     });
     this.aceEditor.editor.textInput.focus();
-  }
+  };
 
   stopEditing() {
     this.setState({
@@ -100,7 +107,7 @@ export class EuiCodeEditor extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if ((this.props.mode !== prevProps.mode) && this.isCustomMode()) {
+    if (this.props.mode !== prevProps.mode && this.isCustomMode()) {
       this.setCustomMode();
     }
   }
@@ -147,47 +154,40 @@ export class EuiCodeEditor extends Component {
       <div
         className={promptClasses}
         id={this.idGenerator('codeEditor')}
-        ref={(hint) => { this.editorHint = hint; }}
+        ref={hint => {
+          this.editorHint = hint;
+        }}
         tabIndex="0"
         role="button"
         onClick={this.startEditing}
         onKeyDown={this.onKeyDownHint}
-        data-test-subj="codeEditorHint"
-      >
+        data-test-subj="codeEditorHint">
         <p className="euiText">
-          {
-            isReadOnly
-              ? (
-                <EuiI18n
-                  token="euiCodeEditor.startInteracting"
-                  default="Press Enter to start interacting with the code."
-                />
-              )
-              : (
-                <EuiI18n
-                  token="euiCodeEditor.startEditing"
-                  default="Press Enter to start editing."
-                />
-              )
-          }
+          {isReadOnly ? (
+            <EuiI18n
+              token="euiCodeEditor.startInteracting"
+              default="Press Enter to start interacting with the code."
+            />
+          ) : (
+            <EuiI18n
+              token="euiCodeEditor.startEditing"
+              default="Press Enter to start editing."
+            />
+          )}
         </p>
 
         <p className="euiText">
-          {
-            isReadOnly
-              ? (
-                <EuiI18n
-                  token="euiCodeEditor.stopInteracting"
-                  default="When you're done, press Escape to stop interacting with the code."
-                />
-              )
-              : (
-                <EuiI18n
-                  token="euiCodeEditor.stopEditing"
-                  default="When you're done, press Escape to stop editing."
-                />
-              )
-          }
+          {isReadOnly ? (
+            <EuiI18n
+              token="euiCodeEditor.stopInteracting"
+              default="When you're done, press Escape to stop interacting with the code."
+            />
+          ) : (
+            <EuiI18n
+              token="euiCodeEditor.stopEditing"
+              default="When you're done, press Escape to stop editing."
+            />
+          )}
         </p>
       </div>
     );
@@ -200,8 +200,7 @@ export class EuiCodeEditor extends Component {
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj="codeEditorContainer"
-      >
+        data-test-subj="codeEditorContainer">
         {prompt}
 
         <AceEditor
@@ -212,7 +211,7 @@ export class EuiCodeEditor extends Component {
           onBlur={this.onBlurAce}
           setOptions={options}
           editorProps={{
-            $blockScrolling: Infinity
+            $blockScrolling: Infinity,
           }}
           cursorStart={filteredCursorStart}
           {...rest}
@@ -233,10 +232,7 @@ EuiCodeEditor.propTypes = {
   /**
    * Use string for a built-in mode or object for a custom mode
    */
-  mode: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  mode: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 EuiCodeEditor.defaultProps = {

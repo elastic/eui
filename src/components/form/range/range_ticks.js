@@ -15,7 +15,7 @@ export const EuiRangeTicks = ({
   interval,
 }) => {
   // Calculate the width of each tick mark
-  const percentageWidth = (interval / ((max - min) + interval)) * 100;
+  const percentageWidth = (interval / (max - min + interval)) * 100;
 
   // Align with item labels across the range by adding
   // left and right negative margins that is half of the tick marks
@@ -32,7 +32,8 @@ export const EuiRangeTicks = ({
           customTick = find(ticks, o => o.value === tickValue);
 
           if (customTick) {
-            tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
+            tickStyle.left = `${((customTick.value - min) / (max - min)) *
+              100}%`;
           }
         } else {
           tickStyle.width = `${percentageWidth}%`;
@@ -55,8 +56,7 @@ export const EuiRangeTicks = ({
             onClick={onChange}
             style={tickStyle}
             tabIndex="-1"
-            title={label}
-          >
+            title={label}>
             {label}
           </button>
         );

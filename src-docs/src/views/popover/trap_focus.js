@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -35,8 +33,7 @@ export default class extends Component {
       <EuiButton
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick.bind(this)}
-      >
+        onClick={this.onButtonClick.bind(this)}>
         Show popover
       </EuiButton>
     );
@@ -48,26 +45,13 @@ export default class extends Component {
         button={button}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover.bind(this)}
-        initialFocus="[id=asdf2]"
-      >
-        <EuiFormRow
-          label="Generate a public snapshot?"
-          id="asdf"
-        >
-          <EuiSwitch
-            name="switch"
-            label="Snapshot data"
-          />
+        initialFocus="[id=asdf2]">
+        <EuiFormRow label="Generate a public snapshot?" id="asdf">
+          <EuiSwitch name="switch" label="Snapshot data" />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Include the following in the embed"
-          id="asdf2"
-        >
-          <EuiSwitch
-            name="switch"
-            label="Current time range"
-          />
+        <EuiFormRow label="Include the following in the embed" id="asdf2">
+          <EuiSwitch name="switch" label="Current time range" />
         </EuiFormRow>
 
         <EuiButton fill>Copy IFRAME code</EuiButton>

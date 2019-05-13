@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFlyout,
@@ -35,7 +33,7 @@ export class FlyoutMaxWidth extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
@@ -53,20 +51,18 @@ export class FlyoutMaxWidth extends Component {
         <EuiFlyout
           onClose={this.closeFlyout}
           aria-labelledby="flyoutMaxWidthTitle"
-          maxWidth={448}
-        >
+          maxWidth={448}>
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutMaxWidthTitle">
-                448px wide flyout
-              </h2>
+              <h2 id="flyoutMaxWidthTitle">448px wide flyout</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>
-                In many cases, you&rsquo;ll want to set a custom width that&rsquo;s tailored to your content.
-                In this case, the flyout is an ideal width for form elements.
+                In many cases, you&rsquo;ll want to set a custom width
+                that&rsquo;s tailored to your content. In this case, the flyout
+                is an ideal width for form elements.
               </p>
             </EuiText>
 
@@ -75,14 +71,11 @@ export class FlyoutMaxWidth extends Component {
             <EuiForm>
               <EuiFormRow
                 label="Text field"
-                helpText="I am some friendly help text."
-              >
+                helpText="I am some friendly help text.">
                 <EuiFieldText name="first" />
               </EuiFormRow>
 
-              <EuiFormRow
-                label="Select (with no initial selection)"
-              >
+              <EuiFormRow label="Select (with no initial selection)">
                 <EuiSelect
                   hasNoInitialSelection
                   options={[
@@ -93,21 +86,12 @@ export class FlyoutMaxWidth extends Component {
                 />
               </EuiFormRow>
 
-              <EuiFormRow
-                label="File picker"
-              >
+              <EuiFormRow label="File picker">
                 <EuiFilePicker />
               </EuiFormRow>
 
-              <EuiFormRow
-                label="Range"
-              >
-                <EuiRange
-                  min={0}
-                  max={100}
-                  name="range"
-                  id="range"
-                />
+              <EuiFormRow label="Range">
+                <EuiRange min={0} max={100} name="range" id="range" />
               </EuiFormRow>
             </EuiForm>
           </EuiFlyoutBody>
@@ -117,9 +101,7 @@ export class FlyoutMaxWidth extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>
-          Show max-width flyout
-        </EuiButton>
+        <EuiButton onClick={this.showFlyout}>Show max-width flyout</EuiButton>
 
         {flyout}
       </div>

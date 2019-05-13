@@ -5,17 +5,21 @@ import classNames from 'classnames';
 export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
 
 export const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
-  const validateLevelIsInRange = (level) => {
+  const validateLevelIsInRange = level => {
     if (level.min < min) {
-      throw new Error(`The level min of ${level.min} is lower than the min value of ${min}.`);
+      throw new Error(
+        `The level min of ${level.min} is lower than the min value of ${min}.`
+      );
     }
     if (level.max > max) {
-      throw new Error(`The level max of ${level.max} is higher than the max value of ${max}.`);
+      throw new Error(
+        `The level max of ${level.max} is higher than the max value of ${max}.`
+      );
     }
   };
 
   const classes = classNames('euiRangeLevels', {
-    'euiRangeLevels--hasTicks': showTicks
+    'euiRangeLevels--hasTicks': showTicks,
   });
 
   return (
@@ -26,7 +30,11 @@ export const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
         const width = (range / (max - min)) * 100;
 
         return (
-          <span key={index} style={{ width: `${width}%` }} className={`euiRangeLevel euiRangeLevel--${level.color}`} />
+          <span
+            key={index}
+            style={{ width: `${width}%` }}
+            className={`euiRangeLevel euiRangeLevel--${level.color}`}
+          />
         );
       })}
     </div>
@@ -39,9 +47,9 @@ EuiRangeLevels.propTypes = {
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired,
       color: PropTypes.oneOf(LEVEL_COLORS).isRequired,
-    }),
+    })
   ),
   max: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
-  showTicks: PropTypes.bool
+  showTicks: PropTypes.bool,
 };

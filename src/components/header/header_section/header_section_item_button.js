@@ -11,12 +11,7 @@ export const EuiHeaderSectionItemButton = ({
   const classes = classNames('euiHeaderSectionItem__button', className);
 
   return (
-    <button
-      className={classes}
-      onClick={onClick}
-      type="button"
-      {...rest}
-    >
+    <button className={classes} onClick={onClick} type="button" {...rest}>
       {children}
     </button>
   );

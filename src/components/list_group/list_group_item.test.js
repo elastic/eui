@@ -1,26 +1,22 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import {
-  EuiListGroupItem,
-  SIZES,
-} from './list_group_item';
+import { EuiListGroupItem, SIZES } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiListGroupItem label="Label" />
-    );
+    const component = render(<EuiListGroupItem label="Label" />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('size', () => {
       SIZES.forEach(size => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiListGroupItem label="Label" size={size} />);
+          const component = render(
+            <EuiListGroupItem label="Label" size={size} />
+          );
 
           expect(component).toMatchSnapshot();
         });
@@ -29,9 +25,7 @@ describe('EuiListGroupItem', () => {
 
     describe('isActive', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiListGroupItem label="Label" isActive />
-        );
+        const component = render(<EuiListGroupItem label="Label" isActive />);
 
         expect(component).toMatchSnapshot();
       });
@@ -39,9 +33,7 @@ describe('EuiListGroupItem', () => {
 
     describe('isDisabled', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiListGroupItem label="Label" isDisabled />
-        );
+        const component = render(<EuiListGroupItem label="Label" isDisabled />);
 
         expect(component).toMatchSnapshot();
       });
@@ -60,7 +52,7 @@ describe('EuiListGroupItem', () => {
     describe('icon', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiListGroupItem label="Label" icon={<span/>} />
+          <EuiListGroupItem label="Label" icon={<span />} />
         );
 
         expect(component).toMatchSnapshot();
@@ -80,9 +72,7 @@ describe('EuiListGroupItem', () => {
 
     describe('wrapText', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiListGroupItem label="Label" wrapText />
-        );
+        const component = render(<EuiListGroupItem label="Label" wrapText />);
 
         expect(component).toMatchSnapshot();
       });
@@ -93,7 +83,11 @@ describe('EuiListGroupItem', () => {
         const component = render(
           <EuiListGroupItem
             label="Label"
-            extraAction={{ iconType: 'empty', alwaysShow: true, 'aria-label': 'label' }}
+            extraAction={{
+              iconType: 'empty',
+              alwaysShow: true,
+              'aria-label': 'label',
+            }}
           />
         );
 
@@ -103,9 +97,7 @@ describe('EuiListGroupItem', () => {
 
     describe('href', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiListGroupItem label="Label" href="#" />
-        );
+        const component = render(<EuiListGroupItem label="Label" href="#" />);
 
         expect(component).toMatchSnapshot();
       });
@@ -120,7 +112,6 @@ describe('EuiListGroupItem', () => {
         expect(component).toMatchSnapshot();
       });
     });
-
   });
 
   test('renders a disabled button even if provided an href', () => {
@@ -128,8 +119,7 @@ describe('EuiListGroupItem', () => {
       <EuiListGroupItem label="Label" isDisabled href="#" />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders a disabled button even if provided an href', () => {
@@ -137,8 +127,7 @@ describe('EuiListGroupItem', () => {
       <EuiListGroupItem label="Label" isDisabled href="#" />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('throws an warning', () => {
@@ -170,7 +159,7 @@ describe('EuiListGroupItem', () => {
 
     test('if both iconType and icon are provided but still renders', () => {
       const component = render(
-        <EuiListGroupItem label="" iconType="empty" icon={<span/>} />
+        <EuiListGroupItem label="" iconType="empty" icon={<span />} />
       );
 
       expect(consoleStub).toBeCalled();

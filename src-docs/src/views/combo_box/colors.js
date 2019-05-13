@@ -1,53 +1,63 @@
 import React, { Component } from 'react';
 
-import {
-  EuiComboBox,
-} from '../../../../src/components';
+import { EuiComboBox } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [{
-      label: 'Titan',
-      'data-test-subj': 'titanOption',
-      color: 'primary',
-    }, {
-      label: 'Enceladus',
-      color: 'secondary',
-    }, {
-      label: 'Mimas',
-      color: '#DB1374',
-    }, {
-      label: 'Dione',
-      color: 'accent',
-    }, {
-      label: 'Iapetus',
-      color: 'primary',
-      color: 'warning',
-    }, {
-      label: 'Phoebe',
-      color: 'danger',
-    }, {
-      label: 'Rhea',
-      color: 'default',
-    }, {
-      label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
-      color: '#F98510',
-    }, {
-      label: 'Tethys',
-      color: '#FEB6DB',
-    }, {
-      label: 'Hyperion',
-      color: '#BFA180',
-    }];
+    this.options = [
+      {
+        label: 'Titan',
+        'data-test-subj': 'titanOption',
+        color: 'primary',
+      },
+      {
+        label: 'Enceladus',
+        color: 'secondary',
+      },
+      {
+        label: 'Mimas',
+        color: '#DB1374',
+      },
+      {
+        label: 'Dione',
+        color: 'accent',
+      },
+      {
+        label: 'Iapetus',
+        color: 'primary',
+        color: 'warning',
+      },
+      {
+        label: 'Phoebe',
+        color: 'danger',
+      },
+      {
+        label: 'Rhea',
+        color: 'default',
+      },
+      {
+        label:
+          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+        color: '#F98510',
+      },
+      {
+        label: 'Tethys',
+        color: '#FEB6DB',
+      },
+      {
+        label: 'Hyperion',
+        color: '#BFA180',
+      },
+    ];
 
     this.state = {
       selectedOptions: [this.options[2], this.options[4]],
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });
@@ -69,9 +79,11 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (flattenedOptions.findIndex(option =>
-      option.label.trim().toLowerCase() === normalizedSearchValue
-    ) === -1) {
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
       this.options.push(newOption);
     }
 

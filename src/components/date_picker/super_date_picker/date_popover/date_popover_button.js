@@ -29,8 +29,8 @@ export function EuiDatePopoverButton(props) {
     {
       'euiDatePopoverButton-isSelected': isOpen,
       'euiDatePopoverButton-isInvalid': isInvalid,
-      'euiDatePopoverButton-needsUpdating': needsUpdating
-    }
+      'euiDatePopoverButton-needsUpdating': needsUpdating,
+    },
   ]);
 
   let title = value;
@@ -46,8 +46,7 @@ export function EuiDatePopoverButton(props) {
       className={classes}
       title={title}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
-      {...buttonProps}
-    >
+      {...buttonProps}>
       {formatTimeString(value, dateFormat, roundUp)}
     </button>
   );
@@ -62,8 +61,7 @@ export function EuiDatePopoverButton(props) {
       anchorClassName="euiDatePopoverButton__popoverAnchor"
       panelPaddingSize="none"
       ownFocus
-      {...rest}
-    >
+      {...rest}>
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}

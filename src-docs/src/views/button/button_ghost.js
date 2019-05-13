@@ -18,18 +18,21 @@ export default class extends Component {
     };
   }
 
-  onToggle0Change = (e) => {
+  onToggle0Change = e => {
     this.setState({ toggle0On: e.target.checked });
-  }
+  };
 
   render() {
     return (
-      <EuiFlexGroup wrap gutterSize="s" alignItems="center" className="guideDemo__ghostBackground">
+      <EuiFlexGroup
+        wrap
+        gutterSize="s"
+        alignItems="center"
+        className="guideDemo__ghostBackground">
         <EuiFlexItem grow={false}>
           <EuiButton
             color="ghost"
-            onClick={() => window.alert('Button clicked')}
-          >
+            onClick={() => window.alert('Button clicked')}>
             Primary
           </EuiButton>
         </EuiFlexItem>
@@ -40,8 +43,7 @@ export default class extends Component {
             color="ghost"
             size="s"
             iconType="check"
-            onClick={() => window.alert('Button clicked')}
-          >
+            onClick={() => window.alert('Button clicked')}>
             Filled
           </EuiButton>
         </EuiFlexItem>
@@ -50,8 +52,7 @@ export default class extends Component {
           <EuiButtonEmpty
             size="s"
             color="ghost"
-            onClick={() => window.alert('Button clicked')}
-          >
+            onClick={() => window.alert('Button clicked')}>
             small
           </EuiButtonEmpty>
         </EuiFlexItem>
@@ -67,21 +68,13 @@ export default class extends Component {
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButton
-            color="ghost"
-            isLoading
-            fill
-            size="s"
-          >
+          <EuiButton color="ghost" isLoading fill size="s">
             Loading&hellip;
           </EuiButton>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButton
-            color="ghost"
-            isLoading
-          >
+          <EuiButton color="ghost" isLoading>
             Loading&hellip;
           </EuiButton>
         </EuiFlexItem>

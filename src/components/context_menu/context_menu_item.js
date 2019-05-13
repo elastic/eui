@@ -1,7 +1,4 @@
-import React, {
-  cloneElement,
-  Component,
-} from 'react';
+import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -55,7 +52,6 @@ export class EuiContextMenuItem extends Component {
   };
 
   render() {
-
     const {
       children,
       className,
@@ -79,18 +75,14 @@ export class EuiContextMenuItem extends Component {
       switch (typeof icon) {
         case 'string':
           iconInstance = (
-            <EuiIcon
-              type={icon}
-              size="m"
-              className="euiContextMenu__icon"
-            />
+            <EuiIcon type={icon} size="m" className="euiContextMenu__icon" />
           );
           break;
 
         default:
           // Assume it's already an instance of an icon.
           iconInstance = cloneElement(icon, {
-            className: 'euiContextMenu__icon'
+            className: 'euiContextMenu__icon',
           });
       }
     }
@@ -99,11 +91,7 @@ export class EuiContextMenuItem extends Component {
 
     if (hasPanel) {
       arrow = (
-        <EuiIcon
-          type="arrowRight"
-          size="m"
-          className="euiContextMenu__arrow"
-        />
+        <EuiIcon type="arrowRight" size="m" className="euiContextMenu__arrow" />
       );
     }
 
@@ -111,14 +99,15 @@ export class EuiContextMenuItem extends Component {
       'euiContextMenuItem-isDisabled': disabled,
     });
 
-    const layoutClasses = classNames('euiContextMenu__itemLayout', layoutAlignToClassNames[layoutAlign]);
+    const layoutClasses = classNames(
+      'euiContextMenu__itemLayout',
+      layoutAlignToClassNames[layoutAlign]
+    );
 
     const buttonInner = (
       <span className={layoutClasses}>
         {iconInstance}
-        <span className="euiContextMenuItem__text">
-          {children}
-        </span>
+        <span className="euiContextMenuItem__text">{children}</span>
         {arrow}
       </span>
     );
@@ -136,8 +125,7 @@ export class EuiContextMenuItem extends Component {
           target={target}
           rel={secureRel}
           ref={buttonRef}
-          {...rest}
-        >
+          {...rest}>
           {buttonInner}
         </a>
       );
@@ -148,8 +136,7 @@ export class EuiContextMenuItem extends Component {
           className={classes}
           type="button"
           ref={buttonRef}
-          {...rest}
-        >
+          {...rest}>
           {buttonInner}
         </button>
       );
@@ -161,17 +148,13 @@ export class EuiContextMenuItem extends Component {
           title={toolTipTitle ? toolTipTitle : null}
           content={toolTipContent}
           anchorClassName="eui-displayBlock"
-          position={toolTipPosition}
-        >
+          position={toolTipPosition}>
           {button}
         </EuiToolTip>
       );
     } else {
-      return (
-        button
-      );
+      return button;
     }
-
   }
 }
 

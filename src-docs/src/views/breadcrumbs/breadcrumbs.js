@@ -10,27 +10,45 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const breadcrumbs = [{
-    text: 'Animals',
-    href: '#',
-    onClick: (e) => { e.preventDefault(); console.log('You clicked Animals'); },
-    'data-test-subj': 'breadcrumbsAnimals',
-    className: 'customClass',
-  }, {
-    text: 'Reptiles',
-    href: '#',
-    onClick: (e) => { e.preventDefault(); console.log('You clicked Reptiles'); },
-  }, {
-    text: 'Boa constrictor',
-    href: '#',
-    onClick: (e) => { e.preventDefault(); console.log('You clicked Boa constrictor'); },
-  }, {
-    text: 'Edit',
-  }];
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked Animals');
+      },
+      'data-test-subj': 'breadcrumbsAnimals',
+      className: 'customClass',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked Reptiles');
+      },
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked Boa constrictor');
+      },
+    },
+    {
+      text: 'Edit',
+    },
+  ];
 
   return (
     <Fragment>
-      <EuiBreadcrumbs breadcrumbs={breadcrumbs} responsive={false} truncate={false} />
+      <EuiBreadcrumbs
+        breadcrumbs={breadcrumbs}
+        responsive={false}
+        truncate={false}
+      />
       <EuiSpacer size="xs" />
 
       <EuiPageContentHeader>

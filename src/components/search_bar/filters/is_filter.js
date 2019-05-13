@@ -21,7 +21,6 @@ const IsFilterPropTypes = {
 };
 
 export class IsFilter extends Component {
-
   static propTypes = IsFilterPropTypes;
 
   constructor(props) {
@@ -33,15 +32,18 @@ export class IsFilter extends Component {
     if (isNil(clause)) {
       return { hasActiveFilters: false, name };
     }
-    return  Query.isMust(clause) ?
-      { hasActiveFilters: true, name } :
-      { hasActiveFilters: true, name: negatedName ? negatedName : `Not ${name}` };
+    return Query.isMust(clause)
+      ? { hasActiveFilters: true, name }
+      : {
+          hasActiveFilters: true,
+          name: negatedName ? negatedName : `Not ${name}`,
+        };
   }
 
   valueChanged(field, checked) {
-    const query = checked ?
-      this.props.query.removeIsClause(field) :
-      this.props.query.addMustIsClause(field);
+    const query = checked
+      ? this.props.query.removeIsClause(field)
+      : this.props.query.addMustIsClause(field);
     this.props.onChange(query);
   }
 
@@ -57,8 +59,7 @@ export class IsFilter extends Component {
       <EuiFilterButton
         onClick={onClick}
         hasActiveFilters={hasActiveFilters}
-        aria-pressed={hasActiveFilters ? 'true' : 'false'}
-      >
+        aria-pressed={hasActiveFilters ? 'true' : 'false'}>
         {name}
       </EuiFilterButton>
     );

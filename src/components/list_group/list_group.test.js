@@ -6,11 +6,8 @@ import { EuiListGroup } from './list_group';
 
 describe('EuiListGroup', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiListGroup {...requiredProps} />
-    );
+    const component = render(<EuiListGroup {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

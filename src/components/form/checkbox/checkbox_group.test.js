@@ -12,32 +12,24 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       <EuiCheckboxGroup onChange={() => {}} {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('options are rendered', () => {
     const component = render(
       <EuiCheckboxGroup
-        options={[
-          { id: '1', label: 'kibana' },
-          { id: '2', label: 'elastic' },
-        ]}
+        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         onChange={() => {}}
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('idToSelectedMap is rendered', () => {
     const component = render(
       <EuiCheckboxGroup
-        options={[
-          { id: '1', label: 'kibana' },
-          { id: '2', label: 'elastic' },
-        ]}
+        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         idToSelectedMap={{
           '1': true,
           '2': false,
@@ -46,17 +38,13 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('disabled is rendered', () => {
     const component = render(
       <EuiCheckboxGroup
-        options={[
-          { id: '1', label: 'kibana' },
-          { id: '2', label: 'elastic' },
-        ]}
+        options={[{ id: '1', label: 'kibana' }, { id: '2', label: 'elastic' }]}
         idToSelectedMap={{
           '1': true,
           '2': false,
@@ -66,7 +54,6 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

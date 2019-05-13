@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -46,12 +44,12 @@ export class EuiDescribedFormGroup extends Component {
       {
         'euiDescribedFormGroup--fullWidth': fullWidth,
       },
-      className,
+      className
     );
 
     const fieldClasses = classNames(
       'euiDescribedFormGroup__fields',
-      paddingSizeToClassNameMap[titleSize],
+      paddingSizeToClassNameMap[titleSize]
     );
 
     const ariaProps = {
@@ -62,7 +60,11 @@ export class EuiDescribedFormGroup extends Component {
 
     if (description) {
       renderedDescription = (
-        <EuiText id={ariaId} size="s" color="subdued" className="euiDescribedFormGroup__description">
+        <EuiText
+          id={ariaId}
+          size="s"
+          color="subdued"
+          className="euiDescribedFormGroup__description">
           {description}
         </EuiText>
       );
@@ -73,24 +75,20 @@ export class EuiDescribedFormGroup extends Component {
     }
 
     return (
-      <div
-        role="group"
-        className={classes}
-        {...ariaProps}
-        {...rest}
-      >
+      <div role="group" className={classes} {...ariaProps} {...rest}>
         <EuiFlexGroup gutterSize={gutterSize}>
           <EuiFlexItem>
-            <EuiTitle id={`${ariaId}-title`} size={titleSize} className="euiDescribedFormGroup__title">
+            <EuiTitle
+              id={`${ariaId}-title`}
+              size={titleSize}
+              className="euiDescribedFormGroup__title">
               {title}
             </EuiTitle>
 
             {renderedDescription}
           </EuiFlexItem>
 
-          <EuiFlexItem className={fieldClasses}>
-            {children}
-          </EuiFlexItem>
+          <EuiFlexItem className={fieldClasses}>{children}</EuiFlexItem>
         </EuiFlexGroup>
       </div>
     );

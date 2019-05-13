@@ -17,13 +17,13 @@ export default class extends Component {
     };
   }
 
-  onSwitch = (e) => {
+  onSwitch = e => {
     this.setState({
       useCustomMessage: e.target.checked,
     });
   };
 
-  onLoading = (e) => {
+  onLoading = e => {
     this.setState({
       isLoading: e.target.checked,
     });
@@ -38,18 +38,26 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <EuiSwitch label="Custom message" onChange={this.onSwitch} checked={!isLoading && useCustomMessage} disabled={isLoading} />&emsp;
-        <EuiSwitch label="Show loading" onChange={this.onLoading} checked={isLoading} />
+        <EuiSwitch
+          label="Custom message"
+          onChange={this.onSwitch}
+          checked={!isLoading && useCustomMessage}
+          disabled={isLoading}
+        />
+        &emsp;
+        <EuiSwitch
+          label="Show loading"
+          onChange={this.onLoading}
+          checked={isLoading}
+        />
         <EuiSpacer />
         <EuiSelectable
           options={[]}
           style={{ width: 200 }}
-          isLoading={isLoading}
-        >
-          {list => useCustomMessage && !isLoading ? customMessage : list}
+          isLoading={isLoading}>
+          {list => (useCustomMessage && !isLoading ? customMessage : list)}
         </EuiSelectable>
       </Fragment>
     );
   }
 }
-

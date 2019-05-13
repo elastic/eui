@@ -2,9 +2,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import {
-  EuiColorPicker,
-} from './color_picker';
+import { EuiColorPicker } from './color_picker';
 import { requiredProps } from '../../test/required_props';
 
 let onChange;
@@ -22,22 +20,14 @@ afterEach(() => {
 
 test('renders EuiColorPicker', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={null}
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
@@ -56,11 +46,7 @@ test('renders EuiColorPicker without a color label when showColorLabel is false'
 
 test('pop up color selector is not shown by default', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   const colorSelector = colorPicker.find('[data-test-subj="colorPickerPopup"]');
@@ -69,11 +55,7 @@ test('pop up color selector is not shown by default', () => {
 
 test('pop up color selector is shown when the color swatch is clicked', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   colorPicker.find('[data-test-subj="colorSwatch"]').simulate('click');
@@ -83,11 +65,7 @@ test('pop up color selector is shown when the color swatch is clicked', () => {
 
 test('pop up color selector is hidden when the color swatch is clicked twice', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   colorPicker.find('[data-test-subj="colorSwatch"]').simulate('click');
@@ -98,11 +76,7 @@ test('pop up color selector is hidden when the color swatch is clicked twice', (
 
 test('Setting a new color calls onChange', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   colorPicker.find('[data-test-subj="colorSwatch"]').simulate('click');

@@ -11,8 +11,7 @@ describe('EuiShowFor', () => {
         <EuiShowFor sizes={[size]} {...requiredProps} />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

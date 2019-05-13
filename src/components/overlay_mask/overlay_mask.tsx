@@ -10,7 +10,7 @@ import { CommonProps, keysOf, Omit } from '../common';
 
 export interface EuiOverlayMaskProps {
   onClick?: () => void;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export type Props = CommonProps &

@@ -9,7 +9,13 @@ const sideToClassNameMap = {
 
 const SIDES = Object.keys(sideToClassNameMap);
 
-export const EuiHeaderSection = ({ side, children, className, grow, ...rest }) => {
+export const EuiHeaderSection = ({
+  side,
+  children,
+  className,
+  grow,
+  ...rest
+}) => {
   const classes = classNames(
     'euiHeaderSection',
     {

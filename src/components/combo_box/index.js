@@ -1,3 +1,1 @@
-export {
-  EuiComboBox,
-} from './combo_box';
+export { EuiComboBox } from './combo_box';

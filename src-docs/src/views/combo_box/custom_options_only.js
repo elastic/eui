@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 
-import {
-  EuiComboBox,
-  EuiFormRow,
-} from '../../../../src/components';
+import { EuiComboBox, EuiFormRow } from '../../../../src/components';
 
-const isValid = (value) => {
+const isValid = value => {
   // Only allow letters. No spaces, numbers, or special characters.
   return value.match(/^[a-zA-Z]+$/) !== null;
 };
@@ -20,7 +17,7 @@ export default class extends Component {
     };
   }
 
-  onCreateOption = (searchValue) => {
+  onCreateOption = searchValue => {
     if (!isValid(searchValue)) {
       // Return false to explicitly reject the user's input.
       return false;
@@ -36,7 +33,7 @@ export default class extends Component {
     }));
   };
 
-  onSearchChange = (searchValue) => {
+  onSearchChange = searchValue => {
     if (!searchValue) {
       this.setState({
         isInvalid: false,
@@ -50,7 +47,7 @@ export default class extends Component {
     });
   };
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
       isInvalid: false,
@@ -63,8 +60,7 @@ export default class extends Component {
       <EuiFormRow
         label="Only custom options"
         isInvalid={isInvalid}
-        error={isInvalid ? 'Only letters are allowed' : undefined}
-      >
+        error={isInvalid ? 'Only letters are allowed' : undefined}>
         <EuiComboBox
           noSuggestions
           placeholder="Create some tags (letters only)"

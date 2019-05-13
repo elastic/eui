@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -13,9 +10,7 @@ import {
   EuiDescriptionList,
 } from '../../../../../src/components';
 
-import {
-  RIGHT_ALIGNMENT,
-} from '../../../../../src/services';
+import { RIGHT_ALIGNMENT } from '../../../../../src/services';
 
 /*
 Example user object:
@@ -56,15 +51,9 @@ export class Table extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-    const {
-      index: pageIndex,
-      size: pageSize,
-    } = page;
+    const { index: pageIndex, size: pageSize } = page;
 
-    const {
-      field: sortField,
-      direction: sortDirection,
-    } = sort;
+    const { field: sortField, direction: sortDirection } = sort;
 
     this.setState({
       pageIndex,
@@ -74,7 +63,7 @@ export class Table extends Component {
     });
   };
 
-  onSelectionChange = (selectedItems) => {
+  onSelectionChange = selectedItems => {
     this.setState({ selectedItems });
   };
 
@@ -83,7 +72,7 @@ export class Table extends Component {
     store.deleteUsers(...selectedItems.map(user => user.id));
 
     this.setState({
-      selectedItems: []
+      selectedItems: [],
     });
   };
 
@@ -95,17 +84,13 @@ export class Table extends Component {
     }
 
     return (
-      <EuiButton
-        color="danger"
-        iconType="trash"
-        onClick={this.onClickDelete}
-      >
+      <EuiButton color="danger" iconType="trash" onClick={this.onClickDelete}>
         Delete {selectedItems.length} Users
       </EuiButton>
     );
   }
 
-  toggleDetails = (item) => {
+  toggleDetails = item => {
     const itemIdToExpandedRowMap = { ...this.state.itemIdToExpandedRowMap };
     if (itemIdToExpandedRowMap[item.id]) {
       delete itemIdToExpandedRowMap[item.id];
@@ -118,10 +103,11 @@ export class Table extends Component {
         {
           title: 'Nationality',
           description: `${country.flag} ${country.name}`,
-        }, {
+        },
+        {
           title: 'Online',
           description: <EuiHealth color={color}>{label}</EuiHealth>,
-        }
+        },
       ];
       itemIdToExpandedRowMap[item.id] = (
         <EuiDescriptionList listItems={listItems} />
@@ -139,67 +125,79 @@ export class Table extends Component {
       itemIdToExpandedRowMap,
     } = this.state;
 
-    const {
-      pageOfItems,
-      totalItemCount,
-    } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
+    const { pageOfItems, totalItemCount } = store.findUsers(
+      pageIndex,
+      pageSize,
+      sortField,
+      sortDirection
+    );
 
     const deleteButton = this.renderDeleteButton();
 
-    const columns = [{
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-      mobileOptions: {
-        render: (item) => (
-          <span>{item.firstName} {item.lastName}</span>
+    const columns = [
+      {
+        field: 'firstName',
+        name: 'First Name',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          render: item => (
+            <span>
+              {item.firstName} {item.lastName}
+            </span>
+          ),
+          header: false,
+          truncateText: false,
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+      {
+        field: 'lastName',
+        name: 'Last Name',
+        truncateText: true,
+        mobileOptions: {
+          show: false,
+        },
+      },
+      {
+        field: 'dateOfBirth',
+        name: 'Date of Birth',
+        dataType: 'date',
+        render: date => formatDate(date, 'dobLong'),
+        sortable: true,
+      },
+      {
+        name: 'Actions',
+        actions: [
+          {
+            name: 'Clone',
+            description: 'Clone this person',
+            type: 'icon',
+            icon: 'copy',
+            onClick: () => '',
+          },
+        ],
+      },
+      {
+        align: RIGHT_ALIGNMENT,
+        width: '40px',
+        isExpander: true,
+        render: item => (
+          <EuiButtonIcon
+            onClick={() => this.toggleDetails(item)}
+            aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
+            iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
+          />
         ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        fullWidth: true,
-      }
-    }, {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      }
-    }, {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
-      sortable: true
-    }, {
-      name: 'Actions',
-      actions: [{
-        name: 'Clone',
-        description: 'Clone this person',
-        type: 'icon',
-        icon: 'copy',
-        onClick: () => ''
-      }]
-    }, {
-      align: RIGHT_ALIGNMENT,
-      width: '40px',
-      isExpander: true,
-      render: (item) => (
-        <EuiButtonIcon
-          onClick={() => this.toggleDetails(item)}
-          aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
-          iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
-        />
-      )
-    }];
+      },
+    ];
 
     const pagination = {
       pageIndex: pageIndex,
       pageSize: pageSize,
       totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8]
+      pageSizeOptions: [3, 5, 8],
     };
 
     const sorting = {
@@ -210,9 +208,10 @@ export class Table extends Component {
     };
 
     const selection = {
-      selectable: (user) => user.online,
-      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-      onSelectionChange: this.onSelectionChange
+      selectable: user => user.online,
+      selectableMessage: selectable =>
+        !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: this.onSelectionChange,
     };
 
     return (

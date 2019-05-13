@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import {
-  EuiTableBody
-} from '../table/table_body';
+import { EuiTableBody } from '../table/table_body';
 
 export class LoadingTableBody extends Component {
-
   constructor(props) {
     super(props);
     this.cleanups = [];
   }
 
   componentDidMount() {
-    const listener = (event) => {
+    const listener = event => {
       event.stopPropagation();
       event.preventDefault();
     };
@@ -26,8 +23,8 @@ export class LoadingTableBody extends Component {
       'dblclick',
       'keydown',
       'keyup',
-      'keypress'
-    ].forEach((event) => {
+      'keypress',
+    ].forEach(event => {
       this.tbody.addEventListener(event, listener, true);
       this.cleanups.push(() => this.tbody.removeEventListener(event, listener));
     });
@@ -40,8 +37,9 @@ export class LoadingTableBody extends Component {
   render() {
     return (
       <EuiTableBody
-        bodyRef={(tbody) => { this.tbody = tbody; }}
-      >
+        bodyRef={tbody => {
+          this.tbody = tbody;
+        }}>
         {this.props.children}
       </EuiTableBody>
     );

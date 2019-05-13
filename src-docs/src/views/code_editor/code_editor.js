@@ -5,16 +5,14 @@ import 'brace/mode/javascript';
 import 'brace/snippets/javascript';
 import 'brace/ext/language_tools';
 
-import {
-  EuiCodeEditor,
-} from '../../../../src/components';
+import { EuiCodeEditor } from '../../../../src/components';
 
 export default class extends Component {
   state = {
-    value: ''
+    value: '',
   };
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({ value });
   };
 
@@ -32,7 +30,9 @@ export default class extends Component {
           enableSnippets: true,
           enableLiveAutocompletion: true,
         }}
-        onBlur={() => { console.log('blur'); }} // eslint-disable-line no-console
+        onBlur={() => {
+          console.log('blur');
+        }} // eslint-disable-line no-console
         aria-label="Code Editor"
       />
     );

@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiScreenReaderOnly
-} from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 
-import {
-  EuiIcon,
-} from '../icon';
+import { EuiIcon } from '../icon';
 
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
+  CENTER_ALIGNMENT,
 } from '../../services';
 
-const ALIGNMENT = [
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-];
+const ALIGNMENT = [LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT];
 
 export const EuiTableHeaderCell = ({
   children,
@@ -74,14 +66,12 @@ export const EuiTableHeaderCell = ({
         role="columnheader"
         aria-sort={ariaSortValue}
         aria-live
-        {...rest}
-      >
+        {...rest}>
         <button
           type="button"
           className={buttonClasses}
           onClick={onSort}
-          data-test-subj="tableHeaderSortButton"
-        >
+          data-test-subj="tableHeaderSortButton">
           <span className={contentClasses}>
             <span className="euiTableCellContent__text">{children}</span>
             {isSorted && (
@@ -102,12 +92,7 @@ export const EuiTableHeaderCell = ({
   }
 
   return (
-    <th
-      className={classes}
-      scope={scope}
-      role="columnheader"
-      {...rest}
-    >
+    <th className={classes} scope={scope} role="columnheader" {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>
@@ -160,5 +145,5 @@ EuiTableHeaderCell.defaultProps = {
   scope: 'col',
   mobileOptions: {
     show: true,
-  }
+  },
 };

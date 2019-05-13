@@ -2,16 +2,9 @@ import { connect } from 'react-redux';
 
 import { AppView } from './app_view';
 
-import {
-  getTheme,
-  getRoutes,
-  getLocale,
-} from '../store';
+import { getTheme, getRoutes, getLocale } from '../store';
 
-import {
-  toggleTheme,
-  toggleLocale,
-} from '../actions';
+import { toggleTheme, toggleLocale } from '../actions';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -28,6 +21,5 @@ export const AppContainer = connect(
   {
     toggleTheme,
     toggleLocale,
-  },
+  }
 )(AppView);
-

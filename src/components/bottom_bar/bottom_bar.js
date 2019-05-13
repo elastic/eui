@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -18,7 +16,6 @@ const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
 export class EuiBottomBar extends Component {
-
   componentDidMount() {
     const height = this.bar.clientHeight;
     document.body.style.paddingBottom = `${height}px`;
@@ -62,9 +59,10 @@ export class EuiBottomBar extends Component {
         </EuiScreenReaderOnly>
         <div
           className={classes}
-          ref={node => { this.bar = node; }}
-          {...rest}
-        >
+          ref={node => {
+            this.bar = node;
+          }}
+          {...rest}>
           {children}
         </div>
       </EuiPortal>

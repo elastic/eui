@@ -14,8 +14,7 @@ describe('EuiFocusTrap', () => {
       </EuiFocusTrap>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('can be disabled', () => {
@@ -25,8 +24,7 @@ describe('EuiFocusTrap', () => {
       </EuiFocusTrap>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('behavior', () => {
@@ -44,7 +42,9 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(findTestSubject(component, 'input').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'input').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       test('will blur focus when negating `autoFocus`', () => {
@@ -76,7 +76,9 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(findTestSubject(component, 'input2').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'input2').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
     });
 
@@ -100,8 +102,7 @@ describe('EuiFocusTrap', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}
-          >
+            onMouseUp={triggerDocumentMouseUp}>
             <EuiFocusTrap>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -113,22 +114,25 @@ describe('EuiFocusTrap', () => {
         );
 
         // The existence of `data-focus-lock-disabled=false` indicates that the trap is enabled.
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
         findTestSubject(component, 'outside').simulate('mousedown');
         findTestSubject(component, 'outside').simulate('mouseup');
         // `react-focus-lock` relies on real DOM events to move focus about.
         // Exposed attributes are the most consistent way to attain its state.
         // See https://github.com/theKashey/react-focus-lock/blob/master/_tests/FocusLock.spec.js for the lib in use
         // Trap remains enabled
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
       });
 
       test('trap remains enabled after internal clicks', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}
-          >
+            onMouseUp={triggerDocumentMouseUp}>
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -139,19 +143,22 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
         findTestSubject(component, 'input2').simulate('mousedown');
         findTestSubject(component, 'input2').simulate('mouseup');
         // Trap remains enabled
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
       });
 
       test('trap remains enabled after internal portal clicks', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}
-          >
+            onMouseUp={triggerDocumentMouseUp}>
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -165,19 +172,22 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
         findTestSubject(component, 'input3').simulate('mousedown');
         findTestSubject(component, 'input3').simulate('mouseup');
         // Trap remains enabled
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
       });
 
       test('trap becomes disabled on outside clicks', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}
-          >
+            onMouseUp={triggerDocumentMouseUp}>
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -188,11 +198,15 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(1);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          1
+        );
         findTestSubject(component, 'outside').simulate('mousedown');
         findTestSubject(component, 'outside').simulate('mouseup');
         // Trap becomes disabled
-        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(0);
+        expect(component.find('[data-focus-lock-disabled=false]').length).toBe(
+          0
+        );
       });
     });
   });

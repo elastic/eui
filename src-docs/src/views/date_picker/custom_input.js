@@ -1,26 +1,17 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
 import moment from 'moment';
 
-import {
-  EuiDatePicker,
-  EuiButton,
-} from '../../../../src/components';
+import { EuiDatePicker, EuiButton } from '../../../../src/components';
 
 // Should be a component because the date picker does some ref stuff behind the scenes
 // eslint-disable-next-line react/prefer-stateless-function
 class ExampleCustomInput extends React.Component {
-
   render() {
     return (
-      <EuiButton
-        className="example-custom-input"
-        onClick={this.props.onClick}
-      >
+      <EuiButton className="example-custom-input" onClick={this.props.onClick}>
         {this.props.value}
       </EuiButton>
     );
@@ -29,17 +20,16 @@ class ExampleCustomInput extends React.Component {
 
 ExampleCustomInput.propTypes = {
   onClick: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
 };
 
 // eslint-disable-next-line react/no-multi-comp
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,7 +37,7 @@ export default class extends Component {
 
   handleChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
   }
 

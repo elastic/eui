@@ -82,9 +82,15 @@ export default class GlobalFilterForm extends Component {
       fieldOptions: fieldOptions,
       operandOptions: operatorOptions,
       valueOptions: valueOptions,
-      selectedField: this.props.selectedObject ? this.props.selectedObject.field : [],
-      selectedOperand: this.props.selectedObject ? this.props.selectedObject.operand : [],
-      selectedValues: this.props.selectedObject ? this.props.selectedObject.values : [],
+      selectedField: this.props.selectedObject
+        ? this.props.selectedObject.field
+        : [],
+      selectedOperand: this.props.selectedObject
+        ? this.props.selectedObject.operand
+        : [],
+      selectedValues: this.props.selectedObject
+        ? this.props.selectedObject.values
+        : [],
       useCustomLabel: false,
       customLabel: '',
     };
@@ -118,19 +124,25 @@ export default class GlobalFilterForm extends Component {
 
   onFieldSearchChange = searchValue => {
     this.setState({
-      fieldOptions: fieldOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+      fieldOptions: fieldOptions.filter(option =>
+        option.label.toLowerCase().includes(searchValue.toLowerCase())
+      ),
     });
   };
 
   onOperandSearchChange = searchValue => {
     this.setState({
-      operandOptions: operatorOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+      operandOptions: operatorOptions.filter(option =>
+        option.label.toLowerCase().includes(searchValue.toLowerCase())
+      ),
     });
   };
 
   onValuesSearchChange = searchValue => {
     this.setState({
-      valueOptions: valueOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+      valueOptions: valueOptions.filter(option =>
+        option.label.toLowerCase().includes(searchValue.toLowerCase())
+      ),
     });
   };
 
@@ -142,15 +154,10 @@ export default class GlobalFilterForm extends Component {
       useCustomLabel: false,
       customLabel: null,
     });
-  }
+  };
 
   render() {
-    const {
-      onAdd,
-      onCancel,
-      selectedObject,
-      ...rest
-    } = this.props;
+    const { onAdd, onCancel, selectedObject, ...rest } = this.props;
 
     return (
       <div {...rest}>
@@ -158,7 +165,11 @@ export default class GlobalFilterForm extends Component {
           <EuiFlexItem style={{ maxWidth: '188px' }}>
             <EuiFormRow label="Field">
               <EuiComboBox
-                placeholder={this.state.selectedOperand.length < 1 ? 'Start here' : 'Select a field'}
+                placeholder={
+                  this.state.selectedOperand.length < 1
+                    ? 'Start here'
+                    : 'Select a field'
+                }
                 options={this.state.fieldOptions}
                 selectedOptions={this.state.selectedField}
                 onChange={this.onFieldChange}
@@ -172,7 +183,9 @@ export default class GlobalFilterForm extends Component {
             <EuiFormRow label="Operand">
               <EuiComboBox
                 placeholder={
-                  this.state.selectedField.length < 1 ? 'Select a field first' : 'Select an operand'
+                  this.state.selectedField.length < 1
+                    ? 'Select a field first'
+                    : 'Select an operand'
                 }
                 isDisabled={this.state.selectedField.length < 1}
                 options={this.state.operandOptions}
@@ -192,11 +205,15 @@ export default class GlobalFilterForm extends Component {
           <EuiFormRow label="Value(s)">
             <EuiComboBox
               placeholder={
-                this.state.selectedField.length < 1 && this.state.selectedOperand.length < 1
+                this.state.selectedField.length < 1 &&
+                this.state.selectedOperand.length < 1
                   ? 'Waiting on previous selections'
                   : 'Select one or more values'
               }
-              isDisabled={this.state.selectedField.length < 1 || this.state.selectedOperand.length < 1}
+              isDisabled={
+                this.state.selectedField.length < 1 ||
+                this.state.selectedOperand.length < 1
+              }
               options={this.state.valueOptions}
               selectedOptions={this.state.selectedValues}
               onChange={this.onValuesChange}
@@ -207,11 +224,15 @@ export default class GlobalFilterForm extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiSwitch label="Create custom label?" checked={this.state.useCustomLabel} onChange={this.onCustomLabelSwitchChange} />
+        <EuiSwitch
+          label="Create custom label?"
+          checked={this.state.useCustomLabel}
+          onChange={this.onCustomLabelSwitchChange}
+        />
 
-        {this.state.useCustomLabel &&
+        {this.state.useCustomLabel && (
           <div>
-            <EuiSpacer size="m"/>
+            <EuiSpacer size="m" />
             <EuiFormRow label="Custom label">
               <EuiFieldText
                 value={this.state.customLabel}
@@ -219,24 +240,33 @@ export default class GlobalFilterForm extends Component {
               />
             </EuiFormRow>
           </div>
-        }
+        )}
 
         <EuiSpacer size="m" />
 
         <EuiFlexGroup direction="rowReverse" alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiButton  isDisabled={this.state.selectedValues.length < 1}  fill onClick={onAdd}>
+            <EuiButton
+              isDisabled={this.state.selectedValues.length < 1}
+              fill
+              onClick={onAdd}>
               Add
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty flush="right" onClick={selectedObject ? onCancel : this.resetForm}>
+            <EuiButtonEmpty
+              flush="right"
+              onClick={selectedObject ? onCancel : this.resetForm}>
               {selectedObject ? 'Cancel' : 'Reset form'}
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem />
           <EuiFlexItem grow={false}>
-            {selectedObject && <EuiButtonEmpty flush="left" color="danger">Delete</EuiButtonEmpty>}
+            {selectedObject && (
+              <EuiButtonEmpty flush="left" color="danger">
+                Delete
+              </EuiButtonEmpty>
+            )}
           </EuiFlexItem>
         </EuiFlexGroup>
       </div>

@@ -8,7 +8,9 @@ import { relativeUnitsFromLargestToSmallest } from './relative_options';
 const ROUND_DELIMETER = '/';
 
 export function parseRelativeParts(value) {
-  const matches = isString(value) && value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
+  const matches =
+    isString(value) &&
+    value.match(/now(([\-\+])([0-9]+)([smhdwMy])(\/[smhdwMy])?)?/);
 
   const isNow = matches && !matches[1];
   const operator = matches && matches[2];

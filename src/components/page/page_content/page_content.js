@@ -13,7 +13,9 @@ const horizontalPositionToClassNameMap = {
 };
 
 export const VERTICAL_POSITIONS = Object.keys(verticalPositionToClassNameMap);
-export const HORIZONTAL_POSITIONS = Object.keys(horizontalPositionToClassNameMap);
+export const HORIZONTAL_POSITIONS = Object.keys(
+  horizontalPositionToClassNameMap
+);
 
 export const EuiPageContent = ({
   verticalPosition,
@@ -21,8 +23,8 @@ export const EuiPageContent = ({
   panelPaddingSize,
   children,
   className,
-  ...rest }) => {
-
+  ...rest
+}) => {
   const classes = classNames(
     'euiPageContent',
     className,
@@ -31,11 +33,7 @@ export const EuiPageContent = ({
   );
 
   return (
-    <EuiPanel
-      className={classes}
-      paddingSize={panelPaddingSize}
-      {...rest}
-    >
+    <EuiPanel className={classes} paddingSize={panelPaddingSize} {...rest}>
       {children}
     </EuiPanel>
   );

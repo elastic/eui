@@ -18,18 +18,16 @@ const colors = [
 
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
-    {
-      colors.map((color) => (
-        <EuiFlexItem key={color} grow={false}>
-          <EuiButtonIcon
-            color={color}
-            onClick={() => window.alert('Button clicked')}
-            iconType="arrowRight"
-            aria-label="Next"
-            disabled={color === 'disabled' ? true : false}
-          />
-        </EuiFlexItem>
-      ))
-    }
+    {colors.map(color => (
+      <EuiFlexItem key={color} grow={false}>
+        <EuiButtonIcon
+          color={color}
+          onClick={() => window.alert('Button clicked')}
+          iconType="arrowRight"
+          aria-label="Next"
+          disabled={color === 'disabled' ? true : false}
+        />
+      </EuiFlexItem>
+    ))}
   </EuiFlexGroup>
 );

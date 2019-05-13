@@ -6,11 +6,8 @@ import { EuiHeaderLink } from './header_link';
 
 describe('EuiHeaderLink', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderLink {...requiredProps} />
-    );
+    const component = render(<EuiHeaderLink {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

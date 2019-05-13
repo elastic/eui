@@ -20,13 +20,19 @@ describe('EuiMutationObserver', () => {
 
     function Wrapper({ value }) {
       return (
-        <EuiMutationObserver observerOptions={{ attributes: true }} onMutation={onMutation}>
-          {mutationRef => <div ref={mutationRef} data-test-ref={value}>Hello World</div>}
+        <EuiMutationObserver
+          observerOptions={{ attributes: true }}
+          onMutation={onMutation}>
+          {mutationRef => (
+            <div ref={mutationRef} data-test-ref={value}>
+              Hello World
+            </div>
+          )}
         </EuiMutationObserver>
       );
     }
 
-    const component = mount(<Wrapper value={5}/>);
+    const component = mount(<Wrapper value={5} />);
 
     component.setProps({ value: 6 });
 

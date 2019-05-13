@@ -6,11 +6,8 @@ import { EuiTableSortMobile } from './table_sort_mobile';
 
 describe('EuiTableSortMobile', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableSortMobile {...requiredProps} />
-    );
+    const component = render(<EuiTableSortMobile {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

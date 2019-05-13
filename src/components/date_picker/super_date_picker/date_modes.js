@@ -1,6 +1,8 @@
-
 import dateMath from '@elastic/datemath';
-import { parseRelativeParts, toRelativeStringFromParts } from './relative_utils';
+import {
+  parseRelativeParts,
+  toRelativeStringFromParts,
+} from './relative_utils';
 
 export const DATE_MODES = {
   ABSOLUTE: 'absolute',
@@ -27,7 +29,6 @@ export function toAbsoluteString(value, roundUp) {
   }
   return valueAsMoment.toISOString();
 }
-
 
 export function toRelativeString(value) {
   return toRelativeStringFromParts(parseRelativeParts(value));

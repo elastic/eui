@@ -26,19 +26,16 @@ describe('EuiResizeObserver', () => {
       );
     }
 
-    const component = mount(
-      <Wrapper children={
-        <div>Hello World</div>
-      }
-      />
-    );
+    const component = mount(<Wrapper children={<div>Hello World</div>} />);
 
-    component.setProps({ children: (
-      <div>
-        <div>Hello World</div>
-        <div>Hello Again</div>
-      </div>
-    ) });
+    component.setProps({
+      children: (
+        <div>
+          <div>Hello World</div>
+          <div>Hello Again</div>
+        </div>
+      ),
+    });
 
     await waitforResizeObserver();
 

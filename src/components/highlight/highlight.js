@@ -6,8 +6,12 @@ const highlight = (searchSubject, searchValue, isStrict = false) => {
     return searchSubject;
   }
 
-  const normalizedSearchSubject = isStrict ? searchSubject : searchSubject.toLowerCase();
-  const normalizedSearchValue = isStrict ? searchValue : searchValue.toLowerCase();
+  const normalizedSearchSubject = isStrict
+    ? searchSubject
+    : searchSubject.toLowerCase();
+  const normalizedSearchValue = isStrict
+    ? searchValue
+    : searchValue.toLowerCase();
 
   const indexOfMatch = normalizedSearchSubject.indexOf(normalizedSearchValue);
   if (indexOfMatch === -1) {
@@ -20,7 +24,9 @@ const highlight = (searchSubject, searchValue, isStrict = false) => {
 
   return (
     <Fragment>
-      {preMatch}<strong>{match}</strong>{postMatch}
+      {preMatch}
+      <strong>{match}</strong>
+      {postMatch}
     </Fragment>
   );
 };
@@ -30,13 +36,10 @@ export const EuiHighlight = ({
   className,
   search,
   strict,
-  ...rest,
+  ...rest
 }) => {
   return (
-    <span
-      className={className}
-      {...rest}
-    >
+    <span className={className} {...rest}>
       {highlight(children, search, strict)}
     </span>
   );

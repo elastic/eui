@@ -1,11 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import {
-  EuiToken,
-  SHAPES,
-  SIZES
-} from './token';
+import { EuiToken, SHAPES, SIZES } from './token';
 
 const tokenColors = [
   'tokenTint01',
@@ -17,36 +13,32 @@ const tokenColors = [
   'tokenTint07',
   'tokenTint08',
   'tokenTint09',
-  'tokenTint10'
+  'tokenTint10',
 ];
 
 describe('EuiToken', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiToken iconType="dot" size="s" />
-    );
+    const component = render(<EuiToken iconType="dot" size="s" />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('shape', () => {
       SHAPES.forEach(shape => {
         test(`${shape} is rendered`, () => {
-          const component = render (
+          const component = render(
             <EuiToken
               iconType="dot"
               size="s"
               displayOptions={{
                 shape: shape,
-                color: 'tokenTint01'
+                color: 'tokenTint01',
               }}
             />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -54,19 +46,18 @@ describe('EuiToken', () => {
     describe('color', () => {
       tokenColors.forEach(color => {
         test(`${color} is rendered`, () => {
-          const component = render (
+          const component = render(
             <EuiToken
               iconType="dot"
               size="s"
               displayOptions={{
                 color: color,
-                shape: 'square'
+                shape: 'square',
               }}
             />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -74,19 +65,18 @@ describe('EuiToken', () => {
     describe('size', () => {
       SIZES.forEach(tokenSize => {
         test(`${tokenSize} is rendered`, () => {
-          const component = render (
+          const component = render(
             <EuiToken
               iconType="dot"
               size={tokenSize}
               displayOptions={{
                 color: 'tokenTint01',
-                shape: 'circle'
+                shape: 'circle',
               }}
             />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });

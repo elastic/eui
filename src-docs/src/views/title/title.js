@@ -40,7 +40,10 @@ export default () => (
 
     <EuiSpacer />
     <EuiTitle size="xxxs">
-      <h6>This is an extra extra extra small title and should only be used when the title is inconsequential (like a label)</h6>
+      <h6>
+        This is an extra extra extra small title and should only be used when
+        the title is inconsequential (like a label)
+      </h6>
     </EuiTitle>
     <EuiCode>size=&quot;xxxs&quot;</EuiCode>
 

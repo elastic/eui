@@ -6,48 +6,38 @@ import { Random } from '../../services/random';
 const random = new Random();
 
 describe('DefaultItemAction', () => {
-
   test('render - button', () => {
-
     const props = {
       action: {
         name: 'action1',
         description: 'action 1',
         type: random.oneOf([undefined, 'button', 'foobar']),
-        onClick: () => {}
+        onClick: () => {},
       },
       enabled: true,
-      item: { id: 'xyz' }
+      item: { id: 'xyz' },
     };
 
-    const component = shallow(
-      <DefaultItemAction {...props} />
-    );
+    const component = shallow(<DefaultItemAction {...props} />);
 
     expect(component).toMatchSnapshot();
-
   });
 
   test('render - icon', () => {
-
     const props = {
       action: {
         name: 'action1',
         description: 'action 1',
         type: 'icon',
         icon: 'trash',
-        onClick: () => {}
+        onClick: () => {},
       },
       enabled: true,
-      item: { id: 'xyz' }
+      item: { id: 'xyz' },
     };
 
-    const component = shallow(
-      <DefaultItemAction {...props} />
-    );
+    const component = shallow(<DefaultItemAction {...props} />);
 
     expect(component).toMatchSnapshot();
-
   });
-
 });

@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  EuiProgress,
-} from '../../../../src/components';
+import { EuiProgress } from '../../../../src/components';
 
 export default () => (
   <div>

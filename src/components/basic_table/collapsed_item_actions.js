@@ -6,7 +6,6 @@ import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
 
 export class CollapsedItemActions extends Component {
-
   constructor(props) {
     super(props);
     this.state = { popoverOpen: false };
@@ -32,7 +31,7 @@ export class CollapsedItemActions extends Component {
     });
   };
 
-  registerPopoverDiv = (popoverDiv) => {
+  registerPopoverDiv = popoverDiv => {
     if (!this.popoverDiv) {
       this.popoverDiv = popoverDiv;
       this.popoverDiv.addEventListener('focusout', this.onPopoverBlur);
@@ -45,14 +44,20 @@ export class CollapsedItemActions extends Component {
     }
   }
 
-  onClickItem = (onClickAction) => {
+  onClickItem = onClickAction => {
     this.closePopover();
     onClickAction();
-  }
+  };
 
   render() {
-
-    const { actions, itemId, item, actionEnabled, onFocus, className } = this.props;
+    const {
+      actions,
+      itemId,
+      item,
+      actionEnabled,
+      onFocus,
+      className,
+    } = this.props;
 
     const isOpen = this.state.popoverOpen;
 
@@ -67,9 +72,16 @@ export class CollapsedItemActions extends Component {
       allDisabled = allDisabled && !enabled;
       if (action.render) {
         const actionControl = action.render(item, enabled);
-        const actionControlOnClick = actionControl && actionControl.props && actionControl.props.onClick;
+        const actionControlOnClick =
+          actionControl && actionControl.props && actionControl.props.onClick;
         controls.push(
-          <EuiContextMenuItem key={key} onClick={actionControlOnClick ? actionControlOnClick.bind(null, item) : () => {}}>
+          <EuiContextMenuItem
+            key={key}
+            onClick={
+              actionControlOnClick
+                ? actionControlOnClick.bind(null, item)
+                : () => {}
+            }>
             {actionControl}
           </EuiContextMenuItem>
         );
@@ -79,8 +91,10 @@ export class CollapsedItemActions extends Component {
             key={key}
             disabled={!enabled}
             icon={action.icon}
-            onClick={this.onClickItem.bind(null, action.onClick.bind(null, item))}
-          >
+            onClick={this.onClickItem.bind(
+              null,
+              action.onClick.bind(null, item)
+            )}>
             {action.name}
           </EuiContextMenuItem>
         );
@@ -123,9 +137,8 @@ export class CollapsedItemActions extends Component {
         button={withTooltip || popoverButton}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="leftCenter"
-      >
-        <EuiContextMenuPanel items={controls}/>
+        anchorPosition="leftCenter">
+        <EuiContextMenuPanel items={controls} />
       </EuiPopover>
     );
   }

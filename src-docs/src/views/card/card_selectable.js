@@ -22,20 +22,17 @@ export default class extends Component {
     this.setState({
       card1Selected: !this.state.card1Selected,
     });
-  }
+  };
 
   card2Clicked = () => {
     this.setState({
       card2Selected: !this.state.card2Selected,
     });
-  }
+  };
 
   render() {
     const cardFooterContent = (
-      <EuiButtonEmpty
-        iconType="iInCircle"
-        size="xs"
-      >
+      <EuiButtonEmpty iconType="iInCircle" size="xs">
         More details
       </EuiButtonEmpty>
     );

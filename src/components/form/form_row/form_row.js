@@ -1,7 +1,4 @@
-import React, {
-  cloneElement,
-  Component,
-} from 'react';
+import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -21,7 +18,7 @@ export class EuiFormRow extends Component {
 
     this.state = {
       isFocused: false,
-      id: props.id || makeId()
+      id: props.id || makeId(),
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -45,7 +42,6 @@ export class EuiFormRow extends Component {
     const onChildBlur = get(this.props, 'children.props.onBlur');
     if (onChildBlur) {
       onChildBlur(...args);
-
     }
 
     this.setState({
@@ -97,14 +93,17 @@ export class EuiFormRow extends Component {
 
     if (error && isInvalid) {
       const errorTexts = Array.isArray(error) ? error : [error];
-      optionalErrors = errorTexts.map((error, i) =>{
+      optionalErrors = errorTexts.map((error, i) => {
         const key = typeof error === 'string' ? error : i;
         return (
-          <EuiFormErrorText key={key} id={`${id}-error-${i}`} className="euiFormRow__text">
+          <EuiFormErrorText
+            key={key}
+            id={`${id}-error-${i}`}
+            className="euiFormRow__text">
             {error}
           </EuiFormErrorText>
-        );}
-      );
+        );
+      });
     }
 
     let optionalLabel;
@@ -121,8 +120,7 @@ export class EuiFormRow extends Component {
             aria-invalid={isInvalid}
             htmlFor={!isLegend ? id : undefined}
             type={labelType}
-            id={labelID}
-          >
+            id={labelID}>
             {label}
           </EuiFormLabel>
         </div>
@@ -131,7 +129,11 @@ export class EuiFormRow extends Component {
 
     if (labelAppend) {
       optionalLabel = (
-        <EuiFlexGroup responsive={false} wrap={true} gutterSize="xs" justifyContent="spaceBetween">
+        <EuiFlexGroup
+          responsive={false}
+          wrap={true}
+          gutterSize="xs"
+          justifyContent="spaceBetween">
           <EuiFlexItem grow={false}>{optionalLabel}</EuiFlexItem>
           <EuiFlexItem grow={false}>{labelAppend}</EuiFlexItem>
         </EuiFlexGroup>
@@ -158,15 +160,11 @@ export class EuiFormRow extends Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       compressed: compressed,
-      ...optionalProps
+      ...optionalProps,
     });
 
     if (displayOnly) {
-      field = (
-        <div className="euiFormRow__displayOnlyWrapper">
-          {field}
-        </div>
-      );
+      field = <div className="euiFormRow__displayOnlyWrapper">{field}</div>;
     }
 
     const Element = labelType === 'legend' ? 'fieldset' : 'div';
@@ -202,10 +200,17 @@ EuiFormRow.propTypes = {
    * being contained inside the form label. Good for things
    * like documentation links.
    */
-  labelAppend: withRequiredProp(PropTypes.node, 'label', 'appending to the label requires that the label also exists'),
+  labelAppend: withRequiredProp(
+    PropTypes.node,
+    'label',
+    'appending to the label requires that the label also exists'
+  ),
   id: PropTypes.string,
   isInvalid: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+  error: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
   helpText: PropTypes.node,
   hasEmptyLabelSpace: PropTypes.bool,
   fullWidth: PropTypes.bool,

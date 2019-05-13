@@ -23,7 +23,7 @@ import {
   EuiHorizontalRule,
   EuiShowFor,
   EuiFocusTrap,
-  EuiButton
+  EuiButton,
 } from '../../../../src/components';
 
 import { keyCodes } from '../../../../src/services';
@@ -168,7 +168,7 @@ export default class extends Component {
             url="https://source.unsplash.com/300x300/?Nature"
           />
         ),
-      }
+      },
     ];
 
     this.solutionsLinks = [
@@ -207,7 +207,7 @@ export default class extends Component {
         href: '/#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
         extraAction: pinExtraAction,
-      }
+      },
     ];
 
     this.adminLinks = [
@@ -250,7 +250,7 @@ export default class extends Component {
                 'aria-label': 'Add to favorites',
               },
             },
-          ]
+          ],
         },
       },
     ];
@@ -290,8 +290,7 @@ export default class extends Component {
     return (
       <EuiHeaderSectionItemButton
         aria-label="Open nav"
-        onClick={() => this.navDrawerRef.toggleOpen()}
-      >
+        onClick={() => this.navDrawerRef.toggleOpen()}>
         <EuiIcon type="apps" href="#" size="m" />
       </EuiHeaderSectionItemButton>
     );
@@ -307,7 +306,7 @@ export default class extends Component {
           console.log('You clicked management');
         },
         'data-test-subj': 'breadcrumbsAnimals',
-        className: 'customClass'
+        className: 'customClass',
       },
       {
         text: 'Truncation test is here for a really long item',
@@ -315,7 +314,7 @@ export default class extends Component {
         onClick: e => {
           e.preventDefault();
           console.log('You clicked truncation test');
-        }
+        },
       },
       {
         text: 'hidden',
@@ -323,7 +322,7 @@ export default class extends Component {
         onClick: e => {
           e.preventDefault();
           console.log('You clicked hidden');
-        }
+        },
       },
       {
         text: 'Users',
@@ -331,31 +330,33 @@ export default class extends Component {
         onClick: e => {
           e.preventDefault();
           console.log('You clicked users');
-        }
+        },
       },
       {
-        text: 'Create'
-      }
+        text: 'Create',
+      },
     ];
 
-    return (
-      <EuiHeaderBreadcrumbs
-        breadcrumbs={breadcrumbs}
-      />
-    );
+    return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />;
   }
 
-  setNavDrawerRef = ref => this.navDrawerRef = ref;
+  setNavDrawerRef = ref => (this.navDrawerRef = ref);
 
   render() {
-
     let fullScreenDisplay;
 
     if (this.state.isFullScreen) {
-
       fullScreenDisplay = (
         <EuiFocusTrap>
-          <div style={{ position: 'fixed', top: 0, left: 0, height: '100%', width: '100%' }} onKeyDown={this.onKeyDown}>
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              height: '100%',
+              width: '100%',
+            }}
+            onKeyDown={this.onKeyDown}>
             <EuiHeader>
               <EuiHeaderSection grow={false}>
                 <EuiShowFor sizes={['xs', 's']}>
@@ -363,7 +364,9 @@ export default class extends Component {
                     {this.renderMenuTrigger()}
                   </EuiHeaderSectionItem>
                 </EuiShowFor>
-                <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+                <EuiHeaderSectionItem border="right">
+                  {this.renderLogo()}
+                </EuiHeaderSectionItem>
                 <EuiHeaderSectionItem border="right">
                   <HeaderSpacesMenu />
                 </EuiHeaderSectionItem>
@@ -384,7 +387,7 @@ export default class extends Component {
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.solutionsLinks} />
               <EuiHorizontalRule margin="none" />
-              <EuiNavDrawerGroup listItems={this.adminLinks}/>
+              <EuiNavDrawerGroup listItems={this.adminLinks} />
             </EuiNavDrawer>
             <EuiPage className="euiNavDrawerPage">
               <EuiPageBody className="euiNavDrawerPage__pageBody">
@@ -408,8 +411,7 @@ export default class extends Component {
                       fill
                       onClick={this.toggleFullScreen}
                       iconType="exit"
-                      aria-label="Exit fullscreen demo"
-                    >
+                      aria-label="Exit fullscreen demo">
                       Exit fullscreen demo
                     </EuiButton>
                   </EuiPageContentBody>
@@ -425,8 +427,7 @@ export default class extends Component {
         <EuiButton
           onClick={this.toggleFullScreen}
           iconType="fullScreen"
-          aria-label="Show fullscreen demo"
-        >
+          aria-label="Show fullscreen demo">
           Show fullscreen demo
         </EuiButton>
 

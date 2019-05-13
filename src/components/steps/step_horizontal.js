@@ -2,19 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiScreenReaderOnly,
-  EuiKeyboardAccessible,
-} from '../accessibility';
+import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 
-import {
-  EuiI18n,
-} from '../i18n';
+import { EuiI18n } from '../i18n';
 
-import {
-  STATUS,
-  EuiStepNumber,
-} from './step_number';
+import { STATUS, EuiStepNumber } from './step_number';
 
 export const EuiStepHorizontal = ({
   className,
@@ -65,8 +57,7 @@ export const EuiStepHorizontal = ({
 
         return `Step ${step}: ${title}${titleAppendix}`;
       }}
-      values={{ step, title, disabled, isComplete }}
-    >
+      values={{ step, title, disabled, isComplete }}>
       {buttonTitle => (
         <EuiKeyboardAccessible>
           <div
@@ -77,15 +68,20 @@ export const EuiStepHorizontal = ({
             onClick={onStepClick}
             tabIndex={disabled ? '-1' : '0'}
             title={buttonTitle}
-            {...rest}
-          >
-            <EuiScreenReaderOnly><div><EuiI18n token="euiStepHorizontal.step" default="Step"/></div></EuiScreenReaderOnly>
+            {...rest}>
+            <EuiScreenReaderOnly>
+              <div>
+                <EuiI18n token="euiStepHorizontal.step" default="Step" />
+              </div>
+            </EuiScreenReaderOnly>
 
-            <EuiStepNumber className="euiStepHorizontal__number" status={status} number={step} />
+            <EuiStepNumber
+              className="euiStepHorizontal__number"
+              status={status}
+              number={step}
+            />
 
-            <div className="euiStepHorizontal__title">
-              {title}
-            </div>
+            <div className="euiStepHorizontal__title">{title}</div>
           </div>
         </EuiKeyboardAccessible>
       )}

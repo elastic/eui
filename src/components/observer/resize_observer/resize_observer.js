@@ -16,10 +16,10 @@ class EuiResizeObserver extends EuiObserver {
       const { height, width } = this.childNode.getBoundingClientRect();
       this.props.onResize({
         height,
-        width
+        width,
       });
     }
-  }
+  };
 
   beginObserve = () => {
     let observerOptions;
@@ -27,17 +27,18 @@ class EuiResizeObserver extends EuiObserver {
       this.observer = new ResizeObserver(this.onResize);
     } else {
       // MutationObserver fallback
-      observerOptions = {     // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
-        attributes: true,     // Account for style changes from `className` or `style`
-        characterData: true,  // Account for text content size differences
-        childList: true,      // Account for adding/removing child nodes
-        subtree: true         // Account for deep child nodes
+      observerOptions = {
+        // [MutationObserverInit](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit)
+        attributes: true, // Account for style changes from `className` or `style`
+        characterData: true, // Account for text content size differences
+        childList: true, // Account for adding/removing child nodes
+        subtree: true, // Account for deep child nodes
       };
       this.observer = new MutationObserver(this.onResize);
       requestAnimationFrame(this.onResize); // Mimic ResizeObserver behavior of triggering a resize event on init
     }
     this.observer.observe(this.childNode, observerOptions);
-  }
+  };
 }
 
 EuiResizeObserver.propTypes = {

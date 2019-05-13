@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiPopoverTitle,
@@ -11,9 +9,7 @@ import {
   EuiFieldNumber,
 } from '../../../../src/components';
 
-import {
-  EuiExpression,
-} from '../../../../src/components/expression';
+import { EuiExpression } from '../../../../src/components/expression';
 
 // Rise the popovers above GuidePageSideNav
 const POPOVER_STYLE = { zIndex: '200' };
@@ -25,11 +21,11 @@ export default class extends Component {
     this.state = {
       example1: {
         isOpen: false,
-        value: 'count()'
+        value: 'count()',
       },
       example2: {
         value: 100,
-        description: 'Is above'
+        description: 'Is above',
       },
     };
   }
@@ -78,24 +74,27 @@ export default class extends Component {
     });
   };
 
-  changeExample1 = (event) => {
-    this.setState({ example1: { ...this.state.example1, value: event.target.value } });
-  }
+  changeExample1 = event => {
+    this.setState({
+      example1: { ...this.state.example1, value: event.target.value },
+    });
+  };
 
-  changeExample2Value = (e) => {
+  changeExample2Value = e => {
     const sanitizedValue = parseInt(e.target.value, 10);
     this.setState({
       example2: {
         ...this.state.example2,
         value: isNaN(sanitizedValue) ? '' : sanitizedValue,
-      }
+      },
     });
+  };
 
-  }
-
-  changeExample2Description = (event) => {
-    this.setState({ example2: { ...this.state.example2, description: event.target.value } });
-  }
+  changeExample2Description = event => {
+    this.setState({
+      example2: { ...this.state.example2, description: event.target.value },
+    });
+  };
 
   renderPopover1() {
     return (
@@ -150,20 +149,19 @@ export default class extends Component {
         <EuiFlexItem grow={false}>
           <EuiPopover
             id="popover1"
-            button={(
+            button={
               <EuiExpression
                 description="when"
                 value={this.state.example1.value}
                 isActive={this.state.example1.isOpen}
                 onClick={this.openExample1}
               />
-            )}
+            }
             isOpen={this.state.example1.isOpen}
             closePopover={this.closeExample1}
             ownFocus
             withTitle
-            anchorPosition="downLeft"
-          >
+            anchorPosition="downLeft">
             {this.renderPopover1()}
           </EuiPopover>
         </EuiFlexItem>
@@ -171,19 +169,18 @@ export default class extends Component {
         <EuiFlexItem grow={false}>
           <EuiPopover
             id="popover2"
-            button={(
+            button={
               <EuiExpression
                 description={this.state.example2.description}
                 value={this.state.example2.value}
                 isActive={this.state.example2.isOpen}
                 onClick={this.openExample2}
               />
-            )}
+            }
             isOpen={this.state.example2.isOpen}
             closePopover={this.closeExample2}
             ownFocus
-            anchorPosition="downLeft"
-          >
+            anchorPosition="downLeft">
             {this.renderPopover2()}
           </EuiPopover>
         </EuiFlexItem>

@@ -1,7 +1,3 @@
-export {
-  EuiSuperSelect,
-} from './super_select';
+export { EuiSuperSelect } from './super_select';
 
-export {
-  EuiSuperSelectControl,
-} from './super_select_control';
+export { EuiSuperSelectControl } from './super_select_control';

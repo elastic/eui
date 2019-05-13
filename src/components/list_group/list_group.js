@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiListGroupItem,
-} from './list_group_item';
+import { EuiListGroupItem } from './list_group_item';
 
 export const EuiListGroup = ({
   children,
@@ -16,9 +14,8 @@ export const EuiListGroup = ({
   maxWidth,
   style,
   showToolTips,
-  ...rest,
+  ...rest
 }) => {
-
   let newStyle;
   let widthClassName;
   if (maxWidth !== true) {
@@ -40,23 +37,21 @@ export const EuiListGroup = ({
 
   let childrenOrListItems = null;
   if (listItems) {
-    childrenOrListItems = (
-      listItems.map((item, index) => {
-        return [
-          <EuiListGroupItem
-            key={`title-${index}`}
-            showToolTip={showToolTips}
-            wrapText={wrapText}
-            {...item}
-          />
-        ];
-      })
-    );
+    childrenOrListItems = listItems.map((item, index) => {
+      return [
+        <EuiListGroupItem
+          key={`title-${index}`}
+          showToolTip={showToolTips}
+          wrapText={wrapText}
+          {...item}
+        />,
+      ];
+    });
   } else {
     if (showToolTips) {
       childrenOrListItems = React.Children.map(children, child => {
         return React.cloneElement(child, {
-          showToolTip: true
+          showToolTip: true,
         });
       });
     } else {
@@ -65,11 +60,7 @@ export const EuiListGroup = ({
   }
 
   return (
-    <ul
-      className={classes}
-      style={newStyle || style}
-      {...rest}
-    >
+    <ul className={classes} style={newStyle || style} {...rest}>
       {childrenOrListItems}
     </ul>
   );

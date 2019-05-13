@@ -9,15 +9,11 @@ import {
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center">
     <EuiFlexItem grow={false}>
-      <EuiButtonEmpty flush="left">
-        Flush left
-      </EuiButtonEmpty>
+      <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButtonEmpty flush="right">
-        Flush right
-      </EuiButtonEmpty>
+      <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

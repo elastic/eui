@@ -17,8 +17,9 @@ export function isSeriesChild(child) {
  * @returns {Array} Array of children.
  */
 export function getSeriesChildren(children) {
-  return React.Children.toArray(children).filter(child =>
-    child && isSeriesChild(child));
+  return React.Children.toArray(children).filter(
+    child => child && isSeriesChild(child)
+  );
 }
 
 export function rotateDataSeries(data) {

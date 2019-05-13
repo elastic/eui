@@ -10,8 +10,7 @@ describe('EuiIconTip', () => {
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -21,8 +20,7 @@ describe('EuiIconTip', () => {
           <EuiIconTip type="alert" id="id" content="content" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -32,8 +30,7 @@ describe('EuiIconTip', () => {
           <EuiIconTip color="warning" id="id" content="content" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -43,8 +40,7 @@ describe('EuiIconTip', () => {
           <EuiIconTip size="xl" id="id" content="content" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });

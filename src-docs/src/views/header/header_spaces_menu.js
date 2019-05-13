@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiHeaderSectionItemButton,
@@ -21,7 +19,7 @@ export default class extends Component {
       {
         label: 'Sales team',
         prepend: <EuiAvatar type="space" name="Sales Team" size="s" />,
-        checked: 'on'
+        checked: 'on',
       },
       {
         label: 'Engineering',
@@ -65,7 +63,7 @@ export default class extends Component {
 
   isListExtended = () => {
     return this.state.spaces.length > 4 ? true : false;
-  }
+  };
 
   onMenuButtonClick = () => {
     this.setState({
@@ -91,7 +89,7 @@ export default class extends Component {
     this.setState({
       spaces: this.spaces.concat(this.additionalSpaces),
     });
-  }
+  };
 
   render() {
     const { selectedSpace, isOpen, spaces } = this.state;
@@ -101,8 +99,7 @@ export default class extends Component {
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Apps menu"
-        onClick={this.onMenuButtonClick}
-      >
+        onClick={this.onMenuButtonClick}>
         {selectedSpace.prepend}
       </EuiHeaderSectionItemButton>
     );
@@ -115,8 +112,7 @@ export default class extends Component {
         isOpen={isOpen}
         anchorPosition="downLeft"
         closePopover={this.closePopover}
-        panelPaddingSize="none"
-      >
+        panelPaddingSize="none">
         <EuiSelectable
           searchable={this.isListExtended()}
           searchProps={{
@@ -130,14 +126,17 @@ export default class extends Component {
           listProps={{
             rowHeight: 40,
             showIcons: false,
-          }}
-        >
+          }}>
           {(list, search) => (
             <Fragment>
               <EuiPopoverTitle>{search || 'Your spaces'}</EuiPopoverTitle>
               {list}
               <EuiPopoverFooter>
-                <EuiButton size="s" fullWidth onClick={this.addMoreSpaces} disabled={this.isListExtended()}>
+                <EuiButton
+                  size="s"
+                  fullWidth
+                  onClick={this.addMoreSpaces}
+                  disabled={this.isListExtended()}>
                   Add more spaces
                 </EuiButton>
               </EuiPopoverFooter>
