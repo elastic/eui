@@ -11,7 +11,7 @@ declare module '@elastic/eui' {
 
   type TAB_DISPLAYS = 'default' | 'condensed';
 
-  type EuiTabProps = {
+  interface EuiTabProps {
     onClick: MouseEventHandler<HTMLButtonElement>;
     isSelected?: boolean;
     disabled?: boolean;
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
     size?: TAB_SIZES;
     display?: TAB_DISPLAYS;
     expand?: boolean;
-  };
+  }
 
   export const EuiTab: FunctionComponent<
     EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>

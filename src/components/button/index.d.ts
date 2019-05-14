@@ -6,7 +6,6 @@ import {
   FunctionComponent,
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
-  ChangeEventHandler,
   MouseEventHandler,
   HTMLAttributes,
 } from 'react';

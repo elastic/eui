@@ -28,7 +28,7 @@ export default () => (
     height={200}
     stackBy="x"
     orientation={EuiSeriesChartUtils.ORIENTATION.HORIZONTAL}>
-    <EuiHistogramSeries name={`Tag A`} data={dataA} stack={true} />
-    <EuiHistogramSeries name={`Tag B`} data={dataB} stack={true} />
+    <EuiHistogramSeries name={'Tag A'} data={dataA} stack={true} />
+    <EuiHistogramSeries name={'Tag B'} data={dataB} stack={true} />
   </EuiSeriesChart>
 );

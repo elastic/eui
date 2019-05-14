@@ -1,12 +1,7 @@
 import { CommonProps } from '../common';
 /// <reference path="../button/index.d.ts" />
 
-import {
-  Component,
-  FunctionComponent,
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-} from 'react';
+import { Component, FunctionComponent, ButtonHTMLAttributes } from 'react';
 
 import { EuiFilterGroupProps } from './filter_group';
 

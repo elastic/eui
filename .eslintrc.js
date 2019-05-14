@@ -1,5 +1,10 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
   settings: {
     "import/resolver": {
        node: {
@@ -28,7 +33,7 @@ module.exports = {
   ],
   rules: {
     "prefer-template": "error",
-    "local/i18n": "error"
+    "local/i18n": "error",
     "no-use-before-define": "off",
     "quotes": ["warn", "single", "avoid-escape"],
 
@@ -37,13 +42,14 @@ module.exports = {
     "@typescript-eslint/class-name-casing": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/no-triple-slash-reference": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-use-before-define": "off",
   },
   env: {
     jest: true

@@ -40,7 +40,7 @@ export default () => (
         <EuiPanel>
           <EuiIcon type={reactSvg} size="xl" />
           <EuiText size="s">
-            <p>{`{reactSvg}`}</p>
+            <p>{'{reactSvg}'}</p>
           </EuiText>
         </EuiPanel>
       </EuiFlexItem>
@@ -64,7 +64,7 @@ export default () => (
         </EuiButton>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButton iconType={reactSvg}>{`{reactSvg}`}</EuiButton>
+        <EuiButton iconType={reactSvg}>{'{reactSvg}'}</EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
   </div>

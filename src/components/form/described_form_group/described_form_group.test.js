@@ -34,7 +34,7 @@ describe('EuiDescribedFormGroup', () => {
       label: 'Label',
       helpText: 'Help text',
       isInvalid: true,
-      error: [`Error one`, `Error two`],
+      error: ['Error one', 'Error two'],
       describedByIds: ['test-id'],
     };
 

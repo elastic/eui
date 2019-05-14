@@ -7,20 +7,12 @@ import { CommonProps } from '../common';
 export interface EuiHeaderLogoProps {
   href?: string;
   iconType?: IconType;
-  iconTitle?: string;
   children?: ReactNode;
 }
 
 export const EuiHeaderLogo: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLAnchorElement> & EuiHeaderLogoProps
-> = ({
-  iconType = 'logoElastic',
-  iconTitle = 'Elastic',
-  href,
-  children,
-  className,
-  ...rest
-}) => {
+> = ({ iconType = 'logoElastic', href, children, className, ...rest }) => {
   const classes = classNames('euiHeaderLogo', className);
 
   return (

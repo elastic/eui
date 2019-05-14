@@ -24,12 +24,12 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
-const iconsSnippet = `<EuiIcon type="alert" />`;
+const iconsSnippet = '<EuiIcon type="alert" />';
 
 import Tokens from './tokens';
 const tokensSource = require('!!raw-loader!./tokens');
 const tokensSnippet = [
-  `<EuiToken type="tokenAnnotation" />`,
+  '<EuiToken type="tokenAnnotation" />',
   `<EuiToken
   iconType="visMapCoordinate"
   displayOptions={{
@@ -50,29 +50,29 @@ const tokensSnippet = [
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
-const appsSnippet = `<EuiIcon type="addDataApp" size="xl" />`;
+const appsSnippet = '<EuiIcon type="addDataApp" size="xl" />';
 
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
-const mlSnippet = `<EuiIcon type="dataVisualizer" size="xl" />`;
+const mlSnippet = '<EuiIcon type="dataVisualizer" size="xl" />';
 
 import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
-const logosSnippet = `<EuiIcon type="logoElasticsearch" size="xl" />`;
+const logosSnippet = '<EuiIcon type="logoElasticsearch" size="xl" />';
 
 import LogosThird from './logos_third';
 const logosThirdSource = require('!!raw-loader!./logos_third');
-const logosThirdSnippet = `<EuiIcon type="logoApache" size="xl" />`;
+const logosThirdSnippet = '<EuiIcon type="logoApache" size="xl" />';
 
 import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
-const iconSizesSnippet = `<EuiIcon type="logoElasticStack" size="xl" />`;
+const iconSizesSnippet = '<EuiIcon type="logoElasticStack" size="xl" />';
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
-  `<EuiIcon type="brush" color="primary" />`,
-  `<EuiIcon type="brush" color="#F98510" />`,
+  '<EuiIcon type="brush" color="primary" />',
+  '<EuiIcon type="brush" color="#F98510" />',
 ];
 
 import Accessibility from './accessibility';
@@ -81,10 +81,10 @@ const accessibilitySource = require('!!raw-loader!./accessibility');
 import IconTypes from './icon_types';
 const iconTypesSource = require('!!raw-loader!./icon_types');
 const iconTypesSnippet = [
-  `<EuiIcon type="logoElastic" size="xl" />`,
-  `<EuiIcon type={reactSVGElement} size="xl" />`,
-  `<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />`,
-  `<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>`,
+  '<EuiIcon type="logoElastic" size="xl" />',
+  '<EuiIcon type={reactSVGElement} size="xl" />',
+  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />',
+  '<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>',
 ];
 
 export const IconExample = {
@@ -98,60 +98,6 @@ export const IconExample = {
           enumerated name from one of the sets below, a location to a custom SVG
           asset, or a React Element.
         </p>
-      ),
-      demo: <Apps />,
-    },
-    {
-      title: 'Tokens',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: tokensSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            Tokens are most commonly used in search to help visually classify
-            results. The tokens included in EUI can be used to identify a number
-            of code-based search results.
-          </p>
-
-          <p>
-            An <EuiCode>EuiToken</EuiCode> accepts any valid{' '}
-            <EuiCode>EuiIcon</EuiCode> as its
-            <EuiCode>iconType</EuiCode> property. However, icons designed
-            specifically for use in the <EuiCode>EuiToken</EuiCode> are prefixed
-            with &quot;token&quot; in their name.
-          </p>
-
-          <p>
-            Multiple variants are available including: <EuiCode>shape</EuiCode>,{' '}
-            <EuiCode>size</EuiCode>,<EuiCode>color</EuiCode>,{' '}
-            <EuiCode>hideBorder</EuiCode>, and <EuiCode>fill</EuiCode>.
-          </p>
-        </div>
-      ),
-      props: { EuiToken },
-      demo: <Tokens />,
-    },
-    {
-      title: 'Machine learning icons',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: mlSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: iconsHtml,
-        },
-      ],
-      text: (
         <p>
           When using custom SVGs please{' '}
           <strong>remove all fill attributes</strong> on the SVG and utilize the

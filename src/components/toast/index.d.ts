@@ -21,10 +21,10 @@ declare module '@elastic/eui' {
   export interface EuiToastProps
     extends CommonProps,
       HTMLAttributes<HTMLDivElement> {
-    title?: string,
-    color?: 'primary' | 'success' | 'warning' | 'danger',
-    iconType?: IconType,
-    onClose?: () => void,
+    title?: string;
+    color?: 'primary' | 'success' | 'warning' | 'danger';
+    iconType?: IconType;
+    onClose?: () => void;
   }
 
   export const EuiToast: FunctionComponent<EuiToastProps>;

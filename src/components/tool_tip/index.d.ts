@@ -32,5 +32,7 @@ declare module '@elastic/eui' {
     iconProps?: Omit<PropsOf<EuiIcon>, 'type'> & { type?: never };
   }
 
-  export const EuiIconTip: FunctionComponent<Omit<EuiToolTipProps, 'children'> & EuiIconTipProps>;
+  export const EuiIconTip: FunctionComponent<
+    Omit<EuiToolTipProps, 'children'> & EuiIconTipProps
+  >;
 }

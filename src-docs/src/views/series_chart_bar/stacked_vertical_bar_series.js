@@ -54,8 +54,8 @@ export default class extends Component {
           height={200}
           xType={SCALE.ORDINAL}
           stackBy={stacked ? 'y' : null}>
-          <EuiBarSeries name={`Tag A`} data={dataA} />
-          <EuiBarSeries name={`Tag B`} data={dataB} />
+          <EuiBarSeries name={'Tag A'} data={dataA} />
+          <EuiBarSeries name={'Tag B'} data={dataB} />
         </EuiSeriesChart>
       </Fragment>
     );

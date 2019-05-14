@@ -5,19 +5,19 @@ import { Granularity } from './date_format';
 import { astToEsQueryDsl } from './ast_to_es_query_dsl';
 
 describe('astToEsQueryDsl', () => {
-  test(`ast - ''`, () => {
+  test("ast - ''", () => {
     const query = astToEsQueryDsl(AST.create([]));
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - 'john -sales'`, () => {
+  test("ast - 'john -sales'", () => {
     const query = astToEsQueryDsl(
       AST.create([AST.Term.must('john'), AST.Term.mustNot('sales')])
     );
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - '-group:es group:kibana -group:beats group:logstash'`, () => {
+  test("ast - '-group:es group:kibana -group:beats group:logstash'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Field.mustNot.eq('group', 'es'),
@@ -29,7 +29,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - 'is:online group:kibana john'`, () => {
+  test("ast - 'is:online group:kibana john'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Is.must('online'),
@@ -40,7 +40,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - 'john -doe is:online group:eng group:es -group:kibana -is:active'`, () => {
+  test("ast - 'john -doe is:online group:eng group:es -group:kibana -is:active'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Term.must('john'),
@@ -55,7 +55,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - 'john group:(eng or es) -group:kibana'`, () => {
+  test("ast - 'john group:(eng or es) -group:kibana'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Term.must('john'),
@@ -66,7 +66,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - 'john group:(eng or "marketing org") -group:"kibana team"`, () => {
+  test('ast - \'john group:(eng or "marketing org") -group:"kibana team"', () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Term.must('john'),
@@ -77,12 +77,12 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - count>3`, () => {
+  test('ast - count>3', () => {
     const query = astToEsQueryDsl(AST.create([AST.Field.must.gt('count', 3)]));
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - -count<=4 size<5 age>=3 -number>9`, () => {
+  test('ast - -count<=4 size<5 age>=3 -number>9', () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Field.mustNot.lte('count', 4),
@@ -94,7 +94,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - date>='2004-03-22'`, () => {
+  test("ast - date>='2004-03-22'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Field.must.gte(
@@ -106,7 +106,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - date:'2004-03' -date<'2004-03-10'`, () => {
+  test("ast - date:'2004-03' -date<'2004-03-10'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Field.must.eq(
@@ -122,7 +122,7 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
-  test(`ast - date>'2004-02' -otherDate>='2004-03-10'`, () => {
+  test("ast - date>'2004-02' -otherDate>='2004-03-10'", () => {
     const query = astToEsQueryDsl(
       AST.create([
         AST.Field.must.gt(
