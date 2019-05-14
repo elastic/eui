@@ -47,13 +47,12 @@ export class EuiRange extends Component {
       showValue,
       valueAppend,
       valuePrepend,
+      onChange,
       value,
       style,
       tabIndex,
       ...rest
     } = this.props;
-
-    delete rest.onChange;
 
     const classes = classNames('euiRange', className);
     const digitTolerance = Math.max(String(min).length, String(max).length);

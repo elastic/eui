@@ -35,9 +35,7 @@ export class EuiWrappingPopover extends Component {
   };
 
   render() {
-    const { ...rest } = this.props;
-
-    delete rest.button;
+    const { button, ...rest } = this.props;
 
     return (
       <EuiPortal

@@ -213,15 +213,16 @@ export class EuiGlobalToastList extends Component {
   }
 
   render() {
-    const { className, toasts, ...rest } = this.props;
-
-    delete rest.dismissToast;
-    delete rest.toastLifeTimeMs;
+    const {
+      className,
+      toasts,
+      dismissToast,
+      toastLifeTimeMs,
+      ...rest
+    } = this.props;
 
     const renderedToasts = toasts.map(toast => {
-      const { text, ...rest } = toast;
-
-      delete rest.toastLifeTimeMs;
+      const { text, toastLifeTimeMs, ...rest } = toast;
 
       return (
         <EuiGlobalToastListItem

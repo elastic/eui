@@ -398,12 +398,11 @@ export class EuiPopover extends Component {
       panelPaddingSize,
       popoverRef,
       hasArrow,
+      repositionOnScroll,
+      zIndex,
+      initialFocus,
       ...rest
     } = this.props;
-
-    delete rest.repositionOnScroll;
-    delete rest.zIndex;
-    delete rest.initialFocus;
 
     const classes = classNames(
       'euiPopover',

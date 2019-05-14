@@ -30,9 +30,9 @@ export class EuiCopy extends React.Component {
   render() {
     const {
       children,
-      textToCopy, // eslint-disable-line @typescript-eslint/no-unused-vars
-      beforeMessage, // eslint-disable-line @typescript-eslint/no-unused-vars
-      afterMessage, // eslint-disable-line @typescript-eslint/no-unused-vars
+      textToCopy,
+      beforeMessage,
+      afterMessage,
       ...rest
     } = this.props;
 

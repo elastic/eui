@@ -51,10 +51,9 @@ export class EuiConfirmModal extends Component {
       confirmButtonDisabled,
       className,
       buttonColor,
+      defaultFocusedButton,
       ...rest
     } = this.props;
-
-    delete rest.defaultFocusedButton;
 
     const classes = classnames('euiModal--confirmation', className);
 

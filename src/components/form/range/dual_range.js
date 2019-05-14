@@ -238,13 +238,12 @@ export class EuiDualRange extends Component {
       tickInterval,
       ticks,
       levels,
+      onChange,
       showRange,
       value,
       style,
       ...rest
     } = this.props;
-
-    delete rest.onChange;
 
     const classes = classNames('euiDualRange', className);
     const digitTolerance = Math.max(String(min).length, String(max).length);

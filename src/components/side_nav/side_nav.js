@@ -36,10 +36,9 @@ export class EuiSideNav extends Component {
         icon,
         onClick,
         href,
+        forceOpen,
         ...rest
       } = item;
-
-      delete rest.forceOpen;
 
       // Root items are always open.
       const isOpen = depth === 0 ? true : this.isItemOpen(item);
@@ -76,6 +75,8 @@ export class EuiSideNav extends Component {
       toggleOpenOnMobile,
       isOpenOnMobile,
       mobileTitle,
+      // Extract this one out so it isn't passed to <nav>
+      renderItem,
       ...rest
     } = this.props;
 

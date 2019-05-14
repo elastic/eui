@@ -18,6 +18,7 @@ export class EuiSwitch extends Component {
   render() {
     const {
       label,
+      id,
       name,
       checked,
       disabled,
@@ -26,8 +27,6 @@ export class EuiSwitch extends Component {
       className,
       ...rest
     } = this.props;
-
-    delete rest.id;
 
     const { switchId } = this.state;
 

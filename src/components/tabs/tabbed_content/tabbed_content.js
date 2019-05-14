@@ -77,16 +77,13 @@ export class EuiTabbedContent extends Component {
       className,
       display,
       expand,
-      initialSelectedTab, // eslint-disable-line no-unused-vars
-      onTabClick, // eslint-disable-line no-unused-vars
+      initialSelectedTab,
+      onTabClick,
       selectedTab: externalSelectedTab,
       size,
       tabs,
       ...rest
     } = this.props;
-
-    delete rest.onTabClick;
-    delete rest.initialSelectedTab;
 
     // Allow the consumer to control tab selection.
     const selectedTab =

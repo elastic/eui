@@ -262,9 +262,11 @@ export class EuiSelectable extends Component<
 
   render() {
     const {
+      id,
       children,
       className,
       options,
+      onChange,
       searchable,
       searchProps,
       singleSelection,
@@ -275,9 +277,6 @@ export class EuiSelectable extends Component<
       allowExclusions,
       ...rest
     } = this.props;
-
-    delete rest.id;
-    delete rest.onChange;
 
     const { searchValue, visibleOptions, activeOptionIndex } = this.state;
 

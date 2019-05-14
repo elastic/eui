@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ButtonHTMLAttributes } from 'react';
+import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, IconType, IconColor } from '../../icon';
@@ -37,72 +37,81 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     append?: React.ReactNode;
   };
 
-const EuiSelectableListItem: FunctionComponent<
+// eslint-disable-next-line react/prefer-stateless-function
+export class EuiSelectableListItem extends Component<
   EuiSelectableListItemProps
-> = props => {
-  const {
-    children,
-    className,
-    disabled,
-    checked,
-    isFocused,
-    showIcons = true,
-    prepend,
-    append,
-    ...rest
-  } = props;
+> {
+  static defaultProps = {
+    showIcons: true,
+  };
 
-  const classes = classNames(
-    'euiSelectableListItem',
-    {
-      'euiSelectableListItem-isFocused': isFocused,
-    },
-    className
-  );
-
-  let buttonIcon: React.ReactNode;
-  if (showIcons) {
-    const { icon, color } = resolveIconAndColor(checked);
-    buttonIcon = (
-      <EuiIcon
-        className="euiSelectableListItem__icon"
-        color={color}
-        type={icon}
-      />
-    );
+  constructor(props: EuiSelectableListItemProps) {
+    super(props);
   }
 
-  let prependNode: React.ReactNode;
-  if (prepend) {
-    prependNode = (
-      <span className="euiSelectableListItem__prepend">{prepend}</span>
+  render() {
+    const {
+      children,
+      className,
+      disabled,
+      checked,
+      isFocused,
+      showIcons,
+      prepend,
+      append,
+      ...rest
+    } = this.props;
+
+    const classes = classNames(
+      'euiSelectableListItem',
+      {
+        'euiSelectableListItem-isFocused': isFocused,
+      },
+      className
+    );
+
+    let buttonIcon: React.ReactNode;
+    if (showIcons) {
+      const { icon, color } = resolveIconAndColor(checked);
+      buttonIcon = (
+        <EuiIcon
+          className="euiSelectableListItem__icon"
+          color={color}
+          type={icon}
+        />
+      );
+    }
+
+    let prependNode: React.ReactNode;
+    if (prepend) {
+      prependNode = (
+        <span className="euiSelectableListItem__prepend">{prepend}</span>
+      );
+    }
+
+    let appendNode: React.ReactNode;
+    if (append) {
+      appendNode = (
+        <span className="euiSelectableListItem__append">{append}</span>
+      );
+    }
+
+    return (
+      <button
+        role="option"
+        type="button"
+        aria-selected={isFocused}
+        className={classes}
+        disabled={disabled}
+        aria-disabled={disabled}
+        {...rest}>
+        <span className="euiSelectableListItem__content">
+          {buttonIcon}
+          {prependNode}
+          <span className="euiSelectableListItem__text">{children}</span>
+          {appendNode}
+        </span>
+      </button>
     );
   }
-
-  let appendNode: React.ReactNode;
-  if (append) {
-    appendNode = (
-      <span className="euiSelectableListItem__append">{append}</span>
-    );
-  }
-
-  return (
-    <button
-      role="option"
-      type="button"
-      aria-selected={isFocused}
-      className={classes}
-      disabled={disabled}
-      aria-disabled={disabled}
-      {...rest}>
-      <span className="euiSelectableListItem__content">
-        {buttonIcon}
-        {prependNode}
-        <span className="euiSelectableListItem__text">{children}</span>
-        {appendNode}
-      </span>
-    </button>
-  );
-};
-
-export default EuiSelectableListItem;
+}

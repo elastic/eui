@@ -26,8 +26,7 @@ export class EuiOverlayMask extends Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    const { className, onClick, ...rest } = this.props;
-    delete rest.children;
+    const { className, children, onClick, ...rest } = this.props;
 
     this.overlayMaskNode = document.createElement('div');
     this.overlayMaskNode.className = classNames('euiOverlayMask', className);

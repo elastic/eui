@@ -63,10 +63,7 @@ export class EuiSelectableSearch extends Component<
   };
 
   render() {
-    const { className, defaultValue, ...rest } = this.props;
-
-    delete rest.onChange;
-    delete rest.options;
+    const { className, onChange, options, defaultValue, ...rest } = this.props;
 
     const classes = classNames('euiSelectableSearch', className);
 
