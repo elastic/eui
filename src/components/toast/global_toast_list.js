@@ -251,6 +251,8 @@ export class EuiGlobalToastList extends Component {
           this.listElement = element;
         }}
         className={classes}
+        role="region"
+        aria-live="polite"
         {...rest}>
         {renderedToasts}
       </div>
