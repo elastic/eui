@@ -1,10 +1,14 @@
+/* eslint-disable import/no-unresolved */
+// @ts-ignore
 import { EuiFacetButton } from '@elastic/eui/lib/components/facet/facet_button.js';
 import {
   COLORS,
   EuiIcon,
   SIZES,
   TYPES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/icon/icon.js';
+/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -60,7 +64,7 @@ export class FacetButton extends React.Component<Props> {
       type: ControlType.Enum,
       options: TYPES,
       title: '↳ icon',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -68,7 +72,7 @@ export class FacetButton extends React.Component<Props> {
       type: ControlType.Enum,
       options: SIZES,
       title: '↳ iconSize',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -76,7 +80,7 @@ export class FacetButton extends React.Component<Props> {
       type: ControlType.Enum,
       options: COLORS,
       title: '↳ iconColor',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },

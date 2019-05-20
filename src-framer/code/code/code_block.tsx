@@ -1,8 +1,12 @@
+/* eslint-disable import/no-unresolved */
 import {
   FONT_SIZES,
   PADDING_SIZES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/code/_code_block.js';
+// @ts-ignore
 import { EuiCodeBlock } from '@elastic/eui/lib/components/code/code_block.js';
+/* eslint-enable import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import React from 'react';
 

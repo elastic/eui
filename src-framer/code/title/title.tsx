@@ -2,7 +2,8 @@ import {
   EuiTitle,
   TEXT_TRANSFORM,
   TITLE_SIZES,
-} from '@elastic/eui/lib/components/title/title';
+  // @ts-ignore
+} from '@elastic/eui/lib/components/title/title'; // eslint-disable-line import/no-unresolved
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 import { FrameSize } from '../_framer_helpers/frame_size';

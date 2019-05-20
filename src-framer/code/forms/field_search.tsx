@@ -1,5 +1,9 @@
+/* eslint-disable import/no-unresolved */
+// @ts-ignore
 import { EuiFieldSearch } from '@elastic/eui/lib/components/form/field_search/field_search.js';
+// @ts-ignore
 import { EuiFormRow } from '@elastic/eui/lib/components/form/form_row/form_row.js';
+/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
@@ -35,14 +39,14 @@ export class FieldSearch extends React.Component<Props> {
     formRowLabel: {
       type: ControlType.String,
       title: 'label',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },
     formRowHelpText: {
       type: ControlType.String,
       title: 'helpText',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },
