@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.4.1`.
+
+## [`10.4.1`](https://github.com/elastic/eui/tree/v10.4.1)
+
 **Note: this release is a backport containing changes originally made in `11.1.0`**
 
 - Replaced `appSecurityAnalytics` in `EuiIcon` with an updated SVG ([#1948](https://github.com/elastic/eui/pull/1948))
