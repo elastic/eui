@@ -4,6 +4,7 @@
 - Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
 - Added width to `EuiFlexItem` when gutter in `EuiFlexGrid` is set to none. ([#1941](https://github.com/elastic/eui/pull/1941))
 - Format all JavaScript files with Prettier through ESLint ([#1906](https://github.com/elastic/eui/pull/1906))
+- Replaced `appSecurityAnalytics` in `EuiIcon` with an updated SVG ([#1948](https://github.com/elastic/eui/pull/1948))
 
 **Bug fixes**
 
