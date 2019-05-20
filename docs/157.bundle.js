@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[157],{
 
 /***/ "../../src/components/icon/assets/logo_elasticsearch.js":
-/*!*****************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_elasticsearch.js ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_elasticsearch.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
