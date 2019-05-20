@@ -35,6 +35,12 @@ No public interface changes since `11.1.0`.
 
 - Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
 
+## [`10.4.1`](https://github.com/elastic/eui/tree/v10.4.1)
+
+**Note: this release is a backport containing changes originally made in `11.1.0`**
+
+- Replaced `appSecurityAnalytics` in `EuiIcon` with an updated SVG ([#1948](https://github.com/elastic/eui/pull/1948))
+
 ## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
 
 - Added `display` prop to `EuiTabs` and `EuiTabbedContent` components for ability to use an alternative `condensed` style ([#1904](https://github.com/elastic/eui/pull/1904))
