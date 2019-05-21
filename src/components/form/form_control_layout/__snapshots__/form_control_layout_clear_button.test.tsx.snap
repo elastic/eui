@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
+<button
+  aria-label="Clear input"
+  class="euiFormControlLayoutClearButton customClass"
+  data-test-subj="clearButton"
+  type="button"
+>
+  <svg
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutClearButton__icon"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</button>
+`;
