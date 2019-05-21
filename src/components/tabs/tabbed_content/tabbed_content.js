@@ -118,8 +118,7 @@ export class EuiTabbedContent extends Component {
         <div
           role="tabpanel"
           id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}
-        >
+          aria-labelledby={selectedTabId}>
           {selectedTabContent}
         </div>
       </div>

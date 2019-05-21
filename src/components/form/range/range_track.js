@@ -11,28 +11,44 @@ import { EuiRangeTicks } from './range_ticks';
 export { LEVEL_COLORS };
 
 export class EuiRangeTrack extends Component {
-  validateValueIsInStep = (value) => {
+  validateValueIsInStep = value => {
     if (value < this.props.min) {
-      throw new Error(`The value of ${value} is lower than the min value of ${this.props.min}.`);
+      throw new Error(
+        `The value of ${value} is lower than the min value of ${
+          this.props.min
+        }.`
+      );
     }
     if (value > this.props.max) {
-      throw new Error(`The value of ${value} is higher than the max value of ${this.props.max}.`);
+      throw new Error(
+        `The value of ${value} is higher than the max value of ${
+          this.props.max
+        }.`
+      );
     }
     // Error out if the value doesn't line up with the sequence of steps
-    if (!isEvenlyDivisibleBy(value - this.props.min, this.props.step !== undefined ? this.props.step : 1)) {
-      throw new Error(`The value of ${value} is not included in the possible sequence provided by the step of ${this.props.step}.`);
+    if (
+      !isEvenlyDivisibleBy(
+        value - this.props.min,
+        this.props.step !== undefined ? this.props.step : 1
+      )
+    ) {
+      throw new Error(
+        `The value of ${value} is not included in the possible sequence provided by the step of ${
+          this.props.step
+        }.`
+      );
     }
     // Return the value if nothing fails
     return value;
-  }
-
+  };
 
   calculateSequence = (min, max, interval) => {
     // Loop from min to max, creating adding values at each interval
     // (adds a very small number to the max since `range` is not inclusive of the max value)
-    const toBeInclusive = .000000001;
+    const toBeInclusive = 0.000000001;
     return range(min, max + toBeInclusive, interval);
-  }
+  };
 
   calculateTicks = (min, max, step, tickInterval, customTicks) => {
     let ticks;
@@ -56,11 +72,15 @@ export class EuiRangeTrack extends Component {
 
     // Error out if there are too many ticks to render
     if (ticks.length > 20) {
-      throw new Error(`The number of ticks to render is too high (${ticks.length}), reduce the interval.`);
+      throw new Error(
+        `The number of ticks to render is too high (${
+          ticks.length
+        }), reduce the interval.`
+      );
     }
 
     return ticks;
-  }
+  };
 
   render() {
     const {
@@ -74,7 +94,7 @@ export class EuiRangeTrack extends Component {
       ticks,
       levels,
       onChange,
-      value
+      value,
     } = this.props;
 
     // TODO: Move these to only re-calculate if no-value props have changed
@@ -88,18 +108,19 @@ export class EuiRangeTrack extends Component {
       // Calculate if any extra margin should be added to the inputWrapper
       // because of longer tick labels on the ends
       const lengthOfMinLabel = String(tickSequence[0]).length;
-      const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1]).length;
+      const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1])
+        .length;
       const isLastTickTheMax = tickSequence[tickSequence.length - 1] === max;
       if (lengthOfMinLabel > 2) {
-        inputWrapperStyle.marginLeft = `${(lengthOfMinLabel / 5)}em`;
+        inputWrapperStyle.marginLeft = `${lengthOfMinLabel / 5}em`;
       }
       if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
-        inputWrapperStyle.marginRight = `${(lenghtOfMaxLabel / 5)}em`;
+        inputWrapperStyle.marginRight = `${lenghtOfMaxLabel / 5}em`;
       }
     }
 
     const trackClasses = classNames('euiRangeTrack', {
-      'euiRangeTrack--disabled': disabled
+      'euiRangeTrack--disabled': disabled,
     });
 
     return (
@@ -137,7 +158,9 @@ EuiRangeTrack.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
   ]),
   showTicks: PropTypes.bool,
   tickInterval: PropTypes.number,
@@ -145,7 +168,7 @@ EuiRangeTrack.propTypes = {
     PropTypes.shape({
       value: PropTypes.number.isRequired,
       label: PropTypes.node.isRequired,
-    }),
+    })
   ),
   onChange: PropTypes.func,
   levels: PropTypes.arrayOf(
@@ -153,6 +176,6 @@ EuiRangeTrack.propTypes = {
       min: PropTypes.number,
       max: PropTypes.number,
       color: PropTypes.oneOf(LEVEL_COLORS),
-    }),
+    })
   ),
 };

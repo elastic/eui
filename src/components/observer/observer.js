@@ -35,11 +35,11 @@ class EuiObserver extends Component {
     if (this.childNode != null) {
       this.beginObserve();
     }
-  }
+  };
 
   beginObserve = () => {
     throw new Error('EuiObserver has no default observation method');
-  }
+  };
 
   render() {
     return this.props.children(this.updateChildNode);
@@ -47,7 +47,7 @@ class EuiObserver extends Component {
 }
 
 EuiObserver.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export { EuiObserver };

@@ -11,7 +11,9 @@ jest.mock('../form_control_layout', () => {
     EuiFormControlLayout: 'eui-form-control-layout',
   };
 });
-jest.mock('../validatable_control', () => ({ EuiValidatableControl: 'eui-validatable-control' }));
+jest.mock('../validatable_control', () => ({
+  EuiValidatableControl: 'eui-validatable-control',
+}));
 
 describe('EuiFieldText', () => {
   test('is rendered', () => {
@@ -28,43 +30,26 @@ describe('EuiFieldText', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test(`isInvalid is rendered`, () => {
-      const component = render(
-        <EuiFieldText
-          isInvalid
-        />
-      );
+      const component = render(<EuiFieldText isInvalid />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`fullWidth is rendered`, () => {
-      const component = render(
-        <EuiFieldText
-          fullWidth
-        />
-      );
+      const component = render(<EuiFieldText fullWidth />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test(`isLoading is rendered`, () => {
-      const component = render(
-        <EuiFieldText
-          isLoading
-        />
-      );
+      const component = render(<EuiFieldText isLoading />);
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });
-

@@ -6,23 +6,17 @@ import { EuiFacetGroup } from './facet_group';
 
 describe('EuiFacetGroup', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiFacetGroup {...requiredProps} />
-    );
+    const component = render(<EuiFacetGroup {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('layout', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiFacetGroup layout="horizontal" />
-        );
+        const component = render(<EuiFacetGroup layout="horizontal" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });

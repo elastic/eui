@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiSeriesChart, EuiBarSeries, EuiSeriesChartUtils } from '../../../../src/experimental';
+import {
+  EuiSeriesChart,
+  EuiBarSeries,
+  EuiSeriesChartUtils,
+} from '../../../../src/experimental';
 const { SCALE } = EuiSeriesChartUtils;
 const data = [
   { x: 'A', y: 3 },

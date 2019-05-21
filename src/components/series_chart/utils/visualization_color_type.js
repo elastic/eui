@@ -5,7 +5,12 @@ export function VisualizationColorType(props, propName) {
   }
   // TODO upgrade this to check all possible color string formats
   // using libs like colorjs
-  if (!(typeof color === 'string' || color instanceof String) || !color.startsWith('#')) {
-    return new Error('Color must be a valid hex color string in the form #RRGGBB');
+  if (
+    !(typeof color === 'string' || color instanceof String) ||
+    !color.startsWith('#')
+  ) {
+    return new Error(
+      'Color must be a valid hex color string in the form #RRGGBB'
+    );
   }
 }

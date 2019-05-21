@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiSeriesChart, EuiBarSeries, EuiSeriesChartUtils } from '../../../../src/experimental';
+import {
+  EuiSeriesChart,
+  EuiBarSeries,
+  EuiSeriesChartUtils,
+} from '../../../../src/experimental';
 
 const { SCALE, ORIENTATION } = EuiSeriesChartUtils;
 const data = [
@@ -15,8 +19,7 @@ export default () => (
     width={600}
     height={300}
     yType={SCALE.ORDINAL}
-    orientation={ORIENTATION.HORIZONTAL}
-  >
+    orientation={ORIENTATION.HORIZONTAL}>
     <EuiBarSeries name="Tag counts" data={data} />
   </EuiSeriesChart>
 );

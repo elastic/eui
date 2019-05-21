@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  render,
-  configure
-} from 'enzyme';
+import { render, configure } from 'enzyme';
 
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
@@ -22,7 +19,7 @@ export function renderToHtml(componentReference, props = {}) {
       indent_size: 2,
       unformatted: [], // Expand all tags, including spans
     });
-  } catch(e) {
+  } catch (e) {
     return '';
   }
 }

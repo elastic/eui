@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -50,14 +48,17 @@ export class EuiModal extends Component {
           // fallbackFocus won't work.
         }
         <div
-          ref={node => { this.modal = node; }}
+          ref={node => {
+            this.modal = node;
+          }}
           className={classes}
           onKeyDown={this.onKeyDown}
           tabIndex={0}
           style={newStyle || style}
-          {...rest}
-        >
-          <EuiI18n token="euiModal.closeModal" default="Closes this modal window">
+          {...rest}>
+          <EuiI18n
+            token="euiModal.closeModal"
+            default="Closes this modal window">
             {closeModal => (
               <EuiButtonIcon
                 iconType="cross"
@@ -68,9 +69,7 @@ export class EuiModal extends Component {
               />
             )}
           </EuiI18n>
-          <div className="euiModal__flex">
-            {children}
-          </div>
+          <div className="euiModal__flex">{children}</div>
         </div>
       </EuiFocusTrap>
     );

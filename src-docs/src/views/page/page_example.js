@@ -55,14 +55,16 @@ export const PageExample = {
       text: (
         <div>
           <p>
-            Page layouts are modular and have the ability to add or remove components as needed for
-            the design. These examples are colored for illustrative purposes only.
+            Page layouts are modular and have the ability to add or remove
+            components as needed for the design. These examples are colored for
+            illustrative purposes only.
           </p>
           <p>
-            By default, the entire page will always be 100% of the window&apos;s width; to max
-            out the typical width and center the page, set the <EuiCode>restrictWidth</EuiCode> prop
-            to <EuiCode>true</EuiCode>. You can also pass an integer to this property to max out the
-            width at a custom pixel value or a string with a custom measurement.
+            By default, the entire page will always be 100% of the window&apos;s
+            width; to max out the typical width and center the page, set the{' '}
+            <EuiCode>restrictWidth</EuiCode> prop to <EuiCode>true</EuiCode>.
+            You can also pass an integer to this property to max out the width
+            at a custom pixel value or a string with a custom measurement.
           </p>
         </div>
       ),
@@ -97,8 +99,9 @@ export const PageExample = {
       ],
       text: (
         <p>
-          Most pages don&rsquo;t have sidebars. A lot of our pages don&rsquo;t have extra abilities
-          next to the title. Simply exclude those components and everything will still line up.
+          Most pages don&rsquo;t have sidebars. A lot of our pages don&rsquo;t
+          have extra abilities next to the title. Simply exclude those
+          components and everything will still line up.
         </p>
       ),
       demo: (
@@ -140,8 +143,8 @@ export const PageExample = {
       ],
       text: (
         <p>
-          The page content can be optionally centered either vertically or horizontally. This is
-          useful for various empty states.
+          The page content can be optionally centered either vertically or
+          horizontally. This is useful for various empty states.
         </p>
       ),
       demo: (
@@ -164,8 +167,9 @@ export const PageExample = {
       ],
       text: (
         <p>
-          Centering the content can happen regardless of layout configuration. In this example,
-          we&rsquo;re centering within a complex sidebar layout.
+          Centering the content can happen regardless of layout configuration.
+          In this example, we&rsquo;re centering within a complex sidebar
+          layout.
         </p>
       ),
       demo: (

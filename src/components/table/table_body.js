@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const EuiTableBody = ({ children, className, bodyRef, ...rest }) => {
   return (
     <tbody className={className} ref={bodyRef} {...rest}>
-      { children }
+      {children}
     </tbody>
   );
 };

@@ -32,14 +32,14 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
-    guide: './index.js'
+    guide: './index.js',
   },
 
   context: __dirname,
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: `eui${isProduction ? '.min' : ''}.js`
+    filename: `eui${isProduction ? '.min' : ''}.js`,
   },
 
   resolve: {
@@ -48,37 +48,47 @@ module.exports = {
 
   // Specify where these libraries should be found
   externals: {
-    'moment': 'window.moment',
+    moment: 'window.moment',
     'prop-types': 'window.PropTypes',
-    'react': 'window.React',
-    'react-dom': 'window.ReactDOM'
+    react: 'window.React',
+    'react-dom': 'window.ReactDOM',
   },
 
   module: {
-    rules: [{
-      test: /\.(js|tsx?)$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
-      loader: 'file-loader',
-    }]
+    rules: [
+      {
+        test: /\.(js|tsx?)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
+        loader: 'file-loader',
+      },
+    ],
   },
 
-  plugins
+  plugins,
 };
 
 if (isProduction) {
-  const optimization = module.exports.optimization = module.exports.optimization || {};
+  const optimization = (module.exports.optimization =
+    module.exports.optimization || {});
   optimization.minimizer = [
     new UglifyJsPlugin({
       uglifyOptions: {
         sourceMap: true,
-      }
-    })
+      },
+    }),
   ];
 }

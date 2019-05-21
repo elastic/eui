@@ -10,76 +10,88 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [{
-      value: {
-        size: 5,
+    this.options = [
+      {
+        value: {
+          size: 5,
+        },
+        label: 'Titan',
+        'data-test-subj': 'titanOption',
+        color: 'primary',
       },
-      label: 'Titan',
-      'data-test-subj': 'titanOption',
-      color: 'primary',
-    }, {
-      value: {
-        size: 2,
+      {
+        value: {
+          size: 2,
+        },
+        label: 'Enceladus',
+        color: 'secondary',
       },
-      label: 'Enceladus',
-      color: 'secondary',
-    }, {
-      value: {
-        size: 15,
+      {
+        value: {
+          size: 15,
+        },
+        label: 'Mimas',
+        color: '#DB1374',
       },
-      label: 'Mimas',
-      color: '#DB1374',
-    }, {
-      value: {
-        size: 1,
+      {
+        value: {
+          size: 1,
+        },
+        label: 'Dione',
+        color: 'accent',
       },
-      label: 'Dione',
-      color: 'accent',
-    }, {
-      value: {
-        size: 8,
+      {
+        value: {
+          size: 8,
+        },
+        label: 'Iapetus',
+        color: 'primary',
+        color: 'warning',
       },
-      label: 'Iapetus',
-      color: 'primary',
-      color: 'warning',
-    }, {
-      value: {
-        size: 2,
+      {
+        value: {
+          size: 2,
+        },
+        label: 'Phoebe',
+        color: 'danger',
       },
-      label: 'Phoebe',
-      color: 'danger',
-    }, {
-      value: {
-        size: 33,
+      {
+        value: {
+          size: 33,
+        },
+        label: 'Rhea',
+        color: 'default',
       },
-      label: 'Rhea',
-      color: 'default',
-    }, {
-      value: {
-        size: 18,
+      {
+        value: {
+          size: 18,
+        },
+        label:
+          "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+        color: '#F98510',
       },
-      label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
-      color: '#F98510',
-    }, {
-      value: {
-        size: 9,
+      {
+        value: {
+          size: 9,
+        },
+        label: 'Tethys',
+        color: '#FEB6DB',
       },
-      label: 'Tethys',
-      color: '#FEB6DB',
-    }, {
-      value: {
-        size: 4,
+      {
+        value: {
+          size: 4,
+        },
+        label: 'Hyperion',
+        color: '#BFA180',
       },
-      label: 'Hyperion',
-      color: '#BFA180',
-    }];
+    ];
 
     this.state = {
       selectedOptions: [this.options[2], this.options[4]],
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });
@@ -102,9 +114,11 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (flattenedOptions.findIndex(option =>
-      option.label.trim().toLowerCase() === normalizedSearchValue
-    ) === -1) {
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
       this.options.push(newOption);
     }
 
@@ -119,9 +133,7 @@ export default class extends Component {
     return (
       <EuiHealth color={color}>
         <span className={contentClassName}>
-          <EuiHighlight search={searchValue}>
-            {label}
-          </EuiHighlight>
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
           &nbsp;
           <span>({value.size})</span>
         </span>

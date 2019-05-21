@@ -1,11 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
+
+## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
+
+- Converted `pretty_interval` to TS ([#1920](https://github.com/elastic/eui/pull/1920))
 - Converted `relative_options` to TS ([#1921](https://github.com/elastic/eui/pull/1921))
+- Added width to `EuiFlexItem` when gutter in `EuiFlexGrid` is set to none. ([#1941](https://github.com/elastic/eui/pull/1941))
+- Format all JavaScript files with Prettier through ESLint ([#1906](https://github.com/elastic/eui/pull/1906))
+- Replaced `appSecurityAnalytics` in `EuiIcon` with an updated SVG ([#1948](https://github.com/elastic/eui/pull/1948))
 
 **Bug fixes**
 
 - Removed unused prop enum of `l` in `EuiButton` ([#1936](https://github.com/elastic/eui/pull/1936))
 - Fixed `EuiSelect` browser event inconsistencies by normalizing `mouseup` propagation ([#1926](https://github.com/elastic/eui/pull/1926))
+- Removed `children` as a required prop for `EuiOverlayMask` ([#1937](https://github.com/elastic/eui/pull/1937))
 
 ## [`11.0.1`](https://github.com/elastic/eui/tree/v11.0.1)
 
@@ -25,6 +34,12 @@
 **Breaking changes**
 
 - Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
+
+## [`10.4.1`](https://github.com/elastic/eui/tree/v10.4.1)
+
+**Note: this release is a backport containing changes originally made in `11.1.0`**
+
+- Replaced `appSecurityAnalytics` in `EuiIcon` with an updated SVG ([#1948](https://github.com/elastic/eui/pull/1948))
 
 ## [`10.4.0`](https://github.com/elastic/eui/tree/v10.4.0)
 

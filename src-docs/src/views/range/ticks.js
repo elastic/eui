@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiRange,
@@ -28,9 +25,9 @@ export default class extends Component {
     });
   };
 
-  onDualChange = (value) => {
+  onDualChange = value => {
     this.setState({
-      dualValue: value
+      dualValue: value,
     });
   };
 
@@ -47,7 +44,9 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiTitle size="xxs"><h3>Custom tick interval</h3></EuiTitle>
+        <EuiTitle size="xxs">
+          <h3>Custom tick interval</h3>
+        </EuiTitle>
 
         <EuiSpacer size="l" />
 
@@ -63,7 +62,9 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiTitle size="xxs"><h3>Custom ticks object</h3></EuiTitle>
+        <EuiTitle size="xxs">
+          <h3>Custom ticks object</h3>
+        </EuiTitle>
 
         <EuiSpacer size="l" />
 

@@ -1,7 +1,3 @@
-export {
-  toggleTheme,
-} from './theme_actions';
+export { toggleTheme } from './theme_actions';
 
-export {
-  toggleLocale,
-} from './locale_actions';
+export { toggleLocale } from './locale_actions';

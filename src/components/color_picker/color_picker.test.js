@@ -6,12 +6,9 @@ import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 import { requiredProps, findTestSubject } from '../../test';
 
-jest.mock(
-  '../portal',
-  () => ({
-    EuiPortal: ({ children }) => children
-  })
-);
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }) => children,
+}));
 
 let onChange;
 
@@ -21,55 +18,35 @@ beforeEach(() => {
 
 test('renders EuiColorPicker', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={null}
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with an empty swatch when color is ""', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={''}
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color={''} {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with a color swatch when color is defined', () => {
   const colorPicker = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={'#ffffff'}
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color={'#ffffff'} {...requiredProps} />
   );
   expect(colorPicker).toMatchSnapshot();
 });
 
 test('popover color selector is not shown by default', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   const colorSelector = findTestSubject(colorPicker, 'colorPickerPopover');
@@ -105,7 +82,9 @@ test('popover color selector is hidden when the ESC key pressed', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', { keyCode: keyCodes.ESCAPE });
+  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
+    keyCode: keyCodes.ESCAPE,
+  });
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   sinon.assert.calledOnce(onBlurHandler);
 });
@@ -123,19 +102,19 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
   document.activeElement.blur();
-  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', { keyCode: keyCodes.ENTER });
-  expect(findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()).toEqual(document.activeElement);
+  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
+    keyCode: keyCodes.ENTER,
+  });
+  expect(
+    findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()
+  ).toEqual(document.activeElement);
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   sinon.assert.calledOnce(onBlurHandler);
 });
 
 test('Setting a new color calls onChange', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
@@ -149,11 +128,7 @@ test('Setting a new color calls onChange', () => {
 
 test('Clicking a swatch calls onChange', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
@@ -166,11 +141,7 @@ test('Clicking a swatch calls onChange', () => {
 
 test('default mode does redners child components', () => {
   const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      {...requiredProps}
-    />
+    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');

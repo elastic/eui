@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFlyout,
@@ -28,7 +26,7 @@ export class FlyoutLarge extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
@@ -39,27 +37,21 @@ export class FlyoutLarge extends Component {
   }
 
   render() {
-
     let flyout;
     if (this.state.isFlyoutVisible) {
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
           size="l"
-          aria-labelledby="flyoutLargeTitle"
-        >
+          aria-labelledby="flyoutLargeTitle">
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutLargeTitle">
-                A large flyout
-              </h2>
+              <h2 id="flyoutLargeTitle">A large flyout</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
-              <p>
-                The large flyout is very wide.
-              </p>
+              <p>The large flyout is very wide.</p>
             </EuiText>
           </EuiFlyoutBody>
         </EuiFlyout>
@@ -67,9 +59,7 @@ export class FlyoutLarge extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>
-          Show large flyout
-        </EuiButton>
+        <EuiButton onClick={this.showFlyout}>Show large flyout</EuiButton>
 
         {flyout}
       </div>

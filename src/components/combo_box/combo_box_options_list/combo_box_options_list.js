@@ -46,12 +46,12 @@ export class EuiComboBoxOptionsList extends Component {
     fullWidth: PropTypes.bool,
     activeOptionIndex: PropTypes.number,
     rootId: PropTypes.func.isRequired,
-  }
+  };
 
   static defaultProps = {
     rowHeight: 27, // row height of default option renderer
     'data-test-subj': '',
-  }
+  };
 
   updatePosition = () => {
     // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
@@ -75,9 +75,9 @@ export class EuiComboBoxOptionsList extends Component {
 
     // We don't compare matchingOptions because that will result in a loop.
     if (
-      searchValue !== this.props.searchValue
-      || options !== this.props.options
-      || selectedOptions !== this.props.selectedOptions
+      searchValue !== this.props.searchValue ||
+      options !== this.props.options ||
+      selectedOptions !== this.props.selectedOptions
     ) {
       this.updatePosition();
     }
@@ -91,7 +91,7 @@ export class EuiComboBoxOptionsList extends Component {
   listRef = node => {
     this.props.listRef(node);
     this.list = node;
-  }
+  };
 
   render() {
     const {
@@ -130,13 +130,19 @@ export class EuiComboBoxOptionsList extends Component {
             <EuiLoadingSpinner size="m" />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiI18n token="euiComboBoxOptionsList.loadingOptions" default="Loading options"/>
+            <EuiI18n
+              token="euiComboBoxOptionsList.loadingOptions"
+              default="Loading options"
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
       );
     } else if (searchValue && matchingOptions.length === 0) {
       if (onCreateOption) {
-        const selectedOptionForValue = getSelectedOptionForSearchValue(searchValue, selectedOptions);
+        const selectedOptionForValue = getSelectedOptionForSearchValue(
+          searchValue,
+          selectedOptions
+        );
         if (selectedOptionForValue) {
           // Disallow duplicate custom options.
           emptyStateContent = (
@@ -144,7 +150,9 @@ export class EuiComboBoxOptionsList extends Component {
               <EuiI18n
                 token="euiComboBoxOptionsList.alreadyAdded"
                 default="{label} has already been added"
-                values={{ label: <strong>{selectedOptionForValue.label}</strong> }}
+                values={{
+                  label: <strong>{selectedOptionForValue.label}</strong>,
+                }}
               />
             </p>
           );
@@ -154,7 +162,10 @@ export class EuiComboBoxOptionsList extends Component {
               <EuiI18n
                 token="euiComboBoxOptionsList.createCustomOption"
                 default="Hit {key} to add {searchValue} as a custom option"
-                values={{ key: <EuiCode>ENTER</EuiCode>, searchValue: <strong>{searchValue}</strong> }}
+                values={{
+                  key: <EuiCode>ENTER</EuiCode>,
+                  searchValue: <strong>{searchValue}</strong>,
+                }}
               />
             </p>
           );
@@ -173,13 +184,19 @@ export class EuiComboBoxOptionsList extends Component {
     } else if (!options.length) {
       emptyStateContent = (
         <p>
-          <EuiI18n token="euiComboBoxOptionsList.noAvailableOptions" default="There aren't any options available"/>
+          <EuiI18n
+            token="euiComboBoxOptionsList.noAvailableOptions"
+            default="There aren't any options available"
+          />
         </p>
       );
     } else if (areAllOptionsSelected) {
       emptyStateContent = (
         <p>
-          <EuiI18n token="euiComboBoxOptionsList.allOptionsSelected" default="You've selected all available options"/>
+          <EuiI18n
+            token="euiComboBoxOptionsList.allOptionsSelected"
+            default="You've selected all available options"
+          />
         </p>
       );
     }
@@ -188,9 +205,12 @@ export class EuiComboBoxOptionsList extends Component {
       <EuiText size="xs" className="euiComboBoxOptionsList__empty">
         {emptyStateContent}
       </EuiText>
-    ) : undefined;
+    ) : (
+      undefined
+    );
 
-    const numVisibleOptions = matchingOptions.length < 7 ? matchingOptions.length : 7;
+    const numVisibleOptions =
+      matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * rowHeight;
 
     const optionsList = (
@@ -215,9 +235,7 @@ export class EuiComboBoxOptionsList extends Component {
           if (isGroupLabelOption) {
             return (
               <div key={key} style={style}>
-                <EuiComboBoxTitle>
-                  {label}
-                </EuiComboBoxTitle>
+                <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
               </div>
             );
           }
@@ -233,10 +251,15 @@ export class EuiComboBoxOptionsList extends Component {
               id={rootId(`_option-${index}`)}
               title={label}
               showIcons={false}
-              {...rest}
-            >
-              {renderOption ? renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME) : (
-                <EuiHighlight search={searchValue} className={OPTION_CONTENT_CLASSNAME}>{label}</EuiHighlight>
+              {...rest}>
+              {renderOption ? (
+                renderOption(option, searchValue, OPTION_CONTENT_CLASSNAME)
+              ) : (
+                <EuiHighlight
+                  search={searchValue}
+                  className={OPTION_CONTENT_CLASSNAME}>
+                  {label}
+                </EuiHighlight>
               )}
             </EuiFilterSelectItem>
           );
@@ -244,9 +267,13 @@ export class EuiComboBoxOptionsList extends Component {
       />
     );
 
-    const classes = classNames('euiComboBoxOptionsList', positionToClassNameMap[position], {
-      'euiComboBoxOptionsList--fullWidth': fullWidth,
-    });
+    const classes = classNames(
+      'euiComboBoxOptionsList',
+      positionToClassNameMap[position],
+      {
+        'euiComboBoxOptionsList--fullWidth': fullWidth,
+      }
+    );
 
     return (
       <EuiPanel
@@ -254,8 +281,7 @@ export class EuiComboBoxOptionsList extends Component {
         className={classes}
         panelRef={this.listRef}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
-        {...rest}
-      >
+        {...rest}>
         <div className="euiComboBoxOptionsList__rowWrap">
           {emptyState || optionsList}
         </div>

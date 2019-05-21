@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiHeader,
@@ -22,11 +20,8 @@ export default class extends Component {
   render() {
     return (
       <EuiHeader>
-
         <EuiHeaderSectionItem border="right">
-          <EuiHeaderLogo href="#">
-            Product
-          </EuiHeaderLogo>
+          <EuiHeaderLogo href="#">Product</EuiHeaderLogo>
         </EuiHeaderSectionItem>
 
         <EuiHeaderLinks>
@@ -34,15 +29,12 @@ export default class extends Component {
             Docs
           </EuiHeaderLink>
 
-          <EuiHeaderLink href="#">
-            Code
-          </EuiHeaderLink>
+          <EuiHeaderLink href="#">Code</EuiHeaderLink>
 
           <EuiHeaderLink iconType="help" href="#">
             Help
           </EuiHeaderLink>
         </EuiHeaderLinks>
-
       </EuiHeader>
     );
   }

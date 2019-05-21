@@ -10,7 +10,6 @@ describe('EuiImage', () => {
       <EuiImage alt="alt" size="l" {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

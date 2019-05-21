@@ -4,10 +4,7 @@ import classNames from 'classnames';
 
 import { EuiToolTip } from '../../tool_tip';
 
-import {
-  IconPropType,
-  EuiIcon,
-} from '../../icon';
+import { IconPropType, EuiIcon } from '../../icon';
 
 export const EuiBetaBadge = ({
   className,
@@ -16,9 +13,8 @@ export const EuiBetaBadge = ({
   tooltipPosition,
   title,
   iconType,
-  ...rest,
+  ...rest
 }) => {
-
   const classes = classNames(
     'euiBetaBadge',
     {
@@ -44,23 +40,15 @@ export const EuiBetaBadge = ({
       <EuiToolTip
         position={tooltipPosition}
         content={tooltipContent}
-        title={title || label}
-      >
-        <span
-          className={classes}
-          {...rest}
-        >
+        title={title || label}>
+        <span className={classes} {...rest}>
           {icon || label}
         </span>
       </EuiToolTip>
     );
   } else {
     return (
-      <span
-        className={classes}
-        title={title || label}
-        {...rest}
-      >
+      <span className={classes} title={title || label} {...rest}>
         {icon || label}
       </span>
     );

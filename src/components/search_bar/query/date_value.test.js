@@ -4,7 +4,6 @@ import { Random } from '../../../services/random';
 const random = new Random();
 
 describe('date value', () => {
-
   test('dateValueParser', () => {
     const date = random.moment().utc();
     const parse = jest.fn();
@@ -17,6 +16,4 @@ describe('date value', () => {
     expect(isDateValue(value)).toBe(true);
     expect(value.resolve().isSame(date)).toBe(true);
   });
-
-
 });

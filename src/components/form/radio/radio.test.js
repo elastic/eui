@@ -10,45 +10,40 @@ describe('EuiRadio', () => {
       <EuiRadio id="id" onChange={() => {}} {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('checked is rendered', () => {
       const component = render(
-        <EuiRadio id="id" onChange={() => {}} checked/>
+        <EuiRadio id="id" onChange={() => {}} checked />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('label is rendered', () => {
       const component = render(
-        <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>}/>
+        <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>} />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('value is rendered', () => {
       const component = render(
-        <EuiRadio id="id" onChange={() => {}} value={'bobbins'}/>
+        <EuiRadio id="id" onChange={() => {}} value={'bobbins'} />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('disabled is rendered', () => {
       const component = render(
-        <EuiRadio id="id" onChange={() => {}} disabled/>
+        <EuiRadio id="id" onChange={() => {}} disabled />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

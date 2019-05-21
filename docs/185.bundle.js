@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[185],{
 
 /***/ "../../src/components/icon/assets/logo_slack.js":
-/*!*********************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_slack.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_slack.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

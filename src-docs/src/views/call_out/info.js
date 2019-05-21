@@ -1,23 +1,20 @@
 import React from 'react';
 
-import {
-  EuiCallOut,
-  EuiLink,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiCallOut, EuiLink, EuiSpacer } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiCallOut
       title="Check it out, here's a really long title that will wrap within a narrower browser"
-      iconType="search"
-    >
+      iconType="search">
       <p>
-        Here&rsquo;s some stuff that you need to know. We can make this text really long so that,
-        when viewed within a browser that&rsquo;s fairly narrow, it will wrap, too.
+        Here&rsquo;s some stuff that you need to know. We can make this text
+        really long so that, when viewed within a browser that&rsquo;s fairly
+        narrow, it will wrap, too.
       </p>
       <p>
-        And some other stuff on another line, just for kicks. And <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+        And some other stuff on another line, just for kicks. And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
       </p>
     </EuiCallOut>
 
@@ -35,6 +32,5 @@ export default () => (
       title="This is a small callout for more unintrusive but constant messages."
       iconType="pin"
     />
-
   </div>
 );

@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  EuiBasicTable,
-  EuiCode
-} from '../../../../../src/components';
+import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -16,17 +13,19 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    }, {
+    },
+    {
       type: GuideSectionTypes.HTML,
       code: html,
-    }
+    },
   ],
   text: (
     <p>
-      The following example shows how to configure selection via the <EuiCode>selection</EuiCode>
+      The following example shows how to configure selection via the{' '}
+      <EuiCode>selection</EuiCode>
       property.
     </p>
   ),
   components: { EuiBasicTable },
-  demo: <Table/>,
+  demo: <Table />,
 };

@@ -1,14 +1,10 @@
 import React from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
-import {
-  GuideSectionTypes,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
 
 import {
   EuiBadge,
@@ -39,105 +35,129 @@ const notificationBadgeHtml = renderToHtml(NotificationBadge);
 
 export const BadgeExample = {
   title: 'Badge',
-  sections: [{
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: badgeSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: badgeHtml,
-    }],
-    text: (
-      <p>
-        Badges are used to focus on important bits of information. Although they
-        will automatically space themselves if you use them in a repetitive fashion
-        it is good form to wrap them using a <EuiCode>FlexGroup</EuiCode> so
-        that they will wrap when width is constrained (as is done artificially in
-        the example below).
-      </p>
-    ),
-    props: { EuiBadge },
-    demo: <Badge />,
-  }, {
-    title: 'Badge with Icon',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: badgeWithIconSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: badgeWithIconHtml,
-    }],
-    text: (
-      <p>
-        Badges can use icons on the left and right (default) sides.
-      </p>
-    ),
-    demo: <BadgeWithIcon />,
-  }, {
-    title: 'Badge with onClick events',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: badgeButtonSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: badgeButtonHtml,
-    }],
-    text: (
-      <p>
-        Badges can have onClick events applied to the badge itself or the icon within the badge.
-        The later option is useful for when you might use badges in other components (like a tag
-        system with autocomplete where you need close events).
-      </p>
-    ),
-    demo: <BadgeButton />,
-  }, {
-    title: 'Beta badge type',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: betaBadgeSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: betaBadgeHtml,
-    }],
-    text: (
-      <div>
+  sections: [
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeHtml,
+        },
+      ],
+      text: (
         <p>
-          The <EuiCode>EuiBetaBadge</EuiCode> was created specifically to call out
-          modules that are not in GA. Generally the labels used are &quot;Beta&quot; or &quot;Lab&quot;.
-          They require an extra <EuiCode>tooltipContent</EuiCode> to describe the purpose of the badge.
-          You can pass an optional <EuiCode>title</EuiCode> prop to populate the tooltip title or html title
-          attribute but by default it will use the <EuiCode>label</EuiCode>.
+          Badges are used to focus on important bits of information. Although
+          they will automatically space themselves if you use them in a
+          repetitive fashion it is good form to wrap them using a{' '}
+          <EuiCode>FlexGroup</EuiCode> so that they will wrap when width is
+          constrained (as is done artificially in the example below).
         </p>
+      ),
+      props: { EuiBadge },
+      demo: <Badge />,
+    },
+    {
+      title: 'Badge with Icon',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeWithIconSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeWithIconHtml,
+        },
+      ],
+      text: <p>Badges can use icons on the left and right (default) sides.</p>,
+      demo: <BadgeWithIcon />,
+    },
+    {
+      title: 'Badge with onClick events',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeButtonSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeButtonHtml,
+        },
+      ],
+      text: (
         <p>
-          If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be used in the badge itself and
-          the label will be applied as the title. Only use an icon when attaching the beta badge to small
-          components like the EuiKeyPadMenuItem.
+          Badges can have onClick events applied to the badge itself or the icon
+          within the badge. The later option is useful for when you might use
+          badges in other components (like a tag system with autocomplete where
+          you need close events).
         </p>
+      ),
+      demo: <BadgeButton />,
+    },
+    {
+      title: 'Beta badge type',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: betaBadgeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: betaBadgeHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            The <EuiCode>EuiBetaBadge</EuiCode> was created specifically to call
+            out modules that are not in GA. Generally the labels used are
+            &quot;Beta&quot; or &quot;Lab&quot;. They require an extra{' '}
+            <EuiCode>tooltipContent</EuiCode> to describe the purpose of the
+            badge. You can pass an optional <EuiCode>title</EuiCode> prop to
+            populate the tooltip title or html title attribute but by default it
+            will use the <EuiCode>label</EuiCode>.
+          </p>
+          <p>
+            If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be
+            used in the badge itself and the label will be applied as the title.
+            Only use an icon when attaching the beta badge to small components
+            like the EuiKeyPadMenuItem.
+          </p>
+          <p>
+            They can also be used in conjunction with{' '}
+            <Link to="/display/card">EuiCards</Link>
+            &nbsp;and{' '}
+            <Link to="/navigation/key-pad-menu">EuiKeyPadMenuItems</Link>.
+          </p>
+        </div>
+      ),
+      props: { EuiBetaBadge },
+      demo: <BetaBadge />,
+    },
+    {
+      title: 'Notification badge type',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: notificationBadgeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: notificationBadgeHtml,
+        },
+      ],
+      text: (
         <p>
-          They can also be used in conjunction with <Link to="/display/card">EuiCards</Link>
-          &nbsp;and <Link to="/navigation/key-pad-menu">EuiKeyPadMenuItems</Link>.
+          Used to showcase the number of notifications, alerts or hidden
+          selections. Typically used in{' '}
+          <Link to="/layout/header">EuiHeader</Link> or (eventually){' '}
+          <Link to="/forms/filter-group">EuiFilterButtons</Link>.
         </p>
-      </div>
-    ),
-    props: { EuiBetaBadge },
-    demo: <BetaBadge />,
-  }, {
-    title: 'Notification badge type',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: notificationBadgeSource,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: notificationBadgeHtml,
-    }],
-    text: (
-      <p>
-        Used to showcase the number of notifications, alerts or hidden selections.
-        Typically used in <Link to="/layout/header">EuiHeader</Link> or
-        (eventually) <Link to="/forms/filter-group">EuiFilterButtons</Link>.
-      </p>
-    ),
-    props: { EuiNotificationBadge },
-    demo: <NotificationBadge />,
-  }],
+      ),
+      props: { EuiNotificationBadge },
+      demo: <NotificationBadge />,
+    },
+  ],
 };

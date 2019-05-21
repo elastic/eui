@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiStat,
@@ -21,9 +19,9 @@ export default class extends Component {
     };
   }
 
-  onToggleChange = (e) => {
+  onToggleChange = e => {
     this.setState({ isLoading: e.target.checked });
-  }
+  };
 
   render() {
     return (
@@ -35,8 +33,7 @@ export default class extends Component {
                 title="8,888"
                 description="Total widgets"
                 textAlign="right"
-                isLoading={this.state.isLoading}
-              >
+                isLoading={this.state.isLoading}>
                 <EuiIcon type="empty" />
               </EuiStat>
             </EuiPanel>
@@ -48,8 +45,7 @@ export default class extends Component {
                 description="Pending widgets"
                 titleColor="accent"
                 textAlign="right"
-                isLoading={this.state.isLoading}
-              >
+                isLoading={this.state.isLoading}>
                 <EuiIcon type="clock" color="accent" />
               </EuiStat>
             </EuiPanel>
@@ -61,8 +57,7 @@ export default class extends Component {
                 description="Success widgets"
                 titleColor="secondary"
                 textAlign="right"
-                isLoading={this.state.isLoading}
-              >
+                isLoading={this.state.isLoading}>
                 <EuiIcon type="check" color="secondary" />
               </EuiStat>
             </EuiPanel>
@@ -74,8 +69,7 @@ export default class extends Component {
                 description="Error widgets"
                 titleColor="danger"
                 textAlign="right"
-                isLoading={this.state.isLoading}
-              >
+                isLoading={this.state.isLoading}>
                 <EuiIcon type="alert" color="danger" />
               </EuiStat>
             </EuiPanel>

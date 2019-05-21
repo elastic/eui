@@ -2,17 +2,14 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import {
-  findTestSubject,
-  requiredProps,
-} from '../../../test';
+import { findTestSubject, requiredProps } from '../../../test';
 
-import {
-  EuiFormControlLayout,
-  ICON_SIDES,
-} from './form_control_layout';
+import { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
 
-jest.mock('../../', () => ({ EuiIcon: 'eui_icon', EuiLoadingSpinner: 'eui_loading_spinner' }));
+jest.mock('../../', () => ({
+  EuiIcon: 'eui_icon',
+  EuiLoadingSpinner: 'eui_loading_spinner',
+}));
 
 describe('EuiFormControlLayout', () => {
   test('is rendered', () => {
@@ -29,9 +26,7 @@ describe('EuiFormControlLayout', () => {
     describe('icon', () => {
       describe('is rendered', () => {
         test('as a string', () => {
-          const component = render(
-            <EuiFormControlLayout icon="alert"/>
-          );
+          const component = render(<EuiFormControlLayout icon="alert" />);
 
           expect(component).toMatchSnapshot();
         });
@@ -43,9 +38,7 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'myIcon',
           };
 
-          const component = render(
-            <EuiFormControlLayout icon={icon}/>
-          );
+          const component = render(<EuiFormControlLayout icon={icon} />);
 
           expect(component).toMatchSnapshot();
         });
@@ -59,9 +52,7 @@ describe('EuiFormControlLayout', () => {
               side,
             };
 
-            const component = render(
-              <EuiFormControlLayout icon={icon} />
-            );
+            const component = render(<EuiFormControlLayout icon={icon} />);
 
             expect(component).toMatchSnapshot();
           });
@@ -76,9 +67,7 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'myIcon',
           };
 
-          const component = mount(
-            <EuiFormControlLayout icon={icon}/>
-          );
+          const component = mount(<EuiFormControlLayout icon={icon} />);
 
           const closeButton = findTestSubject(component, 'myIcon');
           closeButton.simulate('click');
@@ -96,9 +85,7 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'clearButton',
           };
 
-          const component = render(
-            <EuiFormControlLayout clear={clear}/>
-          );
+          const component = render(<EuiFormControlLayout clear={clear} />);
 
           expect(component).toMatchSnapshot();
         });
@@ -109,9 +96,7 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'clearButton',
           };
 
-          const component = mount(
-            <EuiFormControlLayout clear={clear}/>
-          );
+          const component = mount(<EuiFormControlLayout clear={clear} />);
 
           const closeButton = findTestSubject(component, 'clearButton');
           closeButton.simulate('click');
@@ -121,26 +106,20 @@ describe('EuiFormControlLayout', () => {
     });
 
     test('isLoading is rendered', () => {
-      const component = render(
-        <EuiFormControlLayout isLoading/>
-      );
+      const component = render(<EuiFormControlLayout isLoading />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(
-        <EuiFormControlLayout fullWidth/>
-      );
+      const component = render(<EuiFormControlLayout fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('one prepend is rendered', () => {
       const component = render(
-        <EuiFormControlLayout
-          prepend={<span>1</span>}
-        />
+        <EuiFormControlLayout prepend={<span>1</span>} />
       );
 
       expect(component).toMatchSnapshot();
@@ -148,9 +127,7 @@ describe('EuiFormControlLayout', () => {
 
     test('one append is rendered', () => {
       const component = render(
-        <EuiFormControlLayout
-          append={<span>1</span>}
-        />
+        <EuiFormControlLayout append={<span>1</span>} />
       );
 
       expect(component).toMatchSnapshot();
@@ -158,12 +135,7 @@ describe('EuiFormControlLayout', () => {
 
     test('multiple prepends are rendered', () => {
       const component = render(
-        <EuiFormControlLayout
-          prepend={[
-            <span>1</span>,
-            <span>2</span>
-          ]}
-        />
+        <EuiFormControlLayout prepend={[<span>1</span>, <span>2</span>]} />
       );
 
       expect(component).toMatchSnapshot();
@@ -171,12 +143,7 @@ describe('EuiFormControlLayout', () => {
 
     test('multiple appends are rendered', () => {
       const component = render(
-        <EuiFormControlLayout
-          append={[
-            <span>1</span>,
-            <span>2</span>
-          ]}
-        />
+        <EuiFormControlLayout append={[<span>1</span>, <span>2</span>]} />
       );
 
       expect(component).toMatchSnapshot();

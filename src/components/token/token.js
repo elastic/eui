@@ -42,11 +42,12 @@ export const EuiToken = ({
   displayOptions,
   size,
   className,
-  ...rest,
+  ...rest
 }) => {
-
   // Check if display options is empty
-  const displayOptionsIsEmpty = Object.keys(displayOptions).length === 0 && displayOptions.constructor === Object;
+  const displayOptionsIsEmpty =
+    Object.keys(displayOptions).length === 0 &&
+    displayOptions.constructor === Object;
 
   let tokenShape;
   let tokenColor;
@@ -54,11 +55,11 @@ export const EuiToken = ({
   let tokenHidesBorder;
 
   // Check if this has a mapping, and doesn't have custom displayOptions
-  if ((iconType in TOKEN_MAP) && (displayOptionsIsEmpty)) {
+  if (iconType in TOKEN_MAP && displayOptionsIsEmpty) {
     tokenShape = TOKEN_MAP[iconType].shape;
     tokenColor = TOKEN_MAP[iconType].color;
-    fill = (TOKEN_MAP[iconType].fill ? true : false);
-    tokenHidesBorder = (TOKEN_MAP[iconType].hideBorder ? true : false);
+    fill = TOKEN_MAP[iconType].fill ? true : false;
+    tokenHidesBorder = TOKEN_MAP[iconType].hideBorder ? true : false;
   } else {
     // Use the displayOptions passed or use some defaults
     tokenShape = displayOptions.shape ? displayOptions.shape : 'square';
@@ -74,16 +75,13 @@ export const EuiToken = ({
     sizeToClassMap[size],
     {
       'euiToken--fill': fill,
-      'euiToken--no-border': tokenHidesBorder
+      'euiToken--no-border': tokenHidesBorder,
     },
     className
   );
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       <EuiIcon type={iconType} />
     </div>
   );

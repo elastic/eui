@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiSpacer,
-  EuiButton,
-} from '../../../../src/components';
+import { EuiSpacer, EuiButton } from '../../../../src/components';
 
 import {
   EuiSeriesChart,
@@ -13,9 +10,21 @@ import {
 
 const { SCALE } = EuiSeriesChartUtils;
 
-const dataA = [{ x: 0, y: 5 }, { x: 1, y: 4 }, { x: 2, y: 3 }, { x: 3, y: 2 }, { x: 4, y: 1 }];
+const dataA = [
+  { x: 0, y: 5 },
+  { x: 1, y: 4 },
+  { x: 2, y: 3 },
+  { x: 3, y: 2 },
+  { x: 4, y: 1 },
+];
 
-const dataB = [{ x: 0, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 3 }, { x: 3, y: 4 }, { x: 4, y: 5 }];
+const dataB = [
+  { x: 0, y: 1 },
+  { x: 1, y: 2 },
+  { x: 2, y: 3 },
+  { x: 3, y: 4 },
+  { x: 4, y: 5 },
+];
 
 export default class extends Component {
   constructor(props) {
@@ -40,7 +49,11 @@ export default class extends Component {
           Toggle stacked
         </EuiButton>
         <EuiSpacer size="l" />
-        <EuiSeriesChart width={600} height={200} xType={SCALE.ORDINAL} stackBy={stacked ? 'y' : null}>
+        <EuiSeriesChart
+          width={600}
+          height={200}
+          xType={SCALE.ORDINAL}
+          stackBy={stacked ? 'y' : null}>
           <EuiBarSeries name={`Tag A`} data={dataA} />
           <EuiBarSeries name={`Tag B`} data={dataB} />
         </EuiSeriesChart>

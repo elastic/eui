@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
 
-import {
-  EuiComboBox,
-} from '../../../../src/components';
+import { EuiComboBox } from '../../../../src/components';
 
-const allOptions = [{
-  label: 'Titan',
-  'data-test-subj': 'titanOption',
-}, {
-  label: 'Enceladus',
-}, {
-  label: 'Mimas',
-}, {
-  label: 'Dione',
-}, {
-  label: 'Iapetus',
-}, {
-  label: 'Phoebe',
-}, {
-  label: 'Rhea',
-}, {
-  label: 'Pandora is one of Saturn\'s moons, named for a Titaness of Greek mythology',
-}, {
-  label: 'Tethys',
-}, {
-  label: 'Hyperion',
-}];
+const allOptions = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
 
 export default class extends Component {
   constructor(props) {
@@ -39,13 +49,13 @@ export default class extends Component {
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });
   };
 
-  onSearchChange = (searchValue) => {
+  onSearchChange = searchValue => {
     this.setState({
       isLoading: true,
       options: [],
@@ -57,10 +67,12 @@ export default class extends Component {
       // Simulate a remotely-executed search.
       this.setState({
         isLoading: false,
-        options: allOptions.filter(option => option.label.toLowerCase().includes(searchValue.toLowerCase())),
+        options: allOptions.filter(option =>
+          option.label.toLowerCase().includes(searchValue.toLowerCase())
+        ),
       });
     }, 1200);
-  }
+  };
 
   onCreateOption = (searchValue, flattenedOptions) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
@@ -74,9 +86,11 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (flattenedOptions.findIndex(option =>
-      option.value.trim().toLowerCase() === normalizedSearchValue
-    ) === -1) {
+    if (
+      flattenedOptions.findIndex(
+        option => option.value.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
       // Simulate creating this option on the server.
       allOptions.push(newOption);
       this.setState(prevState => ({

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -56,11 +54,7 @@ export class EuiSwitch extends Component {
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
-            <EuiIcon
-              type="cross"
-              size="m"
-              className="euiSwitch__icon"
-            />
+            <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
             <EuiIcon
               type="check"
@@ -70,14 +64,11 @@ export class EuiSwitch extends Component {
           </span>
         </span>
 
-        { label &&
-          <label
-            className="euiSwitch__label"
-            htmlFor={switchId}
-          >
+        {label && (
+          <label className="euiSwitch__label" htmlFor={switchId}>
             {label}
           </label>
-        }
+        )}
       </div>
     );
   }
@@ -90,5 +81,5 @@ EuiSwitch.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  compressed: PropTypes.bool
+  compressed: PropTypes.bool,
 };

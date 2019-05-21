@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  EuiCode
-} from '../../../../../src/components';
+import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
@@ -15,16 +13,18 @@ export const selectionSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    }, {
+    },
+    {
       type: GuideSectionTypes.HTML,
       code: html,
-    }
+    },
   ],
   text: (
     <p>
-      The following example shows how to use <EuiCode>EuiInMemoryTable</EuiCode> along with item selection.
-      It also shows how you can display messages, errors and show loading indication.
+      The following example shows how to use <EuiCode>EuiInMemoryTable</EuiCode>{' '}
+      along with item selection. It also shows how you can display messages,
+      errors and show loading indication.
     </p>
   ),
-  demo: <Table/>,
+  demo: <Table />,
 };

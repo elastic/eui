@@ -1,6 +1,4 @@
-import React, {
-  Component, Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiColorPicker,
@@ -19,12 +17,12 @@ export class CustomButton extends Component {
     };
   }
 
-  handleChange = (value) => {
+  handleChange = value => {
     this.setState({ color: value });
   };
 
   render() {
-    const hasErrors = !isValidHex(this.state.color) && (this.state.color !== '');
+    const hasErrors = !isValidHex(this.state.color) && this.state.color !== '';
 
     let errors;
     if (hasErrors) {
@@ -33,10 +31,7 @@ export class CustomButton extends Component {
 
     return (
       <Fragment>
-        <EuiFormRow
-          label="Pick a color"
-          error={errors}
-        >
+        <EuiFormRow label="Pick a color" error={errors}>
           <EuiColorPicker
             onChange={this.handleChange}
             color={this.state.color}
@@ -55,8 +50,7 @@ export class CustomButton extends Component {
           button={
             <EuiBadge
               color={this.state.color ? this.state.color : 'hollow'}
-              onClickAriaLabel="Select a new color"
-            >
+              onClickAriaLabel="Select a new color">
               Color this badge
             </EuiBadge>
           }

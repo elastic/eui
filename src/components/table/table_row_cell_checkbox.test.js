@@ -6,11 +6,8 @@ import { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';
 
 describe('EuiTableRowCellCheckbox', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableRowCellCheckbox {...requiredProps} />
-    );
+    const component = render(<EuiTableRowCellCheckbox {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

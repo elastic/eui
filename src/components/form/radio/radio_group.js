@@ -15,10 +15,7 @@ export const EuiRadioGroup = ({
 }) => (
   <div className={className} {...rest}>
     {options.map((option, index) => {
-      const {
-        disabled: isOptionDisabled,
-        ...optionRest
-      } = option;
+      const { disabled: isOptionDisabled, ...optionRest } = option;
       return (
         <EuiRadio
           className="euiRadioGroup__item"
@@ -44,7 +41,7 @@ EuiRadioGroup.propTypes = {
       label: PropTypes.node,
       value: PropTypes.string,
       disabled: PropTypes.bool,
-    }),
+    })
   ).isRequired,
   idSelected: PropTypes.string,
   onChange: PropTypes.func.isRequired,

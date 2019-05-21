@@ -15,7 +15,13 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiFieldText } from '../form';
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import { VISUALIZATION_COLORS, keyCodes, hexToHsv, hsvToHex, isValidHex } from '../../services';
+import {
+  VISUALIZATION_COLORS,
+  keyCodes,
+  hexToHsv,
+  hsvToHex,
+  isValidHex,
+} from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -35,10 +41,12 @@ export const EuiColorPicker = ({
   onFocus,
   readOnly = false,
   swatches = VISUALIZATION_COLORS,
-  popoverZIndex = 1
+  popoverZIndex = 1,
 }) => {
   const [isColorSelectorShown, setIsColorSelectorShown] = useState(false);
-  const [colorAsHsv, setColorAsHsv] = useState(color ? hexToHsv(color) : hexToHsv(''));
+  const [colorAsHsv, setColorAsHsv] = useState(
+    color ? hexToHsv(color) : hexToHsv('')
+  );
   const [lastHex, setLastHex] = useState(color);
   const [inputRef, setInputRef] = useState(null); // Ideally this is uses `useRef`, but `EuiFieldText` isn't ready for that
 
@@ -46,7 +54,8 @@ export const EuiColorPicker = ({
 
   useEffect(() => {
     // Mimics `componentDidMount` and `componentDidUpdate`
-    if (lastHex !== color) { // Only react to outside changes
+    if (lastHex !== color) {
+      // Only react to outside changes
       const newColorAsHsv = color ? hexToHsv(color) : hexToHsv('');
       setColorAsHsv(newColorAsHsv);
     }
@@ -54,13 +63,13 @@ export const EuiColorPicker = ({
 
   const classes = classNames('euiColorPicker', className);
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
-    'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker'
+    'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
   });
   const popoverClasses = classNames('euiColorPicker__popoverContainer', {
-    'euiColorPicker__popoverContainer--fullWidth': fullWidth && !button
+    'euiColorPicker__popoverContainer--fullWidth': fullWidth && !button,
   });
   const anchorClasses = classNames('euiColorPicker__popoverAnchor', {
-    'euiColorPicker__popoverAnchor--fullWidth': fullWidth && !button
+    'euiColorPicker__popoverAnchor--fullWidth': fullWidth && !button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
@@ -109,7 +118,7 @@ export const EuiColorPicker = ({
   const handleOnKeyDown = e => {
     if (e.keyCode === keyCodes.ENTER) {
       if (isColorSelectorShown) {
-        if (e.target && e.target.classList.contains(swatchClass)) return;  // Swatches handle themselves
+        if (e.target && e.target.classList.contains(swatchClass)) return; // Swatches handle themselves
         handleFinalSelection();
       } else {
         showColorSelector();
@@ -124,7 +133,7 @@ export const EuiColorPicker = ({
     }
   };
 
-  const handleColorSelection = (color) => {
+  const handleColorSelection = color => {
     const { h } = colorAsHsv;
     const hue = h ? h : 1;
     const newHsv = { ...color, h: hue };
@@ -132,7 +141,7 @@ export const EuiColorPicker = ({
     setColorAsHsv(newHsv);
   };
 
-  const handleHueSelection = (hue) => {
+  const handleHueSelection = hue => {
     const { s, v } = colorAsHsv;
     const satVal = s && v ? { s, v } : { s: 1, v: 1 };
     const newHsv = { ...satVal, h: hue };
@@ -140,7 +149,7 @@ export const EuiColorPicker = ({
     setColorAsHsv(newHsv);
   };
 
-  const handleSwatchSelection = (color) => {
+  const handleSwatchSelection = color => {
     handleOnChange(color);
     setColorAsHsv(hexToHsv(color));
 
@@ -149,21 +158,18 @@ export const EuiColorPicker = ({
 
   let buttonOrInput;
   if (button) {
-    buttonOrInput = (
-      cloneElement(button, {
-        onClick: handleButtonClick,
-        id: id,
-        disabled: disabled,
-        'data-test-subj': testSubjAnchor
-      }
-      ));
+    buttonOrInput = cloneElement(button, {
+      onClick: handleButtonClick,
+      id: id,
+      disabled: disabled,
+      'data-test-subj': testSubjAnchor,
+    });
   } else {
     const showColor = color && isValidHex(color);
     buttonOrInput = (
       <div
         // Used to pass the chosen color through to form layout SVG using currentColor
-        style={{ color: showColor ? color : undefined }}
-      >
+        style={{ color: showColor ? color : undefined }}>
         <EuiFieldText
           onFocus={showColorSelector}
           onClick={showColorSelector}
@@ -187,10 +193,7 @@ export const EuiColorPicker = ({
   }
 
   return (
-    <EuiFocusTrap
-      disabled={!isColorSelectorShown}
-      returnFocus={false}
-    >
+    <EuiFocusTrap disabled={!isColorSelectorShown} returnFocus={false}>
       <div ref={containerRef} onKeyDown={handleOnKeyDown}>
         <EuiPopover
           id="popover"
@@ -206,9 +209,8 @@ export const EuiColorPicker = ({
           panelPaddingSize="s"
           insert={{
             position: 'after',
-            sibling: containerRef.current
-          }}
-        >
+            sibling: containerRef.current,
+          }}>
           <div className={classes} data-test-subj={testSubjPopover}>
             <EuiScreenReaderOnly>
               <p aria-live="polite">
@@ -220,31 +222,38 @@ export const EuiColorPicker = ({
                 />
               </p>
             </EuiScreenReaderOnly>
-            {(mode !== 'swatch') && (
+            {mode !== 'swatch' && (
               <Fragment>
                 <EuiSaturation
                   id={id}
-                  color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
+                  color={
+                    typeof colorAsHsv === 'object' ? colorAsHsv : undefined
+                  }
                   hex={color}
                   onChange={handleColorSelection}
                 />
                 <EuiHue
                   id={id}
-                  hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+                  hue={
+                    typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined
+                  }
                   hex={color}
                   onChange={handleHueSelection}
                 />
               </Fragment>
             )}
-            {(mode !== 'picker') && (
-              <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
-                {swatches.map((swatch) => (
+            {mode !== 'picker' && (
+              <EuiFlexGroup
+                wrap
+                responsive={false}
+                gutterSize="s"
+                role="listbox">
+                {swatches.map(swatch => (
                   <EuiFlexItem grow={false} key={swatch}>
                     <EuiI18n
                       token="euiColorPicker.swatchAriaLabel"
                       values={{ swatch }}
-                      default="Select {swatch} as the color"
-                    >
+                      default="Select {swatch} as the color">
                       {swatchAriaLabel => (
                         <EuiColorPickerSwatch
                           className={swatchClass}
@@ -309,5 +318,5 @@ EuiColorPicker.propTypes = {
   /**
    *  Custom z-index for the popover
    */
-  popoverZIndex: PropTypes.number
+  popoverZIndex: PropTypes.number,
 };

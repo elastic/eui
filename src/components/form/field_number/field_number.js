@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
+import { EuiValidatableControl } from '../validatable_control';
 
 export const EuiFieldNumber = ({
   className,
@@ -43,8 +39,7 @@ export const EuiFieldNumber = ({
       isLoading={isLoading}
       compressed={compressed}
       prepend={prepend}
-      append={append}
-    >
+      append={append}>
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="number"
@@ -69,11 +64,15 @@ function numberOrEmptyString(props, propName, componentName) {
   if (props[propName]) {
     const value = props[propName];
     if (typeof value === 'string' && value !== '') {
-      return new Error(`Invalid prop '${propName}' of type 'string' supplied to '${componentName}',` +
-      ` expected empty string or type 'number', you supplied a string with the contents '${value}'.`);
+      return new Error(
+        `Invalid prop '${propName}' of type 'string' supplied to '${componentName}',` +
+          ` expected empty string or type 'number', you supplied a string with the contents '${value}'.`
+      );
     } else if (typeof value !== 'number') {
-      return new Error(`Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
-      ` expected empty string or type 'number'.`);
+      return new Error(
+        `Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
+          ` expected empty string or type 'number'.`
+      );
     }
   }
 

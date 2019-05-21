@@ -12,28 +12,15 @@ const responsiveSizesToClassNameMap = {
 
 export const RESPONSIVE_SIZES = Object.keys(responsiveSizesToClassNameMap);
 
-export const EuiShowFor = ({
-  children,
-  className,
-  sizes,
-  ...rest,
-}) => {
-
-  const sizingClasses = sizes.map(function (item) {
+export const EuiShowFor = ({ children, className, sizes, ...rest }) => {
+  const sizingClasses = sizes.map(function(item) {
     return responsiveSizesToClassNameMap[item];
   });
 
-  const classes = classNames(
-    'euiShowFor',
-    sizingClasses,
-    className
-  );
+  const classes = classNames('euiShowFor', sizingClasses, className);
 
   return (
-    <span
-      className={classes}
-      {...rest}
-    >
+    <span className={classes} {...rest}>
       {children}
     </span>
   );

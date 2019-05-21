@@ -27,20 +27,11 @@ export default () => (
     <EuiFormRow
       label="Works on form rows too"
       fullWidth
-      helpText="Note that the fullWidth prop is not passed to the form row's child"
-    >
-      <EuiRange
-        fullWidth
-        min={0}
-        max={100}
-        name="range"
-      />
+      helpText="Note that the fullWidth prop is not passed to the form row's child">
+      <EuiRange fullWidth min={0} max={100} name="range" />
     </EuiFormRow>
 
-    <EuiFormRow
-      label="Often useful for text areas"
-      fullWidth
-    >
+    <EuiFormRow label="Often useful for text areas" fullWidth>
       <EuiTextArea
         fullWidth
         placeholder="There is a reason we do not make forms ALWAYS 100% width.

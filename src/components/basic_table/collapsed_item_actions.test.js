@@ -3,36 +3,28 @@ import { render } from 'enzyme';
 import { CollapsedItemActions } from './collapsed_item_actions';
 
 describe('CollapsedItemActions', () => {
-
   test('render', () => {
-
     const props = {
       actions: [
         {
           name: 'default1',
           description: 'default 1',
-          onClick: () => {
-          }
+          onClick: () => {},
         },
         {
           name: 'custom1',
           description: 'custom 1',
-          render: () => {
-          }
-        }
+          render: () => {},
+        },
       ],
       itemId: 'id',
       item: { id: 'xyz' },
       actionEnabled: () => true,
-      onFocus: () => {}
+      onFocus: () => {},
     };
 
-    const component = render(
-      <CollapsedItemActions {...props} />
-    );
+    const component = render(<CollapsedItemActions {...props} />);
 
     expect(component).toMatchSnapshot();
-
   });
-
 });

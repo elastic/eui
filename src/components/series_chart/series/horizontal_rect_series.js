@@ -6,15 +6,15 @@ import classNames from 'classnames';
 export class EuiHorizontalRectSeries extends HorizontalRectSeries {
   state = {
     isMouseOverValue: false,
-  }
+  };
 
   _onValueMouseOver = () => {
     this.setState(() => ({ isMouseOverValue: true }));
-  }
+  };
 
   _onValueMouseOut = () => {
     this.setState(() => ({ isMouseOverValue: false }));
-  }
+  };
 
   render() {
     const { isMouseOverValue } = this.state;
@@ -23,7 +23,7 @@ export class EuiHorizontalRectSeries extends HorizontalRectSeries {
     const classes = classNames(
       'euiHistogramSeries',
       isHighDataVolume && 'euiHistogramSeries--highDataVolume',
-      isMouseOverValue && onValueClick && 'euiHistogramSeries--hoverEnabled',
+      isMouseOverValue && onValueClick && 'euiHistogramSeries--hoverEnabled'
     );
     return (
       <HorizontalRectSeries
@@ -46,17 +46,19 @@ EuiHorizontalRectSeries.propTypes = {
   /** The name used to define the data in tooltips and legends */
   name: PropTypes.string.isRequired,
   /** Array<{x: number, y: number, y0: number}> */
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    y0: PropTypes.number,
-  })).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+      y0: PropTypes.number,
+    })
+  ).isRequired,
   /** See eui_palettes.js or colorPalette service for recommended colors */
   color: PropTypes.string,
   /**
    * Callback when clicking on a bar. Returns { x, y } object.
    */
-  onValueClick: PropTypes.func
+  onValueClick: PropTypes.func,
 };
 
 EuiHorizontalRectSeries.defaultProps = {};

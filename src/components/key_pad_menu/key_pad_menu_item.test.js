@@ -16,8 +16,7 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders href', () => {
@@ -27,8 +26,7 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
 
@@ -40,8 +38,7 @@ describe('EuiKeyPadMenuItemButton', () => {
       </EuiKeyPadMenuItemButton>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('onClick', () => {

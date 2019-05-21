@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[106],{
 
 /***/ "../../src/components/icon/assets/folder_open.js":
-/*!**********************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/folder_open.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/folder_open.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

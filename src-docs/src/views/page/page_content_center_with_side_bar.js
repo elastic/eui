@@ -15,9 +15,7 @@ import {
 
 export default () => (
   <EuiPage>
-    <EuiPageSideBar>
-      SideBar nav
-    </EuiPageSideBar>
+    <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
@@ -25,11 +23,9 @@ export default () => (
             <h1>Page title</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
-        <EuiPageHeaderSection>
-          Page abilities
-        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
       </EuiPageHeader>
-      <EuiPageContent verticalPosition="center"  horizontalPosition="center">
+      <EuiPageContent verticalPosition="center" horizontalPosition="center">
         <EuiPageContentHeader>
           <EuiPageContentHeaderSection>
             <EuiTitle>
@@ -40,11 +36,8 @@ export default () => (
             Content abilities
           </EuiPageContentHeaderSection>
         </EuiPageContentHeader>
-        <EuiPageContentBody>
-          Content body
-        </EuiPageContentBody>
+        <EuiPageContentBody>Content body</EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
 );
-

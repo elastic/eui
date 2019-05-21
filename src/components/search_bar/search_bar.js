@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup } from '../flex/flex_group';
-import {
-  EuiSearchBox,
-  SearchBoxConfigPropTypes
-} from './search_box';
-import {
-  EuiSearchFilters,
-  SearchFiltersFiltersType
-} from './search_filters';
+import { EuiSearchBox, SearchBoxConfigPropTypes } from './search_box';
+import { EuiSearchFilters, SearchFiltersFiltersType } from './search_filters';
 import PropTypes from 'prop-types';
 import { Query } from './query';
 import { EuiFlexItem } from '../flex/flex_item';
 
 export { Query, AST as Ast } from './query';
 
-export const QueryType = PropTypes.oneOfType([ PropTypes.instanceOf(Query), PropTypes.string ]);
+export const QueryType = PropTypes.oneOfType([
+  PropTypes.instanceOf(Query),
+  PropTypes.string,
+]);
 
 export const SearchBarPropTypes = {
   /**
@@ -58,7 +55,7 @@ export const SearchBarPropTypes = {
   /**
    * Date formatter to use when parsing date values
    */
-  dateFormat: PropTypes.object
+  dateFormat: PropTypes.object,
 };
 
 const parseQuery = (query, props) => {
@@ -72,7 +69,6 @@ const parseQuery = (query, props) => {
 };
 
 export class EuiSearchBar extends Component {
-
   static propTypes = SearchBarPropTypes;
 
   static Query = Query;
@@ -83,17 +79,20 @@ export class EuiSearchBar extends Component {
     this.state = {
       query,
       queryText: query.text,
-      error: null
+      error: null,
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.query && (!prevState.query || nextProps.query.text !== prevState.query.text)) {
+    if (
+      nextProps.query &&
+      (!prevState.query || nextProps.query.text !== prevState.query.text)
+    ) {
       const query = parseQuery(nextProps.query, nextProps);
       return {
         query,
         queryText: query.text,
-        error: null
+        error: null,
       };
     }
     return null;
@@ -114,7 +113,7 @@ export class EuiSearchBar extends Component {
     }
   }
 
-  onSearch = (queryText) => {
+  onSearch = queryText => {
     try {
       const query = parseQuery(queryText, this.props);
       this.notifyControllingParent({ query, queryText, error: null });
@@ -126,12 +125,12 @@ export class EuiSearchBar extends Component {
     }
   };
 
-  onFiltersChange = (query) => {
+  onFiltersChange = query => {
     this.notifyControllingParent({ query, queryText: query.text, error: null });
     this.setState({
       query,
       queryText: query.text,
-      error: null
+      error: null,
     });
   };
 
@@ -157,9 +156,15 @@ export class EuiSearchBar extends Component {
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 
-    const filtersBar = !filters ? undefined : (
+    const filtersBar = !filters ? (
+      undefined
+    ) : (
       <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
-        <EuiSearchFilters filters={filters} query={query} onChange={this.onFiltersChange} />
+        <EuiSearchFilters
+          filters={filters}
+          query={query}
+          onChange={this.onFiltersChange}
+        />
       </EuiFlexItem>
     );
 
@@ -183,5 +188,3 @@ export class EuiSearchBar extends Component {
     );
   }
 }
-
-

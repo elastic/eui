@@ -3,19 +3,21 @@ import { mount } from 'enzyme';
 
 import { EuiSeriesChart } from '../series_chart';
 import { EuiLineSeries } from '../series/line_series';
-import { EuiDefaultAxis, EuiXAxis, EuiYAxis, EuiVerticalGrid, EuiHorizontalGrid } from './';
+import {
+  EuiDefaultAxis,
+  EuiXAxis,
+  EuiYAxis,
+  EuiVerticalGrid,
+  EuiHorizontalGrid,
+} from './';
 import { requiredProps } from '../../../test/required_props';
 import { ORIENTATION } from '../utils/chart_utils';
 
 describe('EuiDefaultAxis', () => {
   test('render default axis', () => {
-    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
+    const data = [{ x: 0, y: 1 }, { x: 1, y: 2 }];
     const component = mount(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-        {...requiredProps}
-      >
+      <EuiSeriesChart width={600} height={200} {...requiredProps}>
         <EuiLineSeries name="Test Series" data={data} />
       </EuiSeriesChart>
     );
@@ -27,14 +29,13 @@ describe('EuiDefaultAxis', () => {
     expect(component.render()).toMatchSnapshot();
   });
   test('render rotated 90deg default axis', () => {
-    const data = [ { x: 0, y: 1 }, { x: 1, y: 2 }];
+    const data = [{ x: 0, y: 1 }, { x: 1, y: 2 }];
     const component = mount(
       <EuiSeriesChart
         width={600}
         height={200}
         orientation={ORIENTATION.HORIZONTAL}
-        {...requiredProps}
-      >
+        {...requiredProps}>
         <EuiLineSeries name="Test Series" data={data} />
       </EuiSeriesChart>
     );

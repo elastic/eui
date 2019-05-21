@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import moment from 'moment';
 
@@ -11,7 +9,6 @@ import {
 } from '../../../../src/components';
 
 export default class extends Component {
-
   constructor(props) {
     super(props);
 
@@ -32,15 +29,15 @@ export default class extends Component {
 
   onSelectChange = e => {
     this.setState({
-      utcOffset: parseInt(e.target.value, 10)
+      utcOffset: parseInt(e.target.value, 10),
     });
   };
 
   handleChange = date => {
     this.setState({
-      startDate: date
+      startDate: date,
     });
-  }
+  };
 
   render() {
     const selected =

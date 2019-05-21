@@ -1,9 +1,15 @@
 import { printIso8601 } from './date_format';
 import { isDateValue } from './date_value';
 import { AST, Operator } from './ast';
-import { isArray, isDateLike, isString, isBoolean, isNumber } from '../../../services/predicate';
+import {
+  isArray,
+  isDateLike,
+  isString,
+  isBoolean,
+  isNumber,
+} from '../../../services/predicate';
 
-const emitMatch = (match) => {
+const emitMatch = match => {
   if (!match) {
     return '';
   }
@@ -39,13 +45,21 @@ const emitFieldDateValueClause = (field, value, operator, match) => {
         const lt = granularity.iso8601(granularity.startOfNext(date));
         return `${matchOp}${field}:(>=${gte} AND <${lt})`;
       case Operator.GT:
-        return `${matchOp}${field}:>=${granularity.iso8601(granularity.startOfNext(date))}`;
+        return `${matchOp}${field}:>=${granularity.iso8601(
+          granularity.startOfNext(date)
+        )}`;
       case Operator.GTE:
-        return `${matchOp}${field}:>=${granularity.iso8601(granularity.start(date))}`;
+        return `${matchOp}${field}:>=${granularity.iso8601(
+          granularity.start(date)
+        )}`;
       case Operator.LT:
-        return `${matchOp}${field}:<${granularity.iso8601(granularity.start(date))}`;
+        return `${matchOp}${field}:<${granularity.iso8601(
+          granularity.start(date)
+        )}`;
       case Operator.LTE:
-        return `${matchOp}${field}:<${granularity.iso8601(granularity.startOfNext(date))}`;
+        return `${matchOp}${field}:<${granularity.iso8601(
+          granularity.startOfNext(date)
+        )}`;
       default:
         throw new Error(`unknown operator [${operator}]`);
     }
@@ -112,7 +126,9 @@ const emitFieldClause = (clause, isGroupMember) => {
     return emitFieldSingleValueClause(field, value, operator, match);
   }
   const matchOp = emitMatch(match);
-  const clauses = value.map(v => emitFieldSingleValueClause(field, v, operator)).join(' OR ');
+  const clauses = value
+    .map(v => emitFieldSingleValueClause(field, v, operator))
+    .join(' OR ');
   return `${matchOp}(${clauses})`;
 };
 
@@ -132,13 +148,11 @@ const emitIsClause = (clause, isGroupMember) => {
   return `${matchOp}${flag}:${flagValue}`;
 };
 
-const emitGroupClause = (clause) => {
+const emitGroupClause = clause => {
   const { value } = clause;
-  const formattedValues = value.map(
-    clause => {
-      return emitClause(clause, true);
-    }
-  );
+  const formattedValues = value.map(clause => {
+    return emitClause(clause, true);
+  });
   return `+(${formattedValues.join(' ')})`;
 };
 
@@ -158,7 +172,7 @@ function emitClause(clause, isGroupMember = false) {
   throw new Error(`unknown clause type [${JSON.stringify(clause)}]`);
 }
 
-export const astToEsQueryString = (ast) => {
+export const astToEsQueryString = ast => {
   if (ast.clauses.length === 0) {
     return '*';
   }

@@ -78,7 +78,7 @@ Tooltip.propTypes = {
   header: PropTypes.string,
   tooltipPoints: PropTypes.array.isRequired,
   x: PropTypes.number,
-  y: PropTypes.number
+  y: PropTypes.number,
 };
 
 Tooltip.defaultProps = {};

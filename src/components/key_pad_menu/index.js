@@ -1,6 +1,4 @@
-export {
-  EuiKeyPadMenu,
-} from './key_pad_menu';
+export { EuiKeyPadMenu } from './key_pad_menu';
 
 export {
   EuiKeyPadMenuItem,

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[127],{
 
 /***/ "../../src/components/icon/assets/invert.js":
-/*!*****************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/invert.js ***!
-  \*****************************************************************************/
+/*!**********************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/invert.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -5,14 +5,10 @@ import classNames from 'classnames';
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
+  CENTER_ALIGNMENT,
 } from '../../services';
 
-const ALIGNMENT = [
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-];
+const ALIGNMENT = [LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT];
 
 export const EuiTableRowCell = ({
   align,
@@ -36,8 +32,10 @@ export const EuiTableRowCell = ({
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only || isMobileHeader,
-    'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge || isMobileHeader,
-    'euiTableRowCell--isMobileFullWidth': mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
+    'euiTableRowCell--enlargeForMobile':
+      mobileOptions.enlarge || isMobileHeader,
+    'euiTableRowCell--isMobileFullWidth':
+      mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -51,18 +49,23 @@ export const EuiTableRowCell = ({
   });
 
   const mobileContentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight': mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': mobileOptions.align === CENTER_ALIGNMENT || align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--showOnHover': mobileOptions.showOnHover || showOnHover,
-    'euiTableCellContent--truncateText': mobileOptions.truncateText || truncateText,
+    'euiTableCellContent--alignRight':
+      mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
+    'euiTableCellContent--alignCenter':
+      mobileOptions.align === CENTER_ALIGNMENT || align === RIGHT_ALIGNMENT,
+    'euiTableCellContent--showOnHover':
+      mobileOptions.showOnHover || showOnHover,
+    'euiTableCellContent--truncateText':
+      mobileOptions.truncateText || truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
-    'euiTableCellContent--overflowingContent': mobileOptions.textOnly !== true || textOnly !== true,
+    'euiTableCellContent--overflowingContent':
+      mobileOptions.textOnly !== true || textOnly !== true,
   });
 
   const childClasses = classNames({
-    'euiTableCellContent__text': textOnly === true,
-    'euiTableCellContent__hoverItem': showOnHover,
+    euiTableCellContent__text: textOnly === true,
+    euiTableCellContent__hoverItem: showOnHover,
   });
 
   function modifyChildren(children) {
@@ -71,12 +74,10 @@ export const EuiTableRowCell = ({
     if (textOnly === true) {
       modifiedChildren = <span className={childClasses}>{children}</span>;
     } else if (React.isValidElement(children)) {
-      modifiedChildren = React.Children.map(
-        children,
-        child => React.cloneElement(
-          child,
-          { className: classNames(child.props.className, childClasses) }
-        )
+      modifiedChildren = React.Children.map(children, child =>
+        React.cloneElement(child, {
+          className: classNames(child.props.className, childClasses),
+        })
       );
     }
 
@@ -92,19 +93,23 @@ export const EuiTableRowCell = ({
 
   if (mobileOptions.show === false || hideForMobile) {
     cellRender = (
-      <td className={`${cellClasses} ${hideForMobileClasses}`} colSpan={colSpan} {...rest}>
-        <div className={contentClasses}>
-          {childrenNode}
-        </div>
+      <td
+        className={`${cellClasses} ${hideForMobileClasses}`}
+        colSpan={colSpan}
+        {...rest}>
+        <div className={contentClasses}>{childrenNode}</div>
       </td>
     );
   } else {
     cellRender = (
       <td className={cellClasses} colSpan={colSpan} {...rest}>
         {/* Mobile-only header */}
-        {(mobileOptions.header || header) && !isMobileHeader &&
-          <div className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>{mobileOptions.header || header}</div>
-        }
+        {(mobileOptions.header || header) && !isMobileHeader && (
+          <div
+            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}>
+            {mobileOptions.header || header}
+          </div>
+        )}
 
         {/* Content depending on mobile render existing */}
         {mobileOptions.render ? (
@@ -117,9 +122,7 @@ export const EuiTableRowCell = ({
             </div>
           </Fragment>
         ) : (
-          <div className={contentClasses}>
-            {childrenNode}
-          </div>
+          <div className={contentClasses}>{childrenNode}</div>
         )}
       </td>
     );
@@ -223,5 +226,5 @@ EuiTableRowCell.defaultProps = {
   textOnly: true,
   mobileOptions: {
     show: true,
-  }
+  },
 };

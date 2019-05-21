@@ -8,10 +8,9 @@ import {
 } from '../../../../src/components/';
 
 export default class extends Component {
-
   state = {
-    copyText: 'I am the text that will be copied'
-  }
+    copyText: 'I am the text that will be copied',
+  };
 
   onChange = e => {
     this.setState({
@@ -31,10 +30,8 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiCopy textToCopy={this.state.copyText}>
-          {(copy) => (
-            <EuiButton onClick={copy}>
-              Click to copy input text
-            </EuiButton>
+          {copy => (
+            <EuiButton onClick={copy}>Click to copy input text</EuiButton>
           )}
         </EuiCopy>
       </div>

@@ -83,16 +83,16 @@ export class EuiFilterSelectItem extends Component {
         className={classes}
         disabled={disabled}
         aria-disabled={disabled}
-        {...rest}
-      >
+        {...rest}>
         <EuiFlexGroup
           alignItems="center"
           gutterSize="s"
           component="span"
-          responsive={false}
-        >
+          responsive={false}>
           {iconNode}
-          <EuiFlexItem className="euiFilterSelectItem__content">{children}</EuiFlexItem>
+          <EuiFlexItem className="euiFilterSelectItem__content">
+            {children}
+          </EuiFlexItem>
         </EuiFlexGroup>
       </button>
     );

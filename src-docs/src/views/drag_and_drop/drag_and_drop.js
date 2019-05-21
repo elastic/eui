@@ -3,7 +3,7 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
-  EuiPanel
+  EuiPanel,
 } from '../../../../src/components';
 
 import { reorder } from '../../../../src/components/drag_and_drop';
@@ -14,11 +14,7 @@ export default () => {
   const [list, setList] = useState(makeList(3));
   const onDragEnd = ({ source, destination }) => {
     if (source && destination) {
-      const items = reorder(
-        list,
-        source.index,
-        destination.index
-      );
+      const items = reorder(list, source.index, destination.index);
 
       setList(items);
     }
@@ -30,7 +26,8 @@ export default () => {
           <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
             {(provided, state) => (
               <EuiPanel hasShadow={state.isDragging}>
-                {content}{state.isDragging && ' ✨'}
+                {content}
+                {state.isDragging && ' ✨'}
               </EuiPanel>
             )}
           </EuiDraggable>

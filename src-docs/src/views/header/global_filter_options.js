@@ -23,8 +23,7 @@ function flattenPanelTree(tree, array = []) {
 }
 
 export default class GlobalFilterOptions extends Component {
-  static propTypes = {
-  }
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -117,10 +116,12 @@ export default class GlobalFilterOptions extends Component {
         }
         anchorPosition="downCenter"
         panelPaddingSize="none"
-        withTitle
-      >
+        withTitle>
         <EuiPopoverTitle>Change all filters</EuiPopoverTitle>
-        <EuiContextMenu initialPanelId={0} panels={flattenPanelTree(panelTree)} />
+        <EuiContextMenu
+          initialPanelId={0}
+          panels={flattenPanelTree(panelTree)}
+        />
       </EuiPopover>
     );
   }

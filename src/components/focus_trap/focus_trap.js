@@ -5,10 +5,13 @@ import FocusLock from 'react-focus-lock';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 const OutsideEventDetector = ({ children, handleEvent, ...rest }) => {
-  const eventHanders = ['onMouseDown', 'onTouchStart'].reduce((obj, eventName) => {
-    obj[eventName] = handleEvent;
-    return obj;
-  }, {});
+  const eventHanders = ['onMouseDown', 'onTouchStart'].reduce(
+    (obj, eventName) => {
+      obj[eventName] = handleEvent;
+      return obj;
+    },
+    {}
+  );
   return (
     <div {...eventHanders} {...rest}>
       {children}
@@ -18,8 +21,8 @@ const OutsideEventDetector = ({ children, handleEvent, ...rest }) => {
 
 export class EuiFocusTrap extends React.Component {
   state = {
-    hasBeenDisabledByClick: false
-  }
+    hasBeenDisabledByClick: false,
+  };
 
   lastInterceptedEvent = null;
   preventFocusExit = false;
@@ -29,7 +32,7 @@ export class EuiFocusTrap extends React.Component {
   }
 
   // Programmatically sets focus on a nested DOM node; optional
-  setInitalFocus = (initialFocus) => {
+  setInitalFocus = initialFocus => {
     let node = initialFocus;
     if (typeof node === 'string') {
       node = document.querySelector(initialFocus);
@@ -40,61 +43,58 @@ export class EuiFocusTrap extends React.Component {
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-lock' API
     node.setAttribute('data-autofocus', true);
-  }
+  };
 
   // Sets whether the focus trap has been disabled by clicks outside its component tree
   // Only applicable for `clickOutsideDisables`
   toggleDisabled = (shouldDisable = !this.state.hasBeenDisabledByClick) => {
     this.setState({
-      hasBeenDisabledByClick: shouldDisable
+      hasBeenDisabledByClick: shouldDisable,
     });
-  }
+  };
 
   // Sets whether an event has been prevented from disabling the focus trap
   // Only applicable for `clickOutsideDisables`
   toggleExitPrevented = (shouldPrevent = !this.preventFocusExit) => {
     this.preventFocusExit = shouldPrevent;
-  }
+  };
 
   // Event handler to determine whether a mouse or key event should disable the focus trap
   // Only applicable for `clickOutsideDisables`
-  handleOutsideClick = (event) => {
+  handleOutsideClick = event => {
     this.toggleExitPrevented(false);
-    if (this.preventFocusExit && event.target === this.lastInterceptedEvent.target) return;
+    if (
+      this.preventFocusExit &&
+      event.target === this.lastInterceptedEvent.target
+    )
+      return;
     this.toggleDisabled(true);
-  }
+  };
 
   // Event handler to capture events from within the focus trap subtree and prevent them from disabling the trap (mostly for portals)
   // Only applicable for `clickOutsideDisables`
-  handleBubbledEvent = (e) => {
+  handleBubbledEvent = e => {
     this.lastInterceptedEvent = e.nativeEvent;
     this.toggleExitPrevented(true);
-  }
+  };
 
   render() {
     const { children, clickOutsideDisables, disabled, ...rest } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
     const lockProps = {
       disabled: isDisabled,
-      ...rest
+      ...rest,
     };
-    return (
-      clickOutsideDisables ? (
-        <EuiOutsideClickDetector
-          isDisabled={isDisabled}
-          onOutsideClick={this.handleOutsideClick}
-        >
-          <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-            <FocusLock {...lockProps}>
-              {children}
-            </FocusLock>
-          </OutsideEventDetector>
-        </EuiOutsideClickDetector>
-      ) : (
-        <FocusLock {...lockProps}>
-          {children}
-        </FocusLock>
-      )
+    return clickOutsideDisables ? (
+      <EuiOutsideClickDetector
+        isDisabled={isDisabled}
+        onOutsideClick={this.handleOutsideClick}>
+        <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
+          <FocusLock {...lockProps}>{children}</FocusLock>
+        </OutsideEventDetector>
+      </EuiOutsideClickDetector>
+    ) : (
+      <FocusLock {...lockProps}>{children}</FocusLock>
     );
   }
 }
@@ -124,11 +124,11 @@ EuiFocusTrap.propTypes = {
    * From `react-focus-lock`.
    * When exiting/disabling, focus will return to the element that previously help focus
    */
-  returnFocus: PropTypes.bool
+  returnFocus: PropTypes.bool,
 };
 
 EuiFocusTrap.defaultProps = {
   clickOutsideDisables: false,
   disabled: false,
-  returnFocus: true
+  returnFocus: true,
 };

@@ -22,19 +22,20 @@ export const EuiButtonGroup = ({
   type,
   ...rest
 }) => {
-
   const classes = classNames(
     'euiButtonGroup',
     {
       'euiButtonGroup--fullWidth': isFullWidth,
     },
-    className,
+    className
   );
 
   let legendNode;
   if (legend) {
     legendNode = (
-      <EuiScreenReaderOnly><legend>{legend}</legend></EuiScreenReaderOnly>
+      <EuiScreenReaderOnly>
+        <legend>{legend}</legend>
+      </EuiScreenReaderOnly>
     );
   }
 
@@ -84,7 +85,7 @@ EuiButtonGroup.propTypes = {
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       isDisabled: PropTypes.bool,
-    }),
+    })
   ).isRequired,
   onChange: PropTypes.func.isRequired,
 

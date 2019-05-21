@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { commonlyUsedRangeShape, recentlyUsedRangeShape } from '../types';
@@ -11,7 +10,12 @@ import { EuiLink } from '../../../link';
 import { EuiText } from '../../../text';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
-export function EuiRecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, recentlyUsedRanges }) {
+export function EuiRecentlyUsed({
+  applyTime,
+  commonlyUsedRanges,
+  dateFormat,
+  recentlyUsedRanges,
+}) {
   if (recentlyUsedRanges.length === 0) {
     return null;
   }
@@ -31,7 +35,9 @@ export function EuiRecentlyUsed({ applyTime, commonlyUsedRanges, dateFormat, rec
 
   return (
     <Fragment>
-      <EuiTitle size="xxxs"><span>Recently used date ranges</span></EuiTitle>
+      <EuiTitle size="xxxs">
+        <span>Recently used date ranges</span>
+      </EuiTitle>
       <EuiSpacer size="s" />
       <EuiText size="s" className="euiQuickSelectPopover__section">
         <EuiFlexGroup gutterSize="s" direction="column">
@@ -51,5 +57,5 @@ EuiRecentlyUsed.propTypes = {
 };
 
 EuiRecentlyUsed.defaultProps = {
-  recentlyUsedRanges: []
+  recentlyUsedRanges: [],
 };

@@ -4,15 +4,9 @@ import classNames from 'classnames';
 
 import { EuiI18n } from '../i18n';
 import { EuiNotificationBadge } from '../badge/notification_badge';
-import {
-  COLORS,
-  ICON_SIDES,
-  EuiButtonEmpty,
-} from '../button/button_empty';
+import { COLORS, ICON_SIDES, EuiButtonEmpty } from '../button/button_empty';
 
-import {
-  IconPropType,
-} from '../icon';
+import { IconPropType } from '../icon';
 
 export const EuiFilterButton = ({
   children,
@@ -45,13 +39,13 @@ export const EuiFilterButton = ({
       'euiFilterButton--noGrow': !grow,
       'euiFilterButton--withNext': noDivider || withNext,
     },
-    className,
+    className
   );
 
   const buttonTextClassNames = classNames(
     // 'euiFilterButton__textShift',
-    { 'euiFilterButton__text-hasNotification': numFiltersDefined, },
-    textProps && textProps.className,
+    { 'euiFilterButton__text-hasNotification': numFiltersDefined },
+    textProps && textProps.className
   );
 
   let dataText;
@@ -61,30 +55,31 @@ export const EuiFilterButton = ({
 
   const buttonContents = (
     <Fragment>
-      <span className="euiFilterButton__textShift" data-text={dataText} title={dataText}>
+      <span
+        className="euiFilterButton__textShift"
+        data-text={dataText}
+        title={dataText}>
         {children}
       </span>
 
-      {numFiltersDefined &&
+      {numFiltersDefined && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
           values={{ count: numActiveFilters || numFilters, hasActiveFilters }}
-          default={({ count, hasActiveFilters }) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`}
-        >
-          {
-            filterBadge => (
-              <EuiNotificationBadge
-                className="euiFilterButton__notification"
-                size="m"
-                aria-label={filterBadge}
-                color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
-              >
-                {numActiveFilters || numFilters}
-              </EuiNotificationBadge>
-            )
-          }
+          default={({ count, hasActiveFilters }) =>
+            `${count} ${hasActiveFilters ? 'active' : 'available'} filters`
+          }>
+          {filterBadge => (
+            <EuiNotificationBadge
+              className="euiFilterButton__notification"
+              size="m"
+              aria-label={filterBadge}
+              color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
+              {numActiveFilters || numFilters}
+            </EuiNotificationBadge>
+          )}
         </EuiI18n>
-      }
+      )}
     </Fragment>
   );
 
@@ -97,8 +92,7 @@ export const EuiFilterButton = ({
       iconType={iconType}
       type={type}
       textProps={{ ...textProps, className: buttonTextClassNames }}
-      {...rest}
-    >
+      {...rest}>
       {buttonContents}
     </EuiButtonEmpty>
   );

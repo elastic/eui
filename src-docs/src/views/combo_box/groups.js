@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-  EuiComboBox,
-} from '../../../../src/components';
+import { EuiComboBox } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -10,28 +8,38 @@ export default class extends Component {
 
     const colorGroup = {
       label: 'Colors',
-      options: [{
-        label: 'Red',
-      }, {
-        label: 'Blue',
-      }, {
-        label: 'Yellow',
-      }, {
-        label: 'Green',
-      }],
+      options: [
+        {
+          label: 'Red',
+        },
+        {
+          label: 'Blue',
+        },
+        {
+          label: 'Yellow',
+        },
+        {
+          label: 'Green',
+        },
+      ],
     };
 
     const soundGroup = {
       label: 'Sounds',
-      options: [{
-        label: 'Pop',
-      }, {
-        label: 'Hiss',
-      }, {
-        label: 'Screech',
-      }, {
-        label: 'Ding',
-      }],
+      options: [
+        {
+          label: 'Pop',
+        },
+        {
+          label: 'Hiss',
+        },
+        {
+          label: 'Screech',
+        },
+        {
+          label: 'Ding',
+        },
+      ],
     };
 
     this.options = [colorGroup, soundGroup];
@@ -41,7 +49,7 @@ export default class extends Component {
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });
@@ -63,9 +71,11 @@ export default class extends Component {
     };
 
     // Create the option if it doesn't exist.
-    if (flattenedOptions.findIndex(option =>
-      option.label.trim().toLowerCase() === normalizedSearchValue
-    ) === -1) {
+    if (
+      flattenedOptions.findIndex(
+        option => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
       if (this.options[this.options.length - 1].label !== 'Custom') {
         this.options.push({
           label: 'Custom',

@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -54,15 +51,9 @@ export class Table extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-    const {
-      index: pageIndex,
-      size: pageSize,
-    } = page;
+    const { index: pageIndex, size: pageSize } = page;
 
-    const {
-      field: sortField,
-      direction: sortDirection,
-    } = sort;
+    const { field: sortField, direction: sortDirection } = sort;
 
     this.setState({
       pageIndex,
@@ -72,7 +63,7 @@ export class Table extends Component {
     });
   };
 
-  onSelectionChange = (selectedItems) => {
+  onSelectionChange = selectedItems => {
     this.setState({ selectedItems });
   };
 
@@ -81,7 +72,7 @@ export class Table extends Component {
     store.deleteUsers(...selectedItems.map(user => user.id));
 
     this.setState({
-      selectedItems: []
+      selectedItems: [],
     });
   };
 
@@ -93,11 +84,7 @@ export class Table extends Component {
     }
 
     return (
-      <EuiButton
-        color="danger"
-        iconType="trash"
-        onClick={this.onClickDelete}
-      >
+      <EuiButton color="danger" iconType="trash" onClick={this.onClickDelete}>
         Delete {selectedItems.length} Users
       </EuiButton>
     );
@@ -110,89 +97,96 @@ export class Table extends Component {
   }
 
   render() {
-    const {
+    const { pageIndex, pageSize, sortField, sortDirection } = this.state;
+
+    const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
       sortField,
-      sortDirection,
-    } = this.state;
-
-    const {
-      pageOfItems,
-      totalItemCount,
-    } = store.findUsers(pageIndex, pageSize, sortField, sortDirection);
+      sortDirection
+    );
 
     const deleteButton = this.renderDeleteButton();
 
-    const columns = [{
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      }
-    }, {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      }
-    }, {
-      field: 'firstName',
-      name: 'Full Name',
-      mobileOptions: {
-        only: true,
-        header: false,
-        enlarge: true,
-        fullWidth: true,
+    const columns = [
+      {
+        field: 'firstName',
+        name: 'First Name',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          show: false,
+        },
       },
-      render: (name, item) => (
-        <EuiFlexGroup responsive={false} alignItems="center">
-          <EuiFlexItem>{item.firstName} {item.lastName}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{this.renderStatus(item.online)}</EuiFlexItem>
-        </EuiFlexGroup>
-      ),
-    }, {
-      field: 'github',
-      name: 'Github',
-      render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      )
-    }, {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
-      sortable: true
-    }, {
-      field: 'nationality',
-      name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
-      }
-    }, {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online) => (
-        this.renderStatus(online)
-      ),
-      sortable: true,
-      mobileOptions: {
-        show: false,
-      }
-    }];
+      {
+        field: 'lastName',
+        name: 'Last Name',
+        truncateText: true,
+        mobileOptions: {
+          show: false,
+        },
+      },
+      {
+        field: 'firstName',
+        name: 'Full Name',
+        mobileOptions: {
+          only: true,
+          header: false,
+          enlarge: true,
+          fullWidth: true,
+        },
+        render: (name, item) => (
+          <EuiFlexGroup responsive={false} alignItems="center">
+            <EuiFlexItem>
+              {item.firstName} {item.lastName}
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              {this.renderStatus(item.online)}
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        ),
+      },
+      {
+        field: 'github',
+        name: 'Github',
+        render: username => (
+          <EuiLink href={`https://github.com/${username}`} target="_blank">
+            {username}
+          </EuiLink>
+        ),
+      },
+      {
+        field: 'dateOfBirth',
+        name: 'Date of Birth',
+        dataType: 'date',
+        render: date => formatDate(date, 'dobLong'),
+        sortable: true,
+      },
+      {
+        field: 'nationality',
+        name: 'Nationality',
+        render: countryCode => {
+          const country = store.getCountry(countryCode);
+          return `${country.flag} ${country.name}`;
+        },
+      },
+      {
+        field: 'online',
+        name: 'Online',
+        dataType: 'boolean',
+        render: online => this.renderStatus(online),
+        sortable: true,
+        mobileOptions: {
+          show: false,
+        },
+      },
+    ];
 
     const pagination = {
       pageIndex: pageIndex,
       pageSize: pageSize,
       totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8]
+      pageSizeOptions: [3, 5, 8],
     };
 
     const sorting = {
@@ -203,9 +197,10 @@ export class Table extends Component {
     };
 
     const selection = {
-      selectable: (user) => user.online,
-      selectableMessage: (selectable) => !selectable ? 'User is currently offline' : undefined,
-      onSelectionChange: this.onSelectionChange
+      selectable: user => user.online,
+      selectableMessage: selectable =>
+        !selectable ? 'User is currently offline' : undefined,
+      onSelectionChange: this.onSelectionChange,
     };
 
     return (

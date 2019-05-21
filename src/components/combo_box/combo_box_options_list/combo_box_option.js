@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -16,7 +14,7 @@ export class EuiComboBoxOption extends Component {
     onEnterKey: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     isFocused: PropTypes.bool.isRequired,
-  }
+  };
 
   onClick = () => {
     const { onClick, option, disabled } = this.props;
@@ -28,7 +26,7 @@ export class EuiComboBoxOption extends Component {
     onClick(option);
   };
 
-  onKeyDown = (e) => {
+  onKeyDown = e => {
     if (e.keyCode === ENTER || e.keyCode === SPACE) {
       e.preventDefault();
       e.stopPropagation();
@@ -55,18 +53,12 @@ export class EuiComboBoxOption extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames(
-      'euiComboBoxOption',
-      className,
-      {
-        'euiComboBoxOption-isDisabled': disabled,
-        'euiComboBoxOption-isFocused': isFocused,
-      },
-    );
+    const classes = classNames('euiComboBoxOption', className, {
+      'euiComboBoxOption-isDisabled': disabled,
+      'euiComboBoxOption-isFocused': isFocused,
+    });
 
-    const {
-      label,
-    } = option;
+    const { label } = option;
 
     return (
       <button
@@ -79,8 +71,7 @@ export class EuiComboBoxOption extends Component {
         ref={optionRef}
         aria-disabled={disabled}
         title={label}
-        {...rest}
-      >
+        {...rest}>
         {children}
       </button>
     );

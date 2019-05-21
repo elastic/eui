@@ -1,7 +1,3 @@
-export {
-  EuiCard,
-} from './card';
+export { EuiCard } from './card';
 
-export {
-  EuiCardGraphic,
-} from './card_graphic';
+export { EuiCardGraphic } from './card_graphic';

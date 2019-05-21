@@ -1,12 +1,16 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  formatAuto, formatBoolean, formatDate, formatNumber, formatText, LEFT_ALIGNMENT, PropertySortType,
-  RIGHT_ALIGNMENT, SortDirection
+  formatAuto,
+  formatBoolean,
+  formatDate,
+  formatNumber,
+  formatText,
+  LEFT_ALIGNMENT,
+  PropertySortType,
+  RIGHT_ALIGNMENT,
+  SortDirection,
 } from '../../services';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
@@ -39,11 +43,11 @@ import makeId from '../form/form_row/make_id';
 const dataTypesProfiles = {
   auto: {
     align: LEFT_ALIGNMENT,
-    render: value => formatAuto(value)
+    render: value => formatAuto(value),
   },
   string: {
     align: LEFT_ALIGNMENT,
-    render: value => formatText(value)
+    render: value => formatText(value),
   },
   number: {
     align: RIGHT_ALIGNMENT,
@@ -56,7 +60,7 @@ const dataTypesProfiles = {
   date: {
     align: LEFT_ALIGNMENT,
     render: value => formatDate(value),
-  }
+  },
 };
 
 const DATA_TYPES = Object.keys(dataTypesProfiles);
@@ -71,18 +75,19 @@ const DefaultItemActionType = PropTypes.shape({
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
   isPrimary: PropTypes.bool,
-  icon: PropTypes.oneOfType([ // required when type is 'icon'
+  icon: PropTypes.oneOfType([
+    // required when type is 'icon'
     PropTypes.oneOf(ICON_TYPES),
-    PropTypes.func // (item) => oneOf(ICON_TYPES)
+    PropTypes.func, // (item) => oneOf(ICON_TYPES)
   ]),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(BUTTON_ICON_COLORS),
-    PropTypes.func // (item) => oneOf(ICON_BUTTON_COLORS)
-  ])
+    PropTypes.func, // (item) => oneOf(ICON_BUTTON_COLORS)
+  ]),
 });
 
 const CustomItemActionType = PropTypes.shape({
-  render: PropTypes.func.isRequired,  // (item, enabled) => PropTypes.node;
+  render: PropTypes.func.isRequired, // (item, enabled) => PropTypes.node;
   available: PropTypes.func, // (item) => boolean;
   enabled: PropTypes.func, // (item) => boolean;
   isPrimary: PropTypes.bool,
@@ -90,14 +95,14 @@ const CustomItemActionType = PropTypes.shape({
 
 const SupportedItemActionType = PropTypes.oneOfType([
   DefaultItemActionType,
-  CustomItemActionType
+  CustomItemActionType,
 ]);
 
 export const ActionsColumnType = PropTypes.shape({
   actions: PropTypes.arrayOf(SupportedItemActionType).isRequired,
   name: PropTypes.node,
   description: PropTypes.string,
-  width: PropTypes.string
+  width: PropTypes.string,
 });
 
 export const FieldDataColumnTypeShape = {
@@ -114,7 +119,7 @@ export const FieldDataColumnTypeShape = {
     PropTypes.string,
     PropTypes.element,
     PropTypes.func, // ({ items, pagination }) => PropTypes.node
-  ])
+  ]),
 };
 export const FieldDataColumnType = PropTypes.shape(FieldDataColumnTypeShape);
 
@@ -123,20 +128,24 @@ export const ComputedColumnType = PropTypes.shape({
   name: PropTypes.node,
   description: PropTypes.string,
   width: PropTypes.string,
-  truncateText: PropTypes.bool
+  truncateText: PropTypes.bool,
 });
 
-export const ColumnType = PropTypes.oneOfType([FieldDataColumnType, ComputedColumnType, ActionsColumnType]);
+export const ColumnType = PropTypes.oneOfType([
+  FieldDataColumnType,
+  ComputedColumnType,
+  ActionsColumnType,
+]);
 
 export const ItemIdType = PropTypes.oneOfType([
   PropTypes.string, // the name of the item id property
-  PropTypes.func    // (item) => string
+  PropTypes.func, // (item) => string
 ]);
 
 export const SelectionType = PropTypes.shape({
   onSelectionChange: PropTypes.func, // (selection: item[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
-  selectableMessage: PropTypes.func // (selectable, item) => boolean;
+  selectableMessage: PropTypes.func, // (selectable, item) => boolean;
 });
 
 const SortingType = PropTypes.shape({
@@ -146,7 +155,11 @@ const SortingType = PropTypes.shape({
 
 const BasicTablePropTypes = {
   itemId: ItemIdType,
-  itemIdToExpandedRowMap: withRequiredProp(PropTypes.object, 'itemId', 'row expansion uses the itemId prop to identify each row'),
+  itemIdToExpandedRowMap: withRequiredProp(
+    PropTypes.object,
+    'itemId',
+    'row expansion uses the itemId prop to identify each row'
+  ),
   items: PropTypes.array.isRequired,
   cellProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
@@ -162,7 +175,11 @@ const BasicTablePropTypes = {
   pagination: PaginationType,
   responsive: PropTypes.bool,
   rowProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  selection: withRequiredProp(SelectionType, 'itemId', 'row selection uses the itemId prop to identify each row'),
+  selection: withRequiredProp(
+    SelectionType,
+    'itemId',
+    'row selection uses the itemId prop to identify each row'
+  ),
   sorting: SortingType,
 };
 
@@ -222,9 +239,12 @@ export class EuiBasicTable extends Component {
     }
 
     const { itemId } = nextProps;
-    const selection = prevState.selection.filter(selectedItem => (
-      nextProps.items.findIndex(item => getItemId(item, itemId) === getItemId(selectedItem, itemId)) !== -1
-    ));
+    const selection = prevState.selection.filter(
+      selectedItem =>
+        nextProps.items.findIndex(
+          item => getItemId(item, itemId) === getItemId(selectedItem, itemId)
+        ) !== -1
+    );
 
     if (selection.length !== prevState.selection.length) {
       if (nextProps.selection.onSelectionChange) {
@@ -240,7 +260,7 @@ export class EuiBasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: []
+      selection: [],
     };
   }
 
@@ -249,7 +269,7 @@ export class EuiBasicTable extends Component {
     if (props.pagination) {
       criteria.page = {
         index: props.pagination.pageIndex,
-        size: props.pagination.pageSize
+        size: props.pagination.pageSize,
       };
     }
     if (props.sorting) {
@@ -279,8 +299,8 @@ export class EuiBasicTable extends Component {
       ...currentCriteria,
       page: {
         index: 0, // when page size changes, we take the user back to the first page
-        size
-      }
+        size,
+      },
     };
     this.props.onChange(criteria);
   }
@@ -292,8 +312,8 @@ export class EuiBasicTable extends Component {
       ...currentCriteria,
       page: {
         ...currentCriteria.page,
-        index
-      }
+        index,
+      },
     };
     this.props.onChange(criteria);
   }
@@ -302,20 +322,26 @@ export class EuiBasicTable extends Component {
     this.clearSelection();
     const currentCriteria = EuiBasicTable.buildCriteria(this.props);
     let direction = SortDirection.ASC;
-    if (currentCriteria && currentCriteria.sort && currentCriteria.sort.field === column.field) {
+    if (
+      currentCriteria &&
+      currentCriteria.sort &&
+      currentCriteria.sort.field === column.field
+    ) {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
     }
     const criteria = {
       ...currentCriteria,
       // resetting the page if the criteria has one
-      page: !currentCriteria.page ? undefined : {
-        index: 0,
-        size: currentCriteria.page.size
-      },
+      page: !currentCriteria.page
+        ? undefined
+        : {
+            index: 0,
+            size: currentCriteria.page.size,
+          },
       sort: {
         field: column.field,
-        direction
-      }
+        direction,
+      },
     };
     this.props.onChange(criteria);
   }
@@ -347,7 +373,7 @@ export class EuiBasicTable extends Component {
     const classes = classNames(
       'euiBasicTable',
       {
-        'euiBasicTable-loading': loading
+        'euiBasicTable-loading': loading,
       },
       className
     );
@@ -364,27 +390,30 @@ export class EuiBasicTable extends Component {
   }
 
   renderTable() {
-
     const { compressed, responsive } = this.props;
 
     const mobileHeader = responsive ? (
       <EuiTableHeaderMobile>
-        <EuiFlexGroup responsive={false} justifyContent="spaceBetween" alignItems="baseline">
+        <EuiFlexGroup
+          responsive={false}
+          justifyContent="spaceBetween"
+          alignItems="baseline">
           <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            {this.renderTableMobileSort()}
-          </EuiFlexItem>
+          <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
         </EuiFlexGroup>
       </EuiTableHeaderMobile>
-    ) : undefined;
+    ) : (
+      undefined
+    );
     const caption = this.renderTableCaption();
     const head = this.renderTableHead();
     const body = this.renderTableBody();
     const footer = this.renderTableFooter();
     return (
       <div
-        ref={element => { this.tableElement = element; }}
-      >
+        ref={element => {
+          this.tableElement = element;
+        }}>
         {mobileHeader}
         <EuiTable responsive={responsive} compressed={compressed}>
           {caption}
@@ -416,7 +445,9 @@ export class EuiBasicTable extends Component {
         key: `_data_s_${column.field}_${index}`,
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
-        isSortAscending: sortDirection ? SortDirection.isAsc(sortDirection) : undefined,
+        isSortAscending: sortDirection
+          ? SortDirection.isAsc(sortDirection)
+          : undefined,
       });
     });
 
@@ -424,7 +455,6 @@ export class EuiBasicTable extends Component {
   }
 
   renderTableCaption() {
-
     const { items } = this.props;
 
     return (
@@ -447,17 +477,18 @@ export class EuiBasicTable extends Component {
       return;
     }
 
-    const selectableItems = items.filter(item => (
-      !selection.selectable || selection.selectable(item)
-    ));
+    const selectableItems = items.filter(
+      item => !selection.selectable || selection.selectable(item)
+    );
 
-    const checked = this.state.selection &&
+    const checked =
+      this.state.selection &&
       selectableItems.length > 0 &&
       this.state.selection.length === selectableItems.length;
 
     const disabled = selectableItems.length === 0;
 
-    const onChange = (event) => {
+    const onChange = event => {
       if (event.target.checked) {
         this.changeSelection(selectableItems);
       } else {
@@ -482,10 +513,9 @@ export class EuiBasicTable extends Component {
         )}
       </EuiI18n>
     );
-  }
+  };
 
   renderTableHead() {
-
     const { columns, selection } = this.props;
 
     const headers = [];
@@ -521,8 +551,7 @@ export class EuiBasicTable extends Component {
             key={`_actions_h_${index}`}
             align="right"
             width={width}
-            mobileOptions={mobileOptions}
-          >
+            mobileOptions={mobileOptions}>
             {name}
           </EuiTableHeaderCell>
         );
@@ -536,8 +565,7 @@ export class EuiBasicTable extends Component {
             key={`_computed_column_h_${index}`}
             align={columnAlign}
             width={width}
-            mobileOptions={mobileOptions}
-          >
+            mobileOptions={mobileOptions}>
             {name}
           </EuiTableHeaderCell>
         );
@@ -549,7 +577,9 @@ export class EuiBasicTable extends Component {
       if (this.props.sorting && sortable) {
         const sortDirection = this.resolveColumnSortDirection(column);
         sorting.isSorted = !!sortDirection;
-        sorting.isSortAscending = sortDirection ? SortDirection.isAsc(sortDirection) : undefined;
+        sorting.isSortAscending = sortDirection
+          ? SortDirection.isAsc(sortDirection)
+          : undefined;
         sorting.onSort = this.resolveColumnOnSort(column);
         sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
       }
@@ -562,8 +592,7 @@ export class EuiBasicTable extends Component {
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
-          {...sorting}
-        >
+          {...sorting}>
           {name}
         </EuiTableHeaderCell>
       );
@@ -589,7 +618,10 @@ export class EuiBasicTable extends Component {
 
     columns.forEach(column => {
       const footer = getColumnFooter(column, { items, pagination });
-      if ((column.mobileOptions && column.mobileOptions.only) || column.isMobileHeader) {
+      if (
+        (column.mobileOptions && column.mobileOptions.only) ||
+        column.isMobileHeader
+      ) {
         return; // exclude columns that only exist for mobile headers
       }
 
@@ -597,8 +629,7 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.field}`}
-            align={column.align}
-          >
+            align={column.align}>
             {footer}
           </EuiTableFooterCell>
         );
@@ -608,15 +639,16 @@ export class EuiBasicTable extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={column.align}
-          >
+            align={column.align}>
             {undefined}
           </EuiTableFooterCell>
         );
       }
     });
 
-    return footers.length && hasDefinedFooter ? <EuiTableFooter>{footers}</EuiTableFooter> : null;
+    return footers.length && hasDefinedFooter ? (
+      <EuiTableFooter>{footers}</EuiTableFooter>
+    ) : null;
   }
 
   renderTableBody() {
@@ -630,8 +662,9 @@ export class EuiBasicTable extends Component {
 
     const rows = items.map((item, index) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
-      const tableItemIndex = this.props.pagination ?
-        this.props.pagination.pageIndex * this.props.pagination.pageSize + index
+      const tableItemIndex = this.props.pagination
+        ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
+          index
         : index;
       return this.renderItemRow(item, tableItemIndex);
     });
@@ -646,7 +679,10 @@ export class EuiBasicTable extends Component {
     return (
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell align="center" colSpan={colSpan} isMobileFullWidth={true}>
+          <EuiTableRowCell
+            align="center"
+            colSpan={colSpan}
+            isMobileFullWidth={true}>
             <EuiIcon type="minusInCircle" color="danger" /> {error}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -660,7 +696,10 @@ export class EuiBasicTable extends Component {
     return (
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell align="center" colSpan={colSpan} isMobileFullWidth={true}>
+          <EuiTableRowCell
+            align="center"
+            colSpan={colSpan}
+            isMobileFullWidth={true}>
             {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -669,15 +708,25 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemRow(item, rowIndex) {
-    const { columns, selection, isSelectable, hasActions, itemIdToExpandedRowMap = {}, isExpandable } = this.props;
+    const {
+      columns,
+      selection,
+      isSelectable,
+      hasActions,
+      itemIdToExpandedRowMap = {},
+      isExpandable,
+    } = this.props;
 
     const cells = [];
 
     const { itemId: itemIdCallback } = this.props;
     const itemId = getItemId(item, itemIdCallback) || rowIndex;
-    const selected = !selection ? false : this.state.selection && !!this.state.selection.find(selectedItem => (
-      getItemId(selectedItem, itemIdCallback) === itemId
-    ));
+    const selected = !selection
+      ? false
+      : this.state.selection &&
+        !!this.state.selection.find(
+          selectedItem => getItemId(selectedItem, itemIdCallback) === itemId
+        );
 
     let calculatedHasSelection;
     if (selection) {
@@ -688,12 +737,24 @@ export class EuiBasicTable extends Component {
     let calculatedHasActions;
     columns.forEach((column, columnIndex) => {
       if (column.actions) {
-        cells.push(this.renderItemActionsCell(itemId, item, column, columnIndex, rowIndex));
+        cells.push(
+          this.renderItemActionsCell(
+            itemId,
+            item,
+            column,
+            columnIndex,
+            rowIndex
+          )
+        );
         calculatedHasActions = true;
       } else if (column.field) {
-        cells.push(this.renderItemFieldDataCell(itemId, item, column, columnIndex));
+        cells.push(
+          this.renderItemFieldDataCell(itemId, item, column, columnIndex)
+        );
       } else {
-        cells.push(this.renderItemComputedCell(itemId, item, column, columnIndex));
+        cells.push(
+          this.renderItemComputedCell(itemId, item, column, columnIndex)
+        );
       }
     });
 
@@ -712,36 +773,45 @@ export class EuiBasicTable extends Component {
 
     // We'll use the ID to associate the expanded row with the original.
     const hasExpandedRow = itemIdToExpandedRowMap.hasOwnProperty(itemId);
-    const expandedRowId = hasExpandedRow ? `row_${itemId}_expansion` : undefined;
+    const expandedRowId = hasExpandedRow
+      ? `row_${itemId}_expansion`
+      : undefined;
     const expandedRow = hasExpandedRow ? (
-      <EuiTableRow id={expandedRowId} isExpandedRow={true} isSelectable={isSelectable}>
+      <EuiTableRow
+        id={expandedRowId}
+        isExpandedRow={true}
+        isSelectable={isSelectable}>
         <EuiTableRowCell colSpan={expandedRowColSpan}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
-    ) : undefined;
+    ) : (
+      undefined
+    );
 
     const { rowProps: rowPropsCallback } = this.props;
     const rowProps = getRowProps(item, rowPropsCallback);
     const row = (
       <EuiTableRow
         aria-owns={expandedRowId}
-        isSelectable={isSelectable == null ? calculatedHasSelection : isSelectable}
+        isSelectable={
+          isSelectable == null ? calculatedHasSelection : isSelectable
+        }
         isSelected={selected}
         hasActions={hasActions == null ? calculatedHasActions : hasActions}
         isExpandable={isExpandable}
-        {...rowProps}
-      >
+        {...rowProps}>
         {cells}
       </EuiTableRow>
     );
 
     return (
       <Fragment key={`row_${itemId}`}>
-        {rowProps.onClick
-          ? <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
-          : row
-        }
+        {rowProps.onClick ? (
+          <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
+        ) : (
+          row
+        )}
         {expandedRow}
       </Fragment>
     );
@@ -752,18 +822,22 @@ export class EuiBasicTable extends Component {
     const key = `_selection_column_${itemId}`;
     const checked = selected;
     const disabled = selection.selectable && !selection.selectable(item);
-    const title = selection.selectableMessage && selection.selectableMessage(!disabled, item);
-    const onChange = (event) => {
+    const title =
+      selection.selectableMessage &&
+      selection.selectableMessage(!disabled, item);
+    const onChange = event => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
       } else {
         const { itemId: itemIdCallback } = this.props;
-        this.changeSelection(this.state.selection.reduce((selection, selectedItem) => {
-          if (getItemId(selectedItem, itemIdCallback) !== itemId) {
-            selection.push(selectedItem);
-          }
-          return selection;
-        }, []));
+        this.changeSelection(
+          this.state.selection.reduce((selection, selectedItem) => {
+            if (getItemId(selectedItem, itemIdCallback) !== itemId) {
+              selection.push(selectedItem);
+            }
+            return selection;
+          }, [])
+        );
       }
     };
     return (
@@ -787,12 +861,12 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemActionsCell(itemId, item, column, columnIndex) {
-    const actionEnabled = (action) =>
-      this.state.selection.length === 0 && (!action.enabled || action.enabled(item));
+    const actionEnabled = action =>
+      this.state.selection.length === 0 &&
+      (!action.enabled || action.enabled(item));
 
     let actualActions = column.actions;
     if (column.actions.length > 2) {
-
       // if any of the actions `isPrimary`, add them inline as well, but only the first 2
       const primaryActions = column.actions.filter(o => o.isPrimary);
       actualActions = primaryActions.slice(0, 2);
@@ -803,21 +877,19 @@ export class EuiBasicTable extends Component {
       //
       // here we create a single custom action that triggers the popover with all the configured actions
 
-      actualActions.push(
-        {
-          name: 'All actions',
-          render: (item) => {
-            return (
-              <CollapsedItemActions
-                actions={column.actions}
-                itemId={itemId}
-                item={item}
-                actionEnabled={actionEnabled}
-              />
-            );
-          }
-        }
-      );
+      actualActions.push({
+        name: 'All actions',
+        render: item => {
+          return (
+            <CollapsedItemActions
+              actions={column.actions}
+              itemId={itemId}
+              item={item}
+              actionEnabled={actionEnabled}
+            />
+          );
+        },
+      });
     }
 
     const tools = (
@@ -836,8 +908,7 @@ export class EuiBasicTable extends Component {
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}
-      >
+        hasActions={true}>
         {tools}
       </EuiTableRowCell>
     );
@@ -891,18 +962,19 @@ export class EuiBasicTable extends Component {
         textOnly={textOnly || !render}
         mobileOptions={{
           ...mobileOptions,
-          render: mobileOptions && mobileOptions.render && mobileOptions.render(item),
-          header: mobileOptions && mobileOptions.header === false ? false : name,
+          render:
+            mobileOptions && mobileOptions.render && mobileOptions.render(item),
+          header:
+            mobileOptions && mobileOptions.header === false ? false : name,
         }}
         {...cellProps}
-        {...rest}
-      >
+        {...rest}>
         {content}
       </EuiTableRowCell>
     );
   }
 
-  resolveColumnSortDirection = (column) => {
+  resolveColumnSortDirection = column => {
     const { sorting } = this.props;
     if (!sorting || !sorting.sort || !column.sortable) {
       return;
@@ -910,24 +982,30 @@ export class EuiBasicTable extends Component {
     if (sorting.sort.field === column.field) {
       return sorting.sort.direction;
     }
-  }
+  };
 
-  resolveColumnOnSort = (column) => {
+  resolveColumnOnSort = column => {
     const { sorting } = this.props;
     if (!sorting || !column.sortable) {
       return;
     }
     if (!this.props.onChange) {
-      throw new Error(`BasicTable is configured to be sortable on column [${column.field}] but
+      throw new Error(`BasicTable is configured to be sortable on column [${
+        column.field
+      }] but
           [onChange] is not configured. This callback must be implemented to handle the sort requests`);
     }
     return () => this.onColumnSortChange(column);
-  }
+  };
 
   getRendererForDataType(dataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
-      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
+      throw new Error(
+        `Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(
+          ', '
+        )}]`
+      );
     }
     return profile.render;
   }
@@ -935,7 +1013,11 @@ export class EuiBasicTable extends Component {
   getAlignForDataType(dataType = 'auto') {
     const profile = dataTypesProfiles[dataType];
     if (!profile) {
-      throw new Error(`Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(', ')}]`);
+      throw new Error(
+        `Unknown dataType [${dataType}]. The supported data types are [${DATA_TYPES.join(
+          ', '
+        )}]`
+      );
     }
     return profile.align;
   }

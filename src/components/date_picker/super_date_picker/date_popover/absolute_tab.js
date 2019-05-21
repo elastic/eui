@@ -11,12 +11,12 @@ import { EuiFormRow, EuiFieldText } from '../../../form';
 const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
 
 export class EuiAbsoluteTab extends Component {
-
   constructor(props) {
     super(props);
 
     const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
-    const valueAsMoment = parsedValue && parsedValue.isValid() ? parsedValue : moment();
+    const valueAsMoment =
+      parsedValue && parsedValue.isValid() ? parsedValue : moment();
     this.state = {
       valueAsMoment,
       textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT),
@@ -24,20 +24,20 @@ export class EuiAbsoluteTab extends Component {
     };
   }
 
-  handleChange = (date) => {
+  handleChange = date => {
     this.props.onChange(date.toISOString());
     this.setState({
       valueAsMoment: date,
       textInputValue: date.format(INPUT_DATE_FORMAT),
       isTextInvalid: false,
     });
-  }
+  };
 
-  handleTextChange = (evt) => {
+  handleTextChange = evt => {
     const date = moment(evt.target.value, INPUT_DATE_FORMAT, true);
     const updatedState = {
       textInputValue: evt.target.value,
-      isTextInvalid: !date.isValid()
+      isTextInvalid: !date.isValid(),
     };
     if (date.isValid()) {
       this.props.onChange(date.toISOString());
@@ -45,7 +45,7 @@ export class EuiAbsoluteTab extends Component {
     }
 
     this.setState(updatedState);
-  }
+  };
 
   render() {
     return (
@@ -60,8 +60,11 @@ export class EuiAbsoluteTab extends Component {
         <EuiFormRow
           className="euiDatePopoverContent__padded"
           isInvalid={this.state.isTextInvalid}
-          error={this.state.isTextInvalid ? `Expected format ${INPUT_DATE_FORMAT}` : undefined}
-        >
+          error={
+            this.state.isTextInvalid
+              ? `Expected format ${INPUT_DATE_FORMAT}`
+              : undefined
+          }>
           <EuiFieldText
             isInvalid={this.state.isTextInvalid}
             value={this.state.textInputValue}

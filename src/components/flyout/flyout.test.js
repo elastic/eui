@@ -2,45 +2,32 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import {
-  EuiFlyout,
-  SIZES,
-} from './flyout';
+import { EuiFlyout, SIZES } from './flyout';
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFlyout
-        {...requiredProps}
-        onClose={() => {}}
-      />
+      <EuiFlyout {...requiredProps} onClose={() => {}} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('close button is not rendered', () => {
       const component = render(
-        <EuiFlyout
-          onClose={() => {}}
-          hideCloseButton
-        />
+        <EuiFlyout onClose={() => {}} hideCloseButton />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     describe('closeButtonLabel', () => {
       test('has a default label for the close button', () => {
-        const component = render(
-          <EuiFlyout
-            onClose={() => {}}
-          />
-        );
-        const label = component.find('[data-test-subj="euiFlyoutCloseButton"]').prop('aria-label');
+        const component = render(<EuiFlyout onClose={() => {}} />);
+        const label = component
+          .find('[data-test-subj="euiFlyoutCloseButton"]')
+          .prop('aria-label');
         expect(label).toBe('Closes this dialog');
       });
 
@@ -51,7 +38,9 @@ describe('EuiFlyout', () => {
             closeButtonAriaLabel="Closes specific flyout"
           />
         );
-        const label = component.find('[data-test-subj="euiFlyoutCloseButton"]').prop('aria-label');
+        const label = component
+          .find('[data-test-subj="euiFlyoutCloseButton"]')
+          .prop('aria-label');
         expect(label).toBe('Closes specific flyout');
       });
     });
@@ -60,15 +49,9 @@ describe('EuiFlyout', () => {
   describe('size', () => {
     SIZES.forEach(size => {
       it(`${size} is rendered`, () => {
-        const component = render(
-          <EuiFlyout
-            onClose={() => {}}
-            size={size}
-          />
-        );
+        const component = render(<EuiFlyout onClose={() => {}} size={size} />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });
@@ -76,38 +59,26 @@ describe('EuiFlyout', () => {
   describe('max width', () => {
     test('can be set to a default', () => {
       const component = render(
-        <EuiFlyout
-          onClose={() => {}}
-          maxWidth={true}
-        />
+        <EuiFlyout onClose={() => {}} maxWidth={true} />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
       const component = render(
-        <EuiFlyout
-          onClose={() => {}}
-          maxWidth={1024}
-        />
+        <EuiFlyout onClose={() => {}} maxWidth={1024} />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('can be set to a custom value and measurement', () => {
       const component = render(
-        <EuiFlyout
-          onClose={() => {}}
-          maxWidth="24rem"
-        />
+        <EuiFlyout onClose={() => {}} maxWidth="24rem" />
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 });

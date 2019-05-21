@@ -46,8 +46,7 @@ class EuiTabsExample extends Component {
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}
         disabled={tab.disabled}
-        key={index}
-      >
+        key={index}>
         {tab.name}
       </EuiTab>
     ));

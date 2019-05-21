@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  EuiDescriptionList,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiDescriptionList, EuiSpacer } from '../../../../src/components';
 
 const favoriteVideoGames = [
   {
@@ -12,7 +9,8 @@ const favoriteVideoGames = [
   },
   {
     title: 'TIE Fighter',
-    description: 'The sequel to XWING, join the dark side and fly for the Emporer.',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emporer.',
   },
   {
     title: 'Quake 2',

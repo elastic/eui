@@ -1,12 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiSuperSelect,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiSuperSelect, EuiSpacer } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -25,7 +19,8 @@ export default class extends Component {
       },
       {
         value: 'option_three',
-        inputDisplay: 'Option three has a super long text to see if it will truncate or what',
+        inputDisplay:
+          'Option three has a super long text to see if it will truncate or what',
       },
     ];
 
@@ -34,7 +29,7 @@ export default class extends Component {
     };
   }
 
-  onChange = (value) => {
+  onChange = value => {
     this.setState({
       value: value,
     });

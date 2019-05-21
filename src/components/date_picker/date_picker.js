@@ -1,26 +1,17 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import moment from 'moment';
 import { ReactDatePicker as DatePicker } from '../../../packages';
 
-import {
-  EuiFormControlLayout,
-} from '../form/form_control_layout';
+import { EuiFormControlLayout } from '../form/form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../form/validatable_control';
+import { EuiValidatableControl } from '../form/validatable_control';
 
-import {
-  EuiErrorBoundary,
-} from '../error_boundary';
+import { EuiErrorBoundary } from '../error_boundary';
 
 export class EuiDatePicker extends Component {
-
   render() {
     const {
       adjustDateOnChange,
@@ -58,13 +49,10 @@ export class EuiDatePicker extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames(
-      'euiDatePicker',
-      {
-        'euiDatePicker--shadow': shadow,
-        'euiDatePicker--inline': inline,
-      },
-    );
+    const classes = classNames('euiDatePicker', {
+      'euiDatePicker--shadow': shadow,
+      'euiDatePicker--inline': inline,
+    });
 
     const datePickerClasses = classNames(
       'euiDatePicker',
@@ -120,7 +108,6 @@ export class EuiDatePicker extends Component {
         <EuiErrorBoundary>
           <PropNotSupported />
         </EuiErrorBoundary>
-
       );
     }
 
@@ -130,11 +117,8 @@ export class EuiDatePicker extends Component {
           <EuiFormControlLayout
             icon={optionalIcon}
             fullWidth={fullWidth}
-            isLoading={isLoading}
-          >
-            <EuiValidatableControl
-              isInvalid={isInvalid}
-            >
+            isLoading={isLoading}>
+            <EuiValidatableControl isInvalid={isInvalid}>
               <DatePicker
                 adjustDateOnChange={adjustDateOnChange}
                 calendarClassName={calendarClassName}

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiBadge, EuiPopover, EuiContextMenu } from '../../../../src/components';
+import {
+  EuiBadge,
+  EuiPopover,
+  EuiContextMenu,
+} from '../../../../src/components';
 import GlobalFilterForm from './global_filter_form';
 
 function flattenPanelTree(tree, array = []) {
@@ -52,12 +56,11 @@ export class GlobalFilterItem extends Component {
     });
   };
 
-  deleteFilter = (e) => {
+  deleteFilter = e => {
     window.alert('Filter would have been deleted.');
     // Make sure it doesn't also trigger the onclick for the whole badge
     e.stopPropagation();
-  }
-
+  };
 
   render() {
     const {
@@ -108,10 +111,9 @@ export class GlobalFilterItem extends Component {
         closeButtonProps={{
           // Removing tab focus on close button because the same option can be optained through the context menu
           // Also, we may want to add a `DEL` keyboard press functionality
-          tabIndex: '-1'
+          tabIndex: '-1',
         }}
-        {...rest}
-      >
+        {...rest}>
         {prefix}
         <span>{field}: </span>
         <span>&quot;{value}&quot;</span>
@@ -186,9 +188,11 @@ export class GlobalFilterItem extends Component {
         closePopover={this.closePopover}
         button={button}
         anchorPosition="downCenter"
-        panelPaddingSize="none"
-      >
-        <EuiContextMenu initialPanelId={0} panels={flattenPanelTree(panelTree)} />
+        panelPaddingSize="none">
+        <EuiContextMenu
+          initialPanelId={0}
+          panels={flattenPanelTree(panelTree)}
+        />
       </EuiPopover>
     );
   };
