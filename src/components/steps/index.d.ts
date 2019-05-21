@@ -1,5 +1,9 @@
 import { FunctionComponent, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
 import { CommonProps, Omit } from '../common';
+import {
+  EuiStepNumberProps as StepNumberProps,
+  EuiStepNumber as StepNumber,
+} from './step_number';
 
 declare module '@elastic/eui' {
   export type EuiStepStatus = 'complete' | 'incomplete' | 'warning' | 'danger' | 'disabled'
@@ -72,5 +76,7 @@ declare module '@elastic/eui' {
   export const EuiStepsHorizontal: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsHorizontalProps
   >;
-}
 
+  export const EuiStepNumber: typeof StepNumber;
+  export interface EuiStepNumberProps extends StepNumberProps {}
+}
