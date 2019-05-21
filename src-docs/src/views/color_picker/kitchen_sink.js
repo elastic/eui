@@ -30,7 +30,8 @@ export class KitchenSink extends Component {
           compressed={isCompressed}
           label="Pick a color"
           isInvalid={hasErrors}
-          error={errors}>
+          error={errors}
+          fullWidth={true}>
           <EuiColorPicker
             onChange={this.handleChange}
             color={this.state.color}
@@ -43,15 +44,24 @@ export class KitchenSink extends Component {
             swatches={['#333', '#666', '#999', '#CCC', '#FFF']}
           />
         </EuiFormRow>
-        <EuiFormRow label="Can't pick a color">
+        <EuiFormRow compressed={isCompressed} label="Compressed">
+          <EuiColorPicker
+            onChange={this.handleChange}
+            compressed={isCompressed}
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Disabled">
           <EuiColorPicker onChange={this.handleChange} disabled={true} />
         </EuiFormRow>
-        <EuiFormRow label="Read a color">
+        <EuiFormRow label="Read only">
           <EuiColorPicker
             color="#FFF"
             onChange={this.handleChange}
             readOnly={true}
           />
+        </EuiFormRow>
+        <EuiFormRow fullWidth={true} label="Full width">
+          <EuiColorPicker onChange={this.handleChange} fullWidth={true} />
         </EuiFormRow>
       </React.Fragment>
     );
