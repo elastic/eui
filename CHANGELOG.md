@@ -2,6 +2,7 @@
 
 - Converted `EuiStepNumber` to TS ([#1893](https://github.com/elastic/eui/pull/1893))
 - Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
+- Added `data-test-subj` property to `EuiDraggable` and `EuiDroppable` ([#1943](https://github.com/elastic/eui/pull/1943))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
 
@@ -16,7 +17,6 @@
 - Removed unused prop enum of `l` in `EuiButton` ([#1936](https://github.com/elastic/eui/pull/1936))
 - Fixed `EuiSelect` browser event inconsistencies by normalizing `mouseup` propagation ([#1926](https://github.com/elastic/eui/pull/1926))
 - Removed `children` as a required prop for `EuiOverlayMask` ([#1937](https://github.com/elastic/eui/pull/1937))
-- `EuiDraggable`, `EuiDroppable` should support the `data-test-subj` property ([#1943](https://github.com/elastic/eui/pull/1943))
 
 ## [`11.0.1`](https://github.com/elastic/eui/tree/v11.0.1)
 
