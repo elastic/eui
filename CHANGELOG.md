@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiStepNumber` to TS ([#1893](https://github.com/elastic/eui/pull/1893))
 - Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
