@@ -10,6 +10,7 @@ import { CommonProps } from '../common';
 /// <reference path="./radio/index.d.ts" />
 /// <reference path="./range/index.d.ts" />
 /// <reference path="./select/index.d.ts" />
+/// <reference path="./super_select/index.d.ts" />
 /// <reference path="./switch/index.d.ts" />
 /// <reference path="./text_area/index.d.ts" />
 

@@ -3,6 +3,7 @@
 - Converted `EuiStepNumber` to TS ([#1893](https://github.com/elastic/eui/pull/1893))
 - Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
 - Added `data-test-subj` property to `EuiDraggable` and `EuiDroppable` ([#1943](https://github.com/elastic/eui/pull/1943))
+- Add type definitions to `EuiSuperSelect` ([##1752](https://github.com/elastic/eui/issues/1752))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
 
