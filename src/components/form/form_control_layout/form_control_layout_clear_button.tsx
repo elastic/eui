@@ -1,22 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { FunctionComponent, ButtonHTMLAttributes } from 'react';
 
+import classNames from 'classnames';
+import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 
-export const EuiFormControlLayoutClearButton = ({
-  className,
-  onClick,
-  ...rest
-}) => {
+export const EuiFormControlLayoutClearButton: FunctionComponent<
+  CommonProps & ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ className, onClick, ...rest }) => {
   const classes = classNames('euiFormControlLayoutClearButton', className);
 
   return (
     <EuiI18n
       token="euiFormControlLayoutClearButton.label"
       default="Clear input">
-      {label => (
+      {(label: string) => (
         <button
           type="button"
           className={classes}
@@ -31,9 +29,4 @@ export const EuiFormControlLayoutClearButton = ({
       )}
     </EuiI18n>
   );
-};
-
-EuiFormControlLayoutClearButton.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
 };

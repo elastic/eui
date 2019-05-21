@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[35],{
 
 /***/ "../../src/components/icon/assets/app_security_analytics.js":
-/*!*********************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/app_security_analytics.js ***!
-  \*********************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/app_security_analytics.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25,16 +25,24 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 var EuiIconAppSecurityAnalytics = function EuiIconAppSecurityAnalytics(props) {
   return _react.default.createElement("svg", _extends({
-    width: 32,
-    height: 32,
-    viewBox: "0 0 32 32",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, props), _react.default.createElement("path", {
-    d: "M25 12h-1V8A8 8 0 1 0 8 8v4H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h18a3 3 0 0 0 3-3V15a3 3 0 0 0-3-3zM10 8a6 6 0 1 1 12 0v4H10V8zm16 21a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V15a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14z"
-  }), _react.default.createElement("path", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "32",
+    height: "32",
+    viewBox: "0 0 32 32"
+  }, props), _react.default.createElement("g", {
+    transform: "translate(2)"
+  }, _react.default.createElement("path", {
+    d: "M0 14L28 14 28 30C24.6666667 31.3333333 20 32 14 32 8 32 3.33333333 31.3333333 0 30L0 14zM2 16L2 28.5886183C4.97237624 29.5204478 8.9791577 30 14 30 19.0208423 30 23.0276238 29.5204478 26 28.5886183L26 16 2 16zM22 12L22 8.09090909C22 3.62529113 18.421187 0 14 0 9.578813 0 6 3.62529113 6 8.09090909L6 12 8 12 8 8.09090909C8 4.72412514 10.6892005 2 14 2 17.3107995 2 20 4.72412514 20 8.09090909L20 12 22 12z"
+  }), _react.default.createElement("polygon", {
     className: "euiIcon__fillSecondary",
-    d: "M10 20h2v7h-2zM20 22h2v5h-2zM15 17h2v10h-2z"
-  }));
+    points: "6 18 6 24 8 24 8 18"
+  }), _react.default.createElement("polygon", {
+    className: "euiIcon__fillSecondary",
+    points: "20 18 20 24 22 24 22 18"
+  }), _react.default.createElement("polygon", {
+    className: "euiIcon__fillSecondary",
+    points: "13 18 13 26 15 26 15 18"
+  })));
 };
 
 var icon = EuiIconAppSecurityAnalytics;

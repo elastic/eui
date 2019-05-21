@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[171],{
 
 /***/ "../../src/components/icon/assets/logo_logstash.js":
-/*!************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_logstash.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_logstash.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
