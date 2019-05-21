@@ -313,18 +313,25 @@ export class EuiPopover extends Component {
       forcePosition = true;
     }
 
-    const { top, left, position: foundPosition, arrow } = findPopoverPosition({
+    const {
+      top,
+      left,
+      position: foundPosition,
+      arrow,
+      anchorBoundingBox,
+    } = findPopoverPosition({
       container: this.props.container,
       position,
       forcePosition,
       align: getPopoverAlignFromAnchorPosition(this.props.anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset: this.props.hasArrow ? 16 : 8,
+      offset: !this.props.attachToAnchor && this.props.hasArrow ? 16 : 8,
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
       },
+      returnBoundingBox: this.props.attachToAnchor,
     });
 
     // the popover's z-index must inherit from the button
@@ -338,11 +345,12 @@ export class EuiPopover extends Component {
 
     const popoverStyles = {
       top,
-      left,
+      left: this.props.attachToAnchor ? anchorBoundingBox.left : left,
       zIndex,
     };
 
-    const arrowStyles = this.props.hasArrow ? arrow : null;
+    const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
+    const arrowStyles = willRenderArrow ? arrow : null;
     const arrowPosition = foundPosition;
 
     this.setState({
@@ -402,6 +410,7 @@ export class EuiPopover extends Component {
       repositionOnScroll, // eslint-disable-line no-unused-vars
       zIndex, // eslint-disable-line no-unused-vars
       initialFocus, // eslint-disable-line no-unused-vars
+      attachToAnchor, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
@@ -422,7 +431,7 @@ export class EuiPopover extends Component {
       `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
-      { 'euiPopover__panel-noArrow': !hasArrow },
+      { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       panelClassName
     );
 
@@ -540,6 +549,8 @@ EuiPopover.propTypes = {
     sibling: PropTypes.instanceOf(HTMLElement),
     position: PropTypes.oneOf(['before', 'after']),
   }),
+  /** Style and position alteration for arrow-less, left-aligned attachment. Intended for use with inputs as anchors, à la EuiColorPicker */
+  attachToAnchor: PropTypes.bool,
 };
 
 EuiPopover.defaultProps = {

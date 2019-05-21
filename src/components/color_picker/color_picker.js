@@ -64,12 +64,13 @@ export const EuiColorPicker = ({
   const classes = classNames('euiColorPicker', className);
   const panelClasses = classNames('euiColorPicker__popoverPanel', {
     'euiColorPicker__popoverPanel--pickerOnly': mode === 'picker',
+    'euiColorPicker__popoverPanel--customButton': button,
   });
   const popoverClasses = classNames('euiColorPicker__popoverContainer', {
-    'euiColorPicker__popoverContainer--fullWidth': fullWidth && !button,
+    'euiColorPicker__popoverContainer--customButton': button,
   });
   const anchorClasses = classNames('euiColorPicker__popoverAnchor', {
-    'euiColorPicker__popoverAnchor--fullWidth': fullWidth && !button,
+    'euiColorPicker__popoverAnchor--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
   const testSubjAnchor = 'colorPickerAnchor';
@@ -204,7 +205,7 @@ export const EuiColorPicker = ({
           className={popoverClasses}
           anchorClassName={anchorClasses}
           panelClassName={panelClasses}
-          hasArrow={button ? true : false}
+          attachToAnchor={button ? false : true}
           anchorPosition="downLeft"
           panelPaddingSize="s"
           insert={{
