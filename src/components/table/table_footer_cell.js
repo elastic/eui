@@ -5,14 +5,10 @@ import classNames from 'classnames';
 import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
+  CENTER_ALIGNMENT,
 } from '../../services';
 
-const ALIGNMENT = [
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT
-];
+const ALIGNMENT = [LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT];
 
 export const EuiTableFooterCell = ({
   children,
@@ -28,11 +24,7 @@ export const EuiTableFooterCell = ({
   });
 
   return (
-    <td
-      className={classes}
-      colSpan={colSpan}
-      {...rest}
-    >
+    <td className={classes} colSpan={colSpan} {...rest}>
       <div className={contentClasses}>
         <span className="euiTableCellContent__text">{children}</span>
       </div>

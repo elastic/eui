@@ -20,8 +20,17 @@ export const EuiPagination = ({
   const classes = classNames('euiPagination', className);
 
   const pages = [];
-  const firstPageInRange = Math.max(0, Math.min(activePage - NUMBER_SURROUNDING_PAGES, pageCount - MAX_VISIBLE_PAGES));
-  const lastPageInRange = Math.min(pageCount, firstPageInRange + MAX_VISIBLE_PAGES);
+  const firstPageInRange = Math.max(
+    0,
+    Math.min(
+      activePage - NUMBER_SURROUNDING_PAGES,
+      pageCount - MAX_VISIBLE_PAGES
+    )
+  );
+  const lastPageInRange = Math.min(
+    pageCount,
+    firstPageInRange + MAX_VISIBLE_PAGES
+  );
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
     pages.push(
@@ -29,23 +38,20 @@ export const EuiPagination = ({
         key={index}
         token="euiPagination.pageOfTotal"
         default="Page {page} of {total}"
-        values={{ page: i + 1, total: lastPageInRange }}
-      >
+        values={{ page: i + 1, total: lastPageInRange }}>
         {pageOfTotal => (
           <EuiPaginationButton
             isActive={i === activePage}
             onClick={onPageClick.bind(null, i)}
             hideOnMobile
             aria-label={pageOfTotal}
-            data-test-subj={`pagination-button-${i}`}
-          >
+            data-test-subj={`pagination-button-${i}`}>
             {i + 1}
           </EuiPaginationButton>
         )}
       </EuiI18n>
     );
   }
-
 
   const previousButton = (
     <EuiI18n token="euiPagination.previousPage" default="Previous page">
@@ -70,14 +76,12 @@ export const EuiPagination = ({
         key="0"
         token="euiPagination.pageOfTotal"
         default="Page {page} of {total}"
-        values={{ page: 1, total: lastPageInRange }}
-      >
+        values={{ page: 1, total: lastPageInRange }}>
         {pageOfTotal => (
           <EuiPaginationButton
             onClick={onPageClick.bind(null, 0)}
             hideOnMobile
-            aria-label={pageOfTotal}
-          >
+            aria-label={pageOfTotal}>
             1
           </EuiPaginationButton>
         )}
@@ -90,8 +94,7 @@ export const EuiPagination = ({
           key="beginningEllipsis"
           isPlaceholder
           hideOnMobile
-          aria-hidden
-        >
+          aria-hidden>
           <span>&hellip;</span>
         </EuiPaginationButton>
       );
@@ -107,8 +110,7 @@ export const EuiPagination = ({
           key="endingEllipsis"
           isPlaceholder
           hideOnMobile
-          aria-hidden
-        >
+          aria-hidden>
           <span>&hellip;</span>
         </EuiPaginationButton>
       );
@@ -119,14 +121,12 @@ export const EuiPagination = ({
         key={pageCount - 1}
         token="euiPagination.jumpToLastPage"
         default="Jump to the last page, number {pageCount}"
-        values={{ pageCount }}
-      >
+        values={{ pageCount }}>
         {jumpToLastPage => (
           <EuiPaginationButton
             onClick={onPageClick.bind(null, pageCount - 1)}
             hideOnMobile
-            aria-label={jumpToLastPage}
-          >
+            aria-label={jumpToLastPage}>
             {pageCount}
           </EuiPaginationButton>
         )}
@@ -153,21 +153,14 @@ export const EuiPagination = ({
     const selectablePages = pages;
     if (compressed) {
       return (
-        <div
-          className={classes}
-          {...rest}
-        >
+        <div className={classes} {...rest}>
           {previousButton}
           {nextButton}
         </div>
       );
     } else {
       return (
-        <div
-          className={classes}
-          role="group"
-          {...rest}
-        >
+        <div className={classes} role="group" {...rest}>
           {previousButton}
           {firstPageButtons}
           {selectablePages}
@@ -178,7 +171,7 @@ export const EuiPagination = ({
     }
   } else {
     // Don't render pagination if it isn't needed. Then span is here for a docs bug.
-    return <span/>;
+    return <span />;
   }
 };
 

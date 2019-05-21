@@ -60,10 +60,7 @@ describe('EuiHorizontalRectSeries', () => {
     const data = [{ x: 0, y: 5 }, { x: 1, y: 3 }];
     const onValueClick = jest.fn();
     const component = mount(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-      >
+      <EuiSeriesChart width={600} height={200}>
         <EuiHorizontalRectSeries
           name="test-series-a"
           data={data}
@@ -72,19 +69,17 @@ describe('EuiHorizontalRectSeries', () => {
         />
       </EuiSeriesChart>
     );
-    component.find('rect').at(0).simulate('click');
+    component
+      .find('rect')
+      .at(0)
+      .simulate('click');
     expect(onValueClick.mock.calls).toHaveLength(1);
     expect(onValueClick.mock.calls[0][0]).toEqual(data[0]);
   });
 
   test('renders stacked bar chart', () => {
     const component = render(
-      <EuiSeriesChart
-        width={600}
-        height={200}
-        xType="ordinal"
-        stackBy="y"
-      >
+      <EuiSeriesChart width={600} height={200} xType="ordinal" stackBy="y">
         <EuiHorizontalRectSeries
           name="test-series-a"
           data={[{ x: 0, y: 5 }, { x: 1, y: 3 }]}

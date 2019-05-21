@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-  EuiComboBox,
-} from '../../../../src/components';
+import { EuiComboBox } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -15,7 +13,7 @@ export default class extends Component {
       if (i % 25 === 0) {
         this.options.push({
           label: `Options ${i - (groupOptions.length - 1)} to ${i}`,
-          options: groupOptions
+          options: groupOptions,
         });
         groupOptions = [];
       }
@@ -26,7 +24,7 @@ export default class extends Component {
     };
   }
 
-  onChange = (selectedOptions) => {
+  onChange = selectedOptions => {
     this.setState({
       selectedOptions,
     });

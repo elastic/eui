@@ -1,33 +1,18 @@
 import React from 'react';
 
-import {
-  EuiStat,
-  EuiFlexItem,
-  EuiFlexGroup,
-} from '../../../../src/components';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiStat
-          title="1"
-          description="Default color"
-        />
+        <EuiStat title="1" description="Default color" />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiStat
-          title="10"
-          description="Subdued color"
-          titleColor="subdued"
-        />
+        <EuiStat title="10" description="Subdued color" titleColor="subdued" />
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiStat
-          title="100"
-          description="Primary color"
-          titleColor="primary"
-        />
+        <EuiStat title="100" description="Primary color" titleColor="primary" />
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiStat

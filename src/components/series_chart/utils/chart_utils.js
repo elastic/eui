@@ -1,4 +1,3 @@
-
 /**
  * Used to describe orientation.
  */
@@ -10,7 +9,6 @@ export const ORIENTATION = {
   /** Along both axis axis */
   BOTH: 'both',
 };
-
 
 /**
  * Type of scales used in charts.
@@ -34,9 +32,8 @@ export const SCALE = {
   /** Returns exactly the value that was given to it.
    * Similar to [d3.scaleIdentity](https://github.com/d3/d3-scale#scaleIdentity), except that it does NOT coerce data into numbers.
    * This is useful for precisely specifying properties in the data, eg color can be specified directly on the data. */
-  LITERAL: 'literal'
+  LITERAL: 'literal',
 };
-
 
 /**
  * Differnet types of curves that can be used on lines and areas series.

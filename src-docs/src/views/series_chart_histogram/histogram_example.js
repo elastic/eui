@@ -20,50 +20,54 @@ export const XYChartHistogramExample = {
   title: 'Histograms',
   intro: (
     <Fragment>
-      <EuiCallOut
-        title="Set for deprecation"
-        color="danger"
-      >
+      <EuiCallOut title="Set for deprecation" color="danger">
         <p>
-          This component will be replaced in the near future and managed outside of EUI. We do not recommend using it at this time
-          and it will be removed by June 2019.
+          This component will be replaced in the near future and managed outside
+          of EUI. We do not recommend using it at this time and it will be
+          removed by June 2019.
         </p>
       </EuiCallOut>
 
       <EuiSpacer size="l" />
       <p>
-        You can use <EuiCode>EuiSeriesChart</EuiCode> with <EuiCode>EuiHistogramSeries</EuiCode> to
-        displaying histogram charts.
+        You can use <EuiCode>EuiSeriesChart</EuiCode> with{' '}
+        <EuiCode>EuiHistogramSeries</EuiCode> to displaying histogram charts.
       </p>
       <EuiSpacer size="l" />
       <p>
-        The <EuiCode>EuiSeriesChart</EuiCode> component pass the <EuiCode>orientation</EuiCode> prop to every component child
-        to accomodate <EuiCode>vertical</EuiCode> and <EuiCode>horizontal</EuiCode> use cases.
-        The default orientation is <EuiCode>vertical</EuiCode>.
+        The <EuiCode>EuiSeriesChart</EuiCode> component pass the{' '}
+        <EuiCode>orientation</EuiCode> prop to every component child to
+        accomodate <EuiCode>vertical</EuiCode> and <EuiCode>horizontal</EuiCode>{' '}
+        use cases. The default orientation is <EuiCode>vertical</EuiCode>.
       </p>
       <EuiSpacer size="l" />
       <p>
-        You can specify the <EuiCode>EuiSeriesChart</EuiCode> prop <EuiCode>xType</EuiCode> and
-        <EuiCode>yType</EuiCode> to one of the following scales: <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,
-        <EuiCode>time</EuiCode>, <EuiCode>time-utc</EuiCode>.
-        The use of <EuiCode>ordinal</EuiCode> and <EuiCode>category</EuiCode> is not supported.
+        You can specify the <EuiCode>EuiSeriesChart</EuiCode> prop{' '}
+        <EuiCode>xType</EuiCode> and
+        <EuiCode>yType</EuiCode> to one of the following scales:{' '}
+        <EuiCode>linear</EuiCode>,<EuiCode>log</EuiCode>,<EuiCode>time</EuiCode>
+        , <EuiCode>time-utc</EuiCode>. The use of <EuiCode>ordinal</EuiCode> and{' '}
+        <EuiCode>category</EuiCode> is not supported.
       </p>
       <EuiSpacer size="l" />
-      <EuiCallOut
-        title="What is an histogram?"
-        iconType="pin"
-      >
+      <EuiCallOut title="What is an histogram?" iconType="pin">
         <Fragment>
           <p>
-            A histogram is an accurate representation of the distribution of numerical data. [...]
+            A histogram is an accurate representation of the distribution of
+            numerical data. [...]
           </p>
           <p>
-            To construct a histogram, the first step is to <em>bin</em> the range of values—that is,
-            divide the entire range of values into a series of intervals—and then count how many values fall into each interval.
-            The bins are usually specified as consecutive, non-overlapping intervals of a variable.
-            The bins (intervals) must be adjacent, and are often (but are not required to be) of equal size
+            To construct a histogram, the first step is to <em>bin</em> the
+            range of values—that is, divide the entire range of values into a
+            series of intervals—and then count how many values fall into each
+            interval. The bins are usually specified as consecutive,
+            non-overlapping intervals of a variable. The bins (intervals) must
+            be adjacent, and are often (but are not required to be) of equal
+            size
           </p>
-          <EuiLink href="https://en.wikipedia.org/wiki/Histogram">Wikipedia</EuiLink>
+          <EuiLink href="https://en.wikipedia.org/wiki/Histogram">
+            Wikipedia
+          </EuiLink>
         </Fragment>
       </EuiCallOut>
       <EuiSpacer size="l" />
@@ -74,7 +78,8 @@ export const XYChartHistogramExample = {
       title: 'Vertical Histogram',
       text: (
         <p>
-          You can create out-of-the-box vertical histograms just adding a <EuiCode>EuiHistogramSeries</EuiCode>
+          You can create out-of-the-box vertical histograms just adding a{' '}
+          <EuiCode>EuiHistogramSeries</EuiCode>
           component into your <EuiCode>EuiSeriesChart</EuiCode>.
         </p>
       ),
@@ -96,15 +101,17 @@ export const XYChartHistogramExample = {
       text: (
         <Fragment>
           <p>
-            Use <EuiCode>EuiSeriesChart</EuiCode> with <EuiCode>EuiHistogramSeries</EuiCode> for
-            displaying stacked vertical histograms.
+            Use <EuiCode>EuiSeriesChart</EuiCode> with{' '}
+            <EuiCode>EuiHistogramSeries</EuiCode> for displaying stacked
+            vertical histograms.
           </p>
           <p>
-            Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars together.
+            Specify <EuiCode>stackBy=&quot;x&quot;</EuiCode> to stack bars
+            together.
           </p>
           <EuiCallOut
             size="s"
-            title="Is not possible to &quot;cluster&quot; bars by the same X value as in bar charts"
+            title='Is not possible to "cluster" bars by the same X value as in bar charts'
             color="warning"
             iconType="help"
           />
@@ -127,10 +134,10 @@ export const XYChartHistogramExample = {
       title: 'Horizontal Histogram',
       text: (
         <p>
-          <EuiBadge color="warning">
-            experimental
-          </EuiBadge> You can create horizontal histograms specifing <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
-          Since you are rotating the histogram, you also have to invert your data.
+          <EuiBadge color="warning">experimental</EuiBadge> You can create
+          horizontal histograms specifing{' '}
+          <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>. Since you are
+          rotating the histogram, you also have to invert your data.
         </p>
       ),
       props: { EuiHistogramSeries },
@@ -151,14 +158,14 @@ export const XYChartHistogramExample = {
       text: (
         <Fragment>
           <p>
-            <EuiBadge color="warning">
-              experimental
-            </EuiBadge> To display an horizontal stacked histograms specify <EuiCode>stackBy=&quot;x&quot;</EuiCode>
+            <EuiBadge color="warning">experimental</EuiBadge> To display an
+            horizontal stacked histograms specify{' '}
+            <EuiCode>stackBy=&quot;x&quot;</EuiCode>
             together with <EuiCode>orientation=&quot;horizontal&quot;</EuiCode>.
           </p>
           <EuiCallOut
             size="s"
-            title="Is not possible to &quot;cluster&quot; bars by the same Y value as in bar charts"
+            title='Is not possible to "cluster" bars by the same Y value as in bar charts'
             color="warning"
             iconType="help"
           />
@@ -182,7 +189,8 @@ export const XYChartHistogramExample = {
       text: (
         <div>
           <p>
-            Specify a custom formatting string to change the locality or format of the time string on the x crosshair.
+            Specify a custom formatting string to change the locality or format
+            of the time string on the x crosshair.
           </p>
         </div>
       ),
@@ -196,13 +204,14 @@ export const XYChartHistogramExample = {
           code: 'This component can only be used from React',
         },
       ],
-      demo: <FormatCrosshairTimesExample />
+      demo: <FormatCrosshairTimesExample />,
     },
     {
       title: 'Time Series Histogram version',
       text: (
         <p>
-          Use <EuiCode>EuiSeriesChart</EuiCode> with <EuiCode>xType=&apos;time&apos;</EuiCode>
+          Use <EuiCode>EuiSeriesChart</EuiCode> with{' '}
+          <EuiCode>xType=&apos;time&apos;</EuiCode>
           to display a time series histogram.
         </p>
       ),

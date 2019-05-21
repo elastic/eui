@@ -1,3 +1,1 @@
-export {
-  EuiCopy,
-} from './copy';
+export { EuiCopy } from './copy';

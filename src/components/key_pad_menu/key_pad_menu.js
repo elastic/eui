@@ -6,11 +6,7 @@ export const EuiKeyPadMenu = ({ children, className, ...rest }) => {
   const classes = classNames('euiKeyPadMenu', className);
 
   return (
-    <div
-      className={classes}
-      role="menu"
-      {...rest}
-    >
+    <div className={classes} role="menu" {...rest}>
       {children}
     </div>
   );

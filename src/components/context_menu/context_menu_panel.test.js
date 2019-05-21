@@ -3,83 +3,57 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { findTestSubject, requiredProps } from '../../test';
 
-import {
-  EuiContextMenuPanel,
-} from './context_menu_panel';
+import { EuiContextMenuPanel } from './context_menu_panel';
 
-import {
-  EuiContextMenuItem,
-} from './context_menu_item';
+import { EuiContextMenuItem } from './context_menu_item';
 
 import { tick } from './context_menu.test';
 
 import { keyCodes } from '../../services';
 
 const items = [
-  (
-    <EuiContextMenuItem
-      key="A"
-      data-test-subj="itemA"
-    >
-      Option A
-    </EuiContextMenuItem>
-  ), (
-    <EuiContextMenuItem
-      key="B"
-      data-test-subj="itemB"
-    >
-      Option B
-    </EuiContextMenuItem>
-  ), (
-    <EuiContextMenuItem
-      key="C"
-      data-test-subj="itemC"
-    >
-      Option C
-    </EuiContextMenuItem>
-  )
+  <EuiContextMenuItem key="A" data-test-subj="itemA">
+    Option A
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="B" data-test-subj="itemB">
+    Option B
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="C" data-test-subj="itemC">
+    Option C
+  </EuiContextMenuItem>,
 ];
 
 describe('EuiContextMenuPanel', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiContextMenuPanel {...requiredProps}>
-        Hello
-      </EuiContextMenuPanel>
+      <EuiContextMenuPanel {...requiredProps}>Hello</EuiContextMenuPanel>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('title', () => {
       test('is rendered', () => {
-        const component = render(
-          <EuiContextMenuPanel title="Title" />
-        );
+        const component = render(<EuiContextMenuPanel title="Title" />);
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('onClose', () => {
       test('renders a button as a title', () => {
         const component = render(
-          <EuiContextMenuPanel title="Title" onClose={() =>{}} />
+          <EuiContextMenuPanel title="Title" onClose={() => {}} />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test(`isn't called upon instantiation`, () => {
         const onCloseHandler = sinon.stub();
 
-        mount(
-          <EuiContextMenuPanel title="Title" onClose={onCloseHandler} />
-        );
+        mount(<EuiContextMenuPanel title="Title" onClose={onCloseHandler} />);
 
         sinon.assert.notCalled(onCloseHandler);
       });
@@ -101,9 +75,7 @@ describe('EuiContextMenuPanel', () => {
       it('is called with a height value', () => {
         const onHeightChange = sinon.stub();
 
-        mount(
-          <EuiContextMenuPanel onHeightChange={onHeightChange} />
-        );
+        mount(<EuiContextMenuPanel onHeightChange={onHeightChange} />);
 
         sinon.assert.calledWith(onHeightChange, 0);
       });
@@ -115,22 +87,26 @@ describe('EuiContextMenuPanel', () => {
           describe('in', () => {
             test('is rendered', () => {
               const component = render(
-                <EuiContextMenuPanel transitionDirection="next" transitionType="in" />
+                <EuiContextMenuPanel
+                  transitionDirection="next"
+                  transitionType="in"
+                />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
 
           describe('out', () => {
             test('is rendered', () => {
               const component = render(
-                <EuiContextMenuPanel transitionDirection="next" transitionType="out" />
+                <EuiContextMenuPanel
+                  transitionDirection="next"
+                  transitionType="out"
+                />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
         });
@@ -141,22 +117,26 @@ describe('EuiContextMenuPanel', () => {
           describe('in', () => {
             test('is rendered', () => {
               const component = render(
-                <EuiContextMenuPanel transitionDirection="previous" transitionType="in" />
+                <EuiContextMenuPanel
+                  transitionDirection="previous"
+                  transitionType="in"
+                />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
 
           describe('out', () => {
             test('is rendered', () => {
               const component = render(
-                <EuiContextMenuPanel transitionDirection="previous" transitionType="out" />
+                <EuiContextMenuPanel
+                  transitionDirection="previous"
+                  transitionType="out"
+                />
               );
 
-              expect(component)
-                .toMatchSnapshot();
+              expect(component).toMatchSnapshot();
             });
           });
         });
@@ -166,15 +146,14 @@ describe('EuiContextMenuPanel', () => {
     describe('initialFocusedItemIndex', () => {
       it('sets focus on the item occupying that index', async () => {
         const component = mount(
-          <EuiContextMenuPanel
-            items={items}
-            initialFocusedItemIndex={1}
-          />
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
         );
 
         await tick(20);
 
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
     });
 
@@ -282,7 +261,9 @@ describe('EuiContextMenuPanel', () => {
 
         await tick(20);
 
-        expect(findTestSubject(component, 'button').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'button').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('is not set on anything if hasFocus is false', () => {
@@ -292,7 +273,9 @@ describe('EuiContextMenuPanel', () => {
           </EuiContextMenuPanel>
         );
 
-        expect(findTestSubject(component, 'button').getDOMNode()).not.toBe(document.activeElement);
+        expect(findTestSubject(component, 'button').getDOMNode()).not.toBe(
+          document.activeElement
+        );
       });
     });
 
@@ -320,11 +303,13 @@ describe('EuiContextMenuPanel', () => {
         expect(component.getDOMNode()).toBe(document.activeElement);
       });
 
-      it('down arrow key focuses the first menu item',  async () => {
+      it('down arrow key focuses the first menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('subsequently, down arrow key focuses the next menu item', async () => {
@@ -332,7 +317,9 @@ describe('EuiContextMenuPanel', () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('down arrow key wraps to first menu item', async () => {
@@ -340,14 +327,18 @@ describe('EuiContextMenuPanel', () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('up arrow key focuses the last menu item', async () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('subsequently, up arrow key focuses the previous menu item', async () => {
@@ -355,7 +346,9 @@ describe('EuiContextMenuPanel', () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it('up arrow key wraps to last menu item', async () => {
@@ -363,7 +356,9 @@ describe('EuiContextMenuPanel', () => {
         component.simulate('keydown', { keyCode: keyCodes.UP });
 
         await tick(20);
-        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(document.activeElement);
+        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
+          document.activeElement
+        );
       });
 
       it(`right arrow key shows next panel with focused item's index`, () => {
@@ -388,8 +383,12 @@ describe('EuiContextMenuPanel', () => {
         const component = mount(
           <EuiContextMenuPanel
             items={[
-              <EuiContextMenuItem key="A" data-counter={0}>Option A</EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={1}>Option B</EuiContextMenuItem>,
+              <EuiContextMenuItem key="A" data-counter={0}>
+                Option A
+              </EuiContextMenuItem>,
+              <EuiContextMenuItem key="B" data-counter={1}>
+                Option B
+              </EuiContextMenuItem>,
             ]}
           />
         );
@@ -399,9 +398,13 @@ describe('EuiContextMenuPanel', () => {
         component.setProps(
           {
             items: [
-              <EuiContextMenuItem key="A" data-counter={2}>Option A</EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={3}>Option B</EuiContextMenuItem>
-            ]
+              <EuiContextMenuItem key="A" data-counter={2}>
+                Option A
+              </EuiContextMenuItem>,
+              <EuiContextMenuItem key="B" data-counter={3}>
+                Option B
+              </EuiContextMenuItem>,
+            ],
           },
           () => {
             expect(component.debug()).toMatchSnapshot();
@@ -418,8 +421,12 @@ describe('EuiContextMenuPanel', () => {
           <EuiContextMenuPanel
             watchedItemProps={['data-counter']}
             items={[
-              <EuiContextMenuItem key="A" data-counter={0}>Option A</EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={1}>Option B</EuiContextMenuItem>,
+              <EuiContextMenuItem key="A" data-counter={0}>
+                Option A
+              </EuiContextMenuItem>,
+              <EuiContextMenuItem key="B" data-counter={1}>
+                Option B
+              </EuiContextMenuItem>,
             ]}
           />
         );
@@ -429,9 +436,13 @@ describe('EuiContextMenuPanel', () => {
         component.setProps(
           {
             items: [
-              <EuiContextMenuItem key="A" data-counter={2}>Option A</EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={3}>Option B</EuiContextMenuItem>,
-            ]
+              <EuiContextMenuItem key="A" data-counter={2}>
+                Option A
+              </EuiContextMenuItem>,
+              <EuiContextMenuItem key="B" data-counter={3}>
+                Option B
+              </EuiContextMenuItem>,
+            ],
           },
           () => {
             expect(component.debug()).toMatchSnapshot();
@@ -443,19 +454,14 @@ describe('EuiContextMenuPanel', () => {
         expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         const component = mount(
-          <EuiContextMenuPanel>
-            Hello World
-          </EuiContextMenuPanel>
+          <EuiContextMenuPanel>Hello World</EuiContextMenuPanel>
         );
 
         expect(component.debug()).toMatchSnapshot();
 
-        component.setProps(
-          { children: 'More Salutations' },
-          () => {
-            expect(component.debug()).toMatchSnapshot();
-          }
-        );
+        component.setProps({ children: 'More Salutations' }, () => {
+          expect(component.debug()).toMatchSnapshot();
+        });
       });
     });
   });

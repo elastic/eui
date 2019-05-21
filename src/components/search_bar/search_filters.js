@@ -7,15 +7,14 @@ import { EuiFilterGroup } from '../../components/filter_group';
 export const SearchFiltersFiltersType = PropTypes.arrayOf(FilterConfigType);
 
 export class EuiSearchFilters extends Component {
-
   static propTypes = {
     query: PropTypes.instanceOf(Query).isRequired,
     onChange: PropTypes.func.isRequired,
-    filters: SearchFiltersFiltersType
+    filters: SearchFiltersFiltersType,
   };
 
   static defaultProps = {
-    filters: []
+    filters: [],
   };
 
   constructor(props) {
@@ -30,11 +29,7 @@ export class EuiSearchFilters extends Component {
       }
       const key = `filter_${index}`;
       const control = createFilter(index, filterConfig, query, onChange);
-      controls.push(
-        <Fragment key={key}>
-          {control}
-        </Fragment>
-      );
+      controls.push(<Fragment key={key}>{control}</Fragment>);
       return controls;
     }, []);
     return <EuiFilterGroup>{items}</EuiFilterGroup>;

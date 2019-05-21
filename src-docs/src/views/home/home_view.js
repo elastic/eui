@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import imageIcons from '../../images/icons.jpg';
 import imageButtons from '../../images/buttons.svg';
@@ -35,13 +33,12 @@ export const HomeView = () => (
         </EuiTitle>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-
         <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
           <EuiFlexItem grow={false}>
             <p>
               Version:{' '}
               <Link to="/package/changelog">
-                <strong>v{ pkg.version }</strong>
+                <strong>v{pkg.version}</strong>
               </Link>
             </p>
           </EuiFlexItem>
@@ -61,8 +58,7 @@ export const HomeView = () => (
               postiion="down"
               content="Import these sketch files into a new project as libraries.
                 This will provide symbols that match against their EUI component
-                counterparts."
-            >
+                counterparts.">
               <EuiLink href="https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip">
                 <strong>Sketch libraries</strong>
               </EuiLink>
@@ -85,19 +81,23 @@ export const HomeView = () => (
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
-
     </EuiFlexGroup>
     <EuiSpacer />
     <EuiText grow={false}>
       <p>
         The Elastic UI framework (EUI) is a design library in use at Elastic to
-        build internal products that need to share our aesthetics.
-        It distributes UI React components and static assets for use
-        in building web layouts. Alongside the React components is a SASS/CSS
-        layer that can be used independently on its own.
-        If this is your first time using EUI you might want to read up on{' '}
-        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">how to consume EUI</EuiLink>{' '}
-        and <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">Kibana plugin development</EuiLink>{' '}
+        build internal products that need to share our aesthetics. It
+        distributes UI React components and static assets for use in building
+        web layouts. Alongside the React components is a SASS/CSS layer that can
+        be used independently on its own. If this is your first time using EUI
+        you might want to read up on{' '}
+        <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
+          how to consume EUI
+        </EuiLink>{' '}
+        and{' '}
+        <EuiLink href="https://www.elastic.co/guide/en/kibana/current/kibana-plugins.html">
+          Kibana plugin development
+        </EuiLink>{' '}
         in general.
       </p>
     </EuiText>
@@ -170,11 +170,19 @@ export const HomeView = () => (
       <p>EUI has the following primary goals...</p>
       <dl>
         <dt>EUI is accessible to everyone.</dt>
-        <dd>Use high contrast, color-blind safe palettes and proper aria labels.</dd>
+        <dd>
+          Use high contrast, color-blind safe palettes and proper aria labels.
+        </dd>
         <dt>EUI is themable.</dt>
-        <dd>Theming should involve changing fewer than a dozen lines of code. This means strict variable usage.</dd>
+        <dd>
+          Theming should involve changing fewer than a dozen lines of code. This
+          means strict variable usage.
+        </dd>
         <dt>EUI is responsive.</dt>
-        <dd>Currently we target mobile, laptop, desktop, and wide desktop breakpoints.</dd>
+        <dd>
+          Currently we target mobile, laptop, desktop, and wide desktop
+          breakpoints.
+        </dd>
         <dt>EUI is playful.</dt>
         <dd>Consistent use of animation can bring life to our design.</dd>
         <dt>EUI is documented and has tests.</dt>

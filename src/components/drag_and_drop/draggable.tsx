@@ -51,6 +51,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   className,
   spacing = 'none',
   style,
+  'data-test-subj': dataTestSubj = 'draggable',
   ...rest
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
@@ -85,7 +86,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               {...provided.draggableProps}
               {...(!customDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
-              data-test-subj="draggable"
+              data-test-subj={dataTestSubj}
               className={classes}
               style={{ ...style, ...provided.draggableProps.style }}>
               {cloneElement(DraggableElement, {

@@ -11,8 +11,7 @@ describe('EuiOutsideClickDetector', () => {
       </EuiOutsideClickDetector>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('behavior', () => {
@@ -39,20 +38,19 @@ describe('EuiOutsideClickDetector', () => {
       const component = mount(
         <div
           onMouseDown={triggerDocumentMouseDown}
-          onMouseUp={triggerDocumentMouseUp}
-        >
+          onMouseUp={triggerDocumentMouseUp}>
           <div>
             <EuiOutsideClickDetector onOutsideClick={parentDetector}>
               <div>
                 <EuiOutsideClickDetector onOutsideClick={childDetector}>
-                  <div data-test-subj="target"/>
+                  <div data-test-subj="target" />
                 </EuiOutsideClickDetector>
               </div>
             </EuiOutsideClickDetector>
           </div>
 
           <EuiOutsideClickDetector onOutsideClick={unrelatedDetector}>
-            <div/>
+            <div />
           </EuiOutsideClickDetector>
         </div>
       );

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -10,7 +8,7 @@ import {
   EuiResizeObserver,
   EuiPanel,
   EuiSpacer,
-  EuiText
+  EuiText,
 } from '../../../../src/components';
 
 export class ResizeObserverExample extends Component {
@@ -24,55 +22,65 @@ export class ResizeObserverExample extends Component {
 
   togglePaddingSize = () => {
     this.setState(({ paddingSize }) => ({
-      paddingSize: paddingSize === 's' ? 'l' : 's'
+      paddingSize: paddingSize === 's' ? 'l' : 's',
     }));
-  }
+  };
 
   addItem = () => {
     this.setState(({ items }) => ({
-      items: [...items, `Item ${items.length + 1}`]
+      items: [...items, `Item ${items.length + 1}`],
     }));
-  }
+  };
 
   onResize = ({ height, width }) => {
     this.setState({
       height,
-      width
+      width,
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <EuiText>
           {this.state.hasResizeObserver ? (
-            <p><EuiIcon type="checkInCircleFilled" color="secondary" />  Browser supports ResizeObserver API.</p>
+            <p>
+              <EuiIcon type="checkInCircleFilled" color="secondary" /> Browser
+              supports ResizeObserver API.
+            </p>
           ) : (
             <p>
-              <EuiIcon type="crossInACircleFilled" color="danger" /> Browser does not support ResizeObserver API. Using MutationObserver.
+              <EuiIcon type="crossInACircleFilled" color="danger" /> Browser
+              does not support ResizeObserver API. Using MutationObserver.
             </p>
           )}
-          <p><EuiCode>{`height: ${this.state.height}; width: ${this.state.width}`}</EuiCode></p>
+          <p>
+            <EuiCode>{`height: ${this.state.height}; width: ${
+              this.state.width
+            }`}</EuiCode>
+          </p>
         </EuiText>
 
-        <EuiSpacer/>
+        <EuiSpacer />
 
         <EuiButton fill={true} onClick={this.togglePaddingSize}>
           Toggle container padding
         </EuiButton>
 
-        <EuiSpacer/>
+        <EuiSpacer />
 
-        <EuiResizeObserver
-          onResize={this.onResize}
-        >
+        <EuiResizeObserver onResize={this.onResize}>
           {resizeRef => (
             <div className="eui-displayInlineBlock" ref={resizeRef}>
-              <EuiPanel className="eui-displayInlineBlock" paddingSize={this.state.paddingSize}>
+              <EuiPanel
+                className="eui-displayInlineBlock"
+                paddingSize={this.state.paddingSize}>
                 <ul>
-                  {this.state.items.map(item => <li key={item}>{item}</li>)}
+                  {this.state.items.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
-                <EuiSpacer size="s"/>
+                <EuiSpacer size="s" />
                 <EuiButtonEmpty onClick={this.addItem}>add item</EuiButtonEmpty>
               </EuiPanel>
             </div>

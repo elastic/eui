@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiStepNumber is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiStepNumber testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiStepNumber props isHollow is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber-isHollow"
+/>
+`;
+
+exports[`EuiStepNumber props status complete is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber--complete"
+>
+  <svg
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</div>
+`;
+
+exports[`EuiStepNumber props status danger is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber--danger"
+>
+  <svg
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</div>
+`;
+
+exports[`EuiStepNumber props status disabled is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber--disabled"
+>
+  1
+</div>
+`;
+
+exports[`EuiStepNumber props status incomplete is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber--incomplete"
+>
+  1
+</div>
+`;
+
+exports[`EuiStepNumber props status warning is rendered 1`] = `
+<div
+  class="euiStepNumber euiStepNumber--warning"
+>
+  <svg
+    class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+    focusable="false"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  />
+</div>
+`;

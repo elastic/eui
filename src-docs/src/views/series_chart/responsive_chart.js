@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  EuiSeriesChart,
-  EuiLineSeries,
-} from '../../../../src/experimental';
+import { EuiSeriesChart, EuiLineSeries } from '../../../../src/experimental';
 import {
   EuiButton,
   EuiPage,
@@ -30,21 +27,15 @@ const DATA_A = [
 export default class Example extends React.Component {
   state = {
     sideBarVisible: true,
-  }
+  };
   onClick = () => {
-    this.setState((prevState) => ({ sideBarVisible: !prevState.sideBarVisible }));
-  }
+    this.setState(prevState => ({ sideBarVisible: !prevState.sideBarVisible }));
+  };
   render() {
     const { sideBarVisible } = this.state;
     return (
       <EuiPage>
-        {
-          sideBarVisible && (
-            <EuiPageSideBar>
-              Side bar
-            </EuiPageSideBar>
-          )
-        }
+        {sideBarVisible && <EuiPageSideBar>Side bar</EuiPageSideBar>}
         <EuiPageBody>
           <EuiPageHeader>
             <EuiPageHeaderSection>
@@ -53,11 +44,7 @@ export default class Example extends React.Component {
               </EuiTitle>
             </EuiPageHeaderSection>
             <EuiPageHeaderSection>
-              <EuiButton
-                onClick={this.onClick}
-              >
-                Toggle Sidebar
-              </EuiButton>
+              <EuiButton onClick={this.onClick}>Toggle Sidebar</EuiButton>
             </EuiPageHeaderSection>
           </EuiPageHeader>
           <EuiPageContent>

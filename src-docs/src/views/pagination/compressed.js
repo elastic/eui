@@ -1,17 +1,13 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiPagination,
-} from '../../../../src/components';
+import { EuiPagination } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activePage: 0
+      activePage: 0,
     };
 
     this.PAGE_COUNT = 4;
@@ -21,7 +17,7 @@ export default class extends Component {
     this.setState({
       activePage: pageNumber,
     });
-  }
+  };
 
   render() {
     return (

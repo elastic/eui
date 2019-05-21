@@ -15,8 +15,7 @@ describe('EuiFormRow', () => {
       </EuiFormRow>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('ties together parts for accessibility', () => {
@@ -24,10 +23,7 @@ describe('EuiFormRow', () => {
       label: `Label`,
       helpText: `Help text`,
       isInvalid: true,
-      error: [
-        `Error one`,
-        `Error two`
-      ]
+      error: [`Error one`, `Error two`],
     };
 
     const tree = shallow(
@@ -41,144 +37,145 @@ describe('EuiFormRow', () => {
     expect(tree.find(`EuiFormLabel`).prop(`htmlFor`)).toEqual(`generated-id`);
 
     // Input is described by help and error text.
-    expect(tree.find(`EuiFormHelpText`).prop(`id`)).toEqual(`generated-id-help`);
-    expect(tree.find(`EuiFormErrorText`).at(0).prop(`id`)).toEqual(`generated-id-error-0`);
-    expect(tree.find(`EuiFormErrorText`).at(1).prop(`id`)).toEqual(`generated-id-error-1`);
-    expect(tree.find(`input`).prop(`aria-describedby`))
-      .toEqual(`generated-id-help generated-id-error-0 generated-id-error-1`);
+    expect(tree.find(`EuiFormHelpText`).prop(`id`)).toEqual(
+      `generated-id-help`
+    );
+    expect(
+      tree
+        .find(`EuiFormErrorText`)
+        .at(0)
+        .prop(`id`)
+    ).toEqual(`generated-id-error-0`);
+    expect(
+      tree
+        .find(`EuiFormErrorText`)
+        .at(1)
+        .prop(`id`)
+    ).toEqual(`generated-id-error-1`);
+    expect(tree.find(`input`).prop(`aria-describedby`)).toEqual(
+      `generated-id-help generated-id-error-0 generated-id-error-1`
+    );
   });
 
   describe('props', () => {
     test('label is rendered', () => {
       const component = shallow(
         <EuiFormRow label="label">
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('label append is rendered', () => {
       const component = shallow(
         <EuiFormRow label="label" labelAppend="append">
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('label renders as a legend and subsquently a fieldset wrapper', () => {
       const component = shallow(
         <EuiFormRow label="label" labelType="legend">
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('describedByIds is rendered', () => {
       const component = shallow(
         <EuiFormRow describedByIds={['generated-id-additional']}>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('id is rendered', () => {
       const component = render(
         <EuiFormRow id="id">
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('isInvalid is rendered', () => {
       const component = render(
         <EuiFormRow isInvalid label="label">
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('error as string is rendered', () => {
       const component = render(
         <EuiFormRow error="Error" isInvalid={true}>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('error as array is rendered', () => {
       const component = render(
         <EuiFormRow error={['Error', 'Error2']} isInvalid={true}>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('error is not rendered if isInvalid is false', () => {
       const component = render(
         <EuiFormRow error={['Error']} isInvalid={false}>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('helpText is rendered', () => {
       const component = render(
         <EuiFormRow helpText={<span>This is help text.</span>}>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('hasEmptyLabelSpace is rendered', () => {
       const component = render(
         <EuiFormRow hasEmptyLabelSpace>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
       const component = render(
         <EuiFormRow fullWidth>
-          <input/>
+          <input />
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
 
     test('displayOnly is rendered', () => {
@@ -188,8 +185,7 @@ describe('EuiFormRow', () => {
         </EuiFormRow>
       );
 
-      expect(component)
-        .toMatchSnapshot();
+      expect(component).toMatchSnapshot();
     });
   });
 
@@ -200,7 +196,7 @@ describe('EuiFormRow', () => {
 
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
-            <input onFocus={focusMock}/>
+            <input onFocus={focusMock} />
           </EuiFormRow>
         );
 
@@ -210,14 +206,13 @@ describe('EuiFormRow', () => {
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('works in parent even if not in child', () => {
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
-            <input/>
+            <input />
           </EuiFormRow>
         );
 
@@ -225,8 +220,7 @@ describe('EuiFormRow', () => {
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -236,7 +230,7 @@ describe('EuiFormRow', () => {
 
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
-            <input onBlur={blurMock}/>
+            <input onBlur={blurMock} />
           </EuiFormRow>
         );
 
@@ -246,14 +240,13 @@ describe('EuiFormRow', () => {
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       test('works in parent even if not in child', () => {
         const component = mount(
           <EuiFormRow label={<span>Label</span>}>
-            <input/>
+            <input />
           </EuiFormRow>
         );
 
@@ -261,8 +254,7 @@ describe('EuiFormRow', () => {
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
   });

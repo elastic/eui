@@ -10,7 +10,6 @@ describe('EuiPageContentHeaderSection', () => {
       <EuiPageContentHeaderSection {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

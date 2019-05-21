@@ -130,7 +130,8 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
 .guideDemo__icon {
   text-align: center;
 
-  svg {
+  svg,
+  img {
     margin-bottom: $euiSizeS;
   }
 }

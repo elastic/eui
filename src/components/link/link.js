@@ -5,14 +5,14 @@ import classNames from 'classnames';
 import { getSecureRelForTarget } from '../../services';
 
 const colorsToClassNameMap = {
-  'primary': 'euiLink--primary',
-  'subdued': 'euiLink--subdued',
-  'secondary': 'euiLink--secondary',
-  'accent': 'euiLink--accent',
-  'danger': 'euiLink--danger',
-  'warning': 'euiLink--warning',
-  'ghost': 'euiLink--ghost',
-  'text': 'euiLink--text',
+  primary: 'euiLink--primary',
+  subdued: 'euiLink--subdued',
+  secondary: 'euiLink--secondary',
+  accent: 'euiLink--accent',
+  danger: 'euiLink--danger',
+  warning: 'euiLink--warning',
+  ghost: 'euiLink--ghost',
+  text: 'euiLink--text',
 };
 
 export const COLORS = Object.keys(colorsToClassNameMap);
@@ -32,12 +32,7 @@ export const EuiLink = ({
 
   if (href === undefined) {
     return (
-      <button
-        className={classes}
-        type={type}
-        onClick={onClick}
-        {...rest}
-      >
+      <button className={classes} type={type} onClick={onClick} {...rest}>
         {children}
       </button>
     );
@@ -52,8 +47,7 @@ export const EuiLink = ({
       target={target}
       rel={secureRel}
       onClick={onClick}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </a>
   );

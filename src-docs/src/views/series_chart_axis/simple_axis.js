@@ -16,7 +16,12 @@ function xAxisTickFormatter(value) {
 }
 
 export default () => (
-  <EuiSeriesChart width={600} height={200} xPadding={10} yPadding={10} showDefaultAxis={false}>
+  <EuiSeriesChart
+    width={600}
+    height={200}
+    xPadding={10}
+    yPadding={10}
+    showDefaultAxis={false}>
     <EuiLineSeries name="Total Bytes" data={DATA} />
     <EuiYAxis title="Left Y Axis" tickLabelAngle={45} />
     <EuiYAxis

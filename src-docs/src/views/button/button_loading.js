@@ -3,15 +3,13 @@ import React from 'react';
 import {
   EuiButton,
   EuiFlexGroup,
-  EuiFlexItem
+  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
     <EuiFlexItem grow={false}>
-      <EuiButton isLoading={true}>
-        Loading&hellip;
-      </EuiButton>
+      <EuiButton isLoading={true}>Loading&hellip;</EuiButton>
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>

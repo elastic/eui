@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiFormControlLayout,
-} from '../form_control_layout';
+import { EuiFormControlLayout } from '../form_control_layout';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
+import { EuiValidatableControl } from '../validatable_control';
 
 export const EuiFieldPassword = ({
   className,
@@ -38,8 +34,7 @@ export const EuiFieldPassword = ({
       icon="lock"
       fullWidth={fullWidth}
       isLoading={isLoading}
-      compressed={compressed}
-    >
+      compressed={compressed}>
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="password"

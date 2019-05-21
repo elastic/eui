@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButtonEmpty,
@@ -37,46 +35,48 @@ export default class extends Component {
         type="text"
         iconType="arrowDown"
         iconSide="right"
-        onClick={this.onButtonClick}
-      >
+        onClick={this.onButtonClick}>
         Rows per page: 50
       </EuiButtonEmpty>
     );
 
     const items = [
-      (
-        <EuiContextMenuItem
-          key="10 rows"
-          icon="empty"
-          onClick={() => { this.closePopover(); window.alert('10 rows'); }}
-        >
-          10 rows
-        </EuiContextMenuItem>
-      ), (
-        <EuiContextMenuItem
-          key="20 rows"
-          icon="empty"
-          onClick={() => { this.closePopover(); window.alert('20 rows'); }}
-        >
-          20 rows
-        </EuiContextMenuItem>
-      ), (
-        <EuiContextMenuItem
-          key="50 rows"
-          icon="check"
-          onClick={() => { this.closePopover(); window.alert('50 rows'); }}
-        >
+      <EuiContextMenuItem
+        key="10 rows"
+        icon="empty"
+        onClick={() => {
+          this.closePopover();
+          window.alert('10 rows');
+        }}>
+        10 rows
+      </EuiContextMenuItem>,
+      <EuiContextMenuItem
+        key="20 rows"
+        icon="empty"
+        onClick={() => {
+          this.closePopover();
+          window.alert('20 rows');
+        }}>
+        20 rows
+      </EuiContextMenuItem>,
+      <EuiContextMenuItem
+        key="50 rows"
+        icon="check"
+        onClick={() => {
+          this.closePopover();
+          window.alert('50 rows');
+        }}>
         50 rows
-        </EuiContextMenuItem>
-      ), (
-        <EuiContextMenuItem
-          key="100 rows"
-          icon="empty"
-          onClick={() => { this.closePopover(); window.alert('100 rows'); }}
-        >
+      </EuiContextMenuItem>,
+      <EuiContextMenuItem
+        key="100 rows"
+        icon="empty"
+        onClick={() => {
+          this.closePopover();
+          window.alert('100 rows');
+        }}>
         100 rows
-        </EuiContextMenuItem>
-      )
+      </EuiContextMenuItem>,
     ];
 
     return (
@@ -86,11 +86,8 @@ export default class extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="downLeft"
-      >
-        <EuiContextMenuPanel
-          items={items}
-        />
+        anchorPosition="downLeft">
+        <EuiContextMenuPanel items={items} />
       </EuiPopover>
     );
   }

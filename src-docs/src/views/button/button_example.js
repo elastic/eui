@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  Link,
-} from 'react-router';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -89,8 +87,8 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          Buttons will use an <EuiCode>{'<a>'}</EuiCode> tag if there is a <EuiCode>href</EuiCode>{' '}
-          prop present.
+          Buttons will use an <EuiCode>{'<a>'}</EuiCode> tag if there is a{' '}
+          <EuiCode>href</EuiCode> prop present.
         </p>
       ),
       demo: <ButtonAsLink />,
@@ -109,9 +107,13 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          The passed icon needs to come from our list of svg icons. Can be flipped {
+          The passed icon needs to come from our list of svg icons. Can be
+          flipped{' '}
+          {
             // eslint-disable-next-line react/no-unescaped-entities
-          } to the other side by passing <EuiCode>iconSide="right"</EuiCode>.
+          }{' '}
+          to the other side by passing{' '}
+          <EuiCode>iconSide=&quot;right&quot;</EuiCode>.
         </p>
       ),
       demo: <ButtonWithIcon />,
@@ -130,9 +132,10 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          Setting the <EuiCode>isLoading</EuiCode> prop to true will add the loading spinner or swap
-          the existing icon for the loading spinner and set the button to disabled. It is good
-          practice to also rename the button to &quot;Loading&hellip;&quot;.
+          Setting the <EuiCode>isLoading</EuiCode> prop to true will add the
+          loading spinner or swap the existing icon for the loading spinner and
+          set the button to disabled. It is good practice to also rename the
+          button to &quot;Loading&hellip;&quot;.
         </p>
       ),
       demo: <ButtonLoading />,
@@ -151,8 +154,9 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          <EuiCode>EuiButtonEmpty</EuiCode> is used when you want to make a button look like a
-          regular link, but still want to align it to the rest of the buttons.
+          <EuiCode>EuiButtonEmpty</EuiCode> is used when you want to make a
+          button look like a regular link, but still want to align it to the
+          rest of the buttons.
         </p>
       ),
       props: { EuiButtonEmpty },
@@ -172,9 +176,10 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left or the right, you
-          should make sure they&rsquo;re flush with the edge of their container, so that
-          they&rsquo;re horizontally aligned with the other content in the container.
+          When aligning <EuiCode>EuiButtonEmpty</EuiCode> components to the left
+          or the right, you should make sure they&rsquo;re flush with the edge
+          of their container, so that they&rsquo;re horizontally aligned with
+          the other content in the container.
         </p>
       ),
       demo: <ButtonOptionFlush />,
@@ -191,7 +196,9 @@ export const ButtonExample = {
           code: buttonIconHtml,
         },
       ],
-      text: <p>Button icons are buttons that only contain an icon (no text).</p>,
+      text: (
+        <p>Button icons are buttons that only contain an icon (no text).</p>
+      ),
       props: { EuiButtonIcon },
       demo: <ButtonIcon />,
     },
@@ -210,15 +217,18 @@ export const ButtonExample = {
       text: (
         <div>
           <p>
-            This is a specialized component that combines <EuiCode>EuiButton</EuiCode> and{' '}
-            <EuiCode>EuiToggle</EuiCode> to create a button with an on/off state. You can pass all
-            the same parameters to it as you can to <EuiCode>EuiButton</EuiCode>. The main
-            difference is that, it does not accept any children, but a <EuiCode>label</EuiCode> prop
-            instead. This is for the handling of accessibility with the <EuiCode>EuiToggle</EuiCode>.
+            This is a specialized component that combines{' '}
+            <EuiCode>EuiButton</EuiCode> and <EuiCode>EuiToggle</EuiCode> to
+            create a button with an on/off state. You can pass all the same
+            parameters to it as you can to <EuiCode>EuiButton</EuiCode>. The
+            main difference is that, it does not accept any children, but a{' '}
+            <EuiCode>label</EuiCode> prop instead. This is for the handling of
+            accessibility with the <EuiCode>EuiToggle</EuiCode>.
           </p>
           <p>
-            The <EuiCode>EuiButtonToggle</EuiCode> does not have any inherit visual state
-            differences. These you must apply in your implementation.
+            The <EuiCode>EuiButtonToggle</EuiCode> does not have any inherit
+            visual state differences. These you must apply in your
+            implementation.
           </p>
         </div>
       ),
@@ -240,22 +250,26 @@ export const ButtonExample = {
       text: (
         <div>
           <p>
-            Button groups are handled similarly to the way checkbox and radio groups are handled but
-            made to look like buttons. They group multiple <EuiCode>EuiButtonToggle</EuiCode>s and
-            utilize the <EuiCode>type=&quot;single&quot;</EuiCode> or{' '}
-            <EuiCode>&quot;multi&quot;</EuiCode> prop to determine whether multiple or only single
-            selections are allowed per group.
+            Button groups are handled similarly to the way checkbox and radio
+            groups are handled but made to look like buttons. They group
+            multiple <EuiCode>EuiButtonToggle</EuiCode>s and utilize the{' '}
+            <EuiCode>type=&quot;single&quot;</EuiCode> or{' '}
+            <EuiCode>&quot;multi&quot;</EuiCode> prop to determine whether
+            multiple or only single selections are allowed per group.
           </p>
           <p>
-            Stylistically, all button groups are the size of small buttons, do not stretch to fill
-            the container, and typically should only be <EuiCode>color=&quot;text&quot;</EuiCode>{' '}
-            (default) or <EuiCode>&quot;primary&quot;</EuiCode>. If you&apos;re just displaying a group of
-            icons, add the prop <EuiCode>isIconOnly</EuiCode>.
+            Stylistically, all button groups are the size of small buttons, do
+            not stretch to fill the container, and typically should only be{' '}
+            <EuiCode>color=&quot;text&quot;</EuiCode> (default) or{' '}
+            <EuiCode>&quot;primary&quot;</EuiCode>. If you&apos;re just
+            displaying a group of icons, add the prop{' '}
+            <EuiCode>isIconOnly</EuiCode>.
           </p>
           <EuiCallOut title="Accessibility">
             <p>
-              In order for groups to be properly read as groups with a title, add the <EuiCode>legend</EuiCode> prop.
-              This is only for accessibility, however, so it will be visibly hidden.
+              In order for groups to be properly read as groups with a title,
+              add the <EuiCode>legend</EuiCode> prop. This is only for
+              accessibility, however, so it will be visibly hidden.
             </p>
           </EuiCallOut>
         </div>
@@ -278,9 +292,10 @@ export const ButtonExample = {
       text: (
         <p>
           For buttons on dark color backgrounds, you can pass{' '}
-          <EuiCode>color=&apos;ghost&apos;</EuiCode> to any of the button styles on this page. These
-          should be used extremely rarely, and are only for placing buttons on top of dark or
-          image-based backgrounds. A good example of their use is in the{' '}
+          <EuiCode>color=&apos;ghost&apos;</EuiCode> to any of the button styles
+          on this page. These should be used extremely rarely, and are only for
+          placing buttons on top of dark or image-based backgrounds. A good
+          example of their use is in the{' '}
           <Link to="/layout/bottom-bar">EuiBottomBar</Link> component.
         </p>
       ),

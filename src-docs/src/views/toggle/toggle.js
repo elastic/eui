@@ -1,10 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
-import {
-  EuiToggle,
-} from '../../../../src/components';
+import { EuiToggle } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -15,9 +11,9 @@ export default class extends Component {
     };
   }
 
-  onToggleChange = (e) => {
+  onToggleChange = e => {
     this.setState({ toggleOn: e.target.checked });
-  }
+  };
 
   render() {
     return (

@@ -23,11 +23,7 @@ export const EuiTableRow = ({
   });
 
   return (
-    <tr
-      className={classes}
-      onClick={onClick}
-      {...rest}
-    >
+    <tr className={classes} onClick={onClick} {...rest}>
       {children}
     </tr>
   );

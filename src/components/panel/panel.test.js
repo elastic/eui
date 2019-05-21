@@ -6,11 +6,8 @@ import { EuiPanel } from './panel';
 
 describe('EuiPanel', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiPanel {...requiredProps} />
-    );
+    const component = render(<EuiPanel {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

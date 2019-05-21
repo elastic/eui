@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiBreadcrumbs, EuiSpacer, EuiTitle } from '../../../../src/components';
+import {
+  EuiBreadcrumbs,
+  EuiSpacer,
+  EuiTitle,
+} from '../../../../src/components';
 
 export default () => {
   const breadcrumbs = [
@@ -9,7 +13,8 @@ export default () => {
       href: '#',
     },
     {
-      text: 'Metazoans is a real mouthful, especially for creatures without mouths',
+      text:
+        'Metazoans is a real mouthful, especially for creatures without mouths',
       href: '#',
       truncate: true,
     },
@@ -34,7 +39,8 @@ export default () => {
       href: '#',
     },
     {
-      text: 'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+      text:
+        'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
     },
   ];
 
@@ -44,13 +50,21 @@ export default () => {
         <span>Truncation on a single item</span>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiBreadcrumbs responsive={false} truncate={false} breadcrumbs={breadcrumbs} />
+      <EuiBreadcrumbs
+        responsive={false}
+        truncate={false}
+        breadcrumbs={breadcrumbs}
+      />
       <EuiSpacer />
       <EuiTitle size="xs">
         <span>Truncation on the entire set</span>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiBreadcrumbs responsive={false} truncate={true} breadcrumbs={breadcrumbs} />
+      <EuiBreadcrumbs
+        responsive={false}
+        truncate={true}
+        breadcrumbs={breadcrumbs}
+      />
     </div>
   );
 };

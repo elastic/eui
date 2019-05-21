@@ -150,8 +150,7 @@ export default class extends Component {
           isSelected={selectedOptionId === facet.id}
           isDisabled={disabled && facet.id !== 'facet2'}
           isLoading={loading}
-          onClick={facet.onClick ? () => facet.onClick(facet.id) : undefined}
-        >
+          onClick={facet.onClick ? () => facet.onClick(facet.id) : undefined}>
           {facet.label}
         </EuiFacetButton>
       );

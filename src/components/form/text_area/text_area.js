@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {
-  EuiValidatableControl,
-} from '../validatable_control';
+import { EuiValidatableControl } from '../validatable_control';
 
 const resizeToClassNameMap = {
   vertical: 'euiTextArea--resizeVertical',
@@ -58,8 +56,7 @@ export const EuiTextArea = ({
         name={name}
         id={id}
         ref={inputRef}
-        placeholder={placeholder}
-      >
+        placeholder={placeholder}>
         {children}
       </textarea>
     </EuiValidatableControl>

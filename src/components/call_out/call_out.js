@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import {
-  ICON_TYPES,
-  EuiIcon,
-} from '../icon';
+import { IconPropType, EuiIcon } from '../icon';
 
-import {
-  EuiText,
-} from '../text';
+import { EuiText } from '../text';
 
 const colorToClassNameMap = {
   primary: 'euiCallOut--primary',
@@ -41,7 +36,7 @@ export const EuiCallOut = ({
     'euiCallOut',
     colorToClassNameMap[color],
     sizeToClassNameMap[size],
-    className,
+    className
   );
 
   let headerIcon;
@@ -59,30 +54,17 @@ export const EuiCallOut = ({
 
   let optionalChildren;
   if (children && size === 's') {
-    optionalChildren = (
-      <EuiText size="xs">
-        {children}
-      </EuiText>
-    );
+    optionalChildren = <EuiText size="xs">{children}</EuiText>;
   } else if (children) {
-    optionalChildren = (
-      <EuiText size="s">
-        {children}
-      </EuiText>
-    );
+    optionalChildren = <EuiText size="s">{children}</EuiText>;
   }
 
   return (
-    <div
-      className={classes}
-      {...rest}
-    >
+    <div className={classes} {...rest}>
       <div className="euiCallOutHeader">
         {headerIcon}
 
-        <span className="euiCallOutHeader__title">
-          {title}
-        </span>
+        <span className="euiCallOutHeader__title">{title}</span>
       </div>
 
       {optionalChildren}
@@ -94,7 +76,7 @@ EuiCallOut.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   title: PropTypes.node,
-  iconType: PropTypes.oneOf(ICON_TYPES),
+  iconType: IconPropType,
   color: PropTypes.oneOf(COLORS),
   size: PropTypes.oneOf(SIZES),
 };

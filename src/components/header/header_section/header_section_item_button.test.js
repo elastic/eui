@@ -7,12 +7,9 @@ import { EuiHeaderSectionItemButton } from './header_section_item_button';
 
 describe('EuiHeaderSectionItemButton', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiHeaderSectionItemButton {...requiredProps} />
-    );
+    const component = render(<EuiHeaderSectionItemButton {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   test('renders children', () => {
@@ -22,17 +19,14 @@ describe('EuiHeaderSectionItemButton', () => {
       </EuiHeaderSectionItemButton>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('onClick', () => {
     test(`isn't called upon instantiation`, () => {
       const onClickHandler = sinon.stub();
 
-      shallow(
-        <EuiHeaderSectionItemButton onClick={onClickHandler} />
-      );
+      shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
 
       sinon.assert.notCalled(onClickHandler);
     });

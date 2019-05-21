@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiButtonGroup,
@@ -19,63 +16,80 @@ export default class extends Component {
     const idPrefix2 = makeId();
     const idPrefix3 = makeId();
 
-    this.toggleButtons = [{
-      id: `${idPrefix}0`,
-      label: 'Option one',
-    }, {
-      id: `${idPrefix}1`,
-      label: 'Option two is selected by default',
-    }, {
-      id: `${idPrefix}2`,
-      label: 'Option three',
-    }];
+    this.toggleButtons = [
+      {
+        id: `${idPrefix}0`,
+        label: 'Option one',
+      },
+      {
+        id: `${idPrefix}1`,
+        label: 'Option two is selected by default',
+      },
+      {
+        id: `${idPrefix}2`,
+        label: 'Option three',
+      },
+    ];
 
-    this.toggleButtonsMulti = [{
-      id: `${idPrefix2}0`,
-      label: 'Option 1',
-    }, {
-      id: `${idPrefix2}1`,
-      label: 'Option 2 is selected by default',
-    }, {
-      id: `${idPrefix2}2`,
-      label: 'Option 3',
-    }];
+    this.toggleButtonsMulti = [
+      {
+        id: `${idPrefix2}0`,
+        label: 'Option 1',
+      },
+      {
+        id: `${idPrefix2}1`,
+        label: 'Option 2 is selected by default',
+      },
+      {
+        id: `${idPrefix2}2`,
+        label: 'Option 3',
+      },
+    ];
 
-    this.toggleButtonsIcons = [{
-      id: `${idPrefix3}0`,
-      label: 'Align left',
-      iconType: 'editorAlignLeft',
-    }, {
-      id: `${idPrefix3}1`,
-      label: 'Align center',
-      iconType: 'editorAlignCenter',
-    }, {
-      id: `${idPrefix3}2`,
-      label: 'Align right',
-      iconType: 'editorAlignRight',
-    }];
+    this.toggleButtonsIcons = [
+      {
+        id: `${idPrefix3}0`,
+        label: 'Align left',
+        iconType: 'editorAlignLeft',
+      },
+      {
+        id: `${idPrefix3}1`,
+        label: 'Align center',
+        iconType: 'editorAlignCenter',
+      },
+      {
+        id: `${idPrefix3}2`,
+        label: 'Align right',
+        iconType: 'editorAlignRight',
+      },
+    ];
 
-    this.toggleButtonsIconsMulti = [{
-      id: `${idPrefix3}3`,
-      label: 'Bold',
-      name: 'bold',
-      iconType: 'editorBold',
-    }, {
-      id: `${idPrefix3}4`,
-      label: 'Italic',
-      name: 'italic',
-      iconType: 'editorItalic',
-    }, {
-      id: `${idPrefix3}5`,
-      label: 'Underline',
-      name: 'underline',
-      iconType: 'editorUnderline',
-    }, {
-      id: `${idPrefix3}6`,
-      label: 'Strikethrough',
-      name: 'strikethrough',
-      iconType: 'editorStrike',
-    }];
+    this.toggleButtonsIconsMulti = [
+      {
+        id: `${idPrefix3}3`,
+        label: 'Bold',
+        name: 'bold',
+        iconType: 'editorBold',
+      },
+      {
+        id: `${idPrefix3}4`,
+        label: 'Italic',
+        name: 'italic',
+        iconType: 'editorItalic',
+      },
+      {
+        id: `${idPrefix3}5`,
+        label: 'Underline',
+        name: 'underline',
+        iconType: 'editorUnderline',
+      },
+      {
+        id: `${idPrefix3}6`,
+        label: 'Strikethrough',
+        name: 'strikethrough',
+        iconType: 'editorStrike',
+      },
+    ];
 
     this.state = {
       toggleIdSelected: `${idPrefix}1`,
@@ -94,9 +108,12 @@ export default class extends Component {
   };
 
   onChangeMulti = optionId => {
-    const newToggleIdToSelectedMap = ({ ...this.state.toggleIdToSelectedMap, ...{
-      [optionId]: !this.state.toggleIdToSelectedMap[optionId],
-    } });
+    const newToggleIdToSelectedMap = {
+      ...this.state.toggleIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.toggleIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       toggleIdToSelectedMap: newToggleIdToSelectedMap,
@@ -110,9 +127,12 @@ export default class extends Component {
   };
 
   onChangeIconsMulti = optionId => {
-    const newToggleIconIdToSelectedMap = ({ ...this.state.toggleIconIdToSelectedMap, ...{
-      [optionId]: !this.state.toggleIconIdToSelectedMap[optionId],
-    } });
+    const newToggleIconIdToSelectedMap = {
+      ...this.state.toggleIconIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.toggleIconIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       toggleIconIdToSelectedMap: newToggleIconIdToSelectedMap,
@@ -128,13 +148,11 @@ export default class extends Component {
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChange}
         />
-
         <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs"><h3>Primary &amp; multi select</h3></EuiTitle>
-
+        <EuiTitle size="xxs">
+          <h3>Primary &amp; multi select</h3>
+        </EuiTitle>
         <EuiSpacer size="s" />
-
         <EuiButtonGroup
           legend="This is a primary group"
           name="primary"
@@ -144,13 +162,11 @@ export default class extends Component {
           color="primary"
           type="multi"
         />
-
         <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs"><h3>Disabled &amp; full width</h3></EuiTitle>
-
+        <EuiTitle size="xxs">
+          <h3>Disabled &amp; full width</h3>
+        </EuiTitle>
         <EuiSpacer size="s" />
-
         <EuiButtonGroup
           legend="This is a disabled group"
           name="disabledGroup"
@@ -160,13 +176,11 @@ export default class extends Component {
           isDisabled
           isFullWidth
         />
-
         <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs"><h3>Icons only</h3></EuiTitle>
-
+        <EuiTitle size="xxs">
+          <h3>Icons only</h3>
+        </EuiTitle>
         <EuiSpacer size="s" />
-
         <EuiButtonGroup
           legend="Text align"
           name="textAlign"
@@ -176,9 +190,7 @@ export default class extends Component {
           onChange={this.onChangeIcons}
           isIconOnly
         />
-
         &nbsp;&nbsp;
-
         <EuiButtonGroup
           legend="Text style"
           className="eui-displayInlineBlock"

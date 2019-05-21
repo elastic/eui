@@ -7,18 +7,17 @@ import {
   EuiModalHeaderTitle,
   EuiOverlayMask,
   EuiFieldText,
-  EuiSpacer
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { ModalExample } from './modal_example_container';
 
 class ConflictModal extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      inputValue: ''
+      inputValue: '',
     };
   }
 
@@ -29,19 +28,14 @@ class ConflictModal extends React.Component {
       this.setState({ inputValue: '' });
       e.stopPropagation();
     }
-  }
+  };
 
   render() {
     return (
       <EuiOverlayMask>
-        <EuiModal
-          onClose={this.props.onClose}
-          style={{ width: '800px' }}
-        >
+        <EuiModal onClose={this.props.onClose} style={{ width: '800px' }}>
           <EuiModalHeader>
-            <EuiModalHeaderTitle >
-              Example modal
-            </EuiModalHeaderTitle>
+            <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
           </EuiModalHeader>
           <EuiModalBody>
             <EuiFieldText
@@ -52,7 +46,10 @@ class ConflictModal extends React.Component {
             <EuiSpacer size="s" />
             <p>While typing in this field, ESC will clear the field.</p>
             <EuiSpacer size="l" />
-            <p>Otherwise, the event bubbles up to the window and ESC closes the modal.</p>
+            <p>
+              Otherwise, the event bubbles up to the window and ESC closes the
+              modal.
+            </p>
           </EuiModalBody>
         </EuiModal>
       </EuiOverlayMask>
@@ -61,5 +58,8 @@ class ConflictModal extends React.Component {
 }
 
 export const WindowEventConflict = () => (
-  <ModalExample modal={ConflictModal} buttonText="Open Modal with Conflicting Listener" />
+  <ModalExample
+    modal={ConflictModal}
+    buttonText="Open Modal with Conflicting Listener"
+  />
 );

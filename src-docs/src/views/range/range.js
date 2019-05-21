@@ -1,12 +1,6 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
-import {
-  EuiRange,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiRange, EuiSpacer } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -15,7 +9,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      value: '120'
+      value: '120',
     };
   }
 

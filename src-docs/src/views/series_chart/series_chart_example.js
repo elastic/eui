@@ -12,13 +12,11 @@ export const XYChartExample = {
   title: 'General',
   intro: (
     <Fragment>
-      <EuiCallOut
-        title="Set for deprecation"
-        color="danger"
-      >
+      <EuiCallOut title="Set for deprecation" color="danger">
         <p>
-          This component will be replaced in the near future and managed outside of EUI. We do not recommend using it at this time
-          and it will be removed by June 2019.
+          This component will be replaced in the near future and managed outside
+          of EUI. We do not recommend using it at this time and it will be
+          removed by June 2019.
         </p>
       </EuiCallOut>
 
@@ -31,9 +29,11 @@ export const XYChartExample = {
       text: (
         <div>
           <p>
-            Use <EuiCode>EuiSeriesChart</EuiCode> to display line, bar, area, and stream charts. Note
-            that charts are composed with <EuiCode>EuiLineSeries</EuiCode>, <EuiCode>EuiAreaSeries</EuiCode>,{' '}
-            <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being child components.
+            Use <EuiCode>EuiSeriesChart</EuiCode> to display line, bar, area,
+            and stream charts. Note that charts are composed with{' '}
+            <EuiCode>EuiLineSeries</EuiCode>, <EuiCode>EuiAreaSeries</EuiCode>,{' '}
+            <EuiCode>EuiBar</EuiCode>, and <EuiCode>EuiStream</EuiCode> being
+            child components.
           </p>
         </div>
       ),
@@ -54,7 +54,10 @@ export const XYChartExample = {
       title: 'Empty Chart',
       text: (
         <div>
-          <p>When no data is provided to EuiSeriesChart, an empty state is displayed</p>
+          <p>
+            When no data is provided to EuiSeriesChart, an empty state is
+            displayed
+          </p>
         </div>
       ),
       source: [
@@ -74,7 +77,8 @@ export const XYChartExample = {
       text: (
         <div>
           <p>
-            When displayed side-by-side with other charts, we need to be able to keep them in sync
+            When displayed side-by-side with other charts, we need to be able to
+            keep them in sync
           </p>
         </div>
       ),
@@ -94,7 +98,10 @@ export const XYChartExample = {
       title: 'Multi Axis',
       text: (
         <div>
-          <p>If just displaying values is enough, then you can let the chart auto label axis</p>
+          <p>
+            If just displaying values is enough, then you can let the chart auto
+            label axis
+          </p>
         </div>
       ),
       source: [
@@ -114,10 +121,14 @@ export const XYChartExample = {
       text: (
         <div>
           <p>
-            You can omit <EuiCode>width</EuiCode> and/or <EuiCode>height</EuiCode>
-            prop and the chart takes the full width and/or height of it&apos;s parent.
+            You can omit <EuiCode>width</EuiCode> and/or{' '}
+            <EuiCode>height</EuiCode>
+            prop and the chart takes the full width and/or height of it&apos;s
+            parent.
           </p>
-          <p>The parent container needs to have computed a height and/or width.</p>
+          <p>
+            The parent container needs to have computed a height and/or width.
+          </p>
         </div>
       ),
       source: [

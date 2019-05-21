@@ -70,7 +70,8 @@ class XYChart extends PureComponent {
         id: `chart-${i}`,
       };
       if (!child.props.color) {
-        props.color = VISUALIZATION_COLORS[colorIterator % VISUALIZATION_COLORS.length];
+        props.color =
+          VISUALIZATION_COLORS[colorIterator % VISUALIZATION_COLORS.length];
         colorIterator++;
       }
       props._orientation = this.props.orientation;
@@ -124,7 +125,8 @@ class XYChart extends PureComponent {
       );
     }
 
-    const Crosshair = orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
+    const Crosshair =
+      orientation === HORIZONTAL ? EuiCrosshairY : EuiCrosshairX;
     const seriesNames = this._getSeriesNames(children);
     const classes = classNames(className, 'euiSeriesChartContainer');
     return (
@@ -143,8 +145,7 @@ class XYChart extends PureComponent {
           stackBy={stackBy}
           yPadding={yPadding}
           xPadding={xPadding}
-          style={{ width: '100%', height: '100%' }}
-        >
+          style={{ width: '100%', height: '100%' }}>
           {this._renderChildren(children)}
           {showDefaultAxis && <EuiDefaultAxis orientation={orientation} />}
           {showCrosshair && (
@@ -182,13 +183,29 @@ XYChart.propTypes = {
   /** TODO */
   stackBy: PropTypes.string,
   /** The main x axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md */
-  xType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
+  xType: PropTypes.oneOf([
+    LINEAR,
+    ORDINAL,
+    CATEGORY,
+    TIME,
+    TIME_UTC,
+    LOG,
+    LITERAL,
+  ]),
   /** The formatting string for the X-axis. */
   xCrosshairFormat: PropTypes.string,
   /** The formatting string for the Y-axis. */
   yCrosshairFormat: PropTypes.string,
   /** The main y axis scale type. See https://github.com/uber/react-vis/blob/master/docs/scales-and-data.md*/
-  yType: PropTypes.oneOf([LINEAR, ORDINAL, CATEGORY, TIME, TIME_UTC, LOG, LITERAL]),
+  yType: PropTypes.oneOf([
+    LINEAR,
+    ORDINAL,
+    CATEGORY,
+    TIME,
+    TIME_UTC,
+    LOG,
+    LITERAL,
+  ]),
   /** Manually specify the domain of x axis. */
   xDomain: PropTypes.array,
   /** Manually specify the domain of y axis. */

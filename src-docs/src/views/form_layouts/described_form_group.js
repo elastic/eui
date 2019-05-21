@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment,
-} from 'react';
+import React, { Component, Fragment } from 'react';
 
 import {
   EuiCode,
@@ -25,29 +22,37 @@ export default class extends Component {
 
     this.state = {
       isSwitchChecked: false,
-      checkboxes: [{
-        id: `${idPrefix}0`,
-        label: 'Option one',
-      }, {
-        id: `${idPrefix}1`,
-        label: 'Option two is checked by default',
-      }, {
-        id: `${idPrefix}2`,
-        label: 'Option three',
-      }],
+      checkboxes: [
+        {
+          id: `${idPrefix}0`,
+          label: 'Option one',
+        },
+        {
+          id: `${idPrefix}1`,
+          label: 'Option two is checked by default',
+        },
+        {
+          id: `${idPrefix}2`,
+          label: 'Option three',
+        },
+      ],
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
       },
-      radios: [{
-        id: `${idPrefix}4`,
-        label: 'Option one',
-      }, {
-        id: `${idPrefix}5`,
-        label: 'Option two is selected by default',
-      }, {
-        id: `${idPrefix}6`,
-        label: 'Option three',
-      }],
+      radios: [
+        {
+          id: `${idPrefix}4`,
+          label: 'Option one',
+        },
+        {
+          id: `${idPrefix}5`,
+          label: 'Option two is selected by default',
+        },
+        {
+          id: `${idPrefix}6`,
+          label: 'Option three',
+        },
+      ],
       radioIdSelected: `${idPrefix}5`,
     };
   }
@@ -56,23 +61,26 @@ export default class extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   onCheckboxChange = optionId => {
-    const newCheckboxIdToSelectedMap = ({ ...this.state.checkboxIdToSelectedMap, ...{
-      [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-    } });
+    const newCheckboxIdToSelectedMap = {
+      ...this.state.checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
+      },
+    };
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
     });
-  }
+  };
 
   onRadioChange = optionId => {
     this.setState({
       radioIdSelected: optionId,
     });
-  }
+  };
 
   render() {
     return (
@@ -82,28 +90,25 @@ export default class extends Component {
           title={<h3>Single text field</h3>}
           description={
             <Fragment>
-              When using this with a single form row where this text serves as the help text for the input,
-              it is a good idea to pass <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and pass
-              <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form row.
+              When using this with a single form row where this text serves as
+              the help text for the input, it is a good idea to pass{' '}
+              <EuiCode>idAria=&quot;someID&quot;</EuiCode> to the form group and
+              pass
+              <EuiCode>describedByIds=&#123;[someID]&#125;</EuiCode> to its form
+              row.
             </Fragment>
-          }
-        >
+          }>
           <EuiFormRow
             label="Text field"
-            describedByIds={['single-example-aria']}
-          >
+            describedByIds={['single-example-aria']}>
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
         <EuiDescribedFormGroup
           idAria="no-description"
-          title={<h3>No description</h3>}
-        >
-          <EuiFormRow
-            label="Text field"
-            describedByIds={['no-description']}
-          >
+          title={<h3>No description</h3>}>
+          <EuiFormRow label="Text field" describedByIds={['no-description']}>
             <EuiFieldText name="first" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
@@ -111,16 +116,15 @@ export default class extends Component {
         <EuiDescribedFormGroup
           title={<strong>Multiple fields</strong>}
           titleSize="m"
-          description="Here are three form rows. The first form row does not have a title."
-        >
+          description="Here are three form rows. The first form row does not have a title.">
           <EuiFormRow
             hasEmptyLabelSpace
             helpText={
               <span>
-                We do not pass <EuiCode>describedByIds</EuiCode> when there are multiple form rows.
+                We do not pass <EuiCode>describedByIds</EuiCode> when there are
+                multiple form rows.
               </span>
-            }
-          >
+            }>
             <EuiSelect
               hasNoInitialSelection
               options={[
@@ -131,21 +135,12 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="File picker"
-          >
+          <EuiFormRow label="File picker">
             <EuiFilePicker />
           </EuiFormRow>
 
-          <EuiFormRow
-            label="Range"
-          >
-            <EuiRange
-              min={0}
-              max={100}
-              name="range"
-              id="range"
-            />
+          <EuiFormRow label="Range">
+            <EuiRange min={0} max={100} name="range" id="range" />
           </EuiFormRow>
         </EuiDescribedFormGroup>
 
@@ -154,17 +149,16 @@ export default class extends Component {
           titleSize="xxxs"
           description={
             <Fragment>
-              By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be double the default width of form elements.
-              However, you can pass <EuiCode>fullWidth</EuiCode> prop to this, the individual field and row components
-              to expand to their container.
+              By default, <EuiCode>EuiDescribedFormGroup</EuiCode> will be
+              double the default width of form elements. However, you can pass{' '}
+              <EuiCode>fullWidth</EuiCode> prop to this, the individual field
+              and row components to expand to their container.
             </Fragment>
           }
-          fullWidth
-        >
+          fullWidth>
           <EuiFormRow
             label="Use a switch instead of a single checkbox"
-            fullWidth
-          >
+            fullWidth>
             <EuiSwitch
               name="switch"
               label="Should we do this?"

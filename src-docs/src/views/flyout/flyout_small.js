@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiFlyout,
@@ -28,7 +26,7 @@ export class FlyoutSmall extends Component {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
     });
-  }
+  };
 
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
@@ -39,7 +37,6 @@ export class FlyoutSmall extends Component {
   }
 
   render() {
-
     let flyout;
     if (this.state.isFlyoutVisible) {
       flyout = (
@@ -47,19 +44,17 @@ export class FlyoutSmall extends Component {
           ownFocus
           onClose={this.closeFlyout}
           size="s"
-          aria-labelledby="flyoutSmallTitle"
-        >
+          aria-labelledby="flyoutSmallTitle">
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="s">
-              <h2 id="flyoutSmallTitle">
-                A small flyout
-              </h2>
+              <h2 id="flyoutSmallTitle">A small flyout</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
             <EuiText>
               <p>
-                In small flyouts, it is ok to reduce the header size to <code>s</code>.
+                In small flyouts, it is ok to reduce the header size to{' '}
+                <code>s</code>.
               </p>
             </EuiText>
           </EuiFlyoutBody>
@@ -68,9 +63,7 @@ export class FlyoutSmall extends Component {
     }
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>
-          Show small flyout
-        </EuiButton>
+        <EuiButton onClick={this.showFlyout}>Show small flyout</EuiButton>
 
         {flyout}
       </div>

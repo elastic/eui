@@ -1,20 +1,28 @@
 import { isDateLike, isNumber } from '../../../services/predicate';
 import {
   dateFormat as defaultDateFormat,
-  dateGranularity
+  dateGranularity,
 } from './date_format';
 import moment from 'moment';
 
 export const DATE_TYPE = 'date';
 
 export const dateValuesEqual = (v1, v2) => {
-  return v1.raw === v2.raw &&
+  return (
+    v1.raw === v2.raw &&
     v1.granularity === v2.granularity &&
-    v1.text === v2.text;
+    v1.text === v2.text
+  );
 };
 
-export const isDateValue = (value) => {
-  return !!value && value.type === DATE_TYPE && !!value.raw && !!value.text && !!value.resolve;
+export const isDateValue = value => {
+  return (
+    !!value &&
+    value.type === DATE_TYPE &&
+    !!value.raw &&
+    !!value.text &&
+    !!value.resolve
+  );
 };
 
 export const dateValue = (raw, granularity, dateFormat = defaultDateFormat) => {
@@ -27,7 +35,7 @@ export const dateValue = (raw, granularity, dateFormat = defaultDateFormat) => {
       raw,
       granularity,
       text: dateFormat.print(raw),
-      resolve: () => moment(raw)
+      resolve: () => moment(raw),
     };
   }
   if (isNumber(raw)) {
@@ -36,7 +44,7 @@ export const dateValue = (raw, granularity, dateFormat = defaultDateFormat) => {
       raw,
       granularity,
       text: raw.toString(),
-      resolve: () => moment(raw)
+      resolve: () => moment(raw),
     };
   }
   const text = raw.toString();
@@ -45,12 +53,12 @@ export const dateValue = (raw, granularity, dateFormat = defaultDateFormat) => {
     raw,
     granularity,
     text,
-    resolve: () => dateFormat.parse(text)
+    resolve: () => dateFormat.parse(text),
   };
 };
 
 export const dateValueParser = (format = defaultDateFormat) => {
-  return (text) => {
+  return text => {
     const parsed = format.parse(text);
     return dateValue(text, dateGranularity(parsed), format);
   };

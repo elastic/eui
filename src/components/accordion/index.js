@@ -1,3 +1,1 @@
-export {
-  EuiAccordion,
-} from './accordion';
+export { EuiAccordion } from './accordion';

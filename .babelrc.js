@@ -15,6 +15,7 @@ module.exports = {
     "@babel/react"
   ],
   "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
     "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
@@ -39,6 +40,12 @@ module.exports = {
           ]
         }
       }
-    ]
-  ]
+    ],
+  ],
+
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    }
+  }
 };

@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiPopover,
@@ -95,7 +93,6 @@ export default class extends Component {
     });
   }
 
-
   onButtonClick7() {
     this.setState({
       isPopoverOpen7: !this.state.isPopoverOpen7,
@@ -168,25 +165,25 @@ export default class extends Component {
     });
   }
 
-
   render() {
     return (
       <div>
-
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiPopover
               id="downLeft"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick1.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick1.bind(this)}>
                   downLeft
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen1}
               closePopover={this.closePopover1.bind(this)}
-              anchorPosition="downLeft"
-            >
+              anchorPosition="downLeft">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -195,15 +192,17 @@ export default class extends Component {
             <EuiPopover
               id="downCenter"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick2.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick2.bind(this)}>
                   downCenter
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen2}
               closePopover={this.closePopover2.bind(this)}
-              anchorPosition="downCenter"
-            >
+              anchorPosition="downCenter">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -212,15 +211,17 @@ export default class extends Component {
             <EuiPopover
               id="downRight"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick3.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick3.bind(this)}>
                   downRight
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen3}
               closePopover={this.closePopover3.bind(this)}
-              anchorPosition="downRight"
-            >
+              anchorPosition="downRight">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -233,15 +234,17 @@ export default class extends Component {
             <EuiPopover
               id="upLeft"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick4.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick4.bind(this)}>
                   upLeft
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen4}
               closePopover={this.closePopover4.bind(this)}
-              anchorPosition="upLeft"
-            >
+              anchorPosition="upLeft">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -250,15 +253,17 @@ export default class extends Component {
             <EuiPopover
               id="upCenter"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick5.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick5.bind(this)}>
                   upCenter
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen5}
               closePopover={this.closePopover5.bind(this)}
-              anchorPosition="upCenter"
-            >
+              anchorPosition="upCenter">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -267,15 +272,17 @@ export default class extends Component {
             <EuiPopover
               id="upRight"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick6.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick6.bind(this)}>
                   upRight
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen6}
               closePopover={this.closePopover6.bind(this)}
-              anchorPosition="upRight"
-            >
+              anchorPosition="upRight">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -288,19 +295,22 @@ export default class extends Component {
             <EuiPopover
               id="leftUp"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick7.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick7.bind(this)}>
                   leftUp
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen7}
               closePopover={this.closePopover7.bind(this)}
-              anchorPosition="leftUp"
-            >
+              anchorPosition="leftUp">
               <EuiText>
                 <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers. There needs to be
-                  enough content to make make enough height for the arrow positioning.
+                  Be careful with content within left or right aligned popovers.
+                  There needs to be enough content to make make enough height
+                  for the arrow positioning.
                 </p>
               </EuiText>
             </EuiPopover>
@@ -310,15 +320,17 @@ export default class extends Component {
             <EuiPopover
               id="leftCenter"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick8.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick8.bind(this)}>
                   leftCenter
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen8}
               closePopover={this.closePopover8.bind(this)}
-              anchorPosition="leftCenter"
-            >
+              anchorPosition="leftCenter">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -327,19 +339,22 @@ export default class extends Component {
             <EuiPopover
               id="leftDown"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick9.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick9.bind(this)}>
                   leftDown
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen9}
               closePopover={this.closePopover9.bind(this)}
-              anchorPosition="leftDown"
-            >
+              anchorPosition="leftDown">
               <EuiText>
                 <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers. There needs to be
-                  enough content to make make enough height for the arrow positioning.
+                  Be careful with content within left or right aligned popovers.
+                  There needs to be enough content to make make enough height
+                  for the arrow positioning.
                 </p>
               </EuiText>
             </EuiPopover>
@@ -353,19 +368,22 @@ export default class extends Component {
             <EuiPopover
               id="rightUp"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick10.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick10.bind(this)}>
                   rightUp
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen10}
               closePopover={this.closePopover10.bind(this)}
-              anchorPosition="rightUp"
-            >
+              anchorPosition="rightUp">
               <EuiText>
                 <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers. There needs to be
-                  enough content to make make enough height for the arrow positioning.
+                  Be careful with content within left or right aligned popovers.
+                  There needs to be enough content to make make enough height
+                  for the arrow positioning.
                 </p>
               </EuiText>
             </EuiPopover>
@@ -375,15 +393,17 @@ export default class extends Component {
             <EuiPopover
               id="rightCenter"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick11.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick11.bind(this)}>
                   rightCenter
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen11}
               closePopover={this.closePopover11.bind(this)}
-              anchorPosition="rightCenter"
-            >
+              anchorPosition="rightCenter">
               Popover content
             </EuiPopover>
           </EuiFlexItem>
@@ -392,25 +412,27 @@ export default class extends Component {
             <EuiPopover
               id="rightDown"
               ownFocus
-              button={(
-                <EuiButton iconType="arrowDown" iconSide="right" onClick={this.onButtonClick12.bind(this)}>
+              button={
+                <EuiButton
+                  iconType="arrowDown"
+                  iconSide="right"
+                  onClick={this.onButtonClick12.bind(this)}>
                   rightDown
                 </EuiButton>
-              )}
+              }
               isOpen={this.state.isPopoverOpen12}
               closePopover={this.closePopover12.bind(this)}
-              anchorPosition="rightDown"
-            >
+              anchorPosition="rightDown">
               <EuiText>
                 <p style={{ width: 150 }}>
-                  Be careful with content within left or right aligned popovers. There needs to be
-                  enough content to make make enough height for the arrow positioning.
+                  Be careful with content within left or right aligned popovers.
+                  There needs to be enough content to make make enough height
+                  for the arrow positioning.
                 </p>
               </EuiText>
             </EuiPopover>
           </EuiFlexItem>
         </EuiFlexGroup>
-
       </div>
     );
   }

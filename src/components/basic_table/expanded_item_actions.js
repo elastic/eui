@@ -10,11 +10,9 @@ export const ExpandedItemActions = ({
   actionEnabled,
   className,
 }) => {
-
   const moreThanThree = actions.length > 2;
 
   return actions.reduce((tools, action, index) => {
-
     const available = action.available ? action.available(item) : true;
     if (!available) {
       return tools;
@@ -25,7 +23,7 @@ export const ExpandedItemActions = ({
     const key = `item_action_${itemId}_${index}`;
 
     const classes = classNames(className, {
-      'expandedItemActions__completelyHide': moreThanThree && index < 2,
+      expandedItemActions__completelyHide: moreThanThree && index < 2,
     });
 
     if (action.render) {

@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiButton,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiButton, EuiSpacer } from '../../../../src/components';
 import {
   EuiSeriesChart,
   EuiLineSeries,
@@ -53,7 +50,12 @@ export default class Example extends Component {
             <EuiBarSeries key={i} name={`Bars ${i}`} data={d} />
           ))}
           {data.map((d, i) => (
-            <EuiLineSeries key={i} name={`Lines ${i}`} data={d} showLineMarks={false} />
+            <EuiLineSeries
+              key={i}
+              name={`Lines ${i}`}
+              data={d}
+              showLineMarks={false}
+            />
           ))}
         </EuiSeriesChart>
       </Fragment>

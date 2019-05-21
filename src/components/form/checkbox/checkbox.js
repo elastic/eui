@@ -39,7 +39,7 @@ export class EuiCheckbox extends Component {
       typeToClassNameMap[type],
       {
         'euiCheckbox--noLabel': !label,
-        'euiCheckbox--compressed': compressed
+        'euiCheckbox--compressed': compressed,
       },
       className
     );
@@ -48,19 +48,14 @@ export class EuiCheckbox extends Component {
 
     if (label) {
       optionalLabel = (
-        <label
-          className="euiCheckbox__label"
-          htmlFor={id}
-        >
+        <label className="euiCheckbox__label" htmlFor={id}>
           {label}
         </label>
       );
     }
 
     return (
-      <div
-        className={classes}
-      >
+      <div className={classes}>
         <input
           className="euiCheckbox__input"
           type="checkbox"
@@ -79,7 +74,7 @@ export class EuiCheckbox extends Component {
     );
   }
 
-  setInputRef = (input) => {
+  setInputRef = input => {
     this.inputRef = input;
 
     if (this.props.inputRef) {
@@ -87,7 +82,7 @@ export class EuiCheckbox extends Component {
     }
 
     this.invalidateIndeterminate();
-  }
+  };
 
   invalidateIndeterminate() {
     if (this.inputRef) {

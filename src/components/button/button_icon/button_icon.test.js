@@ -6,12 +6,9 @@ import { EuiButtonIcon, COLORS } from './button_icon';
 
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiButtonIcon {...requiredProps} />
-    );
+    const component = render(<EuiButtonIcon {...requiredProps} />);
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -21,8 +18,7 @@ describe('EuiButtonIcon', () => {
           <EuiButtonIcon aria-label="button" isDisabled />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
 
       it('renders a button even when href is defined', () => {
@@ -30,8 +26,7 @@ describe('EuiButtonIcon', () => {
           <EuiButtonIcon aria-label="button" href="#" isDisabled />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -41,8 +36,7 @@ describe('EuiButtonIcon', () => {
           <EuiButtonIcon aria-label="button" iconType="user" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -53,8 +47,7 @@ describe('EuiButtonIcon', () => {
             <EuiButtonIcon aria-label="button" color={color} />
           );
 
-          expect(component)
-            .toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -65,8 +58,7 @@ describe('EuiButtonIcon', () => {
           <EuiButtonIcon aria-label="button" href="#" target="_blank" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 

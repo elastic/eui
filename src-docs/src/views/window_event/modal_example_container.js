@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import {
-  EuiButton,
-} from '../../../../src/components';
+import { EuiButton } from '../../../../src/components';
 
-import {
-  EuiWindowEvent,
-} from '../../../../src/services';
+import { EuiWindowEvent } from '../../../../src/services';
 
 export class ModalExample extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
     };
 
     this.open = this.open.bind(this);

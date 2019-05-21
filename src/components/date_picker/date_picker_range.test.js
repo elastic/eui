@@ -15,7 +15,6 @@ describe('EuiDatePickerRange', () => {
       />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

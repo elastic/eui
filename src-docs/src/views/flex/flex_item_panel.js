@@ -12,7 +12,9 @@ export default () => (
   <EuiFlexGroup>
     <EuiFlexItem>
       <EuiText>
-        <p><EuiCode>FlexItem</EuiCode></p>
+        <p>
+          <EuiCode>FlexItem</EuiCode>
+        </p>
         <p>A side nav might be in this one.</p>
         <p>And you would want the panel on the right to expand with it.</p>
       </EuiText>
@@ -26,8 +28,8 @@ export default () => (
 
     <EuiFlexItem>
       <EuiPanel grow={false}>
-        Another <EuiCode>EuiPanel</EuiCode>,
-        with <EuiCode>grow=&#123;false&#125;</EuiCode>.
+        Another <EuiCode>EuiPanel</EuiCode>, with{' '}
+        <EuiCode>grow=&#123;false&#125;</EuiCode>.
       </EuiPanel>
     </EuiFlexItem>
   </EuiFlexGroup>

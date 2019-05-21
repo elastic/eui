@@ -1,5 +1,4 @@
 export const propsInfo = {
-
   mobileOptions: {
     __docgenInfo: {
       _euiObjectType: 'type',
@@ -11,33 +10,35 @@ export const propsInfo = {
           defaultValue: { value: 'true' },
         },
         only: {
-          description: 'Only show for mobile? If true, will not render the column at all for desktop',
+          description:
+            'Only show for mobile? If true, will not render the column at all for desktop',
           required: false,
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         render: {
           description: 'Custom render/children if different from desktop',
           required: false,
-          type: { name: 'node' }
+          type: { name: 'node' },
         },
         header: {
-          description: 'The column\'s header for use in mobile view (automatically passed down when using `EuiBasicTable`). ' +
+          description:
+            "The column's header for use in mobile view (automatically passed down when using `EuiBasicTable`). " +
             'Or pass `false` to not show a header at all.',
           required: false,
-          type: { name: 'node | bool' }
+          type: { name: 'node | bool' },
         },
         enlarge: {
           description: 'Increase text size compared to rest of cells',
           required: false,
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
         fullWidth: {
-          description: 'Allocates 100% of the width of the container in mobile view (typically cells are contained to 50%)',
+          description:
+            'Allocates 100% of the width of the container in mobile view (typically cells are contained to 50%)',
           required: false,
-          type: { name: 'bool' }
+          type: { name: 'bool' },
         },
-      }
-    }
+      },
+    },
   },
-
 };

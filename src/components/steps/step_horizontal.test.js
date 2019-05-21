@@ -25,10 +25,7 @@ describe('EuiStepHorizontal', () => {
         const onClickHandler = sinon.stub();
 
         const component = mount(
-          <EuiStepHorizontal
-            step={1}
-            onClick={onClickHandler}
-          />
+          <EuiStepHorizontal step={1} onClick={onClickHandler} />
         );
 
         component.simulate('click');
@@ -40,11 +37,7 @@ describe('EuiStepHorizontal', () => {
         const onClickHandler = sinon.stub();
 
         const component = mount(
-          <EuiStepHorizontal
-            disabled
-            step={1}
-            onClick={onClickHandler}
-          />
+          <EuiStepHorizontal disabled step={1} onClick={onClickHandler} />
         );
 
         component.simulate('click');

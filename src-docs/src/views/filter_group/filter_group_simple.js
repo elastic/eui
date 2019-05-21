@@ -1,12 +1,6 @@
+import React, { Component } from 'react';
 
-import React, {
-  Component,
-} from 'react';
-
-import {
-  EuiFilterGroup,
-  EuiFilterButton,
-} from '../../../../src/components';
+import { EuiFilterGroup, EuiFilterButton } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -23,32 +17,45 @@ export default class extends Component {
     this.setState(prevState => ({
       isFilterOn: !prevState.isFilterOn,
     }));
-  }
+  };
 
   toggleOnFilter = () => {
     this.setState(prevState => ({
       isOnFilterOn: !prevState.isOnFilterOn,
-      isOffFilterOn: prevState.isOffFilterOn && !prevState.isOnFilterOn ? false : prevState.isOffFilterOn,
+      isOffFilterOn:
+        prevState.isOffFilterOn && !prevState.isOnFilterOn
+          ? false
+          : prevState.isOffFilterOn,
     }));
-  }
+  };
 
   toggleOffFilter = () => {
     this.setState(prevState => ({
       isOffFilterOn: !prevState.isOffFilterOn,
-      isOnFilterOn: prevState.isOnFilterOn && !prevState.isOffFilterOn ? false : prevState.isOnFilterOn,
+      isOnFilterOn:
+        prevState.isOnFilterOn && !prevState.isOffFilterOn
+          ? false
+          : prevState.isOnFilterOn,
     }));
-  }
+  };
 
   render() {
     return (
       <EuiFilterGroup>
-        <EuiFilterButton hasActiveFilters={this.state.isFilterOn} onClick={this.toggleFilter}>
+        <EuiFilterButton
+          hasActiveFilters={this.state.isFilterOn}
+          onClick={this.toggleFilter}>
           Single filter
         </EuiFilterButton>
-        <EuiFilterButton withNext hasActiveFilters={this.state.isOnFilterOn} onClick={this.toggleOnFilter}>
+        <EuiFilterButton
+          withNext
+          hasActiveFilters={this.state.isOnFilterOn}
+          onClick={this.toggleOnFilter}>
           On
         </EuiFilterButton>
-        <EuiFilterButton hasActiveFilters={this.state.isOffFilterOn} onClick={this.toggleOffFilter}>
+        <EuiFilterButton
+          hasActiveFilters={this.state.isOffFilterOn}
+          onClick={this.toggleOffFilter}>
           Off
         </EuiFilterButton>
       </EuiFilterGroup>

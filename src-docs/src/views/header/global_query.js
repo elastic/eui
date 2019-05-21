@@ -63,10 +63,14 @@ export default class extends Component {
 
   setFilterBarHeight = () => {
     requestAnimationFrame(() => {
-      const height = this.filterBar && this.state.isFiltersVisible ? this.filterBar.clientHeight + 4 : 0;
-      this.filterBarWrapper && this.filterBarWrapper.setAttribute('style', `height: ${height}px`);
+      const height =
+        this.filterBar && this.state.isFiltersVisible
+          ? this.filterBar.clientHeight + 4
+          : 0;
+      this.filterBarWrapper &&
+        this.filterBarWrapper.setAttribute('style', `height: ${height}px`);
     });
-  }
+  };
 
   componentDidMount() {
     this.setFilterBarHeight();
@@ -90,34 +94,35 @@ export default class extends Component {
     });
   };
 
-  setFilterBarRef = (node) => {
+  setFilterBarRef = node => {
     this.filterBar = node;
-  }
-
+  };
 
   render() {
-    const filterButtonTitle = `${this.state.filters.length} filters applied. Select to ${this.state.isFiltersVisible ? 'hide' : 'show'}.`;
+    const filterButtonTitle = `${
+      this.state.filters.length
+    } filters applied. Select to ${
+      this.state.isFiltersVisible ? 'hide' : 'show'
+    }.`;
 
     const filterTriggerButton = (
       <EuiFilterButton
         onClick={this.toggleFilterVisibility}
         isSelected={this.state.isFiltersVisible}
         hasActiveFilters={this.state.isFiltersVisible}
-        numFilters={this.state.filters.length > 0 ? this.state.filters.length : null}
+        numFilters={
+          this.state.filters.length > 0 ? this.state.filters.length : null
+        }
         aria-controls="GlobalFilterGroup"
         aria-expanded={!!this.state.isFiltersVisible}
-        title={filterButtonTitle}
-      >
+        title={filterButtonTitle}>
         Filters
       </EuiFilterButton>
     );
 
-    const classes = classNames(
-      'globalFilterGroup__wrapper',
-      {
-        'globalFilterGroup__wrapper-isVisible': this.state.isFiltersVisible,
-      },
-    );
+    const classes = classNames('globalFilterGroup__wrapper', {
+      'globalFilterGroup__wrapper-isVisible': this.state.isFiltersVisible,
+    });
 
     return (
       <React.Fragment>
@@ -132,27 +137,29 @@ export default class extends Component {
 
         <div
           id="GlobalFilterGroup"
-          ref={node => { this.filterBarWrapper = node; }}
-          className={classes}
-        >
+          ref={node => {
+            this.filterBarWrapper = node;
+          }}
+          className={classes}>
           <div ref={this.setFilterBarRef}>
             <EuiFlexGroup
               className="globalFilterGroup"
               gutterSize="none"
               alignItems="flexStart"
-              responsive={false}
-            >
+              responsive={false}>
               <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
                 <GlobalFilterOptions />
               </EuiFlexItem>
 
               <EuiFlexItem>
-                <GlobalFilterBar className="globalFilterGroup__filterBar" filters={this.state.filters} />
+                <GlobalFilterBar
+                  className="globalFilterGroup__filterBar"
+                  filters={this.state.filters}
+                />
               </EuiFlexItem>
             </EuiFlexGroup>
           </div>
         </div>
-
       </React.Fragment>
     );
   }

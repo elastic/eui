@@ -1,3 +1,1 @@
-export {
-  EuiHeaderBreadcrumbs,
-} from './header_breadcrumbs';
+export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';

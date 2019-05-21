@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 
 import {
   EuiButton,
@@ -23,15 +21,15 @@ export default class PopoverContainer extends Component {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
     });
-  }
+  };
 
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
-  setPanelRef = node => this.panel = node;
+  setPanelRef = node => (this.panel = node);
 
   render() {
     const button = (
@@ -39,8 +37,7 @@ export default class PopoverContainer extends Component {
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick}
-        style={{ position: 'relative', left: 50 }}
-      >
+        style={{ position: 'relative', left: 50 }}>
         Show constrained popover
       </EuiButton>
     );
@@ -52,17 +49,16 @@ export default class PopoverContainer extends Component {
           button={button}
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover}
-          container={this.panel}
-        >
+          container={this.panel}>
           <div>
-            Popover is positioned <EuiCode>downCenter</EuiCode> but
-            constrained to fit within the panel.
+            Popover is positioned <EuiCode>downCenter</EuiCode> but constrained
+            to fit within the panel.
           </div>
         </EuiPopover>
 
         {/* create adequate room for the popover */}
-        <EuiSpacer size="xxl"/>
-        <EuiSpacer size="xxl"/>
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
       </EuiPanel>
     );
   }

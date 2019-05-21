@@ -1,25 +1,15 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import hljs from 'highlight.js';
 
-import {
-  EuiCopy,
-} from '../copy';
+import { EuiCopy } from '../copy';
 
-import {
-  EuiButtonIcon,
-} from '../button';
+import { EuiButtonIcon } from '../button';
 
-import {
-  EuiOverlayMask,
-} from '../overlay_mask';
+import { EuiOverlayMask } from '../overlay_mask';
 
-import {
-  EuiFocusTrap,
-} from '../focus_trap';
+import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
 import { EuiI18n } from '../i18n';
@@ -62,7 +52,7 @@ export class EuiCodeBlockImpl extends Component {
         hljs.highlightBlock(this.codeFullScreen);
       }
     }
-  }
+  };
 
   onKeyDown = event => {
     if (event.keyCode === keyCodes.ESCAPE) {
@@ -128,25 +118,22 @@ export class EuiCodeBlockImpl extends Component {
 
     const codeSnippet = (
       <code
-        ref={ref => { this.code = ref; }}
+        ref={ref => {
+          this.code = ref;
+        }}
         className={codeClasses}
-        {...otherProps}
-      >
+        {...otherProps}>
         {children}
       </code>
     );
 
     const wrapperProps = {
       className: classes,
-      style: optionalStyles
+      style: optionalStyles,
     };
 
     if (inline) {
-      return (
-        <span {...wrapperProps}>
-          {codeSnippet}
-        </span>
-      );
+      return <span {...wrapperProps}>{codeSnippet}</span>;
     }
 
     let copyButton;
@@ -157,7 +144,7 @@ export class EuiCodeBlockImpl extends Component {
           <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
             {copyButton => (
               <EuiCopy textToCopy={children}>
-                {(copy) => (
+                {copy => (
                   <EuiButtonIcon
                     size="s"
                     onClick={copy}
@@ -178,9 +165,11 @@ export class EuiCodeBlockImpl extends Component {
     if (!inline && overflowHeight) {
       fullScreenButton = (
         <EuiI18n
-          tokens={['euiCodeBlock.fullscreenCollapse', 'euiCodeBlock.fullscreenExpand']}
-          defaults={['Collapse', 'Expand']}
-        >
+          tokens={[
+            'euiCodeBlock.fullscreenCollapse',
+            'euiCodeBlock.fullscreenExpand',
+          ]}
+          defaults={['Collapse', 'Expand']}>
           {([fullscreenCollapse, fullscreenExpand]) => (
             <EuiButtonIcon
               className="euiCodeBlock__fullScreenButton"
@@ -188,7 +177,9 @@ export class EuiCodeBlockImpl extends Component {
               onClick={this.toggleFullScreen}
               iconType={this.state.isFullScreen ? 'cross' : 'fullScreen'}
               color="text"
-              aria-label={this.state.isFullScreen ? fullscreenCollapse : fullscreenExpand}
+              aria-label={
+                this.state.isFullScreen ? fullscreenCollapse : fullscreenExpand
+              }
             />
           )}
         </EuiI18n>
@@ -209,15 +200,17 @@ export class EuiCodeBlockImpl extends Component {
     let fullScreenDisplay;
 
     if (this.state.isFullScreen) {
-      {/*
+      {
+        /*
         Force fullscreen to use large font and padding.
-      */}
+      */
+      }
       const fullScreenClasses = classNames(
         'euiCodeBlock',
         fontSizeToClassNameMap[fontSize],
         'euiCodeBlock-paddingLarge',
         'euiCodeBlock-isFullScreen',
-        className,
+        className
       );
 
       fullScreenDisplay = (
@@ -226,11 +219,12 @@ export class EuiCodeBlockImpl extends Component {
             <div className={fullScreenClasses}>
               <pre className="euiCodeBlock__pre">
                 <code
-                  ref={ref => { this.codeFullScreen = ref; }}
+                  ref={ref => {
+                    this.codeFullScreen = ref;
+                  }}
                   className={codeClasses}
                   tabIndex={0}
-                  onKeyDown={this.onKeyDown}
-                >
+                  onKeyDown={this.onKeyDown}>
                   {children}
                 </code>
               </pre>
@@ -244,9 +238,7 @@ export class EuiCodeBlockImpl extends Component {
 
     return (
       <div {...wrapperProps}>
-        <pre className="euiCodeBlock__pre">
-          {codeSnippet}
-        </pre>
+        <pre className="euiCodeBlock__pre">{codeSnippet}</pre>
 
         {/*
           If the below fullScreen code renders, it actually attaches to the body because of

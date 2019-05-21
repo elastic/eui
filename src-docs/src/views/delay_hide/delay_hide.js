@@ -5,13 +5,13 @@ import {
   EuiCheckbox,
   EuiFormRow,
   EuiFieldNumber,
-  EuiLoadingSpinner
+  EuiLoadingSpinner,
 } from '../../../../src/components';
 
 export default class extends Component {
   state = {
     minimumDuration: 3000,
-    hide: false
+    hide: false,
   };
 
   onChangeMinimumDuration = event => {
@@ -45,7 +45,7 @@ export default class extends Component {
             <EuiDelayHide
               hide={this.state.hide}
               minimumDuration={this.state.minimumDuration}
-              render={() => <EuiLoadingSpinner size="m"/>}
+              render={() => <EuiLoadingSpinner size="m" />}
             />
           </EuiFormRow>
         </EuiFlexItem>

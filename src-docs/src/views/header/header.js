@@ -20,7 +20,13 @@ export default class extends Component {
   }
 
   renderLogo() {
-    return <EuiHeaderLogo iconType="logoKibana" href="#" aria-label="Go to home page" />;
+    return (
+      <EuiHeaderLogo
+        iconType="logoKibana"
+        href="#"
+        aria-label="Go to home page"
+      />
+    );
   }
 
   renderBreadcrumbs() {
@@ -79,7 +85,9 @@ export default class extends Component {
     return (
       <EuiHeader>
         <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
+          <EuiHeaderSectionItem border="right">
+            {this.renderLogo()}
+          </EuiHeaderSectionItem>
           <EuiHeaderSectionItem border="right">
             <HeaderSpacesMenu />
           </EuiHeaderSectionItem>

@@ -1,8 +1,5 @@
 import moment from 'moment';
-import {
-  eq, gt, gte,
-  lt, lte
-} from './operators';
+import { eq, gt, gte, lt, lte } from './operators';
 import { dateValue } from './date_value';
 import { Random } from '../../../services/random';
 import { Granularity } from './date_format';
@@ -22,7 +19,6 @@ const earlierMoment = (date, count, units) => {
 };
 
 describe('operators', () => {
-
   test('eq - string', () => {
     expect(eq('val', 'val')).toBe(true);
     expect(eq('val', 'Val', { ignoreCase: true })).toBe(true);
@@ -583,5 +579,4 @@ describe('operators', () => {
       expect(lte(value, yearLaterValue)).toBe(true);
     });
   });
-
 });
