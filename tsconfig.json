@@ -51,6 +51,10 @@
   },
   "include": [
     "./src/**/*",
-    "./src-docs/**/*"
+    "./src-docs/**/*",
+    "./src-framer/**/*"
+  ],
+  "exclude": [
+    "./src-framer/code/canvas.tsx"
   ]
 }

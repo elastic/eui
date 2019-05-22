@@ -19,11 +19,9 @@ describe('EuiHeaderLogo', () => {
 
   test('renders optional props', () => {
     const component = render(
-      <EuiHeaderLogo
-        iconType="alert"
-        iconTitle="Moby Dick"
-        style={{ color: 'red' }}
-      />
+      <EuiHeaderLogo iconType="alert" style={{ color: 'red' }}>
+        Moby Dick
+      </EuiHeaderLogo>
     );
 
     expect(component).toMatchSnapshot();

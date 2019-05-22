@@ -26,8 +26,10 @@ export function copyToClipboard(text: string): boolean {
 
   document.body.appendChild(elementToBeCopied);
   range.selectNode(elementToBeCopied);
-  selection.removeAllRanges();
-  selection.addRange(range);
+  if (selection) {
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
 
   if (!document.execCommand('copy')) {
     isCopied = false;

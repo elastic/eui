@@ -69,13 +69,10 @@ function instanceOfFormatDateConfig(x: any): x is Partial<FormatDateConfig> {
   );
 }
 
-export const formatDate = (
+export const formatDate: (
   value?: moment.MomentInput,
-  dateFormatKeyOrConfig:
-    | DateFormat
-    | string
-    | Partial<FormatDateConfig> = 'dateTime'
-) => {
+  dateFormatKeyOrConfig?: DateFormat | string | Partial<FormatDateConfig>
+) => string = (value, dateFormatKeyOrConfig = 'dateTime') => {
   if (isString(dateFormatKeyOrConfig)) {
     if (isNil(value)) {
       return '';
@@ -111,4 +108,8 @@ export const formatDate = (
       return moment(value).format(dateFormat);
     }
   }
+
+  throw new Error(
+    `Failed to format value using dateFormatKeyOrConfig: ${dateFormatKeyOrConfig}`
+  );
 };
