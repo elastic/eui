@@ -1,5 +1,5 @@
 // @ts-ignore
-import { EuiPanel, SIZES } from '@elastic/eui/lib/components/panel/panel.js'; // eslint-disable-line import/no-unresolved
+import { EuiPanel, SIZES } from '@elastic/eui/lib/components/panel/panel.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 import { FrameSize } from '../_framer_helpers/frame_size';

@@ -1,9 +1,7 @@
-/* eslint-disable import/no-unresolved */
 // @ts-ignore
 import { EuiFieldPassword } from '@elastic/eui/lib/components/form/field_password/field_password.js';
 // @ts-ignore
 import { EuiFormRow } from '@elastic/eui/lib/components/form/form_row/form_row.js';
-/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 

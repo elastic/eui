@@ -1,11 +1,9 @@
-/* eslint-disable import/no-unresolved */
 // @ts-ignore
 import { EuiFieldText } from '@elastic/eui/lib/components/form/field_text/field_text.js';
 // @ts-ignore
 import { EuiFormRow } from '@elastic/eui/lib/components/form/form_row/form_row.js';
 // @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
-/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 

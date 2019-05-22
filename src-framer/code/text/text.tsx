@@ -1,11 +1,9 @@
-/* eslint-disable import/no-unresolved */
 // @ts-ignore
 import { EuiText, TEXT_SIZES } from '@elastic/eui/lib/components/text/text';
 // @ts-ignore
 import { ALIGNMENTS } from '@elastic/eui/lib/components/text/text_align';
 // @ts-ignore
 import { COLORS } from '@elastic/eui/lib/components/text/text_color';
-/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 import { FrameSize } from '../_framer_helpers/frame_size';

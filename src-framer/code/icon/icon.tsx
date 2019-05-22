@@ -4,7 +4,7 @@ import {
   SIZES,
   TYPES,
   // @ts-ignore
-} from '@elastic/eui/lib/components/icon/icon.js'; // eslint-disable-line import/no-unresolved
+} from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 

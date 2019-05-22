@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 // @ts-ignore
 import { EuiFacetButton } from '@elastic/eui/lib/components/facet/facet_button.js';
 import {
@@ -8,7 +7,6 @@ import {
   TYPES,
   // @ts-ignore
 } from '@elastic/eui/lib/components/icon/icon.js';
-/* eslint-enabled import/no-unresolved */
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
 
