@@ -95,6 +95,7 @@ const kitchenSinkSnippet = `<EuiColorPicker
   onFocus={() => {}}
   compressed={true}
   popoverZIndex={10}
+  mode="default"
   swatches={[
     '#333',
     '#666',

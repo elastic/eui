@@ -42,8 +42,10 @@ declare module '@elastic/eui' {
       button?: ReactElement;
       compressed?: boolean;
       disabled?: boolean;
+      fullWidth?: boolean;
       isInvalid?: boolean;
       mode?: 'default' | 'swatch' | 'picker';
+      readOnly?: boolean;
       swatches?: string[];
       popoverZIndex?: number;
     };

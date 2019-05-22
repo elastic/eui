@@ -41,6 +41,7 @@ export class KitchenSink extends Component {
             compressed={isCompressed}
             fullWidth={true}
             popoverZIndex={10}
+            mode="default"
             swatches={['#333', '#666', '#999', '#CCC', '#FFF']}
           />
         </EuiFormRow>

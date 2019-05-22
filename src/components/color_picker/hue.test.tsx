@@ -22,4 +22,12 @@ describe('EuiHue', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('accepts a hex value', () => {
+    const component = render(
+      <EuiHue hue={180} hex="#00FFFF" onChange={onChange} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

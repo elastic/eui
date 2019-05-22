@@ -23,6 +23,54 @@ test('renders EuiColorPicker', () => {
   expect(colorPicker).toMatchSnapshot();
 });
 
+test('renders compressed EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      compressed={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders readOnly EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      readOnly={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders fullWidth EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      fullWidth={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders disabled EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      disabled={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
     <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
