@@ -15,7 +15,7 @@
     "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "NODE_ENV=production webpack --config=src-docs/webpack.config.js",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js $npm_package_name",
-    "compile-icons": "node ./scripts/compile-icons.js",
+    "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.js\"",
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn lint-es && yarn lint-ts && yarn lint-sass && yarn lint-framer",
     "lint-fix": "yarn lint-es-fix && yarn lint-ts-fix",
