@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 
 import { EuiI18n } from '../i18n';
+import { CommonProps, keysOf } from '../common';
+import { EuiStepStatus } from '@elastic/eui';
 
 const statusToClassNameMap = {
   complete: 'euiStepNumber--complete',
@@ -14,18 +15,28 @@ const statusToClassNameMap = {
   disabled: 'euiStepNumber--disabled',
 };
 
-export const STATUS = Object.keys(statusToClassNameMap);
+export const STATUS = keysOf(statusToClassNameMap);
 
-export const EuiStepNumber = ({
-  className,
-  status,
-  number,
-  isHollow,
-  ...rest
-}) => {
+export interface EuiStepNumberProps {
+  /**
+   * May replace the number provided in props.number with alternate styling
+   */
+  status?: EuiStepStatus;
+  number?: number;
+  /**
+   * Uses a border and removes the step number
+   */
+  isHollow?: boolean;
+}
+
+export const EuiStepNumber: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepNumberProps
+  // Note - tslint:disable refers to the `number` as it conflicts with the build in number type
+  // tslint:disable-next-line:variable-name
+> = ({ className, status, number, isHollow, ...rest }) => {
   const classes = classNames(
     'euiStepNumber',
-    statusToClassNameMap[status],
+    status ? statusToClassNameMap[status] : undefined,
     {
       'euiStepNumber-isHollow': isHollow,
     },
@@ -36,37 +47,19 @@ export const EuiStepNumber = ({
   if (status === 'complete') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.isComplete" default="complete">
-        {isComplete => (
-          <EuiIcon
-            type="check"
-            className="euiStepNumber__icon"
-            title={isComplete}
-          />
-        )}
+        {() => <EuiIcon type="check" className="euiStepNumber__icon" />}
       </EuiI18n>
     );
   } else if (status === 'warning') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasWarnings" default="has warnings">
-        {hasWarnings => (
-          <EuiIcon
-            type="alert"
-            className="euiStepNumber__icon"
-            title={hasWarnings}
-          />
-        )}
+        {() => <EuiIcon type="alert" className="euiStepNumber__icon" />}
       </EuiI18n>
     );
   } else if (status === 'danger') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasErrors" default="has errors">
-        {hasErrors => (
-          <EuiIcon
-            type="cross"
-            className="euiStepNumber__icon"
-            title={hasErrors}
-          />
-        )}
+        {() => <EuiIcon type="cross" className="euiStepNumber__icon" />}
       </EuiI18n>
     );
   } else if (!isHollow) {
@@ -78,17 +71,4 @@ export const EuiStepNumber = ({
       {numberOrIcon}
     </div>
   );
-};
-
-EuiStepNumber.propTypes = {
-  children: PropTypes.node,
-  /**
-   * May replace the number provided in props.number with alternate styling
-   */
-  status: PropTypes.oneOf(STATUS),
-  number: PropTypes.number,
-  /**
-   * Uses a border and removes the step number
-   */
-  isHollow: PropTypes.bool,
 };
