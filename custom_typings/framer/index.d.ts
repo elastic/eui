@@ -1,3 +1,12 @@
+/**
+ * This was cobbled together from a few places, most notably:
+ *
+ * https://github.com/modest/framerx-js-lib/blob/master/src/index.d.ts
+ *
+ * It's extremley incompletely, probably wrong and shouldn't be relied upon
+ * to do almost anything.
+ */
+
 declare module 'framer' {
   export enum ControlType {
     Boolean = 'boolean',
