@@ -297,7 +297,7 @@ EuiColorPicker.propTypes = {
    */
   isInvalid: PropTypes.bool,
   /**
-   * Choice between swatches with gradient picker, swatches only, or gradient picker only.
+   * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
    */
   mode: PropTypes.oneOf(['default', 'swatch', 'picker']),
   /**
