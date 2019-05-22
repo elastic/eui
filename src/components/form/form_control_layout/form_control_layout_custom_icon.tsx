@@ -1,16 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../../icon';
+import { EuiIcon, IconType } from '../../icon';
+import { CommonProps } from '../../common';
 
-export const EuiFormControlLayoutCustomIcon = ({
-  className,
-  onClick,
-  type,
-  iconRef,
-  ...rest
-}) => {
+export interface EuiFormControlLayoutCustomIconProps {
+  type: IconType;
+  iconRef?: string | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
+}
+
+export const EuiFormControlLayoutCustomIcon: FunctionComponent<
+  CommonProps &
+    ButtonHTMLAttributes<HTMLButtonElement> &
+    EuiFormControlLayoutCustomIconProps
+> = ({ className, onClick, type, iconRef, ...rest }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
     'euiFormControlLayoutCustomIcon--clickable': onClick,
   });
@@ -41,11 +44,4 @@ export const EuiFormControlLayoutCustomIcon = ({
       />
     </span>
   );
-};
-
-EuiFormControlLayoutCustomIcon.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  type: PropTypes.string,
-  iconRef: PropTypes.func,
 };
