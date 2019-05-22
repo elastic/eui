@@ -59,6 +59,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
   type = 'EUI_DEFAULT',
   withPanel = false,
   grow = false,
+  'data-test-subj': dataTestSubj = 'droppable',
   ...rest
 }) => {
   const { isDraggingType } = useContext(EuiDragDropContextContext);
@@ -96,7 +97,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             {...provided.droppableProps}
             ref={provided.innerRef}
             style={style}
-            data-test-subj="droppable"
+            data-test-subj={dataTestSubj}
             className={classes}>
             <EuiDroppableContext.Provider
               value={{

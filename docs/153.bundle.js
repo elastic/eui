@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[153],{
 
 /***/ "../../src/components/icon/assets/logo_docker.js":
-/*!**********************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_docker.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_docker.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[143],{
 
 /***/ "../../src/components/icon/assets/logo_aws_mono.js":
-/*!************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_aws_mono.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_aws_mono.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
