@@ -1,5 +1,6 @@
 import { Data, animate, Override, Animatable } from 'framer';
 
+// eslint-disable-next-line new-cap
 const data = Data({ scale: Animatable(1) });
 
 export const Scale: Override<any> = () => {

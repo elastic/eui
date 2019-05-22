@@ -4,7 +4,7 @@ import {
   TYPES,
   // @ts-ignore
 } from '@elastic/eui/lib/components/avatar/avatar.js';
-  // @ts-ignore
+// @ts-ignore
 import { ControlType, PropertyControls } from 'framer';
 import React from 'react';
 

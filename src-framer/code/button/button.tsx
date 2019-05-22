@@ -5,7 +5,7 @@ import {
   SIZES,
   // @ts-ignore
 } from '@elastic/eui/lib/components/button/button.js';
-  // @ts-ignore
+// @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
