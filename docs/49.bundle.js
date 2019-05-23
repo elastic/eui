@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[49],{
 
 /***/ "../../src/components/icon/assets/asterisk.js":
-/*!************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/asterisk.js ***!
-  \************************************************************************/
+/*!******************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/asterisk.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

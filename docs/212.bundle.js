@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[212],{
 
 /***/ "../../src/components/icon/assets/pause.js":
-/*!*********************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/pause.js ***!
-  \*********************************************************************/
+/*!***************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/pause.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

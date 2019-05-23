@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[77],{
 
 /***/ "../../src/components/icon/assets/editor_align_center.js":
-/*!***********************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/editor_align_center.js ***!
-  \***********************************************************************************/
+/*!*****************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/editor_align_center.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

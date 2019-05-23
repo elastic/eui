@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[84],{
 
 /***/ "../../src/components/icon/assets/editor_italic.js":
-/*!*****************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/editor_italic.js ***!
-  \*****************************************************************************/
+/*!***********************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/editor_italic.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[284],{
 
 /***/ "../../src/components/icon/assets/vector.js":
-/*!**********************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/vector.js ***!
-  \**********************************************************************/
+/*!****************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/vector.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

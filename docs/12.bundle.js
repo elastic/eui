@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
 /***/ "../../src/components/icon/assets/app_discover.js":
-/*!****************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/app_discover.js ***!
-  \****************************************************************************/
+/*!**********************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/app_discover.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

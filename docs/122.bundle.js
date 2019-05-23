@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[122],{
 
 /***/ "../../src/components/icon/assets/index_mapping.js":
-/*!*****************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/index_mapping.js ***!
-  \*****************************************************************************/
+/*!***********************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/index_mapping.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

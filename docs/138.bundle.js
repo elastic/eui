@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[138],{
 
 /***/ "../../src/components/icon/assets/logo_aerospike.js":
-/*!******************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_aerospike.js ***!
-  \******************************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/logo_aerospike.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

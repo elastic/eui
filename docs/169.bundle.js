@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[169],{
 
 /***/ "../../src/components/icon/assets/logo_kibana.js":
-/*!***************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_kibana.js ***!
-  \***************************************************************************/
+/*!*********************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/logo_kibana.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
