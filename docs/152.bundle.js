@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[152],{
 
 /***/ "../../src/components/icon/assets/logo_couchbase.js":
-/*!*************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/logo_couchbase.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_couchbase.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

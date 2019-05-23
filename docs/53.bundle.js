@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[53],{
 
 /***/ "../../src/components/icon/assets/boxes_horizontal.js":
-/*!***************************************************************************************!*\
-  !*** /Users/chanderprall/projects/eui/src/components/icon/assets/boxes_horizontal.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/boxes_horizontal.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
