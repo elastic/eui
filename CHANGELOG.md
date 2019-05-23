@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `10.4.2`.
+
+## [`10.4.2`](https://github.com/elastic/eui/tree/v10.4.2)
+
 **Note: this release is a backport containing changes originally made in `11.2.0`**
 
 **Bug fixes**
