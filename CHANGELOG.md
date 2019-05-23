@@ -49,6 +49,14 @@ No public interface changes since `11.2.0`.
 
 - Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
 
+## [`10.4.2`](https://github.com/elastic/eui/tree/v10.4.2)
+
+**Note: this release is a backport containing changes originally made in `11.2.0`**
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
+
 ## [`10.4.1`](https://github.com/elastic/eui/tree/v10.4.1)
 
 **Note: this release is a backport containing changes originally made in `11.1.0`**
