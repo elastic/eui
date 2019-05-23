@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[112],{
 
 /***/ "../../src/components/icon/assets/grab_horizontal.js":
-/*!*******************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/grab_horizontal.js ***!
-  \*******************************************************************************/
+/*!*************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/grab_horizontal.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

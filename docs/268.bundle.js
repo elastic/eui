@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[268],{
 
 /***/ "../../src/components/icon/assets/tokens/tokenModule.js":
-/*!**********************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/tokens/tokenModule.js ***!
-  \**********************************************************************************/
+/*!****************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/tokens/tokenModule.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

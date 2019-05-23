@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[69],{
 
 /***/ "../../src/components/icon/assets/copy_clipboard.js":
-/*!******************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/copy_clipboard.js ***!
-  \******************************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/copy_clipboard.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

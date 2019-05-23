@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[294],{
 
 /***/ "../../src/components/icon/assets/vis_map_region.js":
-/*!******************************************************************************!*\
-  !*** /Users/thompsongl/src/eui/src/components/icon/assets/vis_map_region.js ***!
-  \******************************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/snide/es/eui/src/components/icon/assets/vis_map_region.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
