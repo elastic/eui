@@ -414,6 +414,20 @@ No public interface changes since `11.2.0`.
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
+## [`6.10.8`](https://github.com/elastic/eui/tree/v6.10.8)
+
+**Note: this release is a backport containing changes originally made in `11.2.0`**
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
+
+## [`6.10.7`](https://github.com/elastic/eui/tree/v6.10.7)
+
+**Note: this release is a backport containing changes originally made in `9.7.0`**
+
+- Changed `EuiNavDrawer` to close on any link click ([#1773](https://github.com/elastic/eui/pull/1773))
+
 ## [`6.10.6`](https://github.com/elastic/eui/tree/v6.10.6)
 
 **Note: this release is a backport containing changes originally made in `9.6.0`**
