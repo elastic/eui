@@ -3,7 +3,8 @@
 - Converted `EuiStepNumber` to TS ([#1893](https://github.com/elastic/eui/pull/1893))
 - Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
 - Added `data-test-subj` property to `EuiDraggable` and `EuiDroppable` ([#1943](https://github.com/elastic/eui/pull/1943))
-- Add type definitions to `EuiSuperSelect` ([##1752](https://github.com/elastic/eui/issues/1752))
+- Added type definitions to `EuiSuperSelect` ([#1907](https://github.com/elastic/eui/pull/1907))
+- Updated `EuiIcon` to use Slack's updated branding ([#1954](https://github.com/elastic/eui/pull/1954))
 - New component "Delay Render" ([#1876](https://github.com/elastic/eui/pull/1876))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
