@@ -5,6 +5,7 @@
 - Added `data-test-subj` property to `EuiDraggable` and `EuiDroppable` ([#1943](https://github.com/elastic/eui/pull/1943))
 - Added type definitions to `EuiSuperSelect` ([#1907](https://github.com/elastic/eui/pull/1907))
 - Updated `EuiIcon` to use Slack's updated branding ([#1954](https://github.com/elastic/eui/pull/1954))
+- Updated `compile-icons` script to format icon components with Prettier ([#1955](https://github.com/elastic/eui/pull/1955))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
 
