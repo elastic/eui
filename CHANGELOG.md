@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `6.10.7`.
+**Note: this release is a backport containing changes originally made in `11.2.0`**
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
 
 ## [`6.10.7`](https://github.com/elastic/eui/tree/v6.10.7)
 
