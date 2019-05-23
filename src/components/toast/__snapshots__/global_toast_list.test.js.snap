@@ -3,14 +3,18 @@
 exports[`EuiGlobalToastList is rendered 1`] = `
 <div
   aria-label="aria-label"
+  aria-live="polite"
   class="euiGlobalToastList testClass1 testClass2"
   data-test-subj="test subject string"
+  role="region"
 />
 `;
 
 exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
+  aria-live="polite"
   class="euiGlobalToastList"
+  role="region"
 >
   <div
     aria-live="polite"
