@@ -1,0 +1,5 @@
+// Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
+// https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+svg text {
+  letter-spacing: normal !important; // sass-lint:disable-line no-important
+}

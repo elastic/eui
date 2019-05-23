@@ -8,6 +8,10 @@
 - Updated `EuiIcon` to use Slack's updated branding ([#1954](https://github.com/elastic/eui/pull/1954))
 - Updated `compile-icons` script to format icon components with Prettier ([#1955](https://github.com/elastic/eui/pull/1955))
 
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
+
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
 
 - Converted `pretty_interval` to TS ([#1920](https://github.com/elastic/eui/pull/1920))
