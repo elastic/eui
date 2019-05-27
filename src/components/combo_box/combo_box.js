@@ -433,7 +433,7 @@ export class EuiComboBox extends Component {
 
     if (singleSelection) {
       this.closeList();
-      this.searchInput.blur();
+      setTimeout(() => this.toggleButton.focus());
       return;
     }
 
