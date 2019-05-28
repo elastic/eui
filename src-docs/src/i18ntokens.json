@@ -389,15 +389,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 16,
+        "line": 14,
         "column": 4
       },
       "end": {
-        "line": 18,
+        "line": 16,
         "column": 28
       }
     },
-    "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.js"
+    "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
   },
   {
     "token": "euiForm.addressFormErrors",
@@ -709,15 +709,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 38,
+        "line": 49,
         "column": 6
       },
       "end": {
-        "line": 38,
+        "line": 49,
         "column": 67
       }
     },
-    "filepath": "src/components/steps/step_number.js"
+    "filepath": "src/components/steps/step_number.tsx"
   },
   {
     "token": "euiStepNumber.hasWarnings",
@@ -725,15 +725,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 50,
+        "line": 55,
         "column": 6
       },
       "end": {
-        "line": 50,
+        "line": 55,
         "column": 72
       }
     },
-    "filepath": "src/components/steps/step_number.js"
+    "filepath": "src/components/steps/step_number.tsx"
   },
   {
     "token": "euiStepNumber.hasErrors",
@@ -741,15 +741,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
+        "line": 61,
         "column": 6
       },
       "end": {
-        "line": 62,
+        "line": 61,
         "column": 68
       }
     },
-    "filepath": "src/components/steps/step_number.js"
+    "filepath": "src/components/steps/step_number.tsx"
   },
   {
     "token": "euiStep.incompleteStep",

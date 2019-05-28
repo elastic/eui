@@ -1,8 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `11.2.1`.
+
+## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
+
+**Bug fixes**
+
+- Fixes type mismatch between PropType and TypeScript def for `EuiToast` `title` ([#1962](https://github.com/elastic/eui/pull/1962))
+
+## [`11.2.0`](https://github.com/elastic/eui/tree/v11.2.0)
+
+- Converted `EuiFormControlLayoutCustomIcon` to TS ([#1956](https://github.com/elastic/eui/pull/1956))
 - Converted `EuiStepNumber` to TS ([#1893](https://github.com/elastic/eui/pull/1893))
 - Converted `EuiFormControlLayoutClearButton` to TS ([#1922](https://github.com/elastic/eui/pull/1922))
 - Added `data-test-subj` property to `EuiDraggable` and `EuiDroppable` ([#1943](https://github.com/elastic/eui/pull/1943))
+- Added type definitions to `EuiSuperSelect` ([#1907](https://github.com/elastic/eui/pull/1907))
+- Updated `EuiIcon` to use Slack's updated branding ([#1954](https://github.com/elastic/eui/pull/1954))
+- Updated `compile-icons` script to format icon components with Prettier ([#1955](https://github.com/elastic/eui/pull/1955))
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
 
 ## [`11.1.0`](https://github.com/elastic/eui/tree/v11.1.0)
 
@@ -36,6 +54,14 @@
 **Breaking changes**
 
 - Split `EuiIcon` icon loading into dynamic imports ([#1924](https://github.com/elastic/eui/pull/1924))
+
+## [`10.4.2`](https://github.com/elastic/eui/tree/v10.4.2)
+
+**Note: this release is a backport containing changes originally made in `11.2.0`**
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
 
 ## [`10.4.1`](https://github.com/elastic/eui/tree/v10.4.1)
 
@@ -393,6 +419,20 @@
 **Breaking changes**
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
+## [`6.10.8`](https://github.com/elastic/eui/tree/v6.10.8)
+
+**Note: this release is a backport containing changes originally made in `11.2.0`**
+
+**Bug fixes**
+
+- Addressed a chrome issue where negative letter-spacing can reverse RTL text in SVGs ([#1960](https://github.com/elastic/eui/pull/1960))
+
+## [`6.10.7`](https://github.com/elastic/eui/tree/v6.10.7)
+
+**Note: this release is a backport containing changes originally made in `9.7.0`**
+
+- Changed `EuiNavDrawer` to close on any link click ([#1773](https://github.com/elastic/eui/pull/1773))
 
 ## [`6.10.6`](https://github.com/elastic/eui/tree/v6.10.6)
 
