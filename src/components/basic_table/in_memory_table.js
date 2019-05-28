@@ -167,9 +167,18 @@ export class EuiInMemoryTable extends Component {
         },
         pageIndex: 0,
       };
-    } else {
-      return null;
     }
+    const { sortField, sortDirection } = getInitialSorting(nextProps.sorting);
+    if (
+      sortField !== prevState.prevProps.sortField ||
+      sortDirection !== prevState.prevProps.sortDirection
+    ) {
+      return {
+        sortField,
+        sortDirection,
+      };
+    }
+    return null;
   }
 
   constructor(props) {
@@ -187,6 +196,8 @@ export class EuiInMemoryTable extends Component {
     this.state = {
       prevProps: {
         items: props.items,
+        sortField,
+        sortDirection,
       },
       query: getInitialQuery(search),
       pageIndex,
