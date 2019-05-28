@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
 import { IconPropType, EuiIcon } from '../icon';
@@ -75,16 +74,7 @@ export const EuiToast = ({
   }
 
   return (
-    <div className={classes} aria-live="polite" {...rest}>
-      <EuiScreenReaderOnly>
-        <p>
-          <EuiI18n
-            token="euiToast.newNotification"
-            default="A new notification appears"
-          />
-        </p>
-      </EuiScreenReaderOnly>
-
+    <div className={classes} {...rest}>
       <EuiI18n token="euiToast.notification" default="Notification">
         {notification => (
           <div

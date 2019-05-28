@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -6,6 +6,8 @@ import { Timer } from '../../services/time';
 import { IconPropType } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
 
 export const TOAST_FADE_OUT_MS = 250;
 
@@ -27,6 +29,7 @@ export class EuiGlobalToastList extends Component {
     // for information on initial value of 0
     this.isScrollingAnimationFrame = 0;
     this.startScrollingAnimationFrame = 0;
+    this.renderedForScreenReaderToasts = [];
   }
 
   static propTypes = {
@@ -172,6 +175,43 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
+  getRenderedForScreenReaderToasts = () => {
+    return this.renderedForScreenReaderToasts.map(toast => toast.reactElement);
+  };
+
+  filterNewOnlyToasts = toasts => {
+    return toasts.filter(toastFromProp => {
+      const withTheSameID = this.renderedForScreenReaderToasts.filter(
+        existToast => existToast.id === toastFromProp.id
+      );
+      return !withTheSameID.length;
+    });
+  };
+
+  logSetOfToasts = toasts => {
+    // map and filter incoming toasts to get only new ones
+    const newToasts = this.filterNewOnlyToasts(toasts).map(newToast => ({
+      id: newToast.id,
+      reactElement: (
+        <Fragment key={newToast.id}>
+          <p>
+            <EuiI18n
+              token="euiToast.newNotification"
+              default="A new notification appears"
+            />
+          </p>
+          <p>{newToast.title}</p>
+          {newToast.text}
+        </Fragment>
+      ),
+    })); // returns element, if element is false, then it excludes the one
+
+    this.renderedForScreenReaderToasts.push(...newToasts);
+    if (newToasts.length) {
+      console.log(newToasts.length, 'another new toast');
+    }
+  };
+
   componentDidMount() {
     this.listElement.addEventListener('scroll', this.onScroll);
     this.listElement.addEventListener('mouseenter', this.onMouseEnter);
@@ -221,6 +261,8 @@ export class EuiGlobalToastList extends Component {
       ...rest
     } = this.props;
 
+    this.logSetOfToasts(toasts);
+
     const renderedToasts = toasts.map(toast => {
       const {
         text,
@@ -251,10 +293,13 @@ export class EuiGlobalToastList extends Component {
           this.listElement = element;
         }}
         className={classes}
-        role="region"
-        aria-live="polite"
         {...rest}>
         {renderedToasts}
+        <EuiScreenReaderOnly>
+          <div role="region" aria-live="polite">
+            {this.getRenderedForScreenReaderToasts()}
+          </div>
+        </EuiScreenReaderOnly>
       </div>
     );
   }
