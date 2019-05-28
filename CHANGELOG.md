@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.2.1`.
+- Update `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
