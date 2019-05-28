@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[166],{
 
 /***/ "../../src/components/icon/assets/logo_ibm.js":
-/*!******************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/logo_ibm.js ***!
-  \******************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_ibm.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

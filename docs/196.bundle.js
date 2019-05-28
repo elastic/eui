@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[196],{
 
 /***/ "../../src/components/icon/assets/menuLeft.js":
-/*!******************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/menuLeft.js ***!
-  \******************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/menuLeft.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
