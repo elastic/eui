@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.2.0`.
+No public interface changes since `11.2.1`.
+
+## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
+
+**Bug fixes**
+
+- Fixes type mismatch between PropType and TypeScript def for `EuiToast` `title` ([#1962](https://github.com/elastic/eui/pull/1962))
 
 ## [`11.2.0`](https://github.com/elastic/eui/tree/v11.2.0)
 

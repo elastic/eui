@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[99],{
 
 /***/ "../../src/components/icon/assets/faceNeutral.js":
-/*!*********************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/faceNeutral.js ***!
-  \*********************************************************************/
+/*!***************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/faceNeutral.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

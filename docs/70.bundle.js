@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[70],{
 
 /***/ "../../src/components/icon/assets/cross.js":
-/*!***************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/cross.js ***!
-  \***************************************************************/
+/*!*********************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/cross.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

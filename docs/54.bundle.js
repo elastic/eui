@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[54],{
 
 /***/ "../../src/components/icon/assets/boxes_vertical.js":
-/*!************************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/boxes_vertical.js ***!
-  \************************************************************************/
+/*!******************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/boxes_vertical.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
