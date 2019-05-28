@@ -282,7 +282,12 @@ export class EuiInMemoryTable extends Component {
     const { columns } = this.props;
 
     const sortColumn = columns.find(({ field }) => field === sortField);
-    const { sortable } = sortColumn;
+
+    let sortable;
+
+    if (sortColumn) {
+      sortable = sortColumn.sortable;
+    }
 
     if (typeof sortable === 'function') {
       return Comparators.value(sortable, Comparators.default(sortDirection));
