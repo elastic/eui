@@ -196,7 +196,7 @@ export class EuiGlobalToastList extends Component {
         <Fragment key={newToast.id}>
           <p>
             <EuiI18n
-              token="euiToast.newNotification"
+              token="euiGlobalToastList.newNotification"
               default="A new notification appears"
             />
           </p>
@@ -207,9 +207,6 @@ export class EuiGlobalToastList extends Component {
     })); // returns element, if element is false, then it excludes the one
 
     this.renderedForScreenReaderToasts.push(...newToasts);
-    if (newToasts.length) {
-      console.log(newToasts.length, 'another new toast');
-    }
   };
 
   componentDidMount() {
