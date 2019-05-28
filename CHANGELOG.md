@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.2.1`.
+**Bug fixes**
+
+- Fixes environment setup for running `test-unit` script on Windows ([#1971](https://github.com/elastic/eui/pull/1971))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
