@@ -3,30 +3,26 @@
 exports[`EuiGlobalToastList is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-live="polite"
   class="euiGlobalToastList testClass1 testClass2"
   data-test-subj="test subject string"
-  role="region"
-/>
+>
+  <div
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+    role="region"
+  />
+</div>
 `;
 
 exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
-  aria-live="polite"
   class="euiGlobalToastList"
-  role="region"
 >
   <div
-    aria-live="polite"
     class="euiToast euiToast--success euiGlobalToastListItem"
     data-test-subj="a"
     id="a"
   >
-    <p
-      class="euiScreenReaderOnly"
-    >
-      A new notification appears
-    </p>
     <div
       aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
@@ -70,16 +66,10 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
   </div>
   <div
-    aria-live="polite"
     class="euiToast euiToast--danger euiGlobalToastListItem"
     data-test-subj="b"
     id="b"
   >
-    <p
-      class="euiScreenReaderOnly"
-    >
-      A new notification appears
-    </p>
     <div
       aria-label="Notification"
       class="euiToastHeader euiToastHeader--withBody"
@@ -121,6 +111,26 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     >
       b
     </div>
+  </div>
+  <div
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+    role="region"
+  >
+    <p>
+      A new notification appears
+    </p>
+    <p>
+      A
+    </p>
+    a
+    <p>
+      A new notification appears
+    </p>
+    <p>
+      B
+    </p>
+    b
   </div>
 </div>
 `;

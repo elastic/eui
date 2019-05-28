@@ -5,21 +5,8 @@ exports[`EuiToast Props color danger is rendered 1`] = `
   color="danger"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--danger"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -43,21 +30,8 @@ exports[`EuiToast Props color primary is rendered 1`] = `
   color="primary"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--primary"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -81,21 +55,8 @@ exports[`EuiToast Props color success is rendered 1`] = `
   color="success"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--success"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -119,21 +80,8 @@ exports[`EuiToast Props color warning is rendered 1`] = `
   color="warning"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--warning"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -157,21 +105,8 @@ exports[`EuiToast Props iconType is rendered 1`] = `
   iconType="user"
 >
   <div
-    aria-live="polite"
     className="euiToast"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -219,21 +154,8 @@ exports[`EuiToast Props title is rendered 1`] = `
   title="toast title"
 >
   <div
-    aria-live="polite"
     className="euiToast"
   >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
     <EuiI18n
       default="Notification"
       token="euiToast.notification"
@@ -257,15 +179,9 @@ exports[`EuiToast Props title is rendered 1`] = `
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-live="polite"
   class="euiToast testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <p
-    class="euiScreenReaderOnly"
-  >
-    A new notification appears
-  </p>
   <div
     aria-label="Notification"
     class="euiToastHeader euiToastHeader--withBody"
