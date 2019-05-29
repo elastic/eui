@@ -50,9 +50,14 @@ export class EuiAccordion extends Component {
   }
 
   onToggle() {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+    this.setState(
+      prevState => ({
+        isOpen: !prevState.isOpen,
+      }),
+      () => {
+        this.props.onToggle && this.props.onToggle(this.state.isOpen);
+      }
+    );
   }
 
   setChildContentRef = node => {
@@ -183,6 +188,10 @@ EuiAccordion.propTypes = {
    * The padding around the exposed accordion content.
    */
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
+  /**
+   * Optional callback method called on open and close with a single `isOpen` parameter
+   */
+  onToggle: PropTypes.func,
 };
 
 EuiAccordion.defaultProps = {
