@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiAccordion } from './accordion';
@@ -87,20 +86,18 @@ describe('EuiAccordion', () => {
     });
 
     it('accepts and calls an optional callback on open and close', () => {
-      const onToggleHandler = sinon.stub();
+      const onToggleHandler = jest.fn();
       const component = mount(
         <EuiAccordion id={getId()} onToggle={onToggleHandler} />
       );
 
       component.find('button').simulate('click');
-      sinon.assert.calledOnce(onToggleHandler);
-      sinon.assert.calledWith(onToggleHandler, true);
+      expect(onToggleHandler).toBeCalled();
+      expect(onToggleHandler).toBeCalledWith(true);
 
       component.find('button').simulate('click');
-      sinon.assert.calledTwice(onToggleHandler);
-      sinon.assert.calledWith(onToggleHandler, false);
-
-      expect(component).toMatchSnapshot();
+      expect(onToggleHandler).toBeCalled();
+      expect(onToggleHandler).toBeCalledWith(false);
     });
   });
 });
