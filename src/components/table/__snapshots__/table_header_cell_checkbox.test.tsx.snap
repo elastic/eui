@@ -5,6 +5,7 @@ exports[`EuiTableHeaderCellCheckbox is rendered 1`] = `
   aria-label="aria-label"
   class="euiTableHeaderCellCheckbox testClass1 testClass2"
   data-test-subj="test subject string"
+  scope="col"
 >
   <div
     class="euiTableCellContent"

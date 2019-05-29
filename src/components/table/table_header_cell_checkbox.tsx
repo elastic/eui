@@ -17,11 +17,11 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
     TdHTMLAttributes<HTMLTableCellElement> &
     EuiTableHeaderCellCheckboxProps
-> = ({ children, className, ...rest }) => {
+> = ({ children, className, scope = 'col', ...rest }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
 
   return (
-    <th className={classes} {...rest}>
+    <th className={classes} {...rest} scope={scope}>
       <div className="euiTableCellContent">{children}</div>
     </th>
   );
