@@ -452,7 +452,11 @@ export class EuiIcon extends Component<Props, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
-    import('./assets/' + typeToPathMap[iconType] + '.js').then(({ icon }) => {
+    import(
+      /* webpackChunkName: "icon.[request]" */ './assets/' +
+        typeToPathMap[iconType] +
+        '.js'
+    ).then(({ icon }) => {
       if (this.isMounted) {
         this.setState({
           icon,

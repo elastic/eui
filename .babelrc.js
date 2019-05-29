@@ -1,4 +1,9 @@
 module.exports = {
+  // We need to preserve comments as they are used by webpack for
+  // naming chunks during code-splitting. The compression step during
+  // bundling will remove them later.
+  "comments": true,
+
   "presets": [
     ["@babel/env", {
       "targets": {
