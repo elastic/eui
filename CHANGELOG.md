@@ -1,5 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Update `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
+- Add a webpack directive for naming icon chunks ([#1944])(https://github.com/elastic/eui/pull/1944))
+
 **Bug fixes**
 
 - Fixes environment setup for running `test-unit` script on Windows ([#1971](https://github.com/elastic/eui/pull/1971))
