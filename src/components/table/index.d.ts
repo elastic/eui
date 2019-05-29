@@ -4,6 +4,11 @@ import { CommonProps, NoArgCallback } from '../common';
 import { IconType } from '../icon';
 import { HorizontalAlignment } from '../../services/alignment';
 import { EuiTableRowCellCheckbox as TableRowCellCheckbox } from './table_row_cell_checkbox';
+import {
+  EuiTableHeaderCellCheckboxScope as TableHeaderCellCheckboxScope,
+  EuiTableHeaderCellCheckboxProps as TableHeaderCellCheckboxProps,
+  EuiTableHeaderCellCheckbox as TableHeaderCellCheckbox,
+} from './table_header_cell_checkbox';
 
 import {
   FunctionComponent,
@@ -102,22 +107,9 @@ declare module '@elastic/eui' {
    * @see './table_header_cell_checkbox.js'
    */
 
-  export type EuiTableHeaderCellCheckboxScope =
-    | 'col'
-    | 'row'
-    | 'colgroup'
-    | 'rowgroup';
-
-  export interface EuiTableHeaderCellCheckboxProps {
-    width?: string;
-    scope?: EuiTableHeaderCellCheckboxScope;
-  }
-
-  export const EuiTableHeaderCellCheckbox: FunctionComponent<
-    CommonProps &
-      TdHTMLAttributes<HTMLTableCellElement> &
-      EuiTableHeaderCellCheckboxProps
-  >;
+  export type EuiTableHeaderCellCheckboxScope = TableHeaderCellCheckboxScope;
+  export interface EuiTableHeaderCellCheckboxProps extends TableHeaderCellCheckboxProps {}
+  export const EuiTableHeaderCellCheckbox: typeof TableHeaderCellCheckbox;
 
   /**
    * table row type defs
