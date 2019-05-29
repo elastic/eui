@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.2.0`.
+- Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
 
 ## [`11.2.0`](https://github.com/elastic/eui/tree/v11.2.0)
 
