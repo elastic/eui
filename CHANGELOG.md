@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Update `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
+- Updated `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
+- Added ability to update `EuiInMemoryTable` `sorting` prop and remove columns after sorting is applied ([#1972](https://github.com/elastic/eui/pull/1972))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
