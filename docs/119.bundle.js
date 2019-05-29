@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[119],{
 
 /***/ "../../src/components/icon/assets/index_close.js":
-/*!*********************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/index_close.js ***!
-  \*********************************************************************/
+/*!***************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/index_close.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

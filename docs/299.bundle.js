@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[299],{
 
 /***/ "../../src/components/icon/assets/vis_text.js":
-/*!******************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/vis_text.js ***!
-  \******************************************************************/
+/*!************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/vis_text.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

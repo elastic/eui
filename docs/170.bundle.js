@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[170],{
 
 /***/ "../../src/components/icon/assets/logo_kubernetes.js":
-/*!*************************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/logo_kubernetes.js ***!
-  \*************************************************************************/
+/*!*******************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_kubernetes.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

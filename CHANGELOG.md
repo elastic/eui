@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
+- Update `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
+- Add a webpack directive for naming icon chunks ([#1944])(https://github.com/elastic/eui/pull/1944))
+
+## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
+
+**Bug fixes**
+
+- Fixes type mismatch between PropType and TypeScript def for `EuiToast` `title` ([#1962](https://github.com/elastic/eui/pull/1962))
 
 ## [`11.2.0`](https://github.com/elastic/eui/tree/v11.2.0)
 

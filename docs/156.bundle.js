@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[156],{
 
 /***/ "../../src/components/icon/assets/logo_elastic_stack.js":
-/*!****************************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/logo_elastic_stack.js ***!
-  \****************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_elastic_stack.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
