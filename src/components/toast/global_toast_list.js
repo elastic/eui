@@ -29,7 +29,9 @@ export class EuiGlobalToastList extends Component {
     // for information on initial value of 0
     this.isScrollingAnimationFrame = 0;
     this.startScrollingAnimationFrame = 0;
+
     this.renderedForScreenReaderToasts = [];
+    this.clearScreenReaderToastStorageID = null;
   }
 
   static propTypes = {
@@ -175,6 +177,11 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
+  clearScreenReaderToastStorage = () => {
+    this.renderedForScreenReaderToasts = [];
+    this.forceUpdate();
+  };
+
   getRenderedForScreenReaderToasts = () => {
     return this.renderedForScreenReaderToasts.map(toast => toast.reactElement);
   };
@@ -206,7 +213,18 @@ export class EuiGlobalToastList extends Component {
       ),
     })); // returns element, if element is false, then it excludes the one
 
+    // add new incoming toasts to the stack
     this.renderedForScreenReaderToasts.push(...newToasts);
+    // skip previous stack clearing
+    clearTimeout(this.clearScreenReaderToastStorageID);
+    // Set it to wait 27 seconds after the last notification before clear the stack
+    // 27s is the time chosen approx. That time is that Screen Reader needs to finish reading
+    // at least the last one notifications.
+    // It strictly depends on how long that notifications is.
+    this.clearScreenReaderToastStorageID = setTimeout(
+      this.clearScreenReaderToastStorage,
+      25000
+    );
   };
 
   componentDidMount() {
