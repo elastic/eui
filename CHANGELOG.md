@@ -2,8 +2,9 @@
 
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
 - Updated `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
-- Added a webpack directive for naming icon chunks ([#1944])(https://github.com/elastic/eui/pull/1944))
+- Added a webpack directive for naming icon chunks ([#1944](https://github.com/elastic/eui/pull/1944))
 - Added ability to update `EuiInMemoryTable` `sorting` prop and remove columns after sorting is applied ([#1972](https://github.com/elastic/eui/pull/1972))
+- Added `onToggle` callback to `EuiAccordion` ([#1974](https://github.com/elastic/eui/pull/1974))
 
 **Bug fixes**
 
