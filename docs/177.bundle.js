@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[177],{
 
 /***/ "../../src/components/icon/assets/logo_osquery.js":
-/*!**********************************************************************!*\
-  !*** /Users/snide/es/eui/src/components/icon/assets/logo_osquery.js ***!
-  \**********************************************************************/
+/*!****************************************************************************!*\
+  !*** /Users/thompsongl/src/eui/src/components/icon/assets/logo_osquery.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
