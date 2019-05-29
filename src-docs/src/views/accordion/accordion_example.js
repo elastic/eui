@@ -71,6 +71,18 @@ const accordionOpenSnippet = `<EuiAccordion
 </EuiAccordion>
 `;
 
+import AccordionCallback from './accordion_callback';
+const accordionCallbackSource = require('!!raw-loader!./accordion_callback');
+const accordionCallbackHtml = renderToHtml(AccordionCallback);
+const accordionCallbackSnippet = `<EuiAccordion
+  id={accordionId}
+  buttonContent="Clickable title"
+  onToggle={isOpen => handleOnToggle(isOpen)}
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`;
+
 import AccordionGrow from './accordion_grow';
 const accordionGrowSource = require('!!raw-loader!./accordion_grow');
 const accordionGrowHtml = renderToHtml(AccordionGrow);
@@ -203,6 +215,27 @@ export const AccordionExample = {
       ),
       snippet: accordionOpenSnippet,
       demo: <AccordionOpen />,
+    },
+    {
+      title: 'Accordion can call a function on open and close',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionCallbackSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: accordionCallbackHtml,
+        },
+      ],
+      text: (
+        <p>
+          Use the <EuiCode>onToggle</EuiCode> prop to pass a callback method
+          that will be called on open and close.
+        </p>
+      ),
+      snippet: accordionCallbackSnippet,
+      demo: <AccordionCallback />,
     },
     {
       title: 'Accordion content can dynamically change height',
