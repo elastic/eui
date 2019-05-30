@@ -80,12 +80,16 @@ export const EuiSuperSelectControl = ({
           </span>
         </EuiScreenReaderOnly>
 
+        {/*
+          TODO: Not sure this should be role=option.
+        */}
         <button
           role="option"
           type="button"
           className={classes}
           aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
+          aria-selected={true}
           {...rest}>
           {selectedValue}
         </button>
