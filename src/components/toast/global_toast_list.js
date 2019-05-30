@@ -217,13 +217,13 @@ export class EuiGlobalToastList extends Component {
     this.renderedForScreenReaderToasts.push(...newToasts);
     // skip previous stack clearing
     clearTimeout(this.clearScreenReaderToastStorageID);
-    // Set it to wait 27 seconds after the last notification before clear the stack
+    // Set it to wait 57 seconds after the last notification before clear the stack
     // 27s is the time chosen approx. That time is that Screen Reader needs to finish reading
     // at least the last one notifications.
     // It strictly depends on how long that notifications is.
     this.clearScreenReaderToastStorageID = setTimeout(
       this.clearScreenReaderToastStorage,
-      25000
+      57000
     );
   };
 
