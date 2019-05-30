@@ -17,6 +17,7 @@ declare module '@elastic/eui' {
     isLoading?: boolean;
     prepend?: React.ReactNode;
     append?: React.ReactNode;
+    compressed?: boolean;
   }
 
   export const EuiFieldText: FunctionComponent<
