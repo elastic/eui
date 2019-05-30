@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added missing TypeScript definition for `EuiFieldText`'s `compressed` prop ([#1977](https://github.com/elastic/eui/pull/1977))
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
 - Updated `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
 - Added a webpack directive for naming icon chunks ([#1944](https://github.com/elastic/eui/pull/1944))
