@@ -89,6 +89,7 @@ export class EuiFilePicker extends Component {
             className,
             disabled,
             compressed,
+            onChange,
             ...rest
           } = this.props;
 

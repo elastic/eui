@@ -5,10 +5,6 @@ import {
   MouseEventHandler,
 } from 'react';
 import { CommonProps, Omit } from '../common';
-import {
-  EuiStepNumberProps as StepNumberProps,
-  EuiStepNumber as StepNumber,
-} from './step_number';
 
 declare module '@elastic/eui' {
   export type EuiStepStatus =

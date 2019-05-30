@@ -58,7 +58,7 @@ export class EuiFormControlLayoutIcons extends Component {
           }
         : icon;
 
-    const { ref: iconRef, ...iconRest } = iconProps;
+    const { ref: iconRef, side, ...iconRest } = iconProps;
 
     return <EuiFormControlLayoutCustomIcon iconRef={iconRef} {...iconRest} />;
   }

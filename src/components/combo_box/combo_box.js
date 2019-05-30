@@ -650,11 +650,11 @@ export class EuiComboBox extends Component {
       noSuggestions,
       renderOption,
       singleSelection,
-      onChange, // eslint-disable-line @typescript-eslint/no-unused-vars
-      onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars
-      async, // eslint-disable-line @typescript-eslint/no-unused-vars
-      onBlur, // eslint-disable-line @typescript-eslint/no-unused-vars
-      inputRef, // eslint-disable-line @typescript-eslint/no-unused-vars
+      onChange,
+      onSearchChange,
+      async,
+      onBlur,
+      inputRef,
       isInvalid,
       rowHeight,
       isClearable,

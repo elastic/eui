@@ -17,8 +17,8 @@
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && node ./scripts/compile-scss.js $npm_package_name",
     "compile-icons": "node ./scripts/compile-icons.js",
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
-    "lint": "yarn tsc && yarn lint-es && yarn lint-sass",
-    "lint-fix": "yarn lint-es-fix && yarn lint-ts-fix",
+    "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
+    "lint-fix": "yarn lint-es-fix",
     "lint-es": "eslint --cache '{src,src-docs,src-framer}/**/*.{ts,tsx,js}'",
     "lint-es-fix": "yarn lint-es --fix",
     "lint-sass": "sass-lint -v --max-warnings 0",
@@ -167,7 +167,7 @@
     "sinon": "^4.4.8",
     "start-server-and-test": "^1.1.4",
     "style-loader": "^0.19.0",
-    "typescript": "^3.4.5",
+    "typescript": "^3.3.3",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.0.1",
     "wdio-chromedriver-service": "^0.1.2",
@@ -191,6 +191,6 @@
     "prop-types": "^15.5.0",
     "react": "^16.8",
     "react-dom": "^16.8",
-    "typescript": "^3.3.0"
+    "typescript": "^3.3.3"
   }
 }
