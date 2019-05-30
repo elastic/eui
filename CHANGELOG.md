@@ -6,6 +6,7 @@
 - Added ability to update `EuiInMemoryTable` `sorting` prop and remove columns after sorting is applied ([#1972](https://github.com/elastic/eui/pull/1972))
 - Added `onToggle` callback to `EuiAccordion` ([#1974](https://github.com/elastic/eui/pull/1974))
 - Removed `options` `defaultProps` value from `EuiSuperSelect` ([#1975](https://github.com/elastic/eui/pull/1975))
+- Added a logger based on `Aria Live Region` to `EuiGlobalToastList` ([#1958](https://github.com/elastic/eui/pull/1958))
 
 **Bug fixes**
 
