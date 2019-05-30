@@ -15,6 +15,10 @@
 - Fixed type mismatch between PropType and TypeScript def for `EuiGlobalToastList` toast `title` ([#1978](https://github.com/elastic/eui/pull/1978))
 - Fixed missing Typescript definition for `EuiBUtton`'s `color="text"` option
 
+**Breaking changes**
+
+- Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
+
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
 **Bug fixes**
