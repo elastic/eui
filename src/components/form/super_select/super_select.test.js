@@ -10,10 +10,19 @@ jest.mock('../../portal', () => ({
   EuiPortal: ({ children }) => children,
 }));
 
+const options = [
+  { value: '1', inputDisplay: 'Option #1' },
+  { value: '2', inputDisplay: 'Option #2' },
+];
+
 describe('EuiSuperSelect', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSuperSelect {...requiredProps} onChange={() => {}} />
+      <EuiSuperSelect
+        {...requiredProps}
+        options={options}
+        onChange={() => {}}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -22,7 +31,12 @@ describe('EuiSuperSelect', () => {
   describe('props', () => {
     test('fullWidth is rendered', () => {
       const component = render(
-        <EuiSuperSelect {...requiredProps} onChange={() => {}} fullWidth />
+        <EuiSuperSelect
+          {...requiredProps}
+          options={options}
+          onChange={() => {}}
+          fullWidth
+        />
       );
 
       expect(component).toMatchSnapshot();
@@ -45,10 +59,7 @@ describe('EuiSuperSelect', () => {
     test('options are rendered when select is open', () => {
       const component = mount(
         <EuiSuperSelect
-          options={[
-            { value: '1', inputDisplay: 'Option #1' },
-            { value: '2', inputDisplay: 'Option #2' },
-          ]}
+          options={options}
           onChange={() => {}}
           data-test-subj="superSelect"
         />
@@ -62,10 +73,7 @@ describe('EuiSuperSelect', () => {
     test('valueSelected is rendered', () => {
       const component = render(
         <EuiSuperSelect
-          options={[
-            { value: '1', inputDisplay: 'Option #1' },
-            { value: '2', inputDisplay: 'Option #2' },
-          ]}
+          options={options}
           valueOfSelected="2"
           onChange={() => {}}
         />

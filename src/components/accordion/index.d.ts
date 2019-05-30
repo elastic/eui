@@ -11,6 +11,7 @@ declare module '@elastic/eui' {
     buttonContent?: ReactNode;
     extraAction?: ReactNode;
     initialIsOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
     paddingSize?: EuiAccordionSize;
   }
 

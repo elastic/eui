@@ -3,6 +3,7 @@
 import { CommonProps, NoArgCallback } from '../common';
 import { IconType } from '../icon';
 import { HorizontalAlignment } from '../../services/alignment';
+import { EuiTableRowCellCheckbox as TableRowCellCheckbox } from './table_row_cell_checkbox';
 
 import {
   FunctionComponent,
@@ -179,12 +180,5 @@ declare module '@elastic/eui' {
    *
    * @see './table_row_cell_checkbox.js'
    */
-
-  export interface EuiTableRowCellCheckboxProps {}
-
-  export const EuiTableRowCellCheckbox: FunctionComponent<
-    CommonProps &
-      TdHTMLAttributes<HTMLTableCellElement> &
-      EuiTableRowCellCheckboxProps
-  >;
+  export const EuiTableRowCellCheckbox: typeof TableRowCellCheckbox;
 }
