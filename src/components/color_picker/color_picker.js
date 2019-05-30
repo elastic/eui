@@ -197,7 +197,6 @@ export const EuiColorPicker = ({
     <EuiFocusTrap disabled={!isColorSelectorShown} returnFocus={false}>
       <div ref={containerRef} onKeyDown={handleOnKeyDown}>
         <EuiPopover
-          id="popover"
           button={buttonOrInput}
           isOpen={isColorSelectorShown}
           closePopover={closeColorSelector}
