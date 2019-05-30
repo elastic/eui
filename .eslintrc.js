@@ -49,7 +49,7 @@ module.exports = {
       "jsx-a11y/role-supports-aria-props": "error",
       "jsx-a11y/scope": "error",
       "jsx-a11y/tabindex-no-positive": "error",
-      "jsx-a11y/label-has-associated-control": "error",  
+      "jsx-a11y/label-has-associated-control": "error",
       "local/i18n": "error"
   },
   env: {
