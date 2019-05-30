@@ -58,7 +58,7 @@ EuiCopy.propTypes = {
   /**
    * Tooltip message displayed before copy function is called.
    */
-  beforeMessage: PropTypes.string,
+  beforeMessage: PropTypes.node,
 
   /**
    * Tooltip message displayed after copy function is called that lets the user know that

@@ -27,11 +27,14 @@ export class ColorPickerLabelAndClear extends Component {
     return (
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
-          <label className="kuiLabel">Background color</label>
+          <label htmlFor="colorPicker" className="kuiLabel">
+            Background color
+          </label>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiColorPicker
+            id="colorPicker"
             onChange={this.handleChange}
             color={this.state.color}
           />
