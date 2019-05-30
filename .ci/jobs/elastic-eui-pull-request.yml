@@ -1,0 +1,5 @@
+---
+- job:
+    name: elastic-eui-pull-request
+    display-name: 'elastic / eui # pull-request'
+    description: Testing of eui pull requests.
