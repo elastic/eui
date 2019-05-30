@@ -12,7 +12,7 @@ function compileLib() {
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
   execSync(
     'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
-    { env: { ...this.process.env, BABEL_MODULES: false } }
+    { env: { ...this.process.env, BABEL_MODULES: false, USE_CORE_JS: false } }
   );
   execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
 
