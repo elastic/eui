@@ -11,10 +11,11 @@ declare module '@elastic/eui' {
     buttonContent?: ReactNode;
     extraAction?: ReactNode;
     initialIsOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
     paddingSize?: EuiAccordionSize;
   }
 
   export class EuiAccordion extends Component<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiAccordionProps
-    > {}
+  > {}
 }
