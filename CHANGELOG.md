@@ -10,6 +10,7 @@
 **Bug fixes**
 
 - Fixed environment setup for running `test-unit` script on Windows ([#1971](https://github.com/elastic/eui/pull/1971))
+- Fixed focus on single selection of EuiComboBox ([#1965](https://github.com/elastic/eui/pull/1965))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
