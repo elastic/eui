@@ -10,11 +10,19 @@ function compileLib() {
   console.log('Compiling src/ to es/ and lib/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
-  execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
-    { env: { ...this.process.env, BABEL_MODULES: false, USE_CORE_JS: false } }
-  );
-  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
+  execSync('babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+      NO_COREJS_POLYFILL: true,
+    }
+  });
+  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
+    env: {
+      ...process.env,
+      NO_COREJS_POLYFILL: true,
+    }
+  });
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
@@ -44,10 +52,22 @@ function compileBundle() {
   shell.mkdir('-p', 'dist');
 
   console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      NO_COREJS_POLYFILL: true
+    }
+  });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      NO_COREJS_POLYFILL: true
+    }
+  });
 }
 
 compileLib();
