@@ -1,6 +1,12 @@
 import { CommonProps } from '../../common';
 
-import { FunctionComponent, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  ChangeEventHandler,
+  InputHTMLAttributes,
+} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -31,12 +37,14 @@ declare module '@elastic/eui' {
    * @see './checkbox_group.js'
    */
 
-  export type EuiCheckboxGroupOption = {
+  export interface EuiCheckboxGroupOption {
     id: string;
     label?: ReactNode;
-  };
+  }
 
-  export type EuiCheckboxGroupIdToSelectedMap = { [id: string]: boolean };
+  export interface EuiCheckboxGroupIdToSelectedMap {
+    [id: string]: boolean;
+  }
 
   export interface EuiCheckboxGroupProps {
     options: EuiCheckboxGroupOption[];

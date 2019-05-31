@@ -96,7 +96,7 @@ export class EuiFieldSearch extends Component {
       isInvalid,
       fullWidth,
       isLoading,
-      inputRef, // eslint-disable-line no-unused-vars
+      inputRef,
       incremental,
       compressed,
       onSearch,

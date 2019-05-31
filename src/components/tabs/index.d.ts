@@ -11,17 +11,17 @@ declare module '@elastic/eui' {
 
   type TAB_DISPLAYS = 'default' | 'condensed';
 
-  type EuiTabProps = {
+  interface EuiTabProps {
     onClick: MouseEventHandler<HTMLButtonElement>;
     isSelected?: boolean;
     disabled?: boolean;
-  };
+  }
 
-  type EuiTabsProps = {
+  interface EuiTabsProps {
     size?: TAB_SIZES;
     display?: TAB_DISPLAYS;
     expand?: boolean;
-  };
+  }
 
   export interface EuiTabbedContentTab {
     id: string;
@@ -29,7 +29,7 @@ declare module '@elastic/eui' {
     content: ReactNode;
   }
 
-  type EuiTabbedContentProps = {
+  interface EuiTabbedContentProps {
     tabs: EuiTabbedContentTab[];
     onTabClick?: (tab: EuiTabbedContentTab) => void;
     selectedTab?: EuiTabbedContentTab;
@@ -37,7 +37,7 @@ declare module '@elastic/eui' {
     size?: TAB_SIZES;
     display?: TAB_DISPLAYS;
     expand?: boolean;
-  };
+  }
 
   export const EuiTab: FunctionComponent<
     EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>

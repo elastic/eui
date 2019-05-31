@@ -4,7 +4,6 @@ import { IconType } from '../../icon';
 import { ReactNode, FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * text field type defs
    *
@@ -23,5 +22,5 @@ declare module '@elastic/eui' {
 
   export const EuiFieldNumber: FunctionComponent<
     CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiFieldNumberProps
-    >;
+  >;
 }

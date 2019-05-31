@@ -11,10 +11,12 @@ declare module '@elastic/eui' {
     buttonContent?: ReactNode;
     extraAction?: ReactNode;
     initialIsOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
     paddingSize?: EuiAccordionSize;
   }
 
+  // eslint-disable-next-line react/prefer-stateless-function
   export class EuiAccordion extends Component<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiAccordionProps
-    > {}
+  > {}
 }

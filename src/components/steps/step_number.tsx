@@ -5,7 +5,6 @@ import { EuiIcon } from '../icon';
 
 import { EuiI18n } from '../i18n';
 import { CommonProps, keysOf } from '../common';
-import { EuiStepStatus } from '@elastic/eui';
 
 const statusToClassNameMap = {
   complete: 'euiStepNumber--complete',
@@ -16,6 +15,13 @@ const statusToClassNameMap = {
 };
 
 export const STATUS = keysOf(statusToClassNameMap);
+
+export type EuiStepStatus =
+  | 'complete'
+  | 'incomplete'
+  | 'warning'
+  | 'danger'
+  | 'disabled';
 
 export interface EuiStepNumberProps {
   /**
@@ -47,19 +53,37 @@ export const EuiStepNumber: FunctionComponent<
   if (status === 'complete') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.isComplete" default="complete">
-        {() => <EuiIcon type="check" className="euiStepNumber__icon" />}
+        {(isComplete: string) => (
+          <EuiIcon
+            type="check"
+            className="euiStepNumber__icon"
+            aria-label={isComplete}
+          />
+        )}
       </EuiI18n>
     );
   } else if (status === 'warning') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasWarnings" default="has warnings">
-        {() => <EuiIcon type="alert" className="euiStepNumber__icon" />}
+        {(hasWarnings: string) => (
+          <EuiIcon
+            type="alert"
+            className="euiStepNumber__icon"
+            aria-label={hasWarnings}
+          />
+        )}
       </EuiI18n>
     );
   } else if (status === 'danger') {
     numberOrIcon = (
       <EuiI18n token="euiStepNumber.hasErrors" default="has errors">
-        {() => <EuiIcon type="cross" className="euiStepNumber__icon" />}
+        {(hasErrors: string) => (
+          <EuiIcon
+            type="cross"
+            className="euiStepNumber__icon"
+            aria-label={hasErrors}
+          />
+        )}
       </EuiI18n>
     );
   } else if (!isHollow) {

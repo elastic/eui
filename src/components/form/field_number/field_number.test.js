@@ -35,33 +35,33 @@ describe('EuiFieldNumber', () => {
   });
 
   describe('props', () => {
-    test(`isInvalid is rendered`, () => {
+    test('isInvalid is rendered', () => {
       const component = render(<EuiFieldNumber isInvalid />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`fullWidth is rendered`, () => {
+    test('fullWidth is rendered', () => {
       const component = render(<EuiFieldNumber fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`isLoading is rendered`, () => {
+    test('isLoading is rendered', () => {
       const component = render(<EuiFieldNumber isLoading />);
 
       expect(component).toMatchSnapshot();
     });
 
     describe('value', () => {
-      test(`value is number`, () => {
+      test('value is number', () => {
         const component = render(
           <EuiFieldNumber value={0} onChange={() => {}} />
         );
         expect(component).toMatchSnapshot();
       });
 
-      test(`no initial value`, () => {
+      test('no initial value', () => {
         const component = render(
           <EuiFieldNumber value={''} onChange={() => {}} />
         );

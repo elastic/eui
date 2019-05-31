@@ -430,16 +430,14 @@ export class EuiComboBox extends Component {
     );
 
     this.clearSearchValue();
+    this.clearActiveOption();
+
+    if (!isContainerBlur) {
+      this.searchInput.focus();
+    }
 
     if (singleSelection) {
       this.closeList();
-      this.searchInput.blur();
-      return;
-    }
-
-    this.clearActiveOption();
-    if (!isContainerBlur) {
-      this.searchInput.focus();
     }
   };
 
@@ -650,11 +648,11 @@ export class EuiComboBox extends Component {
       noSuggestions,
       renderOption,
       singleSelection,
-      onChange, // eslint-disable-line no-unused-vars
-      onSearchChange, // eslint-disable-line no-unused-vars
-      async, // eslint-disable-line no-unused-vars
-      onBlur, // eslint-disable-line no-unused-vars
-      inputRef, // eslint-disable-line no-unused-vars
+      onChange,
+      onSearchChange,
+      async,
+      onBlur,
+      inputRef,
       isInvalid,
       rowHeight,
       isClearable,

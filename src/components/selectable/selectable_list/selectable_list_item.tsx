@@ -1,9 +1,8 @@
 import React, { Component, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { EuiIcon } from '../../icon';
+import { EuiIcon, IconType, IconColor } from '../../icon';
 import { OptionCheckedType } from '../types';
-import { IconType, IconColor } from '../../icon';
 
 function resolveIconAndColor(
   checked: OptionCheckedType
@@ -38,6 +37,7 @@ export type EuiSelectableListItemProps = ButtonHTMLAttributes<
     append?: React.ReactNode;
   };
 
+// eslint-disable-next-line react/prefer-stateless-function
 export class EuiSelectableListItem extends Component<
   EuiSelectableListItemProps
 > {

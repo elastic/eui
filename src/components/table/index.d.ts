@@ -3,6 +3,12 @@
 import { CommonProps, NoArgCallback } from '../common';
 import { IconType } from '../icon';
 import { HorizontalAlignment } from '../../services/alignment';
+import { EuiTableRowCellCheckbox as TableRowCellCheckbox } from './table_row_cell_checkbox';
+import {
+  EuiTableHeaderCellCheckboxScope as TableHeaderCellCheckboxScope,
+  EuiTableHeaderCellCheckboxProps as TableHeaderCellCheckboxProps,
+  EuiTableHeaderCellCheckbox as TableHeaderCellCheckbox,
+} from './table_header_cell_checkbox';
 
 import {
   FunctionComponent,
@@ -11,7 +17,7 @@ import {
   ButtonHTMLAttributes,
   ThHTMLAttributes,
   TdHTMLAttributes,
-  ReactNode
+  ReactNode,
 } from 'react';
 
 declare module '@elastic/eui' {
@@ -48,7 +54,9 @@ declare module '@elastic/eui' {
 
   export interface EuiTableHeaderProps {}
 
-  export const EuiTableHeader: FunctionComponent<CommonProps & EuiTableHeaderProps>;
+  export const EuiTableHeader: FunctionComponent<
+    CommonProps & EuiTableHeaderProps
+  >;
 
   /**
    * table header button type defs
@@ -101,22 +109,10 @@ declare module '@elastic/eui' {
    * @see './table_header_cell_checkbox.js'
    */
 
-  export type EuiTableHeaderCellCheckboxScope =
-    | 'col'
-    | 'row'
-    | 'colgroup'
-    | 'rowgroup';
-
-  export interface EuiTableHeaderCellCheckboxProps {
-    width?: string;
-    scope?: EuiTableHeaderCellCheckboxScope;
-  }
-
-  export const EuiTableHeaderCellCheckbox: FunctionComponent<
-    CommonProps &
-      TdHTMLAttributes<HTMLTableCellElement> &
-      EuiTableHeaderCellCheckboxProps
-  >;
+  export type EuiTableHeaderCellCheckboxScope = TableHeaderCellCheckboxScope;
+  export interface EuiTableHeaderCellCheckboxProps
+    extends TableHeaderCellCheckboxProps {}
+  export const EuiTableHeaderCellCheckbox: typeof TableHeaderCellCheckbox;
 
   /**
    * table row type defs
@@ -145,7 +141,7 @@ declare module '@elastic/eui' {
     truncateText?: boolean;
   }
 
-  export type EuiTableRowCellMobileOptionsShape = {
+  export interface EuiTableRowCellMobileOptionsShape {
     show?: boolean;
     only?: boolean;
     render?: ReactNode;
@@ -161,11 +157,15 @@ declare module '@elastic/eui' {
     isExpander?: boolean;
     isMobileFullWidth?: boolean;
     isMobileHeader?: boolean;
-    mobileOptions?: EuiTableRowCellMobileOptionsShape & EuiTableRowCellSharedPropsShape;
+    mobileOptions?: EuiTableRowCellMobileOptionsShape &
+      EuiTableRowCellSharedPropsShape;
   }
 
   export const EuiTableRowCell: FunctionComponent<
-    CommonProps & TdHTMLAttributes<HTMLTableCellElement> & EuiTableRowCellSharedPropsShape & EuiTableRowCellProps
+    CommonProps &
+      TdHTMLAttributes<HTMLTableCellElement> &
+      EuiTableRowCellSharedPropsShape &
+      EuiTableRowCellProps
   >;
 
   /**
@@ -173,12 +173,5 @@ declare module '@elastic/eui' {
    *
    * @see './table_row_cell_checkbox.js'
    */
-
-  export interface EuiTableRowCellCheckboxProps {}
-
-  export const EuiTableRowCellCheckbox: FunctionComponent<
-    CommonProps &
-      TdHTMLAttributes<HTMLTableCellElement> &
-      EuiTableRowCellCheckboxProps
-  >;
+  export const EuiTableRowCellCheckbox: typeof TableRowCellCheckbox;
 }

@@ -41,7 +41,9 @@ export const EuiSuperSelectControl = ({
   let selectedValue = '';
   if (value) {
     const selectedOption = options.find(option => option.value === value);
-    selectedValue = selectedOption.inputDisplay;
+    selectedValue = selectedOption
+      ? selectedOption.inputDisplay
+      : selectedValue;
   }
 
   const icon = {

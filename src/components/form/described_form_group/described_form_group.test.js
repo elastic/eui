@@ -5,7 +5,7 @@ import { requiredProps } from '../../../test';
 import { EuiFormRow } from '../form_row';
 import { EuiDescribedFormGroup } from './described_form_group';
 
-jest.mock(`../form_row/make_id`, () => () => `generated-id`);
+jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiDescribedFormGroup', () => {
   const props = {
@@ -31,10 +31,10 @@ describe('EuiDescribedFormGroup', () => {
     };
 
     const formRowProps = {
-      label: `Label`,
-      helpText: `Help text`,
+      label: 'Label',
+      helpText: 'Help text',
       isInvalid: true,
-      error: [`Error one`, `Error two`],
+      error: ['Error one', 'Error two'],
       describedByIds: ['test-id'],
     };
 
@@ -110,7 +110,7 @@ describe('EuiDescribedFormGroup', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test(`description is not rendered when it's not provided`, () => {
+    test("description is not rendered when it's not provided", () => {
       const component = shallow(
         <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
           <EuiFormRow>

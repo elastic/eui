@@ -14,13 +14,13 @@ jest.mock('../../../services/accessibility/html_id_generator', () => ({
 
 const elasticsearchTab = {
   id: 'es',
-  name: `Elasticsearch`,
+  name: 'Elasticsearch',
   content: <p>Elasticsearch content</p>,
 };
 
 const kibanaTab = {
   id: 'kibana',
-  name: `Kibana`,
+  name: 'Kibana',
   'data-test-subj': 'kibanaTab',
   content: <p>Kibana content</p>,
 };
@@ -84,7 +84,7 @@ describe('EuiTabbedContent', () => {
   });
 
   describe('behavior', () => {
-    test(`when selected tab state isn't controlled by the owner, select the first tab by default`, () => {
+    test("when selected tab state isn't controlled by the owner, select the first tab by default", () => {
       const component = render(<EuiTabbedContent tabs={tabs} />);
       expect(component).toMatchSnapshot();
     });

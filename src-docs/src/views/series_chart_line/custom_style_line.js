@@ -28,7 +28,7 @@ export default class extends Component {
       lineSize: '2',
       lineProps: [
         {
-          id: `showLineMarks`,
+          id: 'showLineMarks',
           label: 'Show Line Marks',
         },
       ],

@@ -1,5 +1,8 @@
+// @ts-ignore
 import { EuiFieldText } from '@elastic/eui/lib/components/form/field_text/field_text.js';
+// @ts-ignore
 import { EuiFormRow } from '@elastic/eui/lib/components/form/form_row/form_row.js';
+// @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -38,14 +41,14 @@ export class FieldText extends React.Component<Props> {
     formRowLabel: {
       type: ControlType.String,
       title: '↳ label',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },
     formRowHelpText: {
       type: ControlType.String,
       title: '↳ helpText',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },

@@ -322,5 +322,4 @@ EuiSuperSelect.defaultProps = {
   fullWidth: false,
   compressed: false,
   isInvalid: false,
-  options: [],
 };

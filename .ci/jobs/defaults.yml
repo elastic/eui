@@ -1,0 +1,60 @@
+---
+
+##### GLOBAL METADATA
+
+- meta:
+    cluster: kibana-ci
+
+##### JOB DEFAULTS
+
+- job:
+    logrotate:
+      daysToKeep: 30
+      numToKeep: 100
+    properties:
+    - github:
+        url: https://github.com/elastic/eui/
+    - inject:
+        properties-content: |-
+          CI=true
+          HOME=$JENKINS_HOME
+    concurrent: true
+    node: linux && !oraclelinux
+    scm:
+    - git:
+        name: origin
+        credentials-id: f6c7695a-671e-4f4f-a331-acdce44ff9ba
+        reference-repo: /var/lib/jenkins/.git-references/eui.git
+        branches:
+        - ${ghprbActualCommit}
+        url: git@github.com:elastic/eui.git
+        refspec: +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*
+        basedir: ''
+        wipe-workspace: 'True'
+    triggers:
+    - github-pull-request:
+        org-list:
+        - elastic
+        allow-whitelist-orgs-as-admins: true
+        github-hooks: true
+        status-context: eui-ci
+        cancel-builds-on-update: true
+    wrappers:
+    - ansicolor
+    - timeout:
+        type: absolute
+        timeout: 180
+        fail: true
+    - timestamps
+    builders:
+    - shell: |-
+        #!/usr/local/bin/runbld
+        export NVM_DIR="/var/lib/jenkins/.nvm"
+        [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+        NPM_VERSION=8
+        nvm install ${NPM_VERSION}
+        nvm use ${NPM_VERSION} --delete-prefix
+        npm run test-docker
+    publishers:
+    - email:
+        recipients: infra-root+build@elastic.co

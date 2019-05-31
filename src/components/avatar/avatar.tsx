@@ -114,8 +114,8 @@ function checkValidColor(color: EuiAvatarProps['color']) {
   const validHex = color && /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
   if (color && !validHex) {
     throw new Error(
-      `EuiAvatar needs to pass a valid color. This can either be a three ` +
-        `or six character hex value`
+      'EuiAvatar needs to pass a valid color. This can either be a three ' +
+        'or six character hex value'
     );
   }
 }
@@ -125,7 +125,7 @@ function checkValidInitials(initials: EuiAvatarProps['initials']) {
   if (initials && initials.length > 2) {
     // tslint:disable-next-line:no-console
     console.warn(
-      `EuiAvatar only accepts a max of 2 characters for the initials as a string. It is displaying only the first 2 characters.`
+      'EuiAvatar only accepts a max of 2 characters for the initials as a string. It is displaying only the first 2 characters.'
     );
   }
 }

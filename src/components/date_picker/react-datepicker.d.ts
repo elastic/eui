@@ -11,8 +11,8 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 
-import * as React from "react";
-import * as moment from "moment";
+import * as React from 'react';
+import * as moment from 'moment';
 
 export interface ReactDatePickerProps {
   adjustDateOnChange?: boolean;
@@ -51,14 +51,24 @@ export interface ReactDatePickerProps {
   monthsShown?: number;
   name?: string;
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
-  onChange(date: moment.Moment | null, event: React.SyntheticEvent<any> | undefined): void;
+  onChange(
+    date: moment.Moment | null,
+    event: React.SyntheticEvent<any> | undefined
+  ): void;
   onChangeRaw?(event: React.FocusEvent<HTMLInputElement>): void;
   onClickOutside?(event: React.MouseEvent<HTMLDivElement>): void;
   onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
   onKeyDown?(event: React.KeyboardEvent<HTMLDivElement>): void;
   onMonthChange?(date: moment.Moment): void;
-  onSelect?(date: moment.Moment, event: React.SyntheticEvent<any> | undefined): void;
-  onWeekSelect?(firstDayOfWeek: moment.Moment, weekNumber: string | number, event: React.SyntheticEvent<any> | undefined): void;
+  onSelect?(
+    date: moment.Moment,
+    event: React.SyntheticEvent<any> | undefined
+  ): void;
+  onWeekSelect?(
+    firstDayOfWeek: moment.Moment,
+    weekNumber: string | number,
+    event: React.SyntheticEvent<any> | undefined
+  ): void;
   onYearChange?(date: moment.Moment): void;
   openToDate?: moment.Moment;
   peekNextMonth?: boolean;
@@ -98,5 +108,7 @@ export interface ReactDatePickerProps {
   withPortal?: boolean;
   yearDropdownItemNumber?: number;
 }
-declare const ReactDatePicker: React.ClassicComponentClass<ReactDatePickerProps>;
+declare const ReactDatePicker: React.ClassicComponentClass<
+  ReactDatePickerProps
+>;
 export default ReactDatePicker;

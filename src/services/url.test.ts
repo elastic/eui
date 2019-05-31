@@ -1,8 +1,8 @@
 import { isDomainSecure } from './url';
 
-describe(`url`, () => {
-  describe(`#isDomainSecure`, () => {
-    it(`returns true for secure domains`, () => {
+describe('url', () => {
+  describe('#isDomainSecure', () => {
+    it('returns true for secure domains', () => {
       expect(isDomainSecure('https://elastic.co')).toEqual(true);
       expect(isDomainSecure('https://elastic.co?foo=bar')).toEqual(true);
       expect(isDomainSecure('https://elastic.co/')).toEqual(true);
@@ -15,7 +15,7 @@ describe(`url`, () => {
       ).toEqual(true);
     });
 
-    it(`returns false for unsecure domains`, () => {
+    it('returns false for unsecure domains', () => {
       expect(isDomainSecure('https://wwwelastic.co')).toEqual(false);
       expect(isDomainSecure('https://www.zelastic.co')).toEqual(false);
       expect(isDomainSecure('https://*elastic.co')).toEqual(false);
