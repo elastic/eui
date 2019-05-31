@@ -110,7 +110,8 @@ declare module '@elastic/eui' {
    */
 
   export type EuiTableHeaderCellCheckboxScope = TableHeaderCellCheckboxScope;
-  export interface EuiTableHeaderCellCheckboxProps extends TableHeaderCellCheckboxProps {}
+  export interface EuiTableHeaderCellCheckboxProps
+    extends TableHeaderCellCheckboxProps {}
   export const EuiTableHeaderCellCheckbox: typeof TableHeaderCellCheckbox;
 
   /**
