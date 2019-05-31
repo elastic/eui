@@ -82,9 +82,6 @@ export const EuiSuperSelectControl = ({
           </span>
         </EuiScreenReaderOnly>
 
-        {/*
-          TODO: Not sure this should be role=option.
-        */}
         <button
           role="option"
           type="button"
