@@ -1,15 +1,27 @@
 import { CommonProps, Omit } from '../common';
-import { IconType, IconSize } from '../icon'
-import { ToggleType } from '../toggle'
+import { IconType, IconSize } from '../icon';
+import { ToggleType } from '../toggle';
 
-import { FunctionComponent, ButtonHTMLAttributes, AnchorHTMLAttributes, ChangeEventHandler, MouseEventHandler, HTMLAttributes } from 'react';
+import {
+  FunctionComponent,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  MouseEventHandler,
+  HTMLAttributes,
+} from 'react';
 
 declare module '@elastic/eui' {
-  type EuiButtonPropsForButtonOrLink<Props> = (
-    (Props & { onClick: MouseEventHandler<HTMLButtonElement> } & ButtonHTMLAttributes<HTMLButtonElement>) |
-    (Props & { href: string; onClick: MouseEventHandler<HTMLAnchorElement> } & AnchorHTMLAttributes<HTMLAnchorElement>) |
-    (Props & AnchorHTMLAttributes<HTMLAnchorElement> & ButtonHTMLAttributes<HTMLButtonElement>)
-  )
+  type EuiButtonPropsForButtonOrLink<Props> =
+    | (Props & {
+        onClick: MouseEventHandler<HTMLButtonElement>;
+      } & ButtonHTMLAttributes<HTMLButtonElement>)
+    | (Props & {
+        href: string;
+        onClick: MouseEventHandler<HTMLAnchorElement>;
+      } & AnchorHTMLAttributes<HTMLAnchorElement>)
+    | (Props &
+        AnchorHTMLAttributes<HTMLAnchorElement> &
+        ButtonHTMLAttributes<HTMLButtonElement>);
 
   /**
    * Normal button type defs
@@ -66,7 +78,7 @@ declare module '@elastic/eui' {
     'aria-labelledby'?: string;
     isDisabled?: boolean;
     size?: ButtonSize;
-    iconSize?: IconSize
+    iconSize?: IconSize;
   }
   export const EuiButtonIcon: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonIconProps>
@@ -88,17 +100,19 @@ declare module '@elastic/eui' {
   export type EmptyButtonSizes = 'xs' | 's' | 'l';
   export type EmptyButtonFlush = 'left' | 'right';
 
-  export type EuiButtonEmptyProps = EuiButtonPropsForButtonOrLink<CommonProps & {
-    iconType?: IconType;
-    iconSide?: EmptyButtonIconSide;
-    color?: EmptyButtonColor;
-    size?: EmptyButtonSizes;
-    flush?: EmptyButtonFlush;
-    isLoading?: boolean;
-    isDisabled?: boolean;
-    contentProps?: HTMLAttributes<HTMLSpanElement>;
-    textProps?: HTMLAttributes<HTMLSpanElement>;
-  }>
+  export type EuiButtonEmptyProps = EuiButtonPropsForButtonOrLink<
+    CommonProps & {
+      iconType?: IconType;
+      iconSide?: EmptyButtonIconSide;
+      color?: EmptyButtonColor;
+      size?: EmptyButtonSizes;
+      flush?: EmptyButtonFlush;
+      isLoading?: boolean;
+      isDisabled?: boolean;
+      contentProps?: HTMLAttributes<HTMLSpanElement>;
+      textProps?: HTMLAttributes<HTMLSpanElement>;
+    }
+  >;
 
   export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps>;
 
@@ -109,13 +123,13 @@ declare module '@elastic/eui' {
    */
 
   export type EuiButtonToggleProps = EuiButtonProps & {
-      isEmpty?: boolean;
-      isIconOnly?: boolean;
-      isSelected?: boolean;
-      label: string;
-      toggleClassName?: string;
-      type?: ToggleType;
-    }
+    isEmpty?: boolean;
+    isIconOnly?: boolean;
+    isSelected?: boolean;
+    label: string;
+    toggleClassName?: string;
+    type?: ToggleType;
+  };
 
   export const EuiButtonToggle: FunctionComponent<
     EuiButtonPropsForButtonOrLink<CommonProps & EuiButtonToggleProps>
@@ -127,28 +141,30 @@ declare module '@elastic/eui' {
    * @see './button_group/button_group.js'
    */
 
-  export type EuiButtonGroupIdToSelectedMap = { [id: string]: boolean };
+  export interface EuiButtonGroupIdToSelectedMap {
+    [id: string]: boolean;
+  }
   export type GroupButtonSize = 's' | 'm';
 
   export interface EuiButtonGroupOption {
-    id: string,
-    label: string,
-    isDisabled?: boolean,
+    id: string;
+    label: string;
+    isDisabled?: boolean;
   }
   export interface EuiButtonGroupProps {
-      options: EuiButtonGroupOption[],
-      onChange: (id: string, value: any) => void;
-      buttonSize?: GroupButtonSize;
-      isDisabled?: boolean,
-      isFullWidth?: boolean;
-      isIconOnly?: boolean;
-      idSelected?: string;
-      idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
-      legend?: string,
-      color?: ButtonColor,
-      type?: ToggleType,
-      name?: string;
-    }
+    options: EuiButtonGroupOption[];
+    onChange: (id: string, value: any) => void;
+    buttonSize?: GroupButtonSize;
+    isDisabled?: boolean;
+    isFullWidth?: boolean;
+    isIconOnly?: boolean;
+    idSelected?: string;
+    idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
+    legend?: string;
+    color?: ButtonColor;
+    type?: ToggleType;
+    name?: string;
+  }
 
   export const EuiButtonGroup: FunctionComponent<
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & EuiButtonGroupProps

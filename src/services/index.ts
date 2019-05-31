@@ -13,14 +13,20 @@ export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 
 export {
   isColorDark,
+  isValidHex,
   calculateContrast,
   calculateLuminance,
+  hexToHsv,
   hexToRgb,
+  hsvToHex,
+  hsvToRgb,
   rgbToHex,
+  rgbToHsv,
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
   colorPalette,
   palettes,
+  HSV,
 } from './color';
 
 export { copyToClipboard } from './copy_to_clipboard';

@@ -65,7 +65,7 @@ describe('EuiCheckbox', () => {
     });
 
     describe('disabled', () => {
-      test(`disabled is rendered`, () => {
+      test('disabled is rendered', () => {
         const component = render(
           <EuiCheckbox {...checkboxRequiredProps} disabled />
         );

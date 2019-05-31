@@ -1,5 +1,7 @@
 import { Data, animate, Override, Animatable } from 'framer';
 
+/* eslint-disable new-cap */
+
 const data = Data({
   toggle: true,
   scale: Animatable(1),
@@ -8,7 +10,7 @@ const data = Data({
   rotationY: Animatable(0),
 });
 
-export const Scale: Override = () => {
+export const Scale: Override<any> = () => {
   return {
     scale: data.scale,
     onTap() {
@@ -18,7 +20,7 @@ export const Scale: Override = () => {
   };
 };
 
-export const Rotate: Override = props => {
+export const Rotate: Override<any> = (props: any) => {
   data.rotation.set(props.rotation);
 
   return {
@@ -32,7 +34,7 @@ export const Rotate: Override = props => {
   };
 };
 
-export const Fade: Override = props => {
+export const Fade: Override<any> = (props: any) => {
   data.opacity.set(props.opacity);
 
   return {
@@ -43,13 +45,13 @@ export const Fade: Override = props => {
   };
 };
 
-export const FlipOutput: Override = () => {
+export const FlipOutput: Override<any> = () => {
   return {
     rotationY: data.rotationY,
   };
 };
 
-export const FlipInput: Override = () => {
+export const FlipInput: Override<any> = () => {
   return {
     onTap() {
       const toggle = data.toggle;

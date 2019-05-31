@@ -3,8 +3,8 @@ import { CommonProps } from '../common';
 import { IconType } from '../icon';
 import _ReactDatePicker, {
   ReactDatePickerProps as _ReactDatePickerProps,
-} from './react-datepicker';
-import { Moment } from 'moment';
+} from './react-datepicker'; // eslint-disable-line import/no-unresolved
+import { Moment } from 'moment'; // eslint-disable-line import/named
 
 declare module '@elastic/eui' {
   interface OnTimeChangeProps {

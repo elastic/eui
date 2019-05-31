@@ -124,7 +124,7 @@ describe('EuiBasicTable', () => {
           },
         ],
         rowProps: {
-          'data-test-subj': `row`,
+          'data-test-subj': 'row',
           className: 'customClass',
           onClick: () => {},
         },
@@ -180,7 +180,7 @@ describe('EuiBasicTable', () => {
           },
         ],
         cellProps: {
-          'data-test-subj': `cell`,
+          'data-test-subj': 'cell',
           className: 'customClass',
           onClick: () => {},
         },

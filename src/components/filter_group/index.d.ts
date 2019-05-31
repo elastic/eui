@@ -1,8 +1,7 @@
 import { CommonProps } from '../common';
-import { IconType, IconSize } from '../icon';
 /// <reference path="../button/index.d.ts" />
 
-import { Component, FunctionComponent, ButtonHTMLAttributes, HTMLAttributes } from 'react';
+import { Component, FunctionComponent, ButtonHTMLAttributes } from 'react';
 
 import { EuiFilterGroupProps } from './filter_group';
 
@@ -27,7 +26,9 @@ declare module '@elastic/eui' {
      */
     noDivider?: boolean;
   }
-  export const EuiFilterButton: FunctionComponent<EuiButtonEmptyProps & EuiFilterButtonProps>;
+  export const EuiFilterButton: FunctionComponent<
+    EuiButtonEmptyProps & EuiFilterButtonProps
+  >;
 
   /**
    * Filter group type defs
@@ -47,6 +48,9 @@ declare module '@elastic/eui' {
     checked?: FilterChecked;
   }
 
-  export const EuiFilterSelectItem: Component<CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & EuiFilterSelectItemProps>;
+  export const EuiFilterSelectItem: Component<
+    CommonProps &
+      ButtonHTMLAttributes<HTMLButtonElement> &
+      EuiFilterSelectItemProps
+  >;
 }

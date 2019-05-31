@@ -18,22 +18,30 @@ declare module '@elastic/eui' {
   /**
    * @see './page.js'
    */
-  export const EuiPage: FunctionComponent<CommonProps & EuiPageWidthProps &HTMLAttributes<HTMLDivElement>>;
+  export const EuiPage: FunctionComponent<
+    CommonProps & EuiPageWidthProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_header/page_header.js
    */
-  export const EuiPageHeader: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageHeader: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_header/page_header_section.js
    */
-  export const EuiPageHeaderSection: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageHeaderSection: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_body/page_body.js
    */
-  export const EuiPageBody: FunctionComponent<CommonProps & EuiPageWidthProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageBody: FunctionComponent<
+    CommonProps & EuiPageWidthProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_content/page_content.js
@@ -49,25 +57,35 @@ declare module '@elastic/eui' {
     horizontalPosition?: EuiPageContentHorizontalPosition;
   }
 
-  export const EuiPageContent: FunctionComponent<CommonProps & EuiPanelProps & EuiPageContentProps>;
+  export const EuiPageContent: FunctionComponent<
+    CommonProps & EuiPanelProps & EuiPageContentProps
+  >;
 
   /**
    * @see ./page_content/page_content_body.js
    */
-  export const EuiPageContentBody: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageContentBody: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_content/page_content_header.js
    */
-  export const EuiPageContentHeader: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageContentHeader: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_content/page_content_header_section.js
    */
-  export const EuiPageContentHeaderSection: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageContentHeaderSection: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 
   /**
    * @see ./page_side_bar/page_side_bar.js
    */
-  export const EuiPageSideBar: FunctionComponent<CommonProps & HTMLAttributes<HTMLDivElement>>;
+  export const EuiPageSideBar: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement>
+  >;
 }

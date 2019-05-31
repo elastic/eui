@@ -24,7 +24,7 @@ describe('EuiCodeEditor', () => {
 
   describe('props', () => {
     describe('isReadOnly', () => {
-      test(`renders alternate hint text`, () => {
+      test('renders alternate hint text', () => {
         const component = mount(<EuiCodeEditor isReadOnly />);
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
       });

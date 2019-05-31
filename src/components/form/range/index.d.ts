@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../../common';
 
-import { FunctionComponent, ReactNode, HTMLAttributes, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import { FunctionComponent, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
@@ -41,12 +41,15 @@ declare module '@elastic/eui' {
    * @see './dual_range.js'
    */
 
-    export interface EuiDualRangeProps {
-      // Override acceptable value type
-      value: [number | string, number | string]
-    }
+  export interface EuiDualRangeProps {
+    // Override acceptable value type
+    value: [number | string, number | string];
+  }
 
-    export const EuiDualRange: FunctionComponent<
-      CommonProps & Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & EuiRangeProps & EuiDualRangeProps
-    >;
+  export const EuiDualRange: FunctionComponent<
+    CommonProps &
+      Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> &
+      EuiRangeProps &
+      EuiDualRangeProps
+  >;
 }

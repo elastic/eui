@@ -4,7 +4,7 @@ import { requiredProps } from '../../../test';
 
 import { EuiSuperSelectControl } from './super_select_control';
 
-jest.mock(`../form_row/make_id`, () => () => `generated-id`);
+jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiSuperSelectControl', () => {
   test('is rendered', () => {

@@ -1,4 +1,7 @@
-import { EuiButtonIconProps, EuiButtonPropsForButtonOrLink } from '@elastic/eui';
+import {
+  EuiButtonIconProps,
+  EuiButtonPropsForButtonOrLink,
+} from '@elastic/eui'; // eslint-disable-line import/no-unresolved
 import { IconType } from '../icon';
 import { CommonProps, ExclusiveUnion } from '../common';
 import {
@@ -8,7 +11,7 @@ import {
   HTMLAttributes,
   MouseEventHandler,
   ReactElement,
-  ReactNode
+  ReactNode,
 } from 'react';
 
 declare module '@elastic/eui' {
@@ -18,14 +21,15 @@ declare module '@elastic/eui' {
    * @see './list_group.js'
    */
 
-  type EuiListGroupProps = CommonProps & HTMLAttributes<HTMLUListElement> & {
-    bordered?: boolean;
-    flush?: boolean;
-    listItems?: FunctionComponent<EuiListGroupItemProps>[];
-    maxWidth?: boolean | number | string;
-    showToolTips?: boolean;
-    wrapText?: boolean;
-  };
+  type EuiListGroupProps = CommonProps &
+    HTMLAttributes<HTMLUListElement> & {
+      bordered?: boolean;
+      flush?: boolean;
+      listItems?: Array<FunctionComponent<EuiListGroupItemProps>>;
+      maxWidth?: boolean | number | string;
+      showToolTips?: boolean;
+      wrapText?: boolean;
+    };
 
   export const EuiListGroup: FunctionComponent<EuiListGroupProps>;
 
@@ -35,7 +39,7 @@ declare module '@elastic/eui' {
    * @see './list_group_item.js'
    */
 
-  type EuiListGroupItemPropsBasics = {
+  interface EuiListGroupItemPropsBasics {
     size?: 'xs' | 's' | 'm' | 'l';
     label: ReactNode;
     isActive?: boolean;
@@ -53,17 +57,17 @@ declare module '@elastic/eui' {
     >;
     onClick?: MouseEventHandler<HTMLButtonElement>;
     wrapText?: boolean;
-  };
+  }
 
   type EuiListGroupItemProps = EuiListGroupItemPropsBasics &
-  CommonProps &
-  ExclusiveUnion<
+    CommonProps &
     ExclusiveUnion<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      AnchorHTMLAttributes<HTMLAnchorElement>
-    >,
-    HTMLAttributes<HTMLSpanElement>
-  >;
+      ExclusiveUnion<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        AnchorHTMLAttributes<HTMLAnchorElement>
+      >,
+      HTMLAttributes<HTMLSpanElement>
+    >;
 
   export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps>;
 }

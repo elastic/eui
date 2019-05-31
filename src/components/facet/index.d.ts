@@ -1,4 +1,4 @@
-import React, {
+import {
   ButtonHTMLAttributes,
   HTMLAttributes,
   ReactNode,
@@ -25,8 +25,9 @@ declare module '@elastic/eui' {
     quantity: number;
     buttonRef: RefCallback<HTMLButtonElement>;
   }
-  export const EuiFacetButton: FunctionComponent<CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps>;
+  export const EuiFacetButton: FunctionComponent<
+    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
+  >;
 
   /**
    * Facet group type defs
@@ -36,9 +37,10 @@ declare module '@elastic/eui' {
 
   export type FacetGroupLayouts = 'vertical' | 'horizontal';
   export interface EuiFacetGroupProps {
-    layout?: FacetGroupLayouts
+    layout?: FacetGroupLayouts;
   }
 
-  export const EuiFacetGroup: FunctionComponent<CommonProps &
-    HTMLAttributes<HTMLDivElement> & EuiFacetGroupProps>;
+  export const EuiFacetGroup: FunctionComponent<
+    CommonProps & HTMLAttributes<HTMLDivElement> & EuiFacetGroupProps
+  >;
 }

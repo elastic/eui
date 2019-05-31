@@ -34,19 +34,19 @@ describe('EuiFieldText', () => {
   });
 
   describe('props', () => {
-    test(`isInvalid is rendered`, () => {
+    test('isInvalid is rendered', () => {
       const component = render(<EuiFieldText isInvalid />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`fullWidth is rendered`, () => {
+    test('fullWidth is rendered', () => {
       const component = render(<EuiFieldText fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`isLoading is rendered`, () => {
+    test('isLoading is rendered', () => {
       const component = render(<EuiFieldText isLoading />);
 
       expect(component).toMatchSnapshot();

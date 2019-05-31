@@ -62,7 +62,7 @@ describe('truncateText', () => {
   });
 });
 
-describe(`children's className`, () => {
+describe("children's className", () => {
   test('merges new classnames into existing ones', () => {
     const component = (
       <EuiTableRowCell textOnly={false} showOnHover={true}>

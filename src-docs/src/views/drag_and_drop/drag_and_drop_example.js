@@ -60,16 +60,16 @@ export const DragAndDropExample = {
         </p>
         <ul>
           <li>
-            <EuiCode>{`<EuiDragDropContext />`}</EuiCode>: Section of your
+            <EuiCode>{'<EuiDragDropContext />'}</EuiCode>: Section of your
             application containing the draggable elements and the drop targets.
           </li>
           <li>
-            <EuiCode>{`<EuiDroppable />`}</EuiCode>: Area into which items can
-            be dropped. Contains <EuiCode>{`<EuiDraggable />`}</EuiCode>s.
+            <EuiCode>{'<EuiDroppable />'}</EuiCode>: Area into which items can
+            be dropped. Contains <EuiCode>{'<EuiDraggable />'}</EuiCode>s.
           </li>
           <li>
-            <EuiCode>{`<EuiDraggable />`}</EuiCode>: Items that can be dragged.
-            Must be part of an <EuiCode>{`<EuiDroppable />`}</EuiCode>
+            <EuiCode>{'<EuiDraggable />'}</EuiCode>: Items that can be dragged.
+            Must be part of an <EuiCode>{'<EuiDroppable />'}</EuiCode>
           </li>
         </ul>
       </EuiText>
@@ -158,7 +158,7 @@ export const DragAndDropExample = {
           <ul>
             <li>
               <EuiCode>reorder</EuiCode>:{' '}
-              {`change an item's location in a droppable area`}
+              {"change an item's location in a droppable area"}
             </li>
             <li>
               <EuiCode>copy</EuiCode>: create a duplicate of an item in a

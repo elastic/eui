@@ -77,8 +77,8 @@ export class EuiTabbedContent extends Component {
       className,
       display,
       expand,
-      initialSelectedTab, // eslint-disable-line no-unused-vars
-      onTabClick, // eslint-disable-line no-unused-vars
+      initialSelectedTab,
+      onTabClick,
       selectedTab: externalSelectedTab,
       size,
       tabs,

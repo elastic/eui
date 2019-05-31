@@ -15,7 +15,7 @@ export class FrameSize extends React.Component<Props> {
   // Items shown in property panel
   static propertyControls: PropertyControls = {
     frame: {
-      type: ControlType.boolean,
+      type: ControlType.Boolean,
       title: '🖍 Fit to frame',
     },
   };
