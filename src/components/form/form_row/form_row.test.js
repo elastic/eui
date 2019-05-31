@@ -5,7 +5,7 @@ import sinon from 'sinon';
 
 import { EuiFormRow } from './form_row';
 
-jest.mock(`./make_id`, () => () => `generated-id`);
+jest.mock('./make_id', () => () => 'generated-id');
 
 describe('EuiFormRow', () => {
   test('is rendered', () => {
@@ -20,10 +20,10 @@ describe('EuiFormRow', () => {
 
   test('ties together parts for accessibility', () => {
     const props = {
-      label: `Label`,
-      helpText: `Help text`,
+      label: 'Label',
+      helpText: 'Help text',
       isInvalid: true,
-      error: [`Error one`, `Error two`],
+      error: ['Error one', 'Error two'],
     };
 
     const tree = shallow(
@@ -33,27 +33,27 @@ describe('EuiFormRow', () => {
     );
 
     // Input is labeled by the label.
-    expect(tree.find(`input`).prop(`id`)).toEqual(`generated-id`);
-    expect(tree.find(`EuiFormLabel`).prop(`htmlFor`)).toEqual(`generated-id`);
+    expect(tree.find('input').prop('id')).toEqual('generated-id');
+    expect(tree.find('EuiFormLabel').prop('htmlFor')).toEqual('generated-id');
 
     // Input is described by help and error text.
-    expect(tree.find(`EuiFormHelpText`).prop(`id`)).toEqual(
-      `generated-id-help`
+    expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
+      'generated-id-help'
     );
     expect(
       tree
-        .find(`EuiFormErrorText`)
+        .find('EuiFormErrorText')
         .at(0)
-        .prop(`id`)
-    ).toEqual(`generated-id-error-0`);
+        .prop('id')
+    ).toEqual('generated-id-error-0');
     expect(
       tree
-        .find(`EuiFormErrorText`)
+        .find('EuiFormErrorText')
         .at(1)
-        .prop(`id`)
-    ).toEqual(`generated-id-error-1`);
-    expect(tree.find(`input`).prop(`aria-describedby`)).toEqual(
-      `generated-id-help generated-id-error-0 generated-id-error-1`
+        .prop('id')
+    ).toEqual('generated-id-error-1');
+    expect(tree.find('input').prop('aria-describedby')).toEqual(
+      'generated-id-help generated-id-error-0 generated-id-error-1'
     );
   });
 

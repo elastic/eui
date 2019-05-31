@@ -1,5 +1,3 @@
-import { CommonProps } from '../../common';
-
 import { FunctionComponent } from 'react';
 
 declare module '@elastic/eui' {

@@ -21,8 +21,8 @@ declare module '@elastic/eui' {
   }
 
   export const EuiEmptyPrompt: FunctionComponent<
-    CommonProps & EuiEmptyPromptProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
+    CommonProps &
+      EuiEmptyPromptProps &
+      Omit<HTMLAttributes<HTMLDivElement>, 'title'>
   >;
-
-
 }

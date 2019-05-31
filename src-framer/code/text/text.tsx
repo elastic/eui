@@ -1,5 +1,8 @@
+// @ts-ignore
 import { EuiText, TEXT_SIZES } from '@elastic/eui/lib/components/text/text';
+// @ts-ignore
 import { ALIGNMENTS } from '@elastic/eui/lib/components/text/text_align';
+// @ts-ignore
 import { COLORS } from '@elastic/eui/lib/components/text/text_color';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';

@@ -4,7 +4,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiSwitch } from './switch';
 
-jest.mock(`../form_row/make_id`, () => () => `generated-id`);
+jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 describe('EuiSwitch', () => {
   test('is rendered', () => {

@@ -71,7 +71,7 @@ function numberOrEmptyString(props, propName, componentName) {
     } else if (typeof value !== 'number') {
       return new Error(
         `Invalid prop '${propName}' of type '${typeof value}' supplied to '${componentName}',` +
-          ` expected empty string or type 'number'.`
+          " expected empty string or type 'number'."
       );
     }
   }

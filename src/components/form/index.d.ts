@@ -14,7 +14,6 @@ import { CommonProps } from '../common';
 /// <reference path="./switch/index.d.ts" />
 /// <reference path="./text_area/index.d.ts" />
 
-
 import { FunctionComponent, FormHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {

@@ -58,11 +58,7 @@ export class EuiFormControlLayoutIcons extends Component {
           }
         : icon;
 
-    const {
-      ref: iconRef,
-      side, // eslint-disable-line no-unused-vars
-      ...iconRest
-    } = iconProps;
+    const { ref: iconRef, side, ...iconRest } = iconProps;
 
     return <EuiFormControlLayoutCustomIcon iconRef={iconRef} {...iconRest} />;
   }

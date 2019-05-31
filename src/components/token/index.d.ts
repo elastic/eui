@@ -13,7 +13,7 @@ declare module '@elastic/eui' {
    * token type defs
    *
    * @see './token.js'
-  */
+   */
   export type TokenSize = 's' | 'm' | 'l';
   export interface EuiTokenProps {
     iconType: IconType;

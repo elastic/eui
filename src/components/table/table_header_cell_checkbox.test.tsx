@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../test';
 
 import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
 

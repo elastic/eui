@@ -1,7 +1,8 @@
+// @ts-ignore
 import { EuiPanel, SIZES } from '@elastic/eui/lib/components/panel/panel.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
-import { FrameSize } from '../_framer_helpers/frame_size.tsx';
+import { FrameSize } from '../_framer_helpers/frame_size';
 
 // Define type of property
 interface Props {
@@ -33,7 +34,9 @@ export class Panel extends React.Component<Props> {
 
   render() {
     return (
-      <FrameSize frame={this.fitToFrame}>
+      <FrameSize
+        // @ts-ignore
+        frame={this.fitToFrame}>
         <EuiPanel
           hasShadow={this.props.hasShadow}
           paddingSize={this.props.paddingSize}

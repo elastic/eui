@@ -103,13 +103,13 @@ export class EuiComboBoxOptionsList extends Component {
       matchingOptions,
       optionRef,
       onOptionClick,
-      onOptionEnterKey, // eslint-disable-line no-unused-vars
+      onOptionEnterKey,
       areAllOptionsSelected,
       getSelectedOptionForSearchValue,
       position,
       renderOption,
-      listRef, // eslint-disable-line no-unused-vars
-      updatePosition, // eslint-disable-line no-unused-vars
+      listRef,
+      updatePosition,
       width,
       scrollToIndex,
       onScroll,

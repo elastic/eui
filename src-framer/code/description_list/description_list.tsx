@@ -3,8 +3,11 @@ import {
   TYPES,
   ALIGNMENTS,
   TEXT_STYLES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/description_list/description_list.js';
+// @ts-ignore
 import { EuiDescriptionListTitle } from '@elastic/eui/lib/components/description_list/description_list_title.js';
+// @ts-ignore
 import { EuiDescriptionListDescription } from '@elastic/eui/lib/components/description_list/description_list_description.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
