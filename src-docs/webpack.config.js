@@ -85,10 +85,9 @@ module.exports = {
       failOnError: true,
     }),
 
-    // run TypeScript and tslint during webpack build
+    // run TypeScript during webpack build
     new ForkTsCheckerWebpackPlugin({
       tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
-      tslint: path.resolve(__dirname, 'tslint.yaml'),
       async: false, // makes errors more visible, but potentially less performant
     }),
   ],

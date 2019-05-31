@@ -23,7 +23,7 @@ function renderSizes(size, index) {
     code += ` (to ${sizes.euiBreakpoints[sizes.euiBreakpointKeys[index + 1]] -
       1}px)`;
   } else {
-    code += ` +`;
+    code += ' +';
   }
 
   return <div key={index}>{code}</div>;

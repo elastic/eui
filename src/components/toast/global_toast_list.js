@@ -216,17 +216,13 @@ export class EuiGlobalToastList extends Component {
     const {
       className,
       toasts,
-      dismissToast, // eslint-disable-line no-unused-vars
-      toastLifeTimeMs, // eslint-disable-line no-unused-vars
+      dismissToast,
+      toastLifeTimeMs,
       ...rest
     } = this.props;
 
     const renderedToasts = toasts.map(toast => {
-      const {
-        text,
-        toastLifeTimeMs, // eslint-disable-line no-unused-vars
-        ...rest
-      } = toast;
+      const { text, toastLifeTimeMs, ...rest } = toast;
 
       return (
         <EuiGlobalToastListItem

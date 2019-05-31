@@ -42,7 +42,7 @@ describe('EuiKeyPadMenuItemButton', () => {
   });
 
   describe('onClick', () => {
-    test(`isn't called upon instantiation`, () => {
+    test("isn't called upon instantiation", () => {
       const onClickHandler = sinon.stub();
 
       shallow(

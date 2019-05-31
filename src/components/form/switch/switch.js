@@ -18,7 +18,7 @@ export class EuiSwitch extends Component {
   render() {
     const {
       label,
-      id, // eslint-disable-line no-unused-vars
+      id,
       name,
       checked,
       disabled,

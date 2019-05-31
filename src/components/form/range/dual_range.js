@@ -238,7 +238,7 @@ export class EuiDualRange extends Component {
       tickInterval,
       ticks,
       levels,
-      onChange, // eslint-disable-line no-unused-vars
+      onChange,
       showRange,
       value,
       style,

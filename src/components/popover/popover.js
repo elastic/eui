@@ -407,10 +407,10 @@ export class EuiPopover extends Component {
       panelPaddingSize,
       popoverRef,
       hasArrow,
-      repositionOnScroll, // eslint-disable-line no-unused-vars
-      zIndex, // eslint-disable-line no-unused-vars
-      initialFocus, // eslint-disable-line no-unused-vars
-      attachToAnchor, // eslint-disable-line no-unused-vars
+      repositionOnScroll,
+      zIndex,
+      initialFocus,
+      attachToAnchor,
       ...rest
     } = this.props;
 

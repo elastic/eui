@@ -9,7 +9,7 @@ import { EuiCallOut, EuiCode, EuiProgress } from '../../../../src/components';
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
 const progressHtml = renderToHtml(Progress);
-const progressSnippet = `<EuiProgress size="xs" color="accent" />`;
+const progressSnippet = '<EuiProgress size="xs" color="accent" />';
 
 import ProgressValue from './progress_value';
 const progressValueSource = require('!!raw-loader!./progress_value');

@@ -35,10 +35,8 @@ export class EuiWrappingPopover extends Component {
   };
 
   render() {
-    const {
-      button, // eslint-disable-line no-unused-vars
-      ...rest
-    } = this.props;
+    const { button, ...rest } = this.props;
+
     return (
       <EuiPortal
         portalRef={this.setPortalRef}

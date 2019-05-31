@@ -24,12 +24,12 @@ const iconsHtml = renderToHtml(iconHtmlWarning);
 
 import Icons from './icons';
 const iconsSource = require('!!raw-loader!./icons');
-const iconsSnippet = `<EuiIcon type="alert" />`;
+const iconsSnippet = '<EuiIcon type="alert" />';
 
 import Tokens from './tokens';
 const tokensSource = require('!!raw-loader!./tokens');
 const tokensSnippet = [
-  `<EuiToken type="tokenAnnotation" />`,
+  '<EuiToken type="tokenAnnotation" />',
   `<EuiToken
   iconType="visMapCoordinate"
   displayOptions={{
@@ -50,29 +50,29 @@ const tokensSnippet = [
 
 import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
-const appsSnippet = `<EuiIcon type="addDataApp" size="xl" />`;
+const appsSnippet = '<EuiIcon type="addDataApp" size="xl" />';
 
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
-const mlSnippet = `<EuiIcon type="dataVisualizer" size="xl" />`;
+const mlSnippet = '<EuiIcon type="dataVisualizer" size="xl" />';
 
 import Logos from './logos';
 const logosSource = require('!!raw-loader!./logos');
-const logosSnippet = `<EuiIcon type="logoElasticsearch" size="xl" />`;
+const logosSnippet = '<EuiIcon type="logoElasticsearch" size="xl" />';
 
 import LogosThird from './logos_third';
 const logosThirdSource = require('!!raw-loader!./logos_third');
-const logosThirdSnippet = `<EuiIcon type="logoApache" size="xl" />`;
+const logosThirdSnippet = '<EuiIcon type="logoApache" size="xl" />';
 
 import IconSizes from './icon_sizes';
 const iconSizesSource = require('!!raw-loader!./icon_sizes');
-const iconSizesSnippet = `<EuiIcon type="logoElasticStack" size="xl" />`;
+const iconSizesSnippet = '<EuiIcon type="logoElasticStack" size="xl" />';
 
 import IconColors from './icon_colors';
 const iconColorsSource = require('!!raw-loader!./icon_colors');
 const iconColorsSnippet = [
-  `<EuiIcon type="brush" color="primary" />`,
-  `<EuiIcon type="brush" color="#F98510" />`,
+  '<EuiIcon type="brush" color="primary" />',
+  '<EuiIcon type="brush" color="#F98510" />',
 ];
 
 import Accessibility from './accessibility';
@@ -81,10 +81,10 @@ const accessibilitySource = require('!!raw-loader!./accessibility');
 import IconTypes from './icon_types';
 const iconTypesSource = require('!!raw-loader!./icon_types');
 const iconTypesSnippet = [
-  `<EuiIcon type="logoElastic" size="xl" />`,
-  `<EuiIcon type={reactSVGElement} size="xl" />`,
-  `<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />`,
-  `<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>`,
+  '<EuiIcon type="logoElastic" size="xl" />',
+  '<EuiIcon type={reactSVGElement} size="xl" />',
+  '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" />',
+  '<EuiButton iconType={reactSVGElement}>Works in other components too</EuiButton>',
 ];
 
 export const IconExample = {

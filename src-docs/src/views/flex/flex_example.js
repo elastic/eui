@@ -470,7 +470,7 @@ export const FlexExample = {
           By default <EuiCode>EuiFlexGroup</EuiCode> is responsive. However,
           often you only want to use groups for alignment and margins, rather
           than layouts. Simply apply the{' '}
-          <EuiCode>responsive={`{false}`}</EuiCode> prop to retain a single row
+          <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a single row
           layout for the group.
         </p>
       ),

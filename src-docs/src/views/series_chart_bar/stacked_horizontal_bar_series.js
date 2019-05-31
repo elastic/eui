@@ -53,8 +53,8 @@ export default class extends Component {
           orientation={ORIENTATION.HORIZONTAL}
           yType={SCALE.ORDINAL}
           stackBy={stacked ? 'x' : null}>
-          <EuiBarSeries name={`Tag A`} data={dataA} />
-          <EuiBarSeries name={`Tag B`} data={dataB} />
+          <EuiBarSeries name={'Tag A'} data={dataA} />
+          <EuiBarSeries name={'Tag B'} data={dataB} />
         </EuiSeriesChart>
       </Fragment>
     );

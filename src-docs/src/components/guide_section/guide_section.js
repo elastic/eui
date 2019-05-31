@@ -367,16 +367,16 @@ export class GuideSection extends Component {
       sourceObject => sourceObject.type === name
     );
     const npmImports = code
-      .replace(/(from )'(..\/)+src\/components(\/?';)/, `from '@elastic/eui';`)
+      .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
       .replace(
         /(from )'(..\/)+src\/services(\/?';)/,
-        `from '@elastic/eui/lib/services';`
+        "from '@elastic/eui/lib/services';"
       )
       .replace(
         /(from )'(..\/)+src\/experimental(\/?';)/,
-        `from '@elastic/eui/lib/experimental';`
+        "from '@elastic/eui/lib/experimental';"
       )
-      .replace(/(from )'(..\/)+src\/components\/.*?';/, `from '@elastic/eui';`);
+      .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
 
     return (
       <div key={name} ref={name}>

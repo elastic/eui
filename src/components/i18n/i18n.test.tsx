@@ -3,6 +3,8 @@ import { mount } from 'enzyme';
 import { EuiContext } from '../context';
 import { EuiI18n } from './i18n';
 
+/* eslint-disable local/i18n */
+
 describe('EuiI18n', () => {
   describe('default rendering', () => {
     describe('rendering to dom', () => {

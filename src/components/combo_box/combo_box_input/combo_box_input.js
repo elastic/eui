@@ -150,7 +150,7 @@ export class EuiComboBoxInput extends Component {
               }. `
             : ''
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
-        `To exit the list of choices, press Escape.`;
+        'To exit the list of choices, press Escape.';
 
       removeOptionMessageId = makeId();
 

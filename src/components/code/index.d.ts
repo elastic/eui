@@ -9,7 +9,7 @@ declare module '@elastic/eui' {
   // there isn't a specific type for the <code> element, and MDN
   // says that it only supports the HTMLElement interface
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code
-  type HTMLCodeElement = HTMLElement
+  type HTMLCodeElement = HTMLElement;
 
   interface EuiCodeSharedProps {
     paddingSize?: PaddingSize;
@@ -27,7 +27,6 @@ declare module '@elastic/eui' {
     isCopyable?: boolean;
   }
 
-
   /**
    * EuiCode type defs
    *
@@ -35,7 +34,7 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiCodeProps extends EuiCodeSharedProps {
-    inline?: true
+    inline?: true;
   }
 
   export const EuiCode: FunctionComponent<
@@ -49,7 +48,7 @@ declare module '@elastic/eui' {
    */
 
   export interface EuiCodeBlockProps extends EuiCodeSharedProps {
-    inline?: false
+    inline?: false;
   }
 
   export const EuiCodeBlock: FunctionComponent<

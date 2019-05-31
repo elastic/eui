@@ -3,6 +3,7 @@ import {
   EuiIcon,
   SIZES,
   TYPES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
