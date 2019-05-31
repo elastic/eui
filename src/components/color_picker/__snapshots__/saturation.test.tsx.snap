@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiHue accepts a color 1`] = `
+<div
+  aria-activedescendant="undefined-saturationIndicator"
+  aria-describedby="undefined-saturationDescription"
+  aria-label="aria-label"
+  aria-roledescription="HSV color mode saturation and value selection"
+  class="euiSaturation testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="application"
+  style="background:hsl(180, 100%, 50%)"
+  tabindex="0"
+>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
+  </p>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  />
+  <div
+    class="euiSaturation__lightness"
+  >
+    <div
+      class="euiSaturation__saturation"
+    />
+  </div>
+  <div
+    class="euiSaturation__indicator"
+    id="undefined-saturationIndicator"
+    style="left:0;top:0"
+  />
+</div>
+`;
+
+exports[`EuiHue is rendered 1`] = `
+<div
+  aria-activedescendant="undefined-saturationIndicator"
+  aria-describedby="undefined-saturationDescription"
+  aria-label="aria-label"
+  aria-roledescription="HSV color mode saturation and value selection"
+  class="euiSaturation testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="application"
+  style="background:hsl(1, 100%, 50%)"
+  tabindex="0"
+>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
+  </p>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  />
+  <div
+    class="euiSaturation__lightness"
+  >
+    <div
+      class="euiSaturation__saturation"
+    />
+  </div>
+  <div
+    class="euiSaturation__indicator"
+    id="undefined-saturationIndicator"
+    style="left:0;top:0"
+  />
+</div>
+`;

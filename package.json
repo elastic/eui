@@ -54,7 +54,6 @@
     "prop-types": "^15.6.0",
     "react-ace": "^5.5.0",
     "react-beautiful-dnd": "^10.1.0",
-    "react-color": "^2.13.8",
     "react-focus-lock": "^1.17.7",
     "react-input-autosize": "^2.2.1",
     "react-is": "~16.3.0",

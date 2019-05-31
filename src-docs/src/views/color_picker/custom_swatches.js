@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 import { isValidHex } from '../../../../src/services';
 
-export class ColorPicker extends Component {
+export class CustomSwatches extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '#DB1374',
+      color: '',
     };
   }
 
@@ -23,12 +23,15 @@ export class ColorPicker extends Component {
       errors = ['Provide a valid hex value'];
     }
 
+    const customSwatches = ['#333', '#666', '#999', '#CCC'];
+
     return (
       <EuiFormRow label="Pick a color" isInvalid={hasErrors} error={errors}>
         <EuiColorPicker
           onChange={this.handleChange}
           color={this.state.color}
           isInvalid={hasErrors}
+          swatches={customSwatches}
         />
       </EuiFormRow>
     );
