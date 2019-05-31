@@ -11,6 +11,10 @@
   padding: $euiSizeXS;
   border-radius: $euiBorderRadius;
 
+  & > svg {
+    pointer-events: none;
+  }
+
   &:disabled {
     color: $euiButtonColorDisabled;
     pointer-events: none;
