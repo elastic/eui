@@ -199,7 +199,7 @@ export const EuiColorPicker = ({
         <EuiPopover
           button={buttonOrInput}
           isOpen={isColorSelectorShown}
-          closePopover={closeColorSelector}
+          closePopover={handleFinalSelection}
           zIndex={popoverZIndex}
           className={popoverClasses}
           anchorClassName={anchorClasses}
