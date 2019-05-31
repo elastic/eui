@@ -1,4 +1,6 @@
+// @ts-ignore
 import { EuiFieldPassword } from '@elastic/eui/lib/components/form/field_password/field_password.js';
+// @ts-ignore
 import { EuiFormRow } from '@elastic/eui/lib/components/form/form_row/form_row.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -36,14 +38,14 @@ export class FieldPassword extends React.Component<Props> {
     formRowLabel: {
       type: ControlType.String,
       title: 'label',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },
     formRowHelpText: {
       type: ControlType.String,
       title: 'helpText',
-      hidden(props) {
+      hidden(props: Props) {
         return props.hasFormRow === false;
       },
     },

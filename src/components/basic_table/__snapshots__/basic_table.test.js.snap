@@ -759,7 +759,6 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -1769,7 +1768,6 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2082,7 +2080,6 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2274,7 +2271,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2580,7 +2576,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2772,7 +2767,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2964,7 +2958,6 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -3288,7 +3281,6 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n

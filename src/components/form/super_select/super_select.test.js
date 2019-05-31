@@ -4,7 +4,7 @@ import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 import { EuiSuperSelect } from './super_select';
 
-jest.mock(`../form_row/make_id`, () => () => `generated-id`);
+jest.mock('../form_row/make_id', () => () => 'generated-id');
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }) => children,

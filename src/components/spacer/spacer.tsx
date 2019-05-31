@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { HTMLAttributes } from 'react';
+
 import { CommonProps } from '../common';
 
 const sizeToClassNameMap = {

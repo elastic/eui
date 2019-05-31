@@ -13,7 +13,7 @@ export const propsInfo = {
           description:
             'A list of objects representing the full data set that can be displayed by the table',
           required: false,
-          type: { name: `object[]` },
+          type: { name: 'object[]' },
         },
         message: {
           description: `A message to be shown by the table. When set, the message will be displayed

@@ -358,17 +358,17 @@ export class EuiContextMenuPanel extends Component {
       className,
       onClose,
       title,
-      onHeightChange, // eslint-disable-line no-unused-vars
+      onHeightChange,
       transitionType,
       transitionDirection,
-      onTransitionComplete, // eslint-disable-line no-unused-vars
-      onUseKeyboardToNavigate, // eslint-disable-line no-unused-vars
-      hasFocus, // eslint-disable-line no-unused-vars
+      onTransitionComplete,
+      onUseKeyboardToNavigate,
+      hasFocus,
       items,
-      watchedItemProps, // eslint-disable-line no-unused-vars
-      initialFocusedItemIndex, // eslint-disable-line no-unused-vars
-      showNextPanel, // eslint-disable-line no-unused-vars
-      showPreviousPanel, // eslint-disable-line no-unused-vars
+      watchedItemProps,
+      initialFocusedItemIndex,
+      showNextPanel,
+      showPreviousPanel,
       ...rest
     } = this.props;
     let panelTitle;

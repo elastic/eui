@@ -49,14 +49,14 @@ export function parseRelativeParts(value) {
 }
 
 export function toRelativeStringFromParts(relativeParts) {
-  const count = get(relativeParts, `count`, 0);
-  const isRounded = get(relativeParts, `round`, false);
+  const count = get(relativeParts, 'count', 0);
+  const isRounded = get(relativeParts, 'round', false);
 
   if (count === 0 && !isRounded) {
     return 'now';
   }
 
-  const matches = get(relativeParts, `unit`, 's').match(/([smhdwMy])(\+)?/);
+  const matches = get(relativeParts, 'unit', 's').match(/([smhdwMy])(\+)?/);
   const unit = matches[1];
   const operator = matches && matches[2] ? matches[2] : '-';
   const round = isRounded ? `${ROUND_DELIMETER}${unit}` : '';

@@ -1,10 +1,15 @@
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, MouseEventHandler, ReactNode, FunctionComponent } from 'react';
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  ReactNode,
+  FunctionComponent,
+} from 'react';
 
 declare module '@elastic/eui' {
-
   export const EuiKeyPadMenu: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement>
   >;
@@ -17,10 +22,14 @@ declare module '@elastic/eui' {
   }
 
   export const EuiKeyPadMenuItemButton: FunctionComponent<
-    CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiKeyPadMenuItemCommonProps
+    CommonProps &
+      ButtonHTMLAttributes<HTMLButtonElement> &
+      EuiKeyPadMenuItemCommonProps
   >;
 
   export const EuiKeyPadMenuItem: FunctionComponent<
-    CommonProps & AnchorHTMLAttributes<HTMLAnchorElement> & EuiKeyPadMenuItemCommonProps
+    CommonProps &
+      AnchorHTMLAttributes<HTMLAnchorElement> &
+      EuiKeyPadMenuItemCommonProps
   >;
 }

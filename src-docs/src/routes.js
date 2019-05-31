@@ -206,7 +206,7 @@ const slugify = str => {
 const createExample = example => {
   if (!example) {
     throw new Error(
-      `One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`
+      'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
     );
   }
 

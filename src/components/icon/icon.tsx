@@ -434,11 +434,13 @@ export class EuiIcon extends Component<Props, State> {
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           isLoading: true,
         });
         this.loadIconComponent(type);
       } else {
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
           isLoading: false,
@@ -453,9 +455,9 @@ export class EuiIcon extends Component<Props, State> {
 
   loadIconComponent = (iconType: EuiIconType) => {
     import(
-      /* webpackChunkName: "icon.[request]" */ './assets/' +
-        typeToPathMap[iconType] +
-        '.js'
+      /* webpackChunkName: "icon.[request]" */ `./assets/${
+        typeToPathMap[iconType]
+      }.js`
     ).then(({ icon }) => {
       if (this.isMounted) {
         this.setState({

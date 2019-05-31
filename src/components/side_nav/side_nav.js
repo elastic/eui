@@ -36,7 +36,7 @@ export class EuiSideNav extends Component {
         icon,
         onClick,
         href,
-        forceOpen, // eslint-disable-line no-unused-vars
+        forceOpen,
         ...rest
       } = item;
 
@@ -76,7 +76,7 @@ export class EuiSideNav extends Component {
       isOpenOnMobile,
       mobileTitle,
       // Extract this one out so it isn't passed to <nav>
-      renderItem, // eslint-disable-line no-unused-vars
+      renderItem,
       ...rest
     } = this.props;
 

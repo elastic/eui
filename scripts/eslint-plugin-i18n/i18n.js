@@ -1,5 +1,7 @@
 // Enforce EuiI18n token names & variable names in render prop
 
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require('path');
 
 function attributesArrayToLookup(attributesArray) {
@@ -13,7 +15,7 @@ function attributesArrayToLookup(attributesArray) {
 }
 
 function getDefinedValues(valuesNode) {
-  if (valuesNode == null) return new Set();
+  if (valuesNode == null || valuesNode.expression.properties == null) return new Set();
   return valuesNode.expression.properties.reduce(
     (valueNames, property) => {
       valueNames.add(property.key.name);
@@ -239,7 +241,7 @@ module.exports = {
             // default is a function
             // validate the destructured param defined by default function match the values
             const defaultFn = attributes.default.expression;
-            const objProperties = defaultFn.params ? defaultFn.params[0].properties : [];
+            const objProperties = defaultFn.params && defaultFn.params[0] ? defaultFn.params[0].properties : [];
             const expectedNames = new Set(objProperties.map(property => property.key.name));
             if (areSetsEqual(valueNames, expectedNames) === false) {
               context.report({

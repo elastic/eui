@@ -148,7 +148,8 @@ export const propsInfo = {
   SearchFilters: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `#IsFilter | #FieldValueSelectionFilter | #FieldValueToggleFilter | #FieldValueToggleGroupFilter`,
+      description:
+        '#IsFilter | #FieldValueSelectionFilter | #FieldValueToggleFilter | #FieldValueToggleGroupFilter',
       props: {},
     },
   },

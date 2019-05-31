@@ -47,10 +47,14 @@
 
     // Specifies where to find library definitions. When this is explicitly set,
     // it has to include the default location i.e. node_modules/@types
-    "typeRoots": ["node_modules/@types", "custom_typings"]
+    "typeRoots": ["node_modules/@types", "src/custom_typings", "src-framer/custom_typings"]
   },
   "include": [
     "./src/**/*",
-    "./src-docs/**/*"
+    "./src-docs/**/*",
+    "./src-framer/**/*"
+  ],
+  "exclude": [
+    "./src-framer/code/canvas.tsx"
   ]
 }

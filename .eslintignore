@@ -1,1 +1,10 @@
+dist
+node_modules
 es
+lib
+types
+eui.d.ts
+**/*.snap.js
+**/assets/**/*.js
+src-docs/src/views/icon/icon_example.js
+src-framer/code/canvas.tsx

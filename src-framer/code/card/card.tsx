@@ -2,16 +2,18 @@ import {
   ALIGNMENTS,
   EuiCard,
   LAYOUT_ALIGNMENTS,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/card/card.js';
 import {
   COLORS,
   EuiIcon,
   SIZES,
   TYPES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/icon/icon.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
-import { FrameSize } from '../_framer_helpers/frame_size.tsx';
+import { FrameSize } from '../_framer_helpers/frame_size';
 
 // Define type of property
 interface Props {
@@ -70,7 +72,7 @@ export class Card extends React.Component<Props> {
     image: {
       type: ControlType.Image,
       title: 'image',
-      hidden(props) {
+      hidden(props: Props) {
         return props.randomImage === true;
       },
     },
@@ -82,7 +84,7 @@ export class Card extends React.Component<Props> {
       type: ControlType.Enum,
       options: TYPES,
       title: '↳ icon',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -90,7 +92,7 @@ export class Card extends React.Component<Props> {
       type: ControlType.Enum,
       options: SIZES,
       title: '↳ iconSize',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -98,7 +100,7 @@ export class Card extends React.Component<Props> {
       type: ControlType.Enum,
       options: COLORS,
       title: 'iconColor',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },

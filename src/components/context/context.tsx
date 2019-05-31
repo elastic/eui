@@ -18,12 +18,12 @@ export interface I18nShape {
 const I18nContext: React.Context<I18nShape> = createContext({});
 const { Provider: EuiI18nProvider, Consumer: EuiI18nConsumer } = I18nContext;
 
-interface IEuiContextProps {
+interface EuiContextProps {
   i18n: I18nShape;
   children: React.ReactNode;
 }
 
-const EuiContext: React.FunctionComponent<IEuiContextProps> = ({
+const EuiContext: React.FunctionComponent<EuiContextProps> = ({
   i18n = {},
   children,
 }) => <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>;

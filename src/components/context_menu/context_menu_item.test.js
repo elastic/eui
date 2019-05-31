@@ -42,7 +42,7 @@ describe('EuiContextMenuItem', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test(`isn't called upon instantiation`, () => {
+      test("isn't called upon instantiation", () => {
         const onClickHandler = sinon.stub();
 
         shallow(<EuiContextMenuItem onClick={onClickHandler} />);
