@@ -81,12 +81,16 @@ export const EuiColorPicker = ({
     onChange(hex);
   };
 
-  const closeColorSelector = () => {
+  const closeColorSelector = shouldDelay => {
     if (onBlur) {
       onBlur();
     }
 
-    setIsColorSelectorShown(false);
+    if (shouldDelay) {
+      setTimeout(() => setIsColorSelectorShown(false));
+    } else {
+      setIsColorSelectorShown(false);
+    }
   };
 
   const showColorSelector = () => {
@@ -113,7 +117,7 @@ export const EuiColorPicker = ({
       inputRef.focus();
     }
 
-    closeColorSelector();
+    closeColorSelector(true);
   };
 
   const handleOnKeyDown = e => {
