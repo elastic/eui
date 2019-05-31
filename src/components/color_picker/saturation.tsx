@@ -196,7 +196,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
             <p id={`${id}-saturationDescription`}>
               <EuiI18n
                 token="euiSaturation.screenReaderAnnouncement"
-                default={`Use the arrow keys to navigate the square color gradient. The
+                default={() => `Use the arrow keys to navigate the square color gradient. The
                 coordinates resulting from each key press will be used to calculate
                 HSV color mode 'saturation' and 'value' numbers, in the range of 0
                 to 1. Left and right decrease and increase (respectively) the

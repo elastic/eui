@@ -1,10 +1,4 @@
-import {
-  FunctionComponent,
-  FormHTMLAttributes,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import { FunctionComponent, HTMLAttributes, ReactElement } from 'react';
 import { CommonProps, Omit } from '../common';
 
 import { EuiColorPickerSwatchProps } from './color_picker_swatch';
@@ -30,12 +24,12 @@ declare module '@elastic/eui' {
   /**
    * @see './color_picker.js'
    */
-  type HTMLDivElementOverrides = {
+  interface HTMLDivElementOverrides {
     color: string;
     onBlur: () => void;
     onChange: (hex: string) => void;
     onFocus: () => void;
-  };
+  }
   export type EuiColorPickerProps = CommonProps &
     Omit<HTMLAttributes<HTMLDivElement>, keyof HTMLDivElementOverrides> &
     HTMLDivElementOverrides & {
