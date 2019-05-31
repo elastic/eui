@@ -8,7 +8,8 @@ const baseDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(baseDir, 'src');
 
 function hasParentIndex(pathToFile) {
-  const isIndexFile = path.basename(pathToFile, path.extname(pathToFile)) === 'index';
+  const isIndexFile =
+    path.basename(pathToFile, path.extname(pathToFile)) === 'index';
   try {
     const fileDirectory = path.dirname(pathToFile);
     const parentIndex = findup.sync(
@@ -27,9 +28,16 @@ const generator = dtsGenerator({
   name: '@elastic/eui',
   project: baseDir,
   out: 'eui.d.ts',
-  exclude: ['node_modules/**/*.d.ts', 'src/custom_typings/**/*.d.ts'],
+  exclude: [
+    'node_modules/**/*.d.ts',
+    '*/custom_typings/**/*.d.ts',
+    'src-framer/**/*',
+  ],
   resolveModuleId(params) {
-    if (path.basename(params.currentModuleId) === 'index' && !hasParentIndex(path.resolve(baseDir, params.currentModuleId))) {
+    if (
+      path.basename(params.currentModuleId) === 'index' &&
+      !hasParentIndex(path.resolve(baseDir, params.currentModuleId))
+    ) {
       // this module is exporting from an `index(.d)?.ts` file, declare its exports straight to @elastic/eui module
       return '@elastic/eui';
     } else {
@@ -43,20 +51,20 @@ const generator = dtsGenerator({
   },
   resolveModuleImport(params) {
     // only intercept relative imports (don't modify node-modules references)
-    const importFromBaseDir = path.resolve(baseDir, path.dirname(params.currentModuleId));
+    const importFromBaseDir = path.resolve(
+      baseDir,
+      path.dirname(params.currentModuleId)
+    );
     const isFromEuiSrc = importFromBaseDir.startsWith(srcDir);
     const isRelativeImport = isFromEuiSrc && params.importedModuleId[0] === '.';
 
     if (isRelativeImport) {
       // if importing from an `index` file (directly or targeting a directory with an index),
       // then if there is no parent index file this should import from @elastic/eui
-      const importPathTarget = resolve.sync(
-        params.importedModuleId,
-        {
-          basedir: importFromBaseDir,
-          extensions: ['.ts', '.tsx', '.d.ts'],
-        }
-      );
+      const importPathTarget = resolve.sync(params.importedModuleId, {
+        basedir: importFromBaseDir,
+        extensions: ['.ts', '.tsx', '.d.ts'],
+      });
 
       const isIndexFile = importPathTarget.endsWith('/index.ts');
       const isModuleIndex = isIndexFile && !hasParentIndex(importPathTarget);
@@ -87,10 +95,13 @@ generator.then(() => {
 
   fs.writeFileSync(
     defsFilePath,
-    fs.readFileSync(defsFilePath).toString()
+    fs
+      .readFileSync(defsFilePath)
+      .toString()
       .replace(/\/\/\/\W+<reference.*/g, '') // 1.
       .replace(/import\("src\/(.*?)"\)/g, 'import("@elastic/eui/src/$1")') // 2.
-      .replace( // start 3.
+      .replace(
+        // start 3.
         // find any singular `declare module { ... }` block
         // {.*?^} matches anything until a } starts a new line (via `m` regex option, and `s` is dotall)
         //
@@ -98,17 +109,14 @@ generator.then(() => {
         // However, @babel/preset-typescript doesn't understand some syntax generated in eui.d.ts
         // and the tooling around typescript's parsing & code generation is lacking and undocumented
         // so... because this works with the guarantee that the newline-brace combination matches a module...
-        /declare module '(.*?)' {.*?^}/smg,
+        /declare module '(.*?)' {.*?^}/gms,
         (module, moduleName) => {
           // `moduleName` is the namespace for this ambient module
           return module.replace(
             // replace relative imports by attaching them to the module's namespace
             /import\("([.]{1,2}\/.*?)"\)/g,
             (importStatement, importPath) => {
-              const target = path.join(
-                path.dirname(moduleName),
-                importPath
-              );
+              const target = path.join(path.dirname(moduleName), importPath);
               return `import ("${target}")`;
             }
           );
