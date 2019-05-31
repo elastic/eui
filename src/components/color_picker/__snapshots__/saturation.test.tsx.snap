@@ -12,17 +12,7 @@ exports[`EuiHue accepts a color 1`] = `
   style="background:hsl(180, 100%, 50%)"
   tabindex="0"
 >
-  <p
-    class="euiScreenReaderOnly"
-    id="undefined-saturationDescription"
-  >
-    Use the arrow keys to navigate the square color gradient. The
-                coordinates resulting from each key press will be used to calculate
-                HSV color mode 'saturation' and 'value' numbers, in the range of 0
-                to 1. Left and right decrease and increase (respectively) the
-                'saturation' value. Up and down decrease and increase (respectively)
-                the 'value' value.
-  </p>
+  Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
   <p
     aria-live="polite"
     class="euiScreenReaderOnly"
@@ -54,17 +44,7 @@ exports[`EuiHue is rendered 1`] = `
   style="background:hsl(1, 100%, 50%)"
   tabindex="0"
 >
-  <p
-    class="euiScreenReaderOnly"
-    id="undefined-saturationDescription"
-  >
-    Use the arrow keys to navigate the square color gradient. The
-                coordinates resulting from each key press will be used to calculate
-                HSV color mode 'saturation' and 'value' numbers, in the range of 0
-                to 1. Left and right decrease and increase (respectively) the
-                'saturation' value. Up and down decrease and increase (respectively)
-                the 'value' value.
-  </p>
+  Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
   <p
     aria-live="polite"
     class="euiScreenReaderOnly"
