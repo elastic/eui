@@ -35,7 +35,7 @@ export class EuiGlobalToastList extends Component {
       PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
           .isRequired,
-        title: PropTypes.string,
+        title: PropTypes.node,
         text: PropTypes.node,
         color: PropTypes.string,
         iconType: IconPropType,

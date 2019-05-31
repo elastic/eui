@@ -430,16 +430,14 @@ export class EuiComboBox extends Component {
     );
 
     this.clearSearchValue();
+    this.clearActiveOption();
+
+    if (!isContainerBlur) {
+      this.searchInput.focus();
+    }
 
     if (singleSelection) {
       this.closeList();
-      this.searchInput.blur();
-      return;
-    }
-
-    this.clearActiveOption();
-    if (!isContainerBlur) {
-      this.searchInput.focus();
     }
   };
 
