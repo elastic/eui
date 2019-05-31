@@ -1,4 +1,4 @@
-import React, { FunctionComponent, TdHTMLAttributes } from 'react';
+import React, { FunctionComponent, ThHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -15,7 +15,7 @@ export interface EuiTableHeaderCellCheckboxProps {
 
 export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
-    TdHTMLAttributes<HTMLTableHeaderCellElement> &
+    ThHTMLAttributes<HTMLTableHeaderCellElement> &
     EuiTableHeaderCellCheckboxProps
 > = ({ children, className, scope = 'col', ...rest }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
