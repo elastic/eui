@@ -15,7 +15,8 @@
 - Fixed environment setup for running `test-unit` script on Windows ([#1971](https://github.com/elastic/eui/pull/1971))
 - Fixed focus on single selection of EuiComboBox ([#1965](https://github.com/elastic/eui/pull/1965))
 - Fixed type mismatch between PropType and TypeScript def for `EuiGlobalToastList` toast `title` ([#1978](https://github.com/elastic/eui/pull/1978))
-- Fixed missing Typescript definition for `EuiBUtton`'s `color="text"` option
+- Fixed missing Typescript definition for `EuiButton`'s `color="text"` option ([#1980](https://github.com/elastic/eui/pull/1980))
+- Fixed Prettier formatting lint error in `EuiTable` TS def file ([#1986](https://github.com/elastic/eui/pull/1986))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
