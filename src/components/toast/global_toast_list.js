@@ -10,6 +10,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
 export const TOAST_FADE_OUT_MS = 250;
+export const TOAST_LOGGER_TIMEOUT_MS = 57000;
 
 export class EuiGlobalToastList extends Component {
   constructor(props) {
@@ -188,10 +189,10 @@ export class EuiGlobalToastList extends Component {
 
   filterNewOnlyToasts = toasts => {
     return toasts.filter(toastFromProp => {
-      const withTheSameID = this.renderedForScreenReaderToasts.filter(
+      const withTheSameID = this.renderedForScreenReaderToasts.some(
         existToast => existToast.id === toastFromProp.id
       );
-      return !withTheSameID.length;
+      return !withTheSameID;
     });
   };
 
@@ -223,7 +224,7 @@ export class EuiGlobalToastList extends Component {
     // It strictly depends on how long that notifications is.
     this.clearScreenReaderToastStorageID = setTimeout(
       this.clearScreenReaderToastStorage,
-      57000
+      TOAST_LOGGER_TIMEOUT_MS
     );
   };
 
