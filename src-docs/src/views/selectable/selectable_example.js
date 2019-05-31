@@ -303,7 +303,7 @@ export const SelectableExample = {
       ),
       props: { EuiSelectableMessage },
       demo: <SelectableMessages />,
-      snippet: `<EuiSelectableMessage>You have no spice</EuiSelectableMessage>`,
+      snippet: '<EuiSelectableMessage>You have no spice</EuiSelectableMessage>',
     },
     {
       title: 'Rendering the options',

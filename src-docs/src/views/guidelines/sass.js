@@ -232,7 +232,7 @@ function renderAnimationSpeed(speed) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div className={`guideSass__animParent`}>
+      <div className={'guideSass__animParent'}>
         <div className="guideSass__animChild" />
       </div>
     </div>
@@ -257,7 +257,7 @@ function renderAnimationTiming(speed) {
           <EuiSpacer size="s" />
         </EuiFlexItem>
       </EuiFlexGroup>
-      <div className={`guideSass__animParent`}>
+      <div className={'guideSass__animParent'}>
         <div className="guideSass__animChild" />
       </div>
     </div>

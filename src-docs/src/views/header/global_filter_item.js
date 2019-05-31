@@ -103,7 +103,7 @@ export class GlobalFilterItem extends Component {
         className={classes}
         title={title}
         iconOnClick={this.deleteFilter}
-        iconOnClickAriaLabel={`Delete filter`}
+        iconOnClickAriaLabel={'Delete filter'}
         iconType="cross"
         iconSide="right"
         onClick={this.togglePopover}

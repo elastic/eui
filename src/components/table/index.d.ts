@@ -17,7 +17,7 @@ import {
   ButtonHTMLAttributes,
   ThHTMLAttributes,
   TdHTMLAttributes,
-  ReactNode
+  ReactNode,
 } from 'react';
 
 declare module '@elastic/eui' {
@@ -54,7 +54,9 @@ declare module '@elastic/eui' {
 
   export interface EuiTableHeaderProps {}
 
-  export const EuiTableHeader: FunctionComponent<CommonProps & EuiTableHeaderProps>;
+  export const EuiTableHeader: FunctionComponent<
+    CommonProps & EuiTableHeaderProps
+  >;
 
   /**
    * table header button type defs
@@ -138,7 +140,7 @@ declare module '@elastic/eui' {
     truncateText?: boolean;
   }
 
-  export type EuiTableRowCellMobileOptionsShape = {
+  export interface EuiTableRowCellMobileOptionsShape {
     show?: boolean;
     only?: boolean;
     render?: ReactNode;
@@ -154,7 +156,8 @@ declare module '@elastic/eui' {
     isExpander?: boolean;
     isMobileFullWidth?: boolean;
     isMobileHeader?: boolean;
-    mobileOptions?: EuiTableRowCellMobileOptionsShape & EuiTableRowCellSharedPropsShape;
+    mobileOptions?: EuiTableRowCellMobileOptionsShape &
+      EuiTableRowCellSharedPropsShape;
   }
 
   export const EuiTableRowCell: FunctionComponent<

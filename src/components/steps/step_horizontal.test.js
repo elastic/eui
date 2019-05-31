@@ -33,7 +33,7 @@ describe('EuiStepHorizontal', () => {
         sinon.assert.calledOnce(onClickHandler);
       });
 
-      test(`isn't called when clicked if it's disabled`, () => {
+      test("isn't called when clicked if it's disabled", () => {
         const onClickHandler = sinon.stub();
 
         const component = mount(

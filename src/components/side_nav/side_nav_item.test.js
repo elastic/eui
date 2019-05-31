@@ -15,7 +15,7 @@ describe('EuiSideNavItem', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test(`preserves child's classes`, () => {
+  test("preserves child's classes", () => {
     const component = render(
       <EuiSideNavItem>
         <button className="test" />

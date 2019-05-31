@@ -5,9 +5,8 @@ import {
   ButtonHTMLAttributes,
   HTMLAttributes,
   ReactElement,
-  ReactNode
+  ReactNode,
 } from 'react';
-import * as React from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -96,7 +95,7 @@ declare module '@elastic/eui' {
     id: EuiContextMenuPanelId;
     title?: string;
     items?: EuiContextMenuPanelItemDescriptor[];
-    content?: React.ReactNode;
+    content?: ReactNode;
     width?: number;
   }
 

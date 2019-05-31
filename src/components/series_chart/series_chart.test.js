@@ -33,7 +33,7 @@ export const XYCHART_PROPS = {
 };
 
 describe('EuiSeriesChart', () => {
-  test(`renders all props`, () => {
+  test('renders all props', () => {
     const wrapper = mount(
       <EuiSeriesChart {...XYCHART_PROPS} {...requiredProps} />
     );
@@ -109,7 +109,7 @@ describe('EuiSeriesChart', () => {
       return { name: `series-${i}`, data };
     });
     series.splice(1, 0, {
-      name: `series-colored`,
+      name: 'series-colored',
       data,
       color: VISUALIZATION_COLORS[5],
     });

@@ -4,7 +4,7 @@ import {
   FunctionComponent,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  MouseEventHandler
+  MouseEventHandler,
 } from 'react';
 
 declare module '@elastic/eui' {
@@ -44,5 +44,7 @@ declare module '@elastic/eui' {
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'> &
     LinkAnchorProps;
 
-  export const EuiLink: FunctionComponent<EuiLinkButtonProps | EuiLinkAnchorProps>;
+  export const EuiLink: FunctionComponent<
+    EuiLinkButtonProps | EuiLinkAnchorProps
+  >;
 }

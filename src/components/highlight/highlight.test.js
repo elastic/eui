@@ -37,7 +37,7 @@ describe('EuiHighlight', () => {
     });
 
     describe('strict matching', () => {
-      test(`doesn't match strings with different casing`, () => {
+      test("doesn't match strings with different casing", () => {
         const component = render(
           <EuiHighlight search="CASE" strict>
             different case match

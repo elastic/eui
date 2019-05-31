@@ -12,7 +12,7 @@
  * @returns {string} True if the color is dark, false otherwise.
  */
 
-export const MAX_INITIALS: number = 2;
+export const MAX_INITIALS = 2;
 
 export function toInitials(
   name: string,

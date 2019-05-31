@@ -51,7 +51,7 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingKibana },
       demo: <LoadingKibana />,
-      snippet: `<EuiLoadingKibana size="m" />`,
+      snippet: '<EuiLoadingKibana size="m" />',
     },
     {
       title: 'Chart',
@@ -75,7 +75,7 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingChart },
       demo: <LoadingChart />,
-      snippet: `<EuiLoadingChart size="m" />`,
+      snippet: '<EuiLoadingChart size="m" />',
     },
     {
       title: 'Spinner',
@@ -92,7 +92,7 @@ export const LoadingExample = {
       text: <p>A simple spinner for most loading applications.</p>,
       props: { EuiLoadingSpinner },
       demo: <LoadingSpinner />,
-      snippet: `<EuiLoadingSpinner size="m" />`,
+      snippet: '<EuiLoadingSpinner size="m" />',
     },
     {
       title: 'Text Content',
@@ -114,7 +114,7 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingContent },
       demo: <LoadingContent />,
-      snippet: `<EuiLoadingContent lines={3} />`,
+      snippet: '<EuiLoadingContent lines={3} />',
     },
   ],
 };

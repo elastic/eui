@@ -31,7 +31,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test("when there's no child", () => {
       // @ts-ignore unused var
-      const component = <EuiKeyboardAccessible />;
+      const component = <EuiKeyboardAccessible />; // eslint-disable-line @typescript-eslint/no-unused-vars
 
       expect(consoleStub).toBeCalled();
       expect(consoleStub.mock.calls[0][0]).toMatch(
@@ -41,7 +41,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test('when the child is a button', () => {
       // @ts-ignore unused var
-      const component = (
+      const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
           <button onClick={noop} />
         </EuiKeyboardAccessible>
@@ -55,7 +55,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test('when the child is a link with an href', () => {
       // @ts-ignore unused var
-      const component = (
+      const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
           <a href="#" onClick={noop} />
         </EuiKeyboardAccessible>
@@ -69,7 +69,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test("when the child doesn't have an onClick prop", () => {
       // @ts-ignore unused var
-      const component = (
+      const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
           <div />
         </EuiKeyboardAccessible>
@@ -83,7 +83,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test("when the child's onClick prop isn't a function", () => {
       // @ts-ignore unused var
-      const component = (
+      const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
           <div
             // @ts-ignore not a valid prop type
@@ -117,7 +117,7 @@ describe('EuiKeyboardAccessible', () => {
 
     test('when the element is a link without an href', () => {
       // @ts-ignore unused var
-      const component = (
+      const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
           <a onClick={noop} />
         </EuiKeyboardAccessible>

@@ -54,7 +54,7 @@ export const ContextMenuExample = {
       demo: <ContextMenu />,
     },
     {
-      title: `With single panel`,
+      title: 'With single panel',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -74,7 +74,7 @@ export const ContextMenuExample = {
       demo: <SinglePanel />,
     },
     {
-      title: `Displaying custom elements`,
+      title: 'Displaying custom elements',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -95,7 +95,7 @@ export const ContextMenuExample = {
       demo: <ContentPanel />,
     },
     {
-      title: `Using panels with mixed items & content`,
+      title: 'Using panels with mixed items & content',
       source: [
         {
           type: GuideSectionTypes.JS,

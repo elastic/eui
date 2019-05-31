@@ -2,7 +2,9 @@ import {
   COLORS,
   EuiBadge,
   ICON_SIDES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/badge/badge.js';
+// @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -48,7 +50,7 @@ export class Badge extends React.Component<Props> {
       type: ControlType.Enum,
       options: ICON_TYPES,
       title: '↳ iconType',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -56,7 +58,7 @@ export class Badge extends React.Component<Props> {
       type: ControlType.SegmentedEnum,
       options: ICON_SIDES,
       title: '↳ iconSide',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },

@@ -41,13 +41,13 @@ export class EuiRange extends Component {
       showInput,
       showTicks,
       tickInterval,
-      ticks, // eslint-disable-line no-unused-vars
+      ticks,
       levels,
       showRange,
       showValue,
-      valueAppend, // eslint-disable-line no-unused-vars
-      valuePrepend, // eslint-disable-line no-unused-vars
-      onChange, // eslint-disable-line no-unused-vars
+      valueAppend,
+      valuePrepend,
+      onChange,
       value,
       style,
       tabIndex,

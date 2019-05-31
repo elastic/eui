@@ -8,6 +8,7 @@
 - Added ability to update `EuiInMemoryTable` `sorting` prop and remove columns after sorting is applied ([#1972](https://github.com/elastic/eui/pull/1972))
 - Added `onToggle` callback to `EuiAccordion` ([#1974](https://github.com/elastic/eui/pull/1974))
 - Removed `options` `defaultProps` value from `EuiSuperSelect` ([#1975](https://github.com/elastic/eui/pull/1975))
+- Remove TSlint and perform all linting through ESLint ([#1950](https://github.com/elastic/eui/pull/1950))
 
 **Bug fixes**
 

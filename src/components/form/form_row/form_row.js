@@ -152,7 +152,7 @@ export class EuiFormRow extends Component {
     }
 
     if (describingIds.length > 0) {
-      optionalProps[`aria-describedby`] = describingIds.join(` `);
+      optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
     let field = cloneElement(children, {

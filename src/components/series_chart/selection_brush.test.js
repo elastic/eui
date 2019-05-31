@@ -15,7 +15,7 @@ const DEFAULT_MARGINS = {
 };
 
 describe('EuiSelectionBrush', () => {
-  test(`renders an horizontal selection brush`, () => {
+  test('renders an horizontal selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -115,7 +115,7 @@ describe('EuiSelectionBrush', () => {
         .props().height
     ).toBe(0);
   });
-  test(`renders an vertical selection brush`, () => {
+  test('renders an vertical selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -220,7 +220,7 @@ describe('EuiSelectionBrush', () => {
         .props().height
     ).toBe(0);
   });
-  test(`renders free form selection brush`, () => {
+  test('renders free form selection brush', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const component = mount(
       <EuiSeriesChart
@@ -325,7 +325,7 @@ describe('EuiSelectionBrush', () => {
         .props().height
     ).toBe(0);
   });
-  test(`get onSelectionBrushEnd call on linear x scale`, () => {
+  test('get onSelectionBrushEnd call on linear x scale', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const onSelectionBrushEndMock = jest.fn();
     const component = mount(
@@ -397,7 +397,7 @@ describe('EuiSelectionBrush', () => {
     };
     expect(onSelectionBrushEndMock.mock.calls[0][0]).toEqual(expectedBrush);
   });
-  test.skip(`get onSelectionBrushEnd call on ordinal x scale`, () => {
+  test.skip('get onSelectionBrushEnd call on ordinal x scale', () => {
     const data = [{ x: 0, y: 2 }, { x: 1, y: 4 }];
     const onSelectionBrushEndMock = jest.fn();
     const component = mount(

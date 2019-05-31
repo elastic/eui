@@ -27,7 +27,7 @@ declare module '@elastic/eui' {
   type LegendProps = {
     labelType?: 'legend';
   } & EuiFormRowCommonProps &
-  HTMLAttributes<HTMLFieldSetElement>;
+    HTMLAttributes<HTMLFieldSetElement>;
 
   export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 

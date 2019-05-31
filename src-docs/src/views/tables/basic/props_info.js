@@ -204,7 +204,8 @@ export const propsInfo = {
   FieldDataColumn: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `Describes a column that displays a value derived of one of the item's fields`,
+      description:
+        "Describes a column that displays a value derived of one of the item's fields",
       props: {
         field: {
           description: 'A field of the item (may be a nested field)',
@@ -251,18 +252,19 @@ export const propsInfo = {
           type: { name: '"left" | "right"' },
         },
         truncateText: {
-          description: `Indicates whether this column should truncate its content when it doesn't fit`,
+          description:
+            "Indicates whether this column should truncate its content when it doesn't fit",
           required: false,
           defaultValue: { value: 'false' },
           type: { name: 'boolean' },
         },
         render: {
-          description: `Describe a custom renderer function for the content`,
+          description: 'Describe a custom renderer function for the content',
           required: false,
           type: { name: '(value, item) => PropTypes.node' },
         },
         footer: {
-          description: `Content to display in the footer beneath this column`,
+          description: 'Content to display in the footer beneath this column',
           required: false,
           type: {
             name:
@@ -276,10 +278,11 @@ export const propsInfo = {
   ComputedColumn: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `Describes a column for computed values`,
+      description: 'Describes a column for computed values',
       props: {
         render: {
-          description: `A function that computes the value for each item and renders it`,
+          description:
+            'A function that computes the value for each item and renders it',
           required: true,
           type: { name: '(item) => PropTypes.node' },
         },
@@ -301,7 +304,8 @@ export const propsInfo = {
           type: { name: 'string (e.g. "30%", "100px", etc..)' },
         },
         truncateText: {
-          description: `Indicates whether this column should truncate its content when it doesn't fit`,
+          description:
+            "Indicates whether this column should truncate its content when it doesn't fit",
           required: false,
           defaultValue: { value: 'false' },
           type: { name: 'boolean' },
@@ -313,10 +317,11 @@ export const propsInfo = {
   ActionsColumn: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `Describes a column that holds action controls (e.g. Buttons)`,
+      description:
+        'Describes a column that holds action controls (e.g. Buttons)',
       props: {
         actions: {
-          description: `An array of actions to associate per item`,
+          description: 'An array of actions to associate per item',
           required: true,
           type: { name: '(#DefaultItemAction | #CustomItemAction)[]' },
         },
@@ -344,7 +349,7 @@ export const propsInfo = {
   DefaultItemAction: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `Describes an action that is displayed as a button`,
+      description: 'Describes an action that is displayed as a button',
       props: {
         name: {
           description:
@@ -399,7 +404,7 @@ export const propsInfo = {
   CustomItemAction: {
     __docgenInfo: {
       _euiObjectType: 'type',
-      description: `Describes a custom action`,
+      description: 'Describes a custom action',
       props: {
         render: {
           description:
