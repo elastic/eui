@@ -685,5 +685,35 @@ describe('popover_positioning', () => {
         });
       });
     });
+
+    it('returns anchorBoundingBox if param is specified', () => {
+      const anchor = document.createElement('div');
+      anchor.getBoundingClientRect = () => makeBB(100, 150, 120, 50);
+
+      const popover = document.createElement('div');
+      popover.getBoundingClientRect = () => makeBB(0, 30, 50, 0);
+
+      expect(
+        findPopoverPosition({
+          position: 'left',
+          returnBoundingBox: true,
+          anchor,
+          popover,
+        })
+      ).toEqual({
+        fit: 1,
+        position: 'left',
+        top: 85,
+        left: 20,
+        anchorBoundingBox: {
+          bottom: 120,
+          height: 20,
+          left: 50,
+          right: 150,
+          top: 100,
+          width: 100,
+        },
+      });
+    });
   });
 });

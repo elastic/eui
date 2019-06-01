@@ -1,44 +1,44 @@
+
 .euiColorPicker {
   position: relative;
-  cursor: pointer;
+  // 5 columns of swatches + margins + border
+  width: ($euiSizeL * 5) + ($euiSizeS * 4);
 }
 
-.euiColorPicker__preview {
-  display: flex;
-  align-items: center;
+// Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
+.euiSwatchInput__stroke {
+  fill: none;
+  stroke: transparentize($euiColorFullShade, .8);
 }
 
-.euiColorPicker__swatch {
-  width: $colorPickerSize;
-  height: $colorPickerSize;
-  border-radius: $euiBorderRadius;
-  box-shadow: inset 0 0 0 1px $euiShadowColor;
-  display: inline-block;
+.euiColorPicker__popoverPanel--pickerOnly {
+  // Override of EuiPanel padding
+  // sass-lint:disable no-important
+  padding-bottom: 0 !important;
 }
 
-.euiColorPicker__emptySwatch {
-  svg {
-    position: absolute;
-    width: $colorPickerSize;
-    height: $colorPickerSize;
-  }
-
-  svg line {
-    stroke: $euiColorDanger;
-    stroke-width: 2;
-  }
+.euiColorPicker__popoverContainer:not(.euiColorPicker__popoverContainer--customButton) {
+  // Override of EuiPopover display
+  // sass-lint:disable no-important
+  display: block !important;
 }
 
-.euiColorPicker__label {
-  font-size: $euiFontSize;
-  line-height: $euiLineHeight;
-  margin-left: 10px;
-  display: inline-block;
-  vertical-align: middle;
+.euiColorPicker__popoverAnchor:not(.euiColorPicker__popoverAnchor--customButton) {
+  // Override of EuiPopover display
+  // sass-lint:disable no-important
+  display: block !important;
 }
 
-.euiColorPickerPopUp {
-  position: absolute;
-  z-index: 10;
+.euiColorPicker__popoverPanel[class*='bottom']:not(.euiColorPicker__popoverPanel--customButton) {
+  border-top-color: transparentize($euiBorderColor, .2);
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 
+.euiColorPicker__popoverPanel[class*='top']:not(.euiColorPicker__popoverPanel--customButton) {
+  @include euiBottomShadowFlat;
+
+  border-bottom-color: transparentize($euiBorderColor, .2);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
