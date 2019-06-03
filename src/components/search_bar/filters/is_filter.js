@@ -56,7 +56,10 @@ export class IsFilter extends Component {
       this.valueChanged(config.field, checked);
     };
     return (
-      <EuiFilterButton onClick={onClick} hasActiveFilters={hasActiveFilters}>
+      <EuiFilterButton
+        onClick={onClick}
+        hasActiveFilters={hasActiveFilters}
+        aria-pressed={!!hasActiveFilters}>
         {name}
       </EuiFilterButton>
     );

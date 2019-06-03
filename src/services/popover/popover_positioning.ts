@@ -67,6 +67,7 @@ interface FindPopoverPositionArgs {
   allowCrossAxis?: boolean;
   container?: HTMLElement;
   arrowConfig?: { arrowWidth: number; arrowBuffer: number };
+  returnBoundingBox?: boolean;
 }
 
 /**
@@ -105,6 +106,7 @@ export function findPopoverPosition({
   allowCrossAxis = true,
   container,
   arrowConfig,
+  returnBoundingBox,
 }: FindPopoverPositionArgs) {
   // find the screen-relative bounding boxes of the anchor, popover, and container
   const anchorBoundingBox = getElementBoundingBox(anchor);
@@ -214,7 +216,9 @@ export function findPopoverPosition({
     // If we haven't improved the fit, then continue on and try a new position.
   }
 
-  return bestPosition;
+  return returnBoundingBox
+    ? { ...bestPosition, anchorBoundingBox: { ...anchorBoundingBox } }
+    : bestPosition;
 }
 
 interface GetPopoverScreenCoordinatesArgs {

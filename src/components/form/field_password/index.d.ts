@@ -3,7 +3,6 @@ import { CommonProps } from '../../common';
 import { FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * password field type defs
    *

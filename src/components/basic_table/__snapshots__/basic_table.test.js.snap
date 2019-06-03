@@ -28,15 +28,19 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -149,15 +153,19 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -272,15 +280,19 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 0,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -348,15 +360,19 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 0,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -432,15 +448,19 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 0,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 0,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -508,15 +528,19 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -745,21 +769,24 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -1052,15 +1079,19 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1184,15 +1215,19 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1311,15 +1346,19 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1438,15 +1477,19 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 2,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 2,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1544,15 +1587,19 @@ exports[`EuiBasicTable with pagination 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1667,15 +1714,19 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -1755,21 +1806,24 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -1923,15 +1977,19 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -2068,21 +2126,24 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2260,21 +2321,24 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2566,21 +2630,24 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2758,21 +2825,24 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -2950,21 +3020,24 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -3274,21 +3347,24 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
         <EuiTableHeaderCellCheckbox
           key="_selection_column_h"
-          scope="col"
           width="24px"
         >
           <EuiI18n
@@ -3445,15 +3521,19 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>
@@ -3571,15 +3651,19 @@ exports[`EuiBasicTable with sorting 1`] = `
           aria-relevant="text"
           role="status"
         >
-          <EuiI18n
-            default="Below is a table of {itemCount} items."
-            token="euiBasicTable.tableDescription"
-            values={
-              Object {
-                "itemCount": 3,
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="Below is a table of {itemCount} items."
+              token="euiBasicTable.tableDescription"
+              values={
+                Object {
+                  "itemCount": 3,
+                }
               }
-            }
-          />
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
       <EuiTableHeader>

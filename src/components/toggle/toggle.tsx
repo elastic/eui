@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ChangeEventHandler, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { ChangeEventHandler, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
 const typeToInputTypeMap = {

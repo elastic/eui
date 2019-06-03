@@ -28,19 +28,19 @@ describe('EuiFieldSearch', () => {
   });
 
   describe('props', () => {
-    test(`isInvalid is rendered`, () => {
+    test('isInvalid is rendered', () => {
       const component = render(<EuiFieldSearch isInvalid />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`fullWidth is rendered`, () => {
+    test('fullWidth is rendered', () => {
       const component = render(<EuiFieldSearch fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
-    test(`isLoading is rendered`, () => {
+    test('isLoading is rendered', () => {
       const component = render(<EuiFieldSearch isLoading />);
 
       expect(component).toMatchSnapshot();

@@ -15,6 +15,7 @@ declare module '@elastic/eui' {
     paddingSize?: EuiAccordionSize;
   }
 
+  // eslint-disable-next-line react/prefer-stateless-function
   export class EuiAccordion extends Component<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiAccordionProps
   > {}

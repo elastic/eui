@@ -16,7 +16,7 @@ describe('AsyncInterval', () => {
   async function andvanceTimerAndAwaitFn(instance, ms) {
     const iterations = times(Math.floor(ms / 100));
     const remainder = ms % 100;
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const item of iterations) {
       await instance.__pendingFn;
       jest.advanceTimersByTime(100);

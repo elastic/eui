@@ -3,7 +3,6 @@ import { CommonProps } from '../../common';
 import { FunctionComponent, TextareaHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
-
   /**
    * @see './text_area.js'
    */
@@ -16,5 +15,5 @@ declare module '@elastic/eui' {
 
   export const EuiTextArea: FunctionComponent<
     CommonProps & TextareaHTMLAttributes<HTMLTextAreaElement> & EuiTextAreaProps
-    >;
+  >;
 }

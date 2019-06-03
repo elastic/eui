@@ -51,7 +51,7 @@ export class EuiConfirmModal extends Component {
       confirmButtonDisabled,
       className,
       buttonColor,
-      defaultFocusedButton, // eslint-disable-line no-unused-vars
+      defaultFocusedButton,
       ...rest
     } = this.props;
 

@@ -7,6 +7,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <svg
+    aria-label="Elastic"
     class="euiIcon euiIcon--large euiIcon-isLoading euiHeaderLogo__icon"
     focusable="false"
     height="16"
@@ -23,6 +24,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
   href="#"
 >
   <svg
+    aria-label="Elastic"
     class="euiIcon euiIcon--large euiIcon-isLoading euiHeaderLogo__icon"
     focusable="false"
     height="16"
@@ -39,6 +41,7 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
   style="color:red"
 >
   <svg
+    aria-label="Moby Dick"
     class="euiIcon euiIcon--large euiIcon-isLoading euiHeaderLogo__icon"
     focusable="false"
     height="16"

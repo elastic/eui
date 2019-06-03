@@ -3,7 +3,9 @@ import {
   EuiButton,
   ICON_SIDES,
   SIZES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/button/button.js';
+// @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
@@ -66,7 +68,7 @@ export class Button extends React.Component<Props> {
       type: ControlType.Enum,
       options: ICON_TYPES,
       title: '↳ iconType',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },
@@ -74,7 +76,7 @@ export class Button extends React.Component<Props> {
       type: ControlType.SegmentedEnum,
       options: ICON_SIDES,
       title: '↳ iconSide',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },

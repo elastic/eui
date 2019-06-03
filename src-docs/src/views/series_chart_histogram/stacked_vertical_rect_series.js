@@ -23,7 +23,7 @@ const dataB = [
 
 export default () => (
   <EuiSeriesChart width={600} height={200} stackBy="y">
-    <EuiHistogramSeries name={`Tag A`} data={dataA} />
-    <EuiHistogramSeries name={`Tag B`} data={dataB} />
+    <EuiHistogramSeries name={'Tag A'} data={dataA} />
+    <EuiHistogramSeries name={'Tag B'} data={dataB} />
   </EuiSeriesChart>
 );

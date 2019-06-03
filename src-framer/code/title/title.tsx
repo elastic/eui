@@ -2,6 +2,7 @@ import {
   EuiTitle,
   TEXT_TRANSFORM,
   TITLE_SIZES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/title/title';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';

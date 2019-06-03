@@ -95,6 +95,10 @@
     margin-top: 0;
   }
 
+  &::-moz-focus-outer {
+    border: none;
+  }
+
   &::-ms-track {
     @include euiRangeTrackSize;
     background: transparent;

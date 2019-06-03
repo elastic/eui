@@ -50,7 +50,7 @@ describe('EuiContextMenuPanel', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test(`isn't called upon instantiation`, () => {
+      test("isn't called upon instantiation", () => {
         const onCloseHandler = sinon.stub();
 
         mount(<EuiContextMenuPanel title="Title" onClose={onCloseHandler} />);
@@ -202,7 +202,7 @@ describe('EuiContextMenuPanel', () => {
           sinon.assert.calledOnce(onUseKeyboardToNavigateHandler);
         });
 
-        it(`doesn't call handler if showPreviousPanel doesn't exist`, () => {
+        it("doesn't call handler if showPreviousPanel doesn't exist", () => {
           const onUseKeyboardToNavigateHandler = sinon.stub();
 
           const component = mount(
@@ -233,7 +233,7 @@ describe('EuiContextMenuPanel', () => {
           sinon.assert.calledOnce(onUseKeyboardToNavigateHandler);
         });
 
-        it(`doesn't call handler if showNextPanel doesn't exist`, () => {
+        it("doesn't call handler if showNextPanel doesn't exist", () => {
           const onUseKeyboardToNavigateHandler = sinon.stub();
 
           const component = mount(
@@ -297,7 +297,7 @@ describe('EuiContextMenuPanel', () => {
         );
       });
 
-      it(`focuses the panel by default`, async () => {
+      it('focuses the panel by default', async () => {
         await tick(20);
 
         expect(component.getDOMNode()).toBe(document.activeElement);
@@ -361,7 +361,7 @@ describe('EuiContextMenuPanel', () => {
         );
       });
 
-      it(`right arrow key shows next panel with focused item's index`, () => {
+      it("right arrow key shows next panel with focused item's index", () => {
         component.simulate('keydown', { keyCode: keyCodes.DOWN });
         component.simulate('keydown', { keyCode: keyCodes.RIGHT });
         sinon.assert.calledWith(showNextPanelHandler, 0);
@@ -376,7 +376,7 @@ describe('EuiContextMenuPanel', () => {
 
   describe('updating items and content', () => {
     describe('updates to items', () => {
-      it(`should not re-render if any items's watchedItemProps did not change`, () => {
+      it("should not re-render if any items's watchedItemProps did not change", () => {
         expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         // by not passing `watchedItemProps` no changes to items should cause a re-render
@@ -412,7 +412,7 @@ describe('EuiContextMenuPanel', () => {
         );
       });
 
-      it(`should re-render if any items's watchedItemProps did change`, () => {
+      it("should re-render if any items's watchedItemProps did change", () => {
         expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         // by referencing the `data-counter` property in `watchedItemProps`
@@ -450,7 +450,7 @@ describe('EuiContextMenuPanel', () => {
         );
       });
 
-      it(`should re-render at all times when children exists`, () => {
+      it('should re-render at all times when children exists', () => {
         expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
 
         const component = mount(

@@ -97,7 +97,7 @@ describe('EuiBreadcrumbs', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test(`doesn't break when max exceeds the number of breadcrumbs`, () => {
+      test("doesn't break when max exceeds the number of breadcrumbs", () => {
         const component = render(
           <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={20} />
         );

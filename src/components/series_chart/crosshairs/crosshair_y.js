@@ -158,7 +158,7 @@ export class CrosshairY extends PureComponent {
 
     const left = marginLeft;
     const top = marginTop + innerTop;
-    const innerClassName = `rv-crosshair__inner rv-crosshair__inner--left`;
+    const innerClassName = 'rv-crosshair__inner rv-crosshair__inner--left';
     return (
       <div
         className={`rv-crosshair ${className}`}

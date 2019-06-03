@@ -4,15 +4,9 @@ import { EuiIcon, IconType } from '../icon';
 import { Omit, PropsOf } from '../common';
 
 declare module '@elastic/eui' {
-  export type ToolTipPositions =
-    | 'top'
-    | 'right'
-    | 'bottom'
-    | 'left';
+  export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
 
-  export type ToolTipDelay =
-    | 'regular'
-    | 'long';
+  export type ToolTipDelay = 'regular' | 'long';
 
   export interface EuiToolTipProps {
     anchorClassName?: string;
@@ -38,5 +32,7 @@ declare module '@elastic/eui' {
     iconProps?: Omit<PropsOf<EuiIcon>, 'type'> & { type?: never };
   }
 
-  export const EuiIconTip: FunctionComponent<Omit<EuiToolTipProps, 'children'> & EuiIconTipProps>;
+  export const EuiIconTip: FunctionComponent<
+    Omit<EuiToolTipProps, 'children'> & EuiIconTipProps
+  >;
 }

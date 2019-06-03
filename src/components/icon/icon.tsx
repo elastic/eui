@@ -254,9 +254,11 @@ const typeToPathMap = {
   stats: 'stats',
   stop: 'stop',
   stopFilled: 'stop_filled',
+  stopSlash: 'stop_slash',
   storage: 'storage',
   string: 'string',
   submodule: 'submodule',
+  swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableOfContents: 'tableOfContents',
   tag: 'tag',
@@ -434,11 +436,13 @@ export class EuiIcon extends Component<Props, State> {
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           isLoading: true,
         });
         this.loadIconComponent(type);
       } else {
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
           isLoading: false,
@@ -453,9 +457,9 @@ export class EuiIcon extends Component<Props, State> {
 
   loadIconComponent = (iconType: EuiIconType) => {
     import(
-      /* webpackChunkName: "icon.[request]" */ './assets/' +
-        typeToPathMap[iconType] +
-        '.js'
+      /* webpackChunkName: "icon.[request]" */ `./assets/${
+        typeToPathMap[iconType]
+      }.js`
     ).then(({ icon }) => {
       if (this.isMounted) {
         this.setState({

@@ -1,8 +1,10 @@
+// @ts-ignore
 import DarkCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_dark.css';
+// @ts-ignore
 import LightCSS from '!!raw-loader!@elastic/eui/dist/eui_theme_light.css';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
-import { FrameSize } from './frame_size.tsx';
+import { FrameSize } from './frame_size';
 
 // Define type of property
 interface Props {

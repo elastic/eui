@@ -1,6 +1,11 @@
 import { CommonProps, Omit } from '../../common';
 
-import { FunctionComponent, ChangeEventHandler, HTMLAttributes, ReactNode } from 'react';
+import {
+  FunctionComponent,
+  ChangeEventHandler,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 
 declare module '@elastic/eui' {
   /**

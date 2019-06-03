@@ -89,7 +89,7 @@ export class EuiFilePicker extends Component {
             className,
             disabled,
             compressed,
-            onChange, // eslint-disable-line no-unused-vars
+            onChange,
             ...rest
           } = this.props;
 
