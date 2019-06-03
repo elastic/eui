@@ -52,22 +52,10 @@ function compileBundle() {
   shell.mkdir('-p', 'dist');
 
   console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      NO_COREJS_POLYFILL: true
-    }
-  });
+  execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      NO_COREJS_POLYFILL: true
-    }
-  });
+  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 }
 
 compileLib();
