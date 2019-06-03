@@ -11,6 +11,12 @@
   padding: $euiSizeXS;
   border-radius: $euiBorderRadius;
 
+  & > svg {
+    // prevents the element and its children from receiving any pointer events to fix not bubbling click event in Safari
+    // https://stackoverflow.com/questions/24078524/svg-click-events-not-firing-bubbling-when-using-use-element
+    pointer-events: none;
+  }
+
   &:disabled {
     color: $euiButtonColorDisabled;
     pointer-events: none;
