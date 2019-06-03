@@ -20,6 +20,7 @@
 - Fixed missing Typescript definition for `EuiButton`'s `color="text"` option ([#1980](https://github.com/elastic/eui/pull/1980))
 - Fixed Prettier formatting lint error in `EuiTable` TS def file ([#1986](https://github.com/elastic/eui/pull/1986))
 - Fixed not clickable button with svg in Safari ([#1985](https://github.com/elastic/eui/pull/1985))
+- Fixed `EuiToggle` pointer events for those using icons only ([#1991](https://github.com/elastic/eui/pull/1991))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
