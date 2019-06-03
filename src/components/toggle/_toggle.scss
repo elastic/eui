@@ -5,6 +5,7 @@
 
   .euiToggle__input {
     @include euiHiddenSelectableInput;
+    z-index: 1; // Increase z-index to ensure the input receives the pointer events
 
     &:disabled {
       cursor: not-allowed;
