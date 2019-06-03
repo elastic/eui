@@ -63,7 +63,10 @@ export class FieldValueToggleFilter extends Component {
       this.valueChanged(checked);
     };
     return (
-      <EuiFilterButton onClick={onClick} hasActiveFilters={hasActiveFilters}>
+      <EuiFilterButton
+        onClick={onClick}
+        hasActiveFilters={hasActiveFilters}
+        aria-pressed={!!hasActiveFilters}>
         {name}
       </EuiFilterButton>
     );

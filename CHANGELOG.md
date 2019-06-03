@@ -9,6 +9,7 @@
 - Added `onToggle` callback to `EuiAccordion` ([#1974](https://github.com/elastic/eui/pull/1974))
 - Removed `options` `defaultProps` value from `EuiSuperSelect` ([#1975](https://github.com/elastic/eui/pull/1975))
 - Removed TSlint and will perform all linting through ESLint ([#1950](https://github.com/elastic/eui/pull/1950))
+- Added new component `EuiDelayRender` ([#1876](https://github.com/elastic/eui/pull/1876))
 - Replaced `EuiColorPicker` with custom, customizable component ([#1914](https://github.com/elastic/eui/pull/1914))
 
 **Bug fixes**

@@ -53,6 +53,7 @@ export {
 } from './date_picker';
 
 export { EuiDelayHide } from './delay_hide';
+export { EuiDelayRender } from './delay_render';
 
 export {
   EuiDescriptionList,

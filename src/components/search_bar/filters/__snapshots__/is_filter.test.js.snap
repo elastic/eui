@@ -2,6 +2,7 @@
 
 exports[`IsFilter render 1`] = `
 <EuiFilterButton
+  aria-pressed={false}
   color="text"
   grow={true}
   hasActiveFilters={false}
