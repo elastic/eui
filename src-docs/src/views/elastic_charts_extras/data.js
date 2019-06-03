@@ -85,9 +85,7 @@ export const EUI_LIGHT_THEME = {
   },
   sharedStyle: DEFAULT_GEOMETRY_STYLES,
   scales: {
-    ordinal: {
-      padding: 0.25,
-    },
+    barsPadding: 0.25,
   },
   axes: {
     axisTitleStyle: {
