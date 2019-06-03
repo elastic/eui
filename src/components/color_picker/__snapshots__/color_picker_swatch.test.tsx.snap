@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiColorPickerSwatch is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiColorPickerSwatch testClass1 testClass2"
+  data-test-subj="test subject string"
+  style="background:transparent"
+  type="button"
+/>
+`;

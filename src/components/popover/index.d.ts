@@ -41,6 +41,7 @@ declare module '@elastic/eui' {
     panelClassName?: string;
     panelPaddingSize?: PanelPaddingSize;
     repositionOnScroll?: boolean;
+    attachToAnchor?: boolean;
   }
 
   export const EuiPopover: FunctionComponent<

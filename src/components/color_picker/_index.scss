@@ -1,3 +1,5 @@
-$colorPickerSize: 20px;
-
+@import 'variables';
 @import 'color_picker';
+@import 'color_picker_swatch';
+@import 'hue';
+@import 'saturation';
