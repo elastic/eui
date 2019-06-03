@@ -68,6 +68,7 @@ import { CopyExample } from './views/copy/copy_example';
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
 import { DelayHideExample } from './views/delay_hide/delay_hide_example';
+import { DelayRenderExample } from './views/delay_render/delay_render_example';
 
 import { DescriptionListExample } from './views/description_list/description_list_example';
 
@@ -206,7 +207,7 @@ const slugify = str => {
 const createExample = example => {
   if (!example) {
     throw new Error(
-      `One of your example pages is undefined. This usually happens when you export or import it with the wrong name.`
+      'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
     );
   }
 
@@ -366,6 +367,7 @@ const navigation = [
       CopyExample,
       UtilityClassesExample,
       DelayHideExample,
+      DelayRenderExample,
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightExample,

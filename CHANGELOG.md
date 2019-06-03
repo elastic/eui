@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiTableRowHeaderCheckbox` to TS ([#1973](https://github.com/elastic/eui/pull/1973))
 - Added missing TypeScript definition for `EuiFieldText`'s `compressed` prop ([#1977](https://github.com/elastic/eui/pull/1977))
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
 - Updated `caniuse-lite` version resolution ([#1970](https://github.com/elastic/eui/pull/1970))
@@ -7,11 +8,17 @@
 - Added ability to update `EuiInMemoryTable` `sorting` prop and remove columns after sorting is applied ([#1972](https://github.com/elastic/eui/pull/1972))
 - Added `onToggle` callback to `EuiAccordion` ([#1974](https://github.com/elastic/eui/pull/1974))
 - Removed `options` `defaultProps` value from `EuiSuperSelect` ([#1975](https://github.com/elastic/eui/pull/1975))
+- Removed TSlint and will perform all linting through ESLint ([#1950](https://github.com/elastic/eui/pull/1950))
+- Added new component `EuiDelayRender` ([#1876](https://github.com/elastic/eui/pull/1876))
+- Replaced `EuiColorPicker` with custom, customizable component ([#1914](https://github.com/elastic/eui/pull/1914))
 
 **Bug fixes**
 
 - Fixed environment setup for running `test-unit` script on Windows ([#1971](https://github.com/elastic/eui/pull/1971))
 - Fixed focus on single selection of EuiComboBox ([#1965](https://github.com/elastic/eui/pull/1965))
+- Fixed type mismatch between PropType and TypeScript def for `EuiGlobalToastList` toast `title` ([#1978](https://github.com/elastic/eui/pull/1978))
+- Fixed missing Typescript definition for `EuiButton`'s `color="text"` option ([#1980](https://github.com/elastic/eui/pull/1980))
+- Fixed Prettier formatting lint error in `EuiTable` TS def file ([#1986](https://github.com/elastic/eui/pull/1986))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 

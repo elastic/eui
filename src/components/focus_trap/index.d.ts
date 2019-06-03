@@ -1,5 +1,5 @@
 import { SFC } from 'react';
-import { Props as ReactFocusLockProps } from 'react-focus-lock';
+import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 import { CommonProps } from '../common';
 
 declare module '@elastic/eui' {
@@ -15,8 +15,8 @@ declare module '@elastic/eui' {
    * @see './focus_trap.js'
    */
   interface EuiFocusTrapProps {
-    clickOutsideDisables?: boolean,
-    initialFocus?: FocusTarget
+    clickOutsideDisables?: boolean;
+    initialFocus?: FocusTarget;
   }
 
   export const EuiFocusTrap: SFC<

@@ -302,12 +302,7 @@ export class EuiContextMenu extends Component {
   }
 
   render() {
-    const {
-      panels, // eslint-disable-line no-unused-vars
-      className,
-      initialPanelId, // eslint-disable-line no-unused-vars
-      ...rest
-    } = this.props;
+    const { panels, className, initialPanelId, ...rest } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId, 'in');
     let outgoingPanel;

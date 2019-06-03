@@ -139,17 +139,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 className="euiScreenReaderOnly"
                 role="status"
               >
-                <EuiI18n
-                  default="Below is a table of {itemCount} items."
-                  token="euiBasicTable.tableDescription"
-                  values={
-                    Object {
-                      "itemCount": 2,
-                    }
-                  }
-                >
-                  Below is a table of 2 items.
-                </EuiI18n>
+                <EuiDelayRender
+                  delay={500}
+                />
               </caption>
             </EuiScreenReaderOnly>
             <EuiTableHeader>

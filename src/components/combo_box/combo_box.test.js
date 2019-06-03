@@ -163,7 +163,7 @@ describe('props', () => {
 
 describe('behavior', () => {
   describe('hitting "Enter"', () => {
-    test(`calls the onCreateOption callback when there is input`, () => {
+    test('calls the onCreateOption callback when there is input', () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(
@@ -182,7 +182,7 @@ describe('behavior', () => {
       sinon.assert.calledWith(onCreateOptionHandler, 'foo');
     });
 
-    test(`doesn't the onCreateOption callback when there is no input`, () => {
+    test("doesn't the onCreateOption callback when there is no input", () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(
@@ -201,7 +201,7 @@ describe('behavior', () => {
   });
 
   describe('tabbing', () => {
-    test(`off the search input closes the options list if the user isn't navigating the options`, () => {
+    test("off the search input closes the options list if the user isn't navigating the options", () => {
       const onKeyDownWrapper = jest.fn();
       const component = mount(
         <div onKeyDown={onKeyDownWrapper}>
@@ -225,7 +225,7 @@ describe('behavior', () => {
       expect(onKeyDownWrapper.mock.calls.length).toBe(1);
     });
 
-    test(`off the search input calls onCreateOption`, () => {
+    test('off the search input calls onCreateOption', () => {
       const onCreateOptionHandler = sinon.spy();
 
       const component = mount(

@@ -26,7 +26,12 @@ export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
 
 export { EuiCodeEditor } from './code_editor';
 
-export { EuiColorPicker } from './color_picker';
+export {
+  EuiColorPicker,
+  EuiColorPickerSwatch,
+  EuiHue,
+  EuiSaturation,
+} from './color_picker';
 
 export { EuiComboBox } from './combo_box';
 
@@ -48,6 +53,7 @@ export {
 } from './date_picker';
 
 export { EuiDelayHide } from './delay_hide';
+export { EuiDelayRender } from './delay_render';
 
 export {
   EuiDescriptionList,

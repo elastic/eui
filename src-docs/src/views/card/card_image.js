@@ -42,7 +42,7 @@ export default () => (
         href="https://elastic.github.io/eui/"
         image="https://source.unsplash.com/400x200/?City"
         icon={<EuiIcon size="xxl" type="logoBeats" />}
-        title={`Beats in the City`}
+        title={'Beats in the City'}
         description="This card has an href and should be a link."
       />
     </EuiFlexItem>

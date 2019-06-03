@@ -4,14 +4,13 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, keysOf, Omit } from '../common';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiI18n } from '../i18n';
 import makeId from '../form/form_row/make_id';
-import { Omit } from '../common';
 
 const colorToClassNameMap = {
   default: null,

@@ -123,7 +123,7 @@ export class FieldValueSelectionFilter extends Component {
         });
       })
       .catch(() => {
-        this.setState({ options: null, error: `Could not load options` });
+        this.setState({ options: null, error: 'Could not load options' });
       });
   }
 

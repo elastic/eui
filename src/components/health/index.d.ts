@@ -1,4 +1,4 @@
-import { IconColor } from '../icon'
+import { IconColor } from '../icon';
 
 import { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';

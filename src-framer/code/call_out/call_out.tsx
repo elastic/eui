@@ -2,11 +2,12 @@ import {
   COLORS,
   EuiCallOut,
   SIZES,
+  // @ts-ignore
 } from '@elastic/eui/lib/components/call_out/call_out.js';
+// @ts-ignore
 import { ICON_TYPES } from '@elastic/eui/lib/components/icon/index.js';
 import { ControlType, PropertyControls } from 'framer';
 import * as React from 'react';
-import { FrameSize } from '../_framer_helpers/frame_size.tsx';
 
 // Define type of property
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
   color: COLORS;
   size: SIZES;
   childText: string;
+  showIconProps: boolean;
 }
 
 export class CallOut extends React.Component<Props> {
@@ -51,7 +53,7 @@ export class CallOut extends React.Component<Props> {
       type: ControlType.Enum,
       options: ICON_TYPES,
       title: 'iconType',
-      hidden(props) {
+      hidden(props: Props) {
         return props.showIconProps === false;
       },
     },

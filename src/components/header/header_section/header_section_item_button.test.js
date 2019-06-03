@@ -23,7 +23,7 @@ describe('EuiHeaderSectionItemButton', () => {
   });
 
   describe('onClick', () => {
-    test(`isn't called upon instantiation`, () => {
+    test("isn't called upon instantiation", () => {
       const onClickHandler = sinon.stub();
 
       shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);

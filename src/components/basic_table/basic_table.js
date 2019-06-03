@@ -38,6 +38,7 @@ import { EuiTableSortMobile } from '../table/mobile/table_sort_mobile';
 import { withRequiredProp } from '../../utils/prop_types/with_required_prop';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 import { EuiI18n } from '../i18n';
+import { EuiDelayRender } from '../delay_render';
 import makeId from '../form/form_row/make_id';
 
 const dataTypesProfiles = {
@@ -460,11 +461,13 @@ export class EuiBasicTable extends Component {
     return (
       <EuiScreenReaderOnly>
         <caption role="status" aria-relevant="text" aria-live="polite">
-          <EuiI18n
-            token="euiBasicTable.tableDescription"
-            default="Below is a table of {itemCount} items."
-            values={{ itemCount: items.length }}
-          />
+          <EuiDelayRender>
+            <EuiI18n
+              token="euiBasicTable.tableDescription"
+              default="Below is a table of {itemCount} items."
+              values={{ itemCount: items.length }}
+            />
+          </EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
     );
