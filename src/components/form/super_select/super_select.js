@@ -195,7 +195,6 @@ export class EuiSuperSelect extends Component {
       <EuiSuperSelectControl
         options={options}
         value={valueOfSelected}
-        onChange={onChange}
         onClick={
           this.state.isPopoverOpen ? this.closePopover : this.openPopover
         }
@@ -307,6 +306,10 @@ EuiSuperSelect.propTypes = {
    * Provides invalid styling
    */
   isInvalid: PropTypes.bool,
+  /**
+   * Provides loading indictor
+   */
+  isLoading: PropTypes.bool,
   /**
    * Make it short
    */
