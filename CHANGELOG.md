@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.3.0`.
+**Bug fixes**
+
+- Fixed double borders on prepend/append items in `EuiFormControlLayout` ([#1996](https://github.com/elastic/eui/pull/1996))
 
 ## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
 
