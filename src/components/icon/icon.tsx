@@ -524,6 +524,8 @@ export class EuiIcon extends Component<Props, State> {
     if (typeof icon === 'string') {
       return (
         <img
+          // TODO: Allow alt prop
+          alt=""
           src={icon}
           className={classes}
           tabIndex={tabIndex}

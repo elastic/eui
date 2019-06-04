@@ -218,12 +218,14 @@ export class EuiToolTip extends Component {
     }
 
     const anchor = (
+      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
         ref={anchor => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}>
         {/**
+         * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element
          * the user will be interacting with, as opposed to the enclosing anchor element.
          * For example, if the inner component is a button and the user tabs to it, we want

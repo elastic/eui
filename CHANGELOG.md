@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `11.3.0`.
+
+## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
+
 - Converted `EuiTableRowHeaderCheckbox` to TS ([#1973](https://github.com/elastic/eui/pull/1973))
 - Added missing TypeScript definition for `EuiFieldText`'s `compressed` prop ([#1977](https://github.com/elastic/eui/pull/1977))
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
@@ -12,6 +16,8 @@
 - Added new component `EuiDelayRender` ([#1876](https://github.com/elastic/eui/pull/1876))
 - Replaced `EuiColorPicker` with custom, customizable component ([#1914](https://github.com/elastic/eui/pull/1914))
 - Added a logger based on `Aria Live Region` to `EuiGlobalToastList` ([#1958](https://github.com/elastic/eui/pull/1958))
+- Added `jsx-a11y` `eslint` plugin and rules to match Kibana ([#1952](https://github.com/elastic/eui/pull/1952))
+- Changed `EuiCopy` `beforeMessage` prop to accept `node` instead of just `string` ([#1952](https://github.com/elastic/eui/pull/1952))
 
 **Bug fixes**
 

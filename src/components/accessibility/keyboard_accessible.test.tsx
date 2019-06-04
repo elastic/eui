@@ -57,7 +57,9 @@ describe('EuiKeyboardAccessible', () => {
       // @ts-ignore unused var
       const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
-          <a href="#" onClick={noop} />
+          <a href="#" onClick={noop}>
+            Click me
+          </a>
         </EuiKeyboardAccessible>
       );
 
@@ -119,7 +121,7 @@ describe('EuiKeyboardAccessible', () => {
       // @ts-ignore unused var
       const component = ( // eslint-disable-line @typescript-eslint/no-unused-vars
         <EuiKeyboardAccessible>
-          <a onClick={noop} />
+          <a onClick={noop}>Click me</a>
         </EuiKeyboardAccessible>
       );
 
@@ -143,7 +145,10 @@ describe('EuiKeyboardAccessible', () => {
     test('tabindex', () => {
       const $button = render(
         <EuiKeyboardAccessible>
-          <div onClick={noop} tabIndex={1} />
+          <div
+            onClick={noop}
+            tabIndex={1} // eslint-disable-line jsx-a11y/tabindex-no-positive
+          />
         </EuiKeyboardAccessible>
       );
 
@@ -153,7 +158,7 @@ describe('EuiKeyboardAccessible', () => {
     test('role', () => {
       const $button = render(
         <EuiKeyboardAccessible>
-          <div onClick={noop} role="submit" />
+          <div onClick={noop} role="button" tabIndex={0} />
         </EuiKeyboardAccessible>
       );
 

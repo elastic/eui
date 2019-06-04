@@ -176,6 +176,8 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = ({
       token="euiSaturation.roleDescription"
       default="HSV color mode saturation and value selection">
       {(roleDescription: string) => (
+        // Unsure why this element causes errors as `tabIndex` and focus/interactivity (by extension) are accounted for.
+        // eslint-disable-next-line jsx-a11y/aria-activedescendant-has-tabindex, jsx-a11y/no-noninteractive-element-interactions
         <div
           role="application"
           aria-roledescription={roleDescription}
