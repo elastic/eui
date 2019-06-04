@@ -17,6 +17,12 @@
   text-align: center;
   overflow: hidden;
 
+  &:focus,
+  .euiBadge__childButton:focus,
+  .euiBadge__iconButton:focus {
+    @include euiFocusRing('small');
+  }
+
   + .euiBadge {
     margin-left: $euiSizeXS;
   }
@@ -27,14 +33,19 @@
     overflow: hidden;
   }
 
+  .euiBadge__childButton {
+    font-weight: inherit;
+    line-height: inherit;
+  }
+
+  .euiBadge__iconButton {
+    font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
+  }
+
   .euiBadge__text {
     overflow: hidden;
     text-overflow: ellipsis;
     flex: 1 1 auto;
-  }
-
-  &:focus {
-    @include euiFocusRing('small');
   }
 
   .euiBadge__icon {

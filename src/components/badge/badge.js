@@ -71,7 +71,7 @@ export const EuiBadge = ({
   if (iconType) {
     if (iconOnClick) {
       optionalIcon = (
-        <button onClick={iconOnClick}>
+        <button className="euiBadge__iconButton" onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
             size="s"
@@ -93,7 +93,11 @@ export const EuiBadge = ({
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           {optionalIcon}
-          <button onClick={onClick} aria-label={onClickAriaLabel} {...rest}>
+          <button
+            className="euiBadge__childButton"
+            onClick={onClick}
+            aria-label={onClickAriaLabel}
+            {...rest}>
             {children}
           </button>
         </span>

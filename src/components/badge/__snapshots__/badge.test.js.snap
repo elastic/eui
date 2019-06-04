@@ -27,6 +27,7 @@ exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
   >
     <button
       aria-label="aria-label"
+      class="euiBadge__childButton"
       data-test-subj="test subject string"
     >
       Content
