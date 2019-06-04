@@ -2,7 +2,7 @@
 
 **Bug fixes**
 
-- Fixed optional definitions for `EuiColorPicker` `onBlur` and `onFocus` callbacks ([#1993](https://github.com/elastic/eui/pull/1993))
+- Fixed optional TS definitions for `EuiColorPicker` `onBlur` and `onFocus` callbacks ([#1993](https://github.com/elastic/eui/pull/1993))
 
 ## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
 
