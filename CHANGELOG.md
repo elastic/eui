@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.3.0`.
+**Bug fixes**
+
+- Fixed `EuiSuperSelect` TS definitions ([#1995](https://github.com/elastic/eui/pull/1995))
 
 ## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
 
