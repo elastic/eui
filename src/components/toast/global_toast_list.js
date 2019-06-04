@@ -7,6 +7,7 @@ import { IconPropType } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast } from './toast';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiDelayRender } from '../delay_render';
 import { EuiI18n } from '../i18n';
 
 export const TOAST_FADE_OUT_MS = 250;
@@ -31,8 +32,7 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingAnimationFrame = 0;
     this.startScrollingAnimationFrame = 0;
 
-    this.renderedForScreenReaderToasts = [];
-    this.clearScreenReaderToastStorageID = null;
+    this.lastRenderedForScreenReaderToast = { id: -1 };
   }
 
   static propTypes = {
@@ -178,53 +178,61 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
-  clearScreenReaderToastStorage = () => {
-    this.renderedForScreenReaderToasts = [];
-    this.forceUpdate();
-  };
+  handleScreenReaderToastLoggerUpdating = toasts => {
 
-  getRenderedForScreenReaderToasts = () => {
-    return this.renderedForScreenReaderToasts.map(toast => toast.reactElement);
-  };
+    if (!toasts.length) {
+      // show what we have now to avoid node re-rendering
+      return this.lastRenderedForScreenReaderToast.reactElement;
+    }
 
-  filterNewOnlyToasts = toasts => {
-    return toasts.filter(toastFromProp => {
-      const withTheSameID = this.renderedForScreenReaderToasts.some(
-        existToast => existToast.id === toastFromProp.id
-      );
-      return !withTheSameID;
-    });
-  };
+    // get the highest (latest) ID
+    // TODO: should we update the docs for using only numberic IDs?
+    // Numberic IDs are used all across the Kibana
+    // Otherwise, it's hard to decide between too toasts
+    // where one of them has number ID while the other -- string
+    // Also, documentation example uses numberic IDs
+    const toastIDS = toasts.filter(({id}) => typeof id === 'number').map(({id}) => id);
+    console.info('toastIDS', toastIDS);
+    const latestToastID = Math.max(...toastIDS);
+    const lastToast = this.lastRenderedForScreenReaderToast;
 
-  logSetOfToasts = toasts => {
-    // map and filter incoming toasts to get only new ones
-    const newToasts = this.filterNewOnlyToasts(toasts).map(newToast => ({
-      id: newToast.id,
-      reactElement: (
-        <Fragment key={newToast.id}>
-          <p>
-            <EuiI18n
-              token="euiGlobalToastList.newNotification"
-              default="A new notification appears"
-            />
-          </p>
-          <p>{newToast.title}</p>
-          {newToast.text}
-        </Fragment>
-      ),
-    })); // returns element, if element is false, then it excludes the one
+    // check the local toast
+    const locallyStored = lastToast.id >= latestToastID;
 
-    // add new incoming toasts to the stack
-    this.renderedForScreenReaderToasts.push(...newToasts);
-    // skip previous stack clearing
-    clearTimeout(this.clearScreenReaderToastStorageID);
-    // Set it to wait 57 seconds after the last notification before clear the stack
-    // 27s is the time chosen approx. That time is that Screen Reader needs to finish reading
-    // at least the last one notifications.
-    // It strictly depends on how long that notifications is.
-    this.clearScreenReaderToastStorageID = setTimeout(
-      this.clearScreenReaderToastStorage,
-      TOAST_LOGGER_TIMEOUT_MS
+    console.info('locallyStored', locallyStored, latestToastID, lastToast, toasts);
+
+    if (locallyStored) {
+      // if locally stored, then render without delay
+      return lastToast.reactElement || null;
+    }
+
+    // if not locally stored, then
+    // update local copy
+    // and render with delay
+    const newLastToasts = toasts
+      .filter(toast => toast.id === latestToastID)
+      .map(toast => ({
+        id: toast.id,
+        reactElement: (
+          <Fragment key={toast.id}>
+            <p>
+              <EuiI18n
+                token="euiGlobalToastList.newNotification"
+                default="A new notification appears"
+              />
+            </p>
+            <p>{toast.title}</p>
+            <div>{toast.text}</div>
+          </Fragment>
+        ),
+      }));
+
+    this.lastRenderedForScreenReaderToast = newLastToasts.slice(-1)[0];
+
+    return (
+      <EuiDelayRender>
+        {this.lastRenderedForScreenReaderToast.reactElement}
+      </EuiDelayRender>
     );
   };
 
@@ -277,8 +285,6 @@ export class EuiGlobalToastList extends Component {
       ...rest
     } = this.props;
 
-    this.logSetOfToasts(toasts);
-
     const renderedToasts = toasts.map(toast => {
       const { text, toastLifeTimeMs, ...rest } = toast;
 
@@ -309,7 +315,7 @@ export class EuiGlobalToastList extends Component {
         {renderedToasts}
         <EuiScreenReaderOnly>
           <div role="region" aria-live="polite">
-            {this.getRenderedForScreenReaderToasts()}
+            {this.handleScreenReaderToastLoggerUpdating(toasts)}
           </div>
         </EuiScreenReaderOnly>
       </div>
