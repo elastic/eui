@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { EuiPropTypes } from '../../utils';
 
 import { isColorDark, hexToRgb } from '../../services/color';
-import { EuiKeyboardAccessible } from '../accessibility';
 
 import { IconPropType, EuiIcon } from '../icon';
 
@@ -72,16 +71,15 @@ export const EuiBadge = ({
   if (iconType) {
     if (iconOnClick) {
       optionalIcon = (
-        <EuiKeyboardAccessible>
+        <button onClick={iconOnClick}>
           <EuiIcon
-            onClick={iconOnClick}
             type={iconType}
             size="s"
             aria-label={iconOnClickAriaLabel}
             {...closeButtonProps}
             className={closeClassNames}
           />
-        </EuiKeyboardAccessible>
+        </button>
       );
     } else {
       optionalIcon = (
@@ -90,12 +88,23 @@ export const EuiBadge = ({
     }
   }
 
-  if (onClick) {
+  if (onClick && iconOnClick) {
+    return (
+      <span className={classes} style={optionalCustomStyles}>
+        <span className="euiBadge__content">
+          {optionalIcon}
+          <button onClick={onClick} aria-label={onClickAriaLabel} {...rest}>
+            {children}
+          </button>
+        </span>
+      </span>
+    );
+  } else if (onClick) {
     return (
       <button
         className={classes}
-        style={optionalCustomStyles}
         onClick={onClick}
+        style={optionalCustomStyles}
         aria-label={onClickAriaLabel}
         {...rest}>
         <span className="euiBadge__content">

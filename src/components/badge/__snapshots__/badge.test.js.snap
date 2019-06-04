@@ -18,6 +18,57 @@ exports[`EuiBadge is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
+<span
+  class="euiBadge euiBadge--default testClass1 testClass2"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <button
+      aria-label="aria-label"
+      data-test-subj="test subject string"
+    >
+      Content
+    </button>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiBadge euiBadge--default testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge is rendered with onClick provided 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiBadge euiBadge--default testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span>
+       Content
+    </span>
+  </span>
+</button>
+`;
+
 exports[`EuiBadge props color accent is rendered 1`] = `
 <span
   class="euiBadge euiBadge--accent"

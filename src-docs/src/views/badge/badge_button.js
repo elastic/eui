@@ -16,8 +16,21 @@ export default () => (
       iconSide="right"
       color="#333"
       iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the button">
+      iconOnClickAriaLabel="Example of onclick event for icon within the
+      button">
       onClick on icon within badge
+    </EuiBadge>
+
+    <EuiBadge
+      iconType="cross"
+      iconSide="right"
+      color="#333"
+      onClick={() => window.alert('Badge clicked')}
+      onClickAriaLabel="Example of onclick event for the button"
+      iconOnClick={() => window.alert('Icon inside badge clicked')}
+      iconOnClickAriaLabel="Example of onclick event for icon within the
+      button">
+      onClick on icon within badge and itself
     </EuiBadge>
   </div>
 );
