@@ -222,6 +222,7 @@ export class EuiSuperSelect extends Component {
           style={{ width: this.state.menuWidth }}
           role="option"
           id={value}
+          aria-selected={valueOfSelected === value}
           {...optionRest}>
           {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
@@ -251,7 +252,10 @@ export class EuiSuperSelect extends Component {
             />
           </p>
         </EuiScreenReaderOnly>
-        <div role="listbox" aria-activedescendant={valueOfSelected}>
+        <div
+          role="listbox"
+          aria-activedescendant={valueOfSelected}
+          tabIndex="0">
           {items}
         </div>
       </EuiPopover>

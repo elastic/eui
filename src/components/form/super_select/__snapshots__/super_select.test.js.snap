@@ -27,6 +27,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl testClass1 testClass2"
           data-test-subj="test subject string"
           role="option"
@@ -81,6 +82,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl euiSuperSelect--isOpen__button"
           data-test-subj="superSelect"
           role="option"
@@ -137,8 +139,10 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           </p>
           <div
             role="listbox"
+            tabindex="0"
           >
             <button
+              aria-selected="false"
               class="euiContextMenuItem euiSuperSelect__item"
               id="1"
               role="option"
@@ -163,6 +167,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
               </span>
             </button>
             <button
+              aria-selected="false"
               class="euiContextMenuItem euiSuperSelect__item"
               id="2"
               role="option"
@@ -226,6 +231,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           aria-haspopup="true"
           aria-label="aria-label"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
           data-test-subj="test subject string"
           role="option"
@@ -280,6 +286,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl euiSuperSelect--isOpen__button"
           data-test-subj="superSelect"
           role="option"
@@ -339,8 +346,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           <div
             aria-activedescendant="1"
             role="listbox"
+            tabindex="0"
           >
             <button
+              aria-selected="true"
               class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
               disabled=""
               id="1"
@@ -366,6 +375,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
               </span>
             </button>
             <button
+              aria-selected="false"
               class="euiContextMenuItem euiSuperSelect__item"
               data-test-subj="option two"
               id="2"
@@ -550,6 +560,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                   <button
                     aria-haspopup="true"
                     aria-labelledby="undefined generated-id"
+                    aria-selected={true}
                     className="euiSuperSelectControl euiSuperSelect--isOpen__button"
                     data-test-subj="superSelect"
                     onChange={[Function]}
@@ -704,8 +715,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                 <div
                                   aria-activedescendant="1"
                                   role="listbox"
+                                  tabindex="0"
                                 >
                                   <button
+                                    aria-selected="true"
                                     class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
                                     disabled=""
                                     id="1"
@@ -731,6 +744,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                     </span>
                                   </button>
                                   <button
+                                    aria-selected="false"
                                     class="euiContextMenuItem euiSuperSelect__item"
                                     data-test-subj="option two"
                                     id="2"
@@ -789,8 +803,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   <div
                                     aria-activedescendant="1"
                                     role="listbox"
+                                    tabindex="0"
                                   >
                                     <button
+                                      aria-selected="true"
                                       class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
                                       disabled=""
                                       id="1"
@@ -816,6 +832,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       </span>
                                     </button>
                                     <button
+                                      aria-selected="false"
                                       class="euiContextMenuItem euiSuperSelect__item"
                                       data-test-subj="option two"
                                       id="2"
@@ -913,8 +930,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               <div
                                 aria-activedescendant="1"
                                 role="listbox"
+                                tabIndex="0"
                               >
                                 <EuiContextMenuItem
+                                  aria-selected={true}
                                   buttonRef={[Function]}
                                   className="euiSuperSelect__item"
                                   disabled={true}
@@ -933,6 +952,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   toolTipPosition="right"
                                 >
                                   <button
+                                    aria-selected={true}
                                     className="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
                                     disabled={true}
                                     id="1"
@@ -979,6 +999,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   </button>
                                 </EuiContextMenuItem>
                                 <EuiContextMenuItem
+                                  aria-selected={false}
                                   buttonRef={[Function]}
                                   className="euiSuperSelect__item"
                                   data-test-subj="option two"
@@ -997,6 +1018,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   toolTipPosition="right"
                                 >
                                   <button
+                                    aria-selected={false}
                                     className="euiContextMenuItem euiSuperSelect__item"
                                     data-test-subj="option two"
                                     id="2"
@@ -1101,6 +1123,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl euiSuperSelect--isOpen__button"
           data-test-subj="superSelect"
           role="option"
@@ -1157,8 +1180,10 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           </p>
           <div
             role="listbox"
+            tabindex="0"
           >
             <button
+              aria-selected="false"
               class="euiContextMenuItem euiSuperSelect__item"
               id="1"
               role="option"
@@ -1183,6 +1208,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
               </span>
             </button>
             <button
+              aria-selected="false"
               class="euiContextMenuItem euiSuperSelect__item"
               id="2"
               role="option"
@@ -1245,6 +1271,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl"
           role="option"
           type="button"
@@ -1298,6 +1325,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
         <button
           aria-haspopup="true"
           aria-labelledby="undefined generated-id"
+          aria-selected="true"
           class="euiSuperSelectControl"
           role="option"
           type="button"

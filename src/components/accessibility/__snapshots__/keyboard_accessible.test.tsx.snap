@@ -9,7 +9,7 @@ exports[`EuiKeyboardAccessible adds accessibility attributes tabindex and role 1
 
 exports[`EuiKeyboardAccessible doesn't override pre-existing accessibility attributes role 1`] = `
 <div
-  role="submit"
+  role="button"
   tabindex="0"
 />
 `;
