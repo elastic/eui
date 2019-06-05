@@ -17,8 +17,7 @@
   text-align: center;
   overflow: hidden;
 
-  &:focus,
-  &:focus-within {
+  &:focus {
     @include euiFocusRing('small');
   }
 
@@ -36,12 +35,18 @@
     flex: 0 0 auto;
     font-weight: inherit;
     line-height: inherit;
+
+    &:focus {
+      background-color: transparentize($euiColorGhost, .2);
+      color: #000; // sass-lint:disable-line no-color-literals
+      border-radius: 2px;
+    }
   }
 
   .euiBadge__iconButton {
     flex: 0 0 auto;
     font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
-    margin-right: $euiSizeXS;
+    margin-left: $euiSizeXS;
 
     &:focus {
       background-color: transparentize($euiColorGhost, .2);
@@ -63,16 +68,16 @@
 
   .euiBadge__icon {
     flex: 0 0 auto;
-    margin-right: $euiSizeXS;
+    margin-left: $euiSizeXS;
   }
 
-  &.euiBadge--iconRight .euiBadge__content {
+  &.euiBadge--iconLeft .euiBadge__content {
     flex-direction: row-reverse;
 
     .euiBadge__iconButton,
     .euiBadge__icon {
-      margin-left: $euiSizeXS;
-      margin-right: 0;
+      margin-right: $euiSizeXS;
+      margin-left: 0;
     }
   }
 }

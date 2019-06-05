@@ -20,7 +20,7 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const iconSideToClassNameMap = {
-  left: '',
+  left: 'euiBadge--iconLeft',
   right: 'euiBadge--iconRight',
 };
 
@@ -72,8 +72,8 @@ export const EuiBadge = ({
     if (iconOnClick) {
       optionalIcon = (
         <button
-          aria-label={iconOnClickAriaLabel}
           className="euiBadge__iconButton"
+          aria-label={iconOnClickAriaLabel}
           onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
@@ -94,14 +94,14 @@ export const EuiBadge = ({
     return (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
-          {optionalIcon}
           <button
-            aria-label={onClickAriaLabel}
             className="euiBadge__childButton"
+            aria-label={onClickAriaLabel}
             onClick={onClick}
             {...rest}>
             {children}
           </button>
+          {optionalIcon}
         </span>
       </span>
     );
@@ -114,8 +114,8 @@ export const EuiBadge = ({
         style={optionalCustomStyles}
         {...rest}>
         <span className="euiBadge__content">
-          {optionalIcon}
           <span>{children}</span>
+          {optionalIcon}
         </span>
       </button>
     );
@@ -123,8 +123,8 @@ export const EuiBadge = ({
     return (
       <span className={classes} style={optionalCustomStyles} {...rest}>
         <span className="euiBadge__content">
-          {optionalIcon}
           <span className="euiBadge__text">{children}</span>
+          {optionalIcon}
         </span>
       </span>
     );
