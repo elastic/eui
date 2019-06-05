@@ -1,4 +1,4 @@
-import { CommonProps } from '../../common';
+import { CommonProps, Omit } from '../../common';
 
 import { FunctionComponent, ReactNode, ButtonHTMLAttributes } from 'react';
 
@@ -7,8 +7,8 @@ declare module '@elastic/eui' {
    * @see './super_select.js'
    */
 
-  export type EuiSuperSelectProps = CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & {
+  export type EuiSuperSelectProps<T extends string> = CommonProps &
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
       /**
        * Pass an array of options that must at least include:
        * `value`: storing unique value of item,
@@ -16,12 +16,14 @@ declare module '@elastic/eui' {
        * `dropdownDisplay` (optional): what shows for the item in the dropdown
        */
       options: Array<{
-        value: string;
+        value: T;
         inputDisplay?: ReactNode;
         dropdownDisplay?: ReactNode;
+        disabled?: boolean;
+        'data-test-subj'?: string;
       }>;
 
-      valueOfSelected?: string;
+      valueOfSelected?: T;
 
       /**
        * Classes for the context menu item
@@ -31,7 +33,7 @@ declare module '@elastic/eui' {
       /**
        * You must pass an `onChange` function to handle the update of the value
        */
-      onChange?: (value: string) => void;
+      onChange?: (value: T) => void;
 
       /**
        * Change to `true` if you want horizontal lines between options.
@@ -55,6 +57,11 @@ declare module '@elastic/eui' {
       isInvalid?: boolean;
 
       /**
+       * Provides a loading indicator. Default: false
+       */
+      isLoading?: boolean;
+
+      /**
        * Make it short. Default: false
        */
       compressed?: boolean;
@@ -70,5 +77,7 @@ declare module '@elastic/eui' {
       isOpen?: boolean;
     };
 
-  export const EuiSuperSelect: FunctionComponent<EuiSuperSelectProps>;
+  export const EuiSuperSelect: <T extends string>(
+    props: EuiSuperSelectProps<T>
+  ) => ReturnType<FunctionComponent<EuiSuperSelectProps<T>>>;
 }
