@@ -30,6 +30,7 @@
     flex-shrink: 0;
     height: $euiFormControlHeight - 2px; /* 1 */
     line-height: $euiFontSize;
+    border: none; // remove any border in case it exists
 
     &:disabled {
       background-color: $euiFormBackgroundDisabledColor;
