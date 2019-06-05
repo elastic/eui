@@ -180,7 +180,6 @@ export class EuiGlobalToastList extends Component {
   };
 
   handleScreenReaderToastLoggerUpdating = toasts => {
-
     if (!toasts.length) {
       // show what we have now to avoid node re-rendering
       return this.lastRenderedForScreenReaderToast.reactElement;
@@ -192,7 +191,9 @@ export class EuiGlobalToastList extends Component {
     // Otherwise, it's hard to decide between too toasts
     // where one of them has number ID while the other -- string
     // Also, documentation example uses numberic IDs
-    const toastIDS = toasts.filter(({id}) => typeof id === 'number').map(({id}) => id);
+    const toastIDS = toasts
+      .filter(({ id }) => typeof id === 'number')
+      .map(({ id }) => id);
     const latestToastID = Math.max(...toastIDS);
     const lastToast = this.lastRenderedForScreenReaderToast;
 
@@ -309,8 +310,7 @@ export class EuiGlobalToastList extends Component {
           this.listElement = element;
         }}
         className={classes}
-        {...rest}
-      >
+        {...rest}>
         {renderedToasts}
         <EuiScreenReaderOnly>
           <div role="region" aria-live="polite">
