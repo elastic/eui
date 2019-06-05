@@ -11,6 +11,47 @@ describe('EuiBadge', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with onClick provided', () => {
+    const component = render(
+      <EuiBadge
+        {...requiredProps}
+        onClick={jest.fn()}
+        onClickAriaLabel="Example of onclick event for the button">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered with iconOnClick provided', () => {
+    const component = render(
+      <EuiBadge
+        {...requiredProps}
+        iconOnClick={jest.fn()}
+        iconOnClickAriaLabel="Example of onclick event for icon within the button">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered with iconOnClick and onClick provided', () => {
+    const component = render(
+      <EuiBadge
+        {...requiredProps}
+        iconOnClick={jest.fn()}
+        iconOnClickAriaLabel="Example of onclick event for icon within the button"
+        onClick={jest.fn()}
+        onClickAriaLabel="Example of onclick event for the button">
+        Content
+      </EuiBadge>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('iconType', () => {
       it('is rendered', () => {
