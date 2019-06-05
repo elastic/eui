@@ -46,6 +46,7 @@ export class EuiGlobalToastList extends Component {
         color: PropTypes.string,
         iconType: IconPropType,
         toastLifeTimeMs: PropTypes.number,
+        screenReaderOnly: PropTypes.bool,
       }).isRequired
     ),
     dismissToast: PropTypes.func.isRequired,
@@ -192,14 +193,11 @@ export class EuiGlobalToastList extends Component {
     // where one of them has number ID while the other -- string
     // Also, documentation example uses numberic IDs
     const toastIDS = toasts.filter(({id}) => typeof id === 'number').map(({id}) => id);
-    console.info('toastIDS', toastIDS);
     const latestToastID = Math.max(...toastIDS);
     const lastToast = this.lastRenderedForScreenReaderToast;
 
     // check the local toast
     const locallyStored = lastToast.id >= latestToastID;
-
-    console.info('locallyStored', locallyStored, latestToastID, lastToast, toasts);
 
     if (locallyStored) {
       // if locally stored, then render without delay
@@ -288,7 +286,7 @@ export class EuiGlobalToastList extends Component {
     const renderedToasts = toasts.map(toast => {
       const { text, toastLifeTimeMs, ...rest } = toast;
 
-      return (
+      return toast.screenReaderOnly ? null : (
         <EuiGlobalToastListItem
           key={toast.id}
           isDismissed={this.state.toastIdToDismissedMap[toast.id]}>
@@ -311,7 +309,8 @@ export class EuiGlobalToastList extends Component {
           this.listElement = element;
         }}
         className={classes}
-        {...rest}>
+        {...rest}
+      >
         {renderedToasts}
         <EuiScreenReaderOnly>
           <div role="region" aria-live="polite">

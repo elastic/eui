@@ -100,4 +100,5 @@ EuiToast.propTypes = {
   color: PropTypes.oneOf(COLORS),
   onClose: PropTypes.func,
   children: PropTypes.node,
+  screenReaderOnly: PropTypes.bool,
 };
