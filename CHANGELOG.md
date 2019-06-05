@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed optional TS definitions for `EuiColorPicker` `onBlur` and `onFocus` callbacks ([#1993](https://github.com/elastic/eui/pull/1993))
+- Fixed `EuiIcon` again so that webpack can build dynamic require contexts ([#1998](https://github.com/elastic/eui/pull/1998))
 
 ## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
 
