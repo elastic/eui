@@ -11,6 +11,7 @@ import {
   EuiCode,
   EuiBetaBadge,
   EuiNotificationBadge,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import Badge from './badge';
@@ -87,12 +88,24 @@ export const BadgeExample = {
         },
       ],
       text: (
-        <p>
-          Badges can have onClick events applied to the badge itself or the icon
-          within the badge. The later option is useful for when you might use
-          badges in other components (like a tag system with autocomplete where
-          you need close events).
-        </p>
+        <div>
+          <p>
+            Badges can have onClick events applied to the badge itself or the
+            icon within the badge. The later option is useful for when you might
+            use badges in other components (like a tag system with autocomplete
+            where you need close events).
+          </p>
+          <EuiCallOut title="onClick with iconOnClick">
+            <p>
+              When providing both these click handlers, EuiBadge must alter the
+              contents so that it does not contain nested button tags. Please
+              make note that if you provide props other than those explicit to
+              EuiBadge, they will always be applied to the main{' '}
+              <EuiCode>button</EuiCode> tag which may be inside of the outer
+              most tag.
+            </p>
+          </EuiCallOut>
+        </div>
       ),
       demo: <BadgeButton />,
     },
@@ -127,8 +140,7 @@ export const BadgeExample = {
           </p>
           <p>
             They can also be used in conjunction with{' '}
-            <Link to="/display/card">EuiCards</Link>
-            &nbsp;and{' '}
+            <Link to="/display/card">EuiCards</Link> and{' '}
             <Link to="/navigation/key-pad-menu">EuiKeyPadMenuItems</Link>.
           </p>
         </div>
