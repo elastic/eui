@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { EuiPropTypes } from '../../utils';
 
 import { isColorDark, hexToRgb } from '../../services/color';
-import { EuiKeyboardAccessible } from '../accessibility';
 
 import {
   ICON_TYPES,
@@ -24,7 +23,7 @@ const colorToClassNameMap = {
 export const COLORS = Object.keys(colorToClassNameMap);
 
 const iconSideToClassNameMap = {
-  left: '',
+  left: 'euiBadge--iconLeft',
   right: 'euiBadge--iconRight',
 };
 
@@ -63,6 +62,9 @@ export const EuiBadge = ({
 
   const classes = classNames(
     'euiBadge',
+    {
+      'euiBadge-isClickable': onClick && !iconOnClick,
+    },
     iconSideToClassNameMap[iconSide],
     optionalColorClass,
     className
@@ -77,16 +79,18 @@ export const EuiBadge = ({
   if (iconType) {
     if (iconOnClick) {
       optionalIcon = (
-        <EuiKeyboardAccessible>
+        <button
+          className="euiBadge__iconButton"
+          aria-label={iconOnClickAriaLabel}
+          onClick={iconOnClick}
+        >
           <EuiIcon
-            onClick={iconOnClick}
             type={iconType}
             size="s"
-            aria-label={iconOnClickAriaLabel}
             {...closeButtonProps}
             className={closeClassNames}
           />
-        </EuiKeyboardAccessible>
+        </button>
       );
 
     } else {
@@ -96,35 +100,43 @@ export const EuiBadge = ({
     }
   }
 
-  if (onClick) {
+  if (onClick && iconOnClick) {
+    return (
+      <span className={classes} style={optionalCustomStyles}>
+        <span className="euiBadge__content">
+          <button
+            className="euiBadge__childButton"
+            aria-label={onClickAriaLabel}
+            onClick={onClick}
+            {...rest}
+          >
+            {children}
+          </button>
+          {optionalIcon}
+        </span>
+      </span>
+    );
+  } else if (onClick) {
     return (
       <button
-        className={classes}
-        style={optionalCustomStyles}
-        onClick={onClick}
         aria-label={onClickAriaLabel}
+        className={classes}
+        onClick={onClick}
+        style={optionalCustomStyles}
         {...rest}
       >
         <span className="euiBadge__content">
+          <span>{children}</span>
           {optionalIcon}
-          <span>
-            {children}
-          </span>
         </span>
       </button>
     );
   } else {
     return (
-      <span
-        className={classes}
-        style={optionalCustomStyles}
-        {...rest}
-      >
+      <span className={classes} style={optionalCustomStyles} {...rest}>
         <span className="euiBadge__content">
+          <span className="euiBadge__text">{children}</span>
           {optionalIcon}
-          <span className="euiBadge__text">
-            {children}
-          </span>
         </span>
       </span>
     );
