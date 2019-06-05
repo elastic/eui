@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `11.3.1`.
+
+## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
+
 **Bug fixes**
 
 - Fixed `EuiBadge` conflicts with providing both `iconOnClick` and `onClick` ([#1994](https://github.com/elastic/eui/pull/1994))
