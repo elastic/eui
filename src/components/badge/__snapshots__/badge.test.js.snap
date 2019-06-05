@@ -57,7 +57,7 @@ exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 exports[`EuiBadge is rendered with onClick provided 1`] = `
 <button
   aria-label="aria-label"
-  class="euiBadge euiBadge--iconLeft euiBadge--default testClass1 testClass2"
+  class="euiBadge euiBadge-isClickable euiBadge--iconLeft euiBadge--default testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span

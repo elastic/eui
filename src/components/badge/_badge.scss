@@ -17,7 +17,7 @@
   text-align: center;
   overflow: hidden;
 
-  &:focus {
+  &:focus-within {
     @include euiFocusRing('small');
   }
 
@@ -36,10 +36,9 @@
     font-weight: inherit;
     line-height: inherit;
 
+    &:hover,
     &:focus {
-      background-color: transparentize($euiColorGhost, .2);
-      color: #000; // sass-lint:disable-line no-color-literals
-      border-radius: 2px;
+      text-decoration: underline;
     }
   }
 
@@ -79,6 +78,17 @@
       margin-right: $euiSizeXS;
       margin-left: 0;
     }
+  }
+}
+
+.euiBadge-isClickable {
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    @include euiFocusRing('small');
   }
 }
 

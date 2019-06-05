@@ -57,6 +57,9 @@ export const EuiBadge = ({
 
   const classes = classNames(
     'euiBadge',
+    {
+      'euiBadge-isClickable': onClick && !iconOnClick,
+    },
     iconSideToClassNameMap[iconSide],
     optionalColorClass,
     className
