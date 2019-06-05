@@ -71,11 +71,13 @@ export const EuiBadge = ({
   if (iconType) {
     if (iconOnClick) {
       optionalIcon = (
-        <button className="euiBadge__iconButton" onClick={iconOnClick}>
+        <button
+          aria-label={iconOnClickAriaLabel}
+          className="euiBadge__iconButton"
+          onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
             size="s"
-            aria-label={iconOnClickAriaLabel}
             {...closeButtonProps}
             className={closeClassNames}
           />
@@ -94,9 +96,9 @@ export const EuiBadge = ({
         <span className="euiBadge__content">
           {optionalIcon}
           <button
+            aria-label={onClickAriaLabel}
             className="euiBadge__childButton"
             onClick={onClick}
-            aria-label={onClickAriaLabel}
             {...rest}>
             {children}
           </button>
@@ -106,10 +108,10 @@ export const EuiBadge = ({
   } else if (onClick) {
     return (
       <button
+        aria-label={onClickAriaLabel}
         className={classes}
         onClick={onClick}
         style={optionalCustomStyles}
-        aria-label={onClickAriaLabel}
         {...rest}>
         <span className="euiBadge__content">
           {optionalIcon}

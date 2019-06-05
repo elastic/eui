@@ -17,7 +17,6 @@ describe('EuiBadge', () => {
         {...requiredProps}
         onClick={jest.fn()}
         onClickAriaLabel="Example of onclick event for the button">
-        {' '}
         Content
       </EuiBadge>
     );

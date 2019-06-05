@@ -16,8 +16,7 @@ export default () => (
       iconSide="right"
       color="#333"
       iconOnClick={() => window.alert('Icon inside badge clicked')}
-      iconOnClickAriaLabel="Example of onclick event for icon within the
-      button">
+      iconOnClickAriaLabel="Example of onclick event for icon within the button">
       onClick on icon within badge
     </EuiBadge>
 
@@ -30,7 +29,7 @@ export default () => (
       iconOnClick={() => window.alert('Icon inside badge clicked')}
       iconOnClickAriaLabel="Example of onclick event for icon within the
       button">
-      onClick on icon within badge and itself
+      onClick on itself and the icon
     </EuiBadge>
   </div>
 );
