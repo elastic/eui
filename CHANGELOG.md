@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.3.1`.
+**Bug fixes**
+
+- Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 
