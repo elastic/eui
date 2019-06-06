@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `11.3.1`.
+**Breaking changes**
+
+- Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
 
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 
@@ -37,10 +39,6 @@ No public interface changes since `11.3.1`.
 - Fixed Prettier formatting lint error in `EuiTable` TS def file ([#1986](https://github.com/elastic/eui/pull/1986))
 - Fixed not clickable button with svg in Safari ([#1985](https://github.com/elastic/eui/pull/1985))
 - Fixed `EuiToggle` pointer events for those using icons only ([#1991](https://github.com/elastic/eui/pull/1991))
-
-**Breaking changes**
-
-- Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
 
 ## [`11.2.1`](https://github.com/elastic/eui/tree/v11.2.1)
 
