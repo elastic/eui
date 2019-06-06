@@ -212,6 +212,11 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
+var tabbable$1 = /*#__PURE__*/Object.freeze({
+  default: tabbable_1,
+  __moduleExports: tabbable_1
+});
+
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -232,6 +237,15 @@ function extend() {
     return target
 }
 
+var immutable$1 = /*#__PURE__*/Object.freeze({
+  default: immutable,
+  __moduleExports: immutable
+});
+
+var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
+
+var xtend = ( immutable$1 && immutable ) || immutable$1;
+
 var listeningFocusTrap = null;
 
 function focusTrap(element, userOptions) {
@@ -239,7 +253,7 @@ function focusTrap(element, userOptions) {
   var container =
     typeof element === 'string' ? doc.querySelector(element) : element;
 
-  var config = immutable(
+  var config = xtend(
     {
       returnFocusOnDeactivate: true,
       escapeDeactivates: true
@@ -411,7 +425,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable_1.isFocusable(e.target)
+        returnFocus: !tabbable$2.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -466,7 +480,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable_1(container);
+    var tabbableNodes = tabbable$2(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -508,6 +522,13 @@ function delay(fn) {
 }
 
 var focusTrap_1 = focusTrap;
+
+var focusTrap$1 = /*#__PURE__*/Object.freeze({
+  default: focusTrap_1,
+  __moduleExports: focusTrap_1
+});
+
+var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -619,7 +640,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: focusTrap_1
+  _createFocusTrap: createFocusTrap
 };
 
 var focusTrapReact = FocusTrap;
@@ -4244,10 +4265,17 @@ var _aFunction = function (it) {
   return it;
 };
 
+var _aFunction$1 = /*#__PURE__*/Object.freeze({
+  default: _aFunction,
+  __moduleExports: _aFunction
+});
+
+var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
+
 // optional / simple context binding
 
 var _ctx = function (fn, that, length) {
-  _aFunction(fn);
+  aFunction(fn);
   if (that === undefined) return fn;
   switch (length) {
     case 1: return function (a) {
@@ -4448,11 +4476,6 @@ var _toLength = function (it) {
   return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
-var _toLength$1 = /*#__PURE__*/Object.freeze({
-  default: _toLength,
-  __moduleExports: _toLength
-});
-
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
@@ -4465,8 +4488,6 @@ var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: _toAbsoluteIndex
 });
 
-var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
-
 var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 // false -> Array#indexOf
@@ -4477,7 +4498,7 @@ var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteI
 var _arrayIncludes = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = _toIobject($this);
-    var length = toLength(O.length);
+    var length = _toLength(O.length);
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
     // Array#includes uses SameValueZero equality algorithm
@@ -5272,11 +5293,18 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = createCommonjsModule(function (module) {
-module.exports = { "default": symbol, __esModule: true };
+var symbol$1 = /*#__PURE__*/Object.freeze({
+  default: symbol,
+  __moduleExports: symbol
 });
 
-unwrapExports(symbol$1);
+var require$$0 = ( symbol$1 && symbol ) || symbol$1;
+
+var symbol$2 = createCommonjsModule(function (module) {
+module.exports = { "default": require$$0, __esModule: true };
+});
+
+unwrapExports(symbol$2);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5288,7 +5316,7 @@ var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$1);
+var _symbol2 = _interopRequireDefault(symbol$2);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5301,14 +5329,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-var _typeof$1 = unwrapExports(_typeof_1);
-
-var _typeof$2 = /*#__PURE__*/Object.freeze({
-  default: _typeof$1,
-  __moduleExports: _typeof_1
-});
-
-var _typeof2 = ( _typeof$2 && _typeof$1 ) || _typeof$2;
+unwrapExports(_typeof_1);
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -5316,7 +5337,7 @@ exports.__esModule = true;
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+var _typeof3 = _interopRequireDefault(_typeof_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5377,18 +5398,11 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = /*#__PURE__*/Object.freeze({
-  default: create,
-  __moduleExports: create
+var create$1 = createCommonjsModule(function (module) {
+module.exports = { "default": create, __esModule: true };
 });
 
-var require$$0 = ( create$1 && create ) || create$1;
-
-var create$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0, __esModule: true };
-});
-
-unwrapExports(create$2);
+unwrapExports(create$1);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5400,11 +5414,11 @@ var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$2);
+var _create2 = _interopRequireDefault(create$1);
 
 
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+var _typeof3 = _interopRequireDefault(_typeof_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7942,6 +7956,11 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
+var gud$1 = /*#__PURE__*/Object.freeze({
+  default: gud,
+  __moduleExports: gud
+});
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -7977,6 +7996,13 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
+var emptyFunction$1 = /*#__PURE__*/Object.freeze({
+  default: emptyFunction_1,
+  __moduleExports: emptyFunction_1
+});
+
+var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
+
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -7984,7 +8010,7 @@ var emptyFunction_1 = emptyFunction;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction_1;
+var warning = emptyFunction$2;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8028,6 +8054,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
+var _gud = ( gud$1 && gud ) || gud$1;
+
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8042,7 +8070,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(gud);
+var _gud2 = _interopRequireDefault(_gud);
 
 
 
@@ -8226,14 +8254,7 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-var implementation$1 = unwrapExports(implementation);
-
-var implementation$2 = /*#__PURE__*/Object.freeze({
-  default: implementation$1,
-  __moduleExports: implementation
-});
-
-var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
+unwrapExports(implementation);
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8245,7 +8266,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(_implementation);
+var _implementation2 = _interopRequireDefault(implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
