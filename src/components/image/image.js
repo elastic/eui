@@ -103,37 +103,40 @@ export class EuiImage extends Component {
       fullScreenDisplay = (
         <EuiOverlayMask onClick={this.closeFullScreen}>
           <EuiFocusTrap clickOutsideDisables={true}>
-            <figure
-              ref={node => {
-                this.figure = node;
-              }}
-              className="euiImageFullScreen"
+            <button
+              type="button"
               onClick={this.closeFullScreen}
-              tabIndex={0}
               onKeyDown={this.onKeyDown}>
-              <img src={url} className="euiImageFullScreen__img" alt={alt} />
-              {optionalCaption}
-            </figure>
+              <figure
+                ref={node => {
+                  this.figure = node;
+                }}
+                className="euiImageFullScreen">
+                <img src={url} className="euiImageFullScreen__img" alt={alt} />
+                {optionalCaption}
+              </figure>
+            </button>
           </EuiFocusTrap>
         </EuiOverlayMask>
       );
     }
 
     return (
-      <figure
-        className={classes}
-        onClick={allowFullScreen ? this.openFullScreen : undefined}
-        {...rest}>
-        <img src={url} className="euiImage__img" alt={alt} />
-        {optionalCaption}
+      <button
+        type="button"
+        onClick={allowFullScreen ? this.openFullScreen : undefined}>
+        <figure className={classes} {...rest}>
+          <img src={url} className="euiImage__img" alt={alt} />
+          {optionalCaption}
 
-        {/*
+          {/*
           If the below fullScreen image renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
         */}
-        {optionalIcon}
-        {fullScreenDisplay}
-      </figure>
+          {optionalIcon}
+          {fullScreenDisplay}
+        </figure>
+      </button>
     );
   }
 }

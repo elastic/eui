@@ -180,7 +180,6 @@ export class Table extends Component {
           const label = online ? 'Online' : 'Offline';
           return <EuiHealth color={color}>{label}</EuiHealth>;
         },
-        sortable: true,
       },
     ];
 

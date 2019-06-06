@@ -65,7 +65,7 @@ export const EuiTableHeaderCell = ({
         scope={scope}
         role="columnheader"
         aria-sort={ariaSortValue}
-        aria-live
+        aria-live="polite"
         {...rest}>
         <button
           type="button"

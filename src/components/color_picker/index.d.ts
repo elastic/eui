@@ -26,9 +26,9 @@ declare module '@elastic/eui' {
    */
   interface HTMLDivElementOverrides {
     color: string;
-    onBlur: () => void;
+    onBlur?: () => void;
     onChange: (hex: string) => void;
-    onFocus: () => void;
+    onFocus?: () => void;
   }
   export type EuiColorPickerProps = CommonProps &
     Omit<HTMLAttributes<HTMLDivElement>, keyof HTMLDivElementOverrides> &

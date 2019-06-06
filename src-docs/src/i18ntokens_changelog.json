@@ -1,5 +1,43 @@
 [
   {
+    "version": "11.3.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.transparentColor",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorPicker.colorSelectionLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorPicker.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "A popup with a range of selectable colors opened.\n                  Tab forward to cycle through colors choices or press\n                  escape to close this popup."
+      },
+      {
+        "token": "euiColorPicker.swatchAriaLabel",
+        "changeType": "added",
+        "value": "Select {swatch} as the color"
+      },
+      {
+        "token": "euiHue.label",
+        "changeType": "added",
+        "value": "Select the HSV color mode 'hue' value"
+      },
+      {
+        "token": "euiSaturation.roleDescription",
+        "changeType": "added",
+        "value": "HSV color mode saturation and value selection"
+      },
+      {
+        "token": "euiSaturation.screenReaderAnnouncement",
+        "changeType": "added",
+        "value": "Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value."
+      }
+    ]
+  },
+  {
     "version": "10.3.0",
     "changes": [
       {

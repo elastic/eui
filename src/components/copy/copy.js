@@ -37,6 +37,8 @@ export class EuiCopy extends React.Component {
     } = this.props;
 
     return (
+      // See `src/components/tool_tip/tool_tip.js` for explaination of below eslint-disable
+      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <EuiToolTip
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
@@ -56,7 +58,7 @@ EuiCopy.propTypes = {
   /**
    * Tooltip message displayed before copy function is called.
    */
-  beforeMessage: PropTypes.string,
+  beforeMessage: PropTypes.node,
 
   /**
    * Tooltip message displayed after copy function is called that lets the user know that

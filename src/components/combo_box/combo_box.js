@@ -727,13 +727,24 @@ export class EuiComboBox extends Component {
     }
 
     return (
+      /**
+       * Re: jsx-a11y/interactive-supports-focus
+       * Focus is managed and is placed on the textbox element (`EuiComboBoxInput`)
+       *
+       * Re: jsx-a11y/role-has-required-aria-props
+       * Expansion is managed and required `aria-controls` prop is placed on the textbox element (`EuiComboBoxInput`)
+       *
+       * Reference for both: https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/#combobox,
+       * which verifies that this implementation follows the spec.
+       */
+      // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         {...rest}
         className={classes}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRef}
         data-test-subj={dataTestSubj}
-        role="combobox"
+        role="combobox" // eslint-disable-line jsx-a11y/role-has-required-aria-props
         aria-haspopup="listbox"
         aria-expanded={isListOpen}>
         <EuiComboBoxInput

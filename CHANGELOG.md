@@ -1,5 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `11.3.1`.
+
+## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
+
+**Bug fixes**
+
+- Fixed `EuiBadge` conflicts with providing both `iconOnClick` and `onClick` ([#1994](https://github.com/elastic/eui/pull/1994))
+- Fixed optional TS definitions for `EuiColorPicker` `onBlur` and `onFocus` callbacks ([#1993](https://github.com/elastic/eui/pull/1993))
+- Fixed `EuiIcon` again so that webpack can build dynamic require contexts ([#1998](https://github.com/elastic/eui/pull/1998))
+- Fixed double borders on prepend/append items in `EuiFormControlLayout` ([#1996](https://github.com/elastic/eui/pull/1996))
+- Fixed `EuiSuperSelect` TS definitions ([#1995](https://github.com/elastic/eui/pull/1995))
+
+## [`11.3.0`](https://github.com/elastic/eui/tree/v11.3.0)
+
 - Converted `EuiTableRowHeaderCheckbox` to TS ([#1973](https://github.com/elastic/eui/pull/1973))
 - Added missing TypeScript definition for `EuiFieldText`'s `compressed` prop ([#1977](https://github.com/elastic/eui/pull/1977))
 - Converted `EuiTableRowCellCheckbox` to TS ([#1964](https://github.com/elastic/eui/pull/1964))
@@ -11,6 +25,8 @@
 - Removed TSlint and will perform all linting through ESLint ([#1950](https://github.com/elastic/eui/pull/1950))
 - Added new component `EuiDelayRender` ([#1876](https://github.com/elastic/eui/pull/1876))
 - Replaced `EuiColorPicker` with custom, customizable component ([#1914](https://github.com/elastic/eui/pull/1914))
+- Added `jsx-a11y` `eslint` plugin and rules to match Kibana ([#1952](https://github.com/elastic/eui/pull/1952))
+- Changed `EuiCopy` `beforeMessage` prop to accept `node` instead of just `string` ([#1952](https://github.com/elastic/eui/pull/1952))
 
 **Bug fixes**
 
@@ -19,6 +35,8 @@
 - Fixed type mismatch between PropType and TypeScript def for `EuiGlobalToastList` toast `title` ([#1978](https://github.com/elastic/eui/pull/1978))
 - Fixed missing Typescript definition for `EuiButton`'s `color="text"` option ([#1980](https://github.com/elastic/eui/pull/1980))
 - Fixed Prettier formatting lint error in `EuiTable` TS def file ([#1986](https://github.com/elastic/eui/pull/1986))
+- Fixed not clickable button with svg in Safari ([#1985](https://github.com/elastic/eui/pull/1985))
+- Fixed `EuiToggle` pointer events for those using icons only ([#1991](https://github.com/elastic/eui/pull/1991))
 
 **Breaking changes**
 

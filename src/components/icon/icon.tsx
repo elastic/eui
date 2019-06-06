@@ -457,9 +457,11 @@ export class EuiIcon extends Component<Props, State> {
 
   loadIconComponent = (iconType: EuiIconType) => {
     import(
-      /* webpackChunkName: "icon.[request]" */ `./assets/${
-        typeToPathMap[iconType]
-      }.js`
+      /* webpackChunkName: "icon.[request]" */
+      // It's important that we don't use a template string here, it
+      // stops webpack from building a dynamic require context.
+      // eslint-disable-next-line prefer-template
+      './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
       if (this.isMounted) {
         this.setState({
@@ -524,6 +526,8 @@ export class EuiIcon extends Component<Props, State> {
     if (typeof icon === 'string') {
       return (
         <img
+          // TODO: Allow alt prop
+          alt=""
           src={icon}
           className={classes}
           tabIndex={tabIndex}
