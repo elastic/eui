@@ -286,17 +286,15 @@ color: $${color2};`;
                           <button
                             type="button"
                             onClick={copy}
-                            className="eui-fullWidth eui-textLeft">
-                            <p
-                              style={{
-                                backgroundColor: palette[color].rgba,
-                                color: palette[color2].rgba,
-                                padding: 6,
-                                marginBottom: 2,
-                                borderRadius: 4,
-                              }}>
-                              {contrastRating} &ensp; {color2}
-                            </p>
+                            className="eui-fullWidth eui-textLeft"
+                            style={{
+                              backgroundColor: palette[color].rgba,
+                              color: palette[color2].rgba,
+                              padding: 6,
+                              marginBottom: 2,
+                              borderRadius: 4,
+                            }}>
+                            {contrastRating} &ensp; {color2}
                           </button>
                         )}
                       </EuiCopy>
