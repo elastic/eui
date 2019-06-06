@@ -52,5 +52,5 @@
   */
 .euiCallOutHeader__icon {
   flex: 0 0 auto;
-  transform: translateY(2px); /* 1 */
+  transform: translateY(2px) !important; /* 1 */ // sass-lint:disable-line no-important
 }
