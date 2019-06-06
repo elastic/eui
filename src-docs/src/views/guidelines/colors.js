@@ -283,7 +283,10 @@ color: $${color2};`;
                         beforeMessage={tooltipContent}
                         textToCopy={textToCopy}>
                         {copy => (
-                          <button type="button" onClick={copy}>
+                          <button
+                            type="button"
+                            onClick={copy}
+                            className="eui-fullWidth eui-textLeft">
                             <p
                               style={{
                                 backgroundColor: palette[color].rgba,
