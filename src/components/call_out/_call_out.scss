@@ -5,6 +5,12 @@
   &.euiCallOut--small {
     padding: $euiSizeS;
   }
+
+  .euiCallOutHeader__icon {
+    flex: 0 0 auto;
+    // Vertically center icon with first line of title
+    transform: translateY(2px);
+  }
 }
 
 // Create callout modifiders based upon the map.
@@ -45,12 +51,4 @@
   .euiCallOut--small & {
     @include euiCallOutTitle('s');
   }
-}
-
-/**
-  * 1. Vertically center icon with first line of title.
-  */
-.euiCallOutHeader__icon {
-  flex: 0 0 auto;
-  transform: translateY(2px); /* 1 */
 }
