@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 
 **Bug fixes**
