@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { mount } from 'enzyme';
 import { EuiMutationObserver } from './mutation_observer';
 
-async function sleep(duration) {
+async function sleep(duration: number) {
   return new Promise(resolve => {
     setTimeout(resolve, duration);
   });
@@ -18,7 +18,7 @@ describe('EuiMutationObserver', () => {
     expect.assertions(1);
     const onMutation = jest.fn();
 
-    function Wrapper({ value }) {
+    const Wrapper: FunctionComponent<{ value: number }> = ({ value }) => {
       return (
         <EuiMutationObserver
           observerOptions={{ attributes: true }}
@@ -30,7 +30,7 @@ describe('EuiMutationObserver', () => {
           )}
         </EuiMutationObserver>
       );
-    }
+    };
 
     const component = mount(<Wrapper value={5} />);
 
