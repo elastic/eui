@@ -1,13 +1,18 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component, ReactNode } from 'react';
 
-class EuiObserver extends Component {
-  constructor(...args) {
-    super(...args);
-    this.name = 'EuiObserver';
-    this.childNode = null;
-    this.observer = null;
-  }
+interface BaseProps {
+  children: (ref: any) => ReactNode;
+}
+
+interface Observer {
+  disconnect: () => void;
+  observe: (element: Element, options?: { [key: string]: any }) => void;
+}
+
+export class EuiObserver<Props extends BaseProps> extends Component<Props> {
+  protected name: string = 'EuiObserver';
+  protected childNode: null | Element = null;
+  protected observer: null | Observer = null;
 
   componentDidMount() {
     if (this.childNode == null) {
@@ -21,7 +26,7 @@ class EuiObserver extends Component {
     }
   }
 
-  updateChildNode = ref => {
+  updateChildNode = (ref: Element) => {
     if (this.childNode === ref) return; // node hasn't changed
 
     // if there's an existing observer disconnect it
@@ -37,7 +42,7 @@ class EuiObserver extends Component {
     }
   };
 
-  beginObserve = () => {
+  beginObserve: () => void = () => {
     throw new Error('EuiObserver has no default observation method');
   };
 
@@ -45,9 +50,3 @@ class EuiObserver extends Component {
     return this.props.children(this.updateChildNode);
   }
 }
-
-EuiObserver.propTypes = {
-  children: PropTypes.func.isRequired,
-};
-
-export { EuiObserver };

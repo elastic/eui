@@ -1184,8 +1184,14 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 const typeName = idTypeAnnotation.typeAnnotation.typeName.name;
                 if (typeName === 'SFC' || typeName === 'FunctionComponent') {
                   if (state.get('importsFromReact').has(typeName)) {
-                    processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
-                    fileCodeNeedsUpdating = true;
+                    // Declarations like `const Foo: FunctionComponent`
+                    // don't have type parameters. It's a valid declaration
+                    // because the generic argument has a default of empty
+                    // props.
+                    if (idTypeAnnotation.typeAnnotation.typeParameters) {
+                      processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                      fileCodeNeedsUpdating = true;
+                    }
                   }
                 } else {
                   // reprocess this variable declaration but use the identifier lookup

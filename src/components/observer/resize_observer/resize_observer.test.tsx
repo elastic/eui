@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { mount } from 'enzyme';
 import { EuiResizeObserver } from './resize_observer';
 
-async function sleep(duration) {
+async function sleep(duration: number) {
   return new Promise(resolve => {
     setTimeout(resolve, duration);
   });
@@ -18,13 +18,15 @@ describe('EuiResizeObserver', () => {
     expect.assertions(1);
     const onResize = jest.fn();
 
-    function Wrapper({ children }) {
+    const Wrapper: FunctionComponent<{}> = ({ children }) => {
       return (
         <EuiResizeObserver onResize={onResize}>
-          {resizeRef => <div ref={resizeRef}>{children}</div>}
+          {(resizeRef: (e: HTMLElement | null) => void) => (
+            <div ref={resizeRef}>{children}</div>
+          )}
         </EuiResizeObserver>
       );
-    }
+    };
 
     const component = mount(<Wrapper children={<div>Hello World</div>} />);
 
