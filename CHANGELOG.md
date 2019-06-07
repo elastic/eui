@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+
 **Bug fixes**
 
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))

@@ -1,14 +1,17 @@
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
 import { EuiObserver } from '../observer';
 
-class EuiResizeObserver extends EuiObserver {
-  constructor(...args) {
-    super(...args);
-    this.name = 'EuiResizeObserver';
-    // Only Chrome and Opera support the `ResizeObserver` API at the time of writing
-    this.hasResizeObserver = typeof ResizeObserver !== 'undefined';
-  }
+interface Props {
+  children: (ref: (e: HTMLElement | null) => void) => ReactNode;
+  onResize: (dimensions: { height: number; width: number }) => void;
+}
+
+export class EuiResizeObserver extends EuiObserver<Props> {
+  name = 'EuiResizeObserver';
+
+  // Only Chrome and Opera support the `ResizeObserver` API at the time of writing
+  hasResizeObserver = typeof window.ResizeObserver !== 'undefined';
 
   onResize = () => {
     if (this.childNode != null) {
@@ -24,7 +27,7 @@ class EuiResizeObserver extends EuiObserver {
   beginObserve = () => {
     let observerOptions;
     if (this.hasResizeObserver) {
-      this.observer = new ResizeObserver(this.onResize);
+      this.observer = new window.ResizeObserver(this.onResize);
     } else {
       // MutationObserver fallback
       observerOptions = {
@@ -37,13 +40,8 @@ class EuiResizeObserver extends EuiObserver {
       this.observer = new MutationObserver(this.onResize);
       requestAnimationFrame(this.onResize); // Mimic ResizeObserver behavior of triggering a resize event on init
     }
-    this.observer.observe(this.childNode, observerOptions);
+    // The superclass checks that childNode is not null before invoking
+    // beginObserve()
+    this.observer.observe(this.childNode!, observerOptions);
   };
 }
-
-EuiResizeObserver.propTypes = {
-  children: PropTypes.func.isRequired,
-  onResize: PropTypes.func.isRequired,
-};
-
-export { EuiResizeObserver };
