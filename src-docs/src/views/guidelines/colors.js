@@ -283,17 +283,18 @@ color: $${color2};`;
                         beforeMessage={tooltipContent}
                         textToCopy={textToCopy}>
                         {copy => (
-                          <button type="button" onClick={copy}>
-                            <p
-                              style={{
-                                backgroundColor: palette[color].rgba,
-                                color: palette[color2].rgba,
-                                padding: 6,
-                                marginBottom: 2,
-                                borderRadius: 4,
-                              }}>
-                              {contrastRating} &ensp; {color2}
-                            </p>
+                          <button
+                            type="button"
+                            onClick={copy}
+                            className="eui-fullWidth eui-textLeft"
+                            style={{
+                              backgroundColor: palette[color].rgba,
+                              color: palette[color2].rgba,
+                              padding: 6,
+                              marginBottom: 2,
+                              borderRadius: 4,
+                            }}>
+                            {contrastRating} &ensp; {color2}
                           </button>
                         )}
                       </EuiCopy>
