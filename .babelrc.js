@@ -13,7 +13,7 @@ module.exports = {
           "Safari 7" // for PhantomJS support
         ]
       },
-      "useBuiltIns": "usage",
+      "useBuiltIns": process.env.NO_COREJS_POLYFILL ? false : "usage",
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     "@babel/typescript",

@@ -4,6 +4,10 @@
 
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 
+**Breaking changes**
+
+- Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
+
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 
 **Bug fixes**

@@ -10,11 +10,19 @@ function compileLib() {
   console.log('Compiling src/ to es/ and lib/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
-  execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
-    { env: { ...this.process.env, BABEL_MODULES: false } }
-  );
-  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src');
+  execSync('babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
+    env: {
+      ...process.env,
+      BABEL_MODULES: false,
+      NO_COREJS_POLYFILL: true,
+    }
+  });
+  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
+    env: {
+      ...process.env,
+      NO_COREJS_POLYFILL: true,
+    }
+  });
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
