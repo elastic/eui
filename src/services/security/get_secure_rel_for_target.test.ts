@@ -1,7 +1,7 @@
 import { getSecureRelForTarget } from './get_secure_rel_for_target';
 
 describe('getSecureRelForTarget', () => {
-  describe('returns rel', () => {
+  describe('returns rel and noreferrer', () => {
     test('when target is not supplied', () => {
       expect(
         getSecureRelForTarget({
@@ -9,7 +9,7 @@ describe('getSecureRelForTarget', () => {
           target: undefined,
           rel: 'hello',
         })
-      ).toBe('hello');
+      ).toBe('hello noreferrer');
     });
 
     test('when target is empty', () => {
@@ -19,7 +19,7 @@ describe('getSecureRelForTarget', () => {
           target: '',
           rel: 'hello',
         })
-      ).toBe('hello');
+      ).toBe('hello noreferrer');
     });
 
     test('when target is not _blank', () => {
@@ -29,17 +29,7 @@ describe('getSecureRelForTarget', () => {
           target: '_self',
           rel: 'hello',
         })
-      ).toBe('hello');
-    });
-
-    test('when target is undefined', () => {
-      expect(
-        getSecureRelForTarget({
-          href: undefined,
-          target: undefined,
-          rel: 'hello',
-        })
-      ).toBe('hello');
+      ).toBe('hello noreferrer');
     });
   });
 
@@ -154,6 +144,28 @@ describe('getSecureRelForTarget', () => {
           rel: 'nofollow',
         })
       ).toBe('nofollow noopener');
+    });
+  });
+
+  describe('returns no noreferrer when domain is safe without target _blank', () => {
+    test('when target and rel is undefined', () => {
+      expect(
+        getSecureRelForTarget({
+          href: 'http://discuss.elastic.co',
+          target: undefined,
+          rel: undefined,
+        })
+      ).toBe('');
+    });
+
+    test('when rel is specified', () => {
+      expect(
+        getSecureRelForTarget({
+          href: 'https://discuss.elastic.co',
+          target: undefined,
+          rel: 'nofollow',
+        })
+      ).toBe('nofollow');
     });
   });
 });

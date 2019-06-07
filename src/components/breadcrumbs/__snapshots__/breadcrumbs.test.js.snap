@@ -10,6 +10,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     class="euiLink euiLink--subdued euiBreadcrumb customClass"
     data-test-subj="breadcrumbsAnimals"
     href="#"
+    rel="noreferrer"
     title="[object Object]"
   >
     <span>
@@ -32,6 +33,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   <a
     class="euiLink euiLink--subdued euiBreadcrumb euiBreadcrumb--truncate"
     href="#"
+    rel="noreferrer"
     title="Boa constrictor"
   >
     Boa constrictor
