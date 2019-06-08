@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+- Convert tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
 
 **Bug fixes**
 
