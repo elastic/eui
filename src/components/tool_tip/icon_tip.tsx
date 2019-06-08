@@ -39,9 +39,6 @@ type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
     position?: EuiToolTipProps['position'];
   };
 
-// This is a class because I struggled to get the default props to work on
-// a FunctionComponent. This component inherits props with defaults from
-// EuiToolTipProps.
 export const EuiIconTip: FunctionComponent<Props> = ({
   type = 'questionInCircle',
   'aria-label': ariaLabel = 'Info',
