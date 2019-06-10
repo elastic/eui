@@ -1,5 +1,5 @@
 import { IconType } from '../icon';
-/// <reference path="../tool_tip/index.d.ts" />
+import { ToolTipPositions } from '../tool_tip/tool_tip';
 
 import {
   HTMLAttributes,
