@@ -3,7 +3,6 @@
 /// <reference path="./button/index.d.ts" />
 /// <reference path="./call_out/index.d.ts" />
 /// <reference path="./code/index.d.ts" />
-/// <reference path="./copy/index.d.ts" />
 /// <reference path="./card/index.d.ts" />
 /// <reference path="./color_picker/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />

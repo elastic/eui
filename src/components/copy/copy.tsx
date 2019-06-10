@@ -1,0 +1,68 @@
+import React, { ReactElement, ReactNode } from 'react';
+import { copyToClipboard } from '../../services';
+import { EuiToolTip } from '../tool_tip';
+
+interface Props {
+  /**
+   * Text that will be copied to clipboard when copy function is executed.
+   */
+  textToCopy: string;
+  /**
+   * Tooltip message displayed before copy function is called.
+   */
+  beforeMessage: ReactNode;
+  /**
+   * Tooltip message displayed after copy function is called that lets the user know that
+   * 'textToCopy' has been copied to the clipboard.
+   */
+  afterMessage?: string;
+  /**
+   * Function that must return a component. First argument is 'copy' function.
+   * Use your own logic to create the component that users interact with when triggering copy.
+   */
+  children(copy: () => void): ReactElement;
+}
+
+interface State {
+  tooltipText: ReactNode;
+}
+
+export class EuiCopy extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      tooltipText: this.props.beforeMessage,
+    };
+  }
+
+  copy = () => {
+    const isCopied = copyToClipboard(this.props.textToCopy);
+    if (isCopied) {
+      this.setState({
+        tooltipText: this.props.afterMessage || 'Copied',
+      });
+    }
+  };
+
+  resetTooltipText = () => {
+    this.setState({
+      tooltipText: this.props.beforeMessage,
+    });
+  };
+
+  render() {
+    const { children, textToCopy, beforeMessage, ...rest } = this.props;
+
+    return (
+      // See `src/components/tool_tip/tool_tip.js` for explaination of below eslint-disable
+      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+      <EuiToolTip
+        content={this.state.tooltipText}
+        onMouseOut={this.resetTooltipText}
+        {...rest}>
+        {children(this.copy)}
+      </EuiToolTip>
+    );
+  }
+}

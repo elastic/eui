@@ -3,7 +3,7 @@
 - Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Convert tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
-- Adds TypeScript definitions to `EuiCopy` ([#2016](https://github.com/elastic/eui/pull/2016))
+- Convert `EuiCopy` to TypeScript ([#2016](https://github.com/elastic/eui/pull/2016))
 
 **Bug fixes**
 
