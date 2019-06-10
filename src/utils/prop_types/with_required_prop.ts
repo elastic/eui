@@ -1,3 +1,5 @@
+import { Requireable, Validator } from 'prop-types';
+
 /**
  * PropType validation that, if the property is present,
  * validates against a proptype and verifies that another property exists
@@ -11,12 +13,13 @@
  * this validator warns if ExampleComponent is passed an `items` prop but not `itemId`
  */
 export const withRequiredProp = (
-  proptype,
-  requiredPropName,
-  messageDescription
+  proptype: Requireable<any>,
+  requiredPropName: string,
+  messageDescription?: string
 ) => {
-  const validator = (...args) => {
-    const [props, propName] = args;
+  const validator: Validator<any> = (...args) => {
+    const props = args[0] as { [key: string]: any };
+    const propName = args[1];
 
     // run the proptype for this property
     let result = proptype(...args);
