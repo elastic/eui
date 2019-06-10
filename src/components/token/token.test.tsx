@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from 'enzyme';
 
 import { EuiToken, SHAPES, SIZES } from './token';
+import { TokenColor } from './token_map';
 
-const tokenColors = [
+const tokenColors: TokenColor[] = [
   'tokenTint01',
   'tokenTint02',
   'tokenTint03',
