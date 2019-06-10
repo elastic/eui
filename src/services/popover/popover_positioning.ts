@@ -393,7 +393,6 @@ export function getPopoverScreenCoordinates({
     fit,
     top: popoverPlacement.top,
     left: popoverPlacement.left,
-    // I'm not actually sure if these values have to be defined
     arrow: arrow ? { left: arrow.left!, top: arrow.top! } : undefined,
   };
 }
