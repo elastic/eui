@@ -70,6 +70,15 @@ interface FindPopoverPositionArgs {
   returnBoundingBox?: boolean;
 }
 
+interface FindPopoverPositionResult {
+  top: number;
+  left: number;
+  position: 'top' | 'right' | 'bottom' | 'left';
+  fit: number;
+  arrow?: { left: number; top: number };
+  anchorBoundingBox?: EuiClientRect;
+}
+
 /**
  * Calculates the absolute positioning (relative to document.body) to place a popover element
  *
@@ -86,14 +95,9 @@ interface FindPopoverPositionArgs {
  *  present, describes the size & constraints for an arrow element, and the
  *  function return value will include an `arrow` param with position details
  *
- * @returns {{
- *   top: number,
- *   left: number,
- *   position: string,
- *   fit: number,
- *   arrow?: {left: number, top: number}
- * } | null} absolute page coordinates for the popover, and the
- *  placements's relation to the anchor; if there's no room this returns null
+ * @returns {FindPopoverPositionResult} absolute page coordinates for the
+ * popover, and the placements's relation to the anchor or undefined
+ * there's no room.
  */
 export function findPopoverPosition({
   anchor,
@@ -107,7 +111,7 @@ export function findPopoverPosition({
   container,
   arrowConfig,
   returnBoundingBox,
-}: FindPopoverPositionArgs) {
+}: FindPopoverPositionArgs): FindPopoverPositionResult {
   // find the screen-relative bounding boxes of the anchor, popover, and container
   const anchorBoundingBox = getElementBoundingBox(anchor);
   const popoverBoundingBox = getElementBoundingBox(popover);
@@ -179,7 +183,7 @@ export function findPopoverPosition({
   }
 
   let bestFit = -Infinity;
-  let bestPosition = null;
+  let bestPosition: FindPopoverPositionResult | null = null;
 
   for (let idx = 0; idx < iterationPositions.length; idx++) {
     const iterationPosition = iterationPositions[idx];
@@ -216,9 +220,15 @@ export function findPopoverPosition({
     // If we haven't improved the fit, then continue on and try a new position.
   }
 
-  return returnBoundingBox
-    ? { ...bestPosition, anchorBoundingBox: { ...anchorBoundingBox } }
-    : bestPosition;
+  if (bestPosition == null) {
+    throw new Error('Failed to calculate bestPosition');
+  }
+
+  if (returnBoundingBox) {
+    bestPosition.anchorBoundingBox = anchorBoundingBox;
+  }
+
+  return bestPosition;
 }
 
 interface GetPopoverScreenCoordinatesArgs {
@@ -231,6 +241,13 @@ interface GetPopoverScreenCoordinatesArgs {
   arrowConfig?: { arrowWidth: number; arrowBuffer: number };
   offset?: number;
   buffer?: number;
+}
+
+interface GetPopoverScreenCoordinatesResult {
+  top: number;
+  left: number;
+  fit: number;
+  arrow: { top: number; left: number } | undefined;
 }
 
 /**
@@ -250,10 +267,9 @@ interface GetPopoverScreenCoordinatesArgs {
  * @param [buffer=0] {number} Minimum distance between the popover's
  *  placement and the container edge
  *
- * @returns {{top: number, left: number, relativePlacement: string, fit:
- * number, arrow?: {top: number, left: number}}|null}
+ * @returns {GetPopoverScreenCoordinatesResult}
  *  object with top/left coordinates, the popover's relative position to the anchor, and how well the
- *  popover fits in the location (0.0 -> 1.0) oordinates and the popover's relative position, if
+ *  popover fits in the location (0.0 -> 1.0) coordinates and the popover's relative position, if
  *  there is no room in this placement then null
  */
 export function getPopoverScreenCoordinates({
@@ -266,7 +282,7 @@ export function getPopoverScreenCoordinates({
   arrowConfig,
   offset = 0,
   buffer = 0,
-}: GetPopoverScreenCoordinatesArgs) {
+}: GetPopoverScreenCoordinatesArgs): GetPopoverScreenCoordinatesResult {
   /**
    * The goal is to find the best way to align the popover content
    * on the given side of the anchor element. The popover prefers
@@ -377,7 +393,7 @@ export function getPopoverScreenCoordinates({
     fit,
     top: popoverPlacement.top,
     left: popoverPlacement.left,
-    arrow,
+    arrow: arrow ? { left: arrow.left!, top: arrow.top! } : undefined,
   };
 }
 

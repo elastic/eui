@@ -1,7 +1,14 @@
-import React, { Component, cloneElement, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Component,
+  cloneElement,
+  Fragment,
+  ReactElement,
+  ReactNode,
+  MouseEvent as ReactMouseEvent,
+} from 'react';
 import classNames from 'classnames';
 
+import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { findPopoverPosition } from '../../services';
@@ -9,23 +16,34 @@ import { findPopoverPosition } from '../../services';
 import makeId from '../form/form_row/make_id';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
-const positionsToClassNameMap = {
+export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
+
+const positionsToClassNameMap: { [key in ToolTipPositions]: string } = {
   top: 'euiToolTip--top',
   right: 'euiToolTip--right',
   bottom: 'euiToolTip--bottom',
   left: 'euiToolTip--left',
 };
 
-export const POSITIONS = Object.keys(positionsToClassNameMap);
+export const POSITIONS = keysOf(positionsToClassNameMap);
 
-const delayToClassNameMap = {
+export type ToolTipDelay = 'regular' | 'long';
+
+const delayToClassNameMap: { [key in ToolTipDelay]: string | null } = {
   regular: null,
   long: 'euiToolTip--delayLong',
 };
 
-export const DELAY = Object.keys(delayToClassNameMap);
+export const DELAY = keysOf(delayToClassNameMap);
 
-const DEFAULT_TOOLTIP_STYLES = {
+interface ToolTipStyles {
+  top: number;
+  left: number | 'auto';
+  right?: number | 'auto';
+  opacity?: number;
+}
+
+const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // position the tooltip content near the top-left
   // corner of the window so it can't create scrollbars
   // 50,50 because who knows what negative margins, padding, etc
@@ -36,19 +54,74 @@ const DEFAULT_TOOLTIP_STYLES = {
   opacity: 0,
 };
 
-export class EuiToolTip extends Component {
-  constructor(props) {
-    super(props);
+export interface Props {
+  /**
+   * Passes onto the the trigger.
+   */
+  anchorClassName?: string;
+  /**
+   * The in-view trigger for your tooltip.
+   */
+  children: ReactElement<any>;
+  /**
+   * Passes onto the tooltip itself, not the trigger.
+   */
+  className?: string;
+  /**
+   * The main content of your tooltip.
+   */
+  content?: ReactNode;
+  /**
+   * Delay before showing tooltip. Good for repeatable items.
+   */
+  delay: ToolTipDelay;
+  /**
+   * An optional title for your tooltip.
+   */
+  title?: ReactNode;
+  /**
+   * Unless you provide one, this will be randomly generated.
+   */
+  id?: string;
+  /**
+   * Suggested position. If there is not enough room for it this will be changed.
+   */
+  position: ToolTipPositions;
 
-    this.state = {
-      visible: false,
-      hasFocus: false,
-      calculatedPosition: this.props.position,
-      toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-      arrowStyles: {},
-      id: this.props.id || makeId(),
-    };
-  }
+  /**
+   * If supplied, called when mouse movement causes the tool tip to be
+   * hidden.
+   */
+  onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
+}
+
+interface State {
+  visible: boolean;
+  hasFocus: boolean;
+  calculatedPosition: ToolTipPositions;
+  toolTipStyles: ToolTipStyles;
+  arrowStyles: undefined | { left: number; top: number };
+  id: string;
+}
+
+export class EuiToolTip extends Component<Props, State> {
+  _isMounted = false;
+  anchor: null | HTMLElement = null;
+  popover: null | HTMLElement = null;
+
+  state: State = {
+    visible: false,
+    hasFocus: false,
+    calculatedPosition: this.props.position,
+    toolTipStyles: DEFAULT_TOOLTIP_STYLES,
+    arrowStyles: undefined,
+    id: this.props.id || makeId(),
+  };
+
+  static defaultProps: Partial<Props> = {
+    position: 'top',
+    delay: 'regular',
+  };
 
   componentDidMount() {
     this._isMounted = true;
@@ -58,7 +131,7 @@ export class EuiToolTip extends Component {
     this._isMounted = false;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
     }
@@ -79,7 +152,7 @@ export class EuiToolTip extends Component {
     }
   };
 
-  setPopoverRef = ref => {
+  setPopoverRef = (ref: HTMLElement) => {
     this.popover = ref;
 
     // if the popover has been unmounted, clear
@@ -87,7 +160,7 @@ export class EuiToolTip extends Component {
     if (ref == null) {
       this.setState({
         toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-        arrowStyles: {},
+        arrowStyles: undefined,
       });
     }
   };
@@ -98,6 +171,10 @@ export class EuiToolTip extends Component {
 
   positionToolTip = () => {
     const requestedPosition = this.props.position;
+
+    if (!this.anchor || !this.popover) {
+      return;
+    }
 
     const { position, left, top, arrow } = findPopoverPosition({
       anchor: this.anchor,
@@ -120,7 +197,7 @@ export class EuiToolTip extends Component {
       document.documentElement.clientWidth || window.innerWidth;
     const useRightValue = windowWidth / 2 < left;
 
-    const toolTipStyles = {
+    const toolTipStyles: ToolTipStyles = {
       top,
       left: useRightValue ? 'auto' : left,
       right: useRightValue
@@ -156,12 +233,12 @@ export class EuiToolTip extends Component {
     this.hideToolTip();
   };
 
-  onMouseOut = e => {
+  onMouseOut = (e: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (
       this.anchor === e.relatedTarget ||
-      !this.anchor.contains(e.relatedTarget)
+      (this.anchor != null && !this.anchor.contains(e.relatedTarget as Node))
     ) {
       if (!this.state.hasFocus) {
         this.hideToolTip();
@@ -169,7 +246,7 @@ export class EuiToolTip extends Component {
     }
 
     if (this.props.onMouseOut) {
-      this.props.onMouseOut();
+      this.props.onMouseOut(e);
     }
   };
 
@@ -248,49 +325,3 @@ export class EuiToolTip extends Component {
     );
   }
 }
-
-EuiToolTip.propTypes = {
-  /**
-   * The in-view trigger for your tooltip.
-   */
-  children: PropTypes.element.isRequired,
-  /**
-   * The main content of your tooltip.
-   */
-  content: PropTypes.node,
-
-  /**
-   * An optional title for your tooltip.
-   */
-  title: PropTypes.node,
-
-  /**
-   * Suggested position. If there is not enough room for it this will be changed.
-   */
-  position: PropTypes.oneOf(POSITIONS),
-
-  /**
-   * Delay before showing tooltip. Good for repeatable items.
-   */
-  delay: PropTypes.oneOf(DELAY),
-
-  /**
-   * Passes onto the tooltip itself, not the trigger.
-   */
-  className: PropTypes.string,
-
-  /**
-   * Passes onto the the trigger.
-   */
-  anchorClassName: PropTypes.string,
-
-  /**
-   * Unless you provide one, this will be randomly generated.
-   */
-  id: PropTypes.string,
-};
-
-EuiToolTip.defaultProps = {
-  position: 'top',
-  delay: 'regular',
-};
