@@ -64,6 +64,7 @@ exports[`EuiContextMenuItem props href renders a link 1`] = `
   class="euiContextMenuItem testClass1 testClass2"
   data-test-subj="test subject string"
   href="url"
+  rel="noreferrer"
 >
   <span
     class="euiContextMenu__itemLayout"
@@ -116,7 +117,7 @@ exports[`EuiContextMenuItem props rel is rendered 1`] = `
   class="euiContextMenuItem testClass1 testClass2"
   data-test-subj="test subject string"
   href="url"
-  rel="help"
+  rel="help noreferrer"
 >
   <span
     class="euiContextMenu__itemLayout"

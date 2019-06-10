@@ -48,6 +48,7 @@ exports[`EuiLink it supports both href and onClick 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="/imalink"
+  rel="noreferrer"
 />
 `;
 
@@ -76,6 +77,7 @@ exports[`EuiLink supports children 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="#"
+  rel="noreferrer"
 >
   <span>
     Hiya!!!
@@ -87,6 +89,7 @@ exports[`EuiLink supports href 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="/baz/bing"
+  rel="noreferrer"
 />
 `;
 
@@ -94,7 +97,7 @@ exports[`EuiLink supports rel 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="hoi"
-  rel="stylesheet"
+  rel="noreferrer stylesheet"
 />
 `;
 
@@ -102,6 +105,7 @@ exports[`EuiLink supports target 1`] = `
 <a
   class="euiLink euiLink--primary"
   href="#"
+  rel="noreferrer"
   target="_parent"
 />
 `;

@@ -7,28 +7,24 @@ import { isDomainSecure } from '../url';
 
 export const getSecureRelForTarget = ({
   href,
-  target,
+  target = '',
   rel,
 }: {
   href?: string;
   target?: '_blank' | '_self' | '_parent' | '_top' | string;
   rel?: string;
 }) => {
-  if (!target || !target.includes('_blank')) {
-    return rel;
-  }
-
   const isElasticHref = !!href && isDomainSecure(href);
   const relParts = !!rel
     ? filter(rel.split(' '), part => !!part.length && part !== 'noreferrer')
     : [];
 
-  if (relParts.indexOf('noopener') === -1) {
-    relParts.push('noopener');
-  }
-
   if (!isElasticHref) {
     relParts.push('noreferrer');
+  }
+
+  if (target.includes('_blank') && relParts.indexOf('noopener') === -1) {
+    relParts.push('noopener');
   }
 
   return relParts
