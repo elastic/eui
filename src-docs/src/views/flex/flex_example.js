@@ -72,6 +72,65 @@ import FlexGroupResponsive from './flex_responsive';
 const flexGroupResponsiveSource = require('!!raw-loader!./flex_responsive');
 const flexGroupResonsiveHtml = renderToHtml(FlexGroupResponsive);
 
+const flexSnippet = `<EuiFlexGroup>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+</EuiFlexGroup>`;
+
+const componentSpanSnippet = `<EuiFlexGroup component="span">
+  <EuiFlexItem component="span"><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem component="span"><!-- FlexItem content --></EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexJustifySnippet = [
+  `<EuiFlexGroup justifyContent="spaceEvenly">
+  <EuiFlexItem grow={false}><!-- FlexItem with space-evenly --></EuiFlexItem>
+  <EuiFlexItem grow={false}><!-- FlexItem with space-evenly --></EuiFlexItem>
+  </EuiFlexGroup>`,
+  `<EuiFlexGroup justifyContent="spaceBetween">
+  <EuiFlexItem grow={false}><!-- FlexItem with space-between --></EuiFlexItem>
+  <EuiFlexItem grow={false}><!-- FlexItem with space-between --></EuiFlexItem>
+  </EuiFlexGroup>`,
+  `<EuiFlexGroup justifyContent="spaceAround">
+  <EuiFlexItem grow={false}><!-- FlexItem with space-around --></EuiFlexItem>
+  <EuiFlexItem grow={false}><!-- FlexItem with space-around --></EuiFlexItem>
+  </EuiFlexGroup>`,
+  `<EuiFlexGroup alignItems="center">
+  <EuiFlexItem grow={false}><!-- Vertically centered item --></EuiFlexItem>
+  <EuiFlexItem><!-- Vertically centered item --></EuiFlexItem>
+</EuiFlexGroup>`,
+];
+
+const directionSnippet = `<EuiFlexGroup direction="column">
+  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
+  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
+  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexGridSnippet = `<EuiFlexGrid>
+  <EuiFlexItem style={300px}>
+    <!-- 300px width FlexItem -->
+  </EuiFlexItem>
+  <EuiFlexItem style={300px}>
+    <!-- 300px width FlexItem -->
+  </EuiFlexItem>
+  <EuiFlexItem style={300px}>
+    <!-- 300px width FlexItem -->
+  </EuiFlexItem>
+</EuiFlexGrid>`;
+
+const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
+  <EuiFlexItem>
+    <!-- Item in 3-column FlexGrid-->
+  </EuiFlexItem>
+  <EuiFlexItem>
+    <!-- Item in 3-column FlexGrid-->
+  </EuiFlexItem>
+  <EuiFlexItem>
+    <!-- Item in 3-column FlexGrid-->
+  </EuiFlexItem>
+</EuiFlexGrid>`;
+
 export const FlexExample = {
   title: 'Flex',
   intro: (
@@ -114,6 +173,7 @@ export const FlexExample = {
         </div>
       ),
       props: { EuiFlexGroup, EuiFlexItem, EuiFlexGrid },
+      snippet: flexSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGroup />
@@ -199,6 +259,7 @@ export const FlexExample = {
           <EuiCode>FlexGroup</EuiCode> and/or <EuiCode>FlexItem</EuiCode>.
         </p>
       ),
+      snippet: componentSpanSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <ComponentSpan />
@@ -298,6 +359,7 @@ export const FlexExample = {
           that they do not stretch.
         </p>
       ),
+      snippet: flexJustifySnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexJustify />
@@ -334,6 +396,7 @@ export const FlexExample = {
           </EuiCallOut>
         </div>
       ),
+      snippet: directionSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <Direction />
@@ -359,6 +422,7 @@ export const FlexExample = {
         </p>
       ),
       props: { EuiFlexGrid },
+      snippet: flexGridSnippet,
       demo: (
         <div className="guideDemo__highlightGridWrap">
           <FlexGrid />
@@ -383,6 +447,7 @@ export const FlexExample = {
           between 1-4 columns. Any more would likely break on laptop screens.
         </p>
       ),
+      snippet: flexGridColumnsSnippet,
       demo: (
         <div className="guideDemo__highlightGridWrap">
           <FlexGridColumns />

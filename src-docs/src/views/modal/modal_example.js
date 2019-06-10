@@ -23,6 +23,30 @@ import { OverflowTest } from './overflow_test';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 
+const modalSnippet = `<EuiModal onClose={this.closeModal}>
+  <EuiModalHeader>
+    <EuiModalHeaderTitle><!-- Modal title goes here --></EuiModalHeaderTitle>
+  </EuiModalHeader>
+
+  <EuiModalBody>
+    <!-- Modal body goes here -->
+  </EuiModalBody>
+    
+  <EuiModalFooter>
+    <!-- Modal footer goes here -->
+  </EuiModalFooter>
+</EuiModal>`;
+
+const confirmModalSnippet = `<EuiConfirmModal
+  title="Modal title goes here"
+  onCancel={this.closeModal}
+  onConfirm={this.closeModal}
+  cancelButtonText="[Cancel text goes here]"
+  confirmButtonText="[Confirm text goes here]"
+  defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
+  <!-- Modal content goes here -->
+</EuiConfirmModal>`;
+
 export const ModalExample = {
   title: 'Modal',
   sections: [
@@ -44,6 +68,7 @@ export const ModalExample = {
         </p>
       ),
       props: { EuiModal, EuiOverlayMask },
+      snippet: modalSnippet,
       demo: <Modal />,
     },
     {
@@ -67,6 +92,7 @@ export const ModalExample = {
         </p>
       ),
       props: { EuiConfirmModal },
+      snippet: confirmModalSnippet,
       demo: <ConfirmModal />,
     },
     {

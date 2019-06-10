@@ -31,6 +31,59 @@ import { FlyoutMaxWidth } from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
+const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder>
+    <!-- Title goes here -->
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Body goes here -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder>
+    <!-- Title goes here -->
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Long content can be placed here -->
+  </EuiFlyoutBody>
+  <EuiFlyoutFooter>
+    <!-- Footer goes here -->
+  </EuiFlyoutFooter>
+</EuiFlyout>
+`;
+
+const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder>
+    <!-- Title goes here -->
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Body goes here -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutLargeSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder>
+    <!-- Title goes here -->
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Body goes here -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+const flyoutMaxWidthSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder>
+    <!-- Title goes here -->
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Body goes here -->
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
 export const FlyoutExample = {
   title: 'Flyout',
   sections: [
@@ -78,6 +131,7 @@ export const FlyoutExample = {
         </div>
       ),
       props: { EuiFlyout, EuiFlyoutHeader },
+      snippet: flyOutSnippet,
       demo: <Flyout />,
     },
     {
@@ -101,6 +155,7 @@ export const FlyoutExample = {
         </p>
       ),
       props: { EuiFlyoutFooter },
+      snippet: flyoutComplicatedSnippet,
       demo: <FlyoutComplicated />,
     },
     {
@@ -123,6 +178,7 @@ export const FlyoutExample = {
           background overlay to reinforce your boundaries.
         </p>
       ),
+      snippet: flyoutSmallSnippet,
       demo: <FlyoutSmall />,
     },
     {
@@ -143,6 +199,7 @@ export const FlyoutExample = {
           <EuiCode>l</EuiCode>.
         </p>
       ),
+      snippet: flyoutLargeSnippet,
       demo: <FlyoutLarge />,
     },
     {
@@ -164,6 +221,7 @@ export const FlyoutExample = {
           width for a form.
         </p>
       ),
+      snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
     },
   ],

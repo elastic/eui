@@ -35,6 +35,53 @@ import GlobalQuery from './global_query';
 const globalQuerySource = require('!!raw-loader!./global_query');
 const globalQueryHtml = renderToHtml(GlobalQuery);
 
+const headerSnippet = `<EuiHeader>
+  <EuiHeaderSection grow={false}>
+    <EuiHeaderSectionItem border="right">
+      <!-- HeaderSectionItem goes here -->
+    </EuiHeaderSectionItem>
+    <EuiHeaderSectionItem border="right">
+      <!-- HeaderSectionItem goes here -->
+    </EuiHeaderSectionItem>
+  </EuiHeaderSection>
+
+  <!-- You can render breadcrumbs here using EuiHeaderBreadcrumbs -->
+
+  <EuiHeaderSection side="right">
+    <EuiHeaderSectionItem>
+      <!-- HeaderSectionItem goes here -->
+      </EuiHeaderSectionItem>
+      
+      <EuiHeaderSectionItem>
+      <!-- HeaderSectionItem goes here -->
+    </EuiHeaderSectionItem>
+  </EuiHeaderSection>
+</EuiHeader>
+`;
+
+const headerLinksSnippet = `<EuiHeader>
+  <EuiHeaderSectionItem border="right">
+    <EuiHeaderLogo
+      iconType="iconName" 
+      href="#"
+    />
+  </EuiHeaderSectionItem>
+
+  <EuiHeaderLinks>
+    <EuiHeaderLink href="#" isActive>
+      <!-- First link -->
+    </EuiHeaderLink>
+
+    <EuiHeaderLink href="#">
+      <!-- Second link -->
+    </EuiHeaderLink>
+
+    <EuiHeaderLink href="#">
+      <!-- Third link -->
+    </EuiHeaderLink>
+  </EuiHeaderLinks>
+</EuiHeader>`;
+
 export const HeaderExample = {
   title: 'Header',
   sections: [
@@ -58,6 +105,7 @@ export const HeaderExample = {
         EuiHeaderSectionItemButton,
         EuiHeaderLogo,
       },
+      snippet: headerSnippet,
       demo: <Header />,
     },
     {
@@ -83,6 +131,7 @@ export const HeaderExample = {
         EuiHeaderLinks,
         EuiHeaderLink,
       },
+      snippet: headerLinksSnippet,
       demo: <HeaderLinks />,
     },
     {
