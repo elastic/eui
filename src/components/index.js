@@ -31,6 +31,7 @@ export {
   EuiColorPickerSwatch,
   EuiHue,
   EuiSaturation,
+  EuiColorStops,
 } from './color_picker';
 
 export { EuiComboBox } from './combo_box';
