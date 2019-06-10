@@ -3,7 +3,7 @@ import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip } from '../tool_tip';
 
-interface Props extends CommonProps {
+interface EuiCopyProps extends CommonProps {
   /**
    * Text that will be copied to clipboard when copy function is executed.
    */
@@ -24,12 +24,16 @@ interface Props extends CommonProps {
   children(copy: () => void): ReactElement;
 }
 
-interface State {
+interface EuiCopyState {
   tooltipText: ReactNode;
 }
 
-export class EuiCopy extends React.Component<Props, State> {
-  constructor(props: Props) {
+export class EuiCopy extends React.Component<EuiCopyProps, EuiCopyState> {
+  static defaultProps = {
+    afterMessage: 'Copied',
+  };
+
+  constructor(props: EuiCopyProps) {
     super(props);
 
     this.state = {
@@ -53,7 +57,13 @@ export class EuiCopy extends React.Component<Props, State> {
   };
 
   render() {
-    const { children, textToCopy, beforeMessage, ...rest } = this.props;
+    const {
+      children,
+      textToCopy,
+      beforeMessage,
+      afterMessage,
+      ...rest
+    } = this.props;
 
     return (
       // See `src/components/tool_tip/tool_tip.js` for explaination of below eslint-disable
