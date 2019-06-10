@@ -25,15 +25,15 @@ const overflowTestHtml = renderToHtml(OverflowTest);
 
 const modalSnippet = `<EuiModal onClose={this.closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><!-- Modal title goes here --></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
-    <!-- Modal body goes here -->
+    <!-- Modal body -->
   </EuiModalBody>
     
   <EuiModalFooter>
-    <!-- Modal footer goes here -->
+    <!-- Modal footer -->
   </EuiModalFooter>
 </EuiModal>`;
 

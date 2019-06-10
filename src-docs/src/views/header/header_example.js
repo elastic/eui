@@ -38,10 +38,10 @@ const globalQueryHtml = renderToHtml(GlobalQuery);
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
     <EuiHeaderSectionItem border="right">
-      <!-- HeaderSectionItem goes here -->
+      <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>
     <EuiHeaderSectionItem border="right">
-      <!-- HeaderSectionItem goes here -->
+      <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>
   </EuiHeaderSection>
 
@@ -49,11 +49,11 @@ const headerSnippet = `<EuiHeader>
 
   <EuiHeaderSection side="right">
     <EuiHeaderSectionItem>
-      <!-- HeaderSectionItem goes here -->
+      <!-- HeaderSectionItem content -->
       </EuiHeaderSectionItem>
       
       <EuiHeaderSectionItem>
-      <!-- HeaderSectionItem goes here -->
+      <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>
   </EuiHeaderSection>
 </EuiHeader>

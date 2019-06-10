@@ -33,17 +33,17 @@ const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
 const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder>
-    <!-- Title goes here -->
+    <!-- Flyout title -->
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Body goes here -->
+    <!-- Flyout body -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
 const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder>
-    <!-- Title goes here -->
+    <!-- Flyout title -->
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Long content can be placed here -->
@@ -56,30 +56,30 @@ const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
 
 const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder>
-    <!-- Title goes here -->
+    <!-- Flyout title -->
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Body goes here -->
+    <!-- Flyout body -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
 const flyoutLargeSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder>
-    <!-- Title goes here -->
+    <!-- Flyout title -->
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Body goes here -->
+    <!-- Flyout body -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
 const flyoutMaxWidthSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
   <EuiFlyoutHeader hasBorder>
-    <!-- Title goes here -->
+    <!-- Flyout title -->
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
-    <!-- Body goes here -->
+    <!-- Flyout body -->
   </EuiFlyoutBody>
 </EuiFlyout>
 `;
