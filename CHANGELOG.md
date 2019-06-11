@@ -3,8 +3,6 @@
 - Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Convert tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
-
-**Breaking changes**
 - Convert badge and token components to TypeScript, including stricter enforcement around ARIA props ([#2026](https://github.com/elastic/eui/pull/2026))
 
 **Bug fixes**

@@ -54,11 +54,11 @@ type BadgeProps = {
   title?: string;
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
-type EuiBetaBadeProps = CommonProps &
+type EuiBetaBadgeProps = CommonProps &
   HTMLAttributes<HTMLSpanElement> &
   BadgeProps;
 
-export const EuiBetaBadge: FunctionComponent<EuiBetaBadeProps> = ({
+export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   className,
   label,
   tooltipContent,
