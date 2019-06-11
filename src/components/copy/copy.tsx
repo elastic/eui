@@ -45,7 +45,7 @@ export class EuiCopy extends React.Component<EuiCopyProps, EuiCopyState> {
     const isCopied = copyToClipboard(this.props.textToCopy);
     if (isCopied) {
       this.setState({
-        tooltipText: this.props.afterMessage || 'Copied',
+        tooltipText: this.props.afterMessage,
       });
     }
   };
