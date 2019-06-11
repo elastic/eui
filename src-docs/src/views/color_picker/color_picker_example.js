@@ -253,6 +253,14 @@ export const ColorPickerExample = {
         },
       ],
       props: { EuiColorStops },
+      text: (
+        <p>
+          Use <EuiCode>EuiColorStops</EuiCode> to define color stops for data
+          driven styling. Stops are numbers in strictly ascending order. The
+          range is from the given stop number (inclusive) to the next stop
+          number (exclusive).
+        </p>
+      ),
       snippet: colorStopsSnippet,
       demo: <ColorStops />,
     },
