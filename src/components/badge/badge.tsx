@@ -4,7 +4,7 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf, PropsOf, Omit } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf, PropsOf, Omit } from '../common';
 
 import { isColorDark, hexToRgb } from '../../services/color';
 
@@ -12,7 +12,33 @@ import { EuiIcon, IconColor, IconType } from '../icon';
 
 type IconSide = 'left' | 'right';
 
-interface EuiBadgeProps {
+type WithButtonProps = {
+  /**
+   * Will apply an onclick to the badge itself
+   */
+  onClick: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * Aria label applied to the iconOnClick button
+   */
+  onClickAriaLabel: string;
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
+
+type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
+
+interface WithIconOnClick {
+  /**
+   * Will apply an onclick to icon within the badge
+   */
+  iconOnClick: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * Aria label applied to the iconOnClick button
+   */
+  iconOnClickAriaLabel: string;
+}
+
+export type EuiBadgeProps = {
   /**
    * Accepts any string from our icon library
    */
@@ -24,26 +50,6 @@ interface EuiBadgeProps {
   iconSide?: IconSide;
 
   /**
-   * Will apply an onclick to icon within the badge
-   */
-  iconOnClick?: MouseEventHandler<HTMLButtonElement>;
-
-  /**
-   * Aria label applied to the iconOnClick button
-   */
-  iconOnClickAriaLabel?: string;
-
-  /**
-   * Will apply an onclick to the badge itself
-   */
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-
-  /**
-   * Aria label applied to the onClick button
-   */
-  onClickAriaLabel?: string;
-
-  /**
    * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color?: IconColor;
@@ -52,12 +58,9 @@ interface EuiBadgeProps {
    * Props passed to the close button.
    */
   closeButtonProps?: PropsOf<EuiIcon>;
-}
-
-export type Props = CommonProps &
-  Omit<HTMLAttributes<HTMLSpanElement>, 'color'> &
-  Omit<HTMLAttributes<HTMLButtonElement>, 'color'> &
-  EuiBadgeProps;
+} & CommonProps &
+  ExclusiveUnion<WithIconOnClick, {}> &
+  ExclusiveUnion<WithSpanProps, WithButtonProps>;
 
 const colorToClassNameMap: { [color in IconColor]: string } = {
   default: 'euiBadge--default',
@@ -78,7 +81,7 @@ const iconSideToClassNameMap: { [side in IconSide]: string } = {
 
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
-export const EuiBadge: FunctionComponent<Props> = ({
+export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
   color = 'default',
   iconType,
@@ -128,7 +131,7 @@ export const EuiBadge: FunctionComponent<Props> = ({
   if (iconType) {
     if (iconOnClick) {
       if (!iconOnClickAriaLabel) {
-        throw new Error(
+        console.warn(
           'When passing the iconOnClick props to EuiBadge, you must also provide iconOnClickAriaLabel'
         );
       }
@@ -153,7 +156,7 @@ export const EuiBadge: FunctionComponent<Props> = ({
   }
 
   if (onClick && !onClickAriaLabel) {
-    throw new Error(
+    console.warn(
       'Whe passing onClick to EuiBadge, you must also provide onClickAriaLabel'
     );
   }
@@ -203,7 +206,7 @@ function checkValidColor(color: null | IconColor | string) {
   const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
 
   if (color != null && !validHex.test(color) && !COLORS.includes(color)) {
-    throw new Error(
+    console.warn(
       'EuiBadge expects a valid color. This can either be a three ' +
         `or six character hex value or one of the following: ${COLORS}`
     );

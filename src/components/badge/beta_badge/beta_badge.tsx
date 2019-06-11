@@ -1,12 +1,32 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
 import { EuiToolTip, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
 
-export interface EuiBetaBadgeProps {
+// `label` prop can be a `ReactNode` only if `title` or `tooltipContent` is provided
+type LabelAsNode = (
+  | {
+      title: string;
+      tooltipContent?: ReactNode;
+    }
+  | {
+      tooltipContent: ReactNode;
+      title?: string;
+    }) & {
+  label: ReactNode;
+};
+
+interface LabelAsString {
+  /**
+   * One word label like "Beta" or "Lab"
+   */
+  label: string;
+}
+
+type BadgeProps = {
   /**
    * Supply an icon type if the badge should just be an icon
    */
@@ -32,11 +52,13 @@ export interface EuiBetaBadgeProps {
    * otherwise the label will be used
    */
   title?: string;
-}
+} & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
-type Props = CommonProps & HTMLAttributes<HTMLSpanElement> & EuiBetaBadgeProps;
+type EuiBetaBadeProps = CommonProps &
+  HTMLAttributes<HTMLSpanElement> &
+  BadgeProps;
 
-export const EuiBetaBadge: FunctionComponent<Props> = ({
+export const EuiBetaBadge: FunctionComponent<EuiBetaBadeProps> = ({
   className,
   label,
   tooltipContent,
@@ -79,7 +101,7 @@ export const EuiBetaBadge: FunctionComponent<Props> = ({
   } else {
     const spanTitle = title || label;
     if (spanTitle && typeof spanTitle !== 'string') {
-      throw new Error(
+      console.warn(
         `Only string titles are permitted on badges that do not use tooltips. Found: ${typeof spanTitle}`
       );
     }
