@@ -9,8 +9,7 @@ import {
   Position,
   ScaleType,
 } from '@elastic/charts';
-import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
-import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from './data';
+import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from '../../../../src/themes/charts/themes';
 
 import { EuiFlexGrid, EuiFlexItem, EuiFlexGroup, EuiLink, EuiButton, EuiCard, EuiCopy } from '../../../../src/components';
 

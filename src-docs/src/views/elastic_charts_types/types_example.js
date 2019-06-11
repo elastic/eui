@@ -14,6 +14,8 @@ import Area from './area';
 const areaSource = require('!!raw-loader!./area');
 const areaHtml = renderToHtml(Area);
 
+// import '!!style-loader!css-loader!@elastic/charts/dist/theme_light.css';
+
 import {
   EuiSpacer,
   EuiCode,

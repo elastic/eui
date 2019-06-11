@@ -13,8 +13,7 @@ import {
   mergeWithDefaultTheme,
   DARK_THEME,
 } from '@elastic/charts';
-import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from './data';
-import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
+import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from '../../../../src/themes/charts/themes';
 
 import { EuiFlexGrid, EuiFlexItem, EuiFlexGroup, EuiLink, EuiButton, EuiCard, EuiCopy } from '../../../../src/components';
 
@@ -54,12 +53,12 @@ export default class extends Component {
     };
     lineCustomSeriesColors.set(lineDataSeriesColorValues, '#D3DAE600');
 
-    // Is current theme dark?
-    const darkmode = this.props.selectedTheme === 'dark';
+    // const darkmode = this.props.selectedTheme === 'dark';
+    // const defaultTheme = darkmode ? DARK_THEME : SETTINGS.theme;
+    // const customTheme = mergeWithDefaultTheme(Settings.theme, defaultTheme);
+    // SETTINGS.theme = defaultTheme;
 
-    // Set the theme to default Elastic charts DARK_THEME if in dark mode
-    // Or keep the currently set theme
-    SETTINGS.theme = darkmode ? DARK_THEME : SETTINGS.theme;
+    // console.log(this.props.selectedTheme, darkmode, defaultTheme);
 
     return (
       <EuiFlexGrid columns={3} className="euiGuide__chartsPageCrosshairSection">

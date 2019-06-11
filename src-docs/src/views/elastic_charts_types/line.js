@@ -7,8 +7,8 @@ import {
   CurveType,
   ScaleType,
 } from '@elastic/charts';
-import '!!style-loader!css-loader!@elastic/charts/dist/style.css';
-import { DATA, SETTINGS } from './data';
+import { DATA } from './data';
+import { SETTINGS } from '../../../../src/themes/charts/themes';
 
 import { EuiFlexGrid, EuiFlexItem, EuiFlexGroup, EuiLink, EuiButton, EuiCard, EuiCopy } from '../../../../src/components';
 
