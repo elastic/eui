@@ -3,6 +3,7 @@
 exports[`EuiToast Props color danger is rendered 1`] = `
 <EuiToast
   color="danger"
+  title="test title"
 >
   <div
     aria-live="polite"
@@ -31,7 +32,9 @@ exports[`EuiToast Props color danger is rendered 1`] = `
       >
         <span
           className="euiToastHeader__title"
-        />
+        >
+          test title
+        </span>
       </div>
     </EuiI18n>
   </div>
@@ -41,6 +44,7 @@ exports[`EuiToast Props color danger is rendered 1`] = `
 exports[`EuiToast Props color primary is rendered 1`] = `
 <EuiToast
   color="primary"
+  title="test title"
 >
   <div
     aria-live="polite"
@@ -69,7 +73,9 @@ exports[`EuiToast Props color primary is rendered 1`] = `
       >
         <span
           className="euiToastHeader__title"
-        />
+        >
+          test title
+        </span>
       </div>
     </EuiI18n>
   </div>
@@ -79,6 +85,7 @@ exports[`EuiToast Props color primary is rendered 1`] = `
 exports[`EuiToast Props color success is rendered 1`] = `
 <EuiToast
   color="success"
+  title="test title"
 >
   <div
     aria-live="polite"
@@ -107,7 +114,9 @@ exports[`EuiToast Props color success is rendered 1`] = `
       >
         <span
           className="euiToastHeader__title"
-        />
+        >
+          test title
+        </span>
       </div>
     </EuiI18n>
   </div>
@@ -117,6 +126,7 @@ exports[`EuiToast Props color success is rendered 1`] = `
 exports[`EuiToast Props color warning is rendered 1`] = `
 <EuiToast
   color="warning"
+  title="test title"
 >
   <div
     aria-live="polite"
@@ -145,7 +155,9 @@ exports[`EuiToast Props color warning is rendered 1`] = `
       >
         <span
           className="euiToastHeader__title"
-        />
+        >
+          test title
+        </span>
       </div>
     </EuiI18n>
   </div>
@@ -155,6 +167,7 @@ exports[`EuiToast Props color warning is rendered 1`] = `
 exports[`EuiToast Props iconType is rendered 1`] = `
 <EuiToast
   iconType="user"
+  title="test title"
 >
   <div
     aria-live="polite"
@@ -207,7 +220,9 @@ exports[`EuiToast Props iconType is rendered 1`] = `
         </EuiIcon>
         <span
           className="euiToastHeader__title"
-        />
+        >
+          test title
+        </span>
       </div>
     </EuiI18n>
   </div>
@@ -273,7 +288,9 @@ exports[`EuiToast is rendered 1`] = `
   >
     <span
       class="euiToastHeader__title"
-    />
+    >
+      test title
+    </span>
   </div>
   <div
     class="euiText euiText--small euiToastBody"
