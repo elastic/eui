@@ -11,7 +11,7 @@ interface EuiCopyProps extends CommonProps {
   /**
    * Tooltip message displayed before copy function is called.
    */
-  beforeMessage: ReactNode;
+  beforeMessage?: ReactNode;
   /**
    * Tooltip message displayed after copy function is called that lets the user know that
    * 'textToCopy' has been copied to the clipboard.
