@@ -47,12 +47,12 @@ export class EuiSuperDatePicker extends Component {
     isLoading: PropTypes.bool,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     start: PropTypes.string,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     end: PropTypes.string,
     /**
@@ -80,13 +80,13 @@ export class EuiSuperDatePicker extends Component {
 
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
     dateFormat: PropTypes.string,
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
     /**
