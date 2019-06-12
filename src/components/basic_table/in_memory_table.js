@@ -163,9 +163,8 @@ export class EuiInMemoryTable extends Component {
       // We have new items because an external search has completed, so reset pagination state.
       return {
         prevProps: {
+          ...prevState.prevProps,
           items: nextProps.items,
-          sortField: prevState.prevProps.sortField,
-          sortDirection: prevState.prevProps.sortDirection,
         },
         pageIndex: 0,
       };
