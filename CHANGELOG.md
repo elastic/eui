@@ -6,10 +6,12 @@
 - Converted `EuiCopy` to TypeScript ([#2016](https://github.com/elastic/eui/pull/2016))
 - Convert badge and token components to TypeScript ([#2026](https://github.com/elastic/eui/pull/2026))
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
+- Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 
 **Bug fixes**
 
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
 
 **Breaking changes**
 
