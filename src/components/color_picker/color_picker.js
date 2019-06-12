@@ -131,7 +131,7 @@ export const EuiColorPicker = ({
       if (isColorSelectorShown) {
         handleFinalSelection();
       }
-    } else if (e.detail !== 0) {
+    } else if (!e.keyCode) {
       showColorSelector();
     }
   };
@@ -191,48 +191,55 @@ export const EuiColorPicker = ({
   } else {
     const showColor = color && isValidHex(color);
     buttonOrInput = (
-      <EuiFormControlLayout
-        icon={
-          !readOnly
-            ? {
-                type: 'arrowDown',
-                side: 'right',
-                onClick: handleToggle,
-                'aria-label': isColorSelectorShown
-                  ? 'Close list of options'
-                  : 'Open list of options',
-                disabled: disabled,
-                'data-test-subj': 'colorPickerToggleButton',
-              }
-            : null
-        }
-        readOnly={readOnly}
-        fullWidth={fullWidth}
-        compressed={compressed}
-        onKeyDown={handleToggleOnKeyDown}>
-        <div
-          // Used to pass the chosen color through to form layout SVG using currentColor
-          style={{ color: showColor ? color : undefined }}>
-          <EuiFieldText
-            onClick={handleInputActivity}
-            onKeyDown={handleInputActivity}
-            value={color ? color.toUpperCase() : ''}
-            placeholder={!color ? 'Transparent' : undefined}
-            id={id}
-            onChange={handleColorInput}
-            maxLength={7}
-            icon={showColor ? 'swatchInput' : 'stopSlash'}
-            inputRef={setInputRef}
-            isInvalid={isInvalid}
-            compressed={compressed}
-            disabled={disabled}
+      <EuiI18n
+        tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
+        defaults={[
+          'Close popover containing color options',
+          'Open popover containing color options',
+        ]}>
+        {([openLabel, closeLabel]) => (
+          <EuiFormControlLayout
+            icon={
+              !readOnly
+                ? {
+                    type: 'arrowDown',
+                    side: 'right',
+                    onClick: handleToggle,
+                    'aria-label': isColorSelectorShown ? openLabel : closeLabel,
+                    disabled: disabled,
+                    'data-test-subj': 'colorPickerToggleButton',
+                  }
+                : null
+            }
             readOnly={readOnly}
             fullWidth={fullWidth}
-            autoComplete="off"
-            data-test-subj={testSubjAnchor}
-          />
-        </div>
-      </EuiFormControlLayout>
+            compressed={compressed}
+            onKeyDown={handleToggleOnKeyDown}>
+            <div
+              // Used to pass the chosen color through to form layout SVG using currentColor
+              style={{ color: showColor ? color : undefined }}>
+              <EuiFieldText
+                onClick={handleInputActivity}
+                onKeyDown={handleInputActivity}
+                value={color ? color.toUpperCase() : ''}
+                placeholder={!color ? 'Transparent' : undefined}
+                id={id}
+                onChange={handleColorInput}
+                maxLength={7}
+                icon={showColor ? 'swatchInput' : 'stopSlash'}
+                inputRef={setInputRef}
+                isInvalid={isInvalid}
+                compressed={compressed}
+                disabled={disabled}
+                readOnly={readOnly}
+                fullWidth={fullWidth}
+                autoComplete="off"
+                data-test-subj={testSubjAnchor}
+              />
+            </div>
+          </EuiFormControlLayout>
+        )}
+      </EuiI18n>
     );
   }
 
