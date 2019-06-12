@@ -93,7 +93,6 @@ const popoverWithTitlePaddingSnippet = `<EuiPopover
   button={button}
   isOpen={this.state.isPopoverOpen}
   closePopover={this.closePopover}
-  withTitle
   panelPaddingSize="s">
   <EuiPopoverTitle><!-- Popover title --></EuiPopoverTitle>
   <!-- Content for popover with small padding -->
