@@ -52,6 +52,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = forwardRef(
     {
       className,
       color = { h: 1, s: 0, v: 0 },
+      'data-test-subj': dataTestSubj = 'euiSaturation',
       hex,
       id,
       onChange,
@@ -196,6 +197,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = forwardRef(
             ref={ref}
             tabIndex={tabIndex}
             className={classes}
+            data-test-subj={dataTestSubj}
             style={{
               background: `hsl(${color.h}, 100%, 50%)`,
             }}
