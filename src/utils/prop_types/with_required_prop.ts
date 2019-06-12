@@ -11,11 +11,11 @@
  * this validator warns if ExampleComponent is passed an `items` prop but not `itemId`
  */
 export const withRequiredProp = (
-  proptype,
-  requiredPropName,
-  messageDescription
+  proptype: any,
+  requiredPropName: string,
+  messageDescription?: string
 ) => {
-  const validator = (...args) => {
+  const validator = (...args: any[]) => {
     const [props, propName] = args;
 
     // run the proptype for this property

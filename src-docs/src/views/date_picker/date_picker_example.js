@@ -342,7 +342,7 @@ export const DatePickerExample = {
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times are
             passed as strings in either datemath format (e.g.: now, now-15m,
             now-15m/m) or as absolute date in the format{' '}
-            <EuiCode>YYYY-MM-DDTHH:mm:ss.sssZ</EuiCode>. Use{' '}
+            <EuiCode>YYYY-MM-DDTHH:mm:ss.SSSZ</EuiCode>. Use{' '}
             <EuiLink href="https://github.com/elastic/datemath-js">
               datemath
             </EuiLink>{' '}

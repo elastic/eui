@@ -1,13 +1,68 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  MouseEventHandler,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
-import { EuiPropTypes } from '../../utils';
+import { CommonProps, ExclusiveUnion, keysOf, PropsOf, Omit } from '../common';
 
 import { isColorDark, hexToRgb } from '../../services/color';
 
-import { IconPropType, EuiIcon } from '../icon';
+import { EuiIcon, IconColor, IconType } from '../icon';
 
-const colorToClassNameMap = {
+type IconSide = 'left' | 'right';
+
+type WithButtonProps = {
+  /**
+   * Will apply an onclick to the badge itself
+   */
+  onClick: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * Aria label applied to the iconOnClick button
+   */
+  onClickAriaLabel: string;
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
+
+type WithSpanProps = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick' | 'color'>;
+
+interface WithIconOnClick {
+  /**
+   * Will apply an onclick to icon within the badge
+   */
+  iconOnClick: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * Aria label applied to the iconOnClick button
+   */
+  iconOnClickAriaLabel: string;
+}
+
+export type EuiBadgeProps = {
+  /**
+   * Accepts any string from our icon library
+   */
+  iconType?: IconType;
+
+  /**
+   * The side of the badge the icon should sit
+   */
+  iconSide?: IconSide;
+
+  /**
+   * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
+   */
+  color?: IconColor;
+
+  /**
+   * Props passed to the close button.
+   */
+  closeButtonProps?: PropsOf<EuiIcon>;
+} & CommonProps &
+  ExclusiveUnion<WithIconOnClick, {}> &
+  ExclusiveUnion<WithSpanProps, WithButtonProps>;
+
+const colorToClassNameMap: { [color in IconColor]: string } = {
   default: 'euiBadge--default',
   primary: 'euiBadge--primary',
   secondary: 'euiBadge--secondary',
@@ -17,20 +72,20 @@ const colorToClassNameMap = {
   hollow: 'euiBadge--hollow',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 
-const iconSideToClassNameMap = {
+const iconSideToClassNameMap: { [side in IconSide]: string } = {
   left: 'euiBadge--iconLeft',
   right: 'euiBadge--iconRight',
 };
 
-export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
+export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
-export const EuiBadge = ({
+export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
-  color,
+  color = 'default',
   iconType,
-  iconSide,
+  iconSide = 'left',
   className,
   onClick,
   iconOnClick,
@@ -39,8 +94,10 @@ export const EuiBadge = ({
   closeButtonProps,
   ...rest
 }) => {
+  checkValidColor(color);
+
   let optionalColorClass = null;
-  let optionalCustomStyles = null;
+  let optionalCustomStyles = undefined;
   let textColor = null;
 
   if (COLORS.indexOf(color) > -1) {
@@ -73,6 +130,11 @@ export const EuiBadge = ({
   let optionalIcon = null;
   if (iconType) {
     if (iconOnClick) {
+      if (!iconOnClickAriaLabel) {
+        console.warn(
+          'When passing the iconOnClick props to EuiBadge, you must also provide iconOnClickAriaLabel'
+        );
+      }
       optionalIcon = (
         <button
           className="euiBadge__iconButton"
@@ -91,6 +153,12 @@ export const EuiBadge = ({
         <EuiIcon type={iconType} size="s" className="euiBadge__icon" />
       );
     }
+  }
+
+  if (onClick && !onClickAriaLabel) {
+    console.warn(
+      'Whe passing onClick to EuiBadge, you must also provide onClickAriaLabel'
+    );
   }
 
   if (onClick && iconOnClick) {
@@ -134,69 +202,13 @@ export const EuiBadge = ({
   }
 };
 
-function checkValidColor(props, propName, componentName) {
-  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(props.color);
-  if (props.color != null && !validHex && !COLORS.includes(props.color)) {
-    throw new Error(
-      `${componentName} needs to pass a valid color. This can either be a three ` +
+function checkValidColor(color: null | IconColor | string) {
+  const validHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
+
+  if (color != null && !validHex.test(color) && !COLORS.includes(color)) {
+    console.warn(
+      'EuiBadge expects a valid color. This can either be a three ' +
         `or six character hex value or one of the following: ${COLORS}`
     );
   }
 }
-
-EuiBadge.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-
-  /**
-   * Accepts any string from our icon library
-   */
-  iconType: IconPropType,
-
-  /**
-   * The side of the badge the icon should sit
-   */
-  iconSide: PropTypes.string,
-  /**
-   * Will apply an onclick to icon within the badge
-   */
-  iconOnClick: EuiPropTypes.withRequiredProp(
-    PropTypes.func,
-    'iconOnClickAriaLabel',
-    'Please provide an aria label to complement your iconOnClick'
-  ),
-
-  /**
-   * Aria label applied to the iconOnClick button
-   */
-  iconOnClickAriaLabel: PropTypes.string,
-
-  /**
-   * Will apply an onclick to the badge itself
-   */
-  onClick: EuiPropTypes.withRequiredProp(
-    PropTypes.func,
-    'onClickAriaLabel',
-    'Please provide an aria label to complement your onClick'
-  ),
-
-  /**
-   * Aria label applied to the onClick button
-   */
-  onClickAriaLabel: PropTypes.string,
-
-  /**
-   * Accepts either our palette colors (primary, secondary ..etc) or a hex value `#FFFFFF`, `#000`.
-   */
-  color: checkValidColor,
-
-  /**
-   * Props passed to the close button.
-   */
-  closeButtonProps: PropTypes.object,
-};
-
-EuiBadge.defaultProps = {
-  color: 'default',
-  iconSide: 'left',
-};

@@ -1,7 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
-- Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+- Attached `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
+- Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+- Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
+- Converted `EuiCopy` to TypeScript ([#2016](https://github.com/elastic/eui/pull/2016))
+- Convert badge and token components to TypeScript ([#2026](https://github.com/elastic/eui/pull/2026))
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 
 **Bug fixes**

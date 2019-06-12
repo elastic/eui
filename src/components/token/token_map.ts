@@ -25,7 +25,7 @@ export interface EuiTokenMapDisplayOptions {
   color?: TokenColor;
   shape?: TokenShape;
   fill?: boolean;
-  hasBorder?: boolean;
+  hideBorder?: boolean;
 }
 
 export type EuiTokenMapType =
@@ -60,7 +60,9 @@ export type EuiTokenMapType =
   | 'tokenNamespace'
   | 'tokenModule';
 
-export const TOKEN_MAP: Record<EuiTokenMapType, EuiTokenMapDisplayOptions> = {
+export const TOKEN_MAP: {
+  [mapType in EuiTokenMapType]: EuiTokenMapDisplayOptions
+} = {
   tokenClass: {
     shape: 'circle',
     color: 'tokenTint01',

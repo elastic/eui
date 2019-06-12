@@ -1,5 +1,4 @@
 /// <reference path="./accordion/index.d.ts" />
-/// <reference path="./badge/index.d.ts" />
 /// <reference path="./button/index.d.ts" />
 /// <reference path="./call_out/index.d.ts" />
 /// <reference path="./code/index.d.ts" />
@@ -28,7 +27,6 @@
 /// <reference path="./table/index.d.ts" />
 /// <reference path="./tabs/index.d.ts" />
 /// <reference path="./toast/index.d.ts" />
-/// <reference path="./tool_tip/index.d.ts" />
 
 declare module '@elastic/eui' {
   // @ts-ignore
