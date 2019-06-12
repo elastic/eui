@@ -115,9 +115,8 @@ const flexJustifySnippet = `<EuiFlexGroup justifyContent="spaceBetween">
 </EuiFlexGroup>`;
 
 const directionSnippet = `<EuiFlexGroup direction="column">
-  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
-  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
-  <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem in column FlexGroup --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem in column FlexGroup --></EuiFlexItem>
 </EuiFlexGroup>`;
 
 const flexGridSnippet = `<EuiFlexGrid>
@@ -144,7 +143,7 @@ const flexNestSnippet = `<EuiFlexGroup>
       <EuiFlexItem><!-- FlexGroup inside FlexGroup --></EuiFlexItem>
     </EuiFlexGroup>
   </EuiFlexItem>
-  <EuiFlexItem grow={false}>
+  <EuiFlexItem>
     <EuiFlexGrid>
       <EuiFlexItem><!-- FlexGrid inside FlexGroup --></EuiFlexItem>
       <EuiFlexItem><!-- FlexGrid inside FlexGroup --></EuiFlexItem>

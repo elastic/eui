@@ -67,7 +67,6 @@ const headerLinksSnippet = `<EuiHeader>
     <EuiHeaderLink href="#">
       <!-- Second link -->
     </EuiHeaderLink>
-
   </EuiHeaderLinks>
 </EuiHeader>`;
 
