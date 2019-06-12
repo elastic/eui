@@ -1,4 +1,20 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { withTheme } from '../../components';
+
+import {
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiLink,
+  EuiButton,
+  EuiCard,
+  EuiCopy,
+} from '../../../../src/components';
+import {
+  EUI_LIGHT_THEME,
+  EUI_DARK_THEME,
+} from '../../../../src/themes/charts/themes';
+
 import {
   Axis,
   Chart,
@@ -10,12 +26,7 @@ import {
   ScaleType,
   TooltipType,
   LineSeries,
-  mergeWithDefaultTheme,
-  DARK_THEME,
 } from '@elastic/charts';
-import { SETTINGS, gridHorizontalSettings, gridVerticalSettings } from '../../../../src/themes/charts/themes';
-
-import { EuiFlexGrid, EuiFlexItem, EuiFlexGroup, EuiLink, EuiButton, EuiCard, EuiCopy } from '../../../../src/components';
 
 function cardFooterContent(docsUrl, snippet) {
   if (!docsUrl && !snippet) {
@@ -25,18 +36,12 @@ function cardFooterContent(docsUrl, snippet) {
   return (
     <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
       <EuiFlexItem grow={false}>
-        {docsUrl && (
-          <EuiLink href={docsUrl}>Docs</EuiLink>
-        )}
+        {docsUrl && <EuiLink href={docsUrl}>Docs</EuiLink>}
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         {snippet && (
           <EuiCopy textToCopy={snippet}>
-            {(copy) => (
-              <EuiButton onClick={copy}>
-                Copy snippet
-              </EuiButton>
-            )}
+            {copy => <EuiButton onClick={copy}>Copy snippet</EuiButton>}
           </EuiCopy>
         )}
       </EuiFlexItem>
@@ -44,21 +49,23 @@ function cardFooterContent(docsUrl, snippet) {
   );
 }
 
-export default class extends Component {
+class _Crosshair extends PureComponent {
   render() {
     const lineCustomSeriesColors = new Map();
     const lineDataSeriesColorValues = {
       colorValues: [],
       specId: getSpecId('hidden'),
     };
-    lineCustomSeriesColors.set(lineDataSeriesColorValues, '#D3DAE600');
+    lineCustomSeriesColors.set(lineDataSeriesColorValues, '#00000000');
 
-    // const darkmode = this.props.selectedTheme === 'dark';
-    // const defaultTheme = darkmode ? DARK_THEME : SETTINGS.theme;
-    // const customTheme = mergeWithDefaultTheme(Settings.theme, defaultTheme);
-    // SETTINGS.theme = defaultTheme;
-
-    // console.log(this.props.selectedTheme, darkmode, defaultTheme);
+    const isDarkTheme = this.props.theme.includes('dark');
+    const gridHorizontalSettings = isDarkTheme
+      ? EUI_DARK_THEME.gridHorizontalSettings
+      : EUI_LIGHT_THEME.gridHorizontalSettings;
+    const gridVerticalSettings = isDarkTheme
+      ? EUI_DARK_THEME.gridVerticalSettings
+      : EUI_LIGHT_THEME.gridVerticalSettings;
+    const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
 
     return (
       <EuiFlexGrid columns={3} className="euiGuide__chartsPageCrosshairSection">
@@ -67,7 +74,7 @@ export default class extends Component {
             textAlign="left"
             icon={
               <Chart renderer="canvas" size={[undefined, 140]}>
-                <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs} />
+                <Settings theme={theme} tooltipType={TooltipType.Crosshairs} />
                 <Axis
                   id={getAxisId('bottom-axis')}
                   position={Position.Bottom}
@@ -82,7 +89,12 @@ export default class extends Component {
                   id={getSpecId('hidden')}
                   xScaleType={ScaleType.Linear}
                   yScaleType={ScaleType.Linear}
-                  data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+                  data={[
+                    { x: 0, y: 2 },
+                    { x: 1, y: 7 },
+                    { x: 2, y: 3 },
+                    { x: 3, y: 6 },
+                  ]}
                   xAccessor="x"
                   yAccessors={['y']}
                   customSeriesColors={lineCustomSeriesColors}
@@ -91,7 +103,8 @@ export default class extends Component {
             }
             title="Lines"
             description="Example of a card's description. Stick to one or two sentences."
-            footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+            footer={cardFooterContent(
+              'https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
               `<Chart renderer="canvas" size={[undefined, 140]}>
     <Settings {...SETTINGS} />
     <Axis
@@ -112,7 +125,8 @@ export default class extends Component {
       xAccessor="x"
       yAccessors={['y']}
     />
-  </Chart>`)}
+  </Chart>`
+            )}
           />
         </EuiFlexItem>
         <EuiFlexItem>
@@ -120,22 +134,24 @@ export default class extends Component {
             textAlign="left"
             icon={
               <Chart renderer="canvas" size={[undefined, 140]}>
-                <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs}/>
+                <Settings theme={theme} tooltipType={TooltipType.Crosshairs} />
                 <Axis
                   id={getAxisId('bottom-axis')}
                   position={Position.Bottom}
                   showGridLines
                   gridLineStyle={gridVerticalSettings}
                 />
-                <Axis
-                  id={getAxisId('left-axis')}
-                  position={Position.Left}
-                />
+                <Axis id={getAxisId('left-axis')} position={Position.Left} />
                 <LineSeries
                   id={getSpecId('hidden')}
                   xScaleType={ScaleType.Linear}
                   yScaleType={ScaleType.Linear}
-                  data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+                  data={[
+                    { x: 0, y: 2 },
+                    { x: 1, y: 7 },
+                    { x: 2, y: 3 },
+                    { x: 3, y: 6 },
+                  ]}
                   xAccessor="x"
                   yAccessors={['y']}
                   customSeriesColors={lineCustomSeriesColors}
@@ -144,7 +160,8 @@ export default class extends Component {
             }
             title="Vertical grid"
             description="Example of a card's description. Stick to one or two sentences."
-            footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+            footer={cardFooterContent(
+              'https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
               `<Chart renderer="canvas" size={[undefined, 140]}>
     <Settings {...SETTINGS} />
     <Axis
@@ -165,7 +182,8 @@ export default class extends Component {
       xAccessor="x"
       yAccessors={['y']}
     />
-  </Chart>`)}
+  </Chart>`
+            )}
           />
         </EuiFlexItem>
         <EuiFlexItem>
@@ -173,7 +191,7 @@ export default class extends Component {
             textAlign="left"
             icon={
               <Chart renderer="canvas" size={[undefined, 140]}>
-                <Settings {...SETTINGS} tooltipType={TooltipType.Crosshairs}/>
+                <Settings theme={theme} tooltipType={TooltipType.Crosshairs} />
                 <Axis
                   id={getAxisId('bottom-axis')}
                   position={Position.Bottom}
@@ -190,7 +208,12 @@ export default class extends Component {
                   id={getSpecId('hidden')}
                   xScaleType={ScaleType.Linear}
                   yScaleType={ScaleType.Linear}
-                  data={[{ x: 0, y: 2 }, { x: 1, y: 7 }, { x: 2, y: 3 }, { x: 3, y: 6 }]}
+                  data={[
+                    { x: 0, y: 2 },
+                    { x: 1, y: 7 },
+                    { x: 2, y: 3 },
+                    { x: 3, y: 6 },
+                  ]}
                   xAccessor="x"
                   yAccessors={['y']}
                   customSeriesColors={lineCustomSeriesColors}
@@ -199,7 +222,8 @@ export default class extends Component {
             }
             title="Both"
             description="Example of a card's description. Stick to one or two sentences."
-            footer={cardFooterContent('https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
+            footer={cardFooterContent(
+              'https://elastic.github.io/elastic-charts/?selectedKind=Grids&selectedStory=basic&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs',
               `<Chart renderer="canvas" size={[undefined, 140]}>
     <Settings {...SETTINGS} />
     <Axis
@@ -222,10 +246,13 @@ export default class extends Component {
       xAccessor="x"
       yAccessors={['y']}
     />
-  </Chart>`)}
+  </Chart>`
+            )}
           />
         </EuiFlexItem>
       </EuiFlexGrid>
     );
   }
 }
+
+export const Crosshair = withTheme(_Crosshair);

@@ -1,25 +1,10 @@
 import React, { Fragment } from 'react';
-import { GuideSectionTypes } from '../../components';
-import { renderToHtml } from '../../services';
 
-import Bars from './simple_bars';
-const barsSource = require('!!raw-loader!./simple_bars');
-const barsHtml = renderToHtml(Bars);
+import { BarCharts } from './simple_bars';
+import { LineCharts } from './line';
+import { AreaCharts } from './area';
 
-import Lines from './line';
-const linesSource = require('!!raw-loader!./line');
-const linesHtml = renderToHtml(Bars);
-
-import Area from './area';
-const areaSource = require('!!raw-loader!./area');
-const areaHtml = renderToHtml(Area);
-
-// import '!!style-loader!css-loader!@elastic/charts/dist/theme_light.css';
-
-import {
-  EuiSpacer,
-  EuiCode,
-} from '../../../../src/components';
+import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsTypesExample = {
   title: 'Types',
@@ -41,17 +26,7 @@ export const ElasticChartsTypesExample = {
           component into your <EuiCode>Chart</EuiCode>.
         </p>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: barsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: barsHtml,
-        },
-      ],
-      demo: <Bars />,
+      demo: <BarCharts />,
     },
     {
       title: 'Line',
@@ -62,17 +37,7 @@ export const ElasticChartsTypesExample = {
           component into your <EuiCode>Chart</EuiCode>.
         </p>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: linesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: linesHtml,
-        },
-      ],
-      demo: <Lines />,
+      demo: <LineCharts />,
     },
     {
       title: 'Area',
@@ -83,17 +48,7 @@ export const ElasticChartsTypesExample = {
           component into your <EuiCode>Chart</EuiCode>.
         </p>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: areaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: areaHtml,
-        },
-      ],
-      demo: <Area />,
+      demo: <AreaCharts />,
     },
   ],
 };
