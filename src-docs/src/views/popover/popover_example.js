@@ -62,6 +62,14 @@ const trapFocusSnippet = `<EuiPopover
   <!-- Popover content -->
 </EuiPopover>`;
 
+const popoverAnchorSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  anchorPosition="downLeft">
+  <!-- Popover content -->
+</EuiPopover>`;
+
 const popoverWithTitleSnippet = `<EuiPopover
   button={button}
   isOpen={this.state.isPopoverOpen}
@@ -91,12 +99,13 @@ const popoverWithTitlePaddingSnippet = `<EuiPopover
   <!-- Content for popover with small padding -->
 </EuiPopover>`;
 
-const wrappingPopoverSnippet = `<EuiWrappingPopover
+const popoverContainerSnippet = `<EuiPopover
   button={button}
   isOpen={this.state.isPopoverOpen}
-  closePopover={this.closePopover}>
-  <div><!-- JSX content --></div>
-</EuiWrappingPopover>`;
+  closePopover={this.closePopover}
+  container={this.panel}>
+  <!-- Popover content -->
+</EuiPopover>`;
 
 const popoverFixedSnippet = `<EuiPopover
   button={button}
@@ -189,6 +198,7 @@ export const PopoverExample = {
           </ul>
         </div>
       ),
+      snippet: popoverAnchorSnippet,
       demo: <PopoverAnchorPosition />,
     },
     {
@@ -291,6 +301,7 @@ export const PopoverExample = {
           </p>
         </div>
       ),
+      snippet: popoverContainerSnippet,
       demo: <PopoverContainer />,
     },
     {
@@ -314,7 +325,6 @@ export const PopoverExample = {
           </p>
         </div>
       ),
-      snippet: wrappingPopoverSnippet,
       demo: <PopoverHTMLElementAnchor />,
     },
     {

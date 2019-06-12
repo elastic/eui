@@ -109,24 +109,10 @@ const flexGrowNumericSnippet = `<EuiFlexGroup>
   <EuiFlexItem grow={10}><!-- FlexItem with flew-grow 10 --></EuiFlexItem>
 </EuiFlexGroup>`;
 
-const flexJustifySnippet = [
-  `<EuiFlexGroup justifyContent="spaceEvenly">
-  <EuiFlexItem><!-- FlexItem with space-evenly --></EuiFlexItem>
-  <EuiFlexItem><!-- FlexItem with space-evenly --></EuiFlexItem>
-</EuiFlexGroup>`,
-  `<EuiFlexGroup justifyContent="spaceBetween">
+const flexJustifySnippet = `<EuiFlexGroup justifyContent="spaceBetween">
   <EuiFlexItem><!-- FlexItem with space-between --></EuiFlexItem>
   <EuiFlexItem><!-- FlexItem with space-between --></EuiFlexItem>
-</EuiFlexGroup>`,
-  `<EuiFlexGroup justifyContent="spaceAround">
-  <EuiFlexItem><!-- FlexItem with space-around --></EuiFlexItem>
-  <EuiFlexItem><!-- FlexItem with space-around --></EuiFlexItem>
-</EuiFlexGroup>`,
-  `<EuiFlexGroup alignItems="center">
-  <EuiFlexItem><!-- Vertically centered item --></EuiFlexItem>
-  <EuiFlexItem><!-- Vertically centered item --></EuiFlexItem>
-</EuiFlexGroup>`,
-];
+</EuiFlexGroup>`;
 
 const directionSnippet = `<EuiFlexGroup direction="column">
   <EuiFlexItem grow={false}><!-- FlexItem in column FlexGroup --></EuiFlexItem>
@@ -135,15 +121,8 @@ const directionSnippet = `<EuiFlexGroup direction="column">
 </EuiFlexGroup>`;
 
 const flexGridSnippet = `<EuiFlexGrid>
-  <EuiFlexItem>
-    <!-- FlexItem content -->
-  </EuiFlexItem>
-  <EuiFlexItem>
-    <!-- FlexItem content -->
-  </EuiFlexItem>
-  <EuiFlexItem>
-    <!-- FlexItem content -->
-  </EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
 </EuiFlexGrid>`;
 
 const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
@@ -159,7 +138,7 @@ const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
 </EuiFlexGrid>`;
 
 const flexNestSnippet = `<EuiFlexGroup>
-  <EuiFlexItem grow={false}>
+  <EuiFlexItem>
     <EuiFlexGroup>
       <EuiFlexItem><!-- FlexGroup inside FlexGroup --></EuiFlexItem>
       <EuiFlexItem><!-- FlexGroup inside FlexGroup --></EuiFlexItem>
@@ -173,37 +152,10 @@ const flexNestSnippet = `<EuiFlexGroup>
   </EuiFlexItem>
 </EuiFlexGroup>`;
 
-const flexGutterSnippet = [
-  `<EuiFlexGroup gutterSize="none">
-    <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
-  </EuiFlexGroup>,
-  
-  <EuiFlexGroup gutterSize="xs">
-    <EuiFlexItem><!-- FlexItem with extra small gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem with extra small gutter --></EuiFlexItem>
-  </EuiFlexGroup>,
-    
-  <EuiFlexGroup gutterSize="s">
-    <EuiFlexItem><!-- FlexItem with small gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem with small gutter --></EuiFlexItem>
-  </EuiFlexGroup>,
-    
-  <EuiFlexGroup gutterSize="m">
-    <EuiFlexItem><!-- FlexItem with medium gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem with medium gutter --></EuiFlexItem>
-    </EuiFlexGroup>,
-    
-  <EuiFlexGroup gutterSize="l">
-    <EuiFlexItem><!-- FlexItem with large gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem with large gutter --></EuiFlexItem>
-    </EuiFlexGroup>,
-    
-  <EuiFlexGroup gutterSize="xl">
-    <EuiFlexItem><!-- FlexItem with extra large gutter --></EuiFlexItem>
-    <EuiFlexItem><!-- FlexItem with extra large gutter --></EuiFlexItem>
-  </EuiFlexGroup>`,
-];
+const flexGutterSnippet = `<EuiFlexGroup gutterSize="none">
+  <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
+</EuiFlexGroup>`;
 
 const flexGroupResponsiveSnippet = `<EuiFlexGroup responsive={false}>
   <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
