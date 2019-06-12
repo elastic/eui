@@ -10,10 +10,9 @@ import BottomBar from './bottom_bar';
 const bottomBarSource = require('!!raw-loader!./bottom_bar');
 const bottomBarHtml = renderToHtml(BottomBar);
 
-const bottomBarSnippet = `<EuiBottomBar paddingSize="s" bodyClassName="body-hasBottomBar">
+const bottomBarSnippet = `<EuiBottomBar paddingSize="s">
   <!-- Content goes here -->
-</EuiBottomBar>
-`;
+</EuiBottomBar>`;
 
 export const BottomBarExample = {
   title: 'Bottom Bar',

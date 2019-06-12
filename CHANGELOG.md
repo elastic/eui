@@ -3,7 +3,6 @@
 - Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Convert tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
-- Add snippets to layout components ([#2029](https://github.com/elastic/eui/pull/2029))
 
 **Bug fixes**
 

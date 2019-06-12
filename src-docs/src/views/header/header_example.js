@@ -37,24 +37,13 @@ const globalQueryHtml = renderToHtml(GlobalQuery);
 
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection grow={false}>
-    <EuiHeaderSectionItem border="right">
-      <!-- HeaderSectionItem content -->
-    </EuiHeaderSectionItem>
-    <EuiHeaderSectionItem border="right">
-      <!-- HeaderSectionItem content -->
-    </EuiHeaderSectionItem>
+    <EuiHeaderSectionItem border="right"><!-- HeaderSectionItem content --></EuiHeaderSectionItem>
   </EuiHeaderSection>
 
   <!-- You can render breadcrumbs here using EuiHeaderBreadcrumbs -->
 
   <EuiHeaderSection side="right">
-    <EuiHeaderSectionItem>
-      <!-- HeaderSectionItem content -->
-      </EuiHeaderSectionItem>
-      
-      <EuiHeaderSectionItem>
-      <!-- HeaderSectionItem content -->
-    </EuiHeaderSectionItem>
+    <EuiHeaderSectionItem><!-- HeaderSectionItem content --></EuiHeaderSectionItem>
   </EuiHeaderSection>
 </EuiHeader>
 `;
@@ -76,9 +65,6 @@ const headerLinksSnippet = `<EuiHeader>
       <!-- Second link -->
     </EuiHeaderLink>
 
-    <EuiHeaderLink href="#">
-      <!-- Third link -->
-    </EuiHeaderLink>
   </EuiHeaderLinks>
 </EuiHeader>`;
 

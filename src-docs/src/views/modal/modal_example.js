@@ -37,15 +37,27 @@ const modalSnippet = `<EuiModal onClose={this.closeModal}>
   </EuiModalFooter>
 </EuiModal>`;
 
-const confirmModalSnippet = `<EuiConfirmModal
+const confirmModalSnippet = [
+  `<EuiConfirmModal
   title="Modal title goes here"
   onCancel={this.closeModal}
   onConfirm={this.closeModal}
-  cancelButtonText="[Cancel text goes here]"
-  confirmButtonText="[Confirm text goes here]"
-  defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
-  <!-- Modal content goes here -->
-</EuiConfirmModal>`;
+  cancelButtonText={cancelText}
+  confirmButtonText={confirmText}
+  defaultFocusedButton="confirm">
+  <!-- ConfirmModal content -->
+</EuiConfirmModal>`,
+  `<EuiConfirmModal
+  title="Do this destructive thing"
+  onCancel={this.closeDestroyModal}
+  onConfirm={this.closeDestroyModal}
+  cancelButtonText={cancelText}
+  confirmButtonText={confirmText}
+  buttonColor="danger"
+  defaultFocusedButton="confirm">
+  <!-- Dangerous ConfirmModal content -->
+</EuiConfirmModal>`,
+];
 
 export const ModalExample = {
   title: 'Modal',

@@ -70,9 +70,14 @@ const flexItemPanelHtml = renderToHtml(FlexItemPanel);
 
 import FlexGroupResponsive from './flex_responsive';
 const flexGroupResponsiveSource = require('!!raw-loader!./flex_responsive');
-const flexGroupResonsiveHtml = renderToHtml(FlexGroupResponsive);
+const flexGroupResponsiveHtml = renderToHtml(FlexGroupResponsive);
 
 const flexSnippet = `<EuiFlexGroup>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexGroupWrap = `<EuiFlexGroup wrap>
   <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
   <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
 </EuiFlexGroup>`;
@@ -82,21 +87,43 @@ const componentSpanSnippet = `<EuiFlexGroup component="span">
   <EuiFlexItem component="span"><!-- FlexItem content --></EuiFlexItem>
 </EuiFlexGroup>`;
 
+const flexItemPanelSnippet = `<EuiFlexGroup>
+  <EuiFlexItem>
+    <EuiPanel><!-- Panel content --></EuiPanel>
+  </EuiFlexItem>
+
+  <EuiFlexItem>
+    <EuiPanel grow={false}><!-- Panel content --></EuiPanel>
+  </EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexGrowZeroSnippet = `<EuiFlexGroup>
+  <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexGrowNumericSnippet = `<EuiFlexGroup>
+  <EuiFlexItem grow={1}><!-- FlexItem with flew-grow 1 --></EuiFlexItem>
+  <EuiFlexItem grow={2}><!-- FlexItem with flew-grow 2 --></EuiFlexItem>
+  ...
+  <EuiFlexItem grow={10}><!-- FlexItem with flew-grow 10 --></EuiFlexItem>
+</EuiFlexGroup>`;
+
 const flexJustifySnippet = [
   `<EuiFlexGroup justifyContent="spaceEvenly">
-  <EuiFlexItem grow={false}><!-- FlexItem with space-evenly --></EuiFlexItem>
-  <EuiFlexItem grow={false}><!-- FlexItem with space-evenly --></EuiFlexItem>
-  </EuiFlexGroup>`,
+  <EuiFlexItem><!-- FlexItem with space-evenly --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem with space-evenly --></EuiFlexItem>
+</EuiFlexGroup>`,
   `<EuiFlexGroup justifyContent="spaceBetween">
-  <EuiFlexItem grow={false}><!-- FlexItem with space-between --></EuiFlexItem>
-  <EuiFlexItem grow={false}><!-- FlexItem with space-between --></EuiFlexItem>
-  </EuiFlexGroup>`,
+  <EuiFlexItem><!-- FlexItem with space-between --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem with space-between --></EuiFlexItem>
+</EuiFlexGroup>`,
   `<EuiFlexGroup justifyContent="spaceAround">
-  <EuiFlexItem grow={false}><!-- FlexItem with space-around --></EuiFlexItem>
-  <EuiFlexItem grow={false}><!-- FlexItem with space-around --></EuiFlexItem>
-  </EuiFlexGroup>`,
+  <EuiFlexItem><!-- FlexItem with space-around --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem with space-around --></EuiFlexItem>
+</EuiFlexGroup>`,
   `<EuiFlexGroup alignItems="center">
-  <EuiFlexItem grow={false}><!-- Vertically centered item --></EuiFlexItem>
+  <EuiFlexItem><!-- Vertically centered item --></EuiFlexItem>
   <EuiFlexItem><!-- Vertically centered item --></EuiFlexItem>
 </EuiFlexGroup>`,
 ];
@@ -108,14 +135,14 @@ const directionSnippet = `<EuiFlexGroup direction="column">
 </EuiFlexGroup>`;
 
 const flexGridSnippet = `<EuiFlexGrid>
-  <EuiFlexItem style={300px}>
-    <!-- 300px width FlexItem -->
+  <EuiFlexItem>
+    <!-- FlexItem content -->
   </EuiFlexItem>
-  <EuiFlexItem style={300px}>
-    <!-- 300px width FlexItem -->
+  <EuiFlexItem>
+    <!-- FlexItem content -->
   </EuiFlexItem>
-  <EuiFlexItem style={300px}>
-    <!-- 300px width FlexItem -->
+  <EuiFlexItem>
+    <!-- FlexItem content -->
   </EuiFlexItem>
 </EuiFlexGrid>`;
 
@@ -130,6 +157,58 @@ const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
     <!-- Item in 3-column FlexGrid-->
   </EuiFlexItem>
 </EuiFlexGrid>`;
+
+const flexNestSnippet = `<EuiFlexGroup>
+  <EuiFlexItem grow={false}>
+    <EuiFlexGroup>
+      <EuiFlexItem><!-- FlexGroup inside FlexGroup --></EuiFlexItem>
+      <EuiFlexItem><!-- FlexGroup inside FlexGroup --></EuiFlexItem>
+    </EuiFlexGroup>
+  </EuiFlexItem>
+  <EuiFlexItem grow={false}>
+    <EuiFlexGrid>
+      <EuiFlexItem><!-- FlexGrid inside FlexGroup --></EuiFlexItem>
+      <EuiFlexItem><!-- FlexGrid inside FlexGroup --></EuiFlexItem>
+    </EuiFlexGrid>
+  </EuiFlexItem>
+</EuiFlexGroup>`;
+
+const flexGutterSnippet = [
+  `<EuiFlexGroup gutterSize="none">
+    <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem without gutter --></EuiFlexItem>
+  </EuiFlexGroup>,
+  
+  <EuiFlexGroup gutterSize="xs">
+    <EuiFlexItem><!-- FlexItem with extra small gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem with extra small gutter --></EuiFlexItem>
+  </EuiFlexGroup>,
+    
+  <EuiFlexGroup gutterSize="s">
+    <EuiFlexItem><!-- FlexItem with small gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem with small gutter --></EuiFlexItem>
+  </EuiFlexGroup>,
+    
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem><!-- FlexItem with medium gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem with medium gutter --></EuiFlexItem>
+    </EuiFlexGroup>,
+    
+  <EuiFlexGroup gutterSize="l">
+    <EuiFlexItem><!-- FlexItem with large gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem with large gutter --></EuiFlexItem>
+    </EuiFlexGroup>,
+    
+  <EuiFlexGroup gutterSize="xl">
+    <EuiFlexItem><!-- FlexItem with extra large gutter --></EuiFlexItem>
+    <EuiFlexItem><!-- FlexItem with extra large gutter --></EuiFlexItem>
+  </EuiFlexGroup>`,
+];
+
+const flexGroupResponsiveSnippet = `<EuiFlexGroup responsive={false}>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+  <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
+</EuiFlexGroup>`;
 
 export const FlexExample = {
   title: 'Flex',
@@ -210,6 +289,7 @@ export const FlexExample = {
           </EuiCallOut>
         </Fragment>
       ),
+      snippet: flexGroupWrap,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGroupWrap />
@@ -285,6 +365,7 @@ export const FlexExample = {
           <EuiCode>FlexItem</EuiCode> which contains it.
         </p>
       ),
+      snippet: flexItemPanelSnippet,
       demo: <FlexItemPanel />,
     },
     {
@@ -305,6 +386,7 @@ export const FlexExample = {
           can be turned off on each item individually.
         </p>
       ),
+      snippet: flexGrowZeroSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGrowZero />
@@ -330,6 +412,7 @@ export const FlexExample = {
           the flex box it is in.
         </p>
       ),
+      snippet: flexGrowNumericSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGrowNumeric />
@@ -487,6 +570,7 @@ export const FlexExample = {
           </EuiCallOut>
         </Fragment>
       ),
+      snippet: flexNestSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexNest />
@@ -512,6 +596,7 @@ export const FlexExample = {
           adjust the spacing between <EuiCode>FlexItem</EuiCode>s.
         </p>
       ),
+      snippet: flexGutterSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGutter />
@@ -527,7 +612,7 @@ export const FlexExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: flexGroupResonsiveHtml,
+          code: flexGroupResponsiveHtml,
         },
       ],
       text: (
@@ -539,6 +624,7 @@ export const FlexExample = {
           layout for the group.
         </p>
       ),
+      snippet: flexGroupResponsiveSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
           <FlexGroupResponsive />

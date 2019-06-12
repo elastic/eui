@@ -32,8 +32,10 @@ const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
 const flyoutMaxWidthHtml = renderToHtml(FlyoutMaxWidth);
 
 const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder>
-    <!-- Flyout title -->
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Flyout body -->
@@ -42,21 +44,28 @@ const flyOutSnippet = `<EuiFlyout onClose={this.closeFlyout}>
 `;
 
 const flyoutComplicatedSnippet = `<EuiFlyout onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder>
-    <!-- Flyout title -->
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Long content can be placed here -->
   </EuiFlyoutBody>
   <EuiFlyoutFooter>
-    <!-- Footer goes here -->
+    <EuiFlexGroup justifyContent="spaceBetween">
+      <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
+      <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
+    </EuiFlexGroup>
   </EuiFlyoutFooter>
 </EuiFlyout>
 `;
 
 const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder>
-    <!-- Flyout title -->
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Flyout body -->
@@ -64,9 +73,11 @@ const flyoutSmallSnippet = `<EuiFlyout size="s" ownFocus onClose={this.closeFlyo
 </EuiFlyout>
 `;
 
-const flyoutLargeSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder>
-    <!-- Flyout title -->
+const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Flyout body -->
@@ -74,9 +85,11 @@ const flyoutLargeSnippet = `<EuiFlyout maxWidth={448} onClose={this.closeFlyout}
 </EuiFlyout>
 `;
 
-const flyoutMaxWidthSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
-  <EuiFlyoutHeader hasBorder>
-    <!-- Flyout title -->
+const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={this.closeFlyout}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutTitle}>
+    <EuiTitle size="m">
+      <h2 id={flyoutTitle}></h2>
+    </EuiTitle>
   </EuiFlyoutHeader>
   <EuiFlyoutBody>
     <!-- Flyout body -->
