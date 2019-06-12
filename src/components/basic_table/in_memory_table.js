@@ -164,6 +164,8 @@ export class EuiInMemoryTable extends Component {
       return {
         prevProps: {
           items: nextProps.items,
+          sortField: prevState.prevProps.sortField,
+          sortDirection: prevState.prevProps.sortDirection,
         },
         pageIndex: 0,
       };
