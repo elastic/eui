@@ -10,7 +10,7 @@ import NavDrawer from './nav_drawer';
 const navDrawerSource = require('!!raw-loader!./nav_drawer');
 const navDrawerHtml = renderToHtml(NavDrawer);
 const navDrawerSnippet = `<EuiNavDrawer showToolTips={true}>
-  <EuiListGroup listItems={this.navLinks} />
+  <EuiNavDrawerGroup listItems={this.navLinks} />
 </EuiNavDrawer>`;
 
 export const NavDrawerExample = {

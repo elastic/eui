@@ -14,6 +14,9 @@ import HorizontalRuleMargin from './horizontal_rule_margin';
 const horizontalRuleMarginSource = require('!!raw-loader!./horizontal_rule_margin');
 const horizontalRuleMarginHtml = renderToHtml(HorizontalRuleMargin);
 
+const horizontalRuleSnippet = `<EuiHorizontalRule size="quarter" />`;
+const horizontalRuleMarginSnippet = `<EuiHorizontalRule margin="xs" />`;
+
 export const HorizontalRuleExample = {
   title: 'Horizontal Rule',
   sections: [
@@ -35,6 +38,7 @@ export const HorizontalRuleExample = {
         </p>
       ),
       props: { EuiHorizontalRule },
+      snippet: horizontalRuleSnippet,
       demo: <HorizontalRule />,
     },
     {
@@ -56,6 +60,7 @@ export const HorizontalRuleExample = {
           proceed / follow.
         </p>
       ),
+      snippet: horizontalRuleMarginSnippet,
       demo: <HorizontalRuleMargin />,
     },
   ],

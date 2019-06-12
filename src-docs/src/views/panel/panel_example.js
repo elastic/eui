@@ -20,6 +20,18 @@ import PanelBadge from './panel_badge';
 const panelBadgeSource = require('!!raw-loader!./panel_badge');
 const panelBadgeHtml = renderToHtml(PanelBadge);
 
+const panelSnippet = `<EuiPanel paddingSize="none">
+  <!-- Panel with no padding -->
+</EuiPanel>`;
+
+const panelHoverSnippet = `<EuiPanel onClick={this.handleClick}>
+  <!-- Panel with onClick handler -->
+</EuiPanel>`;
+
+const panelBadgeSnippet = `<EuiPanel betaBadgeLabel={badgeLabel}>
+  <!-- Panel with BetaBadge -->
+</EuiPanel>`;
+
 export const PanelExample = {
   title: 'Panel',
   sections: [
@@ -43,6 +55,7 @@ export const PanelExample = {
         </p>
       ),
       props: { EuiPanel },
+      snippet: panelSnippet,
       demo: <Panel />,
     },
     {
@@ -64,6 +77,7 @@ export const PanelExample = {
           button to allow for interaction.
         </p>
       ),
+      snippet: panelHoverSnippet,
       demo: <PanelHover />,
     },
     {
@@ -84,6 +98,7 @@ export const PanelExample = {
           accept an <Link to="/display/badge">EuiBetaBadge</Link>.
         </p>
       ),
+      snippet: panelBadgeSnippet,
       demo: <PanelBadge />,
     },
   ],
