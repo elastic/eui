@@ -52,7 +52,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     'euiToastHeader--withBody': children,
   });
 
-  let headerIcon: ReactElement<typeof EuiIcon>;
+  let headerIcon: ReactElement;
 
   if (iconType) {
     headerIcon = (
