@@ -128,9 +128,8 @@ export const EuiColorPicker = ({
 
   const handleInputActivity = e => {
     if (e.keyCode === keyCodes.ENTER) {
-      if (isColorSelectorShown) {
-        handleFinalSelection();
-      }
+      e.preventDefault();
+      handleToggle();
     } else if (!e.keyCode) {
       showColorSelector();
     }
@@ -191,33 +190,29 @@ export const EuiColorPicker = ({
   } else {
     const showColor = color && isValidHex(color);
     buttonOrInput = (
-      <EuiI18n
-        tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
-        defaults={[
-          'Close popover containing color options',
-          'Open popover containing color options',
-        ]}>
-        {([openLabel, closeLabel]) => (
-          <EuiFormControlLayout
-            icon={
-              !readOnly
-                ? {
-                    type: 'arrowDown',
-                    side: 'right',
-                    onClick: handleToggle,
-                    'aria-label': isColorSelectorShown ? openLabel : closeLabel,
-                    disabled: disabled,
-                    'data-test-subj': 'colorPickerToggleButton',
-                  }
-                : null
-            }
-            readOnly={readOnly}
-            fullWidth={fullWidth}
-            compressed={compressed}
-            onKeyDown={handleToggleOnKeyDown}>
-            <div
-              // Used to pass the chosen color through to form layout SVG using currentColor
-              style={{ color: showColor ? color : undefined }}>
+      <EuiFormControlLayout
+        icon={
+          !readOnly
+            ? {
+                type: 'arrowDown',
+                side: 'right',
+              }
+            : null
+        }
+        readOnly={readOnly}
+        fullWidth={fullWidth}
+        compressed={compressed}
+        onKeyDown={handleToggleOnKeyDown}>
+        <div
+          // Used to pass the chosen color through to form layout SVG using currentColor
+          style={{ color: showColor ? color : undefined }}>
+          <EuiI18n
+            tokens={['euiColorPicker.openLabel', 'euiColorPicker.closeLabel']}
+            defaults={[
+              'Press the escape key to close the popover',
+              'Press the down key to open a popover containing color options',
+            ]}>
+            {([openLabel, closeLabel]) => (
               <EuiFieldText
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
@@ -235,11 +230,12 @@ export const EuiColorPicker = ({
                 fullWidth={fullWidth}
                 autoComplete="off"
                 data-test-subj={testSubjAnchor}
+                aria-label={isColorSelectorShown ? openLabel : closeLabel}
               />
-            </div>
-          </EuiFormControlLayout>
-        )}
-      </EuiI18n>
+            )}
+          </EuiI18n>
+        </div>
+      </EuiFormControlLayout>
     );
   }
 
