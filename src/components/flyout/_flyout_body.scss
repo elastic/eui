@@ -2,6 +2,7 @@
   @include euiOverflowShadow;
   flex-grow: 1;
   overflow-y: hidden;
+  height: 100%;
 
   .euiFlyoutBody__overflow {
     @include euiScrollBar;

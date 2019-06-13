@@ -1,24 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
+import { CommonProps, keysOf, Omit } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { IconPropType, EuiIcon } from '../icon';
+import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 
-const colorToClassNameMap = {
+type ToastColor = 'primary' | 'success' | 'warning' | 'danger';
+
+const colorToClassNameMap: { [color in ToastColor]: string } = {
   primary: 'euiToast--primary',
   success: 'euiToast--success',
   warning: 'euiToast--warning',
   danger: 'euiToast--danger',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 
-export const EuiToast = ({
+export interface EuiToastProps
+  extends CommonProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  title?: ReactNode;
+  color?: ToastColor;
+  iconType?: IconType;
+  onClose?: () => void;
+}
+
+export const EuiToast: FunctionComponent<EuiToastProps> = ({
   title,
   color,
   iconType,
@@ -27,12 +43,16 @@ export const EuiToast = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('euiToast', colorToClassNameMap[color], className);
+  const classes = classNames(
+    'euiToast',
+    color ? colorToClassNameMap[color] : null,
+    className
+  );
   const headerClasses = classNames('euiToastHeader', {
     'euiToastHeader--withBody': children,
   });
 
-  let headerIcon;
+  let headerIcon: ReactElement;
 
   if (iconType) {
     headerIcon = (
@@ -50,7 +70,7 @@ export const EuiToast = ({
   if (onClose) {
     closeButton = (
       <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
-        {dismissToast => (
+        {(dismissToast: string) => (
           <button
             type="button"
             className="euiToast__closeButton"
@@ -86,7 +106,7 @@ export const EuiToast = ({
       </EuiScreenReaderOnly>
 
       <EuiI18n token="euiToast.notification" default="Notification">
-        {notification => (
+        {(notification: string) => (
           <div
             className={headerClasses}
             aria-label={notification}
@@ -102,12 +122,4 @@ export const EuiToast = ({
       {optionalBody}
     </div>
   );
-};
-
-EuiToast.propTypes = {
-  title: PropTypes.node,
-  iconType: IconPropType,
-  color: PropTypes.oneOf(COLORS),
-  onClose: PropTypes.func,
-  children: PropTypes.node,
 };

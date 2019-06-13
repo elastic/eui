@@ -197,6 +197,7 @@ const typeToPathMap = {
   logstashOutput: 'logstash_output',
   logstashQueue: 'logstash_queue',
   machineLearningApp: 'app_ml',
+  magnet: 'magnet',
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',

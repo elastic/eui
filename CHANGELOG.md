@@ -4,11 +4,16 @@
 - Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
 - Converted `EuiCopy` to TypeScript ([#2016](https://github.com/elastic/eui/pull/2016))
-- Convert badge and token components to TypeScript ([#2026](https://github.com/elastic/eui/pull/2026))
+- Converted badge and token components to TypeScript ([#2026](https://github.com/elastic/eui/pull/2026))
+- Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
+- Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
+- Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
 
 **Bug fixes**
 
+- Fixed `EuiFlyout` scrolling in Safari ([#2033](https://github.com/elastic/eui/pull/2033))
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
 
 **Breaking changes**
 

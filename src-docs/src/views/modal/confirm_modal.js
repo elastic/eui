@@ -4,7 +4,6 @@ import {
   EuiButton,
   EuiConfirmModal,
   EuiOverlayMask,
-  EUI_MODAL_CONFIRM_BUTTON,
 } from '../../../../src/components';
 
 export class ConfirmModal extends Component {
@@ -50,7 +49,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
+            defaultFocusedButton="confirm">
             <p>You&rsquo;re about to do something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -70,7 +69,7 @@ export class ConfirmModal extends Component {
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
             buttonColor="danger"
-            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}>
+            defaultFocusedButton="confirm">
             <p>You&rsquo;re about to destroy something.</p>
             <p>Are you sure you want to do this?</p>
           </EuiConfirmModal>
@@ -89,7 +88,7 @@ export class ConfirmModal extends Component {
             onConfirm={this.closeEmptyModal}
             cancelButtonText="No, don't do it"
             confirmButtonText="Yes, do it"
-            defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
+            defaultFocusedButton="confirm"
           />
         </EuiOverlayMask>
       );

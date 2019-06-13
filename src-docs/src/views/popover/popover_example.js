@@ -47,6 +47,73 @@ import PopoverFixed from './popover_fixed';
 const popoverFixedSource = require('!!raw-loader!./popover_fixed');
 const popoverFixedHtml = renderToHtml(PopoverFixed);
 
+const popOverSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const trapFocusSnippet = `<EuiPopover
+  button={button}
+  ownFocus
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const popoverAnchorSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  anchorPosition="downLeft">
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const popoverWithTitleSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <EuiPopoverTitle><!-- Popover title --></EuiPopoverTitle>
+  <div><!-- Popover body --></div>
+  <EuiPopoverFooter><!-- Popover footer --></EuiPopoverFooter>
+</EuiPopover>`;
+
+const popoverPanelClassNameSnippet = `<EuiPopover
+  ownFocus
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  panelClassName="yourClassNameHere"
+  panelPaddingSize="none">
+  <!-- Popover with custom class name and custom padding -->
+</EuiPopover>`;
+
+const popoverWithTitlePaddingSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  panelPaddingSize="s">
+  <EuiPopoverTitle><!-- Popover title --></EuiPopoverTitle>
+  <!-- Content for popover with small padding -->
+</EuiPopover>`;
+
+const popoverContainerSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  container={this.panel}>
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const popoverFixedSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  repositionOnScroll={true}>
+  <!-- Popover on a fixed element -->
+</EuiPopover>`;
+
 export const PopoverExample = {
   title: 'Popover',
   sections: [
@@ -68,6 +135,7 @@ export const PopoverExample = {
         </p>
       ),
       props: { EuiPopover },
+      snippet: popOverSnippet,
       demo: <Popover />,
     },
     {
@@ -89,6 +157,7 @@ export const PopoverExample = {
           <EuiCode>ownFocus</EuiCode>.
         </p>
       ),
+      snippet: trapFocusSnippet,
       demo: <TrapFocus />,
     },
     {
@@ -128,6 +197,7 @@ export const PopoverExample = {
           </ul>
         </div>
       ),
+      snippet: popoverAnchorSnippet,
       demo: <PopoverAnchorPosition />,
     },
     {
@@ -159,11 +229,7 @@ export const PopoverExample = {
       ),
       props: { EuiPopoverTitle, EuiPopoverFooter },
       demo: <PopoverWithTitle />,
-      snippet: `<EuiPopover>
-  <EuiPopoverTitle></EuiPopoverTitle>
-  <div></div>
-  <EuiPopoverFooter></EuiPopoverFooter>
-</EuiPopover>`,
+      snippet: popoverWithTitleSnippet,
     },
     {
       title: 'Panel class name and padding size',
@@ -186,6 +252,7 @@ export const PopoverExample = {
         </p>
       ),
       demo: <PopoverPanelClassName />,
+      snippet: popoverPanelClassNameSnippet,
     },
     {
       title: 'Popover with title and padding size',
@@ -209,6 +276,7 @@ export const PopoverExample = {
           </p>
         </div>
       ),
+      snippet: popoverWithTitlePaddingSnippet,
       demo: <PopoverWithTitlePadding />,
     },
     {
@@ -232,6 +300,7 @@ export const PopoverExample = {
           </p>
         </div>
       ),
+      snippet: popoverContainerSnippet,
       demo: <PopoverContainer />,
     },
     {
@@ -277,6 +346,7 @@ export const PopoverExample = {
           </p>
         </div>
       ),
+      snippet: popoverFixedSnippet,
       demo: <PopoverFixed />,
     },
   ],

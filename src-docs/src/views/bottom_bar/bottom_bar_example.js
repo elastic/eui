@@ -10,6 +10,10 @@ import BottomBar from './bottom_bar';
 const bottomBarSource = require('!!raw-loader!./bottom_bar');
 const bottomBarHtml = renderToHtml(BottomBar);
 
+const bottomBarSnippet = `<EuiBottomBar paddingSize="s">
+  <!-- Content goes here -->
+</EuiBottomBar>`;
+
 export const BottomBarExample = {
   title: 'Bottom Bar',
   sections: [
@@ -42,6 +46,7 @@ export const BottomBarExample = {
         </div>
       ),
       props: { EuiBottomBar },
+      snippet: bottomBarSnippet,
       demo: <BottomBar />,
     },
   ],
