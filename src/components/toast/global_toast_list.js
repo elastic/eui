@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -11,14 +11,14 @@ import { EuiDelayRender } from '../delay_render';
 import { EuiI18n } from '../i18n';
 
 export const TOAST_FADE_OUT_MS = 250;
-export const TOAST_LOGGER_TIMEOUT_MS = 57000;
 
-export class EuiGlobalToastList extends Component {
+export class EuiGlobalToastList extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       toastIdToDismissedMap: {},
+      lastRenderedForScreenReaderToast: { id: -1, timestamp: -1 },
     };
 
     this.dismissTimeoutIds = [];
@@ -32,7 +32,10 @@ export class EuiGlobalToastList extends Component {
     this.isScrollingAnimationFrame = 0;
     this.startScrollingAnimationFrame = 0;
 
-    this.lastRenderedForScreenReaderToast = { id: -1 };
+    // this.state.lastRenderedForScreenReaderToast = { id: -1 };
+    this._ariaLiveToastTempStorage = [];
+    // 'keep' or 'update'
+    this._updatingLiveRegionStrategy = 'update';
   }
 
   static propTypes = {
@@ -179,61 +182,94 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
-  handleScreenReaderToastLoggerUpdating = toasts => {
+  logToastsForScreenReader = toasts => {
     if (!toasts.length) {
-      // show what we have now to avoid node re-rendering
-      return this.lastRenderedForScreenReaderToast.reactElement;
+      // return what we have now to avoid node re-rendering
+      return;
     }
 
-    // get the highest (latest) ID
-    // TODO: should we update the docs for using only numberic IDs?
-    // Numberic IDs are used all across the Kibana
-    // Otherwise, it's hard to decide between too toasts
-    // where one of them has number ID while the other -- string
-    // Also, documentation example uses numberic IDs
-    const toastIDS = toasts
-      .filter(({ id }) => typeof id === 'number')
-      .map(({ id }) => id);
-    const latestToastID = Math.max(...toastIDS);
-    const lastToast = this.lastRenderedForScreenReaderToast;
+    const toastStorage = this._ariaLiveToastTempStorage;
 
-    // check the local toast
-    const locallyStored = lastToast.id >= latestToastID;
-
-    if (locallyStored) {
-      // if locally stored, then render without delay
-      return lastToast.reactElement || null;
-    }
-
-    // if not locally stored, then
-    // update local copy
-    // and render with delay
-    const newLastToasts = toasts
-      .filter(toast => toast.id === latestToastID)
-      .map(toast => ({
-        id: toast.id,
-        reactElement: (
-          <Fragment key={toast.id}>
-            <p>
-              <EuiI18n
-                token="euiGlobalToastList.newNotification"
-                default="A new notification appears"
-              />
-            </p>
-            <p>{toast.title}</p>
-            <div>{toast.text}</div>
-          </Fragment>
-        ),
+    //  1: we should filter new toasts
+    const notStoredPassedToasts = toasts
+      .filter(
+        passedToast =>
+          !toastStorage.some(storedToast => storedToast.id === passedToast.id)
+      )
+      // 2: We should update each with a timestamp
+      .map(newToast => ({
+        ...newToast,
+        timestamp: Date.now(),
       }));
 
-    this.lastRenderedForScreenReaderToast = newLastToasts.slice(-1)[0];
+    // console.info('notStoredPassedToasts', notStoredPassedToasts);
 
-    return (
-      <EuiDelayRender>
-        {this.lastRenderedForScreenReaderToast.reactElement}
-      </EuiDelayRender>
-    );
+    // 3: We should store everything in the private storage
+    this._ariaLiveToastTempStorage.push(...notStoredPassedToasts);
+
+    // // Clear the storage from unpassed (and already deleted toasts)
+    // this._ariaLiveToastTempStorage = this._ariaLiveToastTempStorage.filter(
+    //   storedToast =>
+    //     toasts.some(passedToast => passedToast.id === storedToast.id)
+    // );
+
+    // console.log('_ariaLiveToastTempStorage', this._ariaLiveToastTempStorage);
+
+    // 4: We should store the latest in the state
+    const theLatestCameToasts = this._ariaLiveToastTempStorage
+      .map(x => x)
+      .sort((prev, next) => next.timestamp - prev.timestamp);
+
+    // console.info('theLatestCameToasts', theLatestCameToasts.map(x => x.timestamp));
+
+    const theLatest = theLatestCameToasts[0];
+
+    console.info(theLatest.timestamp > this.state.lastRenderedForScreenReaderToast.timestamp ? 'update' : 'keep');
+
+    if (
+      theLatest &&
+      theLatest.timestamp >
+        this.state.lastRenderedForScreenReaderToast.timestamp
+    ) {
+      this._updatingLiveRegionStrategy = 'update';
+      this.setState({
+        lastRenderedForScreenReaderToast: { ...theLatest },
+      });
+    } else {
+      this._updatingLiveRegionStrategy = 'keep';
+    }
   };
+
+  renderScreenReaderLogArea() {
+    const toastNotification = (
+      <Fragment key={this.state.lastRenderedForScreenReaderToast.timestamp}>
+        <p>
+          <EuiI18n
+            token="euiGlobalToastList.newNotification"
+            default="A new notification appears"
+          />
+        </p>
+        <p>{this.state.lastRenderedForScreenReaderToast.title}</p>
+        <div>{this.state.lastRenderedForScreenReaderToast.text}</div>
+      </Fragment>
+    );
+
+    switch (this._updatingLiveRegionStrategy) {
+      case 'update': // with delay
+        return (
+          <EuiDelayRender>
+            {toastNotification}
+          </EuiDelayRender>
+        );
+        break;
+      case 'keep': // without delay
+        // return null;
+        return toastNotification;
+        break;
+      default:
+        return null;
+    }
+  }
 
   componentDidMount() {
     this.listElement.addEventListener('scroll', this.onScroll);
@@ -242,7 +278,7 @@ export class EuiGlobalToastList extends Component {
     this.scheduleAllToastsForDismissal();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     this.scheduleAllToastsForDismissal();
 
     if (!this.isUserInteracting) {
@@ -253,6 +289,10 @@ export class EuiGlobalToastList extends Component {
           this.startScrollingToBottom();
         }
       }
+    }
+    if (this.props.toasts.length) {
+      console.info('didUpdate()');
+      this.logToastsForScreenReader(this.props.toasts, prevState);
     }
   }
 
@@ -314,7 +354,7 @@ export class EuiGlobalToastList extends Component {
         {renderedToasts}
         <EuiScreenReaderOnly>
           <div role="region" aria-live="polite">
-            {this.handleScreenReaderToastLoggerUpdating(toasts)}
+            {this.renderScreenReaderLogArea()}
           </div>
         </EuiScreenReaderOnly>
       </div>
