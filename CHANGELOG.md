@@ -8,13 +8,13 @@
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 - Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 - Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
+- Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 
 **Bug fixes**
 
 - Fixed `EuiFlyout` scrolling in Safari ([#2033](https://github.com/elastic/eui/pull/2033))
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 - Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
-- Changed `EuiNavDrawerFlyout` title from `h2` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 
 **Breaking changes**
 
