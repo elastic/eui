@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Fixed typo in `EuiBasicTable` props documentation ([#2041](https://github.com/elastic/eui/pull/2041))
 - Attached `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
