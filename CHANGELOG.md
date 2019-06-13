@@ -14,6 +14,7 @@
 - Fixed `EuiFlyout` scrolling in Safari ([#2033](https://github.com/elastic/eui/pull/2033))
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 - Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiNavDrawerFlyout` heading ([#2040](https://github.com/elastic/eui/pull/2040))
 
 **Breaking changes**
 
