@@ -1,50 +1,52 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, ReactChild } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../common';
 import { Timer } from '../../services/time';
-import { IconPropType } from '../icon';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
-import { EuiToast } from './toast';
+import { EuiToast, EuiToastProps } from './toast';
 
 export const TOAST_FADE_OUT_MS = 250;
 
-export class EuiGlobalToastList extends Component {
-  constructor(props) {
-    super(props);
+export interface Toast extends EuiToastProps {
+  id: string;
+  text?: ReactChild;
+  toastLifeTimeMs?: number;
+}
 
-    this.state = {
-      toastIdToDismissedMap: {},
-    };
+export interface EuiGlobalToastListProps extends CommonProps {
+  toasts: Toast[];
+  dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
+  toastLifeTimeMs: number;
+}
 
-    this.dismissTimeoutIds = [];
-    this.toastIdToTimerMap = {};
-
-    this.isScrollingToBottom = false;
-    this.isScrolledToBottom = true;
-
-    // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
-    // for information on initial value of 0
-    this.isScrollingAnimationFrame = 0;
-    this.startScrollingAnimationFrame = 0;
-  }
-
-  static propTypes = {
-    className: PropTypes.string,
-    toasts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-          .isRequired,
-        title: PropTypes.node,
-        text: PropTypes.node,
-        color: PropTypes.string,
-        iconType: IconPropType,
-        toastLifeTimeMs: PropTypes.number,
-      }).isRequired
-    ),
-    dismissToast: PropTypes.func.isRequired,
-    toastLifeTimeMs: PropTypes.number.isRequired,
+interface State {
+  toastIdToDismissedMap: {
+    [toastId: string]: boolean;
   };
+}
+
+export class EuiGlobalToastList extends Component<
+  EuiGlobalToastListProps,
+  State
+> {
+  state: State = {
+    toastIdToDismissedMap: {},
+  };
+
+  dismissTimeoutIds: number[] = [];
+  toastIdToTimerMap: { [toastId: string]: Timer } = {};
+
+  isScrollingToBottom = false;
+  isScrolledToBottom = true;
+  isUserInteracting = false;
+
+  // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
+  // for information on initial value of 0
+  isScrollingAnimationFrame = 0;
+  startScrollingAnimationFrame = 0;
+
+  listElement: Element | null = null;
 
   static defaultProps = {
     toasts: [],
@@ -56,7 +58,9 @@ export class EuiGlobalToastList extends Component {
     const scrollToBottom = () => {
       // Although we cancel the requestAnimationFrame in componentWillUnmount,
       // it's possible for this.listElement to become null in the meantime
-      if (!this.listElement) return;
+      if (!this.listElement) {
+        return;
+      }
 
       const position = this.listElement.scrollTop;
       const destination =
@@ -110,9 +114,11 @@ export class EuiGlobalToastList extends Component {
   };
 
   onScroll = () => {
-    this.isScrolledToBottom =
-      this.listElement.scrollHeight - this.listElement.scrollTop ===
-      this.listElement.clientHeight;
+    if (this.listElement) {
+      this.isScrolledToBottom =
+        this.listElement.scrollHeight - this.listElement.scrollTop ===
+        this.listElement.clientHeight;
+    }
   };
 
   scheduleAllToastsForDismissal = () => {
@@ -123,7 +129,7 @@ export class EuiGlobalToastList extends Component {
     });
   };
 
-  scheduleToastForDismissal = toast => {
+  scheduleToastForDismissal = (toast: Toast) => {
     // Start fading the toast out once its lifetime elapses.
     this.toastIdToTimerMap[toast.id] = new Timer(
       this.dismissToast.bind(this, toast),
@@ -133,16 +139,16 @@ export class EuiGlobalToastList extends Component {
     );
   };
 
-  dismissToast = toast => {
+  dismissToast = (toast: Toast) => {
     // Remove the toast after it's done fading out.
     this.dismissTimeoutIds.push(
-      setTimeout(() => {
+      window.setTimeout(() => {
         // Because this is wrapped in a setTimeout, and because React does not guarantee when
         // state updates happen, it is possible to double-dismiss a toast
         // including by double-clicking the "x" button on the toast
         // so, first check to make sure we haven't already dismissed this toast
         if (this.toastIdToTimerMap.hasOwnProperty(toast.id)) {
-          this.props.dismissToast(toast);
+          this.props.dismissToast.apply(this, [toast]);
           this.toastIdToTimerMap[toast.id].clear();
           delete this.toastIdToTimerMap[toast.id];
 
@@ -173,13 +179,15 @@ export class EuiGlobalToastList extends Component {
   };
 
   componentDidMount() {
-    this.listElement.addEventListener('scroll', this.onScroll);
-    this.listElement.addEventListener('mouseenter', this.onMouseEnter);
-    this.listElement.addEventListener('mouseleave', this.onMouseLeave);
+    if (this.listElement) {
+      this.listElement.addEventListener('scroll', this.onScroll);
+      this.listElement.addEventListener('mouseenter', this.onMouseEnter);
+      this.listElement.addEventListener('mouseleave', this.onMouseLeave);
+    }
     this.scheduleAllToastsForDismissal();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: EuiGlobalToastListProps) {
     this.scheduleAllToastsForDismissal();
 
     if (!this.isUserInteracting) {
@@ -200,9 +208,11 @@ export class EuiGlobalToastList extends Component {
     if (this.startScrollingAnimationFrame !== 0) {
       window.cancelAnimationFrame(this.startScrollingAnimationFrame);
     }
-    this.listElement.removeEventListener('scroll', this.onScroll);
-    this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
-    this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
+    if (this.listElement) {
+      this.listElement.removeEventListener('scroll', this.onScroll);
+      this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
+      this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
+    }
     this.dismissTimeoutIds.forEach(clearTimeout);
     for (const toastId in this.toastIdToTimerMap) {
       if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
