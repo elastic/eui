@@ -110,7 +110,7 @@ export const propsInfo = {
         },
         pageSize: {
           description:
-            'The maximum number if items that can be shown in a single page',
+            'The maximum number of items that can be shown in a single page',
           required: true,
           type: { name: 'number' },
         },
