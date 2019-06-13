@@ -76,7 +76,9 @@ export default class extends Component {
               <EuiModalHeaderTitle>Color picker in a modal</EuiModalHeaderTitle>
             </EuiModalHeader>
 
-            <EuiModalBody>{colorPicker}</EuiModalBody>
+            <EuiModalBody>
+              <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+            </EuiModalBody>
           </EuiModal>
         </EuiOverlayMask>
       );
@@ -96,7 +98,9 @@ export default class extends Component {
           button={button}
           isOpen={isPopoverOpen}
           closePopover={this.closePopover}>
-          <div style={{ width: '300px' }}>{colorPicker}</div>
+          <div style={{ width: '300px' }}>
+            <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+          </div>
         </EuiPopover>
 
         <EuiSpacer size="m" />
