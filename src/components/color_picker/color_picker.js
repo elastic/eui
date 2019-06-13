@@ -257,7 +257,7 @@ export const EuiColorPicker = ({
       anchorPosition="downLeft"
       panelPaddingSize="s">
       <div className={classes} data-test-subj={testSubjPopover}>
-        <EuiFocusTrap>
+        <EuiFocusTrap clickOutsideDisables={true}>
           <EuiScreenReaderOnly>
             <p aria-live="polite">
               <EuiI18n
