@@ -261,7 +261,8 @@ export const catchRouter = onRouter => WrappedComponent =>
     class extends Component {
       componentDidMount() {
         const { match, location, history } = this.props;
-        onRouter({ match, location, history });
+        const router = { route: { match, location }, history };
+        onRouter(router);
       }
 
       render() {
