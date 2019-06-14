@@ -225,16 +225,16 @@
   },
   {
     "token": "euiColorPicker.screenReaderAnnouncement",
-    "defString": "A popup with a range of selectable colors opened.\n                  Tab forward to cycle through colors choices or press\n                  escape to close this popup.",
+    "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
-        "column": 16
+        "line": 259,
+        "column": 14
       },
       "end": {
-        "line": 226,
-        "column": 18
+        "line": 264,
+        "column": 16
       }
     },
     "filepath": "src/components/color_picker/color_picker.js"
@@ -245,12 +245,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
-        "column": 20
+        "line": 288,
+        "column": 18
       },
       "end": {
-        "line": 260,
-        "column": 61
+        "line": 291,
+        "column": 59
       }
     },
     "filepath": "src/components/color_picker/color_picker.js"
@@ -277,12 +277,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 175,
-        "column": 4
+        "line": 182,
+        "column": 6
       },
       "end": {
-        "line": 177,
-        "column": 62
+        "line": 184,
+        "column": 64
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -293,12 +293,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
-        "column": 14
+        "line": 207,
+        "column": 16
       },
       "end": {
-        "line": 202,
-        "column": 16
+        "line": 210,
+        "column": 18
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -885,15 +885,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 52,
+        "line": 72,
         "column": 6
       },
       "end": {
-        "line": 52,
+        "line": 72,
         "column": 69
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   },
   {
     "token": "euiToast.newNotification",
@@ -901,15 +901,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 81,
+        "line": 101,
         "column": 10
       },
       "end": {
-        "line": 84,
+        "line": 104,
         "column": 12
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   },
   {
     "token": "euiToast.notification",
@@ -917,14 +917,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 108,
         "column": 6
       },
       "end": {
-        "line": 88,
+        "line": 108,
         "column": 68
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   }
 ]

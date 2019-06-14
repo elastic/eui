@@ -1,569 +1,577 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders EuiColorPicker 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffeedd"
         >
           <div
-            style="color:#ffeedd"
+            class="euiFormControlLayout"
           >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  type="text"
-                  value="#FFEEDD"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffffff"
         >
           <div
-            style="color:#ffffff"
+            class="euiFormControlLayout"
           >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFFFFF"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  type="text"
-                  value="#FFFFFF"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout"
+          >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                placeholder="Transparent"
+                type="text"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  placeholder="Transparent"
-                  type="text"
-                  value=""
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout"
+          >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                placeholder="Transparent"
+                type="text"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  placeholder="Transparent"
-                  type="text"
-                  value=""
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders compressed EuiColorPicker 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout euiFormControlLayout--compressed"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffeedd"
         >
           <div
-            style="color:#ffeedd"
+            class="euiFormControlLayout euiFormControlLayout--compressed"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--compressed"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon euiFieldText--compressed"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon euiFieldText--compressed"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  type="text"
-                  value="#FFEEDD"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders disabled EuiColorPicker 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffeedd"
         >
           <div
-            style="color:#ffeedd"
+            class="euiFormControlLayout"
           >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                disabled=""
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  disabled=""
-                  maxlength="7"
-                  type="text"
-                  value="#FFEEDD"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders fullWidth EuiColorPicker 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffeedd"
         >
           <div
-            style="color:#ffeedd"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon euiFieldText--fullWidth"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                type="text"
+                value="#FFEEDD"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon euiFieldText--fullWidth"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  type="text"
-                  value="#FFEEDD"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;
 
 exports[`renders readOnly EuiColorPicker 1`] = `
-Array [
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+>
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
+    class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+      readonly=""
+    >
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover__anchor euiColorPicker__popoverAnchor"
+          style="color:#ffeedd"
         >
           <div
-            style="color:#ffeedd"
+            class="euiFormControlLayout"
           >
             <div
-              class="euiFormControlLayout"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-label="Press the down key to open a popover containing color options"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--withIcon"
+                data-test-subj="colorPickerAnchor"
+                maxlength="7"
+                readonly=""
+                type="text"
+                value="#FFEEDD"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--withIcon"
-                  data-test-subj="colorPickerAnchor"
-                  maxlength="7"
-                  readonly=""
-                  type="text"
-                  value="#FFEEDD"
-                />
-                <div
-                  class="euiFormControlLayoutIcons"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
-                  <span
-                    class="euiFormControlLayoutCustomIcon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
-                      focusable="false"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </span>
-                </div>
+                  <svg
+                    aria-hidden="true"
+                    class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+                    focusable="false"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
+  </div>
+</div>
 `;

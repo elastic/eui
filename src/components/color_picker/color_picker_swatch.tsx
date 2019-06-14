@@ -1,4 +1,9 @@
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  FunctionComponent,
+  Ref,
+  forwardRef,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, Omit } from '../common';
@@ -10,7 +15,7 @@ export type EuiColorPickerSwatchProps = CommonProps &
 
 export const EuiColorPickerSwatch: FunctionComponent<
   EuiColorPickerSwatchProps
-> = ({ className, color, ...rest }) => {
+> = forwardRef(({ className, color, ...rest }, ref: Ref<HTMLButtonElement>) => {
   const classes = classNames('euiColorPickerSwatch', className);
 
   return (
@@ -18,7 +23,8 @@ export const EuiColorPickerSwatch: FunctionComponent<
       type="button"
       className={classes}
       style={{ background: color ? color : 'transparent' }}
+      ref={ref}
       {...rest}
     />
   );
-};
+});

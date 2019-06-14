@@ -84,6 +84,10 @@ const modesPickerSnippet = `// Gradient map only
 />
 `;
 
+import Containers from './containers';
+const containersSource = require('!!raw-loader!./containers');
+const containersHtml = renderToHtml(Containers);
+
 import { KitchenSink } from './kitchen_sink';
 const kitchenSinkSource = require('!!raw-loader!./kitchen_sink');
 const kitchenSinkHtml = renderToHtml(KitchenSink);
@@ -210,6 +214,27 @@ export const ColorPickerExample = {
       ),
       snippet: [modesSwatchSnippet, modesPickerSnippet],
       demo: <Modes />,
+    },
+    {
+      title: 'Containers',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: containersSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: containersHtml,
+        },
+      ],
+      text: (
+        <p>
+          Demonstrating that <EuiCode>EuiColorPicker</EuiCode> can exist in
+          portal containers and that its popover position works in nested
+          contexts.
+        </p>
+      ),
+      demo: <Containers />,
     },
     {
       title: 'Kitchen sink',
