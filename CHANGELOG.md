@@ -8,6 +8,7 @@
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 - Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 - Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
+- Added ariaLabel prop to table items in `EuiBasicTable` ([#2043](https://github.com/elastic/eui/pull/2043))
 
 **Bug fixes**
 
