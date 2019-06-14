@@ -662,47 +662,99 @@ exports[`EuiInMemoryTable empty array 1`] = `
 />
 `;
 
-exports[`EuiInMemoryTable sorting with field sorting 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "sortable": true,
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage="No items found"
-  onChange={[Function]}
-  responsive={true}
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": undefined,
-    }
-  }
-/>
+exports[`EuiInMemoryTable sorting verify field sorting precedes name sorting 1`] = `
+Array [
+  <span
+    className="euiTableCellContent__text"
+  >
+    name3
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    1
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name2
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    2
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name1
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    3
+  </span>,
+]
+`;
+
+exports[`EuiInMemoryTable sorting with field sorting (off by default) 1`] = `
+Array [
+  <span
+    className="euiTableCellContent__text"
+  >
+    name3
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name1
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name2
+  </span>,
+]
+`;
+
+exports[`EuiInMemoryTable sorting with field sorting (on by default) 1`] = `
+Array [
+  <span
+    className="euiTableCellContent__text"
+  >
+    name1
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name2
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name3
+  </span>,
+]
+`;
+
+exports[`EuiInMemoryTable sorting with name sorting 1`] = `
+Array [
+  <span
+    className="euiTableCellContent__text"
+  >
+    name3
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name2
+  </span>,
+  <span
+    className="euiTableCellContent__text"
+  >
+    name1
+  </span>,
+]
 `;
 
 exports[`EuiInMemoryTable with executeQueryOptions 1`] = `

@@ -245,13 +245,13 @@ describe('EuiInMemoryTable', () => {
   });
 
   describe('sorting', () => {
-    test('with field sorting', () => {
+    test('with field sorting (off by default)', () => {
       const props = {
         ...requiredProps,
         items: [
+          { id: '3', name: 'name3' },
           { id: '1', name: 'name1' },
           { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' },
         ],
         columns: [
           {
@@ -263,22 +263,137 @@ describe('EuiInMemoryTable', () => {
         ],
         sorting: true,
       };
-      const component = shallow(<EuiInMemoryTable {...props} />);
+      const component = mount(<EuiInMemoryTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(
+        component.find('tbody .euiTableCellContent__text')
+      ).toMatchSnapshot();
     });
 
-    // test('with name sorting', () => {
-    //   expect(true).toBe(false);
-    // });
-    //
-    // test('verify field sorting trumps name sorting', () => {
-    //   expect(true).toBe(false);
-    // });
-    //
-    // test(`verify an invalid sort field doesn't blow everything up`, () => {
-    //   expect(true).toBe(false);
-    // });
+    test('with field sorting (on by default)', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '3', name: 'name3' },
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        sorting: {
+          sort: {
+            field: 'name',
+            direction: 'asc',
+          },
+        },
+      };
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      expect(
+        component.find('tbody .euiTableCellContent__text')
+      ).toMatchSnapshot();
+    });
+
+    test('with name sorting', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '3', name: 'name3' },
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        sorting: {
+          sort: {
+            field: 'Name',
+            direction: 'desc',
+          },
+        },
+      };
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      expect(
+        component.find('tbody .euiTableCellContent__text')
+      ).toMatchSnapshot();
+    });
+
+    test('verify field sorting precedes name sorting', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name3' },
+          { id: '3', name: 'name1' },
+          { id: '2', name: 'name2' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Column 1',
+            description: 'description',
+            sortable: true,
+          },
+          {
+            field: 'id',
+            name: 'name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        sorting: {
+          sort: {
+            field: 'name',
+            direction: 'desc',
+          },
+        },
+      };
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      // name TDs should be sorted desc, id TDs should be asc,
+      expect(
+        component.find('tbody .euiTableCellContent__text')
+      ).toMatchSnapshot();
+    });
+
+    test(`verify an invalid sort field doesn't blow everything up`, () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '3', name: 'name3' },
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        sorting: {
+          sort: {
+            field: 'something_nonexistant',
+            direction: 'asc',
+          },
+        },
+      };
+      expect(() => {
+        mount(<EuiInMemoryTable {...props} />);
+      }).not.toThrow();
+    });
   });
 
   test('with initial sorting', () => {

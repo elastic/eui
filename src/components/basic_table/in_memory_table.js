@@ -155,6 +155,14 @@ const getInitialSorting = (columns, sorting) => {
   if (sortColumn == null) {
     sortColumn = findColumnByProp(columns, 'name', sortable);
   }
+
+  if (sortColumn == null) {
+    return {
+      sortName: undefined,
+      sortDirection: undefined,
+    };
+  }
+
   const sortName = sortColumn.name;
 
   return {
@@ -328,11 +336,7 @@ export class EuiInMemoryTable extends Component {
       return () => () => 0;
     }
 
-    let sortable;
-
-    if (sortColumn) {
-      sortable = sortColumn.sortable;
-    }
+    const sortable = sortColumn.sortable;
 
     if (typeof sortable === 'function') {
       return Comparators.value(sortable, Comparators.default(sortDirection));
