@@ -19,7 +19,7 @@
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
     "lint-fix": "yarn lint-es-fix",
-    "lint-es": "eslint --cache '{src,src-docs,src-framer}/**/*.{ts,tsx,js}'",
+    "lint-es": "eslint --cache '{src,src-docs,src-framer}/**/*.{ts,tsx,js}' --max-warnings 0",
     "lint-es-fix": "yarn lint-es --fix",
     "lint-sass": "sass-lint -v --max-warnings 0",
     "lint-sass-fix": "sass-lint-auto-fix -c ./.sass-lint-fix.yml",
