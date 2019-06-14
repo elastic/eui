@@ -217,7 +217,7 @@
   &--next {
     @include datePicker__arrow;
     // Pixel value because of some padding on the icon
-    right: 10px;
+    right: 20px;
     height: $euiSize;
     width: $euiSize;
     transform: rotate(-90deg);
@@ -635,7 +635,7 @@
 .react-datepicker__month--accessible:focus {
   background: $euiFocusBackgroundColor;
 
-  .react-datepicker__day--in-range {
+  .react-datepicker__day--in-range:not(.react-datepicker__day--selected) {
     border-top-color: $euiFocusBackgroundColor;
     border-bottom-color: $euiFocusBackgroundColor;
   }

@@ -33,7 +33,7 @@ export default class extends Component {
             showTimeSelect
             selected={this.state.startDate}
             onChange={this.handleChange}
-            dateFormat="MM/DD/YYYY HH:mm.ss.SSS"
+            dateFormat="MM/DD/YYYY HH:mm A"
           />
         </EuiFormRow>
 
@@ -69,6 +69,7 @@ export default class extends Component {
             selected={this.state.startDate}
             onChange={this.handleChange}
             dateFormat="hh:mm a"
+            timeFormat="hh:mm a"
             injectTimes={[
               moment()
                 .hours(0)

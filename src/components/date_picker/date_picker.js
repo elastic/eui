@@ -280,11 +280,12 @@ EuiDatePicker.propTypes = {
 
 EuiDatePicker.defaultProps = {
   adjustDateOnChange: true,
-  dateFormat: 'MM/DD/YYYY hh:mm A',
+  dateFormat: 'MM/DD/YYYY',
   fullWidth: false,
   isLoading: false,
   shadow: true,
   shouldCloseOnSelect: true,
   showIcon: true,
+  showTimeSelect: false,
   timeFormat: 'hh:mm A',
 };
