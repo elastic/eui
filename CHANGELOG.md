@@ -24,6 +24,15 @@ No public interface changes since `12.0.0`.
 
 - Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
 
+## [`11.3.2`](https://github.com/elastic/eui/tree/v11.3.2)
+
+**Note: this release is a backport containing changes originally made in `12.0.0`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
+
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 
 **Bug fixes**
