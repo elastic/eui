@@ -223,6 +223,72 @@ FooComponent.propTypes = {
 
     });
 
+    describe('function propTypes', () => {
+
+      it('understands function props on interfaces', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo(): ReactElement;
+  bar?(arg: number): string;
+  fizz: Function;
+  buzz?: (arg: boolean) => string;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.func.isRequired,
+  bar: PropTypes.func,
+  fizz: PropTypes.func.isRequired,
+  buzz: PropTypes.func
+};`);
+      });
+
+      it('understands function props on types', () => {
+        const result = transform(
+          `
+import React from 'react';
+type FooProps = {
+  foo(): ReactElement;
+  bar?(arg: number): string;
+  fizz: Function;
+  buzz?: (arg: boolean) => string;
+}
+const FooComponent: React.SFC<FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.func.isRequired,
+  bar: PropTypes.func,
+  fizz: PropTypes.func.isRequired,
+  buzz: PropTypes.func
+};`);
+      });
+
+    });
+
     describe('enum / oneOf propTypes', () => {
 
       describe('union type', () => {
