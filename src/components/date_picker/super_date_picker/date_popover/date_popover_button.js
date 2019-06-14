@@ -62,6 +62,9 @@ export function EuiDatePopoverButton(props) {
       panelPaddingSize="none"
       ownFocus
       {...rest}>
+      {/* <EuiPopoverTitle>
+        {position === 'start' ? 'Start' : 'End'} date
+      </EuiPopoverTitle> */}
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}
