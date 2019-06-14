@@ -845,19 +845,27 @@ export class EuiBasicTable extends Component {
     };
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
-          {selectThisRow => (
-            <EuiCheckbox
-              id={`${key}-checkbox`}
-              type="inList"
-              disabled={disabled}
-              checked={checked}
-              onChange={onChange}
-              title={title}
-              aria-label={selectThisRow}
-              data-test-subj={`checkboxSelectRow-${itemId}`}
-            />
-          )}
+        <EuiI18n
+          tokens={['euiBasicTable.selectThisRow', 'euiBasicTable.select']}
+          defaults={['Select this row', 'Select']}>
+          {([selectThisRow, select]) => {
+            return (
+              <EuiCheckbox
+                id={`${key}-checkbox`}
+                type="inList"
+                disabled={disabled}
+                checked={checked}
+                onChange={onChange}
+                title={title}
+                aria-label={
+                  item.ariaLabel
+                    ? `${select} ${item.ariaLabel}.`
+                    : selectThisRow
+                }
+                data-test-subj={`checkboxSelectRow-${itemId}`}
+              />
+            );
+          }}
         </EuiI18n>
       </EuiTableRowCellCheckbox>
     );
