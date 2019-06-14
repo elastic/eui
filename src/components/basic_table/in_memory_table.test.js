@@ -244,27 +244,41 @@ describe('EuiInMemoryTable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('with sorting', () => {
-    const props = {
-      ...requiredProps,
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-          sortable: true,
-        },
-      ],
-      sorting: true,
-    };
-    const component = shallow(<EuiInMemoryTable {...props} />);
+  describe('sorting', () => {
+    test('with field sorting', () => {
+      const props = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+        ],
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        sorting: true,
+      };
+      const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    // test('with name sorting', () => {
+    //   expect(true).toBe(false);
+    // });
+    //
+    // test('verify field sorting trumps name sorting', () => {
+    //   expect(true).toBe(false);
+    // });
+    //
+    // test(`verify an invalid sort field doesn't blow everything up`, () => {
+    //   expect(true).toBe(false);
+    // });
   });
 
   test('with initial sorting', () => {
