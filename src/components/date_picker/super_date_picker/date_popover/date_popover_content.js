@@ -20,6 +20,7 @@ export function EuiDatePopoverContent({
   roundUp,
   onChange,
   dateFormat,
+  position,
 }) {
   const onTabClick = selectedTab => {
     switch (selectedTab.id) {
@@ -32,8 +33,17 @@ export function EuiDatePopoverContent({
     }
   };
 
+  const popoverTitle = `${position === 'start' ? 'Start' : 'End'} date:`;
+
   const renderTabs = () => {
     return [
+      {
+        id: 'euiDatePopoverContentTitleTab',
+        name: popoverTitle,
+        className: 'euiDatePopoverContent__titleTab',
+        disabled: true,
+        tabIndex: 0,
+      },
       {
         id: DATE_MODES.ABSOLUTE,
         name: 'Absolute',
@@ -46,6 +56,7 @@ export function EuiDatePopoverContent({
           />
         ),
         'data-test-subj': 'superDatePickerAbsoluteTab',
+        'aria-label': `${popoverTitle} Absolute`,
       },
       {
         id: DATE_MODES.RELATIVE,
@@ -59,6 +70,7 @@ export function EuiDatePopoverContent({
           />
         ),
         'data-test-subj': 'superDatePickerRelativeTab',
+        'aria-label': `${popoverTitle} Relative`,
       },
       {
         id: DATE_MODES.NOW,
@@ -83,6 +95,7 @@ export function EuiDatePopoverContent({
           </EuiText>
         ),
         'data-test-subj': 'superDatePickerNowTab',
+        'aria-label': `${popoverTitle} Now`,
       },
     ];
   };
@@ -104,6 +117,7 @@ EuiDatePopoverContent.propTypes = {
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
   dateFormat: PropTypes.string.isRequired,
+  position: PropTypes.oneOf(['start', 'end']),
 };
 
 EuiDatePopoverContent.defaultProps = {
