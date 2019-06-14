@@ -43,6 +43,7 @@ export function EuiDatePopoverContent({
         className: 'euiDatePopoverContent__titleTab',
         disabled: true,
         tabIndex: 0,
+        content: '',
       },
       {
         id: DATE_MODES.ABSOLUTE,
