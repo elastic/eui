@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `12.0.0`.
+
+## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
+
 - Attached `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
