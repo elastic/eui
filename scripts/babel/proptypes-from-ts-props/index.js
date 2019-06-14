@@ -220,7 +220,7 @@ function resolveIdentifierToPropTypes(node, state) {
   }
 
   // Lookup this identifier from types/interfaces defined in code
-  const identifierDefinition = typeDefinitions[identifier.name];;
+  const identifierDefinition = typeDefinitions[identifier.name];
 
   if (identifierDefinition) {
     return getPropTypesForNode(identifierDefinition, true, state);
