@@ -244,26 +244,9 @@ export class EuiInMemoryTable extends Component {
 
     let { field: sortName, direction: sortDirection } = sort;
 
-    // Allow going back to 'neutral' sorting
-    if (
-      this.state.allowNeutralSort &&
-      this.state.sortName === sortName &&
-      this.state.sortDirection === 'desc' &&
-      sortDirection === 'asc'
-    ) {
-      sortName = '';
-      sortDirection = '';
-    }
-
-    if (this.props.onTableChange) {
-      this.props.onTableChange({
-        page,
-        sort: {
-          field: sortName,
-          direction: sortDirection,
-        },
-      });
-    }
+    // To keep backwards compatibility reportedSortName needs to be tracked separately
+    // from sortName; sortName gets stored internally while reportedSortName is sent to the callback
+    let reportedSortName = sortName;
 
     // EuiBasicTable returns the column's `field` if it exists instead of `name`,
     // map back to `name` if this is the case
@@ -273,6 +256,28 @@ export class EuiInMemoryTable extends Component {
         sortName = column.name;
         break;
       }
+    }
+
+    // Allow going back to 'neutral' sorting
+    if (
+      this.state.allowNeutralSort &&
+      this.state.sortName === sortName &&
+      this.state.sortDirection === 'desc' &&
+      sortDirection === 'asc'
+    ) {
+      sortName = '';
+      reportedSortName = '';
+      sortDirection = '';
+    }
+
+    if (this.props.onTableChange) {
+      this.props.onTableChange({
+        page,
+        sort: {
+          field: reportedSortName,
+          direction: sortDirection,
+        },
+      });
     }
 
     this.setState({
