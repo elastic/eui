@@ -20,6 +20,7 @@ No public interface changes since `12.0.0`.
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 - Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
 - Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
+- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
 
 **Breaking changes**
 
