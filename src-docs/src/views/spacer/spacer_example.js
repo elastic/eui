@@ -15,7 +15,7 @@ import Spacer from './spacer';
 const spacerSource = require('!!raw-loader!./spacer');
 const spacerHtml = renderToHtml(Spacer);
 
-const spacerSnippet = `<EuiSpacer size="xs" />`;
+const spacerSnippet = '<EuiSpacer size="xs" />';
 
 export const SpacerExample = {
   title: 'Spacer',

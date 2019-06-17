@@ -148,8 +148,7 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  document.activeElement.blur();
-  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
+  findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
     keyCode: keyCodes.ENTER,
   });
   expect(
@@ -192,7 +191,7 @@ test('default mode does redners child components', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const saturation = colorPicker.find('EuiSaturation');
+  const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);
@@ -230,7 +229,7 @@ test('picker mode does not render swatches', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const saturation = colorPicker.find('EuiSaturation');
+  const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);
