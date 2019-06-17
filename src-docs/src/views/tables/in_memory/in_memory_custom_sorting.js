@@ -31,7 +31,7 @@ export const Table = () => {
 
   const sorting = {
     sort: {
-      field: 'Weightt',
+      field: 'Weight',
       direction: 'asc',
     },
   };
