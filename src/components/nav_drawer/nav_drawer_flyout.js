@@ -26,7 +26,7 @@ export const EuiNavDrawerFlyout = ({
   return (
     <div className={classes} aria-labelledby="navDrawerFlyoutTitle" {...rest}>
       <EuiTitle className="euiNavDrawerFlyout__title" tabIndex="-1" size="xxs">
-        <h5 id="navDrawerFlyoutTitle">{title}</h5>
+        <div id="navDrawerFlyoutTitle">{title}</div>
       </EuiTitle>
       <EuiNavDrawerGroup
         className="euiNavDrawerFlyout__listGroup"
