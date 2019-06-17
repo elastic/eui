@@ -266,8 +266,10 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       expect(
-        component.find('tbody .euiTableCellContent__text')
-      ).toMatchSnapshot();
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map(cell => cell.text())
+      ).toEqual(['name3', 'name1', 'name2']);
     });
 
     test('with field sorting (on by default)', () => {
@@ -296,8 +298,10 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       expect(
-        component.find('tbody .euiTableCellContent__text')
-      ).toMatchSnapshot();
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map(cell => cell.text())
+      ).toEqual(['name1', 'name2', 'name3']);
     });
 
     test('with name sorting', () => {
@@ -326,8 +330,10 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       expect(
-        component.find('tbody .euiTableCellContent__text')
-      ).toMatchSnapshot();
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map(cell => cell.text())
+      ).toEqual(['name3', 'name2', 'name1']);
     });
 
     test('verify field sorting precedes name sorting', () => {
@@ -363,8 +369,10 @@ describe('EuiInMemoryTable', () => {
 
       // name TDs should be sorted desc, id TDs should be asc,
       expect(
-        component.find('tbody .euiTableCellContent__text')
-      ).toMatchSnapshot();
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map(cell => cell.text())
+      ).toEqual(['name3', '1', 'name2', '2', 'name1', '3']);
     });
 
     test(`verify an invalid sort field doesn't blow everything up`, () => {

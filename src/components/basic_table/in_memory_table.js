@@ -135,7 +135,9 @@ const getInitialPagination = pagination => {
 function findColumnByProp(columns, prop, value) {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
-    if (column[prop] === value) return column;
+    if (column[prop] === value) {
+      return column;
+    }
   }
 }
 
