@@ -240,23 +240,9 @@ export class EuiInMemoryTable extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-    if (this.props.onTableChange) {
-      this.props.onTableChange({ page, sort });
-    }
-
     const { index: pageIndex, size: pageSize } = page;
 
     let { field: sortName, direction: sortDirection } = sort;
-
-    // EuiBasicTable returns the column's `field` if it exists instead of `name`,
-    // map back to `name` if this is the case
-    for (let i = 0; i < this.props.columns.length; i++) {
-      const column = this.props.columns[i];
-      if (column.field === sortName) {
-        sortName = column.name;
-        break;
-      }
-    }
 
     // Allow going back to 'neutral' sorting
     if (
@@ -267,6 +253,26 @@ export class EuiInMemoryTable extends Component {
     ) {
       sortName = '';
       sortDirection = '';
+    }
+
+    if (this.props.onTableChange) {
+      this.props.onTableChange({
+        page,
+        sort: {
+          field: sortName,
+          direction: sortDirection,
+        },
+      });
+    }
+
+    // EuiBasicTable returns the column's `field` if it exists instead of `name`,
+    // map back to `name` if this is the case
+    for (let i = 0; i < this.props.columns.length; i++) {
+      const column = this.props.columns[i];
+      if (column.field === sortName) {
+        sortName = column.name;
+        break;
+      }
     }
 
     this.setState({
