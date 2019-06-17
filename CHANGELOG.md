@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `12.0.0`.
+
+## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
+
 - Attached `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
 - Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
 - Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
@@ -8,17 +12,29 @@
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 - Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 - Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
+- Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 
 **Bug fixes**
 
 - Fixed `EuiFlyout` scrolling in Safari ([#2033](https://github.com/elastic/eui/pull/2033))
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 - Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
+- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
 - Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
 
 **Breaking changes**
 
 - Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
+
+## [`11.3.2`](https://github.com/elastic/eui/tree/v11.3.2)
+
+**Note: this release is a backport containing changes originally made in `12.0.0`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
 
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 
