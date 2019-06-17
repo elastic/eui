@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `12.0.0`.
+- Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
+- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
@@ -12,7 +13,6 @@ No public interface changes since `12.0.0`.
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 - Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 - Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
-- Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 
 **Bug fixes**
 
@@ -20,7 +20,6 @@ No public interface changes since `12.0.0`.
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
 - Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
 - Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
-- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
 
 **Breaking changes**
 
