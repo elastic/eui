@@ -375,7 +375,7 @@ describe('EuiInMemoryTable', () => {
       ).toEqual(['name3', '1', 'name2', '2', 'name1', '3']);
     });
 
-    test(`verify an invalid sort field doesn't blow everything up`, () => {
+    test('verify an invalid sort field does not blow everything up', () => {
       const props = {
         ...requiredProps,
         items: [
