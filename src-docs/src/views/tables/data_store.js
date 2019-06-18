@@ -86,7 +86,6 @@ const createUsers = countries => {
         countries.map(country => country.code),
         index
       ),
-      ariaLabel: `${firstName || ''} ${lastName || ''}`,
       online: index % 2 === 0,
     };
   });

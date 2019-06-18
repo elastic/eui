@@ -2,6 +2,7 @@
 
 - Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 - Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
+- Added `ariaLabel` prop's value of the the selection checkbox in table items (for each row) in `EuiBasicTable` as a result of modifier function passed with with items ([#2043](https://github.com/elastic/eui/pull/2043))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
@@ -13,7 +14,6 @@
 - Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
 - Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
 - Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
-- Added `ariaLabel` prop to the selection checkbox in table items (for each row) in `EuiBasicTable` ([#2043](https://github.com/elastic/eui/pull/2043))
 
 **Bug fixes**
 

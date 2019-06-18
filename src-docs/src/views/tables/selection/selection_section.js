@@ -24,10 +24,12 @@ export const section = {
       The following example shows how to configure selection via the{' '}
       <EuiCode>selection</EuiCode> property.
       <br />
-      This is important to provide an <EuiCode>ariaLabel</EuiCode> property of{' '}
-      selection table items to supply a valuable screen reader user experience.
+      This is important to provide an <EuiCode>getAriaLabel</EuiCode> modifier
+      function of selection table to supply a valuable screen reader user{' '}
+      experience.
       <br />
-      Default value is <EuiCode>Select this row</EuiCode>.
+      If no modifier function is provided, then default aria-label value is{' '}
+      <EuiCode>Select this row</EuiCode>.
     </p>
   ),
   components: { EuiBasicTable },
