@@ -117,6 +117,12 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('readOnly is rendered', () => {
+      const component = render(<EuiFormControlLayout readOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('one prepend is rendered', () => {
       const component = render(
         <EuiFormControlLayout prepend={<span>1</span>} />

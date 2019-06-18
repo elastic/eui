@@ -68,3 +68,20 @@ exports[`EuiFieldText props isLoading is rendered 1`] = `
   </eui-validatable-control>
 </eui-form-control-layout>
 `;
+
+exports[`EuiFieldText props readOnly is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  isloading="false"
+  readonly="true"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldText"
+      readonly=""
+      type="text"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
