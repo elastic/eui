@@ -828,7 +828,6 @@ export class EuiBasicTable extends Component {
     const title =
       selection.selectableMessage &&
       selection.selectableMessage(!disabled, item);
-    const ariaLabel = getAriaLabel && getAriaLabel(item);
     const onChange = event => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
@@ -858,9 +857,7 @@ export class EuiBasicTable extends Component {
                 checked={checked}
                 onChange={onChange}
                 title={title}
-                aria-label={
-                  ariaLabel ? `${select} ${ariaLabel}` : selectThisRow
-                }
+                aria-label={title || selectThisRow}
                 data-test-subj={`checkboxSelectRow-${itemId}`}
               />
             );
