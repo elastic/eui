@@ -24,7 +24,7 @@ export const section = {
       The following example shows how to configure selection via the{' '}
       <EuiCode>selection</EuiCode> property.
       <br />
-      This is important to provide an <EuiCode>getAriaLabel</EuiCode> modifier
+      It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
       function of selection table to supply a valuable screen reader user{' '}
       experience.
       <br />
