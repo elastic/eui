@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import dateMath from '@elastic/datemath';
+import { toSentenceCase } from '../../../../services/string/to_case';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import {
@@ -10,6 +11,7 @@ import {
   EuiFieldNumber,
   EuiFieldText,
   EuiSwitch,
+  EuiFormLabel,
 } from '../../../form';
 import { EuiSpacer } from '../../../spacer';
 
@@ -23,9 +25,11 @@ import {
 export class EuiRelativeTab extends Component {
   constructor(props) {
     super(props);
+    const sentenceCasedPosition = toSentenceCase(props.position);
 
     this.state = {
       ...parseRelativeParts(this.props.value),
+      sentenceCasedPosition,
     };
   }
 
@@ -108,7 +112,13 @@ export class EuiRelativeTab extends Component {
           onChange={this.onRoundChange}
         />
         <EuiSpacer size="m" />
-        <EuiFieldText value={formatedValue} readOnly />
+        <EuiFieldText
+          value={formatedValue}
+          readOnly
+          prepend={
+            <EuiFormLabel>{this.state.sentenceCasedPosition} date</EuiFormLabel>
+          }
+        />
       </EuiForm>
     );
   }
@@ -119,4 +129,5 @@ EuiRelativeTab.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
+  position: PropTypes.oneOf(['start', 'end']),
 };
