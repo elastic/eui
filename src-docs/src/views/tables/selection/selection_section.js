@@ -23,7 +23,8 @@ export const section = {
     <p>
       The following example shows how to configure selection via the{' '}
       <EuiCode>selection</EuiCode> property.
-      <br />
+    </p>
+    <p>
       It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
       function for accessibility.
       If no modifier function is provided, the default aria-label value is{' '}
