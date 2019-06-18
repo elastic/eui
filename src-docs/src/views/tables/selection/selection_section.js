@@ -25,7 +25,7 @@ export const section = {
       <EuiCode>selection</EuiCode> property.
       <br />
       It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
-      function of selection table to supply a valuable screen reader user{' '}
+      function for accessibility.
       experience.
       If no modifier function is provided, then default aria-label value is{' '}
       <EuiCode>Select this row</EuiCode>.
