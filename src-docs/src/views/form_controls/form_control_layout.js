@@ -93,6 +93,19 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
+      readOnly
+      prepend={<EuiFormLabel htmlFor="textField19">Read only</EuiFormLabel>}>
+      <input
+        type="text"
+        className="euiFieldText euiFieldText--inGroup"
+        id="textField19"
+        readOnly
+      />
+    </EuiFormControlLayout>
+
+    <EuiSpacer size="m" />
+
+    <EuiFormControlLayout
       append={
         <EuiText size="xs">
           <strong>%</strong>
