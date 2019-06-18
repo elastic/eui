@@ -18,6 +18,10 @@ describe('EuiFormRow', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('single child is required', () => {
+    expect(() => <EuiFormRow {...requiredProps} />).toThrow();
+  });
+
   test('ties together parts for accessibility', () => {
     const props = {
       label: 'Label',
