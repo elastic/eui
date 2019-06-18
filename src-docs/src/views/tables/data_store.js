@@ -74,12 +74,10 @@ const dob = new Date(1980, 1, 1);
 
 const createUsers = countries => {
   return times(20, index => {
-    const firstName = index < 10 ? firstNames[index] : firstNames[index - 10];
-    const lastName = index < 10 ? lastNames[index] : lastNames[index - 10];
     return {
       id: index,
-      firstName,
-      lastName,
+      firstName: index < 10 ? firstNames[index] : firstNames[index - 10],
+      lastName: index < 10 ? lastNames[index] : lastNames[index - 10],
       github: index < 10 ? github[index] : github[index - 10],
       dateOfBirth: dob,
       nationality: random.oneToOne(
