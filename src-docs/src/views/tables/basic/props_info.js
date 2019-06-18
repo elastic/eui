@@ -237,10 +237,11 @@ export const propsInfo = {
           type: { name: 'string (e.g. "30%", "100px", etc..)' },
         },
         sortable: {
-          description: 'Defines whether the user can sort on this column',
+          description:
+            'Defines whether the user can sort on this column. If a function is provided, this function returns the value to sort against.',
           required: false,
           defaultValue: { value: 'false' },
-          type: { name: 'boolean' },
+          type: { name: '"boolean" | "function"' },
         },
         align: {
           description: 'Defines the horizontal alignment of the column',
@@ -302,6 +303,12 @@ export const propsInfo = {
             'A CSS width property. Hints for the required width of the column',
           required: false,
           type: { name: 'string (e.g. "30%", "100px", etc..)' },
+        },
+        sortable: {
+          description:
+            'If provided, allows this column to be sorted on. Must return the value to sort against.',
+          required: false,
+          type: { name: 'function' },
         },
         truncateText: {
           description:
