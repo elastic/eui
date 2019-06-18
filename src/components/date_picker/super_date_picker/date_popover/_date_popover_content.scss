@@ -10,9 +10,3 @@
 .euiDatePopoverContent__padded--large {
   padding: $euiSize;
 }
-
-.euiDatePopoverContent__titleTab {
-  color: $euiTextColor !important; // Override :disabled
-  font-weight: $euiFontWeightBold;
-  text-transform: uppercase;
-}

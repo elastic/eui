@@ -38,13 +38,6 @@ export function EuiDatePopoverContent({
   const renderTabs = () => {
     return [
       {
-        id: 'euiDatePopoverContentTitleTab',
-        name: popoverTitle,
-        className: 'euiDatePopoverContent__titleTab',
-        disabled: true,
-        tabIndex: 0,
-      },
-      {
         id: DATE_MODES.ABSOLUTE,
         name: 'Absolute',
         content: (
