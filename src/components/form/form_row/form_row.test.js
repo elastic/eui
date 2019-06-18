@@ -18,8 +18,17 @@ describe('EuiFormRow', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('single child is required', () => {
+  test('no children is an error', () => {
     expect(() => <EuiFormRow {...requiredProps} />).toThrow();
+  });
+
+  test('two children is an error', () => {
+    expect(() => (
+      <EuiFormRow {...requiredProps}>
+        <div />
+        <div />
+      </EuiFormRow>
+    )).toThrow();
   });
 
   test('ties together parts for accessibility', () => {
