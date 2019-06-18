@@ -132,18 +132,43 @@ const getInitialPagination = pagination => {
   };
 };
 
-const getInitialSorting = sorting => {
+function findColumnByProp(columns, prop, value) {
+  for (let i = 0; i < columns.length; i++) {
+    const column = columns[i];
+    if (column[prop] === value) {
+      return column;
+    }
+  }
+}
+
+const getInitialSorting = (columns, sorting) => {
   if (!sorting || !sorting.sort) {
     return {
-      sortField: undefined,
+      sortName: undefined,
       sortDirection: undefined,
     };
   }
 
-  const { field: sortField, direction: sortDirection } = sorting.sort;
+  const { field: sortable, direction: sortDirection } = sorting.sort;
+
+  // sortable could be a column's `field` or its `name`
+  // for backwards compatibility `field` must be checked first
+  let sortColumn = findColumnByProp(columns, 'field', sortable);
+  if (sortColumn == null) {
+    sortColumn = findColumnByProp(columns, 'name', sortable);
+  }
+
+  if (sortColumn == null) {
+    return {
+      sortName: undefined,
+      sortDirection: undefined,
+    };
+  }
+
+  const sortName = sortColumn.name;
 
   return {
-    sortField,
+    sortName,
     sortDirection,
   };
 };
@@ -169,13 +194,16 @@ export class EuiInMemoryTable extends Component {
         pageIndex: 0,
       };
     }
-    const { sortField, sortDirection } = getInitialSorting(nextProps.sorting);
+    const { sortName, sortDirection } = getInitialSorting(
+      nextProps.columns,
+      nextProps.sorting
+    );
     if (
-      sortField !== prevState.prevProps.sortField ||
+      sortName !== prevState.prevProps.sortName ||
       sortDirection !== prevState.prevProps.sortDirection
     ) {
       return {
-        sortField,
+        sortName,
         sortDirection,
       };
     }
@@ -185,26 +213,26 @@ export class EuiInMemoryTable extends Component {
   constructor(props) {
     super(props);
 
-    const { search, pagination, sorting, allowNeutralSort } = props;
+    const { columns, search, pagination, sorting, allowNeutralSort } = props;
     const {
       pageIndex,
       pageSize,
       pageSizeOptions,
       hidePerPageOptions,
     } = getInitialPagination(pagination);
-    const { sortField, sortDirection } = getInitialSorting(sorting);
+    const { sortName, sortDirection } = getInitialSorting(columns, sorting);
 
     this.state = {
       prevProps: {
         items: props.items,
-        sortField,
+        sortName,
         sortDirection,
       },
       query: getInitialQuery(search),
       pageIndex,
       pageSize,
       pageSizeOptions,
-      sortField,
+      sortName,
       sortDirection,
       allowNeutralSort: allowNeutralSort === false ? false : true,
       hidePerPageOptions,
@@ -212,29 +240,50 @@ export class EuiInMemoryTable extends Component {
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-    if (this.props.onTableChange) {
-      this.props.onTableChange({ page, sort });
-    }
-
     const { index: pageIndex, size: pageSize } = page;
 
-    let { field: sortField, direction: sortDirection } = sort;
+    let { field: sortName, direction: sortDirection } = sort;
+
+    // To keep backwards compatibility reportedSortName needs to be tracked separately
+    // from sortName; sortName gets stored internally while reportedSortName is sent to the callback
+    let reportedSortName = sortName;
+
+    // EuiBasicTable returns the column's `field` if it exists instead of `name`,
+    // map back to `name` if this is the case
+    for (let i = 0; i < this.props.columns.length; i++) {
+      const column = this.props.columns[i];
+      if (column.field === sortName) {
+        sortName = column.name;
+        break;
+      }
+    }
 
     // Allow going back to 'neutral' sorting
     if (
       this.state.allowNeutralSort &&
-      this.state.sortField === sortField &&
+      this.state.sortName === sortName &&
       this.state.sortDirection === 'desc' &&
       sortDirection === 'asc'
     ) {
-      sortField = '';
+      sortName = '';
+      reportedSortName = '';
       sortDirection = '';
+    }
+
+    if (this.props.onTableChange) {
+      this.props.onTableChange({
+        page,
+        sort: {
+          field: reportedSortName,
+          direction: sortDirection,
+        },
+      });
     }
 
     this.setState({
       pageIndex,
       pageSize,
-      sortField,
+      sortName,
       sortDirection,
     });
   };
@@ -289,23 +338,27 @@ export class EuiInMemoryTable extends Component {
   }
 
   getItemSorter() {
-    const { sortField, sortDirection } = this.state;
+    const { sortName, sortDirection } = this.state;
 
     const { columns } = this.props;
 
-    const sortColumn = columns.find(({ field }) => field === sortField);
+    const sortColumn = columns.find(({ name }) => name === sortName);
 
-    let sortable;
-
-    if (sortColumn) {
-      sortable = sortColumn.sortable;
+    if (sortColumn == null) {
+      // can't return a non-function so return a function that says everything is the same
+      return () => () => 0;
     }
+
+    const sortable = sortColumn.sortable;
 
     if (typeof sortable === 'function') {
       return Comparators.value(sortable, Comparators.default(sortDirection));
     }
 
-    return Comparators.property(sortField, Comparators.default(sortDirection));
+    return Comparators.property(
+      sortColumn.field,
+      Comparators.default(sortDirection)
+    );
   }
 
   getItems() {
@@ -321,13 +374,13 @@ export class EuiInMemoryTable extends Component {
       };
     }
 
-    const { query, sortField, pageIndex, pageSize } = this.state;
+    const { query, sortName, pageIndex, pageSize } = this.state;
 
     const matchingItems = query
       ? EuiSearchBar.Query.execute(query, items, executeQueryOptions)
       : items;
 
-    const sortedItems = sortField
+    const sortedItems = sortName
       ? matchingItems
           .slice(0) // avoid mutating the source array
           .sort(this.getItemSorter()) // sort, causes mutation
@@ -377,7 +430,7 @@ export class EuiInMemoryTable extends Component {
       pageIndex,
       pageSize,
       pageSizeOptions,
-      sortField,
+      sortName,
       sortDirection,
       hidePerPageOptions,
     } = this.state;
@@ -401,10 +454,10 @@ export class EuiInMemoryTable extends Component {
       ? undefined
       : {
           sort:
-            !sortField && !sortDirection
+            !sortName && !sortDirection
               ? undefined
               : {
-                  field: sortField,
+                  field: sortName,
                   direction: sortDirection,
                 },
           allowNeutralSort: this.state.allowNeutralSort,
@@ -412,20 +465,13 @@ export class EuiInMemoryTable extends Component {
 
     const searchBar = this.renderSearchBar();
 
-    // EuiInMemoryTable's column type supports sortable as a function, but
-    // EuiBasicTable requires those functions to be cast to a boolean
-    const mappedColumns = columns.map(column => ({
-      ...column,
-      sortable: !!column.sortable,
-    }));
-
     const table = (
       <EuiBasicTable
         items={items}
         itemId={itemId}
         rowProps={rowProps}
         cellProps={cellProps}
-        columns={mappedColumns}
+        columns={columns}
         pagination={pagination}
         sorting={sorting}
         selection={selection}

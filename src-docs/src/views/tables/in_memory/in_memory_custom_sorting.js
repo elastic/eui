@@ -2,12 +2,12 @@ import React from 'react';
 import { EuiInMemoryTable } from '../../../../../src/components';
 
 const data = [
-  { animal: 'snail', weight: 25, humanFriendlyWeight: '25g' },
-  { animal: 'peregrine falcon', weight: 900, humanFriendlyWeight: '0.9kg' },
-  { animal: 'small dog', weight: 4500, humanFriendlyWeight: '4.5kg' },
-  { animal: 'brown bear', weight: 180000, humanFriendlyWeight: '180kg' },
-  { animal: 'elephant', weight: 5440000, humanFriendlyWeight: '5440kg' },
-  { animal: 'giraffe', weight: 1180000, humanFriendlyWeight: '1180kg' },
+  { animal: 'snail', weight: 25 },
+  { animal: 'peregrine falcon', weight: 900 },
+  { animal: 'small dog', weight: 4500 },
+  { animal: 'brown bear', weight: 180000 },
+  { animal: 'elephant', weight: 5440000 },
+  { animal: 'giraffe', weight: 1180000 },
 ];
 
 export const Table = () => {
@@ -18,15 +18,20 @@ export const Table = () => {
       sortable: true,
     },
     {
-      field: 'humanFriendlyWeight',
       name: 'Weight',
+      render: ({ weight }) => `${weight / 1000}kg`,
       sortable: ({ weight }) => weight,
+    },
+    {
+      field: 'weight',
+      name: 'Weight (grams)',
+      sortable: true,
     },
   ];
 
   const sorting = {
     sort: {
-      field: 'humanFriendlyWeight',
+      field: 'Weight',
       direction: 'asc',
     },
   };
