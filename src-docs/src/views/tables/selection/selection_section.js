@@ -27,7 +27,7 @@ export const section = {
       It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
       function for accessibility.
       If no modifier function is provided, the default aria-label value is{' '}
-      <EuiCode>Select this row</EuiCode>.
+      "Select this row".
     </p>
   ),
   components: { EuiBasicTable },
