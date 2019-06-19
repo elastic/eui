@@ -5,8 +5,9 @@
 **Bug fixes**
 
 - Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
-- Added `ariaLabel` prop's value of the the selection checkbox in table items (for each row) in `EuiBasicTable` as a result of modifier function passed with with items ([#2043](https://github.com/elastic/eui/pull/2043))
 - Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
+- Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
+- Added `ariaLabel` prop's value of the the selection checkbox in table items (for each row) in `EuiBasicTable` as a result of modifier function passed with with items ([#2043](https://github.com/elastic/eui/pull/2043))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
