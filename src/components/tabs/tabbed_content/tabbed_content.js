@@ -8,6 +8,8 @@ import { EuiTab } from '../tab';
 
 const makeId = htmlIdGenerator();
 
+export const AUTOFOCUS = ['initial', 'selected'];
+
 export class EuiTabbedContent extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -29,6 +31,12 @@ export class EuiTabbedContent extends Component {
      * Use this prop if you want to control selection state within the owner component
      */
     selectedTab: PropTypes.object,
+    /**
+     * When tabbing to into the tabs, set the focus on `initial` for the first tab,
+     * or `selected` for the currently selected tab. Best use case is for inside of
+     * overlay content like popovers or flyouts.
+     */
+    autoFocus: PropTypes.oneOf(AUTOFOCUS),
     size: PropTypes.oneOf(SIZES),
     /**
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
@@ -51,13 +59,38 @@ export class EuiTabbedContent extends Component {
     this.rootId = makeId();
 
     // Only track selection state if it's not controlled externally.
+    let selectedTabId;
     if (!selectedTab) {
-      this.state = {
-        selectedTabId:
-          (initialSelectedTab && initialSelectedTab.id) || tabs[0].id,
-      };
+      selectedTabId =
+        (initialSelectedTab && initialSelectedTab.id) || tabs[0].id;
     }
+
+    this.state = {
+      selectedTabId,
+      inFocus: false,
+    };
   }
+
+  initializeFocus = () => {
+    console.log('THE FOCUS HAPPENED');
+
+    if (!this.state.inFocus && this.props.autoFocus === 'selected') {
+      console.log('Focusing selected tab');
+      document.getElementById(this.state.selectedTabId).focus();
+    }
+
+    this.setState({
+      inFocus: true,
+    });
+  };
+
+  removeFocus = () => {
+    console.log('THE BLUR HAPPENED');
+
+    this.setState({
+      // inFocus: false,
+    });
+  };
 
   onTabClick = selectedTab => {
     const { onTabClick, selectedTab: externalSelectedTab } = this.props;
@@ -82,6 +115,7 @@ export class EuiTabbedContent extends Component {
       selectedTab: externalSelectedTab,
       size,
       tabs,
+      autoFocus,
       ...rest
     } = this.props;
 
@@ -93,7 +127,11 @@ export class EuiTabbedContent extends Component {
     const { content: selectedTabContent, id: selectedTabId } = selectedTab;
 
     return (
-      <div className={className} {...rest}>
+      <div
+        className={className}
+        {...rest}
+        onFocus={this.initializeFocus}
+        onBlur={this.removeFocus}>
         <EuiTabs expand={expand} display={display} size={size}>
           {tabs.map(tab => {
             const {
@@ -125,3 +163,7 @@ export class EuiTabbedContent extends Component {
     );
   }
 }
+
+EuiTabbedContent.defaultProps = {
+  autoFocus: 'initial',
+};

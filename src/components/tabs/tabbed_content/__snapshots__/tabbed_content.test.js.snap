@@ -50,6 +50,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
 
 exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should update if it receives new content 1`] = `
 <EuiTabbedContent
+  autoFocus="initial"
   tabs={
     Array [
       Object {
@@ -70,7 +71,10 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
     ]
   }
 >
-  <div>
+  <div
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
     <EuiTabs
       display="default"
       expand={false}
