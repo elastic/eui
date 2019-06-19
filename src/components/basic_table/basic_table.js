@@ -836,7 +836,7 @@ export class EuiBasicTable extends Component {
   }
 
   renderItemSelectionCell(itemId, item, selected) {
-    const { selection, getAriaLabel } = this.props;
+    const { selection } = this.props;
     const key = `_selection_column_${itemId}`;
     const checked = selected;
     const disabled = selection.selectable && !selection.selectable(item);
@@ -860,23 +860,19 @@ export class EuiBasicTable extends Component {
     };
     return (
       <EuiTableRowCellCheckbox key={key}>
-        <EuiI18n
-          tokens={['euiBasicTable.selectThisRow', 'euiBasicTable.select']}
-          defaults={['Select this row', 'Select']}>
-          {([selectThisRow, select]) => {
-            return (
-              <EuiCheckbox
-                id={`${key}-checkbox`}
-                type="inList"
-                disabled={disabled}
-                checked={checked}
-                onChange={onChange}
-                title={title}
-                aria-label={title || selectThisRow}
-                data-test-subj={`checkboxSelectRow-${itemId}`}
-              />
-            );
-          }}
+        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
+          {selectThisRow => (
+            <EuiCheckbox
+              id={`${key}-checkbox`}
+              type="inList"
+              disabled={disabled}
+              checked={checked}
+              onChange={onChange}
+              title={title}
+              aria-label={title || selectThisRow}
+              data-test-subj={`checkboxSelectRow-${itemId}`}
+            />
+          )}
         </EuiI18n>
       </EuiTableRowCellCheckbox>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
@@ -20,16 +20,17 @@ export const section = {
     },
   ],
   text: (
-    <p>
-      The following example shows how to configure selection via the{' '}
-      <EuiCode>selection</EuiCode> property.
-    </p>
-    <p>
-      It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
-      function for accessibility.
-      If no modifier function is provided, the default aria-label value is{' '}
-      "Select this row".
-    </p>
+    <Fragment>
+      <p>
+        The following example shows how to configure selection via the{' '}
+        <EuiCode>selection</EuiCode> property.
+      </p>
+      <p>
+        It is important to provide a <EuiCode>getAriaLabel</EuiCode> modifier
+        function for accessibility. If no modifier function is provided, the
+        default aria-label value is &ldquo;Select this row&rdquo;.
+      </p>
+    </Fragment>
   ),
   components: { EuiBasicTable },
   demo: <Table />,
