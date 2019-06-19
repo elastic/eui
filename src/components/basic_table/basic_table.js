@@ -112,7 +112,7 @@ export const FieldDataColumnTypeShape = {
   description: PropTypes.string,
   dataType: PropTypes.oneOf(DATA_TYPES),
   width: PropTypes.string,
-  sortable: PropTypes.bool,
+  sortable: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   align: PropTypes.oneOf([LEFT_ALIGNMENT, RIGHT_ALIGNMENT]),
   truncateText: PropTypes.bool,
   render: PropTypes.func, // ((value, record) => PropTypes.node (also see [services/value_renderer] for basic implementations)
@@ -128,6 +128,7 @@ export const ComputedColumnType = PropTypes.shape({
   render: PropTypes.func.isRequired, // (record) => PropTypes.node
   name: PropTypes.node,
   description: PropTypes.string,
+  sortable: PropTypes.func,
   width: PropTypes.string,
   truncateText: PropTypes.bool,
 });
@@ -326,7 +327,8 @@ export class EuiBasicTable extends Component {
     if (
       currentCriteria &&
       currentCriteria.sort &&
-      currentCriteria.sort.field === column.field
+      (currentCriteria.sort.field === column.field ||
+        currentCriteria.sort.field === column.name)
     ) {
       direction = SortDirection.reverse(currentCriteria.sort.direction);
     }
@@ -340,7 +342,7 @@ export class EuiBasicTable extends Component {
             size: currentCriteria.page.size,
           },
       sort: {
-        field: column.field,
+        field: column.field || column.name,
         direction,
       },
     };
@@ -563,12 +565,25 @@ export class EuiBasicTable extends Component {
 
       // computed column
       if (!field) {
+        const sorting = {};
+        // computed columns are only sortable if their `sortable` is a function
+        if (this.props.sorting && typeof sortable === 'function') {
+          const sortDirection = this.resolveColumnSortDirection(column);
+          sorting.isSorted = !!sortDirection;
+          sorting.isSortAscending = sortDirection
+            ? SortDirection.isAsc(sortDirection)
+            : undefined;
+          sorting.onSort = this.resolveColumnOnSort(column);
+          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
+        }
         headers.push(
           <EuiTableHeaderCell
             key={`_computed_column_h_${index}`}
             align={columnAlign}
             width={width}
-            mobileOptions={mobileOptions}>
+            mobileOptions={mobileOptions}
+            data-test-subj={`tableHeaderCell_${name}_${index}`}
+            {...sorting}>
             {name}
           </EuiTableHeaderCell>
         );
@@ -982,7 +997,10 @@ export class EuiBasicTable extends Component {
     if (!sorting || !sorting.sort || !column.sortable) {
       return;
     }
-    if (sorting.sort.field === column.field) {
+    if (
+      sorting.sort.field === column.field ||
+      sorting.sort.field === column.name
+    ) {
       return sorting.sort.direction;
     }
   };
@@ -994,7 +1012,7 @@ export class EuiBasicTable extends Component {
     }
     if (!this.props.onChange) {
       throw new Error(`BasicTable is configured to be sortable on column [${
-        column.field
+        column.name
       }] but
           [onChange] is not configured. This callback must be implemented to handle the sort requests`);
     }

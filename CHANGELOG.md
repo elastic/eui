@@ -1,8 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
-- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
 - Converted `EuiGlobalToastList` into ARIA live region by adding `role="region"` attribute to add NVDA/JAWS support ([#2055](https://github.com/elastic/eui/pull/2055))
+
+**Bug fixes**
+
+- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
+- Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
+- Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
