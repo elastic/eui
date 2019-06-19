@@ -32,7 +32,7 @@ export class EuiTabbedContent extends Component {
      */
     selectedTab: PropTypes.object,
     /**
-     * When tabbing to into the tabs, set the focus on `initial` for the first tab,
+     * When tabbing into the tabs, set the focus on `initial` for the first tab,
      * or `selected` for the currently selected tab. Best use case is for inside of
      * overlay content like popovers or flyouts.
      */
