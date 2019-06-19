@@ -2,6 +2,7 @@
 
 - Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 - Added `magnifyWithMinus` and `magnifyWithPlus` glyphs to `EuiIcon` ([2056](https://github.com/elastic/eui/pull/2056))
+- Added a fully black (no matter the theme) color SASS variable `$euiColorInk` ([2060](https://github.com/elastic/eui/pull/2060))
 
 **Bug fixes**
 
