@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { htmlIdGenerator } from '../../../services';
@@ -57,6 +57,7 @@ export class EuiTabbedContent extends Component {
     const { initialSelectedTab, selectedTab, tabs } = props;
 
     this.rootId = makeId();
+    this.divRef = createRef();
 
     // Only track selection state if it's not controlled externally.
     let selectedTabId;
@@ -71,25 +72,40 @@ export class EuiTabbedContent extends Component {
     };
   }
 
-  initializeFocus = () => {
-    console.log('THE FOCUS HAPPENED');
-
-    if (!this.state.inFocus && this.props.autoFocus === 'selected') {
-      console.log('Focusing selected tab');
-      document.getElementById(this.state.selectedTabId).focus();
+  componentDidMount() {
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this.divRef.current) {
+      this.divRef.current.addEventListener('focusout', this.removeFocus);
     }
+  }
 
-    this.setState({
-      inFocus: true,
-    });
+  componentWillUnmount() {
+    if (this.divRef.current) {
+      this.divRef.current.removeEventListener('focusout', this.removeFocus);
+    }
+  }
+
+  initializeFocus = () => {
+    if (!this.state.inFocus && this.props.autoFocus === 'selected') {
+      // Must wait for setState to finish before calling `.focus()`
+      // as the focus call triggers a blur on the first tab
+      this.setState({ inFocus: true }, () => {
+        const targetTab = this.divRef.current.querySelector(
+          `#${this.state.selectedTabId}`
+        );
+        targetTab.focus();
+      });
+    }
   };
 
-  removeFocus = () => {
-    console.log('THE BLUR HAPPENED');
-
-    this.setState({
-      // inFocus: false,
-    });
+  removeFocus = blurEvent => {
+    // only set inFocus to false if the wrapping div doesn't contain the now-focusing element
+    if (blurEvent.currentTarget.contains(blurEvent.relatedTarget) === false) {
+      this.setState({
+        inFocus: false,
+      });
+    }
   };
 
   onTabClick = selectedTab => {
@@ -128,10 +144,10 @@ export class EuiTabbedContent extends Component {
 
     return (
       <div
+        ref={this.divRef}
         className={className}
         {...rest}
-        onFocus={this.initializeFocus}
-        onBlur={this.removeFocus}>
+        onFocus={this.initializeFocus}>
         <EuiTabs expand={expand} display={display} size={size}>
           {tabs.map(tab => {
             const {
