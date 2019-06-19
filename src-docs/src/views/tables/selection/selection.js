@@ -203,9 +203,6 @@ export class Table extends Component {
       onSelectionChange: this.onSelectionChange,
     };
 
-    const getAriaLabel = (item = {}) =>
-      `${item.firstName || ''} ${item.lastName || ''}`;
-
     return (
       <Fragment>
         {deleteButton}
@@ -217,7 +214,6 @@ export class Table extends Component {
           sorting={sorting}
           isSelectable={true}
           selection={selection}
-          getAriaLabel={getAriaLabel}
           onChange={this.onTableChange}
         />
       </Fragment>
