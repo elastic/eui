@@ -5,5 +5,9 @@
  */
 
 export function toSentenceCase(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  // First lowercase all letters
+  const lowercase = string.toLowerCase();
+
+  // Then just uppercase the first letter;
+  return string.charAt(0).toUpperCase() + lowercase.slice(1);
 }
