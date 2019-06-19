@@ -252,7 +252,9 @@ export class EuiGlobalToastList extends Component<
     const classes = classNames('euiGlobalToastList', className);
 
     return (
-      <div aria-live="polite" role="region"
+      <div
+        aria-live="polite"
+        role="region"
         ref={element => {
           this.listElement = element;
         }}
