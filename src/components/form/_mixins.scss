@@ -43,11 +43,11 @@
       height: $euiFormControlCompressedHeight;
     }
 
-    &--inGroup {
+    &--inGroup:not(:read-only) {
       height: $euiFormControlHeight - 2px; /* 2 */
     }
 
-    &--inGroup#{&}--compressed {
+    &--inGroup#{&}--compressed:not(:read-only) {
       height: $euiFormControlCompressedHeight - 2px; /* 2 */
     }
   }

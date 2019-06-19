@@ -53,6 +53,12 @@ describe('EuiFieldNumber', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('readOnly is rendered', () => {
+      const component = render(<EuiFieldNumber readOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('value', () => {
       test('value is number', () => {
         const component = render(

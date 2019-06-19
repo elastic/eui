@@ -22,6 +22,7 @@ export const EuiFieldNumber = ({
   prepend,
   append,
   inputRef,
+  readOnly,
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
@@ -38,6 +39,7 @@ export const EuiFieldNumber = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
+      readOnly={readOnly}
       prepend={prepend}
       append={append}>
       <EuiValidatableControl isInvalid={isInvalid}>
@@ -49,6 +51,7 @@ export const EuiFieldNumber = ({
           name={name}
           value={value}
           placeholder={placeholder}
+          readOnly={readOnly}
           className={classes}
           ref={inputRef}
           {...rest}
@@ -91,6 +94,7 @@ EuiFieldNumber.propTypes = {
   isInvalid: PropTypes.bool,
   fullWidth: PropTypes.bool,
   isLoading: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * when `true` creates a shorter height input
    */
