@@ -85,7 +85,7 @@
 
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
-      height: $euiFormControlHeight; // Matchin input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
+      height: $euiFormControlHeight; // Matching input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
     }
   }
 }

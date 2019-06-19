@@ -94,11 +94,11 @@ export default () => (
 
     <EuiFormControlLayout
       readOnly
-      prepend={<EuiFormLabel htmlFor="textField19">Read only</EuiFormLabel>}>
+      prepend={<EuiFormLabel htmlFor="textField19a">Read only</EuiFormLabel>}>
       <input
         type="text"
         className="euiFieldText euiFieldText--inGroup"
-        id="textField19"
+        id="textField19a"
         readOnly
       />
     </EuiFormControlLayout>
