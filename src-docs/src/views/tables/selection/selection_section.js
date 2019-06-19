@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
