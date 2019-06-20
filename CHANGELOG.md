@@ -8,6 +8,7 @@
 - Changed `popout` glyph in `EuiIcon` to look more like external link ([2064](https://github.com/elastic/eui/pull/2064))
 - Tweaked `SuperDatePicker` to make the start/end date selection more obvious ([#2049](https://github.com/elastic/eui/pull/2049))
 - Added `toSentenceCase` string service ([#2049](https://github.com/elastic/eui/pull/2049))
+- Pass `EuiSuperSelect`'s `popoverClassName` to the popover's panel ([#2068](https://github.com/elastic/eui/pull/2068))
 
 **Bug fixes**
 
