@@ -67,6 +67,7 @@ export function EuiDatePopoverButton(props) {
         roundUp={roundUp}
         onChange={onChange}
         dateFormat={dateFormat}
+        position={position}
       />
     </EuiPopover>
   );

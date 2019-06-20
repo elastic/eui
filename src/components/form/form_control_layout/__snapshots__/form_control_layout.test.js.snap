@@ -254,3 +254,13 @@ exports[`EuiFormControlLayout props one prepend is rendered 1`] = `
   />
 </div>
 `;
+
+exports[`EuiFormControlLayout props readOnly is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--readOnly"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;

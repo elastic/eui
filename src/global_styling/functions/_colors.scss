@@ -1,11 +1,11 @@
 // Mixes a provided color with white.
 @function tint($color, $percent) {
-  @return mix(#FFF, $color, $percent);
+  @return mix($euiColorGhost, $color, $percent);
 }
 
 // Mixes a provided color with black.
 @function shade($color, $percent) {
-  @return mix(#000, $color, $percent);
+  @return mix($euiColorInk, $color, $percent);
 }
 
 // For theming. Checks the text color and tells us whether it's light or dark.

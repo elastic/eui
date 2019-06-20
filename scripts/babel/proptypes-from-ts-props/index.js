@@ -765,7 +765,7 @@ const typeDefinitionExtractors = {
           case 'ImportSpecifier':
             return specifier.imported.name;
           case 'ExportSpecifier':
-            return specifier.exported.name;
+            return specifier.local.name;
 
           // default:
           //   throw new Error(`Unable to process import specifier type ${specifier.type}`);
@@ -1103,9 +1103,9 @@ module.exports = function propTypesFromTypeScript({ types }) {
               const specifiers = path.get('specifiers');
               specifiers.forEach(specifierPath => {
                 if (types.isExportSpecifier(specifierPath)) {
-                  const { node: { exported } } = specifierPath;
-                  if (types.isIdentifier(exported)) {
-                    const { name } = exported;
+                  const { node: { local } } = specifierPath;
+                  if (types.isIdentifier(local)) {
+                    const { name } = local;
                     const def = typeDefinitions[name];
                     if (isTSType(def)) {
                       specifierPath.remove();

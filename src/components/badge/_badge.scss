@@ -49,7 +49,7 @@
 
     &:focus {
       background-color: transparentize($euiColorGhost, .2);
-      color: #000; // sass-lint:disable-line no-color-literals
+      color: $euiColorInk;
       border-radius: 2px;
     }
 
@@ -105,12 +105,11 @@ $badgeTypes: (
 
 @each $name, $color in $badgeTypes {
   .euiBadge--#{$name} {
-    // sass-lint:disable-block no-color-literals
     background-color: $color;
     @if (lightness($color) > 50) {
-      color: #000;
+      color: $euiColorInk;
     } @else {
-      color: #FFF;
+      color: $euiColorGhost;
     }
   }
 }
