@@ -25,7 +25,6 @@ import {
 } from '../../../../src/components';
 
 const euiColors = [
-  'euiColorGhost',
   'euiColorEmptyShade',
   'euiColorLightestShade',
   'euiColorLightShade',
@@ -39,6 +38,8 @@ const euiColors = [
   'euiColorDanger',
   'euiColorWarning',
   'euiColorSuccess',
+  'euiColorGhost',
+  'euiColorInk',
 ];
 
 const euiTextColors = ['euiTextColor', 'euiColorDarkShade', 'euiLinkColor'];

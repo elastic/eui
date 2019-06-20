@@ -122,6 +122,8 @@ const iconTypes = [
   'logstashInput',
   'logstashOutput',
   'logstashQueue',
+  'magnifyWithMinus',
+  'magnifyWithPlus',
   'magnet',
   'mapMarker',
   'memory',
