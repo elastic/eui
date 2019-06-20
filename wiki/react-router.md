@@ -249,14 +249,14 @@ export const getRouterLinkProps = to => {
 ## react-router 5.x
 
 The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
-a `catchRouter` HOC that will intercept the router and send it to your custom handler.
+an `extractRouter` HOC that will intercept the router and send it to your custom handler.
 
 
 ```js
-// catchRouter.hoc.js
+// extractRouter.hoc.js
 import { withRouter } from 'react-router-dom';
 
-export const catchRouter = onRouter => WrappedComponent =>
+export const extractRouter = onRouter => WrappedComponent =>
   withRouter(
     class extends Component {
       componentDidMount() {
@@ -273,7 +273,7 @@ export const catchRouter = onRouter => WrappedComponent =>
 ```
 
 ```jsx
-import { catchRouter } from './hoc';
+import { extractRouter } from './hoc';
 import { registerRouter } from './routing';
 
 // App is your app's root component.
@@ -281,7 +281,7 @@ class App extends Component {
   ...
 }
 
-const AppMount = catchRouter(registerRouter)(App);
+const AppMount = extractRouter(registerRouter)(App);
 
 // <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
 ReactDOM.render(
