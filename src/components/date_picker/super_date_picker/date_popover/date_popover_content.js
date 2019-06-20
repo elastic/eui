@@ -91,6 +91,7 @@ export function EuiDatePopoverContent({
     <EuiTabbedContent
       className="euiDatePopoverContent"
       tabs={renderTabs()}
+      autoFocus="selected"
       initialSelectedTab={{ id: getDateMode(value) }}
       onTabClick={onTabClick}
       size="s"
