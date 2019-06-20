@@ -15,6 +15,7 @@
 - Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
 - Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
 - Fixed style of readOnly input groups via `EuiFormControlLayout` and `prepend`/`append` ([#2057](https://github.com/elastic/eui/pull/2057))
+- Removed TS types from ES exports when the exported name differs from the imported one ([#2069](https://github.com/elastic/eui/pull/2069))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
