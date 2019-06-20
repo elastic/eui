@@ -1,4 +1,4 @@
-import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/named
 import {
   flattenOptionGroups,
   getSelectedOptionForSearchValue,
