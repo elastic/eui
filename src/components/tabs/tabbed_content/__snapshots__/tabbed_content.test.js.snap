@@ -50,6 +50,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
 
 exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should update if it receives new content 1`] = `
 <EuiTabbedContent
+  autoFocus="initial"
   tabs={
     Array [
       Object {
@@ -70,7 +71,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
     ]
   }
 >
-  <div>
+  <div
+    onFocus={[Function]}
+  >
     <EuiTabs
       display="default"
       expand={false}
@@ -153,6 +156,102 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   class="testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
+<div>
+  <div
+    class="euiTabs"
+    role="tablist"
+  >
+    <button
+      aria-controls="42"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="42"
+      aria-selected="false"
+      class="euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content"
+      >
+        Kibana
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="es"
+    id="42"
+    role="tabpanel"
+  >
+    <p>
+      Elasticsearch content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
+<div>
   <div
     class="euiTabs"
     role="tablist"
