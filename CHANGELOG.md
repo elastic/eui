@@ -5,6 +5,7 @@
 - Added `magnifyWithMinus` and `magnifyWithPlus` glyphs to `EuiIcon` ([2056](https://github.com/elastic/eui/pull/2056))
 - Added a fully black (no matter the theme) color SASS variable `$euiColorInk` ([2060](https://github.com/elastic/eui/pull/2060))
 - Added `autoFocus` prop to `EuiTabbedContent` ([2062](https://github.com/elastic/eui/pull/2062))
+- Changed `popout` glyph in `EuiIcon` to look more like external link ([2064](https://github.com/elastic/eui/pull/2064))
 
 **Bug fixes**
 
