@@ -2441,6 +2441,40 @@ export { Foo, A } from './foo';
       expect(result.code).toBe(`export { A } from './foo';`);
     });
 
+    it('removes type exports from ExportNamedDeclaration when the imported name differs from the exported one', () => {
+      const result = transform(
+        `
+export { Foo as Bar, A as B } from './foo';
+`,
+        {
+          ...babelOptions,
+          plugins: [
+            [
+              './scripts/babel/proptypes-from-ts-props',
+              {
+                fs: {
+                  existsSync: () => true,
+                  statSync: () => ({ isDirectory: () => false }),
+                  readFileSync: filepath => {
+                    if (filepath.endsWith(`${path.sep}foo`)) {
+                      return Buffer.from(`
+                        export const A = 5;
+                        export type Foo = string;
+                      `);
+                    }
+
+                    throw new Error(`Test tried to import from ${filepath}`);
+                  }
+                }
+              }
+            ],
+          ]
+        }
+      );
+
+      expect(result.code).toBe(`export { A as B } from './foo';`);
+    });
+
     it('removes type export statements', () => {
       const result = transform(
         `
