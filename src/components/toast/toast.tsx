@@ -95,7 +95,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   }
 
   return (
-    <div className={classes} aria-live="polite" {...rest}>
+    <div className={classes} {...rest}>
       <EuiScreenReaderOnly>
         <p>
           <EuiI18n
