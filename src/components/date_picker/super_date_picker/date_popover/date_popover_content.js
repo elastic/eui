@@ -20,6 +20,7 @@ export function EuiDatePopoverContent({
   roundUp,
   onChange,
   dateFormat,
+  position,
 }) {
   const onTabClick = selectedTab => {
     switch (selectedTab.id) {
@@ -32,6 +33,8 @@ export function EuiDatePopoverContent({
     }
   };
 
+  const ariaLabel = `${position === 'start' ? 'Start' : 'End'} date:`;
+
   const renderTabs = () => {
     return [
       {
@@ -43,9 +46,11 @@ export function EuiDatePopoverContent({
             value={value}
             onChange={onChange}
             roundUp={roundUp}
+            position={position}
           />
         ),
         'data-test-subj': 'superDatePickerAbsoluteTab',
+        'aria-label': `${ariaLabel} Absolute`,
       },
       {
         id: DATE_MODES.RELATIVE,
@@ -56,9 +61,11 @@ export function EuiDatePopoverContent({
             value={value}
             onChange={onChange}
             roundUp={roundUp}
+            position={position}
           />
         ),
         'data-test-subj': 'superDatePickerRelativeTab',
+        'aria-label': `${ariaLabel} Relative`,
       },
       {
         id: DATE_MODES.NOW,
@@ -78,11 +85,12 @@ export function EuiDatePopoverContent({
               fullWidth
               size="s"
               fill>
-              Set date and time to now
+              Set {position} date and time to now
             </EuiButton>
           </EuiText>
         ),
         'data-test-subj': 'superDatePickerNowTab',
+        'aria-label': `${ariaLabel} Now`,
       },
     ];
   };
@@ -105,6 +113,7 @@ EuiDatePopoverContent.propTypes = {
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
   dateFormat: PropTypes.string.isRequired,
+  position: PropTypes.oneOf(['start', 'end']),
 };
 
 EuiDatePopoverContent.defaultProps = {

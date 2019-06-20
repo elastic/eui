@@ -6,6 +6,8 @@
 - Added a fully black (no matter the theme) color SASS variable `$euiColorInk` ([2060](https://github.com/elastic/eui/pull/2060))
 - Added `autoFocus` prop to `EuiTabbedContent` ([2062](https://github.com/elastic/eui/pull/2062))
 - Changed `popout` glyph in `EuiIcon` to look more like external link ([2064](https://github.com/elastic/eui/pull/2064))
+- Tweaked `SuperDatePicker` to make the start/end date selection more obvious ([#2049](https://github.com/elastic/eui/pull/2049))
+- Added `toSentenceCase` string service ([#2049](https://github.com/elastic/eui/pull/2049))
 - Pass `EuiSuperSelect`'s `popoverClassName` to the popover's panel ([#2068](https://github.com/elastic/eui/pull/2068))
 
 **Bug fixes**
@@ -14,6 +16,7 @@
 - Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
 - Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
 - Fixed style of readOnly input groups via `EuiFormControlLayout` and `prepend`/`append` ([#2057](https://github.com/elastic/eui/pull/2057))
+- Removed TS types from ES exports when the exported name differs from the imported one ([#2069](https://github.com/elastic/eui/pull/2069))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
