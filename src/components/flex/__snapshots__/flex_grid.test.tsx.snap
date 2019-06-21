@@ -3,7 +3,7 @@
 exports[`EuiFlexGrid is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive testClass1 testClass2"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--directionRow euiFlexGrid--responsive testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <h2>
@@ -14,66 +14,78 @@ exports[`EuiFlexGrid is rendered 1`] = `
 
 exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 1 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--single euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--single euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 2 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 3 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--fourths euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--fourths euiFlexGrid--directionRow euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props direction column is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionColumn euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props direction row is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterMedium euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterMedium euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterNone euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterNone euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize s is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterSmall euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterSmall euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap euiFlexGrid--directionRow euiFlexGrid--responsive"
 />
 `;
 
 exports[`EuiFlexGrid props responsive is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionRow"
 />
 `;
