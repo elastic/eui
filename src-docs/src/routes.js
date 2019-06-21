@@ -116,6 +116,8 @@ import { LinkExample } from './views/link/link_example';
 
 import { ListGroupExample } from './views/list_group/list_group_example';
 
+import { SuggestItemExample } from './views/suggest_item/suggest_item_example';
+
 import { LoadingExample } from './views/loading/loading_example';
 
 import { ModalExample } from './views/modal/modal_example';
@@ -319,6 +321,7 @@ const navigation = [
       IconExample,
       ImageExample,
       ListGroupExample,
+      SuggestItemExample,
       LoadingExample,
       ProgressExample,
       StatExample,
