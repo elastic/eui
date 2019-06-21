@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../../common';
 
-import { FunctionComponent, InputHTMLAttributes } from 'react';
+import { ReactNode, FunctionComponent, InputHTMLAttributes } from 'react';
 
 declare module '@elastic/eui' {
   export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
@@ -29,6 +29,8 @@ declare module '@elastic/eui' {
     showTicks?: boolean;
     showValue?: boolean;
     tickInterval?: number;
+    valueAppend?: ReactNode;
+    valuePrepend?: ReactNode;
   }
 
   export const EuiRange: FunctionComponent<
