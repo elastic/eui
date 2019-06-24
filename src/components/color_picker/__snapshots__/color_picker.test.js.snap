@@ -525,8 +525,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
     class="euiPopover__anchor euiColorPicker__popoverAnchor"
   >
     <div
-      class="euiFormControlLayout"
-      readonly=""
+      class="euiFormControlLayout euiFormControlLayout--readOnly"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -535,7 +534,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
           style="color:#ffeedd"
         >
           <div
-            class="euiFormControlLayout"
+            class="euiFormControlLayout euiFormControlLayout--readOnly"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"

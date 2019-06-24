@@ -6,7 +6,8 @@ import moment from 'moment';
 import dateMath from '@elastic/datemath';
 
 import { EuiDatePicker } from '../../date_picker';
-import { EuiFormRow, EuiFieldText } from '../../../form';
+import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
+import { toSentenceCase } from '../../../../services/string/to_case';
 
 const INPUT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS';
 
@@ -17,10 +18,13 @@ export class EuiAbsoluteTab extends Component {
     const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
     const valueAsMoment =
       parsedValue && parsedValue.isValid() ? parsedValue : moment();
+    const sentenceCasedPosition = toSentenceCase(props.position);
+
     this.state = {
       valueAsMoment,
       textInputValue: valueAsMoment.format(INPUT_DATE_FORMAT),
       isTextInvalid: false,
+      sentenceCasedPosition,
     };
   }
 
@@ -70,6 +74,11 @@ export class EuiAbsoluteTab extends Component {
             value={this.state.textInputValue}
             onChange={this.handleTextChange}
             data-test-subj={'superDatePickerAbsoluteDateInput'}
+            prepend={
+              <EuiFormLabel>
+                {this.state.sentenceCasedPosition} date
+              </EuiFormLabel>
+            }
           />
         </EuiFormRow>
       </div>
@@ -82,4 +91,5 @@ EuiAbsoluteTab.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool.isRequired,
+  position: PropTypes.oneOf(['start', 'end']),
 };

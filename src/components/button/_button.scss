@@ -107,7 +107,7 @@ $buttonTypes: (
       border-color: $color;
 
       // The function makes that hexes safe for theming
-      $fillTextColor: chooseLightOrDarkText($color, #FFF, #000); // sass-lint:disable-line no-color-literals
+      $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
 
       color: $fillTextColor;
 
@@ -127,7 +127,7 @@ $buttonTypes: (
     &:enabled {
       $shadowColor: $euiShadowColor;
       @if ($name == 'ghost') {
-        $shadowColor: #000;
+        $shadowColor: $euiColorInk;
       } @else if (lightness($euiTextColor) < 50) {
         // Only if this is the light theme do we use the button variant color to colorize the shadow
         $shadowColor: desaturate($color, 60%);
@@ -150,7 +150,7 @@ $buttonTypes: (
     &:disabled:hover,
     &:disabled:focus {
       @if ($name == 'ghost') {
-        @include euiSlightShadow(#000);
+        @include euiSlightShadow($euiColorInk);
       }
     }
   }

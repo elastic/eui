@@ -1,5 +1,5 @@
 @mixin euiToolTipStyle($size: null) {
-  @include euiBottomShadow($color: #000);
+  @include euiBottomShadow($color: $euiColorInk);
   border-radius: $euiBorderRadius;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;

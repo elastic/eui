@@ -44,7 +44,7 @@
       margin-bottom: 0;
       padding: $euiFormControlPadding;
       border: none;
-      background-color: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%);
+      background-color: $euiFormInputGroupLabelBackground;
       line-height: $euiFontSize;
     }
   }
@@ -73,6 +73,19 @@
         padding-top: $euiFormControlCompressedPadding;
         padding-bottom: $euiFormControlCompressedPadding;
       }
+    }
+  }
+
+  //
+  // ReadOnly alterations
+  &.euiFormControlLayout--readOnly {
+    @include euiFormControlReadOnlyStyle;
+    padding: 0; /* 1 */
+    background-color: transparent; // Ensures the input and layout don't double up on background color
+
+    .euiFormControlLayout__prepend,
+    .euiFormControlLayout__append {
+      height: $euiFormControlHeight; // Matching input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
     }
   }
 }

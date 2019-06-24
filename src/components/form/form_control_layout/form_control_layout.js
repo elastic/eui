@@ -18,6 +18,7 @@ export class EuiFormControlLayout extends Component {
       className,
       prepend,
       append,
+      readOnly,
       ...rest
     } = this.props;
 
@@ -26,6 +27,7 @@ export class EuiFormControlLayout extends Component {
       {
         'euiFormControlLayout--fullWidth': fullWidth,
         'euiFormControlLayout--compressed': compressed,
+        'euiFormControlLayout--readOnly': readOnly,
         'euiFormControlLayout--group': prepend || append,
       },
       className
