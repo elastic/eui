@@ -56,11 +56,18 @@ export const EuiSuggestItem = ({
 };
 
 EuiSuggestItem.propTypes = {
-  type: IconPropType,
-
   className: PropTypes.string,
+  /**
+   * Takes 'icon' for EuiIcon and 'color'. 'color' can be either our palette colors (primary, secondary, etc) or a hex value.
+   */
   type: PropTypes.object,
+  /**
+   * Label for suggestion
+   */
   label: PropTypes.string,
+  /**
+   * Description for suggestion
+   */
   description: PropTypes.string,
 };
 
