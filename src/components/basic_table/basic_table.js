@@ -868,7 +868,7 @@ export class EuiBasicTable extends Component {
               disabled={disabled}
               checked={checked}
               onChange={onChange}
-              title={title}
+              title={title || selectThisRow}
               aria-label={title || selectThisRow}
               data-test-subj={`checkboxSelectRow-${itemId}`}
             />
