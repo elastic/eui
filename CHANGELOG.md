@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `12.1.0`.
+**Bug fixes**
+- Added requirement that `EuiFormRow` has exactly one child element [#2054](https://github.com/elastic/eui/pull/2054)
 
 ## [`12.1.0`](https://github.com/elastic/eui/tree/v12.1.0)
 
