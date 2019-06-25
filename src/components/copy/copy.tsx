@@ -1,9 +1,11 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { copyToClipboard } from '../../services';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
-interface EuiCopyProps extends CommonProps {
+interface EuiCopyProps
+  extends CommonProps,
+    Partial<Omit<EuiToolTipProps, 'children'>> {
   /**
    * Text that will be copied to clipboard when copy function is executed.
    */

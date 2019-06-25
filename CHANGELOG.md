@@ -1,5 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+- Added requirement that `EuiFormRow` has exactly one child element [#2054](https://github.com/elastic/eui/pull/2054)
+
+## [`12.1.0`](https://github.com/elastic/eui/tree/v12.1.0)
+
 - Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
 - Converted `EuiGlobalToastList` into ARIA live region by adding `role="region"` attribute to add NVDA/JAWS support ([#2055](https://github.com/elastic/eui/pull/2055))
 - Added `magnifyWithMinus` and `magnifyWithPlus` glyphs to `EuiIcon` ([2056](https://github.com/elastic/eui/pull/2056))
@@ -8,6 +13,9 @@
 - Changed `popout` glyph in `EuiIcon` to look more like external link ([2064](https://github.com/elastic/eui/pull/2064))
 - Tweaked `SuperDatePicker` to make the start/end date selection more obvious ([#2049](https://github.com/elastic/eui/pull/2049))
 - Added `toSentenceCase` string service ([#2049](https://github.com/elastic/eui/pull/2049))
+- Pass `EuiSuperSelect`'s `popoverClassName` to the popover's panel ([#2068](https://github.com/elastic/eui/pull/2068))
+- Added `editorItemAlignLeft`, `editorItemAlignCenter`, `editorItemRight`, `editorItemAlignTop`, `editorItemAlignMiddle`, `editorItemAlignBottom`, `editorDistributeHorizontal`, `editorDistributeVertical`, `editorPositionTopLeft`, `editorPositionTopRight`, `editorPositionBottomRight`, and `editorPositionBottomLeft` glyphs to `EuiIcon` ([2070](https://github.com/elastic/eui/pull/2070))
+- Added missing TS definitions for `EuiRange` ([#2072](https://github.com/elastic/eui/pull/2072))
 
 **Bug fixes**
 
@@ -16,7 +24,7 @@
 - Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
 - Fixed style of readOnly input groups via `EuiFormControlLayout` and `prepend`/`append` ([#2057](https://github.com/elastic/eui/pull/2057))
 - Removed TS types from ES exports when the exported name differs from the imported one ([#2069](https://github.com/elastic/eui/pull/2069))
-- Require that FormRow has exactly one child element [#2054](https://github.com/elastic/eui/pull/2054)
+- Fixed TypeScript definitions and type exports for `EuiBadge` and `EuiCopy` ([#2052](https://github.com/elastic/eui/pull/2052))
 
 ## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
 
