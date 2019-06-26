@@ -1,0 +1,10 @@
+.euiSuggestInput {
+  .status {
+    font-size: $euiFontSizeS;
+    padding-right: $euiSizeS;
+    color: $euiColorPrimary;
+      .statusLabel {
+        padding-left: $euiSizeS;
+      }
+  }
+}
