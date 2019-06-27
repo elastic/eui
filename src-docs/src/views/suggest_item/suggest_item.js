@@ -28,12 +28,10 @@ const sampleItems = [
   {
     type: { icon: 'search', color: 'dark' },
     label: 'Recent search sample',
-    description: shortDescription,
   },
   {
     type: { icon: 'save', color: '#DD0A73' },
-    label: 'Saved search sample',
-    description: shortDescription,
+    label: 'Saved search',
   },
 ];
 

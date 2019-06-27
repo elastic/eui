@@ -69,10 +69,13 @@ $buttonTypes: (
     }
   }
 
-  .euiSuggestItem__description {
-    color: $euiColorDarkShade;
+  .euiSuggestItem__description, .euiSuggestItem__label {
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: $euiSizeXL;
+    display: block;
+	}
+
+  .euiSuggestItem__description {
+    color: $euiColorDarkShade;
 	}
 }

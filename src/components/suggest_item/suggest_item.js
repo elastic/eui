@@ -18,13 +18,14 @@ export const EuiSuggestItem = ({
   className,
   label,
   type,
+  expandLongLabel,
   description,
   ...rest
 }) => {
   const classes = classNames('euiSuggestItem', className);
 
-  let optionalColorClass = null;
-  let optionalLabelClass = null;
+  let optionalColorClass = '';
+  let optionalLabelClass = '';
   let optionalCustomStyles = undefined;
 
   if (COLORS.indexOf(type.color) > -1) {
@@ -33,8 +34,10 @@ export const EuiSuggestItem = ({
     optionalCustomStyles = { backgroundColor: type.color };
   }
 
-  if (label && label.length > 100) {
-    optionalLabelClass = 'longLabel';
+  if (expandLongLabel) {
+    if (label && label.length > 35) {
+      optionalLabelClass = 'longLabel';
+    }
   }
 
   return (
@@ -69,6 +72,10 @@ EuiSuggestItem.propTypes = {
    * Description for suggestion
    */
   description: PropTypes.string,
+
+  expandLongLabel: PropTypes.bool,
 };
 
-EuiSuggestItem.defaultProps = {};
+EuiSuggestItem.defaultProps = {
+  expandLongLabel: false,
+};
