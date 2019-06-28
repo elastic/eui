@@ -1,12 +1,12 @@
 import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
 
-export const flattenOptionGroups = (
-  optionsOrGroups: EuiComboBoxOptionProps[]
+export const flattenOptionGroups = <T>(
+  optionsOrGroups: Array<EuiComboBoxOptionProps<T>>
 ) => {
   return optionsOrGroups.reduce(
     (
-      options: EuiComboBoxOptionProps[],
-      optionOrGroup: EuiComboBoxOptionProps
+      options: Array<EuiComboBoxOptionProps<T>>,
+      optionOrGroup: EuiComboBoxOptionProps<T>
     ) => {
       if (optionOrGroup.options) {
         options.push(...optionOrGroup.options);
@@ -19,9 +19,9 @@ export const flattenOptionGroups = (
   );
 };
 
-export const getSelectedOptionForSearchValue = (
+export const getSelectedOptionForSearchValue = <T>(
   searchValue: string,
-  selectedOptions: EuiComboBoxOptionProps[]
+  selectedOptions: Array<EuiComboBoxOptionProps<T>>
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
   return selectedOptions.find(
@@ -29,10 +29,10 @@ export const getSelectedOptionForSearchValue = (
   );
 };
 
-const collectMatchingOption = (
-  accumulator: EuiComboBoxOptionProps[],
-  option: EuiComboBoxOptionProps,
-  selectedOptions: EuiComboBoxOptionProps[],
+const collectMatchingOption = <T>(
+  accumulator: Array<EuiComboBoxOptionProps<T>>,
+  option: EuiComboBoxOptionProps<T>,
+  selectedOptions: Array<EuiComboBoxOptionProps<T>>,
   normalizedSearchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
@@ -63,20 +63,20 @@ const collectMatchingOption = (
   }
 };
 
-export const getMatchingOptions = (
-  options: EuiComboBoxOptionProps[],
-  selectedOptions: EuiComboBoxOptionProps[],
+export const getMatchingOptions = <T>(
+  options: Array<EuiComboBoxOptionProps<T>>,
+  selectedOptions: Array<EuiComboBoxOptionProps<T>>,
   searchValue: string,
   isPreFiltered: boolean,
   showPrevSelected: boolean
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const matchingOptions: EuiComboBoxOptionProps[] = [];
+  const matchingOptions: Array<EuiComboBoxOptionProps<T>> = [];
 
   options.forEach(option => {
     if (option.options) {
-      const matchingOptionsForGroup: EuiComboBoxOptionProps[] = [];
-      option.options.forEach((groupOption: EuiComboBoxOptionProps) => {
+      const matchingOptionsForGroup: Array<EuiComboBoxOptionProps<T>> = [];
+      option.options.forEach((groupOption: EuiComboBoxOptionProps<T>) => {
         collectMatchingOption(
           matchingOptionsForGroup,
           groupOption,
