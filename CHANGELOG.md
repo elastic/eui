@@ -6,6 +6,10 @@
 
 - Added requirement that `EuiFormRow` has exactly one child element [#2054](https://github.com/elastic/eui/pull/2054)
 
+**Breaking changes**
+
+- Widened `EuiComboBox`'s `options[].value` / `EuiComboBoxOptionProps.value` TypeScript definition ([#2080](https://github.com/elastic/eui/pull/2080))
+
 ## [`12.1.0`](https://github.com/elastic/eui/tree/v12.1.0)
 
 - Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
