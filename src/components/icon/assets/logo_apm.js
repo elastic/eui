@@ -1,7 +1,12 @@
 import React from 'react';
 
 const EuiIconLogoApm = props => (
-  <svg width={32} height={32} xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={32}
+    height={32}
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}>
     <path fill="#F04E98" d="M0 0h32v10H0z" />
     <path
       className="euiIcon__fillNegative"

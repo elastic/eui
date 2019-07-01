@@ -607,6 +607,7 @@ exports[`EuiIcon props type apmApp is rendered 1`] = `
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
   focusable="false"
   height="32"
+  viewBox="0 0 32 32"
   width="32"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -2940,6 +2941,7 @@ exports[`EuiIcon props type logoAPM is rendered 1`] = `
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
+  viewBox="0 0 32 32"
   width="32"
   xmlns="http://www.w3.org/2000/svg"
 >

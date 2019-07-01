@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <g>
     <path fill="#F04E98" d="M0 0h32v10H0z"/>
     <path class="euiIcon__fillNegative" d="M10 10h22a10 10 0 0 1-10 10H10V10z"/>
