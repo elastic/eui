@@ -1,5 +1,6 @@
 import {
   ButtonHTMLAttributes,
+  HTMLAttributes,
   ReactNode,
   FunctionComponent,
   FocusEventHandler,
@@ -15,7 +16,9 @@ import {
 import { RefCallback, CommonProps, Omit } from '../common';
 
 declare module '@elastic/eui' {
-  export type EuiComboBoxOptionProps<T> = CommonProps &
+  export type EuiComboBoxOptionProps<
+    T = string | number | string[] | undefined
+  > = CommonProps &
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> & {
       label: string;
       isGroupLabelOption?: boolean;
@@ -97,6 +100,7 @@ declare module '@elastic/eui' {
   }
 
   export function EuiComboBox<T>(
-    props: EuiComboBoxProps<T>
+    props: EuiComboBoxProps<T> &
+      Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
   ): ReturnType<FunctionComponent<EuiComboBoxProps<T>>>;
 }
