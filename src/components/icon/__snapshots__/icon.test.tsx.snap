@@ -2940,20 +2940,19 @@ exports[`EuiIcon props type logoAPM is rendered 1`] = `
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   focusable="false"
   height="32"
-  viewBox="0 0 32 32"
   width="32"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M0 10.001h24V0H0z"
+    d="M0 0h32v10H0z"
     fill="#F04E98"
   />
   <path
     class="euiIcon__fillNegative"
-    d="M32 20H20c-5.522 0-10-4.478-10-10h22v10z"
+    d="M10 10h22a10 10 0 0 1-10 10H10V10z"
   />
   <path
-    d="M20 32h12v-9H20z"
+    d="M19 23h13v9H19z"
     fill="#0080D5"
   />
 </svg>
