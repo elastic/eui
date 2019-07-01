@@ -7,9 +7,11 @@ const EuiIconAppApm = props => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
-    <path className="euiIcon__fillSecondary" d="M7 9v2H0V0h23v7h-2V2H2v7z" />
-    <path d="M32 9v12H20c-6.075 0-11-4.925-11-11V9h23zm-20.945 2c.497 4.5 4.312 8 8.945 8h10v-8H11.055z" />
-    <path className="euiIcon__fillSecondary" d="M30 23h2v9H19v-9h2v7h9z" />
+    <path d="M3 10h4v2H1V1h30v6h-2V3H3v7zm26 19v-6h2v8H18v-8h2v6h9z" />
+    <path
+      className="euiIcon__fillSecondary"
+      d="M31 10H9v11h12c5.523 0 10-4.477 10-10v-1zm-10 9H11v-7h17.938A8.001 8.001 0 0 1 21 19z"
+    />
   </svg>
 );
 
