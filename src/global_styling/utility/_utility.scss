@@ -75,3 +75,10 @@
   flex-shrink: 1;
   flex-basis: 0%;
 }
+
+/**
+  * Overflow scrolling
+  */
+.euiOverflowYScroll {
+  @include euiOverflowYScroll;
+}

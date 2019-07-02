@@ -745,8 +745,9 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiText>
             <p>
-              Primarily used in modals and flyouts, the overflow shadows add a
-              white glow to subtly indicate there is more content below/above.
+              Primarily used in modals and flyouts, the overflow shadows mask
+              the top and bottom edges to indicate there is more content
+              below/above.
             </p>
           </EuiText>
 
@@ -755,8 +756,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <div className="guideSass__overflowShadows">
             <EuiText className="guideSass__overflowShadowText" size="s">
               <p>
-                It requires a wrapper with <EuiCode>overflow: hidden</EuiCode>{' '}
-                and the content to have{' '}
+                It requires a wrapping element to control the height with{' '}
+                <EuiCode>overflow-y: hidden;</EuiCode> and the content to have{' '}
                 <EuiCode>overflow-y: auto; height: 100%;</EuiCode>.
               </p>
               <p>
@@ -764,13 +765,11 @@ export const SassGuidelines = ({ selectedTheme }) => {
               </p>
               <EuiCodeBlock language="sass" isCopyable paddingSize="s">
                 {`.bodyContent {
-  @include euiOverflowShadow;
   height: 200px;
-  overflow: hidden;
+  overflow-y: hidden;
 
   .bodyContent__overflow {
-    height: 100%;
-    overflow-y: auto;
+    @include euiOverflowYScroll;
   }
 }`}
               </EuiCodeBlock>
