@@ -11,6 +11,7 @@ import {
   EuiFormControlLayoutIcons,
   EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
+import { CommonProps } from '../../common';
 
 export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
 
@@ -18,19 +19,11 @@ type ReactElements = ReactElement | ReactElement[];
 
 // if `prepend` and/or `append` is specified then `children` must be undefined or a single ReactElement
 interface AppendWithChildren {
-  /**
-   * Creates an input group with element(s) coming after children
-   */
   append: ReactElements;
-  prepend?: ReactElements;
   children?: ReactElement;
 }
 interface PrependWithChildren {
-  /**
-   * Creates an input group with element(s) coming before children
-   */
   prepend: ReactElements;
-  append?: ReactElements;
   children?: ReactElement;
 }
 type SiblingsWithChildren = AppendWithChildren | PrependWithChildren;
@@ -43,8 +36,17 @@ type ChildrenOptions =
       children?: ReactNode;
     };
 
-type EuiFormControlLayoutProps = HTMLAttributes<HTMLDivElement> &
+type EuiFormControlLayoutProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> &
   ChildrenOptions & {
+    /**
+     * Creates an input group with element(s) coming before children
+     */
+    prepend?: ReactElements;
+    /**
+     * Creates an input group with element(s) coming after children
+     */
+    append?: ReactElements;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
     fullWidth?: boolean;
