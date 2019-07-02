@@ -38,6 +38,9 @@ export const EuiSuggestInput = ({ className, status, value, ...rest }) => {
 
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
+  /**
+   * Takes 'icon' for EuiIcon, 'color'. 'color' can be either our palette colors (primary, secondary, etc) or a hex value.
+   */
   status: PropTypes.object,
 };
 
