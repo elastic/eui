@@ -9,10 +9,20 @@ import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
 const breadcrumbsHtml = renderToHtml(Breadcrumbs);
+const breadcrumbsSnippet = `<EuiBreadcrumbs
+  breadcrumbs={breadcrumbs}
+  responsive={false}
+  truncate={false}
+/>
+`;
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
+const responsiveSnippet = `<EuiBreadcrumbs
+  breadcrumbs={breadcrumbs}
+/>
+`;
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
@@ -21,6 +31,13 @@ const truncateHtml = renderToHtml(Truncate);
 import Max from './max';
 const maxSource = require('!!raw-loader!./max');
 const maxHtml = renderToHtml(Max);
+const maxSnippet = `<EuiBreadcrumbs
+  max={4}
+  breadcrumbs={breadcrumbs}
+  responsive={false}
+  truncate={false}
+/>
+`;
 
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
@@ -50,6 +67,7 @@ export const BreadcrumbsExample = {
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: breadcrumbsSnippet,
       demo: <Breadcrumbs />,
     },
     {
@@ -71,6 +89,7 @@ export const BreadcrumbsExample = {
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: responsiveSnippet,
       demo: <Responsive />,
     },
     {
@@ -122,6 +141,7 @@ export const BreadcrumbsExample = {
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: maxSnippet,
       demo: <Max />,
     },
   ],

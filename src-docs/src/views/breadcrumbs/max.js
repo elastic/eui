@@ -39,6 +39,7 @@ export default () => {
 
   return (
     <EuiBreadcrumbs
+      max={4}
       breadcrumbs={breadcrumbs}
       responsive={false}
       truncate={false}
