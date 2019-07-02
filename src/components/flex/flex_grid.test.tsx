@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiFlexGrid, GUTTER_SIZES, COLUMNS } from './flex_grid';
+import { EuiFlexGrid, GUTTER_SIZES, COLUMNS, DIRECTIONS } from './flex_grid';
 
 describe('EuiFlexGrid', () => {
   test('is rendered', () => {
@@ -30,6 +30,16 @@ describe('EuiFlexGrid', () => {
       COLUMNS.forEach(value => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid columns={value} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('direction', () => {
+      DIRECTIONS.forEach(value => {
+        test(`${value} is rendered`, () => {
+          const component = render(<EuiFlexGrid direction={value} />);
 
           expect(component).toMatchSnapshot();
         });
