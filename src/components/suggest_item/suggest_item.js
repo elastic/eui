@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiIcon, IconPropType, IconColor, IconType } from '../icon';
+import { TypePredicateKind } from 'typescript';
 
 const colorToClassNameMap = {
   primary: 'euiSuggestItem__type--primary',
@@ -14,29 +15,32 @@ const colorToClassNameMap = {
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
+const layoutToClassNameMap = {
+  setColumns: 'euiSuggestItem__layout--set',
+  inline: 'euiSuggestItem__layout--inline',
+};
+
+export const LAYOUTS = Object.keys(layoutToClassNameMap);
+
 export const EuiSuggestItem = ({
   className,
   label,
   type,
-  expandLongLabel,
+  layout,
   description,
   ...rest
 }) => {
   const classes = classNames('euiSuggestItem', className);
 
   let optionalColorClass = '';
-  let optionalLabelClass = '';
+  const layoutClass = layoutToClassNameMap[layout];
   let optionalCustomStyles = undefined;
 
-  if (COLORS.indexOf(type.color) > -1) {
-    optionalColorClass = colorToClassNameMap[type.color];
-  } else {
-    optionalCustomStyles = { backgroundColor: type.color };
-  }
-
-  if (expandLongLabel) {
-    if (label && label.length > 35) {
-      optionalLabelClass = 'longLabel';
+  if (type && type.color) {
+    if (COLORS.indexOf(type.color) > -1) {
+      optionalColorClass = colorToClassNameMap[type.color];
+    } else {
+      optionalCustomStyles = { backgroundColor: type.color };
     }
   }
 
@@ -50,9 +54,7 @@ export const EuiSuggestItem = ({
         )}
         <EuiIcon color={type.color} type={type.icon} />
       </span>
-      <span className={`euiSuggestItem__label ${optionalLabelClass}`}>
-        {label}
-      </span>
+      <span className={`euiSuggestItem__label ${layoutClass}`}>{label}</span>
       <span className="euiSuggestItem__description">{description}</span>
     </div>
   );
@@ -72,10 +74,12 @@ EuiSuggestItem.propTypes = {
    * Description for suggestion
    */
   description: PropTypes.string,
-
-  expandLongLabel: PropTypes.bool,
+  /**
+   * Layout for suggest item
+   */
+  layout: PropTypes.oneOf(LAYOUTS),
 };
 
 EuiSuggestItem.defaultProps = {
-  expandLongLabel: false,
+  layout: 'setColumns',
 };

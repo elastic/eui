@@ -19,7 +19,7 @@ export default () => (
     />
     <EuiSuggestItem
       type={sampleItem.type}
-      expandLongLabel={true}
+      layout="inline"
       label={sampleItem.label}
       description={sampleItem.description}
     />
