@@ -12,13 +12,13 @@ import {
 import { IconType } from '../../icon';
 import { Omit } from '../../common';
 
-export const ICON_SIDES = ['left', 'right'];
+export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
 
 type IconShape = Partial<
   Omit<EuiFormControlLayoutCustomIconProps, 'type' | 'iconRef'>
 > & {
   type: IconType;
-  side?: 'left' | 'right';
+  side?: typeof ICON_SIDES[number];
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
