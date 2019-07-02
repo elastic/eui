@@ -64,7 +64,7 @@ $buttonTypes: (
     padding: $euiSizeXS $euiSizeS;
     color: $euiTextColor;
     // sass-lint:disable-line empty-line-between-blocks
-    &.longLabel {
+    &.euiSuggestItem__layout--inline {
       width: auto;
     }
   }

@@ -52,6 +52,11 @@ export const SuggestItemExample = {
               <EuiCode>description</EuiCode> is the secondary text for the
               suggestion and it is optional.
             </li>
+            <li>
+              Use <EuiCode>layout</EuiCode> to change the distribution of the{' '}
+              <EuiCode>EuiSuggestItem</EuiCode> elements. The default{' '}
+              <EuiCode>layout</EuiCode> is <EuiCode>setColumns</EuiCode>.
+            </li>
           </ul>
         </div>
       ),
@@ -73,8 +78,9 @@ export const SuggestItemExample = {
       text: (
         <p>
           By default <EuiCode>EuiSuggestItem</EuiCode>'s{' '}
-          <EuiCode>label</EuiCode> will use ellipsis. It's possible to show the
-          full text by using <EuiCode>expandLongLabel</EuiCode>.
+          <EuiCode>label</EuiCode> will have a fixed width and use ellipsis
+          whenever its content is too long. It is possible to show the full text
+          by setting <EuiCode>layout</EuiCode> to <EuiCode>inline</EuiCode>.
         </p>
       ),
       props: { EuiSuggestItem },
