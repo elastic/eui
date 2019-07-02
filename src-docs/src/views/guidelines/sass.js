@@ -745,7 +745,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiText>
             <p>
-              Primarily used in modals and flyouts, the overflow shadows mask
+              Primarily used in modals and flyouts, the overflow shadow masks
               the top and bottom edges to indicate there is more content
               below/above.
             </p>
@@ -757,8 +757,12 @@ export const SassGuidelines = ({ selectedTheme }) => {
             <EuiText className="guideSass__overflowShadowText" size="s">
               <p>
                 It requires a wrapping element to control the height with{' '}
-                <EuiCode>overflow-y: hidden;</EuiCode> and the content to have{' '}
-                <EuiCode>overflow-y: auto; height: 100%;</EuiCode>.
+                <EuiCode>overflow-y: hidden;</EuiCode> and the content to
+                <EuiCode>@include euiOverflowYScroll;</EuiCode> or use the{' '}
+                <Link to="/utilities/css-utility-classes">
+                  CSS utility class
+                </Link>{' '}
+                <EuiCode>.euiOverflowYScroll</EuiCode>.
               </p>
               <p>
                 <b>Example:</b>
