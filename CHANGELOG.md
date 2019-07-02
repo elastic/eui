@@ -2,6 +2,7 @@
 
 - Added a `column` direction option to `EuiFlexGrid` ([#2073](https://github.com/elastic/eui/pull/2073))
 - Updated `EuiSuperDatePicker`'s  commonly used date/times to display as columns. ([#2073](https://github.com/elastic/eui/pull/2073))
+- Added TypeScript definition for `EuiFormControlLayout` ([#2086](https://github.com/elastic/eui/pull/2086))
 
 **Bug fixes**
 
