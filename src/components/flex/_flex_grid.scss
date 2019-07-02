@@ -23,7 +23,7 @@
 
   > .euiFlexItem {
     display: inline-block; /* 1 */
-    line-height: 0; // Ensures the item itself doesn't impose any height
+    line-height: initial; // Ensures the item itself doesn't impose any height
   }
 }
 

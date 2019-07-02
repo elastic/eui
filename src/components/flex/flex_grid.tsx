@@ -29,7 +29,7 @@ export interface EuiFlexGridProps {
 }
 
 const directionToClassNameMap = {
-  row: 'euiFlexGrid--directionRow',
+  row: null,
   column: 'euiFlexGrid--directionColumn',
 };
 
