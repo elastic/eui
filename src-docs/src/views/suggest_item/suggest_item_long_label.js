@@ -6,7 +6,7 @@ const shortDescription = 'This is the description';
 
 const sampleItem = {
   type: { icon: 'kqlValue', color: 'secondary' },
-  label: '"Charles de Gaulle International Airport" ',
+  label: 'Charles de Gaulle International Airport',
   description: shortDescription,
 };
 
