@@ -53,7 +53,7 @@ Array [
           class="euiModalBody"
         >
           <div
-            class="euiModalBody__overflow"
+            class="euiModalBody__overflow euiOverflowYScroll"
           >
             <div
               class="euiText euiText--medium"

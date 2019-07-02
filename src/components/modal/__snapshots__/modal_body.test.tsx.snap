@@ -7,7 +7,7 @@ exports[`renders EuiModalBody 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiModalBody__overflow"
+    class="euiModalBody__overflow euiOverflowYScroll"
   >
     children
   </div>
