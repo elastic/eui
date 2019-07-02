@@ -1,5 +1,6 @@
 import {
   ButtonHTMLAttributes,
+  HTMLAttributes,
   ReactNode,
   FunctionComponent,
   FocusEventHandler,
@@ -10,49 +11,53 @@ import {
   EuiComboBoxOptionProps,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxOptionsListProps,
+  EuiComboBoxProps,
 } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
-import { RefCallback, CommonProps } from '../common';
+import { RefCallback, CommonProps, Omit } from '../common';
 
 declare module '@elastic/eui' {
-  export type EuiComboBoxOptionProps = CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & {
+  export type EuiComboBoxOptionProps<
+    T = string | number | string[] | undefined
+  > = CommonProps &
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> & {
       label: string;
       isGroupLabelOption?: boolean;
-      options?: EuiComboBoxOptionProps[];
+      options?: Array<EuiComboBoxOptionProps<T>>;
+      value?: T;
     };
 
   export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
 
-  export interface EuiComboBoxOption {
-    option: EuiComboBoxOptionProps;
+  export interface EuiComboBoxOption<T> {
+    option: EuiComboBoxOptionProps<T>;
     children?: ReactNode;
     className?: string;
     optionRef?: RefCallback<HTMLButtonElement>;
-    onClick: (option: EuiComboBoxOptionProps) => any;
-    onEnterKey: (option: EuiComboBoxOptionProps) => any;
+    onClick: (option: EuiComboBoxOptionProps<T>) => any;
+    onEnterKey: (option: EuiComboBoxOptionProps<T>) => any;
     disabled?: boolean;
   }
 
-  export interface EuiComboBoxOptionsListProps {
-    options?: EuiComboBoxOptionProps[];
+  export interface EuiComboBoxOptionsListProps<T> {
+    options?: Array<EuiComboBoxOptionProps<T>>;
     isLoading?: boolean;
     selectedOptions?: any[];
     onCreateOption?: any;
     searchValue?: string;
-    matchingOptions?: EuiComboBoxOptionProps[];
-    optionRef?: EuiComboBoxOption['optionRef'];
-    onOptionClick?: EuiComboBoxOption['onClick'];
-    onOptionEnterKey?: EuiComboBoxOption['onEnterKey'];
+    matchingOptions?: Array<EuiComboBoxOptionProps<T>>;
+    optionRef?: EuiComboBoxOption<T>['optionRef'];
+    onOptionClick?: EuiComboBoxOption<T>['onClick'];
+    onOptionEnterKey?: EuiComboBoxOption<T>['onEnterKey'];
     areAllOptionsSelected?: boolean;
     getSelectedOptionForSearchValue?: (
       searchValue: string,
       selectedOptions: any[]
-    ) => EuiComboBoxOptionProps;
+    ) => EuiComboBoxOptionProps<T>;
     updatePosition: (parameter?: UIEvent | EuiPanelProps['panelRef']) => any;
     position?: EuiComboBoxOptionsListPosition;
     listRef: EuiPanelProps['panelRef'];
     renderOption?: (
-      option: EuiComboBoxOptionProps,
+      option: EuiComboBoxOptionProps<T>,
       searchValue: string,
       OPTION_CONTENT_CLASSNAME: string
     ) => ReactNode;
@@ -62,15 +67,15 @@ declare module '@elastic/eui' {
     rowHeight?: number;
     fullWidth?: boolean;
   }
-  export const EuiComboBoxOptionsList: FunctionComponent<
-    EuiComboBoxOptionsListProps
-  >;
+  export function EuiComboBoxOptionsList<T>(
+    props: EuiComboBoxOptionsListProps<T>
+  ): ReturnType<FunctionComponent<EuiComboBoxOptionsListProps<T>>>;
 
   export interface EuiComboBoxSingleSelectionShape {
     asPlainText?: boolean;
   }
 
-  export interface EuiComboBoxProps {
+  export interface EuiComboBoxProps<T> {
     id?: string;
     isDisabled?: boolean;
     className?: string;
@@ -79,19 +84,23 @@ declare module '@elastic/eui' {
     async?: boolean;
     singleSelection?: EuiComboBoxSingleSelectionShape | boolean;
     noSuggestions?: boolean;
-    options?: EuiComboBoxOptionsListProps['options'];
-    selectedOptions?: EuiComboBoxOptionsListProps['selectedOptions'];
+    options?: EuiComboBoxOptionsListProps<T>['options'];
+    selectedOptions?: EuiComboBoxOptionsListProps<T>['selectedOptions'];
     onBlur?: FocusEventHandler<HTMLInputElement>;
-    onChange?: (options: EuiComboBoxOptionProps[]) => any;
+    onChange?: (options: Array<EuiComboBoxOptionProps<T>>) => any;
     onFocus?: FocusEventHandler<HTMLInputElement>;
     onSearchChange?: (searchValue: string) => any;
-    onCreateOption?: EuiComboBoxOptionsListProps['onCreateOption'];
-    renderOption?: EuiComboBoxOptionsListProps['renderOption'];
+    onCreateOption?: EuiComboBoxOptionsListProps<T>['onCreateOption'];
+    renderOption?: EuiComboBoxOptionsListProps<T>['renderOption'];
     isInvalid?: boolean;
     rowHeight?: number;
     isClearable?: boolean;
     fullWidth?: boolean;
     inputRef?: (element: HTMLInputElement) => void;
   }
-  export const EuiComboBox: FunctionComponent<EuiComboBoxProps>;
+
+  export function EuiComboBox<T>(
+    props: EuiComboBoxProps<T> &
+      Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
+  ): ReturnType<FunctionComponent<EuiComboBoxProps<T>>>;
 }

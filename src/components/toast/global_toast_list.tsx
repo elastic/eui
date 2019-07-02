@@ -253,6 +253,8 @@ export class EuiGlobalToastList extends Component<
 
     return (
       <div
+        aria-live="polite"
+        role="region"
         ref={element => {
           this.listElement = element;
         }}

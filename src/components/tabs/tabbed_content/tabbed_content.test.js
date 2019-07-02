@@ -3,7 +3,7 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps, findTestSubject } from '../../../test';
 
-import { EuiTabbedContent } from './tabbed_content';
+import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
 
 // Mock the htmlIdGenerator to generate predictable ids for snapshot tests
 jest.mock('../../../services/accessibility/html_id_generator', () => ({
@@ -79,6 +79,18 @@ describe('EuiTabbedContent', () => {
           <EuiTabbedContent display="condensed" tabs={tabs} />
         );
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('autoFocus', () => {
+      AUTOFOCUS.forEach(focusType => {
+        test(`${focusType} is rendered`, () => {
+          const component = render(
+            <EuiTabbedContent autoFocus={focusType} tabs={tabs} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

@@ -3,8 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const isDevelopment =
-  process.env.NODE_ENV !== 'production' && process.env.CI == null;
+const { NODE_ENV, CI } = process.env;
+
+const isDevelopment = NODE_ENV !== 'production' && CI == null;
+const isProduction = NODE_ENV === 'production';
 
 function useCache(loaders) {
   if (isDevelopment) {
@@ -14,20 +16,20 @@ function useCache(loaders) {
   return loaders;
 }
 
-module.exports = {
-  mode: 'development',
+const webpackConfig = {
+  mode: isProduction ? 'production' : 'development',
 
-  devtool: 'source-map',
+  devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
-    guide: './index.js',
+    bundle: './index.js',
   },
 
   context: path.resolve(__dirname, 'src'),
 
   output: {
     path: path.resolve(__dirname, '../docs'),
-    filename: 'bundle.js',
+    filename: `[name]${isProduction ? '.min' : ''}.js`,
   },
 
   resolve: {
@@ -100,3 +102,5 @@ module.exports = {
     disableHostCheck: true,
   },
 };
+
+module.exports = webpackConfig;

@@ -19,7 +19,7 @@ export function getDateMode(value) {
     return DATE_MODES.RELATIVE;
   }
 
-  return DATE_MODES.absolute;
+  return DATE_MODES.ABSOLUTE;
 }
 
 export function toAbsoluteString(value, roundUp) {

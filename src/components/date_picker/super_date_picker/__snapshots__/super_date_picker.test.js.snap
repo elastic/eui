@@ -23,18 +23,8 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
                 "start": "now/d",
               },
               Object {
-                "end": "now-1d/d",
-                "label": "Yesterday",
-                "start": "now-1d/d",
-              },
-              Object {
                 "end": "now/w",
                 "label": "This week",
-                "start": "now/w",
-              },
-              Object {
-                "end": "now",
-                "label": "Week to date",
                 "start": "now/w",
               },
               Object {
@@ -43,14 +33,24 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
                 "start": "now/M",
               },
               Object {
-                "end": "now",
-                "label": "Month to date",
-                "start": "now/M",
-              },
-              Object {
                 "end": "now/y",
                 "label": "This year",
                 "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
               },
               Object {
                 "end": "now",

@@ -46,6 +46,12 @@ describe('EuiFieldText', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('readOnly is rendered', () => {
+      const component = render(<EuiFieldText readOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('isLoading is rendered', () => {
       const component = render(<EuiFieldText isLoading />);
 

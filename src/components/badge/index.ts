@@ -1,4 +1,4 @@
-export { EuiBadge } from './badge';
+export { EuiBadge, EuiBadgeProps } from './badge';
 
 export { EuiBetaBadge } from './beta_badge';
 

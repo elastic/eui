@@ -52,6 +52,10 @@ import Apps from './apps';
 const appsSource = require('!!raw-loader!./apps');
 const appsSnippet = '<EuiIcon type="addDataApp" size="xl" />';
 
+import Editor from './editor';
+const editorSource = require('!!raw-loader!./editor');
+const editorSnippet = '<EuiIcon type="editorAlignLeft" />';
+
 import Ml from './ml';
 const mlSource = require('!!raw-loader!./ml');
 const mlSnippet = '<EuiIcon type="dataVisualizer" size="xl" />';
@@ -133,6 +137,27 @@ export const IconExample = {
       props: { EuiIcon },
       snippet: iconsSnippet,
       demo: <Icons />,
+    },
+    {
+      title: 'Editor controls',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: editorSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: iconsHtml,
+        },
+      ],
+      text: (
+        <p>
+          Editor icons relate to the visual styling of elements and are
+          commonly used within <EuiCode>EuiButtonGroup</EuiCode> components.
+        </p>
+      ),
+      snippet: editorSnippet,
+      demo: <Editor />,
     },
     {
       title: 'Apps',
