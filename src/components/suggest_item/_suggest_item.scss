@@ -24,7 +24,7 @@ $buttonTypes: (
   font-size: $euiFontSizeXS;
   // sass-lint:disable-block no-trailing-whitespace
   white-space: nowrap;
-  
+
   @each $name, $color in $buttonTypes {
     .euiSuggestItem__type--#{$name} {
       background-color: tintOrShade($color, 90%, 50%);
@@ -69,7 +69,8 @@ $buttonTypes: (
     }
   }
 
-  .euiSuggestItem__description, .euiSuggestItem__label {
+  .euiSuggestItem__description,
+  .euiSuggestItem__label {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
