@@ -136,7 +136,7 @@
 
   .euiModalFooter {
     background: $euiColorLightestShade;
-    padding: $euiSizeM $euiSizeL;
+    padding: $euiSizeM $euiSizeL !important; // sass-lint:disable-line no-important
     width: 100vw;
     justify-content: stretch;
 
@@ -151,5 +151,9 @@
 
   .euiModalBody {
     width: 100vw;
+
+    .euiModalBody__overflow {
+      padding-bottom: $euiSizeL;
+    }
   }
 }
