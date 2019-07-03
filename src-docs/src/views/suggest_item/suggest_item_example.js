@@ -77,7 +77,7 @@ export const SuggestItemExample = {
       ],
       text: (
         <p>
-          By default <EuiCode>EuiSuggestItem</EuiCode>'s{' '}
+          By default <EuiCode>EuiSuggestItem</EuiCode>&apos;s{' '}
           <EuiCode>label</EuiCode> will have a fixed width and use ellipsis
           whenever its content is too long. It is possible to show the full text
           by setting <EuiCode>layout</EuiCode> to <EuiCode>inline</EuiCode>.

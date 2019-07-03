@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EuiIcon, IconPropType, IconColor, IconType } from '../icon';
-import { TypePredicateKind } from 'typescript';
+import { EuiIcon, IconPropType } from '../icon';
 
 const colorToClassNameMap = {
   primary: 'euiSuggestItem__type--primary',
@@ -65,7 +63,10 @@ EuiSuggestItem.propTypes = {
   /**
    * Takes 'icon' for EuiIcon and 'color'. 'color' can be either our palette colors (primary, secondary, etc) or a hex value.
    */
-  type: PropTypes.object,
+  type: PropTypes.shape({
+    icon: IconPropType,
+    color: PropTypes.oneOfType([PropTypes.oneOf(COLORS), PropTypes.string]),
+  }).isRequired,
   /**
    * Label for suggestion
    */
