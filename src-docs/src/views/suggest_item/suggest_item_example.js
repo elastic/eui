@@ -18,7 +18,6 @@ export const SuggestItemExample = {
   title: 'Suggest Item',
   sections: [
     {
-      title: 'SuggestItem',
       source: [
         {
           type: GuideSectionTypes.JS,
