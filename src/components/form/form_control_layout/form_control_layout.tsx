@@ -13,7 +13,7 @@ import {
 } from './form_control_layout_icons';
 import { CommonProps } from '../../common';
 
-export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
+export { ICON_SIDES } from './form_control_layout_icons';
 
 type ReactElements = ReactElement | ReactElement[];
 
@@ -50,9 +50,9 @@ type EuiFormControlLayoutProps = CommonProps &
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
     fullWidth?: boolean;
-    isLoading: boolean;
+    isLoading?: boolean;
     className?: string;
-    compressed: boolean;
+    compressed?: boolean;
     readOnly?: boolean;
   };
 
@@ -64,13 +64,7 @@ function isChildrenIsReactElement(
   return (!!append || !!prepend) && children != null;
 }
 
-export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
-  static defaultProps = {
-    isLoading: false,
-    compressed: false,
-  };
-
-  render() {
+export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {render() {
     const {
       children,
       icon,
