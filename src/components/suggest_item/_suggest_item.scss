@@ -5,30 +5,19 @@ $buttonTypes: (
   secondary: $euiColorSecondary,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
-  dark: $euiColorMediumShade, // Reserved for special use cases
+  dark: $euiColorMediumShade,
 );
-
-.customBackground {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  opacity: .2;
-}
-
 
 .euiSuggestItem {
   display: flex;
   flex-grow: 1;
   align-items: center;
   font-size: $euiFontSizeXS;
-  // sass-lint:disable-block no-trailing-whitespace
   white-space: nowrap;
 
   @each $name, $color in $buttonTypes {
     .euiSuggestItem__type--#{$name} {
       background-color: tintOrShade($color, 90%, 50%);
-      // color: makeHighContrastColor($color, tintOrShade($color, 90%, 50%));
 		}
 	}
 
@@ -41,8 +30,8 @@ $buttonTypes: (
     flex-direction: column;
 	}
 
-
   .euiSuggestItem__type {
+    position: relative;
     flex-grow: 0;
     flex-basis: auto;
     width: $euiSizeXL;
@@ -52,18 +41,27 @@ $buttonTypes: (
     padding: $euiSizeXS;
     justify-content: center;
     align-items: center;
+
+    .customBackground {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      opacity: .2;
+      top: 0;
+      left: 0;
+    }
   }
 
   .euiSuggestItem__label {
-    flex-grow: 0; /* 2 */
-    flex-basis: auto; /* 2 */
+    flex-grow: 0;
+    flex-basis: auto;
     font-family: $euiCodeFontFamily;
     width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: $euiSizeXS $euiSizeS;
     color: $euiTextColor;
-    // sass-lint:disable-line empty-line-between-blocks
+
     &.euiSuggestItem__layout--inline {
       width: auto;
     }
