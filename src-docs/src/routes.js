@@ -116,8 +116,6 @@ import { LinkExample } from './views/link/link_example';
 
 import { ListGroupExample } from './views/list_group/list_group_example';
 
-import { SuggestItemExample } from './views/suggest_item/suggest_item_example';
-
 import { LoadingExample } from './views/loading/loading_example';
 
 import { ModalExample } from './views/modal/modal_example';
@@ -157,6 +155,8 @@ import { SpacerExample } from './views/spacer/spacer_example';
 import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
+
+import { SuggestItemExample } from './views/suggest_item/suggest_item_example';
 
 import { TableExample } from './views/tables/tables_example';
 
@@ -321,10 +321,10 @@ const navigation = [
       IconExample,
       ImageExample,
       ListGroupExample,
-      SuggestItemExample,
       LoadingExample,
       ProgressExample,
       StatExample,
+      SuggestItemExample,
       TableExample,
       TextExample,
       TitleExample,

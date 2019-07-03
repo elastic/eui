@@ -160,8 +160,6 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
-export { EuiSuggestItem } from './suggest_item';
-
 export {
   EUI_MODAL_CANCEL_BUTTON,
   EUI_MODAL_CONFIRM_BUTTON,
@@ -231,6 +229,8 @@ export { EuiSpacer } from './spacer';
 export { EuiStat } from './stat';
 
 export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
+
+export { EuiSuggestItem } from './suggest_item';
 
 export {
   EuiTable,
