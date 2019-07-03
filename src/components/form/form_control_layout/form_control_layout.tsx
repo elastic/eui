@@ -64,7 +64,8 @@ function isChildrenIsReactElement(
   return (!!append || !!prepend) && children != null;
 }
 
-export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {render() {
+export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
+  render() {
     const {
       children,
       icon,
