@@ -5,6 +5,12 @@ import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 import { requiredProps, findTestSubject } from '../../test';
 
+function pause(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }) => children,
 }));
@@ -117,7 +123,7 @@ test('popover color selector is shown when the input is clicked', () => {
   expect(colorSelector.length).toBe(1);
 });
 
-test('popover color selector is hidden when the ESC key pressed', () => {
+test('popover color selector is hidden when the ESC key pressed', async () => {
   const onBlurHandler = jest.fn();
   const colorPicker = mount(
     <EuiColorPicker
@@ -129,6 +135,7 @@ test('popover color selector is hidden when the ESC key pressed', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  await pause(50);
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
     keyCode: keyCodes.ESCAPE,
   });

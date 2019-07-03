@@ -74,7 +74,7 @@ describe('EuiPopover', () => {
     });
 
     describe('closePopover', () => {
-      it('is called when ESC key is hit', () => {
+      it('is called when ESC key is hit and the popover is open', () => {
         const closePopoverHandler = sinon.stub();
 
         const component = mount(
@@ -83,6 +83,7 @@ describe('EuiPopover', () => {
             withTitle
             button={<button />}
             closePopover={closePopoverHandler}
+            isOpen
           />
         );
 
