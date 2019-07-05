@@ -14,14 +14,34 @@ import {
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
 const contextMenuHtml = renderToHtml(ContextMenu);
+const contextMenuSnippet = `<EuiPopover
+  button={button}
+  closePopover={this.closePopover}>
+  <EuiContextMenu initialPanelId={0} panels={this.panels} />
+</EuiPopover>
+`;
 
 import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
+const singlePanelSnippet = `<EuiPopover
+  button={button}
+  closePopover={this.closePopover}>
+  <EuiContextMenuPanel items={items} />
+</EuiPopover>
+`;
 
 import ContentPanel from './content_panel';
 const contentPanelSource = require('!!raw-loader!./content_panel');
 const contentPanelHtml = renderToHtml(ContentPanel);
+const contentPanelSnippet = `<EuiPopover
+  button={button}
+  closePopover={this.closePopover}>
+  <EuiContextMenuPanel>
+    <!-- Children to pass to Context Menu -->
+  <EuiContextMenuPanel />
+</EuiPopover>
+`;
 
 import ContextMenuWithContent from './context_menu_with_content';
 const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
@@ -51,6 +71,7 @@ export const ContextMenuExample = {
         </p>
       ),
       props: { EuiContextMenu, EuiContextMenuPanel, EuiContextMenuItem },
+      snippet: contextMenuSnippet,
       demo: <ContextMenu />,
     },
     {
@@ -71,6 +92,7 @@ export const ContextMenuExample = {
           below pagination example has no nesting and no title.
         </p>
       ),
+      snippet: singlePanelSnippet,
       demo: <SinglePanel />,
     },
     {
@@ -92,6 +114,7 @@ export const ContextMenuExample = {
           <EuiCode>EuiContextMenuPanel</EuiCode>.
         </p>
       ),
+      snippet: contentPanelSnippet,
       demo: <ContentPanel />,
     },
     {
