@@ -1,17 +1,46 @@
 import React, { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { EuiLoadingSpinner } from '../../loading';
-import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
-import { EuiFormControlLayoutCustomIcon } from './form_control_layout_custom_icon';
+import {
+  EuiFormControlLayoutClearButton,
+  EuiFormControlLayoutClearButtonProps,
+} from './form_control_layout_clear_button';
+import {
+  EuiFormControlLayoutCustomIcon,
+  EuiFormControlLayoutCustomIconProps,
+} from './form_control_layout_custom_icon';
+import { IconType } from '../../icon';
+import { Omit } from '../../common';
 
-export const ICON_SIDES = ['left', 'right'];
+export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
 
-export class EuiFormControlLayoutIcons extends Component {
+type IconShape = Partial<
+  Omit<EuiFormControlLayoutCustomIconProps, 'type' | 'iconRef'>
+> & {
+  type: IconType;
+  side?: typeof ICON_SIDES[number];
+  ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
+};
+
+function isIconShape(
+  icon: EuiFormControlLayoutIconsProps['icon']
+): icon is IconShape {
+  return !!icon && icon.hasOwnProperty('type');
+}
+
+export interface EuiFormControlLayoutIconsProps {
+  icon?: IconType | IconShape;
+  clear?: EuiFormControlLayoutClearButtonProps;
+  isLoading?: boolean;
+}
+
+export class EuiFormControlLayoutIcons extends Component<
+  EuiFormControlLayoutIconsProps
+> {
   render() {
     const { icon } = this.props;
 
-    const iconSide = icon && icon.side ? icon.side : 'left';
+    const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
     const clearButton = this.renderClearButton();
@@ -51,12 +80,11 @@ export class EuiFormControlLayoutIcons extends Component {
     }
 
     // Normalize the icon to an object if it's a string.
-    const iconProps =
-      typeof icon === 'string'
-        ? {
-            type: icon,
-          }
-        : icon;
+    const iconProps: IconShape = isIconShape(icon)
+      ? icon
+      : {
+          type: icon,
+        };
 
     const { ref: iconRef, side, ...iconRest } = iconProps;
 
@@ -83,18 +111,3 @@ export class EuiFormControlLayoutIcons extends Component {
     return <EuiFormControlLayoutClearButton {...clear} />;
   }
 }
-
-EuiFormControlLayoutIcons.propTypes = {
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({
-      type: PropTypes.string,
-      side: PropTypes.oneOf(ICON_SIDES),
-      onClick: PropTypes.func,
-    }),
-  ]),
-  clear: PropTypes.shape({
-    onClick: PropTypes.func,
-  }),
-  isLoading: PropTypes.bool,
-};

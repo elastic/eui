@@ -6,20 +6,21 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiIcon, IconType } from '../../icon';
-import { CommonProps, ExclusiveUnion } from '../../common';
+import { CommonProps, ExclusiveUnion, Omit } from '../../common';
 
-export interface EuiFormControlLayoutCustomIconProps {
-  type: IconType;
-  iconRef?: string | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
-}
+export type EuiFormControlLayoutCustomIconProps = CommonProps &
+  ExclusiveUnion<
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>,
+    HTMLAttributes<HTMLSpanElement>
+  > & {
+    type: IconType;
+    iconRef?:
+      | string
+      | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
+  };
 
 export const EuiFormControlLayoutCustomIcon: FunctionComponent<
-  CommonProps &
-    ExclusiveUnion<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLAttributes<HTMLSpanElement>
-    > &
-    EuiFormControlLayoutCustomIconProps
+  EuiFormControlLayoutCustomIconProps
 > = ({ className, onClick, type, iconRef, ...rest }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
     'euiFormControlLayoutCustomIcon--clickable': onClick,

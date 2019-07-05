@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import sinon from 'sinon';
 
 import { findTestSubject, requiredProps } from '../../../test';
 
@@ -63,7 +62,7 @@ describe('EuiFormControlLayout', () => {
         test('is called when clicked', () => {
           const icon = {
             type: 'alert',
-            onClick: sinon.spy(),
+            onClick: jest.fn(),
             'data-test-subj': 'myIcon',
           };
 
@@ -71,7 +70,7 @@ describe('EuiFormControlLayout', () => {
 
           const closeButton = findTestSubject(component, 'myIcon');
           closeButton.simulate('click');
-          expect(icon.onClick.called).toBe(true);
+          expect(icon.onClick).toBeCalled();
         });
       });
     });
@@ -92,7 +91,7 @@ describe('EuiFormControlLayout', () => {
 
         test('is called when clicked', () => {
           const clear = {
-            onClick: sinon.spy(),
+            onClick: jest.fn(),
             'data-test-subj': 'clearButton',
           };
 
@@ -100,7 +99,7 @@ describe('EuiFormControlLayout', () => {
 
           const closeButton = findTestSubject(component, 'clearButton');
           closeButton.simulate('click');
-          expect(clear.onClick.called).toBe(true);
+          expect(clear.onClick).toBeCalled();
         });
       });
     });
