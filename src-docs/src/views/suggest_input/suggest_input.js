@@ -1,52 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { EuiSpacer, EuiSuggestInput } from '../../../../src/components';
 
-const shortDescription = 'This is the description';
+const statusList = ['notYetSaved', 'saved', 'noNewChanges', 'isLoading'];
 
-const sampleItems = [
-  {
-    status: {
-      icon: 'dot',
-      name: 'Unsaved changes',
-      label: 'KQL',
-      color: '#DD0A73',
-      tooltip: "You've made changes to this saved query. Click to save them.",
-    },
-    value:
-      'products.category : “tanktop” and geoip.region : “australia” and price > 5',
-  },
-  {
-    status: {
-      icon: 'checkInCircleFilled',
-      name: 'Changes just saved',
-      label: 'KQL',
-      color: 'secondary',
-      tooltip: '',
-    },
-    value:
-      'products.category : “tanktop” and geoip.region : “australia” and price > 5',
-  },
-  {
-    status: {
-      icon: '',
-      name: 'All changes saved',
-      label: 'KQL',
-      color: 'secondary',
-      tooltip: '',
-    },
-    value:
-      'products.category : “tanktop” and geoip.region : “australia” and price > 5',
-  },
-];
+export default class extends Component {
+  constructor(props) {
+    super(props);
 
-export default () => (
-  <div>
-    {sampleItems.map(item => (
+    this.state = {
+      value: '',
+    };
+  }
+
+  onChange = e => {
+    this.setState({
+      value: e.target.value,
+    });
+  };
+
+  render() {
+    return (
       <div>
-        <EuiSuggestInput status={item.status} value={item.value} />
-        <EuiSpacer size="m" />
+        {statusList.map(item => (
+          <div>
+            <EuiSuggestInput
+              onChange={this.onChange}
+              value={this.state.value}
+              status={item}
+              label={'KQL'}
+            />
+            <EuiSpacer size="m" />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-);
+    );
+  }
+}

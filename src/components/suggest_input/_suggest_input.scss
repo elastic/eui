@@ -1,10 +1,15 @@
 .euiSuggestInput {
-  .status {
-    font-size: $euiFontSizeS;
-    padding-right: $euiSizeS;
-    color: $euiColorPrimary;
-      .statusLabel {
-        padding-left: $euiSizeS;
-      }
+  font-size: $euiFontSizeS;
+  padding-right: $euiSizeS;
+  color: $euiColorPrimary;
+  .euiLoadingSpinner {
+    margin-right: $euiSizeS;
+  }
+  .statusIcon {
+    display: flex;
+    .statusLabel {
+      padding-left: $euiSizeS;
+      padding-right: $euiSizeS;
+    }
   }
 }

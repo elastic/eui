@@ -7,18 +7,53 @@ import { EuiFieldText } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 
-export const EuiSuggestInput = ({ className, status, value, ...rest }) => {
-
+export const EuiSuggestInput = ({
+  className,
+  status,
+  label,
+  value,
+  ...rest
+}) => {
   const filterTriggerButton = (
     <EuiFilterButton title="title">Filters</EuiFilterButton>
   );
 
+  const statusMap = {
+    notYetSaved: {
+      icon: 'dot',
+      color: '#DD0A73',
+      tooltip: "You've made changes to this saved query. Click to save them.",
+    },
+    saved: {
+      icon: 'checkInCircleFilled',
+      color: 'secondary',
+    },
+    noNewChanges: {
+      icon: '',
+      color: 'secondary',
+    },
+  };
+
+  let myIcon;
+  let myColor;
+  let myTooltip;
+
+  if (statusMap[status] && statusMap[status].icon) {
+    myIcon = statusMap[status].icon;
+    myColor = statusMap[status].color;
+    myTooltip = statusMap[status].myTooltip;
+  }
+
   const statusElement = (
-    <EuiToolTip position="left" content={status.tooltip}>
-      <div className="status">
-        <EuiIcon color={status.color} type={status.icon} />
-        <span className="statusLabel">{status.label}</span>
-      </div>
+    <EuiToolTip position="left" content={myTooltip}>
+      {status === 'isLoading' ? (
+        <span className="euiLoadingSpinner euiLoadingSpinner--medium" />
+      ) : (
+        <div className="statusIcon">
+          <EuiIcon color={myColor} type={myIcon} />
+          <span className="statusLabel">{label}</span>
+        </div>
+      )}
     </EuiToolTip>
   );
 
@@ -39,9 +74,13 @@ export const EuiSuggestInput = ({ className, status, value, ...rest }) => {
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
   /**
-   * Takes 'icon' for EuiIcon, 'color'. 'color' can be either our palette colors (primary, secondary, etc) or a hex value.
+   * Status of the current query.
    */
   status: PropTypes.object,
+  /**
+   * Label to go with status elements (e.g. KQL).
+   */
+  label: PropTypes.node,
 };
 
 EuiSuggestInput.defaultProps = {};
