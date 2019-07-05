@@ -274,6 +274,7 @@ const typeToPathMap = {
   string: 'string',
   submodule: 'submodule',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
+  sword: 'sword',
   symlink: 'symlink',
   tableOfContents: 'tableOfContents',
   tag: 'tag',

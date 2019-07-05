@@ -156,6 +156,7 @@ const iconTypes = [
   'storage',
   'string',
   'submodule',
+  'sword',
   'symlink',
   'tableOfContents',
   'tag',
