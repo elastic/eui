@@ -34,23 +34,23 @@ export const EuiSuggestInput = ({
     },
   };
 
-  let myIcon;
-  let myColor;
-  let myTooltip;
+  let icon;
+  let color;
+  let tooltip;
 
-  if (statusMap[status] && statusMap[status].icon) {
-    myIcon = statusMap[status].icon;
-    myColor = statusMap[status].color;
-    myTooltip = statusMap[status].myTooltip;
+  if (statusMap[status]) {
+    icon = statusMap[status].icon;
+    color = statusMap[status].color;
+    tooltip = statusMap[status].tooltip;
   }
 
   const statusElement = (
-    <EuiToolTip position="left" content={myTooltip}>
+    <EuiToolTip position="left" content={tooltip}>
       {status === 'isLoading' ? (
         <span className="euiLoadingSpinner euiLoadingSpinner--medium" />
       ) : (
         <div className="statusIcon">
-          <EuiIcon color={myColor} type={myIcon} />
+          <EuiIcon color={color} type={icon} />
           <span className="statusLabel">{label}</span>
         </div>
       )}
@@ -76,7 +76,7 @@ EuiSuggestInput.propTypes = {
   /**
    * Status of the current query.
    */
-  status: PropTypes.object,
+  status: PropTypes.string,
   /**
    * Label to go with status elements (e.g. KQL).
    */
