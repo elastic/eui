@@ -9,24 +9,10 @@ import { EuiCode, EuiSideNav } from '../../../../src/components';
 import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
 const sideNavHtml = renderToHtml(SideNav);
-const sideNavSnippet = `<EuiSideNav
-  mobileTitle={title}
-  toggleOpenOnMobile={this.toggleOpenOnMobile}
-  isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-  items={sideNavItems}
-/>
-`;
 
 import SideNavComplex from './side_nav_complex';
 const sideNavComplexSource = require('!!raw-loader!./side_nav_complex');
 const sideNavComplexHtml = renderToHtml(SideNavComplex);
-const sideNavComplexSnippet = `<EuiSideNav
-  mobileTitle={title}
-  toggleOpenOnMobile={this.toggleOpenOnMobile}
-  isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-  items={complexSideNavItems}
-/>
-`;
 
 import SideNavForceOpen from './side_nav_force_open';
 const sideNavForceOpenSource = require('!!raw-loader!./side_nav_force_open');
@@ -63,7 +49,6 @@ export const SideNavExample = {
         </div>
       ),
       props: { EuiSideNav },
-      snippet: sideNavSnippet,
       demo: <SideNav />,
     },
     {
@@ -84,7 +69,6 @@ export const SideNavExample = {
           data.
         </p>
       ),
-      snippet: sideNavComplexSnippet,
       demo: <SideNavComplex />,
     },
     {

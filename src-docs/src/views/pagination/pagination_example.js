@@ -36,7 +36,7 @@ const centeredPaginationHtml = renderToHtml(CenteredPagination);
 const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
-      pageCount={this.PAGE_COUNT}
+      pageCount={pageCount}
       activePage={this.state.activePage}
       onPageClick={this.goToPage}
     />
@@ -59,7 +59,7 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
 
   <EuiFlexItem grow={false}>
     <EuiPagination
-      pageCount={this.PAGE_COUNT}
+      pageCount={pageCount}
       activePage={this.state.activePage}
       onPageClick={this.goToPage}
     />
@@ -71,7 +71,7 @@ import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
-  pageCount={this.PAGE_COUNT}
+  pageCount={pageCount}
   activePage={this.state.activePage}
   onPageClick={this.goToPage}
   compressed

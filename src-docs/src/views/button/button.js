@@ -23,13 +23,13 @@ export default () => (
 
       <EuiFlexItem grow={false}>
         <EuiButton size="s" onClick={() => window.alert('Button clicked')}>
-          small
+          Small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
         <EuiButton size="s" fill onClick={() => window.alert('Button clicked')}>
-          small and filled
+          Small and filled
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -57,7 +57,7 @@ export default () => (
           color="secondary"
           size="s"
           onClick={() => window.alert('Button clicked')}>
-          small
+          Small
         </EuiButton>
       </EuiFlexItem>
 
@@ -67,7 +67,7 @@ export default () => (
           size="s"
           fill
           onClick={() => window.alert('Button clicked')}>
-          small and filled
+          Small and filled
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -95,7 +95,7 @@ export default () => (
           color="warning"
           size="s"
           onClick={() => window.alert('Button clicked')}>
-          small
+          Small
         </EuiButton>
       </EuiFlexItem>
 
@@ -105,7 +105,7 @@ export default () => (
           size="s"
           fill
           onClick={() => window.alert('Button clicked')}>
-          small and filled
+          Small and filled
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -133,7 +133,7 @@ export default () => (
           color="danger"
           size="s"
           onClick={() => window.alert('Button clicked')}>
-          small
+          Small
         </EuiButton>
       </EuiFlexItem>
 
@@ -143,7 +143,7 @@ export default () => (
           size="s"
           fill
           onClick={() => window.alert('Button clicked')}>
-          small and filled
+          Small and filled
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -169,7 +169,7 @@ export default () => (
           isDisabled
           size="s"
           onClick={() => window.alert('Button clicked')}>
-          small
+          Small
         </EuiButton>
       </EuiFlexItem>
 
@@ -179,7 +179,7 @@ export default () => (
           size="s"
           fill
           onClick={() => window.alert('Button clicked')}>
-          small and filled
+          Small and filled
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>

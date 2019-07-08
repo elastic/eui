@@ -10,9 +10,7 @@ import Link from './link';
 const linkSource = require('!!raw-loader!./link');
 const linkHtml = renderToHtml(Link);
 const linkSnippet = [
-  `<EuiLink href="#">
-  <!-- Link text -->
-</EuiLink>
+  `<EuiLink href="#"><!-- Link text --></EuiLink>
 `,
   `<EuiLink href="#" color="secondary">
   <!-- Colored link text -->

@@ -17,14 +17,29 @@ import { EuiStepHorizontal } from '../../../../src/components/steps/step_horizon
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
-const stepsSnippet = `<EuiSteps steps={steps} />
-`;
+const stepsSnippet = [
+  `<EuiSteps 
+  steps={[
+    {
+      title: 'Step 1',
+      children: <p>Do this first</p>,
+    },
+  ]}
+/>`,
+  `<EuiSteps 
+  steps={[
+    {
+      firstStepNumber={3}
+      title: 'Step 3',
+      children: <p>Do this third first</p>,
+    },
+  ]}
+/>`,
+];
 
 import StepsComplex from './steps_complex';
 const stepsComplexSource = require('!!raw-loader!./steps_complex');
 const stepsComplexHtml = renderToHtml(StepsComplex);
-const stepsComplexSnippet = `<EuiSteps steps={complexSteps} />
-`;
 
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
@@ -41,8 +56,15 @@ const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={horizontalSteps} />
 import Status from './status';
 const statusSource = require('!!raw-loader!./status');
 const statusHtml = renderToHtml(Steps);
-const statusSnippet = `<EuiSteps steps={stepsWithStatus} />
-`;
+const statusSnippet = `<EuiSteps 
+  steps={[
+    {
+      title: 'Warning',
+      children: 'Example of a warning',
+      status: 'warning',
+    },
+  ]}
+/>`;
 
 export const StepsExample = {
   title: 'Steps',
@@ -83,7 +105,6 @@ export const StepsExample = {
         </p>
       ),
       demo: <StepsComplex />,
-      snippet: stepsComplexSnippet,
       props: { EuiSubSteps },
     },
     {

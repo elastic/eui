@@ -20,31 +20,21 @@ import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
 const buttonHtml = renderToHtml(Button);
 const buttonSnippet = [
-  `<EuiButton>
-  Primary
-</EuiButton>`,
-  `<EuiButton fill>
-  Filled
-</EuiButton>`,
-  `<EuiButton size="s">
-  small
-</EuiButton>`,
-  `<EuiButton size="s" fill>
-  small and filled
-</EuiButton>`,
+  `<EuiButton><!-- Primary button --></EuiButton>
+`,
+  `<EuiButton fill><!-- Filled button --></EuiButton>
+`,
+  `<EuiButton size="s"><!-- Small button --></EuiButton>
+`,
+  `<EuiButton size="s" fill><!-- Small and filled button --></EuiButton>
+`,
 ];
 
 import ButtonWithIcon from './button_with_icon';
 const buttonWithIconSource = require('!!raw-loader!./button_with_icon');
 const buttonWithIconHtml = renderToHtml(Button);
-const buttonWithIconSnippet = [
-  `<EuiButton iconType={icon}>
-  <!-- Button text -->
-</EuiButton>`,
-  `<EuiButtonEmpty iconSide="right" iconType={icon}>
-  <!-- Button text -->
-</EuiButton>`,
-];
+const buttonWithIconSnippet = `<EuiButton iconType={icon}><!-- Button text --></EuiButton>
+`;
 
 import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
@@ -56,14 +46,8 @@ const buttonOptionSnippet = `<EuiButtonEmpty>
 import ButtonOptionFlush from './button_empty_flush';
 const buttonOptionFlushSource = require('!!raw-loader!./button_empty_flush');
 const buttonOptionFlushHtml = renderToHtml(ButtonOptionFlush);
-const buttonOptionFlushSnippet = [
-  `<EuiButtonEmpty flush="left">
-  <!-- Button text -->
-</EuiButtonEmpty>`,
-  `<EuiButtonEmptyEmpty flush="right">
-  <!-- Button text -->
-</EuiButtonEmpty>`,
-];
+const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text --></EuiButtonEmpty>
+`;
 
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
@@ -82,31 +66,8 @@ const buttonGhostSnippet = `<EuiButton color="ghost">
 import ButtonAsLink from './button_as_link';
 const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
 const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
-const buttonAsLinkSnippet = [
-  `<EuiButton href={someUrl}>
-  <!-- Button text -->
-</EuiButton>`,
-  `<EuiButtonEmpty href={someUrl}>
-  <!-- Button text -->
-</EuiButton>`,
-  `<EuiButtonIcon
-  href={someUrl}
-  iconType={iconType}
-  aria-label={ariaLabel}
-/>`,
-  `<EuiButton href={someUrl} isDisabled>
-  <!-- Disabled button text -->
-</EuiButton>`,
-  `<EuiButtonEmpty href={someUrl} isDisabled>
-  <!-- Disabled empty link text -->
-</EuiButtonEmpty>`,
-  `<EuiButtonIcon
-  href={someUrl}
-  iconType={iconType}
-  aria-label={ariaLabel}
-  isDisabled
-/>`,
-];
+const buttonAsLinkSnippet = `<EuiButton href={someUrl}><!-- Button text --></EuiButton>
+`;
 
 import ButtonLoading from './button_loading';
 const buttonLoadingSource = require('!!raw-loader!./button_loading');
@@ -134,28 +95,6 @@ const buttonGroupSnippet = [
   options={this.toggleButtons}
   idSelected={this.state.toggleIdSelected}
   onChange={this.onChange}
-/>`,
-  `<EuiButtonGroup
-  legend={legend}
-  options={this.toggleButtonsMulti}
-  idToSelectedMap={this.state.toggleIdToSelectedMap}
-  onChange={this.onChangeMulti}
-  type="multi"
-/>`,
-  `<EuiButtonGroup
-  legend={legend}
-  options={this.toggleButtons}
-  idSelected={this.state.toggleIdSelected}
-  onChange={this.onChange}
-  isDisabled
-  isFullWidth
-/>`,
-  `<EuiButtonGroup
-  legend={legend}
-  options={this.toggleButtonsIcons}
-  idSelected={this.state.toggleIconIdSelected}
-  onChange={this.onChangeIcons}
-  isIconOnly
 />`,
   `<EuiButtonGroup
   legend={legend}

@@ -10,9 +10,16 @@ import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
 const breadcrumbsHtml = renderToHtml(Breadcrumbs);
 const breadcrumbsSnippet = `<EuiBreadcrumbs
-  breadcrumbs={breadcrumbs}
-  responsive={false}
-  truncate={false}
+  breadcrumbs={[
+    {
+      text: 'Breadcrumb 1',
+      href: '#',
+    },
+    {
+      text: 'Breadcrumb 2',
+      href: '#',
+    },
+  ]}
 />
 `;
 
@@ -20,6 +27,7 @@ import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = `<EuiBreadcrumbs
+  responsive={true}
   breadcrumbs={breadcrumbs}
 />
 `;
@@ -61,9 +69,8 @@ export const BreadcrumbsExample = {
           make clickable, including the last item, though we recommend the last
           item represent the current page and therefore the link is unnecessary.
           They work well within
-          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to be use
-          them within an app that also uses{' '}
-          <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
+          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to use them
+          within an app that also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
@@ -107,10 +114,10 @@ export const BreadcrumbsExample = {
       text: (
         <div>
           <p>
-            There are two ways to <EuiCode>truncate</EuiCode> breadrumbs,
+            There are two ways to <EuiCode>truncate</EuiCode> breadcrumbs,
           </p>
           <ol>
-            <li>on the individual breadrcrumb item,</li>
+            <li>on the individual breadcrumb item,</li>
             <li>
               on the full <EuiCode>EuiBreadcrumbs</EuiCode> set which will force
               the full set to a single line, while setting a max width on all

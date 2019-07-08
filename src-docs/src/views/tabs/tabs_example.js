@@ -26,7 +26,7 @@ import Controlled from './controlled';
 const controlledSource = require('!!raw-loader!./controlled');
 const controlledHtml = renderToHtml(Controlled);
 const controlledSnippet = `<EuiTabbedContent
-  tabs={this.tabs}
+  tabs={tabs}
   selectedTab={this.state.selectedTab}
   onTabClick={this.onTabClick}
 />

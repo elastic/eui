@@ -37,16 +37,7 @@ const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItemButton
 import KeyPadBeta from './key_pad_beta';
 const keyPadBetaSource = require('!!raw-loader!./key_pad_beta');
 const keyPadBetaHtml = renderToHtml(KeyPadBeta);
-const keyPadBetaSnippet = [
-  `<EuiKeyPadMenuItem
-  label={label}
-  href="#"
-  betaBadgeLabel={betaBadgeLabel}
-  betaBadgeTooltipContent={tooltipContent}>
-  <EuiIcon type={menuItemIcon} size="l" />
-</EuiKeyPadMenuItem>
-`,
-  `<EuiKeyPadMenuItem
+const keyPadBetaSnippet = `<EuiKeyPadMenuItem
   label={label}
   href="#"
   betaBadgeLabel={betaBadgeLabel}
@@ -54,8 +45,7 @@ const keyPadBetaSnippet = [
   betaBadgeIconType={badgeIconType}>
   <EuiIcon type={menuItemIcon} size="l" />
 </EuiKeyPadMenuItem>
-`,
-];
+`;
 
 export const KeyPadMenuExample = {
   title: 'Key Pad Menu',
