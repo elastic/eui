@@ -5,3 +5,4 @@ export {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from './react_warnings';
+export { sleep } from './sleep';
