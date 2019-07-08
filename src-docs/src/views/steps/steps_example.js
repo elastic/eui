@@ -29,11 +29,11 @@ const stepsSnippet = [
   `<EuiSteps 
   steps={[
     {
-      firstStepNumber={3}
       title: 'Step 3',
       children: <p>Do this third first</p>,
     },
   ]}
+  firstStepNumber={3}
 />`,
 ];
 

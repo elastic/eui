@@ -27,7 +27,7 @@ import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = `<EuiBreadcrumbs
-  responsive={true}
+  responsive={false}
   breadcrumbs={breadcrumbs}
 />
 `;
@@ -92,7 +92,8 @@ export const BreadcrumbsExample = {
       text: (
         <p>
           The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on
-          narrower screens.
+          narrower screens. Set it to false when you want to keep breadcrumb
+          items visible at all screens sizes.
         </p>
       ),
       props: { EuiBreadcrumbs },
