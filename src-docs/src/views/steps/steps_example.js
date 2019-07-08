@@ -17,22 +17,32 @@ import { EuiStepHorizontal } from '../../../../src/components/steps/step_horizon
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
+const stepsSnippet = `<EuiSteps steps={steps} />
+`;
 
 import StepsComplex from './steps_complex';
 const stepsComplexSource = require('!!raw-loader!./steps_complex');
 const stepsComplexHtml = renderToHtml(StepsComplex);
+const stepsComplexSnippet = `<EuiSteps steps={complexSteps} />
+`;
 
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
 const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
+const headingElementStepsSnippet = `<EuiSteps steps={steps} headingElement="h2" />
+`;
 
 import StepsHorizontal from './steps_horizontal';
 const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
 const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
+const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={horizontalSteps} />
+`;
 
 import Status from './status';
 const statusSource = require('!!raw-loader!./status');
 const statusHtml = renderToHtml(Steps);
+const statusSnippet = `<EuiSteps steps={stepsWithStatus} />
+`;
 
 export const StepsExample = {
   title: 'Steps',
@@ -50,6 +60,7 @@ export const StepsExample = {
       ],
       text: <p>Numbered steps</p>,
       props: { EuiSteps, EuiStep },
+      snippet: stepsSnippet,
       demo: <Steps />,
     },
     {
@@ -72,6 +83,7 @@ export const StepsExample = {
         </p>
       ),
       demo: <StepsComplex />,
+      snippet: stepsComplexSnippet,
       props: { EuiSubSteps },
     },
     {
@@ -103,6 +115,7 @@ export const StepsExample = {
           </p>
         </div>
       ),
+      snippet: headingElementStepsSnippet,
       demo: <HeadingElementSteps />,
     },
     {
@@ -127,6 +140,7 @@ export const StepsExample = {
           check.
         </p>
       ),
+      snippet: statusSnippet,
       demo: <Status />,
     },
     {
@@ -148,6 +162,7 @@ export const StepsExample = {
         </p>
       ),
       demo: <StepsHorizontal />,
+      snippet: stepsHorizontalSnippet,
       props: { EuiStepsHorizontal, EuiStepHorizontal },
     },
   ],

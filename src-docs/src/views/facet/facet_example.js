@@ -9,6 +9,33 @@ import { EuiFacetButton, EuiFacetGroup } from '../../../../src/components';
 import Facet from './facet';
 const facetSource = require('!!raw-loader!./facet');
 const facetHtml = renderToHtml(Facet);
+const facetSnippet = [
+  `<EuiFacetButton quantity={6}>
+    <!-- Simple facet content -->
+  </EuiFacetButton>
+`,
+  `<EuiFacetButton quantity={6} isSelected>
+  <!-- Selected facet content -->
+</EuiFacetButton>
+`,
+  `<EuiFacetButton
+  quantity={6}
+  icon={<EuiIcon type="dot" color="secondary" />}>
+  <!-- Facet with EuiIcon content -->
+</EuiFacetButton>
+`,
+  `<EuiFacetButton quantity={6} isDisabled>
+  <!-- Disabled facet content -->
+</EuiFacetButton>`,
+  `<EuiFacetButton
+  quantity={6}
+  icon={<EuiAvatar size="s" name="Avatar Jones" />}>
+  <!-- Facet with EuiAvatar content -->
+</EuiFacetButton>`,
+  `<EuiFacetButton quantity={6} isLoading>
+  <!-- Loading facet content -->
+</EuiFacetButton>`,
+];
 
 import FacetLayout from './facet_layout';
 const facetLayoutSource = require('!!raw-loader!./facet_layout');
@@ -40,6 +67,7 @@ export const FacetExample = {
         </p>
       ),
       props: { EuiFacetButton },
+      snippet: facetSnippet,
       demo: <Facet />,
     },
     {

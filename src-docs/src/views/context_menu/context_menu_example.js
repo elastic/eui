@@ -16,6 +16,7 @@ const contextMenuSource = require('!!raw-loader!./context_menu');
 const contextMenuHtml = renderToHtml(ContextMenu);
 const contextMenuSnippet = `<EuiPopover
   button={button}
+  isOpen={this.state.isPopoverOpen}
   closePopover={this.closePopover}>
   <EuiContextMenu initialPanelId={0} panels={this.panels} />
 </EuiPopover>
@@ -26,6 +27,7 @@ const singlePanelSource = require('!!raw-loader!./single_panel');
 const singlePanelHtml = renderToHtml(SinglePanel);
 const singlePanelSnippet = `<EuiPopover
   button={button}
+  isOpen={this.state.isPopoverOpen}
   closePopover={this.closePopover}>
   <EuiContextMenuPanel items={items} />
 </EuiPopover>
@@ -36,6 +38,7 @@ const contentPanelSource = require('!!raw-loader!./content_panel');
 const contentPanelHtml = renderToHtml(ContentPanel);
 const contentPanelSnippet = `<EuiPopover
   button={button}
+  isOpen={this.state.isPopoverOpen}
   closePopover={this.closePopover}>
   <EuiContextMenuPanel>
     <!-- Children to pass to Context Menu -->
@@ -46,6 +49,22 @@ const contentPanelSnippet = `<EuiPopover
 import ContextMenuWithContent from './context_menu_with_content';
 const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
 const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
+const contextMenuWithContentSnippet = [
+  `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <EuiContextMenu initialPanelId={0} panels={this.panels} />
+</EuiPopover>
+`,
+  `<EuiPopover
+  button={dynamicButton}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <EuiContextMenu initialPanelId={0} panels={this.dynamicPanels} />
+</EuiPopover>
+`,
+];
 
 export const ContextMenuExample = {
   title: 'Context Menu',
@@ -143,6 +162,7 @@ export const ContextMenuExample = {
           </p>
         </div>
       ),
+      snippet: contextMenuWithContentSnippet,
       demo: <ContextMenuWithContent />,
     },
   ],
