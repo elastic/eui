@@ -5,6 +5,7 @@ tmp/
 wiki/
 generator-eui/
 test/
+packages/
 src-docs/
 src-framer/
 packages/react-datepicker
@@ -16,6 +17,8 @@ types/
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)
 
+src/!(*.scss)
+
 .DS_Store
 .eslintcache
 .idea
@@ -24,3 +27,7 @@ scripts/!(postinstall.js)
 package-lock.json
 npm-debug.log
 .cache-loader
+*.md
+yarn-error.log
+tsconfig.json
+tsconfig-builttypes.json
