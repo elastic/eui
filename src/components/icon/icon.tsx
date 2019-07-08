@@ -417,12 +417,46 @@ function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
   return typeof x === 'string' && typeToPathMap.hasOwnProperty(x);
 }
 
+interface Cache {
+  getIcon: (iconType: IconType) => undefined | ReactElement | string;
+  setIcon: (
+    iconType: IconType,
+    icon: undefined | ReactElement | string
+  ) => void;
+}
+
+// Lazy loading of icons causes a lot of expensive re-renders, especially
+// in large lists. Caching the icons mitigates that.
+let cache: Cache = iconCache();
+
+// Exported for testing purposes, allows for testing the caching mechanism.
+export function iconCache(): Cache {
+  const icons: { [iconType: string]: undefined | ReactElement | string } = {};
+
+  return {
+    getIcon(iconType) {
+      return icons[iconType as string];
+    },
+
+    setIcon(iconType, icon) {
+      icons[iconType as string] = icon;
+    },
+  };
+}
+
+// Exported for testing purposes only, allows us to turn off caching
+// for tests, which generally makes them less effectful and more
+// predictable.
+export function setCache(newCache: Cache) {
+  cache = newCache;
+}
+
 function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
     return undefined;
   }
   if (isEuiIconType(icon)) {
-    return undefined;
+    return cache.getIcon(icon);
   }
   return icon;
 }
@@ -436,7 +470,7 @@ export class EuiIcon extends Component<Props, State> {
     const initialIcon = getInitialIcon(type);
     let isLoading = false;
 
-    if (isEuiIconType(type)) {
+    if (isEuiIconType(type) && !initialIcon) {
       isLoading = true;
       this.loadIconComponent(type);
     }
@@ -450,7 +484,13 @@ export class EuiIcon extends Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const { type } = this.props;
     if (type !== prevProps.type) {
-      if (isEuiIconType(type)) {
+      if (cache.getIcon(type)) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          icon: cache.getIcon(type),
+          isLoading: false,
+        });
+      } else if (isEuiIconType(type)) {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           isLoading: true,
@@ -471,6 +511,9 @@ export class EuiIcon extends Component<Props, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
+    if (cache.getIcon(iconType)) {
+      return;
+    }
     import(
       /* webpackChunkName: "icon.[request]" */
       // It's important that we don't use a template string here, it
@@ -478,6 +521,7 @@ export class EuiIcon extends Component<Props, State> {
       // eslint-disable-next-line prefer-template
       './assets/' + typeToPathMap[iconType] + '.js'
     ).then(({ icon }) => {
+      cache.setIcon(iconType, icon);
       if (this.isMounted) {
         this.setState({
           icon,

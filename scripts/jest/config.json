@@ -19,7 +19,8 @@
   "setupFiles": [
     "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/enzyme.js",
-    "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
+    "<rootDir>/scripts/jest/setup/throw_on_console_error.js",
+    "<rootDir>/scripts/jest/setup/clear_icon_cache.js"
   ],
   "coverageDirectory": "<rootDir>/reports/jest-coverage",
   "coverageReporters": [

@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import cheerio from 'cheerio';
 
-import { EuiIcon, SIZES, TYPES, COLORS } from './icon';
+import { EuiIcon, SIZES, TYPES, COLORS, setCache, iconCache } from './icon';
 import { PropsOf } from '../common';
 
 const prettyHtml = cheerio.load('');
@@ -23,6 +23,10 @@ function testIcon(props: PropsOf<EuiIcon>) {
 }
 
 describe('EuiIcon', () => {
+  beforeEach(() => {
+    setCache(iconCache());
+  });
+
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
 
   describe('props', () => {
@@ -36,6 +40,28 @@ describe('EuiIcon', () => {
     describe('size', () => {
       SIZES.forEach(size => {
         test('${size} is rendered', testIcon({ type: 'search', size }));
+      });
+    });
+
+    describe('cache', () => {
+      it('renders icons from the cache', async () => {
+        const uncachedRender = mount(<EuiIcon type="gear" />);
+
+        expect(uncachedRender.find('.euiIcon-isLoading').length).toBeTruthy();
+
+        await new Promise(resolve => {
+          setTimeout(() => {
+            uncachedRender.update();
+            resolve();
+          });
+        });
+
+        const cachedRender = mount(<EuiIcon type="gear" />);
+
+        expect(uncachedRender.find('.euiIcon-isLoading').length).toBeFalsy();
+        expect(cachedRender.find('.euiIcon-isLoading').length).toBeFalsy();
+        expect(uncachedRender.find('.euiIcon-isLoaded').length).toBeTruthy();
+        expect(cachedRender.find('.euiIcon-isLoaded').length).toBeTruthy();
       });
     });
 
