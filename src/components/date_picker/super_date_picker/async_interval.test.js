@@ -1,5 +1,6 @@
 import { AsyncInterval } from './async_interval';
 import { times } from 'lodash';
+import { sleep } from '../../../test';
 
 describe('AsyncInterval', () => {
   beforeEach(() => {
@@ -67,7 +68,6 @@ describe('AsyncInterval', () => {
     let instance;
     let spy;
     beforeEach(() => {
-      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
       spy = jest.fn(async () => await sleep(2000));
       instance = new AsyncInterval(spy, 1000);
     });

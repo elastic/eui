@@ -3,13 +3,7 @@ import { render, mount } from 'enzyme';
 
 import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
-import { requiredProps, findTestSubject } from '../../test';
-
-function pause(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-}
+import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }) => children,
@@ -135,7 +129,7 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  await pause(50);
+  await sleep();
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
     keyCode: keyCodes.ESCAPE,
   });
