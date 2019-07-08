@@ -82,7 +82,7 @@ export const EuiListGroupItem = ({
   const labelContent = (
     <span
       className="euiListGroupItem__label"
-      title={wrapText ? undefined : label}>
+      title={wrapText || showToolTip ? undefined : label}>
       {label}
     </span>
   );
