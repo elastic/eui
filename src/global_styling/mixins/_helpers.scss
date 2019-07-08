@@ -55,7 +55,7 @@
 }
 
 // The full overflow shadow plus scrollbars
-@mixin euiOverflowYScroll {
+@mixin euiYScrollWithShadows {
   @include euiOverflowShadow;
   @include euiScrollBar;
   height: 100%;

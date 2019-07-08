@@ -758,11 +758,11 @@ export const SassGuidelines = ({ selectedTheme }) => {
               <p>
                 It requires a wrapping element to control the height with{' '}
                 <EuiCode>overflow-y: hidden;</EuiCode> and the content to
-                <EuiCode>@include euiOverflowYScroll;</EuiCode> or use the{' '}
+                <EuiCode>@include euiYScrollWithShadows;</EuiCode> or use the{' '}
                 <Link to="/utilities/css-utility-classes">
                   CSS utility class
                 </Link>{' '}
-                <EuiCode>.euiOverflowYScroll</EuiCode>.
+                <EuiCode>.euiYScrollWithShadows</EuiCode>.
               </p>
               <p>
                 <b>Example:</b>
@@ -773,7 +773,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
   overflow-y: hidden;
 
   .bodyContent__overflow {
-    @include euiOverflowYScroll;
+    @include euiYScrollWithShadows;
   }
 }`}
               </EuiCodeBlock>

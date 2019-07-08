@@ -200,14 +200,14 @@ export default () => (
         <p>
           It requires a wrapping element to control the height with{' '}
           <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
-          utility class <EuiCode>.euiOverflowYScroll</EuiCode>.
+          utility class <EuiCode>.euiYScrollWithShadows</EuiCode>.
         </p>
         <p>
           <b>Example:</b>
         </p>
         <EuiCodeBlock language="html" isCopyable paddingSize="s">
           {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
-  <BodyScroll className="euiOverflowYScroll" />
+  <BodyScroll className="euiYScrollWithShadows" />
 </BodyContent>`}
         </EuiCodeBlock>
         <p>

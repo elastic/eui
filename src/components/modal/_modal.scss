@@ -55,7 +55,7 @@
   flex-direction: column;
 
   .euiModalBody__overflow {
-    @include euiOverflowYScroll;
+    @include euiYScrollWithShadows;
     padding: $euiSizeS $euiSizeL;
   }
 }

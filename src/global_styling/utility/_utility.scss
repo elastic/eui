@@ -79,6 +79,6 @@
 /**
   * Overflow scrolling
   */
-.euiOverflowYScroll {
-  @include euiOverflowYScroll;
+.euiYScrollWithShadows {
+  @include euiYScrollWithShadows;
 }

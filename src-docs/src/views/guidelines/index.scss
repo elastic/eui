@@ -165,7 +165,7 @@
   height: 200px;
 
   .guideSass__overflowShadowText {
-    @include euiOverflowYScroll;
+    @include euiYScrollWithShadows;
     padding: $euiSize;
   }
 }
