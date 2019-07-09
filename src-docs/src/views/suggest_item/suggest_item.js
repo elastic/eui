@@ -16,7 +16,7 @@ const sampleItems = [
     description: shortDescription,
   },
   {
-    type: { icon: 'kqlSelector', color: '#7800A6' },
+    type: { icon: 'kqlSelector', color: 'accent' },
     label: 'Conjunction sample',
     description: shortDescription,
   },
@@ -26,20 +26,21 @@ const sampleItems = [
     description: shortDescription,
   },
   {
-    type: { icon: 'search', color: 'dark' },
+    type: { icon: 'search', color: 'text' },
     label: 'Recent search sample',
   },
   {
-    type: { icon: 'save', color: '#DD0A73' },
+    type: { icon: 'save', color: 'vis3' },
     label: 'Saved search',
   },
 ];
 
 export default () => (
   <div>
-    {sampleItems.map(item => (
+    {sampleItems.map((item, index) => (
       <EuiSuggestItem
         type={item.type}
+        key={index}
         label={item.label}
         description={item.description}
       />
