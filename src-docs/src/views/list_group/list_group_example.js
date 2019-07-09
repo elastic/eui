@@ -22,6 +22,10 @@ import ListGroupLinkActions from './list_group_link_actions';
 const listGroupLinkActionsSource = require('!!raw-loader!./list_group_link_actions');
 const listGroupLinkActionsHtml = renderToHtml(ListGroupLinkActions);
 
+import ListGroupExtra from './list_group_extra';
+const listGroupExtraSource = require('!!raw-loader!./list_group_extra');
+const listGroupExtraHtml = renderToHtml(ListGroupExtra);
+
 export const ListGroupExample = {
   title: 'List Group',
   sections: [
@@ -94,6 +98,29 @@ export const ListGroupExample = {
         </p>
       ),
       demo: <ListGroupLinkActions />,
+    },
+    {
+      title: 'Text truncation and wrapping ',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: listGroupExtraSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: listGroupExtraHtml,
+        },
+      ],
+      text: (
+        <p>
+          By default, truncation occurs for long list items. In such cases a{' '}
+          <EuiCode>title</EuiCode> attribute with a value matching the text
+          content of the item is added for readability and accessibility. If{' '}
+          <EuiCode>showToolTip</EuiCode> or <EuiCode>wrapLines</EuiCode> are
+          used, the attribute will not be added.
+        </p>
+      ),
+      demo: <ListGroupExtra />,
     },
   ],
 };
