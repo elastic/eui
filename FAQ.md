@@ -24,7 +24,7 @@ For styling we use Sass and generate a final CSS blob for the entire library, wi
 
 ## Can I contribute to EUI
 
-Yes! We accept PRs regularly similar to our other Elastic repo.
+Yes! We accept PRs regularly similar to our other Elastic repos.
 
 ## Why is EUI open source?
 
