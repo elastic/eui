@@ -61,7 +61,7 @@ export const EuiFilterButton = ({
       <span
         ref={ref}
         className="euiFilterButton__textShift"
-        data-text={dataText}
+        data-text={dataText || innerText}
         title={dataText || innerText}>
         {children}
       </span>
