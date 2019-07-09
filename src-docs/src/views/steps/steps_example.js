@@ -19,6 +19,7 @@ const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 const stepsSnippet = [
   `<EuiSteps 
+  firstStepNumber={3}
   steps={[
     {
       title: 'Step 1',
@@ -33,7 +34,6 @@ const stepsSnippet = [
       children: <p>Do this third first</p>,
     },
   ]}
-  firstStepNumber={3}
 />`,
 ];
 
