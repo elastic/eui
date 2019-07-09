@@ -4,11 +4,16 @@ import classNames from 'classnames';
 import { EuiIcon, IconPropType } from '../icon';
 
 const colorToClassNameMap = {
-  primary: 'euiSuggestItem__type--primary',
-  secondary: 'euiSuggestItem__type--secondary',
-  warning: 'euiSuggestItem__type--warning',
-  danger: 'euiSuggestItem__type--danger',
-  dark: 'euiSuggestItem__type--dark',
+  primary: { class: 'euiSuggestItem__type--primary', colorName: 'primary' },
+  secondary: {
+    class: 'euiSuggestItem__type--secondary',
+    colorName: 'secondary',
+  },
+  warning: { class: 'euiSuggestItem__type--warning', colorName: 'warning' },
+  danger: { class: 'euiSuggestItem__type--danger', colorName: 'danger' },
+  text: { class: 'euiSuggestItem__type--text', colorName: 'text' },
+  accent: { class: 'euiSuggestItem__type--accent', colorName: 'accent' },
+  vis3: { class: 'euiSuggestItem__type--vis3', colorName: '#490092' },
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -32,25 +37,24 @@ export const EuiSuggestItem = ({
 
   let optionalColorClass = '';
   const layoutClass = layoutToClassNameMap[layout];
-  let optionalCustomStyles = undefined;
+  // let optionalCustomStyles = undefined;
 
   if (type && type.color) {
     if (COLORS.indexOf(type.color) > -1) {
-      optionalColorClass = colorToClassNameMap[type.color];
-    } else {
-      optionalCustomStyles = { backgroundColor: type.color };
+      optionalColorClass = colorToClassNameMap[type.color].class;
     }
+    // } else {
+    //   optionalCustomStyles = { backgroundColor: type.color };
+    // }
   }
+
+  let colorName;
+  colorName = colorToClassNameMap[type.color].colorName;
 
   return (
     <div className={classes} {...rest}>
       <span className={`euiSuggestItem__type ${optionalColorClass}`}>
-        {optionalCustomStyles ? (
-          <div style={optionalCustomStyles} className="customBackground" />
-        ) : (
-          undefined
-        )}
-        <EuiIcon color={type.color} type={type.icon} />
+        <EuiIcon color={colorName} type={type.icon} />
       </span>
       <span className={`euiSuggestItem__label ${layoutClass}`}>{label}</span>
       <span className="euiSuggestItem__description">{description}</span>
