@@ -172,18 +172,6 @@
   border-radius: 0;
   padding: $euiFormControlPadding;
 
-  @if ($includeSizes) {
-    &--compressed {
-      padding-top: $euiFormControlCompressedPadding;
-      padding-bottom: $euiFormControlCompressedPadding;
-    }
-
-    &--inGroup {
-      // sass-lint:disable-block no-important
-      box-shadow: none !important;
-    }
-  }
-
   @if ($includeStates) {
     &:invalid { /* 4 */
       @include euiFormControlInvalidStyle;
@@ -199,6 +187,26 @@
 
     &[readOnly] {
       @include euiFormControlReadOnlyStyle;
+    }
+  }
+
+  @if ($includeSizes) {
+    &--compressed {
+      @include euiFormControlDefaultShadow($borderOnly: true);
+      padding-top: $euiFormControlCompressedPadding;
+      padding-bottom: $euiFormControlCompressedPadding;
+      border-radius: $euiBorderRadius / 2;
+
+      @if ($includeStates) {
+        &:focus { /* 4 */
+          @include euiFormControlFocusStyle($borderOnly: true);
+        }
+      }
+    }
+
+    &--inGroup {
+      // sass-lint:disable-block no-important
+      box-shadow: none !important;
     }
   }
 
