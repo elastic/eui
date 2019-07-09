@@ -32,4 +32,4 @@ Many of our products themselves are open source and rely upon this library to fu
 
 ## What about reporting bugs and feature requests?
 
-Bug reports and feature requests are most welcome, but our roadmap is driven primarily by internal usage so understand that caveat.
+Bug reports and feature requests are most welcome, but our roadmap is driven primarily by internal usage.
