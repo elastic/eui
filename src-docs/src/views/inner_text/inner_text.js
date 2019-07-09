@@ -5,38 +5,57 @@ import { EuiInnerText } from '../../../../src/components/inner_text';
 import {
   EuiBadge,
   EuiCode,
+  EuiFlexGroup,
   EuiHighlight,
-  EuiIcon,
-  EuiSpacer,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiPanel,
+  EuiText,
 } from '../../../../src/components';
 
 export default () => (
-  <React.Fragment>
+  <EuiText size="s">
+    <h5>Example:</h5>
     <EuiInnerText>
       {(ref, innerText) => (
         <React.Fragment>
-          <span ref={ref} title={innerText}>
-            Simple string content
-          </span>
-          <EuiIcon type="sortRight" />
+          <EuiFlexGroup>
+            <EuiFlexItem grow={false}>
+              <EuiPanel paddingSize="s" grow={false}>
+                <span ref={ref} title={innerText}>
+                  Simple string content
+                </span>
+              </EuiPanel>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
           <EuiCode>{innerText}</EuiCode>
         </React.Fragment>
       )}
     </EuiInnerText>
 
-    <EuiSpacer />
+    <EuiHorizontalRule margin="xl" />
 
+    <h5>Example:</h5>
     <EuiInnerText>
       {(ref, innerText) => (
         <React.Fragment>
-          <span ref={ref} title={innerText}>
-            <EuiHighlight search="content">EuiHighlight content </EuiHighlight>
-            <EuiBadge>with EuiBadge</EuiBadge>
-          </span>
-          <EuiIcon type="sortRight" />
+          <EuiFlexGroup>
+            <EuiFlexItem grow={false}>
+              <EuiPanel paddingSize="s" grow={false}>
+                <span ref={ref} title={innerText}>
+                  <EuiHighlight search="content">
+                    EuiHighlight content
+                  </EuiHighlight>
+                  <EuiBadge>with EuiBadge</EuiBadge>
+                </span>
+              </EuiPanel>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <h5 className="eui-displayInlineBlock">Output:</h5>{' '}
           <EuiCode>{innerText}</EuiCode>
         </React.Fragment>
       )}
     </EuiInnerText>
-  </React.Fragment>
+  </EuiText>
 );

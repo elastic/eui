@@ -100,7 +100,7 @@ export const ListGroupExample = {
       demo: <ListGroupLinkActions />,
     },
     {
-      title: 'Text truncation and wrapping ',
+      title: 'Text wrapping and tooltips',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -113,11 +113,10 @@ export const ListGroupExample = {
       ],
       text: (
         <p>
-          By default, truncation occurs for long list items. In such cases a{' '}
-          <EuiCode>title</EuiCode> attribute with a value matching the text
-          content of the item is added for readability and accessibility. If{' '}
-          <EuiCode>showToolTip</EuiCode> or <EuiCode>wrapLines</EuiCode> are
-          used, the attribute will not be added.
+          Optional props <EuiCode>showToolTip</EuiCode> and{' '}
+          <EuiCode>wrapLines</EuiCode> can be used to augment the display of
+          list items. Use these when lists are inside small containers where it
+          is likely that the content will be truncated.
         </p>
       ),
       demo: <ListGroupExtra />,
