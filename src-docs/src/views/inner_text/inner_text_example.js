@@ -15,6 +15,20 @@ import {
 import InnerText from './inner_text';
 const innerTextSource = require('!!raw-loader!./inner_text');
 const innerTextHtml = renderToHtml(InnerText);
+const innerTextSnippet = `// useInnerText
+const [ref, innerText] = useInnerText();
+<span ref={ref} title={innerText}>
+  Content
+</span>
+
+// EuiInnerText
+<EuiInnerText>
+  {(ref, innerText) => (
+    <span ref={ref} title={innerText}>
+      Content
+    </span>
+  )}
+</EuiInnerText>`;
 
 export const InnerTextExample = {
   title: 'Inner Text',
@@ -47,20 +61,7 @@ export const InnerTextExample = {
         </EuiTitle>
       </EuiText>
       <EuiCodeBlock language="js" paddingSize="m">
-        {`// useInnerText
-const [ref, innerText] = useInnerText();
-<span ref={ref} title={innerText}>
-  Content
-</span>
-
-// EuiInnerText
-<EuiInnerText>
-  {(ref, innerText) => (
-    <span ref={ref} title={innerText}>
-      Content
-    </span>
-  )}
-</EuiInnerText>`}
+        {innerTextSnippet}
       </EuiCodeBlock>
       <EuiSpacer />
     </React.Fragment>
@@ -79,20 +80,7 @@ const [ref, innerText] = useInnerText();
         },
       ],
       demo: <InnerText />,
-      snippet: `// useInnerText
-const [ref, innerText] = useInnerText();
-<span ref={ref} title={innerText}>
-  Content
-</span>
-
-// EuiInnerText
-<EuiInnerText>
-  {(ref, innerText) => (
-    <span ref={ref} title={innerText}>
-      Content
-    </span>
-  )}
-</EuiInnerText>`,
+      snippet: innerTextSnippet,
     },
   ],
 };
