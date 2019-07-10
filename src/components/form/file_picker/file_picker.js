@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonEmpty } from '../../button';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
@@ -23,6 +24,8 @@ export class EuiFilePicker extends Component {
      * Reduces the size to a typical (compressed) input
      */
     compressed: PropTypes.bool,
+    fullWidth: PropTypes.bool,
+    isInvalid: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -90,6 +93,8 @@ export class EuiFilePicker extends Component {
             disabled,
             compressed,
             onChange,
+            isInvalid,
+            fullWidth,
             ...rest
           } = this.props;
 
@@ -100,6 +105,8 @@ export class EuiFilePicker extends Component {
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
+              'euiFilePicker--fullWidth': fullWidth,
+              'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
@@ -135,21 +142,23 @@ export class EuiFilePicker extends Component {
           return (
             <div className={classes}>
               <div className="euiFilePicker__wrap">
-                <input
-                  type="file"
-                  id={id}
-                  name={name}
-                  className="euiFilePicker__input"
-                  onChange={() => this.handleChange(filesSelected)}
-                  ref={input => {
-                    this.fileInput = input;
-                  }}
-                  onDragOver={this.showDrop}
-                  onDragLeave={this.hideDrop}
-                  onDrop={this.hideDrop}
-                  disabled={disabled}
-                  {...rest}
-                />
+                <EuiValidatableControl isInvalid={isInvalid}>
+                  <input
+                    type="file"
+                    id={id}
+                    name={name}
+                    className="euiFilePicker__input"
+                    onChange={() => this.handleChange(filesSelected)}
+                    ref={input => {
+                      this.fileInput = input;
+                    }}
+                    onDragOver={this.showDrop}
+                    onDragLeave={this.hideDrop}
+                    onDrop={this.hideDrop}
+                    disabled={disabled}
+                    {...rest}
+                  />
+                </EuiValidatableControl>
                 <div className="euiFilePicker__prompt">
                   <EuiIcon
                     className="euiFilePicker__icon"

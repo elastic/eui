@@ -12,6 +12,10 @@
       .euiFilePicker--compressed#{&} {
         height: $euiSizeXL;
       }
+
+      .euiFilePicker--fullWidth#{&} {
+        max-width: 100%;
+      }
     }
   }
 
@@ -80,10 +84,16 @@
     // sass-lint:disable-block mixins-before-declarations
     @at-root {
       .euiFilePicker--compressed#{&} {
+        @include euiFormControlDefaultShadow($borderOnly: true);
+        border-radius: $euiBorderRadius / 2;
         height: $euiFormControlCompressedHeight;
         padding: $euiFormControlCompressedPadding;
         @include euiFormControlWithIcon; /* 3 */
         text-align: left;
+      }
+
+      .euiFilePicker-isInvalid#{&} {
+        @include euiFormControlInvalidStyle;
       }
     }
   }
