@@ -43,7 +43,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={null} />
+      <EuiBreadcrumbs responsive={false} breadcrumbs={breadcrumbs} max={null} />
 
       <EuiShowFor sizes={['xs', 's']}>
         <EuiText size="s" color="subdued">
