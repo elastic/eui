@@ -19,7 +19,9 @@ export const EuiRangeInput = ({
   // Chrome will properly size the input based on the max value, but FF & IE do not.
   // Calculate the width of the input based on highest number of characters.
   // Add 2 to accomodate for input stepper
-  const widthStyle = { width: `${digitTolerance / 1.25 + 2}em` };
+  const widthStyle = compressed
+    ? undefined
+    : { width: `${digitTolerance / 1.25 + 2}em` };
 
   return (
     <EuiFieldNumber

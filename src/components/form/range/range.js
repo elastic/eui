@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
+import { EuiPopover } from '../../popover';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -13,6 +14,13 @@ import { EuiRangeTrack, LEVEL_COLORS } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiRange extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPopoverOpen: false,
+    };
+  }
+
   handleOnChange = e => {
     const isValid = isWithinRange(
       this.props.min,
@@ -25,6 +33,18 @@ export class EuiRange extends Component {
   get isValid() {
     return isWithinRange(this.props.min, this.props.max, this.props.value);
   }
+
+  onInputClick = () => {
+    this.setState({
+      isPopoverOpen: true,
+    });
+  };
+
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  };
 
   render() {
     const {
@@ -54,10 +74,34 @@ export class EuiRange extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames('euiRange', className);
     const digitTolerance = Math.max(String(min).length, String(max).length);
+    const showInputOnly = showInput === 'only';
+    const classes = classNames(
+      'euiRange',
+      { 'euiRange--inputOnly': showInputOnly },
+      className
+    );
 
-    return (
+    const theInput = !!showInput ? (
+      <EuiRangeInput
+        min={min}
+        max={max}
+        digitTolerance={digitTolerance}
+        step={step}
+        value={value}
+        disabled={disabled}
+        compressed={compressed}
+        onChange={this.handleOnChange}
+        name={name}
+        onClick={this.onInputClick}
+        fullWidth={showInputOnly && fullWidth}
+        {...rest}
+      />
+    ) : (
+      undefined
+    );
+
+    const theRange = (
       <EuiRangeWrapper
         className={classes}
         fullWidth={fullWidth}
@@ -79,6 +123,17 @@ export class EuiRange extends Component {
           levels={levels}
           onChange={this.handleOnChange}
           value={value}>
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+            />
+          )}
+
           <EuiRangeSlider
             id={id}
             name={name}
@@ -108,39 +163,37 @@ export class EuiRange extends Component {
               valueAppend={valueAppend}
             />
           )}
-
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(min)}
-              upperValue={Number(value)}
-            />
-          )}
         </EuiRangeTrack>
         {showLabels && (
           <EuiRangeLabel side="max" disabled={disabled}>
             {max}
           </EuiRangeLabel>
         )}
-        {showInput && (
-          <EuiRangeInput
-            min={min}
-            max={max}
-            digitTolerance={digitTolerance}
-            step={step}
-            value={value}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleOnChange}
-            name={name}
-            {...rest}
-          />
-        )}
+        {!showInputOnly && showInput && theInput}
       </EuiRangeWrapper>
     );
+
+    const thePopover = showInputOnly ? (
+      <EuiPopover
+        // ownFocus={popoverShouldOwnFocus}
+        button={theInput}
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        // zIndex={popoverZIndex}
+        className="euiRange__popover"
+        anchorClassName="euiRange__popoverAnchor"
+        display="block"
+        // panelClassName={panelClasses}
+        // attachToAnchor={button ? false : true}
+        anchorPosition="downLeft"
+        panelPaddingSize="s">
+        {theRange}
+      </EuiPopover>
+    ) : (
+      undefined
+    );
+
+    return thePopover ? thePopover : theRange;
   }
 }
 
@@ -159,9 +212,10 @@ EuiRange.propTypes = {
    */
   showLabels: PropTypes.bool,
   /**
-   * Displays an extra input control for direct manipulation
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'only'` to only show the input but show the range in a dropdown.
    */
-  showInput: PropTypes.bool,
+  showInput: PropTypes.oneOf([true, false, 'only']),
   /**
    * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
    */

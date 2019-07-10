@@ -45,6 +45,10 @@ import StatesExample from './states';
 const statesSource = require('!!raw-loader!./states');
 const statesHtml = renderToHtml(StatesExample);
 
+import CompressedExample from './compressed';
+const compressedSource = require('!!raw-loader!./compressed');
+const compressedHtml = renderToHtml(CompressedExample);
+
 export const RangeControlExample = {
   title: 'Range sliders',
   intro: (
@@ -322,27 +326,28 @@ export const RangeControlExample = {
 />`,
     },
     {
-      title: 'Kitchen sink',
+      title: 'Inputs with range in a dropdown',
       text: (
         <Fragment>
           <p>
-            Other alterations you can add to the range are{' '}
-            <EuiCode>compressed</EuiCode>, <EuiCode>fullWidth</EuiCode>, and{' '}
-            <EuiCode>disabled</EuiCode>.
+            Passing <EuiCode>showInput=&quot;only&quot;</EuiCode> instead of a
+            boolean will only display the inputs until the input is interacted
+            with in which case a dropdown will appear displaying the actual
+            slider.
           </p>
         </Fragment>
       ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: statesSource,
+          code: compressedSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: statesHtml,
+          code: compressedHtml,
         },
       ],
-      demo: <StatesExample />,
+      demo: <CompressedExample />,
       snippet: `<EuiRange
   id=""
   value={}
@@ -365,6 +370,57 @@ export const RangeControlExample = {
   value={}
   onChange={() => {}}
   compressed
+  fullWidth
+  disabled
+  showLabels
+  showInput
+  showTicks
+  ticks={[]}
+  levels={[]}
+  aria-describedBy={replaceWithID}
+/>`,
+    },
+    {
+      title: 'Kitchen sink',
+      text: (
+        <Fragment>
+          <p>
+            Other alterations you can add to the range are{' '}
+            <EuiCode>fullWidth</EuiCode>, and <EuiCode>disabled</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: statesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: statesHtml,
+        },
+      ],
+      demo: <StatesExample />,
+      snippet: `<EuiRange
+  id=""
+  value={}
+  onChange={() => {}}
+  fullWidth
+  disabled
+  showTicks
+  showInput
+  showLabels
+  showValue
+  showRange
+  tickInterval={}
+  levels={[]}
+  aria-describedBy={replaceWithID}
+/>
+
+<EuiDualRange
+  id=""
+  value={}
+  onChange={() => {}}
   fullWidth
   disabled
   showLabels

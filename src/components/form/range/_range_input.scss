@@ -9,4 +9,10 @@
   &--max {
     margin-left: $euiSize;
   }
+
+  .euiRange__popover & {
+    // sass-lint:disable no-important
+    margin: 0 !important;
+    width: 100%;
+  }
 }

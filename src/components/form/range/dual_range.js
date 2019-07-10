@@ -287,6 +287,18 @@ export class EuiDualRange extends Component {
           levels={levels}
           onChange={this.handleSliderChange}
           value={value}>
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              hasFocus={this.state.hasFocus}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(this.lowerValue)}
+              upperValue={Number(this.upperValue)}
+            />
+          )}
+
           <EuiRangeSlider
             className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
@@ -338,18 +350,6 @@ export class EuiDualRange extends Component {
                 aria-label={this.props['aria-label']}
               />
             </React.Fragment>
-          )}
-
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              hasFocus={this.state.hasFocus}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-            />
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}

@@ -149,7 +149,6 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
 
     return (
       <div className={trackClasses} style={inputWrapperStyle}>
-        {children}
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}
@@ -172,6 +171,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
             interval={tickInterval || step}
           />
         )}
+        {children}
       </div>
     );
   }

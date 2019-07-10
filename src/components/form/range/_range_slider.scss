@@ -18,7 +18,6 @@
   background: transparent; // Otherwise white in Chrome
   width: 100%; // ensures the slider expands to fill flex display
   position: relative;
-  z-index: $euiZLevel2; // stay above tick marks
   cursor: pointer; // Keep cursor to full range bounds
 
   &:disabled {

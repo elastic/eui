@@ -7,9 +7,11 @@
   bottom: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
   margin-left: $euiRangeThumbWidth / 2;
+  pointer-events: none;
 }
 
 .euiRangeTooltip__value {
+  // TODO: Use the new tooltip mixin
   // Indentation for legibility in transition
   // sass-lint:disable-block indentation
   @include euiFontSizeS;
@@ -20,7 +22,6 @@
   background-color: tintOrShade($euiColorFullShade, 25%, 90%);
   color: $euiColorGhost;
   max-width: 256px;
-  z-index: $euiZLevel4;
   top: 50%;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
