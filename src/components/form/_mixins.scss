@@ -19,6 +19,24 @@
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
 
+  // sass-lint:disable-block no-vendor-prefixes
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $euiColorDarkShade;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $euiColorDarkShade;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $euiColorDarkShade;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $euiColorDarkShade;
+  }
+
   &::placeholder {
     color: $euiColorDarkShade;
   }
