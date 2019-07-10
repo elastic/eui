@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'form_control_layout/variables';
+@import '../form/form_control_layout/mixins';
 
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
@@ -66,15 +67,15 @@
   }
 }
 
-@mixin euiFormControlWithIcon($isIconOptional: false, $side: 'left') {
+@mixin euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: false) {
   @if ($isIconOptional) {
     @at-root {
       #{&}--withIcon {
-        @include euiFormControlLayoutPadding(1, $side);
+        @include euiFormControlLayoutPadding(1, $side, $compressed);
       }
     }
   } @else {
-    @include euiFormControlLayoutPadding(1, $side);
+    @include euiFormControlLayoutPadding(1, $side, $compressed);
   }
 }
 
