@@ -46,7 +46,7 @@ export default () => (
                 <span ref={ref} title={innerText}>
                   <EuiHighlight search="content">
                     EuiHighlight content
-                  </EuiHighlight>
+                  </EuiHighlight>{' '}
                   <EuiBadge>with EuiBadge</EuiBadge>
                 </span>
               </EuiPanel>

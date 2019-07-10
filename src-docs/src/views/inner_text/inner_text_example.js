@@ -9,13 +9,11 @@ import { EuiCode, EuiSpacer, EuiText } from '../../../../src/components';
 import InnerText from './inner_text';
 const innerTextSource = require('!!raw-loader!./inner_text');
 const innerTextHtml = renderToHtml(InnerText);
-const useInnerTextSnippet = `// useInnerText
-const [ref, innerText] = useInnerText();
+const useInnerTextSnippet = `const [ref, innerText] = useInnerText();
 <span ref={ref} title={innerText}>
   Content
 </span>`;
-const euiInnerTextSnippet = `// EuiInnerText
-<EuiInnerText>
+const euiInnerTextSnippet = `<EuiInnerText>
   {(ref, innerText) => (
     <span ref={ref} title={innerText}>
       Content

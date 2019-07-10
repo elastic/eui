@@ -1,55 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import {
-  EuiListGroup,
-  EuiListGroupItem,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 
 export default () => (
-  <Fragment>
-    <EuiListGroup>
-      <EuiListGroupItem label="We use defaults" />
+  <EuiListGroup showToolTips>
+    <EuiListGroupItem label="First item" />
 
-      <EuiListGroupItem
-        label={
-          <span>
-            A very, very long item that <strong>will surely</strong> force
-            truncation
-          </span>
-        }
-      />
-    </EuiListGroup>
+    <EuiListGroupItem label="Second item" />
 
-    <EuiSpacer />
+    <EuiListGroupItem
+      label={
+        <span>
+          Third very, very long item that <strong>will surely</strong> force
+          truncation
+        </span>
+      }
+    />
 
-    <EuiListGroup>
-      <EuiListGroupItem wrapText label="We wrap lines" />
-
-      <EuiListGroupItem
-        wrapText
-        label={
-          <span>
-            A very, very long item that <strong>will surely</strong> force
-            wrapping
-          </span>
-        }
-      />
-    </EuiListGroup>
-
-    <EuiSpacer />
-
-    <EuiListGroup showToolTips>
-      <EuiListGroupItem label="We use tooltips" />
-
-      <EuiListGroupItem
-        label={
-          <span>
-            A very, very long item that <strong>will surely</strong> force
-            truncation
-          </span>
-        }
-      />
-    </EuiListGroup>
-  </Fragment>
+    <EuiListGroupItem
+      wrapText
+      label="Fourth very, very long item with wrapping enabled that will not force truncation"
+    />
+  </EuiListGroup>
 );
