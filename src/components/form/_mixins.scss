@@ -193,8 +193,7 @@
   @if ($includeSizes) {
     &--compressed {
       @include euiFormControlDefaultShadow($borderOnly: true);
-      padding-top: $euiFormControlCompressedPadding;
-      padding-bottom: $euiFormControlCompressedPadding;
+      padding: $euiFormControlCompressedPadding;
       border-radius: $euiBorderRadius / 2;
 
       @if ($includeStates) {
