@@ -198,8 +198,20 @@
       border-radius: $euiBorderRadius / 2;
 
       @if ($includeStates) {
+        &:invalid { /* 4 */
+          @include euiFormControlInvalidStyle;
+        }
+
         &:focus { /* 4 */
           @include euiFormControlFocusStyle($borderOnly: true);
+        }
+
+        &:disabled {
+          @include euiFormControlDisabledStyle;
+        }
+
+        &[readOnly] {
+          @include euiFormControlReadOnlyStyle;
         }
       }
     }
