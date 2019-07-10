@@ -14,7 +14,7 @@ Yes, but be aware of the [license](LICENSE.md) as always. Although the roadmap a
 
 We use [semver](https://semver.org/) for versioning and use that to denote breaking changes in EUI upgrades. Traditionally we consider API changes in our prop names or existing component functionality to be a reason for a breaking change, but do not track the renaming of CSS selectors, mixins or other style changes under this same rigor.
 
-Traditionally releases are made weekly against whatever is in master and you can update from NPM as you see fit.
+Traditionally releases are made weekly against whatever is in master and you can upgrade from NPM as you see fit.
 
 ## How do you handle Typescript, Sass and theming?
 
