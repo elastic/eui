@@ -70,7 +70,8 @@
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
       height: $euiFormControlLayoutGroupInputCompressedHeight;
-      border-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
+      border-top-left-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
+      border-bottom-left-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
 
       &.euiFormLabel,
       &.euiText {
@@ -97,6 +98,19 @@
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
       height: $euiFormControlHeight; // Matching input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
+    }
+  }
+
+  //
+  // ReadOnly-Compressed alterations
+
+  &.euiFormControlLayout--compressed.euiFormControlLayout--readOnly {
+
+    .euiFormControlLayout__prepend,
+    .euiFormControlLayout__append {
+      height: $euiFormControlCompressedHeight;
+      border-top-left-radius: $euiBorderRadius / 2;
+      border-bottom-left-radius: $euiBorderRadius / 2;
     }
   }
 }
