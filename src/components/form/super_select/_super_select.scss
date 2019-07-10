@@ -36,3 +36,8 @@
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {
   border-bottom: $euiBorderThin;
 }
+
+.euiSuperSelect__item--compressed {
+  padding: $euiSizeS;
+  font-size: $euiFontSizeS;
+}

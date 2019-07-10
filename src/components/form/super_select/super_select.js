@@ -165,6 +165,7 @@ export class EuiSuperSelect extends Component {
       itemLayoutAlign,
       fullWidth,
       popoverClassName,
+      compressed,
       ...rest
     } = this.props;
 
@@ -191,6 +192,7 @@ export class EuiSuperSelect extends Component {
       'euiSuperSelect__item',
       {
         'euiSuperSelect__item--hasDividers': hasDividers,
+        'euiSuperSelect__item--compressed': compressed,
       },
       itemClassName
     );
@@ -206,6 +208,7 @@ export class EuiSuperSelect extends Component {
         className={buttonClasses}
         fullWidth={fullWidth}
         isInvalid={isInvalid}
+        compressed={compressed}
         {...rest}
       />
     );
