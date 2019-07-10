@@ -2,7 +2,7 @@
   position: absolute;
   left: 0;
   width: 100%;
-  top: ($euiFormControlHeight / 2) - 2px;
+  top: calc(50% - 2px);
   z-index: $euiZLevel0;
   overflow: hidden;
 
@@ -18,6 +18,9 @@
 
   &--hasTicks {
     top: ($euiFormControlHeight / 4) - 2px;
-    left: 0;
+  }
+
+  &--hasTicks.euiRangeHighlight--compressed {
+    top: ($euiFormControlCompressedHeight / 4) - 2px;
   }
 }

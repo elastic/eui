@@ -11,6 +11,14 @@
   &--hasTicks {
     top: ($euiFormControlHeight / 4) + 2px;
   }
+
+  &--compressed {
+    top: ($euiFormControlCompressedHeight / 2) + 2px;
+
+    &.euiRangeLevels--hasTicks {
+      top: ($euiFormControlCompressedHeight / 4) + 2px;
+    }
+  }
 }
 
 .euiRangeLevel {

@@ -13,7 +13,6 @@
 // to be more easily maintained / themeable going forward.
 
 .euiRangeSlider {
-  // Auto means the height isn't defined
   height: $euiFormControlHeight;
   appearance: none;
   background: transparent; // Otherwise white in Chrome
@@ -110,6 +109,14 @@
   // States
   &--hasTicks {
     height: $euiFormControlHeight / 2; // Adjust vertical alignment based on extras
+  }
+
+  &--compressed {
+    height: $euiFormControlCompressedHeight;
+
+    &.euiRangeSlider--hasTicks {
+      height: $euiFormControlCompressedHeight / 2;
+    }
   }
 }
 

@@ -89,7 +89,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      class="euiRangeSlider euiRangeSlider--hasRange euiRangeSlider--compressed euiDualRange__slider"
       max="100"
       min="0"
       step="1"
@@ -97,7 +97,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
       type="range"
     />
     <div
-      class="euiRangeHighlight"
+      class="euiRangeHighlight euiRangeHighlight--compressed"
     >
       <div
         class="euiRangeHighlight__progress"

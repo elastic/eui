@@ -9,6 +9,7 @@ export interface EuiRangeTooltipProps {
   min: number;
   name?: string;
   showTicks?: boolean;
+  compressed?: boolean;
 }
 
 export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
@@ -19,7 +20,12 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   min,
   name,
   showTicks,
+  compressed,
 }) => {
+  const classes = classNames('euiRangeTooltip', {
+    'euiRangeTooltip--compressed': compressed,
+  });
+
   // Calculate the left position based on value
   let val = 0;
   if (typeof value === 'number') {
@@ -52,7 +58,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   );
 
   return (
-    <div className="euiRangeTooltip">
+    <div className={classes}>
       <output
         className={valueClasses}
         htmlFor={name}

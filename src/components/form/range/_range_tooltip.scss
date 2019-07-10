@@ -21,7 +21,7 @@
   color: $euiColorGhost;
   max-width: 256px;
   z-index: $euiZLevel4;
-  top: ($euiFormControlHeight / 2) - 1px;
+  top: 50%;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
     transform $euiAnimSpeedNormal $euiAnimSlightResistance;
@@ -87,6 +87,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) - 1px;
+    top: ($euiFormControlHeight / 4);
+
+    .euiRangeTooltip--compressed & {
+      top: ($euiFormControlCompressedHeight / 4);
+    }
   }
 }

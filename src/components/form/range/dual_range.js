@@ -249,7 +249,10 @@ export class EuiDualRange extends Component {
     const digitTolerance = Math.max(String(min).length, String(max).length);
 
     return (
-      <EuiRangeWrapper className={classes} fullWidth={fullWidth}>
+      <EuiRangeWrapper
+        className={classes}
+        fullWidth={fullWidth}
+        compressed={compressed}>
         {showInput && (
           <EuiRangeInput
             digitTolerance={digitTolerance}
@@ -273,6 +276,7 @@ export class EuiDualRange extends Component {
           </EuiRangeLabel>
         )}
         <EuiRangeTrack
+          compressed={compressed}
           disabled={disabled}
           max={max}
           min={min}
@@ -292,6 +296,7 @@ export class EuiDualRange extends Component {
             max={max}
             step={step}
             disabled={disabled}
+            compressed={compressed}
             onChange={this.handleSliderChange}
             style={style}
             showTicks={showTicks}
@@ -337,6 +342,7 @@ export class EuiDualRange extends Component {
 
           {showRange && this.isValid && (
             <EuiRangeHighlight
+              compressed={compressed}
               hasFocus={this.state.hasFocus}
               showTicks={showTicks}
               min={Number(min)}

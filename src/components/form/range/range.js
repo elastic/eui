@@ -58,7 +58,10 @@ export class EuiRange extends Component {
     const digitTolerance = Math.max(String(min).length, String(max).length);
 
     return (
-      <EuiRangeWrapper className={classes} fullWidth={fullWidth}>
+      <EuiRangeWrapper
+        className={classes}
+        fullWidth={fullWidth}
+        compressed={compressed}>
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>
             {min}
@@ -66,6 +69,7 @@ export class EuiRange extends Component {
         )}
         <EuiRangeTrack
           disabled={disabled}
+          compressed={compressed}
           max={max}
           min={min}
           step={step}
@@ -83,6 +87,7 @@ export class EuiRange extends Component {
             step={step}
             value={value}
             disabled={disabled}
+            compressed={compressed}
             onChange={this.handleOnChange}
             style={style}
             showTicks={showTicks}
@@ -93,6 +98,7 @@ export class EuiRange extends Component {
 
           {showValue && !!String(value).length && (
             <EuiRangeTooltip
+              compressed={compressed}
               value={value}
               max={max}
               min={min}
@@ -105,6 +111,7 @@ export class EuiRange extends Component {
 
           {showRange && this.isValid && (
             <EuiRangeHighlight
+              compressed={compressed}
               showTicks={showTicks}
               min={Number(min)}
               max={Number(max)}

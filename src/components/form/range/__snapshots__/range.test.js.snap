@@ -79,7 +79,7 @@ exports[`EuiRange props compressed should render 1`] = `
     class="euiRangeTrack"
   >
     <input
-      class="euiRangeSlider"
+      class="euiRangeSlider euiRangeSlider--compressed"
       max="100"
       min="0"
       step="1"

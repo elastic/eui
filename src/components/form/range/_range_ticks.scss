@@ -44,3 +44,11 @@
     cursor: not-allowed;
   }
 }
+
+.euiRangeTicks--compressed {
+  top: $euiSizeS - 2px;
+
+  .euiRangeTick {
+    padding-top: $euiSize - 2px;
+  }
+}
