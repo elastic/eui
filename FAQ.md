@@ -4,7 +4,7 @@ Here are our responses to questions we expect to get frequently.
 
 ## What is the Elastic UI Framework?
 
-The Elastic UI Framework (EUI) is a design library in use at Elastic to build React applications that need to share our branding, look and feel. It distributes UI React components and static assets for use in building web layouts. Alongside the React components is a SASS/CSS layer that can be used independently on its own.
+The Elastic UI Framework (EUI) is a design library in use at Elastic to build React applications that need to share our branding and aesthetics. It distributes UI React components and static assets for use in building web layouts. Alongside the React components is a SASS/CSS layer that can be used independently on its own.
 
 ## Can I use EUI?
 
