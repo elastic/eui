@@ -27,6 +27,7 @@ describe('when EuiDelayHide is visible initially', () => {
     const wrapper = getWrapper();
     wrapper.setProps({ hide: true });
     jest.advanceTimersByTime(1100);
+    wrapper.setProps({});
     expect(wrapper.html()).toEqual(null);
   });
 
@@ -95,6 +96,7 @@ describe('when EuiDelayHide is hidden initially', () => {
     expect(wrapper.html()).toEqual('<div>Hello World</div>');
 
     jest.advanceTimersByTime(200);
+    wrapper.setProps({});
     expect(wrapper.html()).toEqual(null);
   });
 });
@@ -127,6 +129,7 @@ describe('when EuiDelayHide is visible initially and has a minimumDuration of 20
   test('it should be hidden after 2100ms', () => {
     const wrapper = getWrapper();
     jest.advanceTimersByTime(2100);
+    wrapper.setProps({});
     expect(wrapper.html()).toEqual(null);
   });
 });
@@ -148,6 +151,7 @@ describe('when EuiDelayHide has been visible and become hidden', () => {
     expect(wrapper.html()).toEqual('<div>Hello World</div>');
 
     jest.advanceTimersByTime(1100);
+    wrapper.setProps({});
 
     expect(wrapper.html()).toEqual(null);
   });
