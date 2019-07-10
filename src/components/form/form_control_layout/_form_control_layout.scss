@@ -50,15 +50,40 @@
       color: $euiFormControlDisabledColor; // ensures established contrast
     }
 
+    // sass-lint:disable-block no-important
     // This is the only way to target specific components to override styling
+    &.euiFormLabel,
+    &.euiText,
+    &.euiButtonIcon,
+    &.euiIcon {
+      background-color: $euiFormInputGroupLabelBackground;
+
+      & + .euiFormControlLayout__prepend,
+      & + .euiFormControlLayout__append {
+        padding-left: 0 !important;
+
+        &.euiButtonIcon,
+        &.euiIcon {
+          width: $euiSizeL;
+        }
+      }
+    }
+
     &.euiFormLabel,
     &.euiText {
       white-space: nowrap;
       margin-bottom: 0;
       padding: $euiFormControlPadding;
       border: none;
-      background-color: $euiFormInputGroupLabelBackground;
       line-height: $euiFontSize;
+    }
+
+    &.euiButtonIcon,
+    &.euiIcon {
+      padding: 0 $euiSizeS;
+      width: $euiSizeXL;
+      border: none;
+      transform: none !important;
     }
   }
 
@@ -96,8 +121,7 @@
 
       &.euiFormLabel,
       &.euiText {
-        padding-top: $euiFormControlCompressedPadding;
-        padding-bottom: $euiFormControlCompressedPadding;
+        padding: $euiFormControlCompressedPadding;
       }
     }
   }
