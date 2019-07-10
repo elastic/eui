@@ -15,16 +15,30 @@ export function useInnerText(
   const [innerText, setInnerText] = useState(innerTextFallback);
   useEffect(() => {
     if (ref && ref.current) {
-      setInnerText(ref.current.innerText);
+      setInnerText(
+        // Check for `innerText` implementation rather than a simple OR check
+        // because in real cases the result of `innerText` could correctly be `null`
+        // while the result of `textContent` could correctly be non-`null` due to
+        // differing reliance on browser layout calculations.
+        // We prefer the result of `innerText`, if available.
+        'innerText' in ref.current
+          ? ref.current.innerText
+          : ref.current!.textContent || undefined
+      );
     }
   }, [ref.current]);
 
   return [ref, innerText];
 }
 
-export const EuiInnerText: FunctionComponent<{
+export interface EuiInnerTextProps {
   children: (ref?: Ref<HTMLElement>, innerText?: string) => ReactElement;
-}> = ({ children }) => {
-  const [ref, innerText] = useInnerText();
+  fallback?: string;
+}
+export const EuiInnerText: FunctionComponent<EuiInnerTextProps> = ({
+  children,
+  fallback,
+}) => {
+  const [ref, innerText] = useInnerText(fallback);
   return children(ref, innerText);
 };
