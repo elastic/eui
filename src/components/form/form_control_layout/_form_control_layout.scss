@@ -64,9 +64,13 @@
   // Compressed alterations
 
   &.euiFormControlLayout--compressed {
+    @include euiFormControlDefaultShadow($borderOnly: true);
+    border-radius: $euiBorderRadius / 2;
+
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
       height: $euiFormControlLayoutGroupInputCompressedHeight;
+      border-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
 
       &.euiFormLabel,
       &.euiText {
