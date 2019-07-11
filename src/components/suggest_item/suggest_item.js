@@ -4,59 +4,55 @@ import classNames from 'classnames';
 import { EuiIcon, IconPropType } from '../icon';
 
 const colorToClassNameMap = {
-  primary: { class: 'euiSuggestItem__type--primary', colorName: 'primary' },
-  secondary: {
-    class: 'euiSuggestItem__type--secondary',
-    colorName: 'secondary',
-  },
-  warning: { class: 'euiSuggestItem__type--warning', colorName: 'warning' },
-  danger: { class: 'euiSuggestItem__type--danger', colorName: 'danger' },
-  text: { class: 'euiSuggestItem__type--text', colorName: 'text' },
-  accent: { class: 'euiSuggestItem__type--accent', colorName: 'accent' },
-  vis3: { class: 'euiSuggestItem__type--vis3', colorName: '#490092' },
+  itemTint01: 'euiSuggestItem__type--itemTint01',
+  itemTint02: 'euiSuggestItem__type--itemTint02',
+  itemTint03: 'euiSuggestItem__type--itemTint03',
+  itemTint04: 'euiSuggestItem__type--itemTint04',
+  itemTint05: 'euiSuggestItem__type--itemTint05',
+  itemTint06: 'euiSuggestItem__type--itemTint06',
+  itemTint07: 'euiSuggestItem__type--itemTint07',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
 
-const layoutToClassNameMap = {
-  setColumns: 'euiSuggestItem__layout--set',
-  inline: 'euiSuggestItem__layout--inline',
+const labelDisplayToClassMap = {
+  fixed: 'euiSuggestItem__labelDisplay--fixed',
+  expand: 'euiSuggestItem__labelDisplay--expand',
 };
 
-export const LAYOUTS = Object.keys(layoutToClassNameMap);
+export const DISPLAYS = Object.keys(labelDisplayToClassMap);
 
 export const EuiSuggestItem = ({
   className,
   label,
   type,
-  layout,
+  labelDisplay,
   description,
   ...rest
 }) => {
   const classes = classNames('euiSuggestItem', className);
 
   let optionalColorClass = '';
-  const layoutClass = layoutToClassNameMap[layout];
-  // let optionalCustomStyles = undefined;
+  let labelDisplayClass = labelDisplayToClassMap[labelDisplay];
+
+  if (!description) {
+    labelDisplayClass = 'euiSuggestItem__labelDisplay--expand';
+  }
 
   if (type && type.color) {
     if (COLORS.indexOf(type.color) > -1) {
-      optionalColorClass = colorToClassNameMap[type.color].class;
+      optionalColorClass = colorToClassNameMap[type.color];
     }
-    // } else {
-    //   optionalCustomStyles = { backgroundColor: type.color };
-    // }
   }
-
-  let colorName;
-  colorName = colorToClassNameMap[type.color].colorName;
 
   return (
     <div className={classes} {...rest}>
       <span className={`euiSuggestItem__type ${optionalColorClass}`}>
-        <EuiIcon color={colorName} type={type.icon} />
+        <EuiIcon type={type.iconType} />
       </span>
-      <span className={`euiSuggestItem__label ${layoutClass}`}>{label}</span>
+      <span className={`euiSuggestItem__label ${labelDisplayClass}`}>
+        {label}
+      </span>
       <span className="euiSuggestItem__description">{description}</span>
     </div>
   );
@@ -65,26 +61,26 @@ export const EuiSuggestItem = ({
 EuiSuggestItem.propTypes = {
   className: PropTypes.string,
   /**
-   * Takes 'icon' for EuiIcon and 'color'. 'color' can be either our palette colors (primary, secondary, etc) or a hex value.
+   * Takes 'iconType' for EuiIcon and 'color'. 'color' can be itemTint01 through itemTint07.
    */
   type: PropTypes.shape({
-    icon: IconPropType,
+    iconType: IconPropType,
     color: PropTypes.oneOfType([PropTypes.oneOf(COLORS), PropTypes.string]),
   }).isRequired,
   /**
-   * Label for suggestion
+   * Label for suggest item
    */
   label: PropTypes.string,
   /**
-   * Description for suggestion
+   * Description for suggest item
    */
   description: PropTypes.string,
   /**
-   * Layout for suggest item
+   * Label display for suggest item
    */
-  layout: PropTypes.oneOf(LAYOUTS),
+  labelDisplay: PropTypes.oneOf(DISPLAYS),
 };
 
 EuiSuggestItem.defaultProps = {
-  layout: 'setColumns',
+  labelDisplay: 'fixed',
 };

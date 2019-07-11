@@ -1,13 +1,5 @@
 @import '../loading/mixins';
 
-// $buttonTypes: (
-//   primary: $euiColorPrimary,
-//   secondary: $euiColorSecondary,
-//   warning: $euiColorWarning,
-//   danger: $euiColorDanger,
-//   dark: $euiColorMediumShade,
-// );
-
 .euiSuggestItem {
   display: flex;
   flex-grow: 1;
@@ -17,7 +9,12 @@
 
   @each $name, $color in $itemColors {
     .euiSuggestItem__type--#{$name} {
-      background-color: tintOrShade($color, 90%, 50%);
+      $backgroundColor: tintOrShade($color, 90%, 50%);
+      background-color: $backgroundColor;
+
+      svg {
+        fill: makeHighContrastColor($color, $backgroundColor);
+      }
 		}
 	}
 
@@ -40,15 +37,6 @@
     padding: $euiSizeXS;
     justify-content: center;
     align-items: center;
-
-    .customBackground {
-      width: 32px;
-      height: 32px;
-      position: absolute;
-      opacity: .2;
-      top: 0;
-      left: 0;
-    }
   }
 
   .euiSuggestItem__label {
@@ -59,15 +47,15 @@
     padding: $euiSizeXS $euiSizeS;
     color: $euiTextColor;
 
-    &.euiSuggestItem__layout--inline {
+    &.euiSuggestItem__labelDisplay--expand {
       flex-basis: auto;
+      flex-shrink: 1;
     }
   }
 
   .euiSuggestItem__description,
   .euiSuggestItem__label {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include euiTextTruncate;
     display: block;
 	}
 
@@ -75,9 +63,10 @@
     color: $euiColorDarkShade;
     flex-basis: auto;
     padding-top: $euiSizeXS * .5;
+
     &:empty {
       flex-grow: 0;
-      margin-left:0;
+      margin-left: 0;
     }
 	}
 }
