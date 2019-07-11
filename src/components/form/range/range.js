@@ -76,7 +76,6 @@ export class EuiRange extends Component {
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
-    const classes = classNames('euiRange', className);
 
     const theInput = !!showInput ? (
       <EuiRangeInput
@@ -91,11 +90,14 @@ export class EuiRange extends Component {
         name={name}
         onClick={this.onInputClick}
         fullWidth={showInputOnly && fullWidth}
+        autoSize={!showInputOnly}
         {...rest}
       />
     ) : (
       undefined
     );
+
+    const classes = classNames('euiRange', className);
 
     const theRange = (
       <EuiRangeWrapper
@@ -165,7 +167,7 @@ export class EuiRange extends Component {
             {max}
           </EuiRangeLabel>
         )}
-        {!showInputOnly && showInput && theInput}
+        {!showInputOnly && theInput}
       </EuiRangeWrapper>
     );
 

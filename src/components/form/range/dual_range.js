@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
+import { EuiPopover } from '../../popover';
+import { EuiFormControlLayoutRange } from '../form_control_layout';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -17,6 +19,7 @@ export class EuiDualRange extends Component {
   state = {
     hasFocus: false,
     rangeSliderRefAvailable: false,
+    isPopoverOpen: false,
   };
 
   rangeSliderRef = null;
@@ -221,6 +224,18 @@ export class EuiDualRange extends Component {
     });
   };
 
+  onInputClick = () => {
+    this.setState({
+      isPopoverOpen: true,
+    });
+  };
+
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  };
+
   render() {
     const {
       className,
@@ -245,31 +260,62 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames('euiDualRange', className);
     const digitTolerance = Math.max(String(min).length, String(max).length);
+    const showInputOnly = showInput === 'only';
 
-    return (
+    const minInput = !!showInput ? (
+      <EuiRangeInput
+        digitTolerance={digitTolerance}
+        side="min"
+        min={min}
+        max={Number(this.upperValue)}
+        step={step}
+        value={this.lowerValue}
+        disabled={disabled}
+        compressed={compressed}
+        onChange={this.handleLowerInputChange}
+        onKeyDown={this.handleInputKeyDown}
+        name={`${name}-minValue`}
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        onClick={this.onInputClick}
+        autoSize={!showInputOnly}
+        fullWidth={!!showInputOnly && fullWidth}
+      />
+    ) : (
+      undefined
+    );
+
+    const maxInput = !!showInput ? (
+      <EuiRangeInput
+        digitTolerance={digitTolerance}
+        side="max"
+        min={Number(this.lowerValue)}
+        max={max}
+        step={step}
+        value={this.upperValue}
+        disabled={disabled}
+        compressed={compressed}
+        onChange={this.handleUpperInputChange}
+        onKeyDown={this.handleInputKeyDown}
+        name={`${name}-maxValue`}
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        onClick={this.onInputClick}
+        autoSize={!showInputOnly}
+        fullWidth={!!showInputOnly && fullWidth}
+      />
+    ) : (
+      undefined
+    );
+
+    const classes = classNames('euiDualRange', className);
+    const theRange = (
       <EuiRangeWrapper
         className={classes}
         fullWidth={fullWidth}
         compressed={compressed}>
-        {showInput && (
-          <EuiRangeInput
-            digitTolerance={digitTolerance}
-            side="min"
-            min={min}
-            max={Number(this.upperValue)}
-            step={step}
-            value={this.lowerValue}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleLowerInputChange}
-            onKeyDown={this.handleInputKeyDown}
-            name={`${name}-minValue`}
-            aria-describedby={this.props['aria-describedby']}
-            aria-label={this.props['aria-label']}
-          />
-        )}
+        {!showInputOnly && minInput}
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>
             {min}
@@ -327,7 +373,7 @@ export class EuiDualRange extends Component {
                 value={this.lowerValue}
                 disabled={disabled}
                 showTicks={showTicks}
-                showInput={showInput}
+                showInput={!!showInput}
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
@@ -341,7 +387,7 @@ export class EuiDualRange extends Component {
                 value={this.upperValue}
                 disabled={disabled}
                 showTicks={showTicks}
-                showInput={showInput}
+                showInput={!!showInput}
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
@@ -353,25 +399,40 @@ export class EuiDualRange extends Component {
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
-        {showInput && (
-          <EuiRangeInput
-            digitTolerance={digitTolerance}
-            side="max"
-            min={Number(this.lowerValue)}
-            max={max}
-            step={step}
-            value={this.upperValue}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleUpperInputChange}
-            onKeyDown={this.handleInputKeyDown}
-            name={`${name}-maxValue`}
-            aria-describedby={this.props['aria-describedby']}
-            aria-label={this.props['aria-label']}
-          />
-        )}
+        {!showInputOnly && maxInput}
       </EuiRangeWrapper>
     );
+
+    const thePopover = showInputOnly ? (
+      <EuiPopover
+        // ownFocus={popoverShouldOwnFocus}
+        button={
+          <EuiFormControlLayoutRange
+            fullWidth={fullWidth}
+            compressed={compressed}
+            startControl={minInput}
+            endControl={maxInput}
+          />
+        }
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        // zIndex={popoverZIndex}
+        className={classNames('euiRange__popover', {
+          'euiRange__popover--fullWidth': fullWidth,
+        })}
+        anchorClassName="euiRange__popoverAnchor"
+        display="block"
+        // panelClassName={panelClasses}
+        // attachToAnchor={button ? false : true}
+        anchorPosition="downLeft"
+        panelPaddingSize="s">
+        {theRange}
+      </EuiPopover>
+    ) : (
+      undefined
+    );
+
+    return thePopover || theRange;
   }
 }
 
@@ -395,9 +456,10 @@ EuiDualRange.propTypes = {
    */
   showLabels: PropTypes.bool,
   /**
-   * Displays a input controls for direct manipulation
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'only'` to only show the input but show the range in a dropdown.
    */
-  showInput: PropTypes.bool,
+  showInput: PropTypes.oneOf([true, false, 'only']),
   /**
    * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
    */
