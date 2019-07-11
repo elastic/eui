@@ -27,20 +27,3 @@
   &::-moz-range-thumb { @content; }
   &::-ms-thumb { @content; }
 }
-
-// Deprecated mixins below. This was changed in Nov. 2018
-
-@mixin euiRange__trackSize { // sass-lint:disable-line mixin-name-format
-  @include euiRangeTrackSize;
-  @warn '@mixin euiRange__trackSize is deprecated, please use euiRangeTrackSize instead';
-}
-
-@mixin euiRange__track__perBrowser { // sass-lint:disable-line mixin-name-format
-  @include euiRangeTrackPerBrowser;
-  @warn '@mixin euiRange__track__perBrowser is deprecated, please use euiRangeTrackPerBrowser instead';
-}
-
-@mixin euiRange__thumb__perBrowser { // sass-lint:disable-line mixin-name-format
-  @include euiRangeThumbPerBrowser;
-  @warn '@mixin euiRange__thumb__perBrowser is deprecated, please use euiRangeThumbPerBrowser instead';
-}
