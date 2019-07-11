@@ -469,6 +469,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
     }
     className="euiSuperSelect"
     closePopover={[Function]}
+    display="inlineBlock"
     hasArrow={false}
     isOpen={true}
     ownFocus={false}

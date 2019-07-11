@@ -80,6 +80,19 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiPopover props display block is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+  id="2"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <button />
+  </div>
+</div>
+`;
+
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownCenter"
@@ -332,19 +345,6 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         tabindex="-1"
       />
     </div>
-  </div>
-</div>
-`;
-
-exports[`EuiPopover props withTitle is rendered 1`] = `
-<div
-  class="euiPopover euiPopover--anchorDownCenter euiPopover--withTitle"
-  id="2"
->
-  <div
-    class="euiPopover__anchor"
-  >
-    <button />
   </div>
 </div>
 `;
