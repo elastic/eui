@@ -156,7 +156,7 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-import { SuggestItemExample } from './views/suggest_item/suggest_item_example';
+import { SuggestExample } from './views/suggest/suggest_example';
 
 import { TableExample } from './views/tables/tables_example';
 
@@ -324,7 +324,6 @@ const navigation = [
       LoadingExample,
       ProgressExample,
       StatExample,
-      SuggestItemExample,
       TableExample,
       TextExample,
       TitleExample,
@@ -348,6 +347,7 @@ const navigation = [
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
+      SuggestExample,
     ].map(example => createExample(example)),
   },
   {
