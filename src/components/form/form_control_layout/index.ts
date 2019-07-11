@@ -5,3 +5,4 @@ export {
 export {
   EuiFormControlLayoutCustomIcon,
 } from './form_control_layout_custom_icon';
+export { EuiFormControlLayoutRange } from './form_control_layout_range';

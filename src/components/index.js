@@ -104,6 +104,7 @@ export {
   EuiFilePicker,
   EuiForm,
   EuiFormControlLayout,
+  EuiFormControlLayoutRange,
   EuiFormErrorText,
   EuiFormHelpText,
   EuiFormLabel,

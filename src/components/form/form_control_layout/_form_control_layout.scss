@@ -76,6 +76,10 @@
     }
   }
 
+  > .euiFormControlLayout--compressed {
+    height: $euiFormControlCompressedHeight - 2px; /* 1 */
+  }
+
   //
   // ReadOnly alterations
   &.euiFormControlLayout--readOnly {

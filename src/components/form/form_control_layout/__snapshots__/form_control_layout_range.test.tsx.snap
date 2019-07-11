@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormControlLayoutRange is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormControlLayout euiFormControlLayoutRange testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <span
+      class="euiFormControlLayoutRange__child--noStyle euiFormControlLayoutRange__child--centered"
+    >
+      start
+    </span>
+    <div
+      class="euiText euiText--small euiFormControlLayoutRange__delimeter"
+    >
+      <div
+        class="euiTextColor euiTextColor--subdued"
+      >
+        →
+      </div>
+    </div>
+    <span
+      class="euiFormControlLayoutRange__child--noStyle euiFormControlLayoutRange__child--centered"
+    >
+      end
+    </span>
+  </div>
+</div>
+`;

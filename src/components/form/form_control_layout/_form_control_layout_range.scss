@@ -1,0 +1,38 @@
+.euiFormControlLayoutRange {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow;
+  padding: 1px; /* 1 */
+
+  > .euiFormControlLayout__childrenWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .euiFormControlLayout,
+  input {
+    height: $euiFormControlHeight - 2px;
+  }
+
+  .euiFormControlLayout--compressed,
+  .euiFormControlLayout--compressed input {
+    height: $euiFormControlCompressedHeight - 2px;
+  }
+}
+
+.euiFormControlLayoutRange__child--noStyle {
+  // sass-lint:disable-block no-important
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.euiFormControlLayoutRange__child--centered {
+  text-align: center;
+}
+
+.euiFormControlLayoutRange__delimeter {
+  // sass-lint:disable-block no-important
+  line-height: 1 !important;
+  flex: 0 0 auto;
+  padding-left: $euiFormControlPadding / 2;
+  padding-right: $euiFormControlPadding / 2;
+}
