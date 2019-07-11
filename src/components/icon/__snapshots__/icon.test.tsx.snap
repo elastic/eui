@@ -3447,6 +3447,34 @@ exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoCode is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+  >
+    <path
+      class="euiIcon__fillNegative"
+      d="M9.75 12L16 32h10l-3.4-10.88A13 13 0 0 0 10.19 12h-.44z"
+    />
+    <path
+      d="M25.725 11.93A17 17 0 0 0 9.5 0H6l3.75 12h.44a13 13 0 0 1 12.41 9.12L26 32h6l-6.275-20.07z"
+      fill="#22A7F3"
+    />
+    <path
+      d="M7.91 16.175L0 32h12.855z"
+      fill="#0377CA"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type logoCodesandbox is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4079,6 +4107,35 @@ exports[`EuiIcon props type logoKubernetes is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoLogging is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fill-rule="evenodd"
+  >
+    <path
+      d="M2 10v13a9 9 0 0 1 9 9h13c0-12.15-9.85-22-22-22"
+      fill="#0080D5"
+    />
+    <path
+      class="euiIcon__fillNegative"
+      d="M14 13.565V32h10c0-7.722-3.981-14.51-10-18.436"
+    />
+    <path
+      d="M14 0v10.226C21.666 14.468 26.869 22.636 26.869 32H30V16c0-8.837-7.163-16-16-16"
+      fill="#00BFB3"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type logoLogstash is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4634,6 +4691,35 @@ exports[`EuiIcon props type logoRedis is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoSecurity is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fill-rule="evenodd"
+  >
+    <path
+      d="M29 27.793a2.986 2.986 0 0 1-2.215 2.896C24.584 31.268 20.842 32 16 32c-4.842 0-8.584-.732-10.785-1.311A2.986 2.986 0 0 1 3 27.793V13h26v14.793z"
+      fill="#0080D5"
+    />
+    <path
+      d="M24 10H8V8a8 8 0 0 1 16 0v2z"
+      fill="#FEC514"
+    />
+    <path
+      class="euiIcon__fillNegative"
+      d="M24 18.793c0 .785-.453 1.499-1.169 1.82C21.521 21.201 19.16 22 16 22c-3.16 0-5.521-.799-6.831-1.387A1.988 1.988 0 0 1 8 18.793V13h16v5.793z"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type logoSiteSearch is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4776,46 +4862,6 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
     d="M0 4.51l12.977-1.768.006 12.518-12.971.074L0 4.51zm12.97 12.192l.011 12.529-12.97-1.784-.002-10.829 12.962.084zm1.574-14.19L31.751 0v15.1l-17.207.137V2.511zm17.21 14.308l-.003 15.033-17.207-2.429-.024-12.632 17.235.028z"
     fill="#00ADEF"
   />
-</svg>
-`;
-
-exports[`EuiIcon props type logoXpack is rendered 1`] = `
-<svg
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  focusable="false"
-  height="32"
-  viewBox="0 0 32 32"
-  width="32"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g
-    fill="none"
-  >
-    <path
-      d="M27.309 3.136l1.054 1.055a4.503 4.503 0 0 1 .008 6.36l-6.182 6.182-7.273-7.273 6.32-6.32a4.297 4.297 0 0 1 6.077 0l-.004-.004z"
-      fill="#FDD10D"
-    />
-    <path
-      d="M7.634 16.731l-6.24 6.235a4.411 4.411 0 0 0 0 6.24l1.04 1.04a4.411 4.411 0 0 0 6.24 0L14.91 24l-7.275-7.269z"
-      fill="#0479A1"
-    />
-    <path
-      d="M21.143 15.691L8.674 3.211a4.411 4.411 0 0 0-6.24 0l-1.04 1.04a4.411 4.411 0 0 0 0 6.24l6.24 6.24 1.04-1.04a8.823 8.823 0 0 1 12.469 0z"
-      fill="#17A8E0"
-    />
-    <path
-      class="euiIcon__fillNegative"
-      d="M21.143 15.691a8.823 8.823 0 0 0-12.474 0l-1.04 1.04L14.909 24l7.28-7.269-1.046-1.04z"
-    />
-    <path
-      d="M28.429 22.966l-4.16-4.16-7.28 7.28 4.154 4.16a4.411 4.411 0 0 0 6.24 0l1.04-1.04a4.411 4.411 0 0 0 .006-6.24z"
-      fill="#20BBB1"
-    />
-    <path
-      d="M14.913 24.006l7.277-7.277 2.08 2.081-7.276 7.277z"
-      fill="#009B8F"
-    />
-  </g>
 </svg>
 `;
 
