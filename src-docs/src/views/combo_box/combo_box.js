@@ -82,24 +82,15 @@ export default class extends Component {
   render() {
     const { selectedOptions } = this.state;
     return (
-      <div>
-        <div style={{
-          height: '200px',
-          overflowY: 'scroll'
-        }}>
-          <div style={{height: '50px'}}/>
-          <EuiComboBox
-            placeholder="Select or create options"
-            options={this.options}
-            selectedOptions={selectedOptions}
-            onChange={this.onChange}
-            onCreateOption={this.onCreateOption}
-            isClearable={true}
-            data-test-subj="demoComboBox"
-          />
-          <div style={{height: '500px'}}/>
-        </div>
-      </div>
+      <EuiComboBox
+        placeholder="Select or create options"
+        options={this.options}
+        selectedOptions={selectedOptions}
+        onChange={this.onChange}
+        onCreateOption={this.onCreateOption}
+        isClearable={true}
+        data-test-subj="demoComboBox"
+      />
     );
   }
 }
