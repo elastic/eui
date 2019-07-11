@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { findTestSubject, requiredProps, sleep } from '../../test';
 
 import { useInnerText, EuiInnerText } from './inner_text';
 import { EuiBadge } from '../badge';
 
 describe('useInnerText', () => {
-  test('provides a `ref`', () => {
+  test('provides a callback `ref`', () => {
     let ref;
     const App = () => {
       [ref] = useInnerText();
@@ -14,7 +15,7 @@ describe('useInnerText', () => {
     };
     mount(<App />);
 
-    expect(ref).toEqual(React.createRef());
+    expect(ref).toBeInstanceOf(Function);
   });
 
   test('provides the result of `innerText`', () => {
@@ -42,6 +43,75 @@ describe('useInnerText', () => {
 
     expect(innerText).toEqual(fallback);
   });
+
+  test('handles updated elements', async () => {
+    const timeout = 500;
+    const first = 'First';
+    const second = 'Second';
+    let innerText;
+    let ref;
+    const App = () => {
+      const [[thing, type], setThing] = useState([first, 'span']);
+      useEffect(() => {
+        setTimeout(() => {
+          act(() => setThing([second, 'div']));
+        }, timeout);
+      }, [setThing]);
+      [ref, innerText] = useInnerText();
+      return (
+        <div>
+          {React.createElement(
+            type,
+            {
+              ref,
+              title: innerText,
+            },
+            thing
+          )}
+        </div>
+      );
+    };
+    mount(<App />);
+
+    expect(innerText).toEqual(first);
+
+    await sleep(timeout + 10);
+
+    expect(innerText).toEqual(second);
+  });
+
+  // MutationObserver polyfill in use does not work with the useState hook.
+  // There is a docs example demonstrating the below case.
+  // test('handles updated content', async () => {
+  //   const timeout = 500;
+  //   const first = 'First';
+  //   const second = 'Second';
+  //   let innerText;
+  //   let ref;
+  //   const App = () => {
+  //     const [thing, setThing] = useState(first);
+  //     useEffect(() => {
+  //       setTimeout(() => {
+  //         act(() => setThing(second));
+  //       }, timeout);
+  //     }, [setThing]);
+  //     [ref, innerText] = useInnerText();
+  //     return (
+  //       <div>
+  //         <span ref={ref} title={innerText}>
+  //           {thing}
+  //         </span>
+  //       </div>
+  //     );
+  //   };
+  //   mount(<App />);
+  //
+  //   expect(innerText).toEqual(first);
+  //
+  //   await sleep(timeout + 40);
+  //
+  //   expect(innerText).toEqual(second);
+  // });
 });
 
 describe('EuiInnerText', () => {
@@ -80,8 +150,8 @@ describe('EuiInnerText', () => {
     const fallback = 'Fallback';
     const component = mount(
       <EuiInnerText {...requiredProps} fallback={fallback}>
-        {(ref, innerText) => (
-          <span data-ref={ref} title={innerText} data-test-subj="span">
+        {({}, innerText) => (
+          <span title={innerText} data-test-subj="span">
             {text}
           </span>
         )}
