@@ -76,11 +76,7 @@ export class EuiRange extends Component {
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
-    const classes = classNames(
-      'euiRange',
-      { 'euiRange--inputOnly': showInputOnly },
-      className
-    );
+    const classes = classNames('euiRange', className);
 
     const theInput = !!showInput ? (
       <EuiRangeInput
@@ -180,7 +176,9 @@ export class EuiRange extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         // zIndex={popoverZIndex}
-        className="euiRange__popover"
+        className={classNames('euiRange__popover', {
+          'euiRange__popover--fullWidth': fullWidth,
+        })}
         anchorClassName="euiRange__popoverAnchor"
         display="block"
         // panelClassName={panelClasses}

@@ -1,0 +1,6 @@
+@import '../mixins';
+
+// Specificity needed to override .euiPopover max-width
+.euiPopover.euiRange__popover {
+  @include euiFormControlSize(auto, $includeAlternates: true);
+}
