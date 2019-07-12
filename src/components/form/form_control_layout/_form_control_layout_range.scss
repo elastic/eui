@@ -14,6 +14,8 @@
 
   &[class*='--compressed'] input {
     height: $euiFormControlLayoutGroupInputCompressedHeight;
+    padding-top: 0; // Fixes IE
+    padding-bottom: 0; // Fixes IE
   }
 
   &[class*='--fullWidth'] input {
@@ -26,6 +28,7 @@
     position: static; // Overrider absolute
     padding-left: $euiFormControlPadding;
     padding-right: $euiFormControlPadding;
+    flex-shrink: 0; // Fixes IE
 
     &:not(.euiFormControlLayoutIcons--right) {
       order: -1;
