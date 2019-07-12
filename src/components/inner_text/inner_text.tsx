@@ -24,11 +24,11 @@ export function useInnerText(
   useEffect(() => {
     if (ref) {
       observer.disconnect();
+      updateInnerText(ref);
       observer.observe(ref, {
         characterData: true,
         subtree: true,
       });
-      updateInnerText(ref);
     }
   }, [ref]);
 
