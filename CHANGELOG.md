@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `12.3.0`.
+
+## [`12.3.0`](https://github.com/elastic/eui/tree/v12.3.0)
+
 - Added `logoSecurity`, `logoCode`, `logoMaps`, `logoUptime` and `logoLogging` to `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
 - Added a `column` direction option to `EuiFlexGrid` ([#2073](https://github.com/elastic/eui/pull/2073))
 - Updated `EuiSuperDatePicker`'s  commonly used date/times to display as columns. ([#2073](https://github.com/elastic/eui/pull/2073))
