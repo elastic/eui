@@ -1,3 +1,5 @@
+@import 'variables';
+@import 'form_control_layout/variables';
 
 @function euiFormControlGradient($color: $euiColorPrimary) {
   @return linear-gradient(to top,
@@ -44,11 +46,11 @@
     }
 
     &--inGroup:not(:read-only) {
-      height: $euiFormControlHeight - 2px; /* 2 */
+      height: $euiFormControlLayoutGroupInputHeight; /* 2 */
     }
 
     &--inGroup#{&}--compressed:not(:read-only) {
-      height: $euiFormControlCompressedHeight - 2px; /* 2 */
+      height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
     }
   }
 }

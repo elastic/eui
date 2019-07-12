@@ -28,7 +28,7 @@
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
     flex-shrink: 0;
-    height: $euiFormControlHeight - 2px; /* 1 */
+    height: $euiFormControlLayoutGroupInputHeight;
     line-height: $euiFontSize;
     border: none; // remove any border in case it exists
 
@@ -66,7 +66,7 @@
   &.euiFormControlLayout--compressed {
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
-      height: $euiFormControlCompressedHeight - 2px; /* 1 */
+      height: $euiFormControlLayoutGroupInputCompressedHeight;
 
       &.euiFormLabel,
       &.euiText {
@@ -77,7 +77,7 @@
   }
 
   > .euiFormControlLayout--compressed {
-    height: $euiFormControlCompressedHeight - 2px; /* 1 */
+    height: $euiFormControlLayoutGroupInputCompressedHeight;
   }
 
   //
