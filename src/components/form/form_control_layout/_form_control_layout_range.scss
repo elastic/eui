@@ -8,14 +8,28 @@
     align-items: center;
   }
 
-  .euiFormControlLayout,
   input {
-    height: $euiFormControlHeight - 2px;
+    height: $euiFormControlLayoutGroupInputHeight;
   }
 
-  .euiFormControlLayout--compressed,
-  .euiFormControlLayout--compressed input {
-    height: $euiFormControlCompressedHeight - 2px;
+  &[class*='--compressed'] input {
+    height: $euiFormControlLayoutGroupInputCompressedHeight;
+  }
+
+  &[class*='--fullWidth'] input {
+    max-width: none;
+  }
+
+  .euiFormControlLayoutIcons {
+    // Absolutely positioning the icons doesn't work because they
+    // overlay only one of controls making the layout unbalanced
+    position: static; // Overrider absolute
+    padding-left: $euiFormControlPadding;
+    padding-right: $euiFormControlPadding;
+
+    &:not(.euiFormControlLayoutIcons--right) {
+      order: -1;
+    }
   }
 }
 
@@ -31,6 +45,7 @@
 
 .euiFormControlLayoutRange__delimeter {
   // sass-lint:disable-block no-important
+  // Override EuiText line-height
   line-height: 1 !important;
   flex: 0 0 auto;
   padding-left: $euiFormControlPadding / 2;
