@@ -2,10 +2,10 @@
 
 exports[`renders EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout"
@@ -76,10 +76,10 @@ exports[`renders EuiColorPicker 1`] = `
 
 exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout"
@@ -150,10 +150,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
 
 exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout"
@@ -223,10 +223,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout"
@@ -296,10 +296,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -370,10 +370,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
 
 exports[`renders disabled EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout"
@@ -445,10 +445,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
 
 exports[`renders fullWidth EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -519,10 +519,10 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
 
 exports[`renders readOnly EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiColorPicker__popoverContainer"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
 >
   <div
-    class="euiPopover__anchor euiColorPicker__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--readOnly"
