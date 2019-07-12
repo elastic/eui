@@ -3,7 +3,6 @@
 exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
-  fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -44,7 +43,6 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
-  fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -85,7 +83,6 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
-  fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
     <span>
@@ -126,7 +123,6 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
-  fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
     <span>

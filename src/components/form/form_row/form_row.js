@@ -160,6 +160,7 @@ export class EuiFormRow extends Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       compressed: compressed,
+      fullWidth: fullWidth,
       ...optionalProps,
     });
 
@@ -232,7 +233,6 @@ EuiFormRow.propTypes = {
 
 EuiFormRow.defaultProps = {
   hasEmptyLabelSpace: false,
-  fullWidth: false,
   describedByIds: [],
   labelType: 'label',
 };
