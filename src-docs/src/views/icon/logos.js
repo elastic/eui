@@ -35,9 +35,11 @@ const iconTypes = [
   'logoKibana',
   'logoLogging',
   'logoLogstash',
+  'logoMaps',
   'logoMetrics',
   'logoSecurity',
   'logoSiteSearch',
+  'logoUptime',
 ].sort();
 
 export default () => (
