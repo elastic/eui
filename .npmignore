@@ -5,7 +5,6 @@ tmp/
 wiki/
 generator-eui/
 test/
-packages/
 src-docs/
 src-framer/
 packages/react-datepicker
@@ -17,7 +16,7 @@ types/
 # ignore everything in `scripts` except postinstall.js
 scripts/!(postinstall.js)
 
-src/!(*.scss)
+src/**/*.!(scss)
 
 .DS_Store
 .eslintcache
