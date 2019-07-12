@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import range from 'lodash/range';
 
 import { isEvenlyDivisibleBy } from '../../../services';
-import { EuiRangeLevels, LEVEL_COLORS } from './range_levels';
-import { EuiRangeTicks } from './range_ticks';
+import { EuiRangeLevels, EuiRangeLevel, LEVEL_COLORS } from './range_levels';
+import { EuiRangeTicks, EuiRangeTick } from './range_ticks';
 
 export { LEVEL_COLORS };
 
-export class EuiRangeTrack extends Component {
+export interface EuiRangeTrackProps {
+  min: number;
+  max: number;
+  step?: number;
+  value?: number | number[] | string | string[];
+  disabled?: boolean;
+  showTicks?: boolean;
+  tickInterval?: number;
+  ticks?: EuiRangeTick[];
+  onChange?: () => void;
+  levels?: EuiRangeLevel[];
+}
+
+export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
   validateValueIsInStep = value => {
     if (value < this.props.min) {
       throw new Error(
@@ -101,7 +113,7 @@ export class EuiRangeTrack extends Component {
     this.validateValueIsInStep(max);
 
     let tickSequence;
-    const inputWrapperStyle = {};
+    const inputWrapperStyle: { marginLeft?: string; marginRight?: string } = {};
     if (showTicks) {
       tickSequence = this.calculateTicks(min, max, step, tickInterval, ticks);
 
@@ -151,31 +163,31 @@ export class EuiRangeTrack extends Component {
   }
 }
 
-EuiRangeTrack.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    ),
-  ]),
-  showTicks: PropTypes.bool,
-  tickInterval: PropTypes.number,
-  ticks: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.number.isRequired,
-      label: PropTypes.node.isRequired,
-    })
-  ),
-  onChange: PropTypes.func,
-  levels: PropTypes.arrayOf(
-    PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-      color: PropTypes.oneOf(LEVEL_COLORS),
-    })
-  ),
-};
+// EuiRangeTrack.propTypes = {
+//   min: PropTypes.number.isRequired,
+//   max: PropTypes.number.isRequired,
+//   step: PropTypes.number,
+//   value: PropTypes.oneOfType([
+//     PropTypes.number,
+//     PropTypes.string,
+//     PropTypes.arrayOf(
+//       PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+//     ),
+//   ]),
+//   showTicks: PropTypes.bool,
+//   tickInterval: PropTypes.number,
+//   ticks: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       value: PropTypes.number.isRequired,
+//       label: PropTypes.node.isRequired,
+//     })
+//   ),
+//   onChange: PropTypes.func,
+//   levels: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       min: PropTypes.number,
+//       max: PropTypes.number,
+//       color: PropTypes.oneOf(LEVEL_COLORS),
+//     })
+//   ),
+// };
