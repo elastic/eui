@@ -108,7 +108,7 @@ export class EuiComboBoxOptionsList extends Component {
     if (this.list && this.list.contains(e.target) === false) {
       this.props.onCloseList();
     }
-  }
+  };
 
   listRef = node => {
     this.props.listRef(node);
