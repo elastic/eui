@@ -15,6 +15,7 @@
 - Removed time from default `dateFormat` of `EuiDatePicker` ([#1820](https://github.com/elastic/eui/pull/1820))
 - Fixed `EuiPopover` from catching and preventing propagation of keydown events when closed ([#2089](https://github.com/elastic/eui/pull/2089))
 - Fixed padding sizes between `EuiModal` header, body, and footer ([#2088](https://github.com/elastic/eui/pull/2088))
+- Fixed placeholder text color for more browsers ([#2113](https://github.com/elastic/eui/pull/2113))
 
 **Deprecations**
 
