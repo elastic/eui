@@ -3447,6 +3447,30 @@ exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoCode is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    class="euiIcon__fillNegative"
+    d="M9.75 12L16 32h10l-3.4-10.88A13 13 0 0 0 10.19 12h-.44z"
+  />
+  <path
+    d="M25.725 11.93A17 17 0 0 0 9.5 0H6l3.75 12h.44a13 13 0 0 1 12.41 9.12L26 32h6l-6.275-20.07z"
+    fill="#22A7F3"
+  />
+  <path
+    d="M7.91 16.175L0 32h12.855z"
+    fill="#0377CA"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoCodesandbox is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4079,6 +4103,30 @@ exports[`EuiIcon props type logoKubernetes is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoLogging is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M0 10v13a9 9 0 0 1 9 9h13c0-12.15-9.85-22-22-22"
+    fill="#0080D5"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M12 13.565V32h10c0-7.722-3.981-14.51-10-18.436"
+  />
+  <path
+    d="M12 0v10.226C19.666 14.468 24.869 22.636 24.869 32H28V16c0-8.837-7.163-16-16-16"
+    fill="#00BFB3"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoLogstash is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4099,6 +4147,30 @@ exports[`EuiIcon props type logoLogstash is rendered 1`] = `
   <path
     class="euiIcon__fillNegative"
     d="M3 20c0 6.627 5.373 12 12 12h1V20H3z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type logoMaps is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M25.5 9.5c0 6.65-9.5 11.425-9.5 11.425S6.5 16.15 6.5 9.5A9.5 9.5 0 0 1 16 0a9.5 9.5 0 0 1 9.5 9.5"
+    fill="#22A7F3"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M16 20.925s4.326-2.183 7.141-5.645l-2.505-1.878a7.725 7.725 0 0 0-9.272 0L8.859 15.28C11.674 18.742 16 20.925 16 20.925"
+  />
+  <path
+    d="M25.53 17.073a21.124 21.124 0 0 1-2.834 2.916c-2.62 2.235-5.239 3.561-5.349 3.616L16 24.282l-1.348-.677c-.109-.055-2.728-1.381-5.349-3.616a21.182 21.182 0 0 1-2.834-2.916L0 21.925l11.364 8.523a7.724 7.724 0 0 0 9.271 0L32 21.925l-6.47-4.852z"
+    fill="#FA744E"
   />
 </svg>
 `;
@@ -4634,6 +4706,30 @@ exports[`EuiIcon props type logoRedis is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoSecurity is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M26 27.793a2.986 2.986 0 0 1-2.215 2.896C21.584 31.268 17.842 32 13 32c-4.842 0-8.584-.732-10.785-1.311A2.986 2.986 0 0 1 0 27.793V13h26v14.793z"
+    fill="#0080D5"
+  />
+  <path
+    d="M21 10H5V8a8 8 0 0 1 16 0v2z"
+    fill="#FEC514"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M21 18.793c0 .785-.453 1.499-1.169 1.82C18.521 21.201 16.16 22 13 22c-3.16 0-5.521-.799-6.831-1.387A1.988 1.988 0 0 1 5 18.793V13h16v5.793z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoSiteSearch is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4735,6 +4831,30 @@ exports[`EuiIcon props type logoSlack is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoUptime is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M19 15c0 7.062-4.888 12.969-11.46 14.563A15.914 15.914 0 0 0 16 32c8.836 0 16-7.163 16-16v-3l-6.5-6-6.5 6v2z"
+    fill="#3EBEB0"
+  />
+  <path
+    d="M6.833 26.646a11.954 11.954 0 0 0 8.544-7.834A12.43 12.43 0 0 1 13 11.5V.292C5.6 1.696 0 8.19 0 16.002c0 4.358 1.75 8.306 4.577 11.192l2.256-.547z"
+    fill="#07C"
+  />
+  <path
+    class="euiIcon__fillNegative"
+    d="M30.362 23.02c-1.494.63-3.137.98-4.861.98a12.443 12.443 0 0 1-7.852-2.78 15.042 15.042 0 0 1-10.11 8.343A15.91 15.91 0 0 0 16.002 32c6.314 0 11.758-3.669 14.36-8.98"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type logoWebhook is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -4776,46 +4896,6 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
     d="M0 4.51l12.977-1.768.006 12.518-12.971.074L0 4.51zm12.97 12.192l.011 12.529-12.97-1.784-.002-10.829 12.962.084zm1.574-14.19L31.751 0v15.1l-17.207.137V2.511zm17.21 14.308l-.003 15.033-17.207-2.429-.024-12.632 17.235.028z"
     fill="#00ADEF"
   />
-</svg>
-`;
-
-exports[`EuiIcon props type logoXpack is rendered 1`] = `
-<svg
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  focusable="false"
-  height="32"
-  viewBox="0 0 32 32"
-  width="32"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g
-    fill="none"
-  >
-    <path
-      d="M27.309 3.136l1.054 1.055a4.503 4.503 0 0 1 .008 6.36l-6.182 6.182-7.273-7.273 6.32-6.32a4.297 4.297 0 0 1 6.077 0l-.004-.004z"
-      fill="#FDD10D"
-    />
-    <path
-      d="M7.634 16.731l-6.24 6.235a4.411 4.411 0 0 0 0 6.24l1.04 1.04a4.411 4.411 0 0 0 6.24 0L14.91 24l-7.275-7.269z"
-      fill="#0479A1"
-    />
-    <path
-      d="M21.143 15.691L8.674 3.211a4.411 4.411 0 0 0-6.24 0l-1.04 1.04a4.411 4.411 0 0 0 0 6.24l6.24 6.24 1.04-1.04a8.823 8.823 0 0 1 12.469 0z"
-      fill="#17A8E0"
-    />
-    <path
-      class="euiIcon__fillNegative"
-      d="M21.143 15.691a8.823 8.823 0 0 0-12.474 0l-1.04 1.04L14.909 24l7.28-7.269-1.046-1.04z"
-    />
-    <path
-      d="M28.429 22.966l-4.16-4.16-7.28 7.28 4.154 4.16a4.411 4.411 0 0 0 6.24 0l1.04-1.04a4.411 4.411 0 0 0 .006-6.24z"
-      fill="#20BBB1"
-    />
-    <path
-      d="M14.913 24.006l7.277-7.277 2.08 2.081-7.276 7.277z"
-      fill="#009B8F"
-    />
-  </g>
 </svg>
 `;
 
@@ -5582,11 +5662,11 @@ exports[`EuiIcon props type securityApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M16 32l-.36-.14A21.07 21.07 0 0 1 2 12.07V5.44L16 .06l14 5.38v6.63a21.07 21.07 0 0 1-13.64 19.78L16 32zM4 6.82v5.25a19.08 19.08 0 0 0 12 17.77 19.08 19.08 0 0 0 12-17.77V6.82L16 2.2 4 6.82z"
+    d="M14 32l-.36-.14A21.07 21.07 0 0 1 0 12.07V5.44L14 .06l14 5.38v6.63a21.07 21.07 0 0 1-13.64 19.78L14 32zM2 6.82v5.25a19.08 19.08 0 0 0 12 17.77 19.08 19.08 0 0 0 12-17.77V6.82L14 2.2 2 6.82z"
   />
   <path
     class="euiIcon__fillSecondary"
-    d="M11 17.83h2V23h-2zM13 10.18V7h-2v3.18a3 3 0 1 0 2 0zM12 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM19 7h2v5.17h-2zM23 17a3 3 0 1 0-4 2.82V23h2v-3.18A3 3 0 0 0 23 17zm-3 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+    d="M9 17.83h2V23H9zM11 10.18V7H9v3.18a3 3 0 1 0 2 0zM10 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM17 7h2v5.17h-2zM21 17a3 3 0 1 0-4 2.82V23h2v-3.18A3 3 0 0 0 21 17zm-3 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
   />
 </svg>
 `;
