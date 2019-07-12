@@ -47,12 +47,12 @@ export class EuiSuperDatePicker extends Component {
     isLoading: PropTypes.bool,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     start: PropTypes.string,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     end: PropTypes.string,
     /**
@@ -80,13 +80,13 @@ export class EuiSuperDatePicker extends Component {
 
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape),
     dateFormat: PropTypes.string,
     /**
      * 'start' and 'end' must be string as either datemath (e.g.: now, now-15m, now-15m/m) or
-     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.sssZ'
+     * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
      */
     recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape),
     /**
@@ -107,12 +107,12 @@ export class EuiSuperDatePicker extends Component {
     refreshInterval: 0,
     commonlyUsedRanges: [
       { start: 'now/d', end: 'now/d', label: 'Today' },
-      { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
       { start: 'now/w', end: 'now/w', label: 'This week' },
-      { start: 'now/w', end: 'now', label: 'Week to date' },
       { start: 'now/M', end: 'now/M', label: 'This month' },
-      { start: 'now/M', end: 'now', label: 'Month to date' },
       { start: 'now/y', end: 'now/y', label: 'This year' },
+      { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
+      { start: 'now/w', end: 'now', label: 'Week to date' },
+      { start: 'now/M', end: 'now', label: 'Month to date' },
       { start: 'now/y', end: 'now', label: 'Year to date' },
     ],
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',

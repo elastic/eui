@@ -119,6 +119,23 @@ exports[`EuiSelect props options are rendered 1`] = `
 </eui-form-control-layout>
 `;
 
+exports[`EuiSelect props readOnly is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  icon="[object Object]"
+  isloading="false"
+  readonly="true"
+>
+  <eui-validatable-control>
+    <select
+      class="euiSelect"
+      readonly=""
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
 exports[`EuiSelect props value option is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"

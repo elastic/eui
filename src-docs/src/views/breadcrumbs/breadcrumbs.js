@@ -44,11 +44,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiBreadcrumbs
-        breadcrumbs={breadcrumbs}
-        responsive={false}
-        truncate={false}
-      />
+      <EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate={false} />
       <EuiSpacer size="xs" />
 
       <EuiPageContentHeader>

@@ -71,6 +71,23 @@ exports[`EuiFieldNumber props isLoading is rendered 1`] = `
 </eui-form-control-layout>
 `;
 
+exports[`EuiFieldNumber props readOnly is rendered 1`] = `
+<eui-form-control-layout
+  compressed="false"
+  fullwidth="false"
+  isloading="false"
+  readonly="true"
+>
+  <eui-validatable-control>
+    <input
+      class="euiFieldNumber"
+      readonly=""
+      type="number"
+    />
+  </eui-validatable-control>
+</eui-form-control-layout>
+`;
+
 exports[`EuiFieldNumber props value no initial value 1`] = `
 <eui-form-control-layout
   compressed="false"

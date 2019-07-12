@@ -23,6 +23,42 @@ import { OverflowTest } from './overflow_test';
 const overflowTestSource = require('!!raw-loader!./overflow_test');
 const overflowTestHtml = renderToHtml(OverflowTest);
 
+const modalSnippet = `<EuiModal onClose={this.closeModal}>
+  <EuiModalHeader>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
+  </EuiModalHeader>
+
+  <EuiModalBody>
+    <!-- Modal body -->
+  </EuiModalBody>
+    
+  <EuiModalFooter>
+    <!-- Modal footer -->
+  </EuiModalFooter>
+</EuiModal>`;
+
+const confirmModalSnippet = [
+  `<EuiConfirmModal
+  title="Modal title goes here"
+  onCancel={this.closeModal}
+  onConfirm={this.closeModal}
+  cancelButtonText={cancelText}
+  confirmButtonText={confirmText}
+  defaultFocusedButton="confirm">
+  <!-- ConfirmModal content -->
+</EuiConfirmModal>`,
+  `<EuiConfirmModal
+  title="Do this destructive thing"
+  onCancel={this.closeDestroyModal}
+  onConfirm={this.closeDestroyModal}
+  cancelButtonText={cancelText}
+  confirmButtonText={confirmText}
+  buttonColor="danger"
+  defaultFocusedButton="confirm">
+  <!-- Dangerous ConfirmModal content -->
+</EuiConfirmModal>`,
+];
+
 export const ModalExample = {
   title: 'Modal',
   sections: [
@@ -44,6 +80,7 @@ export const ModalExample = {
         </p>
       ),
       props: { EuiModal, EuiOverlayMask },
+      snippet: modalSnippet,
       demo: <Modal />,
     },
     {
@@ -67,6 +104,7 @@ export const ModalExample = {
         </p>
       ),
       props: { EuiConfirmModal },
+      snippet: confirmModalSnippet,
       demo: <ConfirmModal />,
     },
     {

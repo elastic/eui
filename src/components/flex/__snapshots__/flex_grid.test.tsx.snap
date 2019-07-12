@@ -42,6 +42,18 @@ exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
 />
 `;
 
+exports[`EuiFlexGrid props direction column is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionColumn euiFlexGrid--responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props direction row is rendered 1`] = `
+<div
+  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+/>
+`;
+
 exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
 <div
   class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"

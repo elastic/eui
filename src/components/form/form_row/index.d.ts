@@ -1,6 +1,11 @@
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import {
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+  HTMLAttributes,
+} from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -29,7 +34,9 @@ declare module '@elastic/eui' {
   } & EuiFormRowCommonProps &
     HTMLAttributes<HTMLFieldSetElement>;
 
-  export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
+  export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps> & {
+    children: ReactElement;
+  };
 
   export const EuiFormRow: FunctionComponent<EuiFormRowProps>;
 }

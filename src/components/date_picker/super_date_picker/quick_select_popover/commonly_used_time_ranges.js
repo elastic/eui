@@ -35,7 +35,11 @@ export function EuiCommonlyUsedTimeRanges({ applyTime, commonlyUsedRanges }) {
       </EuiTitle>
       <EuiSpacer size="s" />
       <EuiText size="s" className="euiQuickSelectPopover__section">
-        <EuiFlexGrid gutterSize="s" columns={2} responsive={false}>
+        <EuiFlexGrid
+          gutterSize="s"
+          columns={2}
+          direction="column"
+          responsive={false}>
           {links}
         </EuiFlexGrid>
       </EuiText>

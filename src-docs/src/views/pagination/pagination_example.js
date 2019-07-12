@@ -12,23 +12,71 @@ import {
 
 import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
-const manyPagesnHtml = renderToHtml(ManyPages);
+const manyPagesHtml = renderToHtml(ManyPages);
+const manyPagesSnippet = `<EuiPagination
+  pageCount={higherThan5Number}
+  activePage={this.state.activePage}
+  onPageClick={this.goToPage}
+/>
+`;
 
 import FewPages from './few_pages';
 const fewPagesSource = require('!!raw-loader!./few_pages');
-const fewPagesnHtml = renderToHtml(FewPages);
+const fewPagesHtml = renderToHtml(FewPages);
+const fewPagesSnippet = `<EuiPagination
+  pageCount={lowerThan5Number}
+  activePage={this.state.activePage}
+  onPageClick={this.goToPage}
+/>
+`;
 
 import CenteredPagination from './centered_pagination';
 const centeredPaginationSource = require('!!raw-loader!./centered_pagination');
 const centeredPaginationHtml = renderToHtml(CenteredPagination);
+const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
+  <EuiFlexItem grow={false}>
+    <EuiPagination
+      pageCount={pageCount}
+      activePage={this.state.activePage}
+      onPageClick={this.goToPage}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
 
 import CustomizablePagination from './customizable_pagination';
 const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
 const customizablePaginationHtml = renderToHtml(CustomizablePagination);
+const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+  <EuiFlexItem grow={false}>
+    <EuiPopover
+      button={button}
+      isOpen={this.state.isPopoverOpen}
+      closePopover={this.closePopover}>
+      <EuiContextMenuPanel items={items} />
+    </EuiPopover>
+  </EuiFlexItem>
+
+  <EuiFlexItem grow={false}>
+    <EuiPagination
+      pageCount={pageCount}
+      activePage={this.state.activePage}
+      onPageClick={this.goToPage}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
 
 import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
 const compressedHtml = renderToHtml(Compressed);
+const compressedSnippet = `<EuiPagination
+  pageCount={pageCount}
+  activePage={this.state.activePage}
+  onPageClick={this.goToPage}
+  compressed
+/>
+`;
 
 export const PaginationExample = {
   title: 'Pagination',
@@ -42,7 +90,7 @@ export const PaginationExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: manyPagesnHtml,
+          code: manyPagesHtml,
         },
       ],
       text: (
@@ -52,6 +100,7 @@ export const PaginationExample = {
         </p>
       ),
       props: { EuiPagination, EuiPaginationButton },
+      snippet: manyPagesSnippet,
       demo: <ManyPages />,
     },
     {
@@ -63,7 +112,7 @@ export const PaginationExample = {
         },
         {
           type: GuideSectionTypes.HTML,
-          code: fewPagesnHtml,
+          code: fewPagesHtml,
         },
       ],
       text: (
@@ -72,6 +121,7 @@ export const PaginationExample = {
           visible pages.
         </p>
       ),
+      snippet: fewPagesSnippet,
       demo: <FewPages />,
     },
     {
@@ -92,6 +142,7 @@ export const PaginationExample = {
           layout.
         </p>
       ),
+      snippet: centeredPaginationSnippet,
       demo: <CenteredPagination />,
     },
     {
@@ -112,6 +163,7 @@ export const PaginationExample = {
           footprint.
         </p>
       ),
+      snippet: compressedSnippet,
       demo: <Compressed />,
     },
     {
@@ -132,6 +184,7 @@ export const PaginationExample = {
           layout, commonly used with Tables.
         </p>
       ),
+      snippet: customizablePaginationSnippet,
       demo: <CustomizablePagination />,
     },
   ],

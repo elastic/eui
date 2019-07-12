@@ -1,4 +1,4 @@
-import React, { cloneElement, Component } from 'react';
+import React, { cloneElement, Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -155,7 +155,7 @@ export class EuiFormRow extends Component {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    let field = cloneElement(children, {
+    let field = cloneElement(Children.only(children), {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
@@ -186,7 +186,7 @@ export class EuiFormRow extends Component {
 }
 
 EuiFormRow.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
   className: PropTypes.string,
   label: PropTypes.node,
   /**

@@ -1,16 +1,16 @@
 import React, { HTMLAttributes, Component, ReactNode } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 
-export type EuiToolTipPopoverProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+type Props = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     positionToolTip: (rect: ClientRect | DOMRect) => void;
     children?: ReactNode;
     title?: ReactNode;
     popoverRef?: (ref: HTMLDivElement) => void;
   };
 
-export class EuiToolTipPopover extends Component<EuiToolTipPopoverProps> {
+export class EuiToolTipPopover extends Component<Props> {
   private popover: HTMLDivElement | undefined;
 
   updateDimensions = () => {

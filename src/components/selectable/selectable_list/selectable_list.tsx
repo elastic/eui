@@ -116,7 +116,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       | false
       | number
       | undefined;
-    let isOverflowing = false;
 
     // If calculatedHeight is still undefined, then calculate it
     if (calculatedHeight === undefined) {
@@ -127,7 +126,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       if (numVisibleMoreThanMax) {
         // Show only half of the last one to indicate there's more to scroll to
         calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
-        isOverflowing = true;
       } else {
         calculatedHeight = numVisibleOptions * rowHeight;
       }
@@ -138,7 +136,6 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
       {
         'euiSelectableList-fullHeight': heightIsFull,
         'euiSelectableList-bordered': bordered,
-        'euiSelectableList-overflowing': heightIsFull || isOverflowing,
       },
       className
     );
@@ -149,6 +146,7 @@ export class EuiSelectableList extends Component<EuiSelectableListProps> {
           {({ width, height }) => (
             <List
               id={this.rootId('listbox')}
+              className="euiSelectableList__list"
               role="listbox"
               width={width}
               height={calculatedHeight || height}

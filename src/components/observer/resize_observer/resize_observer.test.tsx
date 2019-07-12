@@ -1,12 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { mount } from 'enzyme';
 import { EuiResizeObserver } from './resize_observer';
-
-async function sleep(duration: number) {
-  return new Promise(resolve => {
-    setTimeout(resolve, duration);
-  });
-}
+import { sleep } from '../../../test';
 
 export async function waitforResizeObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the ResizeObserver polyfill

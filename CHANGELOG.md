@@ -1,15 +1,87 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Attach `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
-- Convert observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+- Added `logoSecurity`, `logoCode`, `logoMaps`, `logoUptime` and `logoLogging` to `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
+- Added a `column` direction option to `EuiFlexGrid` ([#2073](https://github.com/elastic/eui/pull/2073))
+- Updated `EuiSuperDatePicker`'s  commonly used date/times to display as columns. ([#2073](https://github.com/elastic/eui/pull/2073))
+- Added TypeScript definition for `EuiFormControlLayout` ([#2086](https://github.com/elastic/eui/pull/2086))
+- Changed SASS mixin `euiOverflowShadow()` to use `mask-image` instead of `box-shadow` ([#2088](https://github.com/elastic/eui/pull/2088))
+- Added SASS mixin and CSS utility `euiYScrollWithShadows` ([#2088](https://github.com/elastic/eui/pull/2088))
 
 **Bug fixes**
 
+- Widened `EuiComboBox`'s `options[].value` / `EuiComboBoxOptionProps.value` TypeScript definition ([#2080](https://github.com/elastic/eui/pull/2080))
+- Added TS defs for `EuiComboBox`'s props spreading onto a `div` ([#2080](https://github.com/elastic/eui/pull/2080))
+- Fixed responsive display of inline `EuiDatePicker` ([#1820](https://github.com/elastic/eui/pull/1820))
+- Removed time from default `dateFormat` of `EuiDatePicker` ([#1820](https://github.com/elastic/eui/pull/1820))
+- Fixed `EuiPopover` from catching and preventing propagation of keydown events when closed ([#2089](https://github.com/elastic/eui/pull/2089))
+- Fixed padding sizes between `EuiModal` header, body, and footer ([#2088](https://github.com/elastic/eui/pull/2088))
+
+**Deprecations**
+
+- Removed `logoXpack`from `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
+
+## [`12.2.0`](https://github.com/elastic/eui/tree/v12.2.0)
+
+- Made `aria-label` attribute equal to `title` of the the selection checkbox in table items (for each row) in `EuiBasicTable` ([#2043](https://github.com/elastic/eui/pull/2043))
+- Updated `appApm` and `logoAPM` with new updated icons ([#2084](https://github.com/elastic/eui/pull/2084))
+
+**Bug fixes**
+
+- Added requirement that `EuiFormRow` has exactly one child element [#2054](https://github.com/elastic/eui/pull/2054)
+
+## [`12.1.0`](https://github.com/elastic/eui/tree/v12.1.0)
+
+- Changed `EuiNavDrawerFlyout` title from `h5` to `div` ([#2040](https://github.com/elastic/eui/pull/2040))
+- Converted `EuiGlobalToastList` into ARIA live region by adding `role="region"` attribute to add NVDA/JAWS support ([#2055](https://github.com/elastic/eui/pull/2055))
+- Added `magnifyWithMinus` and `magnifyWithPlus` glyphs to `EuiIcon` ([2056](https://github.com/elastic/eui/pull/2056))
+- Added a fully black (no matter the theme) color SASS variable `$euiColorInk` ([2060](https://github.com/elastic/eui/pull/2060))
+- Added `autoFocus` prop to `EuiTabbedContent` ([2062](https://github.com/elastic/eui/pull/2062))
+- Changed `popout` glyph in `EuiIcon` to look more like external link ([2064](https://github.com/elastic/eui/pull/2064))
+- Tweaked `SuperDatePicker` to make the start/end date selection more obvious ([#2049](https://github.com/elastic/eui/pull/2049))
+- Added `toSentenceCase` string service ([#2049](https://github.com/elastic/eui/pull/2049))
+- Pass `EuiSuperSelect`'s `popoverClassName` to the popover's panel ([#2068](https://github.com/elastic/eui/pull/2068))
+- Added `editorItemAlignLeft`, `editorItemAlignCenter`, `editorItemRight`, `editorItemAlignTop`, `editorItemAlignMiddle`, `editorItemAlignBottom`, `editorDistributeHorizontal`, `editorDistributeVertical`, `editorPositionTopLeft`, `editorPositionTopRight`, `editorPositionBottomRight`, and `editorPositionBottomLeft` glyphs to `EuiIcon` ([2070](https://github.com/elastic/eui/pull/2070))
+- Added missing TS definitions for `EuiRange` ([#2072](https://github.com/elastic/eui/pull/2072))
+
+**Bug fixes**
+
+- Fixed proptype for `EuiCopy`'s `children` ([#2048](https://github.com/elastic/eui/pull/2048))
+- Fixed `EuiInMemoryTable` to allow sorting on computed columns ([#2044](https://github.com/elastic/eui/pull/2044))
+- Fixed TypeScript `Toast` member export ([#2052](https://github.com/elastic/eui/pull/2052))
+- Fixed style of readOnly input groups via `EuiFormControlLayout` and `prepend`/`append` ([#2057](https://github.com/elastic/eui/pull/2057))
+- Removed TS types from ES exports when the exported name differs from the imported one ([#2069](https://github.com/elastic/eui/pull/2069))
+- Fixed TypeScript definitions and type exports for `EuiBadge` and `EuiCopy` ([#2052](https://github.com/elastic/eui/pull/2052))
+
+## [`12.0.0`](https://github.com/elastic/eui/tree/v12.0.0)
+
+- Attached `noreferrer` also to links without `target="_blank"` ([#2008](https://github.com/elastic/eui/pull/2008))
+- Converted observer utility components to TypeScript ([#2009](https://github.com/elastic/eui/pull/2009))
+- Converted tool tip components to TypeScript ([#2013](https://github.com/elastic/eui/pull/2013))
+- Converted `EuiCopy` to TypeScript ([#2016](https://github.com/elastic/eui/pull/2016))
+- Converted badge and token components to TypeScript ([#2026](https://github.com/elastic/eui/pull/2026))
+- Added `magnet` glyph to `EuiIcon` ([2010](https://github.com/elastic/eui/pull/2010))
+- Changed `logoAWS` SVG in `EuiIcon` to work better in dark mode ([#2036](https://github.com/elastic/eui/pull/2036))
+- Converted toast components to TypeScript ([#2032](https://github.com/elastic/eui/pull/2032))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` scrolling in Safari ([#2033](https://github.com/elastic/eui/pull/2033))
 - Fixed `EuiCallOut` header icon alignment ([#2006](https://github.com/elastic/eui/pull/2006))
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
 
 **Breaking changes**
 
 - Removed explicit dependency on `core-js`, but a global polyfill like `core-js@3` is still required ([#1982](https://github.com/elastic/eui/pull/1982))
+
+## [`11.3.2`](https://github.com/elastic/eui/tree/v11.3.2)
+
+**Note: this release is a backport containing changes originally made in `12.0.0`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` sort value persistence through lifecycle updates ([#2035](https://github.com/elastic/eui/pull/2035))
+- Fixed `EuiColorPicker` positioning and keyboard navigation in certain portal contexts ([#2038](https://github.com/elastic/eui/pull/2038))
 
 ## [`11.3.1`](https://github.com/elastic/eui/tree/v11.3.1)
 

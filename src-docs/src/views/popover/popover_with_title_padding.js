@@ -84,7 +84,6 @@ export default class extends Component {
             isOpen={this.state.isPopoverOpen2}
             closePopover={this.closePopover2.bind(this)}
             anchorPosition="upCenter"
-            withTitle
             panelPaddingSize="s">
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
@@ -109,8 +108,7 @@ export default class extends Component {
             }
             isOpen={this.state.isPopoverOpen1}
             closePopover={this.closePopover1.bind(this)}
-            anchorPosition="upCenter"
-            withTitle>
+            anchorPosition="upCenter">
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
               <EuiText>
@@ -135,7 +133,6 @@ export default class extends Component {
             isOpen={this.state.isPopoverOpen4}
             closePopover={this.closePopover4.bind(this)}
             anchorPosition="upCenter"
-            withTitle
             panelPaddingSize="l">
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <div style={{ width: '300px' }}>
@@ -161,7 +158,6 @@ export default class extends Component {
             isOpen={this.state.isPopoverOpen3}
             closePopover={this.closePopover3.bind(this)}
             anchorPosition="upCenter"
-            withTitle
             panelPaddingSize="none">
             <EuiPopoverTitle>As the title, I keep my padding</EuiPopoverTitle>
             <div style={{ width: '300px' }}>

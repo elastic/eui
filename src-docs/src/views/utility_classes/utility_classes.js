@@ -6,6 +6,7 @@ import {
   EuiSpacer,
   EuiIcon,
   EuiTextColor,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 const longLink =
@@ -189,6 +190,43 @@ export default () => (
     <EuiCode className="eui-fullWidth">
       .eui-fullWidth (similar to eui-displayBlock but adds 100% width)
     </EuiCode>
+
+    <EuiSpacer />
+
+    <h4>Overflows</h4>
+
+    <div className="guideSass__overflowShadows">
+      <EuiText className="guideSass__overflowShadowText" size="s">
+        <p>
+          It requires a wrapping element to control the height with{' '}
+          <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
+          utility class <EuiCode>.euiYScrollWithShadows</EuiCode>.
+        </p>
+        <p>
+          <b>Example:</b>
+        </p>
+        <EuiCodeBlock language="html" isCopyable paddingSize="s">
+          {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
+  <BodyScroll className="euiYScrollWithShadows" />
+</BodyContent>`}
+        </EuiCodeBlock>
+        <p>
+          Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
+          aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus dolor
+          qui soluta cum id tempore ea illum. Facilis voluptatem aut aut ut
+          similique ut. Sed repellendus commodi iure officiis exercitationem
+          praesentium dolor. Ratione non ut nulla accusamus et. Optio laboriosam
+          id incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
+          voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
+          tempore sit placeat maxime laudantium. Mollitia tempore minus qui
+          autem modi adipisci ad. Iste reprehenderit accusamus voluptatem velit.
+          Quidem delectus eos veritatis et vitae et nisi. Doloribus ut corrupti
+          voluptates qui exercitationem dolores.
+        </p>
+      </EuiText>
+    </div>
+
+    <EuiSpacer />
 
     <h4>Responsive</h4>
 

@@ -11,6 +11,9 @@ import { EuiValidatableControl } from '../form/validatable_control';
 
 import { EuiErrorBoundary } from '../error_boundary';
 
+export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
+export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
+
 export class EuiDatePicker extends Component {
   render() {
     const {
@@ -75,6 +78,13 @@ export class EuiDatePicker extends Component {
       optionalIcon = 'calendar';
     }
 
+    // In case the consumer did not alter the default date format but wants
+    // to add the time select, we append the default time format
+    let fullDateFormat = dateFormat;
+    if (showTimeSelect && dateFormat === euiDatePickerDefaultDateFormat) {
+      fullDateFormat = `${dateFormat} ${timeFormat}`;
+    }
+
     // EuiDatePicker only supports a subset of props from react-datepicker. Using any of
     // the unsupported props below will spit out an error.
     const PropNotSupported = () => {
@@ -124,7 +134,7 @@ export class EuiDatePicker extends Component {
                 calendarClassName={calendarClassName}
                 className={datePickerClasses}
                 customInput={customInput}
-                dateFormat={dateFormat}
+                dateFormat={fullDateFormat}
                 dayClassName={dayClassName}
                 disabled={disabled}
                 excludeDates={excludeDates}
@@ -280,11 +290,12 @@ EuiDatePicker.propTypes = {
 
 EuiDatePicker.defaultProps = {
   adjustDateOnChange: true,
-  dateFormat: 'MM/DD/YYYY hh:mm A',
+  dateFormat: euiDatePickerDefaultDateFormat,
   fullWidth: false,
   isLoading: false,
   shadow: true,
   shouldCloseOnSelect: true,
   showIcon: true,
-  timeFormat: 'hh:mm A',
+  showTimeSelect: false,
+  timeFormat: euiDatePickerDefaultTimeFormat,
 };

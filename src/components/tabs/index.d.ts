@@ -29,6 +29,8 @@ declare module '@elastic/eui' {
     content: ReactNode;
   }
 
+  type TABBED_CONTENT_AUTOFOCUS = 'initial' | 'selected';
+
   interface EuiTabbedContentProps {
     tabs: EuiTabbedContentTab[];
     onTabClick?: (tab: EuiTabbedContentTab) => void;
@@ -37,6 +39,7 @@ declare module '@elastic/eui' {
     size?: TAB_SIZES;
     display?: TAB_DISPLAYS;
     expand?: boolean;
+    autoFocus?: TABBED_CONTENT_AUTOFOCUS;
   }
 
   export const EuiTab: FunctionComponent<

@@ -64,7 +64,7 @@ $rv-xy-plot-tooltip-padding: 7px 10px;
 
 .rv-xy-plot__series--line {
   fill: none;
-  stroke: #000;
+  stroke: $euiColorInk;
   stroke-width: 2px;
 }
 
