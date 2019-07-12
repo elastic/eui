@@ -362,7 +362,7 @@ export const PopoverExample = {
       demo: <PopoverFixed />,
     },
     {
-      title: 'Popover as display block',
+      title: 'Popover with block level display',
       source: [
         {
           type: GuideSectionTypes.JS,
