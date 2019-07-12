@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `12.3.1`.
+
+## [`12.3.1`](https://github.com/elastic/eui/tree/v12.3.1)
+
 **Bug fixes**
 
 - Restored missing scss and react-datepicker files to the npm-published packaged ([#2119](https://github.com/elastic/eui/pull/2119))
