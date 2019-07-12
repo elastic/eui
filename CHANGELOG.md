@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `12.3.1`.
+- Centered the square of the `popout` glyph in the artboard ([#2120](https://github.com/elastic/eui/pull/2120))
 
 ## [`12.3.1`](https://github.com/elastic/eui/tree/v12.3.1)
 
