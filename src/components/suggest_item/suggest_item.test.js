@@ -6,7 +6,7 @@ import { EuiSuggestItem } from './suggest_item';
 
 const TYPE = {
   iconType: 'search',
-  color: 'itemTint01',
+  color: 'tint1',
 };
 
 describe('EuiSuggestItem', () => {
@@ -19,7 +19,7 @@ describe('EuiSuggestItem', () => {
 
 describe('props', () => {
   const sampleItem = {
-    type: { iconType: 'kqlValue', color: 'itemTint02' },
+    type: { iconType: 'kqlValue', color: 'tint2' },
     label: 'Charles de Gaulle International Airport',
     description: 'This is the description',
   };

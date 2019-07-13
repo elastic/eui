@@ -11,10 +11,7 @@
     .euiSuggestItem__type--#{$name} {
       $backgroundColor: tintOrShade($color, 90%, 50%);
       background-color: $backgroundColor;
-
-      svg {
-        fill: makeHighContrastColor($color, $backgroundColor);
-      }
+      color: makeHighContrastColor($color, $backgroundColor);
 		}
 	}
 
@@ -40,7 +37,8 @@
   }
 
   .euiSuggestItem__label {
-    flex-basis: 30%;
+    flex-basis: 50%;
+    min-width: 50%;
     font-family: $euiCodeFontFamily;
     overflow: hidden;
     text-overflow: ellipsis;
