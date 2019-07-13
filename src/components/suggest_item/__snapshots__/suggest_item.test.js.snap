@@ -7,7 +7,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiSuggestItem__type euiSuggestItem__type--itemTint01"
+    class="euiSuggestItem__type euiSuggestItem__type--tint1"
   >
     <svg
       class="euiIcon euiIcon--medium euiIcon-isLoading"
@@ -32,7 +32,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
   class="euiSuggestItem"
 >
   <span
-    class="euiSuggestItem__type euiSuggestItem__type--itemTint02"
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <svg
       class="euiIcon euiIcon--medium euiIcon-isLoading"
@@ -57,7 +57,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
   class="euiSuggestItem"
 >
   <span
-    class="euiSuggestItem__type euiSuggestItem__type--itemTint02"
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <svg
       class="euiIcon euiIcon--medium euiIcon-isLoading"

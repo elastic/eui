@@ -4,13 +4,16 @@ import classNames from 'classnames';
 import { EuiIcon, IconPropType } from '../icon';
 
 const colorToClassNameMap = {
-  itemTint01: 'euiSuggestItem__type--itemTint01',
-  itemTint02: 'euiSuggestItem__type--itemTint02',
-  itemTint03: 'euiSuggestItem__type--itemTint03',
-  itemTint04: 'euiSuggestItem__type--itemTint04',
-  itemTint05: 'euiSuggestItem__type--itemTint05',
-  itemTint06: 'euiSuggestItem__type--itemTint06',
-  itemTint07: 'euiSuggestItem__type--itemTint07',
+  tint0: 'euiSuggestItem__type--tint0',
+  tint1: 'euiSuggestItem__type--tint1',
+  tint2: 'euiSuggestItem__type--tint2',
+  tint3: 'euiSuggestItem__type--tint3',
+  tint4: 'euiSuggestItem__type--tint4',
+  tint5: 'euiSuggestItem__type--tint5',
+  tint6: 'euiSuggestItem__type--tint6',
+  tint7: 'euiSuggestItem__type--tint7',
+  tint8: 'euiSuggestItem__type--tint8',
+  tint9: 'euiSuggestItem__type--tint9',
 };
 
 export const COLORS = Object.keys(colorToClassNameMap);
@@ -61,7 +64,7 @@ export const EuiSuggestItem = ({
 EuiSuggestItem.propTypes = {
   className: PropTypes.string,
   /**
-   * Takes 'iconType' for EuiIcon and 'color'. 'color' can be itemTint01 through itemTint07.
+   * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
   type: PropTypes.shape({
     iconType: IconPropType,
