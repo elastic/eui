@@ -80,38 +80,38 @@ describe('useInnerText', () => {
     expect(innerText).toEqual(second);
   });
 
-  // MutationObserver polyfill in use does not work with the useState hook.
-  // There is a docs example demonstrating the below case.
-  // test('handles updated content', async () => {
-  //   const timeout = 500;
-  //   const first = 'First';
-  //   const second = 'Second';
-  //   let innerText;
-  //   let ref;
-  //   const App = () => {
-  //     const [thing, setThing] = useState(first);
-  //     useEffect(() => {
-  //       setTimeout(() => {
-  //         act(() => setThing(second));
-  //       }, timeout);
-  //     }, [setThing]);
-  //     [ref, innerText] = useInnerText();
-  //     return (
-  //       <div>
-  //         <span ref={ref} title={innerText}>
-  //           {thing}
-  //         </span>
-  //       </div>
-  //     );
-  //   };
-  //   mount(<App />);
-  //
-  //   expect(innerText).toEqual(first);
-  //
-  //   await sleep(timeout + 40);
-  //
-  //   expect(innerText).toEqual(second);
-  // });
+  test('handles updated content', async () => {
+    const timeout = 500;
+    const first = 'First';
+    const second = 'Second';
+    let innerText;
+    let ref;
+    const App = () => {
+      const [thing, setThing] = useState(first);
+      useEffect(() => {
+        setTimeout(() => {
+          act(() => setThing(second));
+        }, timeout);
+      }, [setThing]);
+      [ref, innerText] = useInnerText();
+      return (
+        <div>
+          <span ref={ref} title={innerText}>
+            {thing}
+          </span>
+        </div>
+      );
+    };
+    mount(<App />);
+
+    expect(innerText).toEqual(first);
+
+    // MutationObserver polyfill institues a 30ms mutation timeout period
+    const mutationObserverPolyfillPeriod = 30;
+    await sleep(timeout + mutationObserverPolyfillPeriod + 10);
+
+    expect(innerText).toEqual(second);
+  });
 });
 
 describe('EuiInnerText', () => {
