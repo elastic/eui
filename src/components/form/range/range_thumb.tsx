@@ -38,11 +38,3 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
     />
   );
 };
-
-// EuiRangeThumb.propTypes = {
-//   min: PropTypes.number.isRequired,
-//   max: PropTypes.number.isRequired,
-//   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-//   showInput: PropTypes.bool,
-//   showTicks: PropTypes.bool,
-// };
