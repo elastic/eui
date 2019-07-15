@@ -46,6 +46,19 @@ export class FlyoutMaxWidth extends Component {
     let flyout;
 
     if (this.state.isFlyoutVisible) {
+      let maxWidthTitle;
+      switch (this.state.flyoutMaxWidth) {
+        case true:
+          maxWidthTitle = 'Default';
+          break;
+        case false:
+          maxWidthTitle = 'No';
+          break;
+        default:
+          maxWidthTitle = `${this.state.flyoutMaxWidth}px`;
+          break;
+      }
+
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
@@ -54,7 +67,7 @@ export class FlyoutMaxWidth extends Component {
           maxWidth={this.state.flyoutMaxWidth}>
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutMaxWidthTitle">448px wide flyout</h2>
+              <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
@@ -110,15 +123,16 @@ export class FlyoutMaxWidth extends Component {
           <strong>default max-width</strong>
         </EuiLink>
         <EuiSpacer size="s" />
-        <EuiLink color="secondary" onClick={() => this.showFlyout('s', 448)}>
-          Show <strong>small</strong> flyout with{' '}
-          <strong>larger custom max-width</strong>
-        </EuiLink>
-        <EuiSpacer size="s" />
         <EuiLink color="danger" onClick={() => this.showFlyout('s', 200)}>
           Show <strong>small</strong> flyout with{' '}
-          <strong>smaller custom max-width</strong> -- minWidth beats out except
-          for on small screens
+          <strong>smaller custom max-width</strong> -- minWidth wins except for
+          on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('s', 448)}>
+          Show <strong>small</strong> flyout with{' '}
+          <strong>larger custom max-width</strong> -- minWidth wins except for
+          on small screens
         </EuiLink>
 
         <EuiSpacer />
@@ -132,15 +146,15 @@ export class FlyoutMaxWidth extends Component {
           <strong>default max-width</strong>
         </EuiLink>
         <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('m', 448)}>
+          Show <strong>medium</strong> flyout with{' '}
+          <strong>smaller custom max-width</strong> -- minWidth wins and full
+          100vw wins on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
         <EuiLink color="secondary" onClick={() => this.showFlyout('m', 900)}>
           Show <strong>medium</strong> flyout with{' '}
           <strong>larger custom max-width</strong>
-        </EuiLink>
-        <EuiSpacer size="s" />
-        <EuiLink color="warning" onClick={() => this.showFlyout('m', 448)}>
-          Show <strong>medium</strong> flyout with{' '}
-          <strong>smaller custom max-width</strong> -- full 100vw wins out on
-          small screens
         </EuiLink>
 
         <EuiSpacer />
@@ -154,15 +168,15 @@ export class FlyoutMaxWidth extends Component {
           <strong>default max-width</strong>
         </EuiLink>
         <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('l', 448)}>
+          Show <strong>large</strong> flyout with{' '}
+          <strong>smaller custom max-width</strong> -- minWidth wins and full
+          100vw wins on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
         <EuiLink color="secondary" onClick={() => this.showFlyout('l', 1600)}>
           Show <strong>large</strong> flyout with{' '}
           <strong>larger custom max-width</strong>
-        </EuiLink>
-        <EuiSpacer size="s" />
-        <EuiLink color="warning" onClick={() => this.showFlyout('l', 448)}>
-          Show <strong>large</strong> flyout with{' '}
-          <strong>smaller custom max-width</strong> -- full 100vw wins out on
-          small screens
         </EuiLink>
 
         {flyout}

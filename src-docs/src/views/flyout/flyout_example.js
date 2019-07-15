@@ -217,7 +217,7 @@ export const FlyoutExample = {
       demo: <FlyoutLarge />,
     },
     {
-      title: 'maxWidth',
+      title: 'Max width',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -231,15 +231,20 @@ export const FlyoutExample = {
       text: (
         <Fragment>
           <p>
-            In this example, we set <EuiCode>maxWidth</EuiCode> to{' '}
-            <EuiCode>448px</EuiCode>, to set the width of the flyout at the
-            ideal width for a form.
+            By default, flyouts will continue to grow with the width of the
+            window. To stop this growth at an ideal width, set{' '}
+            <EuiCode>maxWidth</EuiCode> to <EuiCode>true</EuiCode>, or pass your
+            own custom size.
           </p>
-          <EuiCallOut title="Be sure to set the custom maxWidth value to a number larger than the minWidth otherwise the minWidth will supercede." />
+          <EuiCallOut
+            color="warning"
+            title="Note that there are some caveats to providing a maxWidth that is smaller than the minWidth."
+          />
         </Fragment>
       ),
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
+      props: { EuiFlyout },
     },
   ],
 };

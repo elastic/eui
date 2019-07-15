@@ -44,8 +44,7 @@ export class EuiFlyout extends Component {
       widthClassName = 'euiFlyout--maxWidth-default';
     } else if (maxWidth !== false) {
       const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      const minWidth = size !== 's' ? { minWidth: 0 } : undefined;
-      newStyle = { ...style, maxWidth: value, ...minWidth };
+      newStyle = { ...style, maxWidth: value };
     }
 
     const classes = classnames(
@@ -124,8 +123,8 @@ EuiFlyout.propTypes = {
    * Sets the max-width of the page,
    * set to `true` to use the default size,
    * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
+   * set to a `number` for a custom width in `px`,
+   * set to a `string` for a custom width in a custom measurement.
    */
   maxWidth: PropTypes.oneOfType([
     PropTypes.bool,
