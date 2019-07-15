@@ -47,6 +47,10 @@ import PopoverFixed from './popover_fixed';
 const popoverFixedSource = require('!!raw-loader!./popover_fixed');
 const popoverFixedHtml = renderToHtml(PopoverFixed);
 
+import PopoverBlock from './popover_block';
+const popoverBlockSource = require('!!raw-loader!./popover_block');
+const popoverBlockHtml = renderToHtml(PopoverBlock);
+
 const popOverSnippet = `<EuiPopover
   button={button}
   isOpen={this.state.isPopoverOpen}
@@ -112,6 +116,14 @@ const popoverFixedSnippet = `<EuiPopover
   closePopover={this.closePopover}
   repositionOnScroll={true}>
   <!-- Popover on a fixed element -->
+</EuiPopover>`;
+
+const popoverBlockSnippet = `<EuiPopover
+  button={button}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}
+  display="block">
+  <!-- Popover anchor is display block -->
 </EuiPopover>`;
 
 export const PopoverExample = {
@@ -348,6 +360,31 @@ export const PopoverExample = {
       ),
       snippet: popoverFixedSnippet,
       demo: <PopoverFixed />,
+    },
+    {
+      title: 'Popover with block level display',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverBlockSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverBlockHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            Popover anchors default to <EuiCode>display: inline-block</EuiCode>{' '}
+            so they do not force block display on inline triggers. If you do
+            need to change this to block display, just add{' '}
+            <EuiCode>display=&quot;block&quot;</EuiCode>
+          </p>
+        </div>
+      ),
+      snippet: popoverBlockSnippet,
+      demo: <PopoverBlock />,
     },
   ],
 };

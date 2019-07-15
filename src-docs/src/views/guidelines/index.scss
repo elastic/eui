@@ -159,16 +159,13 @@
 .guideSass__shadow--euiBottomShadowLarge { @include euiBottomShadowLarge; }
 
 .guideSass__overflowShadows {
-  @include euiOverflowShadow;
   overflow-y: hidden;
   margin-top: $euiSize;
   border: 1px solid $euiColorLightestShade;
   height: 200px;
 
   .guideSass__overflowShadowText {
-    @include euiScrollBar;
-    height: 100%;
-    overflow-y: auto;
+    @include euiYScrollWithShadows;
     padding: $euiSize;
   }
 }

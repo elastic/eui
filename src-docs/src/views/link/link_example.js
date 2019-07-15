@@ -9,6 +9,14 @@ import { EuiCode, EuiLink } from '../../../../src/components';
 import Link from './link';
 const linkSource = require('!!raw-loader!./link');
 const linkHtml = renderToHtml(Link);
+const linkSnippet = [
+  `<EuiLink href="#"><!-- Link text --></EuiLink>
+`,
+  `<EuiLink href="#" color="secondary">
+  <!-- Colored link text -->
+</EuiLink>
+`,
+];
 
 export const LinkExample = {
   title: 'Link',
@@ -34,6 +42,7 @@ export const LinkExample = {
         </p>
       ),
       props: { EuiLink },
+      snippet: linkSnippet,
       demo: <Link />,
     },
   ],

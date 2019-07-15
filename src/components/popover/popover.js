@@ -72,6 +72,13 @@ const anchorPositionToClassNameMap = {
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
+const displayToClassNameMap = {
+  inlineBlock: undefined,
+  block: 'euiPopover--displayBlock',
+};
+
+export const DISPLAY = Object.keys(displayToClassNameMap);
+
 const DEFAULT_POPOVER_STYLES = {
   top: 50,
   left: 50,
@@ -413,12 +420,14 @@ export class EuiPopover extends Component {
       zIndex,
       initialFocus,
       attachToAnchor,
+      display,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiPopover',
       anchorPositionToClassNameMap[anchorPosition],
+      displayToClassNameMap[display],
       {
         'euiPopover-isOpen': this.state.isOpening,
         'euiPopover--withTitle': withTitle,
@@ -553,6 +562,8 @@ EuiPopover.propTypes = {
   }),
   /** Style and position alteration for arrow-less, left-aligned attachment. Intended for use with inputs as anchors, à la EuiColorPicker */
   attachToAnchor: PropTypes.bool,
+  /** CSS display type for both the popover and anchor */
+  display: PropTypes.oneOf(DISPLAY),
 };
 
 EuiPopover.defaultProps = {
@@ -561,4 +572,5 @@ EuiPopover.defaultProps = {
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',
   hasArrow: true,
+  display: 'inlineBlock',
 };
