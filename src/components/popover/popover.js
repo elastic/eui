@@ -244,8 +244,10 @@ export class EuiPopover extends Component {
         );
 
       setTimeout(() => {
-        this.setState({ isOpenStable: true }, this.positionPopoverFixed);
-        this.updateFocus();
+        this.setState({ isOpenStable: true }, () => {
+          this.positionPopoverFixed();
+          this.updateFocus();
+        });
       }, durationMatch + delayMatch);
     }
 
