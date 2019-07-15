@@ -13,7 +13,7 @@ export interface EuiRangeTrackProps {
   min: number;
   max: number;
   step?: number;
-  value?: number | number[] | string | string[];
+  value?: number | string | Array<string | number>;
   disabled?: boolean;
   showTicks?: boolean;
   tickInterval?: number;
@@ -23,7 +23,7 @@ export interface EuiRangeTrackProps {
 }
 
 export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
-  validateValueIsInStep = value => {
+  validateValueIsInStep = (value: number) => {
     if (value < this.props.min) {
       throw new Error(
         `The value of ${value} is lower than the min value of ${
@@ -55,14 +55,24 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     return value;
   };
 
-  calculateSequence = (min, max, interval) => {
+  calculateSequence = (
+    min: EuiRangeTrackProps['min'],
+    max: EuiRangeTrackProps['max'],
+    interval?: EuiRangeTrackProps['tickInterval']
+  ) => {
     // Loop from min to max, creating adding values at each interval
     // (adds a very small number to the max since `range` is not inclusive of the max value)
     const toBeInclusive = 0.000000001;
     return range(min, max + toBeInclusive, interval);
   };
 
-  calculateTicks = (min, max, step, tickInterval, customTicks) => {
+  calculateTicks = (
+    min: EuiRangeTrackProps['min'],
+    max: EuiRangeTrackProps['max'],
+    step?: EuiRangeTrackProps['step'],
+    tickInterval?: EuiRangeTrackProps['tickInterval'],
+    customTicks?: EuiRangeTick[]
+  ) => {
     let ticks;
 
     if (customTicks) {
@@ -162,32 +172,3 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     );
   }
 }
-
-// EuiRangeTrack.propTypes = {
-//   min: PropTypes.number.isRequired,
-//   max: PropTypes.number.isRequired,
-//   step: PropTypes.number,
-//   value: PropTypes.oneOfType([
-//     PropTypes.number,
-//     PropTypes.string,
-//     PropTypes.arrayOf(
-//       PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-//     ),
-//   ]),
-//   showTicks: PropTypes.bool,
-//   tickInterval: PropTypes.number,
-//   ticks: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       value: PropTypes.number.isRequired,
-//       label: PropTypes.node.isRequired,
-//     })
-//   ),
-//   onChange: PropTypes.func,
-//   levels: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       min: PropTypes.number,
-//       max: PropTypes.number,
-//       color: PropTypes.oneOf(LEVEL_COLORS),
-//     })
-//   ),
-// };

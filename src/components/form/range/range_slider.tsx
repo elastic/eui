@@ -6,17 +6,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../../common';
+import { CommonProps } from '../../common';
 
-interface InputOverrides {
-  value?: number | number[] | string | string[];
-}
-export type EuiRangeSliderProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  keyof InputOverrides
-> &
-  CommonProps &
-  InputOverrides & {
+export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
+  CommonProps & {
     min: number;
     max: number;
     hasFocus?: boolean;

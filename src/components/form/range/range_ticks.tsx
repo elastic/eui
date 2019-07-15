@@ -4,18 +4,23 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-
 import find from 'lodash/find';
+
+import { Omit } from '../../common';
+import { useInnerText } from '../../inner_text';
 
 export interface EuiRangeTick {
   value: number;
   label: ReactNode;
 }
 
-export type EuiRangeTicksProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type EuiRangeTicksProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'value'
+> & {
   ticks?: EuiRangeTick[];
   tickSequence: number[];
-  value?: number | number[] | string | string[];
+  value?: number | string | Array<string | number>;
   min: number;
   max: number;
   interval?: number;
@@ -63,6 +68,8 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
 
         const label = customTick ? customTick.label : tickValue;
 
+        const [ref, innerText] = useInnerText();
+
         return (
           <button
             type="button"
@@ -73,7 +80,8 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
             onClick={onChange}
             style={tickStyle}
             tabIndex={-1}
-            title={label}>
+            ref={ref}
+            title={typeof label === 'string' ? label : innerText}>
             {label}
           </button>
         );

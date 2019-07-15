@@ -3,8 +3,8 @@ import classNames from 'classnames';
 
 export interface EuiRangeLabelProps {
   children: string | number;
-  disabled: boolean;
-  side: 'min' | 'max';
+  disabled?: boolean;
+  side?: 'min' | 'max';
 }
 
 export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
