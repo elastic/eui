@@ -30,6 +30,9 @@ export function useInnerText(
         subtree: true,
       });
     }
+    return () => {
+      observer.disconnect();
+    };
   }, [ref]);
 
   return [setRef, innerText];
