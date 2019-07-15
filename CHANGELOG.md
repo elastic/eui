@@ -1,10 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Centered the square of the `popout` glyph in the artboard ([#2120](https://github.com/elastic/eui/pull/2120))
+- Added `useInnerText` and `EuiInnerText` component utilities for retrieving text content of elements ([#2100](https://github.com/elastic/eui/pull/2100))
 
 **Bug fixes**
 
 - Fixed `EuiComboBox`'s options list from staying open when scrolled in a container by auto-closing the list on scroll ([#2106](https://github.com/elastic/eui/pull/2106))
+- Fixed content provided to `EuiListGroupItem` and `EuiFilterButton` `title` attribute to prevent unreadable popover ([#2100](https://github.com/elastic/eui/pull/2100))
 
 ## [`12.3.1`](https://github.com/elastic/eui/tree/v12.3.1)
 
