@@ -9,10 +9,28 @@ import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
 const breadcrumbsHtml = renderToHtml(Breadcrumbs);
+const breadcrumbsSnippet = `<EuiBreadcrumbs
+  breadcrumbs={[
+    {
+      text: 'Breadcrumb 1',
+      href: '#',
+    },
+    {
+      text: 'Breadcrumb 2',
+      href: '#',
+    },
+  ]}
+/>
+`;
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
 const responsiveHtml = renderToHtml(Responsive);
+const responsiveSnippet = `<EuiBreadcrumbs
+  responsive={false}
+  breadcrumbs={breadcrumbs}
+/>
+`;
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
@@ -21,6 +39,13 @@ const truncateHtml = renderToHtml(Truncate);
 import Max from './max';
 const maxSource = require('!!raw-loader!./max');
 const maxHtml = renderToHtml(Max);
+const maxSnippet = `<EuiBreadcrumbs
+  max={4}
+  breadcrumbs={breadcrumbs}
+  responsive={false}
+  truncate={false}
+/>
+`;
 
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
@@ -44,12 +69,12 @@ export const BreadcrumbsExample = {
           make clickable, including the last item, though we recommend the last
           item represent the current page and therefore the link is unnecessary.
           They work well within
-          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to be use
-          them within an app that also uses{' '}
-          <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
+          <EuiCode>EuiPageContentHeader</EuiCode> but be careful not to use them
+          within an app that also uses <EuiCode>EuiHeaderBreadcrumbs</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: breadcrumbsSnippet,
       demo: <Breadcrumbs />,
     },
     {
@@ -67,10 +92,12 @@ export const BreadcrumbsExample = {
       text: (
         <p>
           The <EuiCode>responsive</EuiCode> prop will hide breadcrumbs on
-          narrower screens.
+          narrower screens. Set it to false when you want to keep breadcrumb
+          items visible at all screens sizes.
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: responsiveSnippet,
       demo: <Responsive />,
     },
     {
@@ -88,10 +115,10 @@ export const BreadcrumbsExample = {
       text: (
         <div>
           <p>
-            There are two ways to <EuiCode>truncate</EuiCode> breadrumbs,
+            There are two ways to <EuiCode>truncate</EuiCode> breadcrumbs,
           </p>
           <ol>
-            <li>on the individual breadrcrumb item,</li>
+            <li>on the individual breadcrumb item,</li>
             <li>
               on the full <EuiCode>EuiBreadcrumbs</EuiCode> set which will force
               the full set to a single line, while setting a max width on all
@@ -122,6 +149,7 @@ export const BreadcrumbsExample = {
         </p>
       ),
       props: { EuiBreadcrumbs },
+      snippet: maxSnippet,
       demo: <Max />,
     },
   ],

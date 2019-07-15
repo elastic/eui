@@ -147,7 +147,7 @@ export const ItemIdType = PropTypes.oneOfType([
 export const SelectionType = PropTypes.shape({
   onSelectionChange: PropTypes.func, // (selection: item[]) => void;,
   selectable: PropTypes.func, // (item) => boolean;
-  selectableMessage: PropTypes.func, // (selectable, item) => boolean;
+  selectableMessage: PropTypes.func, // (selectable, item) => string;
 });
 
 const SortingType = PropTypes.shape({

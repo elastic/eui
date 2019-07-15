@@ -56,3 +56,15 @@ First, you'll be prompted for what kind of documentation to create:
 Follow the prompts and your documentation files will be created. You can use the snippets that are printed to the terminal to integrate these files into the EUI documentation site.
 
 The script will ask you for the name of the component you'd like to document, then create some files in `src-docs/src/views/`. If the name you provide isn't the exact name of a component, you might need to adjust the `import` in the generated files. Otherwise simply add the document to the `src-docs/src/services/routes/routes.js` file to make it available in the browser.
+
+### Adding snippets
+There are a couple themes to keep in mind when adding snippets:
+
+1. **Ask yourself**
+   a. Does this snippet provide the consumer with everything it needs for the component to work?
+   b. Does this snippet provide the details of a specific object the component needs to work?
+   c. If it doesn't provide either and the whole demo JS is needed for the component to work, then it's probably best to not add a snippet.
+2. **Stay consistent**
+   a. When using text should it display actual strings or comments?
+   b. Don't use `this.` for variables, only for `this.state` or functions
+3. If the demo code provides lots of examples, this is probably mostly for us maintainers to manage all the different states. However, **the consumer really just needs a single basic snippet** with maybe a few self-explanatory props added that can be removed by the consumer. When there are more than 2 or 3 snippets it's hard to know what the differences are among them.

@@ -1,10 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed `EuiComboBox`'s options list from staying open when scrolled in a container by auto-closing the list on scroll ([#2106](https://github.com/elastic/eui/pull/2106))
+
+## [`12.3.1`](https://github.com/elastic/eui/tree/v12.3.1)
+
+**Bug fixes**
+
+- Restored missing scss and react-datepicker files to the npm-published packaged ([#2119](https://github.com/elastic/eui/pull/2119))
+
+## [`12.3.0`](https://github.com/elastic/eui/tree/v12.3.0)
+
+**Note: this release contained a change which prevented necessary files from being published to npm, this was fixed in 12.3.1**
+
+- Added `logoSecurity`, `logoCode`, `logoMaps`, `logoUptime` and `logoLogging` to `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
 - Added a `column` direction option to `EuiFlexGrid` ([#2073](https://github.com/elastic/eui/pull/2073))
 - Updated `EuiSuperDatePicker`'s  commonly used date/times to display as columns. ([#2073](https://github.com/elastic/eui/pull/2073))
 - Added TypeScript definition for `EuiFormControlLayout` ([#2086](https://github.com/elastic/eui/pull/2086))
 - Changed SASS mixin `euiOverflowShadow()` to use `mask-image` instead of `box-shadow` ([#2088](https://github.com/elastic/eui/pull/2088))
 - Added SASS mixin and CSS utility `euiYScrollWithShadows` ([#2088](https://github.com/elastic/eui/pull/2088))
+- Added `display` prop to `EuiPopover` ([#2112](https://github.com/elastic/eui/pull/2112))
 
 **Bug fixes**
 
@@ -14,7 +30,11 @@
 - Removed time from default `dateFormat` of `EuiDatePicker` ([#1820](https://github.com/elastic/eui/pull/1820))
 - Fixed `EuiPopover` from catching and preventing propagation of keydown events when closed ([#2089](https://github.com/elastic/eui/pull/2089))
 - Fixed padding sizes between `EuiModal` header, body, and footer ([#2088](https://github.com/elastic/eui/pull/2088))
-- Fixed `EuiComboBox`'s options list from staying open when scrolled in a container by auto-closing the list on scroll ([#2106](https://github.com/elastic/eui/pull/2106))
+- Fixed placeholder text color for more browsers ([#2113](https://github.com/elastic/eui/pull/2113))
+
+**Deprecations**
+
+- Removed `logoXpack`from `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
 
 ## [`12.2.0`](https://github.com/elastic/eui/tree/v12.2.0)
 

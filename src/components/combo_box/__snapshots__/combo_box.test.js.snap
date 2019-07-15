@@ -463,6 +463,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
           },
         ]
       }
+      onCloseList={[Function]}
       onOptionClick={[Function]}
       onOptionEnterKey={[Function]}
       optionRef={[Function]}
