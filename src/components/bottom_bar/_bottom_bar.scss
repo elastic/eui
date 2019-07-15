@@ -9,6 +9,20 @@
   animation: euiBottomBarAppear $euiAnimSpeedSlow $euiAnimSlightResistance;
   z-index: $euiZNavigation;
 
+  &.euiBottomBar--paddingNone {
+      .euiButton {
+          border-radius: 0;
+
+          &:hover {
+              transform: translateY(0);
+          }
+      }
+      .euiButton--ghost {
+          border: none;
+          border-right: 1px solid $euiColorGhost;
+      }
+  }
+
   &.euiBottomBar--paddingSmall {
     padding: $euiSizeS;
   }
