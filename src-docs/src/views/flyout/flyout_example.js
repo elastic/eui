@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -9,6 +9,7 @@ import {
   EuiFlyout,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { Flyout } from './flyout';
@@ -228,11 +229,14 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <p>
-          In this example, we set <EuiCode>maxWidth</EuiCode> to{' '}
-          <EuiCode>448px</EuiCode>, to set the width of the flyout at the ideal
-          width for a form.
-        </p>
+        <Fragment>
+          <p>
+            In this example, we set <EuiCode>maxWidth</EuiCode> to{' '}
+            <EuiCode>448px</EuiCode>, to set the width of the flyout at the
+            ideal width for a form.
+          </p>
+          <EuiCallOut title="Be sure to set the custom maxWidth value to a number larger than the minWidth otherwise the minWidth will supercede." />
+        </Fragment>
       ),
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
