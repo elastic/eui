@@ -244,7 +244,10 @@ export class EuiPopover extends Component {
         );
 
       setTimeout(() => {
-        this.setState({ isOpenStable: true }, this.positionPopoverFixed);
+        this.setState({ isOpenStable: true }, () => {
+          this.positionPopoverFixed();
+          this.updateFocus();
+        });
       }, durationMatch + delayMatch);
     }
 
@@ -267,8 +270,6 @@ export class EuiPopover extends Component {
         });
       }, 250);
     }
-
-    this.updateFocus();
   }
 
   componentWillUnmount() {
@@ -484,6 +485,7 @@ export class EuiPopover extends Component {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
+            returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             disabled={!ownFocus}>
