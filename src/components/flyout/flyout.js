@@ -44,7 +44,8 @@ export class EuiFlyout extends Component {
       widthClassName = 'euiFlyout--maxWidth-default';
     } else if (maxWidth !== false) {
       const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      newStyle = { ...style, maxWidth: value };
+      const minWidth = size !== 's' ? { minWidth: 0 } : undefined;
+      newStyle = { ...style, maxWidth: value, ...minWidth };
     }
 
     const classes = classnames(

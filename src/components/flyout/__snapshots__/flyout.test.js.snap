@@ -69,7 +69,7 @@ exports[`EuiFlyout max width can be set to a custom number 1`] = `
       <div
         class="euiFlyout euiFlyout--medium"
         role="dialog"
-        style="max-width:1024px"
+        style="max-width:1024px;min-width:0"
         tabindex="0"
       >
         <button
@@ -118,7 +118,7 @@ exports[`EuiFlyout max width can be set to a custom value and measurement 1`] = 
       <div
         class="euiFlyout euiFlyout--medium"
         role="dialog"
-        style="max-width:24rem"
+        style="max-width:24rem;min-width:0"
         tabindex="0"
       >
         <button

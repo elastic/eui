@@ -137,9 +137,10 @@ export class FlyoutMaxWidth extends Component {
           <strong>larger custom max-width</strong>
         </EuiLink>
         <EuiSpacer size="s" />
-        <EuiLink color="danger" onClick={() => this.showFlyout('m', 200)}>
+        <EuiLink color="warning" onClick={() => this.showFlyout('m', 448)}>
           Show <strong>medium</strong> flyout with{' '}
-          <strong>smaller custom max-width</strong> -- minWidth beats out
+          <strong>smaller custom max-width</strong> -- full 100vw wins out on
+          small screens
         </EuiLink>
 
         <EuiSpacer />
@@ -158,9 +159,10 @@ export class FlyoutMaxWidth extends Component {
           <strong>larger custom max-width</strong>
         </EuiLink>
         <EuiSpacer size="s" />
-        <EuiLink color="danger" onClick={() => this.showFlyout('l', 200)}>
+        <EuiLink color="warning" onClick={() => this.showFlyout('l', 448)}>
           Show <strong>large</strong> flyout with{' '}
-          <strong>smaller custom max-width</strong> -- minWidth beats out
+          <strong>smaller custom max-width</strong> -- full 100vw wins out on
+          small screens
         </EuiLink>
 
         {flyout}
