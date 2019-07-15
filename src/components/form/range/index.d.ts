@@ -4,7 +4,7 @@ import { ReactNode, FunctionComponent, InputHTMLAttributes } from 'react';
 
 import { EuiRangeHighlightProps } from './range_highlight';
 import { EuiRangeLabelProps } from './range_label';
-import { EuiRangeLevelsProps } from './range_levels';
+import { EuiRangeLevelsProps, EuiRangeLevel } from './range_levels';
 import { EuiRangeSliderProps } from './range_slider';
 import { EuiRangeThumbProps } from './range_thumb';
 import { EuiRangeTicksProps } from './range_ticks';
@@ -35,8 +35,7 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     fullWidth?: boolean;
     id?: string;
-    // TODO: use interface for below
-    levels?: Array<{ min?: number; max?: number; color?: EuiRangeLevelColor }>;
+    levels?: EuiRangeLevel[];
     // `min` and `max` are optional in HTML but required for our component,
     // so we override them.
     max: number;
