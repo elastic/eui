@@ -24,6 +24,7 @@
     "lint-sass-fix": "sass-lint-auto-fix -c ./.sass-lint-fix.yml",
     "test": "yarn lint && yarn test-unit",
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
+    "test-staged": "yarn lint && node scripts/test-staged.js",
     "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
@@ -39,6 +40,9 @@
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
   },
+  "pre-commit": [
+    "test-staged"
+  ],
   "dependencies": {
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
