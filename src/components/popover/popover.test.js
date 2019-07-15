@@ -42,12 +42,12 @@ describe('EuiPopover', () => {
   });
 
   describe('props', () => {
-    describe('withTitle', () => {
+    describe('display block', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
             id={getId()}
-            withTitle
+            display="block"
             button={<button />}
             closePopover={() => {}}
           />
