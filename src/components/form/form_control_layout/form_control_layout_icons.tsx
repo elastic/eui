@@ -10,12 +10,13 @@ import {
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
 import { IconType } from '../../icon';
-import { Omit } from '../../common';
+import { DistributiveOmit } from '../../common';
 
 export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
 
-type IconShape = Partial<
-  Omit<EuiFormControlLayoutCustomIconProps, 'type' | 'iconRef'>
+type IconShape = DistributiveOmit<
+  EuiFormControlLayoutCustomIconProps,
+  'type' | 'iconRef'
 > & {
   type: IconType;
   side?: typeof ICON_SIDES[number];
