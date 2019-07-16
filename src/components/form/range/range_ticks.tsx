@@ -1,5 +1,6 @@
 import React, {
   ButtonHTMLAttributes,
+  MouseEventHandler,
   FunctionComponent,
   ReactNode,
 } from 'react';
@@ -24,6 +25,8 @@ export type EuiRangeTicksProps = Omit<
   min: number;
   max: number;
   interval?: number;
+  disabled?: boolean;
+  onChange?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
@@ -34,7 +37,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
   value,
   max,
   min,
-  interval = 0,
+  interval = 1,
 }) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;

@@ -21,7 +21,13 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   showTicks,
 }) => {
   // Calculate the left position based on value
-  const decimal = (Number(value) - min) / (max - min);
+  let val = 0;
+  if (typeof value === 'number') {
+    val = value;
+  } else if (typeof value === 'string') {
+    val = parseFloat(value);
+  }
+  const decimal = (val - min) / (max - min);
   // Must be between 0-100%
   let valuePosition = decimal <= 1 ? decimal : 1;
   valuePosition = valuePosition >= 0 ? valuePosition : 0;

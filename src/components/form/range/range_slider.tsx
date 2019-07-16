@@ -1,4 +1,5 @@
 import React, {
+  ChangeEventHandler,
   FunctionComponent,
   InputHTMLAttributes,
   Ref,
@@ -10,11 +11,17 @@ import { CommonProps } from '../../common';
 
 export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
+    id?: string;
+    name?: string;
     min: number;
     max: number;
+    step?: number;
     hasFocus?: boolean;
     showRange?: boolean;
     showTicks?: boolean;
+    disabled?: boolean;
+    tabIndex?: number;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
   };
 
 export const EuiRangeSlider: FunctionComponent<

@@ -1,9 +1,10 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-export type EuiRangeWrapperProps = HTMLAttributes<HTMLDivElement> & {
+export interface EuiRangeWrapperProps {
+  className?: string;
   fullWidth?: boolean;
-};
+}
 
 export const EuiRangeWrapper: FunctionComponent<EuiRangeWrapperProps> = ({
   children,

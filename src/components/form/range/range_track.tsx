@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import range from 'lodash/range';
@@ -18,7 +18,7 @@ export interface EuiRangeTrackProps {
   showTicks?: boolean;
   tickInterval?: number;
   ticks?: EuiRangeTick[];
-  onChange?: () => void;
+  onChange?: MouseEventHandler<HTMLButtonElement>;
   levels?: EuiRangeLevel[];
 }
 
