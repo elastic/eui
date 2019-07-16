@@ -472,12 +472,14 @@ function loadIcon(type: string, callback: (icon: any) => void) {
       // stops webpack from building a dynamic require context.
       // eslint-disable-next-line prefer-template
       './assets/' + (typeToPathMap as any)[type] + '.js'
-    ).then(({ icon }) => {
-      const result = icon;
-      delete callbackCache[type];
-      cache.setIcon(type, result);
-      callbacks.forEach((cb: any) => cb(result));
-    });
+    )
+      .then(({ icon }) => {
+        cache.setIcon(type, icon);
+        callbacks.forEach((cb: any) => cb(icon));
+      })
+      // If we fail, we want to clear the callback queue, so
+      // that any future icons can re-attempt the load.
+      .finally(() => delete callbackCache[type]);
   }
 
   callbacks.push(callback);
