@@ -25,6 +25,7 @@
 - Added TypeScript definition for `EuiFormControlLayout` ([#2086](https://github.com/elastic/eui/pull/2086))
 - Changed SASS mixin `euiOverflowShadow()` to use `mask-image` instead of `box-shadow` ([#2088](https://github.com/elastic/eui/pull/2088))
 - Added SASS mixin and CSS utility `euiYScrollWithShadows` ([#2088](https://github.com/elastic/eui/pull/2088))
+- Added `cloudDrizzle`, `cloudStormy`, `cloudSunny`, `documents`, `documentEdit`, `training` and `videoPlayer` glyphs to `EuiIcon` ([#2102](https://github.com/elastic/eui/pull/2102))
 - Added `display` prop to `EuiPopover` ([#2112](https://github.com/elastic/eui/pull/2112))
 
 **Bug fixes**
