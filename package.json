@@ -1,12 +1,11 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "12.2.0",
+  "version": "12.3.1",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "postcss": {},
   "docker_image": "node:8",
   "sideEffects": false,
   "scripts": {
@@ -25,6 +24,7 @@
     "lint-sass-fix": "sass-lint-auto-fix -c ./.sass-lint-fix.yml",
     "test": "yarn lint && yarn test-unit",
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
+    "test-staged": "yarn lint && node scripts/test-staged.js",
     "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
@@ -40,6 +40,9 @@
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
   },
+  "pre-commit": [
+    "test-staged"
+  ],
   "dependencies": {
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
@@ -109,8 +112,8 @@
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
     "dts-generator": "^2.1.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
