@@ -74,7 +74,7 @@ export const EuiSuggestInput = ({
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
   /**
-   * Status of the current query.
+   * Status of the current query 'notYetSaved', 'saved', 'noNewChanges' or 'isLoading'.
    */
   status: PropTypes.string,
   /**
