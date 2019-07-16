@@ -1,5 +1,5 @@
 .euiFieldNumber {
-  @include euiFormControlStyle();
+  @include euiFormControlStyle;
   @include euiFormControlWithIcon($isIconOptional: true);
   @include euiFormControlIsLoading;
 }
