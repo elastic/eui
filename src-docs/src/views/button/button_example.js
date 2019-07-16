@@ -19,42 +19,92 @@ import {
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
 const buttonHtml = renderToHtml(Button);
+const buttonSnippet = [
+  `<EuiButton><!-- Primary button --></EuiButton>
+`,
+  `<EuiButton fill><!-- Filled button --></EuiButton>
+`,
+  `<EuiButton size="s"><!-- Small button --></EuiButton>
+`,
+  `<EuiButton size="s" fill><!-- Small and filled button --></EuiButton>
+`,
+];
 
 import ButtonWithIcon from './button_with_icon';
 const buttonWithIconSource = require('!!raw-loader!./button_with_icon');
 const buttonWithIconHtml = renderToHtml(Button);
+const buttonWithIconSnippet = `<EuiButton iconType={icon}><!-- Button text --></EuiButton>
+`;
 
 import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
 const buttonOptionHtml = renderToHtml(ButtonOption);
+const buttonOptionSnippet = `<EuiButtonEmpty>
+  <!-- Button text -->
+</EuiButtonEmpty>`;
 
 import ButtonOptionFlush from './button_empty_flush';
 const buttonOptionFlushSource = require('!!raw-loader!./button_empty_flush');
 const buttonOptionFlushHtml = renderToHtml(ButtonOptionFlush);
+const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text --></EuiButtonEmpty>
+`;
 
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
 const buttonIconHtml = renderToHtml(ButtonIcon);
+const buttonIconSnippet = `<EuiButtonIcon
+  iconType={icon}
+/>`;
 
 import ButtonGhost from './button_ghost';
 const buttonGhostSource = require('!!raw-loader!./button_ghost');
 const buttonGhostHtml = renderToHtml(ButtonGhost);
+const buttonGhostSnippet = `<EuiButton color="ghost">
+  <!-- Button text -->
+</EuiButton>`;
 
 import ButtonAsLink from './button_as_link';
 const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
 const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
+const buttonAsLinkSnippet = `<EuiButton href={someUrl}><!-- Button text --></EuiButton>
+`;
 
 import ButtonLoading from './button_loading';
 const buttonLoadingSource = require('!!raw-loader!./button_loading');
 const buttonLoadingHtml = renderToHtml(ButtonLoading);
+const buttonLoadingSnippet = `<EuiButton isLoading={true}>
+  <!-- Button text -->
+</EuiButton>`;
 
 import ButtonToggle from './button_toggle';
 const buttonToggleSource = require('!!raw-loader!./button_toggle');
 const buttonToggleHtml = renderToHtml(ButtonToggle);
+const buttonToggleSnippet = `<EuiButtonToggle
+  label={label}
+  iconType={this.state.toggleOn ? onIcon : offIcon}
+  onChange={this.onToggleChange}
+  isSelected={this.state.toggleOn}
+/>`;
 
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
+const buttonGroupSnippet = [
+  `<EuiButtonGroup
+  legend={legend}
+  options={this.toggleButtons}
+  idSelected={this.state.toggleIdSelected}
+  onChange={this.onChange}
+/>`,
+  `<EuiButtonGroup
+  legend={legend}
+  options={this.toggleButtonsIconsMulti}
+  idToSelectedMap={this.state.toggleIconIdToSelectedMap}
+  onChange={this.onChangeIconsMulti}
+  type="multi"
+  isIconOnly
+/>`,
+];
 
 export const ButtonExample = {
   title: 'Button',
@@ -71,6 +121,7 @@ export const ButtonExample = {
         },
       ],
       props: { EuiButton },
+      snippet: buttonSnippet,
       demo: <Button />,
     },
     {
@@ -91,6 +142,7 @@ export const ButtonExample = {
           <EuiCode>href</EuiCode> prop present.
         </p>
       ),
+      snippet: buttonAsLinkSnippet,
       demo: <ButtonAsLink />,
     },
     {
@@ -116,6 +168,7 @@ export const ButtonExample = {
           <EuiCode>iconSide=&quot;right&quot;</EuiCode>.
         </p>
       ),
+      snippet: buttonWithIconSnippet,
       demo: <ButtonWithIcon />,
     },
     {
@@ -138,6 +191,7 @@ export const ButtonExample = {
           button to &quot;Loading&hellip;&quot;.
         </p>
       ),
+      snippet: buttonLoadingSnippet,
       demo: <ButtonLoading />,
     },
     {
@@ -160,6 +214,7 @@ export const ButtonExample = {
         </p>
       ),
       props: { EuiButtonEmpty },
+      snippet: buttonOptionSnippet,
       demo: <ButtonOption />,
     },
     {
@@ -182,6 +237,7 @@ export const ButtonExample = {
           the other content in the container.
         </p>
       ),
+      snippet: buttonOptionFlushSnippet,
       demo: <ButtonOptionFlush />,
     },
     {
@@ -200,6 +256,7 @@ export const ButtonExample = {
         <p>Button icons are buttons that only contain an icon (no text).</p>
       ),
       props: { EuiButtonIcon },
+      snippet: buttonIconSnippet,
       demo: <ButtonIcon />,
     },
     {
@@ -233,6 +290,7 @@ export const ButtonExample = {
         </div>
       ),
       demo: <ButtonToggle />,
+      snippet: buttonToggleSnippet,
       props: { EuiButtonToggle },
     },
     {
@@ -275,6 +333,7 @@ export const ButtonExample = {
         </div>
       ),
       demo: <ButtonGroup />,
+      snippet: buttonGroupSnippet,
       props: { EuiButtonGroup },
     },
     {
@@ -299,6 +358,7 @@ export const ButtonExample = {
           <Link to="/layout/bottom-bar">EuiBottomBar</Link> component.
         </p>
       ),
+      snippet: buttonGhostSnippet,
       demo: <ButtonGhost />,
     },
   ],

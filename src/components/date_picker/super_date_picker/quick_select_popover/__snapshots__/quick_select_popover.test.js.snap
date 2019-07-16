@@ -26,6 +26,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     </EuiButtonEmpty>
   }
   closePopover={[Function]}
+  display="inlineBlock"
   hasArrow={true}
   id="QuickSelectPopover"
   isOpen={false}
@@ -111,6 +112,7 @@ exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
     </EuiButtonEmpty>
   }
   closePopover={[Function]}
+  display="inlineBlock"
   hasArrow={true}
   id="QuickSelectPopover"
   isOpen={false}

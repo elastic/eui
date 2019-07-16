@@ -25,6 +25,12 @@ const tabbedContentHtml = renderToHtml(TabbedContent);
 import Controlled from './controlled';
 const controlledSource = require('!!raw-loader!./controlled');
 const controlledHtml = renderToHtml(Controlled);
+const controlledSnippet = `<EuiTabbedContent
+  tabs={tabs}
+  selectedTab={this.state.selectedTab}
+  onTabClick={this.onTabClick}
+/>
+`;
 
 export const TabsExample = {
   title: 'Tabs',
@@ -151,6 +157,7 @@ export const TabsExample = {
       props: {
         EuiTabbedContent,
       },
+      snippet: controlledSnippet,
       demo: <Controlled />,
     },
   ],

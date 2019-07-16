@@ -9,7 +9,7 @@ const sassExtract = require('sass-extract');
 const { deriveSassVariableTypes } = require('./derive-sass-variable-types');
 const sassExtractJsPlugin = require('./sass-extract-js-plugin');
 
-const postcssConfiguration = require('../src-docs/postcss.config.js');
+const postcssConfiguration = require('../postcss.config.js');
 
 const writeFile = util.promisify(fs.writeFile);
 const mkdir = util.promisify(fs.mkdir);

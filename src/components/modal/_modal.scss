@@ -38,7 +38,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $euiSizeL $euiSizeXXL $euiSizeM $euiSizeL;
+  padding: $euiSizeL $euiSizeXXL $euiSize $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -48,7 +48,6 @@
 }
 
 .euiModalBody {
-  @include euiOverflowShadow;
   flex-grow: 1;
   overflow: hidden;
   // The below fixes scroll on Chrome and Safari
@@ -56,17 +55,15 @@
   flex-direction: column;
 
   .euiModalBody__overflow {
-    @include euiScrollBar;
-    height: 100%;
-    overflow-y: auto;
-    padding: $euiSizeL;
+    @include euiYScrollWithShadows;
+    padding: $euiSizeS $euiSizeL;
   }
 }
 
 .euiModalFooter {
   display: flex;
   justify-content: flex-end;
-  padding: $euiSizeL;
+  padding: $euiSize $euiSizeL $euiSizeL;
   flex-grow: 0;
   flex-shrink: 0; // ensure the height of the footer is based off it's contents and doesn't squish
 
@@ -75,11 +72,16 @@
   }
 }
 
-// When both a header and body exist, drop the top padding so the overflow on
-// the body is spaced correctly.
-.euiModalHeader + .euiModalBody .euiModalBody__overflow {
-  padding-top: $euiSizeM;
+// If a body doesn't exist, remove some extra padding from footer
+.euiModalHeader + .euiModalFooter {
+  padding-top: $euiSizeS;
 }
+
+// If a footer doesn't exist (body is the last element) add padding to the bottom
+.euiModalBody:last-of-type .euiModalBody__overflow {
+  padding-bottom: $euiSizeL;
+}
+
 
 // The actual size of the X button in pixels is a bit fuzzy because of all the
 // button padding so there is some pixel pushing here.
@@ -134,7 +136,7 @@
 
   .euiModalFooter {
     background: $euiColorLightestShade;
-    padding: $euiSizeM $euiSizeL;
+    padding: $euiSizeM $euiSizeL !important; // sass-lint:disable-line no-important
     width: 100vw;
     justify-content: stretch;
 
@@ -149,5 +151,9 @@
 
   .euiModalBody {
     width: 100vw;
+
+    .euiModalBody__overflow {
+      padding-bottom: $euiSizeL;
+    }
   }
 }
