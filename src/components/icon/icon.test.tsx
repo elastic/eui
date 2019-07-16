@@ -2,13 +2,19 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import cheerio from 'cheerio';
-
-import { EuiIcon, SIZES, TYPES, COLORS, setCache, iconCache } from './icon';
-import { PropsOf } from '../common';
+import {
+  EuiIcon,
+  SIZES,
+  TYPES,
+  COLORS,
+  setCache,
+  createCache,
+  EuiIconProps,
+} from './icon';
 
 const prettyHtml = cheerio.load('');
 
-function testIcon(props: PropsOf<EuiIcon>) {
+function testIcon(props: EuiIconProps) {
   return () => {
     const component = mount(<EuiIcon {...props} />);
 
@@ -24,7 +30,7 @@ function testIcon(props: PropsOf<EuiIcon>) {
 
 describe('EuiIcon', () => {
   beforeEach(() => {
-    setCache(iconCache());
+    setCache(createCache());
   });
 
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
-import { Omit, PropsOf } from '../common';
-import { EuiIcon, IconSize, IconType } from '../icon';
+import { Omit } from '../common';
+import { EuiIcon, IconSize, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip, Props as EuiToolTipProps } from './tool_tip';
 
 export interface EuiIconTipProps {
@@ -28,7 +28,7 @@ export interface EuiIconTipProps {
   // EuiIconTip's `type` is passed to EuiIcon, so we want to exclude `type` from
   // iconProps; however, due to TS's bivariant function arguments `type` could be
   // passed without any error/feedback so we explicitly set it to `never` type
-  iconProps?: Omit<PropsOf<EuiIcon>, 'type'> & { type?: never };
+  iconProps?: Omit<EuiIconProps, 'type'> & { type?: never };
 }
 
 type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &

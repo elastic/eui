@@ -4,11 +4,11 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, keysOf, PropsOf, Omit } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf, Omit } from '../common';
 
 import { isColorDark, hexToRgb } from '../../services/color';
 
-import { EuiIcon, IconColor, IconType } from '../icon';
+import { EuiIcon, IconColor, IconType, EuiIconProps } from '../icon';
 
 type IconSide = 'left' | 'right';
 
@@ -57,7 +57,7 @@ export type EuiBadgeProps = {
   /**
    * Props passed to the close button.
    */
-  closeButtonProps?: Partial<PropsOf<EuiIcon>>;
+  closeButtonProps?: Partial<EuiIconProps>;
 } & CommonProps &
   ExclusiveUnion<WithIconOnClick, {}> &
   ExclusiveUnion<WithSpanProps, WithButtonProps>;

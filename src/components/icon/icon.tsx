@@ -1,9 +1,4 @@
-import React, {
-  Component,
-  HTMLAttributes,
-  ReactElement,
-  SVGAttributes,
-} from 'react';
+import React, { HTMLAttributes, ReactElement, SVGAttributes } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -399,7 +394,7 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 
 export type IconSize = keyof typeof sizeToClassNameMap;
 
-export interface EuiIconProps {
+export interface IconProps {
   /**
    * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
    */
@@ -415,52 +410,34 @@ export interface EuiIconProps {
   size?: IconSize;
 }
 
-type Props = CommonProps &
-  Omit<SVGAttributes<SVGElement>, keyof EuiIconProps> &
-  EuiIconProps;
-
 interface State {
   icon: undefined | ReactElement | string;
   isLoading: boolean;
 }
 
-function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
+export type EuiIconProps = CommonProps &
+  Omit<SVGAttributes<SVGElement>, keyof IconProps> &
+  IconProps;
+
+function isEuiIconType(x: IconProps['type']): x is EuiIconType {
   return typeof x === 'string' && typeToPathMap.hasOwnProperty(x);
 }
 
-interface Cache {
-  getIcon: (iconType: IconType) => undefined | ReactElement | string;
-  setIcon: (
-    iconType: IconType,
-    icon: undefined | ReactElement | string
-  ) => void;
-}
-
-// Lazy loading of icons causes a lot of expensive re-renders, especially
-// in large lists. Caching the icons mitigates that.
-let cache: Cache = iconCache();
-
-// Exported for testing purposes, allows for testing the caching mechanism.
-export function iconCache(): Cache {
-  const icons: { [iconType: string]: undefined | ReactElement | string } = {};
+export function createCache() {
+  const iconCache: any = {};
 
   return {
-    getIcon(iconType) {
-      return icons[iconType as string];
+    getIcon(type: IconType) {
+      return iconCache[type as string];
     },
-
-    setIcon(iconType, icon) {
-      icons[iconType as string] = icon;
+    setIcon(type: IconType, icon: any) {
+      iconCache[type as string] = icon;
     },
   };
 }
 
-// Exported for testing purposes only, allows us to turn off caching
-// for tests, which generally makes them less effectful and more
-// predictable.
-export function setCache(newCache: Cache) {
-  cache = newCache;
-}
+let cache = createCache();
+const callbackCache: any = {};
 
 function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
@@ -472,9 +449,43 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-export class EuiIcon extends Component<Props, State> {
+// Exported for testing purposes only, allows us to turn off caching
+// for tests, which generally makes them less effectful and more
+// predictable.
+export function setCache(newCache: ReturnType<typeof createCache>) {
+  cache = newCache;
+}
+
+function loadIcon(type: string, callback: (icon: any) => void) {
+  if (!isEuiIconType(type) || cache.getIcon(type)) {
+    return;
+  }
+
+  const callbacks = callbackCache[type] || [];
+
+  if (!callbacks.length) {
+    callbackCache[type] = callbacks;
+
+    import(
+      /* webpackChunkName: "icon.[request]" */
+      // It's important that we don't use a template string here, it
+      // stops webpack from building a dynamic require context.
+      // eslint-disable-next-line prefer-template
+      './assets/' + (typeToPathMap as any)[type] + '.js'
+    ).then(({ icon }) => {
+      const result = icon;
+      delete callbackCache[type];
+      cache.setIcon(type, result);
+      callbacks.forEach((cb: any) => cb(result));
+    });
+  }
+
+  callbacks.push(callback);
+}
+
+export class EuiIcon extends React.Component<EuiIconProps, State> {
   isMounted = true;
-  constructor(props: Props) {
+  constructor(props: EuiIconProps) {
     super(props);
 
     const { type } = props;
@@ -492,7 +503,7 @@ export class EuiIcon extends Component<Props, State> {
     };
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: EuiIconProps) {
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (cache.getIcon(type)) {
@@ -525,14 +536,7 @@ export class EuiIcon extends Component<Props, State> {
     if (cache.getIcon(iconType)) {
       return;
     }
-    import(
-      /* webpackChunkName: "icon.[request]" */
-      // It's important that we don't use a template string here, it
-      // stops webpack from building a dynamic require context.
-      // eslint-disable-next-line prefer-template
-      './assets/' + typeToPathMap[iconType] + '.js'
-    ).then(({ icon }) => {
-      cache.setIcon(iconType, icon);
+    loadIcon(iconType as string, icon => {
       if (this.isMounted) {
         this.setState({
           icon,
