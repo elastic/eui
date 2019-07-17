@@ -7,7 +7,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
 const paddingSizeToClassNameMap = {
-  none: null,
+  none: 'euiBottomBar--paddingNone',
   s: 'euiBottomBar--paddingSmall',
   m: 'euiBottomBar--paddingMedium',
   l: 'euiBottomBar--paddingLarge',
@@ -17,8 +17,11 @@ export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
 
 export class EuiBottomBar extends Component {
   componentDidMount() {
-    const height = this.bar.clientHeight;
-    document.body.style.paddingBottom = `${height}px`;
+    document.body.style.paddingBottom = `${
+      this.props.initialHeight
+        ? this.props.initialHeight
+        : this.bar.clientHeight
+    }px`;
     if (this.props.bodyClassName) {
       document.body.classList.add(this.props.bodyClassName);
     }
@@ -59,6 +62,11 @@ export class EuiBottomBar extends Component {
         </EuiScreenReaderOnly>
         <div
           className={classes}
+          style={
+            this.props.initialHeight && !this.props.isExpanded
+              ? { maxHeight: `${this.props.initialHeight}px` }
+              : { maxHeight: '90vh' }
+          }
           ref={node => {
             this.bar = node;
           }}
@@ -84,6 +92,16 @@ EuiBottomBar.propTypes = {
    * Padding applied to the bar
    */
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
+  /**
+   * Optional initial height for use when including tabs in the bottom bar
+   */
+  initialHeight: PropTypes.number,
+  /**
+   * Optional setter for expanding the height of the bar. Use in conjunction with initialHeight
+   * to set the min height for the bar and allow toggling. Requires a method on the parent component
+   * to set and unset as needed.
+   */
+  isExpanded: PropTypes.bool,
 };
 
 EuiBottomBar.defaultProps = {

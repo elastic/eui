@@ -1,6 +1,6 @@
 .euiBottomBar {
   @include euiBottomShadowFlat($euiShadowColorLarge);
-  background: tintOrShade($euiColorFullShade, 25%, 100%);
+  background: $euiColorDarkestShade;
   color: $euiColorEmptyShade;
   position: fixed;
   bottom: 0;
@@ -10,17 +10,17 @@
   z-index: $euiZNavigation;
 
   &.euiBottomBar--paddingNone {
-      .euiButton {
-          border-radius: 0;
+    .euiButton:first-child {
+      border-radius: 0;
 
-          &:hover {
-              transform: translateY(0);
-          }
+      &:hover {
+        transform: translateY(0);
       }
-      .euiButton--ghost {
-          border: none;
-          border-right: 1px solid $euiColorGhost;
-      }
+    }
+
+    .euiButton--ghost {
+      border: none;
+    }
   }
 
   &.euiBottomBar--paddingSmall {
@@ -33,6 +33,38 @@
 
   &.euiBottomBar--paddingLarge {
     padding: $euiSizeL;
+  }
+
+  .euiTab {
+    color: $euiColorLightestShade;
+  }
+
+  .euiTab:hover:not(.euiTab-isSelected) {
+    color: $euiColorLightestShade;
+  }
+
+  .euiTab:focus {
+    background-color: $euiColorDarkestShade;
+    color: $euiColorLightestShade;
+    box-shadow: inset 0 $euiSizeXS #1BA9F5;
+  }
+
+  .euiTab.euiTab-isSelected {
+    color: $euiColorLightestShade;
+
+    &:after {
+      background-color: $euiColorDarkestShade;
+      transition: none;
+    }
+  }
+
+  .euiTabs:not(.euiTabs--condensed)::before {
+    background-color: $euiColorDarkestShade;
+  }
+
+  div[role='tabpanel'] {
+    background-color: $euiColorLightestShade;
+    color: $euiColorDarkestShade;
   }
 }
 
