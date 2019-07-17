@@ -23,6 +23,7 @@
     display: flex; /* 1 */
 
     // sass-lint:disable-block mixins-before-declarations
+    // to override the padding added above
     @include euiFormControlLayoutPadding(1); /* 2 */
 
     &:not(.euiComboBox__inputWrap--noWrap) {
