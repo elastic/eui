@@ -64,13 +64,9 @@ export class EuiAccordion extends Component<
   childContent: HTMLDivElement | null = null;
   childWrapper: HTMLDivElement | null = null;
 
-  constructor(props: EuiAccordionProps) {
-    super(props);
-
-    this.state = {
-      isOpen: props.initialIsOpen,
-    };
-  }
+  state = {
+    isOpen: this.props.initialIsOpen,
+  };
 
   setChildContentHeight = () => {
     requestAnimationFrame(() => {
