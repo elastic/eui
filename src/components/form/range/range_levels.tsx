@@ -1,11 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-export const LEVEL_COLORS = ['primary', 'success', 'warning', 'danger'];
+export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
-export const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
-  const validateLevelIsInRange = level => {
+export const LEVEL_COLORS: EuiRangeLevelColor[] = [
+  'primary',
+  'success',
+  'warning',
+  'danger',
+];
+
+export interface EuiRangeLevel {
+  min: number;
+  max: number;
+  color: EuiRangeLevelColor;
+}
+
+export interface EuiRangeLevelsProps {
+  levels?: EuiRangeLevel[];
+  max: number;
+  min: number;
+  showTicks?: boolean;
+}
+
+export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
+  levels = [],
+  max,
+  min,
+  showTicks,
+}) => {
+  const validateLevelIsInRange = (level: EuiRangeLevel) => {
     if (level.min < min) {
       throw new Error(
         `The level min of ${level.min} is lower than the min value of ${min}.`
@@ -39,17 +63,4 @@ export const EuiRangeLevels = ({ levels, max, min, showTicks }) => {
       })}
     </div>
   );
-};
-
-EuiRangeLevels.propTypes = {
-  levels: PropTypes.arrayOf(
-    PropTypes.shape({
-      min: PropTypes.number.isRequired,
-      max: PropTypes.number.isRequired,
-      color: PropTypes.oneOf(LEVEL_COLORS).isRequired,
-    })
-  ),
-  max: PropTypes.number.isRequired,
-  min: PropTypes.number.isRequired,
-  showTicks: PropTypes.bool,
 };
