@@ -47,7 +47,8 @@ export const PrettyDurationExample = {
             An array of quick range values is passed as the third argument.
             These are used to pretty format custom ranges. EUI exports
             <EuiCode>commonDurationRanges</EuiCode> which can be passed here.
-            <EuiAccordion buttonContent="show commonDurationRanges definition">
+            <EuiSpacer />
+            <EuiAccordion buttonContent="Show commonDurationRanges definition">
               <EuiCodeBlock>
                 {JSON.stringify(commonDurationRanges, null, 2)}
               </EuiCodeBlock>
