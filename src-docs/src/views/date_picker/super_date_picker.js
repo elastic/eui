@@ -164,6 +164,7 @@ export default class extends Component {
         />
         <EuiSpacer />
         <EuiSuperDatePicker
+          isDisabled={true}
           isLoading={this.state.isLoading}
           start={this.state.start}
           end={this.state.end}

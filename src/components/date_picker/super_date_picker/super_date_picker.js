@@ -45,6 +45,7 @@ function isRangeInvalid(start, end) {
 export class EuiSuperDatePicker extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
+    isDisabled: PropTypes.bool,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
@@ -282,6 +283,7 @@ export class EuiSuperDatePicker extends Component {
 
   renderDatePickerRange = () => {
     const { start, end, hasChanged, isInvalid } = this.state;
+    const { isDisabled } = this.props;
 
     if (this.props.isAutoRefreshOnly) {
       return (
@@ -314,6 +316,7 @@ export class EuiSuperDatePicker extends Component {
           <button
             className="euiSuperDatePicker__prettyFormat"
             data-test-subj="superDatePickerShowDatesButton"
+            disabled={isDisabled}
             onClick={this.hidePrettyDuration}>
             {prettyDuration(
               start,
@@ -339,6 +342,7 @@ export class EuiSuperDatePicker extends Component {
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             onChange={this.setStart}
             value={start}
             dateFormat={this.props.dateFormat}
@@ -352,6 +356,7 @@ export class EuiSuperDatePicker extends Component {
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             onChange={this.setEnd}
             value={end}
             dateFormat={this.props.dateFormat}
