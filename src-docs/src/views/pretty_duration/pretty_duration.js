@@ -64,7 +64,7 @@ export default function prettyDurationExample() {
 
           <EuiSpacer size="s" />
 
-          {prettyDuration(start, end, quickRanges, dateFormat)}
+          <EuiText><p>{prettyDuration(start, end, quickRanges, dateFormat)}</p></EuiText>
 
           <EuiSpacer size="xl" />
         </div>
