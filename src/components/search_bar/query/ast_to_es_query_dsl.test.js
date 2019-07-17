@@ -138,6 +138,13 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
+  test('ast - (name:john)', () => {
+    const query = astToEsQueryDsl(
+      AST.create([AST.Group.must([AST.Field.must.eq('name', 'john')])])
+    );
+    expect(query).toMatchSnapshot();
+  });
+
   test('ast - (name:john OR name:fred)', () => {
     const query = astToEsQueryDsl(
       AST.create([
