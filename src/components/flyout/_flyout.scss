@@ -1,3 +1,5 @@
+@import '../form/variables';
+
 .euiFlyout {
   border-left: $euiBorderThin;
   // The mixin augments the above
@@ -36,7 +38,8 @@ $flyoutSizes: (
     max: round(map-get($euiBreakpoints, 's') * .7),
   ),
   'medium': (
-    min:  round(map-get($euiBreakpoints, 'm') * .7), /* 1 */
+    // Calculated for forms plus padding
+    min: $euiFormMaxWidth + ($euiSizeM * 2),
     width: 50vw,
     max: map-get($euiBreakpoints, 'm'),
   ),

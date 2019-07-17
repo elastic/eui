@@ -179,6 +179,13 @@ export class FlyoutMaxWidth extends Component {
           <strong>larger custom max-width</strong>
         </EuiLink>
 
+        <EuiSpacer />
+
+        <EuiLink color="primary" onClick={() => this.showFlyout('m', 0)}>
+          Trick for forms: <strong>Medium</strong> flyout with{' '}
+          <strong>0 as max-width</strong>
+        </EuiLink>
+
         {flyout}
       </div>
     );
