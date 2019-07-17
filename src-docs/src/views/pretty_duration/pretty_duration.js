@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import {
   EuiSpacer,
   EuiCodeBlock,
+  EuiText,
   prettyDuration,
 } from '../../../../src/components';
 
