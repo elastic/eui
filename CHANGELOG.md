@@ -8,6 +8,7 @@
 
 - Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
 - Fixed `EuiAccordion` to correctly account for changing computed height of child elements ([#2136](https://github.com/elastic/eui/pull/2136))
+- Fixed some `EuiFlyout` sizing ([#2125](https://github.com/elastic/eui/pull/2125))
 
 **Breaking changes**
 
