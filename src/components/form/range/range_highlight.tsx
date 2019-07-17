@@ -1,8 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-export const EuiRangeHighlight = ({
+export interface EuiRangeHighlightProps {
+  hasFocus?: boolean;
+  showTicks?: boolean;
+  lowerValue: number;
+  upperValue: number;
+  max: number;
+  min: number;
+}
+
+export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   hasFocus,
   showTicks,
   lowerValue,
@@ -32,13 +40,4 @@ export const EuiRangeHighlight = ({
       <div className={progressClasses} style={rangeWidthStyle} />
     </div>
   );
-};
-
-EuiRangeHighlight.propTypes = {
-  hasFocus: PropTypes.bool,
-  showTicks: PropTypes.bool,
-  lowerValue: PropTypes.number.isRequired,
-  upperValue: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  min: PropTypes.number.isRequired,
 };

@@ -1,8 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  ChangeEventHandler,
+  FunctionComponent,
+  InputHTMLAttributes,
+  Ref,
+  forwardRef,
+} from 'react';
 import classNames from 'classnames';
 
-export const EuiRangeSlider = React.forwardRef(
+import { CommonProps } from '../../common';
+
+export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
+  CommonProps & {
+    id?: string;
+    name?: string;
+    min: number;
+    max: number;
+    step?: number;
+    hasFocus?: boolean;
+    showRange?: boolean;
+    showTicks?: boolean;
+    disabled?: boolean;
+    tabIndex?: number;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
+  };
+
+export const EuiRangeSlider: FunctionComponent<
+  EuiRangeSliderProps
+> = forwardRef(
   (
     {
       className,
@@ -21,7 +45,7 @@ export const EuiRangeSlider = React.forwardRef(
       hasFocus,
       ...rest
     },
-    ref
+    ref: Ref<HTMLInputElement>
   ) => {
     const classes = classNames(
       'euiRangeSlider',
@@ -52,22 +76,3 @@ export const EuiRangeSlider = React.forwardRef(
     );
   }
 );
-
-EuiRangeSlider.propTypes = {
-  id: PropTypes.string,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  name: PropTypes.string,
-  step: PropTypes.number,
-  onChange: PropTypes.func,
-  tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    ),
-  ]),
-  hasFocus: PropTypes.bool,
-  showRange: PropTypes.bool,
-};

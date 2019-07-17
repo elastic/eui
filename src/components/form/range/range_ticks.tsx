@@ -1,10 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+  FunctionComponent,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
-
 import find from 'lodash/find';
 
-export const EuiRangeTicks = ({
+import { Omit } from '../../common';
+import { useInnerText } from '../../inner_text';
+
+export interface EuiRangeTick {
+  value: number;
+  label: ReactNode;
+}
+
+export type EuiRangeTicksProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'value'
+> & {
+  ticks?: EuiRangeTick[];
+  tickSequence: number[];
+  value?: number | string | Array<string | number>;
+  min: number;
+  max: number;
+  interval?: number;
+  disabled?: boolean;
+  onChange?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
   disabled,
   onChange,
   ticks,
@@ -12,7 +37,7 @@ export const EuiRangeTicks = ({
   value,
   max,
   min,
-  interval,
+  interval = 1,
 }) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
@@ -26,7 +51,7 @@ export const EuiRangeTicks = ({
   return (
     <div className="euiRangeTicks" style={ticksStyle}>
       {tickSequence.map(tickValue => {
-        const tickStyle = {};
+        const tickStyle: { left?: string; width?: string } = {};
         let customTick;
         if (ticks) {
           customTick = find(ticks, o => o.value === tickValue);
@@ -46,6 +71,8 @@ export const EuiRangeTicks = ({
 
         const label = customTick ? customTick.label : tickValue;
 
+        const [ref, innerText] = useInnerText();
+
         return (
           <button
             type="button"
@@ -55,34 +82,13 @@ export const EuiRangeTicks = ({
             disabled={disabled}
             onClick={onChange}
             style={tickStyle}
-            tabIndex="-1"
-            title={label}>
+            tabIndex={-1}
+            ref={ref}
+            title={typeof label === 'string' ? label : innerText}>
             {label}
           </button>
         );
       })}
     </div>
   );
-};
-
-EuiRangeTicks.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  ticks: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.number.isRequired,
-      label: PropTypes.node.isRequired,
-    })
-  ),
-  tickSequence: PropTypes.arrayOf(PropTypes.number).isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    ),
-  ]),
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  interval: PropTypes.number,
 };

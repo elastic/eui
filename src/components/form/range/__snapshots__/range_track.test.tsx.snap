@@ -13,7 +13,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="0"
       type="button"
       value="0"
     >
@@ -23,7 +22,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="10"
       type="button"
       value="10"
     >
@@ -33,7 +31,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="20"
       type="button"
       value="20"
     >
@@ -43,7 +40,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="30"
       type="button"
       value="30"
     >
@@ -53,7 +49,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="40"
       type="button"
       value="40"
     >
@@ -63,7 +58,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="50"
       type="button"
       value="50"
     >
@@ -73,7 +67,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="60"
       type="button"
       value="60"
     >
@@ -83,7 +76,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="70"
       type="button"
       value="70"
     >
@@ -93,7 +85,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="80"
       type="button"
       value="80"
     >
@@ -103,7 +94,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="90"
       type="button"
       value="90"
     >
@@ -113,7 +103,6 @@ exports[`EuiRangeTrack is rendered 1`] = `
       class="euiRangeTick"
       style="width:9.090909090909092%"
       tabindex="-1"
-      title="100"
       type="button"
       value="100"
     >
