@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `12.4.0`.
+**Bug fixes**
+
+- Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
 
 ## [`12.4.0`](https://github.com/elastic/eui/tree/v12.4.0)
 
