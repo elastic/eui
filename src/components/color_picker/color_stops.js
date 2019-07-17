@@ -2,6 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { EuiRangeThumb } from '../form/range/range_thumb';
+import { EuiSpacer } from '../spacer';
 import { EuiColorPicker } from './color_picker';
 import { EuiFormRow, EuiFieldNumber } from '../form';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -135,7 +137,29 @@ export const EuiColorStops = ({
     );
   });
 
-  return <div>{rows}</div>;
+  return (
+    <div>
+      <div className="euiRangeWrapper">
+        <div className="euiRangeTrack">
+          <EuiRangeThumb value={0} showInput={false} style={{ left: 0 }} />
+          <EuiRangeThumb value={25} showInput={false} style={{ left: '25%' }} />
+          <EuiRangeThumb value={30} showInput={false} style={{ left: '30%' }} />
+          <div className="euiRangeHighlight">
+            <div
+              className="euiRangeHighlight__progress"
+              style={{
+                width: '100%',
+                background:
+                  'linear-gradient(to right, #FF0000 0%, #FFFF00 25%, #008000 35% )',
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      <EuiSpacer />
+      {rows}
+    </div>
+  );
 };
 
 EuiColorStops.propTypes = {
