@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps, keysOf } from '../common';
+
 import { EuiIcon } from '../icon';
-
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
 const paddingSizeToClassNameMap = {
@@ -17,18 +16,57 @@ const paddingSizeToClassNameMap = {
   xl: 'euiAccordion__padding--xl',
 };
 
-export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
-export class EuiAccordion extends Component {
-  constructor(props) {
-    super(props);
+export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    id: string;
+    /**
+     * Class that will apply to the trigger for the accordion.
+     */
+    buttonClassName?: string;
+    /**
+     * Class that will apply to the trigger content for the accordion.
+     */
+    buttonContentClassName?: string;
+    /**
+     * The content of the clickable trigger
+     */
+    buttonContent?: ReactNode;
+    /**
+     * Will appear right aligned against the button. Useful for separate actions like deletions.
+     */
+    extraAction?: ReactNode;
+    /**
+     * The accordion will start in the open state.
+     */
+    initialIsOpen: boolean;
+    /**
+     * Optional callback method called on open and close with a single `isOpen` parameter
+     */
+    onToggle?: (isOpen: boolean) => void;
+    /**
+     * The padding around the exposed accordion content.
+     */
+    paddingSize: EuiAccordionSize;
+  };
 
-    this.state = {
-      isOpen: props.initialIsOpen,
-    };
+export class EuiAccordion extends Component<
+  EuiAccordionProps,
+  { isOpen: boolean }
+> {
+  static defaultProps = {
+    initialIsOpen: false,
+    paddingSize: 'none',
+  };
 
-    this.onToggle = this.onToggle.bind(this);
-  }
+  childContent: HTMLDivElement | null = null;
+  childWrapper: HTMLDivElement | null = null;
+
+  state = {
+    isOpen: this.props.initialIsOpen,
+  };
 
   setChildContentHeight = () => {
     requestAnimationFrame(() => {
@@ -49,7 +87,7 @@ export class EuiAccordion extends Component {
     this.setChildContentHeight();
   }
 
-  onToggle() {
+  onToggle = () => {
     this.setState(
       prevState => ({
         isOpen: !prevState.isOpen,
@@ -58,9 +96,9 @@ export class EuiAccordion extends Component {
         this.props.onToggle && this.props.onToggle(this.state.isOpen);
       }
     );
-  }
+  };
 
-  setChildContentRef = node => {
+  setChildContentRef = (node: HTMLDivElement | null) => {
     this.childContent = node;
   };
 
@@ -74,7 +112,7 @@ export class EuiAccordion extends Component {
       buttonContentClassName,
       extraAction,
       paddingSize,
-      initialIsOpen, // eslint-disable-line no-unused-vars
+      initialIsOpen,
       ...rest
     } = this.props;
 
@@ -157,44 +195,3 @@ export class EuiAccordion extends Component {
     );
   }
 }
-
-EuiAccordion.propTypes = {
-  /**
-   * The content of the exposed accordion.
-   */
-  children: PropTypes.node,
-  id: PropTypes.string.isRequired,
-  /**
-   * Class that will apply to the entire accordion.
-   */
-  className: PropTypes.string,
-  /**
-   * Class that will apply to the trigger for the accordion.
-   */
-  buttonContentClassName: PropTypes.string,
-  /**
-   * The content of the clickable trigger
-   */
-  buttonContent: PropTypes.node,
-  /**
-   * Will appear right aligned against the button. Useful for separate actions like deletions.
-   */
-  extraAction: PropTypes.node,
-  /**
-   * The accordion will start in the open state.
-   */
-  initialIsOpen: PropTypes.bool,
-  /**
-   * The padding around the exposed accordion content.
-   */
-  paddingSize: PropTypes.oneOf(PADDING_SIZES),
-  /**
-   * Optional callback method called on open and close with a single `isOpen` parameter
-   */
-  onToggle: PropTypes.func,
-};
-
-EuiAccordion.defaultProps = {
-  initialIsOpen: false,
-  paddingSize: 'none',
-};
