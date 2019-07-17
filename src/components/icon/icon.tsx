@@ -437,7 +437,7 @@ export function createCache() {
 }
 
 let cache = createCache();
-const callbackCache: any = {};
+let callbackCache: any = {};
 
 function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
@@ -454,9 +454,25 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 // predictable.
 export function setCache(newCache: ReturnType<typeof createCache>) {
   cache = newCache;
+  callbackCache = {};
 }
 
-function loadIcon(type: string, callback: (icon: any) => void) {
+// Exported for testing purposes only, loads an icon asynchronously,
+// but executes all callbacks in one eventloop cycle so that React's
+// digest cycle runs once per type, rather than once per call.
+export function loadIcon(
+  importIcon: (
+    path: string
+  ) => {
+    then: (
+      fn: (result: any) => any
+    ) => {
+      finally: (fn: () => any) => any;
+    };
+  },
+  type: string,
+  callback: (icon: any) => void
+) {
   if (!isEuiIconType(type) || cache.getIcon(type)) {
     return;
   }
@@ -466,7 +482,7 @@ function loadIcon(type: string, callback: (icon: any) => void) {
   if (!callbacks.length) {
     callbackCache[type] = callbacks;
 
-    import(
+    importIcon(
       /* webpackChunkName: "icon.[request]" */
       // It's important that we don't use a template string here, it
       // stops webpack from building a dynamic require context.
@@ -538,7 +554,7 @@ export class EuiIcon extends React.Component<EuiIconProps, State> {
     if (cache.getIcon(iconType)) {
       return;
     }
-    loadIcon(iconType as string, icon => {
+    loadIcon((path: string) => import(path), iconType as string, icon => {
       if (this.isMounted) {
         this.setState({
           icon,

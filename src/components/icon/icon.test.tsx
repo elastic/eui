@@ -10,6 +10,7 @@ import {
   setCache,
   createCache,
   EuiIconProps,
+  loadIcon,
 } from './icon';
 
 const prettyHtml = cheerio.load('');
@@ -34,6 +35,65 @@ describe('EuiIcon', () => {
   });
 
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
+
+  describe('loadIcon', () => {
+    test('it executes callbacks in a single pass, rather than one per event loop cycle', () => {
+      const mockThen = jest.fn(() => ({ finally: jest.fn() }));
+      const mockImport = jest.fn(() => ({ then: mockThen }));
+      const callback1 = jest.fn();
+      const callback2 = jest.fn();
+      const callback3 = jest.fn();
+
+      loadIcon(mockImport, 'wrench', callback1);
+      loadIcon(mockImport, 'wrench', callback2);
+
+      expect(mockThen).toHaveBeenCalledTimes(1);
+
+      loadIcon(mockImport, 'dot', callback3);
+
+      expect(callback1).not.toHaveBeenCalled();
+      expect(callback2).not.toHaveBeenCalled();
+
+      const [[resolveThen]] = mockThen.mock.calls as any;
+
+      resolveThen({ icon: 'myicon' });
+
+      expect(callback1).toHaveBeenCalledWith('myicon');
+      expect(callback2).toHaveBeenCalledWith('myicon');
+      expect(callback3).not.toHaveBeenCalled();
+    });
+
+    test('caches the icon', () => {
+      const setIcon = jest.fn();
+      const mockThen = jest.fn(() => ({ finally: jest.fn() }));
+      const mockImport = jest.fn(() => ({ then: mockThen }));
+
+      setCache({
+        getIcon: jest.fn(),
+        setIcon,
+      });
+
+      loadIcon(mockImport, 'wrench', jest.fn());
+
+      const [[resolveThen]] = mockThen.mock.calls as any;
+
+      resolveThen({ icon: 'myicon' });
+
+      expect(setIcon).toHaveBeenCalledWith('wrench', 'myicon');
+    });
+
+    test('does nothing if the icon is already cached', () => {
+      setCache({
+        getIcon: () => 'foo',
+        setIcon: jest.fn(),
+      });
+
+      const mockImport = jest.fn();
+
+      loadIcon(mockImport, 'test1', jest.fn());
+      expect(mockImport).not.toHaveBeenCalled();
+    });
+  });
 
   describe('props', () => {
     describe('other props', () => {
