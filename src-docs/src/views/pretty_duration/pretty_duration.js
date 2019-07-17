@@ -62,7 +62,7 @@ export default function prettyDurationExample() {
             {dateFormat}&apos;)
           </EuiCodeBlock>
 
-          <EuiSpacer size="xs" />
+          <EuiSpacer size="s" />
 
           {prettyDuration(start, end, quickRanges, dateFormat)}
 
