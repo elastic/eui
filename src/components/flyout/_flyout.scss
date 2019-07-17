@@ -31,17 +31,17 @@
  */
 $flyoutSizes: (
   'small': (
-    min: map-get($euiBreakpoints, 'm') * .5, /* 1 */
+    min: round(map-get($euiBreakpoints, 'm') * .5), /* 1 */
     width: 25vw,
-    max: map-get($euiBreakpoints, 's') * .7,
+    max: round(map-get($euiBreakpoints, 's') * .7),
   ),
   'medium': (
-    min:  map-get($euiBreakpoints, 'm') * .7, /* 1 */
+    min:  round(map-get($euiBreakpoints, 'm') * .7), /* 1 */
     width: 50vw,
     max: map-get($euiBreakpoints, 'm'),
   ),
   'large': (
-    min:  map-get($euiBreakpoints, 'm') * .9, /* 1 */
+    min:  round(map-get($euiBreakpoints, 'm') * .9), /* 1 */
     width: 75vw,
     max: map-get($euiBreakpoints, 'l'),
   )
