@@ -461,9 +461,7 @@ export function setCache(newCache: ReturnType<typeof createCache>) {
 // but executes all callbacks in one eventloop cycle so that React's
 // digest cycle runs once per type, rather than once per call.
 export function loadIcon(
-  importIcon: (
-    path: string
-  ) => {
+  importIcon: () => {
     then: (
       fn: (result: any) => any
     ) => {
@@ -482,13 +480,7 @@ export function loadIcon(
   if (!callbacks.length) {
     callbackCache[type] = callbacks;
 
-    importIcon(
-      /* webpackChunkName: "icon.[request]" */
-      // It's important that we don't use a template string here, it
-      // stops webpack from building a dynamic require context.
-      // eslint-disable-next-line prefer-template
-      './assets/' + (typeToPathMap as any)[type] + '.js'
-    )
+    importIcon()
       .then(({ icon }) => {
         cache.setIcon(type, icon);
         callbacks.forEach((cb: any) => cb(icon));
@@ -551,17 +543,22 @@ export class EuiIcon extends React.Component<EuiIconProps, State> {
   }
 
   loadIconComponent = (iconType: EuiIconType) => {
-    if (cache.getIcon(iconType)) {
-      return;
-    }
-    loadIcon((path: string) => import(path), iconType as string, icon => {
-      if (this.isMounted) {
-        this.setState({
-          icon,
-          isLoading: false,
-        });
+    loadIcon(
+      /* webpackChunkName: "icon.[request]" */
+      // It's important that we don't use a template string here, it
+      // stops webpack from building a dynamic require context.
+      // eslint-disable-next-line prefer-template
+      () => import('./assets/' + (typeToPathMap as any)[iconType] + '.js'),
+      iconType as string,
+      icon => {
+        if (this.isMounted) {
+          this.setState({
+            icon,
+            isLoading: false,
+          });
+        }
       }
-    });
+    );
   };
 
   render() {
