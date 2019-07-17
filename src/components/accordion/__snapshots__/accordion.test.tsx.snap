@@ -85,6 +85,9 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       <EuiMutationObserver
         observerOptions={
           Object {
+            "attributeFilter": Array [
+              "style",
+            ],
             "childList": true,
             "subtree": true,
           }
@@ -187,6 +190,9 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       <EuiMutationObserver
         observerOptions={
           Object {
+            "attributeFilter": Array [
+              "style",
+            ],
             "childList": true,
             "subtree": true,
           }
