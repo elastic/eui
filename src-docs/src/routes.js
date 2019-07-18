@@ -29,6 +29,8 @@ import { ColorPaletteExample } from './views/color_palette/color_palette_example
 
 import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
 
+import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
+
 import { UtilityClassesExample } from './views/utility_classes/utility_classes_example';
 
 // Component examples
@@ -109,6 +111,8 @@ import { I18nExample } from './views/i18n/i18n_example';
 import { IconExample } from './views/icon/icon_example';
 
 import { ImageExample } from './views/image/image_example';
+
+import { InnerTextExample } from './views/inner_text/inner_text_example';
 
 import { KeyPadMenuExample } from './views/key_pad_menu/key_pad_menu_example';
 
@@ -374,8 +378,10 @@ const navigation = [
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightExample,
+      InnerTextExample,
       I18nExample,
       IsColorDarkExample,
+      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       PortalExample,
