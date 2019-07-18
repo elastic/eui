@@ -246,21 +246,3 @@
   @include euiFocusRing;
   border-color: $euiColorPrimary;
 }
-
-
-// Deprecated mixins below. This was changed in Nov. 2018
-
-@mixin euiCustomControl--selected($type: null) { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlSelected($type);
-  @warn '@mixin euiCustomControl--selected is deprecated, please use euiCustomControlSelected instead';
-}
-
-@mixin euiCustomControl--disabled($type: null) { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlDisabled($type);
-  @warn '@mixin euiCustomControl--disabled is deprecated, please use euiCustomControlDisabled instead';
-}
-
-@mixin euiCustomControl--focused { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlFocused;
-  @warn '@mixin euiCustomControl--focused is deprecated, please use euiCustomControlFocused instead';
-}
