@@ -56,9 +56,7 @@ export const EuiSuggestItem = ({
       <span className={`euiSuggestItem__type ${colorClass}`}>
         <EuiIcon type={type.iconType} />
       </span>
-      <span className={`euiSuggestItem__label ${labelDisplayClass}`}>
-        {label}
-      </span>
+      <span className={labelDisplayClass}>{label}</span>
       <span className="euiSuggestItem__description">{description}</span>
     </div>
   );

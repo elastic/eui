@@ -19,7 +19,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
   >
     Test label
   </span>
@@ -46,7 +46,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
   >
     This is the description
   </span>
@@ -73,7 +73,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__label euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand"
   >
     This is the description
   </span>
