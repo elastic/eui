@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `12.2.1`.
+
+## [`12.2.1`](https://github.com/elastic/eui/tree/v12.2.1)
+
 **Bug fixes**
 
 - Fixed a nearly infinite `requestAnimationFrame` loop caused by `focus` state changes in nested `EuiPopover` components ([#2110](https://github.com/elastic/eui/pull/2110))
