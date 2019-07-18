@@ -6,7 +6,7 @@ function getMilliseconds(value: string, unit: string) {
   return parseFloat(value) * multiplier;
 }
 // Find CSS `transition-duration` and `transition-delay` intervals
-// and return the value of each computed property
+// and return the value of each computed property in 'ms'
 export const getTransitionTimings = (element: Element) => {
   const computedStyle = window.getComputedStyle(element);
 
