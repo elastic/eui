@@ -4,7 +4,6 @@ const GROUP_NUMERIC = /^([\d.]+)/;
 // and return the value of each computed property
 export const getTransitionTimings = (element: Element) => {
   const computedStyle = window.getComputedStyle(element);
-  console.log(computedStyle);
 
   const computedDuration = computedStyle.getPropertyValue(
     'transition-duration'
@@ -40,7 +39,7 @@ export const getWaitDuration = (records: MutationRecord[]) => {
   }, 0);
 };
 
-// Uses `getTransitionTimings` to find the total transition time for
+// Uses `requestAnimationFrame` to perform a given callback after a specified waiting period
 export const performOnFrame = (waitDuration: number, toPerform: () => void) => {
   if (waitDuration > 0) {
     const startTime = Date.now();
