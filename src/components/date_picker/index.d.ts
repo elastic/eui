@@ -86,4 +86,19 @@ declare module '@elastic/eui' {
 
   export const ReactDatePicker: typeof _ReactDatePicker;
   export const ReactDatePickerProps: _ReactDatePickerProps;
+
+  interface DurationRange {
+    start: string;
+    end: string;
+    label: string;
+  }
+
+  export const commonDurationRanges: DurationRange[];
+
+  export function prettyDuration(
+    timeFrom: string,
+    timeTo: string,
+    quickRanges: DurationRange[],
+    dateFormat: string
+  ): string;
 }
