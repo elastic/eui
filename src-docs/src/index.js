@@ -15,16 +15,10 @@ import { registerTheme } from './services';
 import Routes from './routes';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
-import themeK6Light from './theme_k6_light.scss';
-import themeK6Dark from './theme_k6_dark.scss';
 
 registerTheme('light', [themeLight]);
 
 registerTheme('dark', [themeDark]);
-
-registerTheme('k6', [themeK6Light]);
-
-registerTheme('k6_dark', [themeK6Dark]);
 
 // Set up app
 

@@ -22,17 +22,21 @@ Clauses
   }
 
 Clause
-  = IsClause
+  = GroupClause
+  / IsClause
   / FieldClause
   / TermClause
-  / GroupClause
 
-GroupClause
+SubGroupClause
   = "(" head:Clause tail:(
     space? orWord space? clause:Clause { return clause }
   )* ")" {
-    return AST.Group.must([head, ...tail]);
+    return [head, ...tail];
   }
+
+GroupClause
+  = space? "-" group:SubGroupClause { return AST.Group.mustNot(group) }
+  / space? group:SubGroupClause { return AST.Group.must(group) }
 
 TermClause
   = space? "-" value:termValue { return AST.Term.mustNot(value); }

@@ -148,7 +148,7 @@ export const createFilter = (
         }
         throw new Error(`Unknown query clause type in group, [${clause.type}]`);
       });
-      return matchesGroup;
+      return AST.Match.isMustClause(clause) ? matchesGroup : !matchesGroup;
     });
 
     return isGroupMatch;

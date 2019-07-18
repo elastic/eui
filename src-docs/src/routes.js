@@ -178,18 +178,6 @@ import { ToggleExample } from './views/toggle/toggle_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
-import { XYChartExample } from './views/series_chart/series_chart_example';
-
-import { XYChartAxisExample } from './views/series_chart_axis/series_axis_example';
-
-import { XYChartBarExample } from './views/series_chart_bar/bar_example';
-
-import { XYChartHistogramExample } from './views/series_chart_histogram/histogram_example';
-
-import { XYChartAreaExample } from './views/series_chart_area/area_example';
-
-import { XYChartLineExample } from './views/series_chart_line/line_example';
-
 import { Changelog } from './views/package/changelog';
 
 import { I18nTokens } from './views/package/i18n_tokens';
@@ -352,17 +340,6 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-    ].map(example => createExample(example)),
-  },
-  {
-    name: 'Charts (deprecated)',
-    items: [
-      XYChartExample,
-      XYChartAxisExample,
-      XYChartLineExample,
-      XYChartAreaExample,
-      XYChartBarExample,
-      XYChartHistogramExample,
     ].map(example => createExample(example)),
   },
   {
