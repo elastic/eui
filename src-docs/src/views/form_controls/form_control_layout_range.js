@@ -4,6 +4,7 @@ import {
   EuiFormControlLayoutDelimited,
   EuiSpacer,
   EuiFormLabel,
+  EuiIcon,
 } from '../../../../src/components';
 
 export default () => (
@@ -87,10 +88,24 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
-      prepend={<EuiFormLabel>Label</EuiFormLabel>}
+      prepend={<EuiFormLabel>Add</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
       }
+      delimiter="+"
+      endControl={
+        <input type="number" placeholder="100" className="euiFieldNumber" />
+      }
+    />
+
+    <EuiSpacer size="m" />
+
+    <EuiFormControlLayoutDelimited
+      prepend={<EuiFormLabel>Merge</EuiFormLabel>}
+      startControl={
+        <input type="number" placeholder="0" className="euiFieldNumber" />
+      }
+      delimiter={<EuiIcon type="merge" />}
       endControl={
         <input type="number" placeholder="100" className="euiFieldNumber" />
       }

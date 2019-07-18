@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactElement, cloneElement } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  cloneElement,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { EuiText } from '../../text';
@@ -13,12 +18,17 @@ type EuiFormControlLayoutDelimitedProps = Partial<EuiFormControlLayout> & {
    * Right side control
    */
   endControl: ReactElement;
+  /**
+   * The center content. Accepts a string to be wrapped in a subdued EuiText
+   * or a single ReactElement
+   */
+  delimiter?: ReactNode;
   className?: string;
 };
 
 export const EuiFormControlLayoutDelimited: FunctionComponent<
   EuiFormControlLayoutDelimitedProps
-> = ({ startControl, endControl, className, ...rest }) => {
+> = ({ startControl, endControl, delimiter = '→', className, ...rest }) => {
   const classes = classNames('euiFormControlLayoutDelimited', className);
 
   return (
@@ -28,7 +38,7 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
         className="euiFormControlLayoutDelimited__delimeter"
         size="s"
         color="subdued">
-        →
+        {delimiter}
       </EuiText>
       {addClassesToControl(endControl)}
     </EuiFormControlLayout>
