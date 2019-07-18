@@ -105,6 +105,7 @@ export class EuiSuperDatePicker extends Component {
     start: 'now-15m',
     end: 'now',
     isPaused: true,
+    isDisabled: false,
     refreshInterval: 0,
     commonlyUsedRanges: [
       { start: 'now/d', end: 'now/d', label: 'Today' },
@@ -314,7 +315,9 @@ export class EuiSuperDatePicker extends Component {
           startDateControl={<div />}
           endDateControl={<div />}>
           <button
-            className="euiSuperDatePicker__prettyFormat"
+            className={classNames('euiSuperDatePicker__prettyFormat', {
+              'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
+            })}
             data-test-subj="superDatePickerShowDatesButton"
             disabled={isDisabled}
             onClick={this.hidePrettyDuration}>
@@ -389,7 +392,7 @@ export class EuiSuperDatePicker extends Component {
         <EuiSuperUpdateButton
           needsUpdate={this.state.hasChanged}
           isLoading={this.props.isLoading}
-          isDisabled={this.state.isInvalid}
+          isDisabled={this.props.isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
         />
@@ -406,6 +409,7 @@ export class EuiSuperDatePicker extends Component {
         applyRefreshInterval={
           this.props.onRefreshChange ? this.onRefreshChange : null
         }
+        isDisabled={this.props.isDisabled}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}

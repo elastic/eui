@@ -31,6 +31,7 @@ export function EuiDatePopoverButton(props) {
       'euiDatePopoverButton-isSelected': isOpen,
       'euiDatePopoverButton-isInvalid': isInvalid,
       'euiDatePopoverButton-needsUpdating': needsUpdating,
+      'euiDatePopoverButton-disabled': isDisabled,
     },
   ]);
 
