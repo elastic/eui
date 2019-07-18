@@ -4,7 +4,7 @@
 
 - Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
 
-**Deprecations**
+**Breaking changes**
 
 - Removed `EuiSeriesChart` and related components. Please look to [Elastic Charts](https://github.com/elastic/elastic-charts) for a replacement. ([#2135](https://github.com/elastic/eui/pull/2108))
 - Removed `eui_k6_theme` related Sass and JSON files ([#2135](https://github.com/elastic/eui/pull/2108))
