@@ -58,6 +58,14 @@
 
 - Removed `logoXpack`from `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
 
+## [`12.2.1`](https://github.com/elastic/eui/tree/v12.2.1)
+
+**Note: this release is a backport containing changes originally made in `12.4.0`**
+
+**Bug fixes**
+
+- Fixed a nearly infinite `requestAnimationFrame` loop caused by `focus` state changes in nested `EuiPopover` components ([#2110](https://github.com/elastic/eui/pull/2110))
+
 ## [`12.2.0`](https://github.com/elastic/eui/tree/v12.2.0)
 
 - Made `aria-label` attribute equal to `title` of the the selection checkbox in table items (for each row) in `EuiBasicTable` ([#2043](https://github.com/elastic/eui/pull/2043))
