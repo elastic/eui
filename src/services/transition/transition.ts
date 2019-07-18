@@ -1,6 +1,6 @@
 const GROUP_NUMERIC = /^([\d.]+)/;
 
-// Find CSS `transition-duration` and `transition-dealy` intervals
+// Find CSS `transition-duration` and `transition-delay` intervals
 // and return the value of each computed property
 export const getTransitionTimings = (element: Element) => {
   const computedStyle = window.getComputedStyle(element);
