@@ -1,7 +1,3 @@
-.euiDatePopoverButton__popover .euiDatePopoverButton__popoverAnchor {
-  display: block;
-}
-
 .euiDatePopoverButton {
   @include euiSuperDatePickerText;
   background-size: 100%; // For the bottom "border" via background-image

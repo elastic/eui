@@ -2,8 +2,28 @@ import { CommonProps, Omit } from '../../common';
 
 import { ReactNode, FunctionComponent, InputHTMLAttributes } from 'react';
 
+import { EuiRangeHighlightProps } from './range_highlight';
+import { EuiRangeLabelProps } from './range_label';
+import { EuiRangeLevelsProps, EuiRangeLevel } from './range_levels';
+import { EuiRangeSliderProps } from './range_slider';
+import { EuiRangeThumbProps } from './range_thumb';
+import { EuiRangeTicksProps } from './range_ticks';
+import { EuiRangeTooltipProps } from './range_tooltip';
+import { EuiRangeTrackProps } from './range_track';
+import { EuiRangeWrapperProps } from './range_wrapper';
+
 declare module '@elastic/eui' {
   export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
+
+  export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps>;
+  export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps>;
+  export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps>;
+  export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps>;
+  export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps>;
+  export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps>;
+  export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps>;
+  export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps>;
+  export const EuiRangeWrapper: FunctionComponent<EuiRangeWrapperProps>;
 
   /**
    * single range type def
@@ -15,7 +35,7 @@ declare module '@elastic/eui' {
     compressed?: boolean;
     fullWidth?: boolean;
     id?: string;
-    levels?: Array<{ min?: number; max?: number; color?: EuiRangeLevelColor }>;
+    levels?: EuiRangeLevel[];
     // `min` and `max` are optional in HTML but required for our component,
     // so we override them.
     max: number;

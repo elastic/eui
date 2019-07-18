@@ -1,4 +1,3 @@
-/// <reference path="./accordion/index.d.ts" />
 /// <reference path="./button/index.d.ts" />
 /// <reference path="./call_out/index.d.ts" />
 /// <reference path="./code/index.d.ts" />

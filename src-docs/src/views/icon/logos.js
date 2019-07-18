@@ -25,6 +25,7 @@ const iconTypes = [
   'logoAppSearch',
   'logoBeats',
   'logoBusinessAnalytics',
+  'logoCode',
   'logoCloud',
   'logoCloudEnterprise',
   'logoElastic',
@@ -32,10 +33,13 @@ const iconTypes = [
   'logoElasticsearch',
   'logoEnterpriseSearch',
   'logoKibana',
+  'logoLogging',
   'logoLogstash',
+  'logoMaps',
   'logoMetrics',
+  'logoSecurity',
   'logoSiteSearch',
-  'logoXpack',
+  'logoUptime',
 ].sort();
 
 export default () => (

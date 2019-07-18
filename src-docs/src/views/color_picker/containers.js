@@ -92,16 +92,18 @@ export default class extends Component {
           {colorPicker}
         </EuiFormRow>
 
-        <EuiPopover
-          id="popover"
-          ownFocus
-          button={button}
-          isOpen={isPopoverOpen}
-          closePopover={this.closePopover}>
-          <div style={{ width: '300px' }}>
-            <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
-          </div>
-        </EuiPopover>
+        <EuiFormRow label="Unruly focus management">
+          <EuiPopover
+            id="popover"
+            ownFocus={true}
+            button={button}
+            isOpen={isPopoverOpen}
+            closePopover={this.closePopover}>
+            <div style={{ width: '300px' }}>
+              <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+            </div>
+          </EuiPopover>
+        </EuiFormRow>
 
         <EuiSpacer size="m" />
 
