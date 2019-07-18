@@ -11,7 +11,9 @@ const TYPE = {
 
 describe('EuiSuggestItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiSuggestItem {...requiredProps} type={TYPE} />);
+    const component = render(
+      <EuiSuggestItem {...requiredProps} label="Test label" type={TYPE} />
+    );
 
     expect(component).toMatchSnapshot();
   });
@@ -30,6 +32,7 @@ describe('props', () => {
         <EuiSuggestItem
           type={sampleItem.type}
           description={sampleItem.description}
+          label={sampleItem.description}
           labelDisplay="expand"
         />
       );
@@ -39,7 +42,9 @@ describe('props', () => {
 
   describe('item with no description has expanded label', () => {
     test('is rendered', () => {
-      const component = render(<EuiSuggestItem type={sampleItem.type} />);
+      const component = render(
+        <EuiSuggestItem label={sampleItem.description} type={sampleItem.type} />
+      );
       expect(component).toMatchSnapshot();
     });
   });
