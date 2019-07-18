@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <span
+      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+    >
+      start
+    </span>
+    <div
+      class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+    >
+      <div
+        class="euiTextColor euiTextColor--subdued"
+      >
+        →
+      </div>
+    </div>
+    <span
+      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+    >
+      end
+    </span>
+  </div>
+</div>
+`;

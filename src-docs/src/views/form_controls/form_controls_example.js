@@ -18,7 +18,7 @@ import {
   EuiFieldText,
   EuiFilePicker,
   EuiFormControlLayout,
-  EuiFormControlLayoutRange,
+  EuiFormControlLayoutDelimited,
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
@@ -357,7 +357,7 @@ export const FormControlsExample = {
       demo: <FormControlLayout />,
     },
     {
-      title: 'Form control layout range',
+      title: 'Form control layout delimited',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -376,7 +376,7 @@ export const FormControlsExample = {
 
           <p>
             Like <EuiCode>EuiFormControlLayout</EuiCode>,{' '}
-            <EuiCode>EuiFormControlLayoutRange</EuiCode> is generally used
+            <EuiCode>EuiFormControlLayoutDelimited</EuiCode> is generally used
             internally to consistently style form controls. This component
             specifically lays out two form controls with a middle arrow. It
             takes all of the same props as{' '}
@@ -388,7 +388,7 @@ export const FormControlsExample = {
         </Fragment>
       ),
       props: {
-        EuiFormControlLayoutRange,
+        EuiFormControlLayoutDelimited,
       },
       demo: <FormControlLayoutRange />,
     },

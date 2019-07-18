@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiFormControlLayoutRange } from './form_control_layout_range';
+import { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
 
-describe('EuiFormControlLayoutRange', () => {
+describe('EuiFormControlLayoutDelimited', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiFormControlLayoutRange
+      <EuiFormControlLayoutDelimited
         startControl={<span>start</span>}
         endControl={<span>end</span>}
         {...requiredProps}

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 
 import {
-  EuiFormControlLayoutRange,
+  EuiFormControlLayoutDelimited,
   EuiSpacer,
   EuiFormLabel,
 } from '../../../../src/components';
 
 export default () => (
   <Fragment>
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
       }
@@ -18,7 +18,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       append={<EuiFormLabel>px</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -29,7 +29,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       icon="vector"
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -40,7 +40,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       clear={{ onClick: () => {} }}
       isLoading
       startControl={
@@ -52,7 +52,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       fullWidth
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -63,7 +63,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       isLoading
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -74,7 +74,7 @@ export default () => (
     />
 
     <EuiSpacer size="m" />
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       compressed
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -86,7 +86,7 @@ export default () => (
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       prepend={<EuiFormLabel>Label</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -98,7 +98,7 @@ export default () => (
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayoutRange
+    <EuiFormControlLayoutDelimited
       readOnly
       prepend={<EuiFormLabel>Read only</EuiFormLabel>}
       startControl={

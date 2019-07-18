@@ -8,7 +8,7 @@ export { EuiFilePicker } from './file_picker';
 export { EuiForm } from './form';
 export {
   EuiFormControlLayout,
-  EuiFormControlLayoutRange,
+  EuiFormControlLayoutDelimited,
 } from './form_control_layout';
 export { EuiFormErrorText } from './form_error_text';
 export { EuiFormHelpText } from './form_help_text';
