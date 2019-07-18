@@ -1,5 +1,10 @@
-const GROUP_NUMERIC = /^([\d.]+)/;
+const GROUP_NUMERIC = /^([\d.]+)(s|ms)/;
 
+function getMilliseconds(value: string, unit: string) {
+  // Given the regex match and capture groups, we can assume `unit` to be either 's' or 'ms'
+  const multiplier = unit === 's' ? 1000 : 1;
+  return parseFloat(value) * multiplier;
+}
 // Find CSS `transition-duration` and `transition-delay` intervals
 // and return the value of each computed property
 export const getTransitionTimings = (element: Element) => {
@@ -10,13 +15,13 @@ export const getTransitionTimings = (element: Element) => {
   );
   const durationMatchArray = computedDuration.match(GROUP_NUMERIC);
   const durationMatch = durationMatchArray
-    ? parseFloat(durationMatchArray[1]) * 1000
+    ? getMilliseconds(durationMatchArray[1], durationMatchArray[2])
     : 0;
 
   const computedDelay = computedStyle.getPropertyValue('transition-delay');
   const delayMatchArray = computedDelay.match(GROUP_NUMERIC);
   const delayMatch = delayMatchArray
-    ? parseFloat(delayMatchArray[1]) * 1000
+    ? getMilliseconds(delayMatchArray[1], delayMatchArray[2])
     : 0;
 
   return { durationMatch, delayMatch };
