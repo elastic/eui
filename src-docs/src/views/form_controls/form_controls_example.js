@@ -378,12 +378,16 @@ export const FormControlsExample = {
             Like <EuiCode>EuiFormControlLayout</EuiCode>,{' '}
             <EuiCode>EuiFormControlLayoutDelimited</EuiCode> is generally used
             internally to consistently style form controls. This component
-            specifically lays out two form controls with a middle arrow. It
-            takes all of the same props as{' '}
+            specifically lays out two form controls with center text or icon.
+          </p>
+          <p>
+            It takes all of the same props as{' '}
             <EuiCode>EuiFormControlLayout</EuiCode> except for{' '}
-            <EuiCode>children</EuiCode>. Instead it require both a{' '}
+            <EuiCode>children</EuiCode>. Instead it requires both a{' '}
             <strong>single</strong> <EuiCode>startControl</EuiCode> and a{' '}
-            <strong>single</strong> <EuiCode>endControl</EuiCode>.
+            <strong>single</strong> <EuiCode>endControl</EuiCode>. You can
+            optionally change the center content to a different string or node
+            (like an EuiIcon).
           </p>
         </Fragment>
       ),
