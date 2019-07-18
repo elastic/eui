@@ -1083,6 +1083,42 @@ describe('defaultSyntax', () => {
     expect(nameClauseB.value).toBe('susan');
   });
 
+  test('negated OR clause', () => {
+    const query = '-(name:john OR name:susan)';
+    const schema = {
+      strict: true,
+      fields: {
+        name: {
+          type: 'string',
+        },
+      },
+    };
+    const ast = defaultSyntax.parse(query, { schema });
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(1);
+
+    const groupClauses = ast.getGroupClauses();
+    expect(groupClauses).toHaveLength(1);
+
+    const [groupClause] = groupClauses;
+    expect(groupClause).toBeDefined();
+    expect(AST.Group.isInstance(groupClause)).toBe(true);
+    expect(AST.Match.isMustClause(groupClause)).toBe(false);
+
+    const [nameClauseA, nameClauseB] = groupClause.value;
+
+    expect(AST.Field.isInstance(nameClauseA)).toBe(true);
+    expect(AST.Match.isMustClause(nameClauseA)).toBe(true);
+    expect(nameClauseA.field).toBe('name');
+    expect(nameClauseA.value).toBe('john');
+
+    expect(AST.Field.isInstance(nameClauseB)).toBe(true);
+    expect(AST.Match.isMustClause(nameClauseB)).toBe(true);
+    expect(nameClauseB.field).toBe('name');
+    expect(nameClauseB.value).toBe('susan');
+  });
+
   test('or term parsing and printing', () => {
     const query = '"or"';
     const ast = defaultSyntax.parse(query);

@@ -89,6 +89,9 @@ const Group = Object.freeze({
   must: value => {
     return { type: Group.TYPE, value, match: Match.MUST };
   },
+  mustNot: value => {
+    return { type: Group.TYPE, value, match: Match.MUST_NOT };
+  },
 });
 
 const Field = Object.freeze({
