@@ -90,7 +90,8 @@ export default () => (
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
-      paddingSize="l">
+      paddingSize="l"
+      responsiveHeader={false}>
       {repeatableForm}
     </EuiAccordion>
 
