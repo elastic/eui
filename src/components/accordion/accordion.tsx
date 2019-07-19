@@ -150,7 +150,11 @@ export class EuiAccordion extends Component<
     );
 
     const icon = (
-      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="m" />
+      <EuiIcon
+        className="euiAccordion__icon"
+        type={this.state.isOpen ? 'arrowDown' : 'arrowRight'}
+        size="m"
+      />
     );
 
     let optionalAction = null;
@@ -169,18 +173,8 @@ export class EuiAccordion extends Component<
               onClick={this.onToggle}
               className={buttonClasses}
               type="button">
-              <EuiFlexGroup
-                gutterSize="s"
-                alignItems="center"
-                responsive={false}>
-                <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
-                  {icon}
-                </EuiFlexItem>
-
-                <EuiFlexItem className={buttonContentClasses}>
-                  {buttonContent}
-                </EuiFlexItem>
-              </EuiFlexGroup>
+              <span className="euiAccordion__iconWrapper">{icon}</span>
+              <span className={buttonContentClasses}>{buttonContent}</span>
             </button>
           </EuiFlexItem>
 

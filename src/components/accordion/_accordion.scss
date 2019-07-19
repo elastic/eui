@@ -1,6 +1,8 @@
 .euiAccordion__button {
   text-align: left;
   width: 100%;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -12,11 +14,22 @@
       @include euiFocusRing;
 
       color: $euiColorPrimary;
-      border-radius: $euiBorderRadius;
     }
   }
-
 }
+
+.euiAccordion__iconWrapper {
+  @include size($euiSize);
+  border-radius: $euiBorderRadius;
+  margin-right: $euiSizeS;
+  flex-shrink: 0;
+
+  // Nested to override EuiIcon
+  .euiAccordion__icon {
+    vertical-align: initial;
+  }
+}
+
 
 .euiAccordion__childWrapper {
   visibility: hidden;

@@ -7,6 +7,7 @@ export default () => (
     <EuiAccordion
       id="accordion1"
       buttonContent="An accordion with padding applied through props"
+      buttonContentClassName="eui-textTruncate"
       paddingSize="l">
       <EuiText>
         <p>The content inside can be of any height.</p>

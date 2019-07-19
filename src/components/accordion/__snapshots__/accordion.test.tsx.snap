@@ -27,52 +27,34 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
               onClick={[Function]}
               type="button"
             >
-              <EuiFlexGroup
-                alignItems="center"
-                gutterSize="s"
-                responsive={false}
+              <span
+                className="euiAccordion__iconWrapper"
               >
-                <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                <EuiIcon
+                  className="euiAccordion__icon"
+                  size="m"
+                  type="arrowRight"
                 >
-                  <EuiFlexItem
-                    className="euiAccordion__iconWrapper"
-                    grow={false}
+                  <EuiIconEmpty
+                    className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                    focusable="false"
+                    style={null}
                   >
-                    <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-                    >
-                      <EuiIcon
-                        size="m"
-                        type="arrowRight"
-                      >
-                        <EuiIconEmpty
-                          className="euiIcon euiIcon--medium euiIcon-isLoading"
-                          focusable="false"
-                          style={null}
-                        >
-                          <svg
-                            className="euiIcon euiIcon--medium euiIcon-isLoading"
-                            focusable="false"
-                            height={16}
-                            style={null}
-                            viewBox="0 0 16 16"
-                            width={16}
-                            xmlns="http://www.w3.org/2000/svg"
-                          />
-                        </EuiIconEmpty>
-                      </EuiIcon>
-                    </div>
-                  </EuiFlexItem>
-                  <EuiFlexItem
-                    className="euiAccordion__buttonContent"
-                  >
-                    <div
-                      className="euiFlexItem euiAccordion__buttonContent"
+                    <svg
+                      className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                      focusable="false"
+                      height={16}
+                      style={null}
+                      viewBox="0 0 16 16"
+                      width={16}
+                      xmlns="http://www.w3.org/2000/svg"
                     />
-                  </EuiFlexItem>
-                </div>
-              </EuiFlexGroup>
+                  </EuiIconEmpty>
+                </EuiIcon>
+              </span>
+              <span
+                className="euiAccordion__buttonContent"
+              />
             </button>
           </div>
         </EuiFlexItem>
@@ -132,52 +114,34 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
               onClick={[Function]}
               type="button"
             >
-              <EuiFlexGroup
-                alignItems="center"
-                gutterSize="s"
-                responsive={false}
+              <span
+                className="euiAccordion__iconWrapper"
               >
-                <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                <EuiIcon
+                  className="euiAccordion__icon"
+                  size="m"
+                  type="arrowDown"
                 >
-                  <EuiFlexItem
-                    className="euiAccordion__iconWrapper"
-                    grow={false}
+                  <EuiIconEmpty
+                    className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                    focusable="false"
+                    style={null}
                   >
-                    <div
-                      className="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-                    >
-                      <EuiIcon
-                        size="m"
-                        type="arrowDown"
-                      >
-                        <EuiIconEmpty
-                          className="euiIcon euiIcon--medium euiIcon-isLoading"
-                          focusable="false"
-                          style={null}
-                        >
-                          <svg
-                            className="euiIcon euiIcon--medium euiIcon-isLoading"
-                            focusable="false"
-                            height={16}
-                            style={null}
-                            viewBox="0 0 16 16"
-                            width={16}
-                            xmlns="http://www.w3.org/2000/svg"
-                          />
-                        </EuiIconEmpty>
-                      </EuiIcon>
-                    </div>
-                  </EuiFlexItem>
-                  <EuiFlexItem
-                    className="euiAccordion__buttonContent"
-                  >
-                    <div
-                      className="euiFlexItem euiAccordion__buttonContent"
+                    <svg
+                      className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                      focusable="false"
+                      height={16}
+                      style={null}
+                      viewBox="0 0 16 16"
+                      width={16}
+                      xmlns="http://www.w3.org/2000/svg"
                     />
-                  </EuiFlexItem>
-                </div>
-              </EuiFlexGroup>
+                  </EuiIconEmpty>
+                </EuiIcon>
+              </span>
+              <span
+                className="euiAccordion__buttonContent"
+              />
             </button>
           </div>
         </EuiFlexItem>
@@ -228,25 +192,21 @@ exports[`EuiAccordion is rendered 1`] = `
         class="euiAccordion__button"
         type="button"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        <span
+          class="euiAccordion__iconWrapper"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiIcon-isLoading"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
           />
-        </div>
+        </span>
+        <span
+          class="euiAccordion__buttonContent"
+        />
       </button>
     </div>
   </div>
@@ -279,29 +239,25 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
         class="euiAccordion__button"
         type="button"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        <span
+          class="euiAccordion__iconWrapper"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiIcon-isLoading"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </span>
+        <span
+          class="euiAccordion__buttonContent"
+        >
+          <div>
+            Button content
           </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
-          >
-            <div>
-              Button content
-            </div>
-          </div>
-        </div>
+        </span>
       </button>
     </div>
   </div>
@@ -334,25 +290,21 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         class="euiAccordion__button"
         type="button"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        <span
+          class="euiAccordion__iconWrapper"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiIcon-isLoading"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent button content class name"
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
           />
-        </div>
+        </span>
+        <span
+          class="euiAccordion__buttonContent button content class name"
+        />
       </button>
     </div>
   </div>
@@ -385,25 +337,21 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
         class="euiAccordion__button"
         type="button"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        <span
+          class="euiAccordion__iconWrapper"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiIcon-isLoading"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
           />
-        </div>
+        </span>
+        <span
+          class="euiAccordion__buttonContent"
+        />
       </button>
     </div>
     <div
@@ -443,25 +391,21 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
         class="euiAccordion__button"
         type="button"
       >
-        <div
-          class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+        <span
+          class="euiAccordion__iconWrapper"
         >
-          <div
-            class="euiFlexItem euiFlexItem--flexGrowZero euiAccordion__iconWrapper"
-          >
-            <svg
-              class="euiIcon euiIcon--medium euiIcon-isLoading"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </div>
-          <div
-            class="euiFlexItem euiAccordion__buttonContent"
+          <svg
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
           />
-        </div>
+        </span>
+        <span
+          class="euiAccordion__buttonContent"
+        />
       </button>
     </div>
   </div>
