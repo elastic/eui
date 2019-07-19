@@ -8,7 +8,7 @@ export const NotFoundView = () => (
     <div className="guideContentPage__content">
       <EuiText>
         <h1 className="guideTitle">
-          Wow, a 404! You just created <em>something</em> from <em>nothing</em>.
+          404
         </h1>
 
         <p className="guideText">
