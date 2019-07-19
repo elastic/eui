@@ -54,7 +54,7 @@ Note that `yarn link` currently does not work with Kibana. You'll need to manual
 
 1. In the `eui` folder, run `npm pack`. This will create a `.tgz` file in your EUI directory. At this point you can move it anywhere.
 2. In Kibana you have two choices:
-    * Point your `package.json` files in Kibana to that file. `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap`
+    * Point your `package.json` files in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap`.
     * Alternatively (and often easier), you can run `yarn kbn bootstrap` in Kibana first, then just unpack the `.tgz` file and paste its contents into an empty `/kibana/node_modules/@elastic/eui` folder. This method avoids having to edit all the various `package.json` files in Kibana if you need to run functional tests.
 
 If you feel like you're getting the old version, it's often helpful to launch Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't reuse a cached version of EUI
