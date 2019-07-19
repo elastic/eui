@@ -75,16 +75,20 @@
    * 2. Put prompt on top of input, so the clear button can intercept the click.
    * 3. Ensure space for import icon and clear button (only if it has files)
    * 4. Delay focus gradient or else it will only partially transition while file chooser opens
+   * 5. Static height so that it doesn't shift it's surrounding contents around
    */
   .euiFilePicker__prompt {
     @include euiFormControlDefaultShadow;
 
+    height: $euiFilePickerTallHeight; /* 5 */
     pointer-events: none; /* 1 */
     position: relative; /* 2 */
     z-index: 1; /* 2 */
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: $euiSizeL;
-    text-align: center;
 
     // sass-lint:disable-block indentation
     transition:
@@ -108,7 +112,7 @@
       .euiFilePicker--notTall#{&},
       .euiFilePicker--compressed#{&} {
         @include euiFormControlWithIcon; /* 3 */
-        text-align: left;
+        display: block;
       }
 
       .euiFilePicker-isInvalid#{&} {
@@ -119,10 +123,8 @@
 
   .euiFilePicker__promptText {
     @include euiFontSizeS;
+    @include euiTextTruncate;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
     @at-root {
       // make compressed prompt look like placeholder
