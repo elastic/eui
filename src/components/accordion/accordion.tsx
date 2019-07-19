@@ -6,6 +6,9 @@ import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiMutationObserver } from '../observer/mutation_observer';
+import { getDurationAndPerformOnFrame } from '../../services';
+
+const MUTATION_ATTRIBUTE_FILTER = ['style'];
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -77,6 +80,19 @@ export class EuiAccordion extends Component<
       this.childWrapper &&
         this.childWrapper.setAttribute('style', `height: ${height}px`);
     });
+  };
+
+  onMutation = (records: MutationRecord[]) => {
+    const isChildStyleMutation = records.find((record: MutationRecord) => {
+      return record.attributeName
+        ? MUTATION_ATTRIBUTE_FILTER.indexOf(record.attributeName) > -1
+        : false;
+    });
+    if (isChildStyleMutation) {
+      getDurationAndPerformOnFrame(records, this.setChildContentHeight);
+    } else {
+      this.setChildContentHeight();
+    }
   };
 
   componentDidMount() {
@@ -178,8 +194,12 @@ export class EuiAccordion extends Component<
           }}
           id={id}>
           <EuiMutationObserver
-            observerOptions={{ childList: true, subtree: true }}
-            onMutation={this.setChildContentHeight}>
+            observerOptions={{
+              childList: true,
+              subtree: true,
+              attributeFilter: MUTATION_ATTRIBUTE_FILTER,
+            }}
+            onMutation={this.onMutation}>
             {mutationRef => (
               <div
                 ref={ref => {

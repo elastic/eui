@@ -59,4 +59,11 @@ export {
 
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
 
+export {
+  getDurationAndPerformOnFrame,
+  getTransitionTimings,
+  getWaitDuration,
+  performOnFrame,
+} from './transition';
+
 export { EuiWindowEvent } from './window_event';
