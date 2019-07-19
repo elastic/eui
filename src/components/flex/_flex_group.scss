@@ -30,12 +30,16 @@ $gutterTypes: (
 @each $gutterName, $gutterSize in $gutterTypes {
   $halfGutterSize: $gutterSize * .5;
 
-  .euiFlexGroup--#{$gutterName} {
-    margin: -$halfGutterSize;
+  .euiFlexGroup--#{$gutterName} > .euiFlexItem {
+      margin: 0 $halfGutterSize;
 
-    & > .euiFlexItem {
-      margin: $halfGutterSize;
-    }
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
   }
 }
 
