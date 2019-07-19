@@ -191,8 +191,7 @@
   }
 
   // When the filepicker has files in it, but not in compressed mode
-  &:not(.euiFilePicker--notTall).euiFilePicker-hasFiles .euiFilePicker__promptText,
-  &:not(.euiFilePicker--compressed).euiFilePicker-hasFiles .euiFilePicker__promptText {
+  &:not(.euiFilePicker--compressed):not(.euiFilePicker--notTall).euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
   }
 
