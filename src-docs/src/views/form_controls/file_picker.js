@@ -72,6 +72,18 @@ export class FilePicker extends Component {
         <EuiFilePicker
           id="asdf2"
           multiple
+          tall={false}
+          initialPromptText="Select some files"
+          onChange={files => {
+            this.onChange(files);
+          }}
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiFilePicker
+          id="asdf2"
+          multiple
           compressed
           initialPromptText="Select some files"
           onChange={files => {

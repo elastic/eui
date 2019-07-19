@@ -9,8 +9,12 @@
     display: inline-block;
 
     @at-root {
+      .euiFilePicker--notTall#{&} {
+        height: $euiFormControlHeight;
+      }
+
       .euiFilePicker--compressed#{&} {
-        height: $euiSizeXL;
+        height: $euiFormControlCompressedHeight;
       }
 
       .euiFilePicker--fullWidth#{&} {
@@ -48,12 +52,20 @@
     transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
 
     @at-root {
+      .euiFilePicker--notTall#{&},
       .euiFilePicker--compressed#{&} {
         // sass-lint:disable-block no-important
         position: absolute;
-        top: $euiSizeS;
         left: $euiSizeM;
         transform: scale(1) !important; // don't scale icon on hover
+      }
+
+      .euiFilePicker--notTall#{&} {
+        top: $euiSizeM;
+      }
+
+      .euiFilePicker--compressed#{&} {
+        top: $euiSizeS;
       }
     }
   }
@@ -83,11 +95,18 @@
 
     // sass-lint:disable-block mixins-before-declarations
     @at-root {
+      .euiFilePicker--notTall#{&} {
+        height: $euiFormControlHeight;
+        padding: $euiFormControlPadding;
+      }
+
       .euiFilePicker--compressed#{&} {
-        @include euiFormControlDefaultShadow($borderOnly: true);
-        border-radius: $euiBorderRadius / 2;
         height: $euiFormControlCompressedHeight;
         padding: $euiFormControlCompressedPadding;
+      }
+
+      .euiFilePicker--notTall#{&},
+      .euiFilePicker--compressed#{&} {
         @include euiFormControlWithIcon; /* 3 */
         text-align: left;
       }
@@ -107,6 +126,7 @@
 
     @at-root {
       // make compressed prompt look like placeholder
+      .euiFilePicker--notTall#{&},
       .euiFilePicker--compressed#{&} {
         color: $euiColorMediumShade;
         line-height: $euiSize;
@@ -122,11 +142,19 @@
 
     // sass-lint:disable-block mixins-before-declarations
     @at-root {
+      .euiFilePicker--notTall#{&},
       .euiFilePicker--compressed#{&} {
         @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
         position: absolute;
-        top: $euiSizeS;
         right: $euiSizeM;
+      }
+
+      .euiFilePicker--notTall#{&} {
+        top: $euiSizeM;
+      }
+
+      .euiFilePicker--compressed#{&} {
+        top: $euiSizeS;
       }
     }
   }
@@ -155,16 +183,19 @@
     @include euiFormControlDisabledStyle;
   }
 
+  &.euiFilePicker-hasFiles.euiFilePicker--notTall .euiFilePicker__prompt,
   &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
     @include euiFormControlWithIcon(false, 'right'); /* 3 */
   }
 
   // When the filepicker has files in it, but not in compressed mode
+  &:not(.euiFilePicker--notTall).euiFilePicker-hasFiles .euiFilePicker__promptText,
   &:not(.euiFilePicker--compressed).euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
   }
 
   // When the filepicker has files in it, AND in compressed mode
+  &.euiFilePicker--notTall.euiFilePicker-hasFiles .euiFilePicker__promptText,
   &.euiFilePicker--compressed.euiFilePicker-hasFiles .euiFilePicker__promptText {
     color: $euiTextColor;
   }

@@ -24,6 +24,10 @@ export class EuiFilePicker extends Component {
      * Reduces the size to a typical (compressed) input
      */
     compressed: PropTypes.bool,
+    /**
+     * Uses the taller multi-line version
+     */
+    tall: PropTypes.bool,
     fullWidth: PropTypes.bool,
     isInvalid: PropTypes.bool,
   };
@@ -31,6 +35,7 @@ export class EuiFilePicker extends Component {
   static defaultProps = {
     initialPromptText: 'Select or drag and drop a file',
     compressed: false,
+    tall: true,
   };
 
   constructor(props) {
@@ -95,6 +100,7 @@ export class EuiFilePicker extends Component {
             onChange,
             isInvalid,
             fullWidth,
+            tall,
             ...rest
           } = this.props;
 
@@ -106,15 +112,18 @@ export class EuiFilePicker extends Component {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
               'euiFilePicker--fullWidth': fullWidth,
+              'euiFilePicker--notTall': !tall,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
           );
 
+          const normalFormControl = compressed || !tall;
+
           let clearButton;
           if (isOverridingInitialPrompt) {
-            if (compressed) {
+            if (normalFormControl) {
               clearButton = (
                 <button
                   type="button"
@@ -163,7 +172,7 @@ export class EuiFilePicker extends Component {
                   <EuiIcon
                     className="euiFilePicker__icon"
                     type="importAction"
-                    size={compressed ? 'm' : 'l'}
+                    size={normalFormControl ? 'm' : 'l'}
                     aria-hidden="true"
                   />
                   <div className="euiFilePicker__promptText">
