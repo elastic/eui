@@ -50,6 +50,10 @@ export type EuiAccordionProps = HTMLAttributes<HTMLDivElement> &
      * The padding around the exposed accordion content.
      */
     paddingSize: EuiAccordionSize;
+    /**
+     * Set the responsive to the header container.
+     */
+    responsiveHeader?: boolean;
   };
 
 export class EuiAccordion extends Component<
@@ -113,6 +117,7 @@ export class EuiAccordion extends Component<
       extraAction,
       paddingSize,
       initialIsOpen,
+      responsiveHeader,
       ...rest
     } = this.props;
 
@@ -145,7 +150,10 @@ export class EuiAccordion extends Component<
 
     return (
       <div className={classes} {...rest}>
-        <EuiFlexGroup gutterSize="none" alignItems="center">
+        <EuiFlexGroup
+          gutterSize="none"
+          alignItems="center"
+          responsive={responsiveHeader}>
           <EuiFlexItem>
             <button
               aria-controls={id}

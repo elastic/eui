@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added responsiveHeader prop to `EuiAccordion` ([#2141](https://github.com/elastic/eui/pull/2141))
 - Added support for negated or clauses to `EuiSearchBar` ([#2140](https://github.com/elastic/eui/pull/2140))
 
 **Bug fixes**
