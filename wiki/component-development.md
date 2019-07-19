@@ -53,8 +53,8 @@ Refer to the [testing guide](testing.md) for guidelines on writing and designing
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
 1. In the `eui` folder, run `npm pack`. This will create a `.tgz` file in your EUI directory. At this point you can move it anywhere.
-2. In `kibana` you have two choices:
-    * Point your `package.josn` files in Kibana to that file. `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap`
+2. In Kibana you have two choices:
+    * Point your `package.json` files in Kibana to that file. `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap`
     * Alternatively (and often easier), you can just unpack the `.tgz` file and paste its contents into an empty `/kibana/node_modules/@elastic/eui` folder. You should do this _after_ you've run `yarn kbn bootstrap`. This method avoids having to edit all the various `package.json` files in Kibana if you need to run functional tests.
 
 If you feel like you're getting the old version, it's often helpful to launch Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't reuse a cached version of EUI
