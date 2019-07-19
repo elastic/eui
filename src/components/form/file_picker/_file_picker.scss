@@ -26,7 +26,6 @@
   // The input is an invisiable dropzone / button
   .euiFilePicker__input {
     position: absolute;
-    z-index: 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -72,7 +71,6 @@
 
   /**
    * 1. Don't block the user from dropping files onto the filepicker.
-   * 2. Put prompt on top of input, so the clear button can intercept the click.
    * 3. Ensure space for import icon and clear button (only if it has files)
    * 4. Delay focus gradient or else it will only partially transition while file chooser opens
    * 5. Static height so that it doesn't shift it's surrounding contents around
@@ -83,7 +81,6 @@
     height: $euiFilePickerTallHeight; /* 5 */
     pointer-events: none; /* 1 */
     position: relative; /* 2 */
-    z-index: 1; /* 2 */
     display: flex;
     flex-direction: column;
     align-items: center;
