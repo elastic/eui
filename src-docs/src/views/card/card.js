@@ -7,7 +7,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-const icons = ['Beats', 'Cloud', 'Xpack', 'Kibana'];
+const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
 
 const cardNodes = icons.map(function(item, index) {
   return (

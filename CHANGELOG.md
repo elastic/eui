@@ -1,8 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for negated or clauses to `EuiSearchBar` ([#2140](https://github.com/elastic/eui/pull/2140))
+
 **Bug fixes**
 
 - Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
+
+**Breaking changes**
+
+- Removed `EuiSeriesChart` and related components. Please look to [Elastic Charts](https://github.com/elastic/elastic-charts) for a replacement. ([#2135](https://github.com/elastic/eui/pull/2108))
+- Removed `eui_k6_theme` related Sass and JSON files ([#2135](https://github.com/elastic/eui/pull/2108))
+- Removed no longer used Sass mixins and variables in `EuiForm`, `EuiCallOut`, and `EuiRange` components ([#2135](https://github.com/elastic/eui/pull/2108))
 
 ## [`12.4.0`](https://github.com/elastic/eui/tree/v12.4.0)
 
@@ -51,6 +59,14 @@
 **Deprecations**
 
 - Removed `logoXpack`from `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
+
+## [`12.2.1`](https://github.com/elastic/eui/tree/v12.2.1)
+
+**Note: this release is a backport containing changes originally made in `12.4.0`**
+
+**Bug fixes**
+
+- Fixed a nearly infinite `requestAnimationFrame` loop caused by `focus` state changes in nested `EuiPopover` components ([#2110](https://github.com/elastic/eui/pull/2110))
 
 ## [`12.2.0`](https://github.com/elastic/eui/tree/v12.2.0)
 
