@@ -6,8 +6,7 @@ export default () => (
   <div>
     <EuiAccordion
       id="accordion1"
-      buttonContent="An accordion with padding applied through props and a very long title that should truncate because of eui-textTruncate"
-      buttonContentClassName="eui-textTruncate"
+      buttonContent="An accordion with padding applied through props"
       paddingSize="l">
       <EuiText>
         <p>The content inside can be of any height.</p>
@@ -20,7 +19,8 @@ export default () => (
 
     <EuiAccordion
       id="accordion2"
-      buttonContent="A second accordion with padding"
+      buttonContent="A second accordion with padding  and a very long title that should truncate because of eui-textTruncate"
+      buttonContentClassName="eui-textTruncate"
       paddingSize="l">
       <EuiText>
         <p>The content inside can be of any height.</p>
