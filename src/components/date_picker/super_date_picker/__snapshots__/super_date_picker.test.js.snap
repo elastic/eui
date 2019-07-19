@@ -9,6 +9,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
+      isDisabled={false}
       prepend={
         <EuiQuickSelectPopover
           applyRefreshInterval={null}
