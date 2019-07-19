@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
+- Fixed `EuiComboBox`'s ENTER keydown event triggering the `onClose()` on the added comboBox pill. ([#2138](https://github.com/elastic/eui/pull/2138))
 
 **Breaking changes**
 
