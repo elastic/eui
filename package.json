@@ -60,7 +60,6 @@
     "react-input-autosize": "^2.2.1",
     "react-is": "~16.3.0",
     "react-virtualized": "^9.18.5",
-    "react-vis": "1.10.2",
     "resize-observer-polyfill": "^1.5.0",
     "tabbable": "^1.1.0",
     "uuid": "^3.1.0"

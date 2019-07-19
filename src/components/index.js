@@ -50,6 +50,8 @@ export {
   EuiDatePickerRange,
   EuiSuperDatePicker,
   EuiSuperUpdateButton,
+  prettyDuration,
+  commonDurationRanges,
 } from './date_picker';
 
 export { EuiDelayHide } from './delay_hide';

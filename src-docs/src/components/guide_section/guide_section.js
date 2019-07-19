@@ -372,10 +372,6 @@ export class GuideSection extends Component {
         /(from )'(..\/)+src\/services(\/?';)/,
         "from '@elastic/eui/lib/services';"
       )
-      .replace(
-        /(from )'(..\/)+src\/experimental(\/?';)/,
-        "from '@elastic/eui/lib/experimental';"
-      )
       .replace(/(from )'(..\/)+src\/components\/.*?';/, "from '@elastic/eui';");
 
     return (
