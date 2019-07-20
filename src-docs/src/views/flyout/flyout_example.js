@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -9,6 +9,7 @@ import {
   EuiFlyout,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { Flyout } from './flyout';
@@ -216,7 +217,7 @@ export const FlyoutExample = {
       demo: <FlyoutLarge />,
     },
     {
-      title: 'maxWidth',
+      title: 'Max width',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -228,14 +229,22 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <p>
-          In this example, we set <EuiCode>maxWidth</EuiCode> to{' '}
-          <EuiCode>448px</EuiCode>, to set the width of the flyout at the ideal
-          width for a form.
-        </p>
+        <Fragment>
+          <p>
+            By default, flyouts will continue to grow with the width of the
+            window. To stop this growth at an ideal width, set{' '}
+            <EuiCode>maxWidth</EuiCode> to <EuiCode>true</EuiCode>, or pass your
+            own custom size.
+          </p>
+          <EuiCallOut
+            color="warning"
+            title="Note that there are some caveats to providing a maxWidth that is smaller than the minWidth."
+          />
+        </Fragment>
       ),
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
+      props: { EuiFlyout },
     },
   ],
 };
