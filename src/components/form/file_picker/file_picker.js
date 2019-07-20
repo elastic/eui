@@ -9,6 +9,13 @@ import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
 
+const displayToClassNameMap = {
+  default: null,
+  large: 'euiFilePicker--large',
+};
+
+export const DISPLAYS = Object.keys(displayToClassNameMap);
+
 export class EuiFilePicker extends Component {
   static propTypes = {
     id: PropTypes.string,
@@ -27,9 +34,11 @@ export class EuiFilePicker extends Component {
      */
     compressed: PropTypes.bool,
     /**
-     * Uses the taller multi-line version
+     * Size or type of display;
+     * `default` for normal height, similar to other controls;
+     * `large` for taller size
      */
-    tall: PropTypes.bool,
+    display: PropTypes.oneOf(DISPLAYS),
     fullWidth: PropTypes.bool,
     isInvalid: PropTypes.bool,
     isLoading: PropTypes.bool,
@@ -38,7 +47,7 @@ export class EuiFilePicker extends Component {
   static defaultProps = {
     initialPromptText: 'Select or drag and drop a file',
     compressed: false,
-    tall: true,
+    display: 'large',
   };
 
   constructor(props) {
@@ -104,27 +113,33 @@ export class EuiFilePicker extends Component {
             isInvalid,
             fullWidth,
             isLoading,
-            tall,
+            display,
             ...rest
           } = this.props;
 
           const isOverridingInitialPrompt = this.state.promptText != null;
 
+          /**
+           * BWC: Force display to be default in case compressed is passed,
+           *      but `display: default` is not. This can be removed once
+           *      we support the new compressed styles and make this breaking change.
+           */
+          const calculatedDisplay = compressed ? 'default' : display;
+          const normalFormControl = calculatedDisplay === 'default';
+
           const classes = classNames(
             'euiFilePicker',
+            displayToClassNameMap[calculatedDisplay],
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
               'euiFilePicker--fullWidth': fullWidth,
-              'euiFilePicker--notTall': !tall,
               'euiFilePicker-isInvalid': isInvalid,
-              'euiFilePicker-hasFiles': isOverridingInitialPrompt,
               'euiFilePicker-isLoading': isLoading,
+              'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
           );
-
-          const normalFormControl = compressed || !tall;
 
           let clearButton;
           if (isLoading && normalFormControl) {
