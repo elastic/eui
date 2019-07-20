@@ -71,7 +71,7 @@
 
   /**
    * 1. Don't block the user from dropping files onto the filepicker.
-   * 3. Ensure space for import icon and clear button (only if it has files)
+   * 3. Ensure space for import icon, loading spinner, and clear button (only if it has files)
    * 4. Delay focus gradient or else it will only partially transition while file chooser opens
    * 5. Static height so that it doesn't shift it's surrounding contents around
    */
@@ -139,11 +139,48 @@
   .euiFilePicker__clearButton {
     pointer-events: auto; /* 1 */
 
-    // sass-lint:disable-block mixins-before-declarations
     @at-root {
       .euiFilePicker--notTall#{&},
       .euiFilePicker--compressed#{&} {
         @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
+        position: absolute;
+        right: $euiSizeM;
+      }
+
+      .euiFilePicker--notTall#{&} {
+        top: $euiSizeM;
+      }
+
+      .euiFilePicker--compressed#{&} {
+        top: $euiSizeS;
+      }
+    }
+  }
+
+  .euiFilePicker__loadingSpinner {
+    @at-root {
+      .euiFilePicker--notTall#{&},
+      .euiFilePicker--compressed#{&} {
+        position: absolute;
+        right: $euiSizeM;
+      }
+
+      .euiFilePicker--notTall#{&} {
+        top: $euiSizeM;
+      }
+
+      .euiFilePicker--compressed#{&} {
+        top: $euiSizeS;
+      }
+    }
+  }
+
+  // sass-lint:disable-block no-mergeable-selectors
+  // Not actually mergeable because of where the & lies
+  .euiFilePicker__clearButton {
+    @at-root {
+      .euiFilePicker--notTall#{&},
+      .euiFilePicker--compressed#{&} {
         position: absolute;
         right: $euiSizeM;
       }
@@ -182,6 +219,8 @@
     @include euiFormControlDisabledStyle;
   }
 
+  &.euiFilePicker-isLoading.euiFilePicker--notTall .euiFilePicker__prompt,
+  &.euiFilePicker-isLoading.euiFilePicker--compressed .euiFilePicker__prompt,
   &.euiFilePicker-hasFiles.euiFilePicker--notTall .euiFilePicker__prompt,
   &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
     @include euiFormControlWithIcon(false, 'right'); /* 3 */

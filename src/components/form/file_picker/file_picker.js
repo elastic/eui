@@ -4,8 +4,10 @@ import classNames from 'classnames';
 
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonEmpty } from '../../button';
+import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
+import { EuiLoadingSpinner } from '../../loading';
 
 export class EuiFilePicker extends Component {
   static propTypes = {
@@ -30,6 +32,7 @@ export class EuiFilePicker extends Component {
     tall: PropTypes.bool,
     fullWidth: PropTypes.bool,
     isInvalid: PropTypes.bool,
+    isLoading: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -100,6 +103,7 @@ export class EuiFilePicker extends Component {
             onChange,
             isInvalid,
             fullWidth,
+            isLoading,
             tall,
             ...rest
           } = this.props;
@@ -115,6 +119,7 @@ export class EuiFilePicker extends Component {
               'euiFilePicker--notTall': !tall,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
+              'euiFilePicker-isLoading': isLoading,
             },
             className
           );
@@ -122,7 +127,12 @@ export class EuiFilePicker extends Component {
           const normalFormControl = compressed || !tall;
 
           let clearButton;
-          if (isOverridingInitialPrompt) {
+          if (isLoading && normalFormControl) {
+            // Override clear button with loading spinner if it is in loading state
+            clearButton = (
+              <EuiLoadingSpinner className="euiFilePicker__loadingSpinner" />
+            );
+          } else if (isOverridingInitialPrompt) {
             if (normalFormControl) {
               clearButton = (
                 <button
@@ -147,6 +157,10 @@ export class EuiFilePicker extends Component {
           } else {
             clearButton = null;
           }
+
+          const loader = !normalFormControl && isLoading && (
+            <EuiProgress size="xs" color="accent" position="absolute" />
+          );
 
           return (
             <div className={classes}>
@@ -179,6 +193,7 @@ export class EuiFilePicker extends Component {
                     {this.state.promptText || initialPromptText}
                   </div>
                   {clearButton}
+                  {loader}
                 </div>
               </div>
             </div>
