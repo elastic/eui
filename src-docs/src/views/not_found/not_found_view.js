@@ -7,9 +7,7 @@ export const NotFoundView = () => (
   <div className="guideContentPage">
     <div className="guideContentPage__content">
       <EuiText>
-        <h1 className="guideTitle">
-          404
-        </h1>
+        <h1 className="guideTitle">404</h1>
 
         <p className="guideText">
           You visited a page which doesn&rsquo;t exist, causing <em>this</em>{' '}
