@@ -19,6 +19,7 @@ import {
 
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
+import { EuiHighlight } from '../../../../src/components/highlight';
 
 const scrollTo = position => {
   $('html, body').animate(
@@ -194,7 +195,7 @@ export class GuidePageChrome extends Component {
 
     return subSectionsWithTitles.map(({ title, id }) => ({
       id: `subSection-${id}`,
-      name: title,
+      name: <EuiHighlight search={searchTerm}>{title}</EuiHighlight>,
       href,
       onClick: this.onClickLink.bind(this, id),
     }));
@@ -234,14 +235,12 @@ export class GuidePageChrome extends Component {
 
         return {
           id: `${section.type}-${path}`,
-          name,
+          name: <EuiHighlight search={searchTerm}>{name}</EuiHighlight>,
           href,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),
-          isSelected: !!(
-            name === this.props.currentRouteName ||
-            (searchTerm && hasMatchingSubItem)
-          ),
+          isSelected: name === this.props.currentRouteName,
+          forceOpen: !!(searchTerm && hasMatchingSubItem),
         };
       });
 
