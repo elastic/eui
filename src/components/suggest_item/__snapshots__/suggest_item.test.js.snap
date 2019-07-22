@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuggestItem is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiSuggestItem testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint1"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+  >
+    Test label
+  </span>
+  <span
+    class="euiSuggestItem__description"
+  />
+</div>
+`;
+
+exports[`props item with no description has expanded label is rendered 1`] = `
+<div
+  class="euiSuggestItem"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__labelDisplay--expand"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description"
+  />
+</div>
+`;
+
+exports[`props labelDisplay as expand is rendered 1`] = `
+<div
+  class="euiSuggestItem"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiIcon-isLoading"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description"
+  >
+    This is the description
+  </span>
+</div>
+`;

@@ -16,10 +16,3 @@
   background-position-x: right;
   background-repeat: no-repeat;
 }
-
-// Deprecated mixins below. This was changed in Nov. 2018
-
-@mixin euiTableActionsBackground--mobile { // sass-lint:disable-line mixin-name-format
-  @include euiTableActionsBackgroundMobile;
-  @warn '@mixin euiTableActionsBackground--mobile is deprecated, please use euiTableActionsBackgroundMobile instead';
-}

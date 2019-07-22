@@ -365,6 +365,27 @@ describe('execute ast', () => {
     expect(names).toContain('foo bar');
   });
 
+  test('negated OR clause', () => {
+    const items = [
+      { name: 'john doe', age: 9 },
+      { name: 'foo', age: 6 },
+      { name: 'foo bar', age: 7 },
+      { name: 'bar', age: 8 },
+    ];
+    const result = executeAst(
+      AST.create([
+        AST.Group.mustNot([
+          AST.Field.must.eq('name', 'john doe'),
+          AST.Field.must.eq('name', 'foo'),
+        ]),
+      ]),
+      items
+    );
+    expect(result).toHaveLength(1);
+    const names = result.map(item => item.name);
+    expect(names).toContain('bar');
+  });
+
   describe('array field values', () => {
     describe('eq operator', () => {
       test('full match', () => {

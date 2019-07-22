@@ -1,0 +1,68 @@
+.euiSuggestItem {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  font-size: $euiFontSizeXS;
+  white-space: nowrap;
+
+  @each $name, $color in $itemColors {
+    .euiSuggestItem__type--#{$name} {
+      $backgroundColor: tintOrShade($color, 90%, 50%);
+      background-color: $backgroundColor;
+      color: makeHighContrastColor($color, $backgroundColor);
+		}
+	}
+
+  .euiSuggestItem__label,
+  .euiSuggestItem__type,
+  .euiSuggestItem__description {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+	}
+
+  .euiSuggestItem__type {
+    position: relative;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: $euiSizeXL;
+    height: $euiSizeXL;
+    text-align: center;
+    overflow: hidden;
+    padding: $euiSizeXS;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .euiSuggestItem__label {
+    flex-basis: 50%;
+    min-width: 50%;
+    font-family: $euiCodeFontFamily;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: $euiSizeXS $euiSizeS;
+    color: $euiTextColor;
+
+    &.euiSuggestItem__labelDisplay--expand {
+      flex-basis: auto;
+      flex-shrink: 1;
+    }
+  }
+
+  .euiSuggestItem__description,
+  .euiSuggestItem__label {
+    @include euiTextTruncate;
+    display: block;
+	}
+
+  .euiSuggestItem__description {
+    color: $euiColorDarkShade;
+    flex-basis: auto;
+    padding-top: $euiSizeXS * .5;
+
+    &:empty {
+      flex-grow: 0;
+      margin-left: 0;
+    }
+	}
+}

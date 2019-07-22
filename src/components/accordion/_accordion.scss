@@ -1,6 +1,15 @@
+.euiAccordion__triggerWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .euiAccordion__button {
+  @include euiFontSize;
   text-align: left;
   width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -10,26 +19,38 @@
   &:focus {
     .euiAccordion__iconWrapper {
       @include euiFocusRing;
-
       color: $euiColorPrimary;
-      border-radius: $euiBorderRadius;
     }
   }
+}
 
+.euiAccordion__iconWrapper {
+  @include size($euiSize);
+  border-radius: $euiBorderRadius;
+  margin-right: $euiSizeS;
+  flex-shrink: 0;
+
+  // Nested to override EuiIcon
+  .euiAccordion__icon {
+    vertical-align: top;
+  }
+}
+
+.euiAccordion__optionalAction {
+  flex-shrink: 0;
 }
 
 .euiAccordion__childWrapper {
   visibility: hidden;
   height: 0;
   opacity: 0;
-  overflow-y: hidden;
+  overflow: hidden;
   transform: translatez(0);
   // sass-lint:disable-block indentation
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
 }
-
 
 $paddingSizes: (
   xs: $euiSizeXS,
@@ -41,7 +62,6 @@ $paddingSizes: (
 
 // Create button modifiders based upon the map.
 @each $name, $size in $paddingSizes {
-
   .euiAccordion__padding--#{$name} {
     padding: $size;
   }

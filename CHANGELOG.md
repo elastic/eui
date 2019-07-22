@@ -1,9 +1,29 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `EuiSuggestItem` component ([#2090](https://github.com/elastic/eui/pull/2090))
+- Added support for negated or clauses to `EuiSearchBar` ([#2140](https://github.com/elastic/eui/pull/2140))
+- Added `transition` utility services to help create timeouts that account for CSS transition durations and delays ([#2136](https://github.com/elastic/eui/pull/2136))
+- Removed `EuiFlexGroup` dependency from `EuiAccordion` ([#2143](https://github.com/elastic/eui/pull/2143))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox`'s padding on the right ([#2135](https://github.com/elastic/eui/pull/2135))
+- Fixed `EuiAccordion` to correctly account for changing computed height of child elements ([#2136](https://github.com/elastic/eui/pull/2136))
+- Fixed some `EuiFlyout` sizing ([#2125](https://github.com/elastic/eui/pull/2125))
+
+**Breaking changes**
+
+- Removed `EuiSeriesChart` and related components. Please look to [Elastic Charts](https://github.com/elastic/elastic-charts) for a replacement. ([#2135](https://github.com/elastic/eui/pull/2108))
+- Removed `eui_k6_theme` related Sass and JSON files ([#2135](https://github.com/elastic/eui/pull/2108))
+- Removed no longer used Sass mixins and variables in `EuiForm`, `EuiCallOut`, and `EuiRange` components ([#2135](https://github.com/elastic/eui/pull/2108))
+
+## [`12.4.0`](https://github.com/elastic/eui/tree/v12.4.0)
+
 - Centered the square of the `popout` glyph in the artboard ([#2120](https://github.com/elastic/eui/pull/2120))
 - Added `useInnerText` and `EuiInnerText` component utilities for retrieving text content of elements ([#2100](https://github.com/elastic/eui/pull/2100))
 - Converted `EuiRangeHightlight`, `EuiRangeLabel`, `EuiRangeLevels`, `EuiRangeSlider`, `EuiRangeThumb`, `EuiRangeTicks`, `EuiRangeTrack`, and `EuiRangeWrapper` to TypeScript ([#2124](https://github.com/elastic/eui/pull/2124))
 - Converted `EuiAccordion` to TypeScript ([#2128](https://github.com/elastic/eui/pull/2128))
+- Exported `prettyDuration` and `commonDurationRanges` for pretty printing date ranges outside `EuiSuperDatePicker` ([#2132](https://github.com/elastic/eui/pull/2132))
 
 **Bug fixes**
 
@@ -44,6 +64,14 @@
 **Deprecations**
 
 - Removed `logoXpack`from `EuiIcon` types ([#2111](https://github.com/elastic/eui/pull/2111))
+
+## [`12.2.1`](https://github.com/elastic/eui/tree/v12.2.1)
+
+**Note: this release is a backport containing changes originally made in `12.4.0`**
+
+**Bug fixes**
+
+- Fixed a nearly infinite `requestAnimationFrame` loop caused by `focus` state changes in nested `EuiPopover` components ([#2110](https://github.com/elastic/eui/pull/2110))
 
 ## [`12.2.0`](https://github.com/elastic/eui/tree/v12.2.0)
 
