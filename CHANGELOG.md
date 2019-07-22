@@ -1,6 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Get rid of negative margins in `EuiFlexGroup` ([#2142](https://github.com/elastic/eui/pull/2142))
 - Added support for negated or clauses to `EuiSearchBar` ([#2140](https://github.com/elastic/eui/pull/2140))
 
 **Bug fixes**
