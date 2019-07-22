@@ -193,12 +193,25 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, id }) => ({
-      id: `subSection-${id}`,
-      name: <EuiHighlight search={searchTerm}>{title}</EuiHighlight>,
-      href,
-      onClick: this.onClickLink.bind(this, id),
-    }));
+    return subSectionsWithTitles.map(({ title, id }) => {
+      let name = title;
+      if (searchTerm) {
+        name = (
+          <EuiHighlight
+            className="guideSideNav__content--inSearch"
+            search={searchTerm}>
+            {title}
+          </EuiHighlight>
+        );
+      }
+
+      return {
+        id: `subSection-${id}`,
+        name,
+        href,
+        onClick: this.onClickLink.bind(this, id),
+      };
+    });
   };
 
   renderSideNav = sideNav => {
@@ -233,9 +246,20 @@ export class GuidePageChrome extends Component {
         const { name, path, sections } = item;
         const href = `#/${path}`;
 
+        let visibleName = name;
+        if (searchTerm) {
+          visibleName = (
+            <EuiHighlight
+              className="guideSideNav__content--inSearch"
+              search={searchTerm}>
+              {name}
+            </EuiHighlight>
+          );
+        }
+
         return {
           id: `${section.type}-${path}`,
-          name: <EuiHighlight search={searchTerm}>{name}</EuiHighlight>,
+          name: visibleName,
           href,
           onClick: this.onClickRoute.bind(this),
           items: this.renderSubSections(href, sections, searchTerm),

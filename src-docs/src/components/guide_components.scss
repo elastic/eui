@@ -36,6 +36,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
     bottom: 0;
     top: 132px;
     overflow-y: auto;
+
+    &--inSearch {
+      color: $euiColorDarkShade;
+    }
   }
 }
 
