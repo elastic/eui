@@ -126,6 +126,7 @@ const iconTypes = [
   'number',
   'offline',
   'online',
+  'partial',
   'pause',
   'pencil',
   'pin',

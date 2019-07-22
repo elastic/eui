@@ -5408,6 +5408,21 @@ exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type partial is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6.664 14.871A7 7 0 0 1 1.13 6.664c.42-2.165 1.64-3.8 3.63-4.87a.5.5 0 0 1 .615.113l8.298 9.538a.5.5 0 0 1 .016.637c-1.875 2.387-4.24 3.33-7.024 2.79zm5.976-3.088l-7.752-8.91c-1.521.923-2.44 2.241-2.778 3.982a6 6 0 0 0 4.745 7.035c2.28.443 4.189-.248 5.785-2.107zm2.2-2.29a.5.5 0 1 1-.978-.214l.027-.132a6.007 6.007 0 0 0 .086-1.711.5.5 0 0 1 .996-.094c.062.66.03 1.33-.1 1.996l-.032.154zm-.912-5.216a.5.5 0 0 1-.847.532 6.026 6.026 0 0 0-1.21-1.395.5.5 0 1 1 .646-.763 7.026 7.026 0 0 1 1.411 1.626zm-4.28-3.08a.5.5 0 1 1-.235.972 6.105 6.105 0 0 0-1.842-.155.5.5 0 0 1-.07-.998 7.02 7.02 0 0 1 2.147.18z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type pause is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
