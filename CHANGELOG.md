@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.0.0`.
+
+## [`13.0.0`](https://github.com/elastic/eui/tree/v13.0.0)
+
 - Added `EuiSuggestItem` component ([#2090](https://github.com/elastic/eui/pull/2090))
 - Added support for negated or clauses to `EuiSearchBar` ([#2140](https://github.com/elastic/eui/pull/2140))
 - Added `transition` utility services to help create timeouts that account for CSS transition durations and delays ([#2136](https://github.com/elastic/eui/pull/2136))
