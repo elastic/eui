@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
 import { EuiIcon } from '../icon';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 import { getDurationAndPerformOnFrame } from '../../services';
 
@@ -144,48 +143,37 @@ export class EuiAccordion extends Component<
 
     const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
-    const buttonContentClasses = classNames(
-      'euiAccordion__buttonContent',
-      buttonContentClassName
-    );
-
     const icon = (
-      <EuiIcon type={this.state.isOpen ? 'arrowDown' : 'arrowRight'} size="m" />
+      <EuiIcon
+        className="euiAccordion__icon"
+        type={this.state.isOpen ? 'arrowDown' : 'arrowRight'}
+        size="m"
+      />
     );
 
     let optionalAction = null;
 
     if (extraAction) {
-      optionalAction = <EuiFlexItem grow={false}>{extraAction}</EuiFlexItem>;
+      optionalAction = (
+        <div className="euiAccordion__optionalAction">{extraAction}</div>
+      );
     }
 
     return (
       <div className={classes} {...rest}>
-        <EuiFlexGroup gutterSize="none" alignItems="center">
-          <EuiFlexItem>
-            <button
-              aria-controls={id}
-              aria-expanded={!!this.state.isOpen}
-              onClick={this.onToggle}
-              className={buttonClasses}
-              type="button">
-              <EuiFlexGroup
-                gutterSize="s"
-                alignItems="center"
-                responsive={false}>
-                <EuiFlexItem grow={false} className="euiAccordion__iconWrapper">
-                  {icon}
-                </EuiFlexItem>
-
-                <EuiFlexItem className={buttonContentClasses}>
-                  {buttonContent}
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </button>
-          </EuiFlexItem>
+        <div className="euiAccordion__triggerWrapper">
+          <button
+            aria-controls={id}
+            aria-expanded={!!this.state.isOpen}
+            onClick={this.onToggle}
+            className={buttonClasses}
+            type="button">
+            <span className="euiAccordion__iconWrapper">{icon}</span>
+            <span className={buttonContentClassName}>{buttonContent}</span>
+          </button>
 
           {optionalAction}
-        </EuiFlexGroup>
+        </div>
 
         <div
           className="euiAccordion__childWrapper"
