@@ -20,6 +20,25 @@ import {
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
 
+const scrollTo = position => {
+  $('html, body').animate(
+    {
+      scrollTop: position,
+    },
+    250
+  );
+};
+
+function scrollToSelector(selector, attempts = 5) {
+  const element = $(selector);
+
+  if (element.length) {
+    scrollTo(element.offset().top - 20);
+  } else if (attempts > 0) {
+    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
+  }
+}
+
 export class GuidePageChrome extends Component {
   constructor(props) {
     super(props);
@@ -44,18 +63,9 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  scrollTo = position => {
-    $('html, body').animate(
-      {
-        scrollTop: position,
-      },
-      250
-    );
-  };
-
   onClickLink = id => {
     // Scroll to element.
-    this.scrollTo($(`#${id}`).offset().top - 20);
+    scrollToSelector(`#${id}`);
 
     this.setState({
       search: '',
@@ -144,7 +154,7 @@ export class GuidePageChrome extends Component {
     );
   }
 
-  renderSubSections = (subSections = [], searchTerm = '') => {
+  renderSubSections = (href, subSections = [], searchTerm = '') => {
     const subSectionsWithTitles = subSections.filter(item => {
       if (!item.title) {
         return false;
@@ -165,6 +175,7 @@ export class GuidePageChrome extends Component {
     return subSectionsWithTitles.map(({ title, id }) => ({
       id: `subSection-${id}`,
       name: title,
+      href,
       onClick: this.onClickLink.bind(this, id),
     }));
   };
@@ -199,13 +210,14 @@ export class GuidePageChrome extends Component {
 
       const items = matchingItems.map(item => {
         const { name, path, sections } = item;
+        const href = `#/${path}`;
 
         return {
           id: `${section.type}-${path}`,
           name,
-          href: `#/${path}`,
+          href,
           onClick: this.onClickRoute.bind(this),
-          items: this.renderSubSections(sections, searchTerm),
+          items: this.renderSubSections(href, sections, searchTerm),
           isSelected: !!(
             name === this.props.currentRouteName ||
             (searchTerm && hasMatchingSubItem)
