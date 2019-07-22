@@ -346,7 +346,7 @@ export const IconExample = {
       text: (
         <p>
           You can title the SVG by passing the <EuiCode>aria-label</EuiCode>{' '}
-          prop to <EuiCode>EuiCode</EuiCode>. No value is set by default.
+          prop to <EuiCode>EuiIcon</EuiCode>. No value is set by default.
         </p>
       ),
       demo: <Accessibility />,
