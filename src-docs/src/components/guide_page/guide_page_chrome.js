@@ -63,21 +63,41 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  scrollNavSectionIntoView = () => {
+    setTimeout(() => {
+      // wait a bit for react to blow away and re-create the DOM
+      // then scroll the selected nav section into view
+      const selectedButton = $('.euiSideNavItemButton-isSelected');
+      if (selectedButton.length) {
+        const root = selectedButton.parents('.euiSideNavItem--root');
+        if (root.length) {
+          root.get(0).scrollIntoView();
+        }
+      }
+    }, 250);
+  };
+
   onClickLink = id => {
     // Scroll to element.
     scrollToSelector(`#${id}`);
 
-    this.setState({
-      search: '',
-      isSideNavOpenOnMobile: false,
-    });
+    this.setState(
+      {
+        search: '',
+        isSideNavOpenOnMobile: false,
+      },
+      this.scrollNavSectionIntoView
+    );
   };
 
   onClickRoute = () => {
-    this.setState({
-      search: '',
-      isSideNavOpenOnMobile: false,
-    });
+    this.setState(
+      {
+        search: '',
+        isSideNavOpenOnMobile: false,
+      },
+      this.scrollNavSectionIntoView
+    );
   };
 
   onButtonClick() {
