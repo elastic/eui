@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { isValidHex } from '../../../services';
 
 export const EuiRangeThumb = ({
   min,
@@ -9,11 +10,14 @@ export const EuiRangeThumb = ({
   disabled,
   showInput,
   showTicks,
+  color,
+  children,
   ...rest
 }) => {
   const classes = classNames('euiRangeThumb', {
     'euiRangeThumb--hasTicks': showTicks,
   });
+
   return (
     <div
       className={classes}
@@ -23,8 +27,9 @@ export const EuiRangeThumb = ({
       aria-valuenow={Number(value)}
       aria-disabled={!!disabled}
       tabIndex={showInput || !!disabled ? '-1' : '0'}
-      {...rest}
-    />
+      {...rest}>
+      {children}
+    </div>
   );
 };
 
@@ -34,4 +39,5 @@ EuiRangeThumb.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   showInput: PropTypes.bool,
   showTicks: PropTypes.bool,
+  color: PropTypes.string,
 };

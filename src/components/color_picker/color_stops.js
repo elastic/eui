@@ -2,7 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { EuiRangeThumb } from '../form/range/range_thumb';
+import classNames from 'classnames';
+import { EuiRangeWrapper } from '../form/range/range_wrapper';
+import { EuiColorStopThumb } from './color_stop_thumb';
 import { EuiSpacer } from '../spacer';
 import { EuiColorPicker } from './color_picker';
 import { EuiFormRow, EuiFieldNumber } from '../form';
@@ -21,7 +23,10 @@ const DEFAULT_COLOR = '#FF0000';
 export const EuiColorStops = ({
   colorStops = [{ stop: 0, color: DEFAULT_COLOR }],
   onChange,
+  fullWidth,
+  className,
 }) => {
+  const classes = classNames('euiDualRange', className);
   function getStopInput(stop, index) {
     const onStopChange = e => {
       const newColorStops = _.cloneDeep(colorStops);
@@ -137,25 +142,43 @@ export const EuiColorStops = ({
     );
   });
 
+  const thumbs = colorStops.map((colorStop, index) => {
+    return (
+      <EuiColorStopThumb
+        key={index}
+        id={index}
+        stop={colorStop.stop}
+        color={colorStop.color}
+      />
+    );
+  });
+
+  const sortedStops = colorStops.sort(
+    (a, b) => parseFloat(a.stop) - parseFloat(b.stop)
+  );
+
+  const gradientStops = sortedStops.map(colorStop => {
+    return `${colorStop.color} ${colorStop.stop}%`;
+  });
+
+  // colorStops.sort((a, b) => parseFloat(a.stop) - parseFloat(b.stop));
+
   return (
     <div>
-      <div className="euiRangeWrapper">
+      <EuiRangeWrapper className={classes} fullWidth={fullWidth}>
         <div className="euiRangeTrack">
-          <EuiRangeThumb value={0} showInput={false} style={{ left: 0 }} />
-          <EuiRangeThumb value={25} showInput={false} style={{ left: '25%' }} />
-          <EuiRangeThumb value={30} showInput={false} style={{ left: '30%' }} />
+          {thumbs}
           <div className="euiRangeHighlight">
             <div
               className="euiRangeHighlight__progress"
               style={{
                 width: '100%',
-                background:
-                  'linear-gradient(to right, #FF0000 0%, #FFFF00 25%, #008000 35% )',
+                background: `linear-gradient(to right,${gradientStops})`,
               }}
             />
           </div>
         </div>
-      </div>
+      </EuiRangeWrapper>
       <EuiSpacer />
       {rows}
     </div>
