@@ -144,10 +144,21 @@ export class GuidePageChrome extends Component {
     );
   }
 
-  renderSubSections = (subSections = []) => {
-    const subSectionsWithTitles = subSections.filter(item => item.title);
+  renderSubSections = (subSections = [], searchTerm = '') => {
+    const subSectionsWithTitles = subSections.filter(item => {
+      if (!item.title) {
+        return false;
+      }
 
-    if (subSectionsWithTitles.length <= 1) {
+      if (searchTerm) {
+        return item.title.toLowerCase().indexOf(searchTerm) !== -1;
+      }
+
+      return true;
+    });
+
+    // don't render solitary sub-items unless there's an active search
+    if (subSectionsWithTitles.length <= (searchTerm ? 0 : 1)) {
       return;
     }
 
@@ -162,12 +173,29 @@ export class GuidePageChrome extends Component {
     // TODO: Add contents pages
     const sideNavSections = [];
 
+    const searchTerm = this.state.search.toLowerCase();
+
     sideNav.forEach(section => {
-      const matchingItems = section.items.filter(
-        item =>
-          item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
-            -1 && item.hidden !== true
-      );
+      let hasMatchingSubItem = false;
+
+      const matchingItems = section.items.filter(item => {
+        if (item.hidden) {
+          return false;
+        }
+
+        const itemSections = item.sections || [];
+        for (let i = 0; i < itemSections.length; i++) {
+          const sectionTitle = itemSections[i].title || '';
+          if (sectionTitle.toLowerCase().indexOf(searchTerm) !== -1) {
+            hasMatchingSubItem = true;
+            return true;
+          }
+        }
+
+        if (item.name.toLowerCase().indexOf(searchTerm) !== -1) {
+          return true;
+        }
+      });
 
       const items = matchingItems.map(item => {
         const { name, path, sections } = item;
@@ -177,8 +205,11 @@ export class GuidePageChrome extends Component {
           name,
           href: `#/${path}`,
           onClick: this.onClickRoute.bind(this),
-          items: this.renderSubSections(sections),
-          isSelected: name === this.props.currentRouteName,
+          items: this.renderSubSections(sections, searchTerm),
+          isSelected: !!(
+            name === this.props.currentRouteName ||
+            (searchTerm && hasMatchingSubItem)
+          ),
         };
       });
 
