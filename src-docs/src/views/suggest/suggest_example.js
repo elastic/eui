@@ -49,6 +49,7 @@ export const SuggestExample = {
           </p>
         </div>
       ),
+      demo: <Suggest />,
     },
     {
       title: 'Suggest Item',
