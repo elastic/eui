@@ -198,7 +198,7 @@ export class GuidePageChrome extends Component {
       if (searchTerm) {
         name = (
           <EuiHighlight
-            className="guideSideNav__content--inSearch"
+            className="guideSideNav__item--inSearch"
             search={searchTerm}>
             {title}
           </EuiHighlight>
@@ -250,7 +250,7 @@ export class GuidePageChrome extends Component {
         if (searchTerm) {
           visibleName = (
             <EuiHighlight
-              className="guideSideNav__content--inSearch"
+              className="guideSideNav__item--inSearch"
               search={searchTerm}>
               {name}
             </EuiHighlight>
