@@ -19,7 +19,7 @@ export default () => (
 
     <EuiAccordion
       id="accordion2"
-      buttonContent="A second accordion with padding  and a very long title that should truncate because of eui-textTruncate"
+      buttonContent="A second accordion with padding and a very long title that should truncate because of eui-textTruncate"
       buttonContentClassName="eui-textTruncate"
       paddingSize="l">
       <EuiText>
