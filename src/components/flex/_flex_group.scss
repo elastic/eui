@@ -18,6 +18,12 @@
   }
 }
 
+.euiFlexGroup__wrapper {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
 $gutterTypes: (
   gutterExtraSmall: $euiSizeXS,
   gutterSmall: $euiSizeS,

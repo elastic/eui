@@ -89,8 +89,10 @@ export const EuiFlexGroup: FunctionComponent<
   );
 
   return (
-    <Component className={classes} {...rest}>
-      {children}
-    </Component>
+    <div className="euiFlexGroup__wrapper">
+      <Component className={classes} {...rest}>
+        {children}
+      </Component>
+    </div>
   );
 };
