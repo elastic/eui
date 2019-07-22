@@ -44,9 +44,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             </EuiIconEmpty>
           </EuiIcon>
         </span>
-        <span
-          className="euiAccordion__buttonContent"
-        />
+        <span />
       </button>
     </div>
     <div
@@ -120,9 +118,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             </EuiIconEmpty>
           </EuiIcon>
         </span>
-        <span
-          className="euiAccordion__buttonContent"
-        />
+        <span />
       </button>
     </div>
     <div
@@ -179,9 +175,7 @@ exports[`EuiAccordion is rendered 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
       </span>
-      <span
-        class="euiAccordion__buttonContent"
-      />
+      <span />
     </button>
   </div>
   <div
@@ -222,9 +216,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
       </span>
-      <span
-        class="euiAccordion__buttonContent"
-      >
+      <span>
         <div>
           Button content
         </div>
@@ -270,7 +262,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
         />
       </span>
       <span
-        class="euiAccordion__buttonContent button content class name"
+        class="button content class name"
       />
     </button>
   </div>
@@ -312,9 +304,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
       </span>
-      <span
-        class="euiAccordion__buttonContent"
-      />
+      <span />
     </button>
     <div
       class="euiAccordion__optionalAction"
@@ -362,9 +352,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
       </span>
-      <span
-        class="euiAccordion__buttonContent"
-      />
+      <span />
     </button>
   </div>
   <div

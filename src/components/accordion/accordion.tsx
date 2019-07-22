@@ -143,11 +143,6 @@ export class EuiAccordion extends Component<
 
     const buttonClasses = classNames('euiAccordion__button', buttonClassName);
 
-    const buttonContentClasses = classNames(
-      'euiAccordion__buttonContent',
-      buttonContentClassName
-    );
-
     const icon = (
       <EuiIcon
         className="euiAccordion__icon"
@@ -174,7 +169,7 @@ export class EuiAccordion extends Component<
             className={buttonClasses}
             type="button">
             <span className="euiAccordion__iconWrapper">{icon}</span>
-            <span className={buttonContentClasses}>{buttonContent}</span>
+            <span className={buttonContentClassName}>{buttonContent}</span>
           </button>
 
           {optionalAction}
