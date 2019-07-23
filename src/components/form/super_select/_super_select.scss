@@ -14,7 +14,8 @@
 .euiSuperSelect__listbox {
   @include euiScrollBar;
   max-height: 300px;
-  overflow: hidden auto;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .euiSuperSelect__popoverPanel[class*='bottom'] { /* 3 */
