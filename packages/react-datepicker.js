@@ -4441,17 +4441,24 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
+var _toInteger$1 = /*#__PURE__*/Object.freeze({
+  default: _toInteger,
+  __moduleExports: _toInteger
+});
+
+var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = _toInteger(index);
+  index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
 
@@ -4585,18 +4592,11 @@ _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
-var assign$1 = /*#__PURE__*/Object.freeze({
-  default: assign,
-  __moduleExports: assign
+var assign$1 = createCommonjsModule(function (module) {
+module.exports = { "default": assign, __esModule: true };
 });
 
-var require$$0 = ( assign$1 && assign ) || assign$1;
-
-var assign$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0, __esModule: true };
-});
-
-unwrapExports(assign$2);
+unwrapExports(assign$1);
 
 var _extends$1 = createCommonjsModule(function (module, exports) {
 
@@ -4604,7 +4604,7 @@ exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$2);
+var _assign2 = _interopRequireDefault(assign$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4643,7 +4643,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = _toInteger(pos);
+    var i = toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4884,10 +4884,10 @@ var iterator$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: iterator
 });
 
-var require$$0$1 = ( iterator$1 && iterator ) || iterator$1;
+var require$$0 = ( iterator$1 && iterator ) || iterator$1;
 
 var iterator$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
+module.exports = { "default": require$$0, __esModule: true };
 });
 
 unwrapExports(iterator$2);
@@ -5350,24 +5350,24 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
-var setPrototypeOf$1 = /*#__PURE__*/Object.freeze({
-  default: setPrototypeOf,
-  __moduleExports: setPrototypeOf
+var setPrototypeOf$1 = createCommonjsModule(function (module) {
+module.exports = { "default": setPrototypeOf, __esModule: true };
 });
 
-var require$$0$2 = ( setPrototypeOf$1 && setPrototypeOf ) || setPrototypeOf$1;
-
-var setPrototypeOf$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
-});
-
-unwrapExports(setPrototypeOf$2);
+unwrapExports(setPrototypeOf$1);
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 _export(_export.S, 'Object', { create: _objectCreate });
@@ -5377,18 +5377,11 @@ var create = function create(P, D) {
   return $Object.create(P, D);
 };
 
-var create$1 = /*#__PURE__*/Object.freeze({
-  default: create,
-  __moduleExports: create
+var create$1 = createCommonjsModule(function (module) {
+module.exports = { "default": create, __esModule: true };
 });
 
-var require$$0$3 = ( create$1 && create ) || create$1;
-
-var create$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$3, __esModule: true };
-});
-
-unwrapExports(create$2);
+unwrapExports(create$1);
 
 var inherits$1 = createCommonjsModule(function (module, exports) {
 
@@ -5396,11 +5389,11 @@ exports.__esModule = true;
 
 
 
-var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$2);
+var _setPrototypeOf2 = _interopRequireDefault(setPrototypeOf$1);
 
 
 
-var _create2 = _interopRequireDefault(create$2);
+var _create2 = _interopRequireDefault(create$1);
 
 
 
@@ -7942,11 +7935,6 @@ var gud = function() {
   return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
 };
 
-var gud$1 = /*#__PURE__*/Object.freeze({
-  default: gud,
-  __moduleExports: gud
-});
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -8033,8 +8021,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var _gud = ( gud$1 && gud ) || gud$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8049,7 +8035,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _gud2 = _interopRequireDefault(_gud);
+var _gud2 = _interopRequireDefault(gud);
 
 
 
