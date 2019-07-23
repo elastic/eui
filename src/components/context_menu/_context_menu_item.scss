@@ -31,6 +31,7 @@
 
 .euiContextMenuItem__text {
   flex-grow: 1;
+  overflow: hidden; // allows for text truncation
 }
 
 .euiContextMenuItem__arrow {

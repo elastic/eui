@@ -11,6 +11,12 @@
   }
 }
 
+.euiSuperSelect__listbox {
+  @include euiScrollBar;
+  max-height: 300px;
+  overflow: hidden auto;
+}
+
 .euiSuperSelect__popoverPanel[class*='bottom'] { /* 3 */
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
@@ -26,6 +32,9 @@
 }
 
 .euiSuperSelect__item {
+  @include euiFontSizeS;
+  padding: $euiSizeS;
+
   &:hover,
   &:focus {
     text-decoration: none;
@@ -35,9 +44,4 @@
 
 .euiSuperSelect__item--hasDividers:not(:last-of-type) {
   border-bottom: $euiBorderThin;
-}
-
-.euiSuperSelect__item--compressed {
-  padding: $euiSizeS;
-  font-size: $euiFontSizeS;
 }

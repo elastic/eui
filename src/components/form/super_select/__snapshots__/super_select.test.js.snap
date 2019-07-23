@@ -58,10 +58,10 @@ exports[`EuiSuperSelect is rendered 1`] = `
 
 exports[`EuiSuperSelect props compressed is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -194,6 +194,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
             You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
           </p>
           <div
+            class="euiSuperSelect__listbox"
             role="listbox"
             tabindex="0"
           >
@@ -401,6 +402,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           </p>
           <div
             aria-activedescendant="1"
+            class="euiSuperSelect__listbox"
             role="listbox"
             tabindex="0"
           >
@@ -767,6 +769,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                 </p>
                                 <div
                                   aria-activedescendant="1"
+                                  class="euiSuperSelect__listbox"
                                   role="listbox"
                                   tabindex="0"
                                 >
@@ -855,6 +858,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   </p>
                                   <div
                                     aria-activedescendant="1"
+                                    class="euiSuperSelect__listbox"
                                     role="listbox"
                                     tabindex="0"
                                   >
@@ -982,7 +986,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               </EuiScreenReaderOnly>
                               <div
                                 aria-activedescendant="1"
+                                className="euiSuperSelect__listbox"
                                 role="listbox"
+                                style={
+                                  Object {
+                                    "width": null,
+                                  }
+                                }
                                 tabIndex="0"
                               >
                                 <EuiContextMenuItem
@@ -997,11 +1007,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   onClick={[Function]}
                                   onKeyDown={[Function]}
                                   role="option"
-                                  style={
-                                    Object {
-                                      "width": null,
-                                    }
-                                  }
                                   toolTipPosition="right"
                                 >
                                   <button
@@ -1012,11 +1017,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                     onClick={[Function]}
                                     onKeyDown={[Function]}
                                     role="option"
-                                    style={
-                                      Object {
-                                        "width": null,
-                                      }
-                                    }
                                     type="button"
                                   >
                                     <span
@@ -1063,11 +1063,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   onClick={[Function]}
                                   onKeyDown={[Function]}
                                   role="option"
-                                  style={
-                                    Object {
-                                      "width": null,
-                                    }
-                                  }
                                   toolTipPosition="right"
                                 >
                                   <button
@@ -1078,11 +1073,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                     onClick={[Function]}
                                     onKeyDown={[Function]}
                                     role="option"
-                                    style={
-                                      Object {
-                                        "width": null,
-                                      }
-                                    }
                                     type="button"
                                   >
                                     <span
@@ -1232,6 +1222,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
             You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
           </p>
           <div
+            class="euiSuperSelect__listbox"
             role="listbox"
             tabindex="0"
           >
