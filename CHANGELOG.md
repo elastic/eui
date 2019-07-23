@@ -9,6 +9,7 @@ No public interface changes since `13.0.0`.
 - Added `transition` utility services to help create timeouts that account for CSS transition durations and delays ([#2136](https://github.com/elastic/eui/pull/2136))
 - Removed `EuiFlexGroup` dependency from `EuiAccordion` ([#2143](https://github.com/elastic/eui/pull/2143))
 - Exported `prettyDuration` and `commonDurationRanges` for pretty printing date ranges outside `EuiSuperDatePicker` ([#2132](https://github.com/elastic/eui/pull/2132))
+- Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
 
 **Bug fixes**
 
