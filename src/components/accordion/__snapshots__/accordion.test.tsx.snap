@@ -57,6 +57,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
             "attributeFilter": Array [
               "style",
             ],
+            "attributes": true,
             "childList": true,
             "subtree": true,
           }
@@ -131,6 +132,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
             "attributeFilter": Array [
               "style",
             ],
+            "attributes": true,
             "childList": true,
             "subtree": true,
           }
