@@ -1,10 +1,12 @@
+@import '../../form/form_control_layout/variables';
+
 @mixin euiSuperDatePickerText {
   @include euiFormControlText;
   display: block;
   width: 100%;
   padding: 0 $euiSizeS;
-  line-height: $euiFormControlHeight - 2px;
-  height: $euiFormControlHeight - 2px;
+  line-height: $euiFormControlLayoutGroupInputHeight;
+  height: $euiFormControlLayoutGroupInputHeight;
   word-break: break-all;
   transition: background $euiAnimSpeedFast ease-in;
 }
