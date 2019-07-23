@@ -1,0 +1,7 @@
+// sass-lint:disable no-important
+
+// Never show the legend toggle button
+// This should be up to the consumer not the library
+.echLegendButton {
+  display: none !important;
+}
