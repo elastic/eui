@@ -5,7 +5,6 @@ exports[`EuiIconTip is rendered 1`] = `
   class="euiToolTipAnchor"
 >
   <svg
-    aria-describedby="id"
     aria-label="aria-label"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="true"
@@ -23,7 +22,6 @@ exports[`EuiIconTip props color is rendered as the icon color 1`] = `
   class="euiToolTipAnchor"
 >
   <svg
-    aria-describedby="id"
     aria-label="Info"
     class="euiIcon euiIcon--medium euiIcon--warning euiIcon-isLoading"
     focusable="true"
@@ -41,7 +39,6 @@ exports[`EuiIconTip props size is rendered as the icon size 1`] = `
   class="euiToolTipAnchor"
 >
   <svg
-    aria-describedby="id"
     aria-label="Info"
     class="euiIcon euiIcon--xLarge euiIcon-isLoading"
     focusable="true"
@@ -59,7 +56,6 @@ exports[`EuiIconTip props type is rendered as the icon 1`] = `
   class="euiToolTipAnchor"
 >
   <svg
-    aria-describedby="id"
     aria-label="Info"
     class="euiIcon euiIcon--medium euiIcon-isLoading"
     focusable="true"
