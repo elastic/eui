@@ -39,6 +39,10 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   }
 }
 
+.guideSideNav__item--inSearch {
+  color: $euiColorDarkShade;
+}
+
 .guidePageContent {
   flex: 1 1 auto;
   padding: $euiSize $euiSizeXL;

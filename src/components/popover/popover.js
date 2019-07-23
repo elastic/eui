@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { cascadingMenuKeyCodes } from '../../services';
+import {
+  cascadingMenuKeyCodes,
+  getTransitionTimings,
+  getWaitDuration,
+  performOnFrame,
+} from '../../services';
 
 import { EuiFocusTrap } from '../focus_trap';
 
@@ -84,30 +89,12 @@ const DEFAULT_POPOVER_STYLES = {
   left: 50,
 };
 
-const GROUP_NUMERIC = /^([\d.]+)/;
-
 function getElementFromInitialFocus(initialFocus) {
   const initialFocusType = typeof initialFocus;
   if (initialFocusType === 'string')
     return document.querySelector(initialFocus);
   if (initialFocusType === 'function') return initialFocus();
   return initialFocus;
-}
-
-function getTransitionTimings(element) {
-  const computedStyle = window.getComputedStyle(element);
-
-  const computedDuration = computedStyle.getPropertyValue(
-    'transition-duration'
-  );
-  let durationMatch = computedDuration.match(GROUP_NUMERIC);
-  durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
-
-  const computedDelay = computedStyle.getPropertyValue('transition-delay');
-  let delayMatch = computedDelay.match(GROUP_NUMERIC);
-  delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
-
-  return { durationMatch, delayMatch };
 }
 
 export class EuiPopover extends Component {
@@ -278,33 +265,10 @@ export class EuiPopover extends Component {
   }
 
   onMutation = records => {
-    const waitDuration = records.reduce((waitDuration, record) => {
-      // only check for CSS transition values for ELEMENT nodes
-      if (record.target.nodeType === document.ELEMENT_NODE) {
-        const { durationMatch, delayMatch } = getTransitionTimings(
-          record.target
-        );
-        waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
-      }
-
-      return waitDuration;
-    }, 0);
+    const waitDuration = getWaitDuration(records);
     this.positionPopoverFixed();
 
-    if (waitDuration > 0) {
-      const startTime = Date.now();
-      const endTime = startTime + waitDuration;
-
-      const onFrame = () => {
-        this.positionPopoverFixed();
-
-        if (endTime > Date.now()) {
-          requestAnimationFrame(onFrame);
-        }
-      };
-
-      requestAnimationFrame(onFrame);
-    }
+    performOnFrame(waitDuration, this.positionPopoverFixed);
   };
 
   positionPopover = allowEnforcePosition => {

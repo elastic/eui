@@ -4,8 +4,19 @@ exports[`EuiToolTip is rendered 1`] = `
 <span
   class="euiToolTipAnchor"
 >
+  <button>
+    Trigger
+  </button>
+</span>
+`;
+
+exports[`EuiToolTip shows tooltip on focus 1`] = `
+<span
+  class="euiToolTipAnchor"
+>
   <button
     aria-describedby="id"
+    data-test-subj="trigger"
   >
     Trigger
   </button>

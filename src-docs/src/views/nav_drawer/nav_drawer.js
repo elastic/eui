@@ -62,19 +62,19 @@ export default class extends Component {
           listItems: [
             {
               label: 'My dashboard',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'dashboardApp',
               extraAction: faveExtraAction,
             },
             {
               label: 'Workpad with title that wraps',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'canvasApp',
               extraAction: faveExtraAction,
             },
             {
               label: 'My logs',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'loggingApp',
               'aria-label': 'This is an alternate aria-label',
               extraAction: faveExtraAction,
@@ -90,7 +90,7 @@ export default class extends Component {
           listItems: [
             {
               label: 'My workpad',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'canvasApp',
               extraAction: {
                 color: 'subdued',
@@ -102,7 +102,7 @@ export default class extends Component {
             },
             {
               label: 'My logs',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'loggingApp',
               extraAction: {
                 color: 'subdued',
@@ -120,7 +120,7 @@ export default class extends Component {
     this.exploreLinks = [
       {
         label: 'Canvas',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'canvasApp',
         isActive: true,
         extraAction: {
@@ -130,36 +130,36 @@ export default class extends Component {
       },
       {
         label: 'Discover',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'discoverApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Visualize',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'visualizeApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Dashboard',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'dashboardApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Machine learning',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'machineLearningApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Custom Plugin (no icon)',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         extraAction: pinExtraAction,
       },
       {
         label: 'Nature Plugin (image as icon)',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         extraAction: pinExtraAction,
         icon: (
           <EuiImage
@@ -174,37 +174,37 @@ export default class extends Component {
     this.solutionsLinks = [
       {
         label: 'APM',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'apmApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Infrastructure',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'infraApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Log viewer',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'loggingApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Uptime',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'upgradeAssistantApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'Maps',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'gisApp',
         extraAction: pinExtraAction,
       },
       {
         label: 'SIEM',
-        href: '/#/layout/nav-drawer',
+        href: '#/layout/nav-drawer',
         iconType: 'securityAnalyticsApp',
         extraAction: pinExtraAction,
       },
@@ -219,7 +219,7 @@ export default class extends Component {
           listItems: [
             {
               label: 'Dev tools',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'devToolsApp',
               extraAction: {
                 color: 'subdued',
@@ -230,7 +230,7 @@ export default class extends Component {
             },
             {
               label: 'Stack Monitoring',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'monitoringApp',
               extraAction: {
                 color: 'subdued',
@@ -241,7 +241,7 @@ export default class extends Component {
             },
             {
               label: 'Stack Management',
-              href: '/#/layout/nav-drawer',
+              href: '#/layout/nav-drawer',
               iconType: 'managementApp',
               extraAction: {
                 color: 'subdued',
@@ -280,7 +280,7 @@ export default class extends Component {
     return (
       <EuiHeaderLogo
         iconType="logoKibana"
-        href="/#/layout/nav-drawer"
+        href="#/layout/nav-drawer"
         aria-label="Goes to home"
       />
     );
