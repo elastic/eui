@@ -41,6 +41,7 @@
   word-break: normal !important;
 }
 
+// TODO: 7/23 DEPRECATE in favor of .eui-textBreakWord now that it's working as intended
 .eui-textOverflowWrap {
   @include internetExplorerOnly {
     word-break: break-all !important;
