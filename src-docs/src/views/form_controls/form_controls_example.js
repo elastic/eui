@@ -18,6 +18,7 @@ import {
   EuiFieldText,
   EuiFilePicker,
   EuiFormControlLayout,
+  EuiFormControlLayoutDelimited,
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
@@ -77,6 +78,10 @@ const switchHtml = renderToHtml(Switch);
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
 const formControlLayoutHtml = renderToHtml(FormControlLayout);
+
+import FormControlLayoutRange from './form_control_layout_range';
+const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
+const formControlLayoutRangeHtml = renderToHtml(FormControlLayoutRange);
 
 export const FormControlsExample = {
   title: 'Form controls',
@@ -350,6 +355,46 @@ export const FormControlsExample = {
         EuiFormControlLayout,
       },
       demo: <FormControlLayout />,
+    },
+    {
+      title: 'Form control layout delimited',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formControlLayoutRangeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formControlLayoutRangeHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            <EuiBadge color={'warning'}>Building block only</EuiBadge>
+          </p>
+
+          <p>
+            Like <EuiCode>EuiFormControlLayout</EuiCode>,{' '}
+            <EuiCode>EuiFormControlLayoutDelimited</EuiCode> is generally used
+            internally to consistently style form controls. This component
+            specifically lays out two form controls with center text or icon.
+          </p>
+          <p>
+            It takes all of the same props as{' '}
+            <EuiCode>EuiFormControlLayout</EuiCode> except for{' '}
+            <EuiCode>children</EuiCode>. Instead it requires both a{' '}
+            <strong>single</strong> <EuiCode>startControl</EuiCode> and a{' '}
+            <strong>single</strong> <EuiCode>endControl</EuiCode>. You can
+            optionally change the center content to a different string or node
+            (like an EuiIcon).
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiFormControlLayoutDelimited,
+      },
+      demo: <FormControlLayoutRange />,
     },
   ],
 };

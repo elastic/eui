@@ -1,5 +1,6 @@
 @import '../form/variables';
 @import '../form/mixins';
+@import '../form/form_control_layout/variables';
 
 /**
  * 1. Account for inner box-shadow style border
@@ -34,7 +35,7 @@
     padding: 0;
 
     .euiDatePicker {
-      height: $euiFormControlHeight - 2px;
+      height: $euiFormControlLayoutGroupInputHeight;
     }
   }
 
