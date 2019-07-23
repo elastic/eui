@@ -16,7 +16,7 @@ $euiSwitchIconHeight: $euiSize !default;
 // Coloring
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 40%) !default;
 $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
-$euiFormBorderOpaqueColor: shade(desaturate(adjust-hue($euiColorPrimary, 22), 22.95), 26%) !default;
+$euiFormBorderOpaqueColor: shadeOrTint(desaturate(adjust-hue($euiColorPrimary, 22), 22.95), 26%, 60%) !default;
 $euiFormBorderColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade

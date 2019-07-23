@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'form_control_layout/variables';
+
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
   // Each prefix must be it's own content block
@@ -54,11 +57,11 @@
     }
 
     &--inGroup:not(:read-only) {
-      height: $euiFormControlHeight - 2px; /* 2 */
+      height: $euiFormControlLayoutGroupInputHeight; /* 2 */
     }
 
     &--inGroup#{&}--compressed:not(:read-only) {
-      height: $euiFormControlCompressedHeight - 2px; /* 2 */
+      height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
     }
   }
 }

@@ -20,11 +20,11 @@
   }
 
   &--inGroup {
-    line-height: $euiFormControlHeight - 2px; /* 2 */
+    line-height: $euiFormControlLayoutGroupInputHeight; /* 2 */
   }
 
   &--inGroup#{&}--compressed {
-    line-height: $euiFormControlCompressedHeight - 2px; /* 2 */
+    line-height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
   }
 
   // Turn off linter for some MS specific bits.

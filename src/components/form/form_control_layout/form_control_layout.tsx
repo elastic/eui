@@ -17,28 +17,8 @@ export { ICON_SIDES } from './form_control_layout_icons';
 
 type ReactElements = ReactElement | ReactElement[];
 
-// if `prepend` and/or `append` is specified then `children` must be undefined or a single ReactElement
-interface AppendWithChildren {
-  append: ReactElements;
-  children?: ReactElement;
-}
-interface PrependWithChildren {
-  prepend: ReactElements;
-  children?: ReactElement;
-}
-type SiblingsWithChildren = AppendWithChildren | PrependWithChildren;
-
-type ChildrenOptions =
-  | SiblingsWithChildren
-  | {
-      append?: undefined | null;
-      prepend?: undefined | null;
-      children?: ReactNode;
-    };
-
 type EuiFormControlLayoutProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  ChildrenOptions & {
+  HTMLAttributes<HTMLDivElement> & {
     /**
      * Creates an input group with element(s) coming before children
      */
@@ -47,6 +27,7 @@ type EuiFormControlLayoutProps = CommonProps &
      * Creates an input group with element(s) coming after children
      */
     append?: ReactElements;
+    children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
     fullWidth?: boolean;
@@ -56,14 +37,6 @@ type EuiFormControlLayoutProps = CommonProps &
     compressed?: boolean;
     readOnly?: boolean;
   };
-
-function isChildrenIsReactElement(
-  append: EuiFormControlLayoutProps['append'],
-  prepend: EuiFormControlLayoutProps['prepend'],
-  children: EuiFormControlLayoutProps['children']
-): children is ReactElement {
-  return (!!append || !!prepend) && children != null;
-}
 
 export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
   render() {
@@ -94,23 +67,14 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       className
     );
 
-    const prependNodes = this.renderPrepends();
-    const appendNodes = this.renderAppends();
-
-    let clonedChildren;
-    if (isChildrenIsReactElement(append, prepend, children)) {
-      clonedChildren = cloneElement(children, {
-        className: `${
-          children.props.className
-        } euiFormControlLayout__child--noStyle`,
-      });
-    }
+    const prependNodes = this.renderPrepends(prepend);
+    const appendNodes = this.renderAppends(append);
 
     return (
       <div className={classes} {...rest}>
         {prependNodes}
         <div className="euiFormControlLayout__childrenWrapper">
-          {clonedChildren || children}
+          {children}
 
           <EuiFormControlLayoutIcons
             icon={icon}
@@ -123,9 +87,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     );
   }
 
-  renderPrepends() {
-    const { prepend } = this.props;
-
+  renderPrepends(prepend: ReactElements | undefined | null) {
     if (!prepend) {
       return;
     }
@@ -137,9 +99,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     return prependNodes;
   }
 
-  renderAppends() {
-    const { append } = this.props;
-
+  renderAppends(append: ReactElements | undefined | null) {
     if (!append) {
       return;
     }
