@@ -1,0 +1,56 @@
+.euiFormControlLayoutDelimited {
+  // Match just the regular drop shadow of inputs
+  @include euiFormControlDefaultShadow;
+  padding: 1px; /* 1 */
+
+  > .euiFormControlLayout__childrenWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    height: $euiFormControlLayoutGroupInputHeight;
+  }
+
+  &[class*='--compressed'] input {
+    height: $euiFormControlLayoutGroupInputCompressedHeight;
+    padding-top: 0; // Fixes IE
+    padding-bottom: 0; // Fixes IE
+  }
+
+  &[class*='--fullWidth'] input {
+    max-width: none;
+  }
+
+  .euiFormControlLayoutIcons {
+    // Absolutely positioning the icons doesn't work because they
+    // overlay only one of controls making the layout unbalanced
+    position: static; // Overrider absolute
+    padding-left: $euiFormControlPadding;
+    padding-right: $euiFormControlPadding;
+    flex-shrink: 0; // Fixes IE
+
+    &:not(.euiFormControlLayoutIcons--right) {
+      order: -1;
+    }
+  }
+}
+
+.euiFormControlLayoutDelimited__child--noStyle {
+  // sass-lint:disable-block no-important
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.euiFormControlLayoutDelimited__child--centered {
+  text-align: center;
+}
+
+.euiFormControlLayoutDelimited__delimeter {
+  // sass-lint:disable-block no-important
+  // Override EuiText line-height
+  line-height: 1 !important;
+  flex: 0 0 auto;
+  padding-left: $euiFormControlPadding / 2;
+  padding-right: $euiFormControlPadding / 2;
+}
