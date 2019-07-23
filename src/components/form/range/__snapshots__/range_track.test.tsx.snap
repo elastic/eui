@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiRangeTrack is rendered 1`] = `
+<div
+  class="euiRangeTrack"
+  style="margin-right:0.6em"
+>
+  <div
+    class="euiRangeTicks"
+    style="margin:0 -4.545454545454546%;left:0;right:0"
+  >
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="0"
+    >
+      0
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="10"
+    >
+      10
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="20"
+    >
+      20
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="30"
+    >
+      30
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="40"
+    >
+      40
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="50"
+    >
+      50
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="60"
+    >
+      60
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="70"
+    >
+      70
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="80"
+    >
+      80
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="90"
+    >
+      90
+    </button>
+    <button
+      class="euiRangeTick"
+      style="width:9.090909090909092%"
+      tabindex="-1"
+      type="button"
+      value="100"
+    >
+      100
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiRangeTrack should throw error if \`max\` does not line up with \`step\` interval 1`] = `"The value of 105 is not included in the possible sequence provided by the step of 10."`;
+
+exports[`EuiRangeTrack should throw error if \`tickInterval\` is off sequence from \`step\` 1`] = `"The value of 3 is not included in the possible sequence provided by the step of 10."`;
+
+exports[`EuiRangeTrack should throw error if custom tick value is higher than \`max\` 1`] = `"The value of 200 is higher than the max value of 100."`;
+
+exports[`EuiRangeTrack should throw error if custom tick value is lower than \`min\` 1`] = `"The value of -100 is lower than the min value of 0."`;
+
+exports[`EuiRangeTrack should throw error if custom tick value is off sequence from \`step\` 1`] = `"The value of 10 is not included in the possible sequence provided by the step of 50."`;
+
+exports[`EuiRangeTrack should throw error if there are too many ticks to render 1`] = `"The number of ticks to render is too high (22), reduce the interval."`;

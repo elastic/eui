@@ -207,36 +207,63 @@ Object {
       Object {
         "bool": Object {
           "should": Array [
-            Array [
-              Object {
-                "bool": Object {
-                  "must": Array [
-                    Object {
-                      "match": Object {
-                        "name": Object {
-                          "operator": "and",
-                          "query": "john",
-                        },
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "match": Object {
+                      "name": Object {
+                        "operator": "and",
+                        "query": "john",
                       },
                     },
-                  ],
-                },
+                  },
+                ],
               },
-              Object {
-                "bool": Object {
-                  "must": Array [
-                    Object {
-                      "match": Object {
-                        "name": Object {
-                          "operator": "and",
-                          "query": "fred",
-                        },
+            },
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "match": Object {
+                      "name": Object {
+                        "operator": "and",
+                        "query": "fred",
                       },
                     },
-                  ],
-                },
+                  },
+                ],
               },
-            ],
+            },
+          ],
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast - (name:john) 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "bool": Object {
+          "should": Array [
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "match": Object {
+                      "name": Object {
+                        "operator": "and",
+                        "query": "john",
+                      },
+                    },
+                  },
+                ],
+              },
+            },
           ],
         },
       },
@@ -385,30 +412,28 @@ Object {
       Object {
         "bool": Object {
           "should": Array [
-            Array [
-              Object {
-                "bool": Object {
-                  "must": Array [
-                    Object {
-                      "term": Object {
-                        "enrolled": true,
-                      },
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "term": Object {
+                      "enrolled": true,
                     },
-                  ],
-                },
+                  },
+                ],
               },
-              Object {
-                "bool": Object {
-                  "must": Array [
-                    Object {
-                      "simple_query_string": Object {
-                        "query": "Teacher",
-                      },
+            },
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "simple_query_string": Object {
+                      "query": "Teacher",
                     },
-                  ],
-                },
+                  },
+                ],
               },
-            ],
+            },
           ],
         },
       },

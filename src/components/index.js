@@ -50,6 +50,8 @@ export {
   EuiDatePickerRange,
   EuiSuperDatePicker,
   EuiSuperUpdateButton,
+  prettyDuration,
+  commonDurationRanges,
 } from './date_picker';
 
 export { EuiDelayHide } from './delay_hide';
@@ -141,6 +143,8 @@ export { ICON_TYPES, EuiIcon } from './icon';
 
 export { EuiImage } from './image';
 
+export { useInnerText, EuiInnerText } from './inner_text';
+
 export { EuiI18n, EuiI18nNumber } from './i18n';
 
 export {
@@ -229,6 +233,8 @@ export { EuiSpacer } from './spacer';
 export { EuiStat } from './stat';
 
 export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
+
+export { EuiSuggestItem } from './suggest_item';
 
 export {
   EuiTable,

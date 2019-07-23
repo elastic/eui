@@ -248,13 +248,50 @@ export const getRouterLinkProps = to => {
 
 ## react-router 5.x
 
-`react-router` 5.0 was released and it was supposed to be completely backward compatible with
-4.x.
+The React Context handling has changed in in 5.0 and we can't rely on it anymore. A solution is to create
+an `extractRouter` HOC that will intercept the router and send it to your custom handler.
 
-However, they changed something about their React Context handling in 5.0, [which may be
-a bug](https://github.com/ReactTraining/react-router/issues/6672), but it completely breaks
-the 4.x variant of this code. Use [`react-router` 4.x](#react-router-4x) until this is
-clarified.
+
+```js
+// extractRouter.hoc.js
+import { withRouter } from 'react-router-dom';
+
+export const extractRouter = onRouter => WrappedComponent =>
+  withRouter(
+    class extends Component {
+      componentDidMount() {
+        const { match, location, history } = this.props;
+        const router = { route: { match, location }, history };
+        onRouter(router);
+      }
+
+      render() {
+        return <WrappedComponent {...this.props} />;
+      }
+    }
+  );
+```
+
+```jsx
+import { extractRouter } from './hoc';
+import { registerRouter } from './routing';
+
+// App is your app's root component.
+class App extends Component {
+  ...
+}
+
+const AppMount = extractRouter(registerRouter)(App);
+
+// <App> *must* be a child of <Router> because <App> depends on the context provided by <Router>
+ReactDOM.render(
+  <Router>
+    <AppMount />,
+  </Router>,
+  appRoot
+)
+```
+
 
 ## Techniques we don't recommend
 

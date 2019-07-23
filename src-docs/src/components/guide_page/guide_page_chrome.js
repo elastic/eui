@@ -19,6 +19,26 @@ import {
 
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import { GuideThemeSelector } from '../guide_theme_selector';
+import { EuiHighlight } from '../../../../src/components/highlight';
+
+const scrollTo = position => {
+  $('html, body').animate(
+    {
+      scrollTop: position,
+    },
+    250
+  );
+};
+
+function scrollToSelector(selector, attempts = 5) {
+  const element = $(selector);
+
+  if (element.length) {
+    scrollTo(element.offset().top - 20);
+  } else if (attempts > 0) {
+    setTimeout(scrollToSelector.bind(null, selector, attempts - 1), 250);
+  }
+}
 
 export class GuidePageChrome extends Component {
   constructor(props) {
@@ -44,30 +64,41 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  scrollTo = position => {
-    $('html, body').animate(
-      {
-        scrollTop: position,
-      },
-      250
-    );
+  scrollNavSectionIntoView = () => {
+    setTimeout(() => {
+      // wait a bit for react to blow away and re-create the DOM
+      // then scroll the selected nav section into view
+      const selectedButton = $('.euiSideNavItemButton-isSelected');
+      if (selectedButton.length) {
+        const root = selectedButton.parents('.euiSideNavItem--root');
+        if (root.length) {
+          root.get(0).scrollIntoView();
+        }
+      }
+    }, 250);
   };
 
   onClickLink = id => {
     // Scroll to element.
-    this.scrollTo($(`#${id}`).offset().top - 20);
+    scrollToSelector(`#${id}`);
 
-    this.setState({
-      search: '',
-      isSideNavOpenOnMobile: false,
-    });
+    this.setState(
+      {
+        search: '',
+        isSideNavOpenOnMobile: false,
+      },
+      this.scrollNavSectionIntoView
+    );
   };
 
   onClickRoute = () => {
-    this.setState({
-      search: '',
-      isSideNavOpenOnMobile: false,
-    });
+    this.setState(
+      {
+        search: '',
+        isSideNavOpenOnMobile: false,
+      },
+      this.scrollNavSectionIntoView
+    );
   };
 
   onButtonClick() {
@@ -144,41 +175,96 @@ export class GuidePageChrome extends Component {
     );
   }
 
-  renderSubSections = (subSections = []) => {
-    const subSectionsWithTitles = subSections.filter(item => item.title);
+  renderSubSections = (href, subSections = [], searchTerm = '') => {
+    const subSectionsWithTitles = subSections.filter(item => {
+      if (!item.title) {
+        return false;
+      }
 
-    if (subSectionsWithTitles.length <= 1) {
+      if (searchTerm) {
+        return item.title.toLowerCase().indexOf(searchTerm) !== -1;
+      }
+
+      return true;
+    });
+
+    // don't render solitary sub-items unless there's an active search
+    if (subSectionsWithTitles.length <= (searchTerm ? 0 : 1)) {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, id }) => ({
-      id: `subSection-${id}`,
-      name: title,
-      onClick: this.onClickLink.bind(this, id),
-    }));
+    return subSectionsWithTitles.map(({ title, id }) => {
+      let name = title;
+      if (searchTerm) {
+        name = (
+          <EuiHighlight
+            className="guideSideNav__item--inSearch"
+            search={searchTerm}>
+            {title}
+          </EuiHighlight>
+        );
+      }
+
+      return {
+        id: `subSection-${id}`,
+        name,
+        href,
+        onClick: this.onClickLink.bind(this, id),
+      };
+    });
   };
 
   renderSideNav = sideNav => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
+    const searchTerm = this.state.search.toLowerCase();
+
     sideNav.forEach(section => {
-      const matchingItems = section.items.filter(
-        item =>
-          item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
-            -1 && item.hidden !== true
-      );
+      let hasMatchingSubItem = false;
+
+      const matchingItems = section.items.filter(item => {
+        if (item.hidden) {
+          return false;
+        }
+
+        const itemSections = item.sections || [];
+        for (let i = 0; i < itemSections.length; i++) {
+          const sectionTitle = itemSections[i].title || '';
+          if (sectionTitle.toLowerCase().indexOf(searchTerm) !== -1) {
+            hasMatchingSubItem = true;
+            return true;
+          }
+        }
+
+        if (item.name.toLowerCase().indexOf(searchTerm) !== -1) {
+          return true;
+        }
+      });
 
       const items = matchingItems.map(item => {
         const { name, path, sections } = item;
+        const href = `#/${path}`;
+
+        let visibleName = name;
+        if (searchTerm) {
+          visibleName = (
+            <EuiHighlight
+              className="guideSideNav__item--inSearch"
+              search={searchTerm}>
+              {name}
+            </EuiHighlight>
+          );
+        }
 
         return {
           id: `${section.type}-${path}`,
-          name,
-          href: `#/${path}`,
+          name: visibleName,
+          href,
           onClick: this.onClickRoute.bind(this),
-          items: this.renderSubSections(sections),
+          items: this.renderSubSections(href, sections, searchTerm),
           isSelected: name === this.props.currentRouteName,
+          forceOpen: !!(searchTerm && hasMatchingSubItem),
         };
       });
 

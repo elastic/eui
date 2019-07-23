@@ -56,7 +56,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           "description": "description",
           "field": "name",
           "name": "Name",
-          "sortable": false,
         },
       ]
     }
@@ -335,6 +334,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         </EuiButtonEmpty>
                       }
                       closePopover={[Function]}
+                      display="inlineBlock"
                       hasArrow={true}
                       id="customizablePagination"
                       isOpen={false}
@@ -652,7 +652,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -674,7 +673,6 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -725,7 +723,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
       "allowNeutralSort": true,
       "sort": Object {
         "direction": "desc",
-        "field": "name",
+        "field": "Name",
       },
     }
   }
@@ -742,7 +740,6 @@ exports[`EuiInMemoryTable with items 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -779,7 +776,6 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -824,7 +820,6 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -861,7 +856,6 @@ exports[`EuiInMemoryTable with message 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -883,7 +877,6 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -906,7 +899,6 @@ exports[`EuiInMemoryTable with pagination 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -952,7 +944,6 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -994,7 +985,6 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -1050,7 +1040,6 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -1093,7 +1082,6 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
         "description": "description",
         "field": "name",
         "name": "Name",
-        "sortable": false,
       },
     ]
   }
@@ -1224,7 +1212,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
             },
           ],
           "name": "Actions",
-          "sortable": false,
         },
       ]
     }
@@ -1299,7 +1286,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
           },
         ],
         "name": "Actions",
-        "sortable": false,
       },
     ]
   }
@@ -1459,7 +1445,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
             },
           ],
           "name": "Actions",
-          "sortable": false,
         },
       ]
     }
@@ -1502,47 +1487,4 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     }
   />
 </div>
-`;
-
-exports[`EuiInMemoryTable with sorting 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "sortable": true,
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage="No items found"
-  onChange={[Function]}
-  responsive={true}
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": undefined,
-    }
-  }
-/>
 `;

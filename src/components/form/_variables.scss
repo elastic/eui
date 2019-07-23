@@ -21,23 +21,4 @@ $euiFormBorderDisabledColor: transparentize($euiColorFullShade, .92) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8);
-
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
-//** DEPRECATED **//
-
-@if variable-exists(euiFormControlHeight--compressed) {
-  $euiFormControlCompressedHeight: $euiFormControlHeightCompressed !global;
-  @warn '`$euiFormControlHeightCompressed` is deprecated. Please use `$euiFormControlCompressedHeight` instead';
-}
-
-@if variable-exists(euiFormControlPadding--compressed) {
-  $euiFormControlCompressedPadding: $euiFormControlPaddingCompressed !global;
-  @warn '`$euiFormControlPaddingCompressed` is deprecated. Please use `$euiFormControlCompressedPadding` instead';
-}
-
-@if variable-exists(euiFormBorderColorDisabled) {
-  $euiFormBorderDisabledColor: $euiFormBorderColorDisabled !global;
-  @warn '`$euiFormBorderColorDisabled` is deprecated. Please use `$euiFormBorderDisabledColor` instead';
-}
+$euiFormInputGroupLabelBackground: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%);

@@ -22,6 +22,7 @@ export const EuiSelect = ({
   prepend,
   append,
   onMouseUp,
+  readOnly,
   ...rest
 }) => {
   const handleMouseUp = e => {
@@ -71,6 +72,7 @@ export const EuiSelect = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       compressed={compressed}
+      readOnly={readOnly}
       prepend={prepend}
       append={append}>
       <EuiValidatableControl isInvalid={isInvalid}>
@@ -81,6 +83,7 @@ export const EuiSelect = ({
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
+          readOnly={readOnly}
           onMouseUp={handleMouseUp}
           {...rest}>
           {emptyOptionNode}
@@ -119,6 +122,7 @@ EuiSelect.propTypes = {
    * when `true` creates a shorter height input
    */
   compressed: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * Creates an input group with element(s) coming before select
    */

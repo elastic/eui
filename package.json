@@ -1,12 +1,11 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "11.3.1",
+  "version": "13.0.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "postcss": {},
   "docker_image": "node:8",
   "sideEffects": false,
   "scripts": {
@@ -19,12 +18,13 @@
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
     "lint-fix": "yarn lint-es-fix",
-    "lint-es": "eslint --cache '{src,src-docs,src-framer}/**/*.{ts,tsx,js}'",
+    "lint-es": "eslint --cache '{src,src-docs,src-framer}/**/*.{ts,tsx,js}' --max-warnings 0",
     "lint-es-fix": "yarn lint-es --fix",
     "lint-sass": "sass-lint -v --max-warnings 0",
     "lint-sass-fix": "sass-lint-auto-fix -c ./.sass-lint-fix.yml",
     "test": "yarn lint && yarn test-unit",
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
+    "test-staged": "yarn lint && node scripts/test-staged.js",
     "start-test-server": "webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "test-visual": "wdio test/wdio.conf.js",
     "yo-component": "yo ./generator-eui/app/component.js",
@@ -40,6 +40,9 @@
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
   },
+  "pre-commit": [
+    "test-staged"
+  ],
   "dependencies": {
     "@types/lodash": "^4.14.116",
     "@types/numeral": "^0.0.25",
@@ -57,7 +60,6 @@
     "react-input-autosize": "^2.2.1",
     "react-is": "~16.3.0",
     "react-virtualized": "^9.18.5",
-    "react-vis": "1.10.2",
     "resize-observer-polyfill": "^1.5.0",
     "tabbable": "^1.1.0",
     "uuid": "^3.1.0"
@@ -109,8 +111,8 @@
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
     "dts-generator": "^2.1.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",

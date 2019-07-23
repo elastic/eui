@@ -5,7 +5,7 @@ import {
   getMatchingOptions,
 } from './matching_options';
 
-const options: EuiComboBoxOptionProps[] = [
+const options = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -51,7 +51,7 @@ describe('flattenOptionGroups', () => {
 describe('getSelectedOptionForSearchValue', () => {
   test('gets the first matching selected option for search value', () => {
     // Assemble
-    const expected: EuiComboBoxOptionProps = {
+    const expected = {
       label: 'Saturn',
       'data-test-subj': 'saturnOption',
     };
@@ -71,7 +71,7 @@ describe('getSelectedOptionForSearchValue', () => {
   });
   test('gets the first matching selected option for search value', () => {
     // Assemble
-    const expected: EuiComboBoxOptionProps = {
+    const expected = {
       label: 'Saturn',
       'data-test-subj': 'saturnOption',
     };
@@ -82,16 +82,18 @@ describe('getSelectedOptionForSearchValue', () => {
   });
 });
 
-interface GetMatchingOptionsTestCase {
-  options: EuiComboBoxOptionProps[];
-  selectedOptions: EuiComboBoxOptionProps[];
+interface GetMatchingOptionsTestCase<T> {
+  options: Array<EuiComboBoxOptionProps<T>>;
+  selectedOptions: Array<EuiComboBoxOptionProps<T>>;
   searchValue: string;
   isPreFiltered: boolean;
   showPrevSelected: boolean;
-  expected: EuiComboBoxOptionProps[];
+  expected: Array<EuiComboBoxOptionProps<T>>;
 }
 
-const testCases: GetMatchingOptionsTestCase[] = [
+const testCases: Array<
+  GetMatchingOptionsTestCase<{ [key: string]: string }>
+> = [
   {
     options,
     selectedOptions: [
@@ -156,7 +158,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
 describe('getMatchingOptions', () => {
   test.each(testCases)(
     '.getMatchingOptions(%o)',
-    (testCase: GetMatchingOptionsTestCase) => {
+    (testCase: typeof testCases[number]) => {
       expect(
         getMatchingOptions(
           testCase.options,

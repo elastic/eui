@@ -1,13 +1,10 @@
 .euiFlyoutBody {
-  @include euiOverflowShadow;
   flex-grow: 1;
   overflow-y: hidden;
   height: 100%;
 
   .euiFlyoutBody__overflow {
-    @include euiScrollBar;
-    height: 100%;
-    overflow-y: auto;
+    @include euiYScrollWithShadows;
     padding: $euiSizeL;
   }
 }

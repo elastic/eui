@@ -53,12 +53,11 @@ export function EuiDatePopoverButton(props) {
 
   return (
     <EuiPopover
-      className="euiDatePopoverButton__popover"
       button={button}
       isOpen={isOpen}
       closePopover={onPopoverClose}
       anchorPosition={position === 'start' ? 'downLeft' : 'downRight'}
-      anchorClassName="euiDatePopoverButton__popoverAnchor"
+      display="block"
       panelPaddingSize="none"
       ownFocus
       {...rest}>
@@ -67,6 +66,7 @@ export function EuiDatePopoverButton(props) {
         roundUp={roundUp}
         onChange={onChange}
         dateFormat={dateFormat}
+        position={position}
       />
     </EuiPopover>
   );

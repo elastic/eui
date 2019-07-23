@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { cascadingMenuKeyCodes } from '../../services';
+import {
+  cascadingMenuKeyCodes,
+  getTransitionTimings,
+  getWaitDuration,
+  performOnFrame,
+} from '../../services';
 
 import { EuiFocusTrap } from '../focus_trap';
 
@@ -72,12 +77,17 @@ const anchorPositionToClassNameMap = {
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
+const displayToClassNameMap = {
+  inlineBlock: undefined,
+  block: 'euiPopover--displayBlock',
+};
+
+export const DISPLAY = Object.keys(displayToClassNameMap);
+
 const DEFAULT_POPOVER_STYLES = {
   top: 50,
   left: 50,
 };
-
-const GROUP_NUMERIC = /^([\d.]+)/;
 
 function getElementFromInitialFocus(initialFocus) {
   const initialFocusType = typeof initialFocus;
@@ -85,22 +95,6 @@ function getElementFromInitialFocus(initialFocus) {
     return document.querySelector(initialFocus);
   if (initialFocusType === 'function') return initialFocus();
   return initialFocus;
-}
-
-function getTransitionTimings(element) {
-  const computedStyle = window.getComputedStyle(element);
-
-  const computedDuration = computedStyle.getPropertyValue(
-    'transition-duration'
-  );
-  let durationMatch = computedDuration.match(GROUP_NUMERIC);
-  durationMatch = durationMatch ? parseFloat(durationMatch[1]) * 1000 : 0;
-
-  const computedDelay = computedStyle.getPropertyValue('transition-delay');
-  let delayMatch = computedDelay.match(GROUP_NUMERIC);
-  delayMatch = delayMatch ? parseFloat(delayMatch[1]) * 1000 : 0;
-
-  return { durationMatch, delayMatch };
 }
 
 export class EuiPopover extends Component {
@@ -149,9 +143,11 @@ export class EuiPopover extends Component {
 
   onKeyDown = e => {
     if (e.keyCode === cascadingMenuKeyCodes.ESCAPE) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.props.closePopover();
+      if (this.state.isOpenStable || this.state.isOpening) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.closePopover();
+      }
     }
   };
 
@@ -235,7 +231,10 @@ export class EuiPopover extends Component {
         );
 
       setTimeout(() => {
-        this.setState({ isOpenStable: true }, this.positionPopoverFixed);
+        this.setState({ isOpenStable: true }, () => {
+          this.positionPopoverFixed();
+          this.updateFocus();
+        });
       }, durationMatch + delayMatch);
     }
 
@@ -258,8 +257,6 @@ export class EuiPopover extends Component {
         });
       }, 250);
     }
-
-    this.updateFocus();
   }
 
   componentWillUnmount() {
@@ -268,33 +265,10 @@ export class EuiPopover extends Component {
   }
 
   onMutation = records => {
-    const waitDuration = records.reduce((waitDuration, record) => {
-      // only check for CSS transition values for ELEMENT nodes
-      if (record.target.nodeType === document.ELEMENT_NODE) {
-        const { durationMatch, delayMatch } = getTransitionTimings(
-          record.target
-        );
-        waitDuration = Math.max(waitDuration, durationMatch + delayMatch);
-      }
-
-      return waitDuration;
-    }, 0);
+    const waitDuration = getWaitDuration(records);
     this.positionPopoverFixed();
 
-    if (waitDuration > 0) {
-      const startTime = Date.now();
-      const endTime = startTime + waitDuration;
-
-      const onFrame = () => {
-        this.positionPopoverFixed();
-
-        if (endTime > Date.now()) {
-          requestAnimationFrame(onFrame);
-        }
-      };
-
-      requestAnimationFrame(onFrame);
-    }
+    performOnFrame(waitDuration, this.positionPopoverFixed);
   };
 
   positionPopover = allowEnforcePosition => {
@@ -411,12 +385,14 @@ export class EuiPopover extends Component {
       zIndex,
       initialFocus,
       attachToAnchor,
+      display,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiPopover',
       anchorPositionToClassNameMap[anchorPosition],
+      displayToClassNameMap[display],
       {
         'euiPopover-isOpen': this.state.isOpening,
         'euiPopover--withTitle': withTitle,
@@ -473,6 +449,7 @@ export class EuiPopover extends Component {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
+            returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
             disabled={!ownFocus}>
@@ -551,6 +528,8 @@ EuiPopover.propTypes = {
   }),
   /** Style and position alteration for arrow-less, left-aligned attachment. Intended for use with inputs as anchors, à la EuiColorPicker */
   attachToAnchor: PropTypes.bool,
+  /** CSS display type for both the popover and anchor */
+  display: PropTypes.oneOf(DISPLAY),
 };
 
 EuiPopover.defaultProps = {
@@ -559,4 +538,5 @@ EuiPopover.defaultProps = {
   anchorPosition: 'downCenter',
   panelPaddingSize: 'm',
   hasArrow: true,
+  display: 'inlineBlock',
 };

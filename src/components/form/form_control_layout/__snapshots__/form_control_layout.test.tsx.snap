@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFormControlLayout is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormControlLayout testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <input />
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <button
+        aria-label="Clear input"
+        class="euiFormControlLayoutClearButton customClass"
+        data-test-subj="clearButton"
+        type="button"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutClearButton__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;
+
+exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon customClass"
+        data-test-subj="myIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiFormControlLayoutCustomIcon__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+  <span
+    class="euiFormControlLayout__append"
+  >
+    1
+  </span>
+  <span
+    class="euiFormControlLayout__append"
+  >
+    2
+  </span>
+</div>
+`;
+
+exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <span
+    class="euiFormControlLayout__prepend"
+  >
+    1
+  </span>
+  <span
+    class="euiFormControlLayout__prepend"
+  >
+    2
+  </span>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;
+
+exports[`EuiFormControlLayout props one append is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+  <span
+    class="euiFormControlLayout__append"
+  >
+    1
+  </span>
+</div>
+`;
+
+exports[`EuiFormControlLayout props one prepend is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <span
+    class="euiFormControlLayout__prepend"
+  >
+    1
+  </span>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;
+
+exports[`EuiFormControlLayout props readOnly is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--readOnly"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;

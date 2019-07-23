@@ -2,10 +2,10 @@
 
 exports[`EuiSuperSelect is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -58,10 +58,10 @@ exports[`EuiSuperSelect is rendered 1`] = `
 
 exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -206,10 +206,10 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 
 exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect euiSuperSelect--fullWidth"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect euiSuperSelect--fullWidth"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -262,10 +262,10 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 
 exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -438,7 +438,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
   valueOfSelected="1"
 >
   <EuiPopover
-    anchorClassName="euiSuperSelect__popoverAnchor"
     anchorPosition="downCenter"
     button={
       <EuiSuperSelectControl
@@ -469,6 +468,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
     }
     className="euiSuperSelect"
     closePopover={[Function]}
+    display="block"
     hasArrow={false}
     isOpen={true}
     ownFocus={false}
@@ -481,7 +481,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
       onOutsideClick={[Function]}
     >
       <div
-        className="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+        className="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
         onKeyDown={[Function]}
         onMouseDown={[Function]}
         onMouseUp={[Function]}
@@ -489,7 +489,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
         onTouchStart={[Function]}
       >
         <div
-          className="euiPopover__anchor euiSuperSelect__popoverAnchor"
+          className="euiPopover__anchor"
         >
           <EuiSuperSelectControl
             className="euiSuperSelect--isOpen__button"
@@ -1096,10 +1096,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
 
 exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -1244,10 +1244,10 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 
 exports[`EuiSuperSelect props select component is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"
@@ -1298,10 +1298,10 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
 
 exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter euiSuperSelect"
+  class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock euiSuperSelect"
 >
   <div
-    class="euiPopover__anchor euiSuperSelect__popoverAnchor"
+    class="euiPopover__anchor"
   >
     <input
       type="hidden"

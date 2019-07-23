@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 465,
+        "line": 467,
         "column": 12
       },
       "end": {
-        "line": 469,
+        "line": 471,
         "column": 14
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 503,
+        "line": 505,
         "column": 6
       },
       "end": {
-        "line": 503,
+        "line": 505,
         "column": 77
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 848,
+        "line": 863,
         "column": 8
       },
       "end": {
-        "line": 848,
+        "line": 863,
         "column": 79
       }
     },
@@ -225,16 +225,16 @@
   },
   {
     "token": "euiColorPicker.screenReaderAnnouncement",
-    "defString": "A popup with a range of selectable colors opened.\n                  Tab forward to cycle through colors choices or press\n                  escape to close this popup.",
+    "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
-        "column": 16
+        "line": 252,
+        "column": 14
       },
       "end": {
-        "line": 226,
-        "column": 18
+        "line": 257,
+        "column": 16
       }
     },
     "filepath": "src/components/color_picker/color_picker.js"
@@ -245,12 +245,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 257,
-        "column": 20
+        "line": 281,
+        "column": 18
       },
       "end": {
-        "line": 260,
-        "column": 61
+        "line": 284,
+        "column": 59
       }
     },
     "filepath": "src/components/color_picker/color_picker.js"
@@ -277,12 +277,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 175,
-        "column": 4
+        "line": 182,
+        "column": 6
       },
       "end": {
-        "line": 177,
-        "column": 62
+        "line": 184,
+        "column": 64
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -293,12 +293,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
-        "column": 14
+        "line": 207,
+        "column": 16
       },
       "end": {
-        "line": 202,
-        "column": 16
+        "line": 210,
+        "column": 18
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -325,11 +325,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 133,
+        "line": 156,
         "column": 12
       },
       "end": {
-        "line": 136,
+        "line": 159,
         "column": 14
       }
     },
@@ -341,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 150,
+        "line": 173,
         "column": 14
       },
       "end": {
-        "line": 156,
+        "line": 179,
         "column": 16
       }
     },
@@ -357,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 162,
+        "line": 185,
         "column": 14
       },
       "end": {
-        "line": 169,
+        "line": 192,
         "column": 16
       }
     },
@@ -373,11 +373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
+        "line": 199,
         "column": 12
       },
       "end": {
-        "line": 180,
+        "line": 203,
         "column": 14
       }
     },
@@ -389,11 +389,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 187,
+        "line": 210,
         "column": 10
       },
       "end": {
-        "line": 190,
+        "line": 213,
         "column": 12
       }
     },
@@ -405,11 +405,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 196,
+        "line": 219,
         "column": 10
       },
       "end": {
-        "line": 199,
+        "line": 222,
         "column": 12
       }
     },
@@ -421,11 +421,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 66,
+        "line": 70,
         "column": 8
       },
       "end": {
-        "line": 71,
+        "line": 75,
         "column": 12
       }
     },
@@ -437,11 +437,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 14,
+        "line": 17,
         "column": 4
       },
       "end": {
-        "line": 16,
+        "line": 19,
         "column": 28
       }
     },
@@ -485,11 +485,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 246,
+        "line": 250,
         "column": 12
       },
       "end": {
-        "line": 251,
+        "line": 255,
         "column": 14
       }
     },
@@ -645,11 +645,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 459,
+        "line": 435,
         "column": 14
       },
       "end": {
-        "line": 462,
+        "line": 438,
         "column": 16
       }
     },
@@ -885,15 +885,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 52,
+        "line": 72,
         "column": 6
       },
       "end": {
-        "line": 52,
+        "line": 72,
         "column": 69
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   },
   {
     "token": "euiToast.newNotification",
@@ -901,15 +901,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 81,
+        "line": 101,
         "column": 10
       },
       "end": {
-        "line": 84,
+        "line": 104,
         "column": 12
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   },
   {
     "token": "euiToast.notification",
@@ -917,14 +917,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 108,
         "column": 6
       },
       "end": {
-        "line": 88,
+        "line": 108,
         "column": 68
       }
     },
-    "filepath": "src/components/toast/toast.js"
+    "filepath": "src/components/toast/toast.tsx"
   }
 ]

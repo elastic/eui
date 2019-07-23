@@ -6,7 +6,6 @@ exports[`EuiToast Props color danger is rendered 1`] = `
   title="test title"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--danger"
   >
     <EuiScreenReaderOnly>
@@ -47,7 +46,6 @@ exports[`EuiToast Props color primary is rendered 1`] = `
   title="test title"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--primary"
   >
     <EuiScreenReaderOnly>
@@ -88,7 +86,6 @@ exports[`EuiToast Props color success is rendered 1`] = `
   title="test title"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--success"
   >
     <EuiScreenReaderOnly>
@@ -129,7 +126,6 @@ exports[`EuiToast Props color warning is rendered 1`] = `
   title="test title"
 >
   <div
-    aria-live="polite"
     className="euiToast euiToast--warning"
   >
     <EuiScreenReaderOnly>
@@ -170,7 +166,6 @@ exports[`EuiToast Props iconType is rendered 1`] = `
   title="test title"
 >
   <div
-    aria-live="polite"
     className="euiToast"
   >
     <EuiScreenReaderOnly>
@@ -234,7 +229,6 @@ exports[`EuiToast Props title is rendered 1`] = `
   title="toast title"
 >
   <div
-    aria-live="polite"
     className="euiToast"
   >
     <EuiScreenReaderOnly>
@@ -272,7 +266,6 @@ exports[`EuiToast Props title is rendered 1`] = `
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
-  aria-live="polite"
   class="euiToast testClass1 testClass2"
   data-test-subj="test subject string"
 >

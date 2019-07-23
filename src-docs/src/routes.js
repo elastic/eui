@@ -29,6 +29,8 @@ import { ColorPaletteExample } from './views/color_palette/color_palette_example
 
 import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
 
+import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
+
 import { UtilityClassesExample } from './views/utility_classes/utility_classes_example';
 
 // Component examples
@@ -110,6 +112,8 @@ import { IconExample } from './views/icon/icon_example';
 
 import { ImageExample } from './views/image/image_example';
 
+import { InnerTextExample } from './views/inner_text/inner_text_example';
+
 import { KeyPadMenuExample } from './views/key_pad_menu/key_pad_menu_example';
 
 import { LinkExample } from './views/link/link_example';
@@ -156,6 +160,8 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
+// import { SuggestExample } from './views/suggest/suggest_example';
+
 import { TableExample } from './views/tables/tables_example';
 
 import { TabsExample } from './views/tabs/tabs_example';
@@ -171,18 +177,6 @@ import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 import { ToggleExample } from './views/toggle/toggle_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
-
-import { XYChartExample } from './views/series_chart/series_chart_example';
-
-import { XYChartAxisExample } from './views/series_chart_axis/series_axis_example';
-
-import { XYChartBarExample } from './views/series_chart_bar/bar_example';
-
-import { XYChartHistogramExample } from './views/series_chart_histogram/histogram_example';
-
-import { XYChartAreaExample } from './views/series_chart_area/area_example';
-
-import { XYChartLineExample } from './views/series_chart_line/line_example';
 
 import { Changelog } from './views/package/changelog';
 
@@ -345,17 +339,7 @@ const navigation = [
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-    ].map(example => createExample(example)),
-  },
-  {
-    name: 'Charts (deprecated)',
-    items: [
-      XYChartExample,
-      XYChartAxisExample,
-      XYChartLineExample,
-      XYChartAreaExample,
-      XYChartBarExample,
-      XYChartHistogramExample,
+      // SuggestExample,
     ].map(example => createExample(example)),
   },
   {
@@ -371,8 +355,10 @@ const navigation = [
       ErrorBoundaryExample,
       FocusTrapExample,
       HighlightExample,
+      InnerTextExample,
       I18nExample,
       IsColorDarkExample,
+      PrettyDurationExample,
       MutationObserverExample,
       OutsideClickDetectorExample,
       PortalExample,

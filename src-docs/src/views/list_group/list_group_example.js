@@ -22,6 +22,10 @@ import ListGroupLinkActions from './list_group_link_actions';
 const listGroupLinkActionsSource = require('!!raw-loader!./list_group_link_actions');
 const listGroupLinkActionsHtml = renderToHtml(ListGroupLinkActions);
 
+import ListGroupExtra from './list_group_extra';
+const listGroupExtraSource = require('!!raw-loader!./list_group_extra');
+const listGroupExtraHtml = renderToHtml(ListGroupExtra);
+
 export const ListGroupExample = {
   title: 'List Group',
   sections: [
@@ -94,6 +98,28 @@ export const ListGroupExample = {
         </p>
       ),
       demo: <ListGroupLinkActions />,
+    },
+    {
+      title: 'Text wrapping and tooltips',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: listGroupExtraSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: listGroupExtraHtml,
+        },
+      ],
+      text: (
+        <p>
+          Optional props <EuiCode>showToolTip</EuiCode> and{' '}
+          <EuiCode>wrapLines</EuiCode> can be used to augment the display of
+          list items. Use these when lists are inside small containers where it
+          is likely that the content will be truncated.
+        </p>
+      ),
+      demo: <ListGroupExtra />,
     },
   ],
 };

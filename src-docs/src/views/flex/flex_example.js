@@ -60,6 +60,10 @@ import FlexGridColumns from './flex_grid_columns';
 const flexGridColumnsSource = require('!!raw-loader!./flex_grid_columns');
 const flexGridColumnsHtml = renderToHtml(FlexGridColumns);
 
+import FlexGridColumnFirst from './flex_grid_column_first';
+const flexGridColumnFirstSource = require('!!raw-loader!./flex_grid_column_first');
+const flexGridColumnFirstHtml = renderToHtml(FlexGridColumnFirst);
+
 import FlexNest from './flex_nest';
 const flexNestSource = require('!!raw-loader!./flex_nest');
 const flexNestHtml = renderToHtml(FlexNest);
@@ -133,6 +137,15 @@ const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
   </EuiFlexItem>
   <EuiFlexItem>
     <!-- Item in 3-column FlexGrid-->
+  </EuiFlexItem>
+</EuiFlexGrid>`;
+
+const flexGridColumnFirstSnippet = `<EuiFlexGrid columns={2} direction="column">
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
+  </EuiFlexItem>
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
   </EuiFlexItem>
 </EuiFlexGrid>`;
 
@@ -485,6 +498,32 @@ export const FlexExample = {
       demo: (
         <div className="guideDemo__highlightGridWrap">
           <FlexGridColumns />
+        </div>
+      ),
+    },
+    {
+      title: 'FlexGrids can change direction',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGridColumnFirstSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: flexGridColumnFirstHtml,
+        },
+      ],
+      text: (
+        <p>
+          Adding <EuiCode>direction=&quot;column&quot;</EuiCode> will re-orient
+          the flex items so they display top-down <strong>then</strong> left to
+          right.
+        </p>
+      ),
+      snippet: flexGridColumnFirstSnippet,
+      demo: (
+        <div className="guideDemo__highlightGridWrap">
+          <FlexGridColumnFirst />
         </div>
       ),
     },

@@ -57,7 +57,7 @@ export type EuiBadgeProps = {
   /**
    * Props passed to the close button.
    */
-  closeButtonProps?: PropsOf<EuiIcon>;
+  closeButtonProps?: Partial<PropsOf<EuiIcon>>;
 } & CommonProps &
   ExclusiveUnion<WithIconOnClick, {}> &
   ExclusiveUnion<WithSpanProps, WithButtonProps>;
@@ -157,7 +157,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   if (onClick && !onClickAriaLabel) {
     console.warn(
-      'Whe passing onClick to EuiBadge, you must also provide onClickAriaLabel'
+      'When passing onClick to EuiBadge, you must also provide onClickAriaLabel'
     );
   }
 

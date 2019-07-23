@@ -163,6 +163,7 @@ function resolveIdentifierToPropTypes(node, state) {
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
   if (identifier.name === 'MouseEventHandler') return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'Function') return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection
@@ -453,9 +454,13 @@ function getPropTypesForNode(node, optional, state) {
               // which don't translate to prop types.
               .filter(property => property.key != null)
               .map(property => {
+                const propertyPropType = property.type === 'TSMethodSignature'
+                  ? getPropTypesForNode({ type: 'TSFunctionType' }, property.optional, state)
+                  : getPropTypesForNode(property.typeAnnotation, property.optional, state);
+
                 const objectProperty = types.objectProperty(
                   types.identifier(property.key.name || `"${property.key.value}"`),
-                  getPropTypesForNode(property.typeAnnotation, property.optional, state)
+                  propertyPropType
                 );
                 if (property.leadingComments != null) {
                   objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
@@ -507,9 +512,13 @@ function getPropTypesForNode(node, optional, state) {
               // skip TS index signatures
               if (types.isTSIndexSignature(property)) return null;
 
+              const propertyPropType = property.type === 'TSMethodSignature'
+                ? getPropTypesForNode({ type: 'TSFunctionType' }, property.optional, state)
+                : getPropTypesForNode(property.typeAnnotation, property.optional, state);
+
               const objectProperty = types.objectProperty(
                 types.identifier(property.key.name || `"${property.key.value}"`),
-                getPropTypesForNode(property.typeAnnotation, property.optional, state)
+                propertyPropType
               );
               if (property.leadingComments != null) {
                 objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
@@ -756,7 +765,7 @@ const typeDefinitionExtractors = {
           case 'ImportSpecifier':
             return specifier.imported.name;
           case 'ExportSpecifier':
-            return specifier.exported.name;
+            return specifier.local.name;
 
           // default:
           //   throw new Error(`Unable to process import specifier type ${specifier.type}`);
@@ -1094,9 +1103,9 @@ module.exports = function propTypesFromTypeScript({ types }) {
               const specifiers = path.get('specifiers');
               specifiers.forEach(specifierPath => {
                 if (types.isExportSpecifier(specifierPath)) {
-                  const { node: { exported } } = specifierPath;
-                  if (types.isIdentifier(exported)) {
-                    const { name } = exported;
+                  const { node: { local } } = specifierPath;
+                  if (types.isIdentifier(local)) {
+                    const { name } = local;
                     const def = typeDefinitions[name];
                     if (isTSType(def)) {
                       specifierPath.remove();
