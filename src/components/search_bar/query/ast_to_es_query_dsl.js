@@ -302,7 +302,7 @@ export const astToEsQueryDsl = (ast, options) => {
 
         must.push({
           bool: {
-            should: [clauses.map(clause => ({ bool: clause }))],
+            should: clauses.map(clause => ({ bool: clause })),
           },
         });
         return must;

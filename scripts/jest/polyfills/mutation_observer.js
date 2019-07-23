@@ -32,6 +32,7 @@ SOFTWARE.
  * Repository: https://github.com/megawac/MutationObserver.js
  */
 import { EventEmitter } from 'events';
+import { act } from 'react-dom/test-utils';
 
 var __extends = (this && this.__extends) || (function () {
   var extendStatics = Object.setPrototypeOf ||
@@ -279,8 +280,11 @@ var MutationObserver = /** @class */ (function () {
     observer._timeout = null;
     var mutations = observer.takeRecords();
     if (mutations.length) { // fire away
-      // calling the listener with context is not spec but currently consistent with FF and WebKit
-      observer._listener(mutations, observer);
+      // `act` to support hooks-based callbacks
+      act(
+        // calling the listener with context is not spec but currently consistent with FF and WebKit
+        () => observer._listener(mutations, observer)
+      );
     }
   };
   MutationObserver.prototype.searchSubtree = function (mutations, $target, $oldstate, config) {

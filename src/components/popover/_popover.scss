@@ -15,6 +15,14 @@
   display: inline-block;
 }
 
+.euiPopover--displayBlock {
+  display: block;
+
+  .euiPopover__anchor {
+    display: block;
+  }
+}
+
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
  * 2. Animation happens on the panel.

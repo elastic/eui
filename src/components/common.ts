@@ -32,6 +32,20 @@ export type PropsOf<C> = C extends SFC<infer SFCProps>
   : never;
 
 /*
+https://github.com/Microsoft/TypeScript/issues/28339
+Problem: Pick and Omit do not distribute over union types, which manifests when
+optional values become required after a Pick or Omit operation. These
+Distributive forms correctly operate on union types, preseving optionality.
+ */
+type UnionKeys<T> = T extends any ? keyof T : never;
+export type DistributivePick<T, K extends UnionKeys<T>> = T extends any
+  ? Pick<T, Extract<keyof T, K>>
+  : never;
+export type DistributiveOmit<T, K extends UnionKeys<T>> = T extends any
+  ? Omit<T, Extract<keyof T, K>>
+  : never;
+
+/*
 TypeScript's discriminated unions are overly permissive: as long as one type of the union is satisfied
 the other types are not validated against. For example:
 

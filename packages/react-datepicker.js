@@ -509,6 +509,13 @@ function delay(fn) {
 
 var focusTrap_1 = focusTrap;
 
+var focusTrap$1 = /*#__PURE__*/Object.freeze({
+  default: focusTrap_1,
+  __moduleExports: focusTrap_1
+});
+
+var createFocusTrap = ( focusTrap$1 && focusTrap_1 ) || focusTrap$1;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -619,7 +626,7 @@ FocusTrap.defaultProps = {
   tag: 'div',
   paused: false,
   focusTrapOptions: {},
-  _createFocusTrap: focusTrap_1
+  _createFocusTrap: createFocusTrap
 };
 
 var focusTrapReact = FocusTrap;
@@ -4879,18 +4886,11 @@ var _wksExt = {
 
 var iterator = _wksExt.f('iterator');
 
-var iterator$1 = /*#__PURE__*/Object.freeze({
-  default: iterator,
-  __moduleExports: iterator
+var iterator$1 = createCommonjsModule(function (module) {
+module.exports = { "default": iterator, __esModule: true };
 });
 
-var require$$0$1 = ( iterator$1 && iterator ) || iterator$1;
-
-var iterator$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
-});
-
-unwrapExports(iterator$2);
+unwrapExports(iterator$1);
 
 var _meta = createCommonjsModule(function (module) {
 var META = _uid('meta');
@@ -5277,10 +5277,10 @@ var symbol$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: symbol
 });
 
-var require$$0$2 = ( symbol$1 && symbol ) || symbol$1;
+var require$$0$1 = ( symbol$1 && symbol ) || symbol$1;
 
 var symbol$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
+module.exports = { "default": require$$0$1, __esModule: true };
 });
 
 unwrapExports(symbol$2);
@@ -5291,7 +5291,7 @@ exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$2);
+var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
@@ -8028,13 +8028,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var warning$1 = /*#__PURE__*/Object.freeze({
-  default: warning_1,
-  __moduleExports: warning_1
-});
-
-var _warning = ( warning$1 && warning_1 ) || warning$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8053,7 +8046,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warning2 = _interopRequireDefault(warning_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8233,14 +8226,7 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-var implementation$1 = unwrapExports(implementation);
-
-var implementation$2 = /*#__PURE__*/Object.freeze({
-  default: implementation$1,
-  __moduleExports: implementation
-});
-
-var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
+unwrapExports(implementation);
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8252,7 +8238,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(_implementation);
+var _implementation2 = _interopRequireDefault(implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8489,10 +8475,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$2 = function() {};
+var warning$1 = function() {};
 
 if (__DEV__) {
-  warning$2 = function(condition, format, args) {
+  warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8530,7 +8516,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$2;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);

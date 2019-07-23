@@ -721,6 +721,7 @@ export class EuiComboBox extends Component {
             data-test-subj={optionsListDataTestSubj}
             fullWidth={fullWidth}
             rootId={this.rootId}
+            onCloseList={this.closeList}
           />
         </EuiPortal>
       );

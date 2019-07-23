@@ -1,3 +1,5 @@
+@import '../form/form_control_layout/mixins';
+
 .euiComboBox {
   @include euiFormControlSize(auto, $includeAlternates: true);
   position: relative;
@@ -18,17 +20,16 @@
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto, $includeAlternates: true);
     padding: $euiSizeXS $euiSizeS;
-    // sass-lint:disable-block mixins-before-declarations
-    @include euiFormControlLayoutPadding(1); /* 2 */
-
     display: flex; /* 1 */
 
-    &.euiComboBox__inputWrap-isClearable {
-      @include euiFormControlLayoutPadding(2); /* 2 */
-    }
+    // sass-lint:disable-block mixins-before-declarations
+    // to override the padding added above
+    @include euiFormControlLayoutPadding(1); /* 2 */
 
     &:not(.euiComboBox__inputWrap--noWrap) {
-      padding: $euiSizeXS;
+      padding-top: $euiSizeXS;
+      padding-bottom: $euiSizeXS;
+      padding-left: $euiSizeXS;
       height: auto;  /* 3 */
       flex-wrap: wrap; /* 1 */
       align-content: flex-start;
@@ -36,6 +37,10 @@
       &:hover {
         cursor: text;
       }
+    }
+
+    &.euiComboBox__inputWrap-isClearable {
+      @include euiFormControlLayoutPadding(2); /* 2 */
     }
   }
 
