@@ -5,3 +5,5 @@ export {
 export {
   EuiFormControlLayoutCustomIcon,
 } from './form_control_layout_custom_icon';
+
+export { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
