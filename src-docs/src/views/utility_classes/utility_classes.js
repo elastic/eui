@@ -12,8 +12,36 @@ import {
 const longLink =
   'http://www.hithereimalongurl.com/dave_will_just_ramble_on_in_a_long_sentence_like_this/?ok=cool';
 
+const wrappingExampleStyle = {
+  width: 290,
+  padding: 16,
+  background: 'rgba(254, 228, 181, 0.5)',
+};
+
 export default () => (
   <EuiText>
+    <h4>Display</h4>
+
+    <EuiCode className="eui-displayBlock">.eui-displayBlock</EuiCode>
+
+    <EuiSpacer />
+
+    <EuiCode className="eui-displayInline">.eui-displayInline</EuiCode>
+
+    <EuiSpacer />
+
+    <EuiCode className="eui-displayInlineBlock">
+      .eui-displayInlineBlock
+    </EuiCode>
+
+    <EuiSpacer />
+
+    <EuiCode className="eui-fullWidth">
+      .eui-fullWidth (similar to eui-displayBlock but adds 100% width)
+    </EuiCode>
+
+    <EuiSpacer />
+
     <h4>Text</h4>
 
     <EuiSpacer />
@@ -38,102 +66,76 @@ export default () => (
 
     <EuiSpacer />
 
-    <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
-      className="eui-textNoWrap">
+    <EuiSpacer />
+
+    <div style={wrappingExampleStyle} className="eui-textNoWrap">
       <EuiCode>.eui-textNoWrap</EuiCode> will force text not to wrap even in
       small containers.
     </div>
 
     <EuiSpacer />
 
-    <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
-      className="eui-textTruncate">
+    <div style={wrappingExampleStyle} className="eui-textTruncate">
       <EuiCode>.eui-textTruncate</EuiCode> will ellipsis after a certain point.
     </div>
 
     <EuiSpacer />
-    <h4>Word breaking</h4>
-    <p>
-      We recommend using <EuiCode>.eui-textOverflowWrap</EuiCode> to break on
-      long words above all other options as it is supported by all major
-      browsers (except for IE11). The one caveat is that it does not work on{' '}
-      <EuiCode>display: flex</EuiCode> elements. To remedy, you can either add
-      another wrapper with this class or use{' '}
-      <EuiCode>.eui-textBreakWord</EuiCode> instead.
-    </p>
-    <EuiSpacer />
 
-    <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
-      className="eui-textOverflowWrap">
-      <EuiCode>.eui-textOverflowWrap</EuiCode> will only break up at the end of
-      words. Long urls will still break
-      {longLink}.
-      <strong>
-        Falls back to <EuiCode>break-all</EuiCode> on IE11.
-      </strong>
-    </div>
-
-    <EuiSpacer />
-
-    <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
-      className="eui-textBreakWord">
+    <div style={wrappingExampleStyle} className="eui-textBreakWord">
       <EuiCode>.eui-textBreakWord</EuiCode> will only break up at the end of
-      words. Long urls will still break
-      {longLink}.
-      <strong>
-        Falls back to <EuiCode>break-all</EuiCode> on Firefox and IE11.
-      </strong>
+      words. Long urls will still break {longLink}.
     </div>
 
     <EuiSpacer />
 
-    <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
-      className="eui-textBreakAll">
+    <div style={wrappingExampleStyle} className="eui-textBreakAll">
       <EuiCode>.eui-textBreakAll</EuiCode> will break up anything. It is useful
-      for long urls like
-      {longLink}.
+      for long urls like {longLink}.
     </div>
 
     <EuiSpacer />
 
     <div
-      style={{
-        width: 300,
-        padding: 16,
-        background: 'rgba(254, 228, 181, 0.5)',
-      }}
+      style={wrappingExampleStyle}
       className="eui-textBreakWord eui-textBreakNormal">
       <EuiCode>.eui-textBreakNormal</EuiCode> revert back to not forcing word
-      breaks. It is <strong>not</strong> useful for long urls like
-      {longLink}.
+      breaks. It is <strong>not</strong> useful for long urls like {longLink}.
     </div>
 
     <EuiSpacer />
+
+    <h4>Overflows</h4>
+
+    <div className="guideSass__overflowShadows">
+      <EuiText className="guideSass__overflowShadowText" size="s">
+        <p>
+          It requires a wrapping element to control the height with{' '}
+          <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
+          utility class <EuiCode>.eui-yScrollWithShadows</EuiCode>.
+        </p>
+        <p>
+          <b>Example:</b>
+        </p>
+        <EuiCodeBlock language="html" isCopyable paddingSize="s">
+          {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
+  <BodyScroll className="eui-yScrollWithShadows" />
+</BodyContent>`}
+        </EuiCodeBlock>
+        <p>
+          Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
+          aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus dolor
+          qui soluta cum id tempore ea illum. Facilis voluptatem aut aut ut
+          similique ut. Sed repellendus commodi iure officiis exercitationem
+          praesentium dolor. Ratione non ut nulla accusamus et. Optio laboriosam
+          id incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
+          voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
+          tempore sit placeat maxime laudantium. Mollitia tempore minus qui
+          autem modi adipisci ad. Iste reprehenderit accusamus voluptatem velit.
+          Quidem delectus eos veritatis et vitae et nisi. Doloribus ut corrupti
+          voluptates qui exercitationem dolores.
+        </p>
+      </EuiText>
+    </div>
 
     <EuiSpacer />
     <h4>Vertical alignment</h4>
@@ -167,63 +169,6 @@ export default () => (
         className="eui-alignBaseline"
       />
       <EuiCode>.eui-alignBaseline</EuiCode>
-    </div>
-
-    <EuiSpacer />
-
-    <h4>Display</h4>
-
-    <EuiCode className="eui-displayBlock">.eui-displayBlock</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-displayInline">.eui-displayInline</EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-displayInlineBlock">
-      .eui-displayInlineBlock
-    </EuiCode>
-
-    <EuiSpacer />
-
-    <EuiCode className="eui-fullWidth">
-      .eui-fullWidth (similar to eui-displayBlock but adds 100% width)
-    </EuiCode>
-
-    <EuiSpacer />
-
-    <h4>Overflows</h4>
-
-    <div className="guideSass__overflowShadows">
-      <EuiText className="guideSass__overflowShadowText" size="s">
-        <p>
-          It requires a wrapping element to control the height with{' '}
-          <EuiCode>overflow-y: hidden;</EuiCode> and the content to use the CSS
-          utility class <EuiCode>.euiYScrollWithShadows</EuiCode>.
-        </p>
-        <p>
-          <b>Example:</b>
-        </p>
-        <EuiCodeBlock language="html" isCopyable paddingSize="s">
-          {`<BodyContent style={{ height: 200, overflowY: 'hidden' }}>
-  <BodyScroll className="euiYScrollWithShadows" />
-</BodyContent>`}
-        </EuiCodeBlock>
-        <p>
-          Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
-          aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus dolor
-          qui soluta cum id tempore ea illum. Facilis voluptatem aut aut ut
-          similique ut. Sed repellendus commodi iure officiis exercitationem
-          praesentium dolor. Ratione non ut nulla accusamus et. Optio laboriosam
-          id incidunt. Ipsam voluptate ab quia necessitatibus sequi earum
-          voluptate. Porro tempore et veritatis quo omnis. Eaque ut libero
-          tempore sit placeat maxime laudantium. Mollitia tempore minus qui
-          autem modi adipisci ad. Iste reprehenderit accusamus voluptatem velit.
-          Quidem delectus eos veritatis et vitae et nisi. Doloribus ut corrupti
-          voluptates qui exercitationem dolores.
-        </p>
-      </EuiText>
     </div>
 
     <EuiSpacer />
