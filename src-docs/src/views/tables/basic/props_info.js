@@ -250,7 +250,7 @@ export const propsInfo = {
             value: '"right"',
             comment: 'May change when "dataType" is defined',
           },
-          type: { name: '"left" | "right"' },
+          type: { name: '"left" | "center" | "right"' },
         },
         truncateText: {
           description:
