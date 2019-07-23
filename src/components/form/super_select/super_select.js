@@ -192,7 +192,6 @@ export class EuiSuperSelect extends Component {
       'euiSuperSelect__item',
       {
         'euiSuperSelect__item--hasDividers': hasDividers,
-        'euiSuperSelect__item--compressed': compressed,
       },
       itemClassName
     );
