@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
+- Added performance optimizations to `EuiIcon` ([#2097](https://github.com/elastic/eui/pull/2097))
 
 **Bug fixes**
 
