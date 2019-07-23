@@ -6,6 +6,7 @@
 
 - Fixed invalid `aria-desribedby` values set by `EuiToolTip` ([#2156](https://github.com/elastic/eui/pull/2156))
 - Added `"center"` as an acceptable value to `EuiBasicTable`'s `align` proptype ([#2158](https://github.com/elastic/eui/pull/2158))
+- Fixed `.eui-textBreakWord` utility class to be cross-browser compatible ([#2157](https://github.com/elastic/eui/pull/2157))
 
 ## [`13.0.0`](https://github.com/elastic/eui/tree/v13.0.0)
 
