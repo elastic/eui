@@ -36,10 +36,14 @@
   @include euiFontSizeS;
   padding: $euiSizeS;
 
-  &:hover,
+  &:hover:not(:disabled),
   &:focus {
     text-decoration: none;
     background-color: $euiFocusBackgroundColor;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
