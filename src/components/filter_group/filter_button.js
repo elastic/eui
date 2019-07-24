@@ -8,6 +8,8 @@ import { COLORS, ICON_SIDES, EuiButtonEmpty } from '../button/button_empty';
 
 import { IconPropType } from '../icon';
 
+import { useInnerText } from '../inner_text';
+
 export const EuiFilterButton = ({
   children,
   className,
@@ -53,12 +55,14 @@ export const EuiFilterButton = ({
     dataText = children;
   }
 
+  const [ref, innerText] = useInnerText();
   const buttonContents = (
     <Fragment>
       <span
+        ref={ref}
         className="euiFilterButton__textShift"
-        data-text={dataText}
-        title={dataText}>
+        data-text={dataText || innerText}
+        title={dataText || innerText}>
         {children}
       </span>
 

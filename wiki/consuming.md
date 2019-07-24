@@ -78,7 +78,7 @@ The Sass variables are also made available for consumption as json files. This e
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import * as euiVars from '@elastic/eui/dist/eui_theme_k6_light.json';
+import * as euiVars from '@elastic/eui/dist/eui_theme_light.json';
 
 const CustomComponent = styled.div`
   color: ${props => props.theme.euiColorPrimary};

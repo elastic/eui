@@ -297,7 +297,7 @@ export class EuiDualRange extends Component {
             showTicks={showTicks}
             hasFocus={this.state.hasFocus}
             aria-hidden={true}
-            tabIndex={'-1'}
+            tabIndex={-1}
             showRange={showRange}
             {...rest}
           />

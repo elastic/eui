@@ -1,0 +1,373 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAccordion behavior closes when clicked twice 1`] = `
+<EuiAccordion
+  id="6"
+  initialIsOpen={false}
+  paddingSize="none"
+>
+  <div
+    className="euiAccordion"
+  >
+    <div
+      className="euiAccordion__triggerWrapper"
+    >
+      <button
+        aria-controls="6"
+        aria-expanded={false}
+        className="euiAccordion__button"
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="euiAccordion__iconWrapper"
+        >
+          <EuiIcon
+            className="euiAccordion__icon"
+            size="m"
+            type="arrowRight"
+          >
+            <EuiIconEmpty
+              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+        </span>
+        <span />
+      </button>
+    </div>
+    <div
+      className="euiAccordion__childWrapper"
+      id="6"
+    >
+      <EuiMutationObserver
+        observerOptions={
+          Object {
+            "attributeFilter": Array [
+              "style",
+            ],
+            "childList": true,
+            "subtree": true,
+          }
+        }
+        onMutation={[Function]}
+      >
+        <div>
+          <div
+            className=""
+          />
+        </div>
+      </EuiMutationObserver>
+    </div>
+  </div>
+</EuiAccordion>
+`;
+
+exports[`EuiAccordion behavior opens when clicked once 1`] = `
+<EuiAccordion
+  id="5"
+  initialIsOpen={false}
+  paddingSize="none"
+>
+  <div
+    className="euiAccordion euiAccordion-isOpen"
+  >
+    <div
+      className="euiAccordion__triggerWrapper"
+    >
+      <button
+        aria-controls="5"
+        aria-expanded={true}
+        className="euiAccordion__button"
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="euiAccordion__iconWrapper"
+        >
+          <EuiIcon
+            className="euiAccordion__icon"
+            size="m"
+            type="arrowDown"
+          >
+            <EuiIconEmpty
+              className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+              focusable="false"
+              style={null}
+            >
+              <svg
+                className="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+                focusable="false"
+                height={16}
+                style={null}
+                viewBox="0 0 16 16"
+                width={16}
+                xmlns="http://www.w3.org/2000/svg"
+              />
+            </EuiIconEmpty>
+          </EuiIcon>
+        </span>
+        <span />
+      </button>
+    </div>
+    <div
+      className="euiAccordion__childWrapper"
+      id="5"
+    >
+      <EuiMutationObserver
+        observerOptions={
+          Object {
+            "attributeFilter": Array [
+              "style",
+            ],
+            "childList": true,
+            "subtree": true,
+          }
+        }
+        onMutation={[Function]}
+      >
+        <div>
+          <div
+            className=""
+          />
+        </div>
+      </EuiMutationObserver>
+    </div>
+  </div>
+</EuiAccordion>
+`;
+
+exports[`EuiAccordion is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAccordion testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="0"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="0"
+  >
+    <div>
+      <div
+        class=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonContent is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="2"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span>
+        <div>
+          Button content
+        </div>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="2"
+  >
+    <div>
+      <div
+        class=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="1"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span
+        class="button content class name"
+      />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="1"
+  >
+    <div>
+      <div
+        class=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props extraAction is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="3"
+      aria-expanded="false"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span />
+    </button>
+    <div
+      class="euiAccordion__optionalAction"
+    >
+      <button>
+        Extra action
+      </button>
+    </div>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="3"
+  >
+    <div>
+      <div
+        class=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
+<div
+  class="euiAccordion euiAccordion-isOpen"
+>
+  <div
+    class="euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="4"
+      aria-expanded="true"
+      class="euiAccordion__button"
+      type="button"
+    >
+      <span
+        class="euiAccordion__iconWrapper"
+      >
+        <svg
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiAccordion__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span />
+    </button>
+  </div>
+  <div
+    class="euiAccordion__childWrapper"
+    id="4"
+  >
+    <div>
+      <div
+        class=""
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

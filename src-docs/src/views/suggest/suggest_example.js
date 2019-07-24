@@ -4,7 +4,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSuggestItem } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiSuggestInput,
+  EuiSuggestItem,
+} from '../../../../src/components';
 
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
@@ -28,6 +32,10 @@ const suggestItemSnippet = [
 />`,
 ];
 
+import SuggestInput from './suggest_input';
+const suggestInputSource = require('!!raw-loader!./suggest_input');
+const suggestInputHtml = renderToHtml(SuggestInput);
+
 export const SuggestExample = {
   title: 'Suggest',
   sections: [
@@ -50,6 +58,33 @@ export const SuggestExample = {
         </div>
       ),
       demo: <Suggest />,
+    },
+    {
+      title: 'SuggestInput',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: suggestInputSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: suggestInputHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiSuggestInput</EuiCode> is an input field component to
+            use when performing queries that will display suggestions. When
+            inputting a query, <EuiCode>EuiSuggestInput</EuiCode> will show the
+            status of that query (no new changes, changes saved, etc). Based on
+            that status the user can take action (e.g. add query as a Saved
+            Query).
+          </p>
+        </div>
+      ),
+      props: { EuiSuggestInput },
+      demo: <SuggestInput />,
     },
     {
       title: 'Suggest Item',

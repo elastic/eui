@@ -4,6 +4,7 @@ import {
   EuiPopover,
   EuiSuggestItem,
   EuiSuggestInput,
+  EuiSelect,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -44,16 +45,19 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
+    this.options = [
+      { value: 'notYetSaved', text: 'Not yet saved' },
+      { value: 'saved', text: 'Saved' },
+      { value: 'noNewChanges', text: 'No new changes' },
+      { value: 'isLoading', text: 'Loading' },
+    ];
+
     this.state = {
       isPopoverOpen: false,
+      value: '',
+      status: 'notYetSaved',
     };
   }
-
-  // onButtonClick() {
-  //   this.setState({
-  //     isPopoverOpen: !this.state.isPopoverOpen,
-  //   });
-  // }
 
   closePopover() {
     this.setState({
@@ -61,9 +65,16 @@ export default class extends Component {
     });
   }
 
-  onFieldChange() {
+  onFieldChange(e) {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
+      value: e.target.value,
+    });
+  }
+
+  onChange(e) {
+    this.setState({
+      status: e.target.value,
     });
   }
 
@@ -79,22 +90,35 @@ export default class extends Component {
 
     const button = (
       <EuiSuggestInput
-        value=""
-        status="notYetSaved"
+        value={this.state.value}
+        status={this.state.status}
         label={'KQL'}
         onChange={this.onFieldChange.bind(this)}
       />
     );
 
     return (
-      <EuiPopover
-        id="popover"
-        button={button}
-        anchorPosition="downCenter"
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover.bind(this)}>
-        <div style={{ width: '600px' }}>{suggestions}</div>
-      </EuiPopover>
+      <div>
+        <EuiSelect
+          options={this.options}
+          value={this.state.value}
+          onChange={this.onChange.bind(this)}
+          aria-label="Use aria labels when no actual label is in use"
+        />
+        <EuiSpacer size="m" />
+        <EuiPopover
+          id="popover"
+          button={button}
+          panelClassName="euiSuggestInput__popOverPanel"
+          anchorPosition="downLeft"
+          hasArrow={false}
+          display="block"
+          panelPaddingSize="none"
+          isOpen={this.state.isPopoverOpen}
+          closePopover={this.closePopover.bind(this)}>
+          <div>{suggestions}</div>
+        </EuiPopover>
+      </div>
     );
   }
 }

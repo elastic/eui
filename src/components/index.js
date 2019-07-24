@@ -50,6 +50,8 @@ export {
   EuiDatePickerRange,
   EuiSuperDatePicker,
   EuiSuperUpdateButton,
+  prettyDuration,
+  commonDurationRanges,
 } from './date_picker';
 
 export { EuiDelayHide } from './delay_hide';
@@ -140,6 +142,8 @@ export { EuiHorizontalRule } from './horizontal_rule';
 export { ICON_TYPES, EuiIcon } from './icon';
 
 export { EuiImage } from './image';
+
+export { useInnerText, EuiInnerText } from './inner_text';
 
 export { EuiI18n, EuiI18nNumber } from './i18n';
 

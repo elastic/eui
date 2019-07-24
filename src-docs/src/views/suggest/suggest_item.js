@@ -16,7 +16,7 @@ const sampleItems = [
     description: shortDescription,
   },
   {
-    type: { iconType: 'kqlSelector', color: 'tint2' },
+    type: { iconType: 'kqlSelector', color: 'tint3' },
     label: 'Conjunction sample',
     description: shortDescription,
   },
@@ -30,16 +30,15 @@ const sampleItems = [
     label: 'Recent search',
   },
   {
-    type: { iconType: 'save', color: 'tint3' },
-    label: 'Saved search',
+    type: { iconType: 'save', color: 'tint5' },
+    label: 'Saved query',
   },
 ];
 
-const sampleItem1 = {
-  type: { iconType: 'kqlValue', color: 'tint0' },
-  label: 'Charles de Gaulle International Airport',
-  description: shortDescription,
-};
+const typeObj = { iconType: 'kqlValue', color: 'tint0' };
+
+const longLabel =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut quam eget augue pulvinar.';
 
 export default () => (
   <div>
@@ -53,14 +52,14 @@ export default () => (
     ))}
     <EuiSpacer size="m" />
     <EuiSuggestItem
-      type={sampleItem1.type}
-      label={sampleItem1.label}
+      type={typeObj}
+      label={longLabel}
       description="This item has a fixed width label"
     />
     <EuiSuggestItem
-      type={sampleItem1.type}
+      type={typeObj}
       labelDisplay="expand"
-      label={sampleItem1.label}
+      label={longLabel}
       description="This item will expand its label if needed"
     />
     <EuiSpacer size="m" />

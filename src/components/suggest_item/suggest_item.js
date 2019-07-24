@@ -35,27 +35,28 @@ export const EuiSuggestItem = ({
 }) => {
   const classes = classNames('euiSuggestItem', className);
 
-  let optionalColorClass = '';
-  let labelDisplayClass = labelDisplayToClassMap[labelDisplay];
+  let colorClass = '';
 
-  if (!description) {
-    labelDisplayClass = 'euiSuggestItem__labelDisplay--expand';
-  }
+  const labelDisplayClass = classNames(
+    'euiSuggestItem__label',
+    labelDisplayToClassMap[labelDisplay],
+    {
+      'euiSuggestItem__labelDisplay--expand': !description,
+    }
+  );
 
   if (type && type.color) {
     if (COLORS.indexOf(type.color) > -1) {
-      optionalColorClass = colorToClassNameMap[type.color];
+      colorClass = colorToClassNameMap[type.color];
     }
   }
 
   return (
     <div className={classes} {...rest}>
-      <span className={`euiSuggestItem__type ${optionalColorClass}`}>
+      <span className={`euiSuggestItem__type ${colorClass}`}>
         <EuiIcon type={type.iconType} />
       </span>
-      <span className={`euiSuggestItem__label ${labelDisplayClass}`}>
-        {label}
-      </span>
+      <span className={labelDisplayClass}>{label}</span>
       <span className="euiSuggestItem__description">{description}</span>
     </div>
   );
@@ -67,19 +68,20 @@ EuiSuggestItem.propTypes = {
    * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
   type: PropTypes.shape({
-    iconType: IconPropType,
-    color: PropTypes.oneOfType([PropTypes.oneOf(COLORS), PropTypes.string]),
+    iconType: IconPropType.isRequired,
+    color: PropTypes.oneOfType([PropTypes.oneOf(COLORS), PropTypes.string])
+      .isRequired,
   }).isRequired,
   /**
-   * Label for suggest item
+   * Label or primary text.
    */
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   /**
-   * Description for suggest item
+   * Description or secondary text (optional).
    */
   description: PropTypes.string,
   /**
-   * Label display for suggest item
+   * Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'.
    */
   labelDisplay: PropTypes.oneOf(DISPLAYS),
 };

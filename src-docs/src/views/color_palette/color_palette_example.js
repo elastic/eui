@@ -14,10 +14,6 @@ import ColorPaletteCustom from './color_palette_custom';
 const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
-import ColorPaletteHistogram from './color_palette_histogram';
-const colorPaletteHistogramSource = require('!!raw-loader!./color_palette_histogram');
-const colorPaletteHistogramHtml = renderToHtml(ColorPaletteHistogram);
-
 export const ColorPaletteExample = {
   title: 'Color Palettes',
   sections: [
@@ -82,27 +78,6 @@ export const ColorPaletteExample = {
         </div>
       ),
       demo: <ColorPaletteCustom />,
-    },
-    {
-      title: 'Usage examples',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorPaletteHistogramSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteHistogramHtml,
-        },
-      ],
-      text: (
-        <p>
-          Apply the colors from <EuiCode>eui_palettes.js</EuiCode> or the{' '}
-          <EuiCode>colorPalette</EuiCode>
-          service to the <EuiCode>color</EuiCode> prop of EUI chart components.
-        </p>
-      ),
-      demo: <ColorPaletteHistogram />,
     },
   ],
 };

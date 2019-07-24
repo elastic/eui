@@ -427,7 +427,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="0"
         type="button"
         value="0"
       >
@@ -437,7 +436,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="20"
         type="button"
         value="20"
       >
@@ -447,7 +445,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="40"
         type="button"
         value="40"
       >
@@ -457,7 +454,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="60"
         type="button"
         value="60"
       >
@@ -467,7 +463,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="80"
         type="button"
         value="80"
       >
@@ -477,7 +472,6 @@ exports[`EuiDualRange props ticks should render 1`] = `
         class="euiRangeTick"
         style="width:16.666666666666664%"
         tabindex="-1"
-        title="100"
         type="button"
         value="100"
       >
