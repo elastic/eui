@@ -4441,17 +4441,24 @@ var _toInteger = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
+var _toInteger$1 = /*#__PURE__*/Object.freeze({
+  default: _toInteger,
+  __moduleExports: _toInteger
+});
+
+var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 // 7.1.15 ToLength
 
 var min = Math.min;
 var _toLength = function (it) {
-  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 var max = Math.max;
 var min$1 = Math.min;
 var _toAbsoluteIndex = function (index, length) {
-  index = _toInteger(index);
+  index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min$1(index, length);
 };
 
@@ -4636,7 +4643,7 @@ var _classCallCheck$1 = unwrapExports(classCallCheck$1);
 var _stringAt = function (TO_STRING) {
   return function (that, pos) {
     var s = String(_defined(that));
-    var i = _toInteger(pos);
+    var i = toInteger(pos);
     var l = s.length;
     var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -4806,17 +4813,10 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
   return methods;
 };
 
-var _iterDefine$1 = /*#__PURE__*/Object.freeze({
-  default: _iterDefine,
-  __moduleExports: _iterDefine
-});
-
-var require$$0 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
-
 var $at = _stringAt(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-require$$0(String, 'String', function (iterated) {
+_iterDefine(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -4838,7 +4838,7 @@ var _iterStep = function (done, value) {
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-var es6_array_iterator = require$$0(Array, 'Array', function (iterated, kind) {
+var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
   this._t = _toIobject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4884,10 +4884,10 @@ var iterator$1 = /*#__PURE__*/Object.freeze({
   __moduleExports: iterator
 });
 
-var require$$0$1 = ( iterator$1 && iterator ) || iterator$1;
+var require$$0 = ( iterator$1 && iterator ) || iterator$1;
 
 var iterator$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$1, __esModule: true };
+module.exports = { "default": require$$0, __esModule: true };
 });
 
 unwrapExports(iterator$2);
@@ -5272,18 +5272,11 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$1 = /*#__PURE__*/Object.freeze({
-  default: symbol,
-  __moduleExports: symbol
+var symbol$1 = createCommonjsModule(function (module) {
+module.exports = { "default": symbol, __esModule: true };
 });
 
-var require$$0$2 = ( symbol$1 && symbol ) || symbol$1;
-
-var symbol$2 = createCommonjsModule(function (module) {
-module.exports = { "default": require$$0$2, __esModule: true };
-});
-
-unwrapExports(symbol$2);
+unwrapExports(symbol$1);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 
@@ -5295,7 +5288,7 @@ var _iterator2 = _interopRequireDefault(iterator$2);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$2);
+var _symbol2 = _interopRequireDefault(symbol$1);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -5357,9 +5350,16 @@ var _setProto = {
   check: check
 };
 
+var _setProto$1 = /*#__PURE__*/Object.freeze({
+  default: _setProto,
+  __moduleExports: _setProto
+});
+
+var require$$0$1 = ( _setProto$1 && _setProto ) || _setProto$1;
+
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 
-_export(_export.S, 'Object', { setPrototypeOf: _setProto.set });
+_export(_export.S, 'Object', { setPrototypeOf: require$$0$1.set });
 
 var setPrototypeOf = _core.Object.setPrototypeOf;
 
@@ -7970,13 +7970,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 var emptyFunction_1 = emptyFunction;
 
-var emptyFunction$1 = /*#__PURE__*/Object.freeze({
-  default: emptyFunction_1,
-  __moduleExports: emptyFunction_1
-});
-
-var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
-
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
  * This can be used to log issues in development environments in critical
@@ -7984,7 +7977,7 @@ var emptyFunction$2 = ( emptyFunction$1 && emptyFunction_1 ) || emptyFunction$1;
  * same logic and follow the same code paths.
  */
 
-var warning = emptyFunction$2;
+var warning = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
   var printWarning = function printWarning(format) {
@@ -8028,13 +8021,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 var warning_1 = warning;
 
-var warning$1 = /*#__PURE__*/Object.freeze({
-  default: warning_1,
-  __moduleExports: warning_1
-});
-
-var _warning = ( warning$1 && warning_1 ) || warning$1;
-
 var implementation = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
@@ -8053,7 +8039,7 @@ var _gud2 = _interopRequireDefault(gud);
 
 
 
-var _warning2 = _interopRequireDefault(_warning);
+var _warning2 = _interopRequireDefault(warning_1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8233,14 +8219,7 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-var implementation$1 = unwrapExports(implementation);
-
-var implementation$2 = /*#__PURE__*/Object.freeze({
-  default: implementation$1,
-  __moduleExports: implementation
-});
-
-var _implementation = ( implementation$2 && implementation$1 ) || implementation$2;
+unwrapExports(implementation);
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -8252,7 +8231,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(_implementation);
+var _implementation2 = _interopRequireDefault(implementation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8489,10 +8468,10 @@ function Popper$1(props) {
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
-var warning$2 = function() {};
+var warning$1 = function() {};
 
 if (__DEV__) {
-  warning$2 = function(condition, format, args) {
+  warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -8530,7 +8509,7 @@ if (__DEV__) {
   };
 }
 
-var warning_1$1 = warning$2;
+var warning_1$1 = warning$1;
 
 var InnerReference = function (_React$Component) {
   _inherits$1(InnerReference, _React$Component);

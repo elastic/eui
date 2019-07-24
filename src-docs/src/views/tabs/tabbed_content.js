@@ -91,6 +91,7 @@ class EuiTabsExample extends Component {
       <EuiTabbedContent
         tabs={this.tabs}
         initialSelectedTab={this.tabs[1]}
+        autoFocus="selected"
         onTabClick={tab => {
           console.log('clicked tab', tab);
         }}

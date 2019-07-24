@@ -4,8 +4,6 @@ import { CommonProps } from '../common';
 /// <reference path="./field_password/index.d.ts" />
 /// <reference path="./field_search/index.d.ts" />
 /// <reference path="./field_text/index.d.ts" />
-/// <reference path="./form_help_text/index.d.ts" />
-/// <reference path="./form_control_layout/index.d.ts" />
 /// <reference path="./form_row/index.d.ts" />
 /// <reference path="./radio/index.d.ts" />
 /// <reference path="./range/index.d.ts" />

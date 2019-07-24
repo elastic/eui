@@ -10,3 +10,10 @@
 .euiDatePopoverContent__padded--large {
   padding: $euiSize;
 }
+
+@include euiBreakpoint('xs', 's') {
+  .euiDatePopoverContent {
+    // Small screens drop the time selector
+    width: $euiDatePickerCalendarWidth;
+  }
+}

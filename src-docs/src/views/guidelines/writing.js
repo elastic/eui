@@ -26,6 +26,8 @@ import {
   EuiIcon,
   EuiFieldNumber,
   EuiLink,
+  EuiTabs,
+  EuiTab,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -93,15 +95,11 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGrid>
 
-    <GuideRuleTitle>Sentence case for all text</GuideRuleTitle>
-    <EuiText grow={false} className="guideSection__text">
-      <p>
-        This includes buttons, menus, and titles. In sentence case, only the
-        first word and proper names are capped.
-      </p>
-    </EuiText>
-
-    <GuideRule>
+    <GuideRuleTitle>Capitalization</GuideRuleTitle>
+    <GuideRule
+      heading="Sentence case for almost all text"
+      description="This includes buttons, menus, and titles. In sentence case, only the
+    first word and proper names are capped.">
       <GuideRuleExample
         type="do"
         text="Do. Sentence case makes titles easier to read.">
@@ -127,6 +125,27 @@ export default () => (
       </GuideRuleExample>
       <GuideRuleExample type="dont" text="Don't. Title case looks too formal.">
         <EuiButton>Set Up Index Pattern</EuiButton>
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading="Title case for feature titles"
+      description="Titles and tabs for specific features should capitalize all words in the name of the feature.">
+      <GuideRuleExample
+        type="do"
+        text="Do. Title case in tabs and titles for names of features.">
+        <EuiTabs>
+          <EuiTab>Inventory</EuiTab>
+          <EuiTab isSelected>Metrics Explorer</EuiTab>
+        </EuiTabs>
+      </GuideRuleExample>
+      <GuideRuleExample
+        type="dont"
+        text="Don't. Features are proper names, not sentences.">
+        <EuiTabs>
+          <EuiTab>Inventory</EuiTab>
+          <EuiTab isSelected>Metrics explorer</EuiTab>
+        </EuiTabs>
       </GuideRuleExample>
     </GuideRule>
 
@@ -493,7 +512,7 @@ export default () => (
               Cancel
             </EuiButtonEmpty>
             <EuiButton color="danger" size="s">
-              Delete Report
+              Delete report
             </EuiButton>
           </EuiFlexGroup>
         </EuiPanel>

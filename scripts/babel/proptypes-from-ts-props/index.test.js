@@ -223,6 +223,72 @@ FooComponent.propTypes = {
 
     });
 
+    describe('function propTypes', () => {
+
+      it('understands function props on interfaces', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface IFooProps {
+  foo(): ReactElement;
+  bar?(arg: number): string;
+  fizz: Function;
+  buzz?: (arg: boolean) => string;
+}
+const FooComponent: React.SFC<IFooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.func.isRequired,
+  bar: PropTypes.func,
+  fizz: PropTypes.func.isRequired,
+  buzz: PropTypes.func
+};`);
+      });
+
+      it('understands function props on types', () => {
+        const result = transform(
+          `
+import React from 'react';
+type FooProps = {
+  foo(): ReactElement;
+  bar?(arg: number): string;
+  fizz: Function;
+  buzz?: (arg: boolean) => string;
+}
+const FooComponent: React.SFC<FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  foo: PropTypes.func.isRequired,
+  bar: PropTypes.func,
+  fizz: PropTypes.func.isRequired,
+  buzz: PropTypes.func
+};`);
+      });
+
+    });
+
     describe('enum / oneOf propTypes', () => {
 
       describe('union type', () => {
@@ -2373,6 +2439,40 @@ export { Foo, A } from './foo';
       );
 
       expect(result.code).toBe(`export { A } from './foo';`);
+    });
+
+    it('removes type exports from ExportNamedDeclaration when the imported name differs from the exported one', () => {
+      const result = transform(
+        `
+export { Foo as Bar, A as B } from './foo';
+`,
+        {
+          ...babelOptions,
+          plugins: [
+            [
+              './scripts/babel/proptypes-from-ts-props',
+              {
+                fs: {
+                  existsSync: () => true,
+                  statSync: () => ({ isDirectory: () => false }),
+                  readFileSync: filepath => {
+                    if (filepath.endsWith(`${path.sep}foo`)) {
+                      return Buffer.from(`
+                        export const A = 5;
+                        export type Foo = string;
+                      `);
+                    }
+
+                    throw new Error(`Test tried to import from ${filepath}`);
+                  }
+                }
+              }
+            ],
+          ]
+        }
+      );
+
+      expect(result.code).toBe(`export { A as B } from './foo';`);
     });
 
     it('removes type export statements', () => {

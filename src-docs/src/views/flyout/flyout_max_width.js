@@ -4,7 +4,7 @@ import {
   EuiFlyout,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiButton,
+  EuiLink,
   EuiText,
   EuiTitle,
   EuiFieldText,
@@ -22,39 +22,52 @@ export class FlyoutMaxWidth extends Component {
 
     this.state = {
       isFlyoutVisible: false,
-      isSwitchChecked: true,
+      flyoutSize: 'm',
+      flyoutMaxWidth: false,
     };
 
     this.closeFlyout = this.closeFlyout.bind(this);
     this.showFlyout = this.showFlyout.bind(this);
   }
 
-  onSwitchChange = () => {
-    this.setState({
-      isSwitchChecked: !this.state.isSwitchChecked,
-    });
-  };
-
   closeFlyout() {
     this.setState({ isFlyoutVisible: false });
   }
 
-  showFlyout() {
-    this.setState({ isFlyoutVisible: true });
-  }
+  showFlyout = (size = 'm', maxWidth = false) => {
+    this.setState({
+      flyoutSize: size,
+      flyoutMaxWidth: maxWidth,
+      isFlyoutVisible: true,
+    });
+  };
 
   render() {
     let flyout;
 
     if (this.state.isFlyoutVisible) {
+      let maxWidthTitle;
+      switch (this.state.flyoutMaxWidth) {
+        case true:
+          maxWidthTitle = 'Default';
+          break;
+        case false:
+          maxWidthTitle = 'No';
+          break;
+        default:
+          maxWidthTitle = `${this.state.flyoutMaxWidth}px`;
+          break;
+      }
+
       flyout = (
         <EuiFlyout
           onClose={this.closeFlyout}
           aria-labelledby="flyoutMaxWidthTitle"
-          maxWidth={448}>
+          size={this.state.flyoutSize}
+          maxWidth={this.state.flyoutMaxWidth}>
           <EuiFlyoutHeader hasBorder>
             <EuiTitle size="m">
-              <h2 id="flyoutMaxWidthTitle">448px wide flyout</h2>
+              <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
@@ -101,7 +114,77 @@ export class FlyoutMaxWidth extends Component {
 
     return (
       <div>
-        <EuiButton onClick={this.showFlyout}>Show max-width flyout</EuiButton>
+        <EuiLink color="secondary" onClick={() => this.showFlyout('s')}>
+          Show <strong>small</strong> flyout with <strong>no max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="secondary" onClick={() => this.showFlyout('s', true)}>
+          Show <strong>small</strong> flyout with{' '}
+          <strong>default max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('s', 200)}>
+          Show <strong>small</strong> flyout with{' '}
+          <strong>smaller custom max-width</strong> -- minWidth wins except for
+          on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('s', 448)}>
+          Show <strong>small</strong> flyout with{' '}
+          <strong>larger custom max-width</strong> -- minWidth wins except for
+          on small screens
+        </EuiLink>
+
+        <EuiSpacer />
+
+        <EuiLink color="secondary" onClick={() => this.showFlyout('m')}>
+          Show <strong>medium</strong> flyout with <strong>no max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="secondary" onClick={() => this.showFlyout('m', true)}>
+          Show <strong>medium</strong> flyout with{' '}
+          <strong>default max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('m', 448)}>
+          Show <strong>medium</strong> flyout with{' '}
+          <strong>smaller custom max-width</strong> -- minWidth wins and full
+          100vw wins on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="secondary" onClick={() => this.showFlyout('m', 900)}>
+          Show <strong>medium</strong> flyout with{' '}
+          <strong>larger custom max-width</strong>
+        </EuiLink>
+
+        <EuiSpacer />
+
+        <EuiLink color="secondary" onClick={() => this.showFlyout('l')}>
+          Show <strong>large</strong> flyout with <strong>no max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="secondary" onClick={() => this.showFlyout('l', true)}>
+          Show <strong>large</strong> flyout with{' '}
+          <strong>default max-width</strong>
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="danger" onClick={() => this.showFlyout('l', 448)}>
+          Show <strong>large</strong> flyout with{' '}
+          <strong>smaller custom max-width</strong> -- minWidth wins and full
+          100vw wins on small screens
+        </EuiLink>
+        <EuiSpacer size="s" />
+        <EuiLink color="secondary" onClick={() => this.showFlyout('l', 1600)}>
+          Show <strong>large</strong> flyout with{' '}
+          <strong>larger custom max-width</strong>
+        </EuiLink>
+
+        <EuiSpacer />
+
+        <EuiLink color="primary" onClick={() => this.showFlyout('m', 0)}>
+          Trick for forms: <strong>Medium</strong> flyout with{' '}
+          <strong>0 as max-width</strong>
+        </EuiLink>
 
         {flyout}
       </div>

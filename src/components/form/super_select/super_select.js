@@ -176,6 +176,10 @@ export class EuiSuperSelect extends Component {
       popoverClassName
     );
 
+    const popoverPanelClasses = classNames('euiSuperSelect__popoverPanel', {
+      [`${popoverClassName}__popoverPanel`]: !!popoverClassName,
+    });
+
     const buttonClasses = classNames(
       {
         'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
@@ -231,8 +235,8 @@ export class EuiSuperSelect extends Component {
     return (
       <EuiPopover
         className={popoverClasses}
-        anchorClassName="euiSuperSelect__popoverAnchor"
-        panelClassName="euiSuperSelect__popoverPanel"
+        display="block"
+        panelClassName={popoverPanelClasses}
         button={button}
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}

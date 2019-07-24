@@ -1,5 +1,15 @@
 [
   {
+    "version": "12.0.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup."
+      }
+    ]
+  },
+  {
     "version": "11.3.0",
     "changes": [
       {

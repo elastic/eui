@@ -6,7 +6,6 @@ exports[`EuiDatePicker is rendered 1`] = `
     className="euiDatePicker euiDatePicker--shadow"
   >
     <EuiFormControlLayout
-      compressed={false}
       fullWidth={false}
       icon="calendar"
       isLoading={false}
@@ -19,7 +18,7 @@ exports[`EuiDatePicker is rendered 1`] = `
           aria-label="aria-label"
           className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
           data-test-subj="test subject string"
-          dateFormat="MM/DD/YYYY hh:mm A"
+          dateFormat="MM/DD/YYYY"
           dateFormatCalendar="MMMM YYYY"
           disabled={false}
           disabledKeyboardNavigation={false}

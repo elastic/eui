@@ -217,7 +217,7 @@
   &--next {
     @include datePicker__arrow;
     // Pixel value because of some padding on the icon
-    right: 10px;
+    right: 20px;
     height: $euiSize;
     width: $euiSize;
     transform: rotate(-90deg);
@@ -635,7 +635,7 @@
 .react-datepicker__month--accessible:focus {
   background: $euiFocusBackgroundColor;
 
-  .react-datepicker__day--in-range {
+  .react-datepicker__day--in-range:not(.react-datepicker__day--selected) {
     border-top-color: $euiFocusBackgroundColor;
     border-bottom-color: $euiFocusBackgroundColor;
   }
@@ -661,6 +661,14 @@
 
 // We drop the time picker on mobile. They can still type in the time directly.
 @include euiBreakpoint('xs','s') {
+
+  // This resizes EUI's normal form control to be the width of the calendar
+  .euiDatePicker--inline {
+    max-width: $euiDatePickerCalendarWidth;
+    display: block;
+  }
+
+  // This hides the time entirely
   .react-datepicker__time-container {
     display: none;
   }

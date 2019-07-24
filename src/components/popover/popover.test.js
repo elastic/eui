@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
 import {
@@ -43,12 +42,12 @@ describe('EuiPopover', () => {
   });
 
   describe('props', () => {
-    describe('withTitle', () => {
+    describe('display block', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPopover
             id={getId()}
-            withTitle
+            display="block"
             button={<button />}
             closePopover={() => {}}
           />
@@ -74,8 +73,8 @@ describe('EuiPopover', () => {
     });
 
     describe('closePopover', () => {
-      it('is called when ESC key is hit', () => {
-        const closePopoverHandler = sinon.stub();
+      it('is called when ESC key is hit and the popover is open', () => {
+        const closePopoverHandler = jest.fn();
 
         const component = mount(
           <EuiPopover
@@ -83,11 +82,29 @@ describe('EuiPopover', () => {
             withTitle
             button={<button />}
             closePopover={closePopoverHandler}
+            isOpen
           />
         );
 
         component.simulate('keydown', { keyCode: keyCodes.ESCAPE });
-        sinon.assert.calledOnce(closePopoverHandler);
+        expect(closePopoverHandler).toBeCalledTimes(1);
+      });
+
+      it('is not called when ESC key is hit and the popover is closed', () => {
+        const closePopoverHandler = jest.fn();
+
+        const component = mount(
+          <EuiPopover
+            id={getId()}
+            withTitle
+            button={<button />}
+            closePopover={closePopoverHandler}
+            isOpen={false}
+          />
+        );
+
+        component.simulate('keydown', { keyCode: keyCodes.ESCAPE });
+        expect(closePopoverHandler).not.toBeCalled();
       });
     });
 

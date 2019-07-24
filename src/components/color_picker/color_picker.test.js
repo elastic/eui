@@ -3,7 +3,7 @@ import { render, mount } from 'enzyme';
 
 import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keyCodes } from '../../services';
-import { requiredProps, findTestSubject } from '../../test';
+import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }) => children,
@@ -117,7 +117,7 @@ test('popover color selector is shown when the input is clicked', () => {
   expect(colorSelector.length).toBe(1);
 });
 
-test('popover color selector is hidden when the ESC key pressed', () => {
+test('popover color selector is hidden when the ESC key pressed', async () => {
   const onBlurHandler = jest.fn();
   const colorPicker = mount(
     <EuiColorPicker
@@ -129,6 +129,7 @@ test('popover color selector is hidden when the ESC key pressed', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  await sleep();
   findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
     keyCode: keyCodes.ESCAPE,
   });
@@ -148,8 +149,7 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  document.activeElement.blur();
-  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
+  findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
     keyCode: keyCodes.ENTER,
   });
   expect(
@@ -192,7 +192,7 @@ test('default mode does redners child components', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const saturation = colorPicker.find('EuiSaturation');
+  const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);
@@ -230,7 +230,7 @@ test('picker mode does not render swatches', () => {
   );
 
   findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const saturation = colorPicker.find('EuiSaturation');
+  const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);

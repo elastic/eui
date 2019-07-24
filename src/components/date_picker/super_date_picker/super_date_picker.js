@@ -6,7 +6,11 @@ import {
   recentlyUsedRangeShape,
   quickSelectPanelShape,
 } from './types';
-import { prettyDuration, showPrettyDuration } from './pretty_duration';
+import {
+  prettyDuration,
+  showPrettyDuration,
+  commonDurationRanges,
+} from './pretty_duration';
 import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
@@ -19,6 +23,8 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { AsyncInterval } from './async_interval';
+
+export { prettyDuration, commonDurationRanges };
 
 function isRangeInvalid(start, end) {
   if (start === 'now' && end === 'now') {
@@ -105,16 +111,7 @@ export class EuiSuperDatePicker extends Component {
     end: 'now',
     isPaused: true,
     refreshInterval: 0,
-    commonlyUsedRanges: [
-      { start: 'now/d', end: 'now/d', label: 'Today' },
-      { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
-      { start: 'now/w', end: 'now/w', label: 'This week' },
-      { start: 'now/w', end: 'now', label: 'Week to date' },
-      { start: 'now/M', end: 'now/M', label: 'This month' },
-      { start: 'now/M', end: 'now', label: 'Month to date' },
-      { start: 'now/y', end: 'now/y', label: 'This year' },
-      { start: 'now/y', end: 'now', label: 'Year to date' },
-    ],
+    commonlyUsedRanges: commonDurationRanges,
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     recentlyUsedRanges: [],
     showUpdateButton: true,

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { EuiButtonIcon } from '../button';
 import { IconPropType, EuiIcon } from '../icon';
 import { EuiToolTip } from '../tool_tip';
+import { useInnerText } from '../inner_text';
 
 const sizeToClassNameMap = {
   xs: 'euiListGroupItem--xSmall',
@@ -79,12 +80,18 @@ export const EuiListGroupItem = ({
   }
 
   // Only add the label as the title attribute if it's possibly truncated
-  const labelContent = (
+  // Also ensure the value of the title attribute is a string
+  const [ref, innerText] = useInnerText();
+  const shouldRenderTitle = !wrapText && !showToolTip;
+  const labelContent = shouldRenderTitle ? (
     <span
+      ref={ref}
       className="euiListGroupItem__label"
-      title={wrapText ? undefined : label}>
+      title={typeof label === 'string' ? label : innerText}>
       {label}
     </span>
+  ) : (
+    <span className="euiListGroupItem__label">{label}</span>
   );
 
   // Handle the variety of interaction behavior

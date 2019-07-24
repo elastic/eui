@@ -54,6 +54,14 @@
   }
 }
 
+// The full overflow shadow plus scrollbars
+@mixin euiYScrollWithShadows {
+  @include euiOverflowShadow;
+  @include euiScrollBar;
+  height: 100%;
+  overflow-y: auto;
+}
+
 // Hiding elements offscreen to only be read by screen reader
 @mixin euiScreenReaderOnly {
   position: absolute;

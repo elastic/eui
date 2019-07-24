@@ -1,3 +1,12 @@
+@mixin euiPlaceholderPerBrowser {
+  // sass-lint:disable-block no-vendor-prefixes
+  // Each prefix must be it's own content block
+  &::-webkit-input-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::placeholder { @content; }
+}
 
 @function euiFormControlGradient($color: $euiColorPrimary) {
   @return linear-gradient(to top,
@@ -19,7 +28,8 @@
   line-height: 1em; // fixes text alignment in IE
   color: $euiTextColor;
 
-  &::placeholder {
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiPlaceholderPerBrowser {
     color: $euiColorDarkShade;
   }
 }
@@ -43,11 +53,11 @@
       height: $euiFormControlCompressedHeight;
     }
 
-    &--inGroup {
+    &--inGroup:not(:read-only) {
       height: $euiFormControlHeight - 2px; /* 2 */
     }
 
-    &--inGroup#{&}--compressed {
+    &--inGroup#{&}--compressed:not(:read-only) {
       height: $euiFormControlCompressedHeight - 2px; /* 2 */
     }
   }
@@ -132,7 +142,8 @@
   background: $euiFormBackgroundDisabledColor;
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
-  &::placeholder {
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiPlaceholderPerBrowser {
     color: $euiFormControlDisabledColor;
   }
 }
@@ -140,7 +151,7 @@
 @mixin euiFormControlReadOnlyStyle {
   cursor: default;
   // Use transparency since there is no border and in case form is on a non-white background
-  background: transparentize(lightOrDarkTheme($euiColorLightShade, #000), .88);
+  background: transparentize(lightOrDarkTheme($euiColorLightShade, $euiColorInk), .88);
   border-color: transparent;
   box-shadow: none;
 }
@@ -234,22 +245,4 @@
 @mixin euiCustomControlFocused {
   @include euiFocusRing;
   border-color: $euiColorPrimary;
-}
-
-
-// Deprecated mixins below. This was changed in Nov. 2018
-
-@mixin euiCustomControl--selected($type: null) { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlSelected($type);
-  @warn '@mixin euiCustomControl--selected is deprecated, please use euiCustomControlSelected instead';
-}
-
-@mixin euiCustomControl--disabled($type: null) { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlDisabled($type);
-  @warn '@mixin euiCustomControl--disabled is deprecated, please use euiCustomControlDisabled instead';
-}
-
-@mixin euiCustomControl--focused { // sass-lint:disable-line mixin-name-format
-  @include euiCustomControlFocused;
-  @warn '@mixin euiCustomControl--focused is deprecated, please use euiCustomControlFocused instead';
 }

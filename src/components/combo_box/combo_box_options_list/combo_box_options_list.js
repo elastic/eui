@@ -46,6 +46,7 @@ export class EuiComboBoxOptionsList extends Component {
     fullWidth: PropTypes.bool,
     activeOptionIndex: PropTypes.number,
     rootId: PropTypes.func.isRequired,
+    onCloseList: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -68,6 +69,15 @@ export class EuiComboBoxOptionsList extends Component {
     });
     this.updatePosition();
     window.addEventListener('resize', this.updatePosition);
+
+    // Firefox will trigger a scroll event in many common situations when the options list div is appended
+    // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
+    setTimeout(() => {
+      window.addEventListener('scroll', this.closeListOnScroll, {
+        passive: true, // for better performance as we won't call preventDefault
+        capture: true, // scroll events don't bubble, they must be captured instead
+      });
+    }, 500);
   }
 
   componentDidUpdate(prevProps) {
@@ -86,7 +96,19 @@ export class EuiComboBoxOptionsList extends Component {
   componentWillUnmount() {
     document.body.classList.remove('euiBody-hasPortalContent');
     window.removeEventListener('resize', this.updatePosition);
+    window.removeEventListener('scroll', this.closeListOnScroll, {
+      passive: true,
+      capture: true,
+    });
   }
+
+  closeListOnScroll = e => {
+    // close the list when a scroll event happens, but not if the scroll happened in the options list
+    // this mirrors Firefox's approach of auto-closing `select` elements onscroll
+    if (this.list && this.list.contains(e.target) === false) {
+      this.props.onCloseList();
+    }
+  };
 
   listRef = node => {
     this.props.listRef(node);
@@ -118,6 +140,7 @@ export class EuiComboBoxOptionsList extends Component {
       'data-test-subj': dataTestSubj,
       activeOptionIndex,
       rootId,
+      onCloseList,
       ...rest
     } = this.props;
 

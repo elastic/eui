@@ -5,11 +5,10 @@ variables. Currently we maintain the following themes:
 
 * theme_light (the default EUI theme)
 * theme_dark (the same theme in dark)
-* theme_k6_light (a Kibana specific theme for 6.x Kibana)
-* theme_k6_dark (the same theme in dark)
 
 Each of these themes (outside of the default theme_light one) simply include variable
 overwrites that adjust colors and sizing to fit the needs of that theme.
+
 ## How to create and test a theme
 
 #### Set up your Sass
