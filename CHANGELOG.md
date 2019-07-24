@@ -1,12 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
+- Added `tall`, `fullWidth`, and `isInvalid` props to `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
 
 **Bug fixes**
 
 - Fixed invalid `aria-desribedby` values set by `EuiToolTip` ([#2156](https://github.com/elastic/eui/pull/2156))
 - Added `"center"` as an acceptable value to `EuiBasicTable`'s `align` proptype ([#2158](https://github.com/elastic/eui/pull/2158))
 - Fixed `.eui-textBreakWord` utility class to be cross-browser compatible ([#2157](https://github.com/elastic/eui/pull/2157))
+- Fixed truncation and z-index of `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
 
 ## [`13.0.0`](https://github.com/elastic/eui/tree/v13.0.0)
 
