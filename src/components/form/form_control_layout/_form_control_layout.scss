@@ -3,7 +3,7 @@
 
 .euiFormControlLayout {
   // Let the height expand as needed
-  @include euiFormControlSize(auto, $includeAlternates: true);
+  @include euiFormControlSize($includeAlternates: true);
 }
 
 .euiFormControlLayout__childrenWrapper {
@@ -18,7 +18,7 @@
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   padding: 1px; /* 1 */
 
   .euiFormControlLayout__childrenWrapper {
@@ -28,9 +28,22 @@
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
     flex-shrink: 0;
-    height: $euiFormControlLayoutGroupInputHeight;
+    height: 100%;
     line-height: $euiFontSize;
     border: none; // remove any border in case it exists
+    border-radius: 0;
+
+    &:first-child {
+      // 1px less than the outer parent to ensure it stays inside the border box
+      border-top-left-radius: 1px;
+      border-bottom-left-radius: 1px;
+    }
+
+    &:last-child {
+      // 1px less than the outer parent to ensure it stays inside the border box
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
+    }
 
     &:disabled {
       background-color: $euiFormBackgroundDisabledColor;
@@ -69,9 +82,17 @@
 
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
-      height: $euiFormControlLayoutGroupInputCompressedHeight;
-      border-top-left-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
-      border-bottom-left-radius: 1px; // 1px less than the outer parent to ensure it stays inside the border box
+      &:first-child {
+        // 1px less than the outer parent to ensure it stays inside the border box
+        border-top-left-radius: 1px;
+        border-bottom-left-radius: 1px;
+      }
+
+      &:last-child {
+        // 1px less than the outer parent to ensure it stays inside the border box
+        border-top-right-radius: 1px;
+        border-bottom-right-radius: 1px;
+      }
 
       &.euiFormLabel,
       &.euiText {
@@ -93,11 +114,6 @@
 
     input {
       background-color: transparent; // Ensures the input and layout don't double up on background color
-    }
-
-    .euiFormControlLayout__prepend,
-    .euiFormControlLayout__append {
-      height: $euiFormControlHeight; // Matching input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
     }
   }
 

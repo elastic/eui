@@ -1,6 +1,6 @@
 @import 'variables';
 @import 'form_control_layout/variables';
-@import '../form/form_control_layout/mixins';
+@import 'form_control_layout/mixins';
 
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
@@ -57,12 +57,8 @@
       height: $euiFormControlCompressedHeight;
     }
 
-    &--inGroup:not(:read-only) {
-      height: $euiFormControlLayoutGroupInputHeight; /* 2 */
-    }
-
-    &--inGroup#{&}--compressed:not(:read-only) {
-      height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
+    &--inGroup {
+      height: 100%; /* 2 */
     }
   }
 }
@@ -219,6 +215,7 @@
     &--inGroup {
       // sass-lint:disable-block no-important
       box-shadow: none !important;
+      border-radius: 0;
     }
   }
 
