@@ -12,12 +12,4 @@
   .euiDataGridHeaderCell__content {
     @include euiTextTruncate;
   }
-
-  .euiDataGridColumnResizer {
-    opacity: 1;
-  }
-
-  &:hover .euiDataGridColumnResizer {
-    opacity: 1;
-  }
 }

@@ -4,6 +4,7 @@ import { Column, ColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { DEFAULT_COLUMN_WIDTH } from './data_grid_header_row';
+import { EuiDataGridCell } from './data_grid_cell';
 
 type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -37,12 +38,13 @@ const EuiDataGridDataRow: FunctionComponent<
           : DEFAULT_COLUMN_WIDTH;
 
         return (
-          <div
+          <EuiDataGridCell
             key={name}
-            className={classnames('euiDataGridRowCell')}
-            style={{ width: `${width}px` }}>
-            {renderCellValue(rowIndex, name)}
-          </div>
+            rowIndex={rowIndex}
+            columnName={name}
+            width={width}
+            renderCellValue={renderCellValue}
+          />
         );
       })}
     </div>
