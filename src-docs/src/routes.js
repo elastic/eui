@@ -175,9 +175,6 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
-import { ElasticChartsTimeExample } from './views/elastic_charts_time/time_example';
-
-import { ElasticChartsExtrasExample } from './views/elastic_charts_extras/extras_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
@@ -186,6 +183,16 @@ import { Changelog } from './views/package/changelog';
 import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
+
+/** Elastic Charts */
+
+import { ElasticChartsThemingExample } from './views/elastic_charts_time/theming_example';
+
+import { ElasticChartsTimeExample } from './views/elastic_charts_time/time_example';
+
+import { ElasticChartsCategoryExample } from './views/elastic_charts_time/category_example';
+
+import { ElasticChartsSparklinesExample } from './views/elastic_charts_time/sparklines_example';
 
 /**
  * Lowercases input and replaces spaces with hyphens:
@@ -347,9 +354,12 @@ const navigation = [
   },
   {
     name: 'Elastic-Charts',
-    items: [ElasticChartsTimeExample, ElasticChartsExtrasExample].map(example =>
-      createExample(example)
-    ),
+    items: [
+      ElasticChartsThemingExample,
+      ElasticChartsTimeExample,
+      ElasticChartsCategoryExample,
+      ElasticChartsSparklinesExample,
+    ].map(example => createExample(example)),
   },
   {
     name: 'Utilities',
