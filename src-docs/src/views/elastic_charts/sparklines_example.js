@@ -1,22 +1,15 @@
 import React, { Fragment } from 'react';
 
+import { ExternalBadge } from './shared';
 import { Sparklines } from './sparklines';
 
-import { EuiSpacer, EuiCode, EuiBadge } from '../../../../src/components';
+import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsSparklinesExample = {
   title: 'Sparklines',
   intro: (
     <Fragment>
-      <EuiBadge
-        color="warning"
-        iconType="popout"
-        iconSide="right"
-        onClick={() =>
-          window.open('https://github.com/elastic/elastic-charts')
-        }>
-        External library
-      </EuiBadge>
+      <ExternalBadge />
       <EuiSpacer />
       <p>
         Sparklines are quick visual summaries of data where actual values are

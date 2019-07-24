@@ -73,12 +73,81 @@ export const TIME_DATA_2 = [
   [1551438840000, 15.6875],
 ];
 
+export const SIMPLE_GITHUB_DATASET = [
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Data Table',
+    issueType: 'Bug',
+    count: 24,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Heatmap',
+    issueType: 'Bug',
+    count: 12,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Markdown',
+    issueType: 'Bug',
+    count: 6,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'MetricVis',
+    issueType: 'Bug',
+    count: 16,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Pie Chart',
+    issueType: 'Bug',
+    count: 7,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Tagcloud',
+    issueType: 'Bug',
+    count: 19,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'TSVB',
+    issueType: 'Bug',
+    count: 86,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Timelion',
+    issueType: 'Bug',
+    count: 58,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Vega vis',
+    issueType: 'Bug',
+    count: 11,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Point Series',
+    issueType: 'Bug',
+    count: 1,
+  },
+  {
+    authorAssociation: 'Team Member',
+    vizType: 'Inspector',
+    issueType: 'Bug',
+    count: 15,
+  },
+];
+
 export const GITHUB_DATASET = [
   {
     authorAssociation: 'Team Member',
     vizType: 'Data Table',
     issueType: 'Bug',
-    count: 14,
+    count: 24,
   },
   {
     authorAssociation: 'Team Member',
@@ -205,137 +274,5 @@ export const GITHUB_DATASET = [
     vizType: 'Inspector',
     issueType: 'Other',
     count: 11,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Data Table',
-    issueType: 'Bug',
-    count: 6,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Data Table',
-    issueType: 'Other',
-    count: 24,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Heatmap',
-    issueType: 'Bug',
-    count: 11,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Heatmap',
-    issueType: 'Other',
-    count: 5,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Markdown',
-    issueType: 'Bug',
-    count: 0,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Markdown',
-    issueType: 'Other',
-    count: 1,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'MetricVis',
-    issueType: 'Bug',
-    count: 6,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'MetricVis',
-    issueType: 'Other',
-    count: 10,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Pie Chart',
-    issueType: 'Bug',
-    count: 3,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Pie Chart',
-    issueType: 'Other',
-    count: 5,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Tagcloud',
-    issueType: 'Bug',
-    count: 2,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Tagcloud',
-    issueType: 'Other',
-    count: 1,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'TSVB',
-    issueType: 'Bug',
-    count: 28,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'TSVB',
-    issueType: 'Other',
-    count: 51,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Timelion',
-    issueType: 'Bug',
-    count: 29,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Timelion',
-    issueType: 'Other',
-    count: 43,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Vega vis',
-    issueType: 'Bug',
-    count: 2,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Vega vis',
-    issueType: 'Other',
-    count: 9,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Point Series',
-    issueType: 'Bug',
-    count: 2,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Point Series',
-    issueType: 'Other',
-    count: 3,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Inspector',
-    issueType: 'Bug',
-    count: 5,
-  },
-  {
-    authorAssociation: 'Community',
-    vizType: 'Inspector',
-    issueType: 'Other',
-    count: 8,
   },
 ];

@@ -1,22 +1,15 @@
 import React, { Fragment } from 'react';
 
+import { ExternalBadge } from './shared';
 import { Theming } from './theming';
 
-import { EuiSpacer, EuiCode, EuiBadge } from '../../../../src/components';
+import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsThemingExample = {
   title: 'Theming',
   intro: (
     <Fragment>
-      <EuiBadge
-        color="warning"
-        iconType="popout"
-        iconSide="right"
-        onClick={() =>
-          window.open('https://github.com/elastic/elastic-charts')
-        }>
-        External library
-      </EuiBadge>
+      <ExternalBadge />
       <EuiSpacer />
       <p>Theming via EUI.</p>
       <EuiSpacer size="l" />

@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { orderBy } from 'lodash';
+
 import { withTheme } from '../../components';
 import {
   Chart,
@@ -9,8 +11,6 @@ import {
   getAxisId,
   Position,
   ScaleType,
-  timeFormatter,
-  niceTimeFormatByDay,
   LineSeries,
   AreaSeries,
 } from '@elastic/charts';
@@ -30,14 +30,10 @@ import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiCard,
+  EuiCode,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
-
-import { TIME_DATA, TIME_DATA_2 } from './data';
+import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
 
 class _CategoryChart extends Component {
   constructor(props) {
@@ -48,6 +44,9 @@ class _CategoryChart extends Component {
     this.state = {
       multi: false,
       stacked: false,
+      rotated: false,
+      ordered: false,
+      formatted: false,
       toggleIdSelected: `${this.idPrefix}0`,
     };
   }
@@ -61,6 +60,25 @@ class _CategoryChart extends Component {
   onMultiChange = e => {
     this.setState({
       multi: e.target.checked,
+    });
+  };
+
+  onRotatedChange = e => {
+    this.setState({
+      rotated: e.target.checked,
+    });
+    console.log(e.target.checked);
+  };
+
+  onOrderedChange = e => {
+    this.setState({
+      ordered: e.target.checked,
+    });
+  };
+
+  onFormatChange = e => {
+    this.setState({
+      formatted: e.target.checked,
     });
   };
 
@@ -84,11 +102,6 @@ class _CategoryChart extends Component {
         id: `${this.idPrefix}2`,
         label: 'AreaSeries',
       },
-      {
-        id: `${this.idPrefix}3`,
-        label: 'Mixed',
-        disabled: !this.state.multi,
-      },
     ];
 
     const isDarkTheme = this.props.theme.includes('dark');
@@ -100,77 +113,65 @@ class _CategoryChart extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const formatter = timeFormatter(niceTimeFormatByDay(1));
     let ChartType;
-    let ChartType2;
     switch (this.state.toggleIdSelected) {
       case 'chartType0':
         ChartType = BarSeries;
-        ChartType2 = BarSeries;
         break;
       case 'chartType1':
         ChartType = LineSeries;
-        ChartType2 = LineSeries;
         break;
       case 'chartType2':
         ChartType = AreaSeries;
-        ChartType2 = AreaSeries;
-        break;
-      case 'chartType3':
-        ChartType = BarSeries;
-        ChartType2 = LineSeries;
         break;
     }
+
+    const DATASET = this.state.multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
 
     return (
       <Fragment>
         <EuiTitle size="xxs">
           <h3>
-            Number of {!this.state.multi && 'financial '}robo-calls
-            {this.state.multi && ' by type'}
+            Number of GitHub issues per visualization type
+            {this.state.multi && ' by type of issue'}
           </h3>
         </EuiTitle>
 
         <EuiSpacer size="s" />
 
-        <Chart size={[undefined, 200]}>
+        <Chart size={[undefined, 300]}>
           <Settings
             theme={theme}
             showLegend={this.state.multi}
             legendPosition={Position.Right}
+            rotation={this.state.rotated ? 90 : 0}
           />
           <ChartType
-            id={getSpecId('time1')}
-            name={'Financial'}
-            data={TIME_DATA}
-            xAccessor={0}
-            yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
+            id={getSpecId('issues')}
+            name={'Issues'}
+            data={
+              this.state.ordered
+                ? orderBy(DATASET, ['count'], ['desc'])
+                : orderBy(DATASET, ['vizType'], ['asc'])
+            }
+            xAccessor="vizType"
+            yAccessors={['count']}
+            splitSeriesAccessors={this.state.multi ? ['issueType'] : undefined}
+            stackAccessors={this.state.stacked ? ['issueType'] : undefined}
           />
-          {this.state.multi && (
-            <ChartType2
-              id={getSpecId('time2')}
-              name={'Tech support'}
-              data={TIME_DATA_2}
-              xAccessor={0}
-              yAccessors={[1]}
-              stackAccessors={this.state.stacked ? [0] : undefined}
-            />
-          )}
           <Axis
-            title={formatDate(Date.now(), dateFormatAliases.date)}
             id={getAxisId('bottom-axis')}
-            position={Position.Bottom}
-            xScaleType={ScaleType.Time}
-            tickFormat={formatter}
+            position={this.state.rotated ? Position.Left : Position.Bottom}
+            xScaleType={ScaleType.Ordinal}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
           <Axis
             id={getAxisId('left-axis')}
-            position={Position.Left}
+            position={this.state.rotated ? Position.Bottom : Position.Left}
             showGridLines
             gridLineStyle={gridHorizontalSettings}
+            tickFormat={this.state.formatted ? d => `${Number(d)}k` : undefined}
           />
         </Chart>
 
@@ -179,13 +180,47 @@ class _CategoryChart extends Component {
         <EuiFlexGrid
           columns={3}
           className="euiGuide__chartsPageCrosshairSection">
-          {/* <EuiFlexItem>
+          <EuiFlexItem>
             <EuiCard
               textAlign="left"
-              title="Titles"
-              description="Provide a meaningful, descriptive title. The title may need to change when show single vs multiple series."
+              title="Chart titles"
+              description="Providing a meaningful, descriptive title can eliminate the necessity for axis titles. Though the title may need to change depending on the number of series."
             />
-          </EuiFlexItem> */}
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Order and rotation"
+              description="It can be easier to compare categories by ordering them in descending order. Rotating the chart to be horizontal can give more space to the category name.">
+              <EuiSwitch
+                label="Order by count descending"
+                checked={this.state.ordered}
+                onChange={this.onOrderedChange}
+              />
+              <EuiSpacer size="s" />
+              <EuiSwitch
+                label="Rotate 90deg"
+                checked={this.state.rotated}
+                onChange={this.onRotatedChange}
+              />
+            </EuiCard>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Tick marks"
+              description="Tick marks should be spaced out properly and number values should be formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol.">
+              <EuiCode>1000 ⇢ 1k</EuiCode> &nbsp; <EuiCode>20000 ⇢ 20k</EuiCode>
+              <EuiSpacer size="s" />
+              <EuiSwitch
+                label="Simulate thousands formatting"
+                checked={this.state.formatted}
+                onChange={this.onFormatChange}
+              />
+            </EuiCard>
+          </EuiFlexItem>
 
           <EuiFlexItem>
             <EuiCard
@@ -219,14 +254,6 @@ class _CategoryChart extends Component {
                 disabled={!this.state.multi}
               />
             </EuiCard>
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Tick marks"
-              description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
-            />
           </EuiFlexItem>
         </EuiFlexGrid>
       </Fragment>

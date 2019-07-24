@@ -1,22 +1,15 @@
 import React, { Fragment } from 'react';
 
+import { ExternalBadge } from './shared';
 import { TimeChart } from './time_chart';
 
-import { EuiSpacer, EuiCode, EuiBadge } from '../../../../src/components';
+import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsTimeExample = {
   title: 'Time series charts',
   intro: (
     <Fragment>
-      <EuiBadge
-        color="warning"
-        iconType="popout"
-        iconSide="right"
-        onClick={() =>
-          window.open('https://github.com/elastic/elastic-charts')
-        }>
-        External library
-      </EuiBadge>
+      <ExternalBadge />
       <EuiSpacer />
       <p>
         Change over time charts show data over a period of time, such as trends

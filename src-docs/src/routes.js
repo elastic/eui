@@ -186,13 +186,13 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 /** Elastic Charts */
 
-import { ElasticChartsThemingExample } from './views/elastic_charts_time/theming_example';
+import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
 
-import { ElasticChartsTimeExample } from './views/elastic_charts_time/time_example';
+import { ElasticChartsTimeExample } from './views/elastic_charts/time_example';
 
-import { ElasticChartsCategoryExample } from './views/elastic_charts_time/category_example';
+import { ElasticChartsCategoryExample } from './views/elastic_charts/category_example';
 
-import { ElasticChartsSparklinesExample } from './views/elastic_charts_time/sparklines_example';
+import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
 /**
  * Lowercases input and replaces spaces with hyphens:
