@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
+- Removes <use> and <def> from svg icons ([#2162](https://github.com/elastic/eui/pull/2162))
 
 **Bug fixes**
 
