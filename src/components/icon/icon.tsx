@@ -238,6 +238,7 @@ const typeToPathMap = {
   offline: 'offline',
   online: 'online',
   packetbeatApp: 'app_packetbeat',
+  partial: 'partial',
   pause: 'pause',
   pencil: 'pencil',
   pin: 'pin',
