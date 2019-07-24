@@ -5,12 +5,8 @@
   */
 
 .euiFilePicker {
-  @include euiFormControlSize;
+  @include euiFormControlSize($includeAlternates: true);
   position: relative;
-
-  &.euiFilePicker--fullWidth {
-    max-width: 100%;
-  }
 
   &.euiFilePicker--large {
     height: auto;
@@ -79,10 +75,9 @@
     background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
 
   .euiFilePicker--compressed & {
+    @include euiFormControlStyleCompressed($includeStates: false);
+    @include euiFormControlWithIcon; /* 3 */
     height: $euiFormControlCompressedHeight;
-    padding-top: $euiFormControlCompressedPadding;
-    padding-right: $euiFormControlCompressedPadding;
-    padding-bottom: $euiFormControlCompressedPadding;
   }
 
   .euiFilePicker--large & {
@@ -92,6 +87,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .euiFilePicker--large.euiFilePicker--compressed & {
+    height: $euiFilePickerTallHeight - $euiSizeL; /* 5 */
   }
 
   .euiFilePicker-isInvalid & {
@@ -143,6 +142,10 @@
 .euiFilePicker__showDrop .euiFilePicker__prompt,
 .euiFilePicker__input:focus + .euiFilePicker__prompt {
   @include euiFormControlFocusStyle;
+
+  .euiFilePicker--compressed & {
+    @include euiFormControlFocusStyle($borderOnly: true);
+  }
 }
 
 // Disabled

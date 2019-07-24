@@ -187,27 +187,7 @@
 
   @if ($includeSizes) {
     &--compressed {
-      @include euiFormControlDefaultShadow($borderOnly: true);
-      padding: $euiFormControlCompressedPadding;
-      border-radius: $euiBorderRadius / 2;
-
-      @if ($includeStates) {
-        &:invalid { /* 4 */
-          @include euiFormControlInvalidStyle;
-        }
-
-        &:focus { /* 4 */
-          @include euiFormControlFocusStyle($borderOnly: true);
-        }
-
-        &:disabled {
-          @include euiFormControlDisabledStyle;
-        }
-
-        &[readOnly] {
-          @include euiFormControlReadOnlyStyle;
-        }
-      }
+      @include euiFormControlStyleCompressed($borderOnly, $includeStates);
     }
 
     &--inGroup {
@@ -216,7 +196,30 @@
       border-radius: 0;
     }
   }
+}
 
+@mixin euiFormControlStyleCompressed($borderOnly: false, $includeStates: true) {
+  @include euiFormControlDefaultShadow($borderOnly: true);
+  padding: $euiFormControlCompressedPadding;
+  border-radius: $euiBorderRadius / 2;
+
+  @if ($includeStates) {
+    &:invalid { /* 4 */
+      @include euiFormControlInvalidStyle;
+    }
+
+    &:focus { /* 4 */
+      @include euiFormControlFocusStyle($borderOnly: true);
+    }
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
+
+    &[readOnly] {
+      @include euiFormControlReadOnlyStyle;
+    }
+  }
 }
 
 // Custom styles and states for checkboxes and radios
