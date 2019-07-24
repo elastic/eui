@@ -175,7 +175,7 @@ import { ToastExample } from './views/toast/toast_example';
 import { ToolTipExample } from './views/tool_tip/tool_tip_example';
 
 import { ToggleExample } from './views/toggle/toggle_example';
-import { ElasticChartsTypesExample } from './views/elastic_charts_types/types_example';
+import { ElasticChartsTimeExample } from './views/elastic_charts_time/time_example';
 
 import { ElasticChartsExtrasExample } from './views/elastic_charts_extras/extras_example';
 
@@ -347,8 +347,8 @@ const navigation = [
   },
   {
     name: 'Elastic-Charts',
-    items: [ElasticChartsTypesExample, ElasticChartsExtrasExample].map(
-      example => createExample(example)
+    items: [ElasticChartsTimeExample, ElasticChartsExtrasExample].map(example =>
+      createExample(example)
     ),
   },
   {

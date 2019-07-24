@@ -25,9 +25,11 @@ import {
   // EuiCopy,
   EuiSwitch,
   EuiSpacer,
-  EuiPanel,
-  EuiButtonGroup,
+  EuiRadioGroup,
   EuiTitle,
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiCard,
 } from '../../../../src/components';
 
 import {
@@ -41,29 +43,12 @@ class _TimeChart extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = 'chartType';
-    this.toggleButtonsIcons = [
-      {
-        id: `${idPrefix}0`,
-        label: 'Bar chart',
-        iconType: 'visBarVertical',
-      },
-      {
-        id: `${idPrefix}1`,
-        label: 'Line chart',
-        iconType: 'visLine',
-      },
-      {
-        id: `${idPrefix}2`,
-        label: 'Area chart',
-        iconType: 'visArea',
-      },
-    ];
+    this.idPrefix = 'chartType';
 
     this.state = {
       multi: false,
       stacked: false,
-      toggleIdSelected: `${idPrefix}0`,
+      toggleIdSelected: `${this.idPrefix}0`,
     };
   }
 
@@ -86,6 +71,26 @@ class _TimeChart extends Component {
   };
 
   render() {
+    this.toggleButtonsIcons = [
+      {
+        id: `${this.idPrefix}0`,
+        label: 'BarSeries',
+      },
+      {
+        id: `${this.idPrefix}1`,
+        label: 'LineSeries',
+      },
+      {
+        id: `${this.idPrefix}2`,
+        label: 'AreaSeries',
+      },
+      {
+        id: `${this.idPrefix}3`,
+        label: 'Multi',
+        disabled: !this.state.multi,
+      },
+    ];
+
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
     const gridHorizontalSettings = isDarkTheme
@@ -97,15 +102,23 @@ class _TimeChart extends Component {
 
     const formatter = timeFormatter(niceTimeFormatByDay(1));
     let ChartType;
+    let ChartType2;
     switch (this.state.toggleIdSelected) {
       case 'chartType0':
         ChartType = BarSeries;
+        ChartType2 = BarSeries;
         break;
       case 'chartType1':
         ChartType = LineSeries;
+        ChartType2 = LineSeries;
         break;
       case 'chartType2':
         ChartType = AreaSeries;
+        ChartType2 = AreaSeries;
+        break;
+      case 'chartType3':
+        ChartType = BarSeries;
+        ChartType2 = LineSeries;
         break;
     }
 
@@ -135,7 +148,7 @@ class _TimeChart extends Component {
             stackAccessors={this.state.stacked ? [0] : undefined}
           />
           {this.state.multi && (
-            <ChartType
+            <ChartType2
               id={getSpecId('time2')}
               name={'Tech support'}
               data={TIME_DATA_2}
@@ -163,28 +176,59 @@ class _TimeChart extends Component {
 
         <EuiSpacer />
 
-        <EuiPanel>
-          <EuiSwitch
-            label="Multi-series"
-            checked={this.state.multi}
-            onChange={this.onMultiChange}
-          />
-          &emsp;
-          <EuiSwitch
-            label="Stacked"
-            checked={this.state.stacked}
-            onChange={this.onStackedChange}
-            disabled={!this.state.multi}
-          />
-          &emsp;
-          <EuiButtonGroup
-            legend="Chart type"
-            options={this.toggleButtonsIcons}
-            idSelected={this.state.toggleIdSelected}
-            onChange={this.onChartTypeChange}
-            isIconOnly
-          />
-        </EuiPanel>
+        <EuiFlexGrid
+          columns={3}
+          className="euiGuide__chartsPageCrosshairSection">
+          {/* <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Titles"
+              description="Provide a meaningful, descriptive title. The title may need to change when show single vs multiple series."
+            />
+          </EuiFlexItem> */}
+
+          <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Chart types"
+              description="Time series charts can be displayed as any x/y series type.">
+              <EuiRadioGroup
+                compressed
+                options={this.toggleButtonsIcons}
+                idSelected={this.state.toggleIdSelected}
+                onChange={this.onChartTypeChange}
+              />
+            </EuiCard>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Single vs multiple series"
+              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation. Do not stack line charts.">
+              <EuiSwitch
+                label="Show multi-series"
+                checked={this.state.multi}
+                onChange={this.onMultiChange}
+              />
+              <EuiSpacer size="s" />
+              <EuiSwitch
+                label="Stacked"
+                checked={this.state.stacked}
+                onChange={this.onStackedChange}
+                disabled={!this.state.multi}
+              />
+            </EuiCard>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiCard
+              textAlign="left"
+              title="Tick marks"
+              description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
+            />
+          </EuiFlexItem>
+        </EuiFlexGrid>
       </Fragment>
     );
   }
