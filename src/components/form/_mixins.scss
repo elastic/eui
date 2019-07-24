@@ -22,7 +22,6 @@
 }
 
 /**
- * 2. Account for inner box-shadow style border when in group
  * 3. Must supply both values to background-size or some browsers apply the single value to both directions
  */
 
@@ -37,7 +36,6 @@
     color: $euiColorDarkShade;
   }
 }
-
 
 @mixin euiFormControlSize(
   $height: $euiFormControlHeight,
@@ -58,7 +56,7 @@
     }
 
     &--inGroup {
-      height: 100%; /* 2 */
+      height: 100%;
     }
   }
 }
