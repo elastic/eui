@@ -2,6 +2,7 @@
 
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
 - Added `tall`, `fullWidth`, and `isInvalid` props to `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
+- Removed `<use>` and `<def>` from svg icons ([#2162](https://github.com/elastic/eui/pull/2162))
 
 **Bug fixes**
 
