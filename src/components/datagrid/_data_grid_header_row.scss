@@ -1,0 +1,23 @@
+.euiDataGridHeaderCell {
+  display: inline-block;
+  padding: $euiSize;
+  border: $euiBorderThin;
+  border-left-width: 0;
+  position: relative;
+
+  &:first-of-type {
+    border-left: $euiBorderThin;
+  }
+
+  .euiDataGridHeaderCell__content {
+    @include euiTextTruncate;
+  }
+
+  .euiDataGridColumnResizer {
+    opacity: 1;
+  }
+
+  &:hover .euiDataGridColumnResizer {
+    opacity: 1;
+  }
+}

@@ -45,6 +45,8 @@ export {
 
 export { EuiCopy } from './copy';
 
+export { EuiDataGrid } from './datagrid';
+
 export {
   EuiDatePicker,
   EuiDatePickerRange,

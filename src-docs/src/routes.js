@@ -67,6 +67,8 @@ import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
 import { CopyExample } from './views/copy/copy_example';
 
+import { DataGridExample } from './views/datagrid/datagrid_example';
+
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
 import { DelayHideExample } from './views/delay_hide/delay_hide_example';
@@ -306,6 +308,7 @@ const navigation = [
       CallOutExample,
       CardExample,
       CodeExample,
+      DataGridExample,
       DescriptionListExample,
       DragAndDropExample,
       EmptyPromptExample,

@@ -1,0 +1,16 @@
+.euiDataGridRow {
+  white-space: nowrap;
+}
+
+.euiDataGridRowCell {
+  display: inline-block;
+  padding: $euiSize;
+  border: $euiBorderThin;
+  border-left-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:first-of-type {
+    border-left: $euiBorderThin;
+  }
+}
