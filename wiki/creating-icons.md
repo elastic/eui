@@ -1,0 +1,122 @@
+# Creating icons
+
+Below you will find guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to asssit, we greatly appreciate your contributions and pull requests.
+
+If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
+
+_**Note**: The `EuiIcon` component accepts external references to icon files, so techincally speaking you do not have to add them to the EUI repo. In other words, you can store and reference your icon files within your application code._
+
+## Design the icon
+
+From a content perspective, we've taken an approach of being open to many types of icons. Stylistically, we have more stringent requirements outlined below.
+
+### Content
+
+While we're pretty much open to all requests, we ask that you first try to use an existing icon as this helps us avoid having multiple versions of the same glyph.  Likewise, if there is a universally known icon that represents an action, we recommend leveraging those existing patterns (e.g. a scissors for cut).
+
+Finding and sharing reference icons is a great way to get moving if you're uncertain of the general shape. Post these examples to your issue and we'll provide feedback.
+
+Lastly, we reserve the right to reject any icons that do not fit the EUI style or may be deemed inappropriate.
+
+### Style
+
+This is where things get more opinionated. To maintain a cohesive, high quality icon set, we require that all new glpyhs adhere to the following guidelines:
+
+- Use an outline style with a 1 pixel width stroke, straight edges, rounded corners and ends
+- Adhere to an overall 16 pixel square shape
+- Center the glyph in the square leaving a 1 or 2 pixel trim area, where possible
+- Align vertical and horizontal paths to a 16x16 pixel grid
+
+[add images here]
+
+#### _For all Sketch users_
+_All contributors who use Sketch can reference the `icons.sketch` file contained in the downloadable **Sketch libraries** link atop the [EUI documentation site][docs]._
+
+#### _For Elastic Sketch users_
+_Internal team members, with access to Abstract, can alternatively check out the `icons.sketch` file in the EUI 2.0 project. See **Update the Sketch library** below._
+
+#### _For non-Sketch users_
+_While we use Sketch to maintain our internal design library, you can use any design tool to produce the SVG file._
+
+
+### Update the Sketch library
+_**This section only applies to internal Elastic team members who have access to the EUI 2.0 project on Abstract.**_
+
+If you are designing your icon in the EUI `icons.sketch` library file, you will need to follow these additional steps:
+
+_1. Install these Sketch plugins:_
+
+- [Symbols organizer plugin][sketch-symbol-organizer-plugin]
+- [SVGO plugin][sketch-SVGO-plugin]
+
+_2. Complete the following steps:_
+
+- Create a new branch in the Abstract EUI 2.0 project
+- Edit (open) the `icons.sketch` file
+- Go to the **Symbols** page in the file
+- Create your icon on a 16px by 16px artboard with the appropriate name for the target group (e.g. `base/iconName`; the artboard name is used by the Symbol organizer plugin below)
+- Conver shapes to outlines (e.g. if you draw shapes and apply 1px borders)
+- Union your shapes and flatten layers
+- With you icon layer selected, apply the "5. Darkest gary" style in the overrides panel
+- Rename your icon layer as "return_symbol rainbow_emoji Color" [insert image]
+- Select the artboard and make it exportable as an SVG
+- Run the [Symbols organizer plugin][sketch-symbol-organizer-plugin] to re-order the artboards (the plugin settings can be viewed on the **Styleguide** page)
+- Commit your changes to Abstract and request a review from an EUI designer (this can be done through your GitHub issue or in Abstract)
+
+_3. Post approval in Abstract:_
+- Export the SVG (the SVGO plugin will run automatically)
+- Commit any outstanding changes
+- Merge your branch in Abstract
+
+Contact the EUI design team if you have questions. We thank you for your efforts in keeping things nice and tidy :sweat_smile: 
+
+## Add the icon to the EUI repo
+
+Once you've designed your new icon, the last step is adding it to the EUI repo.
+
+### Clean the SVG
+
+EUI provides SVG icon formats only. After exporting your icon as an SVG from your design tool, open it in a code or text editor and remove any unnecessary elements and attributes, such as:
+- `<def>...</def>`
+- `<use>...</use>`
+- `id: <value>`
+- `fill: <value>`
+- `fill-rule: <value>` or `fillRule: <value>`
+
+_**Note**: Sketch users can use the [SVGO plugin][sketch-SVGO-plugin] to remove any extraneous code added by Sketch. Once installed, this plugin will run automatically any time an SVG is exported from Sketch._
+
+### Prepare the pull request
+
+Create a new feature branch against this repo and make the following changes:
+
+_1. Add your glyph to the `EuiIcon` component_
+- Add your SVG file to the `/src/components/icon/assets` folder
+- Add a reference in the `/src/components/icon/icon.tsx` file (in alphabetical order)
+
+_2. Display the icon in the docs_
+- Add the icon name to `/src-docs/src/views/icon/icons.js` *
+
+_3. Compile and test_
+- Run `yarn compile-icons`
+- Preview your icon locally at `http://localhost:8030/#/display/icons` **
+- Switch the docs to dark mode and verify that the icon is visible
+
+If everything looks good, then commit your changes, push up your branch, and open a PR! :raised_hands:
+
+Opening a PR will notify the EUI team that your work is ready for review. Please include a screenshot in the description and reference the issue that your PR fixes.
+
+### Ship it
+Once youre PR is approved, you will be able to merge it and give yourself a well-deserved pat on the back. Finally, stay tuned for the next release of EUI at which point your icon will become available to the masses and appear on the EUI docs site.
+
+:trophy: _**Welcome to the Official EUI Icon Design Club**_ :beers:
+
+---
+
+_\* The Icons page actually contains several sections. In most cases, you will be adding your icon to the base set. However, if your icon should appear in a different set, then add it to the appropriate section file in `/src-docs/src/views/icon`._
+
+_\** Run `yarn && yarn start` to view the EUI docs site locally._
+
+
+[docs]: https://elastic.github.io/eui/
+[sketch-SVGO-plugin]: [https://www.sketch.com/extensions/plugins/svgo-compressor/]
+[sketch-symbol-organizer-plugin]: [https://github.com/sonburn/symbol-organizer]
