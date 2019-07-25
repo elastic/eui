@@ -9,6 +9,7 @@
 - Added `"center"` as an acceptable value to `EuiBasicTable`'s `align` proptype ([#2158](https://github.com/elastic/eui/pull/2158))
 - Fixed `.eui-textBreakWord` utility class to be cross-browser compatible ([#2157](https://github.com/elastic/eui/pull/2157))
 - Fixed truncation and z-index of `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
+- Fixed width overflow of `EuiModal` ([#2164](https://github.com/elastic/eui/pull/2164))
 
 ## [`13.0.0`](https://github.com/elastic/eui/tree/v13.0.0)
 
