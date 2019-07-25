@@ -19,8 +19,11 @@ export default class extends Component {
       },
       {
         value: 'option_three',
-        inputDisplay:
-          'Option three has a super long text to see if it will truncate or what',
+        inputDisplay: (
+          <span className="eui-textTruncate eui-displayBlock">
+            Option three has a super long text and added truncation
+          </span>
+        ),
       },
     ];
 
