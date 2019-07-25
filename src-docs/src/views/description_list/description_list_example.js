@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -108,10 +108,17 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <p>
-          Using a prop <EuiCode>type</EuiCode> set to <EuiCode>column</EuiCode>{' '}
-          description lists can be presented in an inline, column format.
-        </p>
+        <Fragment>
+          <p>
+            Using a prop <EuiCode>type</EuiCode> set to{' '}
+            <EuiCode>column</EuiCode> description lists can be presented in an
+            inline, column format.
+          </p>
+          <p>
+            To return to they typical row format on smaller screens set{' '}
+            <EuiCode>responsive = true</EuiCode>.
+          </p>
+        </Fragment>
       ),
       demo: <DescriptionListColumn />,
     },

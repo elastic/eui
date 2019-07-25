@@ -21,6 +21,7 @@ export default () => (
   <EuiDescriptionList
     type="column"
     listItems={favoriteVideoGames}
+    responsive={true}
     style={{ maxWidth: '400px' }}
   />
 );
