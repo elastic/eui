@@ -1,6 +1,8 @@
 .euiFormControlLayoutDelimited {
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow;
+  display: flex;
+  align-items: stretch;
   padding: 1px; /* 1 */
 
   > .euiFormControlLayout__childrenWrapper {
@@ -9,11 +11,11 @@
   }
 
   input {
-    height: $euiFormControlLayoutGroupInputHeight;
+    height: 100%;
   }
 
   &[class*='--compressed'] input {
-    height: $euiFormControlLayoutGroupInputCompressedHeight;
+    height: 100%;
     padding-top: 0; // Fixes IE
     padding-bottom: 0; // Fixes IE
   }
