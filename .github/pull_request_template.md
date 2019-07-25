@@ -7,7 +7,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Checked in **dark mode**
 - [ ] Checked in **mobile**
 - [ ] Checked in **IE11** and **Firefox**
-- [ ] **Props** have proper autodocs
+- [ ] Props have proper **autodocs**
 - [ ] Added **documentation** examples
 - [ ] Added or updated **jest tests**
 - [ ] Checked for **breaking changes** and labeled appropriately
