@@ -9,7 +9,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Checked in IE11 and Firefox
 - [ ] Props have proper autodocs
 - [ ] Documentation examples were added
-- [ ] Jest tests were updated or added
+- [ ] Updated or added jest tests
 - [ ] Checked for breaking changes and labeled appropriately
 - [ ] Checked for accessibility including keyboard-only and screenreader modes
 - [ ] A [changelog](https://github.com/elastic/eui/blob/master/CHANGELOG.md) entry exists and is marked appropriately
