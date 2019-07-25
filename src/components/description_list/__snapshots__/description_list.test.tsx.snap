@@ -69,6 +69,12 @@ exports[`EuiDescriptionList props listItems is rendered as strings and elements 
 </dl>
 `;
 
+exports[`EuiDescriptionList props responsive is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--responsive"
+/>
+`;
+
 exports[`EuiDescriptionList props type column is rendered 1`] = `
 <dl
   class="euiDescriptionList euiDescriptionList--column"

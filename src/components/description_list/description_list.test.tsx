@@ -49,6 +49,14 @@ describe('EuiDescriptionList', () => {
       });
     });
 
+    describe('responsive', () => {
+      test('is rendered', () => {
+        const component = render(<EuiDescriptionList responsive />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('type', () => {
       TYPES.forEach(type => {
         test(`${type} is rendered`, () => {
