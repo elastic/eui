@@ -11,6 +11,13 @@
   }
 }
 
+.euiSuperSelect__listbox {
+  @include euiScrollBar;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .euiSuperSelect__popoverPanel[class*='bottom'] { /* 3 */
   border-top-color: transparentize($euiBorderColor, .2);
   border-top-right-radius: 0; /* 2 */
@@ -26,10 +33,17 @@
 }
 
 .euiSuperSelect__item {
-  &:hover,
+  @include euiFontSizeS;
+  padding: $euiSizeS;
+
+  &:hover:not(:disabled),
   &:focus {
     text-decoration: none;
     background-color: $euiFocusBackgroundColor;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
