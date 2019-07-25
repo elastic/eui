@@ -8,7 +8,7 @@ Summarize your PR. If it includes design elements include a screenshot or gif.
 - [ ] Checked in mobile
 - [ ] Checked in IE11 and Firefox
 - [ ] Props have proper autodocs
-- [ ] Documentation examples were added
+- [ ] Added documentation examples
 - [ ] Updated or added jest tests
 - [ ] Checked for breaking changes and labeled appropriately
 - [ ] Checked for accessibility including keyboard-only and screenreader modes
