@@ -1,4 +1,4 @@
-import React, { Component, MouseEventHandler } from 'react';
+import React, { Component } from 'react';
 
 const MINIMUM_COLUMN_WIDTH = 40;
 
@@ -22,7 +22,7 @@ export class EuiDataGridColumnResizer extends Component<
     offset: 0,
   };
 
-  onMouseDown: MouseEventHandler<HTMLDivElement> = e => {
+  onMouseDown = (e: { pageX: number }) => {
     this.setState({
       initialX: e.pageX,
     });
@@ -63,6 +63,7 @@ export class EuiDataGridColumnResizer extends Component<
     return (
       <div
         className="euiDataGridColumnResizer"
+        data-test-subj="dataGridColumnResizer"
         style={{ marginRight: `${-offset}px` }}
         onMouseDown={this.onMouseDown}
       />

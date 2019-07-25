@@ -1,19 +1,15 @@
-import React, {
-  Component,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { Component, HTMLAttributes, ReactElement } from 'react';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { EuiDataGridDataRow } from './data_grid_data_row';
 import { CommonProps } from '../common';
 import { Column, ColumnWidths } from './data_grid_types';
+import { EuiDataGridCellProps } from './data_grid_cell';
 
 type EuiDataGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: Column[];
     rowCount: number;
-    renderCellValue: (rowIndex: number, columnName: string) => ReactNode;
+    renderCellValue: EuiDataGridCellProps['renderCellValue'];
   };
 
 interface EuiDataGridState {

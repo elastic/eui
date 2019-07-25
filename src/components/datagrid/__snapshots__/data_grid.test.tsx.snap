@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiDataGridHeader"
+    data-test-subj="dataGridHeader"
+  >
+    <div
+      class="euiDataGridHeaderCell"
+      data-test-subj="dataGridHeaderCell"
+      style="width:100px"
+    >
+      <div
+        class="euiDataGridColumnResizer"
+        data-test-subj="dataGridColumnResizer"
+        style="margin-right:0px"
+      />
+      <div
+        class="euiDataGridHeaderCell__content"
+      >
+        A
+      </div>
+    </div>
+    <div
+      class="euiDataGridHeaderCell"
+      data-test-subj="dataGridHeaderCell"
+      style="width:100px"
+    >
+      <div
+        class="euiDataGridColumnResizer"
+        data-test-subj="dataGridColumnResizer"
+        style="margin-right:0px"
+      />
+      <div
+        class="euiDataGridHeaderCell__content"
+      >
+        B
+      </div>
+    </div>
+  </div>
+  <div
+    class="dataGridBody"
+  >
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        0, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        0, B
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        1, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        1, B
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        2, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        2, B
+      </div>
+    </div>
+  </div>
+</div>
+`;

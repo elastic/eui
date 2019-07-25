@@ -16,12 +16,20 @@ type EuiDataGridHeaderRowProps = CommonProps &
 const EuiDataGridHeaderRow: FunctionComponent<
   EuiDataGridHeaderRowProps
 > = props => {
-  const { columns, columnWidths, className, setColumnWidth, ...rest } = props;
+  const {
+    columns,
+    columnWidths,
+    className,
+    setColumnWidth,
+    'data-test-subj': _dataTestSubj,
+    ...rest
+  } = props;
 
   const classes = classnames('euiDataGridHeader', className);
+  const dataTestSubj = classnames('dataGridHeader', _dataTestSubj);
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map(props => {
         const { name } = props;
 
@@ -33,6 +41,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
           <div
             key={name}
             className="euiDataGridHeaderCell"
+            data-test-subj="dataGridHeaderCell"
             style={{ width: `${width}px` }}>
             <EuiDataGridColumnResizer
               columnName={name}

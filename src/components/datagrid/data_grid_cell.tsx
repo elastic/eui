@@ -1,25 +1,51 @@
-import React, { FunctionComponent, ReactNode, useMemo } from 'react';
+import React, {
+  FunctionComponent,
+  JSXElementConstructor,
+  memo,
+  ReactNode,
+} from 'react';
+import { Omit } from '../common';
 
-interface EuiDataGridCellProps {
+interface CellValueElementProps {
+  rowIndex: number;
+  columnName: string;
+}
+
+export interface EuiDataGridCellProps {
   rowIndex: number;
   columnName: string;
   width: number;
-  renderCellValue: (rowIndex: number, columnName: string) => ReactNode;
+  renderCellValue:
+    | JSXElementConstructor<CellValueElementProps>
+    | ((props: CellValueElementProps) => ReactNode);
 }
+
+type EuiDataGridCellValueProps = Omit<EuiDataGridCellProps, 'width'>;
+
+const EuiDataGridCellContent: FunctionComponent<
+  EuiDataGridCellValueProps
+> = memo(props => {
+  const { renderCellValue, ...rest } = props;
+
+  // React is more permissable than the TS types indicate
+  const CellElement = renderCellValue as JSXElementConstructor<
+    CellValueElementProps
+  >;
+
+  return <CellElement {...rest} />;
+});
 
 export const EuiDataGridCell: FunctionComponent<
   EuiDataGridCellProps
 > = props => {
-  const { rowIndex, columnName, renderCellValue, width } = props;
-
-  const value = useMemo(() => renderCellValue(rowIndex, columnName), [
-    rowIndex,
-    columnName,
-  ]);
+  const { width, ...rest } = props;
 
   return (
-    <div className="euiDataGridRowCell" style={{ width: `${width}px` }}>
-      {value}
+    <div
+      className="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style={{ width: `${width}px` }}>
+      <EuiDataGridCellContent {...rest} />
     </div>
   );
 };

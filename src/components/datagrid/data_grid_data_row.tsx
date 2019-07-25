@@ -1,17 +1,17 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { Column, ColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { DEFAULT_COLUMN_WIDTH } from './data_grid_header_row';
-import { EuiDataGridCell } from './data_grid_cell';
+import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 
 type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
     columns: Column[];
     columnWidths: ColumnWidths;
-    renderCellValue: (rowIndex: number, columnName: string) => ReactNode;
+    renderCellValue: EuiDataGridCellProps['renderCellValue'];
   };
 
 const EuiDataGridDataRow: FunctionComponent<
@@ -23,13 +23,15 @@ const EuiDataGridDataRow: FunctionComponent<
     className,
     renderCellValue,
     rowIndex,
+    'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
 
   const classes = classnames('euiDataGridRow', className);
+  const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map(props => {
         const { name } = props;
 

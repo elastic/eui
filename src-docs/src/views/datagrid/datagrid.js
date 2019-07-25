@@ -146,7 +146,9 @@ export default () => {
       <EuiDataGrid
         columns={columns}
         rowCount={data.length}
-        renderCellValue={(row, columnName) => data[row][columnName]}
+        renderCellValue={({ rowIndex, columnName }) =>
+          data[rowIndex][columnName]
+        }
       />
     </div>
   );
