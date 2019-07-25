@@ -12,7 +12,6 @@ import {
   timeFormatter,
   niceTimeFormatByDay,
   LineSeries,
-  AreaSeries,
 } from '@elastic/charts';
 
 import {
@@ -21,11 +20,8 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 import {
-  // EuiCard,
-  // EuiCopy,
   EuiSwitch,
   EuiSpacer,
-  EuiRadioGroup,
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
@@ -38,6 +34,7 @@ import {
 } from '../../../../src/services/format/format_date';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
+import { ChartTypeCard } from './shared';
 
 class _TimeChart extends Component {
   constructor(props) {
@@ -48,7 +45,7 @@ class _TimeChart extends Component {
     this.state = {
       multi: false,
       stacked: false,
-      toggleIdSelected: `${this.idPrefix}0`,
+      chartType: BarSeries,
     };
   }
 
@@ -64,33 +61,13 @@ class _TimeChart extends Component {
     });
   };
 
-  onChartTypeChange = optionId => {
+  onChartTypeChange = chartType => {
     this.setState({
-      toggleIdSelected: optionId,
+      chartType: chartType,
     });
   };
 
   render() {
-    this.toggleButtonsIcons = [
-      {
-        id: `${this.idPrefix}0`,
-        label: 'BarSeries',
-      },
-      {
-        id: `${this.idPrefix}1`,
-        label: 'LineSeries',
-      },
-      {
-        id: `${this.idPrefix}2`,
-        label: 'AreaSeries',
-      },
-      {
-        id: `${this.idPrefix}3`,
-        label: 'Multi',
-        disabled: !this.state.multi,
-      },
-    ];
-
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
     const gridHorizontalSettings = isDarkTheme
@@ -101,25 +78,11 @@ class _TimeChart extends Component {
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
     const formatter = timeFormatter(niceTimeFormatByDay(1));
-    let ChartType;
-    let ChartType2;
-    switch (this.state.toggleIdSelected) {
-      case 'chartType0':
-        ChartType = BarSeries;
-        ChartType2 = BarSeries;
-        break;
-      case 'chartType1':
-        ChartType = LineSeries;
-        ChartType2 = LineSeries;
-        break;
-      case 'chartType2':
-        ChartType = AreaSeries;
-        ChartType2 = AreaSeries;
-        break;
-      case 'chartType3':
-        ChartType = BarSeries;
-        ChartType2 = LineSeries;
-        break;
+    let ChartType = this.state.chartType;
+    let ChartType2 = this.state.chartType;
+    if (this.state.chartType === 'Mixed') {
+      ChartType = BarSeries;
+      ChartType2 = LineSeries;
     }
 
     return (
@@ -179,26 +142,11 @@ class _TimeChart extends Component {
         <EuiFlexGrid
           columns={3}
           className="euiGuide__chartsPageCrosshairSection">
-          {/* <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Titles"
-              description="Provide a meaningful, descriptive title. The title may need to change when show single vs multiple series."
-            />
-          </EuiFlexItem> */}
-
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Chart types"
-              description="Time series charts can be displayed as any x/y series type.">
-              <EuiRadioGroup
-                compressed
-                options={this.toggleButtonsIcons}
-                idSelected={this.state.toggleIdSelected}
-                onChange={this.onChartTypeChange}
-              />
-            </EuiCard>
+            <ChartTypeCard
+              onChange={this.onChartTypeChange}
+              mixed={this.state.multi ? 'enabled' : 'disabled'}
+            />
           </EuiFlexItem>
 
           <EuiFlexItem>

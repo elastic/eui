@@ -11,8 +11,6 @@ import {
   getAxisId,
   Position,
   ScaleType,
-  LineSeries,
-  AreaSeries,
 } from '@elastic/charts';
 
 import {
@@ -21,11 +19,8 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 import {
-  // EuiCard,
-  // EuiCopy,
   EuiSwitch,
   EuiSpacer,
-  EuiRadioGroup,
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
@@ -34,6 +29,7 @@ import {
 } from '../../../../src/components';
 
 import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
+import { ChartTypeCard } from './shared';
 
 class _CategoryChart extends Component {
   constructor(props) {
@@ -47,7 +43,7 @@ class _CategoryChart extends Component {
       rotated: false,
       ordered: false,
       formatted: false,
-      toggleIdSelected: `${this.idPrefix}0`,
+      chartType: BarSeries,
     };
   }
 
@@ -82,28 +78,13 @@ class _CategoryChart extends Component {
     });
   };
 
-  onChartTypeChange = optionId => {
+  onChartTypeChange = chartType => {
     this.setState({
-      toggleIdSelected: optionId,
+      chartType: chartType,
     });
   };
 
   render() {
-    this.toggleButtonsIcons = [
-      {
-        id: `${this.idPrefix}0`,
-        label: 'BarSeries',
-      },
-      {
-        id: `${this.idPrefix}1`,
-        label: 'LineSeries',
-      },
-      {
-        id: `${this.idPrefix}2`,
-        label: 'AreaSeries',
-      },
-    ];
-
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
     const gridHorizontalSettings = isDarkTheme
@@ -113,18 +94,7 @@ class _CategoryChart extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    let ChartType;
-    switch (this.state.toggleIdSelected) {
-      case 'chartType0':
-        ChartType = BarSeries;
-        break;
-      case 'chartType1':
-        ChartType = LineSeries;
-        break;
-      case 'chartType2':
-        ChartType = AreaSeries;
-        break;
-    }
+    const ChartType = this.state.chartType;
 
     const DATASET = this.state.multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
 
@@ -223,17 +193,7 @@ class _CategoryChart extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Chart types"
-              description="Time series charts can be displayed as any x/y series type.">
-              <EuiRadioGroup
-                compressed
-                options={this.toggleButtonsIcons}
-                idSelected={this.state.toggleIdSelected}
-                onChange={this.onChartTypeChange}
-              />
-            </EuiCard>
+            <ChartTypeCard onChange={this.onChartTypeChange} />
           </EuiFlexItem>
 
           <EuiFlexItem>
