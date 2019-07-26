@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import {
+  EuiButtonEmpty,
+  EuiIcon,
   EuiPopover,
   EuiSuggestItem,
   EuiSuggestInput,
@@ -53,11 +55,28 @@ export default class extends Component {
     ];
 
     this.state = {
-      isPopoverOpen: false,
+      isPopoverOpen: props.isOpen || false,
       value: '',
       status: 'notYetSaved',
+      menuWidth: null,
     };
   }
+
+  openPopover = () => {
+    this.setState({
+      isPopoverOpen: true,
+    });
+
+    const focusSelected = () => {
+      requestAnimationFrame(() => {
+        this.setState({
+          menuWidth: this.popoverRef.getBoundingClientRect().width - 85,
+        });
+      });
+    };
+
+    requestAnimationFrame(focusSelected);
+  };
 
   closePopover() {
     this.setState({
@@ -67,9 +86,13 @@ export default class extends Component {
 
   onFieldChange(e) {
     this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
       value: e.target.value,
     });
+    if (this.state.isPopoverOpen) {
+      this.closePopover();
+    } else {
+      this.openPopover();
+    }
   }
 
   onChange(e) {
@@ -77,6 +100,10 @@ export default class extends Component {
       status: e.target.value,
     });
   }
+
+  setPopoverRef = ref => {
+    this.popoverRef = ref;
+  };
 
   render() {
     const suggestions = (sampleItems.map((item, index) => (
@@ -88,11 +115,18 @@ export default class extends Component {
       />
     )));
 
+    const hashtag = (
+      <EuiButtonEmpty iconType="arrowDown" iconSide="right">
+        <EuiIcon type="number" />
+      </EuiButtonEmpty>
+    );
+
     const button = (
       <EuiSuggestInput
         value={this.state.value}
         status={this.state.status}
         label={'KQL'}
+        action={hashtag}
         onChange={this.onFieldChange.bind(this)}
       />
     );
@@ -114,9 +148,10 @@ export default class extends Component {
           hasArrow={false}
           display="block"
           panelPaddingSize="none"
+          popoverRef={this.setPopoverRef}
           isOpen={this.state.isPopoverOpen}
           closePopover={this.closePopover.bind(this)}>
-          <div>{suggestions}</div>
+          <div className="suggestions" style={{ width: this.state.menuWidth }}>{suggestions}</div>
         </EuiPopover>
       </div>
     );

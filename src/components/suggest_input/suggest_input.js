@@ -6,16 +6,20 @@ import { EuiFilterButton } from '../filter_group';
 import { EuiFieldText } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
+import { EuiPopover } from '../popover';
 
 export const EuiSuggestInput = ({
   className,
   status,
   label,
+  action,
   value,
   ...rest
 }) => {
   const filterTriggerButton = (
-    <EuiFilterButton title="title">Filters</EuiFilterButton>
+    <EuiFilterButton title="title" onClick={this.toggleFilter}>
+      {action}
+    </EuiFilterButton>
   );
 
   const statusMap = {
@@ -81,6 +85,7 @@ EuiSuggestInput.propTypes = {
    * Label to go with status elements (e.g. KQL).
    */
   label: PropTypes.node,
+  action: PropTypes.node,
 };
 
 EuiSuggestInput.defaultProps = {};

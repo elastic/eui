@@ -15,8 +15,7 @@
 }
 
 .euiSuggestInput__popOverPanel {
-  width: 60.3% !important;
-  left: 30% !important;
+  transform: translateY(-8px) translateX(75px) !important;
 }
 
 .euiSuggestInput__popOverPanel[class*='bottom'] { /* 3 */

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
-import { EuiSpacer, EuiSuggestInput } from '../../../../src/components';
+import {
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiSpacer,
+  EuiSuggestInput,
+} from '../../../../src/components';
 
 const statusList = ['notYetSaved', 'saved', 'noNewChanges', 'isLoading'];
 
@@ -20,6 +25,12 @@ export default class extends Component {
   };
 
   render() {
+    const hashtag = (
+      <EuiButtonEmpty iconType="arrowDown" iconSide="right">
+        <EuiIcon type="number" />
+      </EuiButtonEmpty>
+    );
+
     return (
       <div>
         {statusList.map(item => (
@@ -28,6 +39,7 @@ export default class extends Component {
               onChange={this.onChange}
               value={this.state.value}
               status={item}
+              action={hashtag}
               label={'KQL'}
             />
             <EuiSpacer size="m" />
