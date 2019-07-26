@@ -24,10 +24,6 @@ export interface EuiDescriptionListProps {
    */
   compressed?: boolean;
   /**
-   * Turns a column layout into normal row layout on small screens
-   */
-  responsive?: boolean;
-  /**
    * How should the content be styled, by default
    * this will emphasize the title
    */
@@ -48,8 +44,9 @@ export interface EuiDescriptionListProps {
 
 const typesToClassNameMap = {
   row: 'euiDescriptionList--row',
-  column: 'euiDescriptionList--column',
   inline: 'euiDescriptionList--inline',
+  column: 'euiDescriptionList--column',
+  responsiveColumn: 'euiDescriptionList--responsiveColumn',
 };
 
 export const TYPES = keysOf(typesToClassNameMap);
@@ -77,7 +74,6 @@ export const EuiDescriptionList: FunctionComponent<
   compressed = false,
   descriptionProps,
   listItems,
-  responsive = false,
   textStyle = 'normal',
   titleProps,
   type = 'row',
@@ -90,7 +86,6 @@ export const EuiDescriptionList: FunctionComponent<
     textStyle ? textStylesToClassNameMap[textStyle] : undefined,
     {
       'euiDescriptionList--compressed': compressed,
-      'euiDescriptionList--responsive': responsive,
     },
     className
   );

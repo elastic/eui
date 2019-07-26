@@ -110,13 +110,13 @@ export const DescriptionListExample = {
       text: (
         <Fragment>
           <p>
-            Using a prop <EuiCode>type</EuiCode> set to{' '}
+            Using the prop <EuiCode>type</EuiCode> set to{' '}
             <EuiCode>column</EuiCode> description lists can be presented in an
             inline, column format.
           </p>
           <p>
-            To return to they typical row format on smaller screens set{' '}
-            <EuiCode>responsive = true</EuiCode>.
+            To return to the typical row format on smaller screens set{' '}
+            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>.
           </p>
         </Fragment>
       ),
