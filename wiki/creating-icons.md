@@ -1,6 +1,6 @@
 # Creating icons
 
-Below you will find guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to asssit, we greatly appreciate your contributions and pull requests.
+Below you will find guidelines for designing a new icon, cleaning up the SVG, and getting it added to EUI. While designers on the EUI team are available to assist, we greatly appreciate your contributions and pull requests.
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
@@ -8,7 +8,7 @@ _**Note**: The `EuiIcon` component accepts external references to icon files, so
 
 ## Design the icon
 
-From a content perspective, we've taken an approach of being open to many types of icons. Stylistically, we have more stringent requirements outlined below.
+From a content perspective, we've taken an approach of being open to many types of icons so long as they don't duplicate an icon that already exists. Stylistically, we have more stringent requirements outlined below.
 
 ### Content
 
@@ -29,46 +29,11 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 
 [add images here]
 
-#### _For all Sketch users_
-_All contributors who use Sketch can reference the `icons.sketch` file contained in the downloadable **Sketch libraries** link atop the [EUI documentation site][docs]._
-
-#### _For Elastic Sketch users_
-_Internal team members, with access to Abstract, can alternatively check out the `icons.sketch` file in the EUI 2.0 project. See **Update the Sketch library** below._
+#### _For Sketch users_
+_For reference, view the `icons.sketch` file contained in the downloadable **Sketch libraries** link atop the [EUI documentation site][docs]._
 
 #### _For non-Sketch users_
 _While we use Sketch to maintain our internal design library, you can use any design tool to produce the SVG file._
-
-
-### Update the Sketch library
-_**This section only applies to internal Elastic team members who have access to the EUI 2.0 project on Abstract.**_
-
-If you are designing your icon in the EUI `icons.sketch` library file, you will need to follow these additional steps:
-
-_1. Install these Sketch plugins:_
-
-- [Symbols organizer plugin][sketch-symbol-organizer-plugin]
-- [SVGO plugin][sketch-SVGO-plugin]
-
-_2. Complete the following steps:_
-
-- Create a new branch in the Abstract EUI 2.0 project
-- Edit (open) the `icons.sketch` file
-- Go to the **Symbols** page in the file
-- Create your icon on a 16px by 16px artboard with the appropriate name for the target group (e.g. `base/iconName`; the artboard name is used by the Symbol organizer plugin below)
-- Convert shapes to outlines (e.g. if you draw shapes and apply 1px borders)
-- Union your shapes and flatten layers
-- With your icon layer selected, apply the "5. Darkest gray" style in the overrides panel
-- Rename your icon layer as "return_symbol rainbow_emoji Color" [insert image]
-- Select the artboard and make it exportable as an SVG
-- Run the [Symbols organizer plugin][sketch-symbol-organizer-plugin] to re-order the artboards (the plugin settings can be viewed on the **Styleguide** page)
-- Commit your changes to Abstract and request a review from an EUI designer (this can be done through your GitHub issue or in Abstract)
-
-_3. Post approval in Abstract:_
-- Export the SVG (the SVGO plugin will run automatically)
-- Commit any outstanding changes
-- Merge your branch in Abstract
-
-Contact the EUI design team if you have questions. We thank you for your efforts in keeping things nice and tidy :sweat_smile: 
 
 ## Add the icon to the EUI repo
 
@@ -99,7 +64,7 @@ _2. Display the icon in the docs_
 _3. Compile and test_
 - Run `yarn compile-icons`
 - Preview your icon locally at `http://localhost:8030/#/display/icons` **
-- Switch the docs to dark mode and verify that the icon is visible
+- Switch the docs to dark mode and verify that the icon is visible (all paths should be filled with the reverse color)
 
 If everything looks good, then commit your changes, push up your branch, and open a PR! :raised_hands:
 

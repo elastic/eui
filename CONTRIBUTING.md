@@ -8,7 +8,7 @@ When creating new components, adding new features, or fixing bugs, please refer 
 
 ### Adding icons
 
-EUI provides an ever-growing set of [icons][icons], but there are times when you still need something else. In this case, create a new issue and label it with the *icons* tag. A designer from the EUI team will respond to discuss your needs.
+EUI provides an ever-growing set of [icons][icons], but our set can be incomplete. If you find you need an icon that does not exist, create a new issue and tag it with the *icons* label. A designer from the EUI team will respond to discuss your needs.
 
 If you are willing and able to design the icon yourself, then please refer to the [Creating icons][creating-icons] section of the wiki for design guidelines and instructions on creating your pull request.
 
