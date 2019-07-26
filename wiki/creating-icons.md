@@ -55,9 +55,9 @@ _2. Complete the following steps:_
 - Edit (open) the `icons.sketch` file
 - Go to the **Symbols** page in the file
 - Create your icon on a 16px by 16px artboard with the appropriate name for the target group (e.g. `base/iconName`; the artboard name is used by the Symbol organizer plugin below)
-- Conver shapes to outlines (e.g. if you draw shapes and apply 1px borders)
+- Convert shapes to outlines (e.g. if you draw shapes and apply 1px borders)
 - Union your shapes and flatten layers
-- With you icon layer selected, apply the "5. Darkest gary" style in the overrides panel
+- With your icon layer selected, apply the "5. Darkest gray" style in the overrides panel
 - Rename your icon layer as "return_symbol rainbow_emoji Color" [insert image]
 - Select the artboard and make it exportable as an SVG
 - Run the [Symbols organizer plugin][sketch-symbol-organizer-plugin] to re-order the artboards (the plugin settings can be viewed on the **Styleguide** page)
