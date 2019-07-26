@@ -21,6 +21,13 @@
       height: 100%;
       padding-top: 0; // Fixes IE
       padding-bottom: 0; // Fixes IE
+      padding-left: $euiFormControlCompressedPadding;
+      padding-right: $euiFormControlCompressedPadding;
+    }
+
+    .euiFormControlLayoutIcons {
+      padding-left: $euiFormControlCompressedPadding;
+      padding-right: $euiFormControlCompressedPadding;
     }
   }
 
@@ -56,6 +63,7 @@
   border-radius: 0 !important;
   text-align: center;
   height: 100%;
+  min-width: 0; // Fixes FF
 
   .euiFormControlLayoutDelimited[class*='--compressed'] & {
     max-width: none;
