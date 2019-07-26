@@ -153,7 +153,7 @@ class _TimeChart extends Component {
             <EuiCard
               textAlign="left"
               title="Single vs multiple series"
-              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation. Do not stack line charts.">
+              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
               <EuiSwitch
                 label="Show multi-series"
                 checked={this.state.multi}
