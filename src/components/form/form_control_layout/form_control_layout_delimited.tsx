@@ -49,8 +49,7 @@ function addClassesToControl(control: ReactElement) {
   return cloneElement(control, {
     className: classNames(
       control.props.className,
-      'euiFormControlLayoutDelimited__child--noStyle',
-      'euiFormControlLayoutDelimited__child--centered'
+      'euiFormControlLayoutDelimited__input'
     ),
   });
 }

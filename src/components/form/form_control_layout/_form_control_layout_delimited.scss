@@ -1,3 +1,6 @@
+@import '../variables';
+@import '../mixins';
+
 .euiFormControlLayoutDelimited {
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow;
@@ -10,18 +13,27 @@
     align-items: center;
   }
 
-  input {
-    height: 100%;
+  &[class*='--compressed'] {
+    @include euiFormControlDefaultShadow($borderOnly: true);
+    border-radius: $euiBorderRadius / 2;
+
+    .euiFormControlLayoutDelimited__input {
+      height: 100%;
+      padding-top: 0; // Fixes IE
+      padding-bottom: 0; // Fixes IE
+    }
   }
 
-  &[class*='--compressed'] input {
-    height: 100%;
-    padding-top: 0; // Fixes IE
-    padding-bottom: 0; // Fixes IE
+  &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper {
+    width: 100%;
   }
 
-  &[class*='--fullWidth'] input {
-    max-width: none;
+  &[class*='--readOnly'] {
+    @include euiFormControlReadOnlyStyle;
+
+    input {
+      background-color: transparent; // Ensures the input and layout don't double up on background color
+    }
   }
 
   .euiFormControlLayoutIcons {
@@ -38,14 +50,16 @@
   }
 }
 
-.euiFormControlLayoutDelimited__child--noStyle {
+.euiFormControlLayoutDelimited__input {
   // sass-lint:disable-block no-important
   box-shadow: none !important;
   border-radius: 0 !important;
-}
-
-.euiFormControlLayoutDelimited__child--centered {
   text-align: center;
+  height: 100%;
+
+  .euiFormControlLayoutDelimited[class*='--compressed'] & {
+    max-width: none;
+  }
 }
 
 .euiFormControlLayoutDelimited__delimeter {
