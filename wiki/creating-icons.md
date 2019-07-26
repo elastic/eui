@@ -33,7 +33,7 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 ![guides](https://user-images.githubusercontent.com/446285/61978787-c4f86580-afb7-11e9-88f7-ec051899fbaf.png)
 
 #### _For Sketch users_
-_For reference, view the `icons.sketch` file contained in the downloadable **Sketch libraries** link atop the [EUI documentation site][docs]._
+_As a reference, you can downlaod and view the `icons.sketch` file via the **Sketch libraries** link atop the [EUI documentation site][docs] site. The Symbols page within this file contains artboards for the vast majority of EUI glyphs._
 
 #### _For non-Sketch users_
 _While we use Sketch to maintain our internal design library, you can use any design tool to produce the SVG file._
