@@ -49,6 +49,7 @@ export class FilePicker extends Component {
             <EuiFilePicker
               id="asdf2"
               multiple
+              compressed
               initialPromptText="Select or drag and drop multiple files"
               onChange={files => {
                 this.onChange(files);
@@ -65,13 +66,14 @@ export class FilePicker extends Component {
 
         <EuiSpacer size="m" />
 
-        <EuiFilePicker disabled initialPromptText="Disabled" />
+        <EuiFilePicker disabled compressed initialPromptText="Disabled" />
 
         <EuiSpacer size="m" />
 
         <EuiFilePicker
           display="default"
           initialPromptText="Select some files"
+          compressed
           onChange={files => {
             this.onChange(files);
           }}
@@ -80,8 +82,12 @@ export class FilePicker extends Component {
         <EuiSpacer size="m" />
 
         <EuiFilePicker
+          id="asdf4"
           compressed
-          initialPromptText="Select some files"
+          display="default"
+          isInvalid
+          fullWidth
+          initialPromptText="Select a file"
           onChange={files => {
             this.onChange(files);
           }}

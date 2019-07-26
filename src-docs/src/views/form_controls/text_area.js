@@ -21,6 +21,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiTextArea
+          compressed
           placeholder="Placeholder text"
           aria-label="Use aria labels when no actual label is in use"
           value={this.state.value}
@@ -35,6 +36,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           disabled
+          compressed
         />
 
         <EuiSpacer size="m" />
@@ -45,6 +47,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           readOnly
+          compressed
         />
 
         <EuiSpacer size="m" />
@@ -54,6 +57,8 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
+          isInvalid
+          fullWidth
         />
       </Fragment>
     );

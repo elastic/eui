@@ -42,6 +42,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
@@ -50,6 +51,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
@@ -59,6 +61,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
@@ -68,6 +71,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
@@ -87,6 +91,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
@@ -96,6 +101,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSuperSelect
+          compressed
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}

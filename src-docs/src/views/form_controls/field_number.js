@@ -8,6 +8,7 @@ export default class extends Component {
 
     this.state = {
       value: '',
+      rangeValue: undefined,
     };
   }
 
@@ -18,10 +19,17 @@ export default class extends Component {
     });
   };
 
+  onRangeChange = value => {
+    this.setState({
+      rangeValue: value,
+    });
+  };
+
   render() {
     return (
       <Fragment>
         <EuiFieldNumber
+          compressed
           placeholder="Placeholder text"
           value={this.state.value}
           onChange={this.onChange}
@@ -31,6 +39,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldNumber
+          compressed
           placeholder="Disabled"
           value={this.state.value}
           onChange={this.onChange}
@@ -41,6 +50,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldNumber
+          compressed
           placeholder="Loading"
           value={this.state.value}
           onChange={this.onChange}
@@ -51,6 +61,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldNumber
+          compressed
           placeholder="Loading and disabled"
           value={this.state.value}
           onChange={this.onChange}
@@ -62,6 +73,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldNumber
+          compressed
           placeholder="Read-only"
           value={this.state.value}
           onChange={this.onChange}
@@ -76,11 +88,14 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
+          isInvalid
+          fullWidth
         />
 
         <EuiSpacer size="m" />
 
         <EuiFieldNumber
+          compressed
           style={{ textAlign: 'right' }}
           append={
             <EuiText size="xs">

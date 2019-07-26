@@ -27,6 +27,7 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiSelect
+          compressed
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
@@ -36,6 +37,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSelect
+          compressed
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
@@ -46,6 +48,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSelect
+          compressed
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
@@ -56,6 +59,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiSelect
+          compressed
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
@@ -68,9 +72,12 @@ export default class extends Component {
 
         <EuiSelect
           options={this.options}
-          value={this.state.value}
+          // value={this.state.value}
           onChange={this.onChange}
           compressed
+          isInvalid
+          fullWidth
+          hasNoInitialSelection
         />
       </Fragment>
     );

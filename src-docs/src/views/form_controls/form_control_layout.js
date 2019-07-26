@@ -10,58 +10,59 @@ import {
 
 export default () => (
   <Fragment>
-    <EuiFormControlLayout icon="search">
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout icon="search" compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout isLoading>
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout isLoading compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout clear={{ onClick: () => {} }}>
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout clear={{ onClick: () => {} }} compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout isLoading clear={{ onClick: () => {} }}>
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout isLoading icon="search">
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout isLoading icon="search" compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout isLoading icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
-    </EuiFormControlLayout>
-
-    <EuiSpacer size="m" />
-
-    <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout
+      isLoading
+      icon={{ type: 'arrowDown', side: 'right' }}
+      compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
       clear={{ onClick: () => {} }}
-      icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
+      icon="search"
+      compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
-    <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+    <EuiFormControlLayout
+      clear={{ onClick: () => {} }}
+      icon={{ type: 'arrowDown', side: 'right' }}
+      compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
@@ -69,19 +70,35 @@ export default () => (
     <EuiFormControlLayout
       isLoading
       clear={{ onClick: () => {} }}
-      icon={{ type: 'arrowDown', side: 'right' }}>
-      <input type="text" className="euiFieldText" />
-    </EuiFormControlLayout>
-
-    <EuiSpacer size="m" />
-
-    <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} icon="search">
-      <input type="text" className="euiFieldText" />
+      icon="search"
+      compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
     </EuiFormControlLayout>
 
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
+      isLoading
+      compressed
+      clear={{ onClick: () => {} }}
+      icon={{ type: 'arrowDown', side: 'right' }}>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
+    </EuiFormControlLayout>
+
+    <EuiSpacer size="m" />
+
+    <EuiFormControlLayout
+      isLoading
+      clear={{ onClick: () => {} }}
+      icon="search"
+      compressed>
+      <input type="text" className="euiFieldText euiFieldText--compressed" />
+    </EuiFormControlLayout>
+
+    <EuiSpacer size="m" />
+
+    <EuiFormControlLayout
+      compressed
       prepend={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}>
       <input
         type="text"
@@ -93,6 +110,7 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
+      compressed
       readOnly
       prepend={<EuiFormLabel htmlFor="textField19a">Read only</EuiFormLabel>}>
       <input
@@ -106,6 +124,7 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
+      compressed
       append={
         <EuiText size="xs">
           <strong>%</strong>
@@ -117,6 +136,7 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
+      compressed
       isLoading
       clear={{ onClick: () => {} }}
       prepend={
