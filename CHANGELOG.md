@@ -2,6 +2,7 @@
 
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
 - Added `tall`, `fullWidth`, and `isInvalid` props to `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
+- Added exports for `react-beautiful-dnd` interfaces used by EUI components ([#2173](https://github.com/elastic/eui/pull/2173))
 
 **Bug fixes**
 
