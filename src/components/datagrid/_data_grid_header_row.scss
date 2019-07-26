@@ -1,9 +1,18 @@
+.euiDataGridHeader {
+  display: inline-flex;
+  min-width: 100%;
+}
+
 .euiDataGridHeaderCell {
-  display: inline-block;
-  padding: $euiSize;
+  @include euiFontSizeXS;
+
+  padding: $euiSizeM / 2;
   border: $euiBorderThin;
-  border-left-width: 0;
+  border-left: none;
   position: relative;
+  background: $euiColorLightestShade;
+  flex: 0 0 auto;
+
 
   &:first-of-type {
     border-left: $euiBorderThin;

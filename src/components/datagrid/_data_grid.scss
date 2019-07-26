@@ -1,0 +1,7 @@
+.euiDataGrid {
+  @include euiScrollBar;
+  font-feature-settings: 'tnum' 1; // Tabular numbers
+  overflow-x: auto;
+  max-width: 100%;
+  width: 100%;
+}
