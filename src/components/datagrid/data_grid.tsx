@@ -63,7 +63,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
     const { columns, rowCount, renderCellValue, ...rest } = this.props;
 
     return (
-      <div {...rest}>
+      <div {...rest} className="euiDataGrid">
         <EuiDataGridHeaderRow
           columns={columns}
           columnWidths={columnWidths}

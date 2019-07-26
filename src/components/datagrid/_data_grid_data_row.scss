@@ -1,12 +1,15 @@
 .euiDataGridRow {
-  white-space: nowrap;
+  display: inline-flex;
+  min-width: 100%;
 }
 
 .euiDataGridRowCell {
-  display: inline-block;
-  padding: $euiSize;
-  border: $euiBorderThin;
-  border-left-width: 0;
+  @include euiFontSizeXS;
+  @include euiTextTruncate;
+
+  padding: $euiSizeM / 2;
+  border-right: $euiBorderThin;
+  border-bottom: $euiBorderThin;
   overflow: hidden;
   white-space: nowrap;
 

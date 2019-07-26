@@ -1,9 +1,27 @@
+  // Resizer straddles the column border and is an invisible hitzone for dragging
 .euiDataGridColumnResizer {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -$euiSizeS;
   height: 100%;
-  width: 3px;
-  background-color: $euiColorDarkestShade;
+  width: $euiSize;
   cursor: ew-resize;
+  opacity: 0;
+  z-index: 2;
+
+  // Center a vertical line within the button above
+  &:after {
+    content: '';
+    position: absolute;
+    left: $euiSizeS - 1px;
+    top: 0;
+    bottom: 0;
+    width: $euiDataGridColumnResizerWidth;
+    background-color: $euiColorPrimary;
+  }
+
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
 }
