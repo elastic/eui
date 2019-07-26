@@ -1,175 +1,199 @@
 @import '../form_control_layout/mixins';
 
+/**
+  * REMEMBER: --large modifiers must come last to override --compressed
+  */
+
 .euiFilePicker {
-  .euiFilePicker__wrap {
-    // Auto means the height isn't set to a fixed size
-    @include euiFormControlSize(auto);
+  @include euiFormControlSize;
+  position: relative;
 
-    position: relative;
-    display: inline-block;
-
-    @at-root {
-      .euiFilePicker--compressed#{&} {
-        height: $euiSizeXL;
-      }
-    }
+  &.euiFilePicker--fullWidth {
+    max-width: 100%;
   }
 
-  // The input is an invisiable dropzone / button
-  .euiFilePicker__input {
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    overflow: hidden;
+  &.euiFilePicker--large {
+    height: auto;
+  }
+}
 
-    &:hover {
-      cursor: pointer;
-    }
+// The input is an invisiable dropzone / button
+.euiFilePicker__input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  overflow: hidden;
 
-    &:hover:disabled {
-      cursor: not-allowed;
-    }
-
-    &:disabled ~ .euiFilePicker__prompt {
-      color: $euiColorMediumShade;
-    }
+  &:hover {
+    cursor: pointer;
   }
 
-  .euiFilePicker__icon {
+  &:hover:disabled {
+    cursor: not-allowed;
+  }
+
+  &:disabled ~ .euiFilePicker__prompt {
+    color: $euiColorMediumShade;
+  }
+}
+
+.euiFilePicker__icon {
+  position: absolute;
+  left: $euiSizeM;
+  top: $euiSizeM;
+  transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
+
+  .euiFilePicker--compressed & {
+    top: $euiSizeS;
+  }
+
+  .euiFilePicker--large & {
+    position: static;
     margin-bottom: $euiSize;
-    transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
+  }
+}
 
-    @at-root {
-      .euiFilePicker--compressed#{&} {
-        // sass-lint:disable-block no-important
-        position: absolute;
-        top: $euiSizeS;
-        left: $euiSizeM;
-        transform: scale(1) !important; // don't scale icon on hover
-      }
-    }
+/**
+  * 1. Don't block the user from dropping files onto the filepicker.
+  * 3. Ensure space for import icon, loading spinner, and clear button (only if it has files)
+  * 4. Delay focus gradient or else it will only partially transition while file chooser opens
+  * 5. Static height so that it doesn't shift it's surrounding contents around
+  */
+.euiFilePicker__prompt {
+  @include euiFormControlDefaultShadow;
+  @include euiFormControlWithIcon; /* 3 */
+  height: $euiFormControlHeight;
+  padding-top: $euiFormControlPadding;
+  padding-right: $euiFormControlPadding;
+  padding-bottom: $euiFormControlPadding;
+  pointer-events: none; /* 1 */
+
+  // sass-lint:disable-block indentation
+  transition:
+    box-shadow $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in,
+    background-image $euiAnimSpeedFast ease-in,
+    background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
+
+  .euiFilePicker--compressed & {
+    height: $euiFormControlCompressedHeight;
+    padding-top: $euiFormControlCompressedPadding;
+    padding-right: $euiFormControlCompressedPadding;
+    padding-bottom: $euiFormControlCompressedPadding;
   }
 
-  /**
-   * 1. Don't block the user from dropping files onto the filepicker.
-   * 2. Put prompt on top of input, so the clear button can intercept the click.
-   * 3. Ensure space for import icon and clear button (only if it has files)
-   * 4. Delay focus gradient or else it will only partially transition while file chooser opens
-   */
-  .euiFilePicker__prompt {
-    @include euiFormControlDefaultShadow;
-
-    pointer-events: none; /* 1 */
-    position: relative; /* 2 */
-    z-index: 1; /* 2 */
-    display: block;
-    padding: $euiSizeL;
-    text-align: center;
-
-    // sass-lint:disable-block indentation
-    transition:
-      box-shadow $euiAnimSpeedFast ease-in,
-      background-color $euiAnimSpeedFast ease-in,
-      background-image $euiAnimSpeedFast ease-in,
-      background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
-
-    // sass-lint:disable-block mixins-before-declarations
-    @at-root {
-      .euiFilePicker--compressed#{&} {
-        height: $euiFormControlCompressedHeight;
-        padding: $euiFormControlCompressedPadding;
-        @include euiFormControlWithIcon; /* 3 */
-        text-align: left;
-      }
-    }
+  .euiFilePicker--large & {
+    height: $euiFilePickerTallHeight; /* 5 */
+    padding: 0 $euiSizeL;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .euiFilePicker__promptText {
-    @include euiFontSizeS;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .euiFilePicker-isInvalid & {
+    @include euiFormControlInvalidStyle;
+  }
+}
 
-    @at-root {
-      // make compressed prompt look like placeholder
-      .euiFilePicker--compressed#{&} {
-        color: $euiColorMediumShade;
-        line-height: $euiSize;
-      }
-    }
+.euiFilePicker__promptText {
+  @include euiFontSizeS;
+  @include euiTextTruncate;
+  line-height: $euiSize;
+  display: block;
+
+  // make normal sized prompt look like placeholder
+  .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
+    color: $euiColorMediumShade;
+  }
+}
+
+.euiFilePicker__clearButton,
+.euiFilePicker__loadingSpinner {
+  position: absolute;
+  right: $euiSizeM;
+  top: $euiSizeM;
+
+  .euiFilePicker--compressed & {
+    top: $euiSizeS;
+  }
+}
+
+/**
+  * 1. Undo the pointer-events: none applied to the enclosing prompt.
+  */
+.euiFilePicker__clearButton {
+  pointer-events: auto; /* 1 */
+
+  .euiFilePicker:not(.euiFilePicker--large) & {
+    @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
   }
 
-  /**
-   * 1. Undo the pointer-events: none applied to the enclosing prompt.
-   */
-  .euiFilePicker__clearButton {
-    pointer-events: auto; /* 1 */
-
-    // sass-lint:disable-block mixins-before-declarations
-    @at-root {
-      .euiFilePicker--compressed#{&} {
-        @include euiFormControlLayoutClearIcon('.euiFilePicker__clearIcon');
-        position: absolute;
-        top: $euiSizeS;
-        right: $euiSizeM;
-      }
-    }
+  .euiFilePicker--large & {
+    position: relative;
+    top: 0;
+    right: 0;
   }
+}
 
-  // Hover and focus
-  .euiFilePicker__input:hover:not(:disabled) + .euiFilePicker__prompt,
-  .euiFilePicker__input:focus + .euiFilePicker__prompt {
-    .euiFilePicker__promptText {
-      // Adding the underline to the prompt text ensures the underline
-      // color is the same as the current text color
-      text-decoration: underline;
-    }
+// Focus
+.euiFilePicker__showDrop .euiFilePicker__prompt,
+.euiFilePicker__input:focus + .euiFilePicker__prompt {
+  @include euiFormControlFocusStyle;
+}
 
-    .euiFilePicker__icon {
-      transform: scale(1.1);
-    }
-  }
+// Disabled
+.euiFilePicker__input:disabled + .euiFilePicker__prompt {
+  @include euiFormControlDisabledStyle;
+}
 
-  // Focus
-  .euiFilePicker__input:focus + .euiFilePicker__prompt {
-    @include euiFormControlFocusStyle;
-  }
-
-  // Disabled
-  .euiFilePicker__input:disabled + .euiFilePicker__prompt {
-    @include euiFormControlDisabledStyle;
-  }
-
-  &.euiFilePicker-hasFiles.euiFilePicker--compressed .euiFilePicker__prompt {
+// Make space for the icons on the right
+.euiFilePicker:not(.euiFilePicker--large) {
+  &.euiFilePicker-isLoading .euiFilePicker__prompt,
+  &.euiFilePicker-hasFiles .euiFilePicker__prompt {
     @include euiFormControlWithIcon(false, 'right'); /* 3 */
   }
+}
 
-  // When the filepicker has files in it, but not in compressed mode
-  &:not(.euiFilePicker--compressed).euiFilePicker-hasFiles .euiFilePicker__promptText {
-    font-weight: $euiFontWeightBold;
+// When the filepicker has files in it
+.euiFilePicker-hasFiles .euiFilePicker__promptText {
+  color: $euiTextColor;
+}
+
+// Large styles only
+.euiFilePicker--large {
+  // sass-lint:disable-block nesting-depth
+  // Hover and focus
+  .euiFilePicker__input:hover:not(:disabled),
+  .euiFilePicker__input:focus {
+    + .euiFilePicker__prompt {
+      .euiFilePicker__promptText {
+        // Adding the underline to the prompt text ensures the underline
+        // color is the same as the current text color
+        text-decoration: underline;
+      }
+
+      .euiFilePicker__icon {
+        transform: scale(1.1);
+      }
+    }
   }
 
-  // When the filepicker has files in it, AND in compressed mode
-  &.euiFilePicker--compressed.euiFilePicker-hasFiles .euiFilePicker__promptText {
-    color: $euiTextColor;
-  }
-
-  // When you are dragging files over the dropzone
+  // While dragging files over the dropzone
   &.euiFilePicker__showDrop .euiFilePicker__prompt {
-    @include euiFormControlFocusStyle;
-
     .euiFilePicker__promptText {
       text-decoration: underline;
     }
 
     .euiFilePicker__icon {
       transform: scale(1.1);
-      color: $euiColorPrimary;
     }
+  }
+
+  &.euiFilePicker-hasFiles .euiFilePicker__promptText {
+    font-weight: $euiFontWeightBold;
   }
 }
