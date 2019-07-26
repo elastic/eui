@@ -4,6 +4,7 @@ import { EuiDataGridDataRow } from './data_grid_data_row';
 import { CommonProps } from '../common';
 import { Column, ColumnWidths } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import classNames from 'classnames';
 
 type EuiDataGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -60,16 +61,22 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
 
   render() {
     const { columnWidths, rows } = this.state;
-    const { columns, rowCount, renderCellValue, ...rest } = this.props;
+    const {
+      columns,
+      rowCount,
+      renderCellValue,
+      className,
+      ...rest
+    } = this.props;
 
     return (
-      <div {...rest} className="euiDataGrid">
+      <div {...rest} className={classNames(className, 'euiDataGrid')}>
         <EuiDataGridHeaderRow
           columns={columns}
           columnWidths={columnWidths}
           setColumnWidth={this.setColumnWidth}
         />
-        <div className="dataGridBody">{rows}</div>
+        {rows}
       </div>
     );
   }

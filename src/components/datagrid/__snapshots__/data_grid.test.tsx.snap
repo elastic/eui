@@ -3,7 +3,7 @@
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
 <div
   aria-label="aria-label"
-  class="euiDataGrid"
+  class="testClass1 testClass2 euiDataGrid"
   data-test-subj="test subject string"
 >
   <div
@@ -44,64 +44,60 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     </div>
   </div>
   <div
-    class="dataGridBody"
+    class="euiDataGridRow"
+    data-test-subj="dataGridRow"
   >
     <div
-      class="euiDataGridRow"
-      data-test-subj="dataGridRow"
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
     >
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        0, A
-      </div>
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        0, B
-      </div>
+      0, A
     </div>
     <div
-      class="euiDataGridRow"
-      data-test-subj="dataGridRow"
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
     >
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        1, A
-      </div>
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        1, B
-      </div>
+      0, B
+    </div>
+  </div>
+  <div
+    class="euiDataGridRow"
+    data-test-subj="dataGridRow"
+  >
+    <div
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
+    >
+      1, A
     </div>
     <div
-      class="euiDataGridRow"
-      data-test-subj="dataGridRow"
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
     >
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        2, A
-      </div>
-      <div
-        class="euiDataGridRowCell"
-        data-test-subj="dataGridRowCell"
-        style="width:100px"
-      >
-        2, B
-      </div>
+      1, B
+    </div>
+  </div>
+  <div
+    class="euiDataGridRow"
+    data-test-subj="dataGridRow"
+  >
+    <div
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
+    >
+      2, A
+    </div>
+    <div
+      class="euiDataGridRowCell"
+      data-test-subj="dataGridRowCell"
+      style="width:100px"
+    >
+      2, B
     </div>
   </div>
 </div>
