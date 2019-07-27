@@ -4,7 +4,7 @@
 }
 
 .euiDataGridHeaderCell {
-  @include euiFontSizeXS;
+  @include euiFontSizeS;
 
   padding: $euiSizeM / 2;
   border: $euiBorderThin;
@@ -47,5 +47,18 @@
 .euiDataGrid--fontSizeLarge {
   .euiDataGridHeaderCell {
     @include euiFontSize;
+  }
+}
+
+// Padding alternates
+.euiDataGrid--paddingSmall {
+  .euiDataGridHeaderCell {
+    padding: $euiSizeXS;
+  }
+}
+
+.euiDataGrid--paddingLarge {
+  .euiDataGridHeaderCell {
+    padding: $euiSizeS;
   }
 }

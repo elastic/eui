@@ -148,7 +148,9 @@ export default () => {
         rowCount={data.length}
         gridStyle={{
           border: 'all',
-          fontSize: 'l',
+          fontSize: 's',
+          cellPadding: 'm',
+          stripes: true,
         }}
         renderCellValue={({ rowIndex, columnName }) =>
           data[rowIndex][columnName]

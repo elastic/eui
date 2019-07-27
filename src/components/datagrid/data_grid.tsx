@@ -10,6 +10,7 @@ import {
   EuiDataGridStyleRowHighlight,
   EuiDataGridStyleHeader,
   EuiDataGridStyleFontSizes,
+  EuiDataGridStyleCellPaddings,
 } from './data_grid_styles';
 import classNames from 'classnames';
 
@@ -37,6 +38,14 @@ const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
   all: '',
   horizontalOnly: 'euiDataGrid--bordersHorizontalOnly',
   none: 'euiDataGrid--bordersNone',
+};
+
+const cellPaddingsToClassMap: {
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+} = {
+  s: 'euiDataGrid--paddingSmall',
+  m: '',
+  l: 'euiDataGrid--paddingLarge',
 };
 
 type EuiDataGridProps = CommonProps &
@@ -109,12 +118,14 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
     let header: EuiDataGridStyleHeader;
     let rowHighlight: EuiDataGridStyleRowHighlight;
     let stripes: boolean;
+    let cellPadding: EuiDataGridStyleCellPaddings;
 
     fontSize = gridStyle.fontSize ? gridStyle.fontSize : 'm';
     border = gridStyle.border ? gridStyle.border : 'all';
     header = gridStyle.header ? gridStyle.header : 'minimal';
     rowHighlight = gridStyle.rowHighlight ? gridStyle.rowHighlight : 'minimal';
     stripes = gridStyle.stripes ? true : false;
+    cellPadding = gridStyle.cellPadding ? gridStyle.cellPadding : 'm';
 
     const classes = classNames(
       'euiDataGrid',
@@ -122,6 +133,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       bordersToClassMap[border],
       headerToClassMap[header],
       rowHighlightToClassMap[rowHighlight],
+      cellPaddingsToClassMap[cellPadding],
       {
         'euiDataGrid--stripes': stripes,
       },

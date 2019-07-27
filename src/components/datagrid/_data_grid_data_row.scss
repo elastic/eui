@@ -19,6 +19,14 @@
   }
 }
 
+.euiDataGrid--stripes {
+  .euiDataGridRow:nth-child(even) {
+    .euiDataGridRowCell {
+      background: $euiColorLightestShade;
+    }
+  }
+}
+
 // Border alternates
 .euiDataGrid--bordersNone {
   .euiDataGridRowCell {
@@ -43,5 +51,18 @@
 .euiDataGrid--fontSizeLarge {
   .euiDataGridRowCell {
     @include euiFontSize;
+  }
+}
+
+// Padding alternates
+.euiDataGrid--paddingSmall {
+  .euiDataGridRowCell {
+    padding: $euiSizeXS;
+  }
+}
+
+.euiDataGrid--paddingLarge {
+  .euiDataGridRowCell {
+    padding: $euiSizeS;
   }
 }
