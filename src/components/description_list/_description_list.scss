@@ -23,10 +23,6 @@
       text-align: center;
     }
 
-    &.euiDescriptionList--right {
-      text-align: right;
-    }
-
     // Reversed makes the description larger than the title
     &.euiDescriptionList--reverse {
       .euiDescriptionList__title {
@@ -66,7 +62,8 @@
   }
 
 
-  &.euiDescriptionList--column {
+  &.euiDescriptionList--column,
+  &.euiDescriptionList--responsiveColumn {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -96,7 +93,6 @@
 
     // Align the title to smush against the description.
     &.euiDescriptionList--center {
-
       .euiDescriptionList__title {
         text-align: right;
       }
@@ -115,7 +111,6 @@
     }
 
     &.euiDescriptionList--compressed {
-
       .euiDescriptionList__title {
         @include euiTitle('xxs');
         line-height: $euiLineHeight;
@@ -134,6 +129,40 @@
         .euiDescriptionList__description {
           @include euiTitle('xxs');
           line-height: $euiLineHeight;
+        }
+      }
+    }
+  }
+
+  &.euiDescriptionList--responsiveColumn {
+    @include euiBreakpoint('xs', 's') {
+      display: block;
+
+      .euiDescriptionList__title,
+      .euiDescriptionList__description {
+        width:  100%;
+        padding: 0;
+      }
+
+      .euiDescriptionList__description {
+        @include euiFontSizeS;
+        margin-top: 0;
+      }
+
+      &.euiDescriptionList--center {
+        .euiDescriptionList__title,
+        .euiDescriptionList__description {
+          text-align: center;
+        }
+      }
+
+      &.euiDescriptionList--reverse {
+        .euiDescriptionList__title {
+          @include euiFontSizeS;
+        }
+
+        .euiDescriptionList__description {
+          @include euiTitle('xs');
         }
       }
     }

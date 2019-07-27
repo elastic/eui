@@ -10,6 +10,7 @@ import { EuiDatePopoverContent } from './date_popover_content';
 export function EuiDatePopoverButton(props) {
   const {
     position,
+    isDisabled,
     isInvalid,
     needsUpdating,
     value,
@@ -30,6 +31,7 @@ export function EuiDatePopoverButton(props) {
       'euiDatePopoverButton-isSelected': isOpen,
       'euiDatePopoverButton-isInvalid': isInvalid,
       'euiDatePopoverButton-needsUpdating': needsUpdating,
+      'euiDatePopoverButton-disabled': isDisabled,
     },
   ]);
 
@@ -45,6 +47,7 @@ export function EuiDatePopoverButton(props) {
       onClick={onPopoverToggle}
       className={classes}
       title={title}
+      disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}>
       {formatTimeString(value, dateFormat, roundUp)}
@@ -75,6 +78,7 @@ export function EuiDatePopoverButton(props) {
 EuiDatePopoverButton.propTypes = {
   position: PropTypes.oneOf(['start', 'end']),
   isInvalid: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   needsUpdating: PropTypes.bool,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

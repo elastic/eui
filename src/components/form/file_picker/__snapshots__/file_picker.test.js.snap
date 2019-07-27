@@ -2,7 +2,7 @@
 
 exports[`EuiFilePicker is rendered 1`] = `
 <div
-  class="euiFilePicker testClass1 testClass2"
+  class="euiFilePicker euiFilePicker--large testClass1 testClass2"
 >
   <div
     class="euiFilePicker__wrap"

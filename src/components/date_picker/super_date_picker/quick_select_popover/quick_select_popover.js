@@ -106,6 +106,7 @@ export class EuiQuickSelectPopover extends Component {
         size="xs"
         iconType="arrowDown"
         iconSide="right"
+        isDisabled={this.props.isDisabled}
         data-test-subj="superDatePickerToggleQuickMenuButton">
         <EuiIcon
           type={
@@ -145,12 +146,12 @@ EuiQuickSelectPopover.propTypes = {
   start: PropTypes.string.isRequired,
   end: PropTypes.string.isRequired,
   applyRefreshInterval: PropTypes.func,
+  isDisabled: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
   refreshInterval: PropTypes.number.isRequired,
   commonlyUsedRanges: PropTypes.arrayOf(commonlyUsedRangeShape).isRequired,
   dateFormat: PropTypes.string.isRequired,
   recentlyUsedRanges: PropTypes.arrayOf(recentlyUsedRangeShape).isRequired,
-  isAutoRefreshOnly: PropTypes.bool.isRequired,
   isAutoRefreshOnly: PropTypes.bool.isRequired,
   customQuickSelectPanels: PropTypes.arrayOf(quickSelectPanelShape),
 };
