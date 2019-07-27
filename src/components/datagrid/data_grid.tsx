@@ -4,13 +4,47 @@ import { EuiDataGridDataRow } from './data_grid_data_row';
 import { CommonProps } from '../common';
 import { Column, ColumnWidths } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
+import {
+  EuiDataGridStyle,
+  EuiDataGridStyleBorders,
+  EuiDataGridStyleRowHighlight,
+  EuiDataGridStyleHeader,
+  EuiDataGridStyleSizes,
+} from './data_grid_styles';
 import classNames from 'classnames';
+
+const sizeToClassMap: { [size in EuiDataGridStyleSizes]: string } = {
+  s: 'euiGrid--small',
+  m: 'euiGrid--medium',
+  l: 'euiGrid--large',
+};
+
+const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
+  minimal: 'euiGrid--minimal',
+  pronounced: 'euiGrid--pronounced',
+  none: 'euiGrid--pronounced',
+};
+
+const rowHighlightToClassMap: {
+  [rowHighlight in EuiDataGridStyleRowHighlight]: string
+} = {
+  minimal: 'euiGrid--minimal',
+  pronounced: 'euiGrid--pronounced',
+  none: 'euiGrid--pronounced',
+};
+
+const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
+  all: 'euiGrid--bordersAll',
+  horizontalOnly: 'euiGrid--bordersHorizontalOnly',
+  none: 'euiGrid--bordersNone',
+};
 
 type EuiDataGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: Column[];
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    gridStyle?: EuiDataGridStyle;
   };
 
 interface EuiDataGridState {
@@ -66,11 +100,36 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       rowCount,
       renderCellValue,
       className,
+      gridStyle = {},
       ...rest
     } = this.props;
 
+    let size: EuiDataGridStyleSizes;
+    let border: EuiDataGridStyleBorders;
+    let header: EuiDataGridStyleHeader;
+    let rowHighlight: EuiDataGridStyleRowHighlight;
+    let stripes: boolean;
+
+    size = gridStyle.size ? gridStyle.size : 'm';
+    border = gridStyle.border ? gridStyle.border : 'all';
+    header = gridStyle.header ? gridStyle.header : 'minimal';
+    rowHighlight = gridStyle.rowHighlight ? gridStyle.rowHighlight : 'minimal';
+    stripes = gridStyle.stripes ? true : false;
+
+    const classes = classNames(
+      'euiDataGrid',
+      sizeToClassMap[size],
+      bordersToClassMap[border],
+      headerToClassMap[header],
+      rowHighlightToClassMap[rowHighlight],
+      {
+        'euiToken--stripes': stripes,
+      },
+      className
+    );
+
     return (
-      <div {...rest} className={classNames(className, 'euiDataGrid')}>
+      <div {...rest} className={classes}>
         <EuiDataGridHeaderRow
           columns={columns}
           columnWidths={columnWidths}
