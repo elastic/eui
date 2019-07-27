@@ -5,6 +5,7 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiSuggestInput,
   EuiSuggestItem,
@@ -52,9 +53,14 @@ export const SuggestExample = {
       ],
       text: (
         <div>
-          <p>
-            <EuiCode>EuiSuggest</EuiCode> description goes here.
-          </p>
+          <EuiCallOut color="warning" title="Demo of visual pattern only">
+            <p>
+              This documents a <strong>visual</strong> pattern for the eventual
+              replacement of Kibana&apos;s global query and filter bars. The
+              filter bar has been broken down into multiple components. There
+              are still bugs and not all the logic is well-formed.
+            </p>
+          </EuiCallOut>
         </div>
       ),
       demo: <Suggest />,

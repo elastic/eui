@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import {
   EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiIcon,
   EuiPopover,
   EuiSuggestItem,
@@ -9,6 +11,9 @@ import {
   EuiSelect,
   EuiSpacer,
 } from '../../../../src/components';
+
+import { GlobalFilterBar } from './global_filter_bar';
+import GlobalFilterOptions from './global_filter_options';
 
 const shortDescription = 'This is the description';
 
@@ -59,6 +64,44 @@ export default class extends Component {
       value: '',
       status: 'notYetSaved',
       menuWidth: null,
+      filters: [
+        {
+          id: 'filter0',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: false,
+          isPinned: true,
+          isExcluded: false,
+        },
+        {
+          id: 'filter1',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: true,
+          isPinned: false,
+          isExcluded: false,
+        },
+        {
+          id: 'filter2',
+          field: '@tags.keyword',
+          operator: 'IS NOT',
+          value: 'value',
+          isDisabled: false,
+          isPinned: true,
+          isExcluded: true,
+        },
+        {
+          id: 'filter3',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: false,
+          isPinned: false,
+          isExcluded: false,
+        },
+      ],
     };
   }
 
@@ -153,6 +196,22 @@ export default class extends Component {
           closePopover={this.closePopover.bind(this)}>
           <div className="suggestions" style={{ width: this.state.menuWidth }}>{suggestions}</div>
         </EuiPopover>
+        <EuiFlexGroup
+          className="globalFilterGroup"
+          gutterSize="none"
+          alignItems="flexStart"
+          responsive={false}>
+          <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
+            <GlobalFilterOptions />
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <GlobalFilterBar
+              className="globalFilterGroup__filterBar"
+              filters={this.state.filters}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </div>
     );
   }
