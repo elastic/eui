@@ -146,6 +146,10 @@ export default () => {
       <EuiDataGrid
         columns={columns}
         rowCount={data.length}
+        gridStyle={{
+          border: 'all',
+          fontSize: 'l',
+        }}
         renderCellValue={({ rowIndex, columnName }) =>
           data[rowIndex][columnName]
         }

@@ -9,34 +9,34 @@ import {
   EuiDataGridStyleBorders,
   EuiDataGridStyleRowHighlight,
   EuiDataGridStyleHeader,
-  EuiDataGridStyleSizes,
+  EuiDataGridStyleFontSizes,
 } from './data_grid_styles';
 import classNames from 'classnames';
 
-const sizeToClassMap: { [size in EuiDataGridStyleSizes]: string } = {
-  s: 'euiGrid--small',
-  m: 'euiGrid--medium',
-  l: 'euiGrid--large',
+const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
+  s: 'euiDataGrid--fontSizeSmall',
+  m: '',
+  l: 'euiDataGrid--fontSizeLarge',
 };
 
 const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
-  minimal: 'euiGrid--minimal',
-  pronounced: 'euiGrid--pronounced',
-  none: 'euiGrid--pronounced',
+  minimal: 'euiDataGrid--minimal',
+  pronounced: 'euiDataGrid--pronounced',
+  none: 'euiDataGrid--pronounced',
 };
 
 const rowHighlightToClassMap: {
   [rowHighlight in EuiDataGridStyleRowHighlight]: string
 } = {
-  minimal: 'euiGrid--minimal',
-  pronounced: 'euiGrid--pronounced',
-  none: 'euiGrid--pronounced',
+  minimal: 'euiDataGrid--minimal',
+  pronounced: 'euiDataGrid--pronounced',
+  none: 'euiDataGrid--pronounced',
 };
 
 const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
-  all: 'euiGrid--bordersAll',
-  horizontalOnly: 'euiGrid--bordersHorizontalOnly',
-  none: 'euiGrid--bordersNone',
+  all: '',
+  horizontalOnly: 'euiDataGrid--bordersHorizontalOnly',
+  none: 'euiDataGrid--bordersNone',
 };
 
 type EuiDataGridProps = CommonProps &
@@ -104,13 +104,13 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       ...rest
     } = this.props;
 
-    let size: EuiDataGridStyleSizes;
+    let fontSize: EuiDataGridStyleFontSizes;
     let border: EuiDataGridStyleBorders;
     let header: EuiDataGridStyleHeader;
     let rowHighlight: EuiDataGridStyleRowHighlight;
     let stripes: boolean;
 
-    size = gridStyle.size ? gridStyle.size : 'm';
+    fontSize = gridStyle.fontSize ? gridStyle.fontSize : 'm';
     border = gridStyle.border ? gridStyle.border : 'all';
     header = gridStyle.header ? gridStyle.header : 'minimal';
     rowHighlight = gridStyle.rowHighlight ? gridStyle.rowHighlight : 'minimal';
@@ -118,12 +118,12 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
 
     const classes = classNames(
       'euiDataGrid',
-      sizeToClassMap[size],
+      fontSizesToClassMap[fontSize],
       bordersToClassMap[border],
       headerToClassMap[header],
       rowHighlightToClassMap[rowHighlight],
       {
-        'euiToken--stripes': stripes,
+        'euiDataGrid--stripes': stripes,
       },
       className
     );

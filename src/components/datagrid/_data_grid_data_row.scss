@@ -4,7 +4,7 @@
 }
 
 .euiDataGridRowCell {
-  @include euiFontSizeXS;
+  @include euiFontSizeS;
   @include euiTextTruncate;
 
   padding: $euiSizeM / 2;
@@ -16,5 +16,32 @@
 
   &:first-of-type {
     border-left: $euiBorderThin;
+  }
+}
+
+// Border alternates
+.euiDataGrid--bordersNone {
+  .euiDataGridRowCell {
+    border: none;
+  }
+}
+
+.euiDataGrid--bordersHorizontalOnly {
+  .euiDataGridRowCell {
+    border-right: none;
+    border-left: none;
+  }
+}
+
+// Font alternates
+.euiDataGrid--fontSizeSmall {
+  .euiDataGridRowCell {
+    @include euiFontSizeXS;
+  }
+}
+
+.euiDataGrid--fontSizeLarge {
+  .euiDataGridRowCell {
+    @include euiFontSize;
   }
 }

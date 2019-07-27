@@ -22,3 +22,30 @@
     @include euiTextTruncate;
   }
 }
+
+// Border alternates
+.euiDataGrid--bordersNone {
+  .euiDataGridHeaderCell {
+    border: none;
+  }
+}
+
+.euiDataGrid--bordersHorizontalOnly {
+  .euiDataGridHeaderCell {
+    border-right: none;
+    border-left: none;
+  }
+}
+
+// Font alternates
+.euiDataGrid--fontSizeSmall {
+  .euiDataGridHeaderCell {
+    @include euiFontSizeXS;
+  }
+}
+
+.euiDataGrid--fontSizeLarge {
+  .euiDataGridHeaderCell {
+    @include euiFontSize;
+  }
+}
