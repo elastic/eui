@@ -6,6 +6,7 @@
 .euiDataGridHeaderCell {
   @include euiFontSizeS;
 
+  font-weight: $euiFontWeightBold;
   padding: $euiSizeM / 2;
   border: $euiBorderThin;
   border-left: none;

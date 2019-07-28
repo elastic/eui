@@ -13,6 +13,6 @@ export type EuiDataGridStyleBorders = 'all' | 'horizontalOnly' | 'none';
 
 export type EuiDataGridStyleHeader = 'pronounced' | 'minimal' | 'none';
 
-export type EuiDataGridStyleRowHighlight = 'pronounced' | 'minimal' | 'none';
+export type EuiDataGridStyleRowHighlight = 'minimal' | 'none';
 
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';

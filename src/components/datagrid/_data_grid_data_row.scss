@@ -19,8 +19,18 @@
   }
 }
 
+// Row highlights
+.euiDataGrid--rowHighlightMinimal {
+  .euiDataGridRow:hover .euiDataGridRowCell {
+    // sass-lint:disable-block no-important
+    // Needed to overtake striping
+    background-color: $euiColorHighlight !important;
+  }
+}
+
+// Stripes
 .euiDataGrid--stripes {
-  .euiDataGridRow:nth-child(even) {
+  .euiDataGridRow:nth-child(odd) {
     .euiDataGridRowCell {
       background: $euiColorLightestShade;
     }

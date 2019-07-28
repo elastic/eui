@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { EuiDataGrid } from '../../../../src/components/';
+import {
+  EuiDataGrid,
+  EuiButtonGroup,
+  EuiSpacer,
+  EuiFormRow,
+  EuiPopover,
+  EuiButton,
+} from '../../../../src/components/';
 
 const columns = [
   {
@@ -140,22 +147,213 @@ const data = [
   },
 ];
 
-export default () => {
-  return (
-    <div>
-      <EuiDataGrid
-        columns={columns}
-        rowCount={data.length}
-        gridStyle={{
-          border: 'all',
-          fontSize: 's',
-          cellPadding: 'm',
-          stripes: true,
-        }}
-        renderCellValue={({ rowIndex, columnName }) =>
-          data[rowIndex][columnName]
-        }
-      />
-    </div>
-  );
-};
+export default class extends Component {
+  constructor(props) {
+    super(props);
+    this.borderOptions = [
+      {
+        id: 'all',
+        label: 'All',
+      },
+      {
+        id: 'horizontalOnly',
+        label: 'Horizontal only',
+      },
+      {
+        id: 'none',
+        label: 'None',
+      },
+    ];
+
+    this.fontSizeOptions = [
+      {
+        id: 's',
+        label: 'Small',
+      },
+      {
+        id: 'm',
+        label: 'Medium',
+      },
+      {
+        id: 'l',
+        label: 'Large',
+      },
+    ];
+
+    this.cellPaddingOptions = [
+      {
+        id: 's',
+        label: 'Small',
+      },
+      {
+        id: 'm',
+        label: 'Medium',
+      },
+      {
+        id: 'l',
+        label: 'Large',
+      },
+    ];
+
+    this.stripeOptions = [
+      {
+        id: 'true',
+        label: 'Stripes on',
+      },
+      {
+        id: 'false',
+        label: 'Stripes off',
+      },
+    ];
+
+    this.rowHighlightOptions = [
+      {
+        id: 'none',
+        label: 'None',
+      },
+      {
+        id: 'minimal',
+        label: 'Minimal',
+      },
+    ];
+
+    this.state = {
+      borderSelected: 'all',
+      fontSizeSelected: 'm',
+      cellPaddingSelected: 'm',
+      stripes: false,
+      stripesSelected: 'false',
+      rowHighlightSelected: 'minimal',
+      isPopoverOpen: false,
+    };
+  }
+
+  onBorderChange = optionId => {
+    this.setState({
+      borderSelected: optionId,
+    });
+  };
+
+  onFontSizeChange = optionId => {
+    this.setState({
+      fontSizeSelected: optionId,
+    });
+  };
+
+  onCellPaddingChange = optionId => {
+    this.setState({
+      cellPaddingSelected: optionId,
+    });
+  };
+
+  onStripesChange = optionId => {
+    this.setState({
+      stripesSelected: optionId,
+      stripes: !this.state.stripes,
+    });
+  };
+
+  onRowHighlightChange = optionId => {
+    this.setState({
+      rowHighlightSelected: optionId,
+    });
+  };
+
+  onPopoverButtonClick() {
+    this.setState({
+      isPopoverOpen: !this.state.isPopoverOpen,
+    });
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+
+  render() {
+    const button = (
+      <EuiButton
+        iconType="arrowDown"
+        iconSide="right"
+        onClick={this.onPopoverButtonClick.bind(this)}>
+        Table styling
+      </EuiButton>
+    );
+
+    return (
+      <div>
+        <EuiPopover
+          id="popover"
+          button={button}
+          isOpen={this.state.isPopoverOpen}
+          anchorPosition="rightUp"
+          closePopover={this.closePopover.bind(this)}>
+          <div>
+            <EuiFormRow label="Border">
+              <EuiButtonGroup
+                legend="Border"
+                options={this.borderOptions}
+                idSelected={this.state.borderSelected}
+                onChange={this.onBorderChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Cell padding">
+              <EuiButtonGroup
+                legend="Cell padding"
+                options={this.cellPaddingOptions}
+                idSelected={this.state.cellPaddingSelected}
+                onChange={this.onCellPaddingChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Font size">
+              <EuiButtonGroup
+                legend="Fornt size"
+                options={this.fontSizeOptions}
+                idSelected={this.state.fontSizeSelected}
+                onChange={this.onFontSizeChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Stripes">
+              <EuiButtonGroup
+                legend="Stripes"
+                options={this.stripeOptions}
+                idSelected={this.state.stripesSelected}
+                onChange={this.onStripesChange}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Row highlight">
+              <EuiButtonGroup
+                legend="Row highlight"
+                options={this.rowHighlightOptions}
+                idSelected={this.state.rowHighlightSelected}
+                onChange={this.onRowHighlightChange}
+              />
+            </EuiFormRow>
+          </div>
+        </EuiPopover>
+
+        <EuiSpacer />
+
+        <EuiDataGrid
+          columns={columns}
+          rowCount={data.length}
+          gridStyle={{
+            border: this.state.borderSelected,
+            fontSize: this.state.fontSizeSelected,
+            cellPadding: this.state.cellPaddingSelected,
+            stripes: this.state.stripes,
+            rowHighlight: this.state.rowHighlightSelected,
+          }}
+          renderCellValue={({ rowIndex, columnName }) =>
+            data[rowIndex][columnName]
+          }
+        />
+      </div>
+    );
+  }
+}

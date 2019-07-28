@@ -23,15 +23,14 @@ const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
 const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
   minimal: 'euiDataGrid--minimal',
   pronounced: 'euiDataGrid--pronounced',
-  none: 'euiDataGrid--pronounced',
+  none: '',
 };
 
 const rowHighlightToClassMap: {
   [rowHighlight in EuiDataGridStyleRowHighlight]: string
 } = {
-  minimal: 'euiDataGrid--minimal',
-  pronounced: 'euiDataGrid--pronounced',
-  none: 'euiDataGrid--pronounced',
+  minimal: 'euiDataGrid--rowHighlightMinimal',
+  none: '',
 };
 
 const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
