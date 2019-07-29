@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiPopover } from '../../popover';
-import { EuiFormControlLayoutRange } from '../form_control_layout';
+import { EuiFormControlLayoutDelimited } from '../form_control_layout';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -407,7 +407,7 @@ export class EuiDualRange extends Component {
       <EuiPopover
         // ownFocus={popoverShouldOwnFocus}
         button={
-          <EuiFormControlLayoutRange
+          <EuiFormControlLayoutDelimited
             fullWidth={fullWidth}
             compressed={compressed}
             startControl={minInput}

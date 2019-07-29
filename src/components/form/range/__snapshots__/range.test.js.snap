@@ -73,7 +73,7 @@ exports[`EuiRange is rendered 1`] = `
 
 exports[`EuiRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange"
+  class="euiRangeWrapper euiRangeWrapper--compressed euiRange"
 >
   <div
     class="euiRangeTrack"

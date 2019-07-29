@@ -51,7 +51,6 @@ export default class extends Component {
           id={makeId()}
           value={this.state.value}
           onChange={this.onChange}
-          // compressed
           showInput="only"
           showLabels
         />
@@ -62,7 +61,29 @@ export default class extends Component {
           id={makeId()}
           value={this.state.dualValue}
           onChange={this.onDualChange}
-          // compressed
+          showInput="only"
+          showLabels
+          levels={this.levels}
+        />
+
+        <EuiSpacer size="xl" />
+
+        <EuiRange
+          id={makeId()}
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+          showInput="only"
+          showLabels
+        />
+
+        <EuiSpacer size="xl" />
+
+        <EuiDualRange
+          id={makeId()}
+          value={this.state.dualValue}
+          onChange={this.onDualChange}
+          compressed
           showInput="only"
           showLabels
           levels={this.levels}
