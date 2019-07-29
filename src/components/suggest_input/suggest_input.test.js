@@ -7,10 +7,9 @@ import { EuiSuggestInput } from './suggest_input';
 describe('EuiSuggestInput', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSuggestInput {...requiredProps} />
+      <EuiSuggestInput status="notYetSaved" {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
