@@ -20,12 +20,13 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 import {
-  EuiSwitch,
   EuiSpacer,
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
   EuiCard,
+  EuiCopy,
+  EuiButton,
 } from '../../../../src/components';
 
 import {
@@ -34,7 +35,7 @@ import {
 } from '../../../../src/services/format/format_date';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
-import { ChartTypeCard } from './shared';
+import { ChartTypeCard, CHART_COMPONENTS, MultiChartCard } from './shared';
 
 class _TimeChart extends Component {
   constructor(props) {
@@ -45,19 +46,13 @@ class _TimeChart extends Component {
     this.state = {
       multi: false,
       stacked: false,
-      chartType: BarSeries,
+      chartType: 'BarSeries',
     };
   }
 
-  onStackedChange = e => {
+  onMultiChange = multiObject => {
     this.setState({
-      stacked: e.target.checked,
-    });
-  };
-
-  onMultiChange = e => {
-    this.setState({
-      multi: e.target.checked,
+      ...multiObject,
     });
   };
 
@@ -77,9 +72,8 @@ class _TimeChart extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const formatter = timeFormatter(niceTimeFormatByDay(1));
-    let ChartType = this.state.chartType;
-    let ChartType2 = this.state.chartType;
+    let ChartType = CHART_COMPONENTS[this.state.chartType];
+    let ChartType2 = CHART_COMPONENTS[this.state.chartType];
     if (this.state.chartType === 'Mixed') {
       ChartType = BarSeries;
       ChartType2 = LineSeries;
@@ -103,8 +97,8 @@ class _TimeChart extends Component {
             legendPosition={Position.Right}
           />
           <ChartType
-            id={getSpecId('time1')}
-            name={'Financial'}
+            id={getSpecId('financial')}
+            name="Financial"
             data={TIME_DATA}
             xAccessor={0}
             yAccessors={[1]}
@@ -112,8 +106,8 @@ class _TimeChart extends Component {
           />
           {this.state.multi && (
             <ChartType2
-              id={getSpecId('time2')}
-              name={'Tech support'}
+              id={getSpecId('tech')}
+              name="Tech support"
               data={TIME_DATA_2}
               xAccessor={0}
               yAccessors={[1]}
@@ -125,7 +119,7 @@ class _TimeChart extends Component {
             id={getAxisId('bottom-axis')}
             position={Position.Bottom}
             xScaleType={ScaleType.Time}
-            tickFormat={formatter}
+            tickFormat={timeFormatter(niceTimeFormatByDay(1))}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
@@ -139,9 +133,7 @@ class _TimeChart extends Component {
 
         <EuiSpacer />
 
-        <EuiFlexGrid
-          columns={3}
-          className="euiGuide__chartsPageCrosshairSection">
+        <EuiFlexGrid columns={3}>
           <EuiFlexItem>
             <ChartTypeCard
               onChange={this.onChartTypeChange}
@@ -150,23 +142,7 @@ class _TimeChart extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Single vs multiple series"
-              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
-              <EuiSwitch
-                label="Show multi-series"
-                checked={this.state.multi}
-                onChange={this.onMultiChange}
-              />
-              <EuiSpacer size="s" />
-              <EuiSwitch
-                label="Stacked"
-                checked={this.state.stacked}
-                onChange={this.onStackedChange}
-                disabled={!this.state.multi}
-              />
-            </EuiCard>
+            <MultiChartCard onChange={this.onMultiChange} />
           </EuiFlexItem>
 
           <EuiFlexItem>
@@ -177,6 +153,60 @@ class _TimeChart extends Component {
             />
           </EuiFlexItem>
         </EuiFlexGrid>
+
+        <EuiSpacer />
+
+        <div className="eui-textCenter">
+          <EuiCopy
+            textToCopy={`<Chart size={[undefined, 200]}>
+  <Settings
+    theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
+    showLegend={${this.state.multi}}
+    ${this.state.multi ? 'legendPosition={Position.Right}' : ''}
+  />
+  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
+    id={getSpecId('financial')}
+    name="Financial"
+    data={TIME_DATA=[[0,1],[0,1]]}
+    xAccessor={0}
+    yAccessors={[1]}
+    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+  />
+  ${
+    this.state.multi
+      ? `<${
+          this.state.chartType === 'Mixed' ? 'LineSeries' : this.state.chartType
+        }
+      id={getSpecId('tech')}
+      name="Tech support"
+      data={TIME_DATA_2=[[0,1],[0,1]]}
+      xAccessor={0}
+      yAccessors={[1]}
+      ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+    />`
+      : ''
+  }
+  <Axis
+    title={formatDate(Date.now(), dateFormatAliases.date)}
+    id={getAxisId('bottom-axis')}
+    position={Position.Bottom}
+    xScaleType={ScaleType.Time}
+    tickFormat={timeFormatter(niceTimeFormatByDay(1))}
+    showGridLines
+  />
+  <Axis
+    id={getAxisId('left-axis')}
+    position={Position.Left}
+    showGridLines
+  />
+</Chart>`}>
+            {copy => (
+              <EuiButton fill onClick={copy} iconType="copyClipboard">
+                Copy code of current configuration
+              </EuiButton>
+            )}
+          </EuiCopy>
+        </div>
       </Fragment>
     );
   }

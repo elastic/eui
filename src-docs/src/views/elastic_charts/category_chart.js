@@ -4,7 +4,6 @@ import { orderBy } from 'lodash';
 import { withTheme } from '../../components';
 import {
   Chart,
-  BarSeries,
   getSpecId,
   Settings,
   Axis,
@@ -26,10 +25,12 @@ import {
   EuiFlexItem,
   EuiCard,
   EuiCode,
+  EuiCopy,
+  EuiButton,
 } from '../../../../src/components';
 
 import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
-import { ChartTypeCard } from './shared';
+import { ChartTypeCard, MultiChartCard, CHART_COMPONENTS } from './shared';
 
 class _CategoryChart extends Component {
   constructor(props) {
@@ -40,22 +41,16 @@ class _CategoryChart extends Component {
     this.state = {
       multi: false,
       stacked: false,
-      rotated: false,
-      ordered: false,
+      rotated: true,
+      ordered: true,
       formatted: false,
-      chartType: BarSeries,
+      chartType: 'BarSeries',
     };
   }
 
-  onStackedChange = e => {
+  onMultiChange = multiObject => {
     this.setState({
-      stacked: e.target.checked,
-    });
-  };
-
-  onMultiChange = e => {
-    this.setState({
-      multi: e.target.checked,
+      ...multiObject,
     });
   };
 
@@ -94,7 +89,7 @@ class _CategoryChart extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const ChartType = this.state.chartType;
+    const ChartType = CHART_COMPONENTS[this.state.chartType];
 
     const DATASET = this.state.multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
 
@@ -118,7 +113,7 @@ class _CategoryChart extends Component {
           />
           <ChartType
             id={getSpecId('issues')}
-            name={'Issues'}
+            name="Issues"
             data={
               this.state.ordered
                 ? orderBy(DATASET, ['count'], ['desc'])
@@ -139,17 +134,15 @@ class _CategoryChart extends Component {
           <Axis
             id={getAxisId('left-axis')}
             position={this.state.rotated ? Position.Bottom : Position.Left}
+            tickFormat={this.state.formatted ? d => `${Number(d)}k` : undefined}
             showGridLines
             gridLineStyle={gridHorizontalSettings}
-            tickFormat={this.state.formatted ? d => `${Number(d)}k` : undefined}
           />
         </Chart>
 
         <EuiSpacer />
 
-        <EuiFlexGrid
-          columns={3}
-          className="euiGuide__chartsPageCrosshairSection">
+        <EuiFlexGrid columns={3}>
           <EuiFlexItem>
             <EuiCard
               textAlign="left"
@@ -197,25 +190,54 @@ class _CategoryChart extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Single vs multiple series"
-              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation. Do not stack line charts.">
-              <EuiSwitch
-                label="Show multi-series"
-                checked={this.state.multi}
-                onChange={this.onMultiChange}
-              />
-              <EuiSpacer size="s" />
-              <EuiSwitch
-                label="Stacked"
-                checked={this.state.stacked}
-                onChange={this.onStackedChange}
-                disabled={!this.state.multi}
-              />
-            </EuiCard>
+            <MultiChartCard onChange={this.onMultiChange} />
           </EuiFlexItem>
         </EuiFlexGrid>
+
+        <EuiSpacer />
+
+        <div className="eui-textCenter">
+          <EuiCopy
+            textToCopy={`<Chart size={[undefined, 200]}>
+  <Settings
+    theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
+    rotation={${this.state.rotated ? 90 : 0}}
+    showLegend={${this.state.multi}}
+    ${this.state.multi ? 'legendPosition={Position.Right}' : ''}
+  />
+  <${this.state.chartType}
+    id={getSpecId('issues')}
+    name="Issues"
+    data={${
+      this.state.ordered
+        ? "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['count'], ['desc'])"
+        : "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['vizType'], ['asc'])"
+    }}
+    xAccessor="vizType"
+    yAccessors={['count']}
+    ${this.state.multi ? "splitSeriesAccessors={['issueType']}" : ''}
+    ${this.state.stacked ? "stackAccessors={['issueType']}" : ''}
+  />
+  <Axis
+    id={getAxisId('bottom-axis')}
+    showGridLines
+    position={${this.state.rotated ? 'Position.Left' : 'Position.Bottom'}}
+    xScaleType={ScaleType.Ordinal}
+  />
+  <Axis
+    id={getAxisId('left-axis')}
+    showGridLines
+    position={${this.state.rotated ? 'Position.Bottom ' : 'Position.Left'}}
+    ${this.state.formatted ? 'tickFormat={d => `${Number(d)}k`}' : ''}
+  />
+</Chart>`}>
+            {copy => (
+              <EuiButton fill onClick={copy} iconType="copyClipboard">
+                Copy code of current configuration
+              </EuiButton>
+            )}
+          </EuiCopy>
+        </div>
       </Fragment>
     );
   }

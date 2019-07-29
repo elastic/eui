@@ -2,17 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { withTheme } from '../../components';
 import {
   Chart,
-  BarSeries,
   getSpecId,
   Settings,
   Axis,
   getAxisId,
   Position,
   ScaleType,
-  timeFormatter,
-  niceTimeFormatByDay,
-  LineSeries,
-  AreaSeries,
+  mergeWithDefaultTheme,
+  DataGenerator,
 } from '@elastic/charts';
 
 import {
@@ -21,23 +18,14 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 import {
-  // EuiCard,
-  // EuiCopy,
-  EuiSwitch,
   EuiSpacer,
-  EuiRadioGroup,
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiCard,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
-
-import { TIME_DATA, TIME_DATA_2 } from './data';
+import { CHART_COMPONENTS, MultiChartCard, ChartTypeCard } from './shared';
+import { colorPalette } from '../../../../src/services';
 
 class _Theming extends Component {
   constructor(props) {
@@ -48,48 +36,26 @@ class _Theming extends Component {
     this.state = {
       multi: false,
       stacked: false,
-      toggleIdSelected: `${this.idPrefix}0`,
+      chartType: 'BarSeries',
     };
   }
 
-  onStackedChange = e => {
+  onMultiChange = multiObject => {
     this.setState({
-      stacked: e.target.checked,
+      ...multiObject,
     });
   };
 
-  onMultiChange = e => {
+  onChartTypeChange = chartType => {
     this.setState({
-      multi: e.target.checked,
-    });
-  };
-
-  onChartTypeChange = optionId => {
-    this.setState({
-      toggleIdSelected: optionId,
+      chartType: chartType,
     });
   };
 
   render() {
-    this.toggleButtonsIcons = [
-      {
-        id: `${this.idPrefix}0`,
-        label: 'BarSeries',
-      },
-      {
-        id: `${this.idPrefix}1`,
-        label: 'LineSeries',
-      },
-      {
-        id: `${this.idPrefix}2`,
-        label: 'AreaSeries',
-      },
-      {
-        id: `${this.idPrefix}3`,
-        label: 'Mixed',
-        disabled: !this.state.multi,
-      },
-    ];
+    const dg = new DataGenerator();
+    const data1 = dg.generateGroupedSeries(20, 5);
+    console.table(data1);
 
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
@@ -100,27 +66,16 @@ class _Theming extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const formatter = timeFormatter(niceTimeFormatByDay(1));
-    let ChartType;
-    let ChartType2;
-    switch (this.state.toggleIdSelected) {
-      case 'chartType0':
-        ChartType = BarSeries;
-        ChartType2 = BarSeries;
-        break;
-      case 'chartType1':
-        ChartType = LineSeries;
-        ChartType2 = LineSeries;
-        break;
-      case 'chartType2':
-        ChartType = AreaSeries;
-        ChartType2 = AreaSeries;
-        break;
-      case 'chartType3':
-        ChartType = BarSeries;
-        ChartType2 = LineSeries;
-        break;
-    }
+    const ChartType = CHART_COMPONENTS[this.state.chartType];
+
+    const customColors = mergeWithDefaultTheme(
+      {
+        colors: {
+          vizColors: colorPalette('#58BA6D', '#D75949', 5),
+        },
+      },
+      theme
+    );
 
     return (
       <Fragment>
@@ -135,34 +90,22 @@ class _Theming extends Component {
 
         <Chart size={[undefined, 200]}>
           <Settings
-            theme={theme}
+            theme={customColors}
             showLegend={this.state.multi}
             legendPosition={Position.Right}
           />
           <ChartType
-            id={getSpecId('time1')}
-            name={'Financial'}
-            data={TIME_DATA}
-            xAccessor={0}
-            yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
+            id={getSpecId('status')}
+            data={data1}
+            xAccessor={'x'}
+            yAccessors={['y']}
+            splitSeriesAccessors={this.state.multi ? ['g'] : undefined}
+            stackAccessors={this.state.stacked ? ['g'] : undefined}
           />
-          {this.state.multi && (
-            <ChartType2
-              id={getSpecId('time2')}
-              name={'Tech support'}
-              data={TIME_DATA_2}
-              xAccessor={0}
-              yAccessors={[1]}
-              stackAccessors={this.state.stacked ? [0] : undefined}
-            />
-          )}
           <Axis
-            title={formatDate(Date.now(), dateFormatAliases.date)}
             id={getAxisId('bottom-axis')}
             position={Position.Bottom}
-            xScaleType={ScaleType.Time}
-            tickFormat={formatter}
+            xScaleType={ScaleType.Ordinal}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
@@ -176,57 +119,13 @@ class _Theming extends Component {
 
         <EuiSpacer />
 
-        <EuiFlexGrid
-          columns={3}
-          className="euiGuide__chartsPageCrosshairSection">
-          {/* <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Titles"
-              description="Provide a meaningful, descriptive title. The title may need to change when show single vs multiple series."
-            />
-          </EuiFlexItem> */}
-
+        <EuiFlexGrid columns={3}>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Chart types"
-              description="Time series charts can be displayed as any x/y series type.">
-              <EuiRadioGroup
-                compressed
-                options={this.toggleButtonsIcons}
-                idSelected={this.state.toggleIdSelected}
-                onChange={this.onChartTypeChange}
-              />
-            </EuiCard>
+            <ChartTypeCard onChange={this.onChartTypeChange} />
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Single vs multiple series"
-              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation. Do not stack line charts.">
-              <EuiSwitch
-                label="Show multi-series"
-                checked={this.state.multi}
-                onChange={this.onMultiChange}
-              />
-              <EuiSpacer size="s" />
-              <EuiSwitch
-                label="Stacked"
-                checked={this.state.stacked}
-                onChange={this.onStackedChange}
-                disabled={!this.state.multi}
-              />
-            </EuiCard>
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Tick marks"
-              description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
-            />
+            <MultiChartCard onChange={this.onMultiChange} />
           </EuiFlexItem>
         </EuiFlexGrid>
       </Fragment>

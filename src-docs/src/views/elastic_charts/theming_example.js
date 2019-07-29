@@ -19,26 +19,23 @@ export const ElasticChartsThemingExample = {
     {
       text: (
         <Fragment>
+          <p>
+            Use color to distinguish categories, represent quantity/density, and
+            highlight data. You can help users focus on their data but using too
+            many color variants in one chart can hinder understanding. Also, be
+            sure not to use color alone.
+          </p>
           <ul>
             <li>
-              <EuiCode />
+              <EuiCode>
+                theme = isDarkTheme ? EUI_DARK_THEME.theme :
+                EUI_LIGHT_THEME.theme
+              </EuiCode>
             </li>
           </ul>
         </Fragment>
       ),
       demo: <Theming />,
-      snippet: `<EuiTitle size="xxs">
-  <h3>
-    Number of {!this.state.multi && 'financial '}robo-calls
-    {this.state.multi && ' by type'}
-  </h3>
-</EuiTitle>
-
-<EuiSpacer size="s" />
-
-<Chart size={[undefined, 200]}>
-
-</Chart>`,
     },
   ],
 };
