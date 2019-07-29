@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { EuiDescriptionList } from '../../../../src/components';
+import {
+  EuiDescriptionList,
+  EuiSpacer,
+  EuiTitle,
+} from '../../../../src/components';
 
 const favoriteVideoGames = [
   {
@@ -18,9 +22,27 @@ const favoriteVideoGames = [
   },
 ];
 export default () => (
-  <EuiDescriptionList
-    type="column"
-    listItems={favoriteVideoGames}
-    style={{ maxWidth: '400px' }}
-  />
+  <Fragment>
+    <EuiDescriptionList
+      type="column"
+      listItems={favoriteVideoGames}
+      style={{ maxWidth: '400px' }}
+    />
+
+    <EuiSpacer size="xl" />
+
+    <EuiTitle size="s">
+      <h3>
+        The following list will become the typical row format on small screens
+      </h3>
+    </EuiTitle>
+
+    <EuiSpacer />
+
+    <EuiDescriptionList
+      type="responsiveColumn"
+      listItems={favoriteVideoGames}
+      style={{ maxWidth: '400px' }}
+    />
+  </Fragment>
 );

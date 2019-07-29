@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EuiListGroup, EuiListGroupItem } from '../list_group';
 import { EuiNavDrawerFlyout } from './nav_drawer_flyout';
+import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem } from '../flex';
@@ -216,7 +217,7 @@ export class EuiNavDrawer extends Component {
     // 1. Loop through the EuiNavDrawer children (EuiListGroup, EuiHorizontalRules, etc)
     modifiedChildren = React.Children.map(this.props.children, child => {
       // 2. Check if child is an EuiNavDrawerGroup and if it does have a flyout, add the expand function
-      if (child.type.name === 'EuiNavDrawerGroup') {
+      if (child.type === EuiNavDrawerGroup) {
         const item = React.cloneElement(child, {
           flyoutMenuButtonClick: this.expandFlyout,
           showToolTips: this.state.toolTipsEnabled && showToolTips,
