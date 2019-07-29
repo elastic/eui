@@ -9,6 +9,7 @@ No public interface changes since `13.1.0`.
 - Added exports for `react-beautiful-dnd` interfaces used by EUI components ([#2173](https://github.com/elastic/eui/pull/2173))
 - Added `isDisabled` prop & styles to `EuiSuperDatePicker` ([#2139](https://github.com/elastic/eui/pull/2139))
 - Added `responsiveColumn` option to `type` prop of `EuiDescriptionList` ([#2166](https://github.com/elastic/eui/pull/2166))
+- Removed `<use>` and `<def>` from svg icons ([#2162](https://github.com/elastic/eui/pull/2162))
 
 **Bug fixes**
 
