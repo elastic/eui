@@ -51,6 +51,7 @@ type EuiFormControlLayoutProps = CommonProps &
     clear?: EuiFormControlLayoutIconsProps['clear'];
     fullWidth?: boolean;
     isLoading?: boolean;
+    isDisabled?: boolean;
     className?: string;
     compressed?: boolean;
     readOnly?: boolean;
@@ -72,6 +73,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       clear,
       fullWidth,
       isLoading,
+      isDisabled,
       compressed,
       className,
       prepend,
@@ -87,6 +89,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
         'euiFormControlLayout--compressed': compressed,
         'euiFormControlLayout--readOnly': readOnly,
         'euiFormControlLayout--group': prepend || append,
+        'euiFormControlLayout-isDisabled': isDisabled,
       },
       className
     );
