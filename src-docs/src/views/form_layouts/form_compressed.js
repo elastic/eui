@@ -10,6 +10,7 @@ import {
   EuiFilePicker,
   EuiRange,
   EuiSelect,
+  EuiSpacer,
   EuiSwitch,
   EuiPanel,
 } from '../../../../src/components';
@@ -92,31 +93,35 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            compressed>
-            <EuiFieldText name="first" isLoading />
+            compressed="horizontal">
+            <EuiFieldText name="first" isLoading compressed />
           </EuiFormRow>
 
-          <EuiFormRow label="Select" compressed>
+          <EuiFormRow label="Select" compressed="horizontal">
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
                 { value: 'option_two', text: 'Option two' },
                 { value: 'option_three', text: 'Option three' },
               ]}
+              compressed
             />
           </EuiFormRow>
 
-          <EuiFormRow label="File picker" compressed>
-            <EuiFilePicker />
+          <EuiFormRow label="File picker" compressed="horizontal">
+            <EuiFilePicker compressed />
           </EuiFormRow>
 
-          <EuiFormRow label="Combo box" compressed>
+          <EuiFormRow
+            label="Comboboxwithalonglabelname"
+            compressed="horizontal">
             <EuiComboBox
               options={[
                 { label: 'Option one' },
                 { label: 'Option two' },
                 { label: 'Option three' },
               ]}
+              compressed
               selectedOptions={this.state.comboBoxSelectionOptions}
               onChange={comboBoxSelectionOptions =>
                 this.setState({ comboBoxSelectionOptions })
@@ -124,8 +129,15 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Range" compressed>
-            <EuiRange min={0} max={100} name="range" id="range" />
+          <EuiFormRow label="Range" compressed="horizontal">
+            <EuiRange
+              min={0}
+              max={100}
+              name="range"
+              id="range"
+              showInput
+              compressed
+            />
           </EuiFormRow>
 
           <EuiFormRow
@@ -144,8 +156,11 @@ export default class extends Component {
               options={this.state.checkboxes}
               idToSelectedMap={this.state.checkboxIdToSelectedMap}
               onChange={this.onCheckboxChange}
+              compressed
             />
           </EuiFormRow>
+
+          <EuiSpacer size="s" />
 
           <EuiButton type="submit" size="s" fill>
             Save form

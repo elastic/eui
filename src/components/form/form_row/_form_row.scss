@@ -8,7 +8,7 @@
   max-width: $euiFormMaxWidth;
   padding-bottom: $euiSizeS;
 
-  + * {
+  + .euiFormRow {
     margin-top: $euiSize;
   }
 }
@@ -29,12 +29,37 @@
 .euiFormRow--compressed {
   padding-bottom: 0;
 
-  + * {
-    margin-top: $euiSizeS;
-  }
-
   .euiFormRow__text {
     padding-top: $euiSizeM / 2;
+  }
+}
+
+.euiFormRow--horizontal {
+  flex-direction: row;
+  align-items: stretch;
+  line-height: $euiFormControlHeight; // Lines up label with form control
+
+  .euiFormRow__labelWrapper {
+    @include euiTextBreakWord;
+    hyphens: auto;
+    width: calc(33% - #{$euiSizeS});
+    margin-right: $euiSizeS;
+  }
+
+  .euiFormLabel {
+    margin-bottom: 0;
+  }
+
+  .euiFormRow__fieldWrapper {
+    width: 67%;
+  }
+
+  &.euiFormRow--compressed {
+    line-height: $euiFormControlCompressedHeight;
+  }
+
+  + .euiFormRow--horizontal {
+    margin-top: $euiSizeS;
   }
 }
 

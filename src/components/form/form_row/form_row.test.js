@@ -200,6 +200,28 @@ describe('EuiFormRow', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    describe('compressed', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiFormRow compressed>
+            <input />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('horizontally is rendered', () => {
+        const component = render(
+          <EuiFormRow compressed="horizontal">
+            <input />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('behavior', () => {

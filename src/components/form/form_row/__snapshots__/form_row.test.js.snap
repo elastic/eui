@@ -16,7 +16,9 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
     className="euiFormRow"
     id="generated-id-row"
   >
-    <div>
+    <div
+      className="euiFormRow__labelWrapper"
+    >
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={false}
@@ -32,11 +34,15 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
         </label>
       </EuiFormLabel>
     </div>
-    <input
-      id="generated-id"
-      onBlur={[Function]}
-      onFocus={[Function]}
-    />
+    <div
+      className="euiFormRow__fieldWrapper"
+    >
+      <input
+        id="generated-id"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
   </div>
 </EuiFormRow>
 `;
@@ -57,7 +63,9 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
     className="euiFormRow"
     id="generated-id-row"
   >
-    <div>
+    <div
+      className="euiFormRow__labelWrapper"
+    >
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={false}
@@ -73,11 +81,15 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
         </label>
       </EuiFormLabel>
     </div>
-    <input
-      id="generated-id"
-      onBlur={[Function]}
-      onFocus={[Function]}
-    />
+    <div
+      className="euiFormRow__fieldWrapper"
+    >
+      <input
+        id="generated-id"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
   </div>
 </EuiFormRow>
 `;
@@ -98,7 +110,9 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
     className="euiFormRow"
     id="generated-id-row"
   >
-    <div>
+    <div
+      className="euiFormRow__labelWrapper"
+    >
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={true}
@@ -114,11 +128,15 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
         </label>
       </EuiFormLabel>
     </div>
-    <input
-      id="generated-id"
-      onBlur={[Function]}
-      onFocus={[Function]}
-    />
+    <div
+      className="euiFormRow__fieldWrapper"
+    >
+      <input
+        id="generated-id"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
   </div>
 </EuiFormRow>
 `;
@@ -139,7 +157,9 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
     className="euiFormRow"
     id="generated-id-row"
   >
-    <div>
+    <div
+      className="euiFormRow__labelWrapper"
+    >
       <EuiFormLabel
         htmlFor="generated-id"
         isFocused={true}
@@ -155,11 +175,15 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
         </label>
       </EuiFormLabel>
     </div>
-    <input
-      id="generated-id"
-      onBlur={[Function]}
-      onFocus={[Function]}
-    />
+    <div
+      className="euiFormRow__fieldWrapper"
+    >
+      <input
+        id="generated-id"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
   </div>
 </EuiFormRow>
 `;
@@ -171,9 +195,43 @@ exports[`EuiFormRow is rendered 1`] = `
   data-test-subj="test subject string"
   id="generated-id-row"
 >
-  <input
-    id="generated-id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props compressed horizontally is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props compressed is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
 </div>
 `;
 
@@ -182,12 +240,16 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
   className="euiFormRow"
   id="generated-id-row"
 >
-  <input
-    aria-describedby="generated-id-additional"
-    id="generated-id"
-    onBlur={[Function]}
-    onFocus={[Function]}
-  />
+  <div
+    className="euiFormRow__fieldWrapper"
+  >
+    <input
+      aria-describedby="generated-id-additional"
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -197,13 +259,17 @@ exports[`EuiFormRow props displayOnly is rendered 1`] = `
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__displayOnlyWrapper"
+    class="euiFormRow__fieldWrapper"
   >
-    <span
-      id="generated-id"
+    <div
+      class="euiFormRow__displayOnlyWrapper"
     >
-      just some text
-    </span>
+      <span
+        id="generated-id"
+      >
+        just some text
+      </span>
+    </div>
   </div>
 </div>
 `;
@@ -213,23 +279,27 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <input
-    aria-describedby="generated-id-error-0 generated-id-error-1"
-    id="generated-id"
-  />
   <div
-    aria-live="polite"
-    class="euiFormErrorText euiFormRow__text"
-    id="generated-id-error-0"
+    class="euiFormRow__fieldWrapper"
   >
-    Error
-  </div>
-  <div
-    aria-live="polite"
-    class="euiFormErrorText euiFormRow__text"
-    id="generated-id-error-1"
-  >
-    Error2
+    <input
+      aria-describedby="generated-id-error-0 generated-id-error-1"
+      id="generated-id"
+    />
+    <div
+      aria-live="polite"
+      class="euiFormErrorText euiFormRow__text"
+      id="generated-id-error-0"
+    >
+      Error
+    </div>
+    <div
+      aria-live="polite"
+      class="euiFormErrorText euiFormRow__text"
+      id="generated-id-error-1"
+    >
+      Error2
+    </div>
   </div>
 </div>
 `;
@@ -239,16 +309,20 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <input
-    aria-describedby="generated-id-error-0"
-    id="generated-id"
-  />
   <div
-    aria-live="polite"
-    class="euiFormErrorText euiFormRow__text"
-    id="generated-id-error-0"
+    class="euiFormRow__fieldWrapper"
   >
-    Error
+    <input
+      aria-describedby="generated-id-error-0"
+      id="generated-id"
+    />
+    <div
+      aria-live="polite"
+      class="euiFormErrorText euiFormRow__text"
+      id="generated-id-error-0"
+    >
+      Error
+    </div>
   </div>
 </div>
 `;
@@ -258,9 +332,13 @@ exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <input
-    id="generated-id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
 </div>
 `;
 
@@ -269,9 +347,13 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
   class="euiFormRow euiFormRow--fullWidth"
   id="generated-id-row"
 >
-  <input
-    id="generated-id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
 </div>
 `;
 
@@ -280,9 +362,13 @@ exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
   class="euiFormRow euiFormRow--hasEmptyLabelSpace"
   id="generated-id-row"
 >
-  <input
-    id="generated-id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
 </div>
 `;
 
@@ -291,17 +377,21 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <input
-    aria-describedby="generated-id-help"
-    id="generated-id"
-  />
   <div
-    class="euiFormHelpText euiFormRow__text"
-    id="generated-id-help"
+    class="euiFormRow__fieldWrapper"
   >
-    <span>
-      This is help text.
-    </span>
+    <input
+      aria-describedby="generated-id-help"
+      id="generated-id"
+    />
+    <div
+      class="euiFormHelpText euiFormRow__text"
+      id="generated-id-help"
+    >
+      <span>
+        This is help text.
+      </span>
+    </div>
   </div>
 </div>
 `;
@@ -311,9 +401,13 @@ exports[`EuiFormRow props id is rendered 1`] = `
   class="euiFormRow"
   id="id-row"
 >
-  <input
-    id="id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="id"
+    />
+  </div>
 </div>
 `;
 
@@ -322,7 +416,9 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
   class="euiFormRow"
   id="generated-id-row"
 >
-  <div>
+  <div
+    class="euiFormRow__labelWrapper"
+  >
     <label
       aria-invalid="true"
       class="euiFormLabel euiFormLabel-isInvalid"
@@ -331,9 +427,13 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
       label
     </label>
   </div>
-  <input
-    id="generated-id"
-  />
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
 </div>
 `;
 
@@ -351,7 +451,9 @@ exports[`EuiFormRow props label append is rendered 1`] = `
     <EuiFlexItem
       grow={false}
     >
-      <div>
+      <div
+        className="euiFormRow__labelWrapper"
+      >
         <EuiFormLabel
           htmlFor="generated-id"
           isFocused={false}
@@ -367,11 +469,15 @@ exports[`EuiFormRow props label append is rendered 1`] = `
       append
     </EuiFlexItem>
   </EuiFlexGroup>
-  <input
-    id="generated-id"
-    onBlur={[Function]}
-    onFocus={[Function]}
-  />
+  <div
+    className="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -380,7 +486,9 @@ exports[`EuiFormRow props label is rendered 1`] = `
   className="euiFormRow"
   id="generated-id-row"
 >
-  <div>
+  <div
+    className="euiFormRow__labelWrapper"
+  >
     <EuiFormLabel
       htmlFor="generated-id"
       isFocused={false}
@@ -389,11 +497,15 @@ exports[`EuiFormRow props label is rendered 1`] = `
       label
     </EuiFormLabel>
   </div>
-  <input
-    id="generated-id"
-    onBlur={[Function]}
-    onFocus={[Function]}
-  />
+  <div
+    className="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -403,7 +515,9 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
   className="euiFormRow"
   id="generated-id-row"
 >
-  <div>
+  <div
+    className="euiFormRow__labelWrapper"
+  >
     <EuiFormLabel
       id="generated-id-legend"
       isFocused={false}
@@ -412,10 +526,14 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
       label
     </EuiFormLabel>
   </div>
-  <input
-    id="generated-id"
-    onBlur={[Function]}
-    onFocus={[Function]}
-  />
+  <div
+    className="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    />
+  </div>
 </fieldset>
 `;

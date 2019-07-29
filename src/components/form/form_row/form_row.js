@@ -75,6 +75,7 @@ export class EuiFormRow extends Component {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
         'euiFormRow--compressed': compressed,
+        'euiFormRow--horizontal': compressed === 'horizontal',
       },
       className
     );
@@ -113,7 +114,7 @@ export class EuiFormRow extends Component {
     if (label) {
       optionalLabel = (
         // Outer div ensures the label is inline-block (only takes up as much room as it needs)
-        <div>
+        <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
@@ -159,7 +160,6 @@ export class EuiFormRow extends Component {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      compressed: compressed,
       ...optionalProps,
     });
 
@@ -177,9 +177,11 @@ export class EuiFormRow extends Component {
         aria-labelledby={labelID} // Only renders a string if label type is 'legend'
       >
         {optionalLabel}
-        {field}
-        {optionalErrors}
-        {optionalHelpText}
+        <div className="euiFormRow__fieldWrapper">
+          {field}
+          {optionalErrors}
+          {optionalHelpText}
+        </div>
       </Element>
     );
   }
@@ -222,7 +224,7 @@ EuiFormRow.propTypes = {
    * Tightens up the spacing and sends down the
    * compressed prop to the input
    */
-  compressed: PropTypes.bool,
+  compressed: PropTypes.oneOf([true, false, 'horizontal']),
   /**
    * Vertically centers non-input style content so it aligns
    * better with input style content.
