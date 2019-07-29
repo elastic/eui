@@ -133,12 +133,20 @@ export const FormLayoutsExample = {
         EuiFormRow,
       },
       demo: <FormCompressed />,
-      snippet: `<EuiFormRow
+      snippet: [
+        `<EuiFormRow
   label="Text field"
   compressed
 >
-  <EuiFieldText />
+  <EuiFieldText compressed />
 </EuiFormRow>`,
+        `<EuiFormRow
+  label="Text field"
+  compressed="horizontal"
+>
+  <EuiFieldText compressed />
+</EuiFormRow>`,
+      ],
     },
     {
       title: 'Described form groups',

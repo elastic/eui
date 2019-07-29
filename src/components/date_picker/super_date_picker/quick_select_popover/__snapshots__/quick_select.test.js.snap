@@ -70,7 +70,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiSelect
           aria-label="Quick time tense"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           hasNoInitialSelection={false}
           isLoading={false}
@@ -101,7 +101,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiFieldNumber
           aria-label="Quick time value"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           isLoading={false}
           onChange={[Function]}
@@ -119,7 +119,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiSelect
           aria-label="Quick time units"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           hasNoInitialSelection={false}
           isLoading={false}
@@ -260,7 +260,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiSelect
           aria-label="Quick time tense"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           hasNoInitialSelection={false}
           isLoading={false}
@@ -291,7 +291,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiFieldNumber
           aria-label="Quick time value"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           isLoading={false}
           onChange={[Function]}
@@ -309,7 +309,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiSelect
           aria-label="Quick time units"
-          compressed={false}
+          compressed={true}
           fullWidth={false}
           hasNoInitialSelection={false}
           isLoading={false}
