@@ -119,17 +119,11 @@ export class EuiFilePicker extends Component {
 
           const isOverridingInitialPrompt = this.state.promptText != null;
 
-          /**
-           * BWC: Force display to be default in case compressed is passed,
-           *      but `display: default` is not. This can be removed once
-           *      we support the new compressed styles and make this breaking change.
-           */
-          const calculatedDisplay = compressed ? 'default' : display;
-          const normalFormControl = calculatedDisplay === 'default';
+          const normalFormControl = display === 'default';
 
           const classes = classNames(
             'euiFilePicker',
-            displayToClassNameMap[calculatedDisplay],
+            displayToClassNameMap[display],
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,

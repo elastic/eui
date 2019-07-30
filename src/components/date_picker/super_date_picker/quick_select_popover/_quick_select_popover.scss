@@ -15,3 +15,7 @@
   // Override specificity from universal and sibiling selectors
   margin-right: $euiSizeXS !important;
 }
+
+.euiQuickSelectPopover__anchor {
+  height: 100%;
+}

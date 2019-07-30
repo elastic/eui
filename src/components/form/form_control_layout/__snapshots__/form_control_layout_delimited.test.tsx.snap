@@ -10,7 +10,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -24,7 +24,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       </div>
     </div>
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       end
     </span>
@@ -40,7 +40,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
     class="euiFormControlLayout__childrenWrapper"
   >
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -61,7 +61,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       </div>
     </div>
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       end
     </span>
@@ -77,7 +77,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
     class="euiFormControlLayout__childrenWrapper"
   >
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -91,7 +91,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       </div>
     </div>
     <span
-      class="euiFormControlLayoutDelimited__child--noStyle euiFormControlLayoutDelimited__child--centered"
+      class="euiFormControlLayoutDelimited__input"
     >
       end
     </span>

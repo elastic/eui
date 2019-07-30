@@ -1,14 +1,22 @@
-@mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right') {
-  $iconPaddingStart: $euiSizeXXL;
+@import '../variables';
+
+@mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
+  $firstIconSize: $euiFormControlPadding + $euiSize + $euiFormControlPadding;
+  $secondIconSize: $euiFormControlPadding + $euiSize;
+
+  @if ($compressed) {
+    $firstIconSize: $euiFormControlCompressedPadding + $euiSize + $euiFormControlCompressedPadding;
+    $secondIconSize: $euiFormControlCompressedPadding + $euiSize;
+  }
 
   @if variable-exists(numOfIcons) == false {
     @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
   } @else if $numOfIcons == 1 {
-    padding-#{$side}: $iconPaddingStart;
+    padding-#{$side}: $firstIconSize;
   } @else if $numOfIcons == 2 {
-    padding-#{$side}: $iconPaddingStart + $euiSize;
+    padding-#{$side}: $firstIconSize + $secondIconSize;
   } @else if $numOfIcons == 3 {
-    padding-#{$side}: $iconPaddingStart + ($euiSize * 2) + $euiSizeS;
+    padding-#{$side}: $firstIconSize + ($secondIconSize * 2);
   }
 }
 
