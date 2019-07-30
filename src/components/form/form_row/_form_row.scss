@@ -6,7 +6,6 @@
   display: flex; /* 1 */
   flex-direction: column; /* 1 */
   max-width: $euiFormMaxWidth;
-  padding-bottom: $euiSizeS;
 
   + .euiFormRow {
     margin-top: $euiSize;
@@ -27,7 +26,10 @@
 }
 
 .euiFormRow__labelWrapper {
-  font-size: 0; // Ensures the wrapper doesn't create extra height
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: $euiSizeXS;
 }
 
 .euiFormRow--horizontal {
@@ -36,14 +38,11 @@
 
   .euiFormRow__labelWrapper {
     @include euiTextBreakWord;
-    font-size: inherit; // Helps with alignment
+    display: block;
     line-height: $euiFormControlCompressedHeight - 1px; // The 1px less helps the alignment of the text baseline
     hyphens: auto;
     width: calc(33% - #{$euiSizeS});
     margin-right: $euiSizeS;
-  }
-
-  .euiFormLabel {
     margin-bottom: 0;
   }
 
@@ -63,12 +62,6 @@
 }
 
 .euiFormRow--compressed {
-  padding-bottom: 0;
-
-  .euiFormRow__text {
-    padding-top: $euiSizeM / 2;
-  }
-
   &.euiFormRow--hasEmptyLabelSpace {
     min-height: $euiFormControlCompressedHeight;
   }

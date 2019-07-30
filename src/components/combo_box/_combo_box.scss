@@ -98,6 +98,10 @@
       line-height: $euiFormControlCompressedHeight; /* 2 */
       padding-top: 0;
       padding-bottom: 0;
+
+      &.euiComboBox__inputWrap-isClearable {
+        @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+      }
     }
   }
 }

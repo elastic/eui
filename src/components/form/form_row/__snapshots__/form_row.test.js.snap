@@ -442,33 +442,19 @@ exports[`EuiFormRow props label append is rendered 1`] = `
   className="euiFormRow"
   id="generated-id-row"
 >
-  <EuiFlexGroup
-    gutterSize="xs"
-    justifyContent="spaceBetween"
-    responsive={false}
-    wrap={true}
+  <div
+    className="euiFormRow__labelWrapper"
   >
-    <EuiFlexItem
-      grow={false}
+    <EuiFormLabel
+      htmlFor="generated-id"
+      isFocused={false}
+      type="label"
     >
-      <div
-        className="euiFormRow__labelWrapper"
-      >
-        <EuiFormLabel
-          htmlFor="generated-id"
-          isFocused={false}
-          type="label"
-        >
-          label
-        </EuiFormLabel>
-      </div>
-    </EuiFlexItem>
-    <EuiFlexItem
-      grow={false}
-    >
-      append
-    </EuiFlexItem>
-  </EuiFlexGroup>
+      label
+    </EuiFormLabel>
+     
+    append
+  </div>
   <div
     className="euiFormRow__fieldWrapper"
   >

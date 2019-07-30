@@ -8,7 +8,6 @@ import { withRequiredProp } from '../../../utils/prop_types/with_required_prop';
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import makeId from './make_id';
 
@@ -111,9 +110,8 @@ export class EuiFormRow extends Component {
     const isLegend = label && labelType === 'legend' ? true : false;
     const labelID = isLegend ? `${id}-${labelType}` : undefined;
 
-    if (label) {
+    if (label || labelAppend) {
       optionalLabel = (
-        // Outer div ensures the label is inline-block (only takes up as much room as it needs)
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             isFocused={!isLegend && this.state.isFocused}
@@ -124,20 +122,9 @@ export class EuiFormRow extends Component {
             id={labelID}>
             {label}
           </EuiFormLabel>
+          {labelAppend && ' '}
+          {labelAppend}
         </div>
-      );
-    }
-
-    if (labelAppend) {
-      optionalLabel = (
-        <EuiFlexGroup
-          responsive={false}
-          wrap={true}
-          gutterSize="xs"
-          justifyContent="spaceBetween">
-          <EuiFlexItem grow={false}>{optionalLabel}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{labelAppend}</EuiFlexItem>
-        </EuiFlexGroup>
       );
     }
 
