@@ -18,20 +18,12 @@
 }
 
 .euiFormRow--hasEmptyLabelSpace {
-  margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
+  margin-top: $euiFontSizeXS + $euiSizeM; /* 2 */
   // the following ensure that contents that aren't inheritly the same height
   // as inputs will align to the vertical center
-  min-height: $euiSizeXXL;
+  min-height: $euiFormControlHeight;
   padding-bottom: 0;
   justify-content: center;
-}
-
-.euiFormRow--compressed {
-  padding-bottom: 0;
-
-  .euiFormRow__text {
-    padding-top: $euiSizeM / 2;
-  }
 }
 
 .euiFormRow--horizontal {
@@ -67,4 +59,20 @@
   min-height: $euiFormControlHeight;
   display: flex;
   align-items: center;
+}
+
+.euiFormRow--compressed {
+  padding-bottom: 0;
+
+  .euiFormRow__text {
+    padding-top: $euiSizeM / 2;
+  }
+
+  &.euiFormRow--hasEmptyLabelSpace {
+    margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
+  }
+
+  .euiFormRow__displayOnlyWrapper {
+    min-height: $euiFormControlCompressedHeight;
+  }
 }
