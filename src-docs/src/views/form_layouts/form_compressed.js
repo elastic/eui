@@ -13,8 +13,6 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiPanel,
-  EuiText,
-  EuiLink,
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
@@ -102,12 +100,7 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            compressed="horizontal"
-            labelAppend={
-              <EuiText size="xs">
-                <EuiLink>Link to some help</EuiLink>
-              </EuiText>
-            }>
+            compressed="horizontal">
             <EuiFieldText name="first" isLoading compressed />
           </EuiFormRow>
 
