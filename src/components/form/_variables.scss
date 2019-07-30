@@ -4,6 +4,7 @@ $euiFormControlHeight: $euiSizeXXL !default;
 $euiFormControlCompressedHeight: $euiSizeXL !default;
 $euiFormControlPadding: $euiSizeM !default;
 $euiFormControlCompressedPadding: $euiSizeS !default;
+$euiFormControlCompressedBorderRadius: $euiBorderRadius / 2 !default;
 
 $euiRadioSize: $euiSize !default;
 $euiCheckBoxSize: $euiSize !default;
@@ -21,5 +22,5 @@ $euiFormBorderColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
-$euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8);
-$euiFormInputGroupLabelBackground: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%);
+$euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8) !default;
+$euiFormInputGroupLabelBackground: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%) !default;
