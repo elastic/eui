@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 import {
+  EuiButton,
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
   EuiPopover,
+  EuiPopoverTitle,
   EuiSuggestItem,
   EuiSuggestInput,
   EuiSelect,
@@ -61,6 +63,7 @@ export default class extends Component {
 
     this.state = {
       isPopoverOpen: props.isOpen || false,
+      isPopoverOpen1: false,
       value: '',
       status: 'notYetSaved',
       menuWidth: null,
@@ -127,6 +130,12 @@ export default class extends Component {
     });
   }
 
+  closePopover1() {
+    this.setState({
+      isPopoverOpen1: false,
+    });
+  }
+
   onFieldChange(e) {
     this.setState({
       value: e.target.value,
@@ -148,6 +157,12 @@ export default class extends Component {
     this.popoverRef = ref;
   };
 
+  onButtonClick() {
+    this.setState({
+      isPopoverOpen1: !this.state.isPopoverOpen1,
+    });
+  }
+
   render() {
     const suggestions = (sampleItems.map((item, index) => (
       <EuiSuggestItem
@@ -158,10 +173,49 @@ export default class extends Component {
       />
     )));
 
-    const hashtag = (
-      <EuiButtonEmpty iconType="arrowDown" iconSide="right">
+    const hashtagButton = (
+      <EuiButtonEmpty
+        onClick={this.onButtonClick.bind(this)}
+        iconType="arrowDown"
+        iconSide="right">
         <EuiIcon type="number" />
       </EuiButtonEmpty>
+    );
+
+    const hashtag = (
+      <EuiPopover
+        id="popover"
+        button={hashtagButton}
+        isOpen={this.state.isPopoverOpen1}
+        anchorPosition="downLeft"
+        closePopover={this.closePopover1.bind(this)}>
+        <EuiPopoverTitle>SAVED QUERIES</EuiPopoverTitle>
+        <div>
+          <EuiFlexGroup direction="rowReverse" alignItems="center">
+            <EuiFlexItem>
+              <ul>
+                <li>
+                  <EuiButtonEmpty flush="left">Popular shoes in America</EuiButtonEmpty>
+                  <EuiButtonEmpty iconType="trash" color="danger" />
+                </li>
+                <li>
+                  <EuiButtonEmpty flush="left">Popular shirts in Canada</EuiButtonEmpty>
+                  <EuiButtonEmpty iconType="trash" color="danger" />
+                </li>
+              </ul>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          {this.state.value ? (
+            <EuiFlexGroup direction="rowReverse" alignItems="center">
+              <EuiFlexItem grow={false}>
+                <EuiButton fill>Save</EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          ) : (
+            undefined
+          )}
+        </div>
+      </EuiPopover>
     );
 
     const button = (
