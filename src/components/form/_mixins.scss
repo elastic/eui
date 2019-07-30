@@ -201,7 +201,7 @@
 @mixin euiFormControlStyleCompressed($borderOnly: false, $includeStates: true) {
   @include euiFormControlDefaultShadow($borderOnly: true);
   padding: $euiFormControlCompressedPadding;
-  border-radius: $euiBorderRadius / 2;
+  border-radius: $euiFormControlCompressedBorderRadius;
 
   @if ($includeStates) {
     &:invalid { /* 4 */

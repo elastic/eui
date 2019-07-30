@@ -34,15 +34,13 @@
     border-radius: 0;
 
     &:first-child {
-      // 1px less than the outer parent to ensure it stays inside the border box
-      border-top-left-radius: 1px;
-      border-bottom-left-radius: 1px;
+      border-top-left-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
+      border-bottom-left-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
     }
 
     &:last-child {
-      // 1px less than the outer parent to ensure it stays inside the border box
-      border-top-right-radius: 1px;
-      border-bottom-right-radius: 1px;
+      border-top-right-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
+      border-bottom-right-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
     }
 
     &:disabled {
@@ -108,15 +106,13 @@
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
       &:first-child {
-        // 1px less than the outer parent to ensure it stays inside the border box
-        border-top-left-radius: 1px;
-        border-bottom-left-radius: 1px;
+        border-top-left-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
+        border-bottom-left-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
       }
 
       &:last-child {
-        // 1px less than the outer parent to ensure it stays inside the border box
-        border-top-right-radius: 1px;
-        border-bottom-right-radius: 1px;
+        border-top-right-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
+        border-bottom-right-radius: $euiFormControlLayoutGroupInputCompressedBorderRadius;
       }
 
       &.euiFormLabel,
@@ -144,8 +140,8 @@
     .euiFormControlLayout__prepend,
     .euiFormControlLayout__append {
       height: $euiFormControlCompressedHeight;
-      border-top-left-radius: $euiBorderRadius / 2;
-      border-bottom-left-radius: $euiBorderRadius / 2;
+      border-top-left-radius: $euiFormControlCompressedBorderRadius;
+      border-bottom-left-radius: $euiFormControlCompressedBorderRadius;
     }
   }
 }
