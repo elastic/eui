@@ -29,7 +29,7 @@
   .euiFormControlLayout__append {
     flex-shrink: 0;
     height: 100%;
-    line-height: $euiFontSize;
+    line-height: $euiFontSize - 1px; // The 1px less aligns the icons better
     border: none; // remove any border in case it exists
     border-radius: 0;
 
