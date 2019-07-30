@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.1.0`.
+**Bug fixes**
+
+- Fixed `EuiAccordion` using `MutationObserver` in IE11 by adding `attributes` to the observer options ([#2180](https://github.com/elastic/eui/pull/2180))
 
 ## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
 
