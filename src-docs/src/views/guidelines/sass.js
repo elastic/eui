@@ -762,7 +762,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
                 <Link to="/utilities/css-utility-classes">
                   CSS utility class
                 </Link>{' '}
-                <EuiCode>.euiYScrollWithShadows</EuiCode>.
+                <EuiCode>.eui-yScrollWithShadows</EuiCode>.
               </p>
               <p>
                 <b>Example:</b>

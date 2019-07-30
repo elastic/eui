@@ -19,10 +19,11 @@
   animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
 
   .euiModal__flex { /* 1 */
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     max-height: 75vh; // We overflow the modal body based off this
+    overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
   }
 }
 

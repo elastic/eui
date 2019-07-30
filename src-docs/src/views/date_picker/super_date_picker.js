@@ -22,6 +22,7 @@ function MyCustomQuickSelectPanel({ applyTime }) {
 export default class extends Component {
   state = {
     recentlyUsedRanges: [],
+    isDiasabled: false,
     isLoading: false,
     showUpdateButton: true,
     isAutoRefreshOnly: false,
@@ -85,6 +86,12 @@ export default class extends Component {
       isPaused,
       refreshInterval,
     });
+  };
+
+  toggleDisabled = () => {
+    this.setState(prevState => ({
+      isDisabled: !prevState.isDisabled,
+    }));
   };
 
   toggleShowApplyButton = () => {
@@ -162,8 +169,15 @@ export default class extends Component {
           onChange={this.toggleShowCustomQuickSelectPanel}
           checked={this.state.showCustomQuickSelectPanel}
         />
+        &emsp;
+        <EuiSwitch
+          label="Is disabled"
+          onChange={this.toggleDisabled}
+          checked={this.state.isDisabled}
+        />
         <EuiSpacer />
         <EuiSuperDatePicker
+          isDisabled={this.state.isDisabled}
           isLoading={this.state.isLoading}
           start={this.state.start}
           end={this.state.end}

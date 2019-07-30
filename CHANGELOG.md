@@ -1,10 +1,24 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.1.0`.
+
+## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
+
 - Added `partial` glyph to `EuiIcon` ([#2152](https://github.com/elastic/eui/pull/2152))
+- Added `tall`, `fullWidth`, and `isInvalid` props to `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
+- Added exports for `react-beautiful-dnd` interfaces used by EUI components ([#2173](https://github.com/elastic/eui/pull/2173))
+- Added `isDisabled` prop & styles to `EuiSuperDatePicker` ([#2139](https://github.com/elastic/eui/pull/2139))
+- Added `responsiveColumn` option to `type` prop of `EuiDescriptionList` ([#2166](https://github.com/elastic/eui/pull/2166))
+- Removed `<use>` and `<def>` from svg icons ([#2162](https://github.com/elastic/eui/pull/2162))
 
 **Bug fixes**
 
 - Fixed invalid `aria-desribedby` values set by `EuiToolTip` ([#2156](https://github.com/elastic/eui/pull/2156))
+- Added `"center"` as an acceptable value to `EuiBasicTable`'s `align` proptype ([#2158](https://github.com/elastic/eui/pull/2158))
+- Fixed `.eui-textBreakWord` utility class to be cross-browser compatible ([#2157](https://github.com/elastic/eui/pull/2157))
+- Fixed truncation and z-index of `EuiFilePicker` ([#2145](https://github.com/elastic/eui/pull/2145))
+- Fixed `EuiNavDrawer`'s support for flyout groups in production/minified builds ([#2178](https://github.com/elastic/eui/pull/2178))
+- Fixed width overflow of `EuiModal` ([#2164](https://github.com/elastic/eui/pull/2164))
 
 ## [`13.0.0`](https://github.com/elastic/eui/tree/v13.0.0)
 

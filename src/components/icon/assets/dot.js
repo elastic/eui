@@ -7,10 +7,7 @@ const EuiIconDot = props => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
-    <defs>
-      <circle id="dot-a" cx={8} cy={8} r={4} />
-    </defs>
-    <use xlinkHref="#dot-a" />
+    <circle cx={8} cy={8} r={4} />
   </svg>
 );
 

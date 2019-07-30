@@ -25,12 +25,23 @@
 .eui-textInheritColor {color: inherit !important;}
 
 .eui-textBreakWord {
-  word-break: break-all !important; // Fallback for FF and IE
-  word-break: break-word !important;
+  // https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+  overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
+  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
+  word-break: break-word; // IE doesn't understand but that's ok
 }
-.eui-textBreakAll {word-break: break-all !important;}
-.eui-textBreakNormal {word-break: normal !important;}
 
+.eui-textBreakAll {
+  word-break: break-all !important;
+}
+
+.eui-textBreakNormal {
+  overflow-wrap: normal !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+}
+
+// TODO: 7/23 DEPRECATE in favor of .eui-textBreakWord now that it's working as intended
 .eui-textOverflowWrap {
   @include internetExplorerOnly {
     word-break: break-all !important;
