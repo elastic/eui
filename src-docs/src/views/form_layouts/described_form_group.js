@@ -164,7 +164,6 @@ export default class extends Component {
               label="Should we do this?"
               checked={this.state.isSwitchChecked}
               onChange={this.onSwitchChange}
-              fullWidth
             />
           </EuiFormRow>
 

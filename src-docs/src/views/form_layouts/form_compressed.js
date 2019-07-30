@@ -58,8 +58,15 @@ export default class extends Component {
       ],
       radioIdSelected: `${idPrefix}5`,
       comboBoxSelectionOptions: [],
+      value: '20',
     };
   }
+
+  onRangeChange = e => {
+    this.setState({
+      value: e.target.value,
+    });
+  };
 
   onSwitchChange = () => {
     this.setState({
@@ -137,6 +144,8 @@ export default class extends Component {
               id="range"
               showInput
               compressed
+              value={this.state.value}
+              onChange={this.onRangeChange}
             />
           </EuiFormRow>
 
