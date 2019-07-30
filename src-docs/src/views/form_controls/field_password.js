@@ -7,7 +7,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      value: 'password',
+      value: '',
     };
   }
 
@@ -21,7 +21,6 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiFieldPassword
-          compressed
           placeholder="Placeholder text"
           value={this.state.value}
           onChange={this.onChange}
@@ -35,7 +34,6 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           disabled
-          compressed
           aria-label="Use aria labels when no actual label is in use"
         />
 
@@ -46,7 +44,6 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           isLoading
-          compressed
           aria-label="Use aria labels when no actual label is in use"
         />
 
@@ -58,7 +55,6 @@ export default class extends Component {
           onChange={this.onChange}
           isLoading
           disabled
-          compressed
           aria-label="Use aria labels when no actual label is in use"
         />
 
@@ -69,7 +65,6 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
-          readOnly
         />
 
         <EuiSpacer size="m" />
@@ -78,8 +73,7 @@ export default class extends Component {
           placeholder="Compressed and loading"
           value={this.state.value}
           onChange={this.onChange}
-          isInvalid
-          fullWidth
+          isLoading
           compressed
         />
       </Fragment>

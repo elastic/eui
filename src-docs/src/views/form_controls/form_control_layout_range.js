@@ -10,7 +10,6 @@ import {
 export default () => (
   <Fragment>
     <EuiFormControlLayoutDelimited
-      compressed
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
       }
@@ -21,7 +20,6 @@ export default () => (
 
     <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
-      compressed
       append={<EuiFormLabel>px</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -33,7 +31,6 @@ export default () => (
 
     <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
-      compressed
       icon="vector"
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -45,7 +42,6 @@ export default () => (
 
     <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
-      compressed
       clear={{ onClick: () => {} }}
       isLoading
       startControl={
@@ -59,7 +55,6 @@ export default () => (
     <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       fullWidth
-      compressed
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
       }
@@ -70,7 +65,6 @@ export default () => (
 
     <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
-      compressed
       isLoading
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -94,7 +88,6 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
-      compressed
       prepend={<EuiFormLabel>Add</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -108,7 +101,6 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
-      compressed
       prepend={<EuiFormLabel>Merge</EuiFormLabel>}
       startControl={
         <input type="number" placeholder="0" className="euiFieldNumber" />
@@ -122,7 +114,6 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
-      compressed
       readOnly
       prepend={<EuiFormLabel>Read only</EuiFormLabel>}
       startControl={

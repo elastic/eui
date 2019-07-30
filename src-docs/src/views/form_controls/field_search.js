@@ -21,7 +21,6 @@ export default class extends Component {
     return (
       <Fragment>
         <EuiFieldSearch
-          compressed
           placeholder="Placeholder text"
           value={this.state.value}
           onChange={this.onChange}
@@ -31,7 +30,6 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          compressed
           placeholder="Disabled"
           value={this.state.value}
           onChange={this.onChange}
@@ -42,7 +40,6 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          compressed
           placeholder="Loading"
           value={this.state.value}
           onChange={this.onChange}
@@ -53,7 +50,6 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          compressed
           placeholder="Loading and disabled"
           value={this.state.value}
           onChange={this.onChange}
@@ -65,7 +61,6 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiFieldSearch
-          compressed
           placeholder="Read-only"
           value={this.state.value}
           onChange={this.onChange}
@@ -80,8 +75,6 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
-          isInvalid
-          fullWidth
         />
       </Fragment>
     );
