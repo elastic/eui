@@ -18,7 +18,7 @@
 }
 
 .euiFormRow--hasEmptyLabelSpace {
-  margin-top: $euiFontSizeXS + $euiSizeM; /* 2 */
+  margin-top: ($euiFontSizeXS * $euiLineHeight) + $euiSizeXS; /* 2 */
   // the following ensure that contents that aren't inheritly the same height
   // as inputs will align to the vertical center
   min-height: $euiFormControlHeight;
@@ -26,13 +26,18 @@
   justify-content: center;
 }
 
+.euiFormRow__labelWrapper {
+  font-size: 0; // Ensures the wrapper doesn't create extra height
+}
+
 .euiFormRow--horizontal {
   flex-direction: row;
   align-items: stretch;
-  line-height: $euiFormControlHeight; // Lines up label with form control
 
   .euiFormRow__labelWrapper {
     @include euiTextBreakWord;
+    font-size: inherit; // Helps with alignment
+    line-height: $euiFormControlCompressedHeight - 1px; // The 1px less helps the alignment of the text baseline
     hyphens: auto;
     width: calc(33% - #{$euiSizeS});
     margin-right: $euiSizeS;
@@ -44,10 +49,6 @@
 
   .euiFormRow__fieldWrapper {
     width: 67%;
-  }
-
-  &.euiFormRow--compressed {
-    line-height: $euiFormControlCompressedHeight;
   }
 
   + .euiFormRow--horizontal {
@@ -69,7 +70,7 @@
   }
 
   &.euiFormRow--hasEmptyLabelSpace {
-    margin-top: $euiFontSizeXS + $euiSizeS; /* 2 */
+    min-height: $euiFormControlCompressedHeight;
   }
 
   .euiFormRow__displayOnlyWrapper {
