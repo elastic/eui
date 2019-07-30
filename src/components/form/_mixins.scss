@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'form_control_layout/variables';
+@import 'form_control_layout/mixins';
 
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
@@ -21,7 +22,6 @@
 }
 
 /**
- * 2. Account for inner box-shadow style border when in group
  * 3. Must supply both values to background-size or some browsers apply the single value to both directions
  */
 
@@ -36,7 +36,6 @@
     color: $euiColorDarkShade;
   }
 }
-
 
 @mixin euiFormControlSize(
   $height: $euiFormControlHeight,
@@ -56,25 +55,21 @@
       height: $euiFormControlCompressedHeight;
     }
 
-    &--inGroup:not(:read-only) {
-      height: $euiFormControlLayoutGroupInputHeight; /* 2 */
-    }
-
-    &--inGroup#{&}--compressed:not(:read-only) {
-      height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
+    &--inGroup {
+      height: 100%;
     }
   }
 }
 
-@mixin euiFormControlWithIcon($isIconOptional: false, $side: 'left') {
+@mixin euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: false) {
   @if ($isIconOptional) {
     @at-root {
       #{&}--withIcon {
-        @include euiFormControlLayoutPadding(1, $side);
+        @include euiFormControlLayoutPadding(1, $side, $compressed);
       }
     }
   } @else {
-    @include euiFormControlLayoutPadding(1, $side);
+    @include euiFormControlLayoutPadding(1, $side, $compressed);
   }
 }
 
@@ -172,18 +167,6 @@
   border-radius: 0;
   padding: $euiFormControlPadding;
 
-  @if ($includeSizes) {
-    &--compressed {
-      padding-top: $euiFormControlCompressedPadding;
-      padding-bottom: $euiFormControlCompressedPadding;
-    }
-
-    &--inGroup {
-      // sass-lint:disable-block no-important
-      box-shadow: none !important;
-    }
-  }
-
   @if ($includeStates) {
     &:invalid { /* 4 */
       @include euiFormControlInvalidStyle;
@@ -202,6 +185,41 @@
     }
   }
 
+  @if ($includeSizes) {
+    &--compressed {
+      @include euiFormControlStyleCompressed($borderOnly, $includeStates);
+    }
+
+    &--inGroup {
+      // sass-lint:disable-block no-important
+      box-shadow: none !important;
+      border-radius: 0;
+    }
+  }
+}
+
+@mixin euiFormControlStyleCompressed($borderOnly: false, $includeStates: true) {
+  @include euiFormControlDefaultShadow($borderOnly: true);
+  padding: $euiFormControlCompressedPadding;
+  border-radius: $euiFormControlCompressedBorderRadius;
+
+  @if ($includeStates) {
+    &:invalid { /* 4 */
+      @include euiFormControlInvalidStyle;
+    }
+
+    &:focus { /* 4 */
+      @include euiFormControlFocusStyle($borderOnly: true);
+    }
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
+
+    &[readOnly] {
+      @include euiFormControlReadOnlyStyle;
+    }
+  }
 }
 
 // Custom styles and states for checkboxes and radios
