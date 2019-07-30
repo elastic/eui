@@ -108,7 +108,7 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Compressed',
+      title: 'Compressed and horizontal',
       source: [
         {
           type: GuideSectionTypes.JS,
