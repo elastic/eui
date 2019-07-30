@@ -3,3 +3,7 @@
   @include euiFormControlWithIcon($isIconOptional: true);
   @include euiFormControlIsLoading;
 }
+
+.euiFieldNumber--withIcon.euiFieldNumber--compressed {
+  @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
+}

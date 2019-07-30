@@ -2,6 +2,7 @@
 
 exports[`EuiQuickSelectPopover is rendered 1`] = `
 <EuiPopover
+  anchorClassName="euiQuickSelectPopover__anchor"
   anchorPosition="downLeft"
   button={
     <EuiButtonEmpty
@@ -89,6 +90,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 
 exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
 <EuiPopover
+  anchorClassName="euiQuickSelectPopover__anchor"
   anchorPosition="downLeft"
   button={
     <EuiButtonEmpty

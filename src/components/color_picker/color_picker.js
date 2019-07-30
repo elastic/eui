@@ -208,6 +208,7 @@ export const EuiColorPicker = ({
             ]}>
             {([openLabel, closeLabel]) => (
               <EuiFieldText
+                className="euiColorPicker__input"
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
                 value={color ? color.toUpperCase() : ''}
