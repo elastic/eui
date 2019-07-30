@@ -13,23 +13,23 @@ import {
 export default () => (
   <EuiFlexGroup style={{ maxWidth: 600 }}>
     <EuiFlexItem grow={false} style={{ width: 100 }}>
-      <EuiFormRow label="Age">
-        <EuiFieldNumber max={10} placeholder={42} />
+      <EuiFormRow label="Age" compressed>
+        <EuiFieldNumber max={10} placeholder={42} compressed />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiFormRow label="Full name">
-        <EuiFieldText icon="user" placeholder="John Doe" />
+      <EuiFormRow label="Full name" compressed>
+        <EuiFieldText icon="user" placeholder="John Doe" compressed />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow label="Avatar" displayOnly>
+      <EuiFormRow label="Avatar" displayOnly compressed>
         <EuiAvatar name="John Doe" size="s" />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow hasEmptyLabelSpace>
-        <EuiButton>Save</EuiButton>
+      <EuiFormRow hasEmptyLabelSpace compressed>
+        <EuiButton size="s">Save</EuiButton>
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>

@@ -79,18 +79,18 @@ export default class extends Component {
       <EuiForm>
         <EuiFlexGroup>
           <EuiFlexItem grow={false} style={{ width: 100 }}>
-            <EuiFormRow label="Age">
-              <EuiFieldNumber max={10} placeholder={42} />
+            <EuiFormRow label="Age" compressed>
+              <EuiFieldNumber max={10} placeholder={42} compressed />
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow label="Full name">
-              <EuiFieldText icon="user" placeholder="John Doe" />
+            <EuiFormRow label="Full name" compressed>
+              <EuiFieldText icon="user" placeholder="John Doe" compressed />
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFormRow hasEmptyLabelSpace>
-              <EuiButton>Save</EuiButton>
+            <EuiFormRow hasEmptyLabelSpace compressed>
+              <EuiButton size="s">Save</EuiButton>
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -109,7 +109,7 @@ export default class extends Component {
 
     const formSample2 = (
       <EuiForm>
-        <EuiFormRow>
+        <EuiFormRow compressed>
           <EuiSwitch
             id={makeId()}
             name="popswitch"
@@ -119,12 +119,15 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="A text field">
-          <EuiFieldText name="popfirst" />
+        <EuiFormRow label="A text field" compressed>
+          <EuiFieldText name="popfirst" compressed />
         </EuiFormRow>
 
-        <EuiFormRow label="Range" helpText="Some help text for the range">
-          <EuiRange min={0} max={100} name="poprange" />
+        <EuiFormRow
+          label="Range"
+          helpText="Some help text for the range"
+          compressed>
+          <EuiRange min={0} max={100} name="poprange" compressed />
         </EuiFormRow>
 
         <EuiSpacer />
