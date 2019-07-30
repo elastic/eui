@@ -36,11 +36,15 @@
   flex-direction: row;
   align-items: stretch;
 
-  .euiFormRow__labelWrapper {
+  .euiFormRow__label {
     @include euiTextBreakWord;
+    hyphens: auto;
+    max-width: 100%; // Fixes IE
+  }
+
+  .euiFormRow__labelWrapper {
     display: block;
     line-height: $euiFormControlCompressedHeight - 1px; // The 1px less helps the alignment of the text baseline
-    hyphens: auto;
     width: calc(33% - #{$euiSizeS});
     margin-right: $euiSizeS;
     margin-bottom: 0;

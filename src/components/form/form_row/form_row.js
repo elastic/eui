@@ -114,6 +114,7 @@ export class EuiFormRow extends Component {
       optionalLabel = (
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
+            className="euiFormRow__label"
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
@@ -208,8 +209,9 @@ EuiFormRow.propTypes = {
    */
   describedByIds: PropTypes.array,
   /**
-   * Tightens up the spacing and sends down the
-   * compressed prop to the input
+   * When `true`, tightens up the spacing and sends down the
+   * compressed prop to the input; Set to `'horizontal'` if compressed
+   * and horizontal layout is needed.
    */
   compressed: PropTypes.oneOf([true, false, 'horizontal']),
   /**
