@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.1.0`.
+**Bug fixes**
+
+- Fixed error message when an I18n mapping is a formatting function with no values provided. ([#2182](https://github.com/elastic/eui/pull/2182))
 
 ## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
 
