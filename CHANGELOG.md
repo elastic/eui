@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `EuiMutationObserver` errors in IE11 by conditionally setting the `attributes` observer option according to the new spec ([#2180](https://github.com/elastic/eui/pull/2180))
+- Fixed error message when an I18n mapping is a formatting function with no values provided. ([#2182](https://github.com/elastic/eui/pull/2182))
 
 ## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
 
