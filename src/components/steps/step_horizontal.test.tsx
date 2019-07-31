@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
+// @ts-ignore
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 

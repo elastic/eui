@@ -1,11 +1,7 @@
-import {
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes,
-  MouseEventHandler,
-} from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps, Omit } from '../common';
 import { EuiStepProps } from './step';
+import { EuiStepHorizontalProps } from './step_horizontal';
 
 declare module '@elastic/eui' {
   export type EuiStepStatus =
@@ -39,19 +35,7 @@ declare module '@elastic/eui' {
    * @see './steps_horizontal.js'
    */
 
-  // EuiStepHorizontal is not exported by EUI
-  type EuiStepHorizontalProp = CommonProps &
-    HTMLAttributes<HTMLDivElement> & {
-      isSelected?: boolean;
-      isComplete?: boolean;
-      onClick: MouseEventHandler<HTMLDivElement>; // required
-      step: number;
-      title: ReactNode;
-      disabled?: boolean;
-      status?: EuiStepStatus;
-    };
-
-  type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProp, 'step'>;
+  type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProps, 'step'>;
 
   export interface EuiStepsHorizontalProps {
     steps: ContainedEuiStepHorizontalProps[];
