@@ -5,6 +5,7 @@ import {
   MouseEventHandler,
 } from 'react';
 import { CommonProps, Omit } from '../common';
+import { EuiStepProps } from './step';
 
 declare module '@elastic/eui' {
   export type EuiStepStatus =
@@ -14,23 +15,9 @@ declare module '@elastic/eui' {
     | 'danger'
     | 'disabled';
 
-  /**
-   * @see './step.js'
-   */
-
-  export interface EuiStepProps {
-    children: ReactNode; // required
-    status?: EuiStepStatus;
-    step: number;
-    title: string;
-    headingElement?: string;
-  }
-
   type StandaloneEuiStepProps = CommonProps &
     HTMLAttributes<HTMLDivElement> &
     EuiStepProps;
-
-  export const EuiStep: FunctionComponent<StandaloneEuiStepProps>;
 
   /**
    * @see './steps.js'

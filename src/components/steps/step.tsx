@@ -1,18 +1,38 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import { CommonProps } from '../common';
+
 import classNames from 'classnames';
 
 import { EuiTitle } from '../title';
 
-import { STATUS, EuiStepNumber } from './step_number';
+import { EuiStepStatus, EuiStepNumber } from './step_number';
 
 import { EuiI18n } from '../i18n';
 
-export const EuiStep = ({
+export interface EuiStepProps {
+  children: ReactNode;
+  /**
+   * The HTML tag used for the title
+   */
+  headingElement?: string;
+  /**
+   * The number of the step in the list of steps
+   */
+  step: number;
+  title: string;
+  /**
+   * May replace the number provided in props.step with alternate styling.
+   */
+  status?: EuiStepStatus;
+}
+
+export const EuiStep: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepProps
+> = ({
   className,
   children,
-  headingElement,
-  step,
+  headingElement = 'p',
+  step = 1,
   title,
   status,
   ...rest
@@ -47,26 +67,4 @@ export const EuiStep = ({
       <div className="euiStep__content">{children}</div>
     </div>
   );
-};
-
-EuiStep.propTypes = {
-  children: PropTypes.node.isRequired,
-  /**
-   * Will replace the number provided in props.step with alternate styling.
-   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`
-   */
-  status: PropTypes.oneOf(STATUS),
-  /**
-   * The number of the step in the list of steps
-   */
-  step: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  /**
-   * The HTML tag used for the title
-   */
-  headingElement: PropTypes.string.isRequired,
-};
-
-EuiStep.defaultProps = {
-  headingElement: 'p',
 };
