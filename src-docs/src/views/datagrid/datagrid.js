@@ -144,6 +144,7 @@ export default () => {
   return (
     <div>
       <EuiDataGrid
+        ariaLabel="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
         renderCellValue={({ rowIndex, columnName }) =>

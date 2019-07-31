@@ -10,8 +10,10 @@ type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
     columns: Column[];
+    focusedCell: [number, number];
     columnWidths: ColumnWidths;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    onCellFocus: Function;
   };
 
 const EuiDataGridDataRow: FunctionComponent<
@@ -23,6 +25,8 @@ const EuiDataGridDataRow: FunctionComponent<
     className,
     renderCellValue,
     rowIndex,
+    focusedCell,
+    onCellFocus,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -31,8 +35,8 @@ const EuiDataGridDataRow: FunctionComponent<
   const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
   return (
-    <div className={classes} data-test-subj={dataTestSubj} {...rest}>
-      {columns.map(props => {
+    <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
+      {columns.map((props, i) => {
         const { name } = props;
 
         const width = columnWidths.hasOwnProperty(name)
@@ -43,9 +47,12 @@ const EuiDataGridDataRow: FunctionComponent<
           <EuiDataGridCell
             key={name}
             rowIndex={rowIndex}
+            colIndex={i}
+            focusedCell={focusedCell}
             columnName={name}
             width={width}
             renderCellValue={renderCellValue}
+            onCellFocus={onCellFocus}
           />
         );
       })}
