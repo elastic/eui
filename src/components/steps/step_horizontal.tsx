@@ -64,7 +64,7 @@ export const EuiStepHorizontal: FunctionComponent<
     status = 'incomplete';
   }
 
-  const onStepClick = (event: any) => {
+  const onStepClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (disabled) return;
     onClick(event);
   };

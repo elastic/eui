@@ -1,7 +1,6 @@
 import { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps, Omit } from '../common';
 import { EuiStepProps } from './step';
-import { EuiStepHorizontalProps } from './step_horizontal';
 
 declare module '@elastic/eui' {
   export type EuiStepStatus =
@@ -29,19 +28,5 @@ declare module '@elastic/eui' {
 
   export const EuiSteps: FunctionComponent<
     CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsProps
-  >;
-
-  /**
-   * @see './steps_horizontal.js'
-   */
-
-  type ContainedEuiStepHorizontalProps = Omit<EuiStepHorizontalProps, 'step'>;
-
-  export interface EuiStepsHorizontalProps {
-    steps: ContainedEuiStepHorizontalProps[];
-  }
-
-  export const EuiStepsHorizontal: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepsHorizontalProps
   >;
 }
