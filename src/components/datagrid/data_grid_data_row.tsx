@@ -1,6 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
-import { Column, ColumnWidths } from './data_grid_types';
+import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { DEFAULT_COLUMN_WIDTH } from './data_grid_header_row';
@@ -9,8 +9,8 @@ import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
-    columns: Column[];
-    columnWidths: ColumnWidths;
+    columns: EuiDataGridColumn[];
+    columnWidths: EuiDataGridColumnWidths;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
   };
 
