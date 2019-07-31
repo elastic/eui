@@ -4,8 +4,10 @@ import { ExclusiveUnion } from '../common';
 import { I18nShape, Renderable, RenderableValues } from '../context/context';
 import { processStringToChildren } from './i18n_util';
 
-function throwError(): never {
-  throw new Error('asdf');
+function errorOnMissingValues(token: string): never {
+  throw new Error(
+    `I18n mapping for token "${token}" is a formatting function but no values were provided.`
+  );
 }
 
 function lookupToken<
@@ -23,7 +25,7 @@ function lookupToken<
 
   if (typeof renderable === 'function') {
     if (values === undefined) {
-      return throwError();
+      return errorOnMissingValues(token);
     } else {
       // @ts-ignore-next-line
       // TypeScript complains that `DEFAULT` doesn't have a call signature
