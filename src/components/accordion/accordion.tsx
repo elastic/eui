@@ -185,7 +185,6 @@ export class EuiAccordion extends Component<
             observerOptions={{
               childList: true,
               subtree: true,
-              attributes: true,
               attributeFilter: MUTATION_ATTRIBUTE_FILTER,
             }}
             onMutation={this.onMutation}>
