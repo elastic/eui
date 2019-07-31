@@ -46,6 +46,7 @@ export class EuiTablePagination extends Component {
         color="text"
         iconType="arrowDown"
         iconSide="right"
+        data-test-subj="tablePaginationPopoverButton"
         onClick={this.onButtonClick}>
         <EuiI18n
           token="euiTablePagination.rowsPerPage"
