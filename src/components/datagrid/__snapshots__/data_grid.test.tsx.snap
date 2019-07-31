@@ -125,98 +125,105 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiDataGridHeader"
-    data-test-subj="dataGridHeader"
+    class="euiDataGrid__content"
   >
     <div
-      class="euiDataGridHeaderCell"
-      data-test-subj="dataGridHeaderCell"
-      style="width:100px"
+      class="euiDataGridHeader"
+      data-test-subj="dataGridHeader"
     >
       <div
-        class="euiDataGridColumnResizer"
-        data-test-subj="dataGridColumnResizer"
-        style="margin-right:0px"
-      />
-      <div
-        class="euiDataGridHeaderCell__content"
+        class="euiDataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell"
+        style="width:100px"
       >
-        A
+        <div
+          class="euiDataGridColumnResizer"
+          data-test-subj="dataGridColumnResizer"
+          style="margin-right:0px"
+        />
+        <div
+          class="euiDataGridHeaderCell__content"
+        >
+          A
+        </div>
+      </div>
+      <div
+        class="euiDataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell"
+        style="width:100px"
+      >
+        <div
+          class="euiDataGridColumnResizer"
+          data-test-subj="dataGridColumnResizer"
+          style="margin-right:0px"
+        />
+        <div
+          class="euiDataGridHeaderCell__content"
+        >
+          B
+        </div>
       </div>
     </div>
     <div
-      class="euiDataGridHeaderCell"
-      data-test-subj="dataGridHeaderCell"
-      style="width:100px"
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
     >
       <div
-        class="euiDataGridColumnResizer"
-        data-test-subj="dataGridColumnResizer"
-        style="margin-right:0px"
-      />
-      <div
-        class="euiDataGridHeaderCell__content"
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
       >
-        B
+        0, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        0, B
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        1, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        1, B
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        2, A
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        style="width:100px"
+      >
+        2, B
       </div>
     </div>
   </div>
   <div
-    class="euiDataGridRow"
-    data-test-subj="dataGridRow"
-  >
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      0, A
-    </div>
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      0, B
-    </div>
-  </div>
-  <div
-    class="euiDataGridRow"
-    data-test-subj="dataGridRow"
-  >
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      1, A
-    </div>
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      1, B
-    </div>
-  </div>
-  <div
-    class="euiDataGridRow"
-    data-test-subj="dataGridRow"
-  >
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      2, A
-    </div>
-    <div
-      class="euiDataGridRowCell"
-      data-test-subj="dataGridRowCell"
-      style="width:100px"
-    >
-      2, B
-    </div>
-  </div>
+    class="euiSpacer euiSpacer--s"
+  />
 </div>
 `;

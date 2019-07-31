@@ -11,6 +11,7 @@ import classNames from 'classnames';
 
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
+import { EuiSpacer } from '../spacer';
 import { EuiDataGridBody } from './grid_body';
 
 type EuiDataGridProps = CommonProps &
@@ -77,18 +78,21 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
 
     return (
       <div {...rest} className={classNames(className, 'euiDataGrid')}>
-        <EuiDataGridHeaderRow
-          columns={columns}
-          columnWidths={columnWidths}
-          setColumnWidth={this.setColumnWidth}
-        />
-        <EuiDataGridBody
-          columnWidths={columnWidths}
-          columns={columns}
-          rowCount={rowCount}
-          renderCellValue={renderCellValue}
-          pagination={pagination}
-        />
+        <div className="euiDataGrid__content">
+          <EuiDataGridHeaderRow
+            columns={columns}
+            columnWidths={columnWidths}
+            setColumnWidth={this.setColumnWidth}
+          />
+          <EuiDataGridBody
+            columnWidths={columnWidths}
+            columns={columns}
+            rowCount={rowCount}
+            renderCellValue={renderCellValue}
+            pagination={pagination}
+          />
+        </div>
+        <EuiSpacer size="s" />
         {this.renderPagination()}
       </div>
     );
