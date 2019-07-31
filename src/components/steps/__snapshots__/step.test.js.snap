@@ -6,21 +6,21 @@ exports[`EuiStep is rendered 1`] = `
   class="euiStep testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiScreenReaderOnly"
-  >
-    Step 
-  </span>
   <div
-    class="euiStepNumber euiStep__circle"
+    class="euiStep__titleWrapper"
   >
-    1
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStep__circle"
+    >
+      1
+    </div>
+    <h3
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </h3>
   </div>
-  <h3
-    class="euiTitle euiTitle--small euiStep__title"
-  >
-    First step
-  </h3>
   <div
     class="euiStep__content"
   >

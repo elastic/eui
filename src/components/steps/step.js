@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { EuiScreenReaderOnly } from '../accessibility';
-
 import { EuiTitle } from '../title';
 
 import { STATUS, EuiStepNumber } from './step_number';
@@ -32,20 +30,19 @@ export const EuiStep = ({
 
   return (
     <div className={classes} {...rest}>
-      <EuiScreenReaderOnly>
-        <span>{screenReaderStep}&nbsp;</span>
-      </EuiScreenReaderOnly>
+      <div className="euiStep__titleWrapper">
+        <EuiStepNumber
+          className="euiStep__circle"
+          aria-label={`${screenReaderStep} ${step}`}
+          number={step}
+          status={status}
+          isHollow={status === 'incomplete'}
+        />
 
-      <EuiStepNumber
-        className="euiStep__circle"
-        number={step}
-        status={status}
-        isHollow={status === 'incomplete'}
-      />
-
-      <EuiTitle size="s" className="euiStep__title">
-        {React.createElement(headingElement, null, title)}
-      </EuiTitle>
+        <EuiTitle size="s" className="euiStep__title">
+          {React.createElement(headingElement, null, title)}
+        </EuiTitle>
+      </div>
 
       <div className="euiStep__content">{children}</div>
     </div>
