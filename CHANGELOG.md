@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.1.1`.
+
+## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
+
 **Bug fixes**
 
 - Fixed `EuiMutationObserver` errors in IE11 by conditionally setting the `attributes` observer option according to the new spec ([#2180](https://github.com/elastic/eui/pull/2180))
