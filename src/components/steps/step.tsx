@@ -26,9 +26,11 @@ export interface EuiStepProps {
   status?: EuiStepStatus;
 }
 
-export const EuiStep: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepProps
-> = ({
+export type StandaloneEuiStepProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiStepProps;
+
+export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
   className,
   children,
   headingElement = 'p',
