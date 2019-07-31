@@ -17,7 +17,9 @@ export class EuiMutationObserver extends EuiObserver<Props> {
     // without specifying `attributes` results in a `SyntaxError`.
     // The following logic patches the newer spec in which `attributes: true` can be
     // implied when appropriate (`attributeOldValue` or `attributeFilter` is specified).
-    const observerOptions = this.props.observerOptions || {};
+    const observerOptions: MutationObserverInit = {
+      ...this.props.observerOptions,
+    };
     const needsAttributes =
       observerOptions.hasOwnProperty('attributeOldValue') ||
       observerOptions.hasOwnProperty('attributeFilter');
