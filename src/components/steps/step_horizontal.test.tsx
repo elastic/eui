@@ -4,23 +4,63 @@ import { render, mount } from 'enzyme';
 import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
+import { STATUS } from './step_number';
 import { EuiStepHorizontal } from './step_horizontal';
 
 describe('EuiStepHorizontal', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiStepHorizontal
-        {...requiredProps}
-        step={1}
-        title={'First step'}
-        onClick={() => {}}
-      />
+      <EuiStepHorizontal {...requiredProps} onClick={() => {}} />
     );
 
     expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
+    test('step', () => {
+      const component = render(
+        <EuiStepHorizontal step={5} onClick={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('title', () => {
+      const component = render(
+        <EuiStepHorizontal title={'First step'} onClick={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isSelected', () => {
+      const component = render(
+        <EuiStepHorizontal isSelected onClick={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isComplete', () => {
+      const component = render(
+        <EuiStepHorizontal isComplete onClick={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('status', () => {
+      STATUS.forEach(status => {
+        test(`${status} is rendered`, () => {
+          const component = render(
+            <EuiStepHorizontal status={status} onClick={() => {}} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
     describe('onClick', () => {
       test('is called when clicked', () => {
         const onClickHandler = sinon.stub();

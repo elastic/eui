@@ -17,38 +17,36 @@ describe('EuiStep', () => {
   });
 
   describe('props', () => {
-    describe('EuiStep', () => {
-      test('headingElement', () => {
-        const component = render(
-          <EuiStep headingElement={'h3'} title={'First step'}>
-            <p>Do this</p>
-          </EuiStep>
-        );
+    test('headingElement', () => {
+      const component = render(
+        <EuiStep headingElement={'h3'} title={'First step'}>
+          <p>Do this</p>
+        </EuiStep>
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(component).toMatchSnapshot();
+    });
 
-      test('step', () => {
-        const component = render(
-          <EuiStep step={5} title={'First step'}>
-            <p>Do this</p>
-          </EuiStep>
-        );
+    test('step', () => {
+      const component = render(
+        <EuiStep step={5} title={'First step'}>
+          <p>Do this</p>
+        </EuiStep>
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(component).toMatchSnapshot();
+    });
 
-      describe('status', () => {
-        STATUS.forEach(status => {
-          test(`${status} is rendered`, () => {
-            const component = render(
-              <EuiStep status={status} title={'First step'}>
-                <p>Do this</p>
-              </EuiStep>
-            );
+    describe('status', () => {
+      STATUS.forEach(status => {
+        test(`${status} is rendered`, () => {
+          const component = render(
+            <EuiStep status={status} title={'First step'}>
+              <p>Do this</p>
+            </EuiStep>
+          );
 
-            expect(component).toMatchSnapshot();
-          });
+          expect(component).toMatchSnapshot();
         });
       });
     });

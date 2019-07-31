@@ -31,7 +31,7 @@ exports[`EuiStep is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep headingElement 1`] = `
+exports[`EuiStep props headingElement 1`] = `
 <div
   class="euiStep"
 >
@@ -60,7 +60,7 @@ exports[`EuiStep props EuiStep headingElement 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep status complete is rendered 1`] = `
+exports[`EuiStep props status complete is rendered 1`] = `
 <div
   class="euiStep"
 >
@@ -97,7 +97,7 @@ exports[`EuiStep props EuiStep status complete is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep status danger is rendered 1`] = `
+exports[`EuiStep props status danger is rendered 1`] = `
 <div
   class="euiStep"
 >
@@ -134,7 +134,7 @@ exports[`EuiStep props EuiStep status danger is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep status disabled is rendered 1`] = `
+exports[`EuiStep props status disabled is rendered 1`] = `
 <div
   class="euiStep"
 >
@@ -163,7 +163,7 @@ exports[`EuiStep props EuiStep status disabled is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep status incomplete is rendered 1`] = `
+exports[`EuiStep props status incomplete is rendered 1`] = `
 <div
   class="euiStep"
 >
@@ -190,7 +190,7 @@ exports[`EuiStep props EuiStep status incomplete is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep status warning is rendered 1`] = `
+exports[`EuiStep props status warning is rendered 1`] = `
 <div
   class="euiStep"
 >
@@ -227,7 +227,7 @@ exports[`EuiStep props EuiStep status warning is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStep props EuiStep step 1`] = `
+exports[`EuiStep props step 1`] = `
 <div
   class="euiStep"
 >
