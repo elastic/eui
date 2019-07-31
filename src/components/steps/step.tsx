@@ -18,7 +18,7 @@ export interface EuiStepProps {
   /**
    * The number of the step in the list of steps
    */
-  step: number;
+  step?: number;
   title: string;
   /**
    * May replace the number provided in props.step with alternate styling.

@@ -15,11 +15,236 @@ exports[`EuiStep is rendered 1`] = `
     >
       1
     </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep headingElement 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStep__circle"
+    >
+      1
+    </div>
     <h3
       class="euiTitle euiTitle--small euiStep__title"
     >
       First step
     </h3>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep status complete is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStepNumber--complete euiStep__circle"
+    >
+      <svg
+        aria-label="complete"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep status danger is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStepNumber--danger euiStep__circle"
+    >
+      <svg
+        aria-label="has errors"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep status disabled is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStepNumber--disabled euiStep__circle"
+    >
+      1
+    </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep status incomplete is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+    />
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep status warning is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 1"
+      class="euiStepNumber euiStepNumber--warning euiStep__circle"
+    >
+      <svg
+        aria-label="has warnings"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiStepNumber__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiStep props EuiStep step 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <div
+      aria-label="[object Object] 5"
+      class="euiStepNumber euiStep__circle"
+    >
+      5
+    </div>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
   </div>
   <div
     class="euiStep__content"
