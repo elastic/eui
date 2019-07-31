@@ -17,37 +17,8 @@ export class EuiSuggestInput extends Component {
     };
   }
 
-  // onButtonClick() {
-  //   this.setState({
-  //     isPopoverOpen: !this.state.isPopoverOpen,
-  //   });
-  // }
-
-  // closePopover() {
-  //   this.setState({
-  //     isPopoverOpen: false,
-  //   });
-  // }
-
   render() {
-    const { className, status, label, action, value, ...rest } = this.props;
-
-    const filterTriggerButton = (
-      <EuiFilterButton title="title">{action}</EuiFilterButton>
-    );
-
-    // const savedQueryManager = (
-    //   <EuiPopover
-    //     id="popover"
-    //     button={filterTriggerButton}
-    //     isOpen={this.state.isPopoverOpen}
-    //     anchorPosition="downLeft"
-    //     closePopover={this.closePopover.bind(this)}>
-    //     <div style={{ width: '300px' }}>
-    //       Popover content that&rsquo;s wider than the default width
-    //     </div>
-    //   </EuiPopover>
-    // );
+    const { className, status, label, prefix, value, ...rest } = this.props;
 
     const statusMap = {
       notYetSaved: {
@@ -93,7 +64,7 @@ export class EuiSuggestInput extends Component {
         <EuiFieldText
           value={value}
           fullWidth
-          prepend={filterTriggerButton}
+          prepend={prefix}
           append={statusElement}
         />
       </div>
@@ -111,7 +82,7 @@ EuiSuggestInput.propTypes = {
    * Label to go with status elements (e.g. KQL).
    */
   label: PropTypes.node,
-  action: PropTypes.node,
+  prefix: PropTypes.node,
 };
 
 EuiSuggestInput.defaultProps = {};

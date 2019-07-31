@@ -10,6 +10,7 @@ import {
   EuiPopoverTitle,
   EuiSuggestItem,
   EuiSuggestInput,
+  EuiSuperDatePicker,
   EuiSelect,
   EuiSpacer,
 } from '../../../../src/components';
@@ -67,6 +68,7 @@ export default class extends Component {
       value: '',
       status: 'notYetSaved',
       menuWidth: null,
+      hideDatepicker: false,
       filters: [
         {
           id: 'filter0',
@@ -147,7 +149,19 @@ export default class extends Component {
     }
   }
 
-  onChange(e) {
+  onFieldFocus() {
+    this.setState({
+      hideDatepicker: true,
+    });
+  }
+
+  onFieldBlur() {
+    this.setState({
+      hideDatepicker: false,
+    });
+  }
+
+  onSelectChange(e) {
     this.setState({
       status: e.target.value,
     });
@@ -161,6 +175,10 @@ export default class extends Component {
     this.setState({
       isPopoverOpen1: !this.state.isPopoverOpen1,
     });
+  }
+
+  onTimeChange() {
+    alert('Time changed');
   }
 
   render() {
@@ -223,33 +241,51 @@ export default class extends Component {
         value={this.state.value}
         status={this.state.status}
         label={'KQL'}
-        action={hashtag}
+        prefix={hashtag}
         onChange={this.onFieldChange.bind(this)}
+        onFocus={this.onFieldFocus.bind(this)}
+        onBlur={this.onFieldBlur.bind(this)}
       />
     );
 
     return (
       <div>
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange.bind(this)}
-          aria-label="Use aria labels when no actual label is in use"
-        />
-        <EuiSpacer size="m" />
-        <EuiPopover
-          id="popover"
-          button={button}
-          panelClassName="euiSuggestInput__popOverPanel"
-          anchorPosition="downLeft"
-          hasArrow={false}
-          display="block"
-          panelPaddingSize="none"
-          popoverRef={this.setPopoverRef}
-          isOpen={this.state.isPopoverOpen}
-          closePopover={this.closePopover.bind(this)}>
-          <div className="suggestions" style={{ width: this.state.menuWidth }}>{suggestions}</div>
-        </EuiPopover>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiSelect
+              options={this.options}
+              value={this.state.value}
+              onChange={this.onSelectChange.bind(this)}
+              aria-label="Use aria labels when no actual label is in use"
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="xl" />
+        <EuiFlexGroup
+          className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
+          <EuiFlexItem>
+            <EuiPopover
+              id="popover"
+              button={button}
+              panelClassName="euiSuggestInput__popOverPanel"
+              anchorPosition="downLeft"
+              hasArrow={false}
+              display="block"
+              panelPaddingSize="none"
+              popoverRef={this.setPopoverRef}
+              isOpen={this.state.isPopoverOpen}
+              closePopover={this.closePopover.bind(this)}>
+              <div
+                className="suggestions"
+                style={{ width: this.state.menuWidth }}>
+                {suggestions}
+              </div>
+            </EuiPopover>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false} className="datepicker">
+            <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
+          </EuiFlexItem>
+        </EuiFlexGroup>
         <EuiFlexGroup
           className="globalFilterGroup"
           gutterSize="none"
@@ -258,7 +294,6 @@ export default class extends Component {
           <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
             <GlobalFilterOptions />
           </EuiFlexItem>
-
           <EuiFlexItem>
             <GlobalFilterBar
               className="globalFilterGroup__filterBar"

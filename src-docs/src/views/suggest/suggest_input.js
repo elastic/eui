@@ -33,11 +33,12 @@ export default class extends Component {
 
     return (
       <div>
-        {statusList.map(item => (
+        {statusList.map((item, index) => (
           <div>
             <EuiSuggestInput
               onChange={this.onChange}
               value={this.state.value}
+              key={index}
               status={item}
               action={hashtag}
               label={'KQL'}

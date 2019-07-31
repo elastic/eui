@@ -31,3 +31,9 @@
   border-bottom-right-radius: 0; /* 2 */
   border-bottom-left-radius: 0; /* 2 */
 }
+
+.hideDatepicker {
+  .euiSuperDatePicker__flexWrapper > div:nth-of-type(1) {
+    display: none;
+  }
+}
