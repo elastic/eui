@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { EuiDataGrid } from '../../../../src/components/';
 
@@ -140,16 +140,43 @@ const data = [
   },
 ];
 
-export default () => {
-  return (
-    <div>
-      <EuiDataGrid
-        columns={columns}
-        rowCount={data.length}
-        renderCellValue={({ rowIndex, columnName }) =>
-          data[rowIndex][columnName]
-        }
-      />
-    </div>
-  );
-};
+export default class DataGrid extends Component {
+  state = {
+    pagination: {
+      pageIndex: 0,
+      pageSize: 10,
+    },
+  };
+
+  setPageIndex = pageIndex =>
+    this.setState(({ pagination }) => ({
+      pagination: { ...pagination, pageIndex },
+    }));
+
+  setPageSize = pageSize =>
+    this.setState(({ pagination }) => ({
+      pagination: { ...pagination, pageSize },
+    }));
+
+  render() {
+    const { pagination } = this.state;
+
+    return (
+      <div>
+        <EuiDataGrid
+          columns={columns}
+          rowCount={data.length}
+          renderCellValue={({ rowIndex, columnName }) =>
+            data[rowIndex][columnName]
+          }
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [5, 10, 25],
+            onChangeItemsPerPage: this.setPageSize,
+            onChangePage: this.setPageIndex,
+          }}
+        />
+      </div>
+    );
+  }
+}
