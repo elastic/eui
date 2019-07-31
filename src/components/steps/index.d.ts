@@ -36,16 +36,6 @@ declare module '@elastic/eui' {
   >;
 
   /**
-   * @see './sub_steps.js'
-   */
-
-  export interface EuiSubStepsProps {}
-
-  export const EuiSubSteps: FunctionComponent<
-    CommonProps & HTMLAttributes<HTMLDivElement> & EuiSubStepsProps
-  >;
-
-  /**
    * @see './steps_horizontal.js'
    */
 
