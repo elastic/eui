@@ -18,8 +18,7 @@ import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 const stepsSnippet = [
-  `<EuiSteps 
-  firstStepNumber={3}
+  `<EuiSteps
   steps={[
     {
       title: 'Step 1',
@@ -27,7 +26,8 @@ const stepsSnippet = [
     },
   ]}
 />`,
-  `<EuiSteps 
+  `<EuiSteps
+  firstStepNumber={3}
   steps={[
     {
       title: 'Step 3',
@@ -56,7 +56,7 @@ const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={horizontalSteps} />
 import Status from './status';
 const statusSource = require('!!raw-loader!./status');
 const statusHtml = renderToHtml(Steps);
-const statusSnippet = `<EuiSteps 
+const statusSnippet = `<EuiSteps
   steps={[
     {
       title: 'Warning',
