@@ -41,25 +41,29 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
 }) => {
   const classes = classNames('euiStep', className);
 
-  let screenReaderStep;
-  if (status === 'incomplete') {
-    screenReaderStep = (
-      <EuiI18n token="euiStep.incompleteStep" default="Incomplete Step" />
-    );
-  } else {
-    screenReaderStep = <EuiI18n token="euiStep.completeStep" default="Step" />;
-  }
-
   return (
     <div className={classes} {...rest}>
       <div className="euiStep__titleWrapper">
-        <EuiStepNumber
-          className="euiStep__circle"
-          aria-label={`${screenReaderStep} ${step}`}
-          number={step}
-          status={status}
-          isHollow={status === 'incomplete'}
-        />
+        {/* // EuiI18n has trouble with the string setting
+        // @ts-ignore */}
+        <EuiI18n
+          token="euiStep.ariaLabel"
+          default={({ status }) => {
+            if (status === 'incomplete') return 'Incomplete Step';
+            return 'Step';
+          }}
+          values={{ status }}>
+          {/* // @ts-ignore */}
+          {(ariaLabel: string) => (
+            <EuiStepNumber
+              className="euiStep__circle"
+              aria-label={`${ariaLabel} ${step}`}
+              number={step}
+              status={status}
+              isHollow={status === 'incomplete'}
+            />
+          )}
+        </EuiI18n>
 
         <EuiTitle size="s" className="euiStep__title">
           {React.createElement(headingElement, null, title)}

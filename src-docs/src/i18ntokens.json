@@ -725,15 +725,15 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 48,
+        "line": 75,
         "column": 4
       },
       "end": {
-        "line": 60,
+        "line": 87,
         "column": 53
       }
     },
-    "filepath": "src/components/steps/step_horizontal.js"
+    "filepath": "src/components/steps/step_horizontal.tsx"
   },
   {
     "token": "euiStepHorizontal.step",
@@ -741,15 +741,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 102,
         "column": 16
       },
       "end": {
-        "line": 74,
+        "line": 102,
         "column": 73
       }
     },
-    "filepath": "src/components/steps/step_horizontal.js"
+    "filepath": "src/components/steps/step_horizontal.tsx"
   },
   {
     "token": "euiStepNumber.isComplete",
@@ -800,36 +800,20 @@
     "filepath": "src/components/steps/step_number.tsx"
   },
   {
-    "token": "euiStep.incompleteStep",
-    "defString": "Incomplete Step",
-    "highlighting": "string",
+    "token": "euiStep.ariaLabel",
+    "defString": "({\n  status\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};",
+    "highlighting": "code",
     "loc": {
       "start": {
-        "line": 27,
-        "column": 6
+        "line": 49,
+        "column": 8
       },
       "end": {
-        "line": 27,
-        "column": 74
+        "line": 55,
+        "column": 30
       }
     },
-    "filepath": "src/components/steps/step.js"
-  },
-  {
-    "token": "euiStep.completeStep",
-    "defString": "Step",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 30,
-        "column": 23
-      },
-      "end": {
-        "line": 30,
-        "column": 78
-      }
-    },
-    "filepath": "src/components/steps/step.js"
+    "filepath": "src/components/steps/step.tsx"
   },
   {
     "token": "euiTableSortMobile.sorting",

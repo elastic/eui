@@ -13,7 +13,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 1"
+        aria-label="Step 1"
         class="euiStepNumber euiStep__circle"
       >
         1
@@ -39,7 +39,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 2"
+        aria-label="Step 2"
         class="euiStepNumber euiStep__circle"
       >
         2
@@ -65,7 +65,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 3"
+        aria-label="Incomplete Step 3"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <h2
@@ -98,7 +98,7 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 1"
+        aria-label="Step 1"
         class="euiStepNumber euiStep__circle"
       >
         1
@@ -124,7 +124,7 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 2"
+        aria-label="Step 2"
         class="euiStepNumber euiStep__circle"
       >
         2
@@ -150,7 +150,7 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 3"
+        aria-label="Incomplete Step 3"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <p
@@ -183,7 +183,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 10"
+        aria-label="Step 10"
         class="euiStepNumber euiStep__circle"
       >
         10
@@ -209,7 +209,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 11"
+        aria-label="Step 11"
         class="euiStepNumber euiStep__circle"
       >
         11
@@ -235,7 +235,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <div
-        aria-label="[object Object] 12"
+        aria-label="Incomplete Step 12"
         class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
       />
       <p
