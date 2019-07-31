@@ -1,8 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiStep`, `EuiSteps`, `EuiStepHorizontal`, `EuiStepsHorizontal`, and `EuiSubSteps` to Typescript ([#2186](https://github.com/elastic/eui/pull/2186))
+
 **Bug fixes**
 
 - Fixed `EuiMutationObserver` errors in IE11 by conditionally setting the `attributes` observer option according to the new spec ([#2180](https://github.com/elastic/eui/pull/2180))
+- Fixed alignment of long titles in `EuiStep` ([#2186](https://github.com/elastic/eui/pull/2186))
 
 ## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
 
