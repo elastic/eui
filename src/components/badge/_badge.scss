@@ -16,6 +16,7 @@
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
+  max-width: 100%;
 
   &:focus-within {
     @include euiFocusRing('small');

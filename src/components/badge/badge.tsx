@@ -185,7 +185,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         style={optionalCustomStyles}
         {...rest}>
         <span className="euiBadge__content">
-          <span>{children}</span>
+          <span className="euiBadge__text">{children}</span>
           {optionalIcon}
         </span>
       </button>
