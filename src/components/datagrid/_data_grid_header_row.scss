@@ -3,7 +3,7 @@
   min-width: 100%;
 }
 
-.euiDataGridHeaderCell {
+@include euiDataGridHeaderCell {
   @include euiFontSizeS;
 
   font-weight: $euiFontWeightBold;
@@ -17,25 +17,30 @@
 }
 
 // Header alternates
+// Often these need extra specificity because they need to gracefully clash with the border settings
 
-// Extra specificity because the header border trumps having borders off
-
-.euiDataGrid--headerUnderline,
-.euiDataGrid--bordersNone.euiDataGrid--headerUnderline {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(headerUnderline) {
+  @include euiDataGridHeaderCell {
     border-bottom: $euiBorderThick;
     border-color: $euiTextColor;
   }
 }
 
-.euiDataGrid--headerMinimal {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(bordersNone, headerUnderline) {
+  @include euiDataGridHeaderCell {
+    border-bottom: $euiBorderThick;
+    border-color: $euiTextColor;
+  }
+}
+
+@include euiDataGridStyles(headerMinimal) {
+  @include euiDataGridHeaderCell {
     background: $euiColorLightestShade;
   }
 }
 
-.euiDataGrid--headerMinimal.euiDataGrid--bordersAll {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(headerMinimal, bordersAll) {
+  @include euiDataGridHeaderCell {
     border: $euiBorderThin;
     border-left: none;
 
@@ -45,48 +50,48 @@
   }
 }
 
-.euiDataGrid--headerMinimal.euiDataGrid--bordersHorizontalOnly {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(headerMinimal, bordersHorizontalOnly) {
+  @include euiDataGridHeaderCell {
     border-bottom: $euiBorderThin;
   }
 }
 
 // Border alternates
-.euiDataGrid--bordersNone {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridHeaderCell {
     border: none;
   }
 }
 
-.euiDataGrid--bordersHorizontalOnly {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(borderhorizontalOnly) {
+  @include euiDataGridHeaderCell {
     border-right: none;
     border-left: none;
   }
 }
 
 // Font alternates
-.euiDataGrid--fontSizeSmall {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(fontSizeSmall) {
+  @include euiDataGridHeaderCell {
     @include euiFontSizeXS;
   }
 }
 
-.euiDataGrid--fontSizeLarge {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(fontSizeLarge) {
+  @include euiDataGridHeaderCell {
     @include euiFontSize;
   }
 }
 
 // Padding alternates
-.euiDataGrid--paddingSmall {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(paddingSmall) {
+  @include euiDataGridHeaderCell {
     padding: $euiSizeXS;
   }
 }
 
-.euiDataGrid--paddingLarge {
-  .euiDataGridHeaderCell {
+@include euiDataGridStyles(paddingLarge) {
+  @include euiDataGridHeaderCell {
     padding: $euiSizeS;
   }
 }

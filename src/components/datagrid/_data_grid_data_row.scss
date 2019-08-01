@@ -3,7 +3,7 @@
   min-width: 100%;
 }
 
-.euiDataGridRowCell {
+@include euiDataGridRowCell {
   @include euiFontSizeS;
   @include euiTextTruncate;
 
@@ -20,59 +20,61 @@
 }
 
 // Row highlights
-.euiDataGrid--rowHighlightMinimal {
-  .euiDataGridRow:hover .euiDataGridRowCell {
-    // sass-lint:disable-block no-important
-    // Needed to overtake striping
-    background-color: $euiColorHighlight !important;
+@include euiDataGridStyles(rowHighlightMinimal) {
+  .euiDataGridRow:hover {
+    @include euiDataGridRowCell {
+      // sass-lint:disable-block no-important
+      // Needed to overtake striping
+      background-color: $euiColorHighlight !important;
+    }
   }
 }
 
 // Stripes
-.euiDataGrid--stripes {
+@include euiDataGridStyles(stripes) {
   .euiDataGridRow:nth-child(odd) {
-    .euiDataGridRowCell {
+    @include euiDataGridRowCell {
       background: $euiColorLightestShade;
     }
   }
 }
 
 // Border alternates
-.euiDataGrid--bordersNone {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridRowCell {
     border: none;
   }
 }
 
-.euiDataGrid--bordersHorizontalOnly {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(bordersHorizontalOnly) {
+  @include euiDataGridRowCell {
     border-right: none;
     border-left: none;
   }
 }
 
 // Font alternates
-.euiDataGrid--fontSizeSmall {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(fontSizeSmall) {
+  @include euiDataGridRowCell {
     @include euiFontSizeXS;
   }
 }
 
-.euiDataGrid--fontSizeLarge {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(fontSizeLarge) {
+  @include euiDataGridRowCell {
     @include euiFontSize;
   }
 }
 
 // Padding alternates
-.euiDataGrid--paddingSmall {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(paddingSmall) {
+  @include euiDataGridRowCell {
     padding: $euiSizeXS;
   }
 }
 
-.euiDataGrid--paddingLarge {
-  .euiDataGridRowCell {
+@include euiDataGridStyles(paddingLarge) {
+  @include euiDataGridRowCell {
     padding: $euiSizeS;
   }
 }

@@ -121,19 +121,14 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       ...rest
     } = this.props;
 
-    let fontSize: EuiDataGridStyleFontSizes;
-    let border: EuiDataGridStyleBorders;
-    let header: EuiDataGridStyleHeader;
-    let rowHighlight: EuiDataGridStyleRowHighlight;
-    let stripes: boolean;
-    let cellPadding: EuiDataGridStyleCellPaddings;
-
-    fontSize = gridStyle.fontSize ? gridStyle.fontSize : 'm';
-    border = gridStyle.border ? gridStyle.border : 'all';
-    header = gridStyle.header ? gridStyle.header : 'minimal';
-    rowHighlight = gridStyle.rowHighlight ? gridStyle.rowHighlight : 'minimal';
-    stripes = gridStyle.stripes ? true : false;
-    cellPadding = gridStyle.cellPadding ? gridStyle.cellPadding : 'm';
+    const fontSize = gridStyle.fontSize ? gridStyle.fontSize : 'm';
+    const border = gridStyle.border ? gridStyle.border : 'all';
+    const header = gridStyle.header ? gridStyle.header : 'minimal';
+    const rowHighlight = gridStyle.rowHighlight
+      ? gridStyle.rowHighlight
+      : 'minimal';
+    const stripes = gridStyle.stripes ? true : false;
+    const cellPadding = gridStyle.cellPadding ? gridStyle.cellPadding : 'm';
 
     const classes = classNames(
       'euiDataGrid',
