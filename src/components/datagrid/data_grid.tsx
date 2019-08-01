@@ -4,49 +4,9 @@ import { EuiDataGridDataRow } from './data_grid_data_row';
 import { CommonProps } from '../common';
 import { Column, ColumnWidths } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-import {
-  EuiDataGridStyle,
-  EuiDataGridStyleBorders,
-  EuiDataGridStyleRowHighlight,
-  EuiDataGridStyleHeader,
-  EuiDataGridStyleFontSizes,
-  EuiDataGridStyleCellPaddings,
-} from './data_grid_styles';
 import classNames from 'classnames';
 
-const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
-  s: 'euiDataGrid--fontSizeSmall',
-  m: '',
-  l: 'euiDataGrid--fontSizeLarge',
-};
-
-const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
-  minimal: 'euiDataGrid--minimal',
-  pronounced: 'euiDataGrid--pronounced',
-  none: '',
-};
-
-const rowHighlightToClassMap: {
-  [rowHighlight in EuiDataGridStyleRowHighlight]: string
-} = {
-  minimal: 'euiDataGrid--rowHighlightMinimal',
-  none: '',
-};
-
-const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
-  all: '',
-  horizontalOnly: 'euiDataGrid--bordersHorizontalOnly',
-  none: 'euiDataGrid--bordersNone',
-};
-
-const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string
-} = {
-  s: 'euiDataGrid--paddingSmall',
-  m: '',
-  l: 'euiDataGrid--paddingLarge',
-};
-
+// Component props
 type EuiDataGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: Column[];
@@ -59,6 +19,56 @@ interface EuiDataGridState {
   columnWidths: ColumnWidths;
   rows: ReactElement[];
 }
+
+// Types for styling options, passed down through the `gridStyle` prop
+type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
+type EuiDataGridStyleBorders = 'all' | 'horizontalOnly' | 'none';
+type EuiDataGridStyleHeader = 'pronounced' | 'minimal' | 'none';
+type EuiDataGridStyleRowHighlight = 'minimal' | 'none';
+type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
+
+interface EuiDataGridStyle {
+  fontSize?: EuiDataGridStyleFontSizes;
+  border?: EuiDataGridStyleBorders;
+  stripes?: boolean;
+  header?: EuiDataGridStyleHeader;
+  rowHighlight?: EuiDataGridStyleRowHighlight;
+  cellPadding?: EuiDataGridStyleCellPaddings;
+}
+
+// Each gridStyle object above sets a specific CSS select to .euiGrid
+const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
+  s: 'euiDataGrid--fontSizeSmall',
+  m: '',
+  l: 'euiDataGrid--fontSizeLarge',
+};
+
+const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
+  minimal: 'euiDataGrid--headerMinimal',
+  pronounced: 'euiDataGrid--headerPronounced',
+  none: 'euiDataGrid--headerNone',
+};
+
+const rowHighlightToClassMap: {
+  [rowHighlight in EuiDataGridStyleRowHighlight]: string
+} = {
+  minimal: 'euiDataGrid--rowHighlightMinimal',
+  none: '',
+};
+
+const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
+  all: 'euiDataGrid--bordersAll',
+  horizontalOnly: 'euiDataGrid--bordersHorizontalOnly',
+  none: 'euiDataGrid--bordersNone',
+};
+
+const cellPaddingsToClassMap: {
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+} = {
+  s: 'euiDataGrid--paddingSmall',
+  m: '',
+  l: 'euiDataGrid--paddingLarge',
+};
 
 export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
   state = {

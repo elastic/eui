@@ -8,19 +8,45 @@
 
   font-weight: $euiFontWeightBold;
   padding: $euiSizeM / 2;
-  border: $euiBorderThin;
-  border-left: none;
   position: relative;
-  background: $euiColorLightestShade;
   flex: 0 0 auto;
-
-
-  &:first-of-type {
-    border-left: $euiBorderThin;
-  }
 
   .euiDataGridHeaderCell__content {
     @include euiTextTruncate;
+  }
+}
+
+// Header alternates
+
+// Extra specificity because the header border trumps having borders off
+.euiDataGrid--headerNone {
+  .euiDataGridHeaderCell {
+    background: $euiColorLightestShade;
+  }
+}
+
+.euiDataGrid--headerMinimal,
+.euiDataGrid--bordersNone.euiDataGrid--headerMinimal {
+  .euiDataGridHeaderCell {
+    border-bottom: $euiBorderThick;
+    border-color: $euiTextColor;
+  }
+}
+
+.euiDataGrid--headerNone.euiDataGrid--bordersAll {
+  .euiDataGridHeaderCell {
+    border: $euiBorderThin;
+    border-left: none;
+
+    &:first-of-type {
+      border-left: $euiBorderThin;
+    }
+  }
+}
+
+.euiDataGrid--headerNone.euiDataGrid--bordersHorizontalOnly {
+  .euiDataGridHeaderCell {
+    border-bottom: $euiBorderThin;
   }
 }
 

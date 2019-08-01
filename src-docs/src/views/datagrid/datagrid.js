@@ -217,6 +217,21 @@ export default class extends Component {
       },
     ];
 
+    this.headerOptions = [
+      {
+        id: 'none',
+        label: 'None',
+      },
+      {
+        id: 'minimal',
+        label: 'Minimal',
+      },
+      {
+        id: 'pronounced',
+        label: 'Pronounced',
+      },
+    ];
+
     this.state = {
       borderSelected: 'all',
       fontSizeSelected: 'm',
@@ -225,6 +240,7 @@ export default class extends Component {
       stripesSelected: 'false',
       rowHighlightSelected: 'minimal',
       isPopoverOpen: false,
+      headerSelected: 'minimal',
     };
   }
 
@@ -256,6 +272,12 @@ export default class extends Component {
   onRowHighlightChange = optionId => {
     this.setState({
       rowHighlightSelected: optionId,
+    });
+  };
+
+  onHeaderChange = optionId => {
+    this.setState({
+      headerSelected: optionId,
     });
   };
 
@@ -334,6 +356,15 @@ export default class extends Component {
                 onChange={this.onRowHighlightChange}
               />
             </EuiFormRow>
+
+            <EuiFormRow label="Header">
+              <EuiButtonGroup
+                legend="Header"
+                options={this.headerOptions}
+                idSelected={this.state.headerSelected}
+                onChange={this.onHeaderChange}
+              />
+            </EuiFormRow>
           </div>
         </EuiPopover>
 
@@ -348,6 +379,7 @@ export default class extends Component {
             cellPadding: this.state.cellPaddingSelected,
             stripes: this.state.stripes,
             rowHighlight: this.state.rowHighlightSelected,
+            header: this.state.headerSelected,
           }}
           renderCellValue={({ rowIndex, columnName }) =>
             data[rowIndex][columnName]
