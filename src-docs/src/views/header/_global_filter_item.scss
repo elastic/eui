@@ -2,6 +2,7 @@
   line-height: $euiSizeL + $euiSizeXS;
   border: none;
   color: $euiTextColor;
+  max-width: calc(100% - #{$euiSizeS * 2}); // Padding plus border
 
   &:not(.globalFilterItem-isDisabled) {
     @include euiFormControlDefaultShadow;

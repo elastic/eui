@@ -151,7 +151,7 @@ export default class extends Component {
                 <GlobalFilterOptions />
               </EuiFlexItem>
 
-              <EuiFlexItem>
+              <EuiFlexItem className="globalFilterGroup__filterFlexItem">
                 <GlobalFilterBar
                   className="globalFilterGroup__filterBar"
                   filters={this.state.filters}
