@@ -61,10 +61,6 @@ export class EuiDataGridCell extends Component<
     }
   }
 
-  componentDidMount() {
-    this.setFocus();
-  }
-
   componentDidUpdate() {
     this.setFocus();
   }

@@ -42,7 +42,6 @@ describe('EuiDataGrid', () => {
           {...requiredProps}
           columns={[{ name: 'A' }, { name: 'B' }]}
           rowCount={3}
-          ariaLabel="test"
           renderCellValue={({ rowIndex, columnName }) =>
             `${rowIndex}, ${columnName}`
           }
@@ -57,7 +56,7 @@ describe('EuiDataGrid', () => {
     it('supports hooks', () => {
       const component = mount(
         <EuiDataGrid
-          ariaLabel="test"
+          aria-label="test"
           columns={[{ name: 'Column 1' }, { name: 'Column 2' }]}
           rowCount={2}
           renderCellValue={({ rowIndex, columnName }) => {
@@ -89,7 +88,7 @@ Array [
     it('resizes a column by grab handles', () => {
       const component = mount(
         <EuiDataGrid
-          ariaLabel="test"
+          aria-labelledby="#test"
           columns={[{ name: 'Column 1' }, { name: 'Column 2' }]}
           rowCount={3}
           renderCellValue={() => 'value'}
@@ -120,7 +119,7 @@ Array [
 
       const component = mount(
         <EuiDataGrid
-          ariaLabel="test"
+          aria-labelledby="#test"
           columns={[{ name: 'ColumnA' }]}
           rowCount={3}
           renderCellValue={renderCellValue}
@@ -145,7 +144,6 @@ Array [
         {...requiredProps}
         columns={[{ name: 'A' }, { name: 'B' }]}
         rowCount={3}
-        ariaLabel="test"
         renderCellValue={({ rowIndex, columnName }) =>
           `${rowIndex}, ${columnName}`
         }

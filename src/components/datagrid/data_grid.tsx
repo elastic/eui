@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { EuiDataGridDataRow } from './data_grid_data_row';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { Column, ColumnWidths } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import classNames from 'classnames';
@@ -19,8 +19,8 @@ type CommonGridProps = CommonProps &
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
   };
 
-type EuiDataGridProps = CommonGridProps &
-  ({ ariaLabel: string } | { ariaLabelledBy: string });
+type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
+  ({ 'aria-label': string } | { 'aria-labelledby': string });
 
 interface EuiDataGridState {
   columnWidths: ColumnWidths;
@@ -123,23 +123,13 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       className,
       ...rest
     } = this.props;
-    const label: { 'aria-label'?: string; 'aria-labelledby'?: string } = {};
-
-    if ('ariaLabel' in rest) {
-      label['aria-label'] = rest.ariaLabel;
-      delete rest.ariaLabel;
-    } else if ('ariaLabelledBy' in rest) {
-      label['aria-labelledby'] = rest.ariaLabelledBy;
-      delete rest.ariaLabelledBy;
-    }
-
     return (
       // Unsure why this element causes errors as focus follows spec
       // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         role="grid"
         onKeyDown={this.handleKeyDown}
-        {...label}
+        // {...label}
         {...rest}
         className={classNames(className, 'euiDataGrid')}>
         <EuiDataGridHeaderRow
