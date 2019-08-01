@@ -67,7 +67,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       case keyCodes.UP:
         e.preventDefault();
         // TODO sort out when a user can arrow up into the column headers
-        if (y > 1) {
+        if (y > 0) {
           this.setState({ focusedCell: [x, y - 1] }, this.updateRows);
         }
         break;
@@ -94,7 +94,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
     const { columnWidths = {}, focusedCell = ORIGIN as [number, number] } =
       this.state || {};
     const { columns, rowCount, renderCellValue } = this.props;
-    const onCellFocus = this.onCellFocus || function() {}; // this seems... less than good...
+    const onCellFocus = this.onCellFocus || function() {};
     const rows = [];
 
     for (let i = 0; i < rowCount; i++) {

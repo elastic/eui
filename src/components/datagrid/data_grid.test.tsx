@@ -3,6 +3,11 @@ import { mount, ReactWrapper, render } from 'enzyme';
 import { EuiDataGrid } from './';
 import { findTestSubject, requiredProps } from '../../test';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { keyCodes } from '../../services';
+
+function getFocusableCell(component: ReactWrapper) {
+  return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
+}
 
 function extractGridData(datagrid: ReactWrapper) {
   const rows: string[][] = [];
@@ -130,7 +135,55 @@ Array [
       component.update();
 
       expect(extractColumnWidths(component)).toEqual(['200px']);
-      // expect(renderCellValue).toHaveBeenCalledTimes(0); // TODO this is broken now... whhhyyyyy?
+      // expect(renderCellValue).toHaveBeenCalledTimes(0); // TODO re-enable after PR#2188
     });
+  });
+
+  describe('keyboard controls', () => {
+    const component = mount(
+      <EuiDataGrid
+        {...requiredProps}
+        columns={[{ name: 'A' }, { name: 'B' }]}
+        rowCount={3}
+        ariaLabel="test"
+        renderCellValue={({ rowIndex, columnName }) =>
+          `${rowIndex}, ${columnName}`
+        }
+      />
+    );
+
+    let focusableCell = getFocusableCell(component);
+    expect(focusableCell.length).toEqual(1);
+    expect(focusableCell.text()).toEqual('0, A');
+
+    focusableCell
+      .simulate('focus')
+      .simulate('keydown', { keyCode: keyCodes.LEFT });
+
+    focusableCell = getFocusableCell(component);
+    expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+
+    focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+    expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+
+    focusableCell.simulate('keydown', { keyCode: keyCodes.DOWN });
+
+    focusableCell = getFocusableCell(component);
+    expect(focusableCell.text()).toEqual('1, A');
+
+    focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+
+    focusableCell = getFocusableCell(component);
+    expect(focusableCell.text()).toEqual('1, B');
+
+    focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+
+    focusableCell = getFocusableCell(component);
+    expect(focusableCell.text()).toEqual('0, B');
+
+    focusableCell.simulate('keydown', { keyCode: keyCodes.LEFT });
+
+    focusableCell = getFocusableCell(component);
+    expect(focusableCell.text()).toEqual('0, A');
   });
 });
