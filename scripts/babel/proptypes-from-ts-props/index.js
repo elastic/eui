@@ -1100,7 +1100,6 @@ module.exports = function propTypesFromTypeScript({ types }) {
           // this prevents TS-only identifiers from leaking into ES code
           programPath.traverse({
             ExportNamedDeclaration: (path) => {
-              debugger;
               const specifiers = path.get('specifiers');
               const source = path.get('source');
               specifiers.forEach(specifierPath => {
@@ -1121,7 +1120,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
                         // comes from a 3rd-party library
                         // best way to reliably check if this is
                         // a type or value is to require the
-                        // library and check it's exports
+                        // library and check its exports
                         const library = require(libraryName);
                         if (library.hasOwnProperty(name) === false) {
                           specifierPath.remove();
