@@ -1,8 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**Bug fixes**
-
-- Fixed `EuiBadge` truncation and auto-applied `title` attribute with `innerText` ([#2190](https://github.com/elastic/eui/pull/2190))
+No public interface changes since `13.1.1`.
 
 ## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
 
@@ -741,8 +739,7 @@
 
 - Fixed `EuiSuperDatePicker` not updating derived `isInvalid` state on prop update ([#1483](https://github.com/elastic/eui/pull/1483))
 - Fixed `logoAPM` ([#1489](https://github.com/elastic/eui/pull/1489))
-
-
+- Remove Typescript type and interface definitions from ES and CJS exports ([#1486](https://github.com/elastic/eui/pull/1486))
 
 ## [`6.7.2`](https://github.com/elastic/eui/tree/v6.7.2)
 
@@ -1135,9 +1132,8 @@
 
 ## [`4.1.0`](https://github.com/elastic/eui/tree/v4.1.0)
 
+- Added `direction` to `EuiFlexGroup` prop types interface ([#1196](https://github.com/elastic/eui/pull/1196))
 - Made `description` prop optional for `EuiDescribedFormGroup` ([#1191](https://github.com/elastic/eui/pull/1191))
-
-**Bug fixes**
 - Fixed issue with unselected tabs and aria-controls attribute in EuiTabbedContent
 - Added `tag` icon ([#1188](https://github.com/elastic/eui/pull/1188))
 - Replaced `logging` app icon ([#1194](https://github.com/elastic/eui/pull/1194))
