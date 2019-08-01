@@ -141,6 +141,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         <button
           className="euiBadge__iconButton"
           aria-label={iconOnClickAriaLabel}
+          title={iconOnClickAriaLabel}
           onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
@@ -206,18 +207,21 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     );
   } else {
     return (
-      <span className={classes} style={optionalCustomStyles} {...rest}>
-        <span className="euiBadge__content">
-          <EuiInnerText>
-            {(ref, innerText) => (
-              <span className="euiBadge__text" ref={ref} title={innerText}>
-                {children}
-              </span>
-            )}
-          </EuiInnerText>
-          {optionalIcon}
-        </span>
-      </span>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </span>
+        )}
+      </EuiInnerText>
     );
   }
 };
