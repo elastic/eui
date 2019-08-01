@@ -114,6 +114,34 @@ export const BadgeExample = {
       demo: <BadgeButton />,
     },
     {
+      title: 'Badge truncation',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: badgeTruncateSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: badgeTruncateHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Badges, like buttons, will only every be a single line of text. This
+            means text will not wrap, but be truncated if the badge&apos;s width
+            reaches that of its parent&apos;s.
+          </p>
+          <p>
+            For this reason, badges also auto-apply the inner text of the badge
+            to the <EuiCode>title</EuiCode> attribute of the element to provide
+            default browser tooltips with the full badge text.
+          </p>
+        </Fragment>
+      ),
+      demo: <BadgeTruncate />,
+    },
+    {
       title: 'Beta badge type',
       source: [
         {
@@ -151,34 +179,6 @@ export const BadgeExample = {
       ),
       props: { EuiBetaBadge },
       demo: <BetaBadge />,
-    },
-    {
-      title: 'Badge truncation',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: badgeTruncateSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeTruncateHtml,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            Badges, like buttons, will only every be a single line of text. This
-            means text will not wrap, but be truncated if the badge&apos;s width
-            reaches that of its parent&apos;s.
-          </p>
-          <p>
-            For this reason, badges also auto-apply the inner text of the badge
-            to the <EuiCode>title</EuiCode> attribute of the element to provide
-            default browser tooltips with the full badge text.
-          </p>
-        </Fragment>
-      ),
-      demo: <BadgeTruncate />,
     },
     {
       title: 'Notification badge type',
