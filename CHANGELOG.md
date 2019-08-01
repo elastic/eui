@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.1.1`.
+**Bug fixes**
+
+- Fixed `EuiBadge` truncation and auto-applied `title` attribute with `innerText` ([#2190](https://github.com/elastic/eui/pull/2190))
 
 ## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
 
