@@ -33,6 +33,7 @@
   }
 
   .euiBadge__childButton {
+    @include euiTextTruncate;
     flex: 0 0 auto;
     font-weight: inherit;
     line-height: inherit;
@@ -61,8 +62,7 @@
   }
 
   .euiBadge__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include euiTextTruncate;
     flex: 1 1 auto;
   }
 
