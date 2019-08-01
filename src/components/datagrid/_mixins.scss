@@ -4,22 +4,22 @@ $euiDataGridPrefix: '.euiDataGrid--';
 $euiDataGridStyles: (
   'bordersAll'
   'bordersNone'
-  'bordersHorizontalOnly'
+  'bordersHorizontal'
   'paddingSmall'
   'paddingMedium'
   'paddingLarge'
   'stripes'
-  'rowHighlightNone'
-  'rowHighlightMinimal'
-  'headerMinimal'
+  'rowHoverNone'
+  'rowHoverHighlight'
+  'headerShade'
   'headerUnderline'
   'fontSizeSmall'
   'fontSizeLarge'
 );
 
 // All this does is take some of the above and make a sibling selector
-// selector(headerMinimal, fontSizeLarge)
-// will produce `.euiDataGrid--headerMinimal.euiDataGrid--fontSizeLarge
+// selector(headerShade, fontSizeLarge)
+// will produce `.euiDataGrid--headerShade.euiDataGrid--fontSizeLarge
 @function selector($selectorKeys...) {
   $selectorList: '';
   @each $selector in $selectorKeys {

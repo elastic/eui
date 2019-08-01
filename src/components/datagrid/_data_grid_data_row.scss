@@ -7,7 +7,7 @@
   @include euiFontSizeS;
   @include euiTextTruncate;
 
-  padding: $euiSizeM / 2;
+  padding: $euiDataGridCellPaddingM;
   border-right: $euiBorderThin;
   border-bottom: $euiBorderThin;
   overflow: hidden;
@@ -20,7 +20,7 @@
 }
 
 // Row highlights
-@include euiDataGridStyles(rowHighlightMinimal) {
+@include euiDataGridStyles(rowHoverHighlight) {
   .euiDataGridRow:hover {
     @include euiDataGridRowCell {
       // sass-lint:disable-block no-important
@@ -46,7 +46,7 @@
   }
 }
 
-@include euiDataGridStyles(bordersHorizontalOnly) {
+@include euiDataGridStyles(bordersHorizontal) {
   @include euiDataGridRowCell {
     border-right: none;
     border-left: none;
@@ -69,12 +69,12 @@
 // Padding alternates
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
-    padding: $euiSizeXS;
+    padding: $euiDataGridCellPaddingS;
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
-    padding: $euiSizeS;
+    padding: $euiDataGridCellPaddingL;
   }
 }

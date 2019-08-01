@@ -7,7 +7,7 @@
   @include euiFontSizeS;
 
   font-weight: $euiFontWeightBold;
-  padding: $euiSizeM / 2;
+  padding: $euiDataGridCellPaddingM;
   position: relative;
   flex: 0 0 auto;
 
@@ -33,13 +33,13 @@
   }
 }
 
-@include euiDataGridStyles(headerMinimal) {
+@include euiDataGridStyles(headerShade) {
   @include euiDataGridHeaderCell {
     background: $euiColorLightestShade;
   }
 }
 
-@include euiDataGridStyles(headerMinimal, bordersAll) {
+@include euiDataGridStyles(headerShade, bordersAll) {
   @include euiDataGridHeaderCell {
     border: $euiBorderThin;
     border-left: none;
@@ -50,7 +50,7 @@
   }
 }
 
-@include euiDataGridStyles(headerMinimal, bordersHorizontalOnly) {
+@include euiDataGridStyles(headerShade, bordersHorizontal) {
   @include euiDataGridHeaderCell {
     border-bottom: $euiBorderThin;
   }
@@ -63,7 +63,7 @@
   }
 }
 
-@include euiDataGridStyles(borderhorizontalOnly) {
+@include euiDataGridStyles(borderhorizontal) {
   @include euiDataGridHeaderCell {
     border-right: none;
     border-left: none;
@@ -86,12 +86,12 @@
 // Padding alternates
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridHeaderCell {
-    padding: $euiSizeXS;
+    padding: $euiDataGridCellPaddingS;
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridHeaderCell {
-    padding: $euiSizeS;
+    padding: $euiDataGridCellPaddingL;
   }
 }

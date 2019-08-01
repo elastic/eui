@@ -156,7 +156,7 @@ export default class extends Component {
         label: 'All',
       },
       {
-        id: 'horizontalOnly',
+        id: 'horizontal',
         label: 'Horizontal only',
       },
       {
@@ -206,21 +206,21 @@ export default class extends Component {
       },
     ];
 
-    this.rowHighlightOptions = [
+    this.rowHoverOptions = [
       {
         id: 'none',
         label: 'None',
       },
       {
-        id: 'minimal',
-        label: 'Minimal',
+        id: 'highlight',
+        label: 'Highlight',
       },
     ];
 
     this.headerOptions = [
       {
-        id: 'minimal',
-        label: 'Minimal',
+        id: 'shade',
+        label: 'Shade',
       },
       {
         id: 'underline',
@@ -234,9 +234,9 @@ export default class extends Component {
       cellPaddingSelected: 'm',
       stripes: false,
       stripesSelected: 'false',
-      rowHighlightSelected: 'minimal',
+      rowHoverSelected: 'highlight',
       isPopoverOpen: false,
-      headerSelected: 'minimal',
+      headerSelected: 'shade',
     };
   }
 
@@ -265,9 +265,9 @@ export default class extends Component {
     });
   };
 
-  onRowHighlightChange = optionId => {
+  onRowHoverChange = optionId => {
     this.setState({
-      rowHighlightSelected: optionId,
+      rowHoverSelected: optionId,
     });
   };
 
@@ -344,12 +344,12 @@ export default class extends Component {
               />
             </EuiFormRow>
 
-            <EuiFormRow label="Row highlight">
+            <EuiFormRow label="Hover row">
               <EuiButtonGroup
-                legend="Row highlight"
-                options={this.rowHighlightOptions}
-                idSelected={this.state.rowHighlightSelected}
-                onChange={this.onRowHighlightChange}
+                legend="Hover row"
+                options={this.rowHoverOptions}
+                idSelected={this.state.rowHoverSelected}
+                onChange={this.onRowHoverChange}
               />
             </EuiFormRow>
 
@@ -374,7 +374,7 @@ export default class extends Component {
             fontSize: this.state.fontSizeSelected,
             cellPadding: this.state.cellPaddingSelected,
             stripes: this.state.stripes,
-            rowHighlight: this.state.rowHighlightSelected,
+            rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
           renderCellValue={({ rowIndex, columnName }) =>

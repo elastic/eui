@@ -5,7 +5,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { NODE_ENV, CI } = process.env;
 
-const isDevelopment = NODE_ENV !== 'production' && CI == null;
+export const isDevelopment = NODE_ENV !== 'production' && CI == null;
 const isProduction = NODE_ENV === 'production';
 
 function useCache(loaders) {
