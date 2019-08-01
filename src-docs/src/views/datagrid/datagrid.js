@@ -219,16 +219,12 @@ export default class extends Component {
 
     this.headerOptions = [
       {
-        id: 'none',
-        label: 'None',
-      },
-      {
         id: 'minimal',
         label: 'Minimal',
       },
       {
-        id: 'pronounced',
-        label: 'Pronounced',
+        id: 'underline',
+        label: 'Underline',
       },
     ];
 

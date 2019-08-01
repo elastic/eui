@@ -19,21 +19,22 @@
 // Header alternates
 
 // Extra specificity because the header border trumps having borders off
-.euiDataGrid--headerNone {
-  .euiDataGridHeaderCell {
-    background: $euiColorLightestShade;
-  }
-}
 
-.euiDataGrid--headerMinimal,
-.euiDataGrid--bordersNone.euiDataGrid--headerMinimal {
+.euiDataGrid--headerUnderline,
+.euiDataGrid--bordersNone.euiDataGrid--headerUnderline {
   .euiDataGridHeaderCell {
     border-bottom: $euiBorderThick;
     border-color: $euiTextColor;
   }
 }
 
-.euiDataGrid--headerNone.euiDataGrid--bordersAll {
+.euiDataGrid--headerMinimal {
+  .euiDataGridHeaderCell {
+    background: $euiColorLightestShade;
+  }
+}
+
+.euiDataGrid--headerMinimal.euiDataGrid--bordersAll {
   .euiDataGridHeaderCell {
     border: $euiBorderThin;
     border-left: none;
@@ -44,7 +45,7 @@
   }
 }
 
-.euiDataGrid--headerNone.euiDataGrid--bordersHorizontalOnly {
+.euiDataGrid--headerMinimal.euiDataGrid--bordersHorizontalOnly {
   .euiDataGridHeaderCell {
     border-bottom: $euiBorderThin;
   }

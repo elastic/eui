@@ -23,7 +23,7 @@ interface EuiDataGridState {
 // Types for styling options, passed down through the `gridStyle` prop
 type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
 type EuiDataGridStyleBorders = 'all' | 'horizontalOnly' | 'none';
-type EuiDataGridStyleHeader = 'pronounced' | 'minimal' | 'none';
+type EuiDataGridStyleHeader = 'minimal' | 'underline';
 type EuiDataGridStyleRowHighlight = 'minimal' | 'none';
 type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
@@ -45,8 +45,7 @@ const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
 
 const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
   minimal: 'euiDataGrid--headerMinimal',
-  pronounced: 'euiDataGrid--headerPronounced',
-  none: 'euiDataGrid--headerNone',
+  underline: 'euiDataGrid--headerUnderline',
 };
 
 const rowHighlightToClassMap: {
