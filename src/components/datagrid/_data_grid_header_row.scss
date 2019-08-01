@@ -1,6 +1,6 @@
 .euiDataGridHeader {
   display: inline-flex;
-  min-width: 100%;
+  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
 }
 
 @include euiDataGridHeaderCell {
