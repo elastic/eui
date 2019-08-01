@@ -60,12 +60,13 @@ export class EuiSuggestInput extends Component {
     const classes = classNames('euiSuggestInput', className);
 
     return (
-      <div className={classes} {...rest}>
+      <div className={classes}>
         <EuiFieldText
           value={value}
           fullWidth
           prepend={prefix}
           append={statusElement}
+          {...rest}
         />
       </div>
     );

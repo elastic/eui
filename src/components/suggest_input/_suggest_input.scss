@@ -15,7 +15,7 @@
 }
 
 .euiSuggestInput__popOverPanel {
-  transform: translateY(-8px) translateX(75px) !important;
+  transform: translateY(-8px) translateX(60px) !important;
 }
 
 .euiSuggestInput__popOverPanel[class*='bottom'] { /* 3 */
@@ -33,7 +33,10 @@
 }
 
 .hideDatepicker {
-  .euiSuperDatePicker__flexWrapper > div:nth-of-type(1) {
-    display: none;
+  .euiSuperDatePicker__flexWrapper {
+    width: 100%;
+    > div:nth-of-type(1) {
+      display: none;
+    }
   }
 }

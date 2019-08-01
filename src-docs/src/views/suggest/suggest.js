@@ -64,7 +64,7 @@ export default class extends Component {
 
     this.state = {
       isPopoverOpen: props.isOpen || false,
-      isPopoverOpen1: false,
+      isHashtagPopoverOpen: false,
       value: '',
       status: 'notYetSaved',
       menuWidth: null,
@@ -118,7 +118,7 @@ export default class extends Component {
     const focusSelected = () => {
       requestAnimationFrame(() => {
         this.setState({
-          menuWidth: this.popoverRef.getBoundingClientRect().width - 85,
+          menuWidth: this.popoverRef.getBoundingClientRect().width - 70,
         });
       });
     };
@@ -132,15 +132,16 @@ export default class extends Component {
     });
   }
 
-  closePopover1() {
+  closeHashtagPopover() {
     this.setState({
-      isPopoverOpen1: false,
+      isHashtagPopoverOpen: false,
     });
   }
 
   onFieldChange(e) {
     this.setState({
       value: e.target.value,
+      // isPopoverOpen: e.target.value === '' ? false : true,
     });
     if (this.state.isPopoverOpen) {
       this.closePopover();
@@ -173,7 +174,7 @@ export default class extends Component {
 
   onButtonClick() {
     this.setState({
-      isPopoverOpen1: !this.state.isPopoverOpen1,
+      isHashtagPopoverOpen: !this.state.isHashtagPopoverOpen,
     });
   }
 
@@ -204,9 +205,9 @@ export default class extends Component {
       <EuiPopover
         id="popover"
         button={hashtagButton}
-        isOpen={this.state.isPopoverOpen1}
+        isOpen={this.state.isHashtagPopoverOpen}
         anchorPosition="downLeft"
-        closePopover={this.closePopover1.bind(this)}>
+        closePopover={this.closeHashtagPopover.bind(this)}>
         <EuiPopoverTitle>SAVED QUERIES</EuiPopoverTitle>
         <div>
           <EuiFlexGroup direction="rowReverse" alignItems="center">
@@ -236,7 +237,7 @@ export default class extends Component {
       </EuiPopover>
     );
 
-    const button = (
+    const suggestInputbtn = (
       <EuiSuggestInput
         value={this.state.value}
         status={this.state.status}
@@ -266,7 +267,7 @@ export default class extends Component {
           <EuiFlexItem>
             <EuiPopover
               id="popover"
-              button={button}
+              button={suggestInputbtn}
               panelClassName="euiSuggestInput__popOverPanel"
               anchorPosition="downLeft"
               hasArrow={false}
