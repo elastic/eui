@@ -1,28 +1,27 @@
 // Core
-$euiColorPrimary: #dc322f;
-$euiColorSecondary: #2aa198;
-$euiColorAccent: #d33682;
+$euiColorPrimary: #1BA9F5;
+$euiColorSecondary: #7DE2D1;
+$euiColorAccent: #F990C0;
 
 // These colors stay the same no matter the theme
 $euiColorGhost: #FFF;
 $euiColorInk: #000;
 
 // Status
-$euiColorSuccess: #859900;
-$euiColorWarning: #b58900;
-$euiColorDanger: #dc322f;
+$euiColorSuccess: $euiColorSecondary;
+$euiColorWarning: #FFCE7A;
+$euiColorDanger: #F66;
 
 // Grays
-$euiColorEmptyShade: #002b36;
-$euiColorLightestShade: #073642;
-$euiColorLightShade: #586e75;
-$euiColorMediumShade: #657b83;
-$euiColorDarkShade: #839496;
-$euiColorDarkestShade: #eee8d5;
-$euiColorFullShade: #fdf6e3;
+$euiColorEmptyShade: #1D1E24;
+$euiColorLightestShade: #25262E;
+$euiColorLightShade: #343741;
+$euiColorMediumShade: #535966;
+$euiColorDarkShade: #98A2B3;
+$euiColorDarkestShade: #D4DAE5;
+$euiColorFullShade: #FFF;
 
 // Variations from core
-
 $euiTextColor: #DFE5EF;
 $euiLinkColor: $euiColorPrimary;
 $euiFocusBackgroundColor: #232635;
