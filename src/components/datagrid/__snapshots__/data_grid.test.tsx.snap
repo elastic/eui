@@ -121,8 +121,9 @@ exports[`EuiDataGrid pagination renders 1`] = `
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 euiDataGrid"
+  class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
   data-test-subj="test subject string"
+  role="grid"
 >
   <div
     class="euiDataGrid__content"
@@ -134,6 +135,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       <div
         class="euiDataGridHeaderCell"
         data-test-subj="dataGridHeaderCell"
+        role="columnheader"
         style="width:100px"
       >
         <div
@@ -150,6 +152,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       <div
         class="euiDataGridHeaderCell"
         data-test-subj="dataGridHeaderCell"
+        role="columnheader"
         style="width:100px"
       >
         <div
@@ -167,18 +170,23 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     <div
       class="euiDataGridRow"
       data-test-subj="dataGridRow"
+      role="row"
     >
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="0"
       >
         0, A
       </div>
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="-1"
       >
         0, B
       </div>
@@ -186,18 +194,23 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     <div
       class="euiDataGridRow"
       data-test-subj="dataGridRow"
+      role="row"
     >
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="-1"
       >
         1, A
       </div>
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="-1"
       >
         1, B
       </div>
@@ -205,18 +218,23 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     <div
       class="euiDataGridRow"
       data-test-subj="dataGridRow"
+      role="row"
     >
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="-1"
       >
         2, A
       </div>
       <div
         class="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
+        role="gridcell"
         style="width:100px"
+        tabindex="-1"
       >
         2, B
       </div>

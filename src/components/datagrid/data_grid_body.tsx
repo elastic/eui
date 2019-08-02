@@ -5,11 +5,16 @@ import {
   EuiDataGridPaginationProps,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-import { EuiDataGridDataRow } from './data_grid_data_row';
+import {
+  EuiDataGridDataRow,
+  EuiDataGridDataRowProps,
+} from './data_grid_data_row';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   columns: EuiDataGridColumn[];
+  focusedCell: EuiDataGridDataRowProps['focusedCell'];
+  onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   pagination?: EuiDataGridPaginationProps;
@@ -21,6 +26,8 @@ export const EuiDataGridBody: FunctionComponent<
   const {
     columnWidths,
     columns,
+    focusedCell,
+    onCellFocus,
     rowCount,
     renderCellValue,
     pagination,
@@ -38,16 +45,26 @@ export const EuiDataGridBody: FunctionComponent<
       rows.push(
         <EuiDataGridDataRow
           key={i}
-          rowIndex={i}
           columns={columns}
-          renderCellValue={renderCellValue}
           columnWidths={columnWidths}
+          focusedCell={focusedCell}
+          onCellFocus={onCellFocus}
+          renderCellValue={renderCellValue}
+          rowIndex={i}
         />
       );
     }
 
     return rows;
-  }, [startRow, endRow, columnWidths, columns, renderCellValue]);
+  }, [
+    columns,
+    columnWidths,
+    endRow,
+    focusedCell,
+    onCellFocus,
+    renderCellValue,
+    startRow,
+  ]);
 
   return <Fragment>{rows}</Fragment>;
 };

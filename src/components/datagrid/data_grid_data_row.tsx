@@ -6,12 +6,14 @@ import { CommonProps } from '../common';
 import { DEFAULT_COLUMN_WIDTH } from './data_grid_header_row';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 
-type EuiDataGridDataRowProps = CommonProps &
+export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
     columns: EuiDataGridColumn[];
     columnWidths: EuiDataGridColumnWidths;
+    focusedCell: [number, number];
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    onCellFocus: Function;
   };
 
 const EuiDataGridDataRow: FunctionComponent<
@@ -23,6 +25,8 @@ const EuiDataGridDataRow: FunctionComponent<
     className,
     renderCellValue,
     rowIndex,
+    focusedCell,
+    onCellFocus,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -31,21 +35,26 @@ const EuiDataGridDataRow: FunctionComponent<
   const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
   return (
-    <div className={classes} data-test-subj={dataTestSubj} {...rest}>
-      {columns.map(props => {
+    <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
+      {columns.map((props, i) => {
         const { name } = props;
 
         const width = columnWidths.hasOwnProperty(name)
           ? columnWidths[name]
           : DEFAULT_COLUMN_WIDTH;
 
+        const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
+
         return (
           <EuiDataGridCell
             key={name}
             rowIndex={rowIndex}
+            colIndex={i}
             columnName={name}
             width={width}
             renderCellValue={renderCellValue}
+            onCellFocus={onCellFocus}
+            isFocusable={isFocusable}
           />
         );
       })}

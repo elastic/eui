@@ -39,6 +39,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
 
         return (
           <div
+            role="columnheader"
             key={name}
             className="euiDataGridHeaderCell"
             data-test-subj="dataGridHeaderCell"
