@@ -70,11 +70,17 @@ export const EuiStepHorizontal: FunctionComponent<
   };
 
   return (
-    // EuiI18n has trouble with the string setting
-    // @ts-ignore
     <EuiI18n
       token="euiStepHorizontal.buttonTitle"
-      default={({ step, title, disabled, isComplete }) => {
+      default={({
+        step,
+        title,
+        disabled,
+        isComplete,
+      }: Pick<
+        EuiStepHorizontalProps,
+        'step' | 'title' | 'disabled' | 'isComplete'
+      >) => {
         let titleAppendix = '';
         if (disabled) {
           titleAppendix = ' is disabled';
@@ -85,7 +91,6 @@ export const EuiStepHorizontal: FunctionComponent<
         return `Step ${step}: ${title}${titleAppendix}`;
       }}
       values={{ step, title, disabled, isComplete }}>
-      {/* // @ts-ignore */}
       {(buttonTitle: string) => (
         <EuiKeyboardAccessible>
           <div
