@@ -48,9 +48,12 @@ declare module '@elastic/eui' {
     checked?: FilterChecked;
   }
 
-  export const EuiFilterSelectItem: Component<
+  // eslint-disable-next-line react/prefer-stateless-function
+  export class EuiFilterSelectItem extends Component<
     CommonProps &
       ButtonHTMLAttributes<HTMLButtonElement> &
       EuiFilterSelectItemProps
-  >;
+  > {
+    render: () => JSX.Element;
+  }
 }

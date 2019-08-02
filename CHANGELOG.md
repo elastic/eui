@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `EuiBadge` truncation and auto-applied `title` attribute with `innerText` ([#2190](https://github.com/elastic/eui/pull/2190))
+- Fixed the TS defs for EuiFilterSelectItem ([#2192](https://github.com/elastic/eui/pull/2192))
 
 ## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
 
