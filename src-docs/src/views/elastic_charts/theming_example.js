@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 
 import { ExternalBadge } from './shared';
 import { Theming } from './theming';
+import { Categorical } from './theming_categorical';
 
-import { EuiSpacer, EuiCode } from '../../../../src/components';
+import { EuiSpacer, EuiCode, EuiCodeBlock } from '../../../../src/components';
 
 export const ElasticChartsThemingExample = {
   title: 'Theming',
@@ -36,6 +37,35 @@ export const ElasticChartsThemingExample = {
         </Fragment>
       ),
       demo: <Theming />,
+    },
+    {
+      title: 'Coloring for categories',
+      text: (
+        <Fragment>
+          <p>
+            When creating a multi-series chart where each series shows{' '}
+            <strong>contrasting</strong> data, use the color blind safe palette
+            of contrasting colors. This will also avoid implying levels of
+            magnitude.
+          </p>
+          <p>
+            Do not use too many colors in a single chart as this will hinder
+            understanding. Instead, think about the data you are delivering and
+            if there is a way to <strong>highlight</strong> key indicators. If
+            the series&apos; are or can be combined into logical groups, use
+            contrasting shapes/styles but keep the same color for within groups.
+          </p>
+
+          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
+            {`customColors = mergeWithDefaultTheme({
+  colors: {
+    vizColors: palettes.euiPaletteColorBlind.colors
+  },
+}, isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme)`}
+          </EuiCodeBlock>
+        </Fragment>
+      ),
+      demo: <Categorical />,
     },
   ],
 };

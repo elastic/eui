@@ -55,7 +55,7 @@ class _Theming extends Component {
   render() {
     const dg = new DataGenerator();
     const data1 = dg.generateGroupedSeries(20, 5);
-    console.table(data1);
+    // console.table(data1);
 
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
