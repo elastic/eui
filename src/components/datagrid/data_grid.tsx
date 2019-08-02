@@ -19,6 +19,8 @@ type CommonGridProps = CommonProps &
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
   };
 
+// This structure forces either aria-label or aria-labelledby to be defined
+// making some type of label a requirement
 type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
@@ -94,7 +96,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
     const { columnWidths = {}, focusedCell = ORIGIN as [number, number] } =
       this.state || {};
     const { columns, rowCount, renderCellValue } = this.props;
-    const onCellFocus = this.onCellFocus || function() {};
+    const onCellFocus = this.onCellFocus || function() {}; // TODO re-enable after PR#2188
     const rows = [];
 
     for (let i = 0; i < rowCount; i++) {

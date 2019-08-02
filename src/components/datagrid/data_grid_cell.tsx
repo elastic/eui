@@ -16,9 +16,9 @@ interface CellValueElementProps {
 export interface EuiDataGridCellProps {
   rowIndex: number;
   colIndex: number;
-  focusedCell: [number, number];
   columnName: string;
   width: number;
+  isFocusable: boolean;
   onCellFocus: Function;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
@@ -48,31 +48,24 @@ export class EuiDataGridCell extends Component<
 > {
   cellRef = createRef<HTMLDivElement>();
 
-  isFocusOnMe() {
-    return (
-      this.props.focusedCell[0] === this.props.colIndex &&
-      this.props.focusedCell[1] === this.props.rowIndex
-    );
-  }
-
-  setFocus() {
-    if (this.cellRef.current && this.isFocusOnMe()) {
+  updateFocus() {
+    if (this.cellRef.current && this.props.isFocusable) {
       this.cellRef.current.focus();
     }
   }
 
   componentDidUpdate() {
-    this.setFocus();
+    this.updateFocus();
   }
 
   render() {
     const { width, ...rest } = this.props;
-    const { colIndex, rowIndex, onCellFocus } = this.props;
+    const { colIndex, rowIndex, onCellFocus, isFocusable } = rest;
 
     return (
       <div
         role="gridcell"
-        tabIndex={this.isFocusOnMe() ? 0 : -1}
+        tabIndex={isFocusable ? 0 : -1}
         ref={this.cellRef}
         className="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"

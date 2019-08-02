@@ -43,16 +43,18 @@ const EuiDataGridDataRow: FunctionComponent<
           ? columnWidths[name]
           : DEFAULT_COLUMN_WIDTH;
 
+        const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
+
         return (
           <EuiDataGridCell
             key={name}
             rowIndex={rowIndex}
             colIndex={i}
-            focusedCell={focusedCell}
             columnName={name}
             width={width}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}
+            isFocusable={isFocusable}
           />
         );
       })}
