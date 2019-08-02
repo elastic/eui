@@ -2485,6 +2485,19 @@ export type Foo = string;
 
       expect(result.code).toBe('');
     });
+
+    it('removes 3rd-party type exports', () => {
+      const result = transform(
+        `
+export { DraggableLocation, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
+`,
+        babelOptions
+      );
+
+      expect(result.code).toBe(
+        `export { Draggable } from 'react-beautiful-dnd';`
+      );
+    });
   });
 
 });
