@@ -13,7 +13,10 @@ export const GlobalFilterBar = ({ filters, className, ...rest }) => {
     .filter(filter => filter.isPinned)
     .map(filter => {
       return (
-        <EuiFlexItem key={filter.id} grow={false}>
+        <EuiFlexItem
+          key={filter.id}
+          grow={false}
+          className="globalFilterBar__flexItem">
           <GlobalFilterItem {...filter} />
         </EuiFlexItem>
       );
@@ -23,7 +26,10 @@ export const GlobalFilterBar = ({ filters, className, ...rest }) => {
     .filter(filter => !filter.isPinned)
     .map(filter => {
       return (
-        <EuiFlexItem key={filter.id} grow={false}>
+        <EuiFlexItem
+          key={filter.id}
+          grow={false}
+          className="globalFilterBar__flexItem">
           <GlobalFilterItem {...filter} />
         </EuiFlexItem>
       );
