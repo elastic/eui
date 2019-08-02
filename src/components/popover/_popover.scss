@@ -146,6 +146,20 @@
   &.euiPopover__panel-noArrow .euiPopover__panelArrow {
     display: none;
   }
+
+  &.euiPopover__panel-isAttached.euiPopover__panel--bottom {
+    border-top-color: transparentize($euiBorderColor, .2);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &.euiPopover__panel-isAttached.euiPopover__panel--top {
+    @include euiBottomShadowFlat;
+
+    border-bottom-color: transparentize($euiBorderColor, .2);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .euiPopover__panel.euiPopover__panel-isOpen.euiPopover__panel--top {

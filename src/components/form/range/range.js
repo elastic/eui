@@ -87,7 +87,7 @@ export class EuiRange extends Component {
             style={style}
             showTicks={showTicks}
             showRange={showRange}
-            tabIndex={showInput ? -1 : tabIndex || null}
+            tabIndex={showInput === true ? -1 : tabIndex || null}
             {...rest}
           />
 
