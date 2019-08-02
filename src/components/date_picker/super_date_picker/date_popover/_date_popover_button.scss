@@ -32,6 +32,12 @@
       background-image: euiFormControlGradient($euiColorDanger);
     }
   }
+
+  &:disabled {
+    background-color: $euiFormBackgroundDisabledColor;
+    color: $euiColorDarkShade;
+    cursor: default;
+  }
 }
 
 .euiDatePopoverButton--start {

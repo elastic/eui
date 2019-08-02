@@ -14,6 +14,7 @@ import {
   EuiOverlayMask,
   EuiRange,
   EuiSwitch,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import SuperSelectComplexExample from '../super_select/super_select_complex';
@@ -71,6 +72,12 @@ export class Modal extends Component {
         <EuiFormRow label="A SuperSelect field">
           <SuperSelectComplexExample />
         </EuiFormRow>
+
+        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+          {
+            '<h1>Titleisonelonglinejfdklsjaflkdsajfkldsajfklsdajfkldsjafkldsjalfkjdsklafjdsklafjkldsajfkldsajfkldsjfkdsjaflsdjaf;djsakfjdskafjdsklafjdksljfkdlsa;jfldksjfkldsajfkldsjflkdsjaklfadjs;</h1>'
+          }
+        </EuiCodeBlock>
       </EuiForm>
     );
 
@@ -81,7 +88,9 @@ export class Modal extends Component {
         <EuiOverlayMask>
           <EuiModal onClose={this.closeModal} initialFocus="[name=popswitch]">
             <EuiModalHeader>
-              <EuiModalHeaderTitle>Form in a modal</EuiModalHeaderTitle>
+              <EuiModalHeaderTitle>
+                Titleisonelonglinejfdklsjaflkdsajfkldsajfklsdajfkldsjafkldsjalfkjdsklafjdsklafjkldsajfkldsajfkldsjfkdsjaflsdjaf
+              </EuiModalHeaderTitle>
             </EuiModalHeader>
 
             <EuiModalBody>{formSample}</EuiModalBody>

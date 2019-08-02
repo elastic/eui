@@ -98,10 +98,7 @@ export const EuiStat: FunctionComponent<
   let titleText;
   if (isLoading) {
     titleText = (
-      // EuiI18n has trouble with the string setting
-      // @ts-ignore
       <EuiI18n token="euiStat.loadingText" default="Statistic is loading">
-        {/* // @ts-ignore */}
         {(loadingText: string) => <p aria-label={loadingText}>--</p>}
       </EuiI18n>
     );

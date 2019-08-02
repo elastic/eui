@@ -33,12 +33,22 @@
   justify-content: space-between;
   text-align: left;
 
-  &:hover,
+  &:not(:disabled):hover,
   &:focus {
     text-decoration: none;
 
     .euiSuperDatePicker__prettyFormatLink {
       text-decoration: underline;
+    }
+  }
+
+  &:disabled {
+    background-color: $euiFormBackgroundDisabledColor;
+    color: $euiColorDarkShade;
+    cursor: not-allowed;
+
+    .euiSuperDatePicker__prettyFormatLink {
+      display: none;
     }
   }
 }

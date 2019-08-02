@@ -10,6 +10,7 @@ const defaultProps = {
   applyRefreshInterval: noop,
   start: 'now-15m',
   end: 'now',
+  isDisabled: false,
   isPaused: true,
   refreshInterval: 0,
   commonlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],

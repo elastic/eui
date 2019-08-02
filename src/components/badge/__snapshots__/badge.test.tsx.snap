@@ -63,7 +63,9 @@ exports[`EuiBadge is rendered with onClick provided 1`] = `
   <span
     class="euiBadge__content"
   >
-    <span>
+    <span
+      class="euiBadge__text"
+    >
       Content
     </span>
   </span>
