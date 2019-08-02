@@ -23,5 +23,11 @@
   &:hover,
   &:active {
     opacity: 1;
+
+    ~ .euiDataGridHeaderCell__content {
+      user-select: none;
+    }
   }
+
+
 }

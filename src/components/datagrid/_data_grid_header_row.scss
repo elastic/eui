@@ -1,24 +1,97 @@
 .euiDataGridHeader {
   display: inline-flex;
-  min-width: 100%;
+  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
 }
 
-.euiDataGridHeaderCell {
-  @include euiFontSizeXS;
+@include euiDataGridHeaderCell {
+  @include euiFontSizeS;
 
-  padding: $euiSizeM / 2;
-  border: $euiBorderThin;
-  border-left: none;
+  font-weight: $euiFontWeightBold;
+  padding: $euiDataGridCellPaddingM;
   position: relative;
-  background: $euiColorLightestShade;
   flex: 0 0 auto;
-
-
-  &:first-of-type {
-    border-left: $euiBorderThin;
-  }
 
   .euiDataGridHeaderCell__content {
     @include euiTextTruncate;
+  }
+}
+
+// Header alternates
+// Often these need extra specificity because they need to gracefully clash with the border settings
+
+@include euiDataGridStyles(headerUnderline) {
+  @include euiDataGridHeaderCell {
+    border-bottom: $euiBorderThick;
+    border-color: $euiTextColor;
+  }
+}
+
+@include euiDataGridStyles(bordersNone, headerUnderline) {
+  @include euiDataGridHeaderCell {
+    border-bottom: $euiBorderThick;
+    border-color: $euiTextColor;
+  }
+}
+
+@include euiDataGridStyles(headerShade) {
+  @include euiDataGridHeaderCell {
+    background: $euiColorLightestShade;
+  }
+}
+
+@include euiDataGridStyles(headerShade, bordersAll) {
+  @include euiDataGridHeaderCell {
+    border: $euiBorderThin;
+    border-left: none;
+
+    &:first-of-type {
+      border-left: $euiBorderThin;
+    }
+  }
+}
+
+@include euiDataGridStyles(headerShade, bordersHorizontal) {
+  @include euiDataGridHeaderCell {
+    border-bottom: $euiBorderThin;
+  }
+}
+
+// Border alternates
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridHeaderCell {
+    border: none;
+  }
+}
+
+@include euiDataGridStyles(borderhorizontal) {
+  @include euiDataGridHeaderCell {
+    border-right: none;
+    border-left: none;
+  }
+}
+
+// Font alternates
+@include euiDataGridStyles(fontSizeSmall) {
+  @include euiDataGridHeaderCell {
+    @include euiFontSizeXS;
+  }
+}
+
+@include euiDataGridStyles(fontSizeLarge) {
+  @include euiDataGridHeaderCell {
+    @include euiFontSize;
+  }
+}
+
+// Padding alternates
+@include euiDataGridStyles(paddingSmall) {
+  @include euiDataGridHeaderCell {
+    padding: $euiDataGridCellPaddingS;
+  }
+}
+
+@include euiDataGridStyles(paddingLarge) {
+  @include euiDataGridHeaderCell {
+    padding: $euiDataGridCellPaddingL;
   }
 }

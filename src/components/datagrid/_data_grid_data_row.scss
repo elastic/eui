@@ -1,13 +1,13 @@
 .euiDataGridRow {
   display: inline-flex;
-  min-width: 100%;
+  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
 }
 
-.euiDataGridRowCell {
-  @include euiFontSizeXS;
+@include euiDataGridRowCell {
+  @include euiFontSizeS;
   @include euiTextTruncate;
 
-  padding: $euiSizeM / 2;
+  padding: $euiDataGridCellPaddingM;
   border-right: $euiBorderThin;
   border-bottom: $euiBorderThin;
   overflow: hidden;
@@ -20,5 +20,66 @@
 
   &:focus {
     @include euiFocusRing;
+    z-index: 2; // Needed so it sits above potentional striping in the next row
+  }
+}
+
+// Row highlights
+@include euiDataGridStyles(rowHoverHighlight) {
+  .euiDataGridRow:hover {
+    @include euiDataGridRowCell {
+      // sass-lint:disable-block no-important
+      // Needed to overtake striping
+      background-color: $euiColorHighlight !important;
+    }
+  }
+}
+
+// Stripes
+@include euiDataGridStyles(stripes) {
+  .euiDataGridRow:nth-child(odd) {
+    @include euiDataGridRowCell {
+      background: $euiColorLightestShade;
+    }
+  }
+}
+
+// Border alternates
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridRowCell {
+    border: none;
+  }
+}
+
+@include euiDataGridStyles(bordersHorizontal) {
+  @include euiDataGridRowCell {
+    border-right: none;
+    border-left: none;
+  }
+}
+
+// Font alternates
+@include euiDataGridStyles(fontSizeSmall) {
+  @include euiDataGridRowCell {
+    @include euiFontSizeXS;
+  }
+}
+
+@include euiDataGridStyles(fontSizeLarge) {
+  @include euiDataGridRowCell {
+    @include euiFontSize;
+  }
+}
+
+// Padding alternates
+@include euiDataGridStyles(paddingSmall) {
+  @include euiDataGridRowCell {
+    padding: $euiDataGridCellPaddingS;
+  }
+}
+
+@include euiDataGridStyles(paddingLarge) {
+  @include euiDataGridRowCell {
+    padding: $euiDataGridCellPaddingL;
   }
 }

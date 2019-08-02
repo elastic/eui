@@ -17,6 +17,7 @@ type CommonGridProps = CommonProps &
     columns: Column[];
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    gridStyle?: EuiDataGridStyle;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -30,6 +31,54 @@ interface EuiDataGridState {
   focusedCell: [number, number];
 }
 
+// Types for styling options, passed down through the `gridStyle` prop
+type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
+type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
+type EuiDataGridStyleHeader = 'shade' | 'underline';
+type EuiDataGridStyleRowHover = 'highlight' | 'none';
+type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
+
+interface EuiDataGridStyle {
+  fontSize?: EuiDataGridStyleFontSizes;
+  border?: EuiDataGridStyleBorders;
+  stripes?: boolean;
+  header?: EuiDataGridStyleHeader;
+  rowHover?: EuiDataGridStyleRowHover;
+  cellPadding?: EuiDataGridStyleCellPaddings;
+}
+
+// Each gridStyle object above sets a specific CSS select to .euiGrid
+const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
+  s: 'euiDataGrid--fontSizeSmall',
+  m: '',
+  l: 'euiDataGrid--fontSizeLarge',
+};
+
+const headerToClassMap: { [header in EuiDataGridStyleHeader]: string } = {
+  shade: 'euiDataGrid--headerShade',
+  underline: 'euiDataGrid--headerUnderline',
+};
+
+const rowHoverToClassMap: {
+  [rowHighlight in EuiDataGridStyleRowHover]: string
+} = {
+  highlight: 'euiDataGrid--rowHoverHighlight',
+  none: '',
+};
+
+const bordersToClassMap: { [border in EuiDataGridStyleBorders]: string } = {
+  all: 'euiDataGrid--bordersAll',
+  horizontal: 'euiDataGrid--bordersHorizontal',
+  none: 'euiDataGrid--bordersNone',
+};
+
+const cellPaddingsToClassMap: {
+  [cellPaddings in EuiDataGridStyleCellPaddings]: string
+} = {
+  s: 'euiDataGrid--paddingSmall',
+  m: '',
+  l: 'euiDataGrid--paddingLarge',
+};
 const ORIGIN: [number, number] = [0, 0];
 
 export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
@@ -123,8 +172,30 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
       rowCount,
       renderCellValue,
       className,
+      gridStyle = {},
       ...rest
     } = this.props;
+
+    const fontSize = gridStyle.fontSize || 'm';
+    const border = gridStyle.border || 'all';
+    const header = gridStyle.header || 'shade';
+    const rowHover = gridStyle.rowHover || 'highlight';
+    const stripes = gridStyle.stripes ? true : false;
+    const cellPadding = gridStyle.cellPadding || 'm';
+
+    const classes = classNames(
+      'euiDataGrid',
+      fontSizesToClassMap[fontSize],
+      bordersToClassMap[border],
+      headerToClassMap[header],
+      rowHoverToClassMap[rowHover],
+      cellPaddingsToClassMap[cellPadding],
+      {
+        'euiDataGrid--stripes': stripes,
+      },
+      className
+    );
+
     return (
       // Unsure why this element causes errors as focus follows spec
       // eslint-disable-next-line jsx-a11y/interactive-supports-focus
@@ -133,7 +204,7 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
         onKeyDown={this.handleKeyDown}
         // {...label}
         {...rest}
-        className={classNames(className, 'euiDataGrid')}>
+        className={classes}>
         <EuiDataGridHeaderRow
           columns={columns}
           columnWidths={columnWidths}
