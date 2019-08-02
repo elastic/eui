@@ -20,6 +20,7 @@
 
   &:focus {
     @include euiFocusRing;
+    z-index: 2; // Needed so it sits above potentional striping in the next row
   }
 }
 
