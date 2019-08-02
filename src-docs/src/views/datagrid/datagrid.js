@@ -147,7 +147,7 @@ const data = [
   },
 ];
 
-export default class extends Component {
+export default class DataGrid extends Component {
   constructor(props) {
     super(props);
     this.borderOptions = [
@@ -237,6 +237,11 @@ export default class extends Component {
       rowHoverSelected: 'highlight',
       isPopoverOpen: false,
       headerSelected: 'shade',
+
+      pagination: {
+        pageIndex: 0,
+        pageSize: 10,
+      },
     };
   }
 
@@ -289,7 +294,19 @@ export default class extends Component {
     });
   }
 
+  setPageIndex = pageIndex =>
+    this.setState(({ pagination }) => ({
+      pagination: { ...pagination, pageIndex },
+    }));
+
+  setPageSize = pageSize =>
+    this.setState(({ pagination }) => ({
+      pagination: { ...pagination, pageSize },
+    }));
+
   render() {
+    const { pagination } = this.state;
+
     const button = (
       <EuiButton
         iconType="arrowDown"
@@ -381,6 +398,12 @@ export default class extends Component {
           renderCellValue={({ rowIndex, columnName }) =>
             data[rowIndex][columnName]
           }
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [5, 10, 25],
+            onChangeItemsPerPage: this.setPageSize,
+            onChangePage: this.setPageIndex,
+          }}
         />
       </div>
     );

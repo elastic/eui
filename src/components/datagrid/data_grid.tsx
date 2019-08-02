@@ -1,35 +1,19 @@
-import React, {
-  Component,
-  HTMLAttributes,
-  ReactElement,
-  KeyboardEvent,
-} from 'react';
+import React, { Component, HTMLAttributes, KeyboardEvent } from 'react';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
-import { EuiDataGridDataRow } from './data_grid_data_row';
 import { CommonProps, Omit } from '../common';
-import { Column, ColumnWidths } from './data_grid_types';
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnWidths,
+  EuiDataGridPaginationProps,
+} from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import classNames from 'classnames';
 import { keyCodes } from '../../services';
 
-type CommonGridProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    columns: Column[];
-    rowCount: number;
-    renderCellValue: EuiDataGridCellProps['renderCellValue'];
-    gridStyle?: EuiDataGridStyle;
-  };
-
-// This structure forces either aria-label or aria-labelledby to be defined
-// making some type of label a requirement
-type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
-  ({ 'aria-label': string } | { 'aria-labelledby': string });
-
-interface EuiDataGridState {
-  columnWidths: ColumnWidths;
-  rows: ReactElement[];
-  focusedCell: [number, number];
-}
+// @ts-ignore-next-line
+import { EuiTablePagination } from '../table/table_pagination';
+import { EuiSpacer } from '../spacer';
+import { EuiDataGridBody } from './data_grid_body';
 
 // Types for styling options, passed down through the `gridStyle` prop
 type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
@@ -45,6 +29,25 @@ interface EuiDataGridStyle {
   header?: EuiDataGridStyleHeader;
   rowHover?: EuiDataGridStyleRowHover;
   cellPadding?: EuiDataGridStyleCellPaddings;
+}
+
+type CommonGridProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    columns: EuiDataGridColumn[];
+    rowCount: number;
+    renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    gridStyle?: EuiDataGridStyle;
+    pagination?: EuiDataGridPaginationProps;
+  };
+
+// This structure forces either aria-label or aria-labelledby to be defined
+// making some type of label a requirement
+type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
+  ({ 'aria-label': string } | { 'aria-labelledby': string });
+
+interface EuiDataGridState {
+  columnWidths: EuiDataGridColumnWidths;
+  focusedCell: [number, number];
 }
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
@@ -84,48 +87,58 @@ const ORIGIN: [number, number] = [0, 0];
 export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
   state = {
     columnWidths: {},
-    rows: this.renderRows(),
     focusedCell: ORIGIN,
   };
 
+  computeVisibleRows = () => {
+    const { pagination, rowCount } = this.props;
+
+    const startRow = pagination
+      ? pagination.pageIndex * pagination.pageSize
+      : 0;
+    let endRow = pagination
+      ? (pagination.pageIndex + 1) * pagination.pageSize
+      : rowCount;
+    endRow = Math.min(endRow, rowCount);
+
+    return endRow - startRow;
+  };
+
   setColumnWidth = (columnName: string, width: number) => {
-    this.setState(
-      ({ columnWidths }) => ({
-        columnWidths: { ...columnWidths, [columnName]: width },
-      }),
-      this.updateRows
-    );
+    this.setState(({ columnWidths }) => ({
+      columnWidths: { ...columnWidths, [columnName]: width },
+    }));
   };
 
   handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const colCount = this.props.columns.length - 1;
     const [x, y] = this.state.focusedCell;
-    const rowCount = this.state.rows.length - 1;
+    const rowCount = this.computeVisibleRows();
 
     switch (e.keyCode) {
       case keyCodes.DOWN:
         e.preventDefault();
         if (y < rowCount) {
-          this.setState({ focusedCell: [x, y + 1] }, this.updateRows);
+          this.setState({ focusedCell: [x, y + 1] });
         }
         break;
       case keyCodes.LEFT:
         e.preventDefault();
         if (x > 0) {
-          this.setState({ focusedCell: [x - 1, y] }, this.updateRows);
+          this.setState({ focusedCell: [x - 1, y] });
         }
         break;
       case keyCodes.UP:
         e.preventDefault();
         // TODO sort out when a user can arrow up into the column headers
         if (y > 0) {
-          this.setState({ focusedCell: [x, y - 1] }, this.updateRows);
+          this.setState({ focusedCell: [x, y - 1] });
         }
         break;
       case keyCodes.RIGHT:
         e.preventDefault();
         if (x < colCount) {
-          this.setState({ focusedCell: [x + 1, y] }, this.updateRows);
+          this.setState({ focusedCell: [x + 1, y] });
         }
         break;
     }
@@ -135,44 +148,43 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
     this.setState({ focusedCell: [x, y] });
   };
 
-  updateRows = () => {
-    this.setState({
-      rows: this.renderRows(),
-    });
-  };
+  renderPagination() {
+    const { pagination } = this.props;
 
-  renderRows() {
-    const { columnWidths = {}, focusedCell = ORIGIN as [number, number] } =
-      this.state || {};
-    const { columns, rowCount, renderCellValue } = this.props;
-    const onCellFocus = this.onCellFocus || function() {}; // TODO re-enable after PR#2188
-    const rows = [];
-
-    for (let i = 0; i < rowCount; i++) {
-      rows.push(
-        <EuiDataGridDataRow
-          key={i}
-          rowIndex={i}
-          focusedCell={focusedCell}
-          columns={columns}
-          renderCellValue={renderCellValue}
-          columnWidths={columnWidths}
-          onCellFocus={onCellFocus}
-        />
-      );
+    if (pagination == null) {
+      return null;
     }
 
-    return rows;
+    const {
+      pageIndex,
+      pageSize,
+      pageSizeOptions,
+      onChangePage,
+      onChangeItemsPerPage,
+    } = pagination;
+    const pageCount = Math.ceil(this.props.rowCount / pageSize);
+
+    return (
+      <EuiTablePagination
+        activePage={pageIndex}
+        itemsPerPage={pageSize}
+        itemsPerPageOptions={pageSizeOptions}
+        pageCount={pageCount}
+        onChangePage={onChangePage}
+        onChangeItemsPerPage={onChangeItemsPerPage}
+      />
+    );
   }
 
   render() {
-    const { columnWidths, rows } = this.state;
+    const { columnWidths, focusedCell } = this.state;
     const {
       columns,
       rowCount,
       renderCellValue,
       className,
       gridStyle = {},
+      pagination,
       ...rest
     } = this.props;
 
@@ -205,12 +217,24 @@ export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
         // {...label}
         {...rest}
         className={classes}>
-        <EuiDataGridHeaderRow
-          columns={columns}
-          columnWidths={columnWidths}
-          setColumnWidth={this.setColumnWidth}
-        />
-        {rows}
+        <div className="euiDataGrid__content">
+          <EuiDataGridHeaderRow
+            columns={columns}
+            columnWidths={columnWidths}
+            setColumnWidth={this.setColumnWidth}
+          />
+          <EuiDataGridBody
+            columnWidths={columnWidths}
+            columns={columns}
+            focusedCell={focusedCell}
+            onCellFocus={this.onCellFocus}
+            pagination={pagination}
+            renderCellValue={renderCellValue}
+            rowCount={rowCount}
+          />
+        </div>
+        <EuiSpacer size="s" />
+        {this.renderPagination()}
       </div>
     );
   }

@@ -16,6 +16,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       >
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
+          data-test-subj="tablePaginationPopoverButton"
           type="button"
         >
           <span
