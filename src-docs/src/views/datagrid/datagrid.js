@@ -367,6 +367,7 @@ export default class extends Component {
         <EuiSpacer />
 
         <EuiDataGrid
+          aria-label="Top EUI contributors"
           columns={columns}
           rowCount={data.length}
           gridStyle={{

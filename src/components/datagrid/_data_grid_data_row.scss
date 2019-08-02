@@ -17,6 +17,10 @@
   &:first-of-type {
     border-left: $euiBorderThin;
   }
+
+  &:focus {
+    @include euiFocusRing;
+  }
 }
 
 // Row highlights
