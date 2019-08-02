@@ -1,7 +1,5 @@
 /// <reference path="./table_pagination/index.d.ts" />
-/// <reference path="./mobile/index.d.ts" />
-import { CommonProps, NoArgCallback } from '../common';
-import { IconType } from '../icon';
+import { CommonProps } from '../common';
 import { HorizontalAlignment } from '../../services/alignment';
 import { EuiTableRowCellCheckbox as TableRowCellCheckbox } from './table_row_cell_checkbox';
 import {
@@ -10,99 +8,9 @@ import {
   EuiTableHeaderCellCheckbox as TableHeaderCellCheckbox,
 } from './table_header_cell_checkbox';
 
-import {
-  FunctionComponent,
-  HTMLAttributes,
-  TableHTMLAttributes,
-  ButtonHTMLAttributes,
-  ThHTMLAttributes,
-  TdHTMLAttributes,
-  ReactNode,
-} from 'react';
+import { FunctionComponent, TdHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
-  /**
-   * table type defs
-   *
-   * @see './table.js'
-   */
-
-  export interface EuiTableProps {
-    compressed?: boolean;
-    responsive?: boolean;
-  }
-
-  export const EuiTable: FunctionComponent<
-    CommonProps & TableHTMLAttributes<HTMLTableElement> & EuiTableProps
-  >;
-
-  /**
-   * table body type defs
-   *
-   * @see './table_body.js'
-   */
-
-  export interface EuiTableBodyProps {}
-
-  export const EuiTableBody: FunctionComponent<CommonProps & EuiTableBodyProps>;
-
-  /**
-   * table header type defs
-   *
-   * @see './table_header.js'
-   */
-
-  export interface EuiTableHeaderProps {}
-
-  export const EuiTableHeader: FunctionComponent<
-    CommonProps & EuiTableHeaderProps
-  >;
-
-  /**
-   * table header button type defs
-   *
-   * @see './table_header_button.js'
-   */
-
-  export interface EuiTableHeaderButtonProps {
-    iconType?: IconType;
-  }
-
-  export const EuiTableHeaderButton: FunctionComponent<
-    CommonProps &
-      ButtonHTMLAttributes<HTMLButtonElement> &
-      EuiTableHeaderButtonProps
-  >;
-
-  /**
-   * table header cell type defs
-   *
-   * @see './table_header_cell.js'
-   */
-
-  export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
-
-  export interface EuiTableHeaderCellProps {
-    align?: HorizontalAlignment;
-    width?: string;
-    onSort?: NoArgCallback<void>;
-    isSorted?: boolean;
-    isSortAscending?: boolean;
-    scope?: TableHeaderCellScope;
-    isMobileHeader?: boolean;
-    hideForMobile?: boolean;
-    mobileOptions?: {
-      show?: boolean;
-      only?: boolean;
-    };
-  }
-
-  export const EuiTableHeaderCell: FunctionComponent<
-    CommonProps &
-      ThHTMLAttributes<HTMLTableHeaderCellElement> &
-      EuiTableHeaderCellProps
-  >;
-
   /**
    * table header cell checkbox type defs
    *
@@ -113,20 +21,6 @@ declare module '@elastic/eui' {
   export interface EuiTableHeaderCellCheckboxProps
     extends TableHeaderCellCheckboxProps {}
   export const EuiTableHeaderCellCheckbox: typeof TableHeaderCellCheckbox;
-
-  /**
-   * table row type defs
-   *
-   * @see './table_row.js'
-   */
-
-  export interface EuiTableRowProps {
-    isSelected?: boolean;
-  }
-
-  export const EuiTableRow: FunctionComponent<
-    CommonProps & EuiTableRowProps & HTMLAttributes<HTMLTableRowElement>
-  >;
 
   /**
    * table row cell type defs

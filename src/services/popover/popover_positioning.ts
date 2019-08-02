@@ -710,15 +710,15 @@ export function intersectBoundingBoxes(
 
 /**
  * Returns the top-most defined z-index in the element's ancestor hierarchy
- * relative to the `target` element; if no z-index is defined, returns "0"
+ * relative to the `target` element; if no z-index is defined, returns 0
  * @param element {HTMLElement}
  * @param cousin {HTMLElement}
- * @returns {string}
+ * @returns {number}
  */
 export function getElementZIndex(
   element: HTMLElement,
   cousin: HTMLElement
-): string {
+): number {
   /**
    * finding the z-index of `element` is not the full story
    * its the CSS stacking context that is important
@@ -769,10 +769,11 @@ export function getElementZIndex(
       .getPropertyValue('z-index');
 
     // if the z-index is not a number (e.g. "auto") return null, else the value
-    if (!isNaN(parseInt(zIndex, 10))) {
-      return zIndex;
+    const parsedZIndex = parseInt(zIndex, 10);
+    if (!isNaN(parsedZIndex)) {
+      return parsedZIndex;
     }
   }
 
-  return '0';
+  return 0;
 }
