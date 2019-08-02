@@ -2,11 +2,13 @@ import React, {
   FunctionComponent,
   MouseEventHandler,
   HTMLAttributes,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf, Omit } from '../common';
 
 import { isColorDark, hexToRgb } from '../../services/color';
+import { EuiInnerText } from '../inner_text';
 
 import { EuiIcon, IconColor, IconType } from '../icon';
 
@@ -97,7 +99,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   checkValidColor(color);
 
   let optionalColorClass = null;
-  let optionalCustomStyles = undefined;
+  let optionalCustomStyles: object | undefined = undefined;
   let textColor = null;
 
   if (COLORS.indexOf(color) > -1) {
@@ -127,7 +129,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     closeButtonProps && closeButtonProps.className
   );
 
-  let optionalIcon = null;
+  let optionalIcon: ReactNode = null;
   if (iconType) {
     if (iconOnClick) {
       if (!iconOnClickAriaLabel) {
@@ -139,6 +141,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         <button
           className="euiBadge__iconButton"
           aria-label={iconOnClickAriaLabel}
+          title={iconOnClickAriaLabel}
           onClick={iconOnClick}>
           <EuiIcon
             type={iconType}
@@ -165,39 +168,60 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     return (
       <span className={classes} style={optionalCustomStyles}>
         <span className="euiBadge__content">
-          <button
-            className="euiBadge__childButton"
-            aria-label={onClickAriaLabel}
-            onClick={onClick}
-            {...rest}>
-            {children}
-          </button>
+          <EuiInnerText>
+            {(ref, innerText) => (
+              <button
+                className="euiBadge__childButton"
+                aria-label={onClickAriaLabel}
+                onClick={onClick}
+                ref={ref}
+                title={innerText}
+                {...rest}>
+                {children}
+              </button>
+            )}
+          </EuiInnerText>
           {optionalIcon}
         </span>
       </span>
     );
   } else if (onClick) {
     return (
-      <button
-        aria-label={onClickAriaLabel}
-        className={classes}
-        onClick={onClick}
-        style={optionalCustomStyles}
-        {...rest}>
-        <span className="euiBadge__content">
-          <span>{children}</span>
-          {optionalIcon}
-        </span>
-      </button>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <button
+            aria-label={onClickAriaLabel}
+            className={classes}
+            onClick={onClick}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </button>
+        )}
+      </EuiInnerText>
     );
   } else {
     return (
-      <span className={classes} style={optionalCustomStyles} {...rest}>
-        <span className="euiBadge__content">
-          <span className="euiBadge__text">{children}</span>
-          {optionalIcon}
-        </span>
-      </span>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            className={classes}
+            style={optionalCustomStyles}
+            ref={ref}
+            title={innerText}
+            {...rest}>
+            <span className="euiBadge__content">
+              <span className="euiBadge__text">{children}</span>
+              {optionalIcon}
+            </span>
+          </span>
+        )}
+      </EuiInnerText>
     );
   }
 };

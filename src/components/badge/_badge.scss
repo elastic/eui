@@ -14,8 +14,11 @@
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
-  text-align: center;
   overflow: hidden;
+  max-width: calc(100% - #{($euiSizeS * 2) + 2px}); // Padding plus border
+  // The badge will only ever be as wide as it's content
+  // So, make the text left aligned to ensure all badges line up the same
+  text-align: left;
 
   &:focus-within {
     @include euiFocusRing('small');
@@ -23,6 +26,7 @@
 
   + .euiBadge {
     margin-left: $euiSizeXS;
+    max-width: calc(100% - #{($euiSizeS * 2) + 2px + $euiSizeXS}); // Padding plus border plus margin
   }
 
   .euiBadge__content {
@@ -32,6 +36,8 @@
   }
 
   .euiBadge__childButton {
+    @include euiTextTruncate;
+    max-width: calc(100% - #{$euiSizeM + $euiSizeXS}); // Subtract the icon and icon's margin
     flex: 0 0 auto;
     font-weight: inherit;
     line-height: inherit;
@@ -60,9 +66,9 @@
   }
 
   .euiBadge__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include euiTextTruncate;
     flex: 1 1 auto;
+    cursor: default;
   }
 
   .euiBadge__icon {
@@ -89,6 +95,10 @@
 
   &:focus {
     @include euiFocusRing('small');
+  }
+
+  .euiBadge__text {
+    cursor: inherit;
   }
 }
 
