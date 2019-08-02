@@ -44,16 +44,13 @@ export const EuiStep: FunctionComponent<StandaloneEuiStepProps> = ({
   return (
     <div className={classes} {...rest}>
       <div className="euiStep__titleWrapper">
-        {/* // EuiI18n has trouble with the string setting
-        // @ts-ignore */}
         <EuiI18n
           token="euiStep.ariaLabel"
-          default={({ status }) => {
+          default={({ status }: { status?: EuiStepStatus }) => {
             if (status === 'incomplete') return 'Incomplete Step';
             return 'Step';
           }}
           values={{ status }}>
-          {/* // @ts-ignore */}
           {(ariaLabel: string) => (
             <EuiStepNumber
               className="euiStep__circle"

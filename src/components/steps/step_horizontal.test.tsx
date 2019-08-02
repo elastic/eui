@@ -1,7 +1,5 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-// @ts-ignore
-import sinon from 'sinon';
 import { requiredProps } from '../../test/required_props';
 
 import { STATUS } from './step_number';
@@ -63,7 +61,7 @@ describe('EuiStepHorizontal', () => {
 
     describe('onClick', () => {
       test('is called when clicked', () => {
-        const onClickHandler = sinon.stub();
+        const onClickHandler = jest.fn();
 
         const component = mount(
           <EuiStepHorizontal step={1} onClick={onClickHandler} />
@@ -71,11 +69,11 @@ describe('EuiStepHorizontal', () => {
 
         component.simulate('click');
 
-        sinon.assert.calledOnce(onClickHandler);
+        expect(onClickHandler).toBeCalledTimes(1);
       });
 
       test("isn't called when clicked if it's disabled", () => {
-        const onClickHandler = sinon.stub();
+        const onClickHandler = jest.fn();
 
         const component = mount(
           <EuiStepHorizontal disabled step={1} onClick={onClickHandler} />
@@ -83,7 +81,7 @@ describe('EuiStepHorizontal', () => {
 
         component.simulate('click');
 
-        sinon.assert.notCalled(onClickHandler);
+        expect(onClickHandler).not.toBeCalled();
       });
     });
   });
