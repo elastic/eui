@@ -13,12 +13,54 @@ export class EuiSuggestInput extends Component {
     super(props);
 
     this.state = {
-      isPopoverOpen: false,
+      showSuggestions: false,
+      value: '',
+      menuWidth: null,
     };
   }
 
+  // onFieldFocus() {
+  //   this.setState({
+  //     showSuggestions: true,
+  //   });
+  // }
+
+  onFieldBlur() {
+    this.setState({
+      showSuggestions: false,
+    });
+  }
+
+  setPopoverRef = ref => {
+    this.inputRef = ref;
+  };
+
+  onFieldChange(e) {
+    this.setState({
+      value: e.target.value,
+      showSuggestions: e.target.value === '' ? false : true,
+    });
+
+    const focusSelected = () => {
+      requestAnimationFrame(() => {
+        this.setState({
+          menuWidth: this.inputRef.getBoundingClientRect().width + 50,
+        });
+      });
+    };
+
+    requestAnimationFrame(focusSelected);
+  }
+
   render() {
-    const { className, status, label, prefix, value, ...rest } = this.props;
+    const {
+      className,
+      status,
+      label,
+      prefix,
+      suggestions,
+      ...rest
+    } = this.props;
 
     const statusMap = {
       notYetSaved: {
@@ -62,12 +104,24 @@ export class EuiSuggestInput extends Component {
     return (
       <div className={classes}>
         <EuiFieldText
-          value={value}
+          value={this.state.value}
           fullWidth
           prepend={prefix}
           append={statusElement}
+          onChange={this.onFieldChange.bind(this)}
+          inputRef={this.setPopoverRef}
+          // onFocus={this.onFieldFocus.bind(this)}
+          onBlur={this.onFieldBlur.bind(this)}
           {...rest}
         />
+        <div style={{ width: this.state.menuWidth }}
+          className={
+            this.state.showSuggestions
+              ? 'euiSuggestInput__popOverPanel euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen'
+              : 'euiSuggestInput__popOverPanel euiPanel euiPopover__panel euiPopover__panel--bottom'
+          }>
+          {suggestions}
+        </div>
       </div>
     );
   }
@@ -84,6 +138,7 @@ EuiSuggestInput.propTypes = {
    */
   label: PropTypes.node,
   prefix: PropTypes.node,
+  suggestions: PropTypes.node,
 };
 
-EuiSuggestInput.defaultProps = {};
+EuiSuggestInput.defaultProps = { suggestions: 'Sample suggestion' };

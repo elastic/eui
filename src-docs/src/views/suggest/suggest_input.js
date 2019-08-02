@@ -36,11 +36,11 @@ export default class extends Component {
         {statusList.map((item, index) => (
           <div>
             <EuiSuggestInput
-              onChange={this.onChange}
-              value={this.state.value}
+              // onChange={this.onChange}
+              // value={this.state.value}
               key={index}
               status={item}
-              action={hashtag}
+              prefix={hashtag}
               label={'KQL'}
             />
             <EuiSpacer size="m" />

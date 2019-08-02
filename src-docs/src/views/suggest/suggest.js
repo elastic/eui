@@ -110,27 +110,27 @@ export default class extends Component {
     };
   }
 
-  openPopover = () => {
-    this.setState({
-      isPopoverOpen: true,
-    });
+  // openPopover = () => {
+  //   this.setState({
+  //     isPopoverOpen: true,
+  //   });
 
-    const focusSelected = () => {
-      requestAnimationFrame(() => {
-        this.setState({
-          menuWidth: this.popoverRef.getBoundingClientRect().width - 70,
-        });
-      });
-    };
+  //   const focusSelected = () => {
+  //     requestAnimationFrame(() => {
+  //       this.setState({
+  //         menuWidth: this.popoverRef.getBoundingClientRect().width - 70,
+  //       });
+  //     });
+  //   };
 
-    requestAnimationFrame(focusSelected);
-  };
+  //   requestAnimationFrame(focusSelected);
+  // };
 
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
+  // closePopover() {
+  //   this.setState({
+  //     isPopoverOpen: false,
+  //   });
+  // }
 
   closeHashtagPopover() {
     this.setState({
@@ -141,7 +141,6 @@ export default class extends Component {
   onFieldChange(e) {
     this.setState({
       value: e.target.value,
-      // isPopoverOpen: e.target.value === '' ? false : true,
     });
     if (this.state.isPopoverOpen) {
       this.closePopover();
@@ -168,9 +167,9 @@ export default class extends Component {
     });
   }
 
-  setPopoverRef = ref => {
-    this.popoverRef = ref;
-  };
+  // setPopoverRef = ref => {
+  //   this.popoverRef = ref;
+  // };
 
   onButtonClick() {
     this.setState({
@@ -239,13 +238,10 @@ export default class extends Component {
 
     const suggestInputbtn = (
       <EuiSuggestInput
-        value={this.state.value}
         status={this.state.status}
         label={'KQL'}
         prefix={hashtag}
-        onChange={this.onFieldChange.bind(this)}
-        onFocus={this.onFieldFocus.bind(this)}
-        onBlur={this.onFieldBlur.bind(this)}
+        suggestions={suggestions}
       />
     );
 
@@ -264,25 +260,7 @@ export default class extends Component {
         <EuiSpacer size="xl" />
         <EuiFlexGroup
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
-          <EuiFlexItem>
-            <EuiPopover
-              id="popover"
-              button={suggestInputbtn}
-              panelClassName="euiSuggestInput__popOverPanel"
-              anchorPosition="downLeft"
-              hasArrow={false}
-              display="block"
-              panelPaddingSize="none"
-              popoverRef={this.setPopoverRef}
-              isOpen={this.state.isPopoverOpen}
-              closePopover={this.closePopover.bind(this)}>
-              <div
-                className="suggestions"
-                style={{ width: this.state.menuWidth }}>
-                {suggestions}
-              </div>
-            </EuiPopover>
-          </EuiFlexItem>
+          <EuiFlexItem onFocus={this.onFieldFocus.bind(this)} onBlur={this.onFieldBlur.bind(this)}>{suggestInputbtn}</EuiFlexItem>
           <EuiFlexItem grow={false} className="datepicker">
             <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
           </EuiFlexItem>
