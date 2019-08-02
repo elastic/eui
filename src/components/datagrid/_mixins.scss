@@ -20,7 +20,7 @@ $euiDataGridStyles: (
 // All this does is take some of the above and make a sibling selector
 // selector(headerShade, fontSizeLarge)
 // will produce `.euiDataGrid--headerShade.euiDataGrid--fontSizeLarge
-@function selector($selectorKeys...) {
+@function euiDataGridSelector($selectorKeys...) {
   $selectorList: '';
   @each $selector in $selectorKeys {
     // Spit out warnings when you make typos!
@@ -35,7 +35,7 @@ $euiDataGridStyles: (
 }
 
 @mixin euiDataGridStyles($selectorKeys...) {
-  #{selector($selectorKeys...)} {
+  #{euiDataGridSelector($selectorKeys...)} {
     @content;
   }
 }
