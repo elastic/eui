@@ -645,11 +645,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 435,
+        "line": 442,
         "column": 14
       },
       "end": {
-        "line": 438,
+        "line": 445,
         "column": 16
       }
     },
@@ -721,15 +721,15 @@
   },
   {
     "token": "euiStepHorizontal.buttonTitle",
-    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
+    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}: Pick<EuiStepHorizontalProps, 'step' | 'title' | 'disabled' | 'isComplete'>) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 75,
+        "line": 73,
         "column": 4
       },
       "end": {
-        "line": 87,
+        "line": 93,
         "column": 53
       }
     },
@@ -741,11 +741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 102,
+        "line": 107,
         "column": 16
       },
       "end": {
-        "line": 102,
+        "line": 107,
         "column": 73
       }
     },
@@ -801,15 +801,15 @@
   },
   {
     "token": "euiStep.ariaLabel",
-    "defString": "({\n  status\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};",
+    "defString": "({\n  status\n}: {\n  status?: EuiStepStatus;\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};",
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 47,
         "column": 8
       },
       "end": {
-        "line": 55,
+        "line": 53,
         "column": 30
       }
     },
