@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.2.0`.
+
+## [`13.2.0`](https://github.com/elastic/eui/tree/v13.2.0)
+
 - Converted `EuiStep`, `EuiSteps`, `EuiStepHorizontal`, `EuiStepsHorizontal`, and `EuiSubSteps` to Typescript ([#2186](https://github.com/elastic/eui/pull/2186))
 
 **Bug fixes**
