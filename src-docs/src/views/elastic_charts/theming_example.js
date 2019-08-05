@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { ExternalBadge } from './shared';
 import { Theming } from './theming';
 import { Categorical } from './theming_categorical';
+import { Quantity } from './theming_quantity';
 
 import { EuiSpacer, EuiCode, EuiCodeBlock } from '../../../../src/components';
 
@@ -11,13 +12,12 @@ export const ElasticChartsThemingExample = {
   intro: (
     <Fragment>
       <ExternalBadge />
-      <EuiSpacer />
-      <p>Theming via EUI.</p>
       <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [
     {
+      title: 'Theming via EUI',
       text: (
         <Fragment>
           <p>
@@ -66,6 +66,34 @@ export const ElasticChartsThemingExample = {
         </Fragment>
       ),
       demo: <Categorical />,
+    },
+    {
+      title: 'Quantity vs trends',
+      text: (
+        <Fragment>
+          <p>
+            When coloring for sequential series data (not categorical), rely on
+            conventions. If the data signifies <strong>quantities</strong>, use
+            a single color that spans from light for low amounts to dark colors
+            for high amounts. If the data signifies <strong>trends</strong>, use
+            a two color scheme with the darkest at the extremes. Remember that
+            red means bad/negative and green is good/positive.
+          </p>
+          <p>
+            Whan signifying quantities, group values into intervals instead of a
+            continuous gradient scale.
+          </p>
+
+          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
+            {/* {`customColors = mergeWithDefaultTheme({
+  colors: {
+    vizColors: palettes.euiPaletteColorBlind.colors
+  },
+}, isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme)`} */}
+          </EuiCodeBlock>
+        </Fragment>
+      ),
+      demo: <Quantity />,
     },
   ],
 };
