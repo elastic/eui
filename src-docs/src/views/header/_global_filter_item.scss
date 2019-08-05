@@ -26,5 +26,7 @@
     left: 0;
     width: $euiSizeXS;
     background-color: $euiColorVis0;
+    border-top-left-radius: $euiBorderRadius / 2;
+    border-bottom-left-radius: $euiBorderRadius / 2;
   }
 }
