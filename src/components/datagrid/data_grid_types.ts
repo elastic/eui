@@ -1,5 +1,5 @@
 export interface EuiDataGridColumn {
-  name: string;
+  id: string;
 }
 
 export interface EuiDataGridColumnWidths {

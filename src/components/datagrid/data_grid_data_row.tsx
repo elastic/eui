@@ -37,20 +37,20 @@ const EuiDataGridDataRow: FunctionComponent<
   return (
     <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map((props, i) => {
-        const { name } = props;
+        const { id } = props;
 
-        const width = columnWidths.hasOwnProperty(name)
-          ? columnWidths[name]
+        const width = columnWidths.hasOwnProperty(id)
+          ? columnWidths[id]
           : DEFAULT_COLUMN_WIDTH;
 
         const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
 
         return (
           <EuiDataGridCell
-            key={name}
+            key={id}
             rowIndex={rowIndex}
             colIndex={i}
-            columnName={name}
+            columnId={id}
             width={width}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}

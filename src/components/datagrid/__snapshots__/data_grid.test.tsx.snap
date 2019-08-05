@@ -126,6 +126,37 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
   role="grid"
 >
   <div
+    class="euiPopover euiPopover--anchorDownCenter"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButton euiButton--primary"
+        type="button"
+      >
+        <span
+          class="euiButton__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButton__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButton__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
     class="euiDataGrid__content"
   >
     <div
@@ -134,7 +165,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     >
       <div
         class="euiDataGridHeaderCell"
-        data-test-subj="dataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell-A"
         role="columnheader"
         style="width:100px"
       >
@@ -151,7 +182,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       </div>
       <div
         class="euiDataGridHeaderCell"
-        data-test-subj="dataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell-B"
         role="columnheader"
         style="width:100px"
       >

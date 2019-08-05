@@ -1,4 +1,11 @@
-import React, { Component, HTMLAttributes, KeyboardEvent } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  KeyboardEvent,
+  useCallback,
+  useState,
+} from 'react';
+import classNames from 'classnames';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
 import {
@@ -7,13 +14,12 @@ import {
   EuiDataGridPaginationProps,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-import classNames from 'classnames';
 import { keyCodes } from '../../services';
-
-// @ts-ignore-next-line
-import { EuiTablePagination } from '../table/table_pagination';
 import { EuiSpacer } from '../spacer';
 import { EuiDataGridBody } from './data_grid_body';
+import { useColumnSelector } from './column_selector';
+// @ts-ignore-next-line
+import { EuiTablePagination } from '../table/table_pagination';
 
 // Types for styling options, passed down through the `gridStyle` prop
 type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
@@ -44,11 +50,6 @@ type CommonGridProps = CommonProps &
 // making some type of label a requirement
 type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
-
-interface EuiDataGridState {
-  columnWidths: EuiDataGridColumnWidths;
-  focusedCell: [number, number];
-}
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -84,158 +85,154 @@ const cellPaddingsToClassMap: {
 };
 const ORIGIN: [number, number] = [0, 0];
 
-export class EuiDataGrid extends Component<EuiDataGridProps, EuiDataGridState> {
-  state = {
-    columnWidths: {},
-    focusedCell: ORIGIN,
+function computeVisibleRows(props: EuiDataGridProps) {
+  const { pagination, rowCount } = props;
+
+  const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
+  let endRow = pagination
+    ? (pagination.pageIndex + 1) * pagination.pageSize
+    : rowCount;
+  endRow = Math.min(endRow, rowCount);
+
+  return endRow - startRow;
+}
+
+function renderPagination(props: EuiDataGridProps) {
+  const { pagination } = props;
+
+  if (pagination == null) {
+    return null;
+  }
+
+  const {
+    pageIndex,
+    pageSize,
+    pageSizeOptions,
+    onChangePage,
+    onChangeItemsPerPage,
+  } = pagination;
+  const pageCount = Math.ceil(props.rowCount / pageSize);
+
+  return (
+    <EuiTablePagination
+      activePage={pageIndex}
+      itemsPerPage={pageSize}
+      itemsPerPageOptions={pageSizeOptions}
+      pageCount={pageCount}
+      onChangePage={onChangePage}
+      onChangeItemsPerPage={onChangeItemsPerPage}
+    />
+  );
+}
+
+export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+  const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
+  const setColumnWidth = (columnId: string, width: number) => {
+    setColumnWidths({ ...columnWidths, [columnId]: width });
   };
 
-  computeVisibleRows = () => {
-    const { pagination, rowCount } = this.props;
+  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const onCellFocus = useCallback(
+    (x: number, y: number) => {
+      setFocusedCell([x, y]);
+    },
+    [setFocusedCell]
+  );
 
-    const startRow = pagination
-      ? pagination.pageIndex * pagination.pageSize
-      : 0;
-    let endRow = pagination
-      ? (pagination.pageIndex + 1) * pagination.pageSize
-      : rowCount;
-    endRow = Math.min(endRow, rowCount);
-
-    return endRow - startRow;
-  };
-
-  setColumnWidth = (columnName: string, width: number) => {
-    this.setState(({ columnWidths }) => ({
-      columnWidths: { ...columnWidths, [columnName]: width },
-    }));
-  };
-
-  handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    const colCount = this.props.columns.length - 1;
-    const [x, y] = this.state.focusedCell;
-    const rowCount = this.computeVisibleRows();
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const colCount = props.columns.length - 1;
+    const [x, y] = focusedCell;
+    const rowCount = computeVisibleRows(props);
 
     switch (e.keyCode) {
       case keyCodes.DOWN:
         e.preventDefault();
         if (y < rowCount) {
-          this.setState({ focusedCell: [x, y + 1] });
+          setFocusedCell([x, y + 1]);
         }
         break;
       case keyCodes.LEFT:
         e.preventDefault();
         if (x > 0) {
-          this.setState({ focusedCell: [x - 1, y] });
+          setFocusedCell([x - 1, y]);
         }
         break;
       case keyCodes.UP:
         e.preventDefault();
         // TODO sort out when a user can arrow up into the column headers
         if (y > 0) {
-          this.setState({ focusedCell: [x, y - 1] });
+          setFocusedCell([x, y - 1]);
         }
         break;
       case keyCodes.RIGHT:
         e.preventDefault();
         if (x < colCount) {
-          this.setState({ focusedCell: [x + 1, y] });
+          setFocusedCell([x + 1, y]);
         }
         break;
     }
   };
 
-  onCellFocus = (x: number, y: number) => {
-    this.setState({ focusedCell: [x, y] });
-  };
+  const {
+    columns,
+    rowCount,
+    renderCellValue,
+    className,
+    gridStyle = {},
+    pagination,
+    ...rest
+  } = props;
 
-  renderPagination() {
-    const { pagination } = this.props;
+  const fontSize = gridStyle.fontSize || 'm';
+  const border = gridStyle.border || 'all';
+  const header = gridStyle.header || 'shade';
+  const rowHover = gridStyle.rowHover || 'highlight';
+  const stripes = gridStyle.stripes ? true : false;
+  const cellPadding = gridStyle.cellPadding || 'm';
 
-    if (pagination == null) {
-      return null;
-    }
+  const classes = classNames(
+    'euiDataGrid',
+    fontSizesToClassMap[fontSize],
+    bordersToClassMap[border],
+    headerToClassMap[header],
+    rowHoverToClassMap[rowHover],
+    cellPaddingsToClassMap[cellPadding],
+    {
+      'euiDataGrid--stripes': stripes,
+    },
+    className
+  );
 
-    const {
-      pageIndex,
-      pageSize,
-      pageSizeOptions,
-      onChangePage,
-      onChangeItemsPerPage,
-    } = pagination;
-    const pageCount = Math.ceil(this.props.rowCount / pageSize);
+  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
 
-    return (
-      <EuiTablePagination
-        activePage={pageIndex}
-        itemsPerPage={pageSize}
-        itemsPerPageOptions={pageSizeOptions}
-        pageCount={pageCount}
-        onChangePage={onChangePage}
-        onChangeItemsPerPage={onChangeItemsPerPage}
-      />
-    );
-  }
-
-  render() {
-    const { columnWidths, focusedCell } = this.state;
-    const {
-      columns,
-      rowCount,
-      renderCellValue,
-      className,
-      gridStyle = {},
-      pagination,
-      ...rest
-    } = this.props;
-
-    const fontSize = gridStyle.fontSize || 'm';
-    const border = gridStyle.border || 'all';
-    const header = gridStyle.header || 'shade';
-    const rowHover = gridStyle.rowHover || 'highlight';
-    const stripes = gridStyle.stripes ? true : false;
-    const cellPadding = gridStyle.cellPadding || 'm';
-
-    const classes = classNames(
-      'euiDataGrid',
-      fontSizesToClassMap[fontSize],
-      bordersToClassMap[border],
-      headerToClassMap[header],
-      rowHoverToClassMap[rowHover],
-      cellPaddingsToClassMap[cellPadding],
-      {
-        'euiDataGrid--stripes': stripes,
-      },
-      className
-    );
-
-    return (
-      // Unsure why this element causes errors as focus follows spec
-      // eslint-disable-next-line jsx-a11y/interactive-supports-focus
-      <div
-        role="grid"
-        onKeyDown={this.handleKeyDown}
-        // {...label}
-        {...rest}
-        className={classes}>
-        <div className="euiDataGrid__content">
-          <EuiDataGridHeaderRow
-            columns={columns}
-            columnWidths={columnWidths}
-            setColumnWidth={this.setColumnWidth}
-          />
-          <EuiDataGridBody
-            columnWidths={columnWidths}
-            columns={columns}
-            focusedCell={focusedCell}
-            onCellFocus={this.onCellFocus}
-            pagination={pagination}
-            renderCellValue={renderCellValue}
-            rowCount={rowCount}
-          />
-        </div>
-        <EuiSpacer size="s" />
-        {this.renderPagination()}
+  return (
+    // Unsure why this element causes errors as focus follows spec
+    // eslint-disable-next-line jsx-a11y/interactive-supports-focus
+    <div
+      role="grid"
+      onKeyDown={handleKeyDown}
+      // {...label}
+      {...rest}
+      className={classes}>
+      <ColumnSelector />
+      <div className="euiDataGrid__content">
+        <EuiDataGridHeaderRow
+          columns={visibleColumns}
+          columnWidths={columnWidths}
+          setColumnWidth={setColumnWidth}
+        />
+        <EuiDataGridBody
+          columnWidths={columnWidths}
+          columns={visibleColumns}
+          focusedCell={focusedCell}
+          onCellFocus={onCellFocus}
+          pagination={pagination}
+          renderCellValue={renderCellValue}
+          rowCount={rowCount}
+        />
       </div>
-    );
-  }
-}
+      <EuiSpacer size="s" />
+      {renderPagination(props)}
+    </div>
+  );
+};
