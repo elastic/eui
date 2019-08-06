@@ -5,6 +5,6 @@ $euiStepNumberMargin: $euiSize !default;
 $euiStepStatusColorsToFade: (
   warning: $euiColorWarning,
   danger: $euiColorDanger,
-  disabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade),
-  incomplete: lightOrDarkTheme($euiColorDarkShade, $euiColorLightShade),
+  disabled: $euiColorDarkShade,
+  incomplete: $euiColorDarkShade,
 ) !default;

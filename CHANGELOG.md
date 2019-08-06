@@ -1,6 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.1.0`.
+No public interface changes since `13.2.0`.
+
+## [`13.2.0`](https://github.com/elastic/eui/tree/v13.2.0)
+
+- Converted `EuiStep`, `EuiSteps`, `EuiStepHorizontal`, `EuiStepsHorizontal`, and `EuiSubSteps` to Typescript ([#2186](https://github.com/elastic/eui/pull/2186))
+
+**Bug fixes**
+
+- Fixed `EuiBadge` truncation and auto-applied `title` attribute with `innerText` ([#2190](https://github.com/elastic/eui/pull/2190))
+- Remove exported TypeScript type and interface exports from built artifacts when they originate from `node_modules` ([#2191](https://github.com/elastic/eui/pull/2191))
+- Fixed `EuiBadge` truncation in IE and for the global filters pattern ([#2194](https://github.com/elastic/eui/pull/2194))
+- Fixed alignment of long titles in `EuiStep` ([#2186](https://github.com/elastic/eui/pull/2186))
+- Fixed the TS defs for EuiFilterSelectItem ([#2192](https://github.com/elastic/eui/pull/2192))
+
+## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiMutationObserver` errors in IE11 by conditionally setting the `attributes` observer option according to the new spec ([#2180](https://github.com/elastic/eui/pull/2180))
+- Fixed error message when an I18n mapping is a formatting function with no values provided. ([#2182](https://github.com/elastic/eui/pull/2182))
 
 ## [`13.1.0`](https://github.com/elastic/eui/tree/v13.1.0)
 

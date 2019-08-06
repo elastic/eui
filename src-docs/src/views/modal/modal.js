@@ -74,9 +74,7 @@ export class Modal extends Component {
         </EuiFormRow>
 
         <EuiCodeBlock language="html" paddingSize="s" isCopyable>
-          {
-            '<h1>Titleisonelonglinejfdklsjaflkdsajfkldsajfklsdajfkldsjafkldsjalfkjdsklafjdsklafjkldsajfkldsajfkldsjfkdsjaflsdjaf;djsakfjdskafjdsklafjdksljfkdlsa;jfldksjfkldsajfkldsjflkdsjaklfadjs;</h1>'
-          }
+          {'<h1>Title</h1>'}
         </EuiCodeBlock>
       </EuiForm>
     );
@@ -88,9 +86,7 @@ export class Modal extends Component {
         <EuiOverlayMask>
           <EuiModal onClose={this.closeModal} initialFocus="[name=popswitch]">
             <EuiModalHeader>
-              <EuiModalHeaderTitle>
-                Titleisonelonglinejfdklsjaflkdsajfkldsajfklsdajfkldsjafkldsjalfkjdsklafjdsklafjkldsajfkldsajfkldsjfkdsjaflsdjaf
-              </EuiModalHeaderTitle>
+              <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
             </EuiModalHeader>
 
             <EuiModalBody>{formSample}</EuiModalBody>

@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps, NoArgCallback } from '../common';
+import { CommonProps, NoArgCallback, RefCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
 
 import {
@@ -62,6 +62,8 @@ interface EuiPopoverProps {
 
   button: NonNullable<ReactNode>;
 
+  buttonRef: RefCallback<HTMLElement | null>;
+
   closePopover: NoArgCallback<void>;
 
   container: HTMLElement;
@@ -93,6 +95,8 @@ interface EuiPopoverProps {
   panelClassName?: string;
 
   panelPaddingSize?: PanelPaddingSize;
+
+  panelRef: RefCallback<HTMLElement | null>;
 
   popoverRef: Ref<HTMLDivElement>;
 
@@ -488,6 +492,7 @@ export class EuiPopover extends Component<Props, State> {
 
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
+    this.props.panelRef && this.props.panelRef(node);
 
     if (node == null) {
       // panel has unmounted, restore the state defaults
@@ -506,13 +511,17 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  buttonRef = (node: HTMLElement | null) => (this.button = node);
+  buttonRef = (node: HTMLElement | null) => {
+    this.button = node;
+    this.props.buttonRef && this.props.buttonRef(node);
+  };
 
   render() {
     const {
       anchorClassName,
       anchorPosition,
       button,
+      buttonRef,
       insert,
       isOpen,
       ownFocus,
@@ -522,6 +531,7 @@ export class EuiPopover extends Component<Props, State> {
       closePopover,
       panelClassName,
       panelPaddingSize,
+      panelRef,
       popoverRef,
       hasArrow,
       repositionOnScroll,
@@ -551,6 +561,7 @@ export class EuiPopover extends Component<Props, State> {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
+      { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName
     );
 

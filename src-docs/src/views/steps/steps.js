@@ -9,7 +9,8 @@ import {
 
 const firstSetOfSteps = [
   {
-    title: 'Step 1',
+    title:
+      'Step 1 with a long title to check what happens during wrapping which should have been fixed.',
     children: <p>Do this first</p>,
   },
   {
