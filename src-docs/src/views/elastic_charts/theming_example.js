@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import { ExternalBadge } from './shared';
 import { Theming } from './theming';
 import { Categorical } from './theming_categorical';
-import { Quantity } from './theming_quantity';
 
 import { EuiSpacer, EuiCode, EuiCodeBlock } from '../../../../src/components';
 
@@ -33,13 +32,22 @@ export const ElasticChartsThemingExample = {
                 EUI_LIGHT_THEME.theme
               </EuiCode>
             </li>
+            <li>
+              <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
+                {`customColors = mergeWithDefaultTheme({
+  colors: {
+    vizColors: palettes.euiPaletteColorBlind.colors
+  },
+}, isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme)`}
+              </EuiCodeBlock>
+            </li>
           </ul>
         </Fragment>
       ),
       demo: <Theming />,
     },
     {
-      title: 'Coloring for categories',
+      title: 'Coloring charts correctly',
       text: (
         <Fragment>
           <p>
@@ -55,22 +63,7 @@ export const ElasticChartsThemingExample = {
             the series&apos; are or can be combined into logical groups, use
             contrasting shapes/styles but keep the same color for within groups.
           </p>
-
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {`customColors = mergeWithDefaultTheme({
-  colors: {
-    vizColors: palettes.euiPaletteColorBlind.colors
-  },
-}, isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme)`}
-          </EuiCodeBlock>
-        </Fragment>
-      ),
-      demo: <Categorical />,
-    },
-    {
-      title: 'Quantity vs trends',
-      text: (
-        <Fragment>
+          <h3>Quantity vs trends</h3>
           <p>
             When coloring for sequential series data (not categorical), rely on
             conventions. If the data signifies <strong>quantities</strong>, use
@@ -83,17 +76,9 @@ export const ElasticChartsThemingExample = {
             Whan signifying quantities, group values into intervals instead of a
             continuous gradient scale.
           </p>
-
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {/* {`customColors = mergeWithDefaultTheme({
-  colors: {
-    vizColors: palettes.euiPaletteColorBlind.colors
-  },
-}, isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme)`} */}
-          </EuiCodeBlock>
         </Fragment>
       ),
-      demo: <Quantity />,
+      demo: <Categorical />,
     },
   ],
 };

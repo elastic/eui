@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { find } from 'lodash';
 import { withTheme } from '../../components';
 import {
   Chart,
@@ -22,31 +23,46 @@ import {
   EuiCard,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiSelect,
   EuiFormRow,
   EuiRange,
   EuiCopy,
   EuiSwitch,
   EuiButton,
+  EuiRadioGroup,
 } from '../../../../src/components';
 
 import { CHART_COMPONENTS } from './shared';
-import { palettes } from '../../../../src/services';
+import { colorPalette, palettes } from '../../../../src/services';
 
 class _Categorical extends Component {
   constructor(props) {
     super(props);
 
-    this.paletteOptions = [
-      { value: 'euiPaletteColorBlind', text: 'euiPaletteColorBlind' },
-      { value: 'euiPaletteForStatus', text: 'euiPaletteForStatus' },
+    this.idPrefix = 'colorType';
+
+    this.colorTypeRadios = [
+      {
+        id: `${this.idPrefix}3`,
+        label: 'Category',
+      },
+      {
+        id: `${this.idPrefix}0`,
+        label: 'Quantity',
+      },
+      {
+        id: `${this.idPrefix}1`,
+        label: 'Trend',
+      },
+      {
+        id: `${this.idPrefix}2`,
+        label: 'Highlight',
+      },
     ];
 
     this.state = {
-      multi: true,
       grouped: false,
-      chartType: 'LineSeries',
-      palette: this.paletteOptions[0].value,
+      colorTypeIdSelected: this.colorTypeRadios[0].id,
+      colorType: this.colorTypeRadios[0].label,
       numCharts: '3',
     };
   }
@@ -57,9 +73,11 @@ class _Categorical extends Component {
     });
   };
 
-  onPaletteChange = e => {
+  onColorTypeChange = optionId => {
+    const colorType = find(this.colorTypeRadios, { id: optionId }).label;
     this.setState({
-      palette: e.target.value,
+      colorTypeIdSelected: optionId,
+      colorType,
     });
   };
 
@@ -80,20 +98,73 @@ class _Categorical extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const ChartType = CHART_COMPONENTS[this.state.chartType];
+    let ChartType = CHART_COMPONENTS.LineSeries;
 
-    const isBadChart =
-      this.state.palette === this.paletteOptions[1].value ||
-      this.state.numCharts > 5;
+    const isBadChart = this.state.numCharts > 5;
+
+    let vizColors = palettes.euiPaletteForLightBackground.colors;
+    let firstColor;
+    let lastColor;
+
+    switch (this.state.colorType) {
+      case 'Highlight':
+        firstColor = '#D3DAE6';
+        lastColor = '#98A2B3';
+        vizColors = colorPalette(firstColor, lastColor, this.state.numCharts);
+        vizColors[vizColors.length - 1] =
+          palettes.euiPaletteColorBlind.colors[2];
+        break;
+      case 'Trend':
+        ChartType = CHART_COMPONENTS.BarSeries;
+        firstColor = palettes.euiPaletteForStatus.colors[0];
+        lastColor =
+          palettes.euiPaletteForStatus.colors[
+            palettes.euiPaletteForStatus.colors.length - 1
+          ];
+
+        const half = Math.round(this.state.numCharts / 2);
+
+        if (half < 2) {
+          vizColors = [firstColor, lastColor];
+          break;
+        } else {
+          let firstHalf = colorPalette(firstColor, '#98A2B3', half);
+          let lastHalf = colorPalette('#98A2B3', lastColor, half);
+
+          if (Number(this.state.numCharts % 2)) {
+            // Number is odd
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const removeFirstColor = lastHalf.shift();
+          } else {
+            firstHalf = colorPalette(firstColor, '#98A2B3', half + 1);
+            lastHalf = colorPalette('#98A2B3', lastColor, half + 1);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const removeFirstColor = lastHalf.shift();
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const removeLastColor = firstHalf.pop();
+          }
+          vizColors = [...firstHalf, ...lastHalf];
+          break;
+        }
+      case 'Quantity':
+        ChartType = CHART_COMPONENTS.BarSeries;
+        firstColor = '#FFFFFF';
+        lastColor = palettes.euiPaletteColorBlind.colors[0];
+        vizColors = colorPalette(
+          firstColor,
+          lastColor,
+          Number(this.state.numCharts) + 1
+        );
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const removeFirstColor = vizColors.shift();
+        break;
+      default:
+        break;
+    }
 
     const customColors = mergeWithDefaultTheme(
       {
-        colors: {
-          vizColors:
-            this.state.palette === 'euiPaletteColorBlind'
-              ? palettes.euiPaletteColorBlind.colors
-              : palettes.euiPaletteForStatus.colors,
-        },
+        colors: { vizColors },
       },
       theme
     );
@@ -120,9 +191,13 @@ class _Categorical extends Component {
           xAccessor={'x'}
           yAccessors={['y']}
           splitSeriesAccessors={['g']}
+          stackAccessors={
+            ChartType === CHART_COMPONENTS.BarSeries ? ['g'] : undefined
+          }
         />
       );
     } else {
+      ChartType = CHART_COMPONENTS.LineSeries;
       data1 = dg.generateGroupedSeries(20, 1);
       data2 = dg.generateGroupedSeries(20, 1).map(item => {
         item.y += 5;
@@ -293,7 +368,7 @@ class _Categorical extends Component {
           <Chart size={[undefined, 200]}>
             <Settings
               theme={customColors}
-              showLegend={this.state.multi}
+              showLegend={true}
               legendPosition={Position.Right}
               showLegendDisplayValue={false}
             />
@@ -324,21 +399,19 @@ class _Categorical extends Component {
           <EuiFlexItem>
             <EuiCard
               textAlign="left"
-              title="Palettes"
-              description="For contrasting data, use the color blind safe palette of contrasting colors.">
-              <EuiFormRow>
-                <EuiSelect
-                  options={this.paletteOptions}
-                  value={
-                    this.state.grouped
-                      ? this.paletteOptions[0].value
-                      : this.state.palette
-                  }
-                  disabled={this.state.grouped}
-                  onChange={this.onPaletteChange}
-                  aria-label="Palette"
-                />
-              </EuiFormRow>
+              title="Color types"
+              description="Coloring multi-series non-categorical charts can have different connotations.">
+              <EuiRadioGroup
+                compressed
+                options={this.colorTypeRadios}
+                idSelected={
+                  this.state.grouped
+                    ? this.colorTypeRadios[0].id
+                    : this.state.colorTypeIdSelected
+                }
+                onChange={this.onColorTypeChange}
+                disabled={this.state.grouped}
+              />
             </EuiCard>
           </EuiFlexItem>
           <EuiFlexItem>
@@ -356,7 +429,7 @@ class _Categorical extends Component {
                   min={1}
                   max={10}
                   showTicks
-                  value={this.state.grouped ? '4' : this.state.numCharts}
+                  value={this.state.grouped ? '2' : this.state.numCharts}
                   disabled={this.state.grouped}
                   onChange={this.onNumChartsChange}
                   levels={[

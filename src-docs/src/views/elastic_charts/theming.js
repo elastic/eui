@@ -17,26 +17,15 @@ import {
   EUI_LIGHT_THEME,
 } from '../../../../src/themes/charts/themes';
 
-import {
-  EuiSpacer,
-  EuiTitle,
-  EuiFlexGrid,
-  EuiFlexItem,
-} from '../../../../src/components';
-
-import { CHART_COMPONENTS, MultiChartCard, ChartTypeCard } from './shared';
-import { colorPalette } from '../../../../src/services';
+import { CHART_COMPONENTS } from './shared';
+import { palettes } from '../../../../src/services';
 
 class _Theming extends Component {
   constructor(props) {
     super(props);
 
-    this.idPrefix = 'chartType';
-
     this.state = {
-      multi: false,
-      stacked: false,
-      chartType: 'BarSeries',
+      chartType: 'LineSeries',
     };
   }
 
@@ -71,7 +60,7 @@ class _Theming extends Component {
     const customColors = mergeWithDefaultTheme(
       {
         colors: {
-          vizColors: colorPalette('#58BA6D', '#D75949', 5),
+          vizColors: palettes.euiPaletteForDarkBackground.colors,
         },
       },
       theme
@@ -79,28 +68,20 @@ class _Theming extends Component {
 
     return (
       <Fragment>
-        <EuiTitle size="xxs">
-          <h3>
-            Number of {!this.state.multi && 'financial '}robo-calls
-            {this.state.multi && ' by type'}
-          </h3>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
         <Chart size={[undefined, 200]}>
           <Settings
             theme={customColors}
-            showLegend={this.state.multi}
+            showLegend={true}
             legendPosition={Position.Right}
+            showLegendDisplayValue={false}
           />
           <ChartType
             id={getSpecId('status')}
+            name="0"
             data={data1}
             xAccessor={'x'}
             yAccessors={['y']}
-            splitSeriesAccessors={this.state.multi ? ['g'] : undefined}
-            stackAccessors={this.state.stacked ? ['g'] : undefined}
+            splitSeriesAccessors={['g']}
           />
           <Axis
             id={getAxisId('bottom-axis')}
@@ -116,18 +97,6 @@ class _Theming extends Component {
             gridLineStyle={gridHorizontalSettings}
           />
         </Chart>
-
-        <EuiSpacer />
-
-        <EuiFlexGrid columns={3}>
-          <EuiFlexItem>
-            <ChartTypeCard onChange={this.onChartTypeChange} />
-          </EuiFlexItem>
-
-          <EuiFlexItem>
-            <MultiChartCard onChange={this.onMultiChange} />
-          </EuiFlexItem>
-        </EuiFlexGrid>
       </Fragment>
     );
   }
