@@ -1,6 +1,6 @@
 import { CommonProps, Omit } from '../common';
 /// <reference path="../button/index.d.ts" />
-/// <reference path="../focus_trap/index.d.ts" />
+import { FocusTarget } from '../focus_trap';
 
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 

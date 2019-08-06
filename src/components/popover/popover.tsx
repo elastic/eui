@@ -50,7 +50,7 @@ export type PopoverAnchorPosition =
   | 'rightUp'
   | 'rightDown';
 
-interface EuiPopoverProps {
+export interface EuiPopoverProps {
   anchorClassName?: string;
 
   anchorPosition?: PopoverAnchorPosition;

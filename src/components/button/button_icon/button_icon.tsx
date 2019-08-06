@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { getSecureRelForTarget } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { ICON_SIZES, IconType, IconSize, EuiIcon } from '../../icon';
+import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { ButtonSize } from '../button';
 
@@ -32,19 +32,19 @@ export interface EuiButtonIconProps extends CommonProps {
   isDisabled?: boolean;
   size?: ButtonSize;
   iconSize?: IconSize;
-  buttonRef?: Ref<any>;
 }
 
 type EuiButtonIconPropsForAnchor = EuiButtonIconProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
     onClick: MouseEventHandler<HTMLAnchorElement>;
+    buttonRef?: Ref<HTMLAnchorElement>;
   };
 
 type EuiButtonIconPropsForButton = EuiButtonIconProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick: MouseEventHandler<HTMLButtonElement>;
-    buttonRef: Ref<HTMLButtonElement>;
+    buttonRef?: Ref<HTMLButtonElement>;
   };
 
 type Props = ExclusiveUnion<
@@ -110,12 +110,12 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     const secureRel = getSecureRelForTarget({ href, target, rel });
 
     return (
-      // @ts-ignore don't know what's going on here
       <a
         className={classes}
         href={href}
         target={target}
         rel={secureRel}
+        // @ts-ignore don't know what's going on here @chandler
         ref={buttonRef}
         {...rest}>
         {buttonIcon}
@@ -124,11 +124,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   }
 
   return (
-    // @ts-ignore don't know what's going on here
     <button
       disabled={isDisabled}
       className={classes}
       type={type}
+      // @ts-ignore don't know what's going on here @chandler
       ref={buttonRef}
       {...rest}>
       {buttonIcon}

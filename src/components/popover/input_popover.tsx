@@ -1,25 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useState,
+  useEffect,
+} from 'react';
 import classnames from 'classnames';
 import tabbable from 'tabbable';
 
+import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiPopover, EuiPopoverPropTypes } from './popover';
+import { EuiPopover, EuiPopoverProps } from './popover';
 import { cascadingMenuKeyCodes } from '../../services';
 
-export const EuiInputPopover = ({
+interface EuiInputPopoverProps extends EuiPopoverProps {
+  fullWidth?: boolean;
+  input: EuiPopoverProps['button'];
+  inputRef: EuiPopoverProps['buttonRef'];
+}
+
+type Props = CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiInputPopoverProps;
+
+export const EuiInputPopover: FunctionComponent<Props> = ({
   children,
   className,
   fullWidth,
   input,
-  popoverZIndex,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState();
   const [inputElWidth, setInputElWidth] = useState();
   const [panelEl, setPanelEl] = useState();
-  const inputRef = node => setInputEl(node);
-  const panelRef = node => setPanelEl(node);
+
+  const inputRef = (node: HTMLElement) => setInputEl(node);
+  const panelRef = (node: HTMLElement) => setPanelEl(node);
+
   const setPanelWidth = () => {
     if (panelEl && inputElWidth) {
       panelEl.style.width = `${inputElWidth}px`;
@@ -35,11 +51,14 @@ export const EuiInputPopover = ({
   useEffect(() => {
     setPanelWidth();
   }, [panelEl]);
-  const onKeyDown = e => {
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === cascadingMenuKeyCodes.TAB) {
-      const tabbableItems = tabbable(panelEl).filter(el => {
+      const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
         return (
-          [...el.attributes].map(el => el.name).indexOf('data-focus-guard') < 0
+          Array.from(el.attributes)
+            .map(el => el.name)
+            .indexOf('data-focus-guard') < 0
         );
       });
       if (
@@ -50,6 +69,7 @@ export const EuiInputPopover = ({
       }
     }
   };
+
   const classes = classnames(
     'euiInputPopover',
     {
@@ -57,6 +77,7 @@ export const EuiInputPopover = ({
     },
     className
   );
+
   return (
     <EuiPopover
       ownFocus={false}
@@ -70,14 +91,6 @@ export const EuiInputPopover = ({
       </EuiFocusTrap>
     </EuiPopover>
   );
-};
-
-const { button, buttonRef, ...propTypes } = EuiPopoverPropTypes;
-EuiInputPopover.propTypes = {
-  fullWidth: PropTypes.bool,
-  input: EuiPopoverPropTypes.button,
-  inputRef: EuiPopoverPropTypes.buttonRef,
-  ...propTypes,
 };
 
 EuiInputPopover.defaultProps = {
