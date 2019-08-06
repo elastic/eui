@@ -8,8 +8,8 @@ import {
   EuiIcon,
   EuiPopover,
   EuiPopoverTitle,
-  EuiSuggestItem,
-  EuiSuggestInput,
+  EuiSuggest,
+  // EuiSuggestInput, 
   EuiSuperDatePicker,
   EuiSelect,
   EuiSpacer,
@@ -110,28 +110,6 @@ export default class extends Component {
     };
   }
 
-  // openPopover = () => {
-  //   this.setState({
-  //     isPopoverOpen: true,
-  //   });
-
-  //   const focusSelected = () => {
-  //     requestAnimationFrame(() => {
-  //       this.setState({
-  //         menuWidth: this.popoverRef.getBoundingClientRect().width - 70,
-  //       });
-  //     });
-  //   };
-
-  //   requestAnimationFrame(focusSelected);
-  // };
-
-  // closePopover() {
-  //   this.setState({
-  //     isPopoverOpen: false,
-  //   });
-  // }
-
   closeHashtagPopover() {
     this.setState({
       isHashtagPopoverOpen: false,
@@ -182,14 +160,14 @@ export default class extends Component {
   }
 
   render() {
-    const suggestions = (sampleItems.map((item, index) => (
-      <EuiSuggestItem
-        type={item.type}
-        key={index}
-        label={item.label}
-        description={item.description}
-      />
-    )));
+    // const suggestions = (sampleItems.map((item, index) => (
+    //   <EuiSuggestItem
+    //     type={item.type}
+    //     key={index}
+    //     label={item.label}
+    //     description={item.description}
+    //   />
+    // )));
 
     const hashtagButton = (
       <EuiButtonEmpty
@@ -236,14 +214,7 @@ export default class extends Component {
       </EuiPopover>
     );
 
-    const suggestInputbtn = (
-      <EuiSuggestInput
-        status={this.state.status}
-        label={'KQL'}
-        prefix={hashtag}
-        suggestions={suggestions}
-      />
-    );
+    const suggestInputbtn = <EuiSuggest suggestions={sampleItems} />;
 
     return (
       <div>
@@ -260,7 +231,11 @@ export default class extends Component {
         <EuiSpacer size="xl" />
         <EuiFlexGroup
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
-          <EuiFlexItem onFocus={this.onFieldFocus.bind(this)} onBlur={this.onFieldBlur.bind(this)}>{suggestInputbtn}</EuiFlexItem>
+          <EuiFlexItem
+            onFocus={this.onFieldFocus.bind(this)}
+            onBlur={this.onFieldBlur.bind(this)}>
+            {suggestInputbtn}
+          </EuiFlexItem>
           <EuiFlexItem grow={false} className="datepicker">
             <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
           </EuiFlexItem>

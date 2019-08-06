@@ -164,7 +164,10 @@ export { EuiLink } from './link';
 
 export { EuiListGroup, EuiListGroupItem } from './list_group';
 
-export { EuiSuggestInput } from './suggest_input';
+// export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
+
+export { EuiSuggestInput, EuiSuggestItem, EuiSuggest } from './suggest';
+// export { EuiSuggestItem } from './suggest_item';
 
 export {
   EUI_MODAL_CANCEL_BUTTON,
@@ -236,7 +239,6 @@ export { EuiStat } from './stat';
 
 export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
 
-export { EuiSuggestItem } from './suggest_item';
 
 export {
   EuiTable,
