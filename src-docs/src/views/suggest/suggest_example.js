@@ -7,6 +7,8 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
   EuiCode,
+  EuiSpacer,
+  EuiSuggest,
   EuiSuggestInput,
   EuiSuggestItem,
 } from '../../../../src/components';
@@ -61,36 +63,19 @@ export const SuggestExample = {
               are still bugs and not all the logic is well-formed.
             </p>
           </EuiCallOut>
-        </div>
-      ),
-      demo: <Suggest />,
-    },
-    {
-      title: 'SuggestInput',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: suggestInputSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: suggestInputHtml,
-        },
-      ],
-      text: (
-        <div>
+          <EuiSpacer/>
           <p>
             <EuiCode>EuiSuggestInput</EuiCode> is an input field component to
             use when performing queries that will display suggestions. When
             inputting a query, <EuiCode>EuiSuggestInput</EuiCode> will show the
-            status of that query (no new changes, changes saved, etc). Based on
-            that status the user can take action (e.g. add query as a Saved
-            Query).
+            status of that query (&apos;notYetSaved&apos;, &apos;saved&apos;,
+            &apos;noNewChanges&apos; and &apos;isLoading&apos;). Based on that
+            status the user can take action (e.g. add query as a Saved Query).
           </p>
         </div>
       ),
-      props: { EuiSuggestInput },
-      demo: <SuggestInput />,
+      props: { EuiSuggest },
+      demo: <Suggest />,
     },
     {
       title: 'Suggest Item',

@@ -6,50 +6,29 @@ import { EuiFilterButton } from '../filter_group';
 import { EuiFieldText } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
-import { EuiPopover } from '../popover';
+import { EuiPopover, EuiInputPopover } from '../popover';
 
 export class EuiSuggestInput extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showSuggestions: false,
       value: '',
-      menuWidth: null,
+      isPopoverOpen: false,
     };
   }
-
-  // onFieldFocus() {
-  //   this.setState({
-  //     showSuggestions: true,
-  //   });
-  // }
-
-  onFieldBlur() {
-    this.setState({
-      showSuggestions: false,
-    });
-  }
-
-  setPopoverRef = ref => {
-    this.inputRef = ref;
-  };
 
   onFieldChange(e) {
     this.setState({
       value: e.target.value,
-      showSuggestions: e.target.value === '' ? false : true,
+      isPopoverOpen: !this.state.isPopoverOpen,
+    })
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false,
     });
-
-    const focusSelected = () => {
-      requestAnimationFrame(() => {
-        this.setState({
-          menuWidth: this.inputRef.getBoundingClientRect().width + 50,
-        });
-      });
-    };
-
-    requestAnimationFrame(focusSelected);
   }
 
   render() {
@@ -76,7 +55,7 @@ export class EuiSuggestInput extends Component {
         icon: '',
         color: 'secondary',
       },
-    };
+    }
 
     let icon;
     let color;
@@ -87,45 +66,45 @@ export class EuiSuggestInput extends Component {
       color = statusMap[status].color;
       tooltip = statusMap[status].tooltip;
     }
-    const statusElement = (
+    let statusElement;
+    statusElement = (
       <EuiToolTip position="left" content={tooltip}>
-        {status === 'isLoading' ? (
-          <span className="euiLoadingSpinner euiLoadingSpinner--medium" />
-        ) : (
+        {status !== 'isLoading' ? (
           <div className="statusIcon">
             <EuiIcon color={color} type={icon} />
-            <span className="statusLabel">{label}</span>
+            <div className="statusLabel">{label}</div>
           </div>
-        )}
+        ) : <span></span>}
       </EuiToolTip>
     );
     const classes = classNames('euiSuggestInput', className);
 
+    const customInput = (
+      <EuiFieldText
+        value={this.state.value}
+        fullWidth
+        prepend={prefix}
+        append={statusElement}
+        isLoading={status === 'isLoading' ? true : false}
+        onChange={this.onFieldChange.bind(this)}
+        {...rest}
+      />
+    );
+
     return (
       <div className={classes}>
-        <EuiFieldText
-          value={this.state.value}
-          fullWidth
-          prepend={prefix}
-          append={statusElement}
-          onChange={this.onFieldChange.bind(this)}
-          inputRef={this.setPopoverRef}
-          // onFocus={this.onFieldFocus.bind(this)}
-          onBlur={this.onFieldBlur.bind(this)}
-          {...rest}
-        />
-        <div style={{ width: this.state.menuWidth }}
-          className={
-            this.state.showSuggestions
-              ? 'euiSuggestInput__popOverPanel euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen'
-              : 'euiSuggestInput__popOverPanel euiPanel euiPopover__panel euiPopover__panel--bottom'
-          }>
-          {suggestions}
-        </div>
+        <EuiInputPopover
+          id="popover"
+          input={customInput}
+          isOpen={this.state.isPopoverOpen}
+          panelPaddingSize="none"
+          closePopover={this.closePopover.bind(this)}>
+          <div>{suggestions}</div>
+        </EuiInputPopover>
       </div>
     );
   }
-};
+}
 
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
@@ -138,6 +117,9 @@ EuiSuggestInput.propTypes = {
    */
   label: PropTypes.node,
   prefix: PropTypes.node,
+  /**
+   * Suggestions to display.
+   */
   suggestions: PropTypes.node,
 };
 

@@ -36,8 +36,6 @@ export default class extends Component {
         {statusList.map((item, index) => (
           <div>
             <EuiSuggestInput
-              // onChange={this.onChange}
-              // value={this.state.value}
               key={index}
               status={item}
               prefix={hashtag}
