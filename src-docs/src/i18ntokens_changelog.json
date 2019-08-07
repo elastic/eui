@@ -1,5 +1,40 @@
 [
   {
+    "version": "13.3.0",
+    "changes": [
+      {
+        "token": "euiSuperDatePicker.showDatesButtonLabel",
+        "changeType": "added",
+        "value": "Show dates"
+      },
+      {
+        "token": "euiSuperUpdateButton.refreshButtonLabel",
+        "changeType": "added",
+        "value": "Refresh"
+      },
+      {
+        "token": "euiSuperUpdateButton.updatingButtonLabel",
+        "changeType": "added",
+        "value": "Updating"
+      },
+      {
+        "token": "euiSuperUpdateButton.updateButtonLabel",
+        "changeType": "added",
+        "value": "Update"
+      },
+      {
+        "token": "euiSuperUpdateButton.cannotUpdateTooltip",
+        "changeType": "added",
+        "value": "Cannot update"
+      },
+      {
+        "token": "euiSuperUpdateButton.clickToApplyTooltip",
+        "changeType": "added",
+        "value": "Click to apply"
+      }
+    ]
+  },
+  {
     "version": "13.2.0",
     "changes": [
       {

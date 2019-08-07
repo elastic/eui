@@ -437,12 +437,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
-        "column": 21
+        "line": 78,
+        "column": 6
       },
       "end": {
-        "line": 80,
-        "column": 6
+        "line": 81,
+        "column": 8
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
@@ -453,11 +453,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
+        "line": 85,
         "column": 8
       },
       "end": {
-        "line": 86,
+        "line": 88,
         "column": 10
       }
     },
@@ -469,11 +469,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
-        "column": 13
+        "line": 90,
+        "column": 8
       },
       "end": {
-        "line": 89,
+        "line": 93,
         "column": 10
       }
     },
@@ -485,12 +485,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
-        "column": 23
+        "line": 100,
+        "column": 8
       },
       "end": {
-        "line": 97,
-        "column": 8
+        "line": 103,
+        "column": 10
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
@@ -501,12 +501,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 99,
-        "column": 23
+        "line": 107,
+        "column": 8
       },
       "end": {
-        "line": 102,
-        "column": 8
+        "line": 110,
+        "column": 10
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
