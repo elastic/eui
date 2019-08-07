@@ -127,6 +127,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
 >
   <div
     class="euiPopover euiPopover--anchorDownCenter"
+    data-test-subj="dataGridColumnSelectorPopover"
   >
     <div
       class="euiPopover__anchor"

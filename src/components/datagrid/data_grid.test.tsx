@@ -63,6 +63,155 @@ function resizeColumn(
   datagrid.update();
 }
 
+expect.extend({
+  toBeEuiPopover(received: ReactWrapper) {
+    const pass = received.name() === 'EuiPopover';
+    if (pass) {
+      return {
+        pass: true,
+        message: () =>
+          `expected component "${received.name}" to not be EuiPopover`,
+      };
+    } else {
+      return {
+        pass: false,
+        message: () => `expected component "${received.name}" to be EuiPopover`,
+      };
+    }
+  },
+  euiPopoverToBeOpen(received) {
+    expect(received).toBeEuiPopover();
+    const { isOpen } = received.props();
+    const pass = isOpen === true;
+    if (pass) {
+      return {
+        pass: true,
+        message: () => 'expected EuiPopover to be closed',
+      };
+    } else {
+      return {
+        pass: false,
+        message: () => 'expected EuiPopover to be open',
+      };
+    }
+  },
+});
+declare global {
+  /* eslint-disable @typescript-eslint/no-namespace */
+  namespace jest {
+    interface Matchers<R> {
+      toBeEuiPopover(): R;
+      euiPopoverToBeOpen(): R;
+    }
+  }
+}
+function setColumnVisibility(
+  datagrid: ReactWrapper,
+  columnId: string,
+  isVisible: boolean
+) {
+  // open datagrid column options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  // toggle column's visibility switch
+  const portal = popover.find('EuiPortal');
+
+  const columnSwitch = portal.find(`EuiSwitch[name="${columnId}"]`);
+  const switchInput = columnSwitch.find('input');
+  (switchInput.getDOMNode() as HTMLInputElement).checked = isVisible;
+  switchInput.simulate('change');
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+}
+
+function moveColumnToIndex(
+  datagrid: ReactWrapper,
+  columnId: string,
+  nextIndex: number
+) {
+  // open datagrid column options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  const [initialColumnOrder] = extractGridData(datagrid);
+  const initialColumnIndex = initialColumnOrder.indexOf(columnId);
+
+  // "drag" column into new location
+  const portal = popover.find('EuiPortal');
+  act(() =>
+    portal.find('EuiDragDropContext').props().onDragEnd!({
+      // @ts-ignore-next-line - only `index` is used from `source`, don't need to mock rest of the event
+      source: { index: initialColumnIndex },
+      destination: { index: nextIndex },
+    })
+  );
+
+  datagrid.update();
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+}
+
 describe('EuiDataGrid', () => {
   describe('rendering', () => {
     it('renders with common and div attributes', () => {
@@ -359,8 +508,70 @@ Array [
 
       resizeColumn(component, 'ColumnA', 200);
 
-      // expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
+      expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
       expect(renderCellValue).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('column options', () => {
+    it('column visibility can be toggled', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+
+      setColumnVisibility(component, 'ColumnA', false);
+      expect(extractGridData(component)).toEqual([
+        ['ColumnB'],
+        ['0-ColumnB'],
+        ['1-ColumnB'],
+      ]);
+
+      setColumnVisibility(component, 'ColumnA', true);
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+    });
+
+    it('column order can be changed', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+
+      moveColumnToIndex(component, 'ColumnB', 0);
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnB', 'ColumnA'],
+        ['0-ColumnB', '0-ColumnA'],
+        ['1-ColumnB', '1-ColumnA'],
+      ]);
     });
   });
 

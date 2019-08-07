@@ -27,7 +27,10 @@ export const useColumnSelector = (
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function fn({ source: { index: sourceIndex }, destination }: DropResult) {
+  function onDragEnd({
+    source: { index: sourceIndex },
+    destination,
+  }: DropResult) {
     const destinationIndex = destination!.index;
     const nextSortedColumns = [...sortedColumns];
 
@@ -44,6 +47,7 @@ export const useColumnSelector = (
 
   const ColumnSelector = () => (
     <EuiPopover
+      data-test-subj="dataGridColumnSelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       button={
@@ -53,7 +57,7 @@ export const useColumnSelector = (
           </EuiButton>
         </Fragment>
       }>
-      <EuiDragDropContext onDragEnd={fn}>
+      <EuiDragDropContext onDragEnd={onDragEnd}>
         <EuiDroppable droppableId="columnOrder">
           <div>
             {sortedColumns.map(({ id }, index) => (
