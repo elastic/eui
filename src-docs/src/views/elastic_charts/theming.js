@@ -2,15 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { withTheme } from '../../components';
 import {
   Chart,
-  getSpecId,
   Settings,
   Axis,
-  getAxisId,
-  Position,
-  mergeWithDefaultTheme,
-  DataGenerator,
   LineSeries,
   BarSeries,
+  mergeWithDefaultTheme,
+  DataGenerator,
 } from '@elastic/charts';
 
 import {
@@ -18,7 +15,7 @@ import {
   EUI_LIGHT_THEME,
 } from '../../../../src/themes/charts/themes';
 
-import { palettes } from '../../../../src/services';
+import { colorPalette } from '../../../../src/services';
 
 class _Theming extends Component {
   constructor(props) {
@@ -43,11 +40,12 @@ class _Theming extends Component {
 
   render() {
     const dg = new DataGenerator();
-    const data1 = dg.generateGroupedSeries(20, 3);
-    const data2 = dg.generateGroupedSeries(20, 1);
+    const data1 = dg.generateGroupedSeries(20, 1);
+    const data2 = dg.generateGroupedSeries(20, 5);
 
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
+
     const gridHorizontalSettings = isDarkTheme
       ? EUI_DARK_THEME.gridHorizontalSettings
       : EUI_LIGHT_THEME.gridHorizontalSettings;
@@ -58,45 +56,53 @@ class _Theming extends Component {
     const customColors = mergeWithDefaultTheme(
       {
         colors: {
-          vizColors: palettes.euiPaletteColorBlind.colors,
+          vizColors: colorPalette('#FFFFE0', '#017F75', 5),
         },
       },
       theme
     );
+
+    const data1CustomSeriesColors = new Map();
+    const data1DataSeriesColorValues = {
+      colorValues: [],
+      specId: 'control',
+    };
+    data1CustomSeriesColors.set(data1DataSeriesColorValues, 'black');
 
     return (
       <Fragment>
         <Chart size={[undefined, 200]}>
           <Settings
             theme={customColors}
-            showLegend={true}
-            legendPosition={Position.Right}
+            showLegend={false}
             showLegendDisplayValue={false}
           />
           <BarSeries
-            id={getSpecId('control')}
-            name="Control"
+            id="status"
+            name="Status"
             data={data2}
             xAccessor={'x'}
             yAccessors={['y']}
+            splitSeriesAccessors={['g']}
+            stackAccessors={['g']}
           />
           <LineSeries
-            id={getSpecId('status')}
-            name="0"
+            id="control"
+            name="Control"
             data={data1}
             xAccessor={'x'}
             yAccessors={['y']}
-            splitSeriesAccessors={['g']}
+            customSeriesColors={data1CustomSeriesColors}
           />
           <Axis
-            id={getAxisId('bottom-axis')}
-            position={Position.Bottom}
+            id="bottom-axis"
+            position="bottom"
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
           <Axis
-            id={getAxisId('left-axis')}
-            position={Position.Left}
+            id="left-axis"
+            position="left"
             showGridLines
             gridLineStyle={gridHorizontalSettings}
           />

@@ -1,8 +1,15 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React, { Fragment } from 'react';
 import { Link } from 'react-router';
+import { renderToHtml } from '../../services';
+import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
+
 import { Theming } from './theming';
+const themingSource = require('!!raw-loader!./theming');
+const themingHtml = renderToHtml(Theming);
+
 import { Categorical } from './theming_categorical';
 
 import {
@@ -32,6 +39,16 @@ export const ElasticChartsThemingExample = {
   sections: [
     {
       title: 'Theming via EUI',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: themingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: themingHtml,
+        },
+      ],
       text: (
         <Fragment>
           <p>
@@ -54,17 +71,7 @@ export const ElasticChartsThemingExample = {
             apply them with Charts&apos;{' '}
             <EuiCode>mergeWithDefaultTheme</EuiCode> function.
           </p>
-          <EuiCodeBlock language="javascript" isCopyable>
-            {`import { mergeWithDefaultTheme } from '@elastic/charts';
-import { palettes } from '@elastic/eui/src/services';
-
-<Settings theme={
-  mergeWithDefaultTheme(
-    { colors: { vizColors: palettes.euiPaletteColorBlind.colors }},
-    isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme
-  )}
-/>`}
-          </EuiCodeBlock>
+          <p>You&apos;ll find an example of this in the demo below.</p>
         </Fragment>
       ),
       demo: <Theming />,
