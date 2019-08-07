@@ -14,24 +14,6 @@
   }
 }
 
-.euiSuggestInput__popOverPanel {
-  transform: translateX(60px) !important;
-}
-
-.euiSuggestInput__popOverPanel[class*='bottom'] { /* 3 */
-  border-top-color: transparentize($euiBorderColor, .2);
-  border-top-right-radius: 0; /* 2 */
-  border-top-left-radius: 0; /* 2 */
-}
-
-.euiSuggestInput__popOverPanel[class*='top'] {
-  @include euiBottomShadowFlat; /* 2 */
-
-  border-bottom-color: transparentize($euiBorderColor, .2);
-  border-bottom-right-radius: 0; /* 2 */
-  border-bottom-left-radius: 0; /* 2 */
-}
-
 .hideDatepicker {
   .euiSuperDatePicker__flexWrapper {
     width: 100%;

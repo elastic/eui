@@ -22,7 +22,7 @@ export class EuiSuggestInput extends Component {
     this.setState({
       value: e.target.value,
       isPopoverOpen: !this.state.isPopoverOpen,
-    })
+    });
   }
 
   closePopover() {
@@ -55,7 +55,7 @@ export class EuiSuggestInput extends Component {
         icon: '',
         color: 'secondary',
       },
-    }
+    };
 
     let icon;
     let color;
@@ -66,15 +66,16 @@ export class EuiSuggestInput extends Component {
       color = statusMap[status].color;
       tooltip = statusMap[status].tooltip;
     }
-    let statusElement;
-    statusElement = (
+    const statusElement = (
       <EuiToolTip position="left" content={tooltip}>
         {status !== 'isLoading' ? (
           <div className="statusIcon">
             <EuiIcon color={color} type={icon} />
             <div className="statusLabel">{label}</div>
           </div>
-        ) : <span></span>}
+        ) : (
+          <span />
+        )}
       </EuiToolTip>
     );
     const classes = classNames('euiSuggestInput', className);
@@ -111,16 +112,24 @@ EuiSuggestInput.propTypes = {
   /**
    * Status of the current query 'notYetSaved', 'saved', 'noNewChanges' or 'isLoading'.
    */
-  status: PropTypes.string,
+  status: PropTypes.oneOf([
+    'notYetSaved',
+    'saved',
+    'noNewChanges',
+    'isLoading',
+  ]),
   /**
-   * Label to go with status elements (e.g. KQL).
+   * Label that goes next to the status element (e.g. KQL).
    */
   label: PropTypes.node,
+  /**
+   * Element to be appended to the input bar.
+   */
   prefix: PropTypes.node,
   /**
-   * Suggestions to display.
+   * List of suggestions to display using 'suggestItem'.
    */
-  suggestions: PropTypes.node,
+  suggestions: PropTypes.array,
 };
 
 EuiSuggestInput.defaultProps = { suggestions: 'Sample suggestion' };

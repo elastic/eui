@@ -9,7 +9,6 @@ import {
   EuiCode,
   EuiSpacer,
   EuiSuggest,
-  EuiSuggestInput,
   EuiSuggestItem,
 } from '../../../../src/components';
 
@@ -35,10 +34,6 @@ const suggestItemSnippet = [
 />`,
 ];
 
-import SuggestInput from './suggest_input';
-const suggestInputSource = require('!!raw-loader!./suggest_input');
-const suggestInputHtml = renderToHtml(SuggestInput);
-
 export const SuggestExample = {
   title: 'Suggest',
   sections: [
@@ -63,11 +58,11 @@ export const SuggestExample = {
               are still bugs and not all the logic is well-formed.
             </p>
           </EuiCallOut>
-          <EuiSpacer/>
+          <EuiSpacer />
           <p>
-            <EuiCode>EuiSuggestInput</EuiCode> is an input field component to
-            use when performing queries that will display suggestions. When
-            inputting a query, <EuiCode>EuiSuggestInput</EuiCode> will show the
+            <EuiCode>EuiSuggest</EuiCode> is an input field component to use
+            when performing queries that will display suggestions. When
+            inputting a query, <EuiCode>EuiSuggest</EuiCode> will show the
             status of that query (&apos;notYetSaved&apos;, &apos;saved&apos;,
             &apos;noNewChanges&apos; and &apos;isLoading&apos;). Based on that
             status the user can take action (e.g. add query as a Saved Query).
@@ -94,9 +89,9 @@ export const SuggestExample = {
           <p>
             <EuiCode>EuiSuggestItem</EuiCode> is a list item component to
             display suggestions when typing queries in{' '}
-            <EuiCode>EuiSuggestInput</EuiCode>. Use{' '}
-            <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>label</EuiCode> has a fixed width or not.
+            <EuiCode>EuiSuggest</EuiCode>. Use <EuiCode>labelDisplay</EuiCode>{' '}
+            to set whether the <EuiCode>label</EuiCode> has a fixed width or
+            not.
           </p>
         </div>
       ),

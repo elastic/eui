@@ -2,67 +2,51 @@
 
 exports[`EuiSuggestInput is rendered 1`] = `
 <div
-  aria-label="aria-label"
   class="euiSuggestInput testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover"
+    id="popover"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiFormControlLayout__prepend"
-      id="popover"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
       >
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--iconRight euiFilterButton"
-          title="title"
-          type="button"
+        <div
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonEmpty__text"
-            >
-              <span
-                class="euiFilterButton__textShift"
-              />
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <input
-        class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-        type="text"
-      />
-    </div>
-    <span
-      class="euiToolTipAnchor"
-    >
-      <div
-        class="statusIcon"
-      >
-        <svg
-          class="euiIcon euiIcon--medium euiIcon-isLoading"
-          focusable="false"
-          height="16"
-          style="fill:#DD0A73"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        />
+          <input
+            aria-label="aria-label"
+            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            data-test-subj="test subject string"
+            type="text"
+            value=""
+          />
+        </div>
         <span
-          class="statusLabel"
-        />
+          class="euiToolTipAnchor"
+        >
+          <div
+            class="statusIcon"
+          >
+            <svg
+              class="euiIcon euiIcon--medium euiIcon-isLoading"
+              focusable="false"
+              height="16"
+              style="fill:#DD0A73"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <div
+              class="statusLabel"
+            />
+          </div>
+        </span>
       </div>
-    </span>
+    </div>
   </div>
 </div>
 `;

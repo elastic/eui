@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSuggestInput } from './suggest_input';
+import { EuiSuggest } from './suggest';
 
 const sampleItems = [
   {
@@ -17,14 +17,10 @@ const sampleItems = [
   },
 ];
 
-describe('EuiSuggestInput', () => {
+describe('EuiSuggest', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSuggestInput
-        status="notYetSaved"
-        suggestions={sampleItems}
-        {...requiredProps}
-      />
+      <EuiSuggest {...requiredProps} suggestions={sampleItems} />
     );
 
     expect(component).toMatchSnapshot();

@@ -9,7 +9,6 @@ import {
   EuiPopover,
   EuiPopoverTitle,
   EuiSuggest,
-  // EuiSuggestInput, 
   EuiSuperDatePicker,
   EuiSelect,
   EuiSpacer,
@@ -63,9 +62,7 @@ export default class extends Component {
     ];
 
     this.state = {
-      isPopoverOpen: props.isOpen || false,
       isHashtagPopoverOpen: false,
-      value: '',
       status: 'notYetSaved',
       menuWidth: null,
       hideDatepicker: false,
@@ -116,17 +113,6 @@ export default class extends Component {
     });
   }
 
-  onFieldChange(e) {
-    this.setState({
-      value: e.target.value,
-    });
-    if (this.state.isPopoverOpen) {
-      this.closePopover();
-    } else {
-      this.openPopover();
-    }
-  }
-
   onFieldFocus() {
     this.setState({
       hideDatepicker: true,
@@ -156,7 +142,6 @@ export default class extends Component {
   }
 
   render() {
-
     const hashtagButton = (
       <EuiButtonEmpty
         onClick={this.onButtonClick.bind(this)}
@@ -179,17 +164,21 @@ export default class extends Component {
             <EuiFlexItem>
               <ul>
                 <li>
-                  <EuiButtonEmpty flush="left">Popular shoes in America</EuiButtonEmpty>
+                  <EuiButtonEmpty flush="left">
+                    Popular shoes in America
+                  </EuiButtonEmpty>
                   <EuiButtonEmpty iconType="trash" color="danger" />
                 </li>
                 <li>
-                  <EuiButtonEmpty flush="left">Popular shirts in Canada</EuiButtonEmpty>
+                  <EuiButtonEmpty flush="left">
+                    Popular shirts in Canada
+                  </EuiButtonEmpty>
                   <EuiButtonEmpty iconType="trash" color="danger" />
                 </li>
               </ul>
             </EuiFlexItem>
           </EuiFlexGroup>
-          {this.state.value ? (
+          {this.state.value !== '' ? (
             <EuiFlexGroup direction="rowReverse" alignItems="center">
               <EuiFlexItem grow={false}>
                 <EuiButton fill>Save</EuiButton>
@@ -218,12 +207,12 @@ export default class extends Component {
         <EuiFlexGroup
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
           <EuiFlexItem
-            // onFocus={this.onFieldFocus.bind(this)}
-            // onBlur={this.onFieldBlur.bind(this)}
+          // onFocus={this.onFieldFocus.bind(this)}
+          // onBlur={this.onFieldBlur.bind(this)}
           >
             <EuiSuggest
               status={this.state.status}
-              prefix={hashtagButton}
+              prefix={hashtag}
               label={'KQL'}
               suggestions={sampleItems}
             />

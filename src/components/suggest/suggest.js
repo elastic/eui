@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import { EuiButton } from '../button';
+import PropTypes from 'prop-types';
 import { EuiSuggestItem } from './suggest_item';
 import { EuiSuggestInput } from './suggest_input';
 
@@ -46,15 +45,6 @@ export class EuiSuggest extends Component {
       />
     )));
 
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}>
-        Show popover
-      </EuiButton>
-    );
-
     const suggestInput = (
       <EuiSuggestInput
         status={status}
@@ -67,3 +57,28 @@ export class EuiSuggest extends Component {
     return <div>{suggestInput}</div>;
   }
 }
+
+EuiSuggest.propTypes = {
+  className: PropTypes.string,
+  /**
+   * Status of the current query 'notYetSaved', 'saved', 'noNewChanges' or 'isLoading'.
+   */
+  status: PropTypes.oneOf([
+    'notYetSaved',
+    'saved',
+    'noNewChanges',
+    'isLoading',
+  ]),
+  /**
+   * Label that goes next to the status element (e.g. KQL).
+   */
+  label: PropTypes.node,
+  /**
+   * Element to be appended to the input bar.
+   */
+  prefix: PropTypes.node,
+  /**
+   * List of suggestions to display using 'suggestItem'.
+   */
+  suggestions: PropTypes.array,
+};

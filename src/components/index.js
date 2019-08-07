@@ -239,7 +239,6 @@ export { EuiStat } from './stat';
 
 export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
 
-
 export {
   EuiTable,
   EuiTableBody,
