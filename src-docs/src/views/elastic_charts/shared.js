@@ -24,7 +24,7 @@ export const ExternalBadge = () => {
       onClick={() =>
         window.open('https://github.com/elastic/elastic-charts/tree/v8.1.5')
       }>
-      External library: elastic-charts v.8.1.5
+      External library: elastic-charts v9.0.0
     </EuiBadge>
   );
 };

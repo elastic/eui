@@ -7,7 +7,6 @@ import {
   Axis,
   getAxisId,
   Position,
-  ScaleType,
   mergeWithDefaultTheme,
   DataGenerator,
   LineSeries,
@@ -74,6 +73,13 @@ class _Theming extends Component {
             legendPosition={Position.Right}
             showLegendDisplayValue={false}
           />
+          <BarSeries
+            id={getSpecId('control')}
+            name="Control"
+            data={data2}
+            xAccessor={'x'}
+            yAccessors={['y']}
+          />
           <LineSeries
             id={getSpecId('status')}
             name="0"
@@ -82,17 +88,9 @@ class _Theming extends Component {
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
           />
-          <BarSeries
-            id={getSpecId('control')}
-            name="Control"
-            data={data2}
-            xAccessor={'x'}
-            yAccessors={['y']}
-          />
           <Axis
             id={getAxisId('bottom-axis')}
             position={Position.Bottom}
-            xScaleType={ScaleType.Linear}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
