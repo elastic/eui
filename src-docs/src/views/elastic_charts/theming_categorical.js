@@ -33,9 +33,17 @@ import {
 import { CHART_COMPONENTS, createSpectrum } from './shared';
 import { palettes } from '../../../../src/services';
 
+const getColorsMap = (color, specId) => {
+  const map = new Map();
+  map.set({ colorValues: [], specId }, color);
+  return map;
+};
+
 class _Categorical extends Component {
   constructor(props) {
     super(props);
+
+    this.highlightColor = palettes.euiPaletteColorBlind.colors[2];
 
     this.colorTypeRadios = [
       {
@@ -61,10 +69,19 @@ class _Categorical extends Component {
       colorTypeIdSelected: this.colorTypeRadios[0].id,
       colorType: this.colorTypeRadios[0].label,
       numCharts: '3',
+      data: null,
+      dataString: '[{x: 1, y: 5.5, g: 0}]',
+      vizColors: palettes.euiPaletteColorBlind.colors,
+      chartType: 'LineSeries',
     };
   }
 
+  componentDidMount = () => {
+    this.createCategoryChart(3);
+  };
+
   onNumChartsChange = e => {
+    this.updateCorrectChart(Number(e.target.value), this.state.colorType);
     this.setState({
       numCharts: e.target.value,
     });
@@ -72,6 +89,7 @@ class _Categorical extends Component {
 
   onColorTypeChange = optionId => {
     const colorType = find(this.colorTypeRadios, { id: optionId }).label;
+    this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       colorTypeIdSelected: optionId,
       colorType,
@@ -79,12 +97,151 @@ class _Categorical extends Component {
   };
 
   onGroupChange = e => {
+    this.updateCorrectChart(Number(this.state.numCharts), 'Grouped');
     this.setState({
       grouped: e.target.checked,
+      colorType: 'Grouped',
     });
   };
 
+  updateCorrectChart = (numCharts, chartType) => {
+    switch (chartType) {
+      case 'Category':
+        this.createCategoryChart(numCharts);
+        break;
+      case 'Quantity':
+        this.createQuantityChart(numCharts);
+        break;
+      case 'Trend':
+        this.createTrendChart(numCharts);
+        break;
+      case 'Highlight':
+        this.createHighlightChart(numCharts);
+        break;
+      case 'Grouped':
+        this.setState({
+          dataString: "[{x: 1, y: 5.5, g: 'Series 1'}]",
+          chartType: 'LineSeries',
+        });
+        break;
+      default:
+        console.warn("Couldn't find the right chart type");
+        break;
+    }
+  };
+
+  createCategoryChart = numCharts => {
+    const dg = new DataGenerator();
+    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+      const index = Number(item.g);
+      item.g = `Category ${index + 1}`;
+      return item;
+    });
+
+    this.setState({
+      data,
+      dataString: "[{x: 1, y: 5.5, g: 'Category 1'}]",
+      vizColors: palettes.euiPaletteColorBlind.colors,
+      chartType: 'LineSeries',
+    });
+  };
+
+  createQuantityChart = numCharts => {
+    const vizColors = createSpectrum(
+      ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
+      numCharts + 1
+    );
+    vizColors.shift();
+
+    // convert series labels to percentages
+    const dg = new DataGenerator();
+    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+      const increment = 100 / numCharts;
+      const index = Number(item.g);
+      const lower = Math.floor(increment * index);
+      const higher =
+        index + 1 === numCharts
+          ? Math.ceil(increment * (index + 1))
+          : Math.floor(increment * (index + 1));
+      item.g = `${lower} - ${higher}%`;
+      return item;
+    });
+
+    this.setState({
+      data,
+      dataString: "[{x: 1, y: 5.5, g: '0 - 100%'}]",
+      vizColors,
+      chartType: 'BarSeries',
+    });
+  };
+
+  createTrendChart = numCharts => {
+    const vizColors = createSpectrum(
+      ['#58ba6d', '#ebdf62', '#d75949'],
+      numCharts
+    );
+
+    // convert series labels to better/worse
+    const oddSeries = numCharts % 2;
+    const numOfHalf = Math.floor(numCharts / 2);
+
+    const dg = new DataGenerator();
+    const data = dg.generateGroupedSeries(20, numCharts).map(item => {
+      const index = Number(item.g);
+      let howManyErs;
+      if (oddSeries && index === numOfHalf) {
+        item.g = 'Meh';
+      } else if (index < numOfHalf) {
+        howManyErs = numOfHalf - (index + 1);
+        item.g = `Better${'er'.repeat(howManyErs)}`;
+      } else if (index >= numOfHalf) {
+        howManyErs = index - numOfHalf;
+        if (oddSeries) {
+          howManyErs -= 1;
+        }
+        item.g = `Wors${!howManyErs ? 'e' : ''}${'er'.repeat(
+          howManyErs > 0 ? howManyErs : 0
+        )}`;
+      }
+      return item;
+    });
+
+    this.setState({
+      data,
+      dataString: "[{x: 1, y: 5.5, g: 'Better'}]",
+      vizColors,
+      chartType: 'BarSeries',
+    });
+  };
+
+  createHighlightChart = numCharts => {
+    const vizColors = createSpectrum(['#D3DAE6', '#98A2B3'], numCharts);
+    vizColors[vizColors.length - 1] = this.highlightColor;
+
+    const dg = new DataGenerator();
+    const data = dg.generateGroupedSeries(20, numCharts);
+
+    this.setState({
+      data,
+      dataString: "[{x: 1, y: 5.5, g: '0'}]",
+      vizColors: numCharts < 2 ? [this.highlightColor] : vizColors,
+      chartType: 'LineSeries',
+    });
+  };
+
+  // createGroupedChart
+
   render() {
+    const {
+      data,
+      dataString,
+      vizColors,
+      chartType,
+      numCharts,
+      colorType,
+      colorTypeIdSelected,
+    } = this.state;
+
     const dg = new DataGenerator();
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
@@ -95,110 +252,22 @@ class _Categorical extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    let ChartType = CHART_COMPONENTS.LineSeries;
+    let ChartType = CHART_COMPONENTS[chartType];
 
-    const isBadChart = !this.state.grouped && this.state.numCharts > 5;
+    const isBadChart = !this.state.grouped && numCharts > 5;
     const isComplicatedChart = this.state.grouped;
-    let showLegend = this.state.numCharts > 1;
 
-    let data1 = dg.generateGroupedSeries(20, Number(this.state.numCharts));
-    let dataString = '[{x: 1, y: 5.5, g: 0}]';
-    let data2;
-    let data3;
-    let data4;
-
-    let chart1;
-    let chart2;
-    let chart3;
-    let chart4;
-    let customLegend;
-    let customTitle;
-
-    let vizColors = palettes.euiPaletteColorBlind.colors;
-
-    switch (this.state.colorType) {
-      case 'Highlight':
-        const highlightColor = palettes.euiPaletteColorBlind.colors[2];
-        if (this.state.numCharts < 2) {
-          vizColors = [highlightColor];
-          break;
-        }
-        vizColors = createSpectrum(
-          ['#D3DAE6', '#98A2B3'],
-          this.state.numCharts
-        );
-        vizColors[vizColors.length - 1] = highlightColor;
-        customTitle = (
-          <EuiTitle size="xxs">
-            <h4>
-              <EuiIcon type="dot" color={highlightColor} /> My number of issues
-              compared to others
-            </h4>
-          </EuiTitle>
-        );
-        showLegend = false;
-        break;
-      case 'Trend':
-        ChartType = CHART_COMPONENTS.BarSeries;
-        vizColors = createSpectrum(
-          ['#58ba6d', '#ebdf62', '#d75949'],
-          Number(this.state.numCharts)
-        );
-        // convert series labels to better/worse
-        const oddSeries = this.state.numCharts % 2;
-        const numOfHalf = Math.floor(this.state.numCharts / 2);
-        data1 = data1.map(item => {
-          const index = Number(item.g);
-          let howManyErs;
-          if (oddSeries && index === numOfHalf) {
-            item.g = 'Meh';
-          } else if (index < numOfHalf) {
-            howManyErs = numOfHalf - (index + 1);
-            item.g = `Better${'er'.repeat(howManyErs)}`;
-          } else if (index >= numOfHalf) {
-            howManyErs = index - numOfHalf;
-            if (oddSeries) {
-              howManyErs -= 1;
-            }
-            item.g = `Wors${!howManyErs ? 'e' : ''}${'er'.repeat(
-              howManyErs > 0 ? howManyErs : 0
-            )}`;
-          }
-          return item;
-        });
-        dataString = "[{x: 1, y: 5.5, g: 'Better'}]";
-        break;
-      case 'Quantity':
-        ChartType = CHART_COMPONENTS.BarSeries;
-        vizColors = createSpectrum(
-          ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
-          Number(this.state.numCharts) + 1
-        );
-        vizColors.shift();
-
-        // convert series labels to percentages
-        data1 = data1.map(item => {
-          const increment = 100 / Number(this.state.numCharts);
-          const index = Number(item.g);
-          const lower = Math.floor(increment * index);
-          const higher =
-            index + 1 === this.state.numCharts
-              ? Math.ceil(increment * (index + 1))
-              : Math.floor(increment * (index + 1));
-          item.g = `${lower} - ${higher}%`;
-          return item;
-        });
-        dataString = "[{x: 1, y: 5.5, g: '0 - 100%'}]";
-        break;
-      default:
-        data1 = data1.map(item => {
-          const index = Number(item.g);
-          item.g = `Category ${index + 1}`;
-          return item;
-        });
-        dataString = "[{x: 1, y: 5.5, g: 'Category 1'}]";
-        break;
-    }
+    const customTitle =
+      colorType === 'Highlight' ? (
+        <EuiTitle size="xxs">
+          <h4>
+            <EuiIcon type="dot" color={this.highlightColor} /> My number of
+            issues compared to others
+          </h4>
+        </EuiTitle>
+      ) : (
+        undefined
+      );
 
     const customColors = mergeWithDefaultTheme(
       {
@@ -214,148 +283,56 @@ class _Categorical extends Component {
 )`
         : null;
 
+    const charts = [];
+    let customLegend;
+
     if (!this.state.grouped) {
-      chart1 = (
+      charts.push(
         <ChartType
+          key="data1"
           id="data1"
           name="0"
-          data={data1}
+          data={data}
           xAccessor={'x'}
           yAccessors={['y']}
           splitSeriesAccessors={['g']}
-          stackAccessors={
-            ChartType === CHART_COMPONENTS.BarSeries ? ['g'] : undefined
-          }
+          stackAccessors={chartType === 'BarSeries' ? ['g'] : undefined}
         />
       );
     } else {
       ChartType = CHART_COMPONENTS.LineSeries;
-      showLegend = true;
-      data1 = dg.generateGroupedSeries(20, 1);
-      data2 = dg.generateGroupedSeries(20, 1).map(item => {
-        item.y += 5;
-        return item;
-      });
-      data3 = dg.generateGroupedSeries(20, 1).map(item => {
-        item.y += 10;
-        return item;
-      });
-      data4 = dg.generateGroupedSeries(20, 1).map(item => {
-        item.y += 15;
-        return item;
-      });
 
-      const data1CustomSeriesColors = new Map();
-      const data1DataSeriesColorValues = {
-        colorValues: [],
-        specId: 'data1',
-      };
-      data1CustomSeriesColors.set(
-        data1DataSeriesColorValues,
-        palettes.euiPaletteColorBlind.colors[0]
-      );
+      for (let index = 0; index < 4; index++) {
+        const data = dg.generateGroupedSeries(20, 1).map(item => {
+          item.y += index * 5;
+          return item;
+        });
 
-      const data2CustomSeriesColors = new Map();
-      const data2DataSeriesColorValues = {
-        colorValues: [],
-        specId: 'data2',
-      };
-      data2CustomSeriesColors.set(
-        data2DataSeriesColorValues,
-        palettes.euiPaletteColorBlind.colors[0]
-      );
+        const chart = (
+          <ChartType
+            key={`data${index}`}
+            id={`data${index}`}
+            name={`Series ${index < 2 ? 1 : 2}`}
+            data={data}
+            xAccessor={'x'}
+            yAccessors={['y']}
+            customSeriesColors={getColorsMap(
+              palettes.euiPaletteColorBlind.colors[index < 2 ? 0 : 1],
+              `data${index}`
+            )}
+            lineSeriesStyle={{
+              line: {
+                strokeWidth: index % 2 ? 1 : 6,
+              },
+              point: {
+                visible: index % 2 ? false : true,
+              },
+            }}
+          />
+        );
 
-      const data3CustomSeriesColors = new Map();
-      const data3DataSeriesColorValues = {
-        colorValues: [],
-        specId: 'data3',
-      };
-      data3CustomSeriesColors.set(
-        data3DataSeriesColorValues,
-        palettes.euiPaletteColorBlind.colors[1]
-      );
-
-      const data4CustomSeriesColors = new Map();
-      const data4DataSeriesColorValues = {
-        colorValues: [],
-        specId: 'data4',
-      };
-      data4CustomSeriesColors.set(
-        data4DataSeriesColorValues,
-        palettes.euiPaletteColorBlind.colors[1]
-      );
-
-      chart1 = (
-        <ChartType
-          id="data1"
-          name="Series 1"
-          data={data1}
-          xAccessor={'x'}
-          yAccessors={['y']}
-          customSeriesColors={data1CustomSeriesColors}
-          lineSeriesStyle={{
-            line: {
-              strokeWidth: 1,
-            },
-            point: {
-              visible: false,
-            },
-          }}
-        />
-      );
-
-      chart2 = (
-        <ChartType
-          id="data2"
-          name="Series 1"
-          data={data2}
-          xAccessor={'x'}
-          yAccessors={['y']}
-          customSeriesColors={data2CustomSeriesColors}
-          hideInLegend={true}
-          lineSeriesStyle={{
-            line: {
-              strokeWidth: 6,
-            },
-          }}
-        />
-      );
-
-      chart3 = (
-        <ChartType
-          id="data3"
-          name="Series 2"
-          data={data3}
-          xAccessor={'x'}
-          yAccessors={['y']}
-          customSeriesColors={data3CustomSeriesColors}
-          lineSeriesStyle={{
-            line: {
-              strokeWidth: 1,
-            },
-            point: {
-              visible: false,
-            },
-          }}
-        />
-      );
-
-      chart4 = (
-        <ChartType
-          id="data4"
-          name="Series 2"
-          data={data4}
-          xAccessor={'x'}
-          yAccessors={['y']}
-          customSeriesColors={data4CustomSeriesColors}
-          hideInLegend={true}
-          lineSeriesStyle={{
-            line: {
-              strokeWidth: 6,
-            },
-          }}
-        />
-      );
+        charts.push(chart);
+      }
 
       customLegend = (
         <dl
@@ -395,6 +372,9 @@ class _Categorical extends Component {
       );
     }
 
+    let showLegend = numCharts > 1 || colorType === 'Grouped';
+    if (colorType === 'Highlight') showLegend = false;
+
     return (
       <Fragment>
         {customTitle}
@@ -406,10 +386,7 @@ class _Categorical extends Component {
               legendPosition="right"
               showLegendDisplayValue={false}
             />
-            {chart1}
-            {chart2}
-            {chart3}
-            {chart4}
+            {charts}
             <Axis
               id="bottom-axis"
               position="bottom"
@@ -440,7 +417,7 @@ class _Categorical extends Component {
                 idSelected={
                   this.state.grouped
                     ? this.colorTypeRadios[0].id
-                    : this.state.colorTypeIdSelected
+                    : colorTypeIdSelected
                 }
                 onChange={this.onColorTypeChange}
                 disabled={this.state.grouped}
@@ -463,7 +440,7 @@ class _Categorical extends Component {
                   min={1}
                   max={10}
                   showTicks
-                  value={this.state.grouped ? '2' : this.state.numCharts}
+                  value={this.state.grouped ? '2' : numCharts}
                   disabled={this.state.grouped}
                   onChange={this.onNumChartsChange}
                   levels={[
@@ -515,14 +492,14 @@ class _Categorical extends Component {
     legendPosition="right"
     showLegendDisplayValue={false}
   />
-  <${ChartType === CHART_COMPONENTS.BarSeries ? 'BarSeries' : 'LineSeries'}
+  <${chartType}
     id="bars"
     name="0"
     data={${dataString}}
     xAccessor={'x'}
     yAccessors={['y']}
     splitSeriesAccessors={['g']}
-    ${ChartType === CHART_COMPONENTS.BarSeries ? "stackAccessors={['g']}" : ''}
+    ${chartType === 'BarSeries' ? "stackAccessors={['g']}" : ''}
   />
   <Axis
     id="bottom-axis"
