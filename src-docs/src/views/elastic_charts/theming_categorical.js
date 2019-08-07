@@ -31,14 +31,12 @@ import {
   EuiRadioGroup,
 } from '../../../../src/components';
 
-import { CHART_COMPONENTS } from './shared';
-import { colorPalette, palettes } from '../../../../src/services';
+import { CHART_COMPONENTS, createSpectrum } from './shared';
+import { palettes } from '../../../../src/services';
 
 class _Categorical extends Component {
   constructor(props) {
     super(props);
-
-    this.idPrefix = 'colorType';
 
     this.colorTypeRadios = [
       {
@@ -100,63 +98,33 @@ class _Categorical extends Component {
 
     let ChartType = CHART_COMPONENTS.LineSeries;
 
-    const isBadChart = this.state.numCharts > 5;
+    const isBadChart = !this.state.grouped && this.state.numCharts > 5;
 
-    let vizColors = palettes.euiPaletteForLightBackground.colors;
-    let firstColor;
-    let lastColor;
+    let vizColors = palettes.euiPaletteColorBlind.colors;
 
     switch (this.state.colorType) {
       case 'Highlight':
-        firstColor = '#D3DAE6';
-        lastColor = '#98A2B3';
-        vizColors = colorPalette(firstColor, lastColor, this.state.numCharts);
-        vizColors[vizColors.length - 1] =
+        vizColors = createSpectrum(
+          ['#D3DAE6', '#98A2B3'],
+          this.state.numCharts
+        );
+        vizColors[Math.floor(vizColors.length / 2)] =
           palettes.euiPaletteColorBlind.colors[2];
         break;
       case 'Trend':
         ChartType = CHART_COMPONENTS.BarSeries;
-        firstColor = palettes.euiPaletteForStatus.colors[0];
-        lastColor =
-          palettes.euiPaletteForStatus.colors[
-            palettes.euiPaletteForStatus.colors.length - 1
-          ];
-
-        const half = Math.round(this.state.numCharts / 2);
-
-        if (half < 2) {
-          vizColors = [firstColor, lastColor];
-          break;
-        } else {
-          let firstHalf = colorPalette(firstColor, '#98A2B3', half);
-          let lastHalf = colorPalette('#98A2B3', lastColor, half);
-
-          if (Number(this.state.numCharts % 2)) {
-            // Number is odd
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const removeFirstColor = lastHalf.shift();
-          } else {
-            firstHalf = colorPalette(firstColor, '#98A2B3', half + 1);
-            lastHalf = colorPalette('#98A2B3', lastColor, half + 1);
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const removeFirstColor = lastHalf.shift();
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const removeLastColor = firstHalf.pop();
-          }
-          vizColors = [...firstHalf, ...lastHalf];
-          break;
-        }
+        vizColors = createSpectrum(
+          ['#df3423', '#e3ecec', '#008673'],
+          Number(this.state.numCharts)
+        );
+        break;
       case 'Quantity':
         ChartType = CHART_COMPONENTS.BarSeries;
-        firstColor = '#FFFFFF';
-        lastColor = palettes.euiPaletteColorBlind.colors[0];
-        vizColors = colorPalette(
-          firstColor,
-          lastColor,
+        vizColors = createSpectrum(
+          ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
           Number(this.state.numCharts) + 1
         );
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const removeFirstColor = vizColors.shift();
+        vizColors.shift();
         break;
       default:
         break;
@@ -419,6 +387,7 @@ class _Categorical extends Component {
               textAlign="left"
               title="Number of series"
               description="Do not use too many colors in a single chart as this will hinder understanding.">
+              <EuiSpacer />
               <EuiFormRow
                 helpText={
                   <span id="levelsHelp3">
@@ -447,6 +416,7 @@ class _Categorical extends Component {
               textAlign="left"
               title="Grouping data"
               description="If the series' are or can be combined into logical groups, use contrasting shapes/styles but keep the same color for within groups.">
+              <EuiSpacer />
               <EuiSwitch
                 label="Show grouped"
                 checked={this.state.grouped}

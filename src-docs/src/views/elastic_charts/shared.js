@@ -156,3 +156,63 @@ export class MultiChartCard extends Component {
     );
   }
 }
+
+import chroma from 'chroma-js';
+export function createSpectrum(
+  colors,
+  steps = 5,
+  diverging = false,
+  correctLightness = true,
+  bezier = true
+) {
+  if (colors.length < 2) {
+    console.warn(
+      'createSpectrum expects the colors array to have at least 2 colors'
+    );
+    return;
+  }
+
+  diverging = diverging || colors.length > 2;
+
+  const even = steps % 2 === 0;
+  const numStepsLeft = diverging
+    ? Math.ceil(steps / 2) + (even ? 1 : 0)
+    : steps;
+  const numStepsRight = diverging ? Math.ceil(steps / 2) + (even ? 1 : 0) : 0;
+
+  const numColorsHalf =
+    Math.ceil(colors.length / 2) + (colors.length % 2 === 0 ? 1 : 0);
+
+  const colorsLeft = colors.filter(function(item, index) {
+    if (index < numColorsHalf) {
+      return true; // keep it
+    }
+  });
+  const colorsRight = colors
+    .reverse()
+    .filter(function(item, index) {
+      if (index < numColorsHalf) {
+        return true; // keep it
+      }
+    })
+    .reverse();
+
+  function createSteps(colors, steps) {
+    return colors.length
+      ? chroma
+          .scale(bezier && colors.length > 1 ? chroma.bezier(colors) : colors)
+          .correctLightness(correctLightness)
+          .colors(steps)
+      : [];
+  }
+
+  const stepsLeft = createSteps(colorsLeft, numStepsLeft);
+  const stepsRight = createSteps(colorsRight, numStepsRight);
+
+  const spectrum = (even && diverging
+    ? stepsLeft.slice(0, stepsLeft.length - 1)
+    : stepsLeft
+  ).concat(stepsRight.slice(1));
+
+  return spectrum;
+}

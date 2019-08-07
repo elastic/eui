@@ -10,6 +10,8 @@ import {
   ScaleType,
   mergeWithDefaultTheme,
   DataGenerator,
+  LineSeries,
+  BarSeries,
 } from '@elastic/charts';
 
 import {
@@ -17,7 +19,6 @@ import {
   EUI_LIGHT_THEME,
 } from '../../../../src/themes/charts/themes';
 
-import { CHART_COMPONENTS } from './shared';
 import { palettes } from '../../../../src/services';
 
 class _Theming extends Component {
@@ -43,8 +44,8 @@ class _Theming extends Component {
 
   render() {
     const dg = new DataGenerator();
-    const data1 = dg.generateGroupedSeries(20, 5);
-    // console.table(data1);
+    const data1 = dg.generateGroupedSeries(20, 3);
+    const data2 = dg.generateGroupedSeries(20, 1);
 
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
@@ -55,12 +56,10 @@ class _Theming extends Component {
       ? EUI_DARK_THEME.gridVerticalSettings
       : EUI_LIGHT_THEME.gridVerticalSettings;
 
-    const ChartType = CHART_COMPONENTS[this.state.chartType];
-
     const customColors = mergeWithDefaultTheme(
       {
         colors: {
-          vizColors: palettes.euiPaletteForDarkBackground.colors,
+          vizColors: palettes.euiPaletteColorBlind.colors,
         },
       },
       theme
@@ -75,7 +74,7 @@ class _Theming extends Component {
             legendPosition={Position.Right}
             showLegendDisplayValue={false}
           />
-          <ChartType
+          <LineSeries
             id={getSpecId('status')}
             name="0"
             data={data1}
@@ -83,10 +82,17 @@ class _Theming extends Component {
             yAccessors={['y']}
             splitSeriesAccessors={['g']}
           />
+          <BarSeries
+            id={getSpecId('control')}
+            name="Control"
+            data={data2}
+            xAccessor={'x'}
+            yAccessors={['y']}
+          />
           <Axis
             id={getAxisId('bottom-axis')}
             position={Position.Bottom}
-            xScaleType={ScaleType.Ordinal}
+            xScaleType={ScaleType.Linear}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
