@@ -1,14 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component, Fragment } from 'react';
 import { find } from 'lodash';
 import { withTheme } from '../../components';
 import {
   Chart,
-  getSpecId,
   Settings,
   Axis,
-  getAxisId,
-  Position,
-  ScaleType,
   mergeWithDefaultTheme,
   DataGenerator,
 } from '@elastic/charts';
@@ -29,6 +26,8 @@ import {
   EuiSwitch,
   EuiButton,
   EuiRadioGroup,
+  EuiIcon,
+  EuiTitle,
 } from '../../../../src/components';
 
 import { CHART_COMPONENTS, createSpectrum } from './shared';
@@ -99,45 +98,11 @@ class _Categorical extends Component {
     let ChartType = CHART_COMPONENTS.LineSeries;
 
     const isBadChart = !this.state.grouped && this.state.numCharts > 5;
+    const isComplicatedChart = this.state.grouped;
+    let showLegend = this.state.numCharts > 1;
 
-    let vizColors = palettes.euiPaletteColorBlind.colors;
-
-    switch (this.state.colorType) {
-      case 'Highlight':
-        vizColors = createSpectrum(
-          ['#D3DAE6', '#98A2B3'],
-          this.state.numCharts
-        );
-        vizColors[Math.floor(vizColors.length / 2)] =
-          palettes.euiPaletteColorBlind.colors[2];
-        break;
-      case 'Trend':
-        ChartType = CHART_COMPONENTS.BarSeries;
-        vizColors = createSpectrum(
-          ['#df3423', '#e3ecec', '#008673'],
-          Number(this.state.numCharts)
-        );
-        break;
-      case 'Quantity':
-        ChartType = CHART_COMPONENTS.BarSeries;
-        vizColors = createSpectrum(
-          ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
-          Number(this.state.numCharts) + 1
-        );
-        vizColors.shift();
-        break;
-      default:
-        break;
-    }
-
-    const customColors = mergeWithDefaultTheme(
-      {
-        colors: { vizColors },
-      },
-      theme
-    );
-
-    let data1;
+    let data1 = dg.generateGroupedSeries(20, Number(this.state.numCharts));
+    let dataString = '[{x: 1, y: 5.5, g: 0}]';
     let data2;
     let data3;
     let data4;
@@ -147,13 +112,112 @@ class _Categorical extends Component {
     let chart3;
     let chart4;
     let customLegend;
+    let customTitle;
+
+    let vizColors = palettes.euiPaletteColorBlind.colors;
+
+    switch (this.state.colorType) {
+      case 'Highlight':
+        const highlightColor = palettes.euiPaletteColorBlind.colors[2];
+        if (this.state.numCharts < 2) {
+          vizColors = [highlightColor];
+          break;
+        }
+        vizColors = createSpectrum(
+          ['#D3DAE6', '#98A2B3'],
+          this.state.numCharts
+        );
+        vizColors[vizColors.length - 1] = highlightColor;
+        customTitle = (
+          <EuiTitle size="xxs">
+            <h4>
+              <EuiIcon type="dot" color={highlightColor} /> My number of issues
+              compared to others
+            </h4>
+          </EuiTitle>
+        );
+        showLegend = false;
+        break;
+      case 'Trend':
+        ChartType = CHART_COMPONENTS.BarSeries;
+        vizColors = createSpectrum(
+          ['#58ba6d', '#ebdf62', '#d75949'],
+          Number(this.state.numCharts)
+        );
+        // convert series labels to better/worse
+        const oddSeries = this.state.numCharts % 2;
+        const numOfHalf = Math.floor(this.state.numCharts / 2);
+        data1 = data1.map(item => {
+          const index = Number(item.g);
+          let howManyErs;
+          if (oddSeries && index === numOfHalf) {
+            item.g = 'Meh';
+          } else if (index < numOfHalf) {
+            howManyErs = numOfHalf - (index + 1);
+            item.g = `Better${'er'.repeat(howManyErs)}`;
+          } else if (index >= numOfHalf) {
+            howManyErs = index - numOfHalf;
+            if (oddSeries) {
+              howManyErs -= 1;
+            }
+            item.g = `Wors${!howManyErs ? 'e' : ''}${'er'.repeat(
+              howManyErs > 0 ? howManyErs : 0
+            )}`;
+          }
+          return item;
+        });
+        dataString = "[{x: 1, y: 5.5, g: 'Better'}]";
+        break;
+      case 'Quantity':
+        ChartType = CHART_COMPONENTS.BarSeries;
+        vizColors = createSpectrum(
+          ['#FFFFFF', palettes.euiPaletteColorBlind.colors[0]],
+          Number(this.state.numCharts) + 1
+        );
+        vizColors.shift();
+
+        // convert series labels to percentages
+        data1 = data1.map(item => {
+          const increment = 100 / Number(this.state.numCharts);
+          const index = Number(item.g);
+          const lower = Math.floor(increment * index);
+          const higher =
+            index + 1 === this.state.numCharts
+              ? Math.ceil(increment * (index + 1))
+              : Math.floor(increment * (index + 1));
+          item.g = `${lower} - ${higher}%`;
+          return item;
+        });
+        dataString = "[{x: 1, y: 5.5, g: '0 - 100%'}]";
+        break;
+      default:
+        data1 = data1.map(item => {
+          const index = Number(item.g);
+          item.g = `Category ${index + 1}`;
+          return item;
+        });
+        dataString = "[{x: 1, y: 5.5, g: 'Category 1'}]";
+        break;
+    }
+
+    const customColors = mergeWithDefaultTheme(
+      {
+        colors: { vizColors },
+      },
+      theme
+    );
+    const customColorsString =
+      vizColors !== palettes.euiPaletteColorBlind.colors
+        ? `mergeWithDefaultTheme(
+  { colors: { vizColors: [${JSON.stringify(vizColors)}] }},
+  isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme
+)`
+        : null;
 
     if (!this.state.grouped) {
-      data1 = dg.generateGroupedSeries(20, Number(this.state.numCharts));
-
       chart1 = (
         <ChartType
-          id={getSpecId('data1')}
+          id="data1"
           name="0"
           data={data1}
           xAccessor={'x'}
@@ -166,6 +230,7 @@ class _Categorical extends Component {
       );
     } else {
       ChartType = CHART_COMPONENTS.LineSeries;
+      showLegend = true;
       data1 = dg.generateGroupedSeries(20, 1);
       data2 = dg.generateGroupedSeries(20, 1).map(item => {
         item.y += 5;
@@ -183,7 +248,7 @@ class _Categorical extends Component {
       const data1CustomSeriesColors = new Map();
       const data1DataSeriesColorValues = {
         colorValues: [],
-        specId: getSpecId('data1'),
+        specId: 'data1',
       };
       data1CustomSeriesColors.set(
         data1DataSeriesColorValues,
@@ -193,7 +258,7 @@ class _Categorical extends Component {
       const data2CustomSeriesColors = new Map();
       const data2DataSeriesColorValues = {
         colorValues: [],
-        specId: getSpecId('data2'),
+        specId: 'data2',
       };
       data2CustomSeriesColors.set(
         data2DataSeriesColorValues,
@@ -203,7 +268,7 @@ class _Categorical extends Component {
       const data3CustomSeriesColors = new Map();
       const data3DataSeriesColorValues = {
         colorValues: [],
-        specId: getSpecId('data3'),
+        specId: 'data3',
       };
       data3CustomSeriesColors.set(
         data3DataSeriesColorValues,
@@ -213,7 +278,7 @@ class _Categorical extends Component {
       const data4CustomSeriesColors = new Map();
       const data4DataSeriesColorValues = {
         colorValues: [],
-        specId: getSpecId('data4'),
+        specId: 'data4',
       };
       data4CustomSeriesColors.set(
         data4DataSeriesColorValues,
@@ -222,7 +287,7 @@ class _Categorical extends Component {
 
       chart1 = (
         <ChartType
-          id={getSpecId('data1')}
+          id="data1"
           name="Series 1"
           data={data1}
           xAccessor={'x'}
@@ -241,7 +306,7 @@ class _Categorical extends Component {
 
       chart2 = (
         <ChartType
-          id={getSpecId('data2')}
+          id="data2"
           name="Series 1"
           data={data2}
           xAccessor={'x'}
@@ -258,7 +323,7 @@ class _Categorical extends Component {
 
       chart3 = (
         <ChartType
-          id={getSpecId('data3')}
+          id="data3"
           name="Series 2"
           data={data3}
           xAccessor={'x'}
@@ -277,7 +342,7 @@ class _Categorical extends Component {
 
       chart4 = (
         <ChartType
-          id={getSpecId('data4')}
+          id="data4"
           name="Series 2"
           data={data4}
           xAccessor={'x'}
@@ -332,12 +397,13 @@ class _Categorical extends Component {
 
     return (
       <Fragment>
+        {customTitle}
         <div style={{ position: 'relative' }}>
           <Chart size={[undefined, 200]}>
             <Settings
               theme={customColors}
-              showLegend={true}
-              legendPosition={Position.Right}
+              showLegend={showLegend}
+              legendPosition="right"
               showLegendDisplayValue={false}
             />
             {chart1}
@@ -345,15 +411,14 @@ class _Categorical extends Component {
             {chart3}
             {chart4}
             <Axis
-              id={getAxisId('bottom-axis')}
-              position={Position.Bottom}
-              xScaleType={ScaleType.Ordinal}
+              id="bottom-axis"
+              position="bottom"
               showGridLines
               gridLineStyle={gridVerticalSettings}
             />
             <Axis
-              id={getAxisId('left-axis')}
-              position={Position.Left}
+              id="left-axis"
+              position="left"
               showGridLines
               gridLineStyle={gridHorizontalSettings}
             />
@@ -428,15 +493,58 @@ class _Categorical extends Component {
         <EuiSpacer />
 
         <div className="eui-textCenter">
-          <EuiCopy textToCopy={'<Chart size={[undefined, 200]}></Chart>'}>
+          <EuiCopy
+            textToCopy={`${
+              customTitle
+                ? `<EuiTitle size="xxs">
+  <h4>
+    <EuiIcon type="dot" color={highlightColor} /> My number of issues
+    compared to others
+  </h4>
+</EuiTitle>`
+                : ''
+            }
+<Chart size={[undefined, 200]}>
+  <Settings
+    ${
+      customColorsString
+        ? `theme={${customColorsString}}`
+        : 'theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}'
+    }
+    showLegend={${showLegend}}
+    legendPosition="right"
+    showLegendDisplayValue={false}
+  />
+  <${ChartType === CHART_COMPONENTS.BarSeries ? 'BarSeries' : 'LineSeries'}
+    id="bars"
+    name="0"
+    data={${dataString}}
+    xAccessor={'x'}
+    yAccessors={['y']}
+    splitSeriesAccessors={['g']}
+    ${ChartType === CHART_COMPONENTS.BarSeries ? "stackAccessors={['g']}" : ''}
+  />
+  <Axis
+    id="bottom-axis"
+    position="bottom"
+    showGridLines
+  />
+  <Axis
+    id="left-axis"
+    position="left"
+    showGridLines
+  />
+</Chart>`}>
             {copy => (
               <EuiButton
-                disabled={isBadChart}
+                disabled={isBadChart || isComplicatedChart}
                 fill
                 onClick={copy}
                 iconType="copyClipboard">
-                {isBadChart
-                  ? "Bad chart, don't copy"
+                {isBadChart || isComplicatedChart
+                  ? isComplicatedChart
+                    ? "It's complicated"
+                    : "Bad chart, don't copy"
                   : 'Copy code of current configuration'}
               </EuiButton>
             )}

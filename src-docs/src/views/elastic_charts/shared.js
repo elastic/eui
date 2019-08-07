@@ -188,14 +188,16 @@ export function createSpectrum(
       return true; // keep it
     }
   });
-  const colorsRight = colors
-    .reverse()
-    .filter(function(item, index) {
-      if (index < numColorsHalf) {
-        return true; // keep it
-      }
-    })
-    .reverse();
+  const colorsRight =
+    diverging &&
+    colors
+      .reverse()
+      .filter(function(item, index) {
+        if (index < numColorsHalf) {
+          return true; // keep it
+        }
+      })
+      .reverse();
 
   function createSteps(colors, steps) {
     return colors.length
