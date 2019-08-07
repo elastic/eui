@@ -537,10 +537,10 @@ class _Categorical extends Component {
 </Chart>`}>
             {copy => (
               <EuiButton
-                disabled={isBadChart || isComplicatedChart}
                 fill
                 onClick={copy}
-                iconType="copyClipboard">
+                iconType="copyClipboard"
+                disabled={isBadChart || isComplicatedChart}>
                 {isBadChart || isComplicatedChart
                   ? isComplicatedChart
                     ? "It's complicated"

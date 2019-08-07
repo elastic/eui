@@ -9,11 +9,6 @@ export const ElasticChartsCategoryExample = {
   intro: (
     <Fragment>
       <ExternalBadge />
-      <EuiSpacer />
-      <p>
-        Category comparison charts compare data between multiple distinct
-        categories.
-      </p>
       <EuiSpacer size="l" />
     </Fragment>
   ),
@@ -21,15 +16,33 @@ export const ElasticChartsCategoryExample = {
     {
       text: (
         <Fragment>
+          <p>
+            Category comparison charts compare data between multiple distinct
+            categories. Avoid using a line graph as it might create confusion
+            with a time series. Select a bar graph in this case.
+          </p>
+
+          <p>
+            <strong>Key configurations</strong>
+          </p>
+
           <ul>
             <li>
-              <EuiCode>xAccessor = &quot;vizType&quot;</EuiCode>
+              <EuiCode>Settings.rotation = 90</EuiCode>
             </li>
             <li>
-              <EuiCode>xScaleType = ScaleType.Ordinal</EuiCode>
+              <EuiCode>
+                BarSeries.data = orderBy(DATASET, [&apos;count&apos;],
+                [&apos;desc&apos;])
+              </EuiCode>
             </li>
             <li>
-              <EuiCode>tickFormat = d =&gt; `$Number(d)k`</EuiCode>
+              <EuiCode>BarSeries.xAccessor = &quot;vizType&quot;</EuiCode>
+            </li>
+            <li>
+              <EuiCode>
+                Axis.tickFormat = (d =&gt; Number(d)&apos;k&apos;)
+              </EuiCode>
             </li>
           </ul>
         </Fragment>

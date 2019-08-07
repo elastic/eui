@@ -33,6 +33,7 @@ export class ChartTypeCard extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
+    disabled: PropTypes.bool,
   };
 
   constructor(props) {
@@ -82,12 +83,15 @@ export class ChartTypeCard extends Component {
       <EuiCard
         textAlign="left"
         title="Chart types"
-        description="Time series charts can be displayed as any x/y series type.">
+        description={`${
+          this.props.type
+        } charts can be displayed as any x/y series type.`}>
         <EuiRadioGroup
           compressed
           options={this.toggleButtonsIcons}
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChartTypeChange}
+          disabled={this.props.disabled}
         />
       </EuiCard>
     );

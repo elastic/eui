@@ -3,12 +3,8 @@ import { withTheme } from '../../components';
 import {
   Chart,
   BarSeries,
-  getSpecId,
   Settings,
   Axis,
-  getAxisId,
-  Position,
-  ScaleType,
   timeFormatter,
   niceTimeFormatByDay,
   LineSeries,
@@ -79,6 +75,9 @@ class _TimeChart extends Component {
       ChartType2 = LineSeries;
     }
 
+    const isBadChart =
+      this.state.chartType === 'LineSeries' && this.state.stacked;
+
     return (
       <Fragment>
         <EuiTitle size="xxs">
@@ -94,38 +93,39 @@ class _TimeChart extends Component {
           <Settings
             theme={theme}
             showLegend={this.state.multi}
-            legendPosition={Position.Right}
-          />
-          <ChartType
-            id={getSpecId('financial')}
-            name="Financial"
-            data={TIME_DATA}
-            xAccessor={0}
-            yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
+            legendPosition="right"
           />
           {this.state.multi && (
             <ChartType2
-              id={getSpecId('tech')}
+              id="tech"
               name="Tech support"
               data={TIME_DATA_2}
+              xScaleType="time"
               xAccessor={0}
               yAccessors={[1]}
               stackAccessors={this.state.stacked ? [0] : undefined}
             />
           )}
+          <ChartType
+            id="financial"
+            name="Financial"
+            data={TIME_DATA}
+            xScaleType="time"
+            xAccessor={0}
+            yAccessors={[1]}
+            stackAccessors={this.state.stacked ? [0] : undefined}
+          />
           <Axis
             title={formatDate(Date.now(), dateFormatAliases.date)}
-            id={getAxisId('bottom-axis')}
-            position={Position.Bottom}
-            xScaleType={ScaleType.Time}
+            id="bottom-axis"
+            position="bottom"
             tickFormat={timeFormatter(niceTimeFormatByDay(1))}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
           <Axis
-            id={getAxisId('left-axis')}
-            position={Position.Left}
+            id="left-axis"
+            position="left"
             showGridLines
             gridLineStyle={gridHorizontalSettings}
           />
@@ -136,6 +136,7 @@ class _TimeChart extends Component {
         <EuiFlexGrid columns={3}>
           <EuiFlexItem>
             <ChartTypeCard
+              type="Time series"
               onChange={this.onChartTypeChange}
               mixed={this.state.multi ? 'enabled' : 'disabled'}
             />
@@ -162,47 +163,54 @@ class _TimeChart extends Component {
   <Settings
     theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
     showLegend={${this.state.multi}}
-    ${this.state.multi ? 'legendPosition={Position.Right}' : ''}
-  />
-  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
-    id={getSpecId('financial')}
-    name="Financial"
-    data={TIME_DATA=[[0,1],[0,1]]}
-    xAccessor={0}
-    yAccessors={[1]}
-    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+    ${this.state.multi ? 'legendPosition="right"' : ''}
   />
   ${
     this.state.multi
       ? `<${
           this.state.chartType === 'Mixed' ? 'LineSeries' : this.state.chartType
         }
-      id={getSpecId('tech')}
+      id="tech"
       name="Tech support"
       data={TIME_DATA_2=[[0,1],[0,1]]}
+      xScaleType="time"
       xAccessor={0}
       yAccessors={[1]}
       ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
     />`
       : ''
   }
+  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
+    id="financial"
+    name="Financial"
+    data={TIME_DATA=[[0,1],[0,1]]}
+    xScaleType="time"
+    xAccessor={0}
+    yAccessors={[1]}
+    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+  />
   <Axis
     title={formatDate(Date.now(), dateFormatAliases.date)}
-    id={getAxisId('bottom-axis')}
-    position={Position.Bottom}
-    xScaleType={ScaleType.Time}
+    id="bottom-axis"
+    position="bottom"
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
     showGridLines
   />
   <Axis
-    id={getAxisId('left-axis')}
-    position={Position.Left}
+    id="left-axis"
+    position="left"
     showGridLines
   />
 </Chart>`}>
             {copy => (
-              <EuiButton fill onClick={copy} iconType="copyClipboard">
-                Copy code of current configuration
+              <EuiButton
+                fill
+                onClick={copy}
+                iconType="copyClipboard"
+                disabled={isBadChart}>
+                {isBadChart
+                  ? "Bad chart, don't copy"
+                  : 'Copy code of current configuration'}
               </EuiButton>
             )}
           </EuiCopy>

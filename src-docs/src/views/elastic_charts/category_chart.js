@@ -2,15 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { orderBy } from 'lodash';
 
 import { withTheme } from '../../components';
-import {
-  Chart,
-  getSpecId,
-  Settings,
-  Axis,
-  getAxisId,
-  Position,
-  ScaleType,
-} from '@elastic/charts';
+import { Chart, Settings, Axis } from '@elastic/charts';
 
 import {
   EUI_DARK_THEME,
@@ -35,8 +27,6 @@ import { ChartTypeCard, MultiChartCard, CHART_COMPONENTS } from './shared';
 class _CategoryChart extends Component {
   constructor(props) {
     super(props);
-
-    this.idPrefix = 'chartType';
 
     this.state = {
       multi: false,
@@ -108,11 +98,11 @@ class _CategoryChart extends Component {
           <Settings
             theme={theme}
             showLegend={this.state.multi}
-            legendPosition={Position.Right}
+            legendPosition="right"
             rotation={this.state.rotated ? 90 : 0}
           />
           <ChartType
-            id={getSpecId('issues')}
+            id="issues"
             name="Issues"
             data={
               this.state.ordered
@@ -125,15 +115,14 @@ class _CategoryChart extends Component {
             stackAccessors={this.state.stacked ? ['issueType'] : undefined}
           />
           <Axis
-            id={getAxisId('bottom-axis')}
-            position={this.state.rotated ? Position.Left : Position.Bottom}
-            xScaleType={ScaleType.Ordinal}
+            id="bottom-axis"
+            position={this.state.rotated ? 'left' : 'bottom'}
             showGridLines
             gridLineStyle={gridVerticalSettings}
           />
           <Axis
-            id={getAxisId('left-axis')}
-            position={this.state.rotated ? Position.Bottom : Position.Left}
+            id="left-axis"
+            position={this.state.rotated ? 'bottom' : 'left'}
             tickFormat={this.state.formatted ? d => `${Number(d)}k` : undefined}
             showGridLines
             gridLineStyle={gridHorizontalSettings}
@@ -186,7 +175,11 @@ class _CategoryChart extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <ChartTypeCard onChange={this.onChartTypeChange} />
+            <ChartTypeCard
+              type="Only bar charts are recommended but categorical"
+              onChange={this.onChartTypeChange}
+              disabled
+            />
           </EuiFlexItem>
 
           <EuiFlexItem>
@@ -203,10 +196,10 @@ class _CategoryChart extends Component {
     theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
     rotation={${this.state.rotated ? 90 : 0}}
     showLegend={${this.state.multi}}
-    ${this.state.multi ? 'legendPosition={Position.Right}' : ''}
+    ${this.state.multi ? 'legendPosition="right"' : ''}
   />
   <${this.state.chartType}
-    id={getSpecId('issues')}
+    id="issues"
     name="Issues"
     data={${
       this.state.ordered
@@ -219,15 +212,15 @@ class _CategoryChart extends Component {
     ${this.state.stacked ? "stackAccessors={['issueType']}" : ''}
   />
   <Axis
-    id={getAxisId('bottom-axis')}
+    id="bottom-axis"
     showGridLines
-    position={${this.state.rotated ? 'Position.Left' : 'Position.Bottom'}}
+    position={${this.state.rotated ? 'left' : 'bottom'}}
     xScaleType={ScaleType.Ordinal}
   />
   <Axis
-    id={getAxisId('left-axis')}
+    id="left-axis"
     showGridLines
-    position={${this.state.rotated ? 'Position.Bottom ' : 'Position.Left'}}
+    position={${this.state.rotated ? 'bottom' : 'left'}}
     ${this.state.formatted ? 'tickFormat={d => `${Number(d)}k`}' : ''}
   />
 </Chart>`}>
