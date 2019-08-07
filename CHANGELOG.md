@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.2.0`.
+- Added i18n tokens to `EuiSuperDatePicker` and `EuiSuperUpdateButton`
 
 ## [`13.2.0`](https://github.com/elastic/eui/tree/v13.2.0)
 
