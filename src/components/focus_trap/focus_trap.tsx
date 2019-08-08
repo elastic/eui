@@ -30,7 +30,7 @@ const OutsideEventDetector: FunctionComponent<DetectorProps> = ({
  * `document.querySelector()` to find the DOM node), or a function that
  * returns a DOM node.
  */
-export type FocusTarget = HTMLElement | string | { (): HTMLElement };
+export type FocusTarget = HTMLElement | string | (() => HTMLElement);
 
 interface EuiFocusTrapProps {
   clickOutsideDisables?: boolean;

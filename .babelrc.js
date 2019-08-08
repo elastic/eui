@@ -22,8 +22,7 @@ module.exports = {
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
-    // @chandler I had to disable this because it was exploding. PTAL.
-    //"./scripts/babel/proptypes-from-ts-props",
+    "./scripts/babel/proptypes-from-ts-props",
     "add-module-exports",
     [
       "react-docgen",
