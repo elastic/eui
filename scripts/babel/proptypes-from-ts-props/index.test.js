@@ -2361,6 +2361,64 @@ FooComponent.propTypes = {
 
     });
 
+    describe('self-referencing types', () => {
+
+      it(`doesn't explode on self-referencing interfaces`, () => {
+        const result = transform(
+          `
+import React, { SFC } from 'react';
+interface FooProps {
+  label: string;
+  children?: FooProps[];
+}
+const FooComponent: SFC<FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.any.isRequired)
+};`);
+      });
+
+      it(`doesn't explode on self-referencing types`, () => {
+        const result = transform(
+          `
+import React, { SFC } from 'react';
+type FooProps = {
+  label: string;
+  children?: FooProps[];
+}
+const FooComponent: SFC<FooProps> = () => {
+  return (<div>Hello World</div>);
+}`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+
+const FooComponent = () => {
+  return <div>Hello World</div>;
+};
+
+FooComponent.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.any.isRequired)
+};`);
+      });
+
+    });
+
   });
 
   describe('remove types from exports', () => {
