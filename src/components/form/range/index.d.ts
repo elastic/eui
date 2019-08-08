@@ -51,6 +51,11 @@ declare module '@elastic/eui' {
     tickInterval?: number;
     valueAppend?: ReactNode;
     valuePrepend?: ReactNode;
+
+    onChange?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      isValid: boolean
+    ) => void;
   }
 
   export const EuiRange: FunctionComponent<
@@ -70,7 +75,7 @@ declare module '@elastic/eui' {
 
   export const EuiDualRange: FunctionComponent<
     CommonProps &
-      Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> &
+      Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> &
       EuiRangeProps &
       EuiDualRangeProps
   >;
