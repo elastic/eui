@@ -8,8 +8,8 @@ import {
 } from 'react';
 import { htmlIdGenerator } from '../../services/accessibility';
 
-export class EuiEvent extends Event {
-  euiGeneratedBy: string[] = [];
+export interface EuiEvent extends Event {
+  euiGeneratedBy: string[];
 }
 
 interface Props {

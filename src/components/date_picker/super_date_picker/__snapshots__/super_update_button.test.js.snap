@@ -9,18 +9,15 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
     className="euiSuperUpdateButton"
     color="primary"
     fill={true}
-    iconSide="left"
     iconType="refresh"
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
     Refresh
   </EuiButton>
@@ -37,18 +34,15 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
     className="euiSuperUpdateButton"
     color="primary"
     fill={true}
-    iconSide="left"
     iconType="refresh"
     isDisabled={true}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
     Refresh
   </EuiButton>
@@ -64,18 +58,15 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
     className="euiSuperUpdateButton"
     color="secondary"
     fill={true}
-    iconSide="left"
     iconType="kqlFunction"
     isDisabled={false}
     isLoading={true}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
     Updating
   </EuiButton>
@@ -92,18 +83,15 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
     className="euiSuperUpdateButton"
     color="secondary"
     fill={true}
-    iconSide="left"
     iconType="kqlFunction"
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
     Update
   </EuiButton>

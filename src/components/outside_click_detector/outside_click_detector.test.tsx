@@ -26,7 +26,7 @@ describe('EuiOutsideClickDetector', () => {
       const triggerDocumentMouseDown: EventHandler<any> = (
         e: ReactMouseEvent<any, EuiEvent>
       ) => {
-        const event = new EuiEvent('mousedown');
+        const event = new Event('mousedown') as EuiEvent;
         event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
         document.dispatchEvent(event);
       };
@@ -34,7 +34,7 @@ describe('EuiOutsideClickDetector', () => {
       const triggerDocumentMouseUp: EventHandler<any> = (
         e: ReactMouseEvent<any, EuiEvent>
       ) => {
-        const event = new EuiEvent('mouseup');
+        const event = new Event('mouseup') as EuiEvent;
         event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
         document.dispatchEvent(event);
       };

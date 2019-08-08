@@ -66,7 +66,7 @@ describe('EuiContextMenuPanel', () => {
 
         component.find('button').simulate('click');
 
-        expect(onCloseHandler).not.toHaveBeenCalledTimes(1);
+        expect(onCloseHandler).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -368,7 +368,7 @@ describe('EuiContextMenuPanel', () => {
 
       it('left arrow key shows previous panel', () => {
         component.simulate('keydown', { keyCode: keyCodes.LEFT });
-        expect(showNextPanelHandler).toHaveBeenCalledTimes(1);
+        expect(showPreviousPanelHandler).toHaveBeenCalledTimes(1);
       });
     });
   });
