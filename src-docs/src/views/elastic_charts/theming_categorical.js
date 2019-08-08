@@ -96,10 +96,14 @@ class _Categorical extends Component {
   };
 
   onGroupChange = e => {
-    this.updateCorrectChart(Number(this.state.numCharts), 'Grouped');
+    const colorType = e.target.checked
+      ? 'Grouped'
+      : find(this.colorTypeRadios, { id: this.state.colorTypeIdSelected })
+          .label;
+    this.updateCorrectChart(Number(this.state.numCharts), colorType);
     this.setState({
       grouped: e.target.checked,
-      colorType: 'Grouped',
+      colorType,
     });
   };
 
