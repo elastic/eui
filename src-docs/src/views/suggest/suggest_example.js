@@ -16,6 +16,10 @@ import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
 const suggestHtml = renderToHtml(Suggest);
 
+import SavedQueries from './saved_queries';
+const savedQueriesSource = require('!!raw-loader!./saved_queries');
+const savedQueriesHtml = renderToHtml(SavedQueries);
+
 import SuggestItem from './suggest_item';
 const suggestItemSource = require('!!raw-loader!./suggest_item');
 const suggestItemHtml = renderToHtml(SuggestItem);
@@ -50,15 +54,6 @@ export const SuggestExample = {
       ],
       text: (
         <div>
-          <EuiCallOut color="warning" title="Demo of visual pattern only">
-            <p>
-              This documents a <strong>visual</strong> pattern for the eventual
-              replacement of Kibana&apos;s global query and filter bars. The
-              filter bar has been broken down into multiple components. There
-              are still bugs and not all the logic is well-formed.
-            </p>
-          </EuiCallOut>
-          <EuiSpacer />
           <p>
             <EuiCode>EuiSuggest</EuiCode> is an input field component to use
             when performing queries that will display suggestions. When
@@ -98,6 +93,34 @@ export const SuggestExample = {
       props: { EuiSuggestItem },
       snippet: suggestItemSnippet,
       demo: <SuggestItem />,
+    },
+    {
+      title: 'Saved queries and filters',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: savedQueriesSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: savedQueriesHtml,
+        },
+      ],
+      text: (
+        <div>
+          <EuiCallOut color="warning" title="Demo of visual pattern only">
+            <p>
+              This documents a <strong>visual</strong> pattern for the eventual
+              replacement of Kibana&apos;s global query and filter bars. The
+              filter bar has been broken down into multiple components. There
+              are still bugs and not all the logic is well-formed.
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
+        </div>
+      ),
+      props: { EuiSuggest },
+      demo: <SavedQueries />,
     },
   ],
 };

@@ -9,9 +9,13 @@ import {
   EuiPopover,
   EuiPopoverTitle,
   EuiSuggest,
+  EuiSuperDatePicker,
   EuiSelect,
   EuiSpacer,
 } from '../../../../src/components';
+
+import { GlobalFilterBar } from './global_filter_bar';
+import GlobalFilterOptions from './global_filter_options';
 
 const shortDescription = 'This is the description';
 
@@ -62,12 +66,63 @@ export default class extends Component {
       status: 'notYetSaved',
       menuWidth: null,
       value: '',
+      hideDatepicker: false,
+      filters: [
+        {
+          id: 'filter0',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: false,
+          isPinned: true,
+          isExcluded: false,
+        },
+        {
+          id: 'filter1',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: true,
+          isPinned: false,
+          isExcluded: false,
+        },
+        {
+          id: 'filter2',
+          field: '@tags.keyword',
+          operator: 'IS NOT',
+          value: 'value',
+          isDisabled: false,
+          isPinned: true,
+          isExcluded: true,
+        },
+        {
+          id: 'filter3',
+          field: '@tags.keyword',
+          operator: 'IS',
+          value: 'value',
+          isDisabled: false,
+          isPinned: false,
+          isExcluded: false,
+        },
+      ],
     };
   }
 
   closeHashtagPopover() {
     this.setState({
       isHashtagPopoverOpen: false,
+    });
+  }
+
+  onFieldFocus() {
+    this.setState({
+      hideDatepicker: true,
+    });
+  }
+
+  onFieldBlur() {
+    this.setState({
+      hideDatepicker: false,
     });
   }
 
@@ -81,6 +136,10 @@ export default class extends Component {
     this.setState({
       isHashtagPopoverOpen: !this.state.isHashtagPopoverOpen,
     });
+  }
+
+  onTimeChange() {
+    alert('Time changed');
   }
 
   render() {
@@ -146,13 +205,35 @@ export default class extends Component {
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="xl" />
-        <EuiFlexGroup>
-          <EuiFlexItem>
+        <EuiFlexGroup
+          className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
+          <EuiFlexItem
+          // onFocus={this.onFieldFocus.bind(this)}
+          // onBlur={this.onFieldBlur.bind(this)}
+          >
             <EuiSuggest
               status={this.state.status}
               prefix={hashtag}
               label={'KQL'}
               suggestions={sampleItems}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false} className="datepicker">
+            <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiFlexGroup
+          className="globalFilterGroup"
+          gutterSize="none"
+          alignItems="flexStart"
+          responsive={false}>
+          <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
+            <GlobalFilterOptions />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <GlobalFilterBar
+              className="globalFilterGroup__filterBar"
+              filters={this.state.filters}
             />
           </EuiFlexItem>
         </EuiFlexGroup>
