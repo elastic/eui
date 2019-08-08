@@ -75,7 +75,7 @@ declare module '@elastic/eui' {
 
   export const EuiDualRange: FunctionComponent<
     CommonProps &
-      Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> &
+      Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> &
       EuiRangeProps &
       EuiDualRangeProps
   >;
