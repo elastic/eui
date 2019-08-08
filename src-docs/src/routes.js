@@ -358,7 +358,7 @@ const navigation = [
       ElasticChartsThemingExample,
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
-      ElasticChartsSparklinesExample,
+      // ElasticChartsSparklinesExample,
     ].map(example => createExample(example)),
   },
   {
