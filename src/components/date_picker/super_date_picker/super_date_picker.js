@@ -23,6 +23,7 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { AsyncInterval } from './async_interval';
+import { EuiI18n } from '../../i18n';
 
 export { prettyDuration, commonDurationRanges };
 
@@ -325,7 +326,10 @@ export class EuiSuperDatePicker extends Component {
               this.props.dateFormat
             )}
             <span className="euiSuperDatePicker__prettyFormatLink">
-              Show dates
+              <EuiI18n
+                token="euiSuperDatePicker.showDatesButtonLabel"
+                default="Show dates"
+              />
             </span>
           </button>
         </EuiDatePickerRange>
