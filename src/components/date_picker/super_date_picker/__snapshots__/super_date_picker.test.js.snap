@@ -86,7 +86,10 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           <span
             className="euiSuperDatePicker__prettyFormatLink"
           >
-            Show dates
+            <EuiI18n
+              default="Show dates"
+              token="euiSuperDatePicker.showDatesButtonLabel"
+            />
           </span>
         </button>
       </EuiDatePickerRange>

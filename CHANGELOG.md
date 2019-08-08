@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.2.0`.
+No public interface changes since `13.3.0`.
+
+## [`13.3.0`](https://github.com/elastic/eui/tree/v13.3.0)
+
+- Added i18n tokens to `EuiSuperDatePicker` and `EuiSuperUpdateButton`
 
 ## [`13.2.0`](https://github.com/elastic/eui/tree/v13.2.0)
 
@@ -13,6 +17,7 @@ No public interface changes since `13.2.0`.
 - Fixed `EuiBadge` truncation in IE and for the global filters pattern ([#2194](https://github.com/elastic/eui/pull/2194))
 - Fixed alignment of long titles in `EuiStep` ([#2186](https://github.com/elastic/eui/pull/2186))
 - Fixed the TS defs for EuiFilterSelectItem ([#2192](https://github.com/elastic/eui/pull/2192))
+- Added missing TS defs for EuiTextArea ([#2201](https://github.com/elastic/eui/pull/2201))
 
 ## [`13.1.1`](https://github.com/elastic/eui/tree/v13.1.1)
 
