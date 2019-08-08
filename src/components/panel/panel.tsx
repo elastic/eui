@@ -1,4 +1,5 @@
 import React, {
+  ButtonHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
   MouseEventHandler,
@@ -7,7 +8,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, Omit } from '../common';
 import { EuiBetaBadge } from '../badge/beta_badge';
 
 export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
@@ -44,10 +45,11 @@ export interface EuiPanelProps {
   betaBadgeTitle?: string;
 }
 
-type Divlike = HTMLAttributes<HTMLDivElement>;
+type Divlike = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+
 interface Buttonlike {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-} // onClick is the discriminant
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
 
 type Props = CommonProps & EuiPanelProps & ExclusiveUnion<Divlike, Buttonlike>;
 
@@ -85,20 +87,6 @@ export const EuiPanel: FunctionComponent<Props> = ({
     className
   );
 
-  const PanelTag = onClick ? 'button' : 'div';
-
-  const props = {
-    ref: panelRef,
-    className: classes,
-    onClick: undefined as any,
-  };
-
-  // Avoid passing down this prop if it hasn't been supplied, in order to
-  // avoid noise in react-test-renderer snapshots.
-  if (onClick != null) {
-    props.onClick = onClick;
-  }
-
   let optionalBetaBadge;
   if (betaBadgeLabel) {
     optionalBetaBadge = (
@@ -113,11 +101,24 @@ export const EuiPanel: FunctionComponent<Props> = ({
     );
   }
 
+  if (onClick) {
+    return (
+      <button
+        ref={panelRef as Ref<HTMLButtonElement>}
+        className={classes}
+        onClick={onClick}
+        {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
+        {optionalBetaBadge}
+        {children}
+      </button>
+    );
+  }
+
   return (
-    // @ts-ignore seems to be some div / button confusion here
-    <PanelTag {...props} {...rest}>
+    // ts-ignore seems to be some div / button confusion here
+    <div ref={panelRef} className={classes} {...rest}>
       {optionalBetaBadge}
       {children}
-    </PanelTag>
+    </div>
   );
 };

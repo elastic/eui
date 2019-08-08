@@ -1,12 +1,13 @@
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ChangeEventHandler,
   FunctionComponent,
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
-import { ExclusiveUnion } from '../../common';
+import { ExclusiveUnion, Omit } from '../../common';
 import { EuiToggle, ToggleType } from '../../toggle';
 import { EuiButton, EuiButtonProps } from '../button';
 
@@ -41,17 +42,21 @@ export interface EuiButtonToggleProps extends EuiButtonProps {
    * Used primarily for `EuiButtonGroup`
    */
   type?: ToggleType;
+
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 type EuiButtonTogglePropsForAnchor = EuiButtonToggleProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string;
-    onClick: MouseEventHandler<HTMLAnchorElement>;
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'name'> & {
+    href?: string;
+    name?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
   };
 
 type EuiButtonTogglePropsForButtonToggle = EuiButtonToggleProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick: MouseEventHandler<HTMLButtonElement>;
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'name'> & {
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    name?: string;
     value?: string;
   };
 
@@ -102,7 +107,6 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
       isDisabled={isDisabled}
       label={label}
       name={name}
-      // @ts-ignore @chandler
       onChange={onChange}
       type={type}
       title={label}
@@ -113,7 +117,10 @@ export const EuiButtonToggle: FunctionComponent<Props> = ({
         color={color}
         disabled={isDisabled}
         size={isIconOnly ? 's' : undefined} // only force small if it's the icon only version
-        {...rest}>
+        {...rest as Extract<
+          EuiButtonTogglePropsForAnchor,
+          EuiButtonTogglePropsForButtonToggle
+        >}>
         {buttonContent}
       </EuiButton>
     </EuiToggle>

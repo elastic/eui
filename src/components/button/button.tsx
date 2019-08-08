@@ -67,14 +67,15 @@ export interface EuiButtonProps extends CommonProps {
 
 type EuiButtonPropsForAnchor = EuiButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string;
-    onClick: MouseEventHandler<HTMLAnchorElement>;
+    href?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+    buttonRef?: Ref<HTMLAnchorElement>;
   };
 
 type EuiButtonPropsForButton = EuiButtonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick: MouseEventHandler<HTMLButtonElement>;
-    buttonRef: Ref<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    buttonRef?: Ref<HTMLButtonElement>;
   };
 
 type Props = ExclusiveUnion<EuiButtonPropsForAnchor, EuiButtonPropsForButton>;
@@ -160,8 +161,8 @@ export const EuiButton: FunctionComponent<Props> = ({
         href={href}
         target={target}
         rel={secureRel}
-        ref={buttonRef}
-        {...rest}>
+        ref={buttonRef as Ref<HTMLAnchorElement>}
+        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {innerNode}
       </a>
     );
@@ -172,8 +173,8 @@ export const EuiButton: FunctionComponent<Props> = ({
       disabled={isDisabled}
       className={classes}
       type={type}
-      ref={buttonRef}
-      {...rest}>
+      ref={buttonRef as Ref<HTMLButtonElement>}
+      {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       {innerNode}
     </button>
   );

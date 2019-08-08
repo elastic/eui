@@ -276,8 +276,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
             // need to wait for that logic to complete before re-rendering the DOM via showPanel.
             window.requestAnimationFrame(() => {
               if (onClick) {
-                // @ts-ignore I don't know why TS thinks this expects 0
-                // args
                 onClick(event);
               }
               this.showNextPanel(index);
@@ -289,7 +287,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         <EuiContextMenuItem
           key={name}
           icon={icon}
-          // @ts-ignore
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
           toolTipTitle={toolTipTitle}

@@ -3,6 +3,7 @@ import { render, mount } from 'enzyme';
 
 import { findTestSubject } from '../../test';
 
+import { EuiEvent } from '../outside_click_detector/outside_click_detector';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
 
@@ -86,16 +87,18 @@ describe('EuiFocusTrap', () => {
       // enzyme doesn't mount the components into the global jsdom `document`
       // but that's where the click detector listener is,
       // pass the top-level mounted component's click event on to document
-      const triggerDocumentMouseDown: EventHandler<any> = (e: Event) => {
-        const event = new Event('mousedown');
-        // @ts-ignore
+      const triggerDocumentMouseDown: EventHandler<any> = (
+        e: React.MouseEvent<any, EuiEvent>
+      ) => {
+        const event = new EuiEvent('mousedown');
         event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
-      const triggerDocumentMouseUp: EventHandler<any> = (e: Event) => {
-        const event = new Event('mouseup');
-        // @ts-ignore
+      const triggerDocumentMouseUp: EventHandler<any> = (
+        e: React.MouseEvent<any, EuiEvent>
+      ) => {
+        const event = new EuiEvent('mouseup');
         event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
         document.dispatchEvent(event);
       };

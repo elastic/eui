@@ -1,4 +1,5 @@
 import React, {
+  AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   cloneElement,
   Component,
@@ -22,7 +23,7 @@ export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
   hasPanel?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   buttonRef?: Ref<HTMLButtonElement>;
   /**
    * Required if using a tooltip. Add an optional tooltip on hover
@@ -126,14 +127,13 @@ export class EuiContextMenuItem extends Component<Props> {
       const secureRel = getSecureRelForTarget({ href, target, rel });
 
       button = (
-        // @ts-ignore not sure what's going on here
         <a
           className={classes}
           href={href}
           target={target}
           rel={secureRel}
           ref={buttonRef as Ref<HTMLAnchorElement>}
-          {...rest}>
+          {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
           {buttonInner}
         </a>
       );
