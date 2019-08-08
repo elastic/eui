@@ -17,7 +17,7 @@ export interface EuiDataGridCellProps {
   rowIndex: number;
   colIndex: number;
   columnId: string;
-  width: number;
+  width?: number;
   isFocusable: boolean;
   onCellFocus: Function;
   renderCellValue:

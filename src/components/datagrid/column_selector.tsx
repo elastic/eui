@@ -113,12 +113,18 @@ export const useColumnSelector = (
       <EuiPopoverFooter>
         <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
           <EuiFlexItem>
-            <EuiButtonEmpty size="xs" flush="left">
+            <EuiButtonEmpty
+              size="xs"
+              flush="left"
+              onClick={() => setVisibleColumns(sortedColumns)}>
               Show all
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiButtonEmpty size="xs" flush="right">
+            <EuiButtonEmpty
+              size="xs"
+              flush="right"
+              onClick={() => setVisibleColumns([])}>
               Hide all
             </EuiButtonEmpty>
           </EuiFlexItem>

@@ -4,6 +4,8 @@ import React, {
   KeyboardEvent,
   useCallback,
   useState,
+  useRef,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
@@ -131,6 +133,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
 
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log(gridRef.current);
+    if (gridRef.current != null) {
+      const gridWidth = Math.max(
+        gridRef.current!.clientWidth / props.columns.length,
+        100
+      );
+      const columnWidths = props.columns.reduce(
+        (columnWidths, column) => {
+          columnWidths[column.id] = gridWidth;
+          return columnWidths;
+        },
+        {} as EuiDataGridColumnWidths
+      );
+      setColumnWidths(columnWidths);
+    }
+  }, []);
+
   const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
   const onCellFocus = useCallback(
     (x: number, y: number) => {
@@ -211,6 +233,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     <div
       role="grid"
       onKeyDown={handleKeyDown}
+      ref={gridRef}
       // {...label}
       {...rest}
       className={classes}>

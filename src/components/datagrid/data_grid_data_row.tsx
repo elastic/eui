@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
-import { DEFAULT_COLUMN_WIDTH } from './data_grid_header_row';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 
 export type EuiDataGridDataRowProps = CommonProps &
@@ -39,9 +38,7 @@ const EuiDataGridDataRow: FunctionComponent<
       {columns.map((props, i) => {
         const { id } = props;
 
-        const width = columnWidths.hasOwnProperty(id)
-          ? columnWidths[id]
-          : DEFAULT_COLUMN_WIDTH;
+        const width = columnWidths[id];
 
         const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
 
