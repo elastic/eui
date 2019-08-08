@@ -12,11 +12,18 @@ export class EuiSuggest extends Component {
       status: 'notYetSaved',
       isPopoverOpen: false,
     };
+    this.getValue = this.getValue.bind(this);
   }
 
   onButtonClick() {
     this.setState({
       isPopoverOpen: !this.state.isPopoverOpen,
+    });
+  }
+
+  getValue(val){
+    this.setState({
+      value: val,
     });
   }
 
@@ -50,6 +57,7 @@ export class EuiSuggest extends Component {
         status={status}
         label={label}
         prefix={prefix}
+        sendValue={this.getValue}
         suggestions={suggestionList}
       />
     );

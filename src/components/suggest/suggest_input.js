@@ -23,6 +23,7 @@ export class EuiSuggestInput extends Component {
       value: e.target.value,
       isPopoverOpen: !this.state.isPopoverOpen,
     });
+    this.props.sendValue(e.target.value);
   }
 
   closePopover() {
@@ -38,6 +39,7 @@ export class EuiSuggestInput extends Component {
       label,
       prefix,
       suggestions,
+      sendValue,
       ...rest
     } = this.props;
 

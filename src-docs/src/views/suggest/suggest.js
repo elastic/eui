@@ -65,6 +65,7 @@ export default class extends Component {
       isHashtagPopoverOpen: false,
       status: 'notYetSaved',
       menuWidth: null,
+      value: '',
       hideDatepicker: false,
       filters: [
         {
