@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getSecureRelForTarget } from '../../services';
 
-import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
@@ -44,7 +43,6 @@ const cardLayout = (props, propName, componentName, ...rest) => {
 };
 
 export const EuiCard = ({
-  children,
   className,
   description,
   title,
@@ -190,13 +188,6 @@ export const EuiCard = ({
           className="euiCard__description">
           <p>{description}</p>
         </EuiText>
-
-        {children && (
-          <Fragment>
-            <EuiSpacer size="s" />
-            {children}
-          </Fragment>
-        )}
       </span>
 
       {layout === 'vertical' && (
