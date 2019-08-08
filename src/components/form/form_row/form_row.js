@@ -11,6 +11,14 @@ import { EuiFormLabel } from '../form_label';
 
 import makeId from './make_id';
 
+const displayToClassNameMap = {
+  default: null,
+  compressed: 'euiFormRow--compressed',
+  compressedHorizontal: 'euiFormRow--compressed euiFormRow--horizontal',
+};
+
+export const DISPLAYS = Object.keys(displayToClassNameMap);
+
 export class EuiFormRow extends Component {
   constructor(props) {
     super(props);
@@ -62,20 +70,27 @@ export class EuiFormRow extends Component {
       className,
       describedByIds,
       compressed,
+      display,
       displayOnly,
       ...rest
     } = this.props;
 
     const { id } = this.state;
 
+    let shimDisplay;
+    if (compressed && display === 'default') {
+      shimDisplay = 'compressed';
+    } else {
+      shimDisplay = display;
+    }
+
     const classes = classNames(
       'euiFormRow',
       {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
-        'euiFormRow--compressed': compressed,
-        'euiFormRow--horizontal': compressed === 'horizontal',
       },
+      displayToClassNameMap[shimDisplay],
       className
     );
 
@@ -209,11 +224,17 @@ EuiFormRow.propTypes = {
    */
   describedByIds: PropTypes.array,
   /**
+   * **SET FOR DEPRECATION**
    * When `true`, tightens up the spacing and sends down the
-   * compressed prop to the input; Set to `'horizontal'` if compressed
+   * compressed prop to the input;
+   */
+  compressed: PropTypes.bool,
+  /**
+   * When `compressed`, tightens up the spacing and sends down the
+   * compressed prop to the input; Set to `'compressedHorizontal'` if compressed
    * and horizontal layout is needed.
    */
-  compressed: PropTypes.oneOf([true, false, 'horizontal']),
+  display: PropTypes.oneOf(DISPLAYS),
   /**
    * Vertically centers non-input style content so it aligns
    * better with input style content.
@@ -222,6 +243,7 @@ EuiFormRow.propTypes = {
 };
 
 EuiFormRow.defaultProps = {
+  display: 'default',
   hasEmptyLabelSpace: false,
   fullWidth: false,
   describedByIds: [],

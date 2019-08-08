@@ -3,6 +3,7 @@
 exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
+  display="default"
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -51,6 +52,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
+  display="default"
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -99,6 +101,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
+  display="default"
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -147,6 +150,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
 <EuiFormRow
   describedByIds={Array []}
+  display="default"
   fullWidth={false}
   hasEmptyLabelSpace={false}
   label={
@@ -209,21 +213,6 @@ exports[`EuiFormRow is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFormRow props compressed horizontally is rendered 1`] = `
-<div
-  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal"
-  id="generated-id-row"
->
-  <div
-    class="euiFormRow__fieldWrapper"
-  >
-    <input
-      id="generated-id"
-    />
-  </div>
-</div>
-`;
-
 exports[`EuiFormRow props compressed is rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--compressed"
@@ -252,6 +241,51 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
       id="generated-id"
       onBlur={[Function]}
       onFocus={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props display type compressed is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props display type compressedHorizontal is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props display type default is rendered 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
     />
   </div>
 </div>

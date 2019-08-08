@@ -36,6 +36,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="default"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -74,6 +75,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="default"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -121,6 +123,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="default"
         fullWidth={true}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -168,6 +171,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="default"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -215,6 +219,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="default"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -308,6 +313,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   "test-id",
                 ]
               }
+              display="default"
               error={
                 Array [
                   "Error one",

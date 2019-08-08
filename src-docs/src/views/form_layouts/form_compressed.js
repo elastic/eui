@@ -100,11 +100,11 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            compressed="horizontal">
+            display="compressedHorizontal">
             <EuiFieldText name="first" isLoading compressed />
           </EuiFormRow>
 
-          <EuiFormRow label="Select" compressed="horizontal">
+          <EuiFormRow label="Select" display="compressedHorizontal">
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
@@ -115,13 +115,13 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="File picker" compressed="horizontal">
+          <EuiFormRow label="File picker" display="compressedHorizontal">
             <EuiFilePicker compressed display="default" />
           </EuiFormRow>
 
           <EuiFormRow
             label="Comboboxwithalonglabelname"
-            compressed="horizontal">
+            display="compressedHorizontal">
             <EuiComboBox
               options={[
                 { label: 'Option one' },
@@ -136,7 +136,7 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Range" compressed="horizontal">
+          <EuiFormRow label="Range" display="compressedHorizontal">
             <EuiRange
               min={0}
               max={100}

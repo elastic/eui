@@ -3,7 +3,7 @@ import { shallow, render, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 import sinon from 'sinon';
 
-import { EuiFormRow } from './form_row';
+import { EuiFormRow, DISPLAYS } from './form_row';
 
 jest.mock('./make_id', () => () => 'generated-id');
 
@@ -211,15 +211,19 @@ describe('EuiFormRow', () => {
 
         expect(component).toMatchSnapshot();
       });
+    });
 
-      test('horizontally is rendered', () => {
-        const component = render(
-          <EuiFormRow compressed="horizontal">
-            <input />
-          </EuiFormRow>
-        );
+    describe('display type', () => {
+      DISPLAYS.forEach(display => {
+        test(`${display} is rendered`, () => {
+          const component = render(
+            <EuiFormRow display={display}>
+              <input />
+            </EuiFormRow>
+          );
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });
