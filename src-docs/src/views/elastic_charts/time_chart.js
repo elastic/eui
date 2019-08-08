@@ -20,7 +20,6 @@ import {
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiCard,
   EuiCopy,
   EuiButton,
 } from '../../../../src/components';
@@ -31,7 +30,12 @@ import {
 } from '../../../../src/services/format/format_date';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
-import { ChartTypeCard, CHART_COMPONENTS, MultiChartCard } from './shared';
+import {
+  ChartTypeCard,
+  CHART_COMPONENTS,
+  MultiChartCard,
+  ChartCard,
+} from './shared';
 
 class _TimeChart extends Component {
   constructor(props) {
@@ -147,8 +151,7 @@ class _TimeChart extends Component {
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Tick marks"
               description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
             />

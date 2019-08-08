@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   EuiBadge,
-  EuiCard,
   EuiRadioGroup,
   EuiSpacer,
   EuiSwitch,
+  EuiPanel,
+  EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 import { find } from 'lodash';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
@@ -21,6 +23,7 @@ export const ExternalBadge = () => {
     <EuiBadge
       iconType="popout"
       iconSide="right"
+      onClickAriaLabel="Go to elastic-charts docs"
       onClick={() =>
         window.open('https://github.com/elastic/elastic-charts/tree/v8.1.5')
       }>
@@ -29,6 +32,23 @@ export const ExternalBadge = () => {
   );
 };
 
+export const ChartCard = ({ title, description, children }) => {
+  return (
+    <EuiPanel>
+      <EuiTitle size="s">
+        <span>{title}</span>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiText size="s">
+        <p>{description}</p>
+      </EuiText>
+      <EuiSpacer size="s" />
+      {children}
+    </EuiPanel>
+  );
+};
+
+// eslint-disable-next-line react/no-multi-comp
 export class ChartTypeCard extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -80,8 +100,7 @@ export class ChartTypeCard extends Component {
     }
 
     return (
-      <EuiCard
-        textAlign="left"
+      <ChartCard
         title="Chart types"
         description={`${
           this.props.type
@@ -93,7 +112,7 @@ export class ChartTypeCard extends Component {
           onChange={this.onChartTypeChange}
           disabled={this.props.disabled}
         />
-      </EuiCard>
+      </ChartCard>
     );
   }
 }
@@ -140,7 +159,7 @@ export class MultiChartCard extends Component {
 
   render() {
     return (
-      <EuiCard
+      <ChartCard
         textAlign="left"
         title="Single vs multiple series"
         description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
@@ -156,11 +175,14 @@ export class MultiChartCard extends Component {
           onChange={this.onStackedChange}
           disabled={!this.state.multi}
         />
-      </EuiCard>
+      </ChartCard>
     );
   }
 }
 
+/**
+ * The following function is very messy and hopefully will be replaced by something provided by elastic-charts
+ */
 import chroma from 'chroma-js';
 export function createSpectrum(
   colors,

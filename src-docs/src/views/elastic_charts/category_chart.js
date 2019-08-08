@@ -15,14 +15,18 @@ import {
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiCard,
   EuiCode,
   EuiCopy,
   EuiButton,
 } from '../../../../src/components';
 
 import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
-import { ChartTypeCard, MultiChartCard, CHART_COMPONENTS } from './shared';
+import {
+  ChartTypeCard,
+  MultiChartCard,
+  CHART_COMPONENTS,
+  ChartCard,
+} from './shared';
 
 class _CategoryChart extends Component {
   constructor(props) {
@@ -133,16 +137,14 @@ class _CategoryChart extends Component {
 
         <EuiFlexGrid columns={3}>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Chart titles"
               description="Providing a meaningful, descriptive title can eliminate the necessity for axis titles. Though the title may need to change depending on the number of series."
             />
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Order and rotation"
               description="It can be easier to compare categories by ordering them in descending order. Rotating the chart to be horizontal can give more space to the category name.">
               <EuiSwitch
@@ -156,12 +158,11 @@ class _CategoryChart extends Component {
                 checked={this.state.rotated}
                 onChange={this.onRotatedChange}
               />
-            </EuiCard>
+            </ChartCard>
           </EuiFlexItem>
 
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Tick marks"
               description="Tick marks should be spaced out properly and number values should be formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol.">
               <EuiCode>1000 ⇢ 1k</EuiCode> &nbsp; <EuiCode>20000 ⇢ 20k</EuiCode>
@@ -171,7 +172,7 @@ class _CategoryChart extends Component {
                 checked={this.state.formatted}
                 onChange={this.onFormatChange}
               />
-            </EuiCard>
+            </ChartCard>
           </EuiFlexItem>
 
           <EuiFlexItem>

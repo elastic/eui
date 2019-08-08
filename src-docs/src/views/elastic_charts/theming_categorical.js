@@ -17,7 +17,6 @@ import {
 
 import {
   EuiSpacer,
-  EuiCard,
   EuiFlexGrid,
   EuiFlexItem,
   EuiFormRow,
@@ -30,7 +29,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { CHART_COMPONENTS, createSpectrum } from './shared';
+import { CHART_COMPONENTS, createSpectrum, ChartCard } from './shared';
 import { palettes } from '../../../../src/services';
 
 const getColorsMap = (color, specId) => {
@@ -407,8 +406,7 @@ class _Categorical extends Component {
 
         <EuiFlexGrid columns={3}>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Color types"
               description="Coloring multi-series non-categorical charts can have different connotations.">
               <EuiRadioGroup
@@ -422,11 +420,10 @@ class _Categorical extends Component {
                 onChange={this.onColorTypeChange}
                 disabled={this.state.grouped}
               />
-            </EuiCard>
+            </ChartCard>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Number of series"
               description="Do not use too many colors in a single chart as this will hinder understanding.">
               <EuiSpacer />
@@ -451,11 +448,10 @@ class _Categorical extends Component {
                   aria-label="Number of series"
                 />
               </EuiFormRow>
-            </EuiCard>
+            </ChartCard>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
+            <ChartCard
               title="Grouping data"
               description="If the series' are or can be combined into logical groups, use contrasting shapes/styles but keep the same color for within groups.">
               <EuiSpacer />
@@ -464,7 +460,7 @@ class _Categorical extends Component {
                 checked={this.state.grouped}
                 onChange={this.onGroupChange}
               />
-            </EuiCard>
+            </ChartCard>
           </EuiFlexItem>
         </EuiFlexGrid>
         <EuiSpacer />
