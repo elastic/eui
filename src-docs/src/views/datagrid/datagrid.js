@@ -323,6 +323,7 @@ export default class DataGrid extends Component {
           button={button}
           isOpen={this.state.isPopoverOpen}
           anchorPosition="rightUp"
+          zIndex={2}
           closePopover={this.closePopover.bind(this)}>
           <div>
             <EuiFormRow label="Border">

@@ -214,7 +214,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       // {...label}
       {...rest}
       className={classes}>
-      <ColumnSelector />
+      <div className="euiDataGrid__controls">
+        <ColumnSelector />
+      </div>
       <div className="euiDataGrid__content">
         <EuiDataGridHeaderRow
           columns={visibleColumns}

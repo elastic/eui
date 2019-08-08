@@ -1,9 +1,10 @@
 import React, { Fragment, FunctionComponent, useState } from 'react';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
-import { EuiPopover } from '../popover';
+import { EuiPopover, EuiPopoverFooter } from '../popover';
 // @ts-ignore-next-line
-import { EuiButton } from '../button';
+import { EuiButtonEmpty } from '../button';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // @ts-ignore-next-line
 import { EuiSwitch } from '../form';
 import {
@@ -50,48 +51,79 @@ export const useColumnSelector = (
       data-test-subj="dataGridColumnSelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
+      anchorPosition="downLeft"
+      panelPaddingSize="s"
+      panelClassName="euiDataGridColumnSelectorPopover"
       button={
         <Fragment>
-          <EuiButton iconType="apps" onClick={() => setIsOpen(!isOpen)}>
+          <EuiButtonEmpty
+            size="s"
+            iconType="list"
+            onClick={() => setIsOpen(!isOpen)}>
             Columns
-          </EuiButton>
+          </EuiButtonEmpty>
         </Fragment>
       }>
       <EuiDragDropContext onDragEnd={onDragEnd}>
-        <EuiDroppable droppableId="columnOrder">
-          <div>
+        <EuiDroppable
+          droppableId="columnOrder"
+          className="euiDataGridColumnSelector">
+          <Fragment>
             {sortedColumns.map(({ id }, index) => (
               <EuiDraggable key={id} draggableId={id} index={index}>
-                {provided => (
-                  <Fragment>
-                    <div {...provided.dragHandleProps}>
-                      <EuiIcon type="grab" />
-                    </div>
-                    <EuiSwitch
-                      name={id}
-                      label={id}
-                      checked={visibleColumnIds.has(id)}
-                      onChange={({
-                        currentTarget: { checked },
-                      }: React.FormEvent<HTMLInputElement>) => {
-                        const nextVisibleColumns = sortedColumns.filter(
-                          ({ id: columnId }) =>
-                            checked
-                              ? visibleColumnIds.has(columnId) ||
-                                id === columnId
-                              : visibleColumnIds.has(columnId) &&
-                                id !== columnId
-                        );
-                        setVisibleColumns(nextVisibleColumns);
-                      }}
-                    />
-                  </Fragment>
+                {(provided, state) => (
+                  <div
+                    className={`euiDataGridColumnSelector__item ${state.isDragging &&
+                      'euiDataGridColumnSelector__item-isDragging'}`}>
+                    <EuiFlexGroup gutterSize="m" alignItems="center">
+                      <EuiFlexItem>
+                        <EuiSwitch
+                          name={id}
+                          label={id}
+                          checked={visibleColumnIds.has(id)}
+                          compressed
+                          onChange={({
+                            currentTarget: { checked },
+                          }: React.FormEvent<HTMLInputElement>) => {
+                            const nextVisibleColumns = sortedColumns.filter(
+                              ({ id: columnId }) =>
+                                checked
+                                  ? visibleColumnIds.has(columnId) ||
+                                    id === columnId
+                                  : visibleColumnIds.has(columnId) &&
+                                    id !== columnId
+                            );
+                            setVisibleColumns(nextVisibleColumns);
+                          }}
+                        />
+                      </EuiFlexItem>
+                      <EuiFlexItem grow={false} {...provided.dragHandleProps}>
+                        <div {...provided.dragHandleProps}>
+                          <EuiIcon type="grab" color="subdued" />
+                        </div>
+                      </EuiFlexItem>
+                    </EuiFlexGroup>
+                  </div>
                 )}
               </EuiDraggable>
             ))}
-          </div>
+          </Fragment>
         </EuiDroppable>
       </EuiDragDropContext>
+      <EuiPopoverFooter>
+        <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
+          <EuiFlexItem>
+            <EuiButtonEmpty size="xs" flush="left">
+              Show all
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButtonEmpty size="xs" flush="right">
+              Hide all
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPopoverFooter>
     </EuiPopover>
   );
 
