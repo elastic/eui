@@ -59,7 +59,7 @@
   }
 }
 
-.euiFormRow__displayOnlyWrapper {
+.euiFormRow__fieldWrapperDisplayOnly {
   min-height: $euiFormControlHeight;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@
     min-height: $euiFormControlCompressedHeight;
   }
 
-  .euiFormRow__displayOnlyWrapper {
+  .euiFormRow__fieldWrapperDisplayOnly {
     min-height: $euiFormControlCompressedHeight;
   }
 }

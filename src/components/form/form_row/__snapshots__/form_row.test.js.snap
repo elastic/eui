@@ -215,7 +215,7 @@ exports[`EuiFormRow is rendered 1`] = `
 
 exports[`EuiFormRow props compressed is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow euiFormRow--compressed"
   id="generated-id-row"
 >
   <div
@@ -241,6 +241,36 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
       id="generated-id"
       onBlur={[Function]}
       onFocus={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props display type center is rendered 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+  >
+    <input
+      id="generated-id"
     />
   </div>
 </div>
@@ -297,17 +327,13 @@ exports[`EuiFormRow props displayOnly is rendered 1`] = `
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper"
+    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
   >
-    <div
-      class="euiFormRow__displayOnlyWrapper"
+    <span
+      id="generated-id"
     >
-      <span
-        id="generated-id"
-      >
-        just some text
-      </span>
-    </div>
+      just some text
+    </span>
   </div>
 </div>
 `;

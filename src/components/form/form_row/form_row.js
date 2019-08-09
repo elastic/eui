@@ -15,6 +15,8 @@ const displayToClassNameMap = {
   row: null,
   rowCompressed: 'euiFormRow--compressed',
   columnCompressed: 'euiFormRow--compressed euiFormRow--horizontal',
+  center: null,
+  centerCompressed: 'euiFormRow--compressed',
 };
 
 export const DISPLAYS = Object.keys(displayToClassNameMap);
@@ -77,11 +79,23 @@ export class EuiFormRow extends Component {
 
     const { id } = this.state;
 
+    /**
+     * Remove when `compressed` is deprecated
+     */
     let shimDisplay;
-    if (compressed && display === 'default') {
-      shimDisplay = 'compressed';
+    if (compressed && display === 'row') {
+      shimDisplay = 'rowCompressed';
     } else {
       shimDisplay = display;
+    }
+
+    /**
+     * Remove when `displayOnly` is deprecated
+     */
+    if (compressed && displayOnly) {
+      shimDisplay = 'centerCompressed';
+    } else if (displayOnly && display === 'row') {
+      shimDisplay = 'center';
     }
 
     const classes = classNames(
@@ -159,16 +173,17 @@ export class EuiFormRow extends Component {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    let field = cloneElement(Children.only(children), {
+    const field = cloneElement(Children.only(children), {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,
     });
 
-    if (displayOnly) {
-      field = <div className="euiFormRow__displayOnlyWrapper">{field}</div>;
-    }
+    const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
+      euiFormRow__fieldWrapperDisplayOnly:
+        displayOnly || display.startsWith('center'),
+    });
 
     const Element = labelType === 'legend' ? 'fieldset' : 'div';
 
@@ -180,7 +195,7 @@ export class EuiFormRow extends Component {
         aria-labelledby={labelID} // Only renders a string if label type is 'legend'
       >
         {optionalLabel}
-        <div className="euiFormRow__fieldWrapper">
+        <div className={fieldWrapperClasses}>
           {field}
           {optionalErrors}
           {optionalHelpText}
@@ -224,7 +239,7 @@ EuiFormRow.propTypes = {
    */
   describedByIds: PropTypes.array,
   /**
-   * **SET FOR DEPRECATION**
+   * **DEPRECATED: use `display: rowCompressed` instead.**
    * When `true`, tightens up the spacing.
    */
   compressed: PropTypes.bool,
@@ -232,9 +247,12 @@ EuiFormRow.propTypes = {
    * When `rowCompressed`, just tightens up the spacing;
    * Set to `columnCompressed` if compressed
    * and horizontal layout is needed.
+   * Set to `center` or `centerCompressed` to align non-input
+   * content better with inline rows.
    */
   display: PropTypes.oneOf(DISPLAYS),
   /**
+   * **DEPRECATED: use `display: center` instead.**
    * Vertically centers non-input style content so it aligns
    * better with input style content.
    */

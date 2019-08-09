@@ -236,12 +236,16 @@ export const FormLayoutsExample = {
           <p>
             When supplying children to an EuiFormRow that is{' '}
             <strong>not</strong> a form control, and you need to the content to
-            vertically center with the other form controls, add the prop{' '}
-            <EuiCode>displayOnly</EuiCode>.
+            vertically center with the other form controls, change the{' '}
+            <EuiCode>display</EuiCode> prop to <EuiCode>center</EuiCode> or{' '}
+            <EuiCode>centerCompressed</EuiCode>.
           </p>
         </Fragment>
       ),
       demo: <InlineSizing />,
+      snippet: `<EuiFormRow label="Avatar" display="centerCompressed">
+  <EuiAvatar name="John Doe" size="s" />
+</EuiFormRow>`,
     },
     {
       title: 'In a popover',

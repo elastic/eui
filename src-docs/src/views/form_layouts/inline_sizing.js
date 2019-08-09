@@ -23,12 +23,12 @@ export default () => (
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow label="Avatar" displayOnly compressed>
+      <EuiFormRow label="Avatar" display="centerCompressed">
         <EuiAvatar name="John Doe" size="s" />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow hasEmptyLabelSpace compressed>
+      <EuiFormRow hasEmptyLabelSpace displayOnly compressed>
         <EuiButton size="s">Save</EuiButton>
       </EuiFormRow>
     </EuiFlexItem>
