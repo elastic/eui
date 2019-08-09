@@ -159,6 +159,7 @@
       left: ($euiSwitchWidth * .5) - (($euiSwitchThumbSize * .5) - 2px) - 1px;
       top: 1px;
       border-color: $euiColorPrimary;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
     }
 
     .euiSwitch__track {

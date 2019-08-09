@@ -53,6 +53,7 @@ export const useColumnSelector = (
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
       panelPaddingSize="s"
+      ownFocus
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
         <Fragment>

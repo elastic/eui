@@ -6,6 +6,7 @@ import React, {
   useState,
   useRef,
   useEffect,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
@@ -230,34 +231,36 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   return (
     // Unsure why this element causes errors as focus follows spec
     // eslint-disable-next-line jsx-a11y/interactive-supports-focus
-    <div
-      role="grid"
-      onKeyDown={handleKeyDown}
-      ref={gridRef}
-      // {...label}
-      {...rest}
-      className={classes}>
+    <Fragment>
       <div className="euiDataGrid__controls">
         <ColumnSelector />
       </div>
-      <div className="euiDataGrid__content">
-        <EuiDataGridHeaderRow
-          columns={visibleColumns}
-          columnWidths={columnWidths}
-          setColumnWidth={setColumnWidth}
-        />
-        <EuiDataGridBody
-          columnWidths={columnWidths}
-          columns={visibleColumns}
-          focusedCell={focusedCell}
-          onCellFocus={onCellFocus}
-          pagination={pagination}
-          renderCellValue={renderCellValue}
-          rowCount={rowCount}
-        />
+      <div
+        role="grid"
+        onKeyDown={handleKeyDown}
+        ref={gridRef}
+        // {...label}
+        {...rest}
+        className={classes}>
+        <div className="euiDataGrid__content">
+          <EuiDataGridHeaderRow
+            columns={visibleColumns}
+            columnWidths={columnWidths}
+            setColumnWidth={setColumnWidth}
+          />
+          <EuiDataGridBody
+            columnWidths={columnWidths}
+            columns={visibleColumns}
+            focusedCell={focusedCell}
+            onCellFocus={onCellFocus}
+            pagination={pagination}
+            renderCellValue={renderCellValue}
+            rowCount={rowCount}
+          />
+        </div>
+        <EuiSpacer size="s" />
+        {renderPagination(props)}
       </div>
-      <EuiSpacer size="s" />
-      {renderPagination(props)}
-    </div>
+    </Fragment>
   );
 };
