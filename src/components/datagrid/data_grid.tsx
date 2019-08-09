@@ -137,18 +137,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(gridRef.current);
     if (gridRef.current != null) {
       const gridWidth = Math.max(
         gridRef.current!.clientWidth / props.columns.length,
         100
       );
       const columnWidths = props.columns.reduce(
-        (columnWidths, column) => {
+        (columnWidths: EuiDataGridColumnWidths, column) => {
           columnWidths[column.id] = gridWidth;
           return columnWidths;
         },
-        {} as EuiDataGridColumnWidths
+        {}
       );
       setColumnWidths(columnWidths);
     }
