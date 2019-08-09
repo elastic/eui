@@ -137,4 +137,44 @@
       }
     }
   }
+
+  &.euiSwitch--compressed {
+    min-height: $euiSwitchHeight * .5;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeight * .5;
+      font-size: $euiFontSizeXS;
+    }
+
+    .euiSwitch__body {
+      pointer-events: none;
+      width: $euiSwitchWidth * .5;
+      height: $euiSwitchHeight * .5;
+      border-radius: $euiSwitchHeight * .5;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSize * .5) - 2px);
+
+      left: ($euiSwitchWidth * .5) - (($euiSwitchThumbSize * .5) - 2px) - 1px;
+      top: 1px;
+      border-color: $euiColorPrimary;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeight * .5;
+    }
+
+    .euiSwitch__icon {
+      display: none;
+    }
+
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        left: 1px;
+        border-color: $euiColorMediumShade;
+      }
+    }
+  }
 }

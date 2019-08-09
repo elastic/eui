@@ -4,13 +4,11 @@ import { EuiDataGridColumnWidths, EuiDataGridColumn } from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 
-export const DEFAULT_COLUMN_WIDTH = 100;
-
 type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     columnWidths: EuiDataGridColumnWidths;
-    setColumnWidth: (columnName: string, width: number) => void;
+    setColumnWidth: (columnId: string, width: number) => void;
   };
 
 const EuiDataGridHeaderRow: FunctionComponent<
@@ -31,25 +29,26 @@ const EuiDataGridHeaderRow: FunctionComponent<
   return (
     <div className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map(props => {
-        const { name } = props;
+        const { id } = props;
 
-        const width = columnWidths.hasOwnProperty(name)
-          ? columnWidths[name]
-          : DEFAULT_COLUMN_WIDTH;
+        const width = columnWidths[id];
 
         return (
           <div
             role="columnheader"
-            key={name}
+            key={id}
             className="euiDataGridHeaderCell"
-            data-test-subj="dataGridHeaderCell"
+            data-test-subj={`dataGridHeaderCell-${id}`}
             style={{ width: `${width}px` }}>
-            <EuiDataGridColumnResizer
-              columnName={name}
-              columnWidth={width}
-              setColumnWidth={setColumnWidth}
-            />
-            <div className="euiDataGridHeaderCell__content">{name}</div>
+            {width ? (
+              <EuiDataGridColumnResizer
+                columnId={id}
+                columnWidth={width}
+                setColumnWidth={setColumnWidth}
+              />
+            ) : null}
+
+            <div className="euiDataGridHeaderCell__content">{id}</div>
           </div>
         );
       })}

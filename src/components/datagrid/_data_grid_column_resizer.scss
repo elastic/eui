@@ -28,6 +28,21 @@
       user-select: none;
     }
   }
+}
 
+// This is important. Because the resizer sits in the negative space to the right of the column
+// it can cause the full grid to be a few pixels longer than it actually is. So for the last one
+// we don't use negative positioning and the borders from the cell will match the container.
+@include euiDataGridHeaderCell {
+  &:last-child {
 
+    .euiDataGridColumnResizer {
+      right: 0;
+
+      &:after {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
 }

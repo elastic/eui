@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 const MINIMUM_COLUMN_WIDTH = 40;
 
 interface EuiDataGridColumnResizerProps {
-  columnName: string;
+  columnId: string;
   columnWidth: number;
-  setColumnWidth: (columnName: string, width: number) => void;
+  setColumnWidth: (columnId: string, width: number) => void;
 }
 
 interface EuiDataGridColumnResizerState {
@@ -34,9 +34,9 @@ export class EuiDataGridColumnResizer extends Component<
 
   onMouseUp = () => {
     const { offset } = this.state;
-    const { columnName, columnWidth, setColumnWidth } = this.props;
+    const { columnId, columnWidth, setColumnWidth } = this.props;
     setColumnWidth(
-      columnName,
+      columnId,
       Math.max(MINIMUM_COLUMN_WIDTH, columnWidth + offset)
     );
 

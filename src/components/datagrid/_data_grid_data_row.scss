@@ -13,6 +13,7 @@
   overflow: hidden;
   white-space: nowrap;
   flex: 0 0 auto;
+  background: $euiColorEmptyShade;
 
   &:first-of-type {
     border-left: $euiBorderThin;

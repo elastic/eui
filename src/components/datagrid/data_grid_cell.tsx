@@ -10,14 +10,14 @@ import { Omit } from '../common';
 
 interface CellValueElementProps {
   rowIndex: number;
-  columnName: string;
+  columnId: string;
 }
 
 export interface EuiDataGridCellProps {
   rowIndex: number;
   colIndex: number;
-  columnName: string;
-  width: number;
+  columnId: string;
+  width?: number;
   isFocusable: boolean;
   onCellFocus: Function;
   renderCellValue:
@@ -27,7 +27,10 @@ export interface EuiDataGridCellProps {
 
 interface EuiDataGridCellState {}
 
-type EuiDataGridCellValueProps = Omit<EuiDataGridCellProps, 'width'>;
+type EuiDataGridCellValueProps = Omit<
+  EuiDataGridCellProps,
+  'width' | 'isFocusable'
+>;
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps
@@ -59,8 +62,8 @@ export class EuiDataGridCell extends Component<
   }
 
   render() {
-    const { width, ...rest } = this.props;
-    const { colIndex, rowIndex, onCellFocus, isFocusable } = rest;
+    const { width, isFocusable, ...rest } = this.props;
+    const { colIndex, rowIndex, onCellFocus } = rest;
 
     return (
       <div

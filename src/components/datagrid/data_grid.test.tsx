@@ -8,6 +8,7 @@ import {
 } from '../../test';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keyCodes } from '../../services';
+import { act } from 'react-dom/test-utils';
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -16,7 +17,7 @@ function getFocusableCell(component: ReactWrapper) {
 function extractGridData(datagrid: ReactWrapper) {
   const rows: string[][] = [];
 
-  const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell');
+  const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell', '|=');
   const headerRow: string[] = [];
   headerCells.forEach((cell: any) => headerRow.push(cell.text()));
   rows.push(headerRow);
@@ -33,9 +34,182 @@ function extractGridData(datagrid: ReactWrapper) {
 }
 
 function extractColumnWidths(datagrid: ReactWrapper) {
-  return (findTestSubject(datagrid, 'dataGridHeaderCell') as ReactWrapper<{
-    style: { width: string };
-  }>).map(cell => cell.props().style.width);
+  return (findTestSubject(datagrid, 'dataGridHeaderCell', '|=') as ReactWrapper<
+    any
+  >).reduce((widths: { [key: string]: number }, cell) => {
+    const [, columnId] = cell
+      .props()
+      ['data-test-subj'].match(/dataGridHeaderCell-(.*)/);
+    widths[columnId] = parseFloat(cell.props().style.width);
+    return widths;
+  }, {});
+}
+
+function resizeColumn(
+  datagrid: ReactWrapper,
+  columnId: string,
+  columnWidth: number
+) {
+  const widths = extractColumnWidths(datagrid);
+  const originalWidth = widths[columnId];
+
+  const firstResizer = datagrid
+    .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
+    .instance() as EuiDataGridColumnResizer;
+  firstResizer.onMouseDown({ pageX: originalWidth });
+  firstResizer.onMouseMove({ pageX: columnWidth });
+  act(() => firstResizer.onMouseUp());
+
+  datagrid.update();
+}
+
+expect.extend({
+  toBeEuiPopover(received: ReactWrapper) {
+    const pass = received.name() === 'EuiPopover';
+    if (pass) {
+      return {
+        pass: true,
+        message: () =>
+          `expected component "${received.name}" to not be EuiPopover`,
+      };
+    } else {
+      return {
+        pass: false,
+        message: () => `expected component "${received.name}" to be EuiPopover`,
+      };
+    }
+  },
+  euiPopoverToBeOpen(received) {
+    expect(received).toBeEuiPopover();
+    const { isOpen } = received.props();
+    const pass = isOpen === true;
+    if (pass) {
+      return {
+        pass: true,
+        message: () => 'expected EuiPopover to be closed',
+      };
+    } else {
+      return {
+        pass: false,
+        message: () => 'expected EuiPopover to be open',
+      };
+    }
+  },
+});
+declare global {
+  /* eslint-disable @typescript-eslint/no-namespace */
+  namespace jest {
+    interface Matchers<R> {
+      toBeEuiPopover(): R;
+      euiPopoverToBeOpen(): R;
+    }
+  }
+}
+function setColumnVisibility(
+  datagrid: ReactWrapper,
+  columnId: string,
+  isVisible: boolean
+) {
+  // open datagrid column options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  // toggle column's visibility switch
+  const portal = popover.find('EuiPortal');
+
+  const columnSwitch = portal.find(`EuiSwitch[name="${columnId}"]`);
+  const switchInput = columnSwitch.find('input');
+  (switchInput.getDOMNode() as HTMLInputElement).checked = isVisible;
+  switchInput.simulate('change');
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+}
+
+function moveColumnToIndex(
+  datagrid: ReactWrapper,
+  columnId: string,
+  nextIndex: number
+) {
+  // open datagrid column options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  const [initialColumnOrder] = extractGridData(datagrid);
+  const initialColumnIndex = initialColumnOrder.indexOf(columnId);
+
+  // "drag" column into new location
+  const portal = popover.find('EuiPortal');
+  act(() =>
+    portal.find('EuiDragDropContext').props().onDragEnd!({
+      // @ts-ignore-next-line - only `index` is used from `source`, don't need to mock rest of the event
+      source: { index: initialColumnIndex },
+      destination: { index: nextIndex },
+    })
+  );
+
+  datagrid.update();
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .childAt(0);
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSelectorPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
 }
 
 describe('EuiDataGrid', () => {
@@ -44,10 +218,10 @@ describe('EuiDataGrid', () => {
       const component = render(
         <EuiDataGrid
           {...requiredProps}
-          columns={[{ name: 'A' }, { name: 'B' }]}
+          columns={[{ id: 'A' }, { id: 'B' }]}
           rowCount={3}
-          renderCellValue={({ rowIndex, columnName }) =>
-            `${rowIndex}, ${columnName}`
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
           }
         />
       );
@@ -61,10 +235,10 @@ describe('EuiDataGrid', () => {
       const component = mount(
         <EuiDataGrid
           aria-label="test"
-          columns={[{ name: 'Column 1' }, { name: 'Column 2' }]}
+          columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
           rowCount={2}
-          renderCellValue={({ rowIndex, columnName }) => {
-            const [value] = useState(`Hello, Row ${rowIndex}-${columnName}!`);
+          renderCellValue={({ rowIndex, columnId }) => {
+            const [value] = useState(`Hello, Row ${rowIndex}-${columnId}!`);
             return <span>{value}</span>;
           }}
         />
@@ -93,7 +267,7 @@ Array [
       const component = mount(
         <EuiDataGrid
           aria-label="test grid"
-          columns={[{ name: 'Column' }]}
+          columns={[{ id: 'Column' }]}
           rowCount={10}
           renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
@@ -116,7 +290,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             aria-label="test grid"
-            columns={[{ name: 'Column' }]}
+            columns={[{ id: 'Column' }]}
             rowCount={8}
             renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
@@ -173,7 +347,7 @@ Array [
         const component = mount(
           <EuiDataGrid
             aria-label="test grid"
-            columns={[{ name: 'Column' }]}
+            columns={[{ id: 'Column' }]}
             rowCount={8}
             renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
@@ -233,7 +407,7 @@ Array [
       const component = mount(
         <EuiDataGrid
           aria-label="test grid"
-          columns={[{ name: 'Column' }]}
+          columns={[{ id: 'Column' }]}
           rowCount={8}
           renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
@@ -296,29 +470,25 @@ Array [
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
-          columns={[{ name: 'Column 1' }, { name: 'Column 2' }]}
+          columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
           rowCount={3}
           renderCellValue={() => 'value'}
         />
       );
 
       const originalCellWidths = extractColumnWidths(component);
-      expect(originalCellWidths).toEqual(['100px', '100px']);
+      expect(originalCellWidths).toEqual({
+        'Column 1': 100,
+        'Column 2': 100,
+      });
 
-      const firstResizer = component
-        .find('EuiDataGridColumnResizer')
-        .first()
-        .instance() as EuiDataGridColumnResizer;
-      firstResizer.onMouseDown({ pageX: 100 });
-      firstResizer.onMouseMove({ pageX: 113 });
-      firstResizer.onMouseMove({ pageX: 136 });
-      firstResizer.onMouseMove({ pageX: 150 });
-      firstResizer.onMouseUp();
-
-      component.update();
+      resizeColumn(component, 'Column 1', 150);
 
       const updatedCellWidths = extractColumnWidths(component);
-      expect(updatedCellWidths).toEqual(['150px', '100px']);
+      expect(updatedCellWidths).toEqual({
+        'Column 1': 150,
+        'Column 2': 100,
+      });
     });
 
     it('does not trigger value re-renders', () => {
@@ -327,7 +497,7 @@ Array [
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
-          columns={[{ name: 'ColumnA' }]}
+          columns={[{ id: 'ColumnA' }]}
           rowCount={3}
           renderCellValue={renderCellValue}
         />
@@ -336,12 +506,72 @@ Array [
       expect(renderCellValue).toHaveBeenCalledTimes(3);
       renderCellValue.mockClear();
 
-      (component.instance() as EuiDataGrid).setColumnWidth('ColumnA', 200);
+      resizeColumn(component, 'ColumnA', 200);
 
-      component.update();
-
-      expect(extractColumnWidths(component)).toEqual(['200px']);
+      expect(extractColumnWidths(component)).toEqual({ ColumnA: 200 });
       expect(renderCellValue).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('column options', () => {
+    it('column visibility can be toggled', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+
+      setColumnVisibility(component, 'ColumnA', false);
+      expect(extractGridData(component)).toEqual([
+        ['ColumnB'],
+        ['0-ColumnB'],
+        ['1-ColumnB'],
+      ]);
+
+      setColumnVisibility(component, 'ColumnA', true);
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+    });
+
+    it('column order can be changed', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnA', 'ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
+      ]);
+
+      moveColumnToIndex(component, 'ColumnB', 0);
+
+      expect(extractGridData(component)).toEqual([
+        ['ColumnB', 'ColumnA'],
+        ['0-ColumnB', '0-ColumnA'],
+        ['1-ColumnB', '1-ColumnA'],
+      ]);
     });
   });
 
@@ -349,11 +579,9 @@ Array [
     const component = mount(
       <EuiDataGrid
         {...requiredProps}
-        columns={[{ name: 'A' }, { name: 'B' }]}
+        columns={[{ id: 'A' }, { id: 'B' }]}
         rowCount={3}
-        renderCellValue={({ rowIndex, columnName }) =>
-          `${rowIndex}, ${columnName}`
-        }
+        renderCellValue={({ rowIndex, columnId }) => `${rowIndex}, ${columnId}`}
       />
     );
 

@@ -11,16 +11,16 @@ import {
 
 const columns = [
   {
-    name: 'name',
+    id: 'name',
   },
   {
-    name: 'avatar_url',
+    id: 'avatar_url',
   },
   {
-    name: 'url',
+    id: 'url',
   },
   {
-    name: 'contributions',
+    id: 'contributions',
   },
 ];
 
@@ -323,6 +323,7 @@ export default class DataGrid extends Component {
           button={button}
           isOpen={this.state.isPopoverOpen}
           anchorPosition="rightUp"
+          zIndex={2}
           closePopover={this.closePopover.bind(this)}>
           <div>
             <EuiFormRow label="Border">
@@ -395,9 +396,7 @@ export default class DataGrid extends Component {
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
-          renderCellValue={({ rowIndex, columnName }) =>
-            data[rowIndex][columnName]
-          }
+          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],

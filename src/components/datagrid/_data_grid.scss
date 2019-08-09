@@ -2,6 +2,18 @@
   @include euiScrollBar;
   font-feature-settings: 'tnum' 1; // Tabular numbers
   overflow-x: auto;
+  scroll-padding: 0;
   max-width: 100%;
   width: 100%;
+  background: $euiColorLightestShade;
+}
+
+.euiDataGrid__controls {
+  @include euiBottomShadowSmall;
+
+  position: relative;
+  z-index: 2;
+  border-top: $euiBorderThin;
+  border-right: $euiBorderThin;
+  border-left: $euiBorderThin;
 }

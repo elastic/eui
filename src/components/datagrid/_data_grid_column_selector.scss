@@ -1,0 +1,21 @@
+// sass-lint:disable-block no-empty-rulesets
+.euiDataGridColumnSelector {
+  // sass-lint:disable-block no-important
+  // background: $euiColorEmptyShade !important; // No need for droppable coloring
+}
+
+.euiDataGridColumnSelector__item {
+  background: $euiColorEmptyShade;
+  padding: $euiSizeXS;
+
+  &-isDragging {
+    @include euiBottomShadow;
+  }
+}
+
+// TODO: Find a better solution for how to deal with fix position draggables inside the transformed popover
+.euiDataGridColumnSelectorPopover {
+  // sass-lint:disable-block no-important
+  transform: none !important;
+  margin-top: -$euiSizeS;
+}
