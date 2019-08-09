@@ -99,17 +99,15 @@ export const EuiListGroupItem = ({
 
   if (href && !isDisabled) {
     itemContent = (
-      <a href={href} className="euiListGroupItem__button" {...rest}>
+      <a
+        href={href}
+        onClick={onClick}
+        className="euiListGroupItem__button"
+        {...rest}>
         {iconNode}
         {labelContent}
       </a>
     );
-
-    if (onClick) {
-      console.warn(
-        'Both `href` and `onClick` were passed to EuiListGroupItem but only one can exist. The `href` was used.'
-      );
-    }
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
       <button
@@ -180,7 +178,8 @@ EuiListGroupItem.propTypes = {
   isDisabled: PropTypes.bool,
 
   /**
-   * Make the list item label a link
+   * Make the list item label a link.
+   * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
    */
   href: PropTypes.string,
 
@@ -209,6 +208,10 @@ EuiListGroupItem.propTypes = {
     alwaysShow: PropTypes.bool,
   }),
 
+  /**
+   * Make the list item label a button.
+   * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
+   */
   onClick: PropTypes.func,
 
   /**

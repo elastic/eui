@@ -49,6 +49,22 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 </li>
 `;
 
+exports[`EuiListGroupItem props href and onClick is rendered 1`] = `
+<li
+  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+>
+  <a
+    class="euiListGroupItem__button"
+    href="#"
+  >
+    <span
+      class="euiListGroupItem__label"
+      title=""
+    />
+  </a>
+</li>
+`;
+
 exports[`EuiListGroupItem props href is rendered 1`] = `
 <li
   class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
@@ -306,21 +322,5 @@ exports[`EuiListGroupItem throws an warning if both iconType and icon are provid
       title=""
     />
   </span>
-</li>
-`;
-
-exports[`EuiListGroupItem throws an warning if both onClick and href are provided but still renders 1`] = `
-<li
-  class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
->
-  <a
-    class="euiListGroupItem__button"
-    href="#"
-  >
-    <span
-      class="euiListGroupItem__label"
-      title=""
-    />
-  </a>
 </li>
 `;

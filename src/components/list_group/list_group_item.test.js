@@ -112,6 +112,16 @@ describe('EuiListGroupItem', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('href and onClick', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiListGroupItem label="" onClick={() => {}} href="#" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   test('renders a disabled button even if provided an href', () => {
@@ -143,18 +153,6 @@ describe('EuiListGroupItem', () => {
 
     afterEach(() => {
       console.warn = oldConsoleError;
-    });
-
-    test('if both onClick and href are provided but still renders', () => {
-      const component = render(
-        <EuiListGroupItem label="" onClick={() => {}} href="#" />
-      );
-
-      expect(consoleStub).toBeCalled();
-      expect(consoleStub.mock.calls[0][0]).toMatch(
-        '`href` and `onClick` were passed'
-      );
-      expect(component).toMatchSnapshot();
     });
 
     test('if both iconType and icon are provided but still renders', () => {
