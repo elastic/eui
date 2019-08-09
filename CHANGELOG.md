@@ -2,7 +2,7 @@
 
 - Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
 - Adds an optional `onClear` prop to the the `EuiDatePicker` component ([#2235](https://github.com/elastic/eui/pull/2235))
-- Allow `onClick` and `href` props on `ListGroupItem` ([#1933](https://github.com/elastic/eui/pull/1933))
+- Allow `onClick` and `href` props on `EuiListGroupItem` and convert to TypeScript ([#1933](https://github.com/elastic/eui/pull/1933))
 
 **Bug fixes**
 

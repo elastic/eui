@@ -142,7 +142,7 @@ describe('EuiListGroupItem', () => {
 
   describe('throws an warning', () => {
     const oldConsoleError = console.warn;
-    let consoleStub;
+    let consoleStub: jest.Mock;
 
     beforeEach(() => {
       // We don't use jest.spyOn() here, because EUI's tests apply a global
