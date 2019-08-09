@@ -37,26 +37,26 @@ export class EuiSuggest extends Component {
     const {
       className,
       status,
-      label,
       prefix,
+      append,
       suggestions,
       ...rest
     } = this.props;
 
-    const suggestionList = (suggestions.map((item, index) => (
+    const suggestionList = suggestions.map((item, index) => (
       <EuiSuggestItem
         type={item.type}
         key={index}
         label={item.label}
         description={item.description}
       />
-    )));
+    ));
 
     const suggestInput = (
       <EuiSuggestInput
         status={status}
-        label={label}
         prefix={prefix}
+        append={append}
         sendValue={this.getValue}
         suggestions={suggestionList}
       />
@@ -78,11 +78,11 @@ EuiSuggest.propTypes = {
     'isLoading',
   ]),
   /**
-   * Label that goes next to the status element (e.g. KQL).
-   */
-  label: PropTypes.node,
-  /**
    * Element to be appended to the input bar.
+   */
+  append: PropTypes.node,
+  /**
+   * Element to be prepended to the input bar.
    */
   prefix: PropTypes.node,
   /**
