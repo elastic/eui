@@ -6,11 +6,8 @@
     margin-right: $euiSizeS;
   }
   .statusIcon {
-    display: flex;
-    .statusLabel {
-      padding-left: $euiSizeS;
-      padding-right: $euiSizeS;
-    }
+    padding-left: $euiSizeS;
+    padding-right: $euiSizeS;
   }
 }
 

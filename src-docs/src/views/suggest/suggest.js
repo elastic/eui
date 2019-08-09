@@ -133,6 +133,8 @@ export default class extends Component {
       </EuiPopover>
     );
 
+    const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
+
     return (
       <div>
         <EuiFlexGroup>
@@ -151,7 +153,7 @@ export default class extends Component {
             <EuiSuggest
               status={this.state.status}
               prefix={hashtag}
-              label={'KQL'}
+              append={append}
               suggestions={sampleItems}
             />
           </EuiFlexItem>

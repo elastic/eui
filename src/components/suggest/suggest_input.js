@@ -36,7 +36,7 @@ export class EuiSuggestInput extends Component {
     const {
       className,
       status,
-      label,
+      append,
       prefix,
       suggestions,
       sendValue,
@@ -68,26 +68,32 @@ export class EuiSuggestInput extends Component {
       color = statusMap[status].color;
       tooltip = statusMap[status].tooltip;
     }
-    const statusElement = (
-      <EuiToolTip position="left" content={tooltip}>
-        {status !== 'isLoading' ? (
-          <div className="statusIcon">
-            <EuiIcon color={color} type={icon} />
-            <div className="statusLabel">{label}</div>
-          </div>
-        ) : (
-          <span />
-        )}
+    const classes = classNames('euiSuggestInput', className);
+
+    // EuiFieldText's append accepts an array of elements so start by creating an empty arry
+    const appendArray = [];
+
+    const statusElement = status !== 'isLoading' && (
+      <EuiToolTip
+        position="left"
+        content={tooltip}
+        anchorClassName="statusIcon">
+        <EuiIcon color={color} type={icon} />
       </EuiToolTip>
     );
-    const classes = classNames('euiSuggestInput', className);
+
+    // Push the status element to the array if it is not undefined
+    if (statusElement) appendArray.push(statusElement);
+
+    // Check to see if consumer passed an append item and if so, add it to the array
+    if (append) appendArray.push(append);
 
     const customInput = (
       <EuiFieldText
         value={this.state.value}
         fullWidth
         prepend={prefix}
-        append={statusElement}
+        append={appendArray}
         isLoading={status === 'isLoading' ? true : false}
         onChange={this.onFieldChange.bind(this)}
         {...rest}
@@ -121,11 +127,11 @@ EuiSuggestInput.propTypes = {
     'isLoading',
   ]),
   /**
-   * Label that goes next to the status element (e.g. KQL).
-   */
-  label: PropTypes.node,
-  /**
    * Element to be appended to the input bar.
+   */
+  append: PropTypes.node,
+  /**
+   * Element to be prepended to the input bar.
    */
   prefix: PropTypes.node,
   /**
