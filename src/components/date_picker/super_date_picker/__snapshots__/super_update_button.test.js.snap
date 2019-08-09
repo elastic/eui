@@ -22,14 +22,22 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
     }
     type="button"
   >
-    Refresh
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
 
 exports[`EuiSuperUpdateButton isDisabled 1`] = `
 <EuiToolTip
-  content="Cannot update"
+  content={
+    <EuiI18n
+      default="Cannot update"
+      token="euiSuperUpdateButton.cannotUpdateTooltip"
+    />
+  }
   delay="regular"
   position="bottom"
 >
@@ -50,7 +58,10 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
     }
     type="button"
   >
-    Refresh
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
@@ -77,14 +88,22 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
     }
     type="button"
   >
-    Updating
+    <EuiI18n
+      default="Updating"
+      token="euiSuperUpdateButton.updatingButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
 
 exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 <EuiToolTip
-  content="Click to apply"
+  content={
+    <EuiI18n
+      default="Click to apply"
+      token="euiSuperUpdateButton.clickToApplyTooltip"
+    />
+  }
   delay="regular"
   position="bottom"
 >
@@ -105,7 +124,10 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
     }
     type="button"
   >
-    Update
+    <EuiI18n
+      default="Update"
+      token="euiSuperUpdateButton.updateButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;

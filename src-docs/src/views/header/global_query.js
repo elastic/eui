@@ -22,7 +22,8 @@ export default class extends Component {
           id: 'filter0',
           field: '@tags.keyword',
           operator: 'IS',
-          value: 'value',
+          value:
+            'This documents a visual pattern for the eventual replacement of Kibanas global query and filter bars. The filter bar has been broken down into multiple components. There are still bugs and not all the logic is well-formed.',
           isDisabled: false,
           isPinned: true,
           isExcluded: false,
@@ -151,7 +152,7 @@ export default class extends Component {
                 <GlobalFilterOptions />
               </EuiFlexItem>
 
-              <EuiFlexItem>
+              <EuiFlexItem className="globalFilterGroup__filterFlexItem">
                 <GlobalFilterBar
                   className="globalFilterGroup__filterBar"
                   filters={this.state.filters}
