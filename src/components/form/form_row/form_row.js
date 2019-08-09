@@ -12,9 +12,9 @@ import { EuiFormLabel } from '../form_label';
 import makeId from './make_id';
 
 const displayToClassNameMap = {
-  default: null,
-  compressed: 'euiFormRow--compressed',
-  compressedHorizontal: 'euiFormRow--compressed euiFormRow--horizontal',
+  row: null,
+  rowCompressed: 'euiFormRow--compressed',
+  columnCompressed: 'euiFormRow--compressed euiFormRow--horizontal',
 };
 
 export const DISPLAYS = Object.keys(displayToClassNameMap);
@@ -225,13 +225,12 @@ EuiFormRow.propTypes = {
   describedByIds: PropTypes.array,
   /**
    * **SET FOR DEPRECATION**
-   * When `true`, tightens up the spacing and sends down the
-   * compressed prop to the input;
+   * When `true`, tightens up the spacing.
    */
   compressed: PropTypes.bool,
   /**
-   * When `compressed`, tightens up the spacing and sends down the
-   * compressed prop to the input; Set to `'compressedHorizontal'` if compressed
+   * When `rowCompressed`, just tightens up the spacing;
+   * Set to `columnCompressed` if compressed
    * and horizontal layout is needed.
    */
   display: PropTypes.oneOf(DISPLAYS),
@@ -243,7 +242,7 @@ EuiFormRow.propTypes = {
 };
 
 EuiFormRow.defaultProps = {
-  display: 'default',
+  display: 'row',
   hasEmptyLabelSpace: false,
   fullWidth: false,
   describedByIds: [],

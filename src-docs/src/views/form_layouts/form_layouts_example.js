@@ -122,10 +122,12 @@ export const FormLayoutsExample = {
       text: (
         <p>
           If the particular form is in an area with a small amount of real
-          estate, you can add the prop <EuiCode>compressed</EuiCode> to the{' '}
-          <EuiCode>EuiFormRow</EuiCode>s but you will also need to pass it to
-          the form controls. For editor style controls, pass{' '}
-          <EuiCode>compressed=&quot;horizontal&quot;</EuiCode> to align the
+          estate, you can pass{' '}
+          <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the{' '}
+          <EuiCode>EuiFormRow</EuiCode>s but you will also need to pass{' '}
+          <EuiCode>compressed=true</EuiCode> to the form controls themselves.
+          For editor style controls, pass{' '}
+          <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
           labels and inputs horizontally.
         </p>
       ),
@@ -136,13 +138,13 @@ export const FormLayoutsExample = {
       snippet: [
         `<EuiFormRow
   label="Text field"
-  compressed
+  display="rowCompressed"
 >
   <EuiFieldText compressed />
 </EuiFormRow>`,
         `<EuiFormRow
   label="Text field"
-  compressed="horizontal"
+  display="columnCompressed"
 >
   <EuiFieldText compressed />
 </EuiFormRow>`,

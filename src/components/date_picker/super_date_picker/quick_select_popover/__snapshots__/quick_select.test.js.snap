@@ -64,7 +64,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -96,7 +96,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -115,7 +115,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -168,7 +168,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -258,7 +258,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -290,7 +290,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -309,7 +309,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       <EuiFormRow
         compressed={true}
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -362,7 +362,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
-        display="default"
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"

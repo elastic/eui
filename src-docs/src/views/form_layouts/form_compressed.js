@@ -100,11 +100,11 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            display="compressedHorizontal">
+            display="columnCompressed">
             <EuiFieldText name="first" isLoading compressed />
           </EuiFormRow>
 
-          <EuiFormRow label="Select" display="compressedHorizontal">
+          <EuiFormRow label="Select" display="columnCompressed">
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
@@ -115,13 +115,13 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="File picker" display="compressedHorizontal">
+          <EuiFormRow label="File picker" display="columnCompressed">
             <EuiFilePicker compressed display="default" />
           </EuiFormRow>
 
           <EuiFormRow
             label="Comboboxwithalonglabelname"
-            display="compressedHorizontal">
+            display="columnCompressed">
             <EuiComboBox
               options={[
                 { label: 'Option one' },
@@ -136,7 +136,7 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Range" display="compressedHorizontal">
+          <EuiFormRow label="Range" display="columnCompressed">
             <EuiRange
               min={0}
               max={100}
@@ -151,7 +151,7 @@ export default class extends Component {
 
           <EuiFormRow
             label="Use a switch instead of a single checkbox"
-            compressed>
+            display="rowCompressed">
             <EuiSwitch
               label="Should we do this?"
               name="switch"
@@ -160,7 +160,7 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Checkboxes" compressed>
+          <EuiFormRow label="Checkboxes" display="rowCompressed">
             <EuiCheckboxGroup
               options={this.state.checkboxes}
               idToSelectedMap={this.state.checkboxIdToSelectedMap}

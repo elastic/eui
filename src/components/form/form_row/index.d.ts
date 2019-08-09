@@ -20,7 +20,8 @@ declare module '@elastic/eui' {
     label?: ReactNode;
     labelAppend?: ReactNode;
     describedByIds?: string[];
-    compressed?: boolean | 'horizontal';
+    compressed?: boolean;
+    display?: 'row' | 'rowCompressed' | 'columnCompressed';
     displayOnly?: boolean;
   };
 
