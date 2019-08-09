@@ -229,12 +229,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
 
   return (
-    // Unsure why this element causes errors as focus follows spec
-    // eslint-disable-next-line jsx-a11y/interactive-supports-focus
     <Fragment>
       <div className="euiDataGrid__controls">
         <ColumnSelector />
       </div>
+      {/* Unsure why this element causes errors as focus follows spec */}
+      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
       <div
         role="grid"
         onKeyDown={handleKeyDown}
