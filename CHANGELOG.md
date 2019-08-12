@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.3.0`.
+
+**Bug fixes**
+
 Added missing `onChange` TS defs for EuiRange ([#2211](https://github.com/elastic/eui/pull/2211))
 
 ## [`13.3.0`](https://github.com/elastic/eui/tree/v13.3.0)

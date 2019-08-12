@@ -53,7 +53,9 @@ declare module '@elastic/eui' {
     valuePrepend?: ReactNode;
 
     onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
+      event:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.MouseEvent<HTMLButtonElement>,
       isValid: boolean
     ) => void;
   }
