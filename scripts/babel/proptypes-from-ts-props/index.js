@@ -122,6 +122,7 @@ function resolveArrayTypeToPropTypes(node, state) {
 function resolveIdentifierToPropTypes(node, state) {
   const typeDefinitions = state.get('typeDefinitions');
   const types = state.get('types');
+  const inflightResolves = state.get('inflightResolves') || new Set();
 
   let identifier;
   switch (node.type) {
@@ -223,7 +224,21 @@ function resolveIdentifierToPropTypes(node, state) {
   const identifierDefinition = typeDefinitions[identifier.name];
 
   if (identifierDefinition) {
-    return getPropTypesForNode(identifierDefinition, true, state);
+    if (inflightResolves.has(identifier.name)) {
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('any')
+      );
+    }
+    inflightResolves.add(identifier.name);
+    state.set('inflightResolves', inflightResolves);
+
+    const propType = getPropTypesForNode(identifierDefinition, true, state);
+
+    inflightResolves.delete(identifier.name);
+    state.set('inflightResolves', inflightResolves);
+
+    return propType;
   } else {
     return null;
   }
