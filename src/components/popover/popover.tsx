@@ -62,18 +62,16 @@ export interface EuiPopoverProps {
 
   button: NonNullable<ReactNode>;
 
-  buttonRef: RefCallback<HTMLElement | null>;
+  buttonRef?: RefCallback<HTMLElement | null>;
 
   closePopover: NoArgCallback<void>;
 
-  container: HTMLElement;
+  container?: HTMLElement;
 
   /** CSS display type for both the popover and anchor */
   display?: keyof typeof displayToClassNameMap;
 
   hasArrow?: boolean;
-
-  id: string;
 
   /** specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
@@ -96,9 +94,9 @@ export interface EuiPopoverProps {
 
   panelPaddingSize?: PanelPaddingSize;
 
-  panelRef: RefCallback<HTMLElement | null>;
+  panelRef?: RefCallback<HTMLElement | null>;
 
-  popoverRef: Ref<HTMLDivElement>;
+  popoverRef?: Ref<HTMLDivElement>;
 
   /** When `true`, the popover's position is re-calculated when the user
    * scrolls, this supports having fixed-position popover anchors. */

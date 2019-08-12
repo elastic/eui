@@ -33,8 +33,8 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   const [inputElWidth, setInputElWidth] = useState();
   const [panelEl, setPanelEl] = useState();
 
-  const inputRef = (node: HTMLElement) => setInputEl(node);
-  const panelRef = (node: HTMLElement) => setPanelEl(node);
+  const inputRef = (node: HTMLElement | null) => setInputEl(node);
+  const panelRef = (node: HTMLElement | null) => setPanelEl(node);
 
   const setPanelWidth = () => {
     if (panelEl && inputElWidth) {
