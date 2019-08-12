@@ -8,6 +8,7 @@ test/
 src-docs/
 src-framer/
 packages/react-datepicker
+packages/eslint-plugin
 .nvmrc
 
 # typescript output
