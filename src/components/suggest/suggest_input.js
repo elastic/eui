@@ -70,7 +70,7 @@ export class EuiSuggestInput extends Component {
     }
     const classes = classNames('euiSuggestInput', className);
 
-    // EuiFieldText's append accepts an array of elements so start by creating an empty arry
+    // EuiFieldText's append accepts an array of elements so start by creating an empty array
     const appendArray = [];
 
     const statusElement = status !== 'isLoading' && (

@@ -132,6 +132,12 @@ export default class extends Component {
     });
   }
 
+  getInputValue(val) {
+    this.setState({
+      value: val,
+    });
+  }
+
   onButtonClick() {
     this.setState({
       isHashtagPopoverOpen: !this.state.isHashtagPopoverOpen,
@@ -192,8 +198,10 @@ export default class extends Component {
       </EuiPopover>
     );
 
+    const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
+
     return (
-      <div>
+      <div className="savedQueriesInput">
         <EuiFlexGroup>
           <EuiFlexItem>
             <EuiSelect
@@ -208,14 +216,14 @@ export default class extends Component {
         <EuiFlexGroup
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
           <EuiFlexItem
-          // onFocus={this.onFieldFocus.bind(this)}
-          // onBlur={this.onFieldBlur.bind(this)}
-          >
+            onFocus={this.onFieldFocus.bind(this)}
+            onBlur={this.onFieldBlur.bind(this)}>
             <EuiSuggest
               status={this.state.status}
               prefix={hashtag}
-              label={'KQL'}
+              append={append}
               suggestions={sampleItems}
+              sendInputValue={this.getInputValue.bind(this)}
             />
           </EuiFlexItem>
           <EuiFlexItem grow={false} className="datepicker">

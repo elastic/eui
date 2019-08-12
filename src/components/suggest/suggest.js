@@ -21,7 +21,7 @@ export class EuiSuggest extends Component {
     });
   }
 
-  getValue(val){
+  getValue(val) {
     this.setState({
       value: val,
     });
@@ -31,6 +31,10 @@ export class EuiSuggest extends Component {
     this.setState({
       isPopoverOpen: false,
     });
+  }
+
+  onChange(e) {
+    this.props.sendInputValue(e.target.value);
   }
 
   render() {
@@ -61,8 +65,7 @@ export class EuiSuggest extends Component {
         suggestions={suggestionList}
       />
     );
-
-    return <div>{suggestInput}</div>;
+    return <div onChange={this.onChange.bind(this)}>{suggestInput}</div>;
   }
 }
 

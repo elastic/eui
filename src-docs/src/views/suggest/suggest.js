@@ -77,6 +77,12 @@ export default class extends Component {
     });
   }
 
+  getInputValue(val) {
+    this.setState({
+      value: val,
+    });
+  }
+
   onButtonClick() {
     this.setState({
       isHashtagPopoverOpen: !this.state.isHashtagPopoverOpen,
@@ -153,6 +159,7 @@ export default class extends Component {
             <EuiSuggest
               status={this.state.status}
               prefix={hashtag}
+              sendInputValue={this.getInputValue.bind(this)}
               append={append}
               suggestions={sampleItems}
             />
