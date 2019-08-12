@@ -15,10 +15,10 @@ export default () => (
   <Fragment>
     <EuiFlexGroup>
       <EuiFlexItem>
-        <EuiFieldSearch placeholder="Search..." fullWidth compressed />
+        <EuiFieldSearch placeholder="Search..." fullWidth />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButton size="s">Search</EuiButton>
+        <EuiButton>Search</EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
 
@@ -27,15 +27,13 @@ export default () => (
     <EuiFormRow
       label="Works on form rows too"
       fullWidth
-      helpText="Note that the fullWidth prop is not passed to the form row's child"
-      compressed>
-      <EuiRange fullWidth min={0} max={100} name="range" compressed />
+      helpText="Note that the fullWidth prop is not passed to the form row's child">
+      <EuiRange fullWidth min={0} max={100} name="range" />
     </EuiFormRow>
 
-    <EuiFormRow label="Often useful for text areas" fullWidth compressed>
+    <EuiFormRow label="Often useful for text areas" fullWidth>
       <EuiTextArea
         fullWidth
-        compressed
         placeholder="There is a reason we do not make forms ALWAYS 100% width.
           See how this text area becomes extremely hard to read when the individual
           lines get this long? It is much more readable when contained to a scannable max-width."

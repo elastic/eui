@@ -11,21 +11,18 @@ import {
 export default () => (
   <EuiFlexGroup style={{ maxWidth: 600 }}>
     <EuiFlexItem>
-      <EuiFormRow
-        label="First name"
-        helpText="I am helpful help text!"
-        compressed>
-        <EuiFieldText compressed />
+      <EuiFormRow label="First name" helpText="I am helpful help text!">
+        <EuiFieldText />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem>
-      <EuiFormRow label="Last name" compressed>
-        <EuiFieldText compressed />
+      <EuiFormRow label="Last name">
+        <EuiFieldText />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow hasEmptyLabelSpace compressed>
-        <EuiButton size="s">Save</EuiButton>
+      <EuiFormRow hasEmptyLabelSpace>
+        <EuiButton>Save</EuiButton>
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>

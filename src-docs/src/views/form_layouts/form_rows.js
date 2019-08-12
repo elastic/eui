@@ -88,16 +88,12 @@ export default class extends Component {
   render() {
     return (
       <EuiForm>
-        <EuiFormRow
-          compressed
-          label="Text field"
-          helpText="I am some friendly help text.">
-          <EuiFieldText name="first" compressed />
+        <EuiFormRow label="Text field" helpText="I am some friendly help text.">
+          <EuiFieldText name="first" />
         </EuiFormRow>
 
         <EuiFormRow
           label="Select (with no initial selection)"
-          compressed
           labelAppend={
             <EuiText size="xs">
               <EuiLink>Link to some help</EuiLink>
@@ -105,7 +101,6 @@ export default class extends Component {
           }>
           <EuiSelect
             hasNoInitialSelection
-            compressed
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },
@@ -114,35 +109,30 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="File picker" compressed>
-          <EuiFilePicker compressed />
+        <EuiFormRow label="File picker">
+          <EuiFilePicker />
         </EuiFormRow>
 
-        <EuiFormRow label="Range" compressed>
-          <EuiRange min={0} max={100} name="range" id="range" compressed />
+        <EuiFormRow label="Range">
+          <EuiRange min={0} max={100} name="range" id="range" />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Use a switch instead of a single checkbox"
-          compressed>
+        <EuiFormRow label="Use a switch instead of a single checkbox">
           <EuiSwitch
             name="switch"
             label="Should we do this?"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
-            compressed
           />
         </EuiFormRow>
 
         <EuiFormRow
           label="Checkbox group labels should use a `legend` label type"
-          labelType="legend"
-          compressed>
+          labelType="legend">
           <EuiCheckboxGroup
             options={this.state.checkboxes}
             idToSelectedMap={this.state.checkboxIdToSelectedMap}
             onChange={this.onCheckboxChange}
-            compressed
           />
         </EuiFormRow>
 
