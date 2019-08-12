@@ -5,6 +5,7 @@ import tabbable from 'tabbable';
 
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverPropTypes } from './popover';
+import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeyCodes } from '../../services';
 
 export const EuiInputPopover = ({
@@ -25,12 +26,15 @@ export const EuiInputPopover = ({
       panelEl.style.width = `${inputElWidth}px`;
     }
   };
-  useEffect(() => {
+  const onResize = () => {
     if (inputEl) {
       const width = inputEl.getBoundingClientRect().width;
       setInputElWidth(width);
       setPanelWidth();
     }
+  };
+  useEffect(() => {
+    onResize();
   }, [inputEl]);
   useEffect(() => {
     setPanelWidth();
@@ -60,7 +64,11 @@ export const EuiInputPopover = ({
   return (
     <EuiPopover
       ownFocus={false}
-      button={input}
+      button={
+        <EuiResizeObserver onResize={onResize}>
+          {resizeRef => <div ref={resizeRef}>{input}</div>}
+        </EuiResizeObserver>
+      }
       buttonRef={inputRef}
       panelRef={panelRef}
       className={classes}
