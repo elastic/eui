@@ -311,6 +311,8 @@ class _Categorical extends Component {
           return item;
         });
 
+        const isOdd = index % 2;
+
         const chart = (
           <ChartType
             key={`data${index}`}
@@ -325,12 +327,13 @@ class _Categorical extends Component {
             )}
             lineSeriesStyle={{
               line: {
-                strokeWidth: index % 2 ? 1 : 6,
+                strokeWidth: isOdd ? 1 : 6,
               },
               point: {
-                visible: index % 2 ? false : true,
+                visible: !isOdd,
               },
             }}
+            hideInLegend={isOdd}
           />
         );
 

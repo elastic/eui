@@ -61,7 +61,7 @@ function createTheme(colors) {
       },
       axes: {
         axisTitleStyle: {
-          fontSize: 10,
+          fontSize: 12,
           fontFamily: fontFamily,
           fill: colors.euiColorDarkShade.rgba,
         },
@@ -69,10 +69,10 @@ function createTheme(colors) {
           stroke: colors.euiColorChartLines.rgba,
         },
         tickLabelStyle: {
-          fontSize: 8,
+          fontSize: 10,
           fontFamily: fontFamily,
           fill: colors.euiColorDarkShade.rgba,
-          padding: 2,
+          padding: 8,
         },
         tickLineStyle: {
           stroke: 'rgba(0,0,0,0)', // transparent
