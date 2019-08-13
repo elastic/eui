@@ -4,6 +4,7 @@ import {
   EuiButton,
   EuiFormRow,
   EuiPopover,
+  EuiSpacer,
   EuiSwitch,
 } from '../../../../src/components';
 
@@ -53,6 +54,8 @@ export default class extends Component {
         <EuiFormRow label="Include the following in the embed" id="asdf2">
           <EuiSwitch name="switch" label="Current time range" />
         </EuiFormRow>
+
+        <EuiSpacer />
 
         <EuiButton fill>Copy IFRAME code</EuiButton>
       </EuiPopover>

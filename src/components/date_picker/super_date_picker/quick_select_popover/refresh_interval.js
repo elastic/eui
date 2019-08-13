@@ -128,6 +128,7 @@ export class EuiRefreshInterval extends Component {
                 onChange={this.onValueChange}
                 aria-label="Refresh interval value"
                 data-test-subj="superDatePickerRefreshIntervalInput"
+                compressed
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -139,6 +140,7 @@ export class EuiRefreshInterval extends Component {
                 options={refreshUnitsOptions}
                 onChange={this.onUnitsChange}
                 data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
+                compressed
               />
             </EuiFormRow>
           </EuiFlexItem>

@@ -44,6 +44,7 @@
 
   .euiFilePicker--compressed & {
     top: $euiSizeS;
+    left: $euiSizeS;
   }
 
   .euiFilePicker--large & {
@@ -76,7 +77,7 @@
 
   .euiFilePicker--compressed & {
     @include euiFormControlStyleCompressed($includeStates: false);
-    @include euiFormControlWithIcon; /* 2 */
+    @include euiFormControlWithIcon($compressed: true); /* 2 */
     height: $euiFormControlCompressedHeight;
   }
 
