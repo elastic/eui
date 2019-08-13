@@ -16,8 +16,6 @@
 /// <reference path="./link/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />
 /// <reference path="./page/index.d.ts" />
-/// <reference path="./pagination/index.d.ts" />
-/// <reference path="./table/index.d.ts" />
 /// <reference path="./tabs/index.d.ts" />
 
 declare module '@elastic/eui' {
