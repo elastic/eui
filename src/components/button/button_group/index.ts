@@ -1,1 +1,5 @@
-export { EuiButtonGroup } from './button_group';
+export {
+  EuiButtonGroup,
+  EuiButtonGroupOption,
+  EuiButtonGroupProps,
+} from './button_group';

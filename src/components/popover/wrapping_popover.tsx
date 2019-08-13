@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { EuiPopover } from './popover';
+import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
-interface Props {
+interface Props extends EuiPopoverProps {
   button: HTMLElement;
 }
 

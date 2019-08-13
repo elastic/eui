@@ -78,7 +78,10 @@ type EuiButtonPropsForButton = EuiButtonProps &
     buttonRef?: Ref<HTMLButtonElement>;
   };
 
-type Props = ExclusiveUnion<EuiButtonPropsForAnchor, EuiButtonPropsForButton>;
+export type Props = ExclusiveUnion<
+  EuiButtonPropsForAnchor,
+  EuiButtonPropsForButton
+>;
 
 export const EuiButton: FunctionComponent<Props> = ({
   children,
