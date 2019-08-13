@@ -104,7 +104,7 @@ export class EuiRelativeTab extends Component {
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="s" />
+        <EuiSpacer size="m" />
         <EuiSwitch
           data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
           label={`Round to the ${timeUnits[this.state.unit.substring(0, 1)]}`}

@@ -23,13 +23,13 @@ export default () => (
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow label="Avatar" displayOnly>
+      <EuiFormRow label="Avatar" display="center">
         <EuiAvatar name="John Doe" size="s" />
       </EuiFormRow>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiFormRow hasEmptyLabelSpace>
-        <EuiButton>Save</EuiButton>
+      <EuiFormRow hasEmptyLabelSpace display="center">
+        <EuiButton size="s">Save</EuiButton>
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>

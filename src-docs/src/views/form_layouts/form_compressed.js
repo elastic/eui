@@ -10,6 +10,7 @@ import {
   EuiFilePicker,
   EuiRange,
   EuiSelect,
+  EuiSpacer,
   EuiSwitch,
   EuiPanel,
 } from '../../../../src/components';
@@ -57,8 +58,15 @@ export default class extends Component {
       ],
       radioIdSelected: `${idPrefix}5`,
       comboBoxSelectionOptions: [],
+      value: '20',
     };
   }
+
+  onRangeChange = e => {
+    this.setState({
+      value: e.target.value,
+    });
+  };
 
   onSwitchChange = () => {
     this.setState({
@@ -92,31 +100,35 @@ export default class extends Component {
           <EuiFormRow
             label="Text field"
             helpText="I am some friendly help text."
-            compressed>
-            <EuiFieldText name="first" isLoading />
+            display="columnCompressed">
+            <EuiFieldText name="first" isLoading compressed />
           </EuiFormRow>
 
-          <EuiFormRow label="Select" compressed>
+          <EuiFormRow label="Select" display="columnCompressed">
             <EuiSelect
               options={[
                 { value: 'option_one', text: 'Option one' },
                 { value: 'option_two', text: 'Option two' },
                 { value: 'option_three', text: 'Option three' },
               ]}
+              compressed
             />
           </EuiFormRow>
 
-          <EuiFormRow label="File picker" compressed>
-            <EuiFilePicker />
+          <EuiFormRow label="File picker" display="columnCompressed">
+            <EuiFilePicker compressed display="default" />
           </EuiFormRow>
 
-          <EuiFormRow label="Combo box" compressed>
+          <EuiFormRow
+            label="Comboboxwithalonglabelname"
+            display="columnCompressed">
             <EuiComboBox
               options={[
                 { label: 'Option one' },
                 { label: 'Option two' },
                 { label: 'Option three' },
               ]}
+              compressed
               selectedOptions={this.state.comboBoxSelectionOptions}
               onChange={comboBoxSelectionOptions =>
                 this.setState({ comboBoxSelectionOptions })
@@ -124,13 +136,22 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Range" compressed>
-            <EuiRange min={0} max={100} name="range" id="range" />
+          <EuiFormRow label="Range" display="columnCompressed">
+            <EuiRange
+              min={0}
+              max={100}
+              name="range"
+              id="range"
+              showInput
+              compressed
+              value={this.state.value}
+              onChange={this.onRangeChange}
+            />
           </EuiFormRow>
 
           <EuiFormRow
             label="Use a switch instead of a single checkbox"
-            compressed>
+            display="rowCompressed">
             <EuiSwitch
               label="Should we do this?"
               name="switch"
@@ -139,13 +160,16 @@ export default class extends Component {
             />
           </EuiFormRow>
 
-          <EuiFormRow label="Checkboxes" compressed>
+          <EuiFormRow label="Checkboxes" display="rowCompressed">
             <EuiCheckboxGroup
               options={this.state.checkboxes}
               idToSelectedMap={this.state.checkboxIdToSelectedMap}
               onChange={this.onCheckboxChange}
+              compressed
             />
           </EuiFormRow>
+
+          <EuiSpacer size="s" />
 
           <EuiButton type="submit" size="s" fill>
             Save form

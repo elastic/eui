@@ -108,7 +108,7 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Compressed',
+      title: 'Compressed and horizontal',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -122,21 +122,33 @@ export const FormLayoutsExample = {
       text: (
         <p>
           If the particular form is in an area with a small amount of real
-          estate, you can add the prop <EuiCode>compressed</EuiCode> to the{' '}
-          <EuiCode>EuiFormRow</EuiCode>s and it will pass down to the form
-          controls.
+          estate, you can pass{' '}
+          <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the{' '}
+          <EuiCode>EuiFormRow</EuiCode>s but you will also need to pass{' '}
+          <EuiCode>compressed=true</EuiCode> to the form controls themselves.
+          For editor style controls, pass{' '}
+          <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
+          labels and inputs horizontally.
         </p>
       ),
       props: {
         EuiFormRow,
       },
       demo: <FormCompressed />,
-      snippet: `<EuiFormRow
+      snippet: [
+        `<EuiFormRow
   label="Text field"
-  compressed
+  display="rowCompressed"
 >
-  <EuiFieldText />
+  <EuiFieldText compressed />
 </EuiFormRow>`,
+        `<EuiFormRow
+  label="Text field"
+  display="columnCompressed"
+>
+  <EuiFieldText compressed />
+</EuiFormRow>`,
+      ],
     },
     {
       title: 'Described form groups',
@@ -224,12 +236,16 @@ export const FormLayoutsExample = {
           <p>
             When supplying children to an EuiFormRow that is{' '}
             <strong>not</strong> a form control, and you need to the content to
-            vertically center with the other form controls, add the prop{' '}
-            <EuiCode>displayOnly</EuiCode>.
+            vertically center with the other form controls, change the{' '}
+            <EuiCode>display</EuiCode> prop to <EuiCode>center</EuiCode> or{' '}
+            <EuiCode>centerCompressed</EuiCode>.
           </p>
         </Fragment>
       ),
       demo: <InlineSizing />,
+      snippet: `<EuiFormRow label="Avatar" display="centerCompressed">
+  <EuiAvatar name="John Doe" size="s" />
+</EuiFormRow>`,
     },
     {
       title: 'In a popover',

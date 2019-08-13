@@ -85,6 +85,8 @@ export default class extends Component {
                   </EuiI18n>
                 </EuiFormRow>
 
+                <EuiSpacer />
+
                 <EuiButton>{action}</EuiButton>
               </Fragment>
             )}

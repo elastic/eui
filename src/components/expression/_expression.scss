@@ -3,7 +3,7 @@
  *    but then wrap long words
  */
 .euiExpression {
-  @include euiTextOverflowWrap; /* 1 */
+  @include euiTextBreakWord; /* 1 */
   @include euiFontSizeS;
   @include euiCodeFont;
 
