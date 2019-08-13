@@ -20,7 +20,7 @@ import {
   EuiCopy,
 } from '../../../../src/components';
 
-const iconTypes = [
+export const iconTypes = [
   'alert',
   'apmTrace',
   'apps',

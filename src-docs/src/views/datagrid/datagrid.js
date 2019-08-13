@@ -7,7 +7,10 @@ import {
   EuiFormRow,
   EuiPopover,
   EuiButton,
+  EuiButtonIcon,
+  EuiLink,
 } from '../../../../src/components/';
+import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 
 const columns = [
   {
@@ -21,6 +24,9 @@ const columns = [
   },
   {
     id: 'contributions',
+  },
+  {
+    id: 'actions',
   },
 ];
 
@@ -304,6 +310,13 @@ export default class DataGrid extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  dummyIcon = () => (
+    <EuiButtonIcon
+      aria-label="dummy icon"
+      iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+    />
+  );
+
   render() {
     const { pagination } = this.state;
 
@@ -396,7 +409,32 @@ export default class DataGrid extends Component {
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
-          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          renderCellValue={({ rowIndex, columnId }) => {
+            const value = data[rowIndex][columnId];
+
+            if (columnId === 'actions') {
+              return (
+                <>
+                  {this.dummyIcon()}
+                  {this.dummyIcon()}
+                </>
+              );
+            }
+
+            if (columnId === 'url') {
+              return <EuiLink href={value}>{value}</EuiLink>;
+            }
+
+            if (columnId === 'avatar_url') {
+              return (
+                <p>
+                  Avatar: <EuiLink href={value}>{value}</EuiLink>
+                </p>
+              );
+            }
+
+            return value;
+          }}
           pagination={{
             ...pagination,
             pageSizeOptions: [5, 10, 25],

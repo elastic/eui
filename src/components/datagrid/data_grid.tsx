@@ -17,12 +17,13 @@ import {
   EuiDataGridPaginationProps,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-import { keyCodes } from '../../services';
+import { keyCodes, htmlIdGenerator } from '../../services';
 import { EuiSpacer } from '../spacer';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
+import { CELL_CONTENTS_ATTR } from './utils';
 
 // Types for styling options, passed down through the `gridStyle` prop
 type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
@@ -129,22 +130,20 @@ function renderPagination(props: EuiDataGridProps) {
 }
 
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [interactiveCellId] = useState(htmlIdGenerator()());
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
 
-  const gridRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (gridRef.current != null) {
-      const gridWidth = Math.max(
-        gridRef.current!.clientWidth / props.columns.length,
-        100
-      );
+      const gridWidth = gridRef.current.clientWidth;
+      const columnWidth = Math.max(gridWidth / props.columns.length, 100);
       const columnWidths = props.columns.reduce(
         (columnWidths: EuiDataGridColumnWidths, column) => {
-          columnWidths[column.id] = gridWidth;
+          columnWidths[column.id] = columnWidth;
           return columnWidths;
         },
         {}
@@ -154,44 +153,66 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   }, []);
 
   const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
-  const onCellFocus = useCallback(
-    (x: number, y: number) => {
-      setFocusedCell([x, y]);
-    },
-    [setFocusedCell]
-  );
+  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
+    boolean
+  >(true);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+  const isInteractiveCell = (element: HTMLElement) => {
+    if (element.getAttribute('role') !== 'gridcell') {
+      return false;
+    }
+
+    return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = props.columns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
+    const { keyCode, target } = event;
 
-    switch (e.keyCode) {
-      case keyCodes.DOWN:
-        e.preventDefault();
-        if (y < rowCount) {
-          setFocusedCell([x, y + 1]);
-        }
-        break;
-      case keyCodes.LEFT:
-        e.preventDefault();
-        if (x > 0) {
-          setFocusedCell([x - 1, y]);
-        }
-        break;
-      case keyCodes.UP:
-        e.preventDefault();
-        // TODO sort out when a user can arrow up into the column headers
-        if (y > 0) {
-          setFocusedCell([x, y - 1]);
-        }
-        break;
-      case keyCodes.RIGHT:
-        e.preventDefault();
-        if (x < colCount) {
-          setFocusedCell([x + 1, y]);
-        }
-        break;
+    if (
+      target instanceof HTMLElement &&
+      isInteractiveCell(target) &&
+      isGridNavigationEnabled &&
+      (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
+    ) {
+      setIsGridNavigationEnabled(false);
+    } else if (
+      !isGridNavigationEnabled &&
+      (keyCode === keyCodes.ESCAPE || keyCode === keyCodes.F2)
+    ) {
+      setIsGridNavigationEnabled(true);
+    }
+
+    if (isGridNavigationEnabled) {
+      switch (keyCode) {
+        case keyCodes.DOWN:
+          if (y < rowCount) {
+            event.preventDefault();
+            setFocusedCell([x, y + 1]);
+          }
+          break;
+        case keyCodes.LEFT:
+          if (x > 0) {
+            event.preventDefault();
+            setFocusedCell([x - 1, y]);
+          }
+          break;
+        case keyCodes.UP:
+          // TODO sort out when a user can arrow up into the column headers
+          if (y > 0) {
+            event.preventDefault();
+            setFocusedCell([x, y - 1]);
+          }
+          break;
+        case keyCodes.RIGHT:
+          if (x < colCount) {
+            event.preventDefault();
+            setFocusedCell([x + 1, y]);
+          }
+          break;
+      }
     }
   };
 
@@ -238,28 +259,31 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         role="grid"
         onKeyDown={handleKeyDown}
         ref={gridRef}
-        // {...label}
         {...rest}
         className={classes}>
-        <div className="euiDataGrid__content">
-          <EuiDataGridHeaderRow
-            columns={visibleColumns}
-            columnWidths={columnWidths}
-            setColumnWidth={setColumnWidth}
-          />
-          <EuiDataGridBody
-            columnWidths={columnWidths}
-            columns={visibleColumns}
-            focusedCell={focusedCell}
-            onCellFocus={onCellFocus}
-            pagination={pagination}
-            renderCellValue={renderCellValue}
-            rowCount={rowCount}
-          />
-        </div>
-        <EuiSpacer size="s" />
-        {renderPagination(props)}
+        <EuiDataGridHeaderRow
+          columns={visibleColumns}
+          columnWidths={columnWidths}
+          setColumnWidth={setColumnWidth}
+        />
+        <EuiDataGridBody
+          columnWidths={columnWidths}
+          columns={visibleColumns}
+          focusedCell={focusedCell}
+          onCellFocus={useCallback(setFocusedCell, [setFocusedCell])}
+          pagination={pagination}
+          renderCellValue={renderCellValue}
+          rowCount={rowCount}
+          isGridNavigationEnabled={isGridNavigationEnabled}
+          interactiveCellId={interactiveCellId}
+        />
       </div>
+      <EuiSpacer size="s" />
+      {renderPagination(props)}
+      <p id={interactiveCellId} hidden>
+        Cell contains interactive content.
+        {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
+      </p>
     </Fragment>
   );
 };

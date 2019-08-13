@@ -27,7 +27,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
   const dataTestSubj = classnames('dataGridHeader', _dataTestSubj);
 
   return (
-    <div className={classes} data-test-subj={dataTestSubj} {...rest}>
+    <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map(props => {
         const { id } = props;
 
