@@ -1,1 +1,5 @@
-export { EuiButtonIcon } from './button_icon';
+export {
+  EuiButtonIcon,
+  EuiButtonIconProps,
+  EuiButtonIconPropsForButton,
+} from './button_icon';

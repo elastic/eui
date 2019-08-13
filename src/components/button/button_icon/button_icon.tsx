@@ -41,7 +41,7 @@ type EuiButtonIconPropsForAnchor = EuiButtonIconProps &
     buttonRef?: Ref<HTMLAnchorElement>;
   };
 
-type EuiButtonIconPropsForButton = EuiButtonIconProps &
+export type EuiButtonIconPropsForButton = EuiButtonIconProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
     buttonRef?: Ref<HTMLButtonElement>;

@@ -1,7 +1,4 @@
-import {
-  EuiButtonIconProps,
-  EuiButtonPropsForButtonOrLink,
-} from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+import { EuiButtonIconPropsForButton } from '../button';
 import { IconType } from '../icon';
 import { CommonProps, ExclusiveUnion } from '../common';
 import {
@@ -48,13 +45,10 @@ declare module '@elastic/eui' {
     iconType?: IconType;
     icon?: ReactElement;
     showToolTip?: boolean;
-    extraAction?: EuiButtonPropsForButtonOrLink<
-      CommonProps &
-        EuiButtonIconProps & {
-          iconType: IconType;
-          alwaysShow?: boolean;
-        }
-    >;
+    extraAction?: EuiButtonIconPropsForButton & {
+      iconType: IconType;
+      alwaysShow?: boolean;
+    };
     onClick?: MouseEventHandler<HTMLButtonElement>;
     wrapText?: boolean;
   }
