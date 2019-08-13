@@ -7,6 +7,7 @@ import {
   EuiIcon,
   EuiPopover,
   EuiSwitch,
+  EuiSpacer,
 } from '../../../../src/components';
 
 function flattenPanelTree(tree, array = []) {
@@ -87,6 +88,7 @@ export default class extends Component {
                           label="Current time range"
                         />
                       </EuiFormRow>
+                      <EuiSpacer />
                       <EuiButton fill>Copy iFrame code</EuiButton>
                     </div>
                   ),

@@ -21,6 +21,7 @@ declare module '@elastic/eui' {
     labelAppend?: ReactNode;
     describedByIds?: string[];
     compressed?: boolean;
+    display?: 'row' | 'rowCompressed' | 'columnCompressed';
     displayOnly?: boolean;
   };
 

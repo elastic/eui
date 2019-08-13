@@ -151,6 +151,7 @@ export class EuiQuickSelect extends Component {
                 value={this.state.timeTense}
                 options={timeTenseOptions}
                 onChange={this.onTimeTenseChange}
+                compressed
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -160,6 +161,7 @@ export class EuiQuickSelect extends Component {
                 aria-label="Quick time value"
                 value={this.state.timeValue}
                 onChange={this.onTimeValueChange}
+                compressed
               />
             </EuiFormRow>
           </EuiFlexItem>
@@ -170,6 +172,7 @@ export class EuiQuickSelect extends Component {
                 value={this.state.timeUnits}
                 options={timeUnitsOptions}
                 onChange={this.onTimeUnitsChange}
+                compressed
               />
             </EuiFormRow>
           </EuiFlexItem>

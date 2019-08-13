@@ -10,6 +10,7 @@ import {
   EuiLink,
   EuiRange,
   EuiSelect,
+  EuiSpacer,
   EuiSwitch,
   EuiText,
 } from '../../../../src/components';
@@ -134,6 +135,8 @@ export default class extends Component {
             onChange={this.onCheckboxChange}
           />
         </EuiFormRow>
+
+        <EuiSpacer />
 
         <EuiButton type="submit" fill>
           Save form
