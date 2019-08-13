@@ -44,12 +44,12 @@ export type EuiListGroupItemProps = CommonProps &
     HTMLAttributes<HTMLSpanElement>
   > & {
     /**
-     * Set the size of the label text
+     * Size of the label text
      */
     size?: ItemSize;
 
     /**
-     * Set the size of the label text
+     * Content to be displayed in the list item
      */
     label: ReactNode;
 
