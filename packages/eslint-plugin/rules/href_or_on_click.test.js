@@ -51,7 +51,6 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
   ],
 
   invalid: [
-    // both href and onClick
     {
       code: dedent(`
         module.export = () => (
@@ -62,6 +61,33 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
       errors: [
         {
           message: '<EuiButton> accepts either `href` or `onClick`, not both.',
+        },
+      ],
+    },
+    {
+      code: dedent(`
+        module.export = () => (
+          <EuiButtonEmpty href="/" onClick={fooBar} />
+        )
+      `),
+
+      errors: [
+        {
+          message:
+            '<EuiButtonEmpty> accepts either `href` or `onClick`, not both.',
+        },
+      ],
+    },
+    {
+      code: dedent(`
+        module.export = () => (
+          <EuiLink href="/" onClick={fooBar} />
+        )
+      `),
+
+      errors: [
+        {
+          message: '<EuiLink> accepts either `href` or `onClick`, not both.',
         },
       ],
     },

@@ -1,3 +1,5 @@
+const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink'];
+
 module.exports = {
   meta: {
     fixable: null,
@@ -7,7 +9,7 @@ module.exports = {
       JSXOpeningElement(node) {
         if (
           node.name.type !== 'JSXIdentifier' ||
-          node.name.name !== 'EuiButton'
+          !componentNames.includes(node.name.name)
         ) {
           return;
         }
@@ -22,7 +24,9 @@ module.exports = {
         if (hasHref && hasOnClick) {
           context.report(
             node,
-            '<EuiButton> accepts either `href` or `onClick`, not both.'
+            `<${
+              node.name.name
+            }> accepts either \`href\` or \`onClick\`, not both.`
           );
         }
       },
