@@ -81,9 +81,9 @@ export const EuiFacetButton: FunctionComponent<
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (React.isValidElement(icon)) {
-    buttonIcon = React.cloneElement<{ className?: string }>(icon, {
-      className: 'euiFacetButton__icon',
+  if (React.isValidElement<{ className?: string }>(icon)) {
+    buttonIcon = React.cloneElement(icon, {
+      className: classNames(icon.props.className, 'euiFacetButton__icon'),
     });
   }
 
