@@ -70,6 +70,7 @@ function createTheme(colors) {
           fontSize: 12,
           fontFamily: fontFamily,
           fill: 'inherit',
+          padding: 10,
         },
         axisLineStyle: {
           stroke: colors.euiColorChartLines.rgba,
