@@ -31,8 +31,10 @@
     }
   }
 
-  &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper {
+  &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper,
+  &[class*='--fullWidth'] input {
     width: 100%;
+    max-width: none;
   }
 
   &[class*='--readOnly'] {
