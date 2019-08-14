@@ -21,6 +21,12 @@ function createTheme(colors) {
       opacity: 1,
       dash: [4, 4],
     },
+    lineAnnotation: {
+      line: {
+        strokeWidth: 1,
+        stroke: 'inherit',
+      },
+    },
     theme: {
       chartMargins: {
         left: 0,
@@ -63,7 +69,7 @@ function createTheme(colors) {
         axisTitleStyle: {
           fontSize: 12,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkShade.rgba,
+          fill: 'inherit',
         },
         axisLineStyle: {
           stroke: colors.euiColorChartLines.rgba,
@@ -99,3 +105,20 @@ function createTheme(colors) {
 
 export const EUI_LIGHT_THEME = createTheme(lightColors);
 export const EUI_DARK_THEME = createTheme(darkColors);
+
+export const EUI_SPARKLINE_THEME = {
+  lineSeriesStyle: {
+    point: {
+      visible: false,
+      strokeWidth: 1,
+      radius: 1,
+    },
+  },
+  areaSeriesStyle: {
+    point: {
+      visible: false,
+      strokeWidth: 1,
+      radius: 1,
+    },
+  },
+};

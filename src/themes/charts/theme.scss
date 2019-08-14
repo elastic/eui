@@ -5,3 +5,9 @@
 .echLegendButton {
   display: none !important;
 }
+
+// There should be a good default in ES too
+.echAnnotation {
+  font-size: $euiFontSizeXS;
+  font-weight: $euiFontWeightBold;
+}

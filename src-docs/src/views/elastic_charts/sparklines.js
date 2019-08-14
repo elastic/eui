@@ -1,232 +1,179 @@
 import React, { Component, Fragment } from 'react';
+import { cloneDeep } from 'lodash';
 import { withTheme } from '../../components';
 import {
   Chart,
   BarSeries,
-  getSpecId,
   Settings,
-  Axis,
-  getAxisId,
-  Position,
-  ScaleType,
-  timeFormatter,
-  niceTimeFormatByDay,
   LineSeries,
   AreaSeries,
+  mergeWithDefaultTheme,
 } from '@elastic/charts';
 
 import {
   EUI_DARK_THEME,
   EUI_LIGHT_THEME,
+  EUI_SPARKLINE_THEME,
 } from '../../../../src/themes/charts/themes';
 
 import {
-  // EuiCard,
-  // EuiCopy,
-  EuiSwitch,
-  EuiSpacer,
-  EuiRadioGroup,
-  EuiTitle,
+  EuiPanel,
+  EuiStat,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiCard,
+  EuiIcon,
+  EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-} from '../../../../src/services/format/format_date';
+import { TIME_DATA_SMALL } from './data';
+import { palettes } from '../../../../src/services';
 
-import { TIME_DATA, TIME_DATA_2 } from './data';
+const getColorsMap = (color, specId) => {
+  const map = new Map();
+  map.set({ colorValues: [], specId }, color);
+  return map;
+};
 
 class _Sparklines extends Component {
   constructor(props) {
     super(props);
 
-    this.idPrefix = 'chartType';
-
-    this.state = {
-      multi: false,
-      stacked: false,
-      toggleIdSelected: `${this.idPrefix}0`,
-    };
+    this.state = {};
   }
 
-  onStackedChange = e => {
-    this.setState({
-      stacked: e.target.checked,
-    });
-  };
-
-  onMultiChange = e => {
-    this.setState({
-      multi: e.target.checked,
-    });
-  };
-
-  onChartTypeChange = optionId => {
-    this.setState({
-      toggleIdSelected: optionId,
-    });
-  };
-
   render() {
-    this.toggleButtonsIcons = [
-      {
-        id: `${this.idPrefix}0`,
-        label: 'BarSeries',
-      },
-      {
-        id: `${this.idPrefix}1`,
-        label: 'LineSeries',
-      },
-      {
-        id: `${this.idPrefix}2`,
-        label: 'AreaSeries',
-      },
-      {
-        id: `${this.idPrefix}3`,
-        label: 'Mixed',
-        disabled: !this.state.multi,
-      },
-    ];
-
     const isDarkTheme = this.props.theme.includes('dark');
-    const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
-    const gridHorizontalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridHorizontalSettings
-      : EUI_LIGHT_THEME.gridHorizontalSettings;
-    const gridVerticalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridVerticalSettings
-      : EUI_LIGHT_THEME.gridVerticalSettings;
+    const theme = mergeWithDefaultTheme(
+      EUI_SPARKLINE_THEME,
+      isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme
+    );
 
-    const formatter = timeFormatter(niceTimeFormatByDay(1));
-    let ChartType;
-    let ChartType2;
-    switch (this.state.toggleIdSelected) {
-      case 'chartType0':
-        ChartType = BarSeries;
-        ChartType2 = BarSeries;
-        break;
-      case 'chartType1':
-        ChartType = LineSeries;
-        ChartType2 = LineSeries;
-        break;
-      case 'chartType2':
-        ChartType = AreaSeries;
-        ChartType2 = AreaSeries;
-        break;
-      case 'chartType3':
-        ChartType = BarSeries;
-        ChartType2 = LineSeries;
-        break;
-    }
+    const TIME_DATA_SMALL_REVERSE = cloneDeep(TIME_DATA_SMALL).reverse();
+    const TIME_DATA_SMALL_REVERSE_MAJOR = cloneDeep(TIME_DATA_SMALL_REVERSE);
+    TIME_DATA_SMALL_REVERSE_MAJOR[
+      TIME_DATA_SMALL_REVERSE_MAJOR.length - 1
+    ][1] = -100;
 
     return (
       <Fragment>
-        <EuiTitle size="xxs">
-          <h3>
-            Number of {!this.state.multi && 'financial '}robo-calls
-            {this.state.multi && ' by type'}
-          </h3>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
-        <Chart size={[undefined, 200]}>
-          <Settings
-            theme={theme}
-            showLegend={this.state.multi}
-            legendPosition={Position.Right}
-          />
-          <ChartType
-            id={getSpecId('time1')}
-            name={'Financial'}
-            data={TIME_DATA}
-            xAccessor={0}
-            yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
-          />
-          {this.state.multi && (
-            <ChartType2
-              id={getSpecId('time2')}
-              name={'Tech support'}
-              data={TIME_DATA_2}
-              xAccessor={0}
-              yAccessors={[1]}
-              stackAccessors={this.state.stacked ? [0] : undefined}
-            />
-          )}
-          <Axis
-            title={formatDate(Date.now(), dateFormatAliases.date)}
-            id={getAxisId('bottom-axis')}
-            position={Position.Bottom}
-            xScaleType={ScaleType.Time}
-            tickFormat={formatter}
-            showGridLines
-            gridLineStyle={gridVerticalSettings}
-          />
-          <Axis
-            id={getAxisId('left-axis')}
-            position={Position.Left}
-            showGridLines
-            gridLineStyle={gridHorizontalSettings}
-          />
-        </Chart>
-
-        <EuiSpacer />
-
-        <EuiFlexGrid
-          columns={3}
-          className="euiGuide__chartsPageCrosshairSection">
-          {/* <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Titles"
-              description="Provide a meaningful, descriptive title. The title may need to change when show single vs multiple series."
-            />
-          </EuiFlexItem> */}
-
+        <EuiFlexGrid columns={4} responsive={false}>
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Chart types"
-              description="Time series charts can be displayed as any x/y series type.">
-              <EuiRadioGroup
-                compressed
-                options={this.toggleButtonsIcons}
-                idSelected={this.state.toggleIdSelected}
-                onChange={this.onChartTypeChange}
-              />
-            </EuiCard>
+            <EuiPanel>
+              <EuiStat
+                title=""
+                description="Number of things"
+                textAlign="right">
+                <EuiSpacer size="s" />
+                <Chart
+                  size={[undefined, 64]}
+                  className="eui-displayInlineBlock">
+                  <Settings theme={theme} showLegend={false} tooltip="none" />
+                  <BarSeries
+                    id="numbers"
+                    data={TIME_DATA_SMALL}
+                    xAccessor={0}
+                    yAccessors={[1]}
+                  />
+                </Chart>
+              </EuiStat>
+            </EuiPanel>
           </EuiFlexItem>
-
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Single vs multiple series"
-              description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation. Do not stack line charts.">
-              <EuiSwitch
-                label="Show multi-series"
-                checked={this.state.multi}
-                onChange={this.onMultiChange}
-              />
-              <EuiSpacer size="s" />
-              <EuiSwitch
-                label="Stacked"
-                checked={this.state.stacked}
-                onChange={this.onStackedChange}
-                disabled={!this.state.multi}
-              />
-            </EuiCard>
+            <EuiPanel>
+              <EuiStat
+                title=""
+                description="Increase over time"
+                titleColor="secondary"
+                textAlign="right">
+                <EuiSpacer size="s" />
+                <Chart
+                  size={[undefined, 48]}
+                  className="eui-displayInlineBlock">
+                  <Settings theme={theme} showLegend={false} tooltip="none" />
+                  <LineSeries
+                    id="increase"
+                    data={TIME_DATA_SMALL}
+                    xAccessor={0}
+                    yAccessors={[1]}
+                    customSeriesColors={getColorsMap(
+                      isDarkTheme
+                        ? palettes.euiPaletteForDarkBackground.colors[1]
+                        : palettes.euiPaletteForLightBackground.colors[1],
+                      'increase'
+                    )}
+                  />
+                </Chart>
+                <EuiSpacer size="s" />
+                <EuiText size="xs" color="secondary">
+                  <EuiIcon type="sortUp" /> <strong>15%</strong>
+                </EuiText>
+              </EuiStat>
+            </EuiPanel>
           </EuiFlexItem>
-
           <EuiFlexItem>
-            <EuiCard
-              textAlign="left"
-              title="Tick marks"
-              description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
-            />
+            <EuiPanel>
+              <EuiStat
+                title={
+                  <span>
+                    <EuiIcon size="xl" type="sortDown" /> 15%
+                  </span>
+                }
+                description="Major decrease over time"
+                titleColor="danger"
+                textAlign="right">
+                <EuiSpacer size="s" />
+                <Chart
+                  size={[undefined, 16]}
+                  className="eui-displayInlineBlock">
+                  <Settings theme={theme} showLegend={false} tooltip="none" />
+                  <LineSeries
+                    id="major"
+                    data={TIME_DATA_SMALL_REVERSE_MAJOR}
+                    xAccessor={0}
+                    yAccessors={[1]}
+                    customSeriesColors={getColorsMap(
+                      isDarkTheme
+                        ? palettes.euiPaletteForDarkBackground.colors[3]
+                        : palettes.euiPaletteForLightBackground.colors[3],
+                      'major'
+                    )}
+                  />
+                </Chart>
+              </EuiStat>
+            </EuiPanel>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiPanel>
+              <EuiStat
+                title=""
+                description="Subtle decrease"
+                titleColor="danger"
+                textAlign="right">
+                <EuiSpacer size="s" />
+                <Chart
+                  size={[undefined, 48]}
+                  className="eui-displayInlineBlock">
+                  <Settings theme={theme} showLegend={false} tooltip="none" />
+                  <AreaSeries
+                    id="subtle"
+                    data={TIME_DATA_SMALL_REVERSE}
+                    xAccessor={0}
+                    yAccessors={[1]}
+                    customSeriesColors={getColorsMap(
+                      isDarkTheme
+                        ? palettes.euiPaletteForDarkBackground.colors[3]
+                        : palettes.euiPaletteForLightBackground.colors[3],
+                      'subtle'
+                    )}
+                  />
+                </Chart>
+                <EuiSpacer size="s" />
+                <EuiText size="xs" color="danger">
+                  - 15 points since last Tuesday
+                </EuiText>
+              </EuiStat>
+            </EuiPanel>
           </EuiFlexItem>
         </EuiFlexGrid>
       </Fragment>
