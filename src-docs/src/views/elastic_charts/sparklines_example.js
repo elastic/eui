@@ -49,7 +49,7 @@ export const ElasticChartsSparklinesExample = {
         <Fragment>
           <p>
             Sparklines are quick visual summaries of data where actual values
-            are not important. They should only be a single series and not
+            are not important. They should be only a single series and not
             contain more than 12 values. Be sure to remove all extraneous
             markings like ticks, labels, tooltips and grid. The surrounding
             content should give context to the sparkline.
