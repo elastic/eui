@@ -27,7 +27,7 @@ export type EuiContextMenuPanelItemDescriptor = Omit<
   panel?: EuiContextMenuPanelId;
 };
 
-interface EuiContextMenuPanelDescriptor {
+export interface EuiContextMenuPanelDescriptor {
   id: EuiContextMenuPanelId;
   title?: string;
   items?: EuiContextMenuPanelItemDescriptor[];

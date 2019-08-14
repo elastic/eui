@@ -198,7 +198,9 @@ function getElementFromInitialFocus(
   return initialFocus as HTMLElement | null;
 }
 
-type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPopoverProps;
+export type Props = CommonProps &
+  HTMLAttributes<HTMLDivElement> &
+  EuiPopoverProps;
 
 interface State {
   prevProps: {
