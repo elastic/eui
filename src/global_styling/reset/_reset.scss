@@ -71,6 +71,11 @@ body {
 
 *:focus {
   outline: none;
+
+  // sass-lint:disable no-vendor-prefixes
+  &::-moz-focus-inner {
+    border: none;
+  }
 }
 
 a {
