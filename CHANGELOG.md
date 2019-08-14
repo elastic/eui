@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.3.0`.
+- Fixed `EuiSwitch` semantics to align with aria roles ([#2193](https://github.com/elastic/eui/pull/2193))
+- Removed Firefox's focus ring to match other browsers ([#2193](https://github.com/elastic/eui/pull/2193))
 
 ## [`13.3.0`](https://github.com/elastic/eui/tree/v13.3.0)
 
