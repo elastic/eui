@@ -81,7 +81,7 @@ const EuiFlexGroup = forwardRef<
       justifyContent = 'flexStart',
       direction = 'row',
       wrap = false,
-      component: Component = 'div',
+      component = 'div',
       ...rest
     },
     ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
@@ -99,26 +99,26 @@ const EuiFlexGroup = forwardRef<
       className
     );
 
-    if (!isValidElement(Component)) {
+    if (!isValidElement(component)) {
       throw new Error(
-        `${Component} is not a valid element type. Use \`div\` or \`span\`.`
+        `${component} is not a valid element type. Use \`div\` or \`span\`.`
       );
     }
 
-    return Component === 'span' ? (
-      <Component
+    return component === 'span' ? (
+      <span
         className={classes}
         ref={ref as Ref<HTMLSpanElement>}
         {...rest as HTMLAttributes<HTMLSpanElement>}>
         {children}
-      </Component>
+      </span>
     ) : (
-      <Component
+      <div
         className={classes}
         ref={ref as Ref<HTMLDivElement>}
         {...rest as HTMLAttributes<HTMLDivElement>}>
         {children}
-      </Component>
+      </div>
     );
   }
 );
