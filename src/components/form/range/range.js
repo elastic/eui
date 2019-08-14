@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
-import { EuiPopover } from '../../popover';
+import { EuiInputPopover } from '../../popover';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -172,23 +172,14 @@ export class EuiRange extends Component {
     );
 
     const thePopover = showInputOnly ? (
-      <EuiPopover
-        // ownFocus={popoverShouldOwnFocus}
-        button={theInput}
+      <EuiInputPopover
+        className="euiRange__popover"
+        input={theInput}
+        fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        // zIndex={popoverZIndex}
-        className={classNames('euiRange__popover', {
-          'euiRange__popover--fullWidth': fullWidth,
-        })}
-        anchorClassName="euiRange__popoverAnchor"
-        display="block"
-        // panelClassName={panelClasses}
-        // attachToAnchor={button ? false : true}
-        anchorPosition="downLeft"
-        panelPaddingSize="s">
+        closePopover={this.closePopover}>
         {theRange}
-      </EuiPopover>
+      </EuiInputPopover>
     ) : (
       undefined
     );

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
-import { EuiPopover } from '../../popover';
+import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
 
 import { EuiRangeHighlight } from './range_highlight';
@@ -242,6 +242,7 @@ export class EuiDualRange extends Component {
       compressed,
       disabled,
       fullWidth,
+      readOnly,
       id,
       max,
       min,
@@ -279,8 +280,10 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onClick={this.onInputClick}
+        readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
+        controlOnly={showInputOnly}
       />
     ) : (
       undefined
@@ -302,8 +305,10 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onClick={this.onInputClick}
+        readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
+        controlOnly={showInputOnly}
       />
     ) : (
       undefined
@@ -404,30 +409,23 @@ export class EuiDualRange extends Component {
     );
 
     const thePopover = showInputOnly ? (
-      <EuiPopover
-        // ownFocus={popoverShouldOwnFocus}
-        button={
+      <EuiInputPopover
+        className="euiRange__popover"
+        input={
           <EuiFormControlLayoutDelimited
-            fullWidth={fullWidth}
-            compressed={compressed}
             startControl={minInput}
             endControl={maxInput}
+            isDisabled={disabled}
+            fullWidth={fullWidth}
+            compressed={compressed}
+            readOnly={readOnly}
           />
         }
+        fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        // zIndex={popoverZIndex}
-        className={classNames('euiRange__popover', {
-          'euiRange__popover--fullWidth': fullWidth,
-        })}
-        anchorClassName="euiRange__popoverAnchor"
-        display="block"
-        // panelClassName={panelClasses}
-        // attachToAnchor={button ? false : true}
-        anchorPosition="downLeft"
-        panelPaddingSize="s">
+        closePopover={this.closePopover}>
         {theRange}
-      </EuiPopover>
+      </EuiInputPopover>
     ) : (
       undefined
     );
@@ -451,6 +449,7 @@ EuiDualRange.propTypes = {
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
   disabled: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */

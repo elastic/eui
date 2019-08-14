@@ -11,6 +11,7 @@
   > .euiFormControlLayout__childrenWrapper {
     display: flex;
     align-items: center;
+    width: 100%;
   }
 
   &[class*='--compressed'] {
@@ -35,6 +36,10 @@
   &[class*='--fullWidth'] input {
     width: 100%;
     max-width: none;
+  }
+
+  &[class*='-isDisabled'] {
+    @include euiFormControlDisabledStyle;
   }
 
   &[class*='--readOnly'] {

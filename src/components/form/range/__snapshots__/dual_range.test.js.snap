@@ -366,6 +366,54 @@ exports[`EuiDualRange props levels should render 1`] = `
 </div>
 `;
 
+exports[`EuiDualRange props only input should render 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div
+      class="euiFormControlLayout euiFormControlLayoutDelimited"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="aria-label"
+          class="euiFieldNumber euiFormControlLayoutDelimited__input"
+          max="8"
+          min="1"
+          name="name-minValue"
+          step="1"
+          type="number"
+          value="1"
+        />
+        <div
+          class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+        >
+          <div
+            class="euiTextColor euiTextColor--subdued"
+          >
+            →
+          </div>
+        </div>
+        <input
+          aria-label="aria-label"
+          class="euiFieldNumber euiFormControlLayoutDelimited__input"
+          max="10"
+          min="1"
+          name="name-maxValue"
+          step="1"
+          type="number"
+          value="8"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange props range should render 1`] = `
 <div
   class="euiRangeWrapper euiDualRange"

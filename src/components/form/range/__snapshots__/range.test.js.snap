@@ -169,6 +169,36 @@ exports[`EuiRange props fullWidth should render 1`] = `
 </div>
 `;
 
+exports[`EuiRange props input only should render 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="aria-label"
+          class="euiFieldNumber euiRangeInput euiRangeInput--max"
+          data-test-subj="test subject string"
+          max="10"
+          min="1"
+          name="name"
+          step="1"
+          type="number"
+          value="8"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiRange props input should render 1`] = `
 <div
   class="euiRangeWrapper euiRange testClass1 testClass2"

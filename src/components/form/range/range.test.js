@@ -99,6 +99,23 @@ describe('EuiRange', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('input only should render', () => {
+      const component = render(
+        <EuiRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value="8"
+          onChange={() => {}}
+          showInput="only"
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('levels should render', () => {
       const component = render(
         <EuiRange

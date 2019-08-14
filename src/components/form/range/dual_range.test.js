@@ -86,6 +86,23 @@ describe('EuiDualRange', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('only input should render', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value={['1', '8']}
+          onChange={() => {}}
+          showInput="only"
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('levels should render', () => {
       const component = render(
         <EuiDualRange

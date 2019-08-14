@@ -87,6 +87,7 @@ export default class extends Component {
           showInput="only"
           showLabels
           levels={this.levels}
+          readOnly
         />
       </Fragment>
     );
