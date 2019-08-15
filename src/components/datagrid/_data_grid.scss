@@ -1,11 +1,22 @@
+.euiDataGrid--fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $euiZModal;
+  background: $euiColorEmptyShade;
+}
+
 .euiDataGrid__content {
   @include euiScrollBar;
+
   font-feature-settings: 'tnum' 1; // Tabular numbers
   overflow-x: auto;
   scroll-padding: 0;
   max-width: 100%;
   width: 100%;
-  background: $euiColorLightestShade;
+  background: $euiPageBackgroundColor;
 }
 
 .euiDataGrid__controls {
@@ -16,4 +27,5 @@
   border-top: $euiBorderThin;
   border-right: $euiBorderThin;
   border-left: $euiBorderThin;
+  padding: $euiSizeXS;
 }

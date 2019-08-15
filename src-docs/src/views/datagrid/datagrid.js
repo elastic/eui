@@ -229,7 +229,7 @@ export default class DataGrid extends Component {
     ];
 
     this.state = {
-      borderSelected: 'all',
+      borderSelected: 'none',
       fontSizeSelected: 'm',
       cellPaddingSelected: 'm',
       stripes: false,

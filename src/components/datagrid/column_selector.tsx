@@ -58,10 +58,11 @@ export const useColumnSelector = (
       button={
         <Fragment>
           <EuiButtonEmpty
-            size="s"
-            iconType="list"
+            size="xs"
+            iconType="kqlField"
+            color="text"
             onClick={() => setIsOpen(!isOpen)}>
-            Columns
+            Fields
           </EuiButtonEmpty>
         </Fragment>
       }>

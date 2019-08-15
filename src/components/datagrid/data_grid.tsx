@@ -6,7 +6,6 @@ import React, {
   useState,
   useRef,
   useEffect,
-  Fragment,
 } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
@@ -15,30 +14,23 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridPaginationProps,
+  EuiDataGridStyle,
+  EuiDataGridStyleBorders,
+  EuiDataGridStyleCellPaddings,
+  EuiDataGridStyleFontSizes,
+  EuiDataGridStyleHeader,
+  EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { keyCodes } from '../../services';
 import { EuiSpacer } from '../spacer';
+// @ts-ignore-next-line
+import { EuiButtonEmpty } from '../button';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
+import { useStyleSelector } from './style_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
-
-// Types for styling options, passed down through the `gridStyle` prop
-type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
-type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
-type EuiDataGridStyleHeader = 'shade' | 'underline';
-type EuiDataGridStyleRowHover = 'highlight' | 'none';
-type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
-
-interface EuiDataGridStyle {
-  fontSize?: EuiDataGridStyleFontSizes;
-  border?: EuiDataGridStyleBorders;
-  stripes?: boolean;
-  header?: EuiDataGridStyleHeader;
-  rowHover?: EuiDataGridStyleRowHover;
-  cellPadding?: EuiDataGridStyleCellPaddings;
-}
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -153,6 +145,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   }, []);
 
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
   const onCellFocus = useCallback(
     (x: number, y: number) => {
@@ -200,37 +194,42 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     rowCount,
     renderCellValue,
     className,
-    gridStyle = {},
+    gridStyle,
     pagination,
     ...rest
   } = props;
 
-  const fontSize = gridStyle.fontSize || 'm';
-  const border = gridStyle.border || 'all';
-  const header = gridStyle.header || 'shade';
-  const rowHover = gridStyle.rowHover || 'highlight';
-  const stripes = gridStyle.stripes ? true : false;
-  const cellPadding = gridStyle.cellPadding || 'm';
+  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
+  const [StyleSelector, gridStyles] = useStyleSelector(gridStyle);
 
   const classes = classNames(
     'euiDataGrid',
-    fontSizesToClassMap[fontSize],
-    bordersToClassMap[border],
-    headerToClassMap[header],
-    rowHoverToClassMap[rowHover],
-    cellPaddingsToClassMap[cellPadding],
+    fontSizesToClassMap[gridStyles.fontSize || 'm'],
+    bordersToClassMap[gridStyles.border || 'all'],
+    headerToClassMap[gridStyles.header || 'shade'],
+    rowHoverToClassMap[gridStyles.rowHover || 'highlight'],
+    cellPaddingsToClassMap[gridStyles.cellPadding || 'm'],
     {
-      'euiDataGrid--stripes': stripes,
+      'euiDataGrid--stripes': gridStyles.stripes || false,
+    },
+    {
+      'euiDataGrid--fullScreen': isFullScreen,
     },
     className
   );
 
-  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
-
   return (
-    <Fragment>
+    <div className={classes}>
       <div className="euiDataGrid__controls">
         <ColumnSelector />
+        <StyleSelector />
+        <EuiButtonEmpty
+          size="xs"
+          iconType="fullScreen"
+          color="text"
+          onClick={() => setIsFullScreen(!isFullScreen)}>
+          Full screen
+        </EuiButtonEmpty>
       </div>
       {/* Unsure why this element causes errors as focus follows spec */}
       {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
@@ -239,8 +238,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         onKeyDown={handleKeyDown}
         ref={gridRef}
         // {...label}
-        {...rest}
-        className={classes}>
+        {...rest}>
         <div className="euiDataGrid__content">
           <EuiDataGridHeaderRow
             columns={visibleColumns}
@@ -260,6 +258,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         <EuiSpacer size="s" />
         {renderPagination(props)}
       </div>
-    </Fragment>
+    </div>
   );
 };
