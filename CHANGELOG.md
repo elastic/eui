@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
+
+**Bug fixes**
+
 - Fixed `EuiSwitch` semantics to align with aria roles ([#2193](https://github.com/elastic/eui/pull/2193))
 - Removed Firefox's focus ring to match other browsers ([#2193](https://github.com/elastic/eui/pull/2193))
 
