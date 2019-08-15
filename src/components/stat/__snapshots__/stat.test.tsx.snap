@@ -15,12 +15,12 @@ exports[`EuiStat is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -37,12 +37,12 @@ exports[`EuiStat props accent is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--accent"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -59,12 +59,12 @@ exports[`EuiStat props center is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -81,12 +81,12 @@ exports[`EuiStat props danger is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--danger"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -103,12 +103,12 @@ exports[`EuiStat props default is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -125,12 +125,12 @@ exports[`EuiStat props l is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -147,12 +147,12 @@ exports[`EuiStat props left is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -171,16 +171,16 @@ exports[`EuiStat props loading is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title-isLoading"
-  />
-  <p
-    aria-label="Statistic is loading"
   >
-    --
-  </p>
-  <p />
+    <p
+      aria-label="Statistic is loading"
+    >
+      --
+    </p>
+  </span>
 </div>
 `;
 
@@ -197,12 +197,12 @@ exports[`EuiStat props m is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--medium euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -219,12 +219,12 @@ exports[`EuiStat props primary is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--primary"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -241,12 +241,12 @@ exports[`EuiStat props right is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -263,12 +263,12 @@ exports[`EuiStat props s is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--small euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -285,12 +285,12 @@ exports[`EuiStat props secondary is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--secondary"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -307,12 +307,12 @@ exports[`EuiStat props subdued is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -320,12 +320,12 @@ exports[`EuiStat props title and description are reversed 1`] = `
 <div
   class="euiStat euiStat--leftAligned"
 >
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
-  </p>
+  </span>
   <div
     class="euiText euiText--small euiStat__description"
   >
@@ -351,12 +351,12 @@ exports[`EuiStat props xs is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--xsmall euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -373,12 +373,12 @@ exports[`EuiStat props xxs is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--xxsmall euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
 
@@ -395,11 +395,11 @@ exports[`EuiStat props xxxs is rendered 1`] = `
       description
     </p>
   </div>
-  <p
+  <span
     aria-labelledby="generated-id"
     class="euiTitle euiTitle--xxxsmall euiStat__title"
   >
     title
-  </p>
+  </span>
 </div>
 `;
