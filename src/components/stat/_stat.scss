@@ -9,6 +9,7 @@
   );
 
   .euiStat__title {
+    display: block;
     color: $euiColorFullShade;
 
     // Create color classes based upon the map.
@@ -20,7 +21,6 @@
   }
 
   .euiStat__title-isLoading {
-    display: block;
     animation: euiStatPulse 1.5s infinite ease-in-out;
   }
 
