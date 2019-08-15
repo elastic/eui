@@ -1,11 +1,14 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, {
+  Dispatch,
+  FunctionComponent,
+  SetStateAction,
+  useState,
+} from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 // @ts-ignore-next-line
 import { EuiPopover } from '../popover';
 // @ts-ignore-next-line
-import { EuiButtonEmpty } from '../button';
-// @ts-ignore-next-line
-import { EuiButtonGroup } from '../button';
+import { EuiButtonEmpty, EuiButtonGroup } from '../button';
 
 export const useStyleSelector = (
   initialStyles: EuiDataGridStyle = {
@@ -16,7 +19,11 @@ export const useStyleSelector = (
     rowHover: 'highlight',
     header: 'shade',
   }
-): [FunctionComponent<any>, EuiDataGridStyle] => {
+): [
+  FunctionComponent<any>,
+  EuiDataGridStyle,
+  Dispatch<SetStateAction<EuiDataGridStyle>>
+] => {
   const [gridStyles, setGridStyles] = useState(initialStyles);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +82,7 @@ export const useStyleSelector = (
     setGridDensity(optionId);
 
     const selectedDensity = densityOptions.filter(options => {
-      return options.id == optionId;
+      return options.id === optionId;
     })[0];
     setGridStyles(selectedDensity.density);
   };
@@ -110,5 +117,5 @@ export const useStyleSelector = (
     </EuiPopover>
   );
 
-  return [StyleSelector, gridStyles];
+  return [StyleSelector, gridStyles, setGridStyles];
 };
