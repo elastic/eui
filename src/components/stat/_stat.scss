@@ -20,6 +20,7 @@
   }
 
   .euiStat__title-isLoading {
+    display: block;
     animation: euiStatPulse 1.5s infinite ease-in-out;
   }
 
