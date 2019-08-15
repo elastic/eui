@@ -200,7 +200,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   } = props;
 
   const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
-  const [StyleSelector, gridStyles] = useStyleSelector(gridStyle);
+  const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector(
+    gridStyle
+  );
+  useEffect(() => {
+    if (gridStyle) {
+      setGridStyles(gridStyle);
+    }
+  }, [gridStyle]);
 
   const classes = classNames(
     'euiDataGrid',
