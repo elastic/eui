@@ -119,7 +119,9 @@ exports[`EuiDataGrid pagination renders 1`] = `
 `;
 
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
-Array [
+<div
+  class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
+>
   <div
     class="euiDataGrid__controls"
   >
@@ -131,7 +133,7 @@ Array [
         class="euiPopover__anchor"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
           type="button"
         >
           <span
@@ -149,16 +151,70 @@ Array [
             <span
               class="euiButtonEmpty__text"
             >
-              Columns
+              Fields
             </span>
           </span>
         </button>
       </div>
     </div>
-  </div>,
+    <div
+      class="euiPopover euiPopover--anchorDownCenter"
+      data-test-subj="dataGridColumnSelectorPopover"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          type="button"
+        >
+          <span
+            class="euiButtonEmpty__content"
+          >
+            <svg
+              aria-hidden="true"
+              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <span
+              class="euiButtonEmpty__text"
+            >
+              Density
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+      type="button"
+    >
+      <span
+        class="euiButtonEmpty__content"
+      >
+        <svg
+          aria-hidden="true"
+          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+          focusable="false"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Full screen
+        </span>
+      </span>
+    </button>
+  </div>
   <div
     aria-label="aria-label"
-    class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
     data-test-subj="test subject string"
     role="grid"
   >
@@ -270,6 +326,6 @@ Array [
     <div
       class="euiSpacer euiSpacer--s"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
