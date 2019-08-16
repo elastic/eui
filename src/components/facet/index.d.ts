@@ -1,12 +1,8 @@
-import {
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-  ReactNode,
-  MouseEventHandler,
-  FunctionComponent,
-} from 'react';
-import { CommonProps, RefCallback } from '../common';
+import { ButtonHTMLAttributes, HTMLAttributes, FunctionComponent } from 'react';
+import { CommonProps } from '../common';
 /// <reference path="../flex/index.d.ts" />
+
+import { EuiFacetButtonProps as ButtonProps } from './facet_button';
 
 declare module '@elastic/eui' {
   /**
@@ -15,16 +11,8 @@ declare module '@elastic/eui' {
    * @see './facet_button.js'
    */
 
-  export interface EuiFacetButtonProps {
-    children: ReactNode;
-    icon?: ReactNode;
-    isDisabled?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    isLoading?: boolean;
-    isSelected?: boolean;
-    quantity: number;
-    buttonRef: RefCallback<HTMLButtonElement>;
-  }
+  export type EuiFacetButtonProps = ButtonProps;
+
   export const EuiFacetButton: FunctionComponent<
     CommonProps & ButtonHTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
   >;

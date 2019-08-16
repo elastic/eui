@@ -1,7 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
+
+**Bug fixes**
+
 - Fixed `EuiSwitch` semantics to align with aria roles ([#2193](https://github.com/elastic/eui/pull/2193))
 - Removed Firefox's focus ring to match other browsers ([#2193](https://github.com/elastic/eui/pull/2193))
+- Added missing `onChange` TS defs for EuiRange ([#2211](https://github.com/elastic/eui/pull/2211))
+- Fixed `EuiStat` invalid DOM nesting due to a `<p>` tag nested within another `<p>` tag ([#2229](https://github.com/elastic/eui/pull/2229))
 - Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
 
 ## [`13.3.0`](https://github.com/elastic/eui/tree/v13.3.0)
