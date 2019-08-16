@@ -16,6 +16,7 @@
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
+  cursor: default;
 
   &:focus-within {
     @include euiFocusRing('small');
