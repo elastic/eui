@@ -206,6 +206,16 @@ exports[`EuiStat props loading is rendered 1`] = `
   class="euiStat euiStat--leftAligned testClass1 testClass2"
   data-test-subj="test subject string"
 >
+  <div
+    class="euiText euiText--small euiStat__description"
+  >
+    <p
+      aria-hidden="true"
+      id="generated-id"
+    >
+      description
+    </p>
+  </div>
   <p
     aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title-isLoading"

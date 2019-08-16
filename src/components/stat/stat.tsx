@@ -109,9 +109,11 @@ export const EuiStat: FunctionComponent<
   if (isLoading) {
     statDisplay = (
       <Fragment>
+        {!reverse && descriptionDisplay}
         <EuiTitle size={titleSize} className={titleClasses}>
           <p aria-hidden="true">--</p>
         </EuiTitle>
+        {reverse && descriptionDisplay}
         <EuiScreenReaderOnly>
           <p>
             <EuiI18n
