@@ -7,6 +7,7 @@
 - Fixed `EuiSwitch` semantics to align with aria roles ([#2193](https://github.com/elastic/eui/pull/2193))
 - Removed Firefox's focus ring to match other browsers ([#2193](https://github.com/elastic/eui/pull/2193))
 - Added missing `onChange` TS defs for EuiRange ([#2211](https://github.com/elastic/eui/pull/2211))
+- Fixed 'EuiSuperDatePicker' Unnecessary margin on right side in max with container ([#2236](https://github.com/elastic/eui/pull/2236))
 
 ## [`13.3.0`](https://github.com/elastic/eui/tree/v13.3.0)
 
