@@ -1,6 +1,6 @@
 .euiSuperDatePicker__flexWrapper {
   // Need to offset 8px because of negative margins added by small size gutter
-  max-width: calc(100% + 8px);
+  max-width: calc(100% + #{$euiSizeS});
   width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
 }
 
