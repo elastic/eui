@@ -74,7 +74,9 @@ export class EuiDataGridCell extends Component<
         data-test-subj="dataGridRowCell"
         onFocus={() => onCellFocus(colIndex, rowIndex)}
         style={{ width: `${width}px` }}>
-        <EuiDataGridCellContent {...rest} />
+        <div className="euiDataGridRowCell__content">
+          <EuiDataGridCellContent {...rest} />
+        </div>
       </div>
     );
   }

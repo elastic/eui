@@ -46,6 +46,8 @@ export const useColumnSelector = (
     setVisibleColumns(nextVisibleColumns);
   }
 
+  const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
+
   const ColumnSelector = () => (
     <EuiPopover
       data-test-subj="dataGridColumnSelectorPopover"
@@ -56,15 +58,18 @@ export const useColumnSelector = (
       ownFocus
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
-        <Fragment>
-          <EuiButtonEmpty
-            size="xs"
-            iconType="kqlField"
-            color="text"
-            onClick={() => setIsOpen(!isOpen)}>
-            Fields
-          </EuiButtonEmpty>
-        </Fragment>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="eyeClosed"
+          color="text"
+          className={
+            numberOfHiddenFields > 0 ? 'euiDataGrid__controlBtn--active' : null
+          }
+          onClick={() => setIsOpen(!isOpen)}>
+          {numberOfHiddenFields > 0
+            ? `${numberOfHiddenFields} hidden fields`
+            : 'Hide fields'}
+        </EuiButtonEmpty>
       }>
       <EuiDragDropContext onDragEnd={onDragEnd}>
         <EuiDroppable

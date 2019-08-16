@@ -23,7 +23,6 @@ import {
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { keyCodes } from '../../services';
-import { EuiSpacer } from '../spacer';
 // @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { EuiDataGridBody } from './data_grid_body';
@@ -31,6 +30,8 @@ import { useColumnSelector } from './column_selector';
 import { useStyleSelector } from './style_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
+// @ts-ignore-next-line
+import { EuiFocusTrap } from '../focus_trap';
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -155,7 +156,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [setFocusedCell]
   );
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+  const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    switch (e.keyCode) {
+      case keyCodes.ESCAPE:
+        e.preventDefault();
+        setIsFullScreen(false);
+        break;
+    }
+  };
+
+  const handleGridCellsKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const colCount = props.columns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
@@ -226,45 +236,50 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   return (
-    <div className={classes}>
-      <div className="euiDataGrid__controls">
-        <ColumnSelector />
-        <StyleSelector />
-        <EuiButtonEmpty
-          size="xs"
-          iconType="fullScreen"
-          color="text"
-          onClick={() => setIsFullScreen(!isFullScreen)}>
-          Full screen
-        </EuiButtonEmpty>
-      </div>
-      {/* Unsure why this element causes errors as focus follows spec */}
-      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-      <div
-        role="grid"
-        onKeyDown={handleKeyDown}
-        ref={gridRef}
-        // {...label}
-        {...rest}>
-        <div className="euiDataGrid__content">
-          <EuiDataGridHeaderRow
-            columns={visibleColumns}
-            columnWidths={columnWidths}
-            setColumnWidth={setColumnWidth}
-          />
-          <EuiDataGridBody
-            columnWidths={columnWidths}
-            columns={visibleColumns}
-            focusedCell={focusedCell}
-            onCellFocus={onCellFocus}
-            pagination={pagination}
-            renderCellValue={renderCellValue}
-            rowCount={rowCount}
-          />
+    <EuiFocusTrap disabled={!isFullScreen}>
+      <div className={classes} onKeyDown={handleGridKeyDown}>
+        <div className="euiDataGrid__controls">
+          <ColumnSelector />
+          <StyleSelector />
+          <EuiButtonEmpty
+            size="xs"
+            iconType="fullScreen"
+            color="text"
+            className={isFullScreen ? 'euiDataGrid__controlBtn--active' : null}
+            onClick={() => setIsFullScreen(!isFullScreen)}>
+            {isFullScreen ? 'Exit full screen' : 'Full screen'}
+          </EuiButtonEmpty>
         </div>
-        <EuiSpacer size="s" />
-        {renderPagination(props)}
+        {/* Unsure why this element causes errors as focus follows spec */}
+        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
+        <div
+          role="grid"
+          onKeyDown={handleGridCellsKeyDown}
+          ref={gridRef}
+          className="euiDataGrid__verticalScroll"
+          // {...label}
+          {...rest}>
+          <div className="euiDataGrid__overflow">
+            <div className="euiDataGrid__content">
+              <EuiDataGridHeaderRow
+                columns={visibleColumns}
+                columnWidths={columnWidths}
+                setColumnWidth={setColumnWidth}
+              />
+              <EuiDataGridBody
+                columnWidths={columnWidths}
+                columns={visibleColumns}
+                focusedCell={focusedCell}
+                onCellFocus={onCellFocus}
+                pagination={pagination}
+                renderCellValue={renderCellValue}
+                rowCount={rowCount}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="euiDataGrid__pagination">{renderPagination(props)}</div>
       </div>
-    </div>
+    </EuiFocusTrap>
   );
 };

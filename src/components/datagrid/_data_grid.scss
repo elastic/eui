@@ -1,4 +1,5 @@
 .euiDataGrid--fullScreen {
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -6,6 +7,35 @@
   bottom: 0;
   z-index: $euiZModal;
   background: $euiColorEmptyShade;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+
+  .euiDataGrid__controls {
+    flex-grow: 0;
+  }
+
+  .euiDataGrid__pagination {
+    flex-grow: 0;
+    padding-bottom: $euiSize;
+    background: $euiColorLightestShade;
+  }
+
+  .euiDataGrid__verticalScroll {
+    flex-grow: 1;
+    overflow-y: hidden;
+    height: 100%;
+  }
+
+  .euiDataGrid__overflow {
+    overflow-y: hidden;
+    height: 100%;
+  }
+
+  .euiDataGrid__content {
+    @include euiYScrollWithShadows;
+  }
 }
 
 .euiDataGrid__content {
@@ -22,10 +52,23 @@
 .euiDataGrid__controls {
   @include euiBottomShadowSmall;
 
+  background: $euiPageBackgroundColor;
   position: relative;
   z-index: 2;
   border-top: $euiBorderThin;
   border-right: $euiBorderThin;
   border-left: $euiBorderThin;
   padding: $euiSizeXS;
+}
+
+.euiDataGrid__controlBtn--active {
+  background: tintOrShade($euiColorSuccess, 80%, 50%);
+  border-radius: $euiBorderRadius;
+
+  &:focus {
+    background: tintOrShade($euiColorSuccess, 80%, 50%);
+  }
+}
+.euiDataGrid__pagination {
+  padding-top: $euiSize;
 }

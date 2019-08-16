@@ -5,24 +5,42 @@
 
 @include euiDataGridRowCell {
   @include euiFontSizeS;
-  @include euiTextTruncate;
 
   padding: $euiDataGridCellPaddingM;
   border-right: $euiBorderThin;
+  border-right-color: tintOrShade($euiBorderColor, 60%, 60%);
   border-bottom: $euiBorderThin;
-  overflow: hidden;
-  white-space: nowrap;
   flex: 0 0 auto;
   background: $euiColorEmptyShade;
+  position: relative;
+  align-items: center;
+  display: flex;
 
   &:first-of-type {
     border-left: $euiBorderThin;
   }
 
+  &:last-of-type {
+    border-right-color: $euiBorderColor;
+  }
+
   &:focus {
-    @include euiFocusRing;
+    border: 1px solid transparent;
+    margin-top: -1px;
+    box-shadow: 0 0 0 2px $euiColorPrimary;
+    border-radius: 1px;
     z-index: 2; // Needed so it sits above potentional striping in the next row
   }
+
+  &:focus:not(:first-of-type) {
+    padding-left: $euiDataGridCellPaddingM - 1px;
+  }
+}
+
+.euiDataGridRowCell__content {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 // Row highlights
@@ -48,14 +66,14 @@
 // Border alternates
 @include euiDataGridStyles(bordersNone) {
   @include euiDataGridRowCell {
-    border: none;
+    border-color: transparent;
   }
 }
 
 @include euiDataGridStyles(bordersHorizontal) {
   @include euiDataGridRowCell {
-    border-right: none;
-    border-left: none;
+    border-right-color: transparent;
+    border-left-color: transparent;
   }
 }
 
@@ -76,11 +94,19 @@
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingS;
+
+    &:focus:not(:first-of-type) {
+      padding-left: $euiDataGridCellPaddingS - 1px;
+    }
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
+
+    &:focus:not(:first-of-type) {
+      padding-left: $euiDataGridCellPaddingL - 1px;
+    }
   }
 }

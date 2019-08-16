@@ -119,19 +119,90 @@ exports[`EuiDataGrid pagination renders 1`] = `
 `;
 
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
-<div
-  class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
->
+Array [
   <div
-    class="euiDataGrid__controls"
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="-1"
+  />,
+  <div
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="-1"
+  />,
+  <div
+    data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft"
-      data-test-subj="dataGridColumnSelectorPopover"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiDataGrid__controls"
       >
+        <div
+          class="euiPopover euiPopover--anchorDownLeft"
+          data-test-subj="dataGridColumnSelectorPopover"
+        >
+          <div
+            class="euiPopover__anchor"
+          >
+            <button
+              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              type="button"
+            >
+              <span
+                class="euiButtonEmpty__content"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiButtonEmpty__text"
+                >
+                  Hide fields
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="euiPopover euiPopover--anchorDownCenter"
+          data-test-subj="dataGridColumnSelectorPopover"
+        >
+          <div
+            class="euiPopover__anchor"
+          >
+            <button
+              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              type="button"
+            >
+              <span
+                class="euiButtonEmpty__content"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+                  focusable="false"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <span
+                  class="euiButtonEmpty__text"
+                >
+                  Density
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
           type="button"
@@ -151,181 +222,131 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             <span
               class="euiButtonEmpty__text"
             >
-              Fields
+              Full screen
             </span>
           </span>
         </button>
       </div>
-    </div>
-    <div
-      class="euiPopover euiPopover--anchorDownCenter"
-      data-test-subj="dataGridColumnSelectorPopover"
-    >
       <div
-        class="euiPopover__anchor"
+        aria-label="aria-label"
+        data-test-subj="test subject string"
+        role="grid"
       >
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
-          type="button"
+        <div
+          class="euiDataGrid__content"
         >
-          <span
-            class="euiButtonEmpty__content"
+          <div
+            class="euiDataGridHeader"
+            data-test-subj="dataGridHeader"
           >
-            <svg
-              aria-hidden="true"
-              class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-              focusable="false"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <span
-              class="euiButtonEmpty__text"
+            <div
+              class="euiDataGridHeaderCell"
+              data-test-subj="dataGridHeaderCell-A"
+              role="columnheader"
+              style="width:undefinedpx"
             >
-              Density
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-    <button
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
-      type="button"
-    >
-      <span
-        class="euiButtonEmpty__content"
-      >
-        <svg
-          aria-hidden="true"
-          class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
-          focusable="false"
-          height="16"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="euiDataGridHeaderCell__content"
+              >
+                A
+              </div>
+            </div>
+            <div
+              class="euiDataGridHeaderCell"
+              data-test-subj="dataGridHeaderCell-B"
+              role="columnheader"
+              style="width:undefinedpx"
+            >
+              <div
+                class="euiDataGridHeaderCell__content"
+              >
+                B
+              </div>
+            </div>
+          </div>
+          <div
+            class="euiDataGridRow"
+            data-test-subj="dataGridRow"
+            role="row"
+          >
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="0"
+            >
+              0, A
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="-1"
+            >
+              0, B
+            </div>
+          </div>
+          <div
+            class="euiDataGridRow"
+            data-test-subj="dataGridRow"
+            role="row"
+          >
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="-1"
+            >
+              1, A
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="-1"
+            >
+              1, B
+            </div>
+          </div>
+          <div
+            class="euiDataGridRow"
+            data-test-subj="dataGridRow"
+            role="row"
+          >
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="-1"
+            >
+              2, A
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="width:undefinedpx"
+              tabindex="-1"
+            >
+              2, B
+            </div>
+          </div>
+        </div>
+        <div
+          class="euiSpacer euiSpacer--s"
         />
-        <span
-          class="euiButtonEmpty__text"
-        >
-          Full screen
-        </span>
-      </span>
-    </button>
-  </div>
-  <div
-    aria-label="aria-label"
-    data-test-subj="test subject string"
-    role="grid"
-  >
-    <div
-      class="euiDataGrid__content"
-    >
-      <div
-        class="euiDataGridHeader"
-        data-test-subj="dataGridHeader"
-      >
-        <div
-          class="euiDataGridHeaderCell"
-          data-test-subj="dataGridHeaderCell-A"
-          role="columnheader"
-          style="width:undefinedpx"
-        >
-          <div
-            class="euiDataGridHeaderCell__content"
-          >
-            A
-          </div>
-        </div>
-        <div
-          class="euiDataGridHeaderCell"
-          data-test-subj="dataGridHeaderCell-B"
-          role="columnheader"
-          style="width:undefinedpx"
-        >
-          <div
-            class="euiDataGridHeaderCell__content"
-          >
-            B
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
-      >
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="0"
-        >
-          0, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          0, B
-        </div>
-      </div>
-      <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
-      >
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          1, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          1, B
-        </div>
-      </div>
-      <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
-      >
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          2, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          2, B
-        </div>
       </div>
     </div>
-    <div
-      class="euiSpacer euiSpacer--s"
-    />
-  </div>
-</div>
+  </div>,
+  <div
+    data-focus-guard="true"
+    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    tabindex="-1"
+  />,
+]
 `;
