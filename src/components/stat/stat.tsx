@@ -9,6 +9,7 @@ import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import makeId from '../form/form_row/make_id';
 
@@ -91,26 +92,45 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      <p id={ariaId}>{description}</p>
+      <p id={ariaId} aria-hidden="true">
+        {description}
+      </p>
+      <EuiScreenReaderOnly>
+        <p>{description}</p>
+      </EuiScreenReaderOnly>
     </EuiText>
   );
 
-  let titleText;
+  let titleDisplay;
+
   if (isLoading) {
-    titleText = (
-      <EuiI18n token="euiStat.loadingText" default="Statistic is loading">
-        {(loadingText: string) => <p aria-label={loadingText}>--</p>}
-      </EuiI18n>
+    titleDisplay = (
+      <Fragment>
+        <EuiTitle size={titleSize} className={titleClasses}>
+          <p aria-hidden="true">--</p>
+        </EuiTitle>
+        <EuiScreenReaderOnly>
+          <p>
+            <EuiI18n
+              token="euiStat.loadingText"
+              default="Statistic is loading"
+            />
+          </p>
+        </EuiScreenReaderOnly>
+      </Fragment>
     );
   } else {
-    titleText = title;
+    titleDisplay = (
+      <Fragment>
+        <EuiTitle size={titleSize} className={titleClasses}>
+          <p aria-hidden="true">{title}</p>
+        </EuiTitle>
+        <EuiScreenReaderOnly>
+          <p>{title}</p>
+        </EuiScreenReaderOnly>
+      </Fragment>
+    );
   }
-
-  const titleDisplay = (
-    <EuiTitle size={titleSize} className={titleClasses}>
-      <span aria-labelledby={ariaId}>{titleText}</span>
-    </EuiTitle>
-  );
 
   let statDisplay;
 
