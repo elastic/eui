@@ -23,6 +23,7 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { AsyncInterval } from './async_interval';
+import { EuiI18n } from '../../i18n';
 
 export { prettyDuration, commonDurationRanges };
 
@@ -51,6 +52,7 @@ function isRangeInvalid(start, end) {
 export class EuiSuperDatePicker extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
+    isDisabled: PropTypes.bool,
     /**
      * String as either datemath (e.g.: now, now-15m, now-15m/m) or
      * absolute date in the format 'YYYY-MM-DDTHH:mm:ss.SSSZ'
@@ -110,6 +112,7 @@ export class EuiSuperDatePicker extends Component {
     start: 'now-15m',
     end: 'now',
     isPaused: true,
+    isDisabled: false,
     refreshInterval: 0,
     commonlyUsedRanges: commonDurationRanges,
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
@@ -279,6 +282,7 @@ export class EuiSuperDatePicker extends Component {
 
   renderDatePickerRange = () => {
     const { start, end, hasChanged, isInvalid } = this.state;
+    const { isDisabled } = this.props;
 
     if (this.props.isAutoRefreshOnly) {
       return (
@@ -309,8 +313,11 @@ export class EuiSuperDatePicker extends Component {
           startDateControl={<div />}
           endDateControl={<div />}>
           <button
-            className="euiSuperDatePicker__prettyFormat"
+            className={classNames('euiSuperDatePicker__prettyFormat', {
+              'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
+            })}
             data-test-subj="superDatePickerShowDatesButton"
+            disabled={isDisabled}
             onClick={this.hidePrettyDuration}>
             {prettyDuration(
               start,
@@ -319,7 +326,10 @@ export class EuiSuperDatePicker extends Component {
               this.props.dateFormat
             )}
             <span className="euiSuperDatePicker__prettyFormatLink">
-              Show dates
+              <EuiI18n
+                token="euiSuperDatePicker.showDatesButtonLabel"
+                default="Show dates"
+              />
             </span>
           </button>
         </EuiDatePickerRange>
@@ -336,6 +346,7 @@ export class EuiSuperDatePicker extends Component {
             position="start"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             onChange={this.setStart}
             value={start}
             dateFormat={this.props.dateFormat}
@@ -349,6 +360,7 @@ export class EuiSuperDatePicker extends Component {
             position="end"
             needsUpdating={hasChanged}
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             onChange={this.setEnd}
             value={end}
             dateFormat={this.props.dateFormat}
@@ -381,7 +393,7 @@ export class EuiSuperDatePicker extends Component {
         <EuiSuperUpdateButton
           needsUpdate={this.state.hasChanged}
           isLoading={this.props.isLoading}
-          isDisabled={this.state.isInvalid}
+          isDisabled={this.props.isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
         />
@@ -398,6 +410,7 @@ export class EuiSuperDatePicker extends Component {
         applyRefreshInterval={
           this.props.onRefreshChange ? this.onRefreshChange : null
         }
+        isDisabled={this.props.isDisabled}
         isPaused={this.props.isPaused}
         refreshInterval={this.props.refreshInterval}
         commonlyUsedRanges={this.props.commonlyUsedRanges}
@@ -423,6 +436,7 @@ export class EuiSuperDatePicker extends Component {
         <EuiFlexItem>
           <EuiFormControlLayout
             className="euiSuperDatePicker"
+            isDisabled={this.props.isDisabled}
             prepend={quickSelect}>
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>

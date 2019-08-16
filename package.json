@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "13.0.0",
+  "version": "13.3.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -110,6 +110,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.7",
     "cssnano": "^4.0.5",
+    "dedent": "^0.7.0",
     "dts-generator": "^2.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",

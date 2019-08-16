@@ -22,7 +22,6 @@
 /// <reference path="./pagination/index.d.ts" />
 /// <reference path="./panel/index.d.ts" />
 /// <reference path="./popover/index.d.ts" />
-/// <reference path="./steps/index.d.ts" />
 /// <reference path="./table/index.d.ts" />
 /// <reference path="./tabs/index.d.ts" />
 

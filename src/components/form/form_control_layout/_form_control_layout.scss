@@ -89,3 +89,9 @@
     }
   }
 }
+
+.euiFormControlLayout-isDisabled,
+.euiFormControlLayout-isDisabled .euiDatePickerRange--inGroup {
+  background-color: $euiFormBackgroundDisabledColor;
+  color: $euiColorDarkShade;
+}

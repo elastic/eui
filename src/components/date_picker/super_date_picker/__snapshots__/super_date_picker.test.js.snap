@@ -9,6 +9,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
+      isDisabled={false}
       prepend={
         <EuiQuickSelectPopover
           applyRefreshInterval={null}
@@ -60,6 +61,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
           isAutoRefreshOnly={false}
+          isDisabled={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
           refreshInterval={0}
@@ -77,13 +79,17 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
         <button
           className="euiSuperDatePicker__prettyFormat"
           data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
           onClick={[Function]}
         >
           Last 15 minutes
           <span
             className="euiSuperDatePicker__prettyFormatLink"
           >
-            Show dates
+            <EuiI18n
+              default="Show dates"
+              token="euiSuperDatePicker.showDatesButtonLabel"
+            />
           </span>
         </button>
       </EuiDatePickerRange>

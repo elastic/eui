@@ -92,13 +92,18 @@ export class GuidePageChrome extends Component {
   };
 
   onClickRoute = () => {
-    this.setState(
-      {
-        search: '',
-        isSideNavOpenOnMobile: false,
-      },
-      this.scrollNavSectionIntoView
-    );
+    // timeout let's IE11 do its thing and update the url
+    // allowing react-router to navigate to the route
+    // otherwise IE11 somehow kills the navigation
+    setTimeout(() => {
+      this.setState(
+        {
+          search: '',
+          isSideNavOpenOnMobile: false,
+        },
+        this.scrollNavSectionIntoView
+      );
+    }, 0);
   };
 
   onButtonClick() {

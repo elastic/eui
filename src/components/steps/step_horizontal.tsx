@@ -1,16 +1,44 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEventHandler,
+} from 'react';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
 
+import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly, EuiKeyboardAccessible } from '../accessibility';
 
-import { EuiI18n } from '../i18n';
+import { EuiStepStatus, EuiStepNumber } from './step_number';
 
-import { STATUS, EuiStepNumber } from './step_number';
+export interface EuiStepHorizontalProps {
+  /**
+   * Is the current step
+   */
+  isSelected?: boolean;
+  /**
+   * Is a previous step that has been completed
+   */
+  isComplete?: boolean;
+  onClick: MouseEventHandler<HTMLDivElement>;
+  disabled?: boolean;
+  /**
+   * The number of the step in the list of steps
+   */
+  step?: number;
+  title?: string;
+  /**
+   * May replace the number provided in props.step with alternate styling.
+   * The `isSelected`, `isComplete`, and `disabled` props will override these.
+   */
+  status?: EuiStepStatus;
+}
 
-export const EuiStepHorizontal = ({
+export const EuiStepHorizontal: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiStepHorizontalProps
+> = ({
   className,
-  step,
+  step = 1,
   title,
   isSelected,
   isComplete,
@@ -36,18 +64,23 @@ export const EuiStepHorizontal = ({
     status = 'incomplete';
   }
 
-  const onStepClick = e => {
-    if (disabled) {
-      return;
-    }
-
-    onClick(e);
+  const onStepClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (disabled) return;
+    onClick(event);
   };
 
   return (
     <EuiI18n
       token="euiStepHorizontal.buttonTitle"
-      default={({ step, title, disabled, isComplete }) => {
+      default={({
+        step,
+        title,
+        disabled,
+        isComplete,
+      }: Pick<
+        EuiStepHorizontalProps,
+        'step' | 'title' | 'disabled' | 'isComplete'
+      >) => {
         let titleAppendix = '';
         if (disabled) {
           titleAppendix = ' is disabled';
@@ -58,7 +91,7 @@ export const EuiStepHorizontal = ({
         return `Step ${step}: ${title}${titleAppendix}`;
       }}
       values={{ step, title, disabled, isComplete }}>
-      {buttonTitle => (
+      {(buttonTitle: string) => (
         <EuiKeyboardAccessible>
           <div
             role="tab"
@@ -66,7 +99,7 @@ export const EuiStepHorizontal = ({
             aria-disabled={!!disabled}
             className={classes}
             onClick={onStepClick}
-            tabIndex={disabled ? '-1' : '0'}
+            tabIndex={disabled ? -1 : 0}
             title={buttonTitle}
             {...rest}>
             <EuiScreenReaderOnly>
@@ -87,26 +120,4 @@ export const EuiStepHorizontal = ({
       )}
     </EuiI18n>
   );
-};
-
-EuiStepHorizontal.propTypes = {
-  isSelected: PropTypes.bool,
-  isComplete: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
-  title: PropTypes.node,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  /**
-   * Will replace the number provided in props.step with alternate styling.
-   * Options: `complete`, `incomplete`, `warning`, `danger`, `disabled`.
-   * The `isSelected`, `isComplete`, and `disabled` props will override these.
-   */
-  status: PropTypes.oneOf(STATUS),
-};
-
-EuiStepHorizontal.defaultProps = {
-  isSelected: false,
-  isComplete: false,
-  disabled: false,
 };

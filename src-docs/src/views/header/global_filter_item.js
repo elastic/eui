@@ -188,7 +188,8 @@ export class GlobalFilterItem extends Component {
         closePopover={this.closePopover}
         button={button}
         anchorPosition="downCenter"
-        panelPaddingSize="none">
+        panelPaddingSize="none"
+        display="block">
         <EuiContextMenu
           initialPanelId={0}
           panels={flattenPanelTree(panelTree)}

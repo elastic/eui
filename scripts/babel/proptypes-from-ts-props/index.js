@@ -122,6 +122,7 @@ function resolveArrayTypeToPropTypes(node, state) {
 function resolveIdentifierToPropTypes(node, state) {
   const typeDefinitions = state.get('typeDefinitions');
   const types = state.get('types');
+  const inflightResolves = state.get('inflightResolves') || new Set();
 
   let identifier;
   switch (node.type) {
@@ -223,7 +224,21 @@ function resolveIdentifierToPropTypes(node, state) {
   const identifierDefinition = typeDefinitions[identifier.name];
 
   if (identifierDefinition) {
-    return getPropTypesForNode(identifierDefinition, true, state);
+    if (inflightResolves.has(identifier.name)) {
+      return types.memberExpression(
+        types.identifier('PropTypes'),
+        types.identifier('any')
+      );
+    }
+    inflightResolves.add(identifier.name);
+    state.set('inflightResolves', inflightResolves);
+
+    const propType = getPropTypesForNode(identifierDefinition, true, state);
+
+    inflightResolves.delete(identifier.name);
+    state.set('inflightResolves', inflightResolves);
+
+    return propType;
   } else {
     return null;
   }
@@ -1101,14 +1116,31 @@ module.exports = function propTypesFromTypeScript({ types }) {
           programPath.traverse({
             ExportNamedDeclaration: (path) => {
               const specifiers = path.get('specifiers');
+              const source = path.get('source');
               specifiers.forEach(specifierPath => {
                 if (types.isExportSpecifier(specifierPath)) {
                   const { node: { local } } = specifierPath;
                   if (types.isIdentifier(local)) {
                     const { name } = local;
-                    const def = typeDefinitions[name];
-                    if (isTSType(def)) {
-                      specifierPath.remove();
+                    if (typeDefinitions.hasOwnProperty(name)) {
+                      // this is a locally-known value
+                      const def = typeDefinitions[name];
+                      if (isTSType(def)) {
+                        specifierPath.remove();
+                      }
+                    } else if (types.isStringLiteral(source)) {
+                      const libraryName = source.get('value').node;
+                      const isRelativeSource = libraryName.startsWith('.');
+                      if (isRelativeSource === false) {
+                        // comes from a 3rd-party library
+                        // best way to reliably check if this is
+                        // a type or value is to require the
+                        // library and check its exports
+                        const library = require(libraryName);
+                        if (library.hasOwnProperty(name) === false) {
+                          specifierPath.remove();
+                        }
+                      }
                     }
                   }
                 }
