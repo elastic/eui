@@ -95,16 +95,19 @@ export const EuiStat: FunctionComponent<
       <p id={ariaId} aria-hidden="true">
         {description}
       </p>
-      <EuiScreenReaderOnly>
-        <p>{description}</p>
-      </EuiScreenReaderOnly>
     </EuiText>
   );
 
-  let titleDisplay;
+  const titleDisplay = (
+    <EuiTitle size={titleSize} className={titleClasses}>
+      <p aria-hidden="true">{title}</p>
+    </EuiTitle>
+  );
+
+  let statDisplay;
 
   if (isLoading) {
-    titleDisplay = (
+    statDisplay = (
       <Fragment>
         <EuiTitle size={titleSize} className={titleClasses}>
           <p aria-hidden="true">--</p>
@@ -120,32 +123,25 @@ export const EuiStat: FunctionComponent<
       </Fragment>
     );
   } else {
-    titleDisplay = (
-      <Fragment>
-        <EuiTitle size={titleSize} className={titleClasses}>
-          <p aria-hidden="true">{title}</p>
-        </EuiTitle>
-        <EuiScreenReaderOnly>
-          <p>{title}</p>
-        </EuiScreenReaderOnly>
-      </Fragment>
-    );
-  }
-
-  let statDisplay;
-
-  if (reverse) {
     statDisplay = (
       <Fragment>
-        {titleDisplay}
-        {descriptionDisplay}
-      </Fragment>
-    );
-  } else {
-    statDisplay = (
-      <Fragment>
-        {descriptionDisplay}
-        {titleDisplay}
+        {reverse ? (
+          <Fragment>
+            {titleDisplay}
+            {descriptionDisplay}
+            <EuiScreenReaderOnly>
+              <p>{`${title} ${description}`}</p>
+            </EuiScreenReaderOnly>
+          </Fragment>
+        ) : (
+          <Fragment>
+            {descriptionDisplay}
+            {titleDisplay}
+            <EuiScreenReaderOnly>
+              <p>{`${description} ${title}`}</p>
+            </EuiScreenReaderOnly>
+          </Fragment>
+        )}
       </Fragment>
     );
   }
