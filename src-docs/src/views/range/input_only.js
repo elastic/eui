@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiRange,
-  EuiSpacer,
-  // EuiFormHelpText,
-  EuiDualRange,
-} from '../../../../src/components';
+import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 

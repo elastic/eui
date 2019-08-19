@@ -307,21 +307,22 @@ export const RangeControlExample = {
       ],
       demo: <LevelsExample />,
       props: { EuiRangeLevels },
-      snippet: `<EuiRange
-  levels={[
-    {min: 0, max: 20, color: 'danger'},
-    {min: 20, max: 100, color: 'success'}
-  ]}
-  aria-describedBy={replaceWithID}
-/>
-
-<EuiDualRange
+      snippet: [
+        `<EuiRange
   levels={[
     {min: 0, max: 20, color: 'danger'},
     {min: 20, max: 100, color: 'success'}
   ]}
   aria-describedBy={replaceWithID}
 />`,
+        `<EuiDualRange
+  levels={[
+    {min: 0, max: 20, color: 'danger'},
+    {min: 20, max: 100, color: 'success'}
+  ]}
+  aria-describedBy={replaceWithID}
+/>`,
+      ],
     },
     {
       title: 'Inputs with range in a dropdown',
