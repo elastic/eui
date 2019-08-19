@@ -218,7 +218,10 @@ class _Categorical extends Component {
   };
 
   createHighlightChart = numCharts => {
-    const vizColors = createSpectrum(['#D3DAE6', '#98A2B3'], numCharts);
+    const isDarkTheme = this.props.theme.includes('dark');
+    const vizColors = isDarkTheme
+      ? createSpectrum(['#343741', '#535966'], numCharts)
+      : createSpectrum(['#D3DAE6', '#98A2B3'], numCharts);
     vizColors[vizColors.length - 1] = this.highlightColor;
 
     const dg = new DataGenerator();
