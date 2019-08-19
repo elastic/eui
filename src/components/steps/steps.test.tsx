@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSteps } from './steps';
+import { EuiContainedStepProps, EuiSteps } from './steps';
 
-const steps = [
+const steps: EuiContainedStepProps[] = [
   {
     title: 'first title',
     children: <p>Do this first</p>,

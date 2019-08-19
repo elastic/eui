@@ -3,45 +3,55 @@
  */
 
 .euiStep {
-  // Do not show the content border if it is the last step
-  &:last-of-type .euiStep__content {
-    border-left-color: transparent;
+  // sass-lint:disable indentation
+  // Create border on all but the last step
+  &:not(:last-of-type) {
+    background-image: linear-gradient(
+                        to right,
+                        transparent 0,
+                        transparent ($euiSize - 1),
+                        $euiBorderColor ($euiSize - 1),
+                        $euiBorderColor ($euiSize + 1),
+                        transparent ($euiSize + 1),
+                        transparent 100%
+                      );
+    background-repeat: no-repeat;
+    background-position: left $euiSizeXXL;
+  }
+}
+
+.euiStep__titleWrapper {
+  display: flex;
+}
+
+.euiStep__circle {
+  flex-shrink: 0;
+  margin-right: $euiStepNumberMargin;
+  vertical-align: top; /* 1 */
+
+  &[class*='complete'],
+  &[class*='warning'],
+  &[class*='danger'] {
+    animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
   }
 
-  .euiTitle {
-    line-height: $euiStepNumberSize; /* 1 */
+  &[class*='incomplete'] {
+    border-color: $euiColorPrimary;
+    animation: none;
   }
+}
 
-  .euiStep__circle {
-    margin-right: $euiStepNumberMargin;
-    vertical-align: top; /* 1 */
+.euiStep__title {
+  font-weight: $euiFontWeightMedium;
+}
 
-    &[class*='complete'],
-    &[class*='warning'],
-    &[class*='danger'] {
-      animation: euiGrow $euiAnimSpeedFast $euiAnimSlightBounce;
-    }
+.euiStep__content {
+  padding: $euiSize $euiSize $euiSizeXL;
+  margin: $euiSizeS 0;
 
-    &[class*='incomplete'] {
-      border-color: $euiColorPrimary;
-      animation: none;
-    }
-  }
+  // Align the content's contents with the title
+  padding-left: ($euiStepNumberSize / 2) + $euiStepNumberMargin;
 
-  .euiStep__title {
-    font-weight: $euiFontWeightMedium;
-    display: inline-block;
-  }
-
-  .euiStep__content {
-    border-left: $euiBorderThick;
-    padding: $euiSize $euiSize $euiSizeXL;
-    margin: $euiSizeS 0;
-
-    // Align the content's contents with the title
-    padding-left: ($euiStepNumberSize / 2) - 1px + $euiStepNumberMargin;
-
-    // Align content border to horizontal center of step number
-    margin-left: ($euiStepNumberSize / 2) - 1px;
-  }
+  // Align content border to horizontal center of step number
+  margin-left: ($euiStepNumberSize / 2);
 }

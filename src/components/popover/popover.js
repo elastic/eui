@@ -345,6 +345,7 @@ export class EuiPopover extends Component {
 
   panelRef = node => {
     this.panel = node;
+    this.props.panelRef && this.props.panelRef(node);
 
     if (node == null) {
       // panel has unmounted, restore the state defaults
@@ -363,13 +364,17 @@ export class EuiPopover extends Component {
     }
   };
 
-  buttonRef = node => (this.button = node);
+  buttonRef = node => {
+    this.button = node;
+    this.props.buttonRef && this.props.buttonRef(node);
+  };
 
   render() {
     const {
       anchorClassName,
       anchorPosition,
       button,
+      buttonRef,
       insert,
       isOpen,
       ownFocus,
@@ -379,6 +384,7 @@ export class EuiPopover extends Component {
       closePopover,
       panelClassName,
       panelPaddingSize,
+      panelRef,
       popoverRef,
       hasArrow,
       repositionOnScroll,
@@ -408,6 +414,7 @@ export class EuiPopover extends Component {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-withTitle': withTitle },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
+      { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName
     );
 
@@ -497,7 +504,7 @@ export class EuiPopover extends Component {
   }
 }
 
-EuiPopover.propTypes = {
+export const EuiPopoverPropTypes = {
   anchorClassName: PropTypes.string,
   anchorPosition: PropTypes.oneOf(ANCHOR_POSITIONS),
   isOpen: PropTypes.bool,
@@ -505,9 +512,11 @@ EuiPopover.propTypes = {
   withTitle: PropTypes.bool,
   closePopover: PropTypes.func.isRequired,
   button: PropTypes.node.isRequired,
+  buttonRef: PropTypes.func,
   children: PropTypes.node,
   panelClassName: PropTypes.string,
   panelPaddingSize: PropTypes.oneOf(SIZES),
+  panelRef: PropTypes.func,
   popoverRef: PropTypes.func,
   hasArrow: PropTypes.bool,
   container: PropTypes.instanceOf(HTMLElement),
@@ -531,6 +540,8 @@ EuiPopover.propTypes = {
   /** CSS display type for both the popover and anchor */
   display: PropTypes.oneOf(DISPLAY),
 };
+
+EuiPopover.propTypes = EuiPopoverPropTypes;
 
 EuiPopover.defaultProps = {
   isOpen: false,

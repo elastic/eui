@@ -44,8 +44,9 @@ export interface EuiDescriptionListProps {
 
 const typesToClassNameMap = {
   row: 'euiDescriptionList--row',
-  column: 'euiDescriptionList--column',
   inline: 'euiDescriptionList--inline',
+  column: 'euiDescriptionList--column',
+  responsiveColumn: 'euiDescriptionList--responsiveColumn',
 };
 
 export const TYPES = keysOf(typesToClassNameMap);

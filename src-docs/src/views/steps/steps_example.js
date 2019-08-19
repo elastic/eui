@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 
@@ -18,8 +18,7 @@ import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
 const stepsHtml = renderToHtml(Steps);
 const stepsSnippet = [
-  `<EuiSteps 
-  firstStepNumber={3}
+  `<EuiSteps
   steps={[
     {
       title: 'Step 1',
@@ -27,7 +26,8 @@ const stepsSnippet = [
     },
   ]}
 />`,
-  `<EuiSteps 
+  `<EuiSteps
+  firstStepNumber={3}
   steps={[
     {
       title: 'Step 3',
@@ -50,13 +50,17 @@ const headingElementStepsSnippet = `<EuiSteps steps={steps} headingElement="h2" 
 import StepsHorizontal from './steps_horizontal';
 const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
 const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
-const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={horizontalSteps} />
+const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={[{
+  title: 'Completed step',
+  isComplete: true,
+  onClick: function,
+}]} />
 `;
 
 import Status from './status';
 const statusSource = require('!!raw-loader!./status');
 const statusHtml = renderToHtml(Steps);
-const statusSnippet = `<EuiSteps 
+const statusSnippet = `<EuiSteps
   steps={[
     {
       title: 'Warning',
@@ -165,7 +169,7 @@ export const StepsExample = {
       demo: <Status />,
     },
     {
-      title: 'Horizontal',
+      title: 'Horizontal steps',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -177,10 +181,17 @@ export const StepsExample = {
         },
       ],
       text: (
-        <p>
-          For use when forms/setup instructions can and should be split into
-          multiple pages.
-        </p>
+        <Fragment>
+          <p>
+            For use when forms/setup instructions can and should be split into
+            multiple pages.
+          </p>
+          <p>
+            For each step object, be sure to signify previous/completed steps
+            with <EuiCode>isComplete: true</EuiCode> and the current/selected
+            step with <EuiCode>isSelected: true</EuiCode>.
+          </p>
+        </Fragment>
       ),
       demo: <StepsHorizontal />,
       snippet: stepsHorizontalSnippet,

@@ -5,17 +5,19 @@
   font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize + 2px; /* 1 */
+  padding: 0 $euiSizeS;
   display: inline-block;
   text-decoration: none;
-  box-sizing: content-box;
   border-radius: $euiBorderRadius / 2;
   border: solid 1px transparent;
-  padding: 0 $euiSizeS;
   background-color: transparent;
   white-space: nowrap;
   vertical-align: middle;
-  text-align: center;
-  overflow: hidden;
+  cursor: default;
+  max-width: 100%;
+  // The badge will only ever be as wide as it's content
+  // So, make the text left aligned to ensure all badges line up the same
+  text-align: left;
 
   &:focus-within {
     @include euiFocusRing('small');
@@ -32,7 +34,9 @@
   }
 
   .euiBadge__childButton {
-    flex: 0 0 auto;
+    @include euiTextTruncate;
+    flex: 1 1 auto; // Must be 1 and 1 for IE to properly truncate
+    text-align: inherit;
     font-weight: inherit;
     line-height: inherit;
 
@@ -60,9 +64,9 @@
   }
 
   .euiBadge__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include euiTextTruncate;
     flex: 1 1 auto;
+    cursor: default;
   }
 
   .euiBadge__icon {
@@ -89,6 +93,10 @@
 
   &:focus {
     @include euiFocusRing('small');
+  }
+
+  .euiBadge__text {
+    cursor: inherit;
   }
 }
 

@@ -1,5 +1,63 @@
 [
   {
+    "version": "13.3.0",
+    "changes": [
+      {
+        "token": "euiSuperDatePicker.showDatesButtonLabel",
+        "changeType": "added",
+        "value": "Show dates"
+      },
+      {
+        "token": "euiSuperUpdateButton.refreshButtonLabel",
+        "changeType": "added",
+        "value": "Refresh"
+      },
+      {
+        "token": "euiSuperUpdateButton.updatingButtonLabel",
+        "changeType": "added",
+        "value": "Updating"
+      },
+      {
+        "token": "euiSuperUpdateButton.updateButtonLabel",
+        "changeType": "added",
+        "value": "Update"
+      },
+      {
+        "token": "euiSuperUpdateButton.cannotUpdateTooltip",
+        "changeType": "added",
+        "value": "Cannot update"
+      },
+      {
+        "token": "euiSuperUpdateButton.clickToApplyTooltip",
+        "changeType": "added",
+        "value": "Click to apply"
+      }
+    ]
+  },
+  {
+    "version": "13.2.0",
+    "changes": [
+      {
+        "token": "euiStepHorizontal.buttonTitle",
+        "changeType": "modified",
+        "value": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}: Pick<EuiStepHorizontalProps, 'step' | 'title' | 'disabled' | 'isComplete'>) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};"
+      },
+      {
+        "token": "euiStep.incompleteStep",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStep.completeStep",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiStep.ariaLabel",
+        "changeType": "added",
+        "value": "({\n  status\n}: {\n  status?: EuiStepStatus;\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};"
+      }
+    ]
+  },
+  {
     "version": "12.0.0",
     "changes": [
       {

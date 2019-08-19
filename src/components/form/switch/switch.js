@@ -15,6 +15,11 @@ export class EuiSwitch extends Component {
     };
   }
 
+  onClick = e => {
+    e.target.checked = !this.props.checked;
+    this.props.onChange(e);
+  };
+
   render() {
     const {
       label,
@@ -40,35 +45,31 @@ export class EuiSwitch extends Component {
 
     return (
       <div className={classes}>
-        <input
-          className="euiSwitch__input"
-          name={name}
+        <button
           id={switchId}
-          type="checkbox"
-          checked={checked}
+          aria-checked={checked}
+          className="euiSwitch__button"
+          role="switch"
           disabled={disabled}
-          onChange={onChange}
-          {...rest}
-        />
+          onClick={this.onClick}
+          {...rest}>
+          <span className="euiSwitch__body">
+            <span className="euiSwitch__thumb" />
+            <span className="euiSwitch__track">
+              <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
-        <span className="euiSwitch__body">
-          <span className="euiSwitch__thumb" />
-          <span className="euiSwitch__track">
-            <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
-
-            <EuiIcon
-              type="check"
-              size="m"
-              className="euiSwitch__icon euiSwitch__icon--checked"
-            />
+              <EuiIcon
+                type="check"
+                size="m"
+                className="euiSwitch__icon euiSwitch__icon--checked"
+              />
+            </span>
           </span>
-        </span>
+        </button>
 
-        {label && (
-          <label className="euiSwitch__label" htmlFor={switchId}>
-            {label}
-          </label>
-        )}
+        <label className="euiSwitch__label" htmlFor={switchId}>
+          {label}
+        </label>
       </div>
     );
   }

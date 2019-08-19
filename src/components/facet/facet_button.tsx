@@ -1,18 +1,49 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps, RefCallback } from '../common';
 
 import { EuiNotificationBadge } from '../badge';
 
 import { EuiLoadingSpinner } from '../loading';
 
-export const EuiFacetButton = ({
+export interface EuiFacetButtonProps {
+  buttonRef?: RefCallback<HTMLButtonElement>;
+  children: ReactNode;
+  /**
+   * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
+   */
+  icon?: ReactNode;
+  isDisabled?: boolean;
+  /**
+   * Adds/swaps for loading spinner & disables
+   */
+  isLoading?: boolean;
+  /**
+   * Changes visual of button to indicate it's currently selected
+   */
+  isSelected?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Adds a notification indicator for displaying the quantity provided
+   */
+  quantity?: number;
+}
+
+export const EuiFacetButton: FunctionComponent<
+  CommonProps & HTMLAttributes<HTMLButtonElement> & EuiFacetButtonProps
+> = ({
   children,
   className,
   icon,
-  isDisabled,
-  isLoading,
-  isSelected,
+  isDisabled = false,
+  isLoading = false,
+  isSelected = false,
   quantity,
   buttonRef,
   ...rest
@@ -50,9 +81,9 @@ export const EuiFacetButton = ({
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (icon) {
+  if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = React.cloneElement(icon, {
-      className: 'euiFacetButton__icon',
+      className: classNames(icon.props.className, 'euiFacetButton__icon'),
     });
   }
 
@@ -77,38 +108,4 @@ export const EuiFacetButton = ({
       </span>
     </button>
   );
-};
-
-EuiFacetButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  buttonRef: PropTypes.func,
-
-  /**
-   * Any node, but preferrably a `EuiIcon` or `EuiAvatar`
-   */
-  icon: PropTypes.node,
-
-  /**
-   * Adds/swaps for loading spinner & disables
-   */
-  isLoading: PropTypes.bool,
-
-  /**
-   * Changes visual of button to indicate it's currently selected
-   */
-  isSelected: PropTypes.bool,
-
-  /**
-   * Adds a notification indicator for displaying the quantity provided
-   */
-  quantity: PropTypes.number,
-};
-
-EuiFacetButton.defaultProps = {
-  isDisabled: false,
-  isLoading: false,
-  isSelected: false,
 };

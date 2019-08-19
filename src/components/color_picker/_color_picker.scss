@@ -16,17 +16,3 @@
   // sass-lint:disable no-important
   padding-bottom: 0 !important;
 }
-
-.euiColorPicker__popoverPanel[class*='bottom']:not(.euiColorPicker__popoverPanel--customButton) {
-  border-top-color: transparentize($euiBorderColor, .2);
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-}
-
-.euiColorPicker__popoverPanel[class*='top']:not(.euiColorPicker__popoverPanel--customButton) {
-  @include euiBottomShadowFlat;
-
-  border-bottom-color: transparentize($euiBorderColor, .2);
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}

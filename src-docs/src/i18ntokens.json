@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 467,
+        "line": 468,
         "column": 12
       },
       "end": {
-        "line": 471,
+        "line": 472,
         "column": 14
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 505,
+        "line": 506,
         "column": 6
       },
       "end": {
-        "line": 505,
+        "line": 506,
         "column": 77
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 863,
+        "line": 864,
         "column": 8
       },
       "end": {
-        "line": 863,
+        "line": 864,
         "column": 79
       }
     },
@@ -416,6 +416,102 @@
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.js"
   },
   {
+    "token": "euiSuperDatePicker.showDatesButtonLabel",
+    "defString": "Show dates",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 329,
+        "column": 14
+      },
+      "end": {
+        "line": 332,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_date_picker.js"
+  },
+  {
+    "token": "euiSuperUpdateButton.refreshButtonLabel",
+    "defString": "Refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 78,
+        "column": 6
+      },
+      "end": {
+        "line": 81,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+  },
+  {
+    "token": "euiSuperUpdateButton.updatingButtonLabel",
+    "defString": "Updating",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 8
+      },
+      "end": {
+        "line": 88,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+  },
+  {
+    "token": "euiSuperUpdateButton.updateButtonLabel",
+    "defString": "Update",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 90,
+        "column": 8
+      },
+      "end": {
+        "line": 93,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+  },
+  {
+    "token": "euiSuperUpdateButton.cannotUpdateTooltip",
+    "defString": "Cannot update",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 100,
+        "column": 8
+      },
+      "end": {
+        "line": 103,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+  },
+  {
+    "token": "euiSuperUpdateButton.clickToApplyTooltip",
+    "defString": "Click to apply",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 107,
+        "column": 8
+      },
+      "end": {
+        "line": 110,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.js"
+  },
+  {
     "token": "euiFilterButton.filterBadge",
     "defString": "({\n  count,\n  hasActiveFilters\n}) => `${count} ${hasActiveFilters ? 'active' : 'available'} filters`;",
     "highlighting": "code",
@@ -645,11 +741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 435,
+        "line": 442,
         "column": 14
       },
       "end": {
-        "line": 438,
+        "line": 445,
         "column": 16
       }
     },
@@ -709,11 +805,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 103,
+        "line": 101,
         "column": 6
       },
       "end": {
-        "line": 103,
+        "line": 101,
         "column": 74
       }
     },
@@ -721,19 +817,19 @@
   },
   {
     "token": "euiStepHorizontal.buttonTitle",
-    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
+    "defString": "({\n  step,\n  title,\n  disabled,\n  isComplete\n}: Pick<EuiStepHorizontalProps, 'step' | 'title' | 'disabled' | 'isComplete'>) => {\n  let titleAppendix = '';\n\n  if (disabled) {\n    titleAppendix = ' is disabled';\n  } else if (isComplete) {\n    titleAppendix = ' is complete';\n  }\n\n  return `Step ${step}: ${title}${titleAppendix}`;\n};",
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 48,
+        "line": 73,
         "column": 4
       },
       "end": {
-        "line": 60,
+        "line": 93,
         "column": 53
       }
     },
-    "filepath": "src/components/steps/step_horizontal.js"
+    "filepath": "src/components/steps/step_horizontal.tsx"
   },
   {
     "token": "euiStepHorizontal.step",
@@ -741,15 +837,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 107,
         "column": 16
       },
       "end": {
-        "line": 74,
+        "line": 107,
         "column": 73
       }
     },
-    "filepath": "src/components/steps/step_horizontal.js"
+    "filepath": "src/components/steps/step_horizontal.tsx"
   },
   {
     "token": "euiStepNumber.isComplete",
@@ -800,36 +896,20 @@
     "filepath": "src/components/steps/step_number.tsx"
   },
   {
-    "token": "euiStep.incompleteStep",
-    "defString": "Incomplete Step",
-    "highlighting": "string",
+    "token": "euiStep.ariaLabel",
+    "defString": "({\n  status\n}: {\n  status?: EuiStepStatus;\n}) => {\n  if (status === 'incomplete') return 'Incomplete Step';\n  return 'Step';\n};",
+    "highlighting": "code",
     "loc": {
       "start": {
-        "line": 27,
-        "column": 6
+        "line": 47,
+        "column": 8
       },
       "end": {
-        "line": 27,
-        "column": 74
+        "line": 53,
+        "column": 30
       }
     },
-    "filepath": "src/components/steps/step.js"
-  },
-  {
-    "token": "euiStep.completeStep",
-    "defString": "Step",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 30,
-        "column": 23
-      },
-      "end": {
-        "line": 30,
-        "column": 78
-      }
-    },
-    "filepath": "src/components/steps/step.js"
+    "filepath": "src/components/steps/step.tsx"
   },
   {
     "token": "euiTableSortMobile.sorting",

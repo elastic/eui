@@ -8,7 +8,7 @@ The Elastic UI Framework (EUI) is a design library in use at Elastic to build Re
 
 ## Can I use EUI?
 
-Yes, but be aware of the [license](LICENSE.md) as always. Although the roadmap and priorities are directed by our own usage within Elastic, we do attempt to make the platform generically useful for any React application and try to test for it.
+Yes, but be aware of the [license](LICENSE) as always. Although the roadmap and priorities are directed by our own usage within Elastic, we do attempt to make the platform generically useful for any React application and try to test for it.
 
 ## What is the versioning, releases and upgrade strategy?
 

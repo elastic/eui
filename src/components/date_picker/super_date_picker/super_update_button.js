@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import { EuiButton } from '../../button';
+import { EuiI18n } from '../../i18n';
 import { EuiToolTip } from '../../tool_tip';
 
 export class EuiSuperUpdateButton extends Component {
@@ -73,16 +74,41 @@ export class EuiSuperUpdateButton extends Component {
 
     const classes = classNames('euiSuperUpdateButton', className);
 
-    let buttonText = 'Refresh';
+    let buttonText = (
+      <EuiI18n
+        token="euiSuperUpdateButton.refreshButtonLabel"
+        default="Refresh"
+      />
+    );
     if (needsUpdate || isLoading) {
-      buttonText = isLoading ? 'Updating' : 'Update';
+      buttonText = isLoading ? (
+        <EuiI18n
+          token="euiSuperUpdateButton.updatingButtonLabel"
+          default="Updating"
+        />
+      ) : (
+        <EuiI18n
+          token="euiSuperUpdateButton.updateButtonLabel"
+          default="Update"
+        />
+      );
     }
 
     let tooltipContent;
     if (isDisabled) {
-      tooltipContent = 'Cannot update';
+      tooltipContent = (
+        <EuiI18n
+          token="euiSuperUpdateButton.cannotUpdateTooltip"
+          default="Cannot update"
+        />
+      );
     } else if (needsUpdate && !isLoading) {
-      tooltipContent = 'Click to apply';
+      tooltipContent = (
+        <EuiI18n
+          token="euiSuperUpdateButton.clickToApplyTooltip"
+          default="Click to apply"
+        />
+      );
     }
 
     return (
