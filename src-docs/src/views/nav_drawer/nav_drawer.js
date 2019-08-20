@@ -36,7 +36,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      isFullScreen: false,
+      isFullScreen: true,
     };
 
     const faveExtraAction = {
