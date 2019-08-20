@@ -57,7 +57,7 @@ export const ElasticChartsThemingExample = {
             pass the correct one to the Settings.theme property.
           </p>
           <EuiCodeBlock language="javascript" isCopyable>
-            {`import { EUI_DARK_THEME, EUI_LIGHT_THEME } from \'@elastic/eui/src/themes/charts/themes\';
+            {`import { EUI_DARK_THEME, EUI_LIGHT_THEME } from \'@elastic/eui/dist/eui_charts_theme\';
 
 <Settings theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme} />`}
           </EuiCodeBlock>
