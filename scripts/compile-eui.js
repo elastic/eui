@@ -55,7 +55,17 @@ function compileBundle() {
   execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+  });
+
+  console.log('Building chart theme module...');
+  execSync(
+    'webpack src/themes/charts/themes.js -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
+    {
+      stdio: 'inherit',
+    }
+  );
 }
 
 compileLib();
