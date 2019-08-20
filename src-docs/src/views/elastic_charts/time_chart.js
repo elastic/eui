@@ -126,6 +126,7 @@ class _TimeChart extends Component {
             tickFormat={timeFormatter(niceTimeFormatByDay(1))}
             showGridLines
             gridLineStyle={gridVerticalSettings}
+            tickPadding={0}
           />
           <Axis
             id="left-axis"

@@ -904,10 +904,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@elastic/charts@^9.0.4":
-  version "9.0.4"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-9.0.4.tgz#8e2e06fb8c78bd8946b0d9dd5ff85e56cd256385"
-  integrity sha512-2g1WknVlk2/iV+rU8clwW6IR3H3qw5UwYUrBtBa3Bfs/3HrmDscewPzvrv/jWWQNlvHYkMebP7/kMWzqmrXz4w==
+"@elastic/charts@^9.2.1":
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-9.2.1.tgz#c7926f7efaa1b302ba7ac2ac0856e6478451686d"
+  integrity sha512-fVeZroDikgWNCEYm4RiTaNOQ+k1Sd8Vo6UyMa3utg9sFXykkX0riJ5etb8laf+ZZ4GPt491nWPSmWlh5rlfYzA==
   dependencies:
     "@types/d3-shape" "^1.3.1"
     "@types/luxon" "^1.11.1"
