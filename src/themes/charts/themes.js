@@ -24,7 +24,7 @@ function createTheme(colors) {
     lineAnnotation: {
       line: {
         strokeWidth: 1,
-        stroke: 'inherit',
+        stroke: colors.euiColorDarkShade.rgba,
       },
     },
     theme: {
@@ -69,7 +69,7 @@ function createTheme(colors) {
         axisTitleStyle: {
           fontSize: 12,
           fontFamily: fontFamily,
-          fill: 'inherit',
+          fill: colors.euiColorDarkestShade.rgba,
           padding: 10,
         },
         axisLineStyle: {

@@ -99,6 +99,15 @@ class _TimeChart extends Component {
             showLegend={this.state.multi}
             legendPosition="right"
           />
+          <ChartType
+            id="financial"
+            name="Financial"
+            data={TIME_DATA}
+            xScaleType="time"
+            xAccessor={0}
+            yAccessors={[1]}
+            stackAccessors={this.state.stacked ? [0] : undefined}
+          />
           {this.state.multi && (
             <ChartType2
               id="tech"
@@ -110,15 +119,6 @@ class _TimeChart extends Component {
               stackAccessors={this.state.stacked ? [0] : undefined}
             />
           )}
-          <ChartType
-            id="financial"
-            name="Financial"
-            data={TIME_DATA}
-            xScaleType="time"
-            xAccessor={0}
-            yAccessors={[1]}
-            stackAccessors={this.state.stacked ? [0] : undefined}
-          />
           <Axis
             title={formatDate(Date.now(), dateFormatAliases.date)}
             id="bottom-axis"
@@ -168,6 +168,15 @@ class _TimeChart extends Component {
     showLegend={${this.state.multi}}
     ${this.state.multi ? 'legendPosition="right"' : ''}
   />
+  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
+    id="financial"
+    name="Financial"
+    data={TIME_DATA=[[0,1],[1,2]]}
+    xScaleType="time"
+    xAccessor={0}
+    yAccessors={[1]}
+    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
+  />
   ${
     this.state.multi
       ? `<${
@@ -183,15 +192,6 @@ class _TimeChart extends Component {
     />`
       : ''
   }
-  <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
-    id="financial"
-    name="Financial"
-    data={TIME_DATA=[[0,1],[1,2]]}
-    xScaleType="time"
-    xAccessor={0}
-    yAccessors={[1]}
-    ${this.state.stacked ? 'stackAccessors={[0]}' : ''}
-  />
   <Axis
     title={formatDate(Date.now(), dateFormatAliases.date)}
     id="bottom-axis"

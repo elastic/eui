@@ -263,7 +263,6 @@ class _Sizes extends Component {
             <ChartCard
               title="Width of panel"
               description="Watch how the chart changes depending on how much room is in the panel.">
-              {/* <EuiSpacer /> */}
               <EuiFormRow helpText="These sizes are just for example and don't take mobile-responsiveness into account. Your chart configuration may be different based on different sizes.">
                 <EuiRange
                   min={20}
