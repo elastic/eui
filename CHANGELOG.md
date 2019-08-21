@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Converted `EuiSwitch` to TypeScript ([#2243](https://github.com/elastic/eui/pull/2243))
+
 **Bug fixes**
 
 - Added missing `viewBox` attribute to Docker, Kubernetes, and Redis logos ([#2240](https://github.com/elastic/eui/pull/2240))
