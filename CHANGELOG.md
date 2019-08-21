@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.4.1`.
+
+## [`13.4.1`](https://github.com/elastic/eui/tree/v13.4.1)
+
 - Converted `EuiSwitch` to TypeScript ([#2243](https://github.com/elastic/eui/pull/2243))
 
 **Bug fixes**
