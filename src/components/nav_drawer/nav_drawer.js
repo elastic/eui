@@ -70,6 +70,16 @@ export class EuiNavDrawer extends Component {
     }, 150);
   };
 
+  collapseButtonClick = () => {
+    if (this.state.isCollapsed) {
+      this.expandDrawer();
+    } else {
+      this.collapseDrawer();
+    }
+
+    this.collapseFlyout();
+  };
+
   expandDrawer = () => {
     this.setState({
       isCollapsed: false,
@@ -229,6 +239,7 @@ export class EuiNavDrawer extends Component {
                 size="s"
                 showToolTip={this.state.isCollapsed}
                 extraAction={{
+                  className: 'euiNavDrawer__expandButtonLockAction',
                   color: 'text',
                   onClick: this.sideNavLockClicked,
                   iconType: this.state.isLocked ? 'lockOpen' : 'lock',
@@ -240,14 +251,7 @@ export class EuiNavDrawer extends Component {
                     ? sideNavLockCollapsed
                     : sideNavLockExpanded,
                 }}
-                onClick={
-                  this.state.isCollapsed
-                    ? () => {
-                        this.expandDrawer();
-                        this.collapseFlyout();
-                      }
-                    : () => this.collapseDrawer()
-                }
+                onClick={this.collapseButtonClick}
                 data-test-subj={
                   this.state.isCollapsed
                     ? 'navDrawerExpandButton-isCollapsed'

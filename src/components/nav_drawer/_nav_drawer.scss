@@ -119,6 +119,12 @@
   }
 }
 
+@include euiBreakpoint('xs', 's', 'm', 'l') {
+  .euiNavDrawer__expandButtonLockAction {
+    display: none;
+  }
+}
+
 @include euiBreakpoint('xl') {
   .euiNavDrawer-isLocked {
     + .euiNavDrawerPage .euiNavDrawerPage__pageBody {
