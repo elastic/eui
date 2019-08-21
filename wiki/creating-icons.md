@@ -25,12 +25,12 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 - Use an outline style with a 1 pixel width stroke, straight edges, rounded corners and ends
 - Adhere to an overall 16 pixel square shape
 
-![dimensions](https://user-images.githubusercontent.com/446285/61978785-c4f86580-afb7-11e9-8801-73c5123ba6cc.png)
+![Dimensions](https://user-images.githubusercontent.com/446285/63458957-56bd8c00-c419-11e9-958c-9fd912736180.png)
 
 - Center the glyph in the square leaving a 1 or 2 pixel trim area, where possible
 - Align vertical and horizontal paths to a 16x16 pixel grid
 
-![guides](https://user-images.githubusercontent.com/446285/61978787-c4f86580-afb7-11e9-88f7-ec051899fbaf.png)
+![Guides](https://user-images.githubusercontent.com/446285/63458958-5624f580-c419-11e9-89cf-45fa1b596329.png)
 
 #### _For Sketch users_
 _As a reference, you can downlaod and view the `icons.sketch` file via the **Sketch libraries** link atop the [EUI documentation site][docs] site. The Symbols page within this file contains artboards for the vast majority of EUI glyphs._

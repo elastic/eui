@@ -1,33 +1,126 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  Fragment,
+  HTMLAttributes,
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+  ReactElement,
+  MouseEventHandler,
+  FunctionComponent,
+} from 'react';
 import classNames from 'classnames';
 
+import {
+  EuiButtonIconProps,
+  EuiButtonPropsForButtonOrLink,
+  EuiButtonIcon as EuiButtonIconType,
+} from '@elastic/eui'; // eslint-disable-line import/no-unresolved
+// @ts-ignore
 import { EuiButtonIcon } from '../button';
-import { IconPropType, EuiIcon } from '../icon';
+const EuiButtonIconTyped: typeof EuiButtonIconType = EuiButtonIcon;
+
+import { EuiIcon, IconType } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
+import { ExclusiveUnion, CommonProps } from '../common';
 
-const sizeToClassNameMap = {
+type ItemSize = 'xs' | 's' | 'm' | 'l';
+
+const sizeToClassNameMap: { [size in ItemSize]: string } = {
   xs: 'euiListGroupItem--xSmall',
   s: 'euiListGroupItem--small',
   m: 'euiListGroupItem--medium',
   l: 'euiListGroupItem--large',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
+export const SIZES = Object.keys(sizeToClassNameMap) as ItemSize[];
 
-export const EuiListGroupItem = ({
+export type EuiListGroupItemProps = CommonProps &
+  ExclusiveUnion<
+    ExclusiveUnion<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      AnchorHTMLAttributes<HTMLAnchorElement>
+    >,
+    HTMLAttributes<HTMLSpanElement>
+  > & {
+    /**
+     * Size of the label text
+     */
+    size?: ItemSize;
+
+    /**
+     * Content to be displayed in the list item
+     */
+    label: ReactNode;
+
+    /**
+     * Apply styles indicating an item is active
+     */
+    isActive?: boolean;
+
+    /**
+     * Apply styles indicating an item is disabled
+     */
+    isDisabled?: boolean;
+
+    /**
+     * Make the list item label a link.
+     * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
+     */
+    href?: string;
+
+    /**
+     * Adds `EuiIcon` of `EuiIcon.type`
+     */
+    iconType?: IconType;
+
+    /**
+     * Custom node to pass as the icon. Cannot be used in conjunction
+     * with `iconType`.
+     */
+    icon?: ReactElement;
+
+    /**
+     * Display tooltip on list item
+     */
+    showToolTip?: boolean;
+
+    /**
+     * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
+     * pass `alwaysShow` if you don't want the default behavior of only showing on hover
+     */
+    extraAction?: EuiButtonPropsForButtonOrLink<
+      CommonProps &
+        EuiButtonIconProps & {
+          iconType: IconType;
+          alwaysShow?: boolean;
+        }
+    >;
+
+    /**
+     * Make the list item label a button.
+     * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
+     */
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+
+    /**
+     * Allow link text to wrap
+     */
+    wrapText?: boolean;
+  };
+
+export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   label,
-  isActive,
-  isDisabled,
+  isActive = false,
+  isDisabled = false,
   href,
   className,
   iconType,
   icon,
   extraAction,
   onClick,
-  size,
-  showToolTip,
+  size = 'm',
+  showToolTip = false,
   wrapText,
   ...rest
 }) => {
@@ -70,7 +163,7 @@ export const EuiListGroupItem = ({
     });
 
     extraActionNode = (
-      <EuiButtonIcon
+      <EuiButtonIconTyped
         className={extraActionClasses}
         iconType={iconType}
         {...rest}
@@ -99,17 +192,15 @@ export const EuiListGroupItem = ({
 
   if (href && !isDisabled) {
     itemContent = (
-      <a href={href} className="euiListGroupItem__button" {...rest}>
+      <a
+        href={href}
+        onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
+        className="euiListGroupItem__button"
+        {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         {iconNode}
         {labelContent}
       </a>
     );
-
-    if (onClick) {
-      console.warn(
-        'Both `href` and `onClick` were passed to EuiListGroupItem but only one can exist. The `href` was used.'
-      );
-    }
   } else if ((href && isDisabled) || onClick) {
     itemContent = (
       <button
@@ -117,7 +208,7 @@ export const EuiListGroupItem = ({
         className="euiListGroupItem__button"
         disabled={isDisabled}
         onClick={onClick}
-        {...rest}>
+        {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
         {iconNode}
         {labelContent}
       </button>
@@ -138,8 +229,7 @@ export const EuiListGroupItem = ({
           anchorClassName="euiListGroupItem__tooltip"
           content={label}
           position="right"
-          delay="long"
-          size="s">
+          delay="long">
           {itemContent}
         </EuiToolTip>
       </li>
@@ -154,72 +244,4 @@ export const EuiListGroupItem = ({
   }
 
   return <Fragment>{itemContent}</Fragment>;
-};
-
-EuiListGroupItem.propTypes = {
-  className: PropTypes.string,
-
-  /**
-   * Set the size of the label text
-   */
-  size: PropTypes.oneOf(SIZES),
-
-  /**
-   * Content to be displyed in the list item
-   */
-  label: PropTypes.node.isRequired,
-
-  /**
-   * Apply styles indicating an item is active
-   */
-  isActive: PropTypes.bool,
-
-  /**
-   * Apply styles indicating an item is disabled
-   */
-  isDisabled: PropTypes.bool,
-
-  /**
-   * Make the list item label a link
-   */
-  href: PropTypes.string,
-
-  /**
-   * Adds `EuiIcon` of `EuiIcon.type`
-   */
-  iconType: IconPropType,
-
-  /**
-   * Custom node to pass as the icon. Cannot be used in conjunction
-   * with `iconType`.
-   */
-  icon: PropTypes.element,
-
-  /**
-   * Display tooltip on list item
-   */
-  showToolTip: PropTypes.bool,
-
-  /**
-   * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
-   * pass `alwaysShow` if you don't want the default behavior of only showing on hover
-   */
-  extraAction: PropTypes.shape({
-    iconType: IconPropType.isRequired,
-    alwaysShow: PropTypes.bool,
-  }),
-
-  onClick: PropTypes.func,
-
-  /**
-   * Allow link text to wrap
-   */
-  wrapText: PropTypes.bool,
-};
-
-EuiListGroupItem.defaultProps = {
-  isActive: false,
-  isDisabled: false,
-  size: 'm',
-  showToolTip: false,
 };

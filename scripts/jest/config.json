@@ -2,7 +2,8 @@
   "rootDir": "../../",
   "roots": [
     "<rootDir>/src/",
-    "<rootDir>/scripts/babel"
+    "<rootDir>/scripts/babel",
+    "<rootDir>/packages/eslint-plugin"
   ],
   "collectCoverageFrom": [
     "src/components/**/*.js",

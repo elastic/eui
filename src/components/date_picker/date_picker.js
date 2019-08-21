@@ -38,6 +38,7 @@ export class EuiDatePicker extends Component {
       minDate,
       minTime,
       onChange,
+      onClear,
       openToDate,
       placeholder,
       popperClassName,
@@ -127,6 +128,7 @@ export class EuiDatePicker extends Component {
           <EuiFormControlLayout
             icon={optionalIcon}
             fullWidth={fullWidth}
+            clear={selected && onClear ? { onClick: onClear } : null}
             isLoading={isLoading}>
             <EuiValidatableControl isInvalid={isInvalid}>
               <DatePicker
@@ -246,6 +248,10 @@ EuiDatePicker.propTypes = {
    * What to do when the input changes
    */
   onChange: PropTypes.func,
+  /**
+   * What to do when the input is cleared by the x icon
+   */
+  onClear: PropTypes.func,
   /**
    * Opens to this date (in moment format) on first press, regardless of selection
    */
