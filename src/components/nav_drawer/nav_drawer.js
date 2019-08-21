@@ -7,6 +7,7 @@ import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem } from '../flex';
+import { throttle } from '../color_picker/utils';
 
 export class EuiNavDrawer extends Component {
   constructor(props) {
@@ -22,9 +23,33 @@ export class EuiNavDrawer extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.isLocked) {
+      window.addEventListener('resize', this.functionToCallOnWindowResize);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.functionToCallOnWindowResize);
+  }
+
+  functionToCallOnWindowResize = throttle(() => {
+    if (window.innerWidth < 1200) {
+      this.collapseDrawer();
+      this.collapseFlyout();
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
   timeoutID;
 
   sideNavLockClicked = () => {
+    if (this.state.isLocked) {
+      window.removeEventListener('resize', this.functionToCallOnWindowResize);
+    } else {
+      window.addEventListener('resize', this.functionToCallOnWindowResize);
+    }
+
     this.setState({
       isLocked: !this.state.isLocked,
       isCollapsed: false,
