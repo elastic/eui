@@ -380,7 +380,7 @@ export default class extends Component {
                 </EuiHeaderSectionItem>
               </EuiHeaderSection>
             </EuiHeader>
-            <EuiNavDrawer ref={this.setNavDrawerRef}>
+            <EuiNavDrawer ref={this.setNavDrawerRef} isLocked={true}>
               <EuiNavDrawerGroup listItems={this.topLinks} />
               <EuiHorizontalRule margin="none" />
               <EuiNavDrawerGroup listItems={this.exploreLinks} />

@@ -14,12 +14,12 @@ export class EuiNavDrawer extends Component {
     super(props);
 
     this.state = {
-      isCollapsed: true,
+      isLocked: props.isLocked,
+      isCollapsed: !props.isLocked,
       flyoutIsCollapsed: true,
       outsideClickDisabled: true,
       isManagingFocus: false,
       toolTipsEnabled: true,
-      isLocked: false,
     };
   }
 
@@ -337,6 +337,11 @@ EuiNavDrawer.propTypes = {
    * Display tooltips on side nav items
    */
   showToolTips: PropTypes.bool,
+
+  /**
+   * Keep drawer open at all times by default
+   */
+  isLocked: PropTypes.bool,
 };
 
 EuiNavDrawer.defaultProps = {
