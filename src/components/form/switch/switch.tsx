@@ -10,14 +10,13 @@ import { CommonProps, Omit } from '../../common';
 import makeId from '../../form/form_row/make_id';
 import { EuiIcon } from '../../icon';
 
-export interface EuiSwitchEvent
-  extends React.BaseSyntheticEvent<
-    React.MouseEvent<HTMLButtonElement>,
-    HTMLButtonElement,
-    EventTarget & {
-      checked: boolean;
-    }
-  > {}
+export type EuiSwitchEvent = React.BaseSyntheticEvent<
+  React.MouseEvent<HTMLButtonElement>,
+  HTMLButtonElement,
+  EventTarget & {
+    checked: boolean;
+  }
+>;
 
 export type EuiSwitchProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
