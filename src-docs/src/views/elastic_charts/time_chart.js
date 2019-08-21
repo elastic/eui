@@ -154,7 +154,7 @@ class _TimeChart extends Component {
           <EuiFlexItem>
             <ChartCard
               title="Tick marks"
-              description="If the tick marks all share a portion of their date, eg they're all on the same day, format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
+              description="If the tick marks all share a portion of their date (e.g. they're all on the same day) format the ticks to only display the disparate portions of the timestamp and show the common portion as the axis title."
             />
           </EuiFlexItem>
         </EuiFlexGrid>

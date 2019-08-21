@@ -18,9 +18,9 @@ export const ElasticChartsTimeExample = {
       text: (
         <Fragment>
           <p>
-            Change over time charts show data over a period of time, such as
-            trends or comparisons across multiple categories. When smaller
-            changes exist, it’s better to use line graphs than bar graphs.
+            Time series charts show data over a period of time, such as trends
+            or comparisons across multiple categories. When smaller changes
+            exist, it’s better to use line charts rather than bar charts.
           </p>
 
           <p>

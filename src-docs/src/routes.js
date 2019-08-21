@@ -353,7 +353,7 @@ const navigation = [
     ].map(example => createExample(example)),
   },
   {
-    name: 'Elastic-Charts',
+    name: 'Elastic Charts',
     items: [
       ElasticChartsThemingExample,
       ElasticChartsTimeExample,

@@ -20,7 +20,7 @@ No public interface changes since `13.5.0`.
 - Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
 - Added an optional `onClear` prop to the the `EuiDatePicker` component ([#2235](https://github.com/elastic/eui/pull/2235))
 - Added support for `onClick` and `href` props on `EuiListGroupItem` and converted to TypeScript ([#1933](https://github.com/elastic/eui/pull/1933))
-- Added docs for using [Elastic-Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
+- Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
 
 **Bug fixes**
 

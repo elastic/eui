@@ -94,7 +94,7 @@ class _Sizes extends Component {
     let xAxisFormatter = timeFormatter(niceTimeFormatByDay(1));
     let yAxisFormatter;
     let changeDescription =
-      'At full width you should be able to display all the details you need; axes, tick labels and titles, and legends.';
+      'At full width, you should be able to display all the details you need; axes, tick labels and titles, and legends.';
 
     if (width < 55) {
       legendPosition = 'bottom';

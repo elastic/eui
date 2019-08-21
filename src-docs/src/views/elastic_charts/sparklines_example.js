@@ -23,11 +23,11 @@ export const ElasticChartsSparklinesExample = {
       text: (
         <Fragment>
           <p>
-            As chart containers get smaller, you must re-evaluate your data to
-            provide a more simplified version. This could be as simple as
-            shifting legend positions from the right side to the bottom or
-            adding annotations to give context and describe the key points in
-            your data.
+            When placing charts into smaller containers or panels, you must
+            re-evaluate your data to provide a more simplified version. This
+            could be as simple as shifting legend positions from the right side
+            to the bottom or adding annotations to give context and describe the
+            key points in your data.
           </p>
         </Fragment>
       ),
@@ -55,7 +55,7 @@ export const ElasticChartsSparklinesExample = {
             content should give context to the sparkline.
           </p>
           <p>
-            Eui also provides a quick them alteration object that you can merge
+            EUI also provides a quick theme alteration object that you can merge
             with the correct dark or light theme to properly style your
             sparklines.
           </p>

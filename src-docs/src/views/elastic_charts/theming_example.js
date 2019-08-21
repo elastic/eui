@@ -17,6 +17,7 @@ import {
   EuiText,
   EuiCodeBlock,
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 export const ElasticChartsThemingExample = {
@@ -27,10 +28,14 @@ export const ElasticChartsThemingExample = {
       <EuiSpacer size="l" />
       <EuiText>
         <p>
-          EUI does not provide a direct way to add charts to your application.
-          Instead, we provide some utilities and documentation on working with
-          Elastic Charts, an open source charting library also created and
-          maintained by Elastic.
+          EUI provides utilities and documentation for working with{' '}
+          <EuiLink
+            href="https://elastic.github.io/elastic-charts"
+            target="_blank">
+            Elastic Charts
+          </EuiLink>
+          , an open source charting library also created and maintained by
+          Elastic.
         </p>
       </EuiText>
       <EuiSpacer size="l" />
@@ -52,9 +57,9 @@ export const ElasticChartsThemingExample = {
       text: (
         <Fragment>
           <p>
-            To easily match charts to EUI, EUI provides both a light and dark
-            Theme object. Simply import these objects from the themes folder and
-            pass the correct one to the Settings.theme property.
+            EUI provides both light and dark theme files to use in tandem with
+            Elastic Charts. Simply import these objects from the themes folder
+            and pass the correct one to the Settings.theme property.
           </p>
           <EuiCodeBlock language="javascript" isCopyable>
             {`import { EUI_DARK_THEME, EUI_LIGHT_THEME } from \'@elastic/eui/dist/eui_charts_theme\';
@@ -64,12 +69,12 @@ export const ElasticChartsThemingExample = {
           <p>
             EUI also provides some basic{' '}
             <Link to="/utilities/color-palettes">
-              color palettes and palette functions
+              color palettes and functions
             </Link>{' '}
-            if you would like to change the default color blind-safe scheme to
+            if you would like to change the default color blind safe scheme to
             another palette. You can import these from the services folder and
-            apply them with Charts&apos;{' '}
-            <EuiCode>mergeWithDefaultTheme</EuiCode> function.
+            apply them with Charts <EuiCode>mergeWithDefaultTheme</EuiCode>{' '}
+            function.
           </p>
           <p>You&apos;ll find an example of this in the demo below.</p>
         </Fragment>
@@ -77,15 +82,15 @@ export const ElasticChartsThemingExample = {
       demo: <Theming />,
     },
     {
-      title: 'Coloring charts correctly',
+      title: 'Coloring charts',
       text: (
         <Fragment>
           <p>
             <strong>
               Use color to distinguish categories, represent quantity/density,
-              and highlight data. You can help users focus on their data but
-              using too many color variants in one chart can hinder
-              understanding.
+              and highlight data. When using color in this way, be aware that
+              too many colors in a single chart can create noise and hinder
+              quick comprehension.
             </strong>
           </p>
           <p>
@@ -95,20 +100,20 @@ export const ElasticChartsThemingExample = {
             magnitude.
           </p>
           <p>
-            Do not use too many colors in a single chart as this will hinder
-            understanding. Instead, think about the data you are delivering and
-            if there is a way to <strong>highlight</strong> key indicators. If
-            the series&apos; are or can be combined into logical groups, use
-            contrasting shapes/styles but keep the same color for within groups.
+            Think about the data you are delivering and if there is a way to{' '}
+            <strong>highlight</strong> key indicators. If you can combine the
+            series into logical groups, use contrasting shapes and styles, but
+            keep the same color for within groups.
           </p>
           <h3>Quantity vs trends</h3>
           <p>
             When coloring for sequential series data (not categorical), rely on
             conventions. If the data signifies <strong>quantities</strong>, use
-            a single color that spans from light for low amounts to dark colors
-            for high amounts. If the data signifies <strong>trends</strong>, use
-            a two color diverging scheme with the darkest at the extremes.
-            Remember that red means bad/negative and green is good/positive.
+            a single color that spans from light colors for low amounts to dark
+            colors for high amounts. If the data signifies{' '}
+            <strong>trends</strong>, use a two-color divergent scheme, with the
+            darkest colors at the extremes. Remember that red means bad/negative
+            and green is good/positive.
           </p>
           <p>
             Whan signifying quantities, group values into intervals instead of a

@@ -17,9 +17,9 @@ export const ElasticChartsCategoryExample = {
       text: (
         <Fragment>
           <p>
-            Category comparison charts compare data between multiple distinct
-            categories. Avoid using a line graph as it might create confusion
-            with a time series. Select a bar graph in this case.
+            Categorical charts compare data between multiple distinct
+            categories. Avoid using a line chart because it might create
+            confusion with a time series chart. Use a bar chart instead.
           </p>
 
           <p>

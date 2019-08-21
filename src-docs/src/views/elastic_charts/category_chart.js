@@ -139,14 +139,14 @@ class _CategoryChart extends Component {
           <EuiFlexItem>
             <ChartCard
               title="Chart titles"
-              description="Providing a meaningful, descriptive title can eliminate the necessity for axis titles. Though the title may need to change depending on the number of series."
+              description="A meaningful, descriptive title can often eliminate the need for axis titles entirely. That title may need to dynamically change depending on the number of series data rendered."
             />
           </EuiFlexItem>
 
           <EuiFlexItem>
             <ChartCard
               title="Order and rotation"
-              description="It can be easier to compare categories by ordering them in descending order. Rotating the chart to be horizontal can give more space to the category name.">
+              description="Categorical data is often easier to compare when sorted by sequence. Use a horizontal layout when you need more space for the category labels.">
               <EuiSwitch
                 label="Order by count descending"
                 checked={this.state.ordered}
@@ -164,7 +164,7 @@ class _CategoryChart extends Component {
           <EuiFlexItem>
             <ChartCard
               title="Tick marks"
-              description="Tick marks should be spaced out properly and number values should be formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol.">
+              description="Tick marks should be spaced out properly and number values formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol.">
               <EuiCode>1000 ⇢ 1k</EuiCode> &nbsp; <EuiCode>20000 ⇢ 20k</EuiCode>
               <EuiSpacer size="s" />
               <EuiSwitch
@@ -177,7 +177,7 @@ class _CategoryChart extends Component {
 
           <EuiFlexItem>
             <ChartTypeCard
-              type="Only bar charts are recommended but categorical"
+              type="Although we recommend only bar charts, categorical"
               onChange={this.onChartTypeChange}
               disabled
             />
