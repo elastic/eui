@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.4.0`.
+**Bug fixes**
+
+- Added missing `viewBox` attribute to Docker, Kubernetes, and Redis logos ([#2240](https://github.com/elastic/eui/pull/2240))
 
 ## [`13.4.0`](https://github.com/elastic/eui/tree/v13.4.0)
 
