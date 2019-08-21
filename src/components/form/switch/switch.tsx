@@ -2,6 +2,7 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   ReactNode,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 
@@ -9,11 +10,20 @@ import { CommonProps, Omit } from '../../common';
 import makeId from '../../form/form_row/make_id';
 import { EuiIcon } from '../../icon';
 
+export interface EuiSwitchEvent
+  extends React.BaseSyntheticEvent<
+    React.MouseEvent<HTMLButtonElement>,
+    HTMLButtonElement,
+    EventTarget & {
+      checked: boolean;
+    }
+  > {}
+
 export type EuiSwitchProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
     label: ReactNode;
     checked: boolean;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: EuiSwitchEvent) => void;
     disabled?: boolean;
     compressed?: boolean;
   };
@@ -29,10 +39,10 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   className,
   ...rest
 }) => {
-  const switchId = id || makeId();
+  const [switchId] = useState(id || makeId());
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const event = (e as unknown) as React.ChangeEvent<HTMLInputElement>;
+    const event = (e as unknown) as EuiSwitchEvent;
     event.target.checked = !checked;
     onChange(event);
   };
