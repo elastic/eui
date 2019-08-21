@@ -1,11 +1,3 @@
-// sass-lint:disable no-important
-
-// Never show the legend toggle button
-// This should be up to the consumer not the library
-.echLegendButton {
-  display: none !important;
-}
-
 // There should be a good default in ES too
 .echAnnotation {
   font-size: $euiFontSizeXS;
