@@ -234,18 +234,21 @@ export class EuiNavDrawer extends Component {
             tokens={[
               'euiNavDrawer.sideNavCollapse',
               'euiNavDrawer.sideNavExpand',
+              'euiNavDrawer.sideNavLockAriaLabel',
               'euiNavDrawer.sideNavLockExpanded',
               'euiNavDrawer.sideNavLockCollapsed',
             ]}
             defaults={[
               'Collapse',
               'Expand',
-              'Lock navigation open',
-              'Unlock navigation',
+              'Dock navigation',
+              'Navigation is docked',
+              'Navigation is undocked',
             ]}>
             {([
               sideNavCollapse,
               sideNavExpand,
+              sideNavLockAriaLabel,
               sideNavLockExpanded,
               sideNavLockCollapsed,
             ]) => (
@@ -258,9 +261,9 @@ export class EuiNavDrawer extends Component {
                   className: 'euiNavDrawer__expandButtonLockAction',
                   color: 'text',
                   onClick: this.sideNavLockClicked,
-                  iconType: this.state.isLocked ? 'lockOpen' : 'lock',
+                  iconType: this.state.isLocked ? 'lock' : 'lockOpen',
                   iconSize: 's',
-                  'aria-label': sideNavLockExpanded,
+                  'aria-label': sideNavLockAriaLabel,
                   title: this.state.isLocked
                     ? sideNavLockCollapsed
                     : sideNavLockExpanded,
