@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { orderBy } from 'lodash';
+import { orderBy, round } from 'lodash';
 
 import { withTheme } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
@@ -121,13 +121,16 @@ class _CategoryChart extends Component {
           <Axis
             id="bottom-axis"
             position={this.state.rotated ? 'left' : 'bottom'}
-            showGridLines
             gridLineStyle={gridVerticalSettings}
           />
           <Axis
             id="left-axis"
             position={this.state.rotated ? 'bottom' : 'left'}
-            tickFormat={this.state.formatted ? d => `${Number(d)}k` : undefined}
+            tickFormat={
+              this.state.formatted
+                ? d => `${round(Number(d) / 1000, 2)}k`
+                : undefined
+            }
             showGridLines
             gridLineStyle={gridHorizontalSettings}
           />
@@ -222,7 +225,11 @@ class _CategoryChart extends Component {
     id="left-axis"
     showGridLines
     position={${this.state.rotated ? 'bottom' : 'left'}}
-    ${this.state.formatted ? 'tickFormat={d => `${Number(d)}k`}' : ''}
+    ${
+      this.state.formatted
+        ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}'
+        : ''
+    }
   />
 </Chart>`}>
             {copy => (
