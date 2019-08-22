@@ -5,7 +5,7 @@ import { CategoryChart } from './category_chart';
 import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsCategoryExample = {
-  title: 'Categorical charts',
+  title: 'Categorical',
   intro: (
     <Fragment>
       <ExternalBadge />

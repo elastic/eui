@@ -6,7 +6,7 @@ import { TimeChart } from './time_chart';
 import { EuiSpacer, EuiCode } from '../../../../src/components';
 
 export const ElasticChartsTimeExample = {
-  title: 'Time series charts',
+  title: 'Time series',
   intro: (
     <Fragment>
       <ExternalBadge />
