@@ -105,6 +105,9 @@ export class EuiNavDrawer extends Component {
     setTimeout(() => {
       document.getElementById('navDrawerMenu').scrollTop = 0;
     }, 50);
+
+    // In case it was locked before, remove the window resize listener
+    window.removeEventListener('resize', this.functionToCallOnWindowResize);
   };
 
   manageFocus = () => {
@@ -195,6 +198,8 @@ export class EuiNavDrawer extends Component {
       className,
       showExpandButton,
       showToolTips,
+      isCollapsed,
+      isLocked,
       ...rest
     } = this.props;
 
