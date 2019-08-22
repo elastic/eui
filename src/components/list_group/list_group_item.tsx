@@ -156,11 +156,15 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   let extraActionNode;
 
   if (extraAction) {
-    const { iconType, alwaysShow, ...rest } = extraAction;
+    const { iconType, alwaysShow, className, ...rest } = extraAction;
 
-    const extraActionClasses = classNames('euiListGroupItem__extraAction', {
-      'euiListGroupItem__extraAction-alwaysShow': alwaysShow,
-    });
+    const extraActionClasses = classNames(
+      'euiListGroupItem__extraAction',
+      {
+        'euiListGroupItem__extraAction-alwaysShow': alwaysShow,
+      },
+      className
+    );
 
     extraActionNode = (
       <EuiButtonIconTyped
