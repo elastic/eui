@@ -76,7 +76,7 @@ You can find documentation around creating and submitting new components in [CON
 
 [Apache Licensed.][license] Read the [FAQ][faq] for details.
 
-[license]: LICENSE.md
+[license]: LICENSE
 [faq]: FAQ.md
 [consuming]: wiki/consuming.md
 [component-design]: wiki/component-design.md
