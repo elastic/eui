@@ -348,7 +348,7 @@ class _Categorical extends Component {
           style={{
             fontSize: 12,
             position: 'absolute',
-            width: 200,
+            width: 123,
             right: 0,
             bottom: 0,
             padding: 4,
