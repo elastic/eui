@@ -50,6 +50,8 @@ export class EuiNavDrawer extends Component {
       window.addEventListener('resize', this.functionToCallOnWindowResize);
     }
 
+    this.props.onIsLockedUpdate(!this.state.isLocked);
+
     this.setState({
       isLocked: !this.state.isLocked,
       isCollapsed: false,
@@ -100,6 +102,8 @@ export class EuiNavDrawer extends Component {
       toolTipsEnabled: true,
       isLocked: false,
     });
+
+    this.props.onIsLockedUpdate(false);
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
@@ -200,6 +204,7 @@ export class EuiNavDrawer extends Component {
       showToolTips,
       isCollapsed,
       isLocked,
+      onIsLockedUpdate,
       ...rest
     } = this.props;
 
@@ -347,6 +352,11 @@ EuiNavDrawer.propTypes = {
    * Keep drawer locked open by default
    */
   isLocked: PropTypes.bool,
+
+  /**
+   * Returns the current state of isLocked
+   */
+  onIsLockedUpdate: PropTypes.func,
 };
 
 EuiNavDrawer.defaultProps = {
