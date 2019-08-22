@@ -237,7 +237,6 @@ class _Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
-                showGridLines
                 gridLineStyle={gridVerticalSettings}
               />
               <Axis
@@ -346,7 +345,6 @@ class _Sizes extends Component {
     }}
     id="bottom-axis"
     position="bottom"
-    showGridLines
   />
   <Axis
     id="left-axis"

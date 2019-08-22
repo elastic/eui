@@ -124,7 +124,7 @@ class _TimeChart extends Component {
             id="bottom-axis"
             position="bottom"
             tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-            showGridLines
+            showGridLines={this.state.chartType !== 'BarSeries'}
             gridLineStyle={gridVerticalSettings}
             tickPadding={0}
           />
@@ -198,7 +198,7 @@ class _TimeChart extends Component {
     id="bottom-axis"
     position="bottom"
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    showGridLines
+    ${this.state.chartType !== 'BarSeries' ? 'showGridLines' : ''}
   />
   <Axis
     id="left-axis"

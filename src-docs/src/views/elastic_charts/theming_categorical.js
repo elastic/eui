@@ -399,8 +399,8 @@ class _Categorical extends Component {
             <Axis
               id="bottom-axis"
               position="bottom"
-              showGridLines
               gridLineStyle={gridVerticalSettings}
+              showGridLines={this.state.chartType !== 'BarSeries'}
             />
             <Axis
               id="left-axis"
@@ -510,7 +510,7 @@ class _Categorical extends Component {
   <Axis
     id="bottom-axis"
     position="bottom"
-    showGridLines
+    ${this.state.chartType !== 'BarSeries' ? 'showGridLines' : ''}
   />
   <Axis
     id="left-axis"
