@@ -794,7 +794,7 @@ describe("DatePicker", () => {
   it("should correctly clear date with empty input string", () => {
     var cleared = false;
     function handleChange(d) {
-      // Internally DateInput calls it's onChange prop with null
+      // Internally DateInput calls its onChange prop with null
       // when the input value is an empty string
       if (d === null) {
         cleared = true;
