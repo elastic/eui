@@ -339,7 +339,7 @@ EuiNavDrawer.propTypes = {
   showToolTips: PropTypes.bool,
 
   /**
-   * Keep drawer open at all times by default
+   * Keep drawer locked open by default
    */
   isLocked: PropTypes.bool,
 };
