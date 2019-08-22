@@ -2,8 +2,6 @@ const glob = require('glob');
 const svgr = require('@svgr/core').default;
 const path = require('path');
 const fs = require('fs');
-const os = require('os')
-const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');
@@ -37,6 +35,11 @@ iconFiles.forEach(async filePath => {
   const svgSource = fs.readFileSync(filePath);
 
   try {
+    const viewBoxPosition = svgSource.toString().indexOf('viewBox');
+    if (viewBoxPosition === -1) {
+      throw new Error(`${filePath} is missing a 'viewBox' attribute`);
+    }
+
     const jsxSource = (await svgr(
       svgSource,
       {
@@ -70,11 +73,3 @@ export const icon = ${componentName};
     process.exit(1);
   }
 });
-
-const results = execSync('find ./src -name "*.svg" -type f | xargs grep -L "viewBox"').toString();
-const filesMissingViewBox = results.split(os.EOL).filter(Boolean);
-if (filesMissingViewBox.length !== 0) {
-  console.error("All svg files should have a 'viewBox' attribute. Check the following:");
-  console.error(filesMissingViewBox.join(os.EOL));
-  process.exit(1);
-}
