@@ -33,6 +33,12 @@ export class EuiNavDrawer extends Component {
     window.removeEventListener('resize', this.functionToCallOnWindowResize);
   }
 
+  returnOnIsLockedUpdate = isLockedState => {
+    if (this.props.onIsLockedUpdate) {
+      this.props.onIsLockedUpdate(isLockedState);
+    }
+  };
+
   functionToCallOnWindowResize = throttle(() => {
     if (window.innerWidth < 1200) {
       this.collapseDrawer();
@@ -50,7 +56,7 @@ export class EuiNavDrawer extends Component {
       window.addEventListener('resize', this.functionToCallOnWindowResize);
     }
 
-    this.props.onIsLockedUpdate(!this.state.isLocked);
+    this.returnOnIsLockedUpdate(!this.state.isLocked);
 
     this.setState({
       isLocked: !this.state.isLocked,
@@ -103,7 +109,7 @@ export class EuiNavDrawer extends Component {
       isLocked: false,
     });
 
-    this.props.onIsLockedUpdate(false);
+    this.returnOnIsLockedUpdate(false);
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
@@ -246,6 +252,7 @@ export class EuiNavDrawer extends Component {
               <EuiListGroupItem
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
                 iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
+                role="switch"
                 size="s"
                 showToolTip={this.state.isCollapsed}
                 extraAction={{
