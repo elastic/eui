@@ -224,8 +224,8 @@ export class EuiNavDrawer extends Component {
             defaults={[
               'Collapse',
               'Expand',
-              'Lock expanded',
-              'Unlock expanded',
+              'Lock navigation open',
+              'Unlock navigation',
             ]}>
             {([
               sideNavCollapse,
