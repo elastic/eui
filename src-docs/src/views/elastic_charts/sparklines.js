@@ -65,9 +65,7 @@ class _Sparklines extends Component {
                 description="Number of things"
                 textAlign="right">
                 <EuiSpacer size="s" />
-                <Chart
-                  size={[undefined, 64]}
-                  className="eui-displayInlineBlock">
+                <Chart size={[undefined, 64]}>
                   <Settings theme={theme} showLegend={false} tooltip="none" />
                   <BarSeries
                     id="numbers"
@@ -87,9 +85,7 @@ class _Sparklines extends Component {
                 titleColor="secondary"
                 textAlign="right">
                 <EuiSpacer size="s" />
-                <Chart
-                  size={[undefined, 48]}
-                  className="eui-displayInlineBlock">
+                <Chart size={[undefined, 48]}>
                   <Settings theme={theme} showLegend={false} tooltip="none" />
                   <LineSeries
                     id="increase"
@@ -123,9 +119,7 @@ class _Sparklines extends Component {
                 titleColor="danger"
                 textAlign="right">
                 <EuiSpacer size="s" />
-                <Chart
-                  size={[undefined, 16]}
-                  className="eui-displayInlineBlock">
+                <Chart size={[undefined, 16]}>
                   <Settings theme={theme} showLegend={false} tooltip="none" />
                   <LineSeries
                     id="major"
@@ -151,9 +145,7 @@ class _Sparklines extends Component {
                 titleColor="danger"
                 textAlign="right">
                 <EuiSpacer size="s" />
-                <Chart
-                  size={[undefined, 48]}
-                  className="eui-displayInlineBlock">
+                <Chart size={[undefined, 48]}>
                   <Settings theme={theme} showLegend={false} tooltip="none" />
                   <AreaSeries
                     id="subtle"
