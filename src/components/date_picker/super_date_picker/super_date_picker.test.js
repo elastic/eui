@@ -12,13 +12,15 @@ describe('EuiSuperDatePicker', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('updates refresh interval on isPaused prop update', () => {
+  test('refresh is disabled by default', () => {
     // By default we expect `asyncInterval` to be not set.
     const componentPaused = mount(<EuiSuperDatePicker onTimeChange={noop} />);
     const instancePaused = componentPaused.instance();
     expect(instancePaused.asyncInterval).toBe(undefined);
     expect(componentPaused.prop('isPaused')).toBe(true);
+  });
 
+  test('updates refresh interval on isPaused prop update', () => {
     // If refresh is enabled via `isPaused/onRefresh` we expect
     // `asyncInterval` to be present and `asyncInterval.isStopped` to be `false`.
     const onRefresh = jest.fn();
