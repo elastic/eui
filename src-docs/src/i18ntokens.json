@@ -421,11 +421,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 337,
         "column": 14
       },
       "end": {
-        "line": 332,
+        "line": 340,
         "column": 16
       }
     },
@@ -661,15 +661,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 37,
+        "line": 61,
         "column": 6
       },
       "end": {
-        "line": 41,
+        "line": 65,
         "column": 57
       }
     },
-    "filepath": "src/components/pagination/pagination.js"
+    "filepath": "src/components/pagination/pagination.tsx"
   },
   {
     "token": "euiPagination.previousPage",
@@ -677,15 +677,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 81,
         "column": 4
       },
       "end": {
-        "line": 57,
+        "line": 81,
         "column": 72
       }
     },
-    "filepath": "src/components/pagination/pagination.js"
+    "filepath": "src/components/pagination/pagination.tsx"
   },
   {
     "token": "euiPagination.pageOfTotal",
@@ -693,15 +693,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 75,
+        "line": 99,
         "column": 6
       },
       "end": {
-        "line": 79,
+        "line": 103,
         "column": 53
       }
     },
-    "filepath": "src/components/pagination/pagination.js"
+    "filepath": "src/components/pagination/pagination.tsx"
   },
   {
     "token": "euiPagination.jumpToLastPage",
@@ -709,15 +709,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 120,
+        "line": 144,
         "column": 6
       },
       "end": {
-        "line": 124,
+        "line": 148,
         "column": 31
       }
     },
-    "filepath": "src/components/pagination/pagination.js"
+    "filepath": "src/components/pagination/pagination.tsx"
   },
   {
     "token": "euiPagination.nextPage",
@@ -725,15 +725,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 138,
+        "line": 162,
         "column": 4
       },
       "end": {
-        "line": 138,
+        "line": 162,
         "column": 64
       }
     },
-    "filepath": "src/components/pagination/pagination.js"
+    "filepath": "src/components/pagination/pagination.tsx"
   },
   {
     "token": "euiPopover.screenReaderAnnouncement",
@@ -741,15 +741,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 442,
+        "line": 589,
         "column": 14
       },
       "end": {
-        "line": 445,
+        "line": 592,
         "column": 16
       }
     },
-    "filepath": "src/components/popover/popover.js"
+    "filepath": "src/components/popover/popover.tsx"
   },
   {
     "token": "euiSelectable.loadingOptions",
@@ -917,15 +917,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 50,
+        "line": 49,
         "column": 8
       },
       "end": {
-        "line": 50,
+        "line": 49,
         "column": 72
       }
     },
-    "filepath": "src/components/table/mobile/table_sort_mobile.js"
+    "filepath": "src/components/table/mobile/table_sort_mobile.tsx"
   },
   {
     "token": "euiTablePagination.rowsPerPage",
@@ -933,15 +933,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 50,
+        "line": 62,
         "column": 8
       },
       "end": {
-        "line": 53,
+        "line": 65,
         "column": 10
       }
     },
-    "filepath": "src/components/table/table_pagination/table_pagination.js"
+    "filepath": "src/components/table/table_pagination/table_pagination.tsx"
   },
   {
     "token": "euiTablePagination.rowsPerPageOption",
@@ -949,15 +949,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 66,
+        "line": 78,
         "column": 8
       },
       "end": {
-        "line": 70,
+        "line": 82,
         "column": 10
       }
     },
-    "filepath": "src/components/table/table_pagination/table_pagination.js"
+    "filepath": "src/components/table/table_pagination/table_pagination.tsx"
   },
   {
     "token": "euiToast.dismissToast",

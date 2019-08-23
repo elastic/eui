@@ -1,2 +1,3 @@
 export { calculatePopoverPosition } from './calculate_popover_position';
-export { findPopoverPosition } from './popover_positioning';
+export { findPopoverPosition, getElementZIndex } from './popover_positioning';
+export { EuiPopoverPosition } from './types';

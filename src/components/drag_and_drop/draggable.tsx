@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { CommonProps, Omit, keysOf } from '../common';
+import { CommonProps, Omit } from '../common';
 import { EuiDroppableContext } from './droppable';
 
 const spacingToClassNameMap = {
@@ -18,7 +18,6 @@ const spacingToClassNameMap = {
   l: 'euiDraggable--l',
 };
 
-export const SPACING = keysOf(spacingToClassNameMap);
 export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
 
 export interface EuiDraggableProps
