@@ -208,7 +208,7 @@ class _Sizes extends Component {
 
             <EuiSpacer size="s" />
 
-            <Chart size={[undefined, 200]}>
+            <Chart size={{ height: 200 }}>
               <Settings
                 theme={theme}
                 showLegend={multi}
@@ -292,7 +292,7 @@ class _Sizes extends Component {
 
 <EuiSpacer size="s" />
 
-<Chart size={[undefined, 200]}>
+<Chart size={{height: 200}}>
   <Settings
     theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
     showLegend={${multi}}

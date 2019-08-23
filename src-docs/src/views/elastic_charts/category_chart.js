@@ -98,7 +98,7 @@ class _CategoryChart extends Component {
 
         <EuiSpacer size="s" />
 
-        <Chart size={[undefined, 300]}>
+        <Chart size={{ height: 300 }}>
           <Settings
             theme={theme}
             showLegend={this.state.multi}
@@ -195,7 +195,7 @@ class _CategoryChart extends Component {
 
         <div className="eui-textCenter">
           <EuiCopy
-            textToCopy={`<Chart size={[undefined, 200]}>
+            textToCopy={`<Chart size={{height: 300}}>
   <Settings
     theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
     rotation={${this.state.rotated ? 90 : 0}}

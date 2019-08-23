@@ -71,7 +71,7 @@ class _Theming extends Component {
 
     return (
       <Fragment>
-        <Chart size={[undefined, 200]}>
+        <Chart size={{ height: 200 }}>
           <Settings
             theme={customColors}
             showLegend={false}

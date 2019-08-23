@@ -360,7 +360,7 @@ class _Categorical extends Component {
       <Fragment>
         {customTitle}
         <div style={{ position: 'relative' }}>
-          <Chart size={[undefined, 200]}>
+          <Chart size={{ height: 200 }}>
             <Settings
               theme={customColors}
               showLegend={showLegend}
@@ -459,7 +459,7 @@ class _Categorical extends Component {
 </EuiTitle>`
                 : ''
             }
-<Chart size={[undefined, 200]}>
+<Chart size={{height: 200}}>
   <Settings
     ${
       customColorsString
