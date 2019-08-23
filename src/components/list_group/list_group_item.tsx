@@ -10,14 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiButtonIcon,
-  EuiButtonIconPropsForButton,
-  EuiButtonIcon as EuiButtonIconType,
-} from '../button';
-// @ts-ignore
-const EuiButtonIconTyped: typeof EuiButtonIconType = EuiButtonIcon;
-
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiIcon, IconType } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
@@ -162,7 +155,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
 
     extraActionNode = (
-      <EuiButtonIconTyped
+      <EuiButtonIcon
         className={extraActionClasses}
         iconType={iconType}
         {...rest}
