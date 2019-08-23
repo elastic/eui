@@ -26,11 +26,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiButtonIcon
           aria-label="Previous time window"
-          color="primary"
-          iconSize="m"
           iconType="arrowLeft"
           onClick={[Function]}
-          type="button"
         />
       </EuiToolTip>
     </EuiFlexItem>
@@ -44,11 +41,8 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiButtonIcon
           aria-label="Next time window"
-          color="primary"
-          iconSize="m"
           iconType="arrowRight"
           onClick={[Function]}
-          type="button"
         />
       </EuiToolTip>
     </EuiFlexItem>
@@ -171,13 +165,9 @@ exports[`EuiQuickSelect is rendered 1`] = `
       >
         <EuiButton
           className="euiQuickSelect__applyButton"
-          color="primary"
           disabled={false}
-          fill={false}
-          iconSide="left"
           onClick={[Function]}
           size="s"
-          type="button"
         >
           Apply
         </EuiButton>
@@ -216,11 +206,8 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiButtonIcon
           aria-label="Previous time window"
-          color="primary"
-          iconSize="m"
           iconType="arrowLeft"
           onClick={[Function]}
-          type="button"
         />
       </EuiToolTip>
     </EuiFlexItem>
@@ -234,11 +221,8 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiButtonIcon
           aria-label="Next time window"
-          color="primary"
-          iconSize="m"
           iconType="arrowRight"
           onClick={[Function]}
-          type="button"
         />
       </EuiToolTip>
     </EuiFlexItem>
@@ -361,13 +345,9 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       >
         <EuiButton
           className="euiQuickSelect__applyButton"
-          color="primary"
           disabled={false}
-          fill={false}
-          iconSide="left"
           onClick={[Function]}
           size="s"
-          type="button"
         >
           Apply
         </EuiButton>

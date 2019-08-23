@@ -10,6 +10,9 @@ const babelOptions = {
   ],
   filename: 'somefile.tsx',
 };
+const babelPlugin = require('./index');
+
+beforeEach(() => babelPlugin.clearImportCache());
 
 describe('proptypes-from-ts-props', () => {
 

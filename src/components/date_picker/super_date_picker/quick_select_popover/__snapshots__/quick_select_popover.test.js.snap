@@ -7,7 +7,6 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     <EuiButtonEmpty
       aria-label="Date quick select"
       className="euiFormControlLayout__prepend"
-      color="primary"
       data-test-subj="superDatePickerToggleQuickMenuButton"
       iconSide="right"
       iconType="arrowDown"
@@ -19,7 +18,6 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
           "className": "euiQuickSelectPopover__buttonText",
         }
       }
-      type="button"
     >
       <EuiIcon
         type="calendar"
@@ -94,7 +92,6 @@ exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
     <EuiButtonEmpty
       aria-label="Date quick select"
       className="euiFormControlLayout__prepend"
-      color="primary"
       data-test-subj="superDatePickerToggleQuickMenuButton"
       iconSide="right"
       iconType="arrowDown"
@@ -106,7 +103,6 @@ exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
           "className": "euiQuickSelectPopover__buttonText",
         }
       }
-      type="button"
     >
       <EuiIcon
         type="clock"

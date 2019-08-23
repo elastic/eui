@@ -1,5 +1,5 @@
 import { CommonProps } from '../common';
-/// <reference path="../panel/index.d.ts" />
+import { EuiPanelProps } from '../panel/panel';
 
 import { FunctionComponent, HTMLAttributes } from 'react';
 
