@@ -74,7 +74,7 @@ function compileBundle() {
 
   console.log('Building chart theme module...');
   execSync(
-    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
+    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.ts --output-library-target="commonjs" --config=src/webpack.config.js',
     {
       stdio: 'inherit',
     }
