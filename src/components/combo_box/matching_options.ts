@@ -1,4 +1,4 @@
-import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/named
+import { EuiComboBoxOptionProps } from '@elastic/eui'; // eslint-disable-line import/no-unresolved
 
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionProps<T>>
