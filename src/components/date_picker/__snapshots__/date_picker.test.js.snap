@@ -6,6 +6,7 @@ exports[`EuiDatePicker is rendered 1`] = `
     className="euiDatePicker euiDatePicker--shadow"
   >
     <EuiFormControlLayout
+      clear={null}
       fullWidth={false}
       icon="calendar"
       isLoading={false}

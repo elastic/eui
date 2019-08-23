@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFacetButton is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiFacetButton euiFacetButton--unSelected testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiFacetButton props icon is rendered 1`] = `
+<button
+  class="euiFacetButton euiFacetButton--unSelected"
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <svg
+      class="euiIcon euiIcon--medium euiIcon-isLoading euiFacetButton__icon"
+      focusable="false"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiFacetButton props isDisabled is rendered 1`] = `
+<button
+  class="euiFacetButton euiFacetButton--unSelected"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiFacetButton props isLoading is rendered 1`] = `
+<button
+  class="euiFacetButton euiFacetButton--unSelected"
+  disabled=""
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+    <span
+      class="euiLoadingSpinner euiLoadingSpinner--medium euiFacetButton__spinner"
+    />
+  </span>
+</button>
+`;
+
+exports[`EuiFacetButton props isSelected is rendered 1`] = `
+<button
+  class="euiFacetButton euiFacetButton--isSelected"
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiFacetButton props quantity is rendered 1`] = `
+<button
+  class="euiFacetButton euiFacetButton--unSelected"
+  type="button"
+>
+  <span
+    class="euiFacetButton__content"
+  >
+    <span
+      class="euiFacetButton__text"
+      data-text="Content"
+    >
+      Content
+    </span>
+    <span
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
+    >
+      60
+    </span>
+  </span>
+</button>
+`;

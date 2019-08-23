@@ -7,13 +7,15 @@ import { EuiNavDrawerGroup } from './nav_drawer_group';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiI18n } from '../i18n';
 import { EuiFlexItem } from '../flex';
+import { throttle } from '../color_picker/utils';
 
 export class EuiNavDrawer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isCollapsed: true,
+      isLocked: props.isLocked,
+      isCollapsed: !props.isLocked,
       flyoutIsCollapsed: true,
       outsideClickDisabled: true,
       isManagingFocus: false,
@@ -21,7 +23,47 @@ export class EuiNavDrawer extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.isLocked) {
+      window.addEventListener('resize', this.functionToCallOnWindowResize);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.functionToCallOnWindowResize);
+  }
+
+  returnOnIsLockedUpdate = isLockedState => {
+    if (this.props.onIsLockedUpdate) {
+      this.props.onIsLockedUpdate(isLockedState);
+    }
+  };
+
+  functionToCallOnWindowResize = throttle(() => {
+    if (window.innerWidth < 1200) {
+      this.collapseDrawer();
+      this.collapseFlyout();
+    }
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
   timeoutID;
+
+  sideNavLockClicked = () => {
+    if (this.state.isLocked) {
+      window.removeEventListener('resize', this.functionToCallOnWindowResize);
+    } else {
+      window.addEventListener('resize', this.functionToCallOnWindowResize);
+    }
+
+    this.returnOnIsLockedUpdate(!this.state.isLocked);
+
+    this.setState({
+      isLocked: !this.state.isLocked,
+      isCollapsed: false,
+      outsideClickDisabled: true,
+    });
+  };
 
   toggleOpen = () => {
     this.setState({
@@ -34,6 +76,16 @@ export class EuiNavDrawer extends Component {
         toolTipsEnabled: this.state.isCollapsed ? true : false,
       });
     }, 150);
+  };
+
+  collapseButtonClick = () => {
+    if (this.state.isCollapsed) {
+      this.expandDrawer();
+    } else {
+      this.collapseDrawer();
+    }
+
+    this.collapseFlyout();
   };
 
   expandDrawer = () => {
@@ -54,12 +106,18 @@ export class EuiNavDrawer extends Component {
       isCollapsed: true,
       outsideClickDisabled: this.state.flyoutIsCollapsed ? true : false,
       toolTipsEnabled: true,
+      isLocked: false,
     });
+
+    this.returnOnIsLockedUpdate(false);
 
     // Scrolls the menu and flyout back to top when the nav drawer collapses
     setTimeout(() => {
       document.getElementById('navDrawerMenu').scrollTop = 0;
     }, 50);
+
+    // In case it was locked before, remove the window resize listener
+    window.removeEventListener('resize', this.functionToCallOnWindowResize);
   };
 
   manageFocus = () => {
@@ -103,7 +161,7 @@ export class EuiNavDrawer extends Component {
         flyoutIsCollapsed: false,
         navFlyoutTitle: title,
         navFlyoutContent: content,
-        isCollapsed: true,
+        isCollapsed: this.state.isLocked ? false : true,
         toolTipsEnabled: false,
         outsideClickDisabled: false,
       });
@@ -115,12 +173,12 @@ export class EuiNavDrawer extends Component {
       flyoutIsCollapsed: true,
       navFlyoutTitle: null,
       navFlyoutContent: null,
-      toolTipsEnabled: true,
+      toolTipsEnabled: this.state.isLocked ? false : true,
     });
   };
 
   closeBoth = () => {
-    this.collapseDrawer();
+    if (!this.state.isLocked) this.collapseDrawer();
     this.collapseFlyout();
   };
 
@@ -150,6 +208,9 @@ export class EuiNavDrawer extends Component {
       className,
       showExpandButton,
       showToolTips,
+      isCollapsed,
+      isLocked,
+      onIsLockedUpdate,
       ...rest
     } = this.props;
 
@@ -158,6 +219,7 @@ export class EuiNavDrawer extends Component {
       {
         'euiNavDrawer-isCollapsed': this.state.isCollapsed,
         'euiNavDrawer-isExpanded': !this.state.isCollapsed,
+        'euiNavDrawer-isLocked': this.state.isLocked,
         'euiNavDrawer-flyoutIsCollapsed': this.state.flyoutIsCollapsed,
         'euiNavDrawer-flyoutIsExpanded': !this.state.flyoutIsCollapsed,
       },
@@ -172,22 +234,43 @@ export class EuiNavDrawer extends Component {
             tokens={[
               'euiNavDrawer.sideNavCollapse',
               'euiNavDrawer.sideNavExpand',
+              'euiNavDrawer.sideNavLockAriaLabel',
+              'euiNavDrawer.sideNavLockExpanded',
+              'euiNavDrawer.sideNavLockCollapsed',
             ]}
-            defaults={['Collapse', 'Expand']}>
-            {([sideNavCollapse, sideNavExpand]) => (
+            defaults={[
+              'Collapse',
+              'Expand',
+              'Dock navigation',
+              'Navigation is docked',
+              'Navigation is undocked',
+            ]}>
+            {([
+              sideNavCollapse,
+              sideNavExpand,
+              sideNavLockAriaLabel,
+              sideNavLockExpanded,
+              sideNavLockCollapsed,
+            ]) => (
               <EuiListGroupItem
                 label={this.state.isCollapsed ? sideNavExpand : sideNavCollapse}
                 iconType={this.state.isCollapsed ? 'menuRight' : 'menuLeft'}
                 size="s"
                 showToolTip={this.state.isCollapsed}
-                onClick={
-                  this.state.isCollapsed
-                    ? () => {
-                        this.expandDrawer();
-                        this.collapseFlyout();
-                      }
-                    : () => this.collapseDrawer()
-                }
+                extraAction={{
+                  className: 'euiNavDrawer__expandButtonLockAction',
+                  color: 'text',
+                  onClick: this.sideNavLockClicked,
+                  iconType: this.state.isLocked ? 'lock' : 'lockOpen',
+                  iconSize: 's',
+                  'aria-label': sideNavLockAriaLabel,
+                  title: this.state.isLocked
+                    ? sideNavLockCollapsed
+                    : sideNavLockExpanded,
+                  'aria-checked': this.state.isLocked ? true : false,
+                  role: 'switch',
+                }}
+                onClick={this.collapseButtonClick}
                 data-test-subj={
                   this.state.isCollapsed
                     ? 'navDrawerExpandButton-isCollapsed'
@@ -273,6 +356,16 @@ EuiNavDrawer.propTypes = {
    * Display tooltips on side nav items
    */
   showToolTips: PropTypes.bool,
+
+  /**
+   * Keep drawer locked open by default
+   */
+  isLocked: PropTypes.bool,
+
+  /**
+   * Returns the current state of isLocked
+   */
+  onIsLockedUpdate: PropTypes.func,
 };
 
 EuiNavDrawer.defaultProps = {
