@@ -11,12 +11,22 @@
 
 - Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
 
+## [`13.6.0`](https://github.com/elastic/eui/tree/v13.6.0)
+
+**Note: this contains a reversion backported for targeted release**
+
+- Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
+
 ## [`13.5.0`](https://github.com/elastic/eui/tree/v13.5.0)
+
+**Note: this contains component code that was reverted in the next release. Use `13.6.0` instead**
 
 - Fixed `logoCloudEnterprise`, `logoLogging`, and `logoSecurity` SVGs in `EuiIcon` to be center aligned ([#2246](https://github.com/elastic/eui/pull/2246))
 - Added locking behavior of `EuiNavDrawer` expanded state inluding the following props `isLocked`, `onIsLockedUpdate` ([#2247](https://github.com/elastic/eui/pull/2247))
 
 ## [`13.4.1`](https://github.com/elastic/eui/tree/v13.4.1)
+
+**Note: this contains component code that was later reverted. Use `13.6.0` instead**
 
 - Converted `EuiSwitch` to TypeScript ([#2243](https://github.com/elastic/eui/pull/2243))
 
@@ -25,6 +35,8 @@
 - Added missing `viewBox` attribute to Docker, Kubernetes, and Redis logos ([#2240](https://github.com/elastic/eui/pull/2240))
 
 ## [`13.4.0`](https://github.com/elastic/eui/tree/v13.4.0)
+
+**Note: this contains component code that was later reverted. Use `13.6.0` instead**
 
 - Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
 - Added an optional `onClear` prop to the the `EuiDatePicker` component ([#2235](https://github.com/elastic/eui/pull/2235))
