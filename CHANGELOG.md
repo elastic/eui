@@ -7,6 +7,10 @@
 - Fixed `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2250](https://github.com/elastic/eui/pull/2250))
 - Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
 
+**Reverts**
+
+- Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
+
 ## [`13.5.0`](https://github.com/elastic/eui/tree/v13.5.0)
 
 - Fixed `logoCloudEnterprise`, `logoLogging`, and `logoSecurity` SVGs in `EuiIcon` to be center aligned ([#2246](https://github.com/elastic/eui/pull/2246))
