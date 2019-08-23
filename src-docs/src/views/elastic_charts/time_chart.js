@@ -172,7 +172,7 @@ class _TimeChart extends Component {
   <${this.state.chartType === 'Mixed' ? 'BarSeries' : this.state.chartType}
     id="financial"
     name="Financial"
-    data={TIME_DATA=[[0,1],[1,2]]}
+    data={[[0,1],[1,2]]}
     xScaleType="time"
     xAccessor={0}
     yAccessors={[1]}
@@ -185,7 +185,7 @@ class _TimeChart extends Component {
         }
       id="tech"
       name="Tech support"
-      data={TIME_DATA_2=[[0,1],[1,2]]}
+      data={[[0,1],[1,2]]}
       xScaleType="time"
       xAccessor={0}
       yAccessors={[1]}
