@@ -12,8 +12,8 @@ import {
 } from '@elastic/charts';
 
 import {
-  EUI_DARK_THEME,
-  EUI_LIGHT_THEME,
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
 import {
@@ -169,16 +169,18 @@ class _Sizes extends Component {
     } = this.state;
 
     const isDarkTheme = this.props.theme.includes('dark');
-    const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
+    const theme = isDarkTheme
+      ? EUI_CHARTS_THEME_DARK.theme
+      : EUI_CHARTS_THEME_LIGHT.theme;
     const gridHorizontalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridHorizontalSettings
-      : EUI_LIGHT_THEME.gridHorizontalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
     const gridVerticalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridVerticalSettings
-      : EUI_LIGHT_THEME.gridVerticalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
     const lineAnnotationStyle = isDarkTheme
-      ? EUI_DARK_THEME.lineAnnotation
-      : EUI_LIGHT_THEME.lineAnnotation;
+      ? EUI_CHARTS_THEME_DARK.lineAnnotation
+      : EUI_CHARTS_THEME_LIGHT.lineAnnotation;
 
     let annotation;
     if (width < this.xsmallSize) {
@@ -294,7 +296,7 @@ class _Sizes extends Component {
 
 <Chart size={{height: 200}}>
   <Settings
-    theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
+    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
     showLegend={${multi}}
     legendPosition="${legendPosition}"
     tooltip={{ headerFormatter: tooltipData => {
@@ -330,8 +332,8 @@ class _Sizes extends Component {
     dataValues={[{ dataValue: 1.2, details: 'Threshold' }]}
     marker={'1.2'}
     style={isDarkTheme
-      ? EUI_DARK_THEME.lineAnnotation
-      : EUI_LIGHT_THEME.lineAnnotation
+      ? EUI_CHARTS_THEME_DARK.lineAnnotation
+      : EUI_CHARTS_THEME_LIGHT.lineAnnotation
     }
   />`
       : ''

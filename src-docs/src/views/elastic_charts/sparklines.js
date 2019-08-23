@@ -11,9 +11,9 @@ import {
 } from '@elastic/charts';
 
 import {
-  EUI_DARK_THEME,
-  EUI_LIGHT_THEME,
-  EUI_SPARKLINE_THEME,
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
+  EUI_SPARKLINE_THEME_PARTIAL,
 } from '../../../../src/themes/charts/themes';
 
 import {
@@ -45,8 +45,8 @@ class _Sparklines extends Component {
   render() {
     const isDarkTheme = this.props.theme.includes('dark');
     const theme = mergeWithDefaultTheme(
-      EUI_SPARKLINE_THEME,
-      isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme
+      EUI_SPARKLINE_THEME_PARTIAL,
+      isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
     );
 
     const TIME_DATA_SMALL_REVERSE = cloneDeep(TIME_DATA_SMALL).reverse();

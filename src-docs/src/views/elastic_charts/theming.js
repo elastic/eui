@@ -11,8 +11,8 @@ import {
 } from '@elastic/charts';
 
 import {
-  EUI_DARK_THEME,
-  EUI_LIGHT_THEME,
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
 import { colorPalette } from '../../../../src/services';
@@ -44,14 +44,16 @@ class _Theming extends Component {
     const data2 = dg.generateGroupedSeries(20, 5);
 
     const isDarkTheme = this.props.theme.includes('dark');
-    const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
+    const theme = isDarkTheme
+      ? EUI_CHARTS_THEME_DARK.theme
+      : EUI_CHARTS_THEME_LIGHT.theme;
 
     const gridHorizontalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridHorizontalSettings
-      : EUI_LIGHT_THEME.gridHorizontalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
     const gridVerticalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridVerticalSettings
-      : EUI_LIGHT_THEME.gridVerticalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
 
     const customColors = mergeWithDefaultTheme(
       {

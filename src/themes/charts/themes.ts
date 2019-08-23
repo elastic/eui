@@ -125,10 +125,12 @@ function createTheme(colors: any) {
   };
 }
 
-export const EUI_LIGHT_THEME: EuiChartThemeType = createTheme(lightColors);
-export const EUI_DARK_THEME: EuiChartThemeType = createTheme(darkColors);
+export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme(
+  lightColors
+);
+export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(darkColors);
 
-export const EUI_SPARKLINE_THEME: PartialTheme = {
+export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
     point: {
       visible: false,

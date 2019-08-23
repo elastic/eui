@@ -5,8 +5,8 @@ import { withTheme } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
 
 import {
-  EUI_DARK_THEME,
-  EUI_LIGHT_THEME,
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
 import {
@@ -75,13 +75,15 @@ class _CategoryChart extends Component {
 
   render() {
     const isDarkTheme = this.props.theme.includes('dark');
-    const theme = isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme;
+    const theme = isDarkTheme
+      ? EUI_CHARTS_THEME_DARK.theme
+      : EUI_CHARTS_THEME_LIGHT.theme;
     const gridHorizontalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridHorizontalSettings
-      : EUI_LIGHT_THEME.gridHorizontalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
     const gridVerticalSettings = isDarkTheme
-      ? EUI_DARK_THEME.gridVerticalSettings
-      : EUI_LIGHT_THEME.gridVerticalSettings;
+      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
+      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
 
     const ChartType = CHART_COMPONENTS[this.state.chartType];
 
@@ -197,7 +199,7 @@ class _CategoryChart extends Component {
           <EuiCopy
             textToCopy={`<Chart size={{height: 300}}>
   <Settings
-    theme={isDarkTheme ? EUI_DARK_THEME.theme : EUI_LIGHT_THEME.theme}
+    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
     rotation={${this.state.rotated ? 90 : 0}}
     showLegend={${this.state.multi}}
     ${this.state.multi ? 'legendPosition="right"' : ''}
