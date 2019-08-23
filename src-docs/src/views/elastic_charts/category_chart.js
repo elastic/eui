@@ -218,7 +218,6 @@ class _CategoryChart extends Component {
   <Axis
     id="bottom-axis"
     position={${this.state.rotated ? 'left' : 'bottom'}}
-    xScaleType={ScaleType.Ordinal}
   />
   <Axis
     id="left-axis"
