@@ -9,11 +9,9 @@ exports[`DefaultItemAction render - button 1`] = `
   <EuiButtonEmpty
     color="primary"
     flush="right"
-    iconSide="left"
     isDisabled={false}
     onClick={[Function]}
     size="s"
-    type="button"
   >
     action1
   </EuiButtonEmpty>
@@ -29,11 +27,9 @@ exports[`DefaultItemAction render - icon 1`] = `
   <EuiButtonIcon
     aria-label="action1"
     color="primary"
-    iconSize="m"
     iconType="trash"
     isDisabled={false}
     onClick={[Function]}
-    type="button"
   />
 </EuiToolTip>
 `;

@@ -85,6 +85,7 @@
     "@types/react-is": "~16.3.0",
     "@types/react-virtualized": "^9.18.6",
     "@types/resize-observer-browser": "^0.1.1",
+    "@types/tabbable": "^3.1.0",
     "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
