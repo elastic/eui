@@ -1,20 +1,14 @@
 import { CommonProps } from '../../common';
 
-import { FunctionComponent, ButtonHTMLAttributes, ReactNode } from 'react';
+import { FunctionComponent, InputHTMLAttributes, ReactNode } from 'react';
 
 declare module '@elastic/eui' {
   /**
    * @see './switch.js'
    */
   export type EuiSwitchProps = CommonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & {
-      label: ReactNode;
-      checked: boolean;
-      onChange: (
-        event: React.FormEvent<HTMLButtonElement & { checked: boolean }>
-      ) => void;
-      disabled?: boolean;
-      compressed?: boolean;
+    InputHTMLAttributes<HTMLInputElement> & {
+      label?: ReactNode;
     };
 
   export const EuiSwitch: FunctionComponent<EuiSwitchProps>;
