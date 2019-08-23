@@ -192,6 +192,14 @@ export class EuiSuperDatePicker extends Component {
     }
   };
 
+  componentDidUpdate = () => {
+    if (this.props.isPaused) {
+      this.stopInterval();
+    } else {
+      this.startInterval(this.props.refreshInterval);
+    }
+  };
+
   componentWillUnmount = () => {
     this.stopInterval();
   };
