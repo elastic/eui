@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.6.0`.
+
+## [`13.6.0`](https://github.com/elastic/eui/tree/v13.6.0)
+
 **Note: this contains a reversion backported for targeted release**
 
 - Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
