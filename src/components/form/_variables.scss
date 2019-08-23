@@ -22,4 +22,3 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8);
 $euiFormInputGroupLabelBackground: shadeOrTint($euiFormBackgroundDisabledColor, 0, 3%);
-$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
