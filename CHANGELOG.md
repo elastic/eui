@@ -1,9 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+<<<<<<< HEAD
+- Allow `EuiFlexGroup` to accept a `ref` ([#2223](https://github.com/elastic/eui/pull/2223))
+
+**Bug fixes**
+=======
 - Fixed `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2250](https://github.com/elastic/eui/pull/2250))
 - Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
 
 ## [`13.5.0`](https://github.com/elastic/eui/tree/v13.5.0)
+>>>>>>> master
 
 - Fixed `logoCloudEnterprise`, `logoLogging`, and `logoSecurity` SVGs in `EuiIcon` to be center aligned ([#2246](https://github.com/elastic/eui/pull/2246))
 - Added locking behavior of `EuiNavDrawer` expanded state inluding the following props `isLocked`, `onIsLockedUpdate` ([#2247](https://github.com/elastic/eui/pull/2247))
