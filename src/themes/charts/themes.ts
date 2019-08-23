@@ -1,13 +1,27 @@
 import { palettes } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
+import {
+  PartialTheme,
+  GridLineConfig,
+  LineAnnotationStyle,
+} from '@elastic/charts';
 
+// @ts-ignore
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
+// @ts-ignore
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
 const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
-function createTheme(colors) {
+export interface EuiChartThemeType {
+  gridHorizontalSettings: GridLineConfig;
+  gridVerticalSettings: GridLineConfig;
+  lineAnnotation: LineAnnotationStyle;
+  theme: PartialTheme;
+}
+
+function createTheme(colors: any) {
   return {
     gridHorizontalSettings: {
       stroke: colors.euiColorChartLines.rgba,
@@ -25,6 +39,13 @@ function createTheme(colors) {
       line: {
         strokeWidth: 1,
         stroke: colors.euiColorDarkShade.rgba,
+        opacity: 1,
+      },
+      details: {
+        fontSize: 10,
+        fontFamily: fontFamily,
+        fill: colors.euiColorDarkShade.rgba,
+        padding: 0,
       },
     },
     theme: {
@@ -104,10 +125,10 @@ function createTheme(colors) {
   };
 }
 
-export const EUI_LIGHT_THEME = createTheme(lightColors);
-export const EUI_DARK_THEME = createTheme(darkColors);
+export const EUI_LIGHT_THEME: EuiChartThemeType = createTheme(lightColors);
+export const EUI_DARK_THEME: EuiChartThemeType = createTheme(darkColors);
 
-export const EUI_SPARKLINE_THEME = {
+export const EUI_SPARKLINE_THEME: PartialTheme = {
   lineSeriesStyle: {
     point: {
       visible: false,
