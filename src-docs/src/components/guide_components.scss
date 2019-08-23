@@ -175,6 +175,7 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   height: $euiSizeM / 2;
   background-color: currentColor;
   vertical-align: middle;
+  margin-right: $euiSizeS;
 }
 
 .guideCharts__customLegendLine--thin {

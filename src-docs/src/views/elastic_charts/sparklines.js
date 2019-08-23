@@ -7,7 +7,6 @@ import {
   Settings,
   LineSeries,
   AreaSeries,
-  mergeWithDefaultTheme,
 } from '@elastic/charts';
 
 import {
@@ -44,10 +43,10 @@ class _Sparklines extends Component {
 
   render() {
     const isDarkTheme = this.props.theme.includes('dark');
-    const theme = mergeWithDefaultTheme(
+    const theme = [
       EUI_SPARKLINE_THEME_PARTIAL,
-      isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
-    );
+      isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme,
+    ];
 
     const TIME_DATA_SMALL_REVERSE = cloneDeep(TIME_DATA_SMALL).reverse();
     const TIME_DATA_SMALL_REVERSE_MAJOR = cloneDeep(TIME_DATA_SMALL_REVERSE);

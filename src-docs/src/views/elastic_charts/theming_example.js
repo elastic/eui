@@ -16,7 +16,6 @@ import {
   EuiSpacer,
   EuiText,
   EuiCodeBlock,
-  EuiCode,
   EuiLink,
 } from '../../../../src/components';
 
@@ -62,9 +61,9 @@ export const ElasticChartsThemingExample = {
             and pass the correct one to the Settings.theme property.
           </p>
           <EuiCodeBlock language="javascript" isCopyable>
-            {`import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from \'@elastic/eui/dist/eui_charts_theme\';
-
-<Settings theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme} />`}
+            {`import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
+const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme;
+<Settings theme={euiTheme} />`}
           </EuiCodeBlock>
           <p>
             EUI also provides some basic{' '}
@@ -72,11 +71,23 @@ export const ElasticChartsThemingExample = {
               color palettes and functions
             </Link>{' '}
             if you would like to change the default color blind safe scheme to
-            another palette. You can import these from the services folder and
-            apply them with Charts <EuiCode>mergeWithDefaultTheme</EuiCode>{' '}
-            function.
+            another palette. You can import these from the services folder.
+            Create a new partial theme object with your chosen colors and
+            prepend it to the list of themes supplied to Settings.
           </p>
-          <p>You&apos;ll find an example of this in the demo below.</p>
+
+          <EuiCodeBlock language="javascript" isCopyable>
+            {`import { colorPalette } from '../../../../src/services';
+
+const customColors = {
+  colors: {
+    vizColors: colorPalette('#FFFFE0', '#017F75', 5),
+  },
+};
+
+<Settings theme={[customColors, euiTheme]} />`}
+          </EuiCodeBlock>
+          <p>You&apos;ll find an example of these in the demo below.</p>
         </Fragment>
       ),
       demo: <Theming />,

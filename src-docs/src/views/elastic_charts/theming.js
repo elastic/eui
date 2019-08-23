@@ -6,7 +6,6 @@ import {
   Axis,
   LineSeries,
   BarSeries,
-  mergeWithDefaultTheme,
   DataGenerator,
 } from '@elastic/charts';
 
@@ -55,14 +54,11 @@ class _Theming extends Component {
       ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
       : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
 
-    const customColors = mergeWithDefaultTheme(
-      {
-        colors: {
-          vizColors: colorPalette('#FFFFE0', '#017F75', 5),
-        },
+    const customColors = {
+      colors: {
+        vizColors: colorPalette('#FFFFE0', '#017F75', 5),
       },
-      theme
-    );
+    };
 
     const data1CustomSeriesColors = new Map();
     const data1DataSeriesColorValues = {
@@ -75,7 +71,7 @@ class _Theming extends Component {
       <Fragment>
         <Chart size={{ height: 200 }}>
           <Settings
-            theme={customColors}
+            theme={[customColors, theme]}
             showLegend={false}
             showLegendDisplayValue={false}
           />

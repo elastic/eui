@@ -2,13 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import { find } from 'lodash';
 import { withTheme } from '../../components';
-import {
-  Chart,
-  Settings,
-  Axis,
-  mergeWithDefaultTheme,
-  DataGenerator,
-} from '@elastic/charts';
+import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -275,18 +269,15 @@ class _Categorical extends Component {
         undefined
       );
 
-    const customColors = mergeWithDefaultTheme(
-      {
-        colors: { vizColors },
-      },
-      theme
-    );
+    const customColors = {
+      colors: { vizColors },
+    };
     const customColorsString =
       vizColors !== palettes.euiPaletteColorBlind.colors
-        ? `mergeWithDefaultTheme(
+        ? `[
   { colors: { vizColors: [${JSON.stringify(vizColors)}] }},
   isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
-)`
+]`
         : null;
 
     const charts = [];
@@ -364,7 +355,7 @@ class _Categorical extends Component {
         <div style={{ position: 'relative' }}>
           <Chart size={{ height: 200 }}>
             <Settings
-              theme={customColors}
+              theme={[customColors, theme]}
               showLegend={showLegend}
               legendPosition="right"
               showLegendDisplayValue={false}
