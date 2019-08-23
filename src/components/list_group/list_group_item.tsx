@@ -10,15 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiButtonIconProps,
-  EuiButtonPropsForButtonOrLink,
-  EuiButtonIcon as EuiButtonIconType,
-} from '@elastic/eui'; // eslint-disable-line import/no-unresolved
-// @ts-ignore
-import { EuiButtonIcon } from '../button';
-const EuiButtonIconTyped: typeof EuiButtonIconType = EuiButtonIcon;
-
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiIcon, IconType } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
@@ -89,13 +81,9 @@ export type EuiListGroupItemProps = CommonProps &
      * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
      * pass `alwaysShow` if you don't want the default behavior of only showing on hover
      */
-    extraAction?: EuiButtonPropsForButtonOrLink<
-      CommonProps &
-        EuiButtonIconProps & {
-          iconType: IconType;
-          alwaysShow?: boolean;
-        }
-    >;
+    extraAction?: EuiButtonIconPropsForButton & {
+      alwaysShow?: boolean;
+    };
 
     /**
      * Make the list item label a button.
@@ -167,7 +155,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
 
     extraActionNode = (
-      <EuiButtonIconTyped
+      <EuiButtonIcon
         className={extraActionClasses}
         iconType={iconType}
         {...rest}

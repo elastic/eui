@@ -1,8 +1,9 @@
 import { CommonProps, Omit } from '../common';
-/// <reference path="../button/index.d.ts" />
-/// <reference path="../focus_trap/index.d.ts" />
+import { FocusTarget } from '../focus_trap';
 
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
+
+import { ButtonColor } from '../button';
 
 import { EuiModalFooterProps } from './modal_footer';
 import { EuiModalHeaderProps } from './modal_header';

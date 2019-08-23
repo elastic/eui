@@ -1,8 +1,7 @@
-import { CommonProps } from '../common';
-/// <reference path="../button/index.d.ts" />
-
 import { Component, FunctionComponent, ButtonHTMLAttributes } from 'react';
 
+import { CommonProps } from '../common';
+import { EuiButtonEmptyProps } from '../button';
 import { EuiFilterGroupProps } from './filter_group';
 
 declare module '@elastic/eui' {
