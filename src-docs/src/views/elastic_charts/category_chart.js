@@ -217,7 +217,6 @@ class _CategoryChart extends Component {
   />
   <Axis
     id="bottom-axis"
-    showGridLines
     position={${this.state.rotated ? 'left' : 'bottom'}}
     xScaleType={ScaleType.Ordinal}
   />

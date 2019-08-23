@@ -235,8 +235,6 @@ class _Categorical extends Component {
     });
   };
 
-  // createGroupedChart
-
   render() {
     const {
       data,
@@ -344,38 +342,12 @@ class _Categorical extends Component {
       }
 
       customLegend = (
-        <dl
-          style={{
-            fontSize: 12,
-            position: 'absolute',
-            width: 123,
-            right: 0,
-            bottom: 0,
-            padding: 4,
-          }}>
-          <span
-            style={{
-              display: 'inline-block',
-              width: 16,
-              height: 6,
-              backgroundColor: 'currentColor',
-              verticalAlign: 'middle',
-            }}
-          />
-          &emsp;
+        <dl className="guideCharts__customLegend">
+          <span className="guideCharts__customLegendLine" />
           <span>Actual</span>
           <br />
           <br />
-          <span
-            style={{
-              display: 'inline-block',
-              width: 16,
-              height: 1,
-              backgroundColor: 'currentColor',
-              verticalAlign: 'middle',
-            }}
-          />
-          &emsp;
+          <span className="guideCharts__customLegendLine guideCharts__customLegendLine--thin" />
           <span>Projected</span>
         </dl>
       );
