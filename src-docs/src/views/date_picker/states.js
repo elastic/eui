@@ -44,6 +44,16 @@ export default class extends Component {
           showTimeSelect
           selected={this.state.startDate}
           onChange={this.handleChange}
+          onClear={() => this.handleChange(null)}
+          placeholder="Clearable"
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiDatePicker
+          showTimeSelect
+          selected={this.state.startDate}
+          onChange={this.handleChange}
           disabled
           placeholder="Disabled"
         />
