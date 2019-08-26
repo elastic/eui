@@ -7,16 +7,17 @@ import React, {
 import classnames from 'classnames';
 import tabbable from 'tabbable';
 
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeyCodes } from '../../services';
 
-interface EuiInputPopoverProps extends EuiPopoverProps {
+interface EuiInputPopoverProps
+  extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
-  inputRef: EuiPopoverProps['buttonRef'];
+  inputRef?: EuiPopoverProps['buttonRef'];
 }
 
 type Props = CommonProps &
@@ -26,8 +27,8 @@ type Props = CommonProps &
 export const EuiInputPopover: FunctionComponent<Props> = ({
   children,
   className,
-  fullWidth,
   input,
+  fullWidth = false,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState();
@@ -37,16 +38,17 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   const inputRef = (node: HTMLElement | null) => setInputEl(node);
   const panelRef = (node: HTMLElement | null) => setPanelEl(node);
 
-  const setPanelWidth = () => {
-    if (panelEl && inputElWidth) {
-      panelEl.style.width = `${inputElWidth}px`;
+  const setPanelWidth = (width?: number) => {
+    if (panelEl && (!!inputElWidth || !!width)) {
+      const newWidth = !!width ? width : inputElWidth;
+      panelEl.style.width = `${newWidth}px`;
     }
   };
   const onResize = () => {
     if (inputEl) {
       const width = inputEl.getBoundingClientRect().width;
       setInputElWidth(width);
-      setPanelWidth();
+      setPanelWidth(width);
     }
   };
   useEffect(() => {
@@ -105,6 +107,5 @@ EuiInputPopover.defaultProps = {
   anchorPosition: 'downLeft',
   attachToAnchor: true,
   display: 'block',
-  fullWidth: false,
   panelPaddingSize: 's',
 };
