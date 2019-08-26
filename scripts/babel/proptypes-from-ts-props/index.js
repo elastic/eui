@@ -5,6 +5,8 @@ const path = require('path');
 const babelTemplate = require('babel-template');
 const babelCore = require('@babel/core');
 
+const importedDefinitionsCache = new Map();
+
 // react-docgen does not understand typescript annotations
 function stripTypeScript(filename, ast) {
   return babelCore.transform(
@@ -809,6 +811,16 @@ const typeDefinitionExtractors = {
         return [];
       }
 
+      if (importedDefinitionsCache.has(resolvedPath)) {
+        return importedDefinitionsCache.get(resolvedPath);
+      }
+
+      // to support circular dependencies, create & pre-cache the array of imported dependencies
+      // this array is directly mutated after parsing the subsequent files, supporting
+      // the circular nature as values settle into the correct locations
+      const importedDefinitions = [];
+      importedDefinitionsCache.set(resolvedPath, importedDefinitions);
+
       // load & parse the imported file
       const ast = parse(fs.readFileSync(resolvedPath).toString());
 
@@ -840,18 +852,15 @@ const typeDefinitionExtractors = {
       );
 
       // for each importedTypeName, fully resolve the type information
-      const importedDefinitions = definitions.reduce(
-        (importedDefinitions, { name, definition }) => {
+      definitions.forEach(
+        ({ name, definition }) => {
           if (importedTypeNames.includes(name)) {
             // this type declaration is imported by the parent script
             const propTypes = getPropTypesForNode(definition, true, state);
             propTypes.isAlreadyResolved = true; // when getPropTypesForNode is called on this node later, tell it to skip processing
             importedDefinitions.push({ name, definition: propTypes });
           }
-
-          return importedDefinitions;
-        },
-        []
+        }
       );
 
       // reset typeDefinitions and continue processing the original file
@@ -1026,7 +1035,7 @@ function processComponentDeclaration(typeDefinition, path, state) {
 
   // import PropTypes library if it isn't already
   const proptypesBinding = getVariableBinding(path, 'PropTypes');
-  if (proptypesBinding == null) {
+  if (proptypesBinding == null && state.get('hasInjectedPropTypes') !== true) {
     let targetNode;
     // find the first statement in the program and import PropTypes there
     targetNode = path;
@@ -1043,6 +1052,7 @@ function processComponentDeclaration(typeDefinition, path, state) {
         types.stringLiteral('prop-types')
       )
     );
+    state.set('hasInjectedPropTypes', true);
   }
 }
 
@@ -1268,3 +1278,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
     },
   };
 };
+
+module.exports.clearImportCache = function clearImportCache() {
+  importedDefinitionsCache.clear();
+}
