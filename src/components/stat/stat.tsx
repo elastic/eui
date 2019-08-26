@@ -11,7 +11,6 @@ import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
-import makeId from '../form/form_row/make_id';
 
 const colorToClassNameMap = {
   default: null,
@@ -80,8 +79,6 @@ export const EuiStat: FunctionComponent<
     className
   );
 
-  const ariaId = makeId();
-
   const titleClasses = classNames(
     'euiStat__title',
     colorToClassNameMap[titleColor],
@@ -92,61 +89,38 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      <p id={ariaId} aria-hidden="true">
-        {description}
-      </p>
+      <p aria-hidden="true">{description}</p>
     </EuiText>
   );
 
   const titleDisplay = (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p aria-hidden="true">{title}</p>
+      <p aria-hidden="true">{isLoading ? '--' : title}</p>
     </EuiTitle>
   );
 
-  let statDisplay;
-
-  if (isLoading) {
-    statDisplay = (
-      <Fragment>
-        {!reverse && descriptionDisplay}
-        <EuiTitle size={titleSize} className={titleClasses}>
-          <p aria-hidden="true">--</p>
-        </EuiTitle>
-        {reverse && descriptionDisplay}
-        <EuiScreenReaderOnly>
-          <p>
-            <EuiI18n
-              token="euiStat.loadingText"
-              default="Statistic is loading"
-            />
-          </p>
-        </EuiScreenReaderOnly>
-      </Fragment>
-    );
-  } else {
-    statDisplay = (
-      <Fragment>
-        {reverse ? (
-          <Fragment>
-            {titleDisplay}
-            {descriptionDisplay}
-            <EuiScreenReaderOnly>
-              <p>{`${title} ${description}`}</p>
-            </EuiScreenReaderOnly>
-          </Fragment>
+  const screenReader = (
+    <EuiScreenReaderOnly>
+      <p>
+        {isLoading ? (
+          <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
         ) : (
           <Fragment>
-            {descriptionDisplay}
-            {titleDisplay}
-            <EuiScreenReaderOnly>
-              <p>{`${description} ${title}`}</p>
-            </EuiScreenReaderOnly>
+            {reverse ? `${title} ${description}` : `${description} ${title}`}
           </Fragment>
         )}
-      </Fragment>
-    );
-  }
+      </p>
+    </EuiScreenReaderOnly>
+  );
+
+  const statDisplay = (
+    <Fragment>
+      {!reverse && descriptionDisplay}
+      {titleDisplay}
+      {reverse && descriptionDisplay}
+      {screenReader}
+    </Fragment>
+  );
 
   return (
     <div className={classes} {...rest}>
