@@ -6,6 +6,7 @@
 
 - Fixed `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2250](https://github.com/elastic/eui/pull/2250))
 - Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
+- Fixed `EuiStat` invalid DOM nesting due to a `<p>` tag nested within another `<p>` tag ([#2229](https://github.com/elastic/eui/pull/2229))
 
 **Reverts**
 
