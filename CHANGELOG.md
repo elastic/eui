@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.6.0`.
+**Note: this release is a backport containing changes originally made in `13.7.0`**
+
+**Bug fixes**
+
+- Fixed title text of dock/undock icon in `EuiNavDrawer` ([#2261](https://github.com/elastic/eui/pull/2261))
 
 ## [`13.6.0`](https://github.com/elastic/eui/tree/v13.6.0)
 
