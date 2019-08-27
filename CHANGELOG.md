@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.7.0`.
+
+## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
+
 - Allow `EuiFlexGroup` to accept a `ref` ([#2223](https://github.com/elastic/eui/pull/2223))
 
 **Bug fixes**
