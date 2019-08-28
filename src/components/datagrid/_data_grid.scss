@@ -1,3 +1,11 @@
+.euiDataGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  height: 100%;
+}
+
 .euiDataGrid--fullScreen {
   height: 100%;
   position: fixed;
@@ -7,34 +15,10 @@
   bottom: 0;
   z-index: $euiZModal;
   background: $euiColorEmptyShade;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow: hidden;
-
-  .euiDataGrid__controls {
-    flex-grow: 0;
-  }
 
   .euiDataGrid__pagination {
-    flex-grow: 0;
     padding-bottom: $euiSize;
     background: $euiColorLightestShade;
-  }
-
-  .euiDataGrid__verticalScroll {
-    flex-grow: 1;
-    overflow-y: hidden;
-    height: 100%;
-  }
-
-  .euiDataGrid__overflow {
-    overflow-y: hidden;
-    height: 100%;
-  }
-
-  .euiDataGrid__content {
-    @include euiYScrollWithShadows;
   }
 }
 
@@ -59,6 +43,7 @@
   border-right: $euiBorderThin;
   border-left: $euiBorderThin;
   padding: $euiSizeXS;
+  flex-grow: 0;
 }
 
 .euiDataGrid__controlBtn--active {
@@ -71,4 +56,26 @@
 }
 .euiDataGrid__pagination {
   padding-top: $euiSize;
+  flex-grow: 0;
+}
+
+.euiDataGrid__verticalScroll {
+  flex-grow: 1;
+  overflow-y: hidden;
+  height: 100%;
+}
+
+.euiDataGrid__overflow {
+  overflow-y: hidden;
+  height: 100%;
+}
+
+.euiDataGrid__content {
+  @include euiYScrollWithShadows;
+}
+
+// This is used to remove extra scrollbars on the body when fullscreen is enabled
+.euiDataGrid__restrictBody {
+  height: 100vh;
+  overflow: hidden;
 }

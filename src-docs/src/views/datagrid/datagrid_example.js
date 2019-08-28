@@ -9,6 +9,10 @@ import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
 
+import DataGridContainer from './container';
+const dataGridContainerSource = require('!!raw-loader!./container');
+const dataGridContainerHtml = renderToHtml(DataGridContainer);
+
 export const DataGridExample = {
   title: 'Data Grid',
   sections: [
@@ -16,17 +20,18 @@ export const DataGridExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: dataGridSource,
+          code: dataGridContainerSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: dataGridHtml,
+          code: dataGridContainerHtml,
         },
       ],
-      text: <p>EuiDataGrid</p>,
-      components: { EuiDataGrid },
-      demo: <DataGrid />,
-      props: { EuiDataGrid },
+      title: 'DataGrid inside a container',
+      text: <p>EuiDataGrid within containers</p>,
+      components: { DataGridContainer },
+      demo: <DataGridContainer />,
+      props: { DataGridContainer },
     },
   ],
 };

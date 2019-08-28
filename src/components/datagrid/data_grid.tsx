@@ -4,8 +4,8 @@ import React, {
   KeyboardEvent,
   useCallback,
   useState,
-  useRef,
   useEffect,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
@@ -32,6 +32,7 @@ import { useStyleSelector } from './style_selector';
 import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
+import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -122,33 +123,29 @@ function renderPagination(props: EuiDataGridProps) {
 }
 
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showGridControls, setShowGridControls] = useState(true);
+  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
 
-  const gridRef = useRef<HTMLDivElement>(null);
+  // This sets the original column widths to fill their container
+  // Additionally it hides the controls when the container is too small
+  const onResize = ({ width }: { width: number }) => {
+    const initialColumnWidths = Math.max(width / props.columns.length, 100);
+    const columnWidths = props.columns.reduce<EuiDataGridColumnWidths>(
+      (columnWidths: EuiDataGridColumnWidths, column) => {
+        columnWidths[column.id] = initialColumnWidths;
+        return columnWidths;
+      },
+      {}
+    );
+    setColumnWidths(columnWidths);
+    setShowGridControls(width > 480);
+  };
 
-  useEffect(() => {
-    if (gridRef.current != null) {
-      const gridWidth = Math.max(
-        gridRef.current!.clientWidth / props.columns.length,
-        100
-      );
-      const columnWidths = props.columns.reduce(
-        (columnWidths: EuiDataGridColumnWidths, column) => {
-          columnWidths[column.id] = gridWidth;
-          return columnWidths;
-        },
-        {}
-      );
-      setColumnWidths(columnWidths);
-    }
-  }, []);
-
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
   const onCellFocus = useCallback(
     (x: number, y: number) => {
       setFocusedCell([x, y]);
@@ -156,6 +153,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     [setFocusedCell]
   );
 
+  // Using ESCAPE exists the full screen grid
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
       case keyCodes.ESCAPE:
@@ -213,6 +211,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector(
     gridStyle
   );
+
   useEffect(() => {
     if (gridStyle) {
       setGridStyles(gridStyle);
@@ -235,49 +234,69 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
+  // These grid controls will only show when there is room. Check the resize observer callback
+  const gridControls = (
+    <Fragment>
+      <ColumnSelector />
+      <StyleSelector />
+    </Fragment>
+  );
+
+  // When data grid is full screen, we add a class to the body to remove the extra scrollbar
+  if (isFullScreen) {
+    document.body.classList.add('euiDataGrid__restrictBody');
+  } else {
+    document.body.classList.remove('euiDataGrid__restrictBody');
+  }
+
   return (
-    <EuiFocusTrap disabled={!isFullScreen}>
+    <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div className={classes} onKeyDown={handleGridKeyDown}>
         <div className="euiDataGrid__controls">
-          <ColumnSelector />
-          <StyleSelector />
+          {showGridControls ? gridControls : null}
           <EuiButtonEmpty
             size="xs"
             iconType="fullScreen"
             color="text"
             className={isFullScreen ? 'euiDataGrid__controlBtn--active' : null}
-            onClick={() => setIsFullScreen(!isFullScreen)}>
+            onClick={() => setIsFullScreen(!isFullScreen)}
+            onKeyDown={handleGridKeyDown}>
             {isFullScreen ? 'Exit full screen' : 'Full screen'}
           </EuiButtonEmpty>
         </div>
         {/* Unsure why this element causes errors as focus follows spec */}
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-        <div
-          role="grid"
-          onKeyDown={handleGridCellsKeyDown}
-          ref={gridRef}
-          className="euiDataGrid__verticalScroll"
-          // {...label}
-          {...rest}>
-          <div className="euiDataGrid__overflow">
-            <div className="euiDataGrid__content">
-              <EuiDataGridHeaderRow
-                columns={visibleColumns}
-                columnWidths={columnWidths}
-                setColumnWidth={setColumnWidth}
-              />
-              <EuiDataGridBody
-                columnWidths={columnWidths}
-                columns={visibleColumns}
-                focusedCell={focusedCell}
-                onCellFocus={onCellFocus}
-                pagination={pagination}
-                renderCellValue={renderCellValue}
-                rowCount={rowCount}
-              />
+        {/* eslint-disable jsx-a11y/interactive-supports-focus */}
+        <EuiResizeObserver onResize={onResize}>
+          {resizeRef => (
+            <div
+              role="grid"
+              onKeyDown={handleGridCellsKeyDown}
+              ref={resizeRef}
+              className="euiDataGrid__verticalScroll"
+              // {...label}
+              {...rest}>
+              <div className="euiDataGrid__overflow">
+                <div className="euiDataGrid__content">
+                  <EuiDataGridHeaderRow
+                    columns={visibleColumns}
+                    columnWidths={columnWidths}
+                    setColumnWidth={setColumnWidth}
+                  />
+                  <EuiDataGridBody
+                    columnWidths={columnWidths}
+                    columns={visibleColumns}
+                    focusedCell={focusedCell}
+                    onCellFocus={onCellFocus}
+                    pagination={pagination}
+                    renderCellValue={renderCellValue}
+                    rowCount={rowCount}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+        </EuiResizeObserver>
+
         <div className="euiDataGrid__pagination">{renderPagination(props)}</div>
       </div>
     </EuiFocusTrap>
