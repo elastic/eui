@@ -131,7 +131,12 @@ const popoverBlockSnippet = `<EuiPopover
   <!-- Popover anchor is display block -->
 </EuiPopover>`;
 
-const inputPopoverSnippet = 'TODO';
+const inputPopoverSnippet = `<EuiInputPopover
+  input={input}
+  isOpen={this.state.isPopoverOpen}
+  closePopover={this.closePopover}>
+  <!-- Popover content attached to input -->
+</EuiInputPopover>`;
 
 export const PopoverExample = {
   title: 'Popover',
