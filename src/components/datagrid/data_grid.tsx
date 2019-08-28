@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useState,
   useEffect,
+  useRef,
   Fragment,
 } from 'react';
 import classNames from 'classnames';
@@ -132,17 +133,26 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   };
 
   // This sets the original column widths to fill their container
-  // Additionally it hides the controls when the container is too small
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (containerRef.current != null) {
+      const gridWidth = Math.max(
+        containerRef.current!.clientWidth / props.columns.length,
+        100
+      );
+      const columnWidths = props.columns.reduce(
+        (columnWidths: EuiDataGridColumnWidths, column) => {
+          columnWidths[column.id] = gridWidth;
+          return columnWidths;
+        },
+        {}
+      );
+      setColumnWidths(columnWidths);
+    }
+  }, []);
+
+  // Check the size of the grid, and show controls if there is room
   const onResize = ({ width }: { width: number }) => {
-    const initialColumnWidths = Math.max(width / props.columns.length, 100);
-    const columnWidths = props.columns.reduce<EuiDataGridColumnWidths>(
-      (columnWidths: EuiDataGridColumnWidths, column) => {
-        columnWidths[column.id] = initialColumnWidths;
-        return columnWidths;
-      },
-      {}
-    );
-    setColumnWidths(columnWidths);
     setShowGridControls(width > 480);
   };
 
@@ -251,7 +261,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
-      <div className={classes} onKeyDown={handleGridKeyDown}>
+      <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
         <div className="euiDataGrid__controls">
           {showGridControls ? gridControls : null}
           <EuiButtonEmpty
@@ -271,8 +281,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             <div
               role="grid"
               onKeyDown={handleGridCellsKeyDown}
-              ref={resizeRef}
               className="euiDataGrid__verticalScroll"
+              ref={resizeRef}
               // {...label}
               {...rest}>
               <div className="euiDataGrid__overflow">
