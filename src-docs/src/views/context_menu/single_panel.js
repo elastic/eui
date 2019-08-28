@@ -32,7 +32,6 @@ export default class extends Component {
     const button = (
       <EuiButtonEmpty
         size="s"
-        type="text"
         iconType="arrowDown"
         iconSide="right"
         onClick={this.onButtonClick}>
