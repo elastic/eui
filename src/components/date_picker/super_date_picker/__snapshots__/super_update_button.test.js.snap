@@ -9,27 +9,32 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
     className="euiSuperUpdateButton"
     color="primary"
     fill={true}
-    iconSide="left"
     iconType="refresh"
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
-    Refresh
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
 
 exports[`EuiSuperUpdateButton isDisabled 1`] = `
 <EuiToolTip
-  content="Cannot update"
+  content={
+    <EuiI18n
+      default="Cannot update"
+      token="euiSuperUpdateButton.cannotUpdateTooltip"
+    />
+  }
   delay="regular"
   position="bottom"
 >
@@ -37,20 +42,20 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
     className="euiSuperUpdateButton"
     color="primary"
     fill={true}
-    iconSide="left"
     iconType="refresh"
     isDisabled={true}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
-    Refresh
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
@@ -64,27 +69,32 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
     className="euiSuperUpdateButton"
     color="secondary"
     fill={true}
-    iconSide="left"
     iconType="kqlFunction"
     isDisabled={false}
     isLoading={true}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
-    Updating
+    <EuiI18n
+      default="Updating"
+      token="euiSuperUpdateButton.updatingButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;
 
 exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 <EuiToolTip
-  content="Click to apply"
+  content={
+    <EuiI18n
+      default="Click to apply"
+      token="euiSuperUpdateButton.clickToApplyTooltip"
+    />
+  }
   delay="regular"
   position="bottom"
 >
@@ -92,20 +102,20 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
     className="euiSuperUpdateButton"
     color="secondary"
     fill={true}
-    iconSide="left"
     iconType="kqlFunction"
     isDisabled={false}
     isLoading={false}
     onClick={[Function]}
-    size="m"
     textProps={
       Object {
         "className": "euiSuperUpdateButton__text",
       }
     }
-    type="button"
   >
-    Update
+    <EuiI18n
+      default="Update"
+      token="euiSuperUpdateButton.updateButtonLabel"
+    />
   </EuiButton>
 </EuiToolTip>
 `;

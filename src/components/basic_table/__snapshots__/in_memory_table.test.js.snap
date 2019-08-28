@@ -150,12 +150,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
                     key="_data_h_name_0"
-                    mobileOptions={
-                      Object {
-                        "show": true,
-                      }
-                    }
-                    scope="col"
                   >
                     <th
                       className="euiTableHeaderCell"
@@ -287,7 +281,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </EuiSpacer>
           <EuiTablePagination
             activePage={1}
-            hidePerPageOptions={false}
             itemsPerPage={2}
             itemsPerPageOptions={
               Array [
@@ -323,7 +316,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           iconType="arrowDown"
                           onClick={[Function]}
                           size="xs"
-                          type="button"
                         >
                           <EuiI18n
                             default="Rows per page"
@@ -364,7 +356,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               iconType="arrowDown"
                               onClick={[Function]}
                               size="xs"
-                              type="button"
                             >
                               <button
                                 className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--iconRight"
@@ -443,10 +434,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             color="text"
                             data-test-subj="pagination-button-previous"
                             disabled={false}
-                            iconSize="m"
                             iconType="arrowLeft"
                             onClick={[Function]}
-                            type="button"
                           >
                             <button
                               aria-label="Previous page"
@@ -506,10 +495,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               className="euiPaginationButton euiPaginationButton--hideOnMobile"
                               color="text"
                               data-test-subj="pagination-button-0"
-                              iconSide="left"
                               onClick={[Function]}
                               size="xs"
-                              type="button"
                             >
                               <button
                                 aria-label="Page 1 of 2"
@@ -554,10 +541,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
                               color="text"
                               data-test-subj="pagination-button-1"
-                              iconSide="left"
                               onClick={[Function]}
                               size="xs"
-                              type="button"
                             >
                               <button
                                 aria-label="Page 2 of 2"
@@ -588,10 +573,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             color="text"
                             data-test-subj="pagination-button-next"
                             disabled={true}
-                            iconSize="m"
                             iconType="arrowRight"
                             onClick={[Function]}
-                            type="button"
                           >
                             <button
                               aria-label="Next page"

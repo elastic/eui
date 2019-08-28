@@ -18,4 +18,8 @@ That's it. The latest changes were published to GitHub, a new `git` tag now exis
 
 <sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
 
+## `@elastic/eslint-plugin-eui`
+
+For information on releasing the eslint plugin checkout the readme in [packages/eslint-plugin/README.md](../packages/eslint-plugin/README.md)
+
 [docs]: https://elastic.github.io/eui/

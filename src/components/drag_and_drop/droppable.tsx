@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { Droppable, DroppableProps } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { CommonProps, Omit, keysOf } from '../common';
+import { CommonProps, Omit } from '../common';
 import { EuiDragDropContextContext } from './drag_drop_context';
 
 const spacingToClassNameMap = {
@@ -16,7 +16,6 @@ const spacingToClassNameMap = {
   l: 'euiDroppable--l',
 };
 
-export const SPACING = keysOf(spacingToClassNameMap);
 export type EuiDroppableSpacing = keyof typeof spacingToClassNameMap;
 
 export interface EuiDroppableProps

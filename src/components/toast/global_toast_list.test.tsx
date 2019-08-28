@@ -8,6 +8,8 @@ import {
   TOAST_FADE_OUT_MS,
 } from './global_toast_list';
 
+jest.useFakeTimers();
+
 describe('EuiGlobalToastList', () => {
   test('is rendered', () => {
     const component = render(
@@ -56,7 +58,7 @@ describe('EuiGlobalToastList', () => {
     });
 
     describe('dismissToast', () => {
-      test('is called when a toast is clicked', done => {
+      test('is called when a toast is clicked', () => {
         const dismissToastSpy = jest.fn();
         const component = mount(
           <EuiGlobalToastList
@@ -75,14 +77,13 @@ describe('EuiGlobalToastList', () => {
         const closeButton = findTestSubject(toastB, 'toastCloseButton');
         closeButton.simulate('click');
 
-        // The callback is invoked once the toast fades from view.
-        setTimeout(() => {
-          expect(dismissToastSpy).toBeCalled();
-          done();
-        }, TOAST_FADE_OUT_MS + 1);
+        jest.advanceTimersByTime(TOAST_FADE_OUT_MS - 1);
+        expect(dismissToastSpy).not.toBeCalled();
+        jest.advanceTimersByTime(1);
+        expect(dismissToastSpy).toBeCalled();
       });
 
-      test('is called when the toast lifetime elapses', done => {
+      test('is called when the toast lifetime elapses', () => {
         const TOAST_LIFE_TIME_MS = 5;
         const dismissToastSpy = jest.fn();
         mount(
@@ -98,14 +99,13 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        // The callback is invoked once the toast fades from view.
-        setTimeout(() => {
-          expect(dismissToastSpy).toBeCalled();
-          done();
-        }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS + 10);
+        jest.advanceTimersByTime(TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS - 1);
+        expect(dismissToastSpy).not.toBeCalled();
+        jest.advanceTimersByTime(1);
+        expect(dismissToastSpy).toBeCalled();
       });
 
-      test('toastLifeTimeMs is overrideable by individidual toasts', done => {
+      test('toastLifeTimeMs is overrideable by individidual toasts', () => {
         const TOAST_LIFE_TIME_MS = 10;
         const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
         const dismissToastSpy = jest.fn();
@@ -123,14 +123,12 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        // The callback is invoked once the toast fades from view.
-        setTimeout(() => {
-          expect(dismissToastSpy).not.toBeCalled();
-        }, TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS + 10);
-        setTimeout(() => {
-          expect(dismissToastSpy).toBeCalled();
-          done();
-        }, TOAST_LIFE_TIME_MS_OVERRIDE + TOAST_FADE_OUT_MS + 10);
+        const notYetTime = TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS;
+        const nowItsTime = TOAST_LIFE_TIME_MS_OVERRIDE + TOAST_FADE_OUT_MS;
+        jest.advanceTimersByTime(notYetTime);
+        expect(dismissToastSpy).not.toBeCalled();
+        jest.advanceTimersByTime(nowItsTime - notYetTime);
+        expect(dismissToastSpy).toBeCalled();
       });
     });
   });

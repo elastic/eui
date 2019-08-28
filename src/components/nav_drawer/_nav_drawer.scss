@@ -118,3 +118,31 @@
     margin-left: 0;
   }
 }
+
+@include euiBreakpoint('xs', 's', 'm', 'l') {
+  .euiNavDrawer__expandButtonLockAction {
+    display: none;
+  }
+}
+
+@include euiBreakpoint('xl') {
+  .euiNavDrawer-isLocked {
+    + .euiNavDrawerPage .euiNavDrawerPage__pageBody {
+      // Shrink the content from the left so it's no longer overlapped by the nav drawer (ALWAYS)
+      margin-left: $euiNavDrawerWidthExpanded !important; // sass-lint:disable-line no-important
+      transition: margin $euiAnimSpeedFast $euiAnimSlightResistance;
+    }
+
+    &.euiNavDrawer-flyoutIsExpanded {
+      // Instead of one collapsed and one expanded, they're now both expanded
+      // Double the width of expanded sidebars
+      width: $euiNavDrawerWidthExpanded * 2 !important; // sass-lint:disable-line no-important
+    }
+  }
+
+  // In case they unlock while the flyout is expanded,
+  // the nav drawer doesn't actually get collapsed until an interaction
+  .euiNavDrawer-isExpanded.euiNavDrawer-flyoutIsExpanded {
+    width: $euiNavDrawerWidthExpanded * 2 !important; // sass-lint:disable-line no-important
+  }
+}

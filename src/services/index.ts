@@ -9,7 +9,12 @@ export {
   htmlIdGenerator,
 } from './accessibility';
 
-export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
+export {
+  HorizontalAlignment,
+  LEFT_ALIGNMENT,
+  RIGHT_ALIGNMENT,
+  CENTER_ALIGNMENT,
+} from './alignment';
 
 export {
   isColorDark,
