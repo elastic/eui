@@ -6,10 +6,12 @@
 
 .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
   width: $euiFormMaxWidth;
+  max-width: 100%
 }
 
 .euiSuperDatePicker__flexWrapper--noUpdateButton {
   width: $euiSuperDatePickerWidth;
+  max-width: 100%
 }
 
 .euiSuperDatePicker {
