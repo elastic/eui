@@ -6,6 +6,7 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCode,
+  EuiInputPopover,
   EuiPopover,
   EuiPopoverTitle,
   EuiPopoverFooter,
@@ -50,6 +51,10 @@ const popoverFixedHtml = renderToHtml(PopoverFixed);
 import PopoverBlock from './popover_block';
 const popoverBlockSource = require('!!raw-loader!./popover_block');
 const popoverBlockHtml = renderToHtml(PopoverBlock);
+
+import InputPopover from './input_popover';
+const inputPopoverSource = require('!!raw-loader!./input_popover');
+const inputPopoverHtml = renderToHtml(PopoverBlock);
 
 const popOverSnippet = `<EuiPopover
   button={button}
@@ -125,6 +130,8 @@ const popoverBlockSnippet = `<EuiPopover
   display="block">
   <!-- Popover anchor is display block -->
 </EuiPopover>`;
+
+const inputPopoverSnippet = 'TODO';
 
 export const PopoverExample = {
   title: 'Popover',
@@ -337,6 +344,42 @@ export const PopoverExample = {
         </div>
       ),
       demo: <PopoverHTMLElementAnchor />,
+    },
+    {
+      title: 'Popover attached to input element',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inputPopoverSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inputPopoverHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiInputPopover</EuiCode> is a specialized popover
+            component intended to be used with form elements. Stylistically, the
+            popover panel is
+            {'"attacted"'} to the input. Functionally, the popover opens on
+            click focus and will allow for natural tab order.
+          </p>
+          <p>
+            Although some assumptions are made about keyboard behavior,
+            consumers should provide specific key event handlers depending on
+            the use case. For instance, a <EuiCode>type=text</EuiCode> input or
+            <EuiCode>EuiColorPicker</EuiCode> could use the down key to trigger
+            popout opening, but this interaction would not be appropriate for{' '}
+            <EuiCode>type=number</EuiCode> inputs as they natively bind to the
+            down key.
+          </p>
+        </div>
+      ),
+      props: { EuiInputPopover },
+      snippet: inputPopoverSnippet,
+      demo: <InputPopover />,
     },
     {
       title: 'Popover on a fixed element',
