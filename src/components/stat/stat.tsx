@@ -9,8 +9,8 @@ import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
-import makeId from '../form/form_row/make_id';
 
 const colorToClassNameMap = {
   default: null,
@@ -79,8 +79,6 @@ export const EuiStat: FunctionComponent<
     className
   );
 
-  const ariaId = makeId();
-
   const titleClasses = classNames(
     'euiStat__title',
     colorToClassNameMap[titleColor],
@@ -91,44 +89,38 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      <p id={ariaId}>{description}</p>
+      <p aria-hidden="true">{description}</p>
     </EuiText>
   );
 
-  let titleText;
-  if (isLoading) {
-    titleText = (
-      <EuiI18n token="euiStat.loadingText" default="Statistic is loading">
-        {(loadingText: string) => <p aria-label={loadingText}>--</p>}
-      </EuiI18n>
-    );
-  } else {
-    titleText = title;
-  }
-
   const titleDisplay = (
     <EuiTitle size={titleSize} className={titleClasses}>
-      <p aria-labelledby={ariaId}>{titleText}</p>
+      <p aria-hidden="true">{isLoading ? '--' : title}</p>
     </EuiTitle>
   );
 
-  let statDisplay;
+  const screenReader = (
+    <EuiScreenReaderOnly>
+      <p>
+        {isLoading ? (
+          <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
+        ) : (
+          <Fragment>
+            {reverse ? `${title} ${description}` : `${description} ${title}`}
+          </Fragment>
+        )}
+      </p>
+    </EuiScreenReaderOnly>
+  );
 
-  if (reverse) {
-    statDisplay = (
-      <Fragment>
-        {titleDisplay}
-        {descriptionDisplay}
-      </Fragment>
-    );
-  } else {
-    statDisplay = (
-      <Fragment>
-        {descriptionDisplay}
-        {titleDisplay}
-      </Fragment>
-    );
-  }
+  const statDisplay = (
+    <Fragment>
+      {!reverse && descriptionDisplay}
+      {titleDisplay}
+      {reverse && descriptionDisplay}
+      {screenReader}
+    </Fragment>
+  );
 
   return (
     <div className={classes} {...rest}>

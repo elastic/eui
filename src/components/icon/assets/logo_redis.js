@@ -1,7 +1,12 @@
 import React from 'react';
 
 const EuiIconLogoRedis = props => (
-  <svg width={32} height={32} xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={32}
+    height={32}
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}>
     <g transform="translate(0 3)" fill="none">
       <path
         d="M30.594 20.791c-1.689.875-10.438 4.451-12.3 5.416-1.863.966-2.898.956-4.37.257-1.471-.699-10.782-4.437-12.46-5.234-.838-.399-1.278-.735-1.278-1.052v-3.18s12.121-2.623 14.078-3.32c1.957-.699 2.636-.724 4.301-.118 1.666.607 11.623 2.393 13.27 2.992l-.001 3.135c0 .314-.38.659-1.24 1.104z"

@@ -1156,6 +1156,11 @@
   resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.1.tgz#9b7cdae9cdc8b1a7020ca7588018dac64c770866"
   integrity sha512-5/bJS/uGB5kmpRrrAWXQnmyKlv+4TlPn4f+A2NBa93p+mt6Ht+YcNGkQKf8HMx28a9hox49ZXShtbGqZkk41Sw==
 
+"@types/tabbable@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@types/tabbable/-/tabbable-3.1.0.tgz#540d4c2729872560badcc220e73c9412c1d2bffe"
+  integrity sha512-LL0q/bTlzseaXQ8j91eZ+Z8FQUzo0nwkng00B8365qULvFyiSOWylxV8m31Gmee3QuidkDqR72a9NRfR8s4qTw==
+
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"

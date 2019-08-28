@@ -84,10 +84,8 @@
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
     max-width: $euiBreadcrumbTruncateWidth;
-    min-width: $euiBreadcrumbMinWidth;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: center;
 
     &.euiBreadcrumb--last {
       max-width: none;
