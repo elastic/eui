@@ -140,4 +140,6 @@ EuiSuggestInput.propTypes = {
   suggestions: PropTypes.array,
 };
 
-EuiSuggestInput.defaultProps = { suggestions: 'Sample suggestion' };
+EuiSuggestInput.defaultProps = {
+  status: 'noNewChanges',
+};

@@ -2,18 +2,26 @@
   font-size: $euiFontSizeS;
   padding-right: $euiSizeS;
   color: $euiColorPrimary;
+
   .euiLoadingSpinner {
     margin-right: $euiSizeS;
   }
+
   .statusIcon {
     padding-left: $euiSizeS;
     padding-right: $euiSizeS;
   }
+
+  .euiInputPopover {
+    max-width: 100%;
+  }
+
 }
 
 .hideDatepicker {
   .euiSuperDatePicker__flexWrapper {
     width: 100%;
+
     > div:nth-of-type(1) {
       display: none;
     }
@@ -21,5 +29,23 @@
 }
 
 .savedQueriesInput {
-  padding-bottom: $euiSizeXL * 5;
+  padding-bottom: $euiSizeXL * 6;
+}
+
+.kbnSavedQueryManagement__text {
+  padding: $euiSizeM $euiSizeM ($euiSizeM / 2);
+}
+
+.kbnSavedQueryManagement__listWrapper {
+  // Addition height will ensure one item is "cutoff" to indicate more below the scroll
+  max-height: $euiFormMaxWidth + $euiSize;
+  overflow-y: hidden;
+}
+
+.kbnSavedQueryManagement__list {
+  @include euiYScrollWithShadows;
+  max-height: inherit; // Fixes overflow for applied max-height
+  // Left/Right padding is calculated to match the left alignment of the
+  // popover text and buttons
+  padding: ($euiSizeM / 2) $euiSizeXS !important; // sass-lint:disable-line no-important
 }

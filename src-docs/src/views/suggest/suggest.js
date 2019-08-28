@@ -6,11 +6,15 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
+  EuiListGroup,
+  EuiListGroupItem,
   EuiPopover,
+  EuiPopoverFooter,
   EuiPopoverTitle,
   EuiSuggest,
   EuiSelect,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 const shortDescription = 'This is the description';
@@ -105,33 +109,48 @@ export default class extends Component {
         button={hashtagButton}
         isOpen={this.state.isHashtagPopoverOpen}
         anchorPosition="downLeft"
+        panelPaddingSize="none"
         closePopover={this.closeHashtagPopover.bind(this)}>
         <EuiPopoverTitle>SAVED QUERIES</EuiPopoverTitle>
         <div>
-          <EuiFlexGroup direction="rowReverse" alignItems="center">
-            <EuiFlexItem>
-              <ul>
-                <li>
-                  <EuiButtonEmpty flush="left">
-                    Popular shoes in America
-                  </EuiButtonEmpty>
-                  <EuiButtonEmpty iconType="trash" color="danger" />
-                </li>
-                <li>
-                  <EuiButtonEmpty flush="left">
-                    Popular shirts in Canada
-                  </EuiButtonEmpty>
-                  <EuiButtonEmpty iconType="trash" color="danger" />
-                </li>
-              </ul>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiText
+            size="s"
+            color="subdued"
+            className="kbnSavedQueryManagement__text">
+            <p>Save query text and filters that you want to use again.</p>
+          </EuiText>
+          <div className="kbnSavedQueryManagement__listWrapper">
+            <EuiListGroup
+              className="kbnSavedQueryManagement__list"
+              flush={true}>
+              <EuiListGroupItem
+                extraAction={{
+                  color: 'danger',
+                  iconType: 'trash',
+                  iconSize: 's',
+                }}
+                href="#"
+                label="Popular shoes in America"
+              />
+              <EuiListGroupItem
+                extraAction={{
+                  color: 'danger',
+                  iconType: 'trash',
+                  iconSize: 's',
+                }}
+                href="#"
+                label="Popular shirts in Canada"
+              />
+            </EuiListGroup>
+          </div>
           {this.state.value !== '' ? (
-            <EuiFlexGroup direction="rowReverse" alignItems="center">
-              <EuiFlexItem grow={false}>
-                <EuiButton fill>Save</EuiButton>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiPopoverFooter>
+              <EuiFlexGroup direction="rowReverse" alignItems="center">
+                <EuiFlexItem grow={false}>
+                  <EuiButton fill>Save</EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiPopoverFooter>
           ) : (
             undefined
           )}

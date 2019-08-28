@@ -38,14 +38,7 @@ export class EuiSuggest extends Component {
   }
 
   render() {
-    const {
-      className,
-      status,
-      prefix,
-      append,
-      suggestions,
-      ...rest
-    } = this.props;
+    const { status, prefix, append, suggestions } = this.props;
 
     const suggestionList = suggestions.map((item, index) => (
       <EuiSuggestItem
@@ -81,15 +74,19 @@ EuiSuggest.propTypes = {
     'isLoading',
   ]),
   /**
-   * Element to be appended to the input bar.
+   * Element to be appended to the input bar (e.g. hashtag popover).
    */
   append: PropTypes.node,
   /**
-   * Element to be prepended to the input bar.
+   * Element to be prepended to the input bar (e.g. 'KQL').
    */
   prefix: PropTypes.node,
   /**
    * List of suggestions to display using 'suggestItem'.
    */
   suggestions: PropTypes.array,
+};
+
+EuiSuggestInput.defaultProps = {
+  status: 'noNewChanges',
 };

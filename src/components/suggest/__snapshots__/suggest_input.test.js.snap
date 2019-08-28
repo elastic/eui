@@ -11,25 +11,23 @@ exports[`EuiSuggestInput is rendered 1`] = `
     <div
       class="euiPopover__anchor"
     >
-      <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-      >
+      <div>
         <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-            data-test-subj="test subject string"
-            type="text"
-            value=""
-          />
-        </div>
-        <span
-          class="euiToolTipAnchor"
+          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
         >
           <div
-            class="statusIcon"
+            class="euiFormControlLayout__childrenWrapper"
+          >
+            <input
+              aria-label="aria-label"
+              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+              data-test-subj="test subject string"
+              type="text"
+              value=""
+            />
+          </div>
+          <span
+            class="euiToolTipAnchor statusIcon"
           >
             <svg
               class="euiIcon euiIcon--medium euiIcon-isLoading"
@@ -40,11 +38,8 @@ exports[`EuiSuggestInput is rendered 1`] = `
               width="16"
               xmlns="http://www.w3.org/2000/svg"
             />
-            <div
-              class="statusLabel"
-            />
-          </div>
-        </span>
+          </span>
+        </div>
       </div>
     </div>
   </div>

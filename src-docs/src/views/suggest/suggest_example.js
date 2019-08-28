@@ -59,8 +59,9 @@ export const SuggestExample = {
             when performing queries that will display suggestions. When
             inputting a query, <EuiCode>EuiSuggest</EuiCode> will show the
             status of that query (&apos;notYetSaved&apos;, &apos;saved&apos;,
-            &apos;noNewChanges&apos; and &apos;isLoading&apos;). Based on that
-            status the user can take action (e.g. add query as a Saved Query).
+            &apos;noNewChanges&apos; and &apos;isLoading&apos;). There are
+            actions available to the user on the popover located on the left of
+            the input (e.g. save query).
           </p>
         </div>
       ),
