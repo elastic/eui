@@ -64,7 +64,6 @@ export default class extends Component {
     this.state = {
       isHashtagPopoverOpen: false,
       status: 'notYetSaved',
-      menuWidth: null,
       value: '',
     };
   }
@@ -116,13 +115,11 @@ export default class extends Component {
           <EuiText
             size="s"
             color="subdued"
-            className="kbnSavedQueryManagement__text">
+            className="savedQueryManagement__text">
             <p>Save query text and filters that you want to use again.</p>
           </EuiText>
-          <div className="kbnSavedQueryManagement__listWrapper">
-            <EuiListGroup
-              className="kbnSavedQueryManagement__list"
-              flush={true}>
+          <div className="savedQueryManagement__listWrapper">
+            <EuiListGroup className="savedQueryManagement__list" flush={true}>
               <EuiListGroupItem
                 extraAction={{
                   color: 'danger',

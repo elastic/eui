@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.7.0`.
+- Added `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 
