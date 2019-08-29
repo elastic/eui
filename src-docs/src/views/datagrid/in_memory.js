@@ -7,10 +7,7 @@ import {
   EuiFormRow,
   EuiPopover,
   EuiButton,
-  EuiButtonIcon,
-  EuiLink,
 } from '../../../../src/components/';
-import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 
 const columns = [
   {
@@ -24,9 +21,6 @@ const columns = [
   },
   {
     id: 'contributions',
-  },
-  {
-    id: 'actions',
   },
 ];
 
@@ -153,7 +147,7 @@ const data = [
   },
 ];
 
-export default class DataGrid extends Component {
+export default class InMemoryDataGrid extends Component {
   constructor(props) {
     super(props);
     this.borderOptions = [
@@ -303,21 +297,7 @@ export default class DataGrid extends Component {
     });
   }
 
-  setSorting = sortingColumns => {
-    const sortedData = [...data].sort((a, b) => {
-      for (let i = 0; i < sortingColumns.length; i++) {
-        const column = sortingColumns[i];
-        const aValue = a[column.id];
-        const bValue = b[column.id];
-
-        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
-      }
-
-      return 0;
-    });
-    this.setState({ sortingColumns, data: sortedData });
-  };
+  setSorting = sortingColumns => this.setState({ sortingColumns });
 
   setPageIndex = pageIndex =>
     this.setState(({ pagination }) => ({
@@ -328,13 +308,6 @@ export default class DataGrid extends Component {
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageSize },
     }));
-
-  dummyIcon = () => (
-    <EuiButtonIcon
-      aria-label="dummy icon"
-      iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-    />
-  );
 
   render() {
     const { data, pagination, sortingColumns } = this.state;
@@ -428,32 +401,7 @@ export default class DataGrid extends Component {
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
-          renderCellValue={({ rowIndex, columnId }) => {
-            const value = data[rowIndex][columnId];
-
-            if (columnId === 'actions') {
-              return (
-                <>
-                  {this.dummyIcon()}
-                  {this.dummyIcon()}
-                </>
-              );
-            }
-
-            if (columnId === 'url') {
-              return <EuiLink href={value}>{value}</EuiLink>;
-            }
-
-            if (columnId === 'avatar_url') {
-              return (
-                <p>
-                  Avatar: <EuiLink href={value}>{value}</EuiLink>
-                </p>
-              );
-            }
-
-            return value;
-          }}
+          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
           sorting={{ columns: sortingColumns, onSort: this.setSorting }}
           pagination={{
             ...pagination,

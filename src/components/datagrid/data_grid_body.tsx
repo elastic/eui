@@ -43,18 +43,27 @@ export const EuiDataGridBody: FunctionComponent<
     : rowCount;
   endRow = Math.min(endRow, rowCount);
 
+  const visibleRowIndices = useMemo(() => {
+    const visibleRowIndices = [];
+    for (let i = startRow; i < endRow; i++) {
+      visibleRowIndices.push(i);
+    }
+    return visibleRowIndices;
+  }, [startRow, endRow]);
+
   const rows = useMemo(() => {
     const rows = [];
-    for (let i = startRow; i < endRow; i++) {
+    for (let i = 0; i < visibleRowIndices.length; i++) {
+      const rowIndex = visibleRowIndices[i];
       rows.push(
         <EuiDataGridDataRow
-          key={i}
+          key={rowIndex}
           columns={columns}
           columnWidths={columnWidths}
           focusedCell={focusedCell}
           onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}
-          rowIndex={i}
+          rowIndex={rowIndex}
           isGridNavigationEnabled={isGridNavigationEnabled}
           interactiveCellId={interactiveCellId}
         />
@@ -65,10 +74,10 @@ export const EuiDataGridBody: FunctionComponent<
   }, [
     columns,
     columnWidths,
-    endRow,
     focusedCell,
     onCellFocus,
     renderCellValue,
+    visibleRowIndices,
     startRow,
     isGridNavigationEnabled,
     interactiveCellId,

@@ -41,13 +41,40 @@ interface EuiDataGridStyle {
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
 
+interface EuiDataGridSorting {
+  onSort: (columns: EuiDataGridSorting['columns']) => void;
+  columns: Array<{ id: string; direction: 'asc' | 'desc' }>;
+}
+
+/*
+Given the data flow Filtering->Sorting->Pagination:
+Each step can be performed by service calls or in-memory by the grid.
+However, we cannot allow any service calls after an in-memory operation.
+E.g. if Pagination requires a service call the grid cannot perform
+in-memory Filtering or Sorting. This means a single value representing the
+service / in-memory boundary can be used. Thus there are four states for in-memory:
+* false - all service calls
+* "pagination" - only pagination is performed in-memory
+* "sorting" - sorting & pagination is performed in-memory
+* "filtering" - all operations are performed in-memory, no service calls
+ */
+type EuiDataGridInMemory = false | 'pagination' | 'sorting' | 'filtering';
+
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
+    inMemory?: EuiDataGridInMemory;
+    /**
+     * Set to `null` to disable pagination
+     */
     pagination?: EuiDataGridPaginationProps;
+    /**
+     * Set to `null` to disable sorting
+     */
+    sorting?: EuiDataGridSorting;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -126,6 +153,68 @@ function renderPagination(props: EuiDataGridProps) {
       onChangePage={onChangePage}
       onChangeItemsPerPage={onChangeItemsPerPage}
     />
+  );
+}
+
+function renderSorting(props: EuiDataGridProps) {
+  const { columns, sorting } = props;
+
+  if (sorting == null) return null;
+
+  const sortedColumns = sorting.columns.reduce<{
+    [key: string]: 'asc' | 'desc';
+  }>((sortedColumns, { id, direction }) => {
+    sortedColumns[id] = direction;
+    return sortedColumns;
+  }, {});
+
+  return (
+    <div>
+      {columns.map(column => {
+        let sortIcon = '☐';
+        let nextSortDir: 'asc' | 'desc' | null = 'asc';
+        if (sortedColumns.hasOwnProperty(column.id)) {
+          sortIcon = sortedColumns[column.id] === 'asc' ? '⬆️' : '⬇️';
+          nextSortDir = sortedColumns[column.id] === 'asc' ? 'desc' : null;
+        }
+
+        return (
+          <div
+            key={column.id}
+            onClick={() => {
+              const nextColumnOrder = [...sorting.columns];
+              let foundColumn = false;
+
+              for (let i = 0; i < nextColumnOrder.length; i++) {
+                if (nextColumnOrder[i].id === column.id) {
+                  foundColumn = true;
+
+                  if (nextSortDir === null) {
+                    nextColumnOrder.splice(i--, 1);
+                  } else {
+                    nextColumnOrder[i] = {
+                      id: column.id,
+                      direction: nextSortDir,
+                    };
+                  }
+                }
+              }
+
+              if (foundColumn === false) {
+                nextColumnOrder.push({
+                  id: column.id,
+                  direction: 'asc',
+                });
+              }
+
+              sorting.onSort(nextColumnOrder);
+            }}>
+            {sortIcon}
+            {column.id}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -280,6 +369,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       </div>
       <EuiSpacer size="s" />
       {renderPagination(props)}
+      {renderSorting(props)}
       <p id={interactiveCellId} hidden>
         Cell contains interactive content.
         {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
