@@ -2,6 +2,10 @@
 
 - Added `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 
+**Bug fixes**
+
+- Removed extra right side margin in 'EuiSuperDatePicker' ([#2236](https://github.com/elastic/eui/pull/2236))
+
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 
 - Allow `EuiFlexGroup` to accept a `ref` ([#2223](https://github.com/elastic/eui/pull/2223))
