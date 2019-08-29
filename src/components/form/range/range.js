@@ -34,7 +34,7 @@ export class EuiRange extends Component {
     return isWithinRange(this.props.min, this.props.max, this.props.value);
   }
 
-  onInputClick = () => {
+  onInputFocus = () => {
     this.setState({
       isPopoverOpen: true,
     });
@@ -52,6 +52,7 @@ export class EuiRange extends Component {
       compressed,
       disabled,
       fullWidth,
+      readOnly,
       id,
       max,
       min,
@@ -76,6 +77,7 @@ export class EuiRange extends Component {
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
+    const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
     const theInput = !!showInput ? (
       <EuiRangeInput
@@ -84,11 +86,12 @@ export class EuiRange extends Component {
         digitTolerance={digitTolerance}
         step={step}
         value={value}
+        readOnly={readOnly}
         disabled={disabled}
         compressed={compressed}
         onChange={this.handleOnChange}
         name={name}
-        onClick={this.onInputClick}
+        onFocus={canShowDropdown ? this.onInputFocus : undefined}
         fullWidth={showInputOnly && fullWidth}
         autoSize={!showInputOnly}
         {...rest}

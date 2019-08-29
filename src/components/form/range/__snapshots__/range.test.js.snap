@@ -176,23 +176,25 @@ exports[`EuiRange props input only should render 1`] = `
   <div
     class="euiPopover__anchor"
   >
-    <div
-      class="euiFormControlLayout"
-    >
+    <div>
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout"
       >
-        <input
-          aria-label="aria-label"
-          class="euiFieldNumber euiRangeInput euiRangeInput--max"
-          data-test-subj="test subject string"
-          max="10"
-          min="1"
-          name="name"
-          step="1"
-          type="number"
-          value="8"
-        />
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="aria-label"
+            class="euiFieldNumber euiRangeInput euiRangeInput--max"
+            data-test-subj="test subject string"
+            max="10"
+            min="1"
+            name="name"
+            step="1"
+            type="number"
+            value="8"
+          />
+        </div>
       </div>
     </div>
   </div>

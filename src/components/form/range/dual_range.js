@@ -224,7 +224,7 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onInputClick = () => {
+  onInputFocus = () => {
     this.setState({
       isPopoverOpen: true,
     });
@@ -263,6 +263,7 @@ export class EuiDualRange extends Component {
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
+    const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -279,7 +280,7 @@ export class EuiDualRange extends Component {
         name={`${name}-minValue`}
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
-        onClick={this.onInputClick}
+        onFocus={canShowDropdown ? this.onInputFocus : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
@@ -304,7 +305,7 @@ export class EuiDualRange extends Component {
         name={`${name}-maxValue`}
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
-        onClick={this.onInputClick}
+        onFocus={canShowDropdown ? this.onInputFocus : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
