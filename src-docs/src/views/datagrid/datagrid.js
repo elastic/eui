@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid } from '../../../../src/components/';
+import {
+  EuiDataGrid,
+  EuiButtonIcon,
+  EuiLink,
+} from '../../../../src/components/';
+import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 
 const columns = [
   {
@@ -27,7 +32,9 @@ for (let i = 1; i < 100; i++) {
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: fake('{{internet.email}}'),
-    city: fake('{{address.city}}'),
+    city: (
+      <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>
+    ),
     country: fake('{{address.country}}'),
     account: fake('{{finance.account}}'),
   });
@@ -54,6 +61,13 @@ export default class DataGridContainer extends Component {
     this.setState(({ pagination }) => ({
       pagination: { ...pagination, pageSize },
     }));
+
+  dummyIcon = () => (
+    <EuiButtonIcon
+      aria-label="dummy icon"
+      iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+    />
+  );
 
   render() {
     const { pagination } = this.state;

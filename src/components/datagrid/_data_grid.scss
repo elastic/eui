@@ -24,6 +24,7 @@
 
 .euiDataGrid__content {
   @include euiScrollBar;
+  @include euiYScrollWithShadows;
 
   font-feature-settings: 'tnum' 1; // Tabular numbers
   overflow-x: auto;
@@ -54,6 +55,7 @@
     background: tintOrShade($euiColorSuccess, 80%, 50%);
   }
 }
+
 .euiDataGrid__pagination {
   padding-top: $euiSize;
   flex-grow: 0;
@@ -68,10 +70,6 @@
 .euiDataGrid__overflow {
   overflow-y: hidden;
   height: 100%;
-}
-
-.euiDataGrid__content {
-  @include euiYScrollWithShadows;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled

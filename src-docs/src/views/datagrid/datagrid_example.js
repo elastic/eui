@@ -5,17 +5,17 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid } from '../../../../src/components';
 
-import DataGrid from './datagrid';
-const dataGridSource = require('!!raw-loader!./datagrid');
-const dataGridHtml = renderToHtml(DataGrid);
+// import DataGrid from './datagrid';
+// const dataGridSource = require('!!raw-loader!./datagrid');
+// const dataGridHtml = renderToHtml(DataGrid);
 
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
 const dataGridContainerHtml = renderToHtml(DataGridContainer);
 
-import DataGridStyling from './styling';
-const dataGridStylingSource = require('!!raw-loader!./styling');
-const dataGridStylingHtml = renderToHtml(DataGridStyling);
+// import DataGridStyling from './styling';
+// const dataGridStylingSource = require('!!raw-loader!./styling');
+// const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 export const DataGridExample = {
   title: 'Data Grid',

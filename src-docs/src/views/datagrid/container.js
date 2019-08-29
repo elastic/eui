@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiPanel } from '../../../../src/components/';
+import { EuiDataGrid, EuiPanel, EuiLink } from '../../../../src/components/';
 
 const columns = [
   {
@@ -27,7 +27,9 @@ for (let i = 1; i < 100; i++) {
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: fake('{{internet.email}}'),
-    city: fake('{{address.city}}'),
+    city: (
+      <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>
+    ),
     country: fake('{{address.country}}'),
     account: fake('{{finance.account}}'),
   });
@@ -59,12 +61,16 @@ export default class DataGridContainer extends Component {
     const { pagination } = this.state;
 
     return (
-      <EuiPanel style={{ width: 300 }} panelPaddingSize="s">
+      <EuiPanel style={{ width: 300 }}>
         <div style={{ height: 300 }}>
           <EuiDataGrid
             aria-label="Top EUI contributors"
             columns={columns}
             rowCount={data.length}
+            gridStyle={{
+              border: 'horizontal',
+              header: 'underline',
+            }}
             renderCellValue={({ rowIndex, columnId }) =>
               data[rowIndex][columnId]
             }

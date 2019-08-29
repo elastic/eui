@@ -23,9 +23,9 @@ import {
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
-import { keyCodes } from '../../services';
 // @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
+import { keyCodes, htmlIdGenerator } from '../../services';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
 import { useStyleSelector, startingStyles } from './style_selector';
@@ -34,6 +34,7 @@ import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
+import { CELL_CONTENTS_ATTR } from './utils';
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -112,14 +113,16 @@ function renderPagination(props: EuiDataGridProps) {
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
   return (
-    <EuiTablePagination
-      activePage={pageIndex}
-      itemsPerPage={pageSize}
-      itemsPerPageOptions={pageSizeOptions}
-      pageCount={pageCount}
-      onChangePage={onChangePage}
-      onChangeItemsPerPage={onChangeItemsPerPage}
-    />
+    <div className="euiDataGrid__pagination">
+      <EuiTablePagination
+        activePage={pageIndex}
+        itemsPerPage={pageSize}
+        itemsPerPageOptions={pageSizeOptions}
+        pageCount={pageCount}
+        onChangePage={onChangePage}
+        onChangeItemsPerPage={onChangeItemsPerPage}
+      />
+    </div>
   );
 }
 
@@ -127,22 +130,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showGridControls, setShowGridControls] = useState(true);
   const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [interactiveCellId] = useState(htmlIdGenerator()());
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
 
-  // This sets the original column widths to fill their container
-  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (containerRef.current != null) {
-      const gridWidth = Math.max(
-        containerRef.current!.clientWidth / props.columns.length,
-        100
-      );
+      const gridWidth = containerRef.current.clientWidth;
+      const columnWidth = Math.max(gridWidth / props.columns.length, 100);
       const columnWidths = props.columns.reduce(
         (columnWidths: EuiDataGridColumnWidths, column) => {
-          columnWidths[column.id] = gridWidth;
+          columnWidths[column.id] = columnWidth;
           return columnWidths;
         },
         {}
@@ -151,19 +152,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   }, []);
 
-  // Check the size of the grid, and show controls if there is room
   const onResize = ({ width }: { width: number }) => {
     setShowGridControls(width > 480);
   };
 
-  const onCellFocus = useCallback(
-    (x: number, y: number) => {
-      setFocusedCell([x, y]);
-    },
-    [setFocusedCell]
-  );
+  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
+    boolean
+  >(true);
 
-  // Using ESCAPE exists the full screen grid
+  const isInteractiveCell = (element: HTMLElement) => {
+    if (element.getAttribute('role') !== 'gridcell') {
+      return false;
+    }
+
+    return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
+  };
+
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
       case keyCodes.ESCAPE:
@@ -173,37 +177,54 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
   };
 
-  const handleGridCellsKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = props.columns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
+    const { keyCode, target } = event;
 
-    switch (e.keyCode) {
-      case keyCodes.DOWN:
-        e.preventDefault();
-        if (y < rowCount) {
-          setFocusedCell([x, y + 1]);
-        }
-        break;
-      case keyCodes.LEFT:
-        e.preventDefault();
-        if (x > 0) {
-          setFocusedCell([x - 1, y]);
-        }
-        break;
-      case keyCodes.UP:
-        e.preventDefault();
-        // TODO sort out when a user can arrow up into the column headers
-        if (y > 0) {
-          setFocusedCell([x, y - 1]);
-        }
-        break;
-      case keyCodes.RIGHT:
-        e.preventDefault();
-        if (x < colCount) {
-          setFocusedCell([x + 1, y]);
-        }
-        break;
+    if (
+      target instanceof HTMLElement &&
+      isInteractiveCell(target) &&
+      isGridNavigationEnabled &&
+      (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
+    ) {
+      setIsGridNavigationEnabled(false);
+    } else if (
+      !isGridNavigationEnabled &&
+      (keyCode === keyCodes.ESCAPE || keyCode === keyCodes.F2)
+    ) {
+      setIsGridNavigationEnabled(true);
+    }
+
+    if (isGridNavigationEnabled) {
+      switch (keyCode) {
+        case keyCodes.DOWN:
+          if (y < rowCount) {
+            event.preventDefault();
+            setFocusedCell([x, y + 1]);
+          }
+          break;
+        case keyCodes.LEFT:
+          if (x > 0) {
+            event.preventDefault();
+            setFocusedCell([x - 1, y]);
+          }
+          break;
+        case keyCodes.UP:
+          // TODO sort out when a user can arrow up into the column headers
+          if (y > 0) {
+            event.preventDefault();
+            setFocusedCell([x, y - 1]);
+          }
+          break;
+        case keyCodes.RIGHT:
+          if (x < colCount) {
+            event.preventDefault();
+            setFocusedCell([x + 1, y]);
+          }
+          break;
+      }
     }
   };
 
@@ -235,7 +256,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     } else {
       setGridStyles(startingStyles);
     }
-    console.log('', gridStyles);
   }, [gridStyle]);
 
   const classes = classNames(
@@ -269,6 +289,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     document.body.classList.remove('euiDataGrid__restrictBody');
   }
 
+  const onCellFocusInBody = useCallback(setFocusedCell, [setFocusedCell]);
+
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
@@ -290,10 +312,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           {resizeRef => (
             <div
               role="grid"
-              onKeyDown={handleGridCellsKeyDown}
+              onKeyDown={handleKeyDown}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
-              // {...label}
               {...rest}>
               <div className="euiDataGrid__overflow">
                 <div className="euiDataGrid__content">
@@ -306,10 +327,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     columnWidths={columnWidths}
                     columns={visibleColumns}
                     focusedCell={focusedCell}
-                    onCellFocus={onCellFocus}
+                    onCellFocus={onCellFocusInBody}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
+                    isGridNavigationEnabled={isGridNavigationEnabled}
+                    interactiveCellId={interactiveCellId}
                   />
                 </div>
               </div>
@@ -317,7 +340,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           )}
         </EuiResizeObserver>
 
-        <div className="euiDataGrid__pagination">{renderPagination(props)}</div>
+        {renderPagination(props)}
+        <p id={interactiveCellId} hidden>
+          Cell contains interactive content.
+          {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
+        </p>
       </div>
     </EuiFocusTrap>
   );

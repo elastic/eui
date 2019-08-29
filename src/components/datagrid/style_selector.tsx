@@ -21,18 +21,16 @@ export const startingStyles: EuiDataGridStyle = {
 };
 
 export const useStyleSelector = (): [
-  FunctionComponent<any>,
+  FunctionComponent<{}>,
   EuiDataGridStyle,
   Dispatch<SetStateAction<EuiDataGridStyle>>
 ] => {
   const [gridStyles, setGridStyles] = useState(startingStyles);
 
-  console.log('in style selector', gridStyles);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const densityStyles = {
-    comfotable: {
+    comfortable: {
       fontSize: 'l',
       cellPadding: 'l',
     },
@@ -48,7 +46,7 @@ export const useStyleSelector = (): [
 
   const densityOptions = [
     {
-      id: 'comfotable',
+      id: 'comfortable',
       label: 'Table density comfortable',
       iconType: 'tableDensityComfortable',
     },
@@ -66,7 +64,7 @@ export const useStyleSelector = (): [
 
   const [gridDensity, setGridDensity] = useState(densityOptions[1]);
 
-  const onChangeDensity = (optionId: any) => {
+  const onChangeDensity = (optionId: string) => {
     const selectedDensity = densityOptions.filter(options => {
       return options.id === optionId;
     })[0];
@@ -77,6 +75,7 @@ export const useStyleSelector = (): [
   useEffect(() => {
     const oldStyles = gridStyles;
 
+    // eslint doesn't like the way the object.assign here is set up.
     /*eslint-disable */
     const mergedStyle = Object.assign(
       {},
@@ -85,17 +84,6 @@ export const useStyleSelector = (): [
       densityStyles[gridDensity.id]
     );
     /*eslint-enable */
-    console.log(
-      'gridDensity',
-      gridDensity,
-      'old',
-      oldStyles,
-      'new',
-      // @ts-ignore
-      densityStyles[gridDensity.id],
-      'merged',
-      mergedStyle
-    );
     setGridStyles(mergedStyle);
   }, [gridDensity]);
 
@@ -105,7 +93,6 @@ export const useStyleSelector = (): [
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downCenter"
-      panelPaddingSize="s"
       ownFocus
       panelClassName="euiDataGridColumnSelectorPopover"
       button={

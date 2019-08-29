@@ -12,7 +12,9 @@ export type EuiDataGridDataRowProps = CommonProps &
     columnWidths: EuiDataGridColumnWidths;
     focusedCell: [number, number];
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
     onCellFocus: Function;
+    interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   };
 
 const EuiDataGridDataRow: FunctionComponent<
@@ -26,6 +28,8 @@ const EuiDataGridDataRow: FunctionComponent<
     rowIndex,
     focusedCell,
     onCellFocus,
+    isGridNavigationEnabled,
+    interactiveCellId,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -52,6 +56,8 @@ const EuiDataGridDataRow: FunctionComponent<
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}
             isFocusable={isFocusable}
+            isGridNavigationEnabled={isGridNavigationEnabled}
+            interactiveCellId={interactiveCellId}
           />
         );
       })}

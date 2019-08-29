@@ -16,6 +16,11 @@
   align-items: center;
   display: flex;
 
+  // Hack to allow for all the focus guard stuff
+  > * {
+    max-width: 100%;
+  }
+
   &:first-of-type {
     border-left: $euiBorderThin;
   }

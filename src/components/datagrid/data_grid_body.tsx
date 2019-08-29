@@ -18,6 +18,8 @@ interface EuiDataGridBodyProps {
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   pagination?: EuiDataGridPaginationProps;
+  isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
+  interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
 }
 
 export const EuiDataGridBody: FunctionComponent<
@@ -31,6 +33,8 @@ export const EuiDataGridBody: FunctionComponent<
     rowCount,
     renderCellValue,
     pagination,
+    isGridNavigationEnabled,
+    interactiveCellId,
   } = props;
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
@@ -51,6 +55,8 @@ export const EuiDataGridBody: FunctionComponent<
           onCellFocus={onCellFocus}
           renderCellValue={renderCellValue}
           rowIndex={i}
+          isGridNavigationEnabled={isGridNavigationEnabled}
+          interactiveCellId={interactiveCellId}
         />
       );
     }
@@ -64,6 +70,8 @@ export const EuiDataGridBody: FunctionComponent<
     onCellFocus,
     renderCellValue,
     startRow,
+    isGridNavigationEnabled,
+    interactiveCellId,
   ]);
 
   return <Fragment>{rows}</Fragment>;
