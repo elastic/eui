@@ -2,7 +2,10 @@ import React, { Fragment, FunctionComponent, useMemo } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
+  EuiDataGridInMemory,
+  EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
+  EuiDataGridSorting,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import {
@@ -17,9 +20,12 @@ interface EuiDataGridBodyProps {
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
-  pagination?: EuiDataGridPaginationProps;
+  inMemory: EuiDataGridInMemory;
+  inMemoryValues: EuiDataGridInMemoryValues;
   isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
+  pagination?: EuiDataGridPaginationProps;
+  sorting?: EuiDataGridSorting;
 }
 
 export const EuiDataGridBody: FunctionComponent<
@@ -32,9 +38,12 @@ export const EuiDataGridBody: FunctionComponent<
     onCellFocus,
     rowCount,
     renderCellValue,
-    pagination,
+    inMemory,
+    inMemoryValues,
     isGridNavigationEnabled,
     interactiveCellId,
+    pagination,
+    sorting,
   } = props;
 
   const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
@@ -51,10 +60,45 @@ export const EuiDataGridBody: FunctionComponent<
     return visibleRowIndices;
   }, [startRow, endRow]);
 
+  const rowMap: { [key: number]: number } = {};
+
+  if (sorting != null && inMemory === 'sorting') {
+    const inMemoryRowIndices = Object.keys(inMemoryValues);
+    const wrappedValues: Array<{
+      index: number;
+      values: EuiDataGridInMemoryValues[number];
+    }> = [];
+    for (let i = 0; i < inMemoryRowIndices.length; i++) {
+      const inMemoryRow = inMemoryValues[inMemoryRowIndices[i]];
+      wrappedValues.push({ index: i, values: inMemoryRow });
+    }
+
+    wrappedValues.sort((a, b) => {
+      for (let i = 0; i < sorting.columns.length; i++) {
+        const column = sorting.columns[i];
+        const aValue = a.values[column.id];
+        const bValue = b.values[column.id];
+
+        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
+
+    for (let i = 0; i < wrappedValues.length; i++) {
+      rowMap[i] = wrappedValues[i].index;
+    }
+  }
+
   const rows = useMemo(() => {
     const rows = [];
     for (let i = 0; i < visibleRowIndices.length; i++) {
-      const rowIndex = visibleRowIndices[i];
+      let rowIndex = visibleRowIndices[i];
+      if (rowMap.hasOwnProperty(rowIndex)) {
+        rowIndex = rowMap[rowIndex];
+      }
+
       rows.push(
         <EuiDataGridDataRow
           key={rowIndex}
@@ -77,6 +121,7 @@ export const EuiDataGridBody: FunctionComponent<
     focusedCell,
     onCellFocus,
     renderCellValue,
+    rowMap,
     visibleRowIndices,
     startRow,
     isGridNavigationEnabled,

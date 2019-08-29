@@ -14,7 +14,10 @@ import { CommonProps, Omit } from '../common';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
+  EuiDataGridInMemory,
   EuiDataGridPaginationProps,
+  EuiDataGridInMemoryValues,
+  EuiDataGridSorting,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { keyCodes, htmlIdGenerator } from '../../services';
@@ -24,6 +27,7 @@ import { useColumnSelector } from './column_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
 import { CELL_CONTENTS_ATTR } from './utils';
+import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 
 // Types for styling options, passed down through the `gridStyle` prop
 type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
@@ -40,25 +44,6 @@ interface EuiDataGridStyle {
   rowHover?: EuiDataGridStyleRowHover;
   cellPadding?: EuiDataGridStyleCellPaddings;
 }
-
-interface EuiDataGridSorting {
-  onSort: (columns: EuiDataGridSorting['columns']) => void;
-  columns: Array<{ id: string; direction: 'asc' | 'desc' }>;
-}
-
-/*
-Given the data flow Filtering->Sorting->Pagination:
-Each step can be performed by service calls or in-memory by the grid.
-However, we cannot allow any service calls after an in-memory operation.
-E.g. if Pagination requires a service call the grid cannot perform
-in-memory Filtering or Sorting. This means a single value representing the
-service / in-memory boundary can be used. Thus there are four states for in-memory:
-* false - all service calls
-* "pagination" - only pagination is performed in-memory
-* "sorting" - sorting & pagination is performed in-memory
-* "filtering" - all operations are performed in-memory, no service calls
- */
-type EuiDataGridInMemory = false | 'pagination' | 'sorting' | 'filtering';
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -312,6 +297,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className,
     gridStyle = {},
     pagination,
+    sorting,
+    inMemory = false,
     ...rest
   } = props;
 
@@ -337,8 +324,32 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
 
+  const [inMemoryValues, setInMemoryValues] = useState<
+    EuiDataGridInMemoryValues
+  >({});
+
+  const onCellRender = useCallback(
+    (rowIndex, column, value) => {
+      setInMemoryValues(inMemoryValues => {
+        const nextInMemoryVaues = { ...inMemoryValues };
+        nextInMemoryVaues[rowIndex] = nextInMemoryVaues[rowIndex] || {};
+        nextInMemoryVaues[rowIndex][column.id] = value;
+        return nextInMemoryVaues;
+      });
+    },
+    [inMemoryValues, setInMemoryValues]
+  );
+
   return (
     <Fragment>
+      {inMemory ? (
+        <EuiDataGridInMemoryRenderer
+          renderCellValue={renderCellValue}
+          columns={columns}
+          rowCount={rowCount}
+          onCellRender={onCellRender}
+        />
+      ) : null}
       <div className="euiDataGrid__controls">
         <ColumnSelector />
       </div>
@@ -360,11 +371,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           columns={visibleColumns}
           focusedCell={focusedCell}
           onCellFocus={useCallback(setFocusedCell, [setFocusedCell])}
+          inMemoryValues={inMemoryValues}
+          inMemory={inMemory}
           pagination={pagination}
           renderCellValue={renderCellValue}
           rowCount={rowCount}
           isGridNavigationEnabled={isGridNavigationEnabled}
           interactiveCellId={interactiveCellId}
+          sorting={sorting}
         />
       </div>
       <EuiSpacer size="s" />

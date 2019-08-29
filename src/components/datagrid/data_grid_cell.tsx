@@ -11,7 +11,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 
-interface CellValueElementProps {
+export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
 }

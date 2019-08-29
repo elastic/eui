@@ -402,6 +402,7 @@ export default class InMemoryDataGrid extends Component {
             header: this.state.headerSelected,
           }}
           renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          inMemory="sorting"
           sorting={{ columns: sortingColumns, onSort: this.setSorting }}
           pagination={{
             ...pagination,
