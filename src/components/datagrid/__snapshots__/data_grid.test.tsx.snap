@@ -1,5 +1,200 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiDataGrid keyboard controls allows user to enter and exit grid navigation 1`] = `
+<div
+  class="euiDataGrid__controls"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft"
+    data-test-subj="dataGridColumnSelectorPopover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDataGrid keyboard controls allows user to enter and exit grid navigation 2`] = `
+<div
+  class="euiDataGrid__controls"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft"
+    data-test-subj="dataGridColumnSelectorPopover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDataGrid keyboard controls allows user to enter and exit grid navigation 3`] = `
+<div
+  class="euiDataGrid__controls"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft"
+    data-test-subj="dataGridColumnSelectorPopover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDataGrid keyboard controls allows user to enter and exit grid navigation 4`] = `
+<div
+  class="euiDataGrid__controls"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft"
+    data-test-subj="dataGridColumnSelectorPopover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDataGrid keyboard controls allows user to enter and exit grid navigation 5`] = `
+<div
+  class="euiDataGrid__controls"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft"
+    data-test-subj="dataGridColumnSelectorPopover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content"
+        >
+          <svg
+            aria-hidden="true"
+            class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonEmpty__icon"
+            focusable="false"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <span
+            class="euiButtonEmpty__text"
+          >
+            Columns
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiDataGrid pagination renders 1`] = `
 <div
   class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
@@ -163,113 +358,254 @@ Array [
     role="grid"
   >
     <div
-      class="euiDataGrid__content"
+      class="euiDataGridHeader"
+      data-test-subj="dataGridHeader"
+      role="row"
     >
       <div
-        class="euiDataGridHeader"
-        data-test-subj="dataGridHeader"
+        class="euiDataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell-A"
+        role="columnheader"
+        style="width:undefinedpx"
       >
         <div
-          class="euiDataGridHeaderCell"
-          data-test-subj="dataGridHeaderCell-A"
-          role="columnheader"
-          style="width:undefinedpx"
+          class="euiDataGridHeaderCell__content"
         >
-          <div
-            class="euiDataGridHeaderCell__content"
-          >
-            A
-          </div>
-        </div>
-        <div
-          class="euiDataGridHeaderCell"
-          data-test-subj="dataGridHeaderCell-B"
-          role="columnheader"
-          style="width:undefinedpx"
-        >
-          <div
-            class="euiDataGridHeaderCell__content"
-          >
-            B
-          </div>
+          A
         </div>
       </div>
       <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
+        class="euiDataGridHeaderCell"
+        data-test-subj="dataGridHeaderCell-B"
+        role="columnheader"
+        style="width:undefinedpx"
       >
         <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="0"
+          class="euiDataGridHeaderCell__content"
         >
-          0, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          0, B
-        </div>
-      </div>
-      <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
-      >
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          1, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          1, B
-        </div>
-      </div>
-      <div
-        class="euiDataGridRow"
-        data-test-subj="dataGridRow"
-        role="row"
-      >
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          2, A
-        </div>
-        <div
-          class="euiDataGridRowCell"
-          data-test-subj="dataGridRowCell"
-          role="gridcell"
-          style="width:undefinedpx"
-          tabindex="-1"
-        >
-          2, B
+          B
         </div>
       </div>
     </div>
     <div
-      class="euiSpacer euiSpacer--s"
-    />
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+      role="row"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="0"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            0, A
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="-1"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            0, B
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+      role="row"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="-1"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            1, A
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="-1"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            1, B
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+    </div>
+    <div
+      class="euiDataGridRow"
+      data-test-subj="dataGridRow"
+      role="row"
+    >
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="-1"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            2, A
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+      <div
+        class="euiDataGridRowCell"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="width:undefinedpx"
+        tabindex="-1"
+      >
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
+        >
+          <div
+            data-js-cell-contents-container="false"
+          >
+            2, B
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+          tabindex="-1"
+        />
+      </div>
+    </div>
   </div>,
+  <div
+    class="euiSpacer euiSpacer--s"
+  />,
+  <p
+    hidden=""
+    id="htmlId"
+  >
+    Cell contains interactive content.
+  </p>,
 ]
 `;

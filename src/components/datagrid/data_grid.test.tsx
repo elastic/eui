@@ -9,6 +9,11 @@ import {
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { keyCodes } from '../../services';
 import { act } from 'react-dom/test-utils';
+import cheerio from 'cheerio';
+
+jest.mock('../../services/accessibility/html_id_generator', () => ({
+  htmlIdGenerator: () => () => 'htmlId',
+}));
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -105,6 +110,7 @@ declare global {
     }
   }
 }
+
 function setColumnVisibility(
   datagrid: ReactWrapper,
   columnId: string,
@@ -228,6 +234,34 @@ describe('EuiDataGrid', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    it('renders with appropriate role structure', () => {
+      const component = render(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
+
+      // purposefully not using data-test-subj attrs to test role semantics
+      const grid = component.find('[role="grid"]');
+      const rows = grid.children('[role="row"]');
+
+      // technically, this test should also allow role=rowgroup but we don't currently use rowgroups
+      expect(grid.children().length).toBe(rows.length);
+
+      rows.each((i, element) => {
+        const $element = cheerio(element);
+        const allCells = $element.children(
+          '[role="columnheader"], [role="rowheader"], [role="gridcell"]'
+        );
+        expect($element.children().length).toBe(allCells.length);
+      });
+    });
   });
 
   describe('cell rendering', () => {
@@ -343,7 +377,7 @@ Array [
         expect(extractGridData(component)).toEqual([['Column'], ['6'], ['7']]);
       });
 
-      it('pages are navigatable through page links', () => {
+      it('pages are navigable through page links', () => {
         const component = mount(
           <EuiDataGrid
             aria-label="test grid"
@@ -576,47 +610,242 @@ Array [
   });
 
   describe('keyboard controls', () => {
-    const component = mount(
-      <EuiDataGrid
-        {...requiredProps}
-        columns={[{ id: 'A' }, { id: 'B' }]}
-        rowCount={3}
-        renderCellValue={({ rowIndex, columnId }) => `${rowIndex}, ${columnId}`}
-      />
-    );
+    it('supports simple arrow navigation', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
 
-    let focusableCell = getFocusableCell(component);
-    expect(focusableCell.length).toEqual(1);
-    expect(focusableCell.text()).toEqual('0, A');
+      let focusableCell = getFocusableCell(component);
+      expect(focusableCell.length).toEqual(1);
+      expect(focusableCell.text()).toEqual('0, A');
 
-    focusableCell
-      .simulate('focus')
-      .simulate('keydown', { keyCode: keyCodes.LEFT });
+      focusableCell
+        .simulate('focus')
+        .simulate('keydown', { keyCode: keyCodes.LEFT });
 
-    focusableCell = getFocusableCell(component);
-    expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
 
-    focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
-    expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
+      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      expect(focusableCell.text()).toEqual('0, A'); // focus should not move when up against an edge
 
-    focusableCell.simulate('keydown', { keyCode: keyCodes.DOWN });
+      focusableCell.simulate('keydown', { keyCode: keyCodes.DOWN });
 
-    focusableCell = getFocusableCell(component);
-    expect(focusableCell.text()).toEqual('1, A');
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, A');
 
-    focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
 
-    focusableCell = getFocusableCell(component);
-    expect(focusableCell.text()).toEqual('1, B');
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, B');
 
-    focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
 
-    focusableCell = getFocusableCell(component);
-    expect(focusableCell.text()).toEqual('0, B');
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('0, B');
 
-    focusableCell.simulate('keydown', { keyCode: keyCodes.LEFT });
+      focusableCell.simulate('keydown', { keyCode: keyCodes.LEFT });
 
-    focusableCell = getFocusableCell(component);
-    expect(focusableCell.text()).toEqual('0, A');
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('0, A');
+    });
+    it('does not break arrow key focus control behavior when also using a mouse', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
+
+      let focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('0, A');
+
+      findTestSubject(component, 'dataGridRowCell')
+        .at(3)
+        .simulate('focus');
+
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.length).toEqual(1);
+      expect(focusableCell.text()).toEqual('1, B');
+    });
+    it('supports arrow navigation through grids with different interactive cells', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }, { id: 'D' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) => {
+            if (columnId === 'A') {
+              return `${rowIndex}, A`;
+            }
+
+            if (columnId === 'B') {
+              return <button>{rowIndex}, B</button>;
+            }
+
+            if (columnId === 'C') {
+              return (
+                <>
+                  <button>{rowIndex}</button>, <button>C</button>
+                </>
+              );
+            }
+
+            if (columnId === 'D') {
+              return (
+                <div>
+                  {rowIndex}, <button>D</button>
+                </div>
+              );
+            }
+
+            return 'error';
+          }}
+        />
+      );
+
+      /**
+       * Make sure we start from a happy state
+       */
+      let focusableCell = getFocusableCell(component);
+      expect(focusableCell.length).toEqual(1);
+      expect(focusableCell.text()).toEqual('0, A');
+      focusableCell
+        .simulate('focus')
+        .simulate('keydown', { keyCode: keyCodes.DOWN });
+
+      /**
+       * On text only cells, the cell receives focus
+       */
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, A'); // make sure we're on the right cell
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+
+      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+
+      /**
+       * On cells with 1 interactive item, the interactive item receives focus
+       */
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, B');
+      expect(focusableCell.find('button').getDOMNode()).toBe(
+        document.activeElement
+      );
+
+      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+
+      /**
+       * On cells with multiple interactive items, the cell receives focus
+       */
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, C');
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+
+      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+
+      /**
+       * On cells with 1 interactive item and non-interactive item(s), the cell receives focus
+       */
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, D');
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+    });
+    it('allows user to enter and exit grid navigation', async () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={3}
+          renderCellValue={({ rowIndex, columnId }) => (
+            <>
+              <button>{rowIndex}</button>, <button>{columnId}</button>
+            </>
+          )}
+        />
+      );
+
+      /**
+       * Make sure we start from a happy state
+       */
+      let focusableCell = getFocusableCell(component);
+      expect(focusableCell.length).toEqual(1);
+      expect(focusableCell.text()).toEqual('0, A');
+      focusableCell
+        .simulate('focus')
+        .simulate('keydown', { keyCode: keyCodes.DOWN });
+      focusableCell = getFocusableCell(component);
+
+      /**
+       * Confirm initial state is with grid navigation turn on
+       */
+      expect(focusableCell.text()).toEqual('1, A');
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement);
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+
+      /**
+       * Disable grid navigation using ENTER
+       */
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.ENTER })
+        .simulate('keydown', { keyCode: keyCodes.DOWN });
+
+      let buttons = focusableCell.find('button');
+
+      // grid navigation is disabled, location should not move
+      expect(buttons.at(0).text()).toEqual('1');
+      expect(buttons.at(1).text()).toEqual('A');
+      expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
+      expect(takeMountedSnapshot(component)).toMatchSnapshot(); // should prove focus lock is on
+
+      /**
+       * Enable grid navigation ESCAPE
+       */
+      focusableCell.simulate('keydown', { keyCode: keyCodes.ESCAPE });
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
+
+      focusableCell.simulate('keydown', { keyCode: keyCodes.RIGHT });
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('1, B'); // grid navigation is enabled again, check that we can move
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+
+      /**
+       * Disable grid navigation using F2
+       */
+      focusableCell = getFocusableCell(component);
+      focusableCell
+        .simulate('keydown', { keyCode: keyCodes.F2 })
+        .simulate('keydown', { keyCode: keyCodes.UP });
+      buttons = focusableCell.find('button');
+
+      // grid navigation is disabled, location should not move
+      expect(buttons.at(0).text()).toEqual('1');
+      expect(buttons.at(1).text()).toEqual('B');
+      expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
+      expect(takeMountedSnapshot(component)).toMatchSnapshot(); // should prove focus lock is on
+
+      /**
+       * Enable grid navigation using F2
+       */
+      focusableCell.simulate('keydown', { keyCode: keyCodes.F2 });
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.getDOMNode()).toBe(document.activeElement); // focus should move back to cell
+
+      focusableCell.simulate('keydown', { keyCode: keyCodes.UP });
+      focusableCell = getFocusableCell(component);
+      expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    });
   });
 });
