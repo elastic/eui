@@ -24,10 +24,10 @@ export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 
 export interface EuiDataGridStyle {
-  fontSize: EuiDataGridStyleFontSizes;
-  border: EuiDataGridStyleBorders;
-  stripes: boolean;
-  header: EuiDataGridStyleHeader;
-  rowHover: EuiDataGridStyleRowHover;
-  cellPadding: EuiDataGridStyleCellPaddings;
+  fontSize?: EuiDataGridStyleFontSizes;
+  border?: EuiDataGridStyleBorders;
+  stripes?: boolean;
+  header?: EuiDataGridStyleHeader;
+  rowHover?: EuiDataGridStyleRowHover;
+  cellPadding?: EuiDataGridStyleCellPaddings;
 }

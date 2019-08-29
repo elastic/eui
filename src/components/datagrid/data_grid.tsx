@@ -28,7 +28,7 @@ import { keyCodes } from '../../services';
 import { EuiButtonEmpty } from '../button';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
-import { useStyleSelector } from './style_selector';
+import { useStyleSelector, startingStyles } from './style_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
@@ -212,31 +212,41 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     rowCount,
     renderCellValue,
     className,
-    gridStyle,
+    gridStyle = startingStyles,
     pagination,
     ...rest
   } = props;
 
   const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
-  const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector(
-    gridStyle
-  );
+  const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector();
 
   useEffect(() => {
     if (gridStyle) {
-      setGridStyles(gridStyle);
+      const oldStyles = gridStyles;
+      /*eslint-disable */
+      const mergedStyle = Object.assign(
+        /*eslint-enable */
+        {},
+        oldStyles,
+        // @ts-ignore
+        gridStyle
+      );
+      setGridStyles(mergedStyle);
+    } else {
+      setGridStyles(startingStyles);
     }
+    console.log('', gridStyles);
   }, [gridStyle]);
 
   const classes = classNames(
     'euiDataGrid',
-    fontSizesToClassMap[gridStyles.fontSize || 'm'],
-    bordersToClassMap[gridStyles.border || 'all'],
-    headerToClassMap[gridStyles.header || 'shade'],
-    rowHoverToClassMap[gridStyles.rowHover || 'highlight'],
-    cellPaddingsToClassMap[gridStyles.cellPadding || 'm'],
+    fontSizesToClassMap[gridStyles.fontSize!],
+    bordersToClassMap[gridStyles.border!],
+    headerToClassMap[gridStyles.header!],
+    rowHoverToClassMap[gridStyles.rowHover!],
+    cellPaddingsToClassMap[gridStyles.cellPadding!],
     {
-      'euiDataGrid--stripes': gridStyles.stripes || false,
+      'euiDataGrid--stripes': gridStyles.stripes!,
     },
     {
       'euiDataGrid--fullScreen': isFullScreen,

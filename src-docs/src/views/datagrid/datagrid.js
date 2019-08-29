@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../src/components/';
+import { EuiDataGrid } from '../../../../src/components/';
 
 const columns = [
-  {
-    id: 'avatar',
-  },
   {
     id: 'name',
   },
@@ -28,12 +25,6 @@ const data = [];
 
 for (let i = 1; i < 100; i++) {
   data.push({
-    avatar: (
-      <EuiAvatar
-        imageUrl={fake('{{internet.avatar}}')}
-        name={fake('{{name.lastName}}, {{name.firstName}}')}
-      />
-    ),
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: fake('{{internet.email}}'),
     city: fake('{{address.city}}'),
@@ -73,12 +64,8 @@ export default class DataGridContainer extends Component {
         columns={columns}
         rowCount={data.length}
         gridStyle={{
-          border: this.state.borderSelected,
-          fontSize: this.state.fontSizeSelected,
-          cellPadding: this.state.cellPaddingSelected,
-          stripes: this.state.stripes,
-          rowHover: this.state.rowHoverSelected,
-          header: this.state.headerSelected,
+          border: 'horizontal',
+          stripes: true,
         }}
         renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
         pagination={{

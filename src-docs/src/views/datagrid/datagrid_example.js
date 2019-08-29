@@ -13,6 +13,10 @@ import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
 const dataGridContainerHtml = renderToHtml(DataGridContainer);
 
+import DataGridStyling from './styling';
+const dataGridStylingSource = require('!!raw-loader!./styling');
+const dataGridStylingHtml = renderToHtml(DataGridStyling);
+
 export const DataGridExample = {
   title: 'Data Grid',
   sections: [
@@ -27,11 +31,49 @@ export const DataGridExample = {
           code: dataGridContainerHtml,
         },
       ],
-      title: 'DataGrid inside a container',
-      text: <p>EuiDataGrid within containers</p>,
+      title: 'DataGrid container',
+      text: <p>Inside a small container</p>,
       components: { DataGridContainer },
       demo: <DataGridContainer />,
-      props: { DataGridContainer },
+      props: { EuiDataGrid },
     },
   ],
 };
+{
+  /**
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridContainerSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridContainerHtml,
+        },
+      ],
+      title: 'DataGrid container',
+      text: <p>Inside a small container</p>,
+      components: { DataGridContainer },
+      demo: <DataGridContainer />,
+      props: { EuiDataGrid },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridStylingSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridStylingHtml,
+        },
+      ],
+      title: 'DataGrid',
+      text: <p>EuiDataGrid</p>,
+      components: { DataGridStyling },
+      demo: <DataGridStyling />,
+      props: { EuiDataGrid },
+    },
+      **/
+}

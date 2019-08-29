@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   SetStateAction,
   useState,
+  useEffect,
 } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 // @ts-ignore-next-line
@@ -10,82 +11,93 @@ import { EuiPopover } from '../popover';
 // @ts-ignore-next-line
 import { EuiButtonEmpty, EuiButtonGroup } from '../button';
 
-export const useStyleSelector = (
-  initialStyles: EuiDataGridStyle = {
-    cellPadding: 'm',
-    fontSize: 'm',
-    border: 'all',
-    stripes: false,
-    rowHover: 'highlight',
-    header: 'shade',
-  }
-): [
+export const startingStyles: EuiDataGridStyle = {
+  cellPadding: 'm',
+  fontSize: 'm',
+  border: 'all',
+  stripes: false,
+  rowHover: 'highlight',
+  header: 'shade',
+};
+
+export const useStyleSelector = (): [
   FunctionComponent<any>,
   EuiDataGridStyle,
   Dispatch<SetStateAction<EuiDataGridStyle>>
 ] => {
-  const [gridStyles, setGridStyles] = useState(initialStyles);
+  const [gridStyles, setGridStyles] = useState(startingStyles);
+
+  console.log('in style selector', gridStyles);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [gridDensity, setGridDensity] = useState('normal');
-
-  const comfortable: EuiDataGridStyle = {
-    cellPadding: 'l',
-    fontSize: 'l',
-    border: 'all',
-    stripes: false,
-    rowHover: 'highlight',
-    header: 'shade',
-  };
-
-  const normal: EuiDataGridStyle = {
-    cellPadding: 'm',
-    fontSize: 'm',
-    border: 'all',
-    stripes: false,
-    rowHover: 'highlight',
-    header: 'shade',
-  };
-
-  const compact: EuiDataGridStyle = {
-    cellPadding: 's',
-    fontSize: 's',
-    border: 'all',
-    stripes: false,
-    rowHover: 'highlight',
-    header: 'shade',
+  const densityStyles = {
+    comfotable: {
+      fontSize: 'l',
+      cellPadding: 'l',
+    },
+    normal: {
+      fontSize: 'm',
+      cellPadding: 'm',
+    },
+    compact: {
+      fontSize: 's',
+      cellPadding: 's',
+    },
   };
 
   const densityOptions = [
     {
-      id: 'tableDensityComfortable',
+      id: 'comfotable',
       label: 'Table density comfortable',
       iconType: 'tableDensityComfortable',
-      density: comfortable,
     },
     {
-      id: 'tableDensityNormal',
+      id: 'normal',
       label: 'Table density normal',
       iconType: 'tableDensityNormal',
-      density: normal,
     },
     {
-      id: 'tableDensityCompact',
+      id: 'compact',
       label: 'Table density compact',
       iconType: 'tableDensityCompact',
-      density: compact,
     },
   ];
 
-  const onChangeDensity = (optionId: any) => {
-    setGridDensity(optionId);
+  const [gridDensity, setGridDensity] = useState(densityOptions[1]);
 
+  const onChangeDensity = (optionId: any) => {
     const selectedDensity = densityOptions.filter(options => {
       return options.id === optionId;
     })[0];
-    setGridStyles(selectedDensity.density);
+
+    setGridDensity(selectedDensity);
   };
+
+  useEffect(() => {
+    const oldStyles = gridStyles;
+
+    /*eslint-disable */
+    const mergedStyle = Object.assign(
+      {},
+      oldStyles,
+      // @ts-ignore
+      densityStyles[gridDensity.id]
+    );
+    /*eslint-enable */
+    console.log(
+      'gridDensity',
+      gridDensity,
+      'old',
+      oldStyles,
+      'new',
+      // @ts-ignore
+      densityStyles[gridDensity.id],
+      'merged',
+      mergedStyle
+    );
+    setGridStyles(mergedStyle);
+  }, [gridDensity]);
 
   const StyleSelector = () => (
     <EuiPopover
@@ -111,7 +123,7 @@ export const useStyleSelector = (
         className="eui-displayInlineBlock"
         options={densityOptions}
         onChange={onChangeDensity}
-        idSelected={gridDensity}
+        idSelected={gridDensity.id}
         isIconOnly
       />
     </EuiPopover>

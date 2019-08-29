@@ -65,14 +65,6 @@ export default class DataGridContainer extends Component {
             aria-label="Top EUI contributors"
             columns={columns}
             rowCount={data.length}
-            gridStyle={{
-              border: this.state.borderSelected,
-              fontSize: this.state.fontSizeSelected,
-              cellPadding: this.state.cellPaddingSelected,
-              stripes: this.state.stripes,
-              rowHover: this.state.rowHoverSelected,
-              header: this.state.headerSelected,
-            }}
             renderCellValue={({ rowIndex, columnId }) =>
               data[rowIndex][columnId]
             }
