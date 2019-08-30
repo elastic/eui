@@ -21,7 +21,7 @@ export class EuiSuggestInput extends Component {
   onFieldChange(e) {
     this.setState({
       value: e.target.value,
-      isPopoverOpen: !this.state.isPopoverOpen,
+      isPopoverOpen: e.target.value !== '' ? true : false,
     });
     this.props.sendValue(e.target.value);
   }

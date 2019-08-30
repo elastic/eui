@@ -31,9 +31,16 @@ export const EuiSuggestItem = ({
   type,
   labelDisplay,
   description,
+  onClick,
   ...rest
 }) => {
-  const classes = classNames('euiSuggestItem', className);
+  const classes = classNames(
+    'euiSuggestItem',
+    {
+      'euiSuggestItem-isClickable': onClick,
+    },
+    className
+  );
 
   let colorClass = '';
 
@@ -52,7 +59,7 @@ export const EuiSuggestItem = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div onClick={onClick ? onClick : undefined} className={classes} {...rest}>
       <span className={`euiSuggestItem__type ${colorClass}`}>
         <EuiIcon type={type.iconType} />
       </span>
@@ -84,6 +91,10 @@ EuiSuggestItem.propTypes = {
    * Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'.
    */
   labelDisplay: PropTypes.oneOf(DISPLAYS),
+  /**
+   * Handler for click on a suggestItem.
+   */
+  onClick: PropTypes.func,
 };
 
 EuiSuggestItem.defaultProps = {

@@ -47,6 +47,7 @@ export default class HashtagPopover extends Component {
     const hashtagButton = (
       <EuiButtonEmpty
         onClick={this.onButtonClick.bind(this)}
+        size="xs"
         iconType="arrowDown"
         iconSide="right">
         <EuiIcon type="number" />

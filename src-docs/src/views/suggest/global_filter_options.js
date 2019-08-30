@@ -109,7 +109,7 @@ export default class GlobalFilterOptions extends Component {
           <EuiButtonIcon
             onClick={this.togglePopover}
             color="text"
-            iconType="gear"
+            iconType="filter"
             aria-label="Change all filters"
             title="Change all filters"
           />

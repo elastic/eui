@@ -5,16 +5,17 @@
   font-size: $euiFontSizeXS;
   white-space: nowrap;
 
-  &:hover {
-    cursor: pointer;
-    background-color: $euiColorLightestShade;
-
-    @each $name, $color in $euiSuggestItemColors {
-      .euiSuggestItem__type--#{$name} {
-        color: $euiColorDarkestShade;
+  &.euiSuggestItem-isClickable {
+    &:hover {
+      cursor: pointer;
+      background-color: $euiColorLightestShade;
+  
+      @each $name, $color in $euiSuggestItemColors {
+        .euiSuggestItem__type--#{$name} {
+          color: $euiColorDarkestShade;
+        }
       }
     }
-
   }
 
   @each $name, $color in $euiSuggestItemColors {

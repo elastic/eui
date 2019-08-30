@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import {
-  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiRadioGroup,
@@ -71,10 +70,8 @@ export default class extends Component {
     });
   };
 
-  onSelectChange(e) {
-    this.setState({
-      status: e.target.value,
-    });
+  onItemClick(item) {
+    alert(`Item [${item.label}] was clicked`);
   }
 
   getInputValue(val) {
@@ -84,8 +81,6 @@ export default class extends Component {
   }
 
   render() {
-    const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
-
     return (
       <div>
         <EuiFlexGroup>
@@ -103,7 +98,7 @@ export default class extends Component {
             <EuiSuggest
               status={this.state.status}
               sendInputValue={this.getInputValue.bind(this)}
-              append={append}
+              onItemClick={this.onItemClick.bind(this)}
               suggestions={sampleItems}
             />
           </EuiFlexItem>

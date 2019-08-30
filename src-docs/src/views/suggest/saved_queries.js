@@ -106,16 +106,14 @@ export default class extends Component {
     });
   }
 
-  onSelectChange(e) {
-    this.setState({
-      status: e.target.value,
-    });
-  }
-
   getInputValue(val) {
     this.setState({
       value: val,
     });
+  }
+
+  onItemClick(item) {
+    alert(`Item [${item.label}] was clicked`);
   }
 
   onTimeChange() {
@@ -128,15 +126,17 @@ export default class extends Component {
     return (
       <div className="savedQueriesInput">
         <EuiFlexGroup
+          gutterSize="s"
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
-          <EuiFlexItem
-            onFocus={this.onFieldFocus.bind(this)}
-            onBlur={this.onFieldBlur.bind(this)}>
+          <EuiFlexItem>
             <EuiSuggest
               status={this.state.status}
+              onFocus={this.onFieldFocus.bind(this)}
+              onBlur={this.onFieldBlur.bind(this)}
               prefix={<HashtagPopover value={this.state.value} />}
               append={append}
               suggestions={sampleItems}
+              onItemClick={this.onItemClick.bind(this)}
               sendInputValue={this.getInputValue.bind(this)}
             />
           </EuiFlexItem>

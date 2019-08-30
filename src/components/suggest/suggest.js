@@ -25,13 +25,22 @@ export class EuiSuggest extends Component {
   }
 
   render() {
-    const { status, prefix, append, suggestions } = this.props;
+    const {
+      onItemClick,
+      sendInputValue,
+      status,
+      prefix,
+      append,
+      suggestions,
+      ...rest
+    } = this.props;
 
     const suggestionList = suggestions.map((item, index) => (
       <EuiSuggestItem
         type={item.type}
         key={index}
         label={item.label}
+        onClick={onItemClick ? onItemClick.bind(this, item) : undefined}
         description={item.description}
       />
     ));
@@ -43,6 +52,7 @@ export class EuiSuggest extends Component {
         append={append}
         sendValue={this.getValue}
         suggestions={suggestionList}
+        {...rest}
       />
     );
     return <div onChange={this.onChange.bind(this)}>{suggestInput}</div>;
@@ -72,6 +82,11 @@ EuiSuggest.propTypes = {
    * List of suggestions to display using 'suggestItem'.
    */
   suggestions: PropTypes.array,
+  /**
+   * Handler for click on a suggestItem.
+   */
+  onItemClick: PropTypes.func,
+  sendInputValue: PropTypes.func,
 };
 
 EuiSuggestInput.defaultProps = {
