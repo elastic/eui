@@ -370,6 +370,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
           columns={visibleColumns}
           columnWidths={columnWidths}
           setColumnWidth={setColumnWidth}
+          sorting={sorting}
         />
         <EuiDataGridBody
           columnWidths={columnWidths}

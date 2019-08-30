@@ -1,6 +1,10 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
-import { EuiDataGridColumnWidths, EuiDataGridColumn } from './data_grid_types';
+import {
+  EuiDataGridColumnWidths,
+  EuiDataGridColumn,
+  EuiDataGridSorting,
+} from './data_grid_types';
 import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 
@@ -9,6 +13,7 @@ type EuiDataGridHeaderRowProps = CommonProps &
     columns: EuiDataGridColumn[];
     columnWidths: EuiDataGridColumnWidths;
     setColumnWidth: (columnId: string, width: number) => void;
+    sorting?: EuiDataGridSorting;
   };
 
 const EuiDataGridHeaderRow: FunctionComponent<
@@ -19,6 +24,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
     columnWidths,
     className,
     setColumnWidth,
+    sorting,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -33,9 +39,30 @@ const EuiDataGridHeaderRow: FunctionComponent<
 
         const width = columnWidths[id];
 
+        const ariaSort: {
+          'aria-sort'?: HTMLAttributes<HTMLDivElement>['aria-sort'];
+        } = {};
+        if (
+          sorting &&
+          sorting.columns.length === 1 &&
+          sorting.columns[0].id === id
+        ) {
+          const sortDirection = sorting.columns[0].direction;
+
+          let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
+          if (sortDirection === 'asc') {
+            sortValue = 'ascending';
+          } else if (sortDirection === 'desc') {
+            sortValue = 'descending';
+          }
+
+          ariaSort['aria-sort'] = sortValue;
+        }
+
         return (
           <div
             role="columnheader"
+            {...ariaSort}
             key={id}
             className="euiDataGridHeaderCell"
             data-test-subj={`dataGridHeaderCell-${id}`}
