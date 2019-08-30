@@ -9,7 +9,7 @@
     cursor: pointer;
     background-color: $euiColorLightestShade;
 
-    @each $name, $color in $itemColors {
+    @each $name, $color in $euiSuggestItemColors {
       .euiSuggestItem__type--#{$name} {
         color: $euiColorDarkestShade;
       }
@@ -17,7 +17,7 @@
 
   }
 
-  @each $name, $color in $itemColors {
+  @each $name, $color in $euiSuggestItemColors {
     .euiSuggestItem__type--#{$name} {
       $backgroundColor: tintOrShade($color, 90%, 50%);
       background-color: $backgroundColor;

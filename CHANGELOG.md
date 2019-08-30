@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
+- Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 
 **Bug fixes**
 

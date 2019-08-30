@@ -46,7 +46,7 @@ export class EuiSuggestInput extends Component {
     const statusMap = {
       notYetSaved: {
         icon: 'dot',
-        color: '#DD0A73',
+        color: 'accent',
         tooltip: "You've made changes to this saved query. Click to save them.",
       },
       saved: {

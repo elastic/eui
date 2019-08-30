@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 
 import {
-  EuiButton,
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
-  EuiListGroup,
-  EuiListGroupItem,
-  EuiPopover,
-  EuiPopoverFooter,
-  EuiPopoverTitle,
   EuiSuggest,
   EuiSuperDatePicker,
-  EuiSelect,
-  EuiSpacer,
-  EuiText,
 } from '../../../../src/components';
 
 import { GlobalFilterBar } from './global_filter_bar';
 import GlobalFilterOptions from './global_filter_options';
+import HashtagPopover from './hashtag_popover';
 
 const shortDescription = 'This is the description';
 
@@ -58,15 +49,7 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.options = [
-      { value: 'notYetSaved', text: 'Not yet saved' },
-      { value: 'saved', text: 'Saved' },
-      { value: 'noNewChanges', text: 'No new changes' },
-      { value: 'isLoading', text: 'Loading' },
-    ];
-
     this.state = {
-      isHashtagPopoverOpen: false,
       status: 'notYetSaved',
       value: '',
       hideDatepicker: false,
@@ -111,12 +94,6 @@ export default class extends Component {
     };
   }
 
-  closeHashtagPopover() {
-    this.setState({
-      isHashtagPopoverOpen: false,
-    });
-  }
-
   onFieldFocus() {
     this.setState({
       hideDatepicker: true,
@@ -141,94 +118,15 @@ export default class extends Component {
     });
   }
 
-  onButtonClick() {
-    this.setState({
-      isHashtagPopoverOpen: !this.state.isHashtagPopoverOpen,
-    });
-  }
-
   onTimeChange() {
     alert('Time changed');
   }
 
   render() {
-    const hashtagButton = (
-      <EuiButtonEmpty
-        onClick={this.onButtonClick.bind(this)}
-        iconType="arrowDown"
-        iconSide="right">
-        <EuiIcon type="number" />
-      </EuiButtonEmpty>
-    );
-
-    const hashtag = (
-      <EuiPopover
-        id="popover"
-        button={hashtagButton}
-        isOpen={this.state.isHashtagPopoverOpen}
-        anchorPosition="downLeft"
-        panelPaddingSize="none"
-        closePopover={this.closeHashtagPopover.bind(this)}>
-        <EuiPopoverTitle>SAVED QUERIES</EuiPopoverTitle>
-        <div>
-          <EuiText
-            size="s"
-            color="subdued"
-            className="savedQueryManagement__text">
-            <p>Save query text and filters that you want to use again.</p>
-          </EuiText>
-          <div className="savedQueryManagement__listWrapper">
-            <EuiListGroup className="savedQueryManagement__list" flush={true}>
-              <EuiListGroupItem
-                extraAction={{
-                  color: 'danger',
-                  iconType: 'trash',
-                  iconSize: 's',
-                }}
-                href="#"
-                label="Popular shoes in America"
-              />
-              <EuiListGroupItem
-                extraAction={{
-                  color: 'danger',
-                  iconType: 'trash',
-                  iconSize: 's',
-                }}
-                href="#"
-                label="Popular shirts in Canada"
-              />
-            </EuiListGroup>
-          </div>
-          {this.state.value !== '' ? (
-            <EuiPopoverFooter>
-              <EuiFlexGroup direction="rowReverse" alignItems="center">
-                <EuiFlexItem grow={false}>
-                  <EuiButton fill>Save</EuiButton>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiPopoverFooter>
-          ) : (
-            undefined
-          )}
-        </div>
-      </EuiPopover>
-    );
-
     const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
 
     return (
       <div className="savedQueriesInput">
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <EuiSelect
-              options={this.options}
-              value={this.state.status}
-              onChange={this.onSelectChange.bind(this)}
-              aria-label="Use aria labels when no actual label is in use"
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="xl" />
         <EuiFlexGroup
           className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
           <EuiFlexItem
@@ -236,7 +134,7 @@ export default class extends Component {
             onBlur={this.onFieldBlur.bind(this)}>
             <EuiSuggest
               status={this.state.status}
-              prefix={hashtag}
+              prefix={<HashtagPopover value={this.state.value} />}
               append={append}
               suggestions={sampleItems}
               sendInputValue={this.getInputValue.bind(this)}
@@ -254,7 +152,7 @@ export default class extends Component {
           <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
             <GlobalFilterOptions />
           </EuiFlexItem>
-          <EuiFlexItem>
+          <EuiFlexItem className="globalFilterGroup__filterFlexItem">
             <GlobalFilterBar
               className="globalFilterGroup__filterBar"
               filters={this.state.filters}
