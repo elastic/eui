@@ -78,6 +78,10 @@
     }
   }
 
+  &.euiTab-isLink {
+    color: $euiTextColor;
+  }
+
   // Small Tabs Group Modifier
 
   .euiTabs--small & {
