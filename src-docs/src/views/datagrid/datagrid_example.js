@@ -5,13 +5,13 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid } from '../../../../src/components';
 
-// import DataGrid from './datagrid';
-// const dataGridSource = require('!!raw-loader!./datagrid');
-// const dataGridHtml = renderToHtml(DataGrid);
+import DataGrid from './datagrid';
+const dataGridSource = require('!!raw-loader!./datagrid');
+const dataGridHtml = renderToHtml(DataGrid);
 
-import DataGridContainer from './container';
-const dataGridContainerSource = require('!!raw-loader!./container');
-const dataGridContainerHtml = renderToHtml(DataGridContainer);
+// import DataGridContainer from './container';
+// const dataGridContainerSource = require('!!raw-loader!./container');
+// const dataGridContainerHtml = renderToHtml(DataGridContainer);
 
 // import DataGridStyling from './styling';
 // const dataGridStylingSource = require('!!raw-loader!./styling');
@@ -24,17 +24,17 @@ export const DataGridExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: dataGridContainerSource,
+          code: dataGridSource,
         },
         {
           type: GuideSectionTypes.HTML,
-          code: dataGridContainerHtml,
+          code: dataGridHtml,
         },
       ],
       title: 'DataGrid container',
       text: <p>Inside a small container</p>,
-      components: { DataGridContainer },
-      demo: <DataGridContainer />,
+      components: { DataGrid },
+      demo: <DataGrid />,
       props: { EuiDataGrid },
     },
   ],

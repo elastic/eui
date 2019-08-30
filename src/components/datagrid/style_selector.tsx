@@ -94,6 +94,7 @@ export const useStyleSelector = (): [
       closePopover={() => setIsOpen(false)}
       anchorPosition="downCenter"
       ownFocus
+      panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
         <EuiButtonEmpty

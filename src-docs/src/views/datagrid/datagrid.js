@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -16,14 +16,26 @@ const columns = [
     id: 'email',
   },
   {
-    id: 'city',
-  },
-  {
-    id: 'country',
+    id: 'location',
   },
   {
     id: 'account',
   },
+  {
+    id: 'date',
+  },
+  {
+    id: 'amount',
+  },
+  {
+    id: 'phone',
+  },
+  {
+    id: 'version',
+  },
+  // {
+  //    id: 'actions',
+  //  },
 ];
 
 const data = [];
@@ -31,12 +43,32 @@ const data = [];
 for (let i = 1; i < 100; i++) {
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: fake('{{internet.email}}'),
-    city: (
-      <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>
+    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+    location: (
+      <Fragment>
+        <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>,{' '}
+        <EuiLink href="http://google.com">
+          {fake('{{address.country}}')}
+        </EuiLink>
+      </Fragment>
     ),
-    country: fake('{{address.country}}'),
+    date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
+    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
+    phone: fake('{{phone.phoneNumber}}'),
+    version: fake('{{system.semver}}'),
+    //    actions: (
+    //      <Fragment>
+    //        <EuiButtonIcon
+    //          aria-label="dummy icon"
+    //          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+    //        />
+    //        <EuiButtonIcon
+    //          aria-label="dummy icon"
+    //          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+    //        />
+    //      </Fragment>
+    //    ),
   });
 }
 

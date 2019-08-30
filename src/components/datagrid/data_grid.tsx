@@ -289,7 +289,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     document.body.classList.remove('euiDataGrid__restrictBody');
   }
 
-  const onCellFocusInBody = useCallback(setFocusedCell, [setFocusedCell]);
+  const onCellFocus = useCallback(setFocusedCell, [setFocusedCell]);
 
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
@@ -327,7 +327,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     columnWidths={columnWidths}
                     columns={visibleColumns}
                     focusedCell={focusedCell}
-                    onCellFocus={onCellFocusInBody}
+                    onCellFocus={onCellFocus}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
