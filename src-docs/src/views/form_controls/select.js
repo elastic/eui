@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { EuiSelect, EuiSpacer } from '../../../../src/components';
+import { EuiSelect } from '../../../../src/components';
+import { Switches } from './shared';
 
 export default class extends Component {
   constructor(props) {
@@ -25,54 +26,14 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Switches canReadOnly={false}>
         <EuiSelect
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange}
-          disabled
-          aria-label="Use aria labels when no actual label is in use"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange}
-          isLoading
-          aria-label="Use aria labels when no actual label is in use"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange}
-          isLoading
-          disabled
-          aria-label="Use aria labels when no actual label is in use"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSelect
-          options={this.options}
-          value={this.state.value}
-          onChange={this.onChange}
-          compressed
-        />
-      </Fragment>
+      </Switches>
     );
   }
 }

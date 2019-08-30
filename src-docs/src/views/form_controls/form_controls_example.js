@@ -87,23 +87,6 @@ export const FormControlsExample = {
   title: 'Form controls',
   sections: [
     {
-      title: 'Search field',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: fieldSearchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldSearchHtml,
-        },
-      ],
-      props: {
-        EuiFieldSearch,
-      },
-      demo: <FieldSearch />,
-    },
-    {
       title: 'Text field',
       source: [
         {
@@ -119,6 +102,23 @@ export const FormControlsExample = {
         EuiFieldText,
       },
       demo: <FieldText />,
+    },
+    {
+      title: 'Search field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldSearchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldSearchHtml,
+        },
+      ],
+      props: {
+        EuiFieldSearch,
+      },
+      demo: <FieldSearch />,
     },
     {
       title: 'Number field',

@@ -326,8 +326,8 @@ const navigation = [
   {
     name: 'Forms',
     items: [
-      FormLayoutsExample,
       FormControlsExample,
+      FormLayoutsExample,
       FormValidationExample,
       SuperSelectExample,
       ComboBoxExample,
