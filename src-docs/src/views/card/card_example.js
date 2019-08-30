@@ -93,7 +93,8 @@ export const CardExample = {
             Most of the time, cards should read from top to bottom (vertical).
             However, in some cases, you may want the icon to be to the left of
             the content. In this case, add the prop{' '}
-            <EuiCode>layout=&quot;horizontal&quot;</EuiCode>.
+            <EuiCode>layout=&quot;horizontal&quot;</EuiCode>. Works best when
+            the icon is size large.
           </p>
           <EuiCallOut
             color="danger"
