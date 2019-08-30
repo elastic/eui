@@ -115,11 +115,13 @@ export class EuiDataGridCell extends Component<
     // has to exist because we set the `IS_TABBABLE_ATTR` attribute on it
     const tabbableElement = clone.querySelector(`[${IS_TABBABLE_ATTR}]`)!;
 
-    // IE 11 doesn't support remove
-    if (tabbableElement.remove) {
-      tabbableElement.remove();
-    } else {
-      tabbableElement.parentNode!.removeChild(tabbableElement);
+    if (tabbableElement) {
+      // IE 11 doesn't support remove
+      if (tabbableElement.remove) {
+        tabbableElement.remove();
+      } else {
+        tabbableElement.parentNode!.removeChild(tabbableElement);
+      }
     }
 
     // textContent includes not human readable text

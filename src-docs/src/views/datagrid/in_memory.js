@@ -7,7 +7,10 @@ import {
   EuiFormRow,
   EuiPopover,
   EuiButton,
+  EuiButtonIcon,
+  EuiLink,
 } from '../../../../src/components/';
+import { iconTypes } from '../icon/icons';
 
 const columns = [
   {
@@ -21,6 +24,9 @@ const columns = [
   },
   {
     id: 'contributions',
+  },
+  {
+    id: 'actions',
   },
 ];
 
@@ -309,6 +315,13 @@ export default class InMemoryDataGrid extends Component {
       pagination: { ...pagination, pageSize },
     }));
 
+  dummyIcon = () => (
+    <EuiButtonIcon
+      aria-label="dummy icon"
+      iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+    />
+  );
+
   render() {
     const { data, pagination, sortingColumns } = this.state;
 
@@ -401,7 +414,32 @@ export default class InMemoryDataGrid extends Component {
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
-          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          renderCellValue={({ rowIndex, columnId }) => {
+            const value = data[rowIndex][columnId];
+
+            if (columnId === 'actions') {
+              return (
+                <>
+                  {this.dummyIcon()}
+                  {this.dummyIcon()}
+                </>
+              );
+            }
+
+            if (columnId === 'url') {
+              return <EuiLink href={value}>{value}</EuiLink>;
+            }
+
+            if (columnId === 'avatar_url') {
+              return (
+                <p>
+                  Avatar: <EuiLink href={value}>{value}</EuiLink>
+                </p>
+              );
+            }
+
+            return value;
+          }}
           inMemory="sorting"
           sorting={{ columns: sortingColumns, onSort: this.setSorting }}
           pagination={{
