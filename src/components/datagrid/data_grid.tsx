@@ -166,6 +166,11 @@ function renderSorting(props: EuiDataGridProps) {
         return (
           <div
             key={column.id}
+            data-test-subj={`dataGrid-sortColumn-${column.id}-${
+              sortedColumns.hasOwnProperty(column.id)
+                ? sortedColumns[column.id]
+                : 'off'
+            }`}
             onClick={() => {
               const nextColumnOrder = [...sorting.columns];
               let foundColumn = false;

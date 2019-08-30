@@ -30,7 +30,8 @@ module.exports = {
   plugins: [
     "jsx-a11y",
     "prettier",
-    "local"
+    "local",
+    "react-hooks"
   ],
   rules: {
     "prefer-template": "error",

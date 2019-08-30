@@ -60,36 +60,44 @@ export const EuiDataGridBody: FunctionComponent<
     return visibleRowIndices;
   }, [startRow, endRow]);
 
-  const rowMap: { [key: number]: number } = {};
+  const rowMap = useMemo(() => {
+    const rowMap: { [key: number]: number } = {};
 
-  if (sorting != null && inMemory === 'sorting') {
-    const inMemoryRowIndices = Object.keys(inMemoryValues);
-    const wrappedValues: Array<{
-      index: number;
-      values: EuiDataGridInMemoryValues[number];
-    }> = [];
-    for (let i = 0; i < inMemoryRowIndices.length; i++) {
-      const inMemoryRow = inMemoryValues[inMemoryRowIndices[i]];
-      wrappedValues.push({ index: i, values: inMemoryRow });
-    }
-
-    wrappedValues.sort((a, b) => {
-      for (let i = 0; i < sorting.columns.length; i++) {
-        const column = sorting.columns[i];
-        const aValue = a.values[column.id];
-        const bValue = b.values[column.id];
-
-        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+    if (
+      inMemory === 'sorting' &&
+      sorting != null &&
+      sorting.columns.length > 0
+    ) {
+      const inMemoryRowIndices = Object.keys(inMemoryValues);
+      const wrappedValues: Array<{
+        index: number;
+        values: EuiDataGridInMemoryValues[number];
+      }> = [];
+      for (let i = 0; i < inMemoryRowIndices.length; i++) {
+        const inMemoryRow = inMemoryValues[inMemoryRowIndices[i]];
+        wrappedValues.push({ index: i, values: inMemoryRow });
       }
 
-      return 0;
-    });
+      wrappedValues.sort((a, b) => {
+        for (let i = 0; i < sorting.columns.length; i++) {
+          const column = sorting.columns[i];
+          const aValue = a.values[column.id];
+          const bValue = b.values[column.id];
 
-    for (let i = 0; i < wrappedValues.length; i++) {
-      rowMap[i] = wrappedValues[i].index;
+          if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
+          if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+        }
+
+        return 0;
+      });
+
+      for (let i = 0; i < wrappedValues.length; i++) {
+        rowMap[i] = wrappedValues[i].index;
+      }
     }
-  }
+
+    return rowMap;
+  }, [sorting, inMemory, inMemoryValues]);
 
   const rows = useMemo(() => {
     const rows = [];

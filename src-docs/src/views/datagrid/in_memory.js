@@ -239,7 +239,7 @@ export default class InMemoryDataGrid extends Component {
       headerSelected: 'shade',
 
       data,
-      sortingColumns: [],
+      sortingColumns: [{ id: 'contributions', direction: 'asc' }],
 
       pagination: {
         pageIndex: 0,
