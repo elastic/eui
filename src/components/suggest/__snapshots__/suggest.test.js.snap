@@ -3,7 +3,7 @@
 exports[`EuiSuggest is rendered 1`] = `
 <div>
   <div
-    class="euiSuggestInput"
+    class="euiSuggestInput testClass1 testClass2"
   >
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover"
@@ -20,7 +20,9 @@ exports[`EuiSuggest is rendered 1`] = `
               class="euiFormControlLayout__childrenWrapper"
             >
               <input
+                aria-label="aria-label"
                 class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
                 type="text"
                 value=""
               />
