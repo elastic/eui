@@ -313,13 +313,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div
-              role="grid"
               onKeyDown={handleKeyDown}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
               {...rest}>
               <div className="euiDataGrid__overflow">
-                <div className="euiDataGrid__content">
+                <div className="euiDataGrid__content" role="grid">
                   <EuiDataGridHeaderRow
                     columns={visibleColumns}
                     columnWidths={columnWidths}

@@ -172,6 +172,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
+    height="100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"
@@ -213,7 +214,7 @@ Array [
         </div>
         <div
           class="euiPopover euiPopover--anchorDownCenter"
-          data-test-subj="dataGridColumnSelectorPopover"
+          data-test-subj="dataGridStyleSelectorPopover"
         >
           <div
             class="euiPopover__anchor"
@@ -271,13 +272,13 @@ Array [
         aria-label="aria-label"
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
-        role="grid"
       >
         <div
           class="euiDataGrid__overflow"
         >
           <div
             class="euiDataGrid__content"
+            role="grid"
           >
             <div
               class="euiDataGridHeader"

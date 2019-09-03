@@ -90,7 +90,7 @@ export const useStyleSelector = (): [
 
   const StyleSelector = () => (
     <EuiPopover
-      data-test-subj="dataGridColumnSelectorPopover"
+      data-test-subj="dataGridStyleSelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downCenter"
