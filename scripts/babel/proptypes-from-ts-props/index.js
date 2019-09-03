@@ -772,6 +772,7 @@ const typeDefinitionExtractors = {
     const { fs, sourceFilename, parse, state } = extractionOptions;
     const importPath = node.source.value;
     const isPathRelative = /^\.{1,2}\//.test(importPath);
+    let isExportNamedDeclaration = false;
 
     // only process relative imports for typescript definitions (avoid node_modules)
     if (isPathRelative) {
@@ -782,6 +783,7 @@ const typeDefinitionExtractors = {
           case 'ImportSpecifier':
             return specifier.imported.name;
           case 'ExportSpecifier':
+            isExportNamedDeclaration = true;
             return specifier.local.name;
 
           // default:
@@ -811,7 +813,7 @@ const typeDefinitionExtractors = {
         return [];
       }
 
-      if (importedDefinitionsCache.has(resolvedPath)) {
+      if (!isExportNamedDeclaration && importedDefinitionsCache.has(resolvedPath)) {
         return importedDefinitionsCache.get(resolvedPath);
       }
 
