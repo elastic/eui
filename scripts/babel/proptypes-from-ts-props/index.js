@@ -813,6 +813,7 @@ const typeDefinitionExtractors = {
         return [];
       }
 
+      // Use the cached resolution if available, for imports only
       if (!isExportNamedDeclaration && importedDefinitionsCache.has(resolvedPath)) {
         return importedDefinitionsCache.get(resolvedPath);
       }
@@ -821,7 +822,9 @@ const typeDefinitionExtractors = {
       // this array is directly mutated after parsing the subsequent files, supporting
       // the circular nature as values settle into the correct locations
       const importedDefinitions = [];
-      importedDefinitionsCache.set(resolvedPath, importedDefinitions);
+      if (!isExportNamedDeclaration) {
+        importedDefinitionsCache.set(resolvedPath, importedDefinitions);
+      }
 
       // load & parse the imported file
       const ast = parse(fs.readFileSync(resolvedPath).toString());
