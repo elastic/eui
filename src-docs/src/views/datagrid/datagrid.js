@@ -33,9 +33,9 @@ const columns = [
   {
     id: 'version',
   },
-  // {
-  //    id: 'actions',
-  //  },
+  {
+    id: 'actions',
+  },
 ];
 
 const data = [];
@@ -46,8 +46,8 @@ for (let i = 1; i < 100; i++) {
     email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
     location: (
       <Fragment>
-        <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>,{' '}
-        <EuiLink href="http://google.com">
+        {`${fake('{{address.city}}')}, `}
+        <EuiLink href="https://google.com">
           {fake('{{address.country}}')}
         </EuiLink>
       </Fragment>
@@ -57,18 +57,18 @@ for (let i = 1; i < 100; i++) {
     amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
-    //    actions: (
-    //      <Fragment>
-    //        <EuiButtonIcon
-    //          aria-label="dummy icon"
-    //          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-    //        />
-    //        <EuiButtonIcon
-    //          aria-label="dummy icon"
-    //          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-    //        />
-    //      </Fragment>
-    //    ),
+    actions: (
+      <Fragment>
+        <EuiButtonIcon
+          aria-label="dummy icon"
+          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+        />
+        <EuiButtonIcon
+          aria-label="dummy icon"
+          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
+        />
+      </Fragment>
+    ),
   });
 }
 

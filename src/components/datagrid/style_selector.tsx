@@ -47,17 +47,17 @@ export const useStyleSelector = (): [
   const densityOptions = [
     {
       id: 'comfortable',
-      label: 'Table density comfortable',
+      label: 'Comfortable table density',
       iconType: 'tableDensityComfortable',
     },
     {
       id: 'normal',
-      label: 'Table density normal',
+      label: 'Normal table density',
       iconType: 'tableDensityNormal',
     },
     {
       id: 'compact',
-      label: 'Table density compact',
+      label: 'Compact table density',
       iconType: 'tableDensityCompact',
     },
   ];

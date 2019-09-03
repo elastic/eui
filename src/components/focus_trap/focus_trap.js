@@ -5,7 +5,7 @@ import FocusLock from 'react-focus-lock';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
 const OutsideEventDetector = ({ children, handleEvent, ...rest }) => {
-  const eventHanders = ['onMouseDown', 'onTouchStart'].reduce(
+  const eventHandlers = ['onMouseDown', 'onTouchStart'].reduce(
     (obj, eventName) => {
       obj[eventName] = handleEvent;
       return obj;
@@ -13,7 +13,7 @@ const OutsideEventDetector = ({ children, handleEvent, ...rest }) => {
     {}
   );
   return (
-    <div {...eventHanders} {...rest}>
+    <div {...eventHandlers} {...rest}>
       {children}
     </div>
   );
@@ -28,11 +28,11 @@ export class EuiFocusTrap extends React.Component {
   preventFocusExit = false;
 
   componentDidMount() {
-    this.setInitalFocus(this.props.initialFocus);
+    this.setInitialFocus(this.props.initialFocus);
   }
 
   // Programmatically sets focus on a nested DOM node; optional
-  setInitalFocus = initialFocus => {
+  setInitialFocus = initialFocus => {
     let node = initialFocus;
     if (typeof node === 'string') {
       node = document.querySelector(initialFocus);
@@ -79,7 +79,13 @@ export class EuiFocusTrap extends React.Component {
   };
 
   render() {
-    const { children, clickOutsideDisables, disabled, ...rest } = this.props;
+    const {
+      children,
+      clickOutsideDisables,
+      disabled,
+      style,
+      ...rest
+    } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
     const lockProps = {
       disabled: isDisabled,
@@ -90,11 +96,15 @@ export class EuiFocusTrap extends React.Component {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusLock lockProps={lockProps}>{children}</FocusLock>
+          <FocusLock lockProps={style} {...lockProps}>
+            {children}
+          </FocusLock>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusLock lockProps={lockProps}>{children}</FocusLock>
+      <FocusLock lockProps={style} {...lockProps}>
+        {children}
+      </FocusLock>
     );
   }
 }

@@ -34,7 +34,7 @@
     margin-top: -1px;
     box-shadow: 0 0 0 2px $euiColorPrimary;
     border-radius: 1px;
-    z-index: 2; // Needed so it sits above potentional striping in the next row
+    z-index: 2; // Needed so it sits above potential striping in the next row
   }
 
   &:focus:not(:first-of-type) {
