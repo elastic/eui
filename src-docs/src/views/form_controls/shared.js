@@ -1,4 +1,4 @@
-import React, { cloneElement, Component } from 'react';
+import React, { cloneElement, Component, Fragment } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 
@@ -11,10 +11,10 @@ import {
   EuiButtonEmpty,
   EuiFormLabel,
   EuiPopover,
-  EuiButtonIcon,
+  EuiSpacer,
 } from '../../../../src/components';
 
-export class Switches extends Component {
+export class DisplayToggles extends Component {
   constructor(props) {
     super(props);
 
@@ -67,141 +67,140 @@ export class Switches extends Component {
     if (canInvalid) canProps.isInvalid = this.state.invalid;
 
     return (
-      <EuiFlexGroup alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            isOpen={this.state.isPopoverOpen}
-            closePopover={() => {
-              this.setState({ isPopoverOpen: false });
-            }}
-            button={
-              <EuiButtonIcon
-                iconType="controlsHorizontal"
-                title="State toggles"
-                aria-label="State toggles"
-                onClick={() => {
-                  this.setState({ isPopoverOpen: !this.state.isPopoverOpen });
-                }}
-              />
-            }>
-            <div>
-              <EuiFlexGroup wrap={true} direction="column" gutterSize="s">
-                {canDisabled && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'disabled'}
-                      checked={this.state.disabled}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'disabled')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canReadOnly && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'readOnly'}
-                      checked={this.state.readOnly}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'readOnly')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canLoading && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'loading'}
-                      checked={this.state.loading}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'loading')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canInvalid && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'invalid'}
-                      checked={this.state.invalid}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'invalid')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canFullWidth && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'fullWidth'}
-                      checked={this.state.fullWidth}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'fullWidth')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canCompressed && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={
-                        <span>
-                          compressed{' '}
-                          <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                            <Link to="#">
-                              <EuiIcon type="help" />
-                            </Link>
-                          </EuiToolTip>
-                        </span>
-                      }
-                      checked={this.state.compressed}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'compressed')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canPrepend && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'prepend'}
-                      checked={this.state.prepend}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'prepend')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {canAppend && (
-                  <EuiFlexItem grow={false}>
-                    <EuiSwitch
-                      label={'append'}
-                      checked={this.state.append}
-                      onChange={e =>
-                        this.updateProperty(e.target.checked, 'append')
-                      }
-                    />
-                  </EuiFlexItem>
-                )}
-                {extras &&
-                  extras.map((extra, index) => {
-                    return (
-                      <EuiFlexItem key={index} grow={false}>
-                        {extra}
-                      </EuiFlexItem>
-                    );
-                  })}
-              </EuiFlexGroup>
-            </div>
-          </EuiPopover>
-        </EuiFlexItem>
-        <EuiFlexItem>{cloneElement(children, canProps)}</EuiFlexItem>
-      </EuiFlexGroup>
+      <Fragment>
+        {cloneElement(children, canProps)}
+        <EuiSpacer />
+        <EuiPopover
+          isOpen={this.state.isPopoverOpen}
+          closePopover={() => {
+            this.setState({ isPopoverOpen: false });
+          }}
+          button={
+            <EuiButtonEmpty
+              iconType="controlsHorizontal"
+              size="xs"
+              onClick={() => {
+                this.setState({ isPopoverOpen: !this.state.isPopoverOpen });
+              }}>
+              Display toggles
+            </EuiButtonEmpty>
+          }>
+          <div>
+            <EuiFlexGroup wrap={true} direction="column" gutterSize="s">
+              {canDisabled && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'disabled'}
+                    checked={this.state.disabled}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'disabled')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canReadOnly && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'readOnly'}
+                    checked={this.state.readOnly}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'readOnly')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canLoading && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'loading'}
+                    checked={this.state.loading}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'loading')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canInvalid && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'invalid'}
+                    checked={this.state.invalid}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'invalid')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canFullWidth && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'fullWidth'}
+                    checked={this.state.fullWidth}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'fullWidth')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canCompressed && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={
+                      <span>
+                        compressed{' '}
+                        <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
+                          <Link to="#">
+                            <EuiIcon type="help" />
+                          </Link>
+                        </EuiToolTip>
+                      </span>
+                    }
+                    checked={this.state.compressed}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'compressed')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canPrepend && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'prepend'}
+                    checked={this.state.prepend}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'prepend')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {canAppend && (
+                <EuiFlexItem grow={false}>
+                  <EuiSwitch
+                    label={'append'}
+                    checked={this.state.append}
+                    onChange={e =>
+                      this.updateProperty(e.target.checked, 'append')
+                    }
+                  />
+                </EuiFlexItem>
+              )}
+              {extras &&
+                extras.map((extra, index) => {
+                  return (
+                    <EuiFlexItem key={index} grow={false}>
+                      {extra}
+                    </EuiFlexItem>
+                  );
+                })}
+            </EuiFlexGroup>
+          </div>
+        </EuiPopover>
+      </Fragment>
     );
   }
 }
 
-Switches.propTypes = {
+DisplayToggles.propTypes = {
   canDisabled: PropTypes.bool,
   canReadOnly: PropTypes.bool,
   canLoading: PropTypes.bool,
@@ -215,7 +214,7 @@ Switches.propTypes = {
   onUpdate: PropTypes.func,
 };
 
-Switches.defaultProps = {
+DisplayToggles.defaultProps = {
   canDisabled: true,
   canReadOnly: true,
   canLoading: true,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { EuiFieldNumber } from '../../../../src/components';
-import { Switches } from './shared';
+import { DisplayToggles } from './shared';
 
 export default class extends Component {
   constructor(props) {
@@ -21,14 +21,15 @@ export default class extends Component {
 
   render() {
     return (
-      <Switches canPrepend canAppend>
+      /* DisplayToggles wrapper for Docs only */
+      <DisplayToggles canPrepend canAppend>
         <EuiFieldNumber
           placeholder="Placeholder text"
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
         />
-      </Switches>
+      </DisplayToggles>
     );
   }
 }

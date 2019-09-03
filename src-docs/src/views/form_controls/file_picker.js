@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Switches } from './shared';
+import { DisplayToggles } from './shared';
 
 import {
   EuiFilePicker,
@@ -49,7 +49,8 @@ export class FilePicker extends Component {
       <Fragment>
         <EuiFlexGroup>
           <EuiFlexItem grow={2}>
-            <Switches
+            /* DisplayToggles wrapper for Docs only */
+            <DisplayToggles
               canReadOnly={false}
               extras={[
                 <EuiSwitch
@@ -69,7 +70,7 @@ export class FilePicker extends Component {
                 }}
                 display={this.state.large ? 'large' : 'default'}
               />
-            </Switches>
+            </DisplayToggles>
             <EuiSpacer />
           </EuiFlexItem>
           <EuiFlexItem>
