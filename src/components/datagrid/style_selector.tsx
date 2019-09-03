@@ -85,7 +85,8 @@ export const useStyleSelector = (): [
     );
     /*eslint-enable */
     setGridStyles(mergedStyle);
-  }, [gridDensity]);
+    // @TODO: come back to this hook lifecycle
+  }, [gridDensity]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const StyleSelector = () => (
     <EuiPopover

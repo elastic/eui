@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
@@ -45,32 +45,19 @@ const EuiDataGridDataRow: FunctionComponent<
         const width = columnWidths[id];
 
         const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
-        return useMemo(
-          () => (
-            <EuiDataGridCell
-              key={id}
-              rowIndex={rowIndex}
-              colIndex={i}
-              columnId={id}
-              width={width}
-              renderCellValue={renderCellValue}
-              onCellFocus={onCellFocus}
-              isFocusable={isFocusable}
-              isGridNavigationEnabled={isGridNavigationEnabled}
-              interactiveCellId={interactiveCellId}
-            />
-          ),
-          [
-            id,
-            rowIndex,
-            i,
-            width,
-            renderCellValue,
-            onCellFocus,
-            isFocusable,
-            isGridNavigationEnabled,
-            interactiveCellId,
-          ]
+        return (
+          <EuiDataGridCell
+            key={id}
+            rowIndex={rowIndex}
+            colIndex={i}
+            columnId={id}
+            width={width}
+            renderCellValue={renderCellValue}
+            onCellFocus={onCellFocus}
+            isFocusable={isFocusable}
+            isGridNavigationEnabled={isGridNavigationEnabled}
+            interactiveCellId={interactiveCellId}
+          />
         );
       })}
     </div>

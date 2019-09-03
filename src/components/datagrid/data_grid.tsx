@@ -150,7 +150,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       );
       setColumnWidths(columnWidths);
     }
-  }, []);
+    // @TODO: come back to this hook lifecycle
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onResize = ({ width }: { width: number }) => {
     setShowGridControls(width > 480);
@@ -256,7 +257,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     } else {
       setGridStyles(startingStyles);
     }
-  }, [gridStyle]);
+    // @TODO: come back to this hook lifecycle
+  }, [gridStyle]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const classes = classNames(
     'euiDataGrid',
