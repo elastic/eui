@@ -1,15 +1,50 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Fixed `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2250](https://github.com/elastic/eui/pull/2250))
-- Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
 - Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
 
+**Bug fixes**
+
+- Removed extra right side margin in 'EuiSuperDatePicker' ([#2236](https://github.com/elastic/eui/pull/2236))
+
+## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
+
+- Allow `EuiFlexGroup` to accept a `ref` ([#2223](https://github.com/elastic/eui/pull/2223))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2250](https://github.com/elastic/eui/pull/2250))
+- Converted table, popover, buttons, pagination, outside click detector, focus trap, context menu, and panel to TypeScript ([#2212](https://github.com/elastic/eui/pull/2212))
+- Fixed `EuiStat` invalid DOM nesting due to a `<p>` tag nested within another `<p>` tag ([#2229](https://github.com/elastic/eui/pull/2229))
+- Fixed title text of dock/undock icon in `EuiNavDrawer` ([#2261](https://github.com/elastic/eui/pull/2261))
+
+**Reverts**
+
+- Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
+
+## [`13.6.1`](https://github.com/elastic/eui/tree/v13.6.1)
+
+**Note: this release is a backport containing changes originally made in `13.7.0`**
+
+**Bug fixes**
+
+- Fixed title text of dock/undock icon in `EuiNavDrawer` ([#2261](https://github.com/elastic/eui/pull/2261))
+
+## [`13.6.0`](https://github.com/elastic/eui/tree/v13.6.0)
+
+**Note: this contains a reversion backported for targeted release**
+
+- Revert conversion of `EuiSwitch` to `button[role=switch]` and TypeScript ([#2255](https://github.com/elastic/eui/pull/2255))
+
 ## [`13.5.0`](https://github.com/elastic/eui/tree/v13.5.0)
+
+**Note: this contains component code that was reverted in the next release. Use `13.6.0` instead**
 
 - Fixed `logoCloudEnterprise`, `logoLogging`, and `logoSecurity` SVGs in `EuiIcon` to be center aligned ([#2246](https://github.com/elastic/eui/pull/2246))
 - Added locking behavior of `EuiNavDrawer` expanded state inluding the following props `isLocked`, `onIsLockedUpdate` ([#2247](https://github.com/elastic/eui/pull/2247))
 
 ## [`13.4.1`](https://github.com/elastic/eui/tree/v13.4.1)
+
+**Note: this contains component code that was later reverted. Use `13.6.0` instead**
 
 - Converted `EuiSwitch` to TypeScript ([#2243](https://github.com/elastic/eui/pull/2243))
 
@@ -18,6 +53,8 @@
 - Added missing `viewBox` attribute to Docker, Kubernetes, and Redis logos ([#2240](https://github.com/elastic/eui/pull/2240))
 
 ## [`13.4.0`](https://github.com/elastic/eui/tree/v13.4.0)
+
+**Note: this contains component code that was later reverted. Use `13.6.0` instead**
 
 - Converted `EuiFacetButton` to TypeScript ([#2226](https://github.com/elastic/eui/pull/2226))
 - Added an optional `onClear` prop to the the `EuiDatePicker` component ([#2235](https://github.com/elastic/eui/pull/2235))

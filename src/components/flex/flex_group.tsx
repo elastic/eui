@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -59,38 +59,69 @@ const directionToClassNameMap = {
 
 export const DIRECTIONS = keysOf(directionToClassNameMap);
 
-export const EuiFlexGroup: FunctionComponent<
+const isValidElement = (
+  component: string
+): component is FlexGroupComponentType => {
+  return ['div', 'span'].includes(component);
+};
+
+const EuiFlexGroup = forwardRef<
+  HTMLDivElement | HTMLSpanElement,
   CommonProps &
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
     EuiFlexGroupProps
-> = ({
-  children,
-  className,
-  gutterSize = 'l',
-  alignItems = 'stretch',
-  responsive = true,
-  justifyContent = 'flexStart',
-  direction = 'row',
-  wrap = false,
-  component: Component = 'div',
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiFlexGroup',
-    gutterSize ? gutterSizeToClassNameMap[gutterSize] : undefined,
-    alignItems ? alignItemsToClassNameMap[alignItems] : undefined,
-    justifyContent ? justifyContentToClassNameMap[justifyContent] : undefined,
-    direction ? directionToClassNameMap[direction] : undefined,
+>(
+  (
     {
-      'euiFlexGroup--responsive': responsive,
-      'euiFlexGroup--wrap': wrap,
+      children,
+      className,
+      gutterSize = 'l',
+      alignItems = 'stretch',
+      responsive = true,
+      justifyContent = 'flexStart',
+      direction = 'row',
+      wrap = false,
+      component = 'div',
+      ...rest
     },
-    className
-  );
+    ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
+  ) => {
+    const classes = classNames(
+      'euiFlexGroup',
+      gutterSizeToClassNameMap[gutterSize as FlexGroupGutterSize],
+      alignItemsToClassNameMap[alignItems as FlexGroupAlignItems],
+      justifyContentToClassNameMap[justifyContent as FlexGroupJustifyContent],
+      directionToClassNameMap[direction as FlexGroupDirection],
+      {
+        'euiFlexGroup--responsive': responsive,
+        'euiFlexGroup--wrap': wrap,
+      },
+      className
+    );
 
-  return (
-    <Component className={classes} {...rest}>
-      {children}
-    </Component>
-  );
-};
+    if (!isValidElement(component)) {
+      throw new Error(
+        `${component} is not a valid element type. Use \`div\` or \`span\`.`
+      );
+    }
+
+    return component === 'span' ? (
+      <span
+        className={classes}
+        ref={ref as Ref<HTMLSpanElement>}
+        {...rest as HTMLAttributes<HTMLSpanElement>}>
+        {children}
+      </span>
+    ) : (
+      <div
+        className={classes}
+        ref={ref as Ref<HTMLDivElement>}
+        {...rest as HTMLAttributes<HTMLDivElement>}>
+        {children}
+      </div>
+    );
+  }
+);
+EuiFlexGroup.displayName = 'EuiFlexGroup';
+
+export { EuiFlexGroup };
