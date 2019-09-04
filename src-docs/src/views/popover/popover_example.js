@@ -424,7 +424,7 @@ export const PopoverExample = {
             Although some assumptions are made about keyboard behavior,
             consumers should provide specific key event handlers depending on
             the use case. For instance, a <EuiCode>type=text</EuiCode> input
-            could use the down key to trigger popout opening, but this
+            could use the down key to trigger popover opening, but this
             interaction would not be appropriate for{' '}
             <EuiCode>type=number</EuiCode> inputs as they natively bind to the
             down key.
