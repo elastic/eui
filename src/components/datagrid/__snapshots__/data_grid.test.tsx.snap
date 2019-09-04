@@ -269,7 +269,6 @@ Array [
         </button>
       </div>
       <div
-        aria-label="aria-label"
         class="euiDataGrid__verticalScroll"
         data-test-subj="test subject string"
       >
@@ -277,6 +276,7 @@ Array [
           class="euiDataGrid__overflow"
         >
           <div
+            aria-label="aria-label"
             class="euiDataGrid__content"
             role="grid"
           >

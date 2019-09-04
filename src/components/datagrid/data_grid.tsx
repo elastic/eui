@@ -47,7 +47,10 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
+type EuiDataGridProps = Omit<
+  CommonGridProps,
+  'aria-label' | 'aria-labelledby'
+> &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
@@ -301,6 +304,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const onCellFocus = useCallback(setFocusedCell, [setFocusedCell]);
 
+  // extract aria-label and/or aria-labelledby from `rest`
+  const gridAriaProps: {
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+  } = {};
+  if ('aria-label' in rest) {
+    gridAriaProps['aria-label'] = rest['aria-label'];
+    delete rest['aria-label'];
+  }
+  if ('aria-labelledby' in rest) {
+    gridAriaProps['aria-labelledby'] = rest['aria-labelledby'];
+    delete rest['aria-labelledby'];
+  }
+
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
       <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
@@ -326,7 +343,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
               ref={resizeRef}
               {...rest}>
               <div className="euiDataGrid__overflow">
-                <div className="euiDataGrid__content" role="grid">
+                <div
+                  className="euiDataGrid__content"
+                  role="grid"
+                  {...gridAriaProps}>
                   <EuiDataGridHeaderRow
                     columns={visibleColumns}
                     columnWidths={columnWidths}
