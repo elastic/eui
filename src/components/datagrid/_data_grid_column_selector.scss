@@ -11,5 +11,6 @@
   // Hack because the fixed positions of drag and drop don't work inside of transformed elements
   // sass-lint:disable-block no-important
   transform: none !important;
+  transition: none !important;
   margin-top: -$euiSizeS;
 }

@@ -4,8 +4,10 @@ import React, {
   SetStateAction,
   useState,
   useEffect,
+  ReactChild,
 } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
+import { EuiI18n } from '../i18n';
 // @ts-ignore-next-line
 import { EuiPopover } from '../popover';
 // @ts-ignore-next-line
@@ -44,29 +46,15 @@ export const useStyleSelector = (): [
     },
   };
 
-  const densityOptions = [
-    {
-      id: 'expanded',
-      label: 'Expanded table density',
-      iconType: 'tableDensityExpanded',
-    },
-    {
-      id: 'normal',
-      label: 'Normal table density',
-      iconType: 'tableDensityNormal',
-    },
-    {
-      id: 'compact',
-      label: 'Compact table density',
-      iconType: 'tableDensityCompact',
-    },
-  ];
+  // These are the available options. They power the gridDensity hook and also the options in the render
+  const densityOptions: Array<{}> = ['expanded', 'normal', 'compact'];
 
+  // Normal is the defaul density
   const [gridDensity, setGridDensity] = useState(densityOptions[1]);
 
   const onChangeDensity = (optionId: string) => {
     const selectedDensity = densityOptions.filter(options => {
-      return options.id === optionId;
+      return options === optionId;
     })[0];
 
     setGridDensity(selectedDensity);
@@ -104,18 +92,55 @@ export const useStyleSelector = (): [
           className="euiDataGrid__controlBtn"
           color="text"
           onClick={() => setIsOpen(!isOpen)}>
-          Density
+          <EuiI18n token="euiStyleSelector.buttonText" default="Density" />
         </EuiButtonEmpty>
       }>
-      <EuiButtonGroup
-        legend="Text align"
-        name="textAlign"
-        className="eui-displayInlineBlock"
-        options={densityOptions}
-        onChange={onChangeDensity}
-        idSelected={gridDensity.id}
-        isIconOnly
-      />
+      <EuiI18n
+        tokens={[
+          'euiStyleSelector.buttonLegend',
+          'euiStyleSelector.labelExpanded',
+          'euiStyleSelector.labelNormal',
+          'euiStyleSelector.labelCompact',
+        ]}
+        defaults={[
+          'Select the display density for the data grid',
+          'Expanded density',
+          'Normal density',
+          'Compact density',
+        ]}>
+        {([
+          buttonLegend,
+          labelExpanded,
+          labelNormal,
+          labelCompact,
+        ]: ReactChild[]) => (
+          <EuiButtonGroup
+            legend={buttonLegend}
+            name="denisty"
+            className="eui-displayInlineBlock"
+            options={[
+              {
+                id: densityOptions[0],
+                label: labelExpanded,
+                iconType: 'tableDensityExpanded',
+              },
+              {
+                id: densityOptions[1],
+                label: labelNormal,
+                iconType: 'tableDensityNormal',
+              },
+              {
+                id: densityOptions[2],
+                label: labelCompact,
+                iconType: 'tableDensityCompact',
+              },
+            ]}
+            onChange={onChangeDensity}
+            idSelected={gridDensity}
+            isIconOnly
+          />
+        )}
+      </EuiI18n>
     </EuiPopover>
   );
 
