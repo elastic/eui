@@ -149,7 +149,7 @@ export class DisplayToggles extends Component {
                       <span>
                         compressed{' '}
                         <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                          <Link to="#">
+                          <Link to="/forms/compressed-forms">
                             <EuiIcon type="help" />
                           </Link>
                         </EuiToolTip>

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router';
 
 import { renderToHtml } from '../../services';
 
@@ -13,6 +14,10 @@ const formCompressedHtml = renderToHtml(FormCompressed);
 import FormHorizontal from './form_horizontal';
 const formHorizontalSource = require('!!raw-loader!./form_horizontal');
 const formHorizontalHtml = renderToHtml(FormHorizontal);
+
+import FormHelp from './form_horizontal_help';
+const formHelpSource = require('!!raw-loader!./form_horizontal_help');
+const formHelpHtml = renderToHtml(FormHelp);
 
 export const FormCompressedExample = {
   title: 'Compressed forms',
@@ -104,6 +109,36 @@ export const FormCompressedExample = {
   <EuiFieldText compressed />
 </EuiFormRow>`,
       ],
+    },
+    {
+      title: 'Contextual help',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formHelpSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formHelpHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            When using compressed form styles, it is best not to overload the UI
+            with expansive help text. If it&apos;s short and part of the
+            validation, use the <EuiCode>helpText</EuiCode>. However, if
+            it&apos;s an explanation of the control, consider wrapping the whole
+            form row in an <Link to="/display/tooltip">EuiToolTip</Link> with a
+            long delay.
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiFormRow,
+      },
+      demo: <FormHelp />,
+      snippet: [''],
     },
   ],
 };
