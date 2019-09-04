@@ -30,7 +30,7 @@ export const useStyleSelector = (): [
   const [isOpen, setIsOpen] = useState(false);
 
   const densityStyles = {
-    comfortable: {
+    expanded: {
       fontSize: 'l',
       cellPadding: 'l',
     },
@@ -46,9 +46,9 @@ export const useStyleSelector = (): [
 
   const densityOptions = [
     {
-      id: 'comfortable',
-      label: 'Comfortable table density',
-      iconType: 'tableDensityComfortable',
+      id: 'expanded',
+      label: 'Expanded table density',
+      iconType: 'tableDensityExpanded',
     },
     {
       id: 'normal',
@@ -100,7 +100,8 @@ export const useStyleSelector = (): [
       button={
         <EuiButtonEmpty
           size="xs"
-          iconType="tableDensityComfortable"
+          iconType="tableDensityExpanded"
+          className="euiDataGrid__controlBtn"
           color="text"
           onClick={() => setIsOpen(!isOpen)}>
           Density

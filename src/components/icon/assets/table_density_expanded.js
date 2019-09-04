@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EuiIconTableDensityComfortable = props => (
+const EuiIconTableDensityExpanded = props => (
   <svg
     width={16}
     height={16}
@@ -11,4 +11,4 @@ const EuiIconTableDensityComfortable = props => (
   </svg>
 );
 
-export const icon = EuiIconTableDensityComfortable;
+export const icon = EuiIconTableDensityExpanded;

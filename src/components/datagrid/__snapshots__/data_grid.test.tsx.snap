@@ -188,7 +188,7 @@ Array [
             class="euiPopover__anchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
               type="button"
             >
               <span
@@ -220,7 +220,7 @@ Array [
             class="euiPopover__anchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
               type="button"
             >
               <span
@@ -245,7 +245,7 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
           type="button"
         >
           <span

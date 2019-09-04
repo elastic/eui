@@ -17,7 +17,7 @@
   background: $euiColorEmptyShade;
 
   .euiDataGrid__pagination {
-    padding-bottom: $euiSize;
+    padding-bottom: $euiSizeXS;
     background: $euiColorLightestShade;
     border-top: $euiBorderThin;
   }
@@ -32,7 +32,6 @@
   scroll-padding: 0;
   max-width: 100%;
   width: 100%;
-  background: $euiPageBackgroundColor;
 }
 
 .euiDataGrid__controls {
@@ -48,17 +47,22 @@
   flex-grow: 0;
 }
 
-.euiDataGrid__controlBtn--active {
-  background: tintOrShade($euiColorSuccess, 80%, 50%);
+.euiDataGrid__controlBtn {
   border-radius: $euiBorderRadius;
 
   &:focus {
-    background: tintOrShade($euiColorSuccess, 80%, 50%);
+    @include euiFocusRing;
   }
 }
 
+.euiDataGrid__controlBtn--active,
+.euiDataGrid__controlBtn--active:focus {
+  background: tintOrShade($euiColorSuccess, 80%, 50%);
+}
+
 .euiDataGrid__pagination {
-  padding-top: $euiSize;
+
+  padding-top: $euiSizeXS;
   flex-grow: 0;
 }
 
@@ -71,6 +75,7 @@
 .euiDataGrid__overflow {
   overflow-y: hidden;
   height: 100%;
+  background: $euiPageBackgroundColor;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled

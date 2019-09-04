@@ -1,4 +1,5 @@
 import React, { Fragment, FunctionComponent, useState } from 'react';
+import classNames from 'classnames';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
 import { EuiPopover, EuiPopoverFooter } from '../popover';
@@ -48,6 +49,10 @@ export const useColumnSelector = (
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
 
+  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
+    'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
+  });
+
   const ColumnSelector = () => (
     <EuiPopover
       data-test-subj="dataGridColumnSelectorPopover"
@@ -62,9 +67,7 @@ export const useColumnSelector = (
           size="xs"
           iconType="eyeClosed"
           color="text"
-          className={
-            numberOfHiddenFields > 0 ? 'euiDataGrid__controlBtn--active' : null
-          }
+          className={controlBtnClasses}
           onClick={() => setIsOpen(!isOpen)}>
           {numberOfHiddenFields > 0
             ? `${numberOfHiddenFields} hidden fields`

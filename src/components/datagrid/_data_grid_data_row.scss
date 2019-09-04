@@ -7,8 +7,7 @@
   @include euiFontSizeS;
 
   padding: $euiDataGridCellPaddingM;
-  border-right: $euiBorderThin;
-  border-right-color: tintOrShade($euiBorderColor, 60%, 60%);
+  border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
   flex: 0 0 auto;
   background: $euiColorEmptyShade;
@@ -32,12 +31,14 @@
   &:focus {
     border: 1px solid transparent;
     margin-top: -1px;
-    box-shadow: 0 0 0 2px $euiColorPrimary;
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
     border-radius: 1px;
-    z-index: 2; // Needed so it sits above potential striping in the next row
+    // Needed so it sits above potential striping in the next row
+    z-index: 2;
   }
 
   &:focus:not(:first-of-type) {
+    // Needed because the focus state adds a border, which needs to be subtracted from padding
     padding-left: $euiDataGridCellPaddingM - 1px;
   }
 }
@@ -101,6 +102,7 @@
     padding: $euiDataGridCellPaddingS;
 
     &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingS - 1px;
     }
   }
@@ -111,6 +113,7 @@
     padding: $euiDataGridCellPaddingL;
 
     &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
   }

@@ -276,6 +276,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
+  const controlBtnClasses = classNames(
+    'euiDataGrid__controlBtn',
+    {
+      'euiDataGrid__controlBtn--active': isFullScreen,
+    },
+    className
+  );
+
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
@@ -302,7 +310,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
             size="xs"
             iconType="fullScreen"
             color="text"
-            className={isFullScreen ? 'euiDataGrid__controlBtn--active' : null}
+            className={controlBtnClasses}
             onClick={() => setIsFullScreen(!isFullScreen)}
             onKeyDown={handleGridKeyDown}>
             {isFullScreen ? 'Exit full screen' : 'Full screen'}

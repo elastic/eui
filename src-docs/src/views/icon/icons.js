@@ -164,7 +164,7 @@ export const iconTypes = [
   'submodule',
   'symlink',
   'tableOfContents',
-  'tableDensityComfortable',
+  'tableDensityExpanded',
   'tableDensityCompact',
   'tableDensityNormal',
   'tag',
