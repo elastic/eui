@@ -9,6 +9,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -38,6 +39,7 @@ exports[`EuiRange allows value prop to accept empty string 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -80,6 +82,7 @@ exports[`EuiRange props compressed should render 1`] = `
   >
     <input
       class="euiRangeSlider euiRangeSlider--compressed"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -123,6 +126,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
     </div>
     <input
       class="euiRangeSlider euiRangeSlider--hasTicks"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -142,6 +146,7 @@ exports[`EuiRange props disabled should render 1`] = `
     <input
       class="euiRangeSlider"
       disabled=""
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -160,6 +165,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -259,6 +265,7 @@ exports[`EuiRange props labels should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -294,6 +301,7 @@ exports[`EuiRange props levels should render 1`] = `
     </div>
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -320,6 +328,7 @@ exports[`EuiRange props range should render 1`] = `
     </div>
     <input
       class="euiRangeSlider euiRangeSlider--hasRange"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -399,6 +408,7 @@ exports[`EuiRange props ticks should render 1`] = `
     </div>
     <input
       class="euiRangeSlider euiRangeSlider--hasTicks"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -417,6 +427,7 @@ exports[`EuiRange props value should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
+import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -17,6 +18,7 @@ export class EuiRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id || makeId(),
       isPopoverOpen: false,
     };
   }
@@ -40,6 +42,14 @@ export class EuiRange extends Component {
     });
   };
 
+  onInputBlur = e => {
+    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+      this.closePopover();
+    }
+  };
+
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
@@ -53,7 +63,7 @@ export class EuiRange extends Component {
       disabled,
       fullWidth,
       readOnly,
-      id,
+      id: propsId,
       max,
       min,
       name,
@@ -75,6 +85,8 @@ export class EuiRange extends Component {
       ...rest
     } = this.props;
 
+    const { id } = this.state;
+
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
@@ -92,6 +104,7 @@ export class EuiRange extends Component {
         onChange={this.handleOnChange}
         name={name}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         fullWidth={showInputOnly && fullWidth}
         autoSize={!showInputOnly}
         {...rest}
@@ -180,7 +193,8 @@ export class EuiRange extends Component {
         input={theInput}
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}>
+        closePopover={this.closePopover}
+        disableFocusTrap={true}>
         {theRange}
       </EuiInputPopover>
     ) : (

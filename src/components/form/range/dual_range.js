@@ -6,6 +6,7 @@ import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -17,6 +18,7 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiDualRange extends Component {
   state = {
+    id: this.props.id || makeId(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
@@ -230,6 +232,14 @@ export class EuiDualRange extends Component {
     });
   };
 
+  onInputBlur = e => {
+    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+      this.closePopover();
+    }
+  };
+
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
@@ -243,7 +253,7 @@ export class EuiDualRange extends Component {
       disabled,
       fullWidth,
       readOnly,
-      id,
+      id: propsId,
       max,
       min,
       name,
@@ -260,6 +270,8 @@ export class EuiDualRange extends Component {
       style,
       ...rest
     } = this.props;
+
+    const { id } = this.state;
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'only';
@@ -281,6 +293,7 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
@@ -306,6 +319,7 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
@@ -424,7 +438,8 @@ export class EuiDualRange extends Component {
         }
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}>
+        closePopover={this.closePopover}
+        disableFocusTrap={true}>
         {theRange}
       </EuiInputPopover>
     ) : (
