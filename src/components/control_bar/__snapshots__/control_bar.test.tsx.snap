@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiControlBar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiControlBar testClass1 testClass2 euiControlBar--large"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiControlBar__controls"
+  >
+    <button
+      aria-label="Control Bar - Sound the Alarm"
+      class="euiButton euiButton--ghost euiControlBar__button"
+      data-test-subj="Sound the Alarm"
+      type="button"
+    >
+      <span
+        class="euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          <div
+            class="euiText euiText--small"
+          >
+            Sound the Alarm
+          </div>
+        </span>
+      </span>
+    </button>
+    <button
+      aria-label="Control Bar - Close the Hatch"
+      class="euiButton euiButton--ghost euiControlBar__button"
+      data-test-subj="Close the Hatch"
+      type="button"
+    >
+      <span
+        class="euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          <div
+            class="euiText euiText--small"
+          >
+            Close the Hatch
+          </div>
+        </span>
+      </span>
+    </button>
+    <button
+      aria-label="Sample Icon"
+      class="euiButtonIcon euiButtonIcon--ghost euiControlBar__buttonIcon"
+      data-test-subj="Sample Icon"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+  </div>
+</div>
+`;
