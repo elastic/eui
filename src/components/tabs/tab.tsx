@@ -6,10 +6,10 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { getSecureRelForTarget } from '../../services';
 
-export interface EuiTabProps {
+export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
   disabled?: boolean;
 }
@@ -17,6 +17,7 @@ export interface EuiTabProps {
 type EuiTabPropsForAnchor = EuiTabProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     buttonRef?: Ref<HTMLAnchorElement>;
   };
 
@@ -43,7 +44,6 @@ export const EuiTab: FunctionComponent<Props> = ({
   const classes = classNames('euiTab', className, {
     'euiTab-isSelected': isSelected,
     'euiTab-isDisabled': disabled,
-    'euiTab-isLink': href && !disabled,
   });
 
   //  <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
@@ -53,6 +53,9 @@ export const EuiTab: FunctionComponent<Props> = ({
 
     return (
       <a
+        role="tab"
+        aria-selected={!!isSelected}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         className={classes}
         href={href}
         target={target}
