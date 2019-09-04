@@ -49,7 +49,7 @@ export class FilePicker extends Component {
       <Fragment>
         <EuiFlexGroup>
           <EuiFlexItem grow={2}>
-            /* DisplayToggles wrapper for Docs only */
+            {/* DisplayToggles wrapper for Docs only */}
             <DisplayToggles
               canReadOnly={false}
               extras={[
