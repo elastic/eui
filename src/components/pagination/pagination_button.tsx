@@ -1,10 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  FunctionComponent,
+  MouseEventHandler,
+} from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, Omit } from '../common';
+import { ExclusiveUnion } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 
-export interface EuiPaginationButtonProps {
+export interface EuiPaginationButtonProps extends EuiButtonEmptyProps {
   isActive?: boolean;
   /**
    * For ellipsis or other non-clickable buttons.
@@ -13,9 +18,21 @@ export interface EuiPaginationButtonProps {
   hideOnMobile?: boolean;
 }
 
-type Props = CommonProps &
-  Omit<EuiButtonEmptyProps, 'size' | 'color'> &
-  EuiPaginationButtonProps;
+type EuiPaginationButtonPropsForAnchor = EuiPaginationButtonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+  };
+
+type EuiPaginationButtonPropsForButton = EuiPaginationButtonProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+  };
+
+type Props = ExclusiveUnion<
+  EuiPaginationButtonPropsForAnchor,
+  EuiPaginationButtonPropsForButton
+>;
 
 export const EuiPaginationButton: FunctionComponent<Props> = ({
   children,
