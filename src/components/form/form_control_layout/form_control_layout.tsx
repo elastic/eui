@@ -12,6 +12,7 @@ import {
   EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
 import { CommonProps } from '../../common';
+import { EuiFormLabel } from '../form_label';
 
 export { ICON_SIDES } from './form_control_layout_icons';
 
@@ -22,11 +23,11 @@ type EuiFormControlLayoutProps = CommonProps &
     /**
      * Creates an input group with element(s) coming before children
      */
-    prepend?: ReactElements;
+    prepend?: string | ReactElements;
     /**
      * Creates an input group with element(s) coming after children
      */
-    append?: ReactElements;
+    append?: string | ReactElements;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
@@ -87,9 +88,13 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     );
   }
 
-  renderPrepends(prepend: ReactElements | undefined | null) {
+  renderPrepends(prepend: string | ReactElements | undefined | null) {
     if (!prepend) {
       return;
+    }
+
+    if (typeof prepend === 'string') {
+      prepend = <EuiFormLabel>{prepend}</EuiFormLabel>;
     }
 
     const prependNodes = React.Children.map(prepend, (item, index) =>
@@ -99,9 +104,13 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     return prependNodes;
   }
 
-  renderAppends(append: ReactElements | undefined | null) {
+  renderAppends(append: string | ReactElements | undefined | null) {
     if (!append) {
       return;
+    }
+
+    if (typeof append === 'string') {
+      append = <EuiFormLabel>{append}</EuiFormLabel>;
     }
 
     const appendNodes = React.Children.map(append, (item, index) =>
