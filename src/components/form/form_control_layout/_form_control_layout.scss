@@ -85,6 +85,13 @@
     }
   }
 
+  // In case a tooltip was passed as a pre/append
+  // The cloned element's classname would have been passed to the tooltip not the anchor
+  .euiToolTipAnchor {
+    padding: $euiSizeXS;
+    background-color: $euiFormInputGroupLabelBackground;
+  }
+
   //
   // Borders
 
