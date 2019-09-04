@@ -53,6 +53,8 @@ export default () => {
         }}>
         Popover will adjust in size as the input does
       </EuiInputPopover>
+
+      <EuiSpacer size="xxl" />
     </React.Fragment>
   );
 };
