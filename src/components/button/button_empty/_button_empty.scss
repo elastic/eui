@@ -65,7 +65,7 @@
 }
 
 // Modifier naming and colors.
-$buttonTypes: (
+$euiButtonTypes: (
   primary: $euiColorPrimary,
   danger: $euiColorDanger,
   disabled: tintOrShade($euiTextColor, 70%, 80%),
@@ -74,7 +74,7 @@ $buttonTypes: (
 );
 
 // Create button modifiders based upon the map.
-@each $name, $color in $buttonTypes {
+@each $name, $color in $euiButtonTypes {
   .euiButtonEmpty--#{$name} {
     @if ($name == 'ghost') {
       // Ghost is unique and ALWAYS sits against a dark background.

@@ -67,7 +67,6 @@ export default class extends Component {
         ],
       },
       {
-        id: 'spacer_1',
         controlType: 'spacer',
       },
       {
@@ -78,7 +77,6 @@ export default class extends Component {
         color: 'warning',
       },
       {
-        id: 'divider_one',
         controlType: 'divider',
       },
       {
@@ -93,7 +91,6 @@ export default class extends Component {
         controlType: 'text',
       },
       {
-        id: 'divider_two',
         controlType: 'divider',
       },
       {
@@ -103,7 +100,6 @@ export default class extends Component {
         iconType: 'logoGithub',
       },
       {
-        id: 'divider_three',
         controlType: 'divider',
       },
       {

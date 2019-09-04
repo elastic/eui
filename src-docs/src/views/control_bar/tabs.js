@@ -103,7 +103,6 @@ export class ControlBarWithTabs extends React.Component {
         color: 'primary',
       },
       {
-        id: 'spacer_in_tabs',
         controlType: 'spacer',
       },
       {

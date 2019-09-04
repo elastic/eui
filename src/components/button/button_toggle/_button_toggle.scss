@@ -46,7 +46,7 @@
 }
 
 // Modifier naming and colors.
-$buttonTypes: (
+$euiButtonTypes: (
   primary: $euiColorPrimary,
   secondary: $euiColorSecondary,
   warning: $euiColorWarning,
@@ -56,7 +56,7 @@ $buttonTypes: (
 );
 
 // Add hover states based on input state
-@each $name, $color in $buttonTypes {
+@each $name, $color in $euiButtonTypes {
   .euiButtonToggle[class*='#{$name}'] {
     @include euiButtonToggleStates {
       background-color: transparentize($color, .9);

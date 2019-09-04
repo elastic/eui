@@ -50,12 +50,10 @@ interface TextControl {
 
 interface SpacerControl {
   controlType: 'spacer';
-  id: string;
 }
 
 interface DivideControl {
   controlType: 'divider';
-  id: string;
 }
 
 interface IconControl {
@@ -93,11 +91,12 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
     showContent?: boolean;
 
     /**
-     * An array of controls, actions, and layout spacers to display
+     * An array of controls, actions, and layout spacers to display.
+     * Accepts `'button' | 'tab' | 'breadcrumbs' | 'text' | 'icon' | 'spacer' | 'divider'`
      */
     controls: Control[];
     /**
-     * The maximum height of the overlay. Default is 90%, Medium is 75%, Small is 50%;
+     * The maximum height of the overlay (relative to the window). Default is 90%, Medium is 75%, Small is 50%;
      */
     size?: 's' | 'm' | 'l';
     /**
@@ -189,7 +188,12 @@ export class EuiControlBar extends Component<
             />
           );
         case 'divider':
-          return <div key={control.id} className="euiControlBar__divider" />;
+          return (
+            <div
+              key={control.controlType + index}
+              className="euiControlBar__divider"
+            />
+          );
         case 'spacer':
           return (
             <div

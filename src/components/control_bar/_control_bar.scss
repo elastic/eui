@@ -79,7 +79,6 @@
   animation-iteration-count: 1;
   animation-timing-function: $euiAnimSlightResistance;
   color: $euiColorDarkestShade;
-  overflow-y: scroll;
 }
 
 @keyframes openPanelLarge {
@@ -186,7 +185,7 @@
   box-shadow: inset 0 4px 0 makeHighContrastColor($euiColorPrimary, $euiColorLightestShade), -1px 0 0 $controlBarBackground;
 }
 
-@each $colorName, $colorValue in $buttonTypes {
+@each $colorName, $colorValue in $euiButtonTypes {
   .euiControlBar__controls {
     .euiText--#{$colorName} {
       color: makeHighContrastColor($colorValue, $controlBarBackground);

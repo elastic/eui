@@ -156,14 +156,6 @@ const iconPropsTable = [
   },
 ];
 
-const spacerAndDividerPropsTable = [
-  {
-    prop: 'id',
-    type: 'string',
-    description: 'Provide a unique id for the element.',
-  },
-];
-
 const tableColumns = [
   {
     field: 'prop',
@@ -236,20 +228,17 @@ export const ControlBarExample = {
           <h3>Icon Control</h3>
           <EuiBasicTable items={iconPropsTable} columns={tableColumns} />
           <h3>Spacer & Divider Control</h3>
-          <EuiBasicTable
-            items={spacerAndDividerPropsTable}
-            columns={tableColumns}
-          />
           <h4>Spacers</h4>
           <p>
             Spacers can be used to provide horizontal spaces between your
-            <EuiCode>controlTypes</EuiCode>.
+            <EuiCode>controlTypes</EuiCode>. Spacers do not need{' '}
+            <EuiCode>ids</EuiCode>.
           </p>
           <h4>Dividers</h4>
           <p>
             Dividers provide <EuiCode>1px</EuiCode> wide colored breaks between
             your <EuiCode>controlTypes</EuiCode>. Useful when additional visual
-            separation is needed.
+            separation is needed. Dividers do not need <EuiCode>ids</EuiCode>.
           </p>
           <h3>Rendering content to the control bar drawer</h3>
           <p>
