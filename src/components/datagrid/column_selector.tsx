@@ -1,8 +1,14 @@
-import React, { Fragment, FunctionComponent, useState } from 'react';
+import React, {
+  Fragment,
+  FunctionComponent,
+  useState,
+  ReactChild,
+} from 'react';
 import classNames from 'classnames';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
 import { EuiPopover, EuiPopoverFooter } from '../popover';
+import { EuiI18n } from '../i18n';
 // @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -63,16 +69,25 @@ export const useColumnSelector = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
-        <EuiButtonEmpty
-          size="xs"
-          iconType="eyeClosed"
-          color="text"
-          className={controlBtnClasses}
-          onClick={() => setIsOpen(!isOpen)}>
-          {numberOfHiddenFields > 0
-            ? `${numberOfHiddenFields} hidden fields`
-            : 'Hide fields'}
-        </EuiButtonEmpty>
+        <EuiI18n
+          tokens={[
+            'euiColumnSelector.button',
+            'euiColumnSelector.buttonActive',
+          ]}
+          defaults={['Full screen', 'Exit full screen']}>
+          {([button, buttonActive]: ReactChild[]) => (
+            <EuiButtonEmpty
+              size="xs"
+              iconType="eyeClosed"
+              color="text"
+              className={controlBtnClasses}
+              onClick={() => setIsOpen(!isOpen)}>
+              {numberOfHiddenFields > 0
+                ? `${numberOfHiddenFields} ${buttonActive}`
+                : button}
+            </EuiButtonEmpty>
+          )}
+        </EuiI18n>
       }>
       <EuiDragDropContext onDragEnd={onDragEnd}>
         <EuiDroppable
@@ -127,7 +142,10 @@ export const useColumnSelector = (
               size="xs"
               flush="left"
               onClick={() => setVisibleColumns(sortedColumns)}>
-              Show all
+              <EuiI18n
+                token="euiColumnSelector.selectAll"
+                default="Select all"
+              />
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem>
@@ -135,7 +153,7 @@ export const useColumnSelector = (
               size="xs"
               flush="right"
               onClick={() => setVisibleColumns([])}>
-              Hide all
+              <EuiI18n token="euiColumnSelector.hideAll" default="hide all" />
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
