@@ -2,7 +2,8 @@
 
 **Bug fixes**
 
-- Removed extra right side margin in 'EuiSuperDatePicker' ([#2236](https://github.com/elastic/eui/pull/2236))
+- Removed extra right side margin in `EuiSuperDatePicker` ([#2236](https://github.com/elastic/eui/pull/2236))
+- Fix incorrect `onClick` type for `EuiButtonEmpty` ([#2282](https://github.com/elastic/eui/pull/2282))
 
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 
