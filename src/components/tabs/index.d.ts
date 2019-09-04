@@ -1,6 +1,8 @@
 import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 
+import { Props as EuiTabProps } from './tab';
+
 declare module '@elastic/eui' {
   type TAB_SIZES = 's' | 'm';
 
@@ -37,4 +39,5 @@ declare module '@elastic/eui' {
   export const EuiTabbedContent: FunctionComponent<
     EuiTabbedContentProps & CommonProps & HTMLAttributes<HTMLDivElement>
   >;
+  export const EuiTab: FunctionComponent<EuiTabProps>;
 }
