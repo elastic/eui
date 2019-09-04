@@ -291,6 +291,21 @@ exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiFormRow props display type row is rendered 1`] = `
 <div
   class="euiFormRow"

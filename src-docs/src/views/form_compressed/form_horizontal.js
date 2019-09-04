@@ -144,7 +144,7 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow display="columnCompressed" label="Show this">
+        <EuiFormRow display="columnCompressedSwitch" label="Swtich">
           <EuiSwitch
             name="switch"
             checked={this.state.isSwitchChecked}

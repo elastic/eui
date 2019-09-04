@@ -78,12 +78,19 @@ export const FormCompressedExample = {
         },
       ],
       text: (
-        <p>
-          Editor style controls can be displayed horizontally for even better
-          use of limited space, just pass{' '}
-          <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
-          labels and inputs horizontally.
-        </p>
+        <Fragment>
+          <p>
+            Editor style controls can be displayed horizontally for even better
+            use of limited space, just pass{' '}
+            <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
+            labels and inputs horizontally.
+          </p>
+          <p>
+            <strong>EuiSwitches</strong> are a special case in which so you must
+            pass <EuiCode>columnCompressedSwitch</EuiCode> as the display
+            property.
+          </p>
+        </Fragment>
       ),
       props: {
         EuiFormRow,
