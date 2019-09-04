@@ -50,7 +50,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-      status: 'notYetSaved',
+      status: 'unchanged',
       value: '',
       hideDatepicker: false,
       filters: [

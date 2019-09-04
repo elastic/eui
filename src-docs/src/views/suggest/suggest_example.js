@@ -38,6 +38,27 @@ const suggestItemSnippet = [
 />`,
 ];
 
+const suggestSnippet = [
+  `<EuiSuggest
+    status={this.state.status}
+    tooltipContent={this.state.tooltipContent}
+    sendInputValue={this.getInputValue}
+    onItemClick={this.onItemClick}
+    suggestions={[
+      {
+        type: { iconType: 'kqlField', color: 'tint4' },
+        label: 'Field sample',
+        description: 'This is the description',
+      },
+      {
+        type: { iconType: 'kqlValue', color: 'tint0' },
+        label: 'Value sample',
+        description: 'This is the description',
+      },
+    ]}
+  />`,
+];
+
 export const SuggestExample = {
   title: 'Suggest',
   sections: [
@@ -55,17 +76,16 @@ export const SuggestExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuggest</EuiCode> is an input field component to use
-            when performing queries that will display suggestions. When
-            inputting a query, <EuiCode>EuiSuggest</EuiCode> will show the
-            status of that query (&apos;notYetSaved&apos;, &apos;saved&apos;,
-            &apos;noNewChanges&apos; and &apos;isLoading&apos;). There are
-            actions available to the user on the popover located on the left of
-            the input (e.g. save query).
+            <EuiCode>EuiSuggest</EuiCode> is a text field component to use
+            display suggestions. The status of the component is shown on its
+            right side. The available <EuiCode>status</EuiCode> are:{' '}
+            <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
+            <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
           </p>
         </div>
       ),
       props: { EuiSuggest },
+      snippet: suggestSnippet,
       demo: <Suggest />,
     },
     {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import {
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiRadioGroup,
   EuiSuggest,
   EuiSpacer,
@@ -50,23 +48,35 @@ export default class extends Component {
     const idPrefix = makeId();
 
     this.radios = [
-      { id: `${idPrefix}0`, value: 'notYetSaved', label: 'Not yet saved' },
-      { id: `${idPrefix}1`, value: 'saved', label: 'Saved' },
-      { id: `${idPrefix}2`, value: 'noNewChanges', label: 'No new changes' },
+      { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },
+      { id: `${idPrefix}1`, value: 'unsaved', label: 'Not yet saved' },
+      { id: `${idPrefix}2`, value: 'saved', label: 'Saved' },
       { id: `${idPrefix}3`, value: 'isLoading', label: 'Loading' },
     ];
 
+    this.tooltips = [
+      {
+        status: 'unsaved',
+        tooltip: "You've made changes that haven't been saved yet.",
+      },
+      { status: 'saved', tooltip: 'Query successfuly saved.' },
+    ];
+
     this.state = {
-      status: 'notYetSaved',
+      status: 'unchanged',
       radioIdSelected: `${idPrefix}0`,
       value: '',
+      tooltipContent: '',
     };
   }
 
-  onChange = optionId => {
+  onChange = (optionId, optionStatus) => {
     this.setState({
       radioIdSelected: optionId,
       status: this.radios.find(x => x.id === optionId).value,
+      tooltipContent: this.tooltips.find(x => x.status === optionStatus)
+        ? this.tooltips.find(x => x.status === optionStatus).tooltip
+        : '',
     });
   };
 
@@ -83,26 +93,19 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <EuiRadioGroup
-              options={this.radios}
-              idSelected={this.state.radioIdSelected}
-              onChange={this.onChange}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiRadioGroup
+          options={this.radios}
+          idSelected={this.state.radioIdSelected}
+          onChange={this.onChange}
+        />
         <EuiSpacer size="xl" />
-        <EuiFlexGroup>
-          <EuiFlexItem>
-            <EuiSuggest
-              status={this.state.status}
-              sendInputValue={this.getInputValue.bind(this)}
-              onItemClick={this.onItemClick.bind(this)}
-              suggestions={sampleItems}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+        <EuiSuggest
+          status={this.state.status}
+          tooltipContent={this.state.tooltipContent}
+          sendInputValue={this.getInputValue.bind(this)}
+          onItemClick={this.onItemClick.bind(this)}
+          suggestions={sampleItems}
+        />
       </div>
     );
   }

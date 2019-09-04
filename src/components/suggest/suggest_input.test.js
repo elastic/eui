@@ -21,7 +21,7 @@ describe('EuiSuggestInput', () => {
   test('is rendered', () => {
     const component = render(
       <EuiSuggestInput
-        status="notYetSaved"
+        status="unsaved"
         suggestions={sampleItems}
         {...requiredProps}
       />

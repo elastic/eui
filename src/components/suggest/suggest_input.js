@@ -38,22 +38,22 @@ export class EuiSuggestInput extends Component {
       status,
       append,
       prefix,
+      tooltipContent,
       suggestions,
       sendValue,
       ...rest
     } = this.props;
 
     const statusMap = {
-      notYetSaved: {
+      unsaved: {
         icon: 'dot',
         color: 'accent',
-        tooltip: "You've made changes to this saved query. Click to save them.",
       },
       saved: {
         icon: 'checkInCircleFilled',
         color: 'secondary',
       },
-      noNewChanges: {
+      unchanged: {
         icon: '',
         color: 'secondary',
       },
@@ -66,7 +66,6 @@ export class EuiSuggestInput extends Component {
     if (statusMap[status]) {
       icon = statusMap[status].icon;
       color = statusMap[status].color;
-      tooltip = statusMap[status].tooltip;
     }
     const classes = classNames('euiSuggestInput', className);
 
@@ -76,8 +75,8 @@ export class EuiSuggestInput extends Component {
     const statusElement = status !== 'isLoading' && (
       <EuiToolTip
         position="left"
-        content={tooltip}
-        anchorClassName="statusIcon">
+        content={tooltipContent}
+        anchorClassName="euiSuggestInput__statusIcon">
         <EuiIcon color={color} type={icon} />
       </EuiToolTip>
     );
@@ -118,14 +117,10 @@ export class EuiSuggestInput extends Component {
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
   /**
-   * Status of the current query 'notYetSaved', 'saved', 'noNewChanges' or 'isLoading'.
+   * Status of the current query 'unsaved', 'saved', 'unchanged' or 'isLoading'.
    */
-  status: PropTypes.oneOf([
-    'notYetSaved',
-    'saved',
-    'noNewChanges',
-    'isLoading',
-  ]),
+  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'isLoading']),
+  tooltipContent: PropTypes.string,
   /**
    * Element to be appended to the input bar.
    */
@@ -141,5 +136,5 @@ EuiSuggestInput.propTypes = {
 };
 
 EuiSuggestInput.defaultProps = {
-  status: 'noNewChanges',
+  status: 'unchanged',
 };

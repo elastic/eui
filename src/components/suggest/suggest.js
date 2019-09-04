@@ -9,7 +9,7 @@ export class EuiSuggest extends Component {
 
     this.state = {
       value: '',
-      status: 'notYetSaved',
+      status: 'unsaved',
     };
     this.getValue = this.getValue.bind(this);
   }
@@ -31,6 +31,7 @@ export class EuiSuggest extends Component {
       status,
       prefix,
       append,
+      tooltipContent,
       suggestions,
       ...rest
     } = this.props;
@@ -49,6 +50,7 @@ export class EuiSuggest extends Component {
       <EuiSuggestInput
         status={status}
         prefix={prefix}
+        tooltipContent={tooltipContent}
         append={append}
         sendValue={this.getValue}
         suggestions={suggestionList}
@@ -62,14 +64,10 @@ export class EuiSuggest extends Component {
 EuiSuggest.propTypes = {
   className: PropTypes.string,
   /**
-   * Status of the current query 'notYetSaved', 'saved', 'noNewChanges' or 'isLoading'.
+   * Status of the current query 'notYetSaved', 'saved', 'unchanged' or 'isLoading'.
    */
-  status: PropTypes.oneOf([
-    'notYetSaved',
-    'saved',
-    'noNewChanges',
-    'isLoading',
-  ]),
+  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'isLoading']),
+  tooltipContent: PropTypes.string,
   /**
    * Element to be appended to the input bar (e.g. hashtag popover).
    */
@@ -90,5 +88,5 @@ EuiSuggest.propTypes = {
 };
 
 EuiSuggestInput.defaultProps = {
-  status: 'noNewChanges',
+  status: 'unchanged',
 };
