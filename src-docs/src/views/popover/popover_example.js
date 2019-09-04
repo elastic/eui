@@ -351,42 +351,6 @@ export const PopoverExample = {
       demo: <PopoverHTMLElementAnchor />,
     },
     {
-      title: 'Popover attached to input element',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inputPopoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputPopoverHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            <EuiCode>EuiInputPopover</EuiCode> is a specialized popover
-            component intended to be used with form elements. Stylistically, the
-            popover panel is
-            {'"attacted"'} to the input. Functionally, the popover opens on
-            click focus and will allow for natural tab order.
-          </p>
-          <p>
-            Although some assumptions are made about keyboard behavior,
-            consumers should provide specific key event handlers depending on
-            the use case. For instance, a <EuiCode>type=text</EuiCode> input or
-            <EuiCode>EuiColorPicker</EuiCode> could use the down key to trigger
-            popout opening, but this interaction would not be appropriate for{' '}
-            <EuiCode>type=number</EuiCode> inputs as they natively bind to the
-            down key.
-          </p>
-        </div>
-      ),
-      props: { EuiInputPopover },
-      snippet: inputPopoverSnippet,
-      demo: <InputPopover />,
-    },
-    {
       title: 'Popover on a fixed element',
       source: [
         {
@@ -433,6 +397,43 @@ export const PopoverExample = {
       ),
       snippet: popoverBlockSnippet,
       demo: <PopoverBlock />,
+    },
+    {
+      title: 'Popover attached to input element',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inputPopoverSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inputPopoverHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            <EuiCode>EuiInputPopover</EuiCode> is a specialized popover
+            component intended to be used with form elements. Stylistically, the
+            popover panel is
+            {'"attacted"'} to the input. Functionally, consumers have control
+            over what events open and close the popover, and it can allow for
+            natural tab order.
+          </p>
+          <p>
+            Although some assumptions are made about keyboard behavior,
+            consumers should provide specific key event handlers depending on
+            the use case. For instance, a <EuiCode>type=text</EuiCode> input
+            could use the down key to trigger popout opening, but this
+            interaction would not be appropriate for{' '}
+            <EuiCode>type=number</EuiCode> inputs as they natively bind to the
+            down key.
+          </p>
+        </div>
+      ),
+      props: { EuiInputPopover },
+      snippet: inputPopoverSnippet,
+      demo: <InputPopover />,
     },
   ],
 };
