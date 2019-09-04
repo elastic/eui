@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Formally added `EuiInputPopover` component ([#2269](https://github.com/elastic/eui/pull/2269))
+
 **Bug fixes**
 
 - Removed extra right side margin in `EuiSuperDatePicker` ([#2236](https://github.com/elastic/eui/pull/2236))
