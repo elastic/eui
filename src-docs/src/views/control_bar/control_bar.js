@@ -54,6 +54,7 @@ export default class extends Component {
       },
       {
         id: 'current_file_path',
+        label: 'breadcrumbs',
         controlType: 'breadcrumbs',
         responsive: true,
         breadcrumbs: [
@@ -66,6 +67,7 @@ export default class extends Component {
         ],
       },
       {
+        id: 'spacer_1',
         controlType: 'spacer',
       },
       {
@@ -76,6 +78,7 @@ export default class extends Component {
         color: 'warning',
       },
       {
+        id: 'divider_one',
         controlType: 'divider',
       },
       {
@@ -86,10 +89,11 @@ export default class extends Component {
       },
       {
         id: 'branch_name',
-        label: 'some_long_branch',
+        label: 'some_long_bran...',
         controlType: 'text',
       },
       {
+        id: 'divider_two',
         controlType: 'divider',
       },
       {
@@ -99,6 +103,7 @@ export default class extends Component {
         iconType: 'logoGithub',
       },
       {
+        id: 'divider_three',
         controlType: 'divider',
       },
       {
@@ -120,10 +125,31 @@ export default class extends Component {
 
     let fullScreenDisplay;
 
+    // const controlBar = (
+    //   <EuiControlBar
+    //     controls={codeControls}
+    //     showContent={this.state.contentIsVisible}
+    //     style={!this.state.isFullScreen ? { position: 'absolute' } : null}>
+    //     <div style={{ padding: '1rem' }}>
+    //       {this.state.tabContent !== '' ? (
+    //         <EuiText>{this.state.tabContent}</EuiText>
+    //       ) : (
+    //         <p>Look at me</p>
+    //       )}
+    //     </div>
+    //   </EuiControlBar>
+    // );
+
     if (this.state.isFullScreen) {
       fullScreenDisplay = (
         <EuiFocusTrap>
-          <div className="guideDemo__pageOverlay" onKeyDown={this.onKeyDown}>
+          <div
+            className="guideDemo__pageOverlay"
+            style={{
+              padding: '2rem',
+              zIndex: '20000',
+            }}
+            onKeyDown={this.onKeyDown}>
             <EuiFlexGroup>
               <EuiButton onClick={this.toggle.bind(this)}>
                 Toggle Content Drawer
@@ -135,8 +161,7 @@ export default class extends Component {
             </EuiFlexGroup>
             <EuiControlBar
               controls={codeControls}
-              showContent={this.state.contentIsVisible}
-              showOnMobile>
+              showContent={this.state.contentIsVisible}>
               <EuiPanel style={{ maxWidth: '60rem', margin: '2rem auto' }}>
                 <EuiText>
                   <h1>1984</h1>

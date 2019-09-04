@@ -72,7 +72,7 @@ export class ControlBarWithTabs extends React.Component {
   };
 
   render() {
-    const textLink = <EuiLink href="#">A sample link</EuiLink>;
+    const textLink = <EuiLink href="#">src / component / roller.tsx</EuiLink>;
 
     const controls = [
       {
@@ -93,8 +93,6 @@ export class ControlBarWithTabs extends React.Component {
         controlType: 'button',
         onClick: this.soundTheAlarms,
         color: 'danger',
-        'data-test-sub': 'look',
-        'aria-label': 'this is an aria label',
       },
       {
         id: 'close_the_hatch',
@@ -105,6 +103,7 @@ export class ControlBarWithTabs extends React.Component {
         color: 'primary',
       },
       {
+        id: 'spacer_in_tabs',
         controlType: 'spacer',
       },
       {
@@ -127,7 +126,13 @@ export class ControlBarWithTabs extends React.Component {
     if (this.state.isFullScreen) {
       fullScreenDisplay = (
         <EuiFocusTrap>
-          <div className="guideDemo__pageOverlay" onKeyDown={this.onKeyDown}>
+          <div
+            className="guideDemo__pageOverlay"
+            style={{
+              padding: '2rem',
+              zIndex: '20000',
+            }}
+            onKeyDown={this.onKeyDown}>
             <EuiFlexGroup>
               <EuiButton onClick={this.toggle.bind(this)}>
                 Toggle Content Drawer
@@ -140,8 +145,7 @@ export class ControlBarWithTabs extends React.Component {
             <EuiControlBar
               controls={controls}
               size="m"
-              showContent={this.state.contentIsVisible}
-              showOnMobile>
+              showContent={this.state.contentIsVisible}>
               <div style={{ padding: '1rem' }}>
                 {this.state.tabContent !== '' ? (
                   <EuiText>{this.state.tabContent}</EuiText>
