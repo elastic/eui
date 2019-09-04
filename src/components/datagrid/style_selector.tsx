@@ -69,7 +69,7 @@ export const useStyleSelector = (): [
       {},
       oldStyles,
       // @ts-ignore
-      densityStyles[gridDensity.id]
+      densityStyles[gridDensity]
     );
     /*eslint-enable */
     setGridStyles(mergedStyle);

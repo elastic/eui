@@ -74,7 +74,7 @@ export const useColumnSelector = (
             'euiColumnSelector.button',
             'euiColumnSelector.buttonActive',
           ]}
-          defaults={['Full screen', 'Exit full screen']}>
+          defaults={['Hide fields', 'fields hidden']}>
           {([button, buttonActive]: ReactChild[]) => (
             <EuiButtonEmpty
               size="xs"
