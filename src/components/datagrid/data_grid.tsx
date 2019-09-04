@@ -38,6 +38,9 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { CELL_CONTENTS_ATTR } from './utils';
 
+// When below this number the grid only shows the full screen button
+const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
+
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
@@ -159,7 +162,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onResize = ({ width }: { width: number }) => {
-    setShowGridControls(width > 480 || isFullScreen);
+    setShowGridControls(
+      width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
+    );
   };
 
   const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
