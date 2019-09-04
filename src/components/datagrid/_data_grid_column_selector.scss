@@ -2,8 +2,8 @@
   padding: $euiSizeXS;
 
   &-isDragging {
-    background: $euiColorEmptyShade;
     @include euiBottomShadow;
+    background: $euiColorEmptyShade;
   }
 }
 

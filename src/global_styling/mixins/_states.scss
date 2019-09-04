@@ -12,6 +12,7 @@ $euiFocusRingSizeLarge: 4px;
     // sass-lint:disable-block no-important
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge !important;
   } @else {
+    // sass-lint:disable-block no-important
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate !important;
   }
 }
