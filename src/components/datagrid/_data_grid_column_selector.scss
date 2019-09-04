@@ -1,8 +1,8 @@
 .euiDataGridColumnSelector__item {
-  background: $euiColorEmptyShade;
   padding: $euiSizeXS;
 
   &-isDragging {
+    background: $euiColorEmptyShade;
     @include euiBottomShadow;
   }
 }
