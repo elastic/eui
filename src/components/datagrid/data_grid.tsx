@@ -159,7 +159,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onResize = ({ width }: { width: number }) => {
-    setShowGridControls(width > 480);
+    setShowGridControls(width > 480 || isFullScreen);
   };
 
   const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
