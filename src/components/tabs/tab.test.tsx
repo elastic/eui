@@ -5,9 +5,18 @@ import { requiredProps } from '../../test/required_props';
 import { EuiTab } from './tab';
 
 describe('EuiTab', () => {
-  test('renders', () => {
+  test('renders button', () => {
     const component = (
       <EuiTab onClick={() => {}} {...requiredProps}>
+        children
+      </EuiTab>
+    );
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('renders anchor', () => {
+    const component = (
+      <EuiTab href="/baz/bing" {...requiredProps}>
         children
       </EuiTab>
     );
