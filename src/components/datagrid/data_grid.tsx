@@ -7,8 +7,10 @@ import React, {
   useEffect,
   useRef,
   Fragment,
+  ReactChild,
 } from 'react';
 import classNames from 'classnames';
+import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
 import {
@@ -323,15 +325,24 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
         <div className="euiDataGrid__controls">
           {showGridControls ? gridControls : null}
-          <EuiButtonEmpty
-            size="xs"
-            iconType="fullScreen"
-            color="text"
-            className={controlBtnClasses}
-            onClick={() => setIsFullScreen(!isFullScreen)}
-            onKeyDown={handleGridKeyDown}>
-            {isFullScreen ? 'Exit full screen' : 'Full screen'}
-          </EuiButtonEmpty>
+          <EuiI18n
+            tokens={[
+              'euiDataGrid.fullScreenButton',
+              'euiDataGrid.fullScreenButtonActive',
+            ]}
+            defaults={['Full screen', 'Exit full screen']}>
+            {([fullScreenButton, fullScreenButtonActive]: ReactChild[]) => (
+              <EuiButtonEmpty
+                size="xs"
+                iconType="fullScreen"
+                color="text"
+                className={controlBtnClasses}
+                onClick={() => setIsFullScreen(!isFullScreen)}
+                onKeyDown={handleGridKeyDown}>
+                {isFullScreen ? fullScreenButtonActive : fullScreenButton}
+              </EuiButtonEmpty>
+            )}
+          </EuiI18n>
         </div>
         {/* Unsure why this element causes errors as focus follows spec */}
         {/* eslint-disable jsx-a11y/interactive-supports-focus */}
@@ -371,7 +382,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
         {renderPagination(props)}
         <p id={interactiveCellId} hidden>
-          Cell contains interactive content.
+          <EuiI18n
+            token="euiDataGrid.screenReaderNotice"
+            default="Cell contains interactive content."
+          />
           {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
         </p>
       </div>
