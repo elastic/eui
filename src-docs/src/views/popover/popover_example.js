@@ -416,7 +416,7 @@ export const PopoverExample = {
             <EuiCode>EuiInputPopover</EuiCode> is a specialized popover
             component intended to be used with form elements. Stylistically, the
             popover panel is
-            {'"attacted"'} to the input. Functionally, consumers have control
+            {'"attached"'} to the input. Functionally, consumers have control
             over what events open and close the popover, and it can allow for
             natural tab order.
           </p>
