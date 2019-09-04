@@ -5,7 +5,7 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiFormRow } from '../../../../src/components';
+import { EuiCode, EuiFormRow, EuiToolTip } from '../../../../src/components';
 
 import FormCompressed from './form_compressed';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
@@ -125,20 +125,39 @@ export const FormCompressedExample = {
       text: (
         <Fragment>
           <p>
-            When using compressed form styles, it is best not to overload the UI
-            with expansive help text. If it&apos;s short and part of the
-            validation, use the <EuiCode>helpText</EuiCode>. However, if
-            it&apos;s an explanation of the control, consider wrapping the whole
-            form row in an <Link to="/display/tooltip">EuiToolTip</Link> with a
-            long delay.
+            When using compressed, horizontal form styles, it is best not to
+            overload the UI with expansive help text. If it&apos;s short and
+            part of the validation, use <EuiCode>helpText</EuiCode>. However, if
+            it&apos;s an explanation of the control, consider wraping the label
+            with a <Link to="/display/tooltip">EuiToolTip</Link> and appending
+            the <EuiCode>questionInCircle</EuiCode> icon to it.
           </p>
         </Fragment>
       ),
       props: {
         EuiFormRow,
+        EuiToolTip,
       },
       demo: <FormHelp />,
-      snippet: [''],
+      snippet: [
+        `<EuiFormRow
+  display="columnCompressed"
+  label=""
+  helpText="">
+  <EuiFieldText compressed />
+</EuiFormRow>`,
+        `<EuiFormRow
+  display="columnCompressed"
+  label={
+    <EuiToolTip content="">
+      <span>
+        Label <EuiIcon type="questionInCircle" color="subdued" />
+      </span>
+    </EuiToolTip>
+  }>
+  <EuiFieldText compressed />
+</EuiFormRow>`,
+      ],
     },
   ],
 };

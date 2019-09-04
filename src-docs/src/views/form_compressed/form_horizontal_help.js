@@ -4,9 +4,10 @@ import {
   EuiFieldText,
   EuiFormRow,
   EuiSelect,
-  EuiSwitch,
   EuiPanel,
+  EuiIcon,
 } from '../../../../src/components';
+import { EuiToolTip } from '../../../../src/components/tool_tip';
 
 export default class extends Component {
   constructor(props) {
@@ -29,19 +30,20 @@ export default class extends Component {
       <EuiPanel style={{ maxWidth: 300 }}>
         <EuiFormRow
           label="Text field"
-          helpText="Only accepts zeros and ones."
+          helpText="Show validation help text only."
           display="columnCompressed">
           <EuiFieldText name="first" compressed />
         </EuiFormRow>
 
         <EuiFormRow
-          label="Select"
-          display="columnCompressed"
-          helpText={{
-            tooltipContent:
-              'This control can only be explained by the laws of physics.',
-            inlineText: 'Only accepts zeros and ones.',
-          }}>
+          label={
+            <EuiToolTip content="Otherwise use an EuiToolTip around the label of the form row.">
+              <span>
+                Label <EuiIcon type="questionInCircle" color="subdued" />
+              </span>
+            </EuiToolTip>
+          }
+          display="columnCompressed">
           <EuiSelect
             options={[
               { value: 'option_one', text: 'Option one' },
@@ -49,17 +51,6 @@ export default class extends Component {
               { value: 'option_three', text: 'Option three' },
             ]}
             compressed
-          />
-        </EuiFormRow>
-
-        <EuiFormRow
-          display="columnCompressedSwitch"
-          label="Swtich"
-          helpText={<span>Only accepts zeros and ones.</span>}>
-          <EuiSwitch
-            name="switch"
-            checked={this.state.isSwitchChecked}
-            onChange={this.onSwitchChange}
           />
         </EuiFormRow>
       </EuiPanel>
