@@ -3,7 +3,6 @@ import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   FunctionComponent,
-  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -17,25 +16,21 @@ export interface EuiTabProps extends CommonProps {
 type EuiTabPropsForAnchor = EuiTabProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href?: string;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    buttonRef?: Ref<HTMLAnchorElement>;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
   };
 
 type EuiTabPropsForButton = EuiTabProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick?: MouseEventHandler<HTMLButtonElement>;
-    buttonRef?: Ref<HTMLButtonElement>;
   };
 
 export type Props = ExclusiveUnion<EuiTabPropsForAnchor, EuiTabPropsForButton>;
 
 export const EuiTab: FunctionComponent<Props> = ({
   isSelected,
-  onClick,
   children,
   className,
   disabled,
-  buttonRef,
   href,
   target,
   rel,
@@ -55,12 +50,10 @@ export const EuiTab: FunctionComponent<Props> = ({
       <a
         role="tab"
         aria-selected={!!isSelected}
-        onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         className={classes}
         href={href}
         target={target}
         rel={secureRel}
-        ref={buttonRef as Ref<HTMLAnchorElement>}
         {...rest as AnchorHTMLAttributes<HTMLAnchorElement>}>
         <span className="euiTab__content">{children}</span>
       </a>
@@ -73,7 +66,6 @@ export const EuiTab: FunctionComponent<Props> = ({
       aria-selected={!!isSelected}
       type="button"
       className={classes}
-      onClick={onClick as MouseEventHandler<HTMLButtonElement>}
       disabled={disabled}
       {...rest as ButtonHTMLAttributes<HTMLButtonElement>}>
       <span className="euiTab__content">{children}</span>
