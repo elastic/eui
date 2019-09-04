@@ -1,13 +1,13 @@
-import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  FunctionComponent,
-  HTMLAttributes,
-  MouseEventHandler,
-} from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+  keysOf,
+} from '../../common';
 import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
 import { IconType, EuiIcon } from '../../icon';
@@ -73,16 +73,9 @@ export interface EuiButtonEmptyProps extends CommonProps {
   textProps?: Partial<HTMLAttributes<HTMLSpanElement>>;
 }
 
-type EuiButtonEmptyPropsForAnchor = EuiButtonEmptyProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-  };
+type EuiButtonEmptyPropsForAnchor = PropsForAnchor<EuiButtonEmptyProps>;
 
-type EuiButtonEmptyPropsForButton = EuiButtonEmptyProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-  };
+type EuiButtonEmptyPropsForButton = PropsForButton<EuiButtonEmptyProps>;
 
 type Props = ExclusiveUnion<
   EuiButtonEmptyPropsForAnchor,

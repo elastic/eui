@@ -1,12 +1,11 @@
-import {
-  AnchorHTMLAttributes,
-  Component,
-  FunctionComponent,
-  ButtonHTMLAttributes,
-  MouseEventHandler,
-} from 'react';
+import { Component, FunctionComponent, ButtonHTMLAttributes } from 'react';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+} from '../common';
 import { EuiButtonEmptyProps } from '../button';
 import { EuiFilterGroupProps } from './filter_group';
 
@@ -30,16 +29,9 @@ declare module '@elastic/eui' {
      */
     noDivider?: boolean;
   }
-  type EuiFilterButtonPropsForAnchor = EuiFilterButtonProps &
-    AnchorHTMLAttributes<HTMLAnchorElement> & {
-      href?: string;
-      onClick?: MouseEventHandler<HTMLAnchorElement>;
-    };
+  type EuiFilterButtonPropsForAnchor = PropsForAnchor<EuiFilterButtonProps>;
 
-  type EuiFilterButtonPropsForButton = EuiFilterButtonProps &
-    ButtonHTMLAttributes<HTMLButtonElement> & {
-      onClick?: MouseEventHandler<HTMLButtonElement>;
-    };
+  type EuiFilterButtonPropsForButton = PropsForButton<EuiFilterButtonProps>;
 
   type Props = ExclusiveUnion<
     EuiFilterButtonPropsForAnchor,

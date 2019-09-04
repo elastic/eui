@@ -1,12 +1,7 @@
-import React, {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  FunctionComponent,
-  MouseEventHandler,
-} from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { ExclusiveUnion } from '../common';
+import { ExclusiveUnion, PropsForAnchor, PropsForButton } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 
 export interface EuiPaginationButtonProps extends EuiButtonEmptyProps {
@@ -18,16 +13,13 @@ export interface EuiPaginationButtonProps extends EuiButtonEmptyProps {
   hideOnMobile?: boolean;
 }
 
-type EuiPaginationButtonPropsForAnchor = EuiPaginationButtonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-  };
+type EuiPaginationButtonPropsForAnchor = PropsForAnchor<
+  EuiPaginationButtonProps
+>;
 
-type EuiPaginationButtonPropsForButton = EuiPaginationButtonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-  };
+type EuiPaginationButtonPropsForButton = PropsForButton<
+  EuiPaginationButtonProps
+>;
 
 type Props = ExclusiveUnion<
   EuiPaginationButtonPropsForAnchor,
