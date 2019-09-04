@@ -9,7 +9,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import FormExample from '../form_layouts/form_compressed';
+import FormExample from '../form_compressed/form_compressed';
 
 export default class extends Component {
   constructor(props) {
