@@ -153,7 +153,7 @@ export const useColumnSelector = (
               size="xs"
               flush="right"
               onClick={() => setVisibleColumns([])}>
-              <EuiI18n token="euiColumnSelector.hideAll" default="hide all" />
+              <EuiI18n token="euiColumnSelector.hideAll" default="Hide all" />
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
