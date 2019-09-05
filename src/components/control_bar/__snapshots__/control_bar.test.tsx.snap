@@ -10,9 +10,7 @@ exports[`EuiControlBar is rendered 1`] = `
     class="euiControlBar__controls"
   >
     <button
-      aria-label="Control Bar - Sound the Alarm"
       class="euiButton euiButton--ghost euiControlBar__button"
-      data-test-subj="Sound the Alarm"
       type="button"
     >
       <span
@@ -30,9 +28,7 @@ exports[`EuiControlBar is rendered 1`] = `
       </span>
     </button>
     <button
-      aria-label="Control Bar - Close the Hatch"
       class="euiButton euiButton--ghost euiControlBar__button"
-      data-test-subj="Close the Hatch"
       type="button"
     >
       <span

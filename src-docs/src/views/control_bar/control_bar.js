@@ -87,7 +87,7 @@ export default class extends Component {
       },
       {
         id: 'branch_name',
-        label: 'some_long_bran...',
+        label: 'some_long_bran',
         controlType: 'text',
       },
       {

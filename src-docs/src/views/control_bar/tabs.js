@@ -93,6 +93,8 @@ export class ControlBarWithTabs extends React.Component {
         controlType: 'button',
         onClick: this.soundTheAlarms,
         color: 'danger',
+        'data-test-sub': 'look',
+        'aria-label': 'this is an aria label',
       },
       {
         id: 'close_the_hatch',
