@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
+- Added hover and focus states when allowFullScreen is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
 
 **Bug fixes**
 
