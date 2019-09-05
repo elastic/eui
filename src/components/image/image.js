@@ -31,7 +31,7 @@ export class EuiImage extends Component {
     super(props);
 
     this.state = {
-      isFullScreen: false,
+      isFullScreenActive: false,
     };
   }
 
@@ -45,13 +45,13 @@ export class EuiImage extends Component {
 
   closeFullScreen = () => {
     this.setState({
-      isFullScreen: false,
+      isFullScreenActive: false,
     });
   };
 
   openFullScreen = () => {
     this.setState({
-      isFullScreen: true,
+      isFullScreenActive: true,
     });
   };
 
@@ -67,6 +67,8 @@ export class EuiImage extends Component {
       alt,
       ...rest
     } = this.props;
+
+    const { isFullScreenActive } = this.state;
 
     const classes = classNames(
       'euiImage',
@@ -85,59 +87,55 @@ export class EuiImage extends Component {
       );
     }
 
-    let optionalIcon;
+    const allowFullScreeIcon = (
+      <EuiIcon
+        type="fullScreen"
+        color={fullScreenIconColorMap[fullScreenIconColor]}
+        className="euiImage__icon"
+      />
+    );
+
+    const fullScreenDisplay = (
+      <EuiOverlayMask onClick={this.closeFullScreen}>
+        <EuiFocusTrap clickOutsideDisables={true}>
+          <button
+            type="button"
+            onClick={this.closeFullScreen}
+            onKeyDown={this.onKeyDown}>
+            <figure
+              ref={node => {
+                this.figure = node;
+              }}
+              className="euiImageFullScreen">
+              <img src={url} className="euiImageFullScreen__img" alt={alt} />
+              {optionalCaption}
+            </figure>
+          </button>
+        </EuiFocusTrap>
+      </EuiOverlayMask>
+    );
 
     if (allowFullScreen) {
-      optionalIcon = (
-        <EuiIcon
-          type="fullScreen"
-          color={fullScreenIconColorMap[fullScreenIconColor]}
-          className="euiImage__icon"
-        />
+      return (
+        <button
+          type="button"
+          onClick={allowFullScreen ? this.openFullScreen : undefined}>
+          <figure className={classes} {...rest}>
+            <img src={url} className="euiImage__img" alt={alt} />
+            {optionalCaption}
+            {allowFullScreeIcon}
+            {isFullScreenActive && fullScreenDisplay}
+          </figure>
+        </button>
       );
-    }
-
-    let fullScreenDisplay;
-
-    if (this.state.isFullScreen) {
-      fullScreenDisplay = (
-        <EuiOverlayMask onClick={this.closeFullScreen}>
-          <EuiFocusTrap clickOutsideDisables={true}>
-            <button
-              type="button"
-              onClick={this.closeFullScreen}
-              onKeyDown={this.onKeyDown}>
-              <figure
-                ref={node => {
-                  this.figure = node;
-                }}
-                className="euiImageFullScreen">
-                <img src={url} className="euiImageFullScreen__img" alt={alt} />
-                {optionalCaption}
-              </figure>
-            </button>
-          </EuiFocusTrap>
-        </EuiOverlayMask>
-      );
-    }
-
-    return (
-      <button
-        type="button"
-        onClick={allowFullScreen ? this.openFullScreen : undefined}>
+    } else {
+      return (
         <figure className={classes} {...rest}>
           <img src={url} className="euiImage__img" alt={alt} />
           {optionalCaption}
-
-          {/*
-          If the below fullScreen image renders, it actually attaches to the body because of
-          EuiOverlayMask's React portal usage.
-        */}
-          {optionalIcon}
-          {fullScreenDisplay}
         </figure>
-      </button>
-    );
+      );
+    }
   }
 }
 
