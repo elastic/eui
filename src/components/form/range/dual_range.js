@@ -6,6 +6,7 @@ import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import { EuiResizeObserver } from '../../observer/resize_observer';
 import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
@@ -22,6 +23,7 @@ export class EuiDualRange extends Component {
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
+    rangeWidth: null,
   };
 
   rangeSliderRef = null;
@@ -29,6 +31,7 @@ export class EuiDualRange extends Component {
     this.rangeSliderRef = ref;
     this.setState({
       rangeSliderRefAvailable: !!ref,
+      rangeWidth: !!ref ? ref.clientWidth : null,
     });
   };
 
@@ -206,7 +209,7 @@ export class EuiDualRange extends Component {
     this._handleOnChange(this.lowerValue, upper, e);
   };
 
-  calculateThumbPositionStyle = value => {
+  calculateThumbPositionStyle = (value, width) => {
     // Calculate the left position based on value
     const decimal =
       (value - this.props.min) / (this.props.max - this.props.min);
@@ -215,7 +218,11 @@ export class EuiDualRange extends Component {
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
     const EUI_THUMB_SIZE = 16;
-    const thumbToTrackRatio = EUI_THUMB_SIZE / this.rangeSliderRef.clientWidth;
+    const trackWidth =
+      this.props.showInput === 'only' && !!width
+        ? width
+        : this.rangeSliderRef.clientWidth;
+    const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
   };
@@ -243,6 +250,12 @@ export class EuiDualRange extends Component {
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
+    });
+  };
+
+  onResize = ({ width }) => {
+    this.setState({
+      rangeWidth: width,
     });
   };
 
@@ -397,7 +410,10 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.lowerValue || min)}
+                style={this.calculateThumbPositionStyle(
+                  this.lowerValue || min,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -411,7 +427,10 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.upperValue || max)}
+                style={this.calculateThumbPositionStyle(
+                  this.upperValue || max,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -440,7 +459,9 @@ export class EuiDualRange extends Component {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}>
-        {theRange}
+        <EuiResizeObserver onResize={this.onResize}>
+          {resizeRef => <div ref={resizeRef}>{theRange}</div>}
+        </EuiResizeObserver>
       </EuiInputPopover>
     ) : (
       undefined
