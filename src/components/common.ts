@@ -1,4 +1,11 @@
-import { Component, FunctionComponent, SFC } from 'react';
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  Component,
+  FunctionComponent,
+  MouseEventHandler,
+  SFC,
+} from 'react';
 
 export interface CommonProps {
   className?: string;
@@ -110,3 +117,26 @@ export type DisambiguateSet<T, U> = {
 export type ExclusiveUnion<T, U> = (T | U) extends object // if there are any shared keys between T and U
   ? (DisambiguateSet<T, U> & U) | (DisambiguateSet<U, T> & T) // otherwise the TS union is already unique
   : T | U;
+
+/**
+ * For components that conditionally render <button> or <a>
+ * Convenience types for extending base props (T) and
+ * element-specific props (P) with standard clickable properties
+ *
+ * These will likely be used together, along with `ExclusiveUnion`:
+ *
+ * type AnchorLike = PropsForAnchor<BaseProps>
+ * type ButtonLike = PropsForButton<BaseProps>
+ * type ComponentProps = ExlcusiveUnion<AnchorLike, ButtonLike>
+ * const Component: FunctionComponent<ComponentProps> ...
+ */
+export type PropsForAnchor<T, P = {}> = T &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+  } & P;
+
+export type PropsForButton<T, P = {}> = T &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+  } & P;

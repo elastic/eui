@@ -1,21 +1,12 @@
-import {
-  MouseEventHandler,
-  ReactNode,
-  FunctionComponent,
-  HTMLAttributes,
-} from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+
+import { Props as EuiTabProps } from './tab';
 
 declare module '@elastic/eui' {
   type TAB_SIZES = 's' | 'm';
 
   type TAB_DISPLAYS = 'default' | 'condensed';
-
-  interface EuiTabProps {
-    onClick: MouseEventHandler<HTMLButtonElement>;
-    isSelected?: boolean;
-    disabled?: boolean;
-  }
 
   interface EuiTabsProps {
     size?: TAB_SIZES;
@@ -42,13 +33,11 @@ declare module '@elastic/eui' {
     autoFocus?: TABBED_CONTENT_AUTOFOCUS;
   }
 
-  export const EuiTab: FunctionComponent<
-    EuiTabProps & CommonProps & HTMLAttributes<HTMLDivElement>
-  >;
   export const EuiTabs: FunctionComponent<
     EuiTabsProps & CommonProps & HTMLAttributes<HTMLDivElement>
   >;
   export const EuiTabbedContent: FunctionComponent<
     EuiTabbedContentProps & CommonProps & HTMLAttributes<HTMLDivElement>
   >;
+  export const EuiTab: FunctionComponent<EuiTabProps>;
 }

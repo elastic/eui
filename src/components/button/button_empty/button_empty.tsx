@@ -1,7 +1,13 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, NoArgCallback } from '../../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+  keysOf,
+} from '../../common';
 import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
 import { IconType, EuiIcon } from '../../icon';
@@ -38,7 +44,7 @@ const flushTypeToClassNameMap = {
 
 export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
 
-export interface EuiButtonEmptyProps {
+export interface EuiButtonEmptyProps extends CommonProps {
   iconType?: IconType;
   iconSide?: keyof typeof iconSideToClassNameMap;
   color?: keyof typeof colorToClassNameMap;
@@ -48,7 +54,6 @@ export interface EuiButtonEmptyProps {
   href?: string;
   target?: string;
   rel?: string;
-  onClick?: NoArgCallback<void>;
 
   /**
    * Adds/swaps for loading spinner & disables
@@ -68,7 +73,14 @@ export interface EuiButtonEmptyProps {
   textProps?: Partial<HTMLAttributes<HTMLSpanElement>>;
 }
 
-type Props = CommonProps & EuiButtonEmptyProps;
+type EuiButtonEmptyPropsForAnchor = PropsForAnchor<EuiButtonEmptyProps>;
+
+type EuiButtonEmptyPropsForButton = PropsForButton<EuiButtonEmptyProps>;
+
+type Props = ExclusiveUnion<
+  EuiButtonEmptyPropsForAnchor,
+  EuiButtonEmptyPropsForButton
+>;
 
 export const EuiButtonEmpty: FunctionComponent<Props> = ({
   children,
@@ -148,7 +160,7 @@ export const EuiButtonEmpty: FunctionComponent<Props> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef}
-        {...rest}>
+        {...rest as EuiButtonEmptyPropsForAnchor}>
         {innerNode}
       </a>
     );
@@ -160,7 +172,7 @@ export const EuiButtonEmpty: FunctionComponent<Props> = ({
       className={classes}
       type={type}
       ref={buttonRef}
-      {...rest}>
+      {...rest as EuiButtonEmptyPropsForButton}>
       {innerNode}
     </button>
   );

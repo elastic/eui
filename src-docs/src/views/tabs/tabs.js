@@ -27,6 +27,12 @@ class EuiTabsExample extends Component {
         name: 'Monosodium Glutamate',
         disabled: false,
       },
+      {
+        id: 'elastic_link',
+        name: 'Elastic Website',
+        disabled: false,
+        href: 'https://www.elastic.co/',
+      },
     ];
 
     this.state = {
@@ -43,6 +49,7 @@ class EuiTabsExample extends Component {
   renderTabs() {
     return this.tabs.map((tab, index) => (
       <EuiTab
+        {...tab.href && { href: tab.href, target: '_blank' }}
         onClick={() => this.onSelectedTabChanged(tab.id)}
         isSelected={tab.id === this.state.selectedTabId}
         disabled={tab.disabled}
