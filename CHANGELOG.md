@@ -703,6 +703,12 @@
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
 
+## [`6.10.9`](https://github.com/elastic/eui/tree/v6.10.9)
+
+**Bug fixes**
+
+- Bumped `lodash` version to `elastic/lodash@3.10.1-kibana3` ([#2280](https://github.com/elastic/eui/issues/2280))
+
 ## [`6.10.8`](https://github.com/elastic/eui/tree/v6.10.8)
 
 **Note: this release is a backport containing changes originally made in `11.2.0`**
