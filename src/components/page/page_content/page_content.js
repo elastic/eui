@@ -27,9 +27,9 @@ export const EuiPageContent = ({
 }) => {
   const classes = classNames(
     'euiPageContent',
-    className,
     verticalPositionToClassNameMap[verticalPosition],
-    horizontalPositionToClassNameMap[horizontalPosition]
+    horizontalPositionToClassNameMap[horizontalPosition],
+    className
   );
 
   return (

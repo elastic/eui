@@ -45,7 +45,6 @@ const EuiDataGridDataRow: FunctionComponent<
         const width = columnWidths[id];
 
         const isFocusable = focusedCell[0] === i && focusedCell[1] === rowIndex;
-
         return (
           <EuiDataGridCell
             key={id}

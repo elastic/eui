@@ -206,6 +206,7 @@ export { EuiPagination, EuiPaginationButton } from './pagination';
 export { EuiPanel } from './panel';
 
 export {
+  EuiInputPopover,
   EuiPopover,
   EuiPopoverTitle,
   EuiPopoverFooter,

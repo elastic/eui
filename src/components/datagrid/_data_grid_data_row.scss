@@ -5,24 +5,48 @@
 
 @include euiDataGridRowCell {
   @include euiFontSizeS;
-  @include euiTextTruncate;
 
   padding: $euiDataGridCellPaddingM;
-  border-right: $euiBorderThin;
+  border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
-  overflow: hidden;
-  white-space: nowrap;
   flex: 0 0 auto;
   background: $euiColorEmptyShade;
+  position: relative;
+  align-items: center;
+  display: flex;
+
+  // Hack to allow for all the focus guard stuff
+  > * {
+    max-width: 100%;
+  }
 
   &:first-of-type {
     border-left: $euiBorderThin;
   }
 
-  &:focus {
-    @include euiFocusRing;
-    z-index: 2; // Needed so it sits above potentional striping in the next row
+  &:last-of-type {
+    border-right-color: $euiBorderColor;
   }
+
+  &:focus {
+    border: 1px solid transparent;
+    margin-top: -1px;
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
+    border-radius: 1px;
+    // Needed so it sits above potential striping in the next row
+    z-index: 2;
+  }
+
+  &:focus:not(:first-of-type) {
+    // Needed because the focus state adds a border, which needs to be subtracted from padding
+    padding-left: $euiDataGridCellPaddingM - 1px;
+  }
+}
+
+.euiDataGridRowCell__content {
+  @include euiTextTruncate;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 // Row highlights
@@ -48,14 +72,14 @@
 // Border alternates
 @include euiDataGridStyles(bordersNone) {
   @include euiDataGridRowCell {
-    border: none;
+    border-color: transparent;
   }
 }
 
 @include euiDataGridStyles(bordersHorizontal) {
   @include euiDataGridRowCell {
-    border-right: none;
-    border-left: none;
+    border-right-color: transparent;
+    border-left-color: transparent;
   }
 }
 
@@ -76,11 +100,21 @@
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingS;
+
+    &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
+      padding-left: $euiDataGridCellPaddingS - 1px;
+    }
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
+
+    &:focus:not(:first-of-type) {
+      // Needed because the focus state adds a border, which needs to be subtracted from padding
+      padding-left: $euiDataGridCellPaddingL - 1px;
+    }
   }
 }

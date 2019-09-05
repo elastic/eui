@@ -186,6 +186,16 @@ import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
+/** Elastic Charts */
+
+import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
+
+import { ElasticChartsTimeExample } from './views/elastic_charts/time_example';
+
+import { ElasticChartsCategoryExample } from './views/elastic_charts/category_example';
+
+import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -346,6 +356,15 @@ const navigation = [
     ].map(example => createExample(example)),
   },
   {
+    name: 'Elastic Charts',
+    items: [
+      ElasticChartsThemingExample,
+      ElasticChartsSparklinesExample,
+      ElasticChartsTimeExample,
+      ElasticChartsCategoryExample,
+    ].map(example => createExample(example)),
+  },
+  {
     name: 'Utilities',
     items: [
       AccessibilityExample,
@@ -392,7 +411,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: useRouterHistory(createHashHistory)(),
+  history: useRouterHistory(createHashHistory)(), // eslint-disable-line react-hooks/rules-of-hooks
   navigation,
 
   getRouteForPath: path => {

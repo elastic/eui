@@ -5,3 +5,7 @@
 @import '../../src/theme_dark';
 @import './components/guide_components';
 @import './views/header/global_filter_group';
+
+// Elastic charts
+@import '~@elastic/charts/dist/theme';
+@import '../../src/themes/charts/theme';

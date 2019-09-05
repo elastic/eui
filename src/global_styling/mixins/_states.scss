@@ -8,9 +8,12 @@ $euiFocusRingSizeLarge: 4px;
 
 @mixin euiFocusRing($size: 'small') {
   @if $size == 'large' {
-    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge;
+    // It's always OK to use the focus animation. This will take precendence over times we turn it off individually like EuiButtonEmpty
+    // sass-lint:disable-block no-important
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge !important;
   } @else {
-    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate;
+    // sass-lint:disable-block no-important
+    animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate !important;
   }
 }
 

@@ -23,8 +23,8 @@ const accordionSnippet = `<EuiAccordion
 `;
 
 import AccordionMultiple from './accordion_multiple';
-const accordionMultipleSource = require('!!raw-loader!./accordion');
-const accordionMultipleHtml = renderToHtml(Accordion);
+const accordionMultipleSource = require('!!raw-loader!./accordion_multiple');
+const accordionMultipleHtml = renderToHtml(AccordionMultiple);
 const accordionMultipleSnippet = `<EuiAccordion
   id={accordionId}
   buttonContent="Clickable title for first item"

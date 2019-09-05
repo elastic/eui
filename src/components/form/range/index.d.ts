@@ -51,6 +51,13 @@ declare module '@elastic/eui' {
     tickInterval?: number;
     valueAppend?: ReactNode;
     valuePrepend?: ReactNode;
+
+    onChange?: (
+      event:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.MouseEvent<HTMLButtonElement>,
+      isValid: boolean
+    ) => void;
   }
 
   export const EuiRange: FunctionComponent<

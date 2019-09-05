@@ -4,11 +4,13 @@ import React, {
   KeyboardEvent,
   useCallback,
   useState,
-  useRef,
   useEffect,
+  useRef,
   Fragment,
+  ReactChild,
 } from 'react';
 import classNames from 'classnames';
+import { EuiI18n } from '../i18n';
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 import { CommonProps, Omit } from '../common';
 import {
@@ -18,32 +20,30 @@ import {
   EuiDataGridPaginationProps,
   EuiDataGridInMemoryValues,
   EuiDataGridSorting,
+  EuiDataGridStyle,
+  EuiDataGridStyleBorders,
+  EuiDataGridStyleCellPaddings,
+  EuiDataGridStyleFontSizes,
+  EuiDataGridStyleHeader,
+  EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
+// @ts-ignore-next-line
+import { EuiButtonEmpty } from '../button';
 import { keyCodes, htmlIdGenerator } from '../../services';
-import { EuiSpacer } from '../spacer';
 import { EuiDataGridBody } from './data_grid_body';
 import { useColumnSelector } from './column_selector';
+import { useStyleSelector, startingStyles } from './style_selector';
 // @ts-ignore-next-line
 import { EuiTablePagination } from '../table/table_pagination';
+// @ts-ignore-next-line
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiResizeObserver } from '../observer/resize_observer';
 import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 
-// Types for styling options, passed down through the `gridStyle` prop
-type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
-type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
-type EuiDataGridStyleHeader = 'shade' | 'underline';
-type EuiDataGridStyleRowHover = 'highlight' | 'none';
-type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
-
-interface EuiDataGridStyle {
-  fontSize?: EuiDataGridStyleFontSizes;
-  border?: EuiDataGridStyleBorders;
-  stripes?: boolean;
-  header?: EuiDataGridStyleHeader;
-  rowHover?: EuiDataGridStyleRowHover;
-  cellPadding?: EuiDataGridStyleCellPaddings;
-}
+// When below this number the grid only shows the full screen button
+const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -64,7 +64,10 @@ type CommonGridProps = CommonProps &
 
 // This structure forces either aria-label or aria-labelledby to be defined
 // making some type of label a requirement
-type EuiDataGridProps = Omit<CommonGridProps, 'aria-label'> &
+type EuiDataGridProps = Omit<
+  CommonGridProps,
+  'aria-label' | 'aria-labelledby'
+> &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
@@ -130,14 +133,16 @@ function renderPagination(props: EuiDataGridProps) {
   const pageCount = Math.ceil(props.rowCount / pageSize);
 
   return (
-    <EuiTablePagination
-      activePage={pageIndex}
-      itemsPerPage={pageSize}
-      itemsPerPageOptions={pageSizeOptions}
-      pageCount={pageCount}
-      onChangePage={onChangePage}
-      onChangeItemsPerPage={onChangeItemsPerPage}
-    />
+    <div className="euiDataGrid__pagination">
+      <EuiTablePagination
+        activePage={pageIndex}
+        itemsPerPage={pageSize}
+        itemsPerPageOptions={pageSizeOptions}
+        pageCount={pageCount}
+        onChangePage={onChangePage}
+        onChangeItemsPerPage={onChangeItemsPerPage}
+      />
+    </div>
   );
 }
 
@@ -209,7 +214,10 @@ function renderSorting(props: EuiDataGridProps) {
 }
 
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
-  const gridRef = useRef<HTMLDivElement>(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showGridControls, setShowGridControls] = useState(true);
+  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
   const setColumnWidth = (columnId: string, width: number) => {
@@ -217,8 +225,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   };
 
   useEffect(() => {
-    if (gridRef.current != null) {
-      const gridWidth = gridRef.current.clientWidth;
+    if (containerRef.current != null) {
+      const gridWidth = containerRef.current.clientWidth;
       const columnWidth = Math.max(gridWidth / props.columns.length, 100);
       const columnWidths = props.columns.reduce(
         (columnWidths: EuiDataGridColumnWidths, column) => {
@@ -229,9 +237,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       );
       setColumnWidths(columnWidths);
     }
-  }, []);
+    // @TODO: come back to this hook lifecycle
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const onResize = ({ width }: { width: number }) => {
+    setShowGridControls(
+      width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
+    );
+  };
+
   const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
     boolean
   >(true);
@@ -242,6 +256,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     }
 
     return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
+  };
+
+  const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    switch (e.keyCode) {
+      case keyCodes.ESCAPE:
+        e.preventDefault();
+        setIsFullScreen(false);
+        break;
+    }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -300,34 +323,57 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     rowCount,
     renderCellValue,
     className,
-    gridStyle = {},
+    gridStyle = startingStyles,
     pagination,
     sorting,
     inMemory = false,
     ...rest
   } = props;
 
-  const fontSize = gridStyle.fontSize || 'm';
-  const border = gridStyle.border || 'all';
-  const header = gridStyle.header || 'shade';
-  const rowHover = gridStyle.rowHover || 'highlight';
-  const stripes = gridStyle.stripes ? true : false;
-  const cellPadding = gridStyle.cellPadding || 'm';
+  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
+  const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector();
+
+  useEffect(() => {
+    if (gridStyle) {
+      const oldStyles = gridStyles;
+      /*eslint-disable */
+      const mergedStyle = Object.assign(
+        /*eslint-enable */
+        {},
+        oldStyles,
+        // @ts-ignore
+        gridStyle
+      );
+      setGridStyles(mergedStyle);
+    } else {
+      setGridStyles(startingStyles);
+    }
+    // @TODO: come back to this hook lifecycle
+  }, [gridStyle]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const classes = classNames(
     'euiDataGrid',
-    fontSizesToClassMap[fontSize],
-    bordersToClassMap[border],
-    headerToClassMap[header],
-    rowHoverToClassMap[rowHover],
-    cellPaddingsToClassMap[cellPadding],
+    fontSizesToClassMap[gridStyles.fontSize!],
+    bordersToClassMap[gridStyles.border!],
+    headerToClassMap[gridStyles.header!],
+    rowHoverToClassMap[gridStyles.rowHover!],
+    cellPaddingsToClassMap[gridStyles.cellPadding!],
     {
-      'euiDataGrid--stripes': stripes,
+      'euiDataGrid--stripes': gridStyles.stripes!,
+    },
+    {
+      'euiDataGrid--fullScreen': isFullScreen,
     },
     className
   );
 
-  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
+  const controlBtnClasses = classNames(
+    'euiDataGrid__controlBtn',
+    {
+      'euiDataGrid__controlBtn--active': isFullScreen,
+    },
+    className
+  );
 
   const [inMemoryValues, setInMemoryValues] = useState<
     EuiDataGridInMemoryValues
@@ -344,56 +390,117 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     },
     [inMemoryValues, setInMemoryValues]
   );
+  // These grid controls will only show when there is room. Check the resize observer callback
+  const gridControls = (
+    <Fragment>
+      <ColumnSelector />
+      <StyleSelector />
+    </Fragment>
+  );
+
+  // When data grid is full screen, we add a class to the body to remove the extra scrollbar
+  if (isFullScreen) {
+    document.body.classList.add('euiDataGrid__restrictBody');
+  } else {
+    document.body.classList.remove('euiDataGrid__restrictBody');
+  }
+
+  const onCellFocus = useCallback(setFocusedCell, [setFocusedCell]);
+
+  // extract aria-label and/or aria-labelledby from `rest`
+  const gridAriaProps: {
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+  } = {};
+  if ('aria-label' in rest) {
+    gridAriaProps['aria-label'] = rest['aria-label'];
+    delete rest['aria-label'];
+  }
+  if ('aria-labelledby' in rest) {
+    gridAriaProps['aria-labelledby'] = rest['aria-labelledby'];
+    delete rest['aria-labelledby'];
+  }
 
   return (
-    <Fragment>
-      {inMemory ? (
-        <EuiDataGridInMemoryRenderer
-          renderCellValue={renderCellValue}
-          columns={columns}
-          rowCount={rowCount}
-          onCellRender={onCellRender}
-        />
-      ) : null}
-      <div className="euiDataGrid__controls">
-        <ColumnSelector />
+    <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
+      <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
+        <div className="euiDataGrid__controls">
+          {showGridControls ? gridControls : null}
+          <EuiI18n
+            tokens={[
+              'euiDataGrid.fullScreenButton',
+              'euiDataGrid.fullScreenButtonActive',
+            ]}
+            defaults={['Full screen', 'Exit full screen']}>
+            {([fullScreenButton, fullScreenButtonActive]: ReactChild[]) => (
+              <EuiButtonEmpty
+                size="xs"
+                iconType="fullScreen"
+                color="text"
+                className={controlBtnClasses}
+                onClick={() => setIsFullScreen(!isFullScreen)}
+                onKeyDown={() => handleGridKeyDown}>
+                {isFullScreen ? fullScreenButtonActive : fullScreenButton}
+              </EuiButtonEmpty>
+            )}
+          </EuiI18n>
+        </div>
+        {/* Unsure why this element causes errors as focus follows spec */}
+        {/* eslint-disable jsx-a11y/interactive-supports-focus */}
+        <EuiResizeObserver onResize={onResize}>
+          {resizeRef => (
+            <div
+              onKeyDown={handleKeyDown}
+              className="euiDataGrid__verticalScroll"
+              ref={resizeRef}
+              {...rest}>
+              <div className="euiDataGrid__overflow">
+                {inMemory ? (
+                  <EuiDataGridInMemoryRenderer
+                    renderCellValue={renderCellValue}
+                    columns={columns}
+                    rowCount={rowCount}
+                    onCellRender={onCellRender}
+                  />
+                ) : null}
+                <div
+                  className="euiDataGrid__content"
+                  role="grid"
+                  {...gridAriaProps}>
+                  <EuiDataGridHeaderRow
+                    columns={visibleColumns}
+                    columnWidths={columnWidths}
+                    setColumnWidth={setColumnWidth}
+                  />
+                  <EuiDataGridBody
+                    columnWidths={columnWidths}
+                    inMemoryValues={inMemoryValues}
+                    inMemory={inMemory}
+                    columns={visibleColumns}
+                    focusedCell={focusedCell}
+                    onCellFocus={onCellFocus}
+                    pagination={pagination}
+                    renderCellValue={renderCellValue}
+                    rowCount={rowCount}
+                    isGridNavigationEnabled={isGridNavigationEnabled}
+                    interactiveCellId={interactiveCellId}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </EuiResizeObserver>
+
+        {renderPagination(props)}
+        {renderSorting(props)}
+        <p id={interactiveCellId} hidden>
+          <EuiI18n
+            token="euiDataGrid.screenReaderNotice"
+            default="Cell contains interactive content."
+          />
+          {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
+        </p>
       </div>
-      {/* Unsure why this element causes errors as focus follows spec */}
-      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-      <div
-        role="grid"
-        onKeyDown={handleKeyDown}
-        ref={gridRef}
-        {...rest}
-        className={classes}>
-        <EuiDataGridHeaderRow
-          columns={visibleColumns}
-          columnWidths={columnWidths}
-          setColumnWidth={setColumnWidth}
-          sorting={sorting}
-        />
-        <EuiDataGridBody
-          columnWidths={columnWidths}
-          columns={visibleColumns}
-          focusedCell={focusedCell}
-          onCellFocus={useCallback(setFocusedCell, [setFocusedCell])}
-          inMemoryValues={inMemoryValues}
-          inMemory={inMemory}
-          pagination={pagination}
-          renderCellValue={renderCellValue}
-          rowCount={rowCount}
-          isGridNavigationEnabled={isGridNavigationEnabled}
-          interactiveCellId={interactiveCellId}
-          sorting={sorting}
-        />
-      </div>
-      <EuiSpacer size="s" />
-      {renderPagination(props)}
-      {renderSorting(props)}
-      <p id={interactiveCellId} hidden>
-        Cell contains interactive content.
-        {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
-      </p>
-    </Fragment>
+    </EuiFocusTrap>
   );
 };

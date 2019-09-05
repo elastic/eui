@@ -65,6 +65,9 @@ module.exports = {
     "jsx-a11y/tabindex-no-positive": "error",
     "jsx-a11y/label-has-associated-control": "error",
 
+    // "react-hooks/rules-of-hooks": "error",
+    // "react-hooks/exhaustive-deps": "warn",
+
     "@typescript-eslint/array-type": ["error", "array-simple"],
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/class-name-casing": "off",

@@ -5,6 +5,21 @@ export interface EuiDataGridColumn {
 export interface EuiDataGridColumnWidths {
   [key: string]: number;
 }
+// Types for styling options, passed down through the `gridStyle` prop
+export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
+export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
+export type EuiDataGridStyleHeader = 'shade' | 'underline';
+export type EuiDataGridStyleRowHover = 'highlight' | 'none';
+export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
+
+export interface EuiDataGridStyle {
+  fontSize?: EuiDataGridStyleFontSizes;
+  border?: EuiDataGridStyleBorders;
+  stripes?: boolean;
+  header?: EuiDataGridStyleHeader;
+  rowHover?: EuiDataGridStyleRowHover;
+  cellPadding?: EuiDataGridStyleCellPaddings;
+}
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
 // but TypeScript's default understanding of an array is number[] unless `as const` is used

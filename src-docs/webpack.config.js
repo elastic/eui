@@ -40,12 +40,12 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: useCache(['babel-loader']),
+        loaders: useCache(['babel-loader']), // eslint-disable-line react-hooks/rules-of-hooks
         exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
-        loaders: useCache([
+        loaders: useCache([ // eslint-disable-line react-hooks/rules-of-hooks, prettier/prettier
           'style-loader/useable',
           'css-loader',
           'postcss-loader',
@@ -55,7 +55,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: useCache(['style-loader/useable', 'css-loader']),
+        loaders: useCache(['style-loader/useable', 'css-loader']), // eslint-disable-line react-hooks/rules-of-hooks
         exclude: /node_modules/,
       },
       {

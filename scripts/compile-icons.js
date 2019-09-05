@@ -35,6 +35,11 @@ iconFiles.forEach(async filePath => {
   const svgSource = fs.readFileSync(filePath);
 
   try {
+    const viewBoxPosition = svgSource.toString().indexOf('viewBox');
+    if (viewBoxPosition === -1) {
+      throw new Error(`${filePath} is missing a 'viewBox' attribute`);
+    }
+
     const jsxSource = (await svgr(
       svgSource,
       {

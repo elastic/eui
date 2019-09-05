@@ -5,30 +5,43 @@ const path = require('path');
 const glob = require('glob');
 
 function compileLib() {
-  shell.mkdir('-p', 'lib/components/icon/assets/tokens', 'lib/services', 'lib/test');
+  shell.mkdir(
+    '-p',
+    'lib/components/icon/assets/tokens',
+    'lib/services',
+    'lib/test'
+  );
 
   console.log('Compiling src/ to es/ and lib/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
-  execSync('babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
-    env: {
-      ...process.env,
-      BABEL_MODULES: false,
-      NO_COREJS_POLYFILL: true,
+  execSync(
+    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    {
+      env: {
+        ...process.env,
+        BABEL_MODULES: false,
+        NO_COREJS_POLYFILL: true,
+      },
     }
-  });
-  execSync('babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src', {
-    env: {
-      ...process.env,
-      NO_COREJS_POLYFILL: true,
+  );
+  execSync(
+    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.d.ts" src',
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
     }
-  });
+  );
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files
   console.log('Generating typescript definitions file');
-  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, { stdio: 'inherit' });
+  execSync(`node ${path.resolve(__dirname, 'dtsgenerator.js')}`, {
+    stdio: 'inherit',
+  });
   // validate the generated eui.d.ts doesn't contain errors
   execSync(`tsc --noEmit -p tsconfig-builttypes.json`, { stdio: 'inherit' });
   console.log(chalk.green('✔ Finished generating definitions'));
@@ -55,7 +68,17 @@ function compileBundle() {
   execSync('webpack --config=src/webpack.config.js', { stdio: 'inherit' });
 
   console.log('Building minified bundle...');
-  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', { stdio: 'inherit' });
+  execSync('NODE_ENV=production webpack --config=src/webpack.config.js', {
+    stdio: 'inherit',
+  });
+
+  console.log('Building chart theme module...');
+  execSync(
+    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.ts --output-library-target="commonjs" --config=src/webpack.config.js',
+    {
+      stdio: 'inherit',
+    }
+  );
 }
 
 compileLib();
