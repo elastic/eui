@@ -1,6 +1,11 @@
 import { Component, FunctionComponent, ButtonHTMLAttributes } from 'react';
 
-import { CommonProps } from '../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+} from '../common';
 import { EuiButtonEmptyProps } from '../button';
 import { EuiFilterGroupProps } from './filter_group';
 
@@ -11,13 +16,12 @@ declare module '@elastic/eui' {
    * @see './filter_button.js'
    */
 
-  export interface EuiFilterButtonProps {
+  export interface EuiFilterButtonProps extends EuiButtonEmptyProps {
     numFilters?: number;
     numActiveFilters?: number;
     hasActiveFilters?: boolean;
     isSelected?: boolean;
     isDisabled?: boolean;
-    type?: string;
     grow?: boolean;
     withNext?: boolean;
     /**
@@ -25,9 +29,15 @@ declare module '@elastic/eui' {
      */
     noDivider?: boolean;
   }
-  export const EuiFilterButton: FunctionComponent<
-    EuiButtonEmptyProps & EuiFilterButtonProps
+  type EuiFilterButtonPropsForAnchor = PropsForAnchor<EuiFilterButtonProps>;
+
+  type EuiFilterButtonPropsForButton = PropsForButton<EuiFilterButtonProps>;
+
+  type Props = ExclusiveUnion<
+    EuiFilterButtonPropsForAnchor,
+    EuiFilterButtonPropsForButton
   >;
+  export const EuiFilterButton: FunctionComponent<Props>;
 
   /**
    * Filter group type defs

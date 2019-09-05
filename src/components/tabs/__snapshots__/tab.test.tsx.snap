@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTab renders 1`] = `
+exports[`EuiTab renders anchor 1`] = `
+<a
+  aria-label="aria-label"
+  aria-selected="false"
+  class="euiTab testClass1 testClass2"
+  data-test-subj="test subject string"
+  href="/baz/bing"
+  rel="noreferrer"
+  role="tab"
+>
+  <span
+    class="euiTab__content"
+  >
+    children
+  </span>
+</a>
+`;
+
+exports[`EuiTab renders button 1`] = `
 <button
   aria-label="aria-label"
   aria-selected="false"
