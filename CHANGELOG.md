@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
+- Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
 
 **Bug fixes**
 
