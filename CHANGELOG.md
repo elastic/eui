@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `6.10.9`.
+
+## [`6.10.9`](https://github.com/elastic/eui/tree/v6.10.9)
+
 **Bug fixes**
 
 - Bumped `lodash` version to `elastic/lodash@3.10.1-kibana3` ([#2280](https://github.com/elastic/eui/issues/2280))
