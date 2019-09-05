@@ -172,7 +172,7 @@ Array [
   />,
   <div
     data-focus-lock-disabled="disabled"
-    height="100%"
+    style="height:100%"
   >
     <div
       class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--rowHoverHighlight testClass1 testClass2"

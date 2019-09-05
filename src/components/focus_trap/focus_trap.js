@@ -96,13 +96,13 @@ export class EuiFocusTrap extends React.Component {
         isDisabled={isDisabled}
         onOutsideClick={this.handleOutsideClick}>
         <OutsideEventDetector handleEvent={this.handleBubbledEvent}>
-          <FocusLock lockProps={style} {...lockProps}>
+          <FocusLock lockProps={{ style }} {...lockProps}>
             {children}
           </FocusLock>
         </OutsideEventDetector>
       </EuiOutsideClickDetector>
     ) : (
-      <FocusLock lockProps={style} {...lockProps}>
+      <FocusLock lockProps={{ style }} {...lockProps}>
         {children}
       </FocusLock>
     );

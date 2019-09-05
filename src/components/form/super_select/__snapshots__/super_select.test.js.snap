@@ -645,7 +645,11 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                     as="div"
                     autoFocus={true}
                     disabled={true}
-                    lockProps={Object {}}
+                    lockProps={
+                      Object {
+                        "style": undefined,
+                      }
+                    }
                     noFocusGuards={false}
                     persistentFocus={false}
                     returnFocus={true}

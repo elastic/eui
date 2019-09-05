@@ -9,13 +9,13 @@ import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
 const dataGridHtml = renderToHtml(DataGrid);
 
-// import DataGridContainer from './container';
-// const dataGridContainerSource = require('!!raw-loader!./container');
-// const dataGridContainerHtml = renderToHtml(DataGridContainer);
+import DataGridContainer from './container';
+const dataGridContainerSource = require('!!raw-loader!./container');
+const dataGridContainerHtml = renderToHtml(DataGridContainer);
 
-// import DataGridStyling from './styling';
-// const dataGridStylingSource = require('!!raw-loader!./styling');
-// const dataGridStylingHtml = renderToHtml(DataGridStyling);
+import DataGridStyling from './styling';
+const dataGridStylingSource = require('!!raw-loader!./styling');
+const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 export const DataGridExample = {
   title: 'Data Grid',
@@ -37,10 +37,6 @@ export const DataGridExample = {
       demo: <DataGrid />,
       props: { EuiDataGrid },
     },
-  ],
-};
-{
-  /**
     {
       source: [
         {
@@ -75,5 +71,5 @@ export const DataGridExample = {
       demo: <DataGridStyling />,
       props: { EuiDataGrid },
     },
-      **/
-}
+  ],
+};
