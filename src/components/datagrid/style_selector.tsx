@@ -4,7 +4,6 @@ import React, {
   SetStateAction,
   useState,
   useEffect,
-  ReactChild,
 } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 import { EuiI18n } from '../i18n';
@@ -47,7 +46,7 @@ export const useStyleSelector = (): [
   };
 
   // These are the available options. They power the gridDensity hook and also the options in the render
-  const densityOptions: Array<{}> = ['expanded', 'normal', 'compact'];
+  const densityOptions: string[] = ['expanded', 'normal', 'compact'];
 
   // Normal is the defaul density
   const [gridDensity, setGridDensity] = useState(densityOptions[1]);
@@ -113,7 +112,7 @@ export const useStyleSelector = (): [
           labelExpanded,
           labelNormal,
           labelCompact,
-        ]: ReactChild[]) => (
+        ]: string[]) => (
           <EuiButtonGroup
             legend={buttonLegend}
             name="density"

@@ -871,15 +871,13 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                       <EuiPanel
                         aria-live="assertive"
                         className="euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-                        grow={true}
-                        hasShadow={false}
                         paddingSize="none"
                         panelRef={[Function]}
                         style={
                           Object {
                             "left": -22,
                             "top": 8,
-                            "zIndex": "0",
+                            "zIndex": 0,
                           }
                         }
                       >
@@ -890,13 +888,12 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             Object {
                               "left": -22,
                               "top": 8,
-                              "zIndex": "0",
+                              "zIndex": 0,
                             }
                           }
                         >
                           <div
                             className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-                            style={null}
                           />
                           <EuiMutationObserver
                             observerOptions={
@@ -941,7 +938,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   icon="check"
                                   id="1"
                                   key="0"
-                                  layoutAlign="center"
                                   onClick={[Function]}
                                   onKeyDown={[Function]}
                                   role="option"
@@ -950,7 +946,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       "width": null,
                                     }
                                   }
-                                  toolTipPosition="right"
                                 >
                                   <button
                                     aria-selected={true}
@@ -1007,7 +1002,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                   icon="empty"
                                   id="2"
                                   key="1"
-                                  layoutAlign="center"
                                   onClick={[Function]}
                                   onKeyDown={[Function]}
                                   role="option"
@@ -1016,7 +1010,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                                       "width": null,
                                     }
                                   }
-                                  toolTipPosition="right"
                                 >
                                   <button
                                     aria-selected={false}

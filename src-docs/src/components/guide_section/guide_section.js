@@ -97,17 +97,22 @@ export class GuideSection extends Component {
         name: 'demo',
         displayName: 'Demo',
       },
-      {
-        name: 'javascript',
-        displayName: 'Demo JS',
-        isCode: true,
-      },
-      {
-        name: 'html',
-        displayName: 'Demo HTML',
-        isCode: true,
-      },
     ];
+
+    if (props.source) {
+      this.tabs.push(
+        {
+          name: 'javascript',
+          displayName: 'Demo JS',
+          isCode: true,
+        },
+        {
+          name: 'html',
+          displayName: 'Demo HTML',
+          isCode: true,
+        }
+      );
+    }
 
     if (hasSnippet) {
       this.tabs.push({

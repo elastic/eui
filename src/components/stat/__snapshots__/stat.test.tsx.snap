@@ -10,19 +10,26 @@ exports[`EuiStat is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
   </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
+  </p>
 </div>
 `;
+
+
 
 exports[`EuiStat props accent is rendered 1`] = `
 <div
@@ -32,16 +39,21 @@ exports[`EuiStat props accent is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--accent"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -54,16 +66,21 @@ exports[`EuiStat props center is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -76,16 +93,21 @@ exports[`EuiStat props danger is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--danger"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -98,16 +120,21 @@ exports[`EuiStat props default is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -120,16 +147,21 @@ exports[`EuiStat props l is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -142,16 +174,21 @@ exports[`EuiStat props left is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -166,21 +203,22 @@ exports[`EuiStat props loading is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title-isLoading"
-  />
-  <p
-    aria-label="Statistic is loading"
   >
     --
   </p>
-  <p />
+  <p
+    class="euiScreenReaderOnly"
+  >
+    Statistic is loading
+  </p>
 </div>
 `;
 
@@ -192,16 +230,21 @@ exports[`EuiStat props m is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--medium euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -214,16 +257,21 @@ exports[`EuiStat props primary is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--primary"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -236,16 +284,21 @@ exports[`EuiStat props right is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -258,16 +311,21 @@ exports[`EuiStat props s is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--small euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -280,16 +338,21 @@ exports[`EuiStat props secondary is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--secondary"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -302,16 +365,21 @@ exports[`EuiStat props subdued is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -321,7 +389,7 @@ exports[`EuiStat props title and description are reversed 1`] = `
   class="euiStat euiStat--leftAligned"
 >
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title"
   >
     title
@@ -330,13 +398,19 @@ exports[`EuiStat props title and description are reversed 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    title description
+  </p>
 </div>
 `;
+
 
 exports[`EuiStat props xs is rendered 1`] = `
 <div
@@ -346,16 +420,21 @@ exports[`EuiStat props xs is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--xsmall euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -368,16 +447,21 @@ exports[`EuiStat props xxs is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--xxsmall euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;
@@ -390,16 +474,21 @@ exports[`EuiStat props xxxs is rendered 1`] = `
     class="euiText euiText--small euiStat__description"
   >
     <p
-      id="generated-id"
+      aria-hidden="true"
     >
       description
     </p>
   </div>
   <p
-    aria-labelledby="generated-id"
+    aria-hidden="true"
     class="euiTitle euiTitle--xxxsmall euiStat__title"
   >
     title
+  </p>
+  <p
+    class="euiScreenReaderOnly"
+  >
+    description title
   </p>
 </div>
 `;

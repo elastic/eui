@@ -7,7 +7,6 @@ exports[`PaginationBar render - custom page size options 1`] = `
   />
   <EuiTablePagination
     activePage={0}
-    hidePerPageOptions={false}
     itemsPerPage={5}
     itemsPerPageOptions={
       Array [
@@ -53,7 +52,6 @@ exports[`PaginationBar render 1`] = `
   />
   <EuiTablePagination
     activePage={0}
-    hidePerPageOptions={false}
     itemsPerPage={5}
     itemsPerPageOptions={
       Array [
