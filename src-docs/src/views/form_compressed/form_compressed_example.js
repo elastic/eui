@@ -19,6 +19,10 @@ import FormHelp from './form_horizontal_help';
 const formHelpSource = require('!!raw-loader!./form_horizontal_help');
 const formHelpHtml = renderToHtml(FormHelp);
 
+import ComplexExample from './complex_example';
+const ComplexExampleSource = require('!!raw-loader!./complex_example');
+const ComplexExampleHtml = renderToHtml(ComplexExample);
+
 export const FormCompressedExample = {
   title: 'Compressed forms',
   sections: [
@@ -158,6 +162,33 @@ export const FormCompressedExample = {
   <EuiFieldText compressed />
 </EuiFormRow>`,
       ],
+    },
+    {
+      title: 'Complex example',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ComplexExampleSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ComplexExampleHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            This is an example of how to combine compressed form controls with
+            from rows, labels, prepend and appends.
+          </p>
+        </Fragment>
+      ),
+      props: {
+        // EuiFormRow,
+        // EuiToolTip,
+      },
+      demo: <ComplexExample />,
+      snippet: [''],
     },
   ],
 };
