@@ -119,8 +119,9 @@ export class EuiImage extends Component {
       return (
         <button
           type="button"
-          onClick={allowFullScreen ? this.openFullScreen : undefined}>
-          <figure className={classes} {...rest}>
+          onClick={allowFullScreen ? this.openFullScreen : undefined}
+          className={classes}>
+          <figure {...rest}>
             <img src={url} className="euiImage__img" alt={alt} />
             {optionalCaption}
             {allowFullScreeIcon}

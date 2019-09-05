@@ -15,11 +15,11 @@ exports[`EuiImage is rendered 1`] = `
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
 <button
+  class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
   type="button"
 >
   <figure
     aria-label="aria-label"
-    class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <img

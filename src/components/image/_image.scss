@@ -17,9 +17,26 @@
     }
   }
 
-  &.euiImage--allowFullScreen:hover {
+  &.euiImage--allowFullScreen {
+    &:not(.euiImage--hasShadow):hover,
+    &:not(.euiImage--hasShadow):focus {
+      .euiImage__img {
+        @include euiSlightShadowHover;
+      }
+    }
+
+    &.euiImage--hasShadow:hover,
+    &.euiImage--hasShadow:focus {
+      .euiImage__img {
+        @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
+      }
+    }
+
     .euiImage__img {
       cursor: pointer;
+
+      // transition the shadow
+      transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
     }
 
     .euiImage__icon {
