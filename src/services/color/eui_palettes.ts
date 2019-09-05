@@ -22,7 +22,7 @@ const euiPaletteForLightBackground: EuiPalette = {
 };
 
 const euiPaletteForDarkBackground: EuiPalette = {
-  colors: ['#4DA1C0', '#01B2A4', '#C06C4C', '#BF4D4D', '#F5258C'],
+  colors: ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'],
 };
 
 const euiPaletteForStatus: EuiPalette = {

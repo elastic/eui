@@ -184,6 +184,16 @@ import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
+/** Elastic Charts */
+
+import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
+
+import { ElasticChartsTimeExample } from './views/elastic_charts/time_example';
+
+import { ElasticChartsCategoryExample } from './views/elastic_charts/category_example';
+
+import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
+
 /**
  * Lowercases input and replaces spaces with hyphens:
  * e.g. 'GridView Example' -> 'gridview-example'
@@ -340,6 +350,15 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       // SuggestExample,
+    ].map(example => createExample(example)),
+  },
+  {
+    name: 'Elastic Charts',
+    items: [
+      ElasticChartsThemingExample,
+      ElasticChartsSparklinesExample,
+      ElasticChartsTimeExample,
+      ElasticChartsCategoryExample,
     ].map(example => createExample(example)),
   },
   {

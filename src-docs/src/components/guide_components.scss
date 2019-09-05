@@ -160,7 +160,27 @@ $guideZLevelHighest: $euiZLevel9 + 1000;
   width: $euiSize * 16;
 }
 
+.guideCharts__customLegend {
+  font-size: $euiFontSizeXS;
+  position: absolute;
+  width: 123px;
+  right: 0;
+  bottom: 0;
+  padding: $euiSizeXS;
+}
 
+.guideCharts__customLegendLine {
+  display: inline-block;
+  width: $euiSize;
+  height: $euiSizeM / 2;
+  background-color: currentColor;
+  vertical-align: middle;
+  margin-right: $euiSizeS;
+}
+
+.guideCharts__customLegendLine--thin {
+  height: 1px;
+}
 
 @import '../views/guidelines/index';
 @import 'guide_section/index';
