@@ -124,7 +124,9 @@ function setColumnVisibility(
 
   let popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -150,7 +152,9 @@ function setColumnVisibility(
 
   popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -174,7 +178,9 @@ function moveColumnToIndex(
 
   let popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -207,7 +213,9 @@ function moveColumnToIndex(
 
   popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -249,9 +257,9 @@ describe('EuiDataGrid', () => {
 
       // purposefully not using data-test-subj attrs to test role semantics
       const grid = component.find('[role="grid"]');
-      const rows = grid.children('[role="row"]');
+      const rows = grid.children('[role="row"]'); // technically, this test should also allow role=rowgroup but we don't currently use rowgroups
 
-      // technically, this test should also allow role=rowgroup but we don't currently use rowgroups
+      expect(rows.length).not.toBe(0);
       expect(grid.children().length).toBe(rows.length);
 
       rows.each((i, element) => {

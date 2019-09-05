@@ -16,3 +16,18 @@ export interface EuiDataGridPaginationProps {
   onChangeItemsPerPage: (itemsPerPage: number) => void;
   onChangePage: (pageIndex: number) => void;
 }
+// Types for styling options, passed down through the `gridStyle` prop
+export type EuiDataGridStyleFontSizes = 's' | 'm' | 'l';
+export type EuiDataGridStyleBorders = 'all' | 'horizontal' | 'none';
+export type EuiDataGridStyleHeader = 'shade' | 'underline';
+export type EuiDataGridStyleRowHover = 'highlight' | 'none';
+export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
+
+export interface EuiDataGridStyle {
+  fontSize?: EuiDataGridStyleFontSizes;
+  border?: EuiDataGridStyleBorders;
+  stripes?: boolean;
+  header?: EuiDataGridStyleHeader;
+  rowHover?: EuiDataGridStyleRowHover;
+  cellPadding?: EuiDataGridStyleCellPaddings;
+}

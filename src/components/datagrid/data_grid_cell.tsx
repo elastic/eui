@@ -153,6 +153,23 @@ export class EuiDataGridCell extends Component<
     }
   }
 
+  shouldComponentUpdate(nextProps: EuiDataGridCellProps) {
+    if (nextProps.rowIndex !== this.props.rowIndex) return true;
+    if (nextProps.colIndex !== this.props.colIndex) return true;
+    if (nextProps.columnId !== this.props.columnId) return true;
+    if (nextProps.width !== this.props.width) return true;
+    if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
+    if (nextProps.onCellFocus !== this.props.onCellFocus) return true;
+    if (nextProps.isFocusable !== this.props.isFocusable) return true;
+    if (
+      nextProps.isGridNavigationEnabled !== this.props.isGridNavigationEnabled
+    )
+      return true;
+    if (nextProps.interactiveCellId !== this.props.interactiveCellId)
+      return true;
+    return false;
+  }
+
   render() {
     const {
       width,
@@ -178,7 +195,10 @@ export class EuiDataGridCell extends Component<
         onFocus={() => onCellFocus([colIndex, rowIndex])}
         style={{ width: `${width}px` }}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
-          <div {...isInteractiveCell} ref={this.cellContentsRef}>
+          <div
+            {...isInteractiveCell}
+            ref={this.cellContentsRef}
+            className="euiDataGridRowCell__content">
             <EuiDataGridCellContent {...rest} />
           </div>
         </EuiFocusTrap>
