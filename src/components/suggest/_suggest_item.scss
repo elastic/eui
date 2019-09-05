@@ -6,6 +6,9 @@
   white-space: nowrap;
 
   &.euiSuggestItem-isClickable {
+    width: 100%;
+    text-align: left;
+
     &:hover,
     &:focus {
       cursor: pointer;

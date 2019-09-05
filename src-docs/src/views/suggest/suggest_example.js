@@ -40,23 +40,23 @@ const suggestItemSnippet = [
 
 const suggestSnippet = [
   `<EuiSuggest
-    status={this.state.status}
-    tooltipContent={this.state.tooltipContent}
-    sendInputValue={this.getInputValue}
-    onItemClick={this.onItemClick}
-    suggestions={[
-      {
-        type: { iconType: 'kqlField', color: 'tint4' },
-        label: 'Field sample',
-        description: 'This is the description',
-      },
-      {
-        type: { iconType: 'kqlValue', color: 'tint0' },
-        label: 'Value sample',
-        description: 'This is the description',
-      },
-    ]}
-  />`,
+  status={this.state.status}
+  tooltipContent={this.state.tooltipContent}
+  sendInputValue={this.getInputValue}
+  onItemClick={this.onItemClick}
+  suggestions={[
+    {
+      type: { iconType: 'kqlField', color: 'tint4' },
+      label: 'Field sample',
+      description: 'This is the description',
+    },
+    {
+      type: { iconType: 'kqlValue', color: 'tint0' },
+      label: 'Value sample',
+      description: 'This is the description',
+    },
+  ]}
+/>`,
 ];
 
 export const SuggestExample = {
@@ -76,7 +76,7 @@ export const SuggestExample = {
       text: (
         <div>
           <p>
-            <EuiCode>EuiSuggest</EuiCode> is a text field component to use
+            <EuiCode>EuiSuggest</EuiCode> is a text field component used to
             display suggestions. The status of the component is shown on its
             right side. The available <EuiCode>status</EuiCode> are:{' '}
             <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
@@ -131,10 +131,10 @@ export const SuggestExample = {
         <div>
           <EuiCallOut color="warning" title="Demo of visual pattern only">
             <p>
-              This documents a <strong>visual</strong> pattern for the eventual
-              replacement of Kibana&apos;s global query and filter bars. The
-              filter bar has been broken down into multiple components. There
-              are still bugs and not all the logic is well-formed.
+              This documents a <strong>visual</strong> pattern for Kibana&apos;s
+              global query and filter bars. The filter bar has been broken down
+              into multiple components. There are still bugs and not all the
+              logic is well-formed.
             </p>
           </EuiCallOut>
           <EuiSpacer />

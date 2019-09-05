@@ -5,7 +5,7 @@ exports[`EuiSuggestInput is rendered 1`] = `
   class="euiSuggestInput testClass1 testClass2"
 >
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover"
+    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth"
     id="popover"
   >
     <div

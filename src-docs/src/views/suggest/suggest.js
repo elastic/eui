@@ -54,14 +54,6 @@ export default class extends Component {
       { id: `${idPrefix}3`, value: 'isLoading', label: 'Loading' },
     ];
 
-    this.tooltips = [
-      {
-        status: 'unsaved',
-        tooltip: "You've made changes that haven't been saved yet.",
-      },
-      { status: 'saved', tooltip: 'Query successfuly saved.' },
-    ];
-
     this.state = {
       status: 'unchanged',
       radioIdSelected: `${idPrefix}0`,
@@ -70,13 +62,10 @@ export default class extends Component {
     };
   }
 
-  onChange = (optionId, optionStatus) => {
+  onChange = optionId => {
     this.setState({
       radioIdSelected: optionId,
       status: this.radios.find(x => x.id === optionId).value,
-      tooltipContent: this.tooltips.find(x => x.status === optionStatus)
-        ? this.tooltips.find(x => x.status === optionStatus).tooltip
-        : '',
     });
   };
 
@@ -101,9 +90,9 @@ export default class extends Component {
         <EuiSpacer size="xl" />
         <EuiSuggest
           status={this.state.status}
-          tooltipContent={this.state.tooltipContent}
           sendInputValue={this.getInputValue.bind(this)}
           onItemClick={this.onItemClick.bind(this)}
+          placeholder="Enter query to display suggestions"
           suggestions={sampleItems}
         />
       </div>

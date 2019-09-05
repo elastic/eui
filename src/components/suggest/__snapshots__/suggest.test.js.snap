@@ -6,7 +6,7 @@ exports[`EuiSuggest is rendered 1`] = `
     class="euiSuggestInput testClass1 testClass2"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth"
       id="popover"
     >
       <div
@@ -27,18 +27,6 @@ exports[`EuiSuggest is rendered 1`] = `
                 value=""
               />
             </div>
-            <span
-              class="euiToolTipAnchor euiSuggestInput__statusIcon"
-            >
-              <svg
-                class="euiIcon euiIcon--medium euiIcon--secondary euiIcon-isLoaded"
-                focusable="false"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-            </span>
           </div>
         </div>
       </div>

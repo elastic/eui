@@ -37,7 +37,6 @@ export class EuiSuggestInput extends Component {
       className,
       status,
       append,
-      prefix,
       tooltipContent,
       suggestions,
       sendValue,
@@ -48,10 +47,12 @@ export class EuiSuggestInput extends Component {
       unsaved: {
         icon: 'dot',
         color: 'accent',
+        tooltip: "You've made changes that haven't been saved yet.",
       },
       saved: {
         icon: 'checkInCircleFilled',
         color: 'secondary',
+        tooltip: 'Query successfully saved.',
       },
       unchanged: {
         icon: '',
@@ -72,10 +73,10 @@ export class EuiSuggestInput extends Component {
     // EuiFieldText's append accepts an array of elements so start by creating an empty array
     const appendArray = [];
 
-    const statusElement = status !== 'isLoading' && (
+    const statusElement = (status === 'saved' || status === 'unsaved') && (
       <EuiToolTip
         position="left"
-        content={tooltipContent}
+        content={tooltipContent || statusMap[status].tooltip}
         anchorClassName="euiSuggestInput__statusIcon">
         <EuiIcon color={color} type={icon} />
       </EuiToolTip>
@@ -91,7 +92,6 @@ export class EuiSuggestInput extends Component {
       <EuiFieldText
         value={this.state.value}
         fullWidth
-        prepend={prefix}
         append={appendArray}
         isLoading={status === 'isLoading' ? true : false}
         onChange={this.onFieldChange.bind(this)}
@@ -106,6 +106,7 @@ export class EuiSuggestInput extends Component {
           input={customInput}
           isOpen={this.state.isPopoverOpen}
           panelPaddingSize="none"
+          fullWidth
           closePopover={this.closePopover.bind(this)}>
           <div>{suggestions}</div>
         </EuiInputPopover>
@@ -125,10 +126,6 @@ EuiSuggestInput.propTypes = {
    * Element to be appended to the input bar.
    */
   append: PropTypes.node,
-  /**
-   * Element to be prepended to the input bar.
-   */
-  prefix: PropTypes.node,
   /**
    * List of suggestions to display using 'suggestItem'.
    */

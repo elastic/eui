@@ -73,10 +73,6 @@ EuiSuggest.propTypes = {
    */
   append: PropTypes.node,
   /**
-   * Element to be prepended to the input bar (e.g. 'KQL').
-   */
-  prefix: PropTypes.node,
-  /**
    * List of suggestions to display using 'suggestItem'.
    */
   suggestions: PropTypes.array,

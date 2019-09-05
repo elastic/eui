@@ -133,7 +133,7 @@ export default class extends Component {
               status={this.state.status}
               onFocus={this.onFieldFocus.bind(this)}
               onBlur={this.onFieldBlur.bind(this)}
-              prefix={<HashtagPopover value={this.state.value} />}
+              prepend={<HashtagPopover value={this.state.value} />}
               append={append}
               suggestions={sampleItems}
               onItemClick={this.onItemClick.bind(this)}
