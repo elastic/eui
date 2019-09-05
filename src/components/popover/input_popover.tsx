@@ -19,6 +19,7 @@ interface EuiInputPopoverProps
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['buttonRef'];
+  onPanelResize?: (width?: number) => void;
 }
 
 type Props = CommonProps &
@@ -31,6 +32,7 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
   disableFocusTrap = false,
   input,
   fullWidth = false,
+  onPanelResize,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState();
@@ -44,6 +46,9 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
     if (panelEl && (!!inputElWidth || !!width)) {
       const newWidth = !!width ? width : inputElWidth;
       panelEl.style.width = `${newWidth}px`;
+      if (onPanelResize) {
+        onPanelResize(newWidth);
+      }
     }
   };
   const onResize = () => {

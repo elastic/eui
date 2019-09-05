@@ -6,7 +6,6 @@ import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
-import { EuiResizeObserver } from '../../observer/resize_observer';
 import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
@@ -253,7 +252,7 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onResize = ({ width }) => {
+  onResize = width => {
     this.setState({
       rangeWidth: width,
     });
@@ -458,10 +457,9 @@ export class EuiDualRange extends Component {
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
-        disableFocusTrap={true}>
-        <EuiResizeObserver onResize={this.onResize}>
-          {resizeRef => <div ref={resizeRef}>{theRange}</div>}
-        </EuiResizeObserver>
+        disableFocusTrap={true}
+        onPanelResize={this.onResize}>
+        {theRange}
       </EuiInputPopover>
     ) : (
       undefined
