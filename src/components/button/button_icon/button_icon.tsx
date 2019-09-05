@@ -2,13 +2,18 @@ import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   FunctionComponent,
-  MouseEventHandler,
   Ref,
 } from 'react';
 import classNames from 'classnames';
 
 import { getSecureRelForTarget } from '../../../services';
-import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
+import {
+  CommonProps,
+  ExclusiveUnion,
+  PropsForAnchor,
+  PropsForButton,
+  keysOf,
+} from '../../common';
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
@@ -34,18 +39,19 @@ export interface EuiButtonIconProps extends CommonProps {
   iconSize?: IconSize;
 }
 
-type EuiButtonIconPropsForAnchor = EuiButtonIconProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
+type EuiButtonIconPropsForAnchor = PropsForAnchor<
+  EuiButtonIconProps,
+  {
     buttonRef?: Ref<HTMLAnchorElement>;
-  };
+  }
+>;
 
-export type EuiButtonIconPropsForButton = EuiButtonIconProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+export type EuiButtonIconPropsForButton = PropsForButton<
+  EuiButtonIconProps,
+  {
     buttonRef?: Ref<HTMLButtonElement>;
-  };
+  }
+>;
 
 type Props = ExclusiveUnion<
   EuiButtonIconPropsForAnchor,

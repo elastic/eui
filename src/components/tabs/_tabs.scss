@@ -25,6 +25,7 @@
 
 .euiTab {
   @include fontSize($euiTabFontSize);
+  color: $euiTextColor;
   background-color: transparent;
   cursor: pointer;
   line-height: $euiLineHeight;
@@ -33,7 +34,6 @@
   transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
 
   &:hover:not(.euiTab-isSelected) {
-    color: $euiTextColor;
     text-decoration: underline;
   }
 
