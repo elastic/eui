@@ -218,7 +218,10 @@ export class EuiDualRange extends Component {
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
     const EUI_THUMB_SIZE = 16;
-    const trackWidth = width || this.rangeSliderRef.clientWidth;
+    const trackWidth =
+      this.props.showInput === 'only' && !!width
+        ? width
+        : this.rangeSliderRef.clientWidth;
     const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
@@ -409,7 +412,7 @@ export class EuiDualRange extends Component {
                 onBlur={() => this.toggleHasFocus(false)}
                 style={this.calculateThumbPositionStyle(
                   this.lowerValue || min,
-                  showInputOnly ? this.state.rangeWidth : null
+                  this.state.rangeWidth
                 )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
@@ -426,7 +429,7 @@ export class EuiDualRange extends Component {
                 onBlur={() => this.toggleHasFocus(false)}
                 style={this.calculateThumbPositionStyle(
                   this.upperValue || max,
-                  showInputOnly ? this.state.rangeWidth : null
+                  this.state.rangeWidth
                 )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
