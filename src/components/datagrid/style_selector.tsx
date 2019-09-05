@@ -116,7 +116,7 @@ export const useStyleSelector = (): [
         ]: ReactChild[]) => (
           <EuiButtonGroup
             legend={buttonLegend}
-            name="denisty"
+            name="density"
             className="eui-displayInlineBlock"
             options={[
               {

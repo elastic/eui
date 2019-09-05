@@ -65,26 +65,33 @@ interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
   values?: T;
 }
 
-interface I18nTokensShape {
+interface I18nTokensShape<T extends any[]> {
   tokens: string[];
-  defaults: ReactChild[];
-  children: (x: ReactChild[]) => ReactChild;
+  defaults: T;
+  children: (x: Array<T[number]>) => ReactChild;
 }
 
-type EuiI18nProps<T, DEFAULT extends Renderable<T>> = ExclusiveUnion<
-  I18nTokenShape<T, DEFAULT>,
-  I18nTokensShape
->;
+type EuiI18nProps<
+  T,
+  DEFAULT extends Renderable<T>,
+  DEFAULTS extends any[]
+> = ExclusiveUnion<I18nTokenShape<T, DEFAULT>, I18nTokensShape<DEFAULTS>>;
 
-function hasTokens(x: EuiI18nProps<any, any>): x is I18nTokensShape {
+function hasTokens<T extends any[]>(
+  x: EuiI18nProps<any, any, T>
+): x is I18nTokensShape<T> {
   return x.tokens != null;
 }
 
 // Must use the generics <T extends {}>
 // If instead typed with React.FunctionComponent there isn't feedback given back to the dev
 // when using a `values` object with a renderer callback.
-const EuiI18n = <T extends {}, DEFAULT extends Renderable<T>>(
-  props: EuiI18nProps<T, DEFAULT>
+const EuiI18n = <
+  T extends {},
+  DEFAULT extends Renderable<T>,
+  DEFAULTS extends any[]
+>(
+  props: EuiI18nProps<T, DEFAULT, DEFAULTS>
 ) => (
   <EuiI18nConsumer>
     {i18nConfig => {
