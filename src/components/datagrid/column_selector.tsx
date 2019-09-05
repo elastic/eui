@@ -142,10 +142,7 @@ export const useColumnSelector = (
               size="xs"
               flush="left"
               onClick={() => setVisibleColumns(sortedColumns)}>
-              <EuiI18n
-                token="euiColumnSelector.selectAll"
-                default="Show all"
-              />
+              <EuiI18n token="euiColumnSelector.selectAll" default="Show all" />
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem>

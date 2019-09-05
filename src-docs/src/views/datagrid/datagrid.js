@@ -109,10 +109,6 @@ export default class DataGridContainer extends Component {
         aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
-        gridStyle={{
-          border: 'horizontal',
-          stripes: true,
-        }}
         renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
         pagination={{
           ...pagination,

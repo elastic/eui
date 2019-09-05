@@ -3,7 +3,7 @@ import React from 'react';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiDataGrid } from '../../../../src/components';
+import { EuiDataGrid, EuiCode } from '../../../../src/components';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
@@ -18,7 +18,7 @@ const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 export const DataGridExample = {
-  title: 'Data Grid',
+  title: 'Data grid',
   sections: [
     {
       source: [
@@ -31,8 +31,8 @@ export const DataGridExample = {
           code: dataGridHtml,
         },
       ],
-      title: 'DataGrid container',
-      text: <p>Inside a small container</p>,
+      title: 'DataGrid',
+      text: <p>By default the data grid will grow into the container.</p>,
       components: { DataGrid },
       demo: <DataGrid />,
       props: { EuiDataGrid },
@@ -48,8 +48,13 @@ export const DataGridExample = {
           code: dataGridContainerHtml,
         },
       ],
-      title: 'DataGrid container',
-      text: <p>Inside a small container</p>,
+      title: 'Data grid adapts to its container',
+      text: (
+        <p>
+          When wrapped inside a container, like a dashboard panel, the grid will
+          start hiding controls and adopt a more strict flex layout
+        </p>
+      ),
       components: { DataGridContainer },
       demo: <DataGridContainer />,
       props: { EuiDataGrid },
@@ -65,8 +70,16 @@ export const DataGridExample = {
           code: dataGridStylingHtml,
         },
       ],
-      title: 'DataGrid',
-      text: <p>EuiDataGrid</p>,
+      title: 'Customize data grid styling',
+      text: (
+        <p>
+          Styling can be passed down to the grid through the{' '}
+          <EuiCode>gridStyle</EuiCode> prop. It accepts an object shape that
+          allows for customization. When the density controls are also present,
+          both font size and padding will merge against the initial defaults
+          provided by the prop.
+        </p>
+      ),
       components: { DataGridStyling },
       demo: <DataGridStyling />,
       props: { EuiDataGrid },

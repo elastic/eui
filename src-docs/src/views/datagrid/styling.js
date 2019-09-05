@@ -34,7 +34,7 @@ const columns = [
 
 const data = [];
 
-for (let i = 1; i < 100; i++) {
+for (let i = 1; i < 5; i++) {
   data.push({
     avatar: (
       <EuiAvatar
@@ -133,11 +133,10 @@ export default class DataGrid extends Component {
 
     this.state = {
       borderSelected: 'none',
-      fontSizeSelected: 'm',
-      cellPaddingSelected: 'm',
-      stripes: false,
-      stripesSelected: 'false',
-      rowHoverSelected: 'highlight',
+      fontSizeSelected: 's',
+      cellPaddingSelected: 's',
+      stripesSelected: 'true',
+      rowHoverSelected: 'underline',
       isPopoverOpen: false,
       headerSelected: 'shade',
 
@@ -287,30 +286,26 @@ export default class DataGrid extends Component {
 
         <EuiSpacer />
 
-        <div style={{ height: 300 }}>
-          <EuiDataGrid
-            aria-label="Top EUI contributors"
-            columns={columns}
-            rowCount={data.length}
-            gridStyle={{
-              border: this.state.borderSelected,
-              fontSize: this.state.fontSizeSelected,
-              cellPadding: this.state.cellPaddingSelected,
-              stripes: this.state.stripes,
-              rowHover: this.state.rowHoverSelected,
-              header: this.state.headerSelected,
-            }}
-            renderCellValue={({ rowIndex, columnId }) =>
-              data[rowIndex][columnId]
-            }
-            pagination={{
-              ...pagination,
-              pageSizeOptions: [5, 10, 25],
-              onChangeItemsPerPage: this.setPageSize,
-              onChangePage: this.setPageIndex,
-            }}
-          />
-        </div>
+        <EuiDataGrid
+          aria-label="Top EUI contributors"
+          columns={columns}
+          rowCount={data.length}
+          gridStyle={{
+            border: this.state.borderSelected,
+            fontSize: this.state.fontSizeSelected,
+            cellPadding: this.state.cellPaddingSelected,
+            stripes: this.state.stripes,
+            rowHover: this.state.rowHoverSelected,
+            header: this.state.headerSelected,
+          }}
+          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [5, 10, 25],
+            onChangeItemsPerPage: this.setPageSize,
+            onChangePage: this.setPageIndex,
+          }}
+        />
       </div>
     );
   }
