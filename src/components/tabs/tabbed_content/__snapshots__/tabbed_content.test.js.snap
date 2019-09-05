@@ -85,7 +85,6 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
       >
         <EuiTab
           aria-controls="42"
-          disabled={false}
           id="es"
           isSelected={false}
           key="es"
@@ -95,7 +94,6 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             aria-controls="42"
             aria-selected={false}
             className="euiTab"
-            disabled={false}
             id="es"
             onClick={[Function]}
             role="tab"
@@ -111,7 +109,6 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
         <EuiTab
           aria-controls="42"
           data-test-subj="kibanaTab"
-          disabled={false}
           id="kibana"
           isSelected={true}
           key="kibana"
@@ -122,7 +119,6 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             aria-selected={true}
             className="euiTab euiTab-isSelected"
             data-test-subj="kibanaTab"
-            disabled={false}
             id="kibana"
             onClick={[Function]}
             role="tab"
