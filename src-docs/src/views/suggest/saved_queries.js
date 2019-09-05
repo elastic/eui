@@ -140,7 +140,7 @@ export default class extends Component {
               sendInputValue={this.getInputValue.bind(this)}
             />
           </EuiFlexItem>
-          <EuiFlexItem grow={false} className="datepicker">
+          <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">
             <EuiSuperDatePicker onTimeChange={this.onTimeChange} />
           </EuiFlexItem>
         </EuiFlexGroup>
