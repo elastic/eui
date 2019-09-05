@@ -772,7 +772,6 @@ const typeDefinitionExtractors = {
     const { fs, sourceFilename, parse, state } = extractionOptions;
     const importPath = node.source.value;
     const isPathRelative = /^\.{1,2}\//.test(importPath);
-    let isExportNamedDeclaration = false;
 
     // only process relative imports for typescript definitions (avoid node_modules)
     if (isPathRelative) {
@@ -783,7 +782,6 @@ const typeDefinitionExtractors = {
           case 'ImportSpecifier':
             return specifier.imported.name;
           case 'ExportSpecifier':
-            isExportNamedDeclaration = true;
             return specifier.local.name;
 
           // default:
@@ -813,18 +811,16 @@ const typeDefinitionExtractors = {
         return [];
       }
 
-      // Use the cached resolution if available, for imports only
-      if (!isExportNamedDeclaration && importedDefinitionsCache.has(resolvedPath)) {
-        return importedDefinitionsCache.get(resolvedPath);
+      const cacheKey = `${sourceFilename}_${resolvedPath}`
+      if (importedDefinitionsCache.has(cacheKey)) {
+        return importedDefinitionsCache.get(cacheKey);
       }
 
       // to support circular dependencies, create & pre-cache the array of imported dependencies
       // this array is directly mutated after parsing the subsequent files, supporting
       // the circular nature as values settle into the correct locations
       const importedDefinitions = [];
-      if (!isExportNamedDeclaration) {
-        importedDefinitionsCache.set(resolvedPath, importedDefinitions);
-      }
+      importedDefinitionsCache.set(cacheKey, importedDefinitions);
 
       // load & parse the imported file
       const ast = parse(fs.readFileSync(resolvedPath).toString());
