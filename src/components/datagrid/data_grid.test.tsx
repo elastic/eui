@@ -124,7 +124,9 @@ function setColumnVisibility(
 
   let popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -150,7 +152,9 @@ function setColumnVisibility(
 
   popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -174,7 +178,9 @@ function moveColumnToIndex(
 
   let popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
@@ -207,7 +213,9 @@ function moveColumnToIndex(
 
   popoverButton = popover
     .find('div[className="euiPopover__anchor"]')
-    .childAt(0);
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
   act(() => popoverButton.props().onClick());
 
   datagrid.update();
