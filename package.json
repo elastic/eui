@@ -6,7 +6,7 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "node:8",
+  "docker_image": "node:10",
   "sideEffects": false,
   "scripts": {
     "start": "webpack-dev-server --port 8030 --inline --hot --config=src-docs/webpack.config.js",
