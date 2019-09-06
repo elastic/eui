@@ -9,6 +9,7 @@
 - Removed extra right side margin in `EuiSuperDatePicker` ([#2236](https://github.com/elastic/eui/pull/2236))
 - Fixed incorrect `onClick` type for `EuiButtonEmpty` ([#2282](https://github.com/elastic/eui/pull/2282))
 - Fixed compilation script to remove all TypeScript definition exports from built JS assets ([#2279](https://github.com/elastic/eui/pull/2279))
+- Fixed output extension for `dist` charts theme module ([#2294](https://github.com/elastic/eui/pull/2294))
 
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 
