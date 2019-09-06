@@ -10,6 +10,8 @@ import {
   EuiFormRow,
   EuiToolTip,
   EuiCallOut,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import FormCompressed from './form_compressed';
@@ -30,6 +32,26 @@ const ComplexExampleHtml = renderToHtml(ComplexExample);
 
 export const FormCompressedExample = {
   title: 'Compressed forms',
+  intro: (
+    <Fragment>
+      <EuiText>
+        <p>
+          Also known as <strong>Editor Style Controls</strong>, compressed forms
+          and controls were specifically created for use when space is at a
+          premium. They are not intended for use when the form is the main
+          objective of the page. They work best in editor-style applications
+          where form controls are being used to create or edit content on the
+          page.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        color="danger"
+        title="Do no use compressed and non-compressed form controls in the same form."
+      />
+      <EuiSpacer />
+    </Fragment>
+  ),
   sections: [
     {
       // title: 'Compressed and horizontal',
@@ -44,27 +66,12 @@ export const FormCompressedExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            Also known as <strong>Editor Style Controls</strong>, compressed
-            forms and controls were specifically created for use when space is
-            at a premium. They are not intended for use when the form is the
-            main objective of the page. They are best used for applications that
-            are of the editor style and the form controls are used to create
-            something else on the page.
-          </p>
-          <p>
-            <strong>
-              Do no use compressed and non-compressed form controls in the same
-              form.
-            </strong>
-          </p>
-          <p>
-            Pass <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the{' '}
-            <EuiCode>EuiFormRow</EuiCode>s but you will also need to pass{' '}
-            <EuiCode>compressed=true</EuiCode> to the form controls themselves.
-          </p>
-        </Fragment>
+        <p>
+          To use compressed forms, pass{' '}
+          <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the
+          EuiFormRows and <EuiCode>compressed=true</EuiCode> to the form
+          controls themselves.
+        </p>
       ),
       props: {
         EuiFormRow,
@@ -80,7 +87,7 @@ export const FormCompressedExample = {
       ],
     },
     {
-      title: 'Horizontal layout',
+      title: 'Column layout',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -94,15 +101,15 @@ export const FormCompressedExample = {
       text: (
         <Fragment>
           <p>
-            Editor style controls can be displayed horizontally for even better
-            use of limited space, just pass{' '}
+            Editor style controls can be displayed in a two column layout for
+            even better use of limited space, just pass{' '}
             <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
-            labels and inputs horizontally.
+            labels and inputs side by side.
           </p>
           <p>
             <strong>EuiSwitches</strong> are a special case in which so you must
-            pass <EuiCode>columnCompressedSwitch</EuiCode> as the display
-            property.
+            pass <EuiCode>columnCompressedSwitch</EuiCode> to the EuiFormRow as
+            the display property.
           </p>
         </Fragment>
       ),
@@ -116,6 +123,12 @@ export const FormCompressedExample = {
   display="columnCompressed"
 >
   <EuiFieldText compressed />
+</EuiFormRow>`,
+        `<EuiFormRow
+  label="Switch"
+  display="columnCompressedSwitch"
+>
+  <EuiSwitch compressed />
 </EuiFormRow>`,
       ],
     },
@@ -138,7 +151,7 @@ export const FormCompressedExample = {
             overload the UI with expansive help text. If it&apos;s short and
             part of the validation, use <EuiCode>helpText</EuiCode>. However, if
             it&apos;s an explanation of the control, consider wraping the label
-            with a <Link to="/display/tooltip">EuiToolTip</Link> and appending
+            with an <Link to="/display/tooltip">EuiToolTip</Link> and appending
             the <EuiCode>questionInCircle</EuiCode> icon to it.
           </p>
         </Fragment>
@@ -184,9 +197,9 @@ export const FormCompressedExample = {
         <Fragment>
           <p>
             This is an example of how to combine compressed form controls with
-            from rows, labels, prepend and appends.
+            from rows, labels, prepend and appends in a column layout.
           </p>
-          <EuiCallOut color="warning" title="Accessiblity">
+          <EuiCallOut color="warning" title="Accessiblity in compressed forms">
             <p>
               Pay close attention to the patterns of using{' '}
               <EuiCode>htmlFor</EuiCode> and <EuiCode>aria-label</EuiCode>. For

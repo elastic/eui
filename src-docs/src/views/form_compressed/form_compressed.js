@@ -143,9 +143,7 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow
-          label="Use a switch instead of a single checkbox"
-          display="rowCompressed">
+        <EuiFormRow label="Switch" display="rowCompressed">
           <EuiSwitch
             label="Should we do this?"
             name="switch"
