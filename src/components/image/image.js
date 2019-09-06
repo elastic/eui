@@ -106,8 +106,8 @@ export class EuiImage extends Component {
               ref={node => {
                 this.figure = node;
               }}
-              className="euiImageFullScreen">
-              <img src={url} className="euiImageFullScreen__img" alt={alt} />
+              className="euiImage-isFullScreen">
+              <img src={url} className="euiImage-isFullScreen__img" alt={alt} />
               {optionalCaption}
             </figure>
           </button>

@@ -88,18 +88,18 @@
 }
 
 // The FullScreen image that optionally pops up on click.
-.euiImageFullScreen {
+.euiImage-isFullScreen {
   max-height: 80vh;
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  .euiImageFullScreen__img {
+  .euiImage-isFullScreen__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
   }
 
-  &:hover .euiImageFullScreen__img {
+  &:hover .euiImage-isFullScreen__img {
     cursor: pointer;
   }
 }
