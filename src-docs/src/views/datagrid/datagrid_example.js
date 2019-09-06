@@ -17,6 +17,10 @@ import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
+import InMemoryDataGrid from './in_memory';
+const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
+const inMemoryDataGridHtml = renderToHtml(DataGridStyling);
+
 export const DataGridExample = {
   title: 'Data grid',
   sections: [
@@ -83,6 +87,22 @@ export const DataGridExample = {
       components: { DataGridStyling },
       demo: <DataGridStyling />,
       props: { EuiDataGrid },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inMemoryDataGridSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inMemoryDataGridHtml,
+        },
+      ],
+      title: 'In Memory',
+      text: <p>In memory description</p>,
+      components: { InMemoryDataGrid },
+      demo: <InMemoryDataGrid />,
     },
   ],
 };

@@ -10,6 +10,7 @@ import React, {
 import { EuiFocusTrap } from '../focus_trap';
 import { Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface CellValueElementProps {
   rowIndex: number;
@@ -197,12 +198,26 @@ export class EuiDataGridCell extends Component<
         onFocus={() => onCellFocus([colIndex, rowIndex])}
         style={{ width: `${width}px` }}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
-          <div
-            {...isInteractiveCell}
-            ref={this.cellContentsRef}
-            className="euiDataGridRowCell__content">
-            <EuiDataGridCellContent {...rest} />
-          </div>
+          <EuiMutationObserver
+            onMutation={() => {
+              this.updateFocus();
+              this.setTabbablesTabIndex();
+            }}
+            observerOptions={{
+              childList: true,
+              subtree: true,
+            }}>
+            {ref => (
+              <div ref={ref}>
+                <div
+                  {...isInteractiveCell}
+                  ref={this.cellContentsRef}
+                  className="euiDataGridRowCell__content">
+                  <EuiDataGridCellContent {...rest} />
+                </div>
+              </div>
+            )}
+          </EuiMutationObserver>
         </EuiFocusTrap>
       </div>
     );
