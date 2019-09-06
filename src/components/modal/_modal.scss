@@ -66,7 +66,7 @@
   justify-content: flex-end;
   padding: $euiSize $euiSizeL $euiSizeL;
   flex-grow: 0;
-  flex-shrink: 0; // ensure the height of the footer is based off it's contents and doesn't squish
+  flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
 
   > * + * {
     margin-left: $euiSize;
