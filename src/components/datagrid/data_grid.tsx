@@ -480,6 +480,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     focusedCell={focusedCell}
                     onCellFocus={onCellFocus}
                     pagination={pagination}
+                    sorting={sorting}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
                     isGridNavigationEnabled={isGridNavigationEnabled}
