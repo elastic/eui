@@ -136,7 +136,7 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('one append is rendered', () => {
+    test('one append node is rendered', () => {
       const component = render(
         <EuiFormControlLayout append={<span>1</span>} />
       );

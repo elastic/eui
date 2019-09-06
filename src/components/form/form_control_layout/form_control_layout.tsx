@@ -37,6 +37,10 @@ type EuiFormControlLayoutProps = CommonProps &
     className?: string;
     compressed?: boolean;
     readOnly?: boolean;
+    /**
+     * Connects the prepend and append labels to the input
+     */
+    inputId?: string;
   };
 
 export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
@@ -53,6 +57,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       prepend,
       append,
       readOnly,
+      inputId,
       ...rest
     } = this.props;
 
@@ -68,8 +73,8 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       className
     );
 
-    const prependNodes = this.renderPrepends(prepend);
-    const appendNodes = this.renderAppends(append);
+    const prependNodes = this.renderPrepends(prepend, inputId);
+    const appendNodes = this.renderAppends(append, inputId);
 
     return (
       <div className={classes} {...rest}>
@@ -88,13 +93,16 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     );
   }
 
-  renderPrepends(prepend: string | ReactElements | undefined | null) {
+  renderPrepends(
+    prepend: string | ReactElements | undefined | null,
+    inputId?: string
+  ) {
     if (!prepend) {
       return;
     }
 
     if (typeof prepend === 'string') {
-      prepend = <EuiFormLabel>{prepend}</EuiFormLabel>;
+      prepend = <EuiFormLabel htmlFor={inputId}>{prepend}</EuiFormLabel>;
     }
 
     const prependNodes = React.Children.map(prepend, (item, index) =>
@@ -104,13 +112,16 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     return prependNodes;
   }
 
-  renderAppends(append: string | ReactElements | undefined | null) {
+  renderAppends(
+    append: string | ReactElements | undefined | null,
+    inputId?: string
+  ) {
     if (!append) {
       return;
     }
 
     if (typeof append === 'string') {
-      append = <EuiFormLabel>{append}</EuiFormLabel>;
+      append = <EuiFormLabel htmlFor={inputId}>{append}</EuiFormLabel>;
     }
 
     const appendNodes = React.Children.map(append, (item, index) =>
