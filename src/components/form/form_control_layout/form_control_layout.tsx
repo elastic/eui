@@ -73,8 +73,8 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       className
     );
 
-    const prependNodes = this.renderPrepends(prepend, inputId);
-    const appendNodes = this.renderAppends(append, inputId);
+    const prependNodes = this.renderSideNode('prepend', prepend, inputId);
+    const appendNodes = this.renderSideNode('append', append, inputId);
 
     return (
       <div className={classes} {...rest}>
@@ -93,47 +93,45 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     );
   }
 
-  renderPrepends(
-    prepend: string | ReactElements | undefined | null,
+  renderSideNode(
+    side: 'append' | 'prepend',
+    nodes?: string | ReactElements,
     inputId?: string
   ) {
-    if (!prepend) {
+    if (!nodes) {
       return;
     }
 
-    if (typeof prepend === 'string') {
-      prepend = <EuiFormLabel htmlFor={inputId}>{prepend}</EuiFormLabel>;
+    if (typeof nodes === 'string') {
+      return this.createFormLabel(side, nodes, inputId);
     }
 
-    const prependNodes = React.Children.map(prepend, (item, index) =>
-      this.createSideNode(item, 'prepend', index)
-    );
-
-    return prependNodes;
-  }
-
-  renderAppends(
-    append: string | ReactElements | undefined | null,
-    inputId?: string
-  ) {
-    if (!append) {
-      return;
-    }
-
-    if (typeof append === 'string') {
-      append = <EuiFormLabel htmlFor={inputId}>{append}</EuiFormLabel>;
-    }
-
-    const appendNodes = React.Children.map(append, (item, index) =>
-      this.createSideNode(item, 'append', index)
+    const appendNodes = React.Children.map(nodes, (item, index) =>
+      typeof item === 'string'
+        ? this.createFormLabel(side, item, inputId)
+        : this.createSideNode(side, item, index)
     );
 
     return appendNodes;
   }
 
-  createSideNode(
-    node: ReactElement,
+  createFormLabel(
     side: 'append' | 'prepend',
+    string: string,
+    inputId?: string
+  ) {
+    return (
+      <EuiFormLabel
+        htmlFor={inputId}
+        className={`euiFormControlLayout__${side}`}>
+        {string}
+      </EuiFormLabel>
+    );
+  }
+
+  createSideNode(
+    side: 'append' | 'prepend',
+    node: ReactElement,
     key: React.Key
   ) {
     return cloneElement(node, {
