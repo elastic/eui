@@ -5,7 +5,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiFormRow, EuiToolTip } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiFormRow,
+  EuiToolTip,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import FormCompressed from './form_compressed';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
@@ -181,14 +186,17 @@ export const FormCompressedExample = {
             This is an example of how to combine compressed form controls with
             from rows, labels, prepend and appends.
           </p>
+          <EuiCallOut color="warning" title="Accessiblity">
+            <p>
+              Pay close attention to the patterns of using{' '}
+              <EuiCode>htmlFor</EuiCode> and <EuiCode>aria-label</EuiCode>. For
+              best results each form control that is not wrapped in an
+              EuiFormRow should be supplied an <EuiCode>id</EuiCode>.
+            </p>
+          </EuiCallOut>
         </Fragment>
       ),
-      props: {
-        // EuiFormRow,
-        // EuiToolTip,
-      },
       demo: <ComplexExample />,
-      snippet: [''],
     },
   ],
 };

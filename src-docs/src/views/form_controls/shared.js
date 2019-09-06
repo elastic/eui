@@ -9,7 +9,6 @@ import {
   EuiToolTip,
   EuiIcon,
   EuiButtonEmpty,
-  EuiFormLabel,
   EuiPopover,
   EuiSpacer,
 } from '../../../../src/components';
@@ -60,10 +59,8 @@ export class DisplayToggles extends Component {
     if (canLoading) canProps.isLoading = this.state.loading;
     if (canFullWidth) canProps.fullWidth = this.state.fullWidth;
     if (canCompressed) canProps.compressed = this.state.compressed;
-    if (canPrepend && this.state.prepend)
-      canProps.prepend = <EuiFormLabel>Prepend</EuiFormLabel>;
-    if (canAppend && this.state.append)
-      canProps.append = <EuiButtonEmpty size="xs">Append</EuiButtonEmpty>;
+    if (canPrepend && this.state.prepend) canProps.prepend = 'Prepend';
+    if (canAppend && this.state.append) canProps.append = 'Append';
     if (canInvalid) canProps.isInvalid = this.state.invalid;
 
     return (

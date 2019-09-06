@@ -27,8 +27,9 @@ export default class extends Component {
   render() {
     return (
       /* DisplayToggles wrapper for Docs only */
-      <DisplayToggles canReadOnly={false}>
+      <DisplayToggles canPrepend canAppend canReadOnly={false}>
         <EuiSelect
+          id="selectDocExample"
           options={this.options}
           value={this.state.value}
           onChange={this.onChange}
