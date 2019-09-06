@@ -51,7 +51,7 @@ describe('EuiSuperDatePicker', () => {
     expect(componentRefresh.prop('isPaused')).toBe(false);
   });
 
-  test('Listen for consecutive super date picker refreshs.', async () => {
+  test('Listen for consecutive super date picker refreshes', async () => {
     jest.useFakeTimers();
 
     const onRefresh = jest.fn();
