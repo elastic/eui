@@ -34,7 +34,7 @@
 .euiSideNavItemButton__content {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .euiSideNavItemButton__icon {
@@ -79,6 +79,7 @@
 
   /**
    * 1. Create padding around focus area without indenting the item itself.
+   * 2. Align icon and label to the left.
    */
   & > .euiSideNavItemButton {
     margin-bottom: $euiSizeS;
@@ -87,6 +88,10 @@
     padding-right: $euiSizeS; /* 1 */
     margin-left: -$euiSizeS; /* 1 */
     width: calc(100% + #{$euiSizeS * 2}); /* 1 */
+
+    .euiSideNavItemButton__content {
+      justify-content: flex-start; /* 2 */
+    }
 
     .euiSideNavItemButton__label {
       @include euiTitle('xs');

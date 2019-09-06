@@ -87,9 +87,10 @@ export const EuiSideNavItem = ({
 
   const buttonContent = (
     <span className="euiSideNavItemButton__content">
-      {buttonIcon}
-
-      <span className="euiSideNavItemButton__label">{children}</span>
+      <span className="euiSideNavItemButton__left">
+        {buttonIcon}
+        <span className="euiSideNavItemButton__label">{children}</span>
+      </span>
 
       {caret}
     </span>
