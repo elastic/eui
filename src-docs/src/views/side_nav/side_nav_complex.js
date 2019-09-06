@@ -57,8 +57,12 @@ export default class extends Component {
               this.createItem('General'),
               this.createItem('Timelion', {
                 items: [
-                  this.createItem('Time stuff'),
-                  this.createItem('Lion stuff'),
+                  this.createItem('Time stuff', {
+                    icon: <EuiIcon type="clock" />,
+                  }),
+                  this.createItem('Lion stuff', {
+                    icon: <EuiIcon type="stats" />,
+                  }),
                 ],
               }),
               this.createItem('Visualizations'),
