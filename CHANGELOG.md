@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.8.0`.
+
+## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
+
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
 - Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
 - Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
