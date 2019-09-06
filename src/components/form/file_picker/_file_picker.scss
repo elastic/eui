@@ -60,7 +60,7 @@
   * 1. Don't block the user from dropping files onto the filepicker.
   * 3. Ensure space for import icon, loading spinner, and clear button (only if it has files)
   * 4. Delay focus gradient or else it will only partially transition while file chooser opens
-  * 5. Static height so that it doesn't shift it's surrounding contents around
+  * 5. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
   @include euiFormControlDefaultShadow;
