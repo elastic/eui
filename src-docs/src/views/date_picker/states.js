@@ -5,6 +5,7 @@ import {
   EuiSpacer,
   EuiFormRow,
 } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default class extends Component {
   constructor(props) {
@@ -30,15 +31,18 @@ export default class extends Component {
     ];
 
     return (
+      /* DisplayToggles wrapper for Docs only */
       <div>
-        <EuiDatePicker
-          showTimeSelect
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          placeholder="Placeholder text"
-        />
+        <DisplayToggles canCompressed={false}>
+          <EuiDatePicker
+            showTimeSelect
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+            placeholder="Placeholder text"
+          />
+        </DisplayToggles>
 
-        <EuiSpacer size="m" />
+        <EuiSpacer size="l" />
 
         <EuiDatePicker
           showTimeSelect
@@ -46,37 +50,6 @@ export default class extends Component {
           onChange={this.handleChange}
           onClear={() => this.handleChange(null)}
           placeholder="Clearable"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiDatePicker
-          showTimeSelect
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          disabled
-          placeholder="Disabled"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiDatePicker
-          showTimeSelect
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          isLoading
-          placeholder="Loading"
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiDatePicker
-          showTimeSelect
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          isLoading
-          disabled
-          placeholder="Loading and disabled"
         />
 
         <EuiSpacer size="m" />

@@ -29,7 +29,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiFormRow hasEmptyLabelSpace display="center">
-        <EuiButton size="s">Save</EuiButton>
+        <EuiButton>Save</EuiButton>
       </EuiFormRow>
     </EuiFlexItem>
   </EuiFlexGroup>

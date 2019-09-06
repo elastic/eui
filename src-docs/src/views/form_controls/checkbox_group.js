@@ -72,21 +72,6 @@ export default class extends Component {
           onChange={this.onChange}
           disabled
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs">
-          <h3>Compressed</h3>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
-        <EuiCheckboxGroup
-          options={this.checkboxes}
-          idToSelectedMap={this.state.checkboxIdToSelectedMap}
-          onChange={this.onChange}
-          compressed
-        />
       </Fragment>
     );
   }

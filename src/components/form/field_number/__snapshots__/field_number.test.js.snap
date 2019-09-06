@@ -5,6 +5,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
   compressed="false"
   fullwidth="false"
   icon="alert"
+  inputid="1"
   isloading="false"
 >
   <eui-validatable-control>
