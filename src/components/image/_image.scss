@@ -1,5 +1,5 @@
 /**
- * 1. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+ * 1. Fix for IE where the image correctly resizes in width but doesn't collapse its height
       (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
  */
 
@@ -9,7 +9,7 @@
   max-width: 100%;
   position: relative;
   min-height: 1px; /* 1 */
-  line-height: 0; // Fixes cropping when image is resized by forcing it's height to be determined by the image not line-height
+  line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
   &.euiImage--hasShadow {
     .euiImage__img {
