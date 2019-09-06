@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { EuiColorPicker } from '../../../../src/components';
-import { DisplayToggles } from '../form_controls/shared';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export class KitchenSink extends Component {
   constructor(props) {

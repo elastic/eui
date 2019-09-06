@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { EuiFieldPassword } from '../../../../src/components';
-import { DisplayToggles } from './shared';
+import { DisplayToggles } from './display_toggles';
 
 export default class extends Component {
   constructor(props) {

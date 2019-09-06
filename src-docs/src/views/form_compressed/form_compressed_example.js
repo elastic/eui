@@ -47,7 +47,7 @@ export const FormCompressedExample = {
       <EuiSpacer />
       <EuiCallOut
         color="danger"
-        title="Do no use compressed and non-compressed form controls in the same form."
+        title="Do not use compressed and non-compressed form controls in the same form."
       />
       <EuiSpacer />
     </Fragment>

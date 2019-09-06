@@ -5,7 +5,7 @@ import {
   EuiSpacer,
   EuiFormRow,
 } from '../../../../src/components';
-import { DisplayToggles } from '../form_controls/shared';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default class extends Component {
   constructor(props) {

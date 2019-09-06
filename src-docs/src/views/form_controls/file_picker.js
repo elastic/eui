@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { DisplayToggles } from './shared';
+import { DisplayToggles } from './display_toggles';
 
 import {
   EuiFilePicker,
