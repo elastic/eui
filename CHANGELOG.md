@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
 - Updated TS def for `EuiFilterSelect` ([#2291](https://github.com/elastic/eui/pull/2291))
 
 ## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
