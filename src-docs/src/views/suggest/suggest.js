@@ -51,7 +51,7 @@ export default class extends Component {
       { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },
       { id: `${idPrefix}1`, value: 'unsaved', label: 'Not yet saved' },
       { id: `${idPrefix}2`, value: 'saved', label: 'Saved' },
-      { id: `${idPrefix}3`, value: 'isLoading', label: 'Loading' },
+      { id: `${idPrefix}3`, value: 'loading', label: 'Loading' },
     ];
 
     this.state = {

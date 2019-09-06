@@ -47,12 +47,12 @@ export class EuiSuggestInput extends Component {
       unsaved: {
         icon: 'dot',
         color: 'accent',
-        tooltip: "You've made changes that haven't been saved yet.",
+        tooltip: 'Changes have not been saved.',
       },
       saved: {
         icon: 'checkInCircleFilled',
         color: 'secondary',
-        tooltip: 'Query successfully saved.',
+        tooltip: 'Saved.',
       },
       unchanged: {
         icon: '',
@@ -93,7 +93,7 @@ export class EuiSuggestInput extends Component {
         value={this.state.value}
         fullWidth
         append={appendArray}
-        isLoading={status === 'isLoading' ? true : false}
+        isLoading={status === 'loading' ? true : false}
         onChange={this.onFieldChange.bind(this)}
         {...rest}
       />
@@ -118,9 +118,9 @@ export class EuiSuggestInput extends Component {
 EuiSuggestInput.propTypes = {
   className: PropTypes.string,
   /**
-   * Status of the current query 'unsaved', 'saved', 'unchanged' or 'isLoading'.
+   * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
    */
-  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'isLoading']),
+  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'loading']),
   tooltipContent: PropTypes.string,
   /**
    * Element to be appended to the input bar.

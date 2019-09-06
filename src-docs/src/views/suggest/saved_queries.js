@@ -127,7 +127,9 @@ export default class extends Component {
       <div className="savedQueriesInput">
         <EuiFlexGroup
           gutterSize="s"
-          className={this.state.hideDatepicker ? 'hideDatepicker' : ''}>
+          className={
+            this.state.hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''
+          }>
           <EuiFlexItem>
             <EuiSuggest
               status={this.state.status}

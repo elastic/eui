@@ -14,10 +14,8 @@
       cursor: pointer;
       background-color: $euiColorLightestShade;
 
-      @each $name, $color in $euiSuggestItemColors {
-        .euiSuggestItem__type--#{$name} {
-          color: $euiColorDarkestShade;
-        }
+      .euiSuggestItem__type { //sass-lint:disable-line nesting-depth
+        color: $euiColorDarkestShade;
       }
     }
   }

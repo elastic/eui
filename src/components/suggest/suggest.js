@@ -29,7 +29,6 @@ export class EuiSuggest extends Component {
       onItemClick,
       sendInputValue,
       status,
-      prefix,
       append,
       tooltipContent,
       suggestions,
@@ -49,7 +48,6 @@ export class EuiSuggest extends Component {
     const suggestInput = (
       <EuiSuggestInput
         status={status}
-        prefix={prefix}
         tooltipContent={tooltipContent}
         append={append}
         sendValue={this.getValue}
@@ -64,9 +62,9 @@ export class EuiSuggest extends Component {
 EuiSuggest.propTypes = {
   className: PropTypes.string,
   /**
-   * Status of the current query 'notYetSaved', 'saved', 'unchanged' or 'isLoading'.
+   * Status of the current query 'notYetSaved', 'saved', 'unchanged' or 'loading'.
    */
-  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'isLoading']),
+  status: PropTypes.oneOf(['unsaved', 'saved', 'unchanged', 'loading']),
   tooltipContent: PropTypes.string,
   /**
    * Element to be appended to the input bar (e.g. hashtag popover).
