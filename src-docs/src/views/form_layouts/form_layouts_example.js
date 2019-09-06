@@ -35,10 +35,6 @@ import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
-import FormCompressed from './form_compressed';
-const formCompressedSource = require('!!raw-loader!./form_compressed');
-const formCompressedHtml = renderToHtml(FormCompressed);
-
 export const FormLayoutsExample = {
   title: 'Form layouts',
   sections: [
@@ -106,49 +102,6 @@ export const FormLayoutsExample = {
 >
   <EuiRange fullWidth />
 </EuiFormRow>`,
-    },
-    {
-      title: 'Compressed and horizontal',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: formCompressedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formCompressedHtml,
-        },
-      ],
-      text: (
-        <p>
-          If the particular form is in an area with a small amount of real
-          estate, you can pass{' '}
-          <EuiCode>display=&quot;rowCompressed&quot;</EuiCode> to the{' '}
-          <EuiCode>EuiFormRow</EuiCode>s but you will also need to pass{' '}
-          <EuiCode>compressed=true</EuiCode> to the form controls themselves.
-          For editor style controls, pass{' '}
-          <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
-          labels and inputs horizontally.
-        </p>
-      ),
-      props: {
-        EuiFormRow,
-      },
-      demo: <FormCompressed />,
-      snippet: [
-        `<EuiFormRow
-  label="Text field"
-  display="rowCompressed"
->
-  <EuiFieldText compressed />
-</EuiFormRow>`,
-        `<EuiFormRow
-  label="Text field"
-  display="columnCompressed"
->
-  <EuiFieldText compressed />
-</EuiFormRow>`,
-      ],
     },
     {
       title: 'Described form groups',

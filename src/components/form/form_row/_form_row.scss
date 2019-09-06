@@ -57,6 +57,26 @@
   + .euiFormRow--horizontal {
     margin-top: $euiSizeS;
   }
+
+  + .euiFormRow--horizontal.euiFormRow--hasSwitch {
+    margin-top: $euiSizeM; // More spacing since we reduced the height to match that of the switch
+  }
+
+  &.euiFormRow--hasSwitch {
+    .euiFormRow__labelWrapper {
+      line-height: $euiSwitchHeight - 1px; // The 1px less helps the alignment of the text baseline
+      width: auto;
+      min-width: calc(33% - #{$euiSizeS});
+    }
+
+    .euiFormRow__fieldWrapper {
+      width: auto;
+    }
+
+    + .euiFormRow--horizontal {
+      margin-top: $euiSizeM; // More spacing since we reduced the height to match that of the switch
+    }
+  }
 }
 
 .euiFormRow__fieldWrapperDisplayOnly {

@@ -39,7 +39,8 @@ export const EuiFieldText = ({
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}
-      append={append}>
+      append={append}
+      inputId={id}>
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type="text"

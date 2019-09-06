@@ -17,6 +17,8 @@ const displayToClassNameMap = {
   columnCompressed: 'euiFormRow--compressed euiFormRow--horizontal',
   center: null,
   centerCompressed: 'euiFormRow--compressed',
+  columnCompressedSwitch:
+    'euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch',
 };
 
 export const DISPLAYS = Object.keys(displayToClassNameMap);
@@ -249,6 +251,8 @@ EuiFormRow.propTypes = {
    * and horizontal layout is needed.
    * Set to `center` or `centerCompressed` to align non-input
    * content better with inline rows.
+   * Set to `columnCompressedSwitch` if the form control being passed
+   * as the child is a switch.
    */
   display: PropTypes.oneOf(DISPLAYS),
   /**
