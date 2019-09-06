@@ -85,6 +85,7 @@ export class EuiRelativeTab extends Component {
               isInvalid={isInvalid}
               error={isInvalid ? 'Must be >= 0' : null}>
               <EuiFieldNumber
+                compressed
                 aria-label="Count of"
                 data-test-subj={'superDatePickerRelativeDateInputNumber'}
                 value={this.state.count}
@@ -94,14 +95,13 @@ export class EuiRelativeTab extends Component {
             </EuiFormRow>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow>
-              <EuiSelect
-                data-test-subj={'superDatePickerRelativeDateInputUnitSelector'}
-                value={this.state.unit}
-                options={relativeOptions}
-                onChange={this.onUnitChange}
-              />
-            </EuiFormRow>
+            <EuiSelect
+              compressed
+              data-test-subj={'superDatePickerRelativeDateInputUnitSelector'}
+              value={this.state.unit}
+              options={relativeOptions}
+              onChange={this.onUnitChange}
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="m" />
@@ -113,6 +113,7 @@ export class EuiRelativeTab extends Component {
         />
         <EuiSpacer size="m" />
         <EuiFieldText
+          compressed
           value={formatedValue}
           readOnly
           prepend={
