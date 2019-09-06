@@ -11,16 +11,14 @@ exports[`EuiSideNavItem is rendered 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span>
-        <span
-          class="euiSideNavItemButton__label"
-        >
-          <button
-            aria-label="aria-label"
-            class="testClass1 testClass2"
-            data-test-subj="test subject string"
-          />
-        </span>
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button
+          aria-label="aria-label"
+          class="testClass1 testClass2"
+          data-test-subj="test subject string"
+        />
       </span>
     </span>
   </div>
@@ -38,12 +36,10 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span>
-        <span
-          class="euiSideNavItemButton__label"
-        >
-          <button />
-        </span>
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button />
       </span>
     </span>
   </div>
@@ -61,12 +57,10 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span>
-        <span
-          class="euiSideNavItemButton__label"
-        >
-          <button />
-        </span>
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button />
       </span>
     </span>
   </div>
@@ -84,14 +78,12 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span>
-        <span
-          class="euiSideNavItemButton__label"
-        >
-          <button
-            class="test"
-          />
-        </span>
+      <span
+        class="euiSideNavItemButton__label"
+      >
+        <button
+          class="test"
+        />
       </span>
     </span>
   </div>
