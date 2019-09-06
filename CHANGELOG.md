@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.8.0`.
+- Fixed alignment of icons and label in `EuiSideNavItem` ([#2297](https://github.com/elastic/eui/pull/2297))
 
 ## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
 
