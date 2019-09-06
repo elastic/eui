@@ -1215,10 +1215,19 @@ module.exports = function propTypesFromTypeScript({ types }) {
         const resolveVariableDeclarator = variableDeclarator => {
           const { id } = variableDeclarator;
           const idTypeAnnotation = id.typeAnnotation;
+          let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation) {
-            let fileCodeNeedsUpdating = false;
-
+          if (
+            types.isCallExpression(variableDeclarator.init) &&
+            types.isIdentifier(variableDeclarator.init.callee) &&
+            variableDeclarator.init.callee.name === 'forwardRef' &&
+            variableDeclarator.init.typeParameters.params.length === 2
+          ) {
+            // props for the component come from the second argument to the type params
+            const typeDefinition = variableDeclarator.init.typeParameters.params[1];
+            fileCodeNeedsUpdating = true;
+            processComponentDeclaration(typeDefinition, nodePath, state);
+          } else if (idTypeAnnotation) {
             if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
               if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
                 const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
@@ -1263,13 +1272,13 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
               }
             }
+          }
 
-            if (fileCodeNeedsUpdating) {
-              // babel-plugin-react-docgen passes `this.file.code` to react-docgen
-              // instead of using the modified AST; to expose our changes to react-docgen
-              // they need to be rendered to a string
-              this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
-            }
+          if (fileCodeNeedsUpdating) {
+            // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+            // instead of using the modified AST; to expose our changes to react-docgen
+            // they need to be rendered to a string
+            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
           }
         };
 
