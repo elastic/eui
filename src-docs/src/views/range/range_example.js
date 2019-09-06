@@ -329,10 +329,10 @@ export const RangeControlExample = {
       text: (
         <Fragment>
           <p>
-            Passing <EuiCode>showInput=&quot;only&quot;</EuiCode> instead of a
-            boolean will only display the inputs until the input is interacted
-            with in which case a dropdown will appear displaying the actual
-            slider.
+            Passing <EuiCode>showInput=&quot;inputWithPopover&quot;</EuiCode>{' '}
+            instead of a boolean will only display the inputs until the input is
+            interacted with in which case a dropdown will appear displaying the
+            actual slider.
           </p>
         </Fragment>
       ),
@@ -352,13 +352,13 @@ export const RangeControlExample = {
   id=""
   value={}
   onChange={() => {}}
-  showInput="only"
+  showInput="inputWithPopover"
 />`,
         `<EuiDualRange
   id=""
   value={}
   onChange={() => {}}
-  showInput="only"
+  showInput="inputWithPopover"
 />`,
       ],
     },

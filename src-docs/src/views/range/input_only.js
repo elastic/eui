@@ -46,7 +46,7 @@ export default class extends Component {
           id={makeId()}
           value={this.state.value}
           onChange={this.onChange}
-          showInput="only"
+          showInput="inputWithPopover"
           showLabels
         />
 
@@ -56,7 +56,7 @@ export default class extends Component {
           id={makeId()}
           value={this.state.dualValue}
           onChange={this.onDualChange}
-          showInput="only"
+          showInput="inputWithPopover"
           showLabels
           levels={this.levels}
         />
@@ -68,7 +68,7 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           compressed
-          showInput="only"
+          showInput="inputWithPopover"
           showLabels
         />
 
@@ -79,7 +79,7 @@ export default class extends Component {
           value={this.state.dualValue}
           onChange={this.onDualChange}
           compressed
-          showInput="only"
+          showInput="inputWithPopover"
           showLabels
           levels={this.levels}
           readOnly

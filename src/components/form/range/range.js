@@ -76,7 +76,7 @@ export class EuiRange extends Component {
     } = this.props;
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
-    const showInputOnly = showInput === 'only';
+    const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
     const theInput = !!showInput ? (
@@ -207,9 +207,9 @@ EuiRange.propTypes = {
   showLabels: PropTypes.bool,
   /**
    * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'only'` to only show the input but show the range in a dropdown.
+   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
    */
-  showInput: PropTypes.oneOf([true, false, 'only']),
+  showInput: PropTypes.oneOf([true, false, 'inputWithPopover']),
   /**
    * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
    */

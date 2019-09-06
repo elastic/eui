@@ -95,7 +95,7 @@ describe('EuiDualRange', () => {
           max={10}
           value={['1', '8']}
           onChange={() => {}}
-          showInput="only"
+          showInput="inputWithPopover"
           {...requiredProps}
         />
       );

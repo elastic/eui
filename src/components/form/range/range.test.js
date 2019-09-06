@@ -108,7 +108,7 @@ describe('EuiRange', () => {
           max={10}
           value="8"
           onChange={() => {}}
-          showInput="only"
+          showInput="inputWithPopover"
           {...requiredProps}
         />
       );
