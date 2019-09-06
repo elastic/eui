@@ -36,7 +36,7 @@ export const FormCompressedExample = {
     <Fragment>
       <EuiText>
         <p>
-          Also known as <strong>Editor Style Controls</strong>, compressed forms
+          Also known as <strong>Editor-Style Controls</strong>, compressed forms
           and controls were specifically created for use when space is at a
           premium. They are not intended for use when the form is the main
           objective of the page. They work best in editor-style applications
@@ -54,7 +54,6 @@ export const FormCompressedExample = {
   ),
   sections: [
     {
-      // title: 'Compressed and horizontal',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -101,7 +100,7 @@ export const FormCompressedExample = {
       text: (
         <Fragment>
           <p>
-            Editor style controls can be displayed in a two column layout for
+            Editor-style controls can be displayed in a two column layout for
             even better use of limited space, just pass{' '}
             <EuiCode>display=&quot;columnCompressed&quot;</EuiCode> to align the
             labels and inputs side by side.
