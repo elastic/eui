@@ -10,6 +10,7 @@ exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -38,6 +39,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -98,6 +100,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiRangeSlider--compressed euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -151,6 +154,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasTicks euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -180,6 +184,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
       disabled=""
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -208,6 +213,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -311,6 +317,7 @@ exports[`EuiDualRange props labels should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -356,6 +363,7 @@ exports[`EuiDualRange props levels should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -434,6 +442,7 @@ exports[`EuiDualRange props range should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -522,6 +531,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasTicks euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"

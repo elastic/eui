@@ -4,6 +4,8 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiDualRange } from './dual_range';
 
+jest.mock('../form_row/make_id', () => () => 'generated-id');
+
 describe('EuiDualRange', () => {
   test('is rendered', () => {
     const component = render(

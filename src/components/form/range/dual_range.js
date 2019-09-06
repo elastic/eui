@@ -6,6 +6,8 @@ import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import { EuiResizeObserver } from '../../observer/resize_observer';
+import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -17,9 +19,11 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiDualRange extends Component {
   state = {
+    id: this.props.id || makeId(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
+    rangeWidth: null,
   };
 
   rangeSliderRef = null;
@@ -27,6 +31,7 @@ export class EuiDualRange extends Component {
     this.rangeSliderRef = ref;
     this.setState({
       rangeSliderRefAvailable: !!ref,
+      rangeWidth: !!ref ? ref.clientWidth : null,
     });
   };
 
@@ -204,7 +209,7 @@ export class EuiDualRange extends Component {
     this._handleOnChange(this.lowerValue, upper, e);
   };
 
-  calculateThumbPositionStyle = value => {
+  calculateThumbPositionStyle = (value, width) => {
     // Calculate the left position based on value
     const decimal =
       (value - this.props.min) / (this.props.max - this.props.min);
@@ -213,7 +218,11 @@ export class EuiDualRange extends Component {
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
     const EUI_THUMB_SIZE = 16;
-    const thumbToTrackRatio = EUI_THUMB_SIZE / this.rangeSliderRef.clientWidth;
+    const trackWidth =
+      this.props.showInput === 'only' && !!width
+        ? width
+        : this.rangeSliderRef.clientWidth;
+    const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
   };
@@ -230,9 +239,23 @@ export class EuiDualRange extends Component {
     });
   };
 
+  onInputBlur = e => {
+    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+      this.closePopover();
+    }
+  };
+
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
+    });
+  };
+
+  onResize = ({ width }) => {
+    this.setState({
+      rangeWidth: width,
     });
   };
 
@@ -243,7 +266,7 @@ export class EuiDualRange extends Component {
       disabled,
       fullWidth,
       readOnly,
-      id,
+      id: propsId,
       max,
       min,
       name,
@@ -260,6 +283,8 @@ export class EuiDualRange extends Component {
       style,
       ...rest
     } = this.props;
+
+    const { id } = this.state;
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
@@ -281,6 +306,7 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
@@ -306,6 +332,7 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
@@ -383,7 +410,10 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.lowerValue || min)}
+                style={this.calculateThumbPositionStyle(
+                  this.lowerValue || min,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -397,7 +427,10 @@ export class EuiDualRange extends Component {
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.upperValue || max)}
+                style={this.calculateThumbPositionStyle(
+                  this.upperValue || max,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -424,8 +457,11 @@ export class EuiDualRange extends Component {
         }
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}>
-        {theRange}
+        closePopover={this.closePopover}
+        disableFocusTrap={true}>
+        <EuiResizeObserver onResize={this.onResize}>
+          {resizeRef => <div ref={resizeRef}>{theRange}</div>}
+        </EuiResizeObserver>
       </EuiInputPopover>
     ) : (
       undefined
