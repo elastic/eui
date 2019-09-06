@@ -11,9 +11,7 @@ exports[`EuiSideNavItem is rendered 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span
-        class="euiSideNavItemButton__left"
-      >
+      <span>
         <span
           class="euiSideNavItemButton__label"
         >
@@ -40,9 +38,7 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span
-        class="euiSideNavItemButton__left"
-      >
+      <span>
         <span
           class="euiSideNavItemButton__label"
         >
@@ -65,9 +61,7 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span
-        class="euiSideNavItemButton__left"
-      >
+      <span>
         <span
           class="euiSideNavItemButton__label"
         >
@@ -90,9 +84,7 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
     <span
       class="euiSideNavItemButton__content"
     >
-      <span
-        class="euiSideNavItemButton__left"
-      >
+      <span>
         <span
           class="euiSideNavItemButton__label"
         >

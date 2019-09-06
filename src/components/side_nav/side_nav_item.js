@@ -87,7 +87,7 @@ export const EuiSideNavItem = ({
 
   const buttonContent = (
     <span className="euiSideNavItemButton__content">
-      <span className="euiSideNavItemButton__left">
+      <span>
         {buttonIcon}
         <span className="euiSideNavItemButton__label">{children}</span>
       </span>
