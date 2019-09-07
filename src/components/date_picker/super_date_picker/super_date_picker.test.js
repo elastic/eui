@@ -50,4 +50,57 @@ describe('EuiSuperDatePicker', () => {
     expect(instanceUpdatedRefresh.asyncInterval.isStopped).toBe(false);
     expect(componentRefresh.prop('isPaused')).toBe(false);
   });
+
+  test('Listen for consecutive super date picker refreshes', async () => {
+    jest.useFakeTimers();
+
+    const onRefresh = jest.fn();
+
+    const componentRefresh = mount(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        isPaused={false}
+        onRefresh={onRefresh}
+        refreshInterval={10}
+      />
+    );
+
+    const instanceRefresh = componentRefresh.instance();
+
+    jest.advanceTimersByTime(10);
+    await instanceRefresh.asyncInterval.__pendingFn;
+    jest.advanceTimersByTime(10);
+    await instanceRefresh.asyncInterval.__pendingFn;
+
+    expect(onRefresh).toBeCalledTimes(2);
+
+    jest.useRealTimers();
+  });
+
+  test('Switching refresh interval to pause should stop onRefresh being called.', async () => {
+    jest.useFakeTimers();
+
+    const onRefresh = jest.fn();
+
+    const componentRefresh = mount(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        isPaused={false}
+        onRefresh={onRefresh}
+        refreshInterval={10}
+      />
+    );
+
+    const instanceRefresh = componentRefresh.instance();
+
+    jest.advanceTimersByTime(10);
+    await instanceRefresh.asyncInterval.__pendingFn;
+    componentRefresh.setProps({ isPaused: true, refreshInterval: 0 });
+    jest.advanceTimersByTime(10);
+    await instanceRefresh.asyncInterval.__pendingFn;
+
+    expect(onRefresh).toBeCalledTimes(1);
+
+    jest.useRealTimers();
+  });
 });

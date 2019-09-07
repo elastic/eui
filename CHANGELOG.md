@@ -7,6 +7,7 @@
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
 - Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
 - Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
+- Improved fix for `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2298](https://github.com/elastic/eui/pull/2298))
 
 **Bug fixes**
 
