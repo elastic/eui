@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { EuiLink } from '../link';
 
-const limitBreadcrumbs = (breadcrumbs, max) => {
+const limitBreadcrumbs = (breadcrumbs, max, showPopover) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
@@ -30,19 +30,34 @@ const limitBreadcrumbs = (breadcrumbs, max) => {
     }
   }
 
+  const EuiBreadcrumbCollapsed = () => {
+    if (showPopover) {
+      console.log(breadcrumbs.showPopover);
+      return (
+        <Fragment>
+          <button className="euiBreadcrumb euiBreadcrumb--collapsed">
+            &#8230;
+          </button>
+          <EuiBreadcrumbSeparator />
+        </Fragment>
+      );
+    } else {
+      console.log(breadcrumbs.showPopover);
+      return (
+        <Fragment>
+          <div className="euiBreadcrumb euiBreadcrumb--collapsed">&#8230;</div>
+          <EuiBreadcrumbSeparator />
+        </Fragment>
+      );
+    }
+  };
+
   if (max < breadcrumbs.length) {
     breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
   }
 
   return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
 };
-
-const EuiBreadcrumbCollapsed = () => (
-  <Fragment>
-    <div className="euiBreadcrumb euiBreadcrumb--collapsed">&#8230;</div>
-    <EuiBreadcrumbSeparator />
-  </Fragment>
-);
 
 const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
@@ -52,6 +67,7 @@ export const EuiBreadcrumbs = ({
   responsive,
   truncate,
   max,
+  showPopover,
   ...rest
 }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
@@ -83,6 +99,7 @@ export const EuiBreadcrumbs = ({
           {text}
         </span>
       );
+      // if limitedBreadcrumbs && displayHidden
     } else {
       link = (
         <EuiLink
@@ -112,7 +129,7 @@ export const EuiBreadcrumbs = ({
   });
 
   const limitedBreadcrumbs = max
-    ? limitBreadcrumbs(breadcrumbElements, max)
+    ? limitBreadcrumbs(breadcrumbElements, max, showPopover)
     : breadcrumbElements;
 
   const classes = classNames('euiBreadcrumbs', className, {
@@ -149,6 +166,12 @@ EuiBreadcrumbs.propTypes = {
   max: PropTypes.number,
 
   /**
+   * Allows the entire list of breadcrumbs to be shown when
+   * the ellipsis is clicked in responsive mode.
+   */
+  showPopover: PropTypes.bool,
+
+  /**
    * The array of individual breadcrumbs, takes the following props.
    * `text` (node) (required): visible label of the breadcrumb,
    * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
@@ -167,5 +190,6 @@ EuiBreadcrumbs.propTypes = {
 EuiBreadcrumbs.defaultProps = {
   responsive: true,
   truncate: true,
+  showPopover: false,
   max: 5,
 };
