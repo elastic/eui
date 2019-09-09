@@ -9,6 +9,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -38,6 +39,7 @@ exports[`EuiRange allows value prop to accept empty string 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -73,13 +75,14 @@ exports[`EuiRange is rendered 1`] = `
 
 exports[`EuiRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange"
+  class="euiRangeWrapper euiRangeWrapper--compressed euiRange"
 >
   <div
     class="euiRangeTrack"
   >
     <input
-      class="euiRangeSlider"
+      class="euiRangeSlider euiRangeSlider--compressed"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -97,13 +100,6 @@ exports[`EuiRange props custom ticks should render 1`] = `
     class="euiRangeTrack"
     style="margin-right:0.6em"
   >
-    <input
-      class="euiRangeSlider euiRangeSlider--hasTicks"
-      max="100"
-      min="0"
-      step="1"
-      type="range"
-    />
     <div
       class="euiRangeTicks"
     >
@@ -128,6 +124,14 @@ exports[`EuiRange props custom ticks should render 1`] = `
         100kb
       </button>
     </div>
+    <input
+      class="euiRangeSlider euiRangeSlider--hasTicks"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+    />
   </div>
 </div>
 `;
@@ -142,6 +146,7 @@ exports[`EuiRange props disabled should render 1`] = `
     <input
       class="euiRangeSlider"
       disabled=""
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -160,11 +165,44 @@ exports[`EuiRange props fullWidth should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
       type="range"
     />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props input only should render 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <div
+        class="euiFormControlLayout"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="aria-label"
+            class="euiFieldNumber euiRangeInput euiRangeInput--max"
+            data-test-subj="test subject string"
+            max="10"
+            min="1"
+            name="name"
+            step="1"
+            type="number"
+            value="8"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -227,6 +265,7 @@ exports[`EuiRange props labels should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"
@@ -248,13 +287,6 @@ exports[`EuiRange props levels should render 1`] = `
   <div
     class="euiRangeTrack"
   >
-    <input
-      class="euiRangeSlider"
-      max="100"
-      min="0"
-      step="1"
-      type="range"
-    />
     <div
       class="euiRangeLevels"
     >
@@ -267,6 +299,14 @@ exports[`EuiRange props levels should render 1`] = `
         style="width:80%"
       />
     </div>
+    <input
+      class="euiRangeSlider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+    />
   </div>
 </div>
 `;
@@ -278,14 +318,6 @@ exports[`EuiRange props range should render 1`] = `
   <div
     class="euiRangeTrack"
   >
-    <input
-      class="euiRangeSlider euiRangeSlider--hasRange"
-      max="100"
-      min="0"
-      step="1"
-      type="range"
-      value="8"
-    />
     <div
       class="euiRangeHighlight"
     >
@@ -294,6 +326,15 @@ exports[`EuiRange props range should render 1`] = `
         style="margin-left:0%;width:8%"
       />
     </div>
+    <input
+      class="euiRangeSlider euiRangeSlider--hasRange"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="8"
+    />
   </div>
 </div>
 `;
@@ -306,13 +347,6 @@ exports[`EuiRange props ticks should render 1`] = `
     class="euiRangeTrack"
     style="margin-right:0.6em"
   >
-    <input
-      class="euiRangeSlider euiRangeSlider--hasTicks"
-      max="100"
-      min="0"
-      step="1"
-      type="range"
-    />
     <div
       class="euiRangeTicks"
       style="margin:0 -8.333333333333332%;left:0;right:0"
@@ -372,6 +406,14 @@ exports[`EuiRange props ticks should render 1`] = `
         100
       </button>
     </div>
+    <input
+      class="euiRangeSlider euiRangeSlider--hasTicks"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+    />
   </div>
 </div>
 `;
@@ -385,6 +427,7 @@ exports[`EuiRange props value should render 1`] = `
   >
     <input
       class="euiRangeSlider"
+      id="generated-id"
       max="100"
       min="0"
       step="1"

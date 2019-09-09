@@ -4,6 +4,9 @@ import classNames from 'classnames';
 
 import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
+import { EuiInputPopover } from '../../popover';
+import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput } from './range_input';
@@ -15,15 +18,21 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 export class EuiDualRange extends Component {
   state = {
+    id: this.props.id || makeId(),
     hasFocus: false,
     rangeSliderRefAvailable: false,
+    isPopoverOpen: false,
+    rangeWidth: null,
   };
 
+  maxNode = null;
+  minNode = null;
   rangeSliderRef = null;
   handleRangeSliderRefUpdate = ref => {
     this.rangeSliderRef = ref;
     this.setState({
       rangeSliderRefAvailable: !!ref,
+      rangeWidth: !!ref ? ref.clientWidth : null,
     });
   };
 
@@ -201,7 +210,7 @@ export class EuiDualRange extends Component {
     this._handleOnChange(this.lowerValue, upper, e);
   };
 
-  calculateThumbPositionStyle = value => {
+  calculateThumbPositionStyle = (value, width) => {
     // Calculate the left position based on value
     const decimal =
       (value - this.props.min) / (this.props.max - this.props.min);
@@ -210,7 +219,11 @@ export class EuiDualRange extends Component {
     valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
     const EUI_THUMB_SIZE = 16;
-    const thumbToTrackRatio = EUI_THUMB_SIZE / this.rangeSliderRef.clientWidth;
+    const trackWidth =
+      this.props.showInput === 'only' && !!width
+        ? width
+        : this.rangeSliderRef.clientWidth;
+    const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
     const trackPositionScale = (1 - thumbToTrackRatio) * 100;
     return { left: `${valuePosition * trackPositionScale}%` };
   };
@@ -221,13 +234,56 @@ export class EuiDualRange extends Component {
     });
   };
 
+  onInputFocus = () => {
+    this.setState({
+      isPopoverOpen: true,
+    });
+  };
+
+  onInputBlur = e => {
+    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+      this.closePopover();
+    }
+  };
+
+  closePopover = () => {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  };
+
+  onResize = width => {
+    this.setState({
+      rangeWidth: width,
+    });
+  };
+
+  inputRef = (node, ref) => {
+    if (!this.props.showInput !== 'inputWithPopover') return;
+
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this[ref] != null) {
+      this[ref].removeEventListener('focusout', this.onInputBlur);
+    }
+
+    this[ref] = node;
+
+    if (this[ref]) {
+      this[ref].addEventListener('focusout', this.onInputBlur);
+    }
+  };
+
   render() {
     const {
       className,
       compressed,
       disabled,
       fullWidth,
-      id,
+      readOnly,
+      id: propsId,
       max,
       min,
       name,
@@ -245,34 +301,78 @@ export class EuiDualRange extends Component {
       ...rest
     } = this.props;
 
-    const classes = classNames('euiDualRange', className);
-    const digitTolerance = Math.max(String(min).length, String(max).length);
+    const { id } = this.state;
 
-    return (
-      <EuiRangeWrapper className={classes} fullWidth={fullWidth}>
-        {showInput && (
-          <EuiRangeInput
-            digitTolerance={digitTolerance}
-            side="min"
-            min={min}
-            max={Number(this.upperValue)}
-            step={step}
-            value={this.lowerValue}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleLowerInputChange}
-            onKeyDown={this.handleInputKeyDown}
-            name={`${name}-minValue`}
-            aria-describedby={this.props['aria-describedby']}
-            aria-label={this.props['aria-label']}
-          />
-        )}
+    const digitTolerance = Math.max(String(min).length, String(max).length);
+    const showInputOnly = showInput === 'inputWithPopover';
+    const canShowDropdown = showInputOnly && !readOnly && !disabled;
+
+    const minInput = !!showInput ? (
+      <EuiRangeInput
+        digitTolerance={digitTolerance}
+        side="min"
+        min={min}
+        max={Number(this.upperValue)}
+        step={step}
+        value={this.lowerValue}
+        disabled={disabled}
+        compressed={compressed}
+        onChange={this.handleLowerInputChange}
+        onKeyDown={this.handleInputKeyDown}
+        name={`${name}-minValue`}
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        readOnly={readOnly}
+        autoSize={!showInputOnly}
+        fullWidth={!!showInputOnly && fullWidth}
+        controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'minNode')}
+      />
+    ) : (
+      undefined
+    );
+
+    const maxInput = !!showInput ? (
+      <EuiRangeInput
+        digitTolerance={digitTolerance}
+        side="max"
+        min={Number(this.lowerValue)}
+        max={max}
+        step={step}
+        value={this.upperValue}
+        disabled={disabled}
+        compressed={compressed}
+        onChange={this.handleUpperInputChange}
+        onKeyDown={this.handleInputKeyDown}
+        name={`${name}-maxValue`}
+        aria-describedby={this.props['aria-describedby']}
+        aria-label={this.props['aria-label']}
+        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        readOnly={readOnly}
+        autoSize={!showInputOnly}
+        fullWidth={!!showInputOnly && fullWidth}
+        controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'maxNode')}
+      />
+    ) : (
+      undefined
+    );
+
+    const classes = classNames('euiDualRange', className);
+    const theRange = (
+      <EuiRangeWrapper
+        className={classes}
+        fullWidth={fullWidth}
+        compressed={compressed}>
+        {!showInputOnly && minInput}
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>
             {min}
           </EuiRangeLabel>
         )}
         <EuiRangeTrack
+          compressed={compressed}
           disabled={disabled}
           max={max}
           min={min}
@@ -283,6 +383,18 @@ export class EuiDualRange extends Component {
           levels={levels}
           onChange={this.handleSliderChange}
           value={value}>
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              hasFocus={this.state.hasFocus}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(this.lowerValue)}
+              upperValue={Number(this.upperValue)}
+            />
+          )}
+
           <EuiRangeSlider
             className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
@@ -292,6 +404,7 @@ export class EuiDualRange extends Component {
             max={max}
             step={step}
             disabled={disabled}
+            compressed={compressed}
             onChange={this.handleSliderChange}
             style={style}
             showTicks={showTicks}
@@ -310,11 +423,14 @@ export class EuiDualRange extends Component {
                 value={this.lowerValue}
                 disabled={disabled}
                 showTicks={showTicks}
-                showInput={showInput}
+                showInput={!!showInput}
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.lowerValue || min)}
+                style={this.calculateThumbPositionStyle(
+                  this.lowerValue || min,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -324,48 +440,50 @@ export class EuiDualRange extends Component {
                 value={this.upperValue}
                 disabled={disabled}
                 showTicks={showTicks}
-                showInput={showInput}
+                showInput={!!showInput}
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={() => this.toggleHasFocus(true)}
                 onBlur={() => this.toggleHasFocus(false)}
-                style={this.calculateThumbPositionStyle(this.upperValue || max)}
+                style={this.calculateThumbPositionStyle(
+                  this.upperValue || max,
+                  this.state.rangeWidth
+                )}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
             </React.Fragment>
           )}
-
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              hasFocus={this.state.hasFocus}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-            />
-          )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
-        {showInput && (
-          <EuiRangeInput
-            digitTolerance={digitTolerance}
-            side="max"
-            min={Number(this.lowerValue)}
-            max={max}
-            step={step}
-            value={this.upperValue}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleUpperInputChange}
-            onKeyDown={this.handleInputKeyDown}
-            name={`${name}-maxValue`}
-            aria-describedby={this.props['aria-describedby']}
-            aria-label={this.props['aria-label']}
-          />
-        )}
+        {!showInputOnly && maxInput}
       </EuiRangeWrapper>
     );
+
+    const thePopover = showInputOnly ? (
+      <EuiInputPopover
+        className="euiRange__popover"
+        input={
+          <EuiFormControlLayoutDelimited
+            startControl={minInput}
+            endControl={maxInput}
+            isDisabled={disabled}
+            fullWidth={fullWidth}
+            compressed={compressed}
+            readOnly={readOnly}
+          />
+        }
+        fullWidth={fullWidth}
+        isOpen={this.state.isPopoverOpen}
+        closePopover={this.closePopover}
+        disableFocusTrap={true}
+        onPanelResize={this.onResize}>
+        {theRange}
+      </EuiInputPopover>
+    ) : (
+      undefined
+    );
+
+    return thePopover || theRange;
   }
 }
 
@@ -384,14 +502,16 @@ EuiDualRange.propTypes = {
   fullWidth: PropTypes.bool,
   compressed: PropTypes.bool,
   disabled: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * Shows static min/max labels on the sides of the range slider
    */
   showLabels: PropTypes.bool,
   /**
-   * Displays a input controls for direct manipulation
+   * Pass `true` to displays an extra input control for direct manipulation.
+   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
    */
-  showInput: PropTypes.bool,
+  showInput: PropTypes.oneOf([true, false, 'inputWithPopover']),
   /**
    * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
    */

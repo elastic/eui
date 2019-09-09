@@ -23,6 +23,7 @@ export const EuiFieldNumber = ({
   append,
   inputRef,
   readOnly,
+  controlOnly,
   ...rest
 }) => {
   const classes = classNames('euiFieldNumber', className, {
@@ -32,6 +33,28 @@ export const EuiFieldNumber = ({
     'euiFieldNumber--inGroup': prepend || append,
     'euiFieldNumber-isLoading': isLoading,
   });
+
+  const control = (
+    <EuiValidatableControl isInvalid={isInvalid}>
+      <input
+        type="number"
+        id={id}
+        min={min}
+        max={max}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        className={classes}
+        ref={inputRef}
+        {...rest}
+      />
+    </EuiValidatableControl>
+  );
+
+  if (controlOnly) {
+    return control;
+  }
 
   return (
     <EuiFormControlLayout
@@ -43,21 +66,7 @@ export const EuiFieldNumber = ({
       prepend={prepend}
       append={append}
       inputId={id}>
-      <EuiValidatableControl isInvalid={isInvalid}>
-        <input
-          type="number"
-          id={id}
-          min={min}
-          max={max}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          className={classes}
-          ref={inputRef}
-          {...rest}
-        />
-      </EuiValidatableControl>
+      {control}
     </EuiFormControlLayout>
   );
 };
@@ -114,6 +123,11 @@ EuiFieldNumber.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Completely removes form control layout wrapper and ignores
+   * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
+   */
+  controlOnly: PropTypes.bool,
 };
 
 EuiFieldNumber.defaultProps = {
