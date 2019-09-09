@@ -55,6 +55,7 @@ declare module '@elastic/eui' {
   export type FilterChecked = 'on' | 'off';
   export interface EuiFilterSelectItemProps {
     checked?: FilterChecked;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   }
 
   // eslint-disable-next-line react/prefer-stateless-function

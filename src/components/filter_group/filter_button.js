@@ -136,7 +136,7 @@ EuiFilterButton.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * Should the button grow to fill it's container, best used for dropdown buttons
+   * Should the button grow to fill its container, best used for dropdown buttons
    */
   grow: PropTypes.bool,
   /**

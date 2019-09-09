@@ -6,7 +6,7 @@
 
 /**
  * 1. Footer is always at the bottom.
- * 2. Fix for IE where the image correctly resizes in width but doesn't collapse it's height
+ * 2. Fix for IE where the image correctly resizes in width but doesn't collapse its height
       (https://github.com/philipwalton/flexbugs/issues/75#issuecomment-134702421)
  * 3. Horizontal layouts should always top left align no matter the textAlign prop
  */

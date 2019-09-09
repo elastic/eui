@@ -218,7 +218,7 @@
   &.euiText--constrainedWidth {
     max-width: $euiTextConstrainedMaxWidth;
     // If the max-width is way too short of the width of the container,
-    // at least make it 2/3 of it's parent
+    // at least make it 2/3 of its parent
     min-width: 75%;
   }
 
