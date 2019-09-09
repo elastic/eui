@@ -4,6 +4,7 @@
 
 - Updated TS def for `EuiFilterSelect` ([#2291](https://github.com/elastic/eui/pull/2291))
 - Fixed alignment of icons and label in `EuiSideNavItem` ([#2297](https://github.com/elastic/eui/pull/2297))
+- Fixed logic in `EuiContextMenu` to account for index of `0` ([#2304](https://github.com/elastic/eui/pull/2304))
 
 ## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
 
