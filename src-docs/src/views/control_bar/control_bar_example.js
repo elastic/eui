@@ -198,13 +198,6 @@ export const ControlBarExample = {
             content well intended to provide additional view controls and
             actions.
           </p>
-          <p>
-            The <EuiCode>ControlBar</EuiCode> accepts an array of
-            <EuiCode>controlTypes</EuiCode> that can be arranged virtually any
-            way you&apos;d like by using any of following
-            <EuiCode>controlTypes</EuiCode>. The controlTypes will be ordered
-            the same way they are in the array you provide.
-          </p>
           <h2>Mobile Usage</h2>
           The <EuiCode>ControlBar</EuiCode> is responsive in the sense that it
           utilizes flexbox. However, it makes no attempts to reorganize the
@@ -213,6 +206,47 @@ export const ControlBarExample = {
           <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take smaller
           screens into consideration when choosing to display on smaller
           screens.
+        </div>
+      ),
+      props: { EuiControlBar },
+      snippet: controlBarSnippet,
+      demo: <ControlBar />,
+    },
+    {
+      title: 'Using Tabs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: tabsBarSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: tabsBarHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            This example deomnstrates the use of tabs and uses the size
+            <EuiCode>size=&quot;m&quot;</EuiCode>.
+          </p>
+        </div>
+      ),
+      props: { EuiControlBar },
+      snippet: tabsBarSnippet,
+      demo: <ControlBarWithTabs />,
+    },
+    {
+      title: 'ControlTypes',
+      text: (
+        <div>
+          <p>
+            The <EuiCode>ControlBar</EuiCode> accepts an array of
+            <EuiCode>controlTypes</EuiCode> that can be arranged virtually any
+            way you&apos;d like by using any of following
+            <EuiCode>controlTypes</EuiCode>. The controlTypes will be ordered
+            the same way they are in the array you provide.
+          </p>
           <h3>Button Control</h3>
           <EuiBasicTable items={buttonPropsTable} columns={tableColumns} />
           <h3>Tab Control</h3>
@@ -249,33 +283,6 @@ export const ControlBarExample = {
           </p>
         </div>
       ),
-      props: { EuiControlBar },
-      snippet: controlBarSnippet,
-      demo: <ControlBar />,
-    },
-    {
-      title: 'Using Tabs',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: tabsBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tabsBarHtml,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            This example deomnstrates the use of tabs and uses the size
-            <EuiCode>size=&quot;m&quot;</EuiCode>.
-          </p>
-        </div>
-      ),
-      props: { EuiControlBar },
-      snippet: tabsBarSnippet,
-      demo: <ControlBarWithTabs />,
     },
   ],
 };

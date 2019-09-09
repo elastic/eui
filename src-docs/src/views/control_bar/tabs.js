@@ -146,7 +146,8 @@ export class ControlBarWithTabs extends React.Component {
             <EuiControlBar
               controls={controls}
               size="m"
-              showContent={this.state.contentIsVisible}>
+              showContent={this.state.contentIsVisible}
+              showOnMobile>
               <div style={{ padding: '1rem' }}>
                 {this.state.tabContent !== '' ? (
                   <EuiText>{this.state.tabContent}</EuiText>

@@ -168,6 +168,7 @@
   align-items: center;
   justify-content: center;
   color: $controlBarText;
+  word-wrap: none;
 
   &:hover {
     text-decoration: underline;
@@ -208,5 +209,11 @@
     .euiControlBar__buttonIcon .euiIcon--#{$colorName} {
       color: makeHighContrastColor($colorValue, $controlBarBackground);
     }
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiControlBar:not(.euiControlBar--showOnMobile) {
+    display: none;
   }
 }

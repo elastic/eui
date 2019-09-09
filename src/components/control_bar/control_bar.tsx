@@ -103,6 +103,11 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      * Set the offset from the left side of the screen to account for Kibana's left-hand navigation menu.
      */
     leftOffset?: 's' | 'l' | undefined;
+    /**
+     * The control bar is hidden on mobile by default. Use the `showOnMobile` prop to force it's display on mobile screens.
+     * You'll need to ensure that the content you place into the bar renders as expected on mobile.
+     */
+    showOnMobile?: boolean;
   };
 
 interface EuiControlBarState {
@@ -125,6 +130,7 @@ export class EuiControlBar extends Component<
       controls,
       size,
       leftOffset,
+      showOnMobile,
       ...rest
     } = this.props;
 
@@ -135,6 +141,7 @@ export class EuiControlBar extends Component<
       'euiControlBar--small': size === 's',
       'euiControlBar--navExpanded': leftOffset === 'l',
       'euiControlBar--navCollapsed': leftOffset === 's',
+      'euiControlBar--showOnMobile': showOnMobile,
     });
 
     const tabClasses = classnames('euiControlBar__tab', {
@@ -221,7 +228,7 @@ export class EuiControlBar extends Component<
           return (
             <EuiText
               color={color ? color : 'ghost'}
-              className="euiControlBar__euiText"
+              className="euiControlBar__euiText eui-textTruncate"
               key={id + index}
               size="s"
               {...rest}>
@@ -241,7 +248,9 @@ export class EuiControlBar extends Component<
               aria-label={`Control Bar - ${label}`}
               onClick={event => handleTabClick(control, event)}
               {...rest}>
-              <EuiText size="s">{label}</EuiText>
+              <EuiText size="s" className="eui-textTruncate">
+                {label}
+              </EuiText>
             </button>
           );
         }
