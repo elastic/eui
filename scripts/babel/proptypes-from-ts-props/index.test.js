@@ -2447,6 +2447,31 @@ FooComponent.propTypes = {
   bar: PropTypes.number
 };`);
       });
+
+      it('attaches proptypes to components returned by React.forwardRef', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface FooProps {
+  foo: string;
+  bar?: number;
+}
+const FooComponent = React.forwardRef<HTMLDivElement, FooProps>(() => {
+  return (<div>Hello World</div>);
+})`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+const FooComponent = React.forwardRef(() => {
+  return <div>Hello World</div>;
+});
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
     });
 
   });

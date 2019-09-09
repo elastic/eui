@@ -99,7 +99,7 @@
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-inline-react-svg": "^1.0.1",
     "babel-plugin-pegjs-inline-precompile": "^0.1.0",
-    "babel-plugin-react-docgen": "^2.0.0",
+    "babel-plugin-react-docgen": "^3.1.0",
     "babel-template": "^6.26.0",
     "cache-loader": "^2.0.1",
     "chai": "^4.1.2",
