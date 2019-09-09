@@ -55,6 +55,7 @@ EuiRangeInput.propTypes = {
   side: PropTypes.oneOf(['min', 'max']),
   fullWidth: PropTypes.bool,
   autoSize: PropTypes.bool,
+  inputRef: PropTypes.func,
 };
 EuiRangeInput.defaultProps = {
   side: 'max',

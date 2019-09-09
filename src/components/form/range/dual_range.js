@@ -6,7 +6,6 @@ import { keyCodes } from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import { EuiFormControlLayoutDelimited } from '../form_control_layout';
-import { EuiResizeObserver } from '../../observer/resize_observer';
 import makeId from '../form_row/make_id';
 
 import { EuiRangeHighlight } from './range_highlight';
@@ -26,6 +25,8 @@ export class EuiDualRange extends Component {
     rangeWidth: null,
   };
 
+  maxNode = null;
+  minNode = null;
   rangeSliderRef = null;
   handleRangeSliderRefUpdate = ref => {
     this.rangeSliderRef = ref;
@@ -253,10 +254,26 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onResize = ({ width }) => {
+  onResize = width => {
     this.setState({
       rangeWidth: width,
     });
+  };
+
+  inputRef = (node, ref) => {
+    if (!this.props.showInput !== 'inputWithPopover') return;
+
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this[ref] != null) {
+      this[ref].removeEventListener('focusout', this.onInputBlur);
+    }
+
+    this[ref] = node;
+
+    if (this[ref]) {
+      this[ref].addEventListener('focusout', this.onInputBlur);
+    }
   };
 
   render() {
@@ -306,11 +323,11 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
-        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'minNode')}
       />
     ) : (
       undefined
@@ -332,11 +349,11 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
-        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'maxNode')}
       />
     ) : (
       undefined
@@ -458,10 +475,9 @@ export class EuiDualRange extends Component {
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
-        disableFocusTrap={true}>
-        <EuiResizeObserver onResize={this.onResize}>
-          {resizeRef => <div ref={resizeRef}>{theRange}</div>}
-        </EuiResizeObserver>
+        disableFocusTrap={true}
+        onPanelResize={this.onResize}>
+        {theRange}
       </EuiInputPopover>
     ) : (
       undefined
