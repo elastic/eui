@@ -72,7 +72,7 @@ export class ControlBarWithTabs extends React.Component {
   };
 
   render() {
-    const textLink = <EuiLink href="#">src / component / roller.tsx</EuiLink>;
+    const textLink = <EuiLink href="#">A sample link</EuiLink>;
 
     const controls = [
       {

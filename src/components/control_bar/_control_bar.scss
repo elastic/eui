@@ -66,10 +66,12 @@
   width: 100%;
   display: flex;
   align-items: center;
+  overflow-x: auto;
 }
 
 .euiControlBar__content {
   @include euiScrollBar;
+  overflow-y: scroll;
   width: 100%;
   height: calc(100% - #{$controlBarInitialHeight});
   background-color: $euiColorLightestShade;
@@ -130,6 +132,7 @@
   border-radius: .125rem;
   height: $euiSizeXL;
   margin-left: $euiSizeXS;
+  flex-shrink: 0;
 
   &:enabled:hover {
     transform: translateY(0);

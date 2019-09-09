@@ -157,7 +157,8 @@ export default class extends Component {
             </EuiFlexGroup>
             <EuiControlBar
               controls={codeControls}
-              showContent={this.state.contentIsVisible}>
+              showContent={this.state.contentIsVisible}
+              showOnMobile>
               <EuiPanel style={{ maxWidth: '60rem', margin: '2rem auto' }}>
                 <EuiText>
                   <h1>1984</h1>
