@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.8.1`.
+
+## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)
+
 **Bug fixes**
 
 - Updated TS def for `EuiFilterSelect` ([#2291](https://github.com/elastic/eui/pull/2291))
