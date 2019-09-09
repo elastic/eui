@@ -8,3 +8,5 @@ export {
 export { GuidePage, GuidePageChrome } from './guide_page';
 
 export { GuideSection, GuideSectionTypes } from './guide_section';
+
+export { withTheme } from './with_theme';

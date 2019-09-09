@@ -28,7 +28,7 @@
 }
 
 // Similar to above, but uses the light or dark color based
-// on whether it's the light or darkt theme
+// on whether it's the light or dark theme
 @function lightOrDarkTheme($lightColor, $darkColor) {
   @if (lightness($euiTextColor) < 50) {
     @return $lightColor;

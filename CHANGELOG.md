@@ -1,12 +1,21 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Fixed alignment of icons and label in `EuiSideNavItem` ([#2297](https://github.com/elastic/eui/pull/2297))
+- Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
+
+## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
+
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
-- Added hover and focus states when allowFullScreen is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
+- Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
+- Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
+- Improved fix for `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2298](https://github.com/elastic/eui/pull/2298))
 
 **Bug fixes**
 
 - Removed extra right side margin in `EuiSuperDatePicker` ([#2236](https://github.com/elastic/eui/pull/2236))
-- Fix incorrect `onClick` type for `EuiButtonEmpty` ([#2282](https://github.com/elastic/eui/pull/2282))
+- Fixed incorrect `onClick` type for `EuiButtonEmpty` ([#2282](https://github.com/elastic/eui/pull/2282))
+- Fixed compilation script to remove all TypeScript definition exports from built JS assets ([#2279](https://github.com/elastic/eui/pull/2279))
+- Fixed output extension for `dist` charts theme module ([#2294](https://github.com/elastic/eui/pull/2294))
 
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 
@@ -703,6 +712,12 @@
 **Breaking changes**
 
 - Made `or` a reserved keyword in `EuiQuery`'s syntax ([#1204](https://github.com/elastic/eui/pull/1204))
+
+## [`6.10.9`](https://github.com/elastic/eui/tree/v6.10.9)
+
+**Bug fixes**
+
+- Bumped `lodash` version to `elastic/lodash@3.10.1-kibana3` ([#2280](https://github.com/elastic/eui/issues/2280))
 
 ## [`6.10.8`](https://github.com/elastic/eui/tree/v6.10.8)
 
