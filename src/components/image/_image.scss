@@ -18,6 +18,10 @@
   }
 
   &.euiImage--allowFullScreen {
+    &:focus .euiImage__img {
+      @include euiFocusRing
+    }
+
     &:not(.euiImage--hasShadow):hover,
     &:not(.euiImage--hasShadow):focus {
       .euiImage__img {
@@ -89,17 +93,26 @@
 
 // The FullScreen image that optionally pops up on click.
 .euiImage-isFullScreen {
+  position: relative;
   max-height: 80vh;
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
+
+  .euiImage-isFullScreen__icon {
+    position: absolute;
+    right: $euiSize;
+    top: $euiSize;
+  }
 
   .euiImage-isFullScreen__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 
   &:hover .euiImage-isFullScreen__img {
+    @include euiSlightShadowHover;
     cursor: pointer;
   }
 }

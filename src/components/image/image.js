@@ -109,6 +109,12 @@ export class EuiImage extends Component {
               className="euiImage-isFullScreen">
               <img src={url} className="euiImage-isFullScreen__img" alt={alt} />
               {optionalCaption}
+
+              <EuiIcon
+                type="cross"
+                color={fullScreenIconColorMap[fullScreenIconColor]}
+                className="euiImage-isFullScreen__icon"
+              />
             </figure>
           </button>
         </EuiFocusTrap>
