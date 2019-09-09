@@ -44,7 +44,8 @@ export class EuiRange extends Component {
 
   onInputBlur = e => {
     // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
+    const relatedTarget =
+      e.relatedTarget || e.explicitOriginalTarget || document.activeElement;
     if (!relatedTarget || relatedTarget.id !== this.state.id) {
       this.closePopover();
     }
