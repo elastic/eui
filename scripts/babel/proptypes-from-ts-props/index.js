@@ -9,15 +9,12 @@ const importedDefinitionsCache = new Map();
 
 // react-docgen does not understand typescript annotations
 function stripTypeScript(filename, ast) {
-  return babelCore.transform(
-    babelCore.transformFromAst(ast).code,
-    {
-      filename: filename,
-      babelrc: false,
-      presets: ['@babel/typescript'],
-      plugins: ['@babel/plugin-syntax-dynamic-import'],
-    }
-  ).code;
+  return babelCore.transform(babelCore.transformFromAst(ast).code, {
+    filename: filename,
+    babelrc: false,
+    presets: ['@babel/typescript'],
+    plugins: ['@babel/plugin-syntax-dynamic-import'],
+  }).code;
 }
 
 // .ts file could import types from a .tsx file, so force nested imports to parse JSX
@@ -64,15 +61,15 @@ function resolveArrayToPropTypes(node, state) {
     // Array with typed elements
     // PropTypes.arrayOf()
     // Array type only has one type argument
-    const { params: [arrayType] } = typeParameters;
+    const {
+      params: [arrayType],
+    } = typeParameters;
     return types.callExpression(
       types.memberExpression(
         types.identifier('PropTypes'),
         types.identifier('arrayOf')
       ),
-      [
-        getPropTypesForNode(arrayType, false, state)
-      ]
+      [getPropTypesForNode(arrayType, false, state)]
     );
   }
 }
@@ -101,9 +98,7 @@ function resolveArrayTypeToPropTypes(node, state) {
         types.identifier('PropTypes'),
         types.identifier('arrayOf')
       ),
-      [
-        getPropTypesForNode(elementType, false, state)
-      ]
+      [getPropTypesForNode(elementType, false, state)]
     );
   }
 }
@@ -138,7 +133,10 @@ function resolveIdentifierToPropTypes(node, state) {
   }
 
   // resolve React.* identifiers
-  if (identifier.type === 'TSQualifiedName' && identifier.left.name === 'React') {
+  if (
+    identifier.type === 'TSQualifiedName' &&
+    identifier.left.name === 'React'
+  ) {
     return resolveIdentifierToPropTypes(identifier.right, state);
   }
 
@@ -165,18 +163,32 @@ function resolveIdentifierToPropTypes(node, state) {
   }
 
   if (identifier.name === 'Array') return resolveArrayToPropTypes(node, state);
-  if (identifier.name === 'MouseEventHandler') return buildPropTypePrimitiveExpression(types, 'func');
-  if (identifier.name === 'Function') return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'MouseEventHandler')
+    return buildPropTypePrimitiveExpression(types, 'func');
+  if (identifier.name === 'Function')
+    return buildPropTypePrimitiveExpression(types, 'func');
   if (identifier.name === 'ExclusiveUnion') {
     // We use ExclusiveUnion at the top level to exclusively discriminate between types
     // propTypes itself must be an object so merge the union sets together as an intersection
 
     // Any types that are optional or non-existant on one side must be optional after the union
-    const aPropType = getPropTypesForNode(node.typeParameters.params[0], true, state);
-    const bPropType = getPropTypesForNode(node.typeParameters.params[1], true, state);
+    const aPropType = getPropTypesForNode(
+      node.typeParameters.params[0],
+      true,
+      state
+    );
+    const bPropType = getPropTypesForNode(
+      node.typeParameters.params[1],
+      true,
+      state
+    );
 
-    const propsOnA = types.isCallExpression(aPropType) ? aPropType.arguments[0].properties : [];
-    const propsOnB = types.isCallExpression(bPropType) ? bPropType.arguments[0].properties : [];
+    const propsOnA = types.isCallExpression(aPropType)
+      ? aPropType.arguments[0].properties
+      : [];
+    const propsOnB = types.isCallExpression(bPropType)
+      ? bPropType.arguments[0].properties
+      : [];
 
     // optional props is any prop that is optional or non-existant on one side
     const optionalProps = new Set();
@@ -184,7 +196,8 @@ function resolveIdentifierToPropTypes(node, state) {
       const property = propsOnA[i];
       const propertyName = property.key.name;
       const isOptional = !isPropTypeRequired(types, property.value);
-      const existsOnB = propsOnB.find(property => property.key.name === propertyName) != null;
+      const existsOnB =
+        propsOnB.find(property => property.key.name === propertyName) != null;
       if (isOptional || !existsOnB) {
         optionalProps.add(propertyName);
       }
@@ -193,7 +206,8 @@ function resolveIdentifierToPropTypes(node, state) {
       const property = propsOnB[i];
       const propertyName = property.key.name;
       const isOptional = !isPropTypeRequired(types, property.value);
-      const existsOnA = propsOnA.find(property => property.key.name === propertyName) != null;
+      const existsOnA =
+        propsOnA.find(property => property.key.name === propertyName) != null;
       if (isOptional || !existsOnA) {
         optionalProps.add(propertyName);
       }
@@ -260,19 +274,18 @@ function buildPropTypePrimitiveExpression(types, typeName) {
 }
 
 function isPropTypeRequired(types, propType) {
-  return types.isMemberExpression(propType) &&
+  return (
+    types.isMemberExpression(propType) &&
     types.isIdentifier(propType.property) &&
-    propType.property.name === 'isRequired';
+    propType.property.name === 'isRequired'
+  );
 }
 
 function makePropTypeRequired(types, propType) {
   // can't make literals required no matter how hard we try
   if (types.isLiteral(propType) === true) return propType;
 
-  return types.memberExpression(
-    propType,
-    types.identifier('isRequired')
-  );
+  return types.memberExpression(propType, types.identifier('isRequired'));
 }
 
 function makePropTypeOptional(types, propType) {
@@ -284,16 +297,20 @@ function makePropTypeOptional(types, propType) {
 }
 
 function areExpressionsIdentical(a, b) {
-  const aCode = babelCore.transformFromAst(babelCore.types.program([
-    babelCore.types.expressionStatement(
-      babelCore.types.removeComments(babelCore.types.cloneDeep(a))
-    )
-  ])).code;
-  const bCode = babelCore.transformFromAst(babelCore.types.program([
-    babelCore.types.expressionStatement(
-      babelCore.types.removeComments(babelCore.types.cloneDeep(b))
-    )
-  ])).code;
+  const aCode = babelCore.transformFromAst(
+    babelCore.types.program([
+      babelCore.types.expressionStatement(
+        babelCore.types.removeComments(babelCore.types.cloneDeep(a))
+      ),
+    ])
+  ).code;
+  const bCode = babelCore.transformFromAst(
+    babelCore.types.program([
+      babelCore.types.expressionStatement(
+        babelCore.types.removeComments(babelCore.types.cloneDeep(b))
+      ),
+    ])
+  ).code;
   return aCode === bCode;
 }
 
@@ -307,9 +324,7 @@ function convertLiteralToOneOf(types, literalNode) {
       types.identifier('PropTypes'),
       types.identifier('oneOf')
     ),
-    [
-      types.arrayExpression([ literalNode ])
-    ]
+    [types.arrayExpression([literalNode])]
   );
 }
 
@@ -328,7 +343,7 @@ function getPropTypesForNode(node, optional, state) {
   if (node.isAlreadyResolved === true) return node;
 
   let propType;
-  switch(node.type) {
+  switch (node.type) {
     // a type value by identifier
     case 'TSTypeReference':
       propType = resolveIdentifierToPropTypes(node, state);
@@ -368,59 +383,62 @@ function getPropTypesForNode(node, optional, state) {
       });
 
       // merge the resolved proptypes for each intersection member into one object, mergedProperties
-      const mergedProperties = usableNodes.reduce(
-        (mergedProperties, node) => {
-          const nodePropTypes = getPropTypesForNode(node, true, state);
+      const mergedProperties = usableNodes.reduce((mergedProperties, node) => {
+        const nodePropTypes = getPropTypesForNode(node, true, state);
 
-          // iterate over this type's members, adding them (and their comments) to `mergedProperties`
-          const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
-          for (let i = 0; i < typeProperties.length; i++) {
-            const typeProperty = typeProperties[i];
-            // this member may be duplicated between two shapes, e.g. Foo = { buzz: string } & Bar = { buzz: string }
-            // either or both may have leading comments and we want to forward all comments to the generated prop type
-            const leadingComments = [
-              ...(typeProperty.leadingComments || []),
-              ...((mergedProperties[typeProperty.key.name] ? mergedProperties[typeProperty.key.name].leadingComments : null) || []),
-            ];
+        // iterate over this type's members, adding them (and their comments) to `mergedProperties`
+        const typeProperties = nodePropTypes.arguments[0].properties; // properties on the ObjectExpression passed to PropTypes.shape()
+        for (let i = 0; i < typeProperties.length; i++) {
+          const typeProperty = typeProperties[i];
+          // this member may be duplicated between two shapes, e.g. Foo = { buzz: string } & Bar = { buzz: string }
+          // either or both may have leading comments and we want to forward all comments to the generated prop type
+          const leadingComments = [
+            ...(typeProperty.leadingComments || []),
+            ...((mergedProperties[typeProperty.key.name]
+              ? mergedProperties[typeProperty.key.name].leadingComments
+              : null) || []),
+          ];
 
-            let propTypeValue = typeProperty.value;
-            if (types.isLiteral(propTypeValue)) {
-              // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
-              propTypeValue = convertLiteralToOneOf(types, propTypeValue);
-            }
-
-            // if this property has already been found, the only action is to potentially change it to optional
-            if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
-              const existing = mergedProperties[typeProperty.key.name];
-              if (!areExpressionsIdentical(existing, typeProperty.value)) {
-                mergedProperties[typeProperty.key.name] = types.callExpression(
-                  types.memberExpression(
-                    types.identifier('PropTypes'),
-                    types.identifier('oneOfType'),
-                  ),
-                  [
-                    types.arrayExpression(
-                      [existing, propTypeValue]
-                    )
-                  ]
-                );
-
-                if (isPropTypeRequired(types, existing) && isPropTypeRequired(types, typeProperty.value)) {
-                  mergedProperties[typeProperty.key.name] = makePropTypeRequired(types, mergedProperties[typeProperty.key.name]);
-                }
-              }
-            } else {
-              // property hasn't been seen yet, add it
-              mergedProperties[typeProperty.key.name] = propTypeValue;
-            }
-
-            mergedProperties[typeProperty.key.name].leadingComments = leadingComments;
+          let propTypeValue = typeProperty.value;
+          if (types.isLiteral(propTypeValue)) {
+            // can't use a literal straight, wrap it with PropTypes.oneOf([ the_literal ])
+            propTypeValue = convertLiteralToOneOf(types, propTypeValue);
           }
 
-          return mergedProperties;
-        },
-        {}
-      );
+          // if this property has already been found, the only action is to potentially change it to optional
+          if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
+            const existing = mergedProperties[typeProperty.key.name];
+            if (!areExpressionsIdentical(existing, typeProperty.value)) {
+              mergedProperties[typeProperty.key.name] = types.callExpression(
+                types.memberExpression(
+                  types.identifier('PropTypes'),
+                  types.identifier('oneOfType')
+                ),
+                [types.arrayExpression([existing, propTypeValue])]
+              );
+
+              if (
+                isPropTypeRequired(types, existing) &&
+                isPropTypeRequired(types, typeProperty.value)
+              ) {
+                mergedProperties[typeProperty.key.name] = makePropTypeRequired(
+                  types,
+                  mergedProperties[typeProperty.key.name]
+                );
+              }
+            }
+          } else {
+            // property hasn't been seen yet, add it
+            mergedProperties[typeProperty.key.name] = propTypeValue;
+          }
+
+          mergedProperties[
+            typeProperty.key.name
+          ].leadingComments = leadingComments;
+        }
+
+        return mergedProperties;
+      }, {});
 
       const propertyKeys = Object.keys(mergedProperties);
       // if there is one or more members on `mergedProperties` then use PropTypes.shape,
@@ -433,19 +451,20 @@ function getPropTypesForNode(node, optional, state) {
             types.identifier('shape')
           ),
           [
-            types.objectExpression(propertyKeys.map(
-              propKey => {
+            types.objectExpression(
+              propertyKeys.map(propKey => {
                 const objectProperty = types.objectProperty(
                   types.identifier(propKey),
                   mergedProperties[propKey]
                 );
 
-                objectProperty.leadingComments = mergedProperties[propKey].leadingComments;
+                objectProperty.leadingComments =
+                  mergedProperties[propKey].leadingComments;
                 mergedProperties[propKey].leadingComments = null;
 
                 return objectProperty;
-              }
-            ))
+              })
+            ),
           ]
         );
       } else {
@@ -471,20 +490,33 @@ function getPropTypesForNode(node, optional, state) {
               // which don't translate to prop types.
               .filter(property => property.key != null)
               .map(property => {
-                const propertyPropType = property.type === 'TSMethodSignature'
-                  ? getPropTypesForNode({ type: 'TSFunctionType' }, property.optional, state)
-                  : getPropTypesForNode(property.typeAnnotation, property.optional, state);
+                const propertyPropType =
+                  property.type === 'TSMethodSignature'
+                    ? getPropTypesForNode(
+                        { type: 'TSFunctionType' },
+                        property.optional,
+                        state
+                      )
+                    : getPropTypesForNode(
+                        property.typeAnnotation,
+                        property.optional,
+                        state
+                      );
 
                 const objectProperty = types.objectProperty(
-                  types.identifier(property.key.name || `"${property.key.value}"`),
+                  types.identifier(
+                    property.key.name || `"${property.key.value}"`
+                  ),
                   propertyPropType
                 );
                 if (property.leadingComments != null) {
-                  objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
+                  objectProperty.leadingComments = property.leadingComments.map(
+                    ({ type, value }) => ({ type, value })
+                  );
                 }
                 return objectProperty;
               })
-          )
+          ),
         ]
       );
       break;
@@ -492,9 +524,13 @@ function getPropTypesForNode(node, optional, state) {
     // resolve a type operator (keyword) that operates on a value
     // currently only supporting `keyof typeof [object variable]`
     case 'TSTypeOperator':
-      if (node.operator === 'keyof' && node.typeAnnotation.type === 'TSTypeQuery') {
+      if (
+        node.operator === 'keyof' &&
+        node.typeAnnotation.type === 'TSTypeQuery'
+      ) {
         const typeDefinitions = state.get('typeDefinitions');
-        const typeDefinition = typeDefinitions[node.typeAnnotation.exprName.name];
+        const typeDefinition =
+          typeDefinitions[node.typeAnnotation.exprName.name];
         if (typeDefinition != null) {
           propType = getPropTypesForNode(typeDefinition, true, state);
         }
@@ -510,8 +546,12 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.arrayExpression(
-            node.properties.map(property => types.stringLiteral(property.key.name || property.key.name || property.key.value))
-          )
+            node.properties.map(property =>
+              types.stringLiteral(
+                property.key.name || property.key.name || property.key.value
+              )
+            )
+          ),
         ]
       );
       break;
@@ -525,24 +565,39 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.objectExpression(
-            node.members.map(property => {
-              // skip TS index signatures
-              if (types.isTSIndexSignature(property)) return null;
+            node.members
+              .map(property => {
+                // skip TS index signatures
+                if (types.isTSIndexSignature(property)) return null;
 
-              const propertyPropType = property.type === 'TSMethodSignature'
-                ? getPropTypesForNode({ type: 'TSFunctionType' }, property.optional, state)
-                : getPropTypesForNode(property.typeAnnotation, property.optional, state);
+                const propertyPropType =
+                  property.type === 'TSMethodSignature'
+                    ? getPropTypesForNode(
+                        { type: 'TSFunctionType' },
+                        property.optional,
+                        state
+                      )
+                    : getPropTypesForNode(
+                        property.typeAnnotation,
+                        property.optional,
+                        state
+                      );
 
-              const objectProperty = types.objectProperty(
-                types.identifier(property.key.name || `"${property.key.value}"`),
-                propertyPropType
-              );
-              if (property.leadingComments != null) {
-                objectProperty.leadingComments = property.leadingComments.map(({ type, value }) => ({ type, value }));
-              }
-              return objectProperty;
-            }).filter(x => x != null)
-          )
+                const objectProperty = types.objectProperty(
+                  types.identifier(
+                    property.key.name || `"${property.key.value}"`
+                  ),
+                  propertyPropType
+                );
+                if (property.leadingComments != null) {
+                  objectProperty.leadingComments = property.leadingComments.map(
+                    ({ type, value }) => ({ type, value })
+                  );
+                }
+                return objectProperty;
+              })
+              .filter(x => x != null)
+          ),
         ]
       );
       break;
@@ -552,7 +607,9 @@ function getPropTypesForNode(node, optional, state) {
     // literal values are extracted into a `oneOf`, if all members are literals this oneOf is used
     // otherwise `oneOfType` is used - if there are any literal values it contains the literals' `oneOf`
     case 'TSUnionType':
-      const tsUnionTypes = node.types.map(node => getPropTypesForNode(node, false, state));
+      const tsUnionTypes = node.types.map(node =>
+        getPropTypesForNode(node, false, state)
+      );
 
       // `tsUnionTypes` could be:
       // 1. all non-literal values (string | number)
@@ -562,7 +619,11 @@ function getPropTypesForNode(node, optional, state) {
 
       const reducedUnionTypes = tsUnionTypes.reduce(
         (foundTypes, tsUnionType) => {
-          if (types.isLiteral(tsUnionType) || (types.isIdentifier(tsUnionType) && tsUnionType.name === 'undefined')) {
+          if (
+            types.isLiteral(tsUnionType) ||
+            (types.isIdentifier(tsUnionType) &&
+              tsUnionType.name === 'undefined')
+          ) {
             if (foundTypes.oneOfPropType == null) {
               foundTypes.oneOfPropType = types.arrayExpression([]);
               foundTypes.unionTypes.push(
@@ -597,37 +658,34 @@ function getPropTypesForNode(node, optional, state) {
       //    PropTypes.oneOf([PropTypes.oneOf(['red', 'blue'])])
       //    ->
       //    PropTypes.oneOf(['red', 'blue'])
-      if (reducedUnionTypes.unionTypes.length === 1 && reducedUnionTypes.oneOfPropType != null) {
+      if (
+        reducedUnionTypes.unionTypes.length === 1 &&
+        reducedUnionTypes.oneOfPropType != null
+      ) {
         // the only proptype is a `oneOf`, use only that
         propType = reducedUnionTypes.unionTypes[0];
       } else {
         propType = types.callExpression(
           types.memberExpression(
             types.identifier('PropTypes'),
-            types.identifier('oneOfType'),
+            types.identifier('oneOfType')
           ),
-          [
-            types.arrayExpression(
-              reducedUnionTypes.unionTypes
-            )
-          ]
+          [types.arrayExpression(reducedUnionTypes.unionTypes)]
         );
       }
       break;
 
     // translate enum to PropTypes.oneOf
     case 'TSEnumDeclaration':
-      const memberTypes = node.members.map(member => getPropTypesForNode(member, true, state));
+      const memberTypes = node.members.map(member =>
+        getPropTypesForNode(member, true, state)
+      );
       propType = types.callExpression(
         types.memberExpression(
           types.identifier('PropTypes'),
-          types.identifier('oneOf'),
+          types.identifier('oneOf')
         ),
-        [
-          types.arrayExpression(
-            memberTypes
-          )
-        ]
+        [types.arrayExpression(memberTypes)]
       );
       break;
 
@@ -643,10 +701,7 @@ function getPropTypesForNode(node, optional, state) {
         propType = getPropTypesForNode(
           {
             type: 'TSIntersectionType',
-            types: [
-              body,
-              ...extensions
-            ]
+            types: [body, ...extensions],
           },
           true,
           state
@@ -704,27 +759,27 @@ function getPropTypesForNode(node, optional, state) {
       break;
 
     case 'StringLiteral':
-      propType =  types.stringLiteral(node.value);
+      propType = types.stringLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a string literal
       break;
 
     case 'NumericLiteral':
-      propType =  types.numericLiteral(node.value);
+      propType = types.numericLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a number literal
       break;
 
     case 'BooleanLiteral':
-      propType =  types.booleanLiteral(node.value);
+      propType = types.booleanLiteral(node.value);
       optional = true; // cannot call `.isRequired` on a boolean literal
       break;
 
     case 'TSNullKeyword':
-      propType =  types.nullLiteral();
+      propType = types.nullLiteral();
       optional = true; // cannot call `.isRequired` on a null literal
       break;
 
     case 'TSUndefinedKeyword':
-      propType =  types.identifier('undefined');
+      propType = types.identifier('undefined');
       optional = true; // cannot call `.isRequired` on an undefined literal
       break;
 
@@ -775,7 +830,6 @@ const typeDefinitionExtractors = {
 
     // only process relative imports for typescript definitions (avoid node_modules)
     if (isPathRelative) {
-
       // find the variable names being imported
       const importedTypeNames = node.specifiers.map(specifier => {
         switch (specifier.type) {
@@ -833,36 +887,34 @@ const typeDefinitionExtractors = {
       };
       for (let i = 0; i < ast.program.body.length; i++) {
         const bodyNode = ast.program.body[i];
-        Array.prototype.push.apply(definitions, extractTypeDefinition(bodyNode, subExtractionOptions) || []);
+        Array.prototype.push.apply(
+          definitions,
+          extractTypeDefinition(bodyNode, subExtractionOptions) || []
+        );
       }
 
       // temporarily override typeDefinitions so variable scope doesn't bleed between files
       const _typeDefinitions = state.get('typeDefinitions');
       state.set(
         'typeDefinitions',
-        definitions.reduce(
-          (typeDefinitions, definition) => {
-            if (definition) {
-              typeDefinitions[definition.name] = definition.definition;
-            }
+        definitions.reduce((typeDefinitions, definition) => {
+          if (definition) {
+            typeDefinitions[definition.name] = definition.definition;
+          }
 
-            return typeDefinitions;
-          },
-          {}
-        )
+          return typeDefinitions;
+        }, {})
       );
 
       // for each importedTypeName, fully resolve the type information
-      definitions.forEach(
-        ({ name, definition }) => {
-          if (importedTypeNames.includes(name)) {
-            // this type declaration is imported by the parent script
-            const propTypes = getPropTypesForNode(definition, true, state);
-            propTypes.isAlreadyResolved = true; // when getPropTypesForNode is called on this node later, tell it to skip processing
-            importedDefinitions.push({ name, definition: propTypes });
-          }
+      definitions.forEach(({ name, definition }) => {
+        if (importedTypeNames.includes(name)) {
+          // this type declaration is imported by the parent script
+          const propTypes = getPropTypesForNode(definition, true, state);
+          propTypes.isAlreadyResolved = true; // when getPropTypesForNode is called on this node later, tell it to skip processing
+          importedDefinitions.push({ name, definition: propTypes });
         }
-      );
+      });
 
       // reset typeDefinitions and continue processing the original file
       state.set('typeDefinitions', _typeDefinitions);
@@ -882,7 +934,11 @@ const typeDefinitionExtractors = {
     const { id } = node;
 
     if (id.type !== 'Identifier') {
-      throw new Error(`TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+      throw new Error(
+        `TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${
+          id.type
+        }`
+      );
     }
 
     return [{ name: id.name, definition: node }];
@@ -897,7 +953,11 @@ const typeDefinitionExtractors = {
     const { id, typeAnnotation } = node;
 
     if (id.type !== 'Identifier') {
-      throw new Error(`TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${id.type}`);
+      throw new Error(
+        `TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${
+          id.type
+        }`
+      );
     }
 
     return [{ name: id.name, definition: typeAnnotation }];
@@ -912,7 +972,11 @@ const typeDefinitionExtractors = {
     const { id } = node;
 
     if (id.type !== 'Identifier') {
-      throw new Error(`TSEnumDeclaration typeDefinitionExtract could not understand id type ${id.type}`);
+      throw new Error(
+        `TSEnumDeclaration typeDefinitionExtract could not understand id type ${
+          id.type
+        }`
+      );
     }
 
     return [{ name: id.name, definition: node }];
@@ -924,15 +988,15 @@ const typeDefinitionExtractors = {
    * @returns Array
    */
   VariableDeclaration: node => {
-    return node.declarations.reduce(
-      (declarations, declaration) => {
-        if (declaration.init.type === 'ObjectExpression') {
-          declarations.push({ name: declaration.id.name, definition: declaration.init });
-        }
-        return declarations;
-      },
-      []
-    );
+    return node.declarations.reduce((declarations, declaration) => {
+      if (declaration.init.type === 'ObjectExpression') {
+        declarations.push({
+          name: declaration.id.name,
+          definition: declaration.init,
+        });
+      }
+      return declarations;
+    }, []);
   },
 
   ExportNamedDeclaration: (node, extractionOptions) => {
@@ -940,7 +1004,10 @@ const typeDefinitionExtractors = {
     if (types.isStringLiteral(node.source)) {
       // export { variable } from './location'
       // for our needs, this node type overlaps an ImportDeclaration
-      return typeDefinitionExtractors.ImportDeclaration(node, extractionOptions);
+      return typeDefinitionExtractors.ImportDeclaration(
+        node,
+        extractionOptions
+      );
     }
     return extractTypeDefinition(node.declaration);
   },
@@ -949,7 +1016,9 @@ function extractTypeDefinition(node, opts) {
   if (node == null) {
     return null;
   }
-  return typeDefinitionExtractors.hasOwnProperty(node.type) ? typeDefinitionExtractors[node.type](node, opts) : null;
+  return typeDefinitionExtractors.hasOwnProperty(node.type)
+    ? typeDefinitionExtractors[node.type](node, opts)
+    : null;
 }
 
 /**
@@ -960,7 +1029,8 @@ function extractTypeDefinition(node, opts) {
  */
 function getVariableBinding(path, variableName) {
   while (path) {
-    if (path.scope.bindings[variableName]) return path.scope.bindings[variableName];
+    if (path.scope.bindings[variableName])
+      return path.scope.bindings[variableName];
     path = path.parentPath;
   }
   return null;
@@ -1004,7 +1074,11 @@ function processComponentDeclaration(typeDefinition, path, state) {
   const propTypesAST = getPropTypesForNode(typeDefinition, false, state);
 
   // if the resulting proptype is PropTypes.any don't bother setting the proptypes
-  if (types.isMemberExpression(propTypesAST.object) && propTypesAST.object.property.name === 'any') return;
+  if (
+    types.isMemberExpression(propTypesAST.object) &&
+    propTypesAST.object.property.name === 'any'
+  )
+    return;
 
   const propTypes = getPropTypesNodeFromAST(
     // `getPropTypesForNode` returns a PropTypes.shape representing the top-level object, we need to
@@ -1031,7 +1105,7 @@ function processComponentDeclaration(typeDefinition, path, state) {
     buildPropTypes({
       COMPONENT_NAME: types.identifier(path.node.id.name),
       PROP_TYPES: propTypes,
-    })
+    }),
   ]);
 
   // import PropTypes library if it isn't already
@@ -1068,7 +1142,11 @@ module.exports = function propTypesFromTypeScript({ types }) {
       Program: {
         enter: function visitProgram(programPath, state) {
           // only process typescript files
-          if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+          if (
+            path.extname(state.file.opts.filename) !== '.ts' &&
+            path.extname(state.file.opts.filename) !== '.tsx'
+          )
+            return;
 
           // Extract any of the imported variables from 'react' (SFC, ReactNode, etc)
           // we do this here instead of resolving when the imported values are used
@@ -1084,7 +1162,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
                     }
                   });
                 }
-              }
+              },
             },
             state
           );
@@ -1098,26 +1176,36 @@ module.exports = function propTypesFromTypeScript({ types }) {
           // extraction options are used to further resolve types imported from other files
           const extractionOptions = {
             state,
-            sourceFilename: path.resolve(process.cwd(), this.file.opts.filename),
+            sourceFilename: path.resolve(
+              process.cwd(),
+              this.file.opts.filename
+            ),
             fs: opts.fs || fs,
-            parse: code => babelCore.parse(code, forceTSXParsing(state.file.opts)),
+            parse: code =>
+              babelCore.parse(code, forceTSXParsing(state.file.opts)),
           };
 
           // collect named TS type definitions for later reference
           for (let i = 0; i < programPath.node.body.length; i++) {
             const bodyNode = programPath.node.body[i];
-            const extractedDefinitions = extractTypeDefinition(bodyNode, extractionOptions) || [];
+            const extractedDefinitions =
+              extractTypeDefinition(bodyNode, extractionOptions) || [];
             for (let i = 0; i < extractedDefinitions.length; i++) {
               const typeDefinition = extractedDefinitions[i];
               if (typeDefinition) {
-                typeDefinitions[typeDefinition.name] = typeDefinition.definition;
+                typeDefinitions[typeDefinition.name] =
+                  typeDefinition.definition;
               }
             }
           }
         },
         exit: function exitProgram(programPath, state) {
           // only process typescript files
-          if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+          if (
+            path.extname(state.file.opts.filename) !== '.ts' &&
+            path.extname(state.file.opts.filename) !== '.tsx'
+          )
+            return;
 
           const types = state.get('types');
           const typeDefinitions = state.get('typeDefinitions');
@@ -1125,12 +1213,14 @@ module.exports = function propTypesFromTypeScript({ types }) {
           // remove any exported identifiers that are TS types or interfaces
           // this prevents TS-only identifiers from leaking into ES code
           programPath.traverse({
-            ExportNamedDeclaration: (path) => {
+            ExportNamedDeclaration: path => {
               const specifiers = path.get('specifiers');
               const source = path.get('source');
               specifiers.forEach(specifierPath => {
                 if (types.isExportSpecifier(specifierPath)) {
-                  const { node: { local } } = specifierPath;
+                  const {
+                    node: { local },
+                  } = specifierPath;
                   if (types.isIdentifier(local)) {
                     const { name } = local;
                     if (typeDefinitions.hasOwnProperty(name)) {
@@ -1156,9 +1246,9 @@ module.exports = function propTypesFromTypeScript({ types }) {
                   }
                 }
               });
-            }
+            },
           });
-        }
+        },
       },
 
       /**
@@ -1169,7 +1259,11 @@ module.exports = function propTypesFromTypeScript({ types }) {
        */
       ClassDeclaration: function visitClassDeclaration(nodePath, state) {
         // only process typescript files
-        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+        if (
+          path.extname(state.file.opts.filename) !== '.ts' &&
+          path.extname(state.file.opts.filename) !== '.tsx'
+        )
+          return;
 
         const types = state.get('types');
 
@@ -1179,12 +1273,18 @@ module.exports = function propTypesFromTypeScript({ types }) {
           if (types.isMemberExpression(nodePath.node.superClass)) {
             const objectName = nodePath.node.superClass.object.name;
             const propertyName = nodePath.node.superClass.property.name;
-            if (objectName === 'React' && (propertyName === 'Component' || propertyName === 'PureComponent')) {
+            if (
+              objectName === 'React' &&
+              (propertyName === 'Component' || propertyName === 'PureComponent')
+            ) {
               isReactComponent = true;
             }
           } else if (types.isIdentifier(nodePath.node.superClass)) {
             const identifierName = nodePath.node.superClass.name;
-            if (identifierName === 'Component' || identifierName === 'PureComponent') {
+            if (
+              identifierName === 'Component' ||
+              identifierName === 'PureComponent'
+            ) {
               if (state.get('importsFromReact').has(identifierName)) {
                 isReactComponent = true;
               }
@@ -1192,12 +1292,19 @@ module.exports = function propTypesFromTypeScript({ types }) {
           }
 
           if (isReactComponent && nodePath.node.superTypeParameters != null) {
-            processComponentDeclaration(nodePath.node.superTypeParameters.params[0], nodePath, state);
+            processComponentDeclaration(
+              nodePath.node.superTypeParameters.params[0],
+              nodePath,
+              state
+            );
 
             // babel-plugin-react-docgen passes `this.file.code` to react-docgen
             // instead of using the modified AST; to expose our changes to react-docgen
             // they need to be rendered to a string
-            this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
+            this.file.code = stripTypeScript(
+              this.file.opts.filename,
+              this.file.ast
+            );
           }
         }
       },
@@ -1210,29 +1317,68 @@ module.exports = function propTypesFromTypeScript({ types }) {
        */
       VariableDeclarator: function visitVariableDeclarator(nodePath, state) {
         // only process typescript files
-        if (path.extname(state.file.opts.filename) !== '.ts' && path.extname(state.file.opts.filename) !== '.tsx') return;
+        if (
+          path.extname(state.file.opts.filename) !== '.ts' &&
+          path.extname(state.file.opts.filename) !== '.tsx'
+        )
+          return;
 
         const resolveVariableDeclarator = variableDeclarator => {
           const { id } = variableDeclarator;
           const idTypeAnnotation = id.typeAnnotation;
+          let fileCodeNeedsUpdating = false;
 
-          if (idTypeAnnotation) {
-            let fileCodeNeedsUpdating = false;
-
+          if (
+            // this is a function call
+            types.isCallExpression(variableDeclarator.init) &&
+            // is this forwardRef()
+            ((types.isIdentifier(variableDeclarator.init.callee) &&
+              variableDeclarator.init.callee.name === 'forwardRef' &&
+              variableDeclarator.init.typeParameters &&
+              variableDeclarator.init.typeParameters.params.length === 2) ||
+              // or is this React.forwardRef()
+              (types.isMemberExpression(variableDeclarator.init.callee) &&
+                types.isIdentifier(variableDeclarator.init.callee.object) &&
+                variableDeclarator.init.callee.object.name === 'React' &&
+                types.isIdentifier(variableDeclarator.init.callee.property) &&
+                variableDeclarator.init.callee.property.name === 'forwardRef')
+            )
+          ) {
+            // props for the component come from the second argument to the type params
+            const typeDefinition =
+              variableDeclarator.init.typeParameters.params[1];
+            fileCodeNeedsUpdating = true;
+            processComponentDeclaration(typeDefinition, nodePath, state);
+          } else if (idTypeAnnotation) {
             if (idTypeAnnotation.typeAnnotation.type === 'TSTypeReference') {
-              if (idTypeAnnotation.typeAnnotation.typeName.type === 'TSQualifiedName') {
-                const { left, right } = idTypeAnnotation.typeAnnotation.typeName;
+              if (
+                idTypeAnnotation.typeAnnotation.typeName.type ===
+                'TSQualifiedName'
+              ) {
+                const {
+                  left,
+                  right,
+                } = idTypeAnnotation.typeAnnotation.typeName;
 
                 if (left.name === 'React') {
                   const rightName = right.name;
-                  if (rightName === 'SFC' || rightName === 'FunctionComponent') {
-                    processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                  if (
+                    rightName === 'SFC' ||
+                    rightName === 'FunctionComponent'
+                  ) {
+                    processComponentDeclaration(
+                      idTypeAnnotation.typeAnnotation.typeParameters.params[0],
+                      nodePath,
+                      state
+                    );
                     fileCodeNeedsUpdating = true;
                   } else {
                     // throw new Error(`Cannot process annotation id React.${right.name}`);
                   }
                 }
-              } else if (idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier') {
+              } else if (
+                idTypeAnnotation.typeAnnotation.typeName.type === 'Identifier'
+              ) {
                 const typeName = idTypeAnnotation.typeAnnotation.typeName.name;
                 if (typeName === 'SFC' || typeName === 'FunctionComponent') {
                   if (state.get('importsFromReact').has(typeName)) {
@@ -1241,17 +1387,29 @@ module.exports = function propTypesFromTypeScript({ types }) {
                     // because the generic argument has a default of empty
                     // props.
                     if (idTypeAnnotation.typeAnnotation.typeParameters) {
-                      processComponentDeclaration(idTypeAnnotation.typeAnnotation.typeParameters.params[0], nodePath, state);
+                      processComponentDeclaration(
+                        idTypeAnnotation.typeAnnotation.typeParameters
+                          .params[0],
+                        nodePath,
+                        state
+                      );
                       fileCodeNeedsUpdating = true;
                     }
                   }
                 } else {
                   // reprocess this variable declaration but use the identifier lookup
-                  const nextTypeDefinition = state.get('typeDefinitions')[typeName];
+                  const nextTypeDefinition = state.get('typeDefinitions')[
+                    typeName
+                  ];
                   const types = state.get('types');
-                  if (nextTypeDefinition && types.isTSType(nextTypeDefinition)) {
+                  if (
+                    nextTypeDefinition &&
+                    types.isTSType(nextTypeDefinition)
+                  ) {
                     const newId = types.cloneDeep(id);
-                    newId.typeAnnotation = types.TSTypeAnnotation(nextTypeDefinition);
+                    newId.typeAnnotation = types.TSTypeAnnotation(
+                      nextTypeDefinition
+                    );
                     const newNode = types.VariableDeclarator(
                       newId,
                       variableDeclarator.init
@@ -1260,16 +1418,22 @@ module.exports = function propTypesFromTypeScript({ types }) {
                   }
                 }
               } else {
-                throw new Error('Cannot process annotation type of', idTypeAnnotation.typeAnnotation.id.type);
+                throw new Error(
+                  'Cannot process annotation type of',
+                  idTypeAnnotation.typeAnnotation.id.type
+                );
               }
             }
+          }
 
-            if (fileCodeNeedsUpdating) {
-              // babel-plugin-react-docgen passes `this.file.code` to react-docgen
-              // instead of using the modified AST; to expose our changes to react-docgen
-              // they need to be rendered to a string
-              this.file.code = stripTypeScript(this.file.opts.filename, this.file.ast);
-            }
+          if (fileCodeNeedsUpdating) {
+            // babel-plugin-react-docgen passes `this.file.code` to react-docgen
+            // instead of using the modified AST; to expose our changes to react-docgen
+            // they need to be rendered to a string
+            this.file.code = stripTypeScript(
+              this.file.opts.filename,
+              this.file.ast
+            );
           }
         };
 
@@ -1282,4 +1446,4 @@ module.exports = function propTypesFromTypeScript({ types }) {
 
 module.exports.clearImportCache = function clearImportCache() {
   importedDefinitionsCache.clear();
-}
+};
