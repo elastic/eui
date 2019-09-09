@@ -25,6 +25,8 @@ export class EuiDualRange extends Component {
     rangeWidth: null,
   };
 
+  maxNode = null;
+  minNode = null;
   rangeSliderRef = null;
   handleRangeSliderRefUpdate = ref => {
     this.rangeSliderRef = ref;
@@ -240,8 +242,7 @@ export class EuiDualRange extends Component {
 
   onInputBlur = e => {
     // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget =
-      e.relatedTarget || e.explicitOriginalTarget || document.activeElement;
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
     if (!relatedTarget || relatedTarget.id !== this.state.id) {
       this.closePopover();
     }
@@ -257,6 +258,22 @@ export class EuiDualRange extends Component {
     this.setState({
       rangeWidth: width,
     });
+  };
+
+  inputRef = (node, ref) => {
+    if (!this.props.showInput !== 'inputWithPopover') return;
+
+    // IE11 doesn't support the `relatedTarget` event property for blur events
+    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this[ref] != null) {
+      this[ref].removeEventListener('focusout', this.onInputBlur);
+    }
+
+    this[ref] = node;
+
+    if (this[ref]) {
+      this[ref].addEventListener('focusout', this.onInputBlur);
+    }
   };
 
   render() {
@@ -306,11 +323,11 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
-        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'minNode')}
       />
     ) : (
       undefined
@@ -332,11 +349,11 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
-        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
+        inputRef={node => this.inputRef(node, 'maxNode')}
       />
     ) : (
       undefined

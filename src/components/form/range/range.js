@@ -21,6 +21,8 @@ export class EuiRange extends Component {
       id: props.id || makeId(),
       isPopoverOpen: false,
     };
+
+    this.inputNode = null;
   }
 
   handleOnChange = e => {
@@ -44,8 +46,7 @@ export class EuiRange extends Component {
 
   onInputBlur = e => {
     // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget =
-      e.relatedTarget || e.explicitOriginalTarget || document.activeElement;
+    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
     if (!relatedTarget || relatedTarget.id !== this.state.id) {
       this.closePopover();
     }
@@ -55,6 +56,22 @@ export class EuiRange extends Component {
     this.setState({
       isPopoverOpen: false,
     });
+  };
+
+  inputRef = node => {
+    if (!this.props.showInput !== 'inputWithPopover') return;
+
+    // IE11 and Safar don't support the `relatedTarget` event property for blur events
+    // but do add it for focusout. React doesn't support `onFocusOut` so here we are.
+    if (this.inputNode != null) {
+      this.inputNode.removeEventListener('focusout', this.onInputBlur);
+    }
+
+    this.inputNode = node;
+
+    if (this.inputNode) {
+      this.inputNode.addEventListener('focusout', this.onInputBlur);
+    }
   };
 
   render() {
@@ -105,9 +122,9 @@ export class EuiRange extends Component {
         onChange={this.handleOnChange}
         name={name}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
-        onBlur={canShowDropdown ? this.onInputBlur : undefined}
         fullWidth={showInputOnly && fullWidth}
         autoSize={!showInputOnly}
+        inputRef={this.inputRef}
         {...rest}
       />
     ) : (
@@ -162,7 +179,7 @@ export class EuiRange extends Component {
             style={style}
             showTicks={showTicks}
             showRange={showRange}
-            tabIndex={showInput === true ? -1 : tabIndex || null}
+            tabIndex={showInput ? -1 : tabIndex || null}
             {...rest}
           />
 
