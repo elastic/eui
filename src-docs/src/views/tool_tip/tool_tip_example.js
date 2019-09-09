@@ -40,8 +40,7 @@ export const ToolTipExample = {
         Wrap <EuiCode>EuiToolTip</EuiCode> around any item that you need a
         tooltip for. The <EuiCode>position</EuiCode> prop will take a suggested
         position, but will change it if the tooltip gets too close to the edge
-        of the screen. You can use the <EuiCode>clickOnly</EuiCode> prop to tell
-        the tooltip to only appear on click rather than on hover.
+        of the screen.
       </EuiText>
 
       <EuiSpacer size="l" />
