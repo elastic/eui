@@ -25,8 +25,7 @@ export class EuiDualRange extends Component {
     rangeWidth: null,
   };
 
-  maxNode = null;
-  minNode = null;
+  preventPopoverClose = false;
   rangeSliderRef = null;
   handleRangeSliderRefUpdate = ref => {
     this.rangeSliderRef = ref;
@@ -252,23 +251,30 @@ export class EuiDualRange extends Component {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
+    this.preventPopoverClose = true;
     this.setState({
       isPopoverOpen: true,
     });
   };
 
-  onInputBlur = e => {
-    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
-    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+  onInputBlur = e =>
+    setTimeout(() => {
+      // Safari does not recognize any focus-related eventing for input[type=range]
+      // making it impossible to capture its state using active/focus/relatedTarget
+      // Instead, a prevention flag is set on mousedown, with a waiting period here.
+      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      if (this.preventPopoverClose) {
+        this.preventPopoverClose = false;
+        return;
+      }
       if (this.props.onBlur) {
         this.props.onBlur(e);
       }
       this.closePopover();
-    }
-  };
+    }, 200);
 
   closePopover = () => {
+    this.preventPopoverClose = false;
     this.setState({
       isPopoverOpen: false,
     });
@@ -345,12 +351,14 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
-        onBlur={canShowDropdown ? null : onBlur}
+        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
-        inputRef={node => this.inputRef(node, 'minNode')}
+        onMouseDown={
+          showInputOnly ? () => (this.preventPopoverClose = true) : null
+        }
       />
     ) : (
       undefined
@@ -372,12 +380,14 @@ export class EuiDualRange extends Component {
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
         onFocus={canShowDropdown ? this.onInputFocus : onFocus}
-        onBlur={canShowDropdown ? null : onBlur}
+        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
-        inputRef={node => this.inputRef(node, 'maxNode')}
+        onMouseDown={
+          showInputOnly ? () => (this.preventPopoverClose = true) : null
+        }
       />
     ) : (
       undefined
