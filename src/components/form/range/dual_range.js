@@ -25,8 +25,7 @@ export class EuiDualRange extends Component {
     rangeWidth: null,
   };
 
-  maxNode = null;
-  minNode = null;
+  preventPopoverClose = false;
   rangeSliderRef = null;
   handleRangeSliderRefUpdate = ref => {
     this.rangeSliderRef = ref;
@@ -234,21 +233,48 @@ export class EuiDualRange extends Component {
     });
   };
 
-  onInputFocus = () => {
+  onThumbFocus = e => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+    this.toggleHasFocus(true);
+  };
+
+  onThumbBlur = e => {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+    this.toggleHasFocus(false);
+  };
+
+  onInputFocus = e => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+    this.preventPopoverClose = true;
     this.setState({
       isPopoverOpen: true,
     });
   };
 
-  onInputBlur = e => {
-    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
-    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+  onInputBlur = e =>
+    setTimeout(() => {
+      // Safari does not recognize any focus-related eventing for input[type=range]
+      // making it impossible to capture its state using active/focus/relatedTarget
+      // Instead, a prevention flag is set on mousedown, with a waiting period here.
+      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      if (this.preventPopoverClose) {
+        this.preventPopoverClose = false;
+        return;
+      }
+      if (this.props.onBlur) {
+        this.props.onBlur(e);
+      }
       this.closePopover();
-    }
-  };
+    }, 200);
 
   closePopover = () => {
+    this.preventPopoverClose = false;
     this.setState({
       isPopoverOpen: false,
     });
@@ -258,22 +284,6 @@ export class EuiDualRange extends Component {
     this.setState({
       rangeWidth: width,
     });
-  };
-
-  inputRef = (node, ref) => {
-    if (!this.props.showInput !== 'inputWithPopover') return;
-
-    // IE11 doesn't support the `relatedTarget` event property for blur events
-    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this[ref] != null) {
-      this[ref].removeEventListener('focusout', this.onInputBlur);
-    }
-
-    this[ref] = node;
-
-    if (this[ref]) {
-      this[ref].addEventListener('focusout', this.onInputBlur);
-    }
   };
 
   render() {
@@ -294,7 +304,9 @@ export class EuiDualRange extends Component {
       tickInterval,
       ticks,
       levels,
+      onBlur,
       onChange,
+      onFocus,
       showRange,
       value,
       style,
@@ -322,12 +334,15 @@ export class EuiDualRange extends Component {
         name={`${name}-minValue`}
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
-        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
+        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
-        inputRef={node => this.inputRef(node, 'minNode')}
+        onMouseDown={
+          showInputOnly ? () => (this.preventPopoverClose = true) : null
+        }
       />
     ) : (
       undefined
@@ -348,12 +363,15 @@ export class EuiDualRange extends Component {
         name={`${name}-maxValue`}
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
-        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
+        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
-        inputRef={node => this.inputRef(node, 'maxNode')}
+        onMouseDown={
+          showInputOnly ? () => (this.preventPopoverClose = true) : null
+        }
       />
     ) : (
       undefined
@@ -412,6 +430,8 @@ export class EuiDualRange extends Component {
             aria-hidden={true}
             tabIndex={-1}
             showRange={showRange}
+            onFocus={onFocus}
+            onBlur={onBlur}
             {...rest}
           />
 
@@ -425,8 +445,8 @@ export class EuiDualRange extends Component {
                 showTicks={showTicks}
                 showInput={!!showInput}
                 onKeyDown={this.handleLowerKeyDown}
-                onFocus={() => this.toggleHasFocus(true)}
-                onBlur={() => this.toggleHasFocus(false)}
+                onFocus={this.onThumbFocus}
+                onBlur={this.onThumbBlur}
                 style={this.calculateThumbPositionStyle(
                   this.lowerValue || min,
                   this.state.rangeWidth
@@ -442,8 +462,8 @@ export class EuiDualRange extends Component {
                 showTicks={showTicks}
                 showInput={!!showInput}
                 onKeyDown={this.handleUpperKeyDown}
-                onFocus={() => this.toggleHasFocus(true)}
-                onBlur={() => this.toggleHasFocus(false)}
+                onFocus={this.onThumbFocus}
+                onBlur={this.onThumbBlur}
                 style={this.calculateThumbPositionStyle(
                   this.upperValue || max,
                   this.state.rangeWidth
