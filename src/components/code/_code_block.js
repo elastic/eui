@@ -96,6 +96,23 @@ export class EuiCodeBlockImpl extends Component {
       ...otherProps
     } = this.props;
 
+    // To maintain backwards compatibility with incorrect datatypes being passed, this
+    // logic is a bit expanded to support arrays of non-strings. In those cases two bugs are present:
+    // * "copy" button does not have access to the correct string values to put on the clipboard
+    // * dynamically changing the content fails to update the DOM
+    //
+    // When this is converted to typescript and children that do not meet `string | string[]`
+    // invalid uses will fail at compile time and this can be removed for the much simpler
+    // const childrenAsString = typeof children === 'string' ? children : children.join('');
+    let childrenAsString = children;
+    if (Array.isArray(children)) {
+      const isArrayOfStrings =
+        children.filter(item => typeof item !== 'string').length === 0;
+      if (isArrayOfStrings === true) {
+        childrenAsString = children.join('');
+      }
+    }
+
     const classes = classNames(
       'euiCodeBlock',
       fontSizeToClassNameMap[fontSize],
@@ -123,7 +140,7 @@ export class EuiCodeBlockImpl extends Component {
         }}
         className={codeClasses}
         {...otherProps}>
-        {children}
+        {childrenAsString}
       </code>
     );
 
@@ -143,7 +160,7 @@ export class EuiCodeBlockImpl extends Component {
         <div className="euiCodeBlock__copyButton">
           <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
             {copyButton => (
-              <EuiCopy textToCopy={children}>
+              <EuiCopy textToCopy={childrenAsString}>
                 {copy => (
                   <EuiButtonIcon
                     size="s"
@@ -225,7 +242,7 @@ export class EuiCodeBlockImpl extends Component {
                   className={codeClasses}
                   tabIndex={0}
                   onKeyDown={this.onKeyDown}>
-                  {children}
+                  {childrenAsString}
                 </code>
               </pre>
 
@@ -252,7 +269,10 @@ export class EuiCodeBlockImpl extends Component {
 }
 
 EuiCodeBlockImpl.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   className: PropTypes.string,
   paddingSize: PropTypes.oneOf(PADDING_SIZES),
 
