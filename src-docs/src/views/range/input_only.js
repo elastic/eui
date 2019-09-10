@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiRange,
-  EuiSpacer,
-  EuiDualRange,
-  EuiFormRow,
-} from '../../../../src/components';
+import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -68,16 +63,14 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <EuiFormRow label="With label">
-          <EuiRange
-            id={makeId()}
-            value={this.state.value}
-            onChange={this.onChange}
-            compressed
-            showInput="inputWithPopover"
-            showLabels
-          />
-        </EuiFormRow>
+        <EuiRange
+          id={makeId()}
+          value={this.state.value}
+          onChange={this.onChange}
+          compressed
+          showInput="inputWithPopover"
+          showLabels
+        />
 
         <EuiSpacer size="xl" />
 
