@@ -10,8 +10,9 @@ import React, {
 import { EuiFocusTrap } from '../focus_trap';
 import { Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
+import { EuiMutationObserver } from '../observer/mutation_observer';
 
-interface CellValueElementProps {
+export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
 }
@@ -115,11 +116,13 @@ export class EuiDataGridCell extends Component<
     // has to exist because we set the `IS_TABBABLE_ATTR` attribute on it
     const tabbableElement = clone.querySelector(`[${IS_TABBABLE_ATTR}]`)!;
 
-    // IE 11 doesn't support remove
-    if (tabbableElement.remove) {
-      tabbableElement.remove();
-    } else {
-      tabbableElement.parentNode!.removeChild(tabbableElement);
+    if (tabbableElement) {
+      // IE 11 doesn't support remove
+      if (tabbableElement.remove) {
+        tabbableElement.remove();
+      } else {
+        tabbableElement.parentNode!.removeChild(tabbableElement);
+      }
     }
 
     // textContent includes not human readable text
@@ -195,12 +198,26 @@ export class EuiDataGridCell extends Component<
         onFocus={() => onCellFocus([colIndex, rowIndex])}
         style={{ width: `${width}px` }}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
-          <div
-            {...isInteractiveCell}
-            ref={this.cellContentsRef}
-            className="euiDataGridRowCell__content">
-            <EuiDataGridCellContent {...rest} />
-          </div>
+          <EuiMutationObserver
+            onMutation={() => {
+              this.updateFocus();
+              this.setTabbablesTabIndex();
+            }}
+            observerOptions={{
+              childList: true,
+              subtree: true,
+            }}>
+            {ref => (
+              <div ref={ref}>
+                <div
+                  {...isInteractiveCell}
+                  ref={this.cellContentsRef}
+                  className="euiDataGridRowCell__content">
+                  <EuiDataGridCellContent {...rest} />
+                </div>
+              </div>
+            )}
+          </EuiMutationObserver>
         </EuiFocusTrap>
       </div>
     );

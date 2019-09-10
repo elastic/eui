@@ -68,6 +68,43 @@ function resizeColumn(
   datagrid.update();
 }
 
+function getColumnSortDirection(
+  datagrid: ReactWrapper,
+  columnId: string
+): [ReactWrapper, string] {
+  const columnSorter = datagrid.find(
+    `[data-test-subj^="dataGrid-sortColumn-${columnId}"]`
+  );
+  expect(columnSorter.length).toBe(1);
+
+  const sortDirection = (columnSorter.props() as {
+    'data-test-subj': string;
+  })['data-test-subj'].match(/(?<direction>[^-]+)$/)!.groups!.direction;
+
+  return [columnSorter, sortDirection];
+}
+
+function sortByColumn(
+  datagrid: ReactWrapper,
+  columnId: string,
+  direction: 'asc' | 'desc' | 'off'
+) {
+  let [columnSorter, currentSortDirection] = getColumnSortDirection(
+    datagrid,
+    columnId
+  );
+  while (currentSortDirection !== direction) {
+    /* eslint-disable no-loop-func */
+    act(() => {
+      columnSorter.simulate('click');
+    });
+    [columnSorter, currentSortDirection] = getColumnSortDirection(
+      datagrid,
+      columnId
+    );
+  }
+}
+
 expect.extend({
   toBeEuiPopover(received: ReactWrapper) {
     const pass = received.name() === 'EuiPopover';
@@ -614,6 +651,155 @@ Array [
         ['0-ColumnB', '0-ColumnA'],
         ['1-ColumnB', '1-ColumnA'],
       ]);
+    });
+  });
+
+  describe('column sorting', () => {
+    it('calls the onSort callback', () => {
+      const onSort = jest.fn(columns => {
+        component.setProps({ sorting: { columns, onSort } });
+        component.update();
+      });
+
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }]}
+          rowCount={1}
+          sorting={{
+            columns: [],
+            onSort,
+          }}
+          renderCellValue={() => 'hello'}
+        />
+      );
+
+      sortByColumn(component, 'ColumnA', 'desc');
+
+      expect(onSort).toHaveBeenCalledTimes(2);
+      expect(onSort).toHaveBeenCalledWith([
+        { id: 'ColumnA', direction: 'asc' },
+      ]);
+      expect(onSort).toHaveBeenCalledWith([
+        { id: 'ColumnA', direction: 'desc' },
+      ]);
+
+      const [, sortDirection] = getColumnSortDirection(component, 'ColumnA');
+      expect(sortDirection).toBe('desc');
+    });
+
+    describe('in-memory sorting', () => {
+      it('sorts on initial render', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-label="test"
+            columns={[{ id: 'A' }, { id: 'B' }]}
+            rowCount={5}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A 0->4 and B 9->5
+              columnId === 'A' ? rowIndex : 9 - rowIndex
+            }
+            inMemory="sorting"
+            sorting={{
+              columns: [{ id: 'A', direction: 'desc' }],
+              onSort: () => {},
+            }}
+          />
+        );
+
+        expect(extractGridData(component)).toEqual([
+          ['A', 'B'],
+          ['4', '5'],
+          ['3', '6'],
+          ['2', '7'],
+          ['1', '8'],
+          ['0', '9'],
+        ]);
+      });
+
+      it('sorts on multiple columns', () => {
+        const component = mount(
+          <EuiDataGrid
+            aria-label="test"
+            columns={[{ id: 'A' }, { id: 'B' }]}
+            rowCount={5}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A as 0, 1, 0, 1, 0 and B as 9->5
+              columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
+            }
+            inMemory="sorting"
+            sorting={{
+              columns: [
+                { id: 'A', direction: 'desc' },
+                { id: 'B', direction: 'asc' },
+              ],
+              onSort: () => {},
+            }}
+          />
+        );
+
+        expect(extractGridData(component)).toEqual([
+          ['A', 'B'],
+          ['1', '6'],
+          ['1', '8'],
+          ['0', '5'],
+          ['0', '7'],
+          ['0', '9'],
+        ]);
+      });
+
+      it('sorts in response to user interaction', () => {
+        const onSort = jest.fn(columns => {
+          component.setProps({ sorting: { columns, onSort } });
+          component.update();
+        });
+
+        const component = mount(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'A' }, { id: 'B' }]}
+            rowCount={5}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A as 0, 1, 0, 1, 0 and B as 9->5
+              columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
+            }
+            inMemory="sorting"
+            sorting={{
+              columns: [],
+              onSort,
+            }}
+          />
+        );
+
+        expect(extractGridData(component)).toEqual([
+          ['A', 'B'],
+          ['0', '9'],
+          ['1', '8'],
+          ['0', '7'],
+          ['1', '6'],
+          ['0', '5'],
+        ]);
+
+        sortByColumn(component, 'A', 'desc');
+        expect(extractGridData(component)).toEqual([
+          ['A', 'B'],
+          ['1', '8'],
+          ['1', '6'],
+          ['0', '9'],
+          ['0', '7'],
+          ['0', '5'],
+        ]);
+
+        sortByColumn(component, 'B', 'asc');
+        expect(extractGridData(component)).toEqual([
+          ['A', 'B'],
+          ['1', '6'],
+          ['1', '8'],
+          ['0', '5'],
+          ['0', '7'],
+          ['0', '9'],
+        ]);
+      });
     });
   });
 

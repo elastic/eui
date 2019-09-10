@@ -16,7 +16,10 @@ import { CommonProps, Omit } from '../common';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
+  EuiDataGridInMemory,
   EuiDataGridPaginationProps,
+  EuiDataGridInMemoryValues,
+  EuiDataGridSorting,
   EuiDataGridStyle,
   EuiDataGridStyleBorders,
   EuiDataGridStyleCellPaddings,
@@ -37,6 +40,7 @@ import { EuiTablePagination } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { CELL_CONTENTS_ATTR } from './utils';
+import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -47,7 +51,15 @@ type CommonGridProps = CommonProps &
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
+    inMemory?: EuiDataGridInMemory;
+    /**
+     * Set to `null` to disable pagination
+     */
     pagination?: EuiDataGridPaginationProps;
+    /**
+     * Set to `null` to disable sorting
+     */
+    sorting?: EuiDataGridSorting;
   };
 
 // This structure forces either aria-label or aria-labelledby to be defined
@@ -130,6 +142,73 @@ function renderPagination(props: EuiDataGridProps) {
         onChangePage={onChangePage}
         onChangeItemsPerPage={onChangeItemsPerPage}
       />
+    </div>
+  );
+}
+
+function renderSorting(props: EuiDataGridProps) {
+  const { columns, sorting } = props;
+
+  if (sorting == null) return null;
+
+  const sortedColumns = sorting.columns.reduce<{
+    [key: string]: 'asc' | 'desc';
+  }>((sortedColumns, { id, direction }) => {
+    sortedColumns[id] = direction;
+    return sortedColumns;
+  }, {});
+
+  return (
+    <div>
+      {columns.map(column => {
+        let sortIcon = '☐';
+        let nextSortDir: 'asc' | 'desc' | null = 'asc';
+        if (sortedColumns.hasOwnProperty(column.id)) {
+          sortIcon = sortedColumns[column.id] === 'asc' ? '⬆️' : '⬇️';
+          nextSortDir = sortedColumns[column.id] === 'asc' ? 'desc' : null;
+        }
+
+        return (
+          <div
+            key={column.id}
+            data-test-subj={`dataGrid-sortColumn-${column.id}-${
+              sortedColumns.hasOwnProperty(column.id)
+                ? sortedColumns[column.id]
+                : 'off'
+            }`}
+            onClick={() => {
+              const nextColumnOrder = [...sorting.columns];
+              let foundColumn = false;
+
+              for (let i = 0; i < nextColumnOrder.length; i++) {
+                if (nextColumnOrder[i].id === column.id) {
+                  foundColumn = true;
+
+                  if (nextSortDir === null) {
+                    nextColumnOrder.splice(i--, 1);
+                  } else {
+                    nextColumnOrder[i] = {
+                      id: column.id,
+                      direction: nextSortDir,
+                    };
+                  }
+                }
+              }
+
+              if (foundColumn === false) {
+                nextColumnOrder.push({
+                  id: column.id,
+                  direction: 'asc',
+                });
+              }
+
+              sorting.onSort(nextColumnOrder);
+            }}>
+            {sortIcon}
+            {column.id}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -246,6 +325,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className,
     gridStyle = startingStyles,
     pagination,
+    sorting,
+    inMemory = false,
     ...rest
   } = props;
 
@@ -294,6 +375,21 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
+  const [inMemoryValues, setInMemoryValues] = useState<
+    EuiDataGridInMemoryValues
+  >({});
+
+  const onCellRender = useCallback(
+    (rowIndex, column, value) => {
+      setInMemoryValues(inMemoryValues => {
+        const nextInMemoryVaues = { ...inMemoryValues };
+        nextInMemoryVaues[rowIndex] = nextInMemoryVaues[rowIndex] || {};
+        nextInMemoryVaues[rowIndex][column.id] = value;
+        return nextInMemoryVaues;
+      });
+    },
+    [inMemoryValues, setInMemoryValues]
+  );
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
@@ -359,6 +455,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
               ref={resizeRef}
               {...rest}>
               <div className="euiDataGrid__overflow">
+                {inMemory ? (
+                  <EuiDataGridInMemoryRenderer
+                    renderCellValue={renderCellValue}
+                    columns={columns}
+                    rowCount={rowCount}
+                    onCellRender={onCellRender}
+                  />
+                ) : null}
                 <div
                   className="euiDataGrid__content"
                   role="grid"
@@ -370,10 +474,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   />
                   <EuiDataGridBody
                     columnWidths={columnWidths}
+                    inMemoryValues={inMemoryValues}
+                    inMemory={inMemory}
                     columns={visibleColumns}
                     focusedCell={focusedCell}
                     onCellFocus={onCellFocus}
                     pagination={pagination}
+                    sorting={sorting}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
                     isGridNavigationEnabled={isGridNavigationEnabled}
@@ -386,6 +493,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         </EuiResizeObserver>
 
         {renderPagination(props)}
+        {renderSorting(props)}
         <p id={interactiveCellId} hidden>
           <EuiI18n
             token="euiDataGrid.screenReaderNotice"
