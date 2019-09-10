@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
-import { EuiDualRange } from '../../../../src/components';
+import {
+  EuiDualRange,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -10,6 +14,7 @@ export default class extends Component {
 
     this.state = {
       value: ['', ''],
+      value2: ['20', '150'],
     };
   }
 
@@ -19,17 +24,39 @@ export default class extends Component {
     });
   };
 
+  onChange2 = value => {
+    this.setState({
+      value2: value,
+    });
+  };
+
   render() {
     return (
-      <EuiDualRange
-        id={makeId()}
-        min={-100}
-        max={200}
-        step={10}
-        value={this.state.value}
-        onChange={this.onChange}
-        showLabels
-      />
+      <Fragment>
+        <EuiFormRow label="Dual range">
+          <EuiDualRange
+            id={makeId()}
+            min={-100}
+            max={200}
+            step={10}
+            value={this.state.value}
+            onChange={this.onChange}
+            showLabels
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="xl" />
+
+        <EuiDualRange
+          id={makeId()}
+          min={-100}
+          max={200}
+          step={10}
+          value={this.state.value2}
+          onChange={this.onChange2}
+          showLabels
+        />
+      </Fragment>
     );
   }
 }
