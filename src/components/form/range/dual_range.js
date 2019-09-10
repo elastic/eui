@@ -371,7 +371,12 @@ export class EuiDualRange extends Component {
         className={classes}
         fullWidth={fullWidth}
         compressed={compressed}>
-        {!showInputOnly && minInput}
+        {!showInputOnly && (
+          <>
+            {minInput}
+            <div className="euiRange__horizontalSpacer" />
+          </>
+        )}
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>
             {min}
@@ -461,7 +466,12 @@ export class EuiDualRange extends Component {
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
-        {!showInputOnly && maxInput}
+        {!showInputOnly && (
+          <>
+            <div className="euiRange__horizontalSpacer" />
+            {maxInput}
+          </>
+        )}
       </EuiRangeWrapper>
     );
 

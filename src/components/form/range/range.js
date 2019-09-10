@@ -205,7 +205,12 @@ export class EuiRange extends Component {
             {max}
           </EuiRangeLabel>
         )}
-        {!showInputOnly && theInput}
+        {!showInputOnly && (
+          <>
+            <div className="euiRange__horizontalSpacer" />
+            {theInput}
+          </>
+        )}
       </EuiRangeWrapper>
     );
 

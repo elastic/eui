@@ -264,7 +264,7 @@ export default class extends Component {
         <EuiFormLabel htmlFor="docsExampleBorderSize">Border</EuiFormLabel>
         <EuiSpacer size="xs" />
         <EuiFlexGroup gutterSize="s" responsive={false} wrap>
-          <EuiFlexItem style={{ minWidth: 80 }}>
+          <EuiFlexItem>
             <EuiRange
               id="docsExampleBorderSize"
               showInput="inputWithPopover"

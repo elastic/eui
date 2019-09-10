@@ -27,6 +27,8 @@
 
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
+    @include euiTextTruncate;
+    max-width: 50%;
     flex-shrink: 0;
     height: 100%;
     line-height: $euiFontSize - 1px; // The 1px less aligns the icons better
