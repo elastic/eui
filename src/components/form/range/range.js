@@ -22,7 +22,7 @@ export class EuiRange extends Component {
       isPopoverOpen: false,
     };
 
-    this.inputNode = null;
+    this.preventPopoverClose = false;
   }
 
   handleOnChange = e => {
@@ -38,40 +38,36 @@ export class EuiRange extends Component {
     return isWithinRange(this.props.min, this.props.max, this.props.value);
   }
 
-  onInputFocus = () => {
+  onInputFocus = e => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
     this.setState({
       isPopoverOpen: true,
     });
   };
 
-  onInputBlur = e => {
-    // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
-    const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
-    if (!relatedTarget || relatedTarget.id !== this.state.id) {
+  onInputBlur = e =>
+    setTimeout(() => {
+      // Safari does not recognize any focus-related eventing for input[type=range]
+      // making it impossible to capture its state using active/focus/relatedTarget
+      // Instead, a prevention flag is set on mousedown, with a waiting period here.
+      // Mousedown is viable because in the popover case, it is inaccessable via keyboard (intentionally)
+      if (this.preventPopoverClose) {
+        this.preventPopoverClose = false;
+        return;
+      }
+      if (this.props.onBlur) {
+        this.props.onBlur(e);
+      }
       this.closePopover();
-    }
-  };
+    }, 200);
 
   closePopover = () => {
+    this.preventPopoverClose = false;
     this.setState({
       isPopoverOpen: false,
     });
-  };
-
-  inputRef = node => {
-    if (!this.props.showInput !== 'inputWithPopover') return;
-
-    // IE11 and Safar don't support the `relatedTarget` event property for blur events
-    // but do add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this.inputNode != null) {
-      this.inputNode.removeEventListener('focusout', this.onInputBlur);
-    }
-
-    this.inputNode = node;
-
-    if (this.inputNode) {
-      this.inputNode.addEventListener('focusout', this.onInputBlur);
-    }
   };
 
   render() {
@@ -97,7 +93,9 @@ export class EuiRange extends Component {
       showValue,
       valueAppend,
       valuePrepend,
+      onBlur,
       onChange,
+      onFocus,
       value,
       style,
       tabIndex,
@@ -123,12 +121,12 @@ export class EuiRange extends Component {
         compressed={compressed}
         onChange={this.handleOnChange}
         name={name}
-        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
+        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
         fullWidth={showInputOnly && fullWidth}
         isLoading={showInputOnly && isLoading}
         isInvalid={isInvalid}
         autoSize={!showInputOnly}
-        inputRef={this.inputRef}
         {...rest}
       />
     ) : (
@@ -184,6 +182,11 @@ export class EuiRange extends Component {
             showTicks={showTicks}
             showRange={showRange}
             tabIndex={showInput ? -1 : tabIndex || null}
+            onMouseDown={
+              showInputOnly ? () => (this.preventPopoverClose = true) : null
+            }
+            onFocus={showInput === true ? null : onFocus}
+            onBlur={showInputOnly ? this.onInputBlur : onBlur}
             {...rest}
           />
 
