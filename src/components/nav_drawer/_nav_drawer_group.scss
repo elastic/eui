@@ -23,7 +23,7 @@
   @include size($euiSize);
   line-height: $euiSize;
   font-size: $euiSizeM;
-  flex-shrink: 0; // Ensures it never scales down below it's intended size
+  flex-shrink: 0; // Ensures it never scales down below its intended size
   display: inline-block;
   text-align: center;
   vertical-align: middle;

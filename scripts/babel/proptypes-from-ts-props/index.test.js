@@ -2422,6 +2422,58 @@ FooComponent.propTypes = {
 
     });
 
+    describe('forwardRef', () => {
+      it('attaches proptypes to components returned by forwardRef', () => {
+        const result = transform(
+          `
+import React, { forwardRef } from 'react';
+interface FooProps {
+  foo: string;
+  bar?: number;
+}
+const FooComponent = forwardRef<HTMLDivElement, FooProps>(() => {
+  return (<div>Hello World</div>);
+})`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React, { forwardRef } from 'react';
+import PropTypes from "prop-types";
+const FooComponent = forwardRef(() => {
+  return <div>Hello World</div>;
+});
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+
+      it('attaches proptypes to components returned by React.forwardRef', () => {
+        const result = transform(
+          `
+import React from 'react';
+interface FooProps {
+  foo: string;
+  bar?: number;
+}
+const FooComponent = React.forwardRef<HTMLDivElement, FooProps>(() => {
+  return (<div>Hello World</div>);
+})`,
+          babelOptions
+        );
+
+        expect(result.code).toBe(`import React from 'react';
+import PropTypes from "prop-types";
+const FooComponent = React.forwardRef(() => {
+  return <div>Hello World</div>;
+});
+FooComponent.propTypes = {
+  foo: PropTypes.string.isRequired,
+  bar: PropTypes.number
+};`);
+      });
+    });
+
   });
 
   describe('remove types from exports', () => {
