@@ -48,11 +48,23 @@ export default class extends Component {
       opacityValue: '20',
       buttonGroupIdSelected: `${idPrefix}1`,
       color: '#DB1374',
+      borderValue: 3,
+      popoverSliderValues: 16,
     };
 
     this.selectTooltipContent =
       'Otherwise use an EuiToolTip around the label of the form row.';
   }
+
+  onPopoverSliderValueChange = e => {
+    this.setState({
+      popoverSliderValues: e.target.value,
+    });
+  };
+
+  onBorderChange = e => {
+    this.setState({ borderValue: e.target.value });
+  };
 
   onColorChange = value => {
     this.setState({ color: value });
@@ -88,18 +100,16 @@ export default class extends Component {
             compressed
             prepend="Zoom levels"
             startControl={
-              <input
-                type="number"
+              <EuiFieldNumber
+                controlOnly
                 defaultValue={5}
-                className="euiFieldNumber euiFieldNumber"
                 aria-label="Visibility zoom level minimum"
               />
             }
             endControl={
-              <input
-                type="number"
+              <EuiFieldNumber
+                controlOnly
                 defaultValue={10}
-                className="euiFieldNumber"
                 aria-label="Visibility zoom level maximum"
               />
             }
@@ -116,9 +126,11 @@ export default class extends Component {
             compressed
             value={this.state.opacityValue}
             onChange={this.onRangeChange}
-            // append="%"
+            append="%"
           />
         </EuiFormRow>
+
+        <EuiSpacer size="s" />
 
         <EuiScreenReaderOnly>
           <span id="docsExampleSelectTooltipContent">
@@ -153,23 +165,6 @@ export default class extends Component {
           />
         </EuiFormRow>
 
-        <EuiFormRow label="Border" display="columnCompressed">
-          <EuiFieldNumber
-            min={1}
-            max={100}
-            defaultValue={10}
-            compressed
-            prepend={
-              <EuiButtonIcon
-                iconType="magnet"
-                aria-label="Dynamic toggle"
-                title="Make dynamic"
-              />
-            }
-            append="px"
-          />
-        </EuiFormRow>
-
         <EuiFormRow label="Select one" display="columnCompressed">
           <EuiSuperSelect
             options={[
@@ -178,6 +173,24 @@ export default class extends Component {
               { value: 'option_three', inputDisplay: 'Option three' },
             ]}
             compressed
+          />
+        </EuiFormRow>
+
+        <EuiFormRow label="With button" display="columnCompressed">
+          <EuiFieldNumber
+            min={1}
+            max={100}
+            defaultValue={10}
+            compressed
+            prepend={[
+              <EuiButtonIcon
+                iconType="magnet"
+                aria-label="Dynamic toggle"
+                title="Make dynamic"
+              />,
+              'kibana_sample_ecommerce_data',
+            ]}
+            append="px"
           />
         </EuiFormRow>
 
@@ -200,11 +213,12 @@ export default class extends Component {
               />
             </EuiFlexItem>
             <EuiFlexItem>
-              <EuiFieldNumber
-                id="docsExampleContainerPadding"
+              <EuiRange
+                showInput="inputWithPopover"
                 min={0}
                 max={240}
-                defaultValue={16}
+                value={this.state.popoverSliderValues}
+                onChange={this.onPopoverSliderValueChange}
                 compressed
                 append="px"
                 prepend="Padding"
@@ -232,11 +246,12 @@ export default class extends Component {
             />
           </EuiFlexItem>
           <EuiFlexItem style={{ minWidth: 80 }}>
-            <EuiFieldNumber
-              id="docsExampleLabelSize"
+            <EuiRange
+              showInput="inputWithPopover"
               min={7}
               max={140}
-              defaultValue={72}
+              value={this.state.popoverSliderValues}
+              onChange={this.onPopoverSliderValueChange}
               compressed
               append="px"
               aria-label="Label font size in pixels"
@@ -250,11 +265,13 @@ export default class extends Component {
         <EuiSpacer size="xs" />
         <EuiFlexGroup gutterSize="s" responsive={false} wrap>
           <EuiFlexItem style={{ minWidth: 80 }}>
-            <EuiFieldNumber
+            <EuiRange
               id="docsExampleBorderSize"
+              showInput="inputWithPopover"
               min={0}
               max={32}
-              defaultValue={3}
+              value={this.state.popoverSliderValues}
+              onChange={this.onPopoverSliderValueChange}
               compressed
               append="px"
             />

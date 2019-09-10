@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
+import { DisplayToggles } from '../form_controls/display_toggles';
+
 import makeId from '../../../../src/components/form/form_row/make_id';
 
 export default class extends Component {
@@ -42,48 +44,30 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <EuiRange
-          id={makeId()}
-          value={this.state.value}
-          onChange={this.onChange}
-          showInput="inputWithPopover"
-          showLabels
-        />
+        <DisplayToggles canAppend canPrepend>
+          <EuiRange
+            id={makeId()}
+            value={this.state.value}
+            onChange={this.onChange}
+            showInput="inputWithPopover"
+            showLabels
+          />
+        </DisplayToggles>
 
         <EuiSpacer size="xl" />
 
-        <EuiDualRange
-          id={makeId()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
-          showInput="inputWithPopover"
-          showLabels
-          levels={this.levels}
-        />
-
-        <EuiSpacer size="xl" />
-
-        <EuiRange
-          id={makeId()}
-          value={this.state.value}
-          onChange={this.onChange}
-          compressed
-          showInput="inputWithPopover"
-          showLabels
-        />
-
-        <EuiSpacer size="xl" />
-
-        <EuiDualRange
-          id={makeId()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
-          compressed
-          showInput="inputWithPopover"
-          showLabels
-          levels={this.levels}
-          readOnly
-        />
+        <DisplayToggles canAppend canPrepend>
+          <EuiDualRange
+            id={makeId()}
+            value={this.state.dualValue}
+            onChange={this.onDualChange}
+            compressed
+            showInput="inputWithPopover"
+            showLabels
+            levels={this.levels}
+            readOnly
+          />
+        </DisplayToggles>
       </Fragment>
     );
   }
