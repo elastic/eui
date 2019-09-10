@@ -80,6 +80,7 @@ export class EuiRange extends Component {
       compressed,
       disabled,
       fullWidth,
+      isLoading,
       readOnly,
       id: propsId,
       max,
@@ -100,6 +101,7 @@ export class EuiRange extends Component {
       value,
       style,
       tabIndex,
+      isInvalid,
       ...rest
     } = this.props;
 
@@ -123,6 +125,8 @@ export class EuiRange extends Component {
         name={name}
         onFocus={canShowDropdown ? this.onInputFocus : undefined}
         fullWidth={showInputOnly && fullWidth}
+        isLoading={showInputOnly && isLoading}
+        isInvalid={isInvalid}
         autoSize={!showInputOnly}
         inputRef={this.inputRef}
         {...rest}

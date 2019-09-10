@@ -16,18 +16,19 @@ import { EuiFormLabel } from '../form_label';
 
 export { ICON_SIDES } from './form_control_layout_icons';
 
-type ReactElements = ReactElement | ReactElement[];
+type StringOrReactElement = string | ReactElement;
+type PrependAppendType = StringOrReactElement | StringOrReactElement[];
 
 type EuiFormControlLayoutProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
      * Creates an input group with element(s) coming before children
      */
-    prepend?: string | ReactElements;
+    prepend?: PrependAppendType;
     /**
      * Creates an input group with element(s) coming after children
      */
-    append?: string | ReactElements;
+    append?: PrependAppendType;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
@@ -95,7 +96,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
 
   renderSideNode(
     side: 'append' | 'prepend',
-    nodes?: string | ReactElements,
+    nodes?: PrependAppendType,
     inputId?: string
   ) {
     if (!nodes) {

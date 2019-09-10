@@ -298,6 +298,8 @@ export class EuiDualRange extends Component {
       showRange,
       value,
       style,
+      isLoading,
+      isInvalid,
       ...rest
     } = this.props;
 
@@ -326,6 +328,8 @@ export class EuiDualRange extends Component {
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
+        isLoading={!!showInputOnly && isLoading}
+        isInvalid={isInvalid}
         controlOnly={showInputOnly}
         inputRef={node => this.inputRef(node, 'minNode')}
       />
@@ -352,7 +356,9 @@ export class EuiDualRange extends Component {
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
+        isLoading={!!showInputOnly && isLoading}
         controlOnly={showInputOnly}
+        isInvalid={isInvalid}
         inputRef={node => this.inputRef(node, 'maxNode')}
       />
     ) : (

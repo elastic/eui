@@ -43,7 +43,7 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <DisplayToggles canAppend canPrepend>
+        <DisplayToggles canAppend canPrepend canLoading={false}>
           <EuiRange
             id={makeId()}
             value={this.state.value}
@@ -60,7 +60,7 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <DisplayToggles canAppend canPrepend>
+        <DisplayToggles canAppend canPrepend canLoading={false}>
           <EuiDualRange
             id={makeId()}
             value={this.state.dualValue}
