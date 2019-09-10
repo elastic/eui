@@ -286,22 +286,6 @@ export class EuiDualRange extends Component {
     });
   };
 
-  inputRef = (node, ref) => {
-    if (this.props.showInput !== 'inputWithPopover') return;
-
-    // IE11 and Safari don't support the `relatedTarget` event property for blur events
-    // but do add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this[ref] != null) {
-      this[ref].removeEventListener('focusout', this.onInputBlur);
-    }
-
-    this[ref] = node;
-
-    if (this[ref]) {
-      this[ref].addEventListener('focusout', this.onInputBlur);
-    }
-  };
-
   render() {
     const {
       className,
