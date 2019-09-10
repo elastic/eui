@@ -1,31 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiImage is rendered 1`] = `
-<figure
-  aria-label="aria-label"
+<div
   class="euiImage euiImage--large testClass1 testClass2"
-  data-test-subj="test subject string"
 >
   <img
     alt="alt"
     class="euiImage__img"
   />
-</figure>
+</div>
 `;
 
 exports[`EuiImage is rendered and allows full screen 1`] = `
-<button
+<div
   class="euiImage euiImage--large euiImage--allowFullScreen testClass1 testClass2"
-  type="button"
 >
-  <figure
-    aria-label="aria-label"
-    data-test-subj="test subject string"
+  <img
+    alt="alt"
+    class="euiImage__img"
+  />
+  <button
+    aria-label="Show alt image full screen"
+    class="euiImage__button"
+    type="button"
   >
-    <img
-      alt="alt"
-      class="euiImage__img"
-    />
     <svg
       class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoading euiImage__icon"
       focusable="false"
@@ -34,6 +32,6 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     />
-  </figure>
-</button>
+  </button>
+</div>
 `;

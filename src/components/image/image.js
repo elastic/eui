@@ -83,8 +83,13 @@ export class EuiImage extends Component {
     let optionalCaption;
     if (caption) {
       optionalCaption = (
-        <figcaption className="euiImage__caption">{caption}</figcaption>
+        <figure role="figure" aria-label={caption} {...rest}>
+          <img src={url} className="euiImage__img" alt={alt} />
+          <figcaption className="euiImage__caption">{caption}</figcaption>
+        </figure>
       );
+    } else {
+      optionalCaption = <img src={url} className="euiImage__img" alt={alt} />;
     }
 
     const allowFullScreeIcon = (
@@ -98,50 +103,41 @@ export class EuiImage extends Component {
     const fullScreenDisplay = (
       <EuiOverlayMask onClick={this.closeFullScreen}>
         <EuiFocusTrap clickOutsideDisables={true}>
-          <button
-            type="button"
-            onClick={this.closeFullScreen}
-            onKeyDown={this.onKeyDown}>
-            <figure
-              ref={node => {
-                this.figure = node;
-              }}
-              className="euiImage-isFullScreen">
-              <img src={url} className="euiImage-isFullScreen__img" alt={alt} />
-              {optionalCaption}
-
+          <div className="euiImage-isFullScreen">
+            {optionalCaption}
+            <button
+              className="euiImage-isFullScreen__button"
+              type="button"
+              aria-label={`Show ${alt} image full screen`}
+              onClick={this.closeFullScreen}
+              onKeyDown={this.onKeyDown}>
               <EuiIcon
                 type="cross"
                 color={fullScreenIconColorMap[fullScreenIconColor]}
                 className="euiImage-isFullScreen__icon"
               />
-            </figure>
-          </button>
+            </button>
+          </div>
         </EuiFocusTrap>
       </EuiOverlayMask>
     );
 
     if (allowFullScreen) {
       return (
-        <button
-          type="button"
-          onClick={allowFullScreen ? this.openFullScreen : undefined}
-          className={classes}>
-          <figure {...rest}>
-            <img src={url} className="euiImage__img" alt={alt} />
-            {optionalCaption}
+        <div className={classes}>
+          {optionalCaption}
+          <button
+            type="button"
+            aria-label={`Show ${alt} image full screen`}
+            onClick={allowFullScreen ? this.openFullScreen : undefined}
+            className="euiImage__button">
             {allowFullScreeIcon}
             {isFullScreenActive && fullScreenDisplay}
-          </figure>
-        </button>
+          </button>
+        </div>
       );
     } else {
-      return (
-        <figure className={classes} {...rest}>
-          <img src={url} className="euiImage__img" alt={alt} />
-          {optionalCaption}
-        </figure>
-      );
+      return <div className={classes}>{optionalCaption}</div>;
     }
   }
 }

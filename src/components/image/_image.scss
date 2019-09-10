@@ -11,6 +11,10 @@
   min-height: 1px; /* 1 */
   line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
+  .euiImage__img {
+    width: 100%;
+  }
+
   &.euiImage--hasShadow {
     .euiImage__img {
       @include euiBottomShadowMedium;
@@ -18,34 +22,46 @@
   }
 
   &.euiImage--allowFullScreen {
-    &:focus .euiImage__img {
-      @include euiFocusRing
+    .euiImage__button {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    &:not(.euiImage--hasShadow):hover,
-    &:not(.euiImage--hasShadow):focus {
-      .euiImage__img {
-        @include euiSlightShadowHover;
-      }
-    }
-
-    &.euiImage--hasShadow:hover,
-    &.euiImage--hasShadow:focus {
-      .euiImage__img {
-        @include euiBottomShadow($color: $euiShadowColor, $opacity: .2);
-      }
-    }
-
-    .euiImage__img {
-      cursor: pointer;
-
+    .euiImage__icon {
       // transition the shadow
       transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
     }
 
-    .euiImage__icon {
+    &:focus-within .euiImage__img {
+      border: 2px solid $euiFocusRingColor;
+    }
+
+    &:hover .euiImage__icon {
       visibility: visible;
       opacity: 1;
+    }
+
+    &:hover .euiImage__caption,
+    &:focus-within .euiImage__caption {
+      text-decoration: underline;
+    }
+
+    &:not(.euiImage--hasShadow):hover,
+    &:not(.euiImage--hasShadow):focus-within {
+      .euiImage__img {
+        @include euiBottomShadowMedium;
+      }
+    }
+
+    &.euiImage--hasShadow:hover,
+    &.euiImage--hasShadow:focus-within {
+      .euiImage__img {
+        @include euiBottomShadow;
+      }
     }
   }
 
@@ -71,14 +87,10 @@
   }
 }
 
-// The image itself is full width within the container.
-.euiImage__img {
-  width: 100%;
-}
-
 .euiImage__caption {
   @include euiFontSizeS;
   text-align: center;
+  transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
 }
 
 .euiImage__icon {
@@ -98,22 +110,40 @@
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
+  .euiImage-isFullScreen____button {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .euiImage-isFullScreen__icon {
     position: absolute;
     right: $euiSize;
     top: $euiSize;
   }
 
-  .euiImage-isFullScreen__img {
+  .euiImage__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 
-  &:hover .euiImage-isFullScreen__img {
-    @include euiSlightShadowHover;
+  &:hover .euiImage__img {
+    @include euiBottomShadow;
     cursor: pointer;
+  }
+
+  &:focus-within .euiImage__img {
+    border: 2px solid $euiFocusRingColor;
+  }
+
+  &:hover .euiImage__caption,
+  &:focus-within .euiImage__caption {
+    text-decoration: underline;
   }
 }
 
