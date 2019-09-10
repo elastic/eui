@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, Ref, forwardRef } from 'react';
+import React, { HTMLAttributes, Ref } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -65,7 +65,7 @@ const isValidElement = (
   return ['div', 'span'].includes(component);
 };
 
-const EuiFlexGroup = forwardRef<
+const EuiFlexGroup = React.forwardRef<
   HTMLDivElement | HTMLSpanElement,
   CommonProps &
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> &

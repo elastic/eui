@@ -178,7 +178,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   showNextPanel = (itemIndex?: number) => {
-    if (!itemIndex) {
+    if (itemIndex == null) {
       return;
     }
 
