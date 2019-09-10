@@ -38,7 +38,10 @@ export class EuiRange extends Component {
     return isWithinRange(this.props.min, this.props.max, this.props.value);
   }
 
-  onInputFocus = () => {
+  onInputFocus = e => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
     this.setState({
       isPopoverOpen: true,
     });
@@ -48,6 +51,9 @@ export class EuiRange extends Component {
     // Firefox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`
     const relatedTarget = e.relatedTarget || e.explicitOriginalTarget;
     if (!relatedTarget || relatedTarget.id !== this.state.id) {
+      if (this.props.onBlur) {
+        this.props.onBlur(e);
+      }
       this.closePopover();
     }
   };
@@ -59,9 +65,9 @@ export class EuiRange extends Component {
   };
 
   inputRef = node => {
-    if (!this.props.showInput !== 'inputWithPopover') return;
+    if (this.props.showInput !== 'inputWithPopover') return;
 
-    // IE11 and Safar don't support the `relatedTarget` event property for blur events
+    // IE11 and Safari don't support the `relatedTarget` event property for blur events
     // but do add it for focusout. React doesn't support `onFocusOut` so here we are.
     if (this.inputNode != null) {
       this.inputNode.removeEventListener('focusout', this.onInputBlur);
@@ -96,7 +102,9 @@ export class EuiRange extends Component {
       showValue,
       valueAppend,
       valuePrepend,
+      onBlur,
       onChange,
+      onFocus,
       value,
       style,
       tabIndex,
@@ -121,7 +129,8 @@ export class EuiRange extends Component {
         compressed={compressed}
         onChange={this.handleOnChange}
         name={name}
-        onFocus={canShowDropdown ? this.onInputFocus : undefined}
+        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
+        onBlur={canShowDropdown ? null : onBlur}
         fullWidth={showInputOnly && fullWidth}
         autoSize={!showInputOnly}
         inputRef={this.inputRef}
@@ -180,6 +189,8 @@ export class EuiRange extends Component {
             showTicks={showTicks}
             showRange={showRange}
             tabIndex={showInput ? -1 : tabIndex || null}
+            onFocus={showInput ? null : onFocus}
+            onBlur={onBlur}
             {...rest}
           />
 
