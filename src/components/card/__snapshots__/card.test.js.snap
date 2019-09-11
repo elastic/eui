@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCard is rendered 1`] = `
-<a
+<div
   aria-label="aria-label"
   class="euiCard euiCard--centerAligned testClass1 testClass2"
   data-test-subj="test subject string"
@@ -27,11 +27,11 @@ exports[`EuiCard is rendered 1`] = `
   <span
     class="euiCard__footer"
   />
-</a>
+</div>
 `;
 
 exports[`EuiCard props footer 1`] = `
-<a
+<div
   class="euiCard euiCard--centerAligned"
 >
   <span
@@ -59,11 +59,11 @@ exports[`EuiCard props footer 1`] = `
       Footer
     </span>
   </span>
-</a>
+</div>
 `;
 
 exports[`EuiCard props horizontal 1`] = `
-<a
+<div
   class="euiCard euiCard--centerAligned euiCard--horizontal"
 >
   <span
@@ -84,11 +84,11 @@ exports[`EuiCard props horizontal 1`] = `
       </p>
     </div>
   </span>
-</a>
+</div>
 `;
 
 exports[`EuiCard props icon 1`] = `
-<a
+<div
   class="euiCard euiCard--centerAligned euiCard--hasIcon"
 >
   <span
@@ -124,11 +124,11 @@ exports[`EuiCard props icon 1`] = `
   <span
     class="euiCard__footer"
   />
-</a>
+</div>
 `;
 
 exports[`EuiCard props selectable 1`] = `
-<a
+<div
   class="euiCard euiCard--centerAligned euiCard--isSelectable euiCard--isSelectable--text"
 >
   <span
@@ -167,11 +167,11 @@ exports[`EuiCard props selectable 1`] = `
       </span>
     </span>
   </button>
-</a>
+</div>
 `;
 
 exports[`EuiCard props textAlign 1`] = `
-<a
+<div
   class="euiCard euiCard--rightAligned"
 >
   <span
@@ -195,11 +195,11 @@ exports[`EuiCard props textAlign 1`] = `
   <span
     class="euiCard__footer"
   />
-</a>
+</div>
 `;
 
 exports[`EuiCard props titleElement 1`] = `
-<a
+<div
   class="euiCard euiCard--centerAligned"
 >
   <span
@@ -223,5 +223,5 @@ exports[`EuiCard props titleElement 1`] = `
   <span
     class="euiCard__footer"
   />
-</a>
+</div>
 `;

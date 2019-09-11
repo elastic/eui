@@ -108,10 +108,10 @@ export const EuiCard = ({
   }
 
   let OuterElement = 'div';
-  if (isDisabled || onClick) {
-    OuterElement = 'button';
-  } else {
+  if (!isDisabled && href) {
     OuterElement = 'a';
+  } else if (isDisabled || onClick) {
+    OuterElement = 'button';
   }
 
   let TitleElement = titleElement;
