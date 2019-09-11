@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { EuiBetaBadge } from '../../components/badge/beta_badge';
 
 import { IconPropType } from '../icon';
-import { is } from '../../utils/prop_types/is';
 
 const renderContent = (
   children,
@@ -98,7 +97,6 @@ export const EuiKeyPadMenuItem = ({
       )}
     </button>
   );
-
 };
 
 EuiKeyPadMenuItem.propTypes = {
@@ -128,7 +126,12 @@ export const EuiKeyPadMenuItemButton = ({
   );
 
   return (
-    <button type="button" onClick={onClick} disabled={isDisabled} className={classes} {...rest}>
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={isDisabled}
+      className={classes}
+      {...rest}>
       {renderContent(
         children,
         label,

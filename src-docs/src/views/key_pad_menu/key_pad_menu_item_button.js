@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItemButton } from '../../../../src/components';
+import {
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItemButton,
+} from '../../../../src/components';
 
 export default () => (
   <EuiKeyPadMenu>
@@ -15,5 +19,5 @@ export default () => (
       onClick={() => window.alert('Clicked')}>
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItemButton>
-  </EuiKeyPadMenu>  
+  </EuiKeyPadMenu>
 );
