@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  FunctionComponent,
-  SetStateAction,
-  useState,
-  useEffect,
-} from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 import { EuiI18n } from '../i18n';
 // @ts-ignore-next-line
@@ -21,59 +15,44 @@ export const startingStyles: EuiDataGridStyle = {
   header: 'shade',
 };
 
-export const useStyleSelector = (): [
-  FunctionComponent<{}>,
-  EuiDataGridStyle,
-  Dispatch<SetStateAction<EuiDataGridStyle>>
-] => {
-  const [gridStyles, setGridStyles] = useState(startingStyles);
+const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
+  expanded: {
+    fontSize: 'l',
+    cellPadding: 'l',
+  },
+  normal: {
+    fontSize: 'm',
+    cellPadding: 'm',
+  },
+  compact: {
+    fontSize: 's',
+    cellPadding: 's',
+  },
+};
+
+export const useStyleSelector = (
+  defaultStyles: EuiDataGridStyle
+): [FunctionComponent<{}>, EuiDataGridStyle] => {
+  const [gridStyles, setGridStyles] = useState(defaultStyles);
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const densityStyles = {
-    expanded: {
-      fontSize: 'l',
-      cellPadding: 'l',
-    },
-    normal: {
-      fontSize: 'm',
-      cellPadding: 'm',
-    },
-    compact: {
-      fontSize: 's',
-      cellPadding: 's',
-    },
-  };
 
   // These are the available options. They power the gridDensity hook and also the options in the render
   const densityOptions: string[] = ['expanded', 'normal', 'compact'];
 
-  // Normal is the defaul density
-  const [gridDensity, setGridDensity] = useState(densityOptions[1]);
+  // Normal is the default density
+  const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
+  const setGridDensity = (density: string) => {
+    const previousStyles = gridStyles;
 
-  const onChangeDensity = (optionId: string) => {
-    const selectedDensity = densityOptions.filter(options => {
-      return options === optionId;
-    })[0];
+    const nextStyles = {
+      ...previousStyles,
+      ...densityStyles[density],
+    };
 
-    setGridDensity(selectedDensity);
+    _setGridDensity(density);
+    setGridStyles(nextStyles);
   };
-
-  useEffect(() => {
-    const oldStyles = gridStyles;
-
-    // eslint doesn't like the way the object.assign here is set up.
-    /*eslint-disable */
-    const mergedStyle = Object.assign(
-      {},
-      oldStyles,
-      // @ts-ignore
-      densityStyles[gridDensity]
-    );
-    /*eslint-enable */
-    setGridStyles(mergedStyle);
-    // @TODO: come back to this hook lifecycle
-  }, [gridDensity]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const StyleSelector = () => (
     <EuiPopover
@@ -134,7 +113,7 @@ export const useStyleSelector = (): [
                 iconType: 'tableDensityCompact',
               },
             ]}
-            onChange={onChangeDensity}
+            onChange={setGridDensity}
             idSelected={gridDensity}
             isIconOnly
           />
@@ -143,5 +122,5 @@ export const useStyleSelector = (): [
     </EuiPopover>
   );
 
-  return [StyleSelector, gridStyles, setGridStyles];
+  return [StyleSelector, gridStyles];
 };
