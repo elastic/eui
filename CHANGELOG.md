@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.0.0`.
+
+## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
+
 ### Feature: Compressed Form Controls ([#2167](https://github.com/elastic/eui/pull/2167))
 
 - Altered the look of `compressed` form controls to look more subtle
