@@ -2,7 +2,6 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
-  MouseEventHandler,
   ReactNode,
   Ref,
 } from 'react';
@@ -13,7 +12,7 @@ import { EuiBetaBadge } from '../badge/beta_badge';
 
 export type PanelPaddingSize = 'none' | 's' | 'm' | 'l';
 
-export interface EuiPanelProps {
+export interface EuiPanelProps extends CommonProps {
   /**
    * If active, adds a deeper shadow to the panel
    */
@@ -45,13 +44,15 @@ export interface EuiPanelProps {
   betaBadgeTitle?: string;
 }
 
-type Divlike = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+interface Divlike
+  extends EuiPanelProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {}
 
-interface Buttonlike {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+interface Buttonlike
+  extends EuiPanelProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {}
 
-type Props = CommonProps & EuiPanelProps & ExclusiveUnion<Divlike, Buttonlike>;
+type Props = ExclusiveUnion<Divlike, Buttonlike>;
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -115,8 +116,10 @@ export const EuiPanel: FunctionComponent<Props> = ({
   }
 
   return (
-    // ts-ignore seems to be some div / button confusion here
-    <div ref={panelRef} className={classes} {...rest}>
+    <div
+      ref={panelRef as Ref<HTMLDivElement>}
+      className={classes}
+      {...rest as HTMLAttributes<HTMLDivElement>}>
       {optionalBetaBadge}
       {children}
     </div>
