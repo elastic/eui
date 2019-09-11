@@ -128,6 +128,7 @@ export default class extends Component {
             name="switch"
             checked={this.state.isSwitchChecked}
             onChange={this.onSwitchChange}
+            compressed
           />
         </EuiFormRow>
 

@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.0.0`.
+- Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 

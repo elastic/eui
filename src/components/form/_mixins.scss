@@ -232,7 +232,7 @@
     padding: $size / 2;
   }
 
-  border: 1px solid shadeOrTint($euiColorLightestShade, 18%, 30%);
+  border: 1px solid $euiFormCustomControlBorderColor;
   background: $euiColorEmptyShade no-repeat center;
 
   @if $type == 'round' {
