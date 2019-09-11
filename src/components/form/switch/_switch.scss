@@ -122,7 +122,7 @@
     background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .7), transparentize($euiColorMediumShade, .4));
   }
 
-  // slight
+  // Slightly darker background when in a checked state.
   .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
     background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
   }
@@ -154,7 +154,6 @@
     }
 
     .euiSwitch__body {
-      pointer-events: none;
       width: $euiSwitchWidthCompressed;
       height: $euiSwitchHeightCompressed;
       border-radius: $euiSwitchHeightCompressed;
