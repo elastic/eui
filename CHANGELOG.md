@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 - Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
 
 ## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)

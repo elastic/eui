@@ -138,6 +138,7 @@
     }
   }
 
+  // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
   &.euiSwitch--compressed {
     min-height: $euiSwitchHeightCompressed;
 
@@ -178,5 +179,13 @@
         border-color: $euiColorMediumShade;
       }
     }
+
+    // Similar additional treatment needed while checked
+    .euiSwitch__input:checked ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiColorPrimary;
+      }
+    }
+
   }
 }
