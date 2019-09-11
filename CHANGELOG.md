@@ -1,13 +1,25 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
+
+**Bug fixes**
+
+- Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
+
+## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)
+
+**Bug fixes**
+
+- Updated TS def for `EuiFilterSelect` ([#2291](https://github.com/elastic/eui/pull/2291))
 - Fixed alignment of icons and label in `EuiSideNavItem` ([#2297](https://github.com/elastic/eui/pull/2297))
+- Fixed logic in `EuiContextMenu` to account for index of `0` ([#2304](https://github.com/elastic/eui/pull/2304))
 
 ## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
 
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
 - Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
 - Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
+- Improved fix for `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2298](https://github.com/elastic/eui/pull/2298))
 
 **Bug fixes**
 
