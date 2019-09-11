@@ -33,6 +33,13 @@
 - `EuiFormLabel` no longer has a bottom margin
 - `EuiFormRow` no longer has bottom padding, nor does it add margin to any `+ *` siblings only sibling `EuiFormRow`s
 
+## [`13.8.2`](https://github.com/elastic/eui/tree/v13.8.2)
+
+**Bug fixes**
+
+- Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
+- Fixed `onClick` TypeScript definition for `EuiPanel` ([#2330](https://github.com/elastic/eui/pull/2330))
+- Fixed `EuiComboBox` list reopening after closing on option selection in IE11 ([#2326](https://github.com/elastic/eui/pull/2326))
 
 ## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)
 
