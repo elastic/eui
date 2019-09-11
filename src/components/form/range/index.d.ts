@@ -33,6 +33,7 @@ declare module '@elastic/eui' {
 
   export interface EuiRangeProps {
     compressed?: boolean;
+    readOnly?: boolean;
     fullWidth?: boolean;
     id?: string;
     levels?: EuiRangeLevel[];
@@ -43,7 +44,7 @@ declare module '@elastic/eui' {
     // The spec allows string values for `step` but the component requires
     // a number.
     step?: number;
-    showInput?: boolean;
+    showInput?: boolean | 'inputWithPopover';
     showLabels?: boolean;
     showRange?: boolean;
     showTicks?: boolean;
