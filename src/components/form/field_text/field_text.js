@@ -21,6 +21,7 @@ export const EuiFieldText = ({
   prepend,
   append,
   readOnly,
+  controlOnly,
   ...rest
 }) => {
   const classes = classNames('euiFieldText', className, {
@@ -30,6 +31,24 @@ export const EuiFieldText = ({
     'euiFieldText--inGroup': prepend || append,
     'euiFieldText-isLoading': isLoading,
   });
+
+  const control = (
+    <EuiValidatableControl isInvalid={isInvalid}>
+      <input
+        type="text"
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        className={classes}
+        value={value}
+        ref={inputRef}
+        readOnly={readOnly}
+        {...rest}
+      />
+    </EuiValidatableControl>
+  );
+
+  if (controlOnly) return control;
 
   return (
     <EuiFormControlLayout
@@ -41,19 +60,7 @@ export const EuiFieldText = ({
       prepend={prepend}
       append={append}
       inputId={id}>
-      <EuiValidatableControl isInvalid={isInvalid}>
-        <input
-          type="text"
-          id={id}
-          name={name}
-          placeholder={placeholder}
-          className={classes}
-          value={value}
-          ref={inputRef}
-          readOnly={readOnly}
-          {...rest}
-        />
-      </EuiValidatableControl>
+      {control}
     </EuiFormControlLayout>
   );
 };
@@ -87,6 +94,11 @@ EuiFieldText.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Completely removes form control layout wrapper and ignores
+   * icon, prepend, and append. Best used inside EuiFormControlLayoutDelimited.
+   */
+  controlOnly: PropTypes.bool,
 };
 
 EuiFieldText.defaultProps = {
