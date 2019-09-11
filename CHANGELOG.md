@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `13.8.2`.
+
+## [`13.8.2`](https://github.com/elastic/eui/tree/v13.8.2)
+
 **Bug fixes**
 
 - Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
