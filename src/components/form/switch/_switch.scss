@@ -104,6 +104,8 @@
 
     .euiSwitch__thumb {
       @include euiCustomControlDisabled;
+
+      border-color: $euiFormBorderColor;
       background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
     }
 
@@ -116,6 +118,11 @@
     }
   }
 
+  .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+    background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .7), transparentize($euiColorMediumShade, .4));
+  }
+
+  // slight
   .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
     background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
   }
@@ -144,7 +151,6 @@
 
     .euiSwitch__label {
       line-height: $euiSwitchHeightCompressed;
-      font-size: $euiFontSizeXS;
     }
 
     .euiSwitch__body {
@@ -176,7 +182,7 @@
     .euiSwitch__input:not(:checked) ~ .euiSwitch__body,
     .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
       .euiSwitch__thumb {
-        border-color: $euiColorMediumShade;
+        border-color: $euiFormBorderColor;
       }
     }
 
