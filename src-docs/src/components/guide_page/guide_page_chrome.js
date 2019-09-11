@@ -166,12 +166,10 @@ export class GuidePageChrome extends Component {
                 selectedTheme={this.props.selectedTheme}
               />
               {location.host === 'localhost:8030' ? ( // eslint-disable-line no-restricted-globals
-                <EuiFlexItem grow={false}>
-                  <GuideLocaleSelector
-                    onToggleLocale={this.props.onToggleLocale}
-                    selectedLocale={this.props.selectedLocale}
-                  />
-                </EuiFlexItem>
+                <GuideLocaleSelector
+                  onToggleLocale={this.props.onToggleLocale}
+                  selectedLocale={this.props.selectedLocale}
+                />
               ) : null}
             </div>
           </EuiPopover>

@@ -62,7 +62,7 @@ export class EuiAbsoluteTab extends Component {
           onChange={this.handleChange}
         />
         <EuiFormRow
-          className="euiDatePopoverContent__padded"
+          className="euiSuperDatePicker__absoluteDateFormRow"
           isInvalid={this.state.isTextInvalid}
           error={
             this.state.isTextInvalid
@@ -70,6 +70,7 @@ export class EuiAbsoluteTab extends Component {
               : undefined
           }>
           <EuiFieldText
+            compressed
             isInvalid={this.state.isTextInvalid}
             value={this.state.textInputValue}
             onChange={this.handleTextChange}

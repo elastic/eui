@@ -15,6 +15,7 @@ import {
   EuiRange,
   EuiSwitch,
   EuiCodeBlock,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import SuperSelectComplexExample from '../super_select/super_select_complex';
@@ -72,6 +73,8 @@ export class Modal extends Component {
         <EuiFormRow label="A SuperSelect field">
           <SuperSelectComplexExample />
         </EuiFormRow>
+
+        <EuiSpacer />
 
         <EuiCodeBlock language="html" paddingSize="s" isCopyable>
           {'<h1>Title</h1>'}

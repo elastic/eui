@@ -1,6 +1,37 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `13.8.2`.
+### Feature: Compressed Form Controls ([#2167](https://github.com/elastic/eui/pull/2167))
+
+- Altered the look of `compressed` form controls to look more subtle
+- Created `EuiFormControlLayoutDelimited` for dual inputs indicating a range
+- Added compressed and column style layouts to `EuiFormRow` via `display` prop
+- Reduced overall height of `compressed` `EuiRange` and `EuiDualRange`
+- Added `showInput = 'inputWithPopover'` option for `compressed` `EuiRange` and `EuiDualRange` to display the slider in a popover
+
+- Made all inputs in the `EuiSuperDatePicker` popover `compressed`
+- Added `controlOnly` prop to `EuiFieldText` and `EuiFieldNumber`
+- Allow `style` prop to be passed down in `EuiColorPickerSwatch`
+- `EuiFilePicker` now has `default` and `large` display sizes that both have `compressed` alternatives
+- Allow strings to be passed as `append`/`prepend` props and added a11y support
+- Added a max height with overflow to `EuiSuperSelect`
+
+**Bug fixes**
+
+- Fixed `EuiColorPicker` padding on right to accomodate down caret
+- Fixed sizings of `EuiComboBox` and pills
+- Fixed truncation on `EuiContextMenuItem`
+- Fixed style of more `append`/`prepend` options of `EuiFormControlLayout`
+
+**Deprecations**
+
+- `EuiFormRow`'s `compressed` prop deprecated in favor of `display: rowCompressed`
+- `EuiFormRow`'s `displayOnly` prop deprecated in favor of `display: center`
+
+**Breaking changes**
+
+- SASS mixin `euiTextOverflowWrap()` has been removed in favor of `euiTextBreakWord()`
+- `EuiFormLabel` no longer has a bottom margin
+- `EuiFormRow` no longer has bottom padding, nor does it add margin to any `+ *` siblings only sibling `EuiFormRow`s
 
 ## [`13.8.2`](https://github.com/elastic/eui/tree/v13.8.2)
 

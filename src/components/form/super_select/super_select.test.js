@@ -42,6 +42,19 @@ describe('EuiSuperSelect', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('compressed is rendered', () => {
+      const component = render(
+        <EuiSuperSelect
+          {...requiredProps}
+          options={options}
+          onChange={() => {}}
+          compressed
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('select component is rendered', () => {
       const component = render(
         <EuiSuperSelect

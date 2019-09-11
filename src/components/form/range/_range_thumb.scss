@@ -6,7 +6,6 @@
   left: 0;
   top: 50%;
   margin-top: -($euiRangeThumbHeight / 2);
-  z-index: $euiZLevel2;
   pointer-events: none;
 
   &:focus {

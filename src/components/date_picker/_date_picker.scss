@@ -28,6 +28,10 @@
 // This is mostly here so that we can provide an inline version that doesn't have the
 // shadows and depth.
 .euiDatePicker {
+  .euiFormControlLayout {
+    height: auto;
+  }
+
   &.euiDatePicker--shadow {
     .react-datepicker-popper {
       @include euiBottomShadowMedium;

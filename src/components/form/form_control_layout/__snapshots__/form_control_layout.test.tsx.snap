@@ -225,7 +225,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFormControlLayout props one append is rendered 1`] = `
+exports[`EuiFormControlLayout props one append node is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group"
 >
@@ -240,7 +240,22 @@ exports[`EuiFormControlLayout props one append is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFormControlLayout props one prepend is rendered 1`] = `
+exports[`EuiFormControlLayout props one append string is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+  <label
+    class="euiFormLabel euiFormControlLayout__append"
+  >
+    1
+  </label>
+</div>
+`;
+
+exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group"
 >
@@ -249,6 +264,21 @@ exports[`EuiFormControlLayout props one prepend is rendered 1`] = `
   >
     1
   </span>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  />
+</div>
+`;
+
+exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <label
+    class="euiFormLabel euiFormControlLayout__prepend"
+  >
+    1
+  </label>
   <div
     class="euiFormControlLayout__childrenWrapper"
   />

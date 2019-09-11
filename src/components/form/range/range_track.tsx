@@ -14,6 +14,7 @@ export interface EuiRangeTrackProps {
   max: number;
   step?: number;
   value?: number | string | Array<string | number>;
+  compressed?: boolean;
   disabled?: boolean;
   showTicks?: boolean;
   tickInterval?: number;
@@ -117,6 +118,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       levels,
       onChange,
       value,
+      compressed,
     } = this.props;
 
     // TODO: Move these to only re-calculate if no-value props have changed
@@ -147,9 +149,9 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
 
     return (
       <div className={trackClasses} style={inputWrapperStyle}>
-        {children}
         {levels && !!levels.length && (
           <EuiRangeLevels
+            compressed={compressed}
             levels={levels}
             max={max}
             min={min}
@@ -159,6 +161,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
         {tickSequence && (
           <EuiRangeTicks
             disabled={disabled}
+            compressed={compressed}
             onChange={onChange}
             ticks={ticks}
             tickSequence={tickSequence}
@@ -168,6 +171,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
             interval={tickInterval || step}
           />
         )}
+        {children}
       </div>
     );
   }
