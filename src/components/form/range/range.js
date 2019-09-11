@@ -111,6 +111,7 @@ export class EuiRange extends Component {
 
     const theInput = !!showInput ? (
       <EuiRangeInput
+        id={id}
         min={min}
         max={max}
         digitTolerance={digitTolerance}
@@ -169,7 +170,7 @@ export class EuiRange extends Component {
           )}
 
           <EuiRangeSlider
-            id={id}
+            id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
             min={min}
             max={max}
