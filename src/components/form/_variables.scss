@@ -13,6 +13,10 @@ $euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS !default;
 $euiSwitchThumbSize: $euiSwitchHeight !default;
 $euiSwitchIconHeight: $euiSize !default;
 
+$euiSwitchHeightCompressed: $euiSwitchHeight * .5 !default;
+$euiSwitchWidthCompressed: $euiSwitchWidth * .5 !default;
+$euiSwitchThumbSizeCompressed: $euiSwitchHeightCompressed !default;
+
 // Coloring
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 40%) !default;
 $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;

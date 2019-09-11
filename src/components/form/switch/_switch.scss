@@ -137,4 +137,46 @@
       }
     }
   }
+
+  &.euiSwitch--compressed {
+    min-height: $euiSwitchHeightCompressed;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeightCompressed;
+      font-size: $euiFontSizeXS;
+    }
+
+    .euiSwitch__body {
+      pointer-events: none;
+      width: $euiSwitchWidthCompressed;
+      height: $euiSwitchHeightCompressed;
+      border-radius: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
+
+      left: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
+      top: 1px;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        left: 1px;
+      }
+    }
+
+    // Compressed switches need slightly darker borders since they don't have icons
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body,
+    .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiColorMediumShade;
+      }
+    }
+  }
 }
