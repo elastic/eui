@@ -64,10 +64,7 @@ export const EuiSuggestItem = ({
   }
 
   return (
-    <OuterElement
-      onClick={onClick ? onClick : undefined}
-      className={classes}
-      {...rest}>
+    <OuterElement onClick={onClick} className={classes} {...rest}>
       <span className={`euiSuggestItem__type ${colorClass}`}>
         <EuiIcon type={type.iconType} />
       </span>

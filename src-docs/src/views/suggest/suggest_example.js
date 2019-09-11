@@ -42,7 +42,7 @@ const suggestSnippet = [
   `<EuiSuggest
   status={this.state.status}
   tooltipContent={this.state.tooltipContent}
-  sendInputValue={this.getInputValue}
+  onInputChange={this.getInputValue}
   onItemClick={this.onItemClick}
   suggestions={[
     {

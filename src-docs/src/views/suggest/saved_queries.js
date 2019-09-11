@@ -46,75 +46,71 @@ const sampleItems = [
 ];
 
 export default class extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    status: 'unchanged',
+    value: '',
+    hideDatepicker: false,
+    filters: [
+      {
+        id: 'filter0',
+        field: '@tags.keyword',
+        operator: 'IS',
+        value: 'value',
+        isDisabled: false,
+        isPinned: true,
+        isExcluded: false,
+      },
+      {
+        id: 'filter1',
+        field: '@tags.keyword',
+        operator: 'IS',
+        value: 'value',
+        isDisabled: true,
+        isPinned: false,
+        isExcluded: false,
+      },
+      {
+        id: 'filter2',
+        field: '@tags.keyword',
+        operator: 'IS NOT',
+        value: 'value',
+        isDisabled: false,
+        isPinned: true,
+        isExcluded: true,
+      },
+      {
+        id: 'filter3',
+        field: '@tags.keyword',
+        operator: 'IS',
+        value: 'value',
+        isDisabled: false,
+        isPinned: false,
+        isExcluded: false,
+      },
+    ],
+  };
 
-    this.state = {
-      status: 'unchanged',
-      value: '',
-      hideDatepicker: false,
-      filters: [
-        {
-          id: 'filter0',
-          field: '@tags.keyword',
-          operator: 'IS',
-          value: 'value',
-          isDisabled: false,
-          isPinned: true,
-          isExcluded: false,
-        },
-        {
-          id: 'filter1',
-          field: '@tags.keyword',
-          operator: 'IS',
-          value: 'value',
-          isDisabled: true,
-          isPinned: false,
-          isExcluded: false,
-        },
-        {
-          id: 'filter2',
-          field: '@tags.keyword',
-          operator: 'IS NOT',
-          value: 'value',
-          isDisabled: false,
-          isPinned: true,
-          isExcluded: true,
-        },
-        {
-          id: 'filter3',
-          field: '@tags.keyword',
-          operator: 'IS',
-          value: 'value',
-          isDisabled: false,
-          isPinned: false,
-          isExcluded: false,
-        },
-      ],
-    };
-  }
-
-  onFieldFocus() {
+  onFieldFocus = () => {
     this.setState({
       hideDatepicker: true,
     });
-  }
+  };
 
-  onFieldBlur() {
+  onFieldBlur = () => {
     this.setState({
       hideDatepicker: false,
     });
-  }
+  };
 
-  getInputValue(val) {
+  getInputValue = val => {
     this.setState({
       value: val,
     });
-  }
+  };
 
-  onItemClick(item) {
+  onItemClick = item => {
     alert(`Item [${item.label}] was clicked`);
-  }
+  };
 
   onTimeChange() {
     alert('Time changed');
@@ -133,13 +129,13 @@ export default class extends Component {
           <EuiFlexItem>
             <EuiSuggest
               status={this.state.status}
-              onFocus={this.onFieldFocus.bind(this)}
-              onBlur={this.onFieldBlur.bind(this)}
+              onFocus={this.onFieldFocus}
+              onBlur={this.onFieldBlur}
               prepend={<HashtagPopover value={this.state.value} />}
               append={append}
               suggestions={sampleItems}
-              onItemClick={this.onItemClick.bind(this)}
-              sendInputValue={this.getInputValue.bind(this)}
+              onItemClick={this.onItemClick}
+              onInputChange={this.getInputValue}
             />
           </EuiFlexItem>
           <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">

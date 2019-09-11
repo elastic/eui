@@ -8,29 +8,42 @@ import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiPopover, EuiInputPopover } from '../popover';
 
+const statusMap = {
+  unsaved: {
+    icon: 'dot',
+    color: 'accent',
+    tooltip: 'Changes have not been saved.',
+  },
+  saved: {
+    icon: 'checkInCircleFilled',
+    color: 'secondary',
+    tooltip: 'Saved.',
+  },
+  unchanged: {
+    icon: '',
+    color: 'secondary',
+  },
+};
+
 export class EuiSuggestInput extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    value: '',
+    isPopoverOpen: false,
+  };
 
-    this.state = {
-      value: '',
-      isPopoverOpen: false,
-    };
-  }
-
-  onFieldChange(e) {
+  onFieldChange = e => {
     this.setState({
       value: e.target.value,
       isPopoverOpen: e.target.value !== '' ? true : false,
     });
     this.props.sendValue(e.target.value);
-  }
+  };
 
-  closePopover() {
+  closePopover = () => {
     this.setState({
       isPopoverOpen: false,
     });
-  }
+  };
 
   render() {
     const {
@@ -43,26 +56,8 @@ export class EuiSuggestInput extends Component {
       ...rest
     } = this.props;
 
-    const statusMap = {
-      unsaved: {
-        icon: 'dot',
-        color: 'accent',
-        tooltip: 'Changes have not been saved.',
-      },
-      saved: {
-        icon: 'checkInCircleFilled',
-        color: 'secondary',
-        tooltip: 'Saved.',
-      },
-      unchanged: {
-        icon: '',
-        color: 'secondary',
-      },
-    };
-
     let icon;
     let color;
-    let tooltip;
 
     if (statusMap[status]) {
       icon = statusMap[status].icon;
@@ -94,7 +89,7 @@ export class EuiSuggestInput extends Component {
         fullWidth
         append={appendArray}
         isLoading={status === 'loading' ? true : false}
-        onChange={this.onFieldChange.bind(this)}
+        onChange={this.onFieldChange}
         {...rest}
       />
     );
@@ -107,7 +102,7 @@ export class EuiSuggestInput extends Component {
           isOpen={this.state.isPopoverOpen}
           panelPaddingSize="none"
           fullWidth
-          closePopover={this.closePopover.bind(this)}>
+          closePopover={this.closePopover}>
           <div>{suggestions}</div>
         </EuiInputPopover>
       </div>

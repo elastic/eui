@@ -4,30 +4,25 @@ import { EuiSuggestItem } from './suggest_item';
 import { EuiSuggestInput } from './suggest_input';
 
 export class EuiSuggest extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    value: '',
+    status: 'unsaved',
+  };
 
-    this.state = {
-      value: '',
-      status: 'unsaved',
-    };
-    this.getValue = this.getValue.bind(this);
-  }
-
-  getValue(val) {
+  getValue = val => {
     this.setState({
       value: val,
     });
-  }
+  };
 
-  onChange(e) {
-    this.props.sendInputValue(e.target.value);
-  }
+  onChange = e => {
+    this.props.onInputChange(e.target.value);
+  };
 
   render() {
     const {
       onItemClick,
-      sendInputValue,
+      onInputChange,
       status,
       append,
       tooltipContent,
@@ -40,7 +35,7 @@ export class EuiSuggest extends Component {
         type={item.type}
         key={index}
         label={item.label}
-        onClick={onItemClick ? onItemClick.bind(this, item) : undefined}
+        onClick={onItemClick ? () => onItemClick(item) : null}
         description={item.description}
       />
     ));
@@ -55,7 +50,7 @@ export class EuiSuggest extends Component {
         {...rest}
       />
     );
-    return <div onChange={this.onChange.bind(this)}>{suggestInput}</div>;
+    return <div onChange={this.onChange}>{suggestInput}</div>;
   }
 }
 
@@ -78,7 +73,7 @@ EuiSuggest.propTypes = {
    * Handler for click on a suggestItem.
    */
   onItemClick: PropTypes.func,
-  sendInputValue: PropTypes.func,
+  onInputChange: PropTypes.func,
 };
 
 EuiSuggestInput.defaultProps = {

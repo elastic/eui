@@ -73,11 +73,11 @@ export default class extends Component {
     alert(`Item [${item.label}] was clicked`);
   }
 
-  getInputValue(val) {
+  getInputValue = val => {
     this.setState({
       value: val,
     });
-  }
+  };
 
   render() {
     return (
@@ -90,8 +90,8 @@ export default class extends Component {
         <EuiSpacer size="xl" />
         <EuiSuggest
           status={this.state.status}
-          sendInputValue={this.getInputValue.bind(this)}
-          onItemClick={this.onItemClick.bind(this)}
+          onInputChange={this.getInputValue}
+          onItemClick={this.onItemClick}
           placeholder="Enter query to display suggestions"
           suggestions={sampleItems}
         />

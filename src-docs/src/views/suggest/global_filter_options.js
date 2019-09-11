@@ -25,13 +25,9 @@ function flattenPanelTree(tree, array = []) {
 export default class GlobalFilterOptions extends Component {
   static propTypes = {};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  state = {
+    isPopoverOpen: false,
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({

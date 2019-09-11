@@ -17,13 +17,9 @@ import {
 export default class HashtagPopover extends Component {
   static propTypes = {};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  state = {
+    isPopoverOpen: false,
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({
@@ -46,7 +42,7 @@ export default class HashtagPopover extends Component {
 
     const hashtagButton = (
       <EuiButtonEmpty
-        onClick={this.onButtonClick.bind(this)}
+        onClick={this.onButtonClick}
         size="xs"
         iconType="arrowDown"
         iconSide="right">
