@@ -22,4 +22,17 @@ const cardNodes = icons.map(function(item, index) {
   );
 });
 
-export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;
+export default () => (
+  <EuiFlexGroup gutterSize="l">
+    {cardNodes}
+    <EuiFlexItem>
+      <EuiCard
+        isDisabled
+        icon={<EuiIcon size="xxl" type="logoBeats" />}
+        title="Elastic Beats"
+        description="Example of a disabled card."
+        onClick={() => window.alert('Card clicked')}
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);

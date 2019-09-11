@@ -41,6 +41,27 @@
       transform: translateY(0);
     }
   }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    pointer-events: none;
+
+    .euiIcon path {
+      fill: $euiButtonColorDisabled;
+    }
+
+    .euiKeyPadMenuItem__inner {
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    &:hover,
+    &:focus {
+      @include euiSlightShadow;
+      border-color: $euiButtonColorDisabled;
+      text-decoration: none;
+    }
+  }
 }
 
 .euiKeyPadMenuItem__inner {

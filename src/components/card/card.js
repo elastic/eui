@@ -45,6 +45,7 @@ const cardLayout = (props, propName, componentName, ...rest) => {
 export const EuiCard = ({
   className,
   description,
+  isDisabled,
   title,
   titleElement,
   icon,
@@ -107,10 +108,10 @@ export const EuiCard = ({
   }
 
   let OuterElement = 'div';
-  if (href) {
-    OuterElement = 'a';
-  } else if (onClick) {
+  if (isDisabled || onClick) {
     OuterElement = 'button';
+  } else {
+    OuterElement = 'a';
   }
 
   let TitleElement = titleElement;
@@ -170,6 +171,7 @@ export const EuiCard = ({
       onClick={onClick}
       className={classes}
       href={href}
+      disabled={isDisabled}
       target={target}
       rel={secureRel}
       {...rest}>

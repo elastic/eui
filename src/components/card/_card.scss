@@ -21,6 +21,29 @@
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
+  &:disabled {
+    pointer-events: none;
+
+    .euiCard__title,
+    .euiCard__description {
+      color: $euiButtonColorDisabled;
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    .euiCard__top svg,
+    .euiCard__top img {
+      filter: grayscale(100%);
+    }
+
+    &:hover,
+    &:focus {
+      @include euiSlightShadow;
+      border-color: $euiButtonColorDisabled;
+      text-decoration: none;
+    }
+  }
+
   .euiCard__top,
   .euiCard__content,
   .euiCard__footer {
