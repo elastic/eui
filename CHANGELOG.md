@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
+- Fixed `onClick` TypeScript definition for `EuiPanel` ([#2330](https://github.com/elastic/eui/pull/2330))
 
 ## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)
 
