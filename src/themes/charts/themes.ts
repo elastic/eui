@@ -68,6 +68,10 @@ function createTheme(colors: any) {
           fill: colors.euiColorDarkShade.rgba,
         },
       },
+      scales: {
+        barsPadding: 0.25,
+        histogramPadding: 0.05,
+      },
       axes: {
         axisTitleStyle: {
           fontSize: 12,
