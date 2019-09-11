@@ -437,7 +437,7 @@ export class EuiComboBox extends Component {
     }
 
     if (singleSelection) {
-      setTimeout(this.closeList, 50);
+      requestAnimationFrame(this.closeList);
     }
   };
 
