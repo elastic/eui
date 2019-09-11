@@ -10,7 +10,7 @@ exports[`EuiControlBar is rendered 1`] = `
     class="euiControlBar__controls"
   >
     <button
-      class="euiButton euiButton--ghost euiControlBar__button"
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
       type="button"
     >
       <span
@@ -19,16 +19,12 @@ exports[`EuiControlBar is rendered 1`] = `
         <span
           class="euiButton__text"
         >
-          <div
-            class="euiText euiText--small"
-          >
-            Sound the Alarm
-          </div>
+          Sound the Alarm
         </span>
       </span>
     </button>
     <button
-      class="euiButton euiButton--ghost euiControlBar__button"
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
       type="button"
     >
       <span
@@ -37,11 +33,7 @@ exports[`EuiControlBar is rendered 1`] = `
         <span
           class="euiButton__text"
         >
-          <div
-            class="euiText euiText--small"
-          >
-            Close the Hatch
-          </div>
+          Close the Hatch
         </span>
       </span>
     </button>

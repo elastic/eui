@@ -127,13 +127,7 @@ export class ControlBarWithTabs extends React.Component {
     if (this.state.isFullScreen) {
       fullScreenDisplay = (
         <EuiFocusTrap>
-          <div
-            className="guideDemo__pageOverlay"
-            style={{
-              padding: '2rem',
-              zIndex: '20000',
-            }}
-            onKeyDown={this.onKeyDown}>
+          <div className="guideDemo__pageOverlay" onKeyDown={this.onKeyDown}>
             <EuiFlexGroup>
               <EuiButton onClick={this.toggle.bind(this)}>
                 Toggle Content Drawer

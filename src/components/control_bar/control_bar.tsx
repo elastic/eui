@@ -86,7 +86,7 @@ export type Control = ExclusiveUnion<
 export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
-     * Show or hide the content well with your custom content inside
+     * Show or hide the content area containing the `children`
      */
     showContent?: boolean;
 
@@ -96,13 +96,13 @@ export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
      */
     controls: Control[];
     /**
-     * The maximum height of the overlay (relative to the window). Default is 90%, Medium is 75%, Small is 50%;
+     * The maximum height of the overlay. Default is 100% of the window height - 10rem, Medium is 50% of the window height, Small is 25% of the window height;
      */
     size?: 's' | 'm' | 'l';
     /**
-     * Set the offset from the left side of the screen to account for Kibana's left-hand navigation menu.
+     * Set the offset from the left side of the screen to account for EuiNavDrawer.
      */
-    leftOffset?: 's' | 'l' | undefined;
+    navDrawerOffset?: 'collapsed' | 'expanded' | undefined;
     /**
      * The control bar is hidden on mobile by default. Use the `showOnMobile` prop to force it's display on mobile screens.
      * You'll need to ensure that the content you place into the bar renders as expected on mobile.
@@ -129,7 +129,7 @@ export class EuiControlBar extends Component<
       showContent,
       controls,
       size,
-      leftOffset,
+      navDrawerOffset,
       showOnMobile,
       ...rest
     } = this.props;
@@ -139,8 +139,8 @@ export class EuiControlBar extends Component<
       'euiControlBar--large': size === 'l' || !size,
       'euiControlBar--medium': size === 'm',
       'euiControlBar--small': size === 's',
-      'euiControlBar--navExpanded': leftOffset === 'l',
-      'euiControlBar--navCollapsed': leftOffset === 's',
+      'euiControlBar--navExpanded': navDrawerOffset === 'expanded',
+      'euiControlBar--navCollapsed': navDrawerOffset === 'collapsed',
       'euiControlBar--showOnMobile': showOnMobile,
     });
 
@@ -180,8 +180,9 @@ export class EuiControlBar extends Component<
               onClick={onClick}
               className={classnames('euiControlBar__button', classNames)}
               color={color ? color : 'ghost'}
+              size="s"
               {...rest}>
-              <EuiText size="s">{label}</EuiText>
+              {label}
             </EuiButton>
           );
         }
@@ -205,6 +206,7 @@ export class EuiControlBar extends Component<
               onClick={onClick}
               className={classnames('euiControlBar__buttonIcon', classNames)}
               color={color ? color : 'ghost'}
+              size="s"
               {...rest}
             />
           );
@@ -280,7 +282,7 @@ export class EuiControlBar extends Component<
 
     return (
       <EuiPortal>
-        <div className={classes} aria-label="Control Bar" {...rest}>
+        <div className={classes} {...rest}>
           <div className="euiControlBar__controls">
             {controls.map((control, index) => {
               return controlItem(control, index);

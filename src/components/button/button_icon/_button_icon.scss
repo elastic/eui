@@ -35,7 +35,7 @@
 }
 
 // Modifier naming and colors.
-$euiButtonTypes: (
+$euiButtonIconTypes: (
   danger: $euiColorDanger,
   disabled: $euiButtonColorDisabled,
   ghost: $euiColorGhost,
@@ -47,7 +47,7 @@ $euiButtonTypes: (
 );
 
 // Create button modifiders based upon the map.
-@each $name, $color in $euiButtonTypes {
+@each $name, $color in $euiButtonIconTypes {
   .euiButtonIcon--#{$name} {
     color: $color;
 

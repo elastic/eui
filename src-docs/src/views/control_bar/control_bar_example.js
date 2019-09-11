@@ -15,7 +15,46 @@ import { ControlBarWithTabs } from './tabs';
 
 const controlBarSource = require('!!raw-loader!./control_bar');
 const controlBarHtml = renderToHtml(ControlBar);
-const controlBarSnippet = '<EuiControlBar controls={items}/>';
+const controlBarSnippet = `<EuiControlBar
+  size="l"
+  showContent={false}
+  navDrawerOffset="s"
+  controls={
+    [{
+      id: 'root_icon',
+      label: 'Project Root',
+      controlType: 'icon',
+      iconType: 'submodule',
+    },
+    {
+      id: 'current_file_path',
+      label: 'breadcrumbs',
+      controlType: 'breadcrumbs',
+      responsive: true,
+      breadcrumbs: [
+        {
+          text: 'src',
+        },
+        {
+          text: 'components',
+        },
+      ],
+    },
+    {
+      controlType: 'spacer',
+    },
+    {
+      id: 'status_icon',
+      label: 'Repo Status',
+      controlType: 'icon',
+      iconType: 'alert',
+      color: 'warning',
+    },
+    {
+      controlType: 'divider',
+    }]
+  }
+/>`;
 
 const tabsBarSource = require('!!raw-loader!./tabs');
 const tabsBarHtml = renderToHtml(ControlBarWithTabs);
