@@ -434,7 +434,42 @@ exports[`EuiDualRange props levels should render 1`] = `
 </div>
 `;
 
-exports[`EuiDualRange props only input should render 1`] = `
+exports[`EuiDualRange props range should render 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+  <div
+    class="euiRange__horizontalSpacer"
+  />
+</div>
+`;
+
+exports[`EuiDualRange props slider should display in popover 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
 >
@@ -481,41 +516,6 @@ exports[`EuiDualRange props only input should render 1`] = `
       </div>
     </div>
   </div>
-</div>
-`;
-
-exports[`EuiDualRange props range should render 1`] = `
-<div
-  class="euiRangeWrapper euiDualRange"
->
-  <div
-    class="euiRange__horizontalSpacer"
-  />
-  <div
-    class="euiRangeTrack"
-  >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
-    <input
-      aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
-      id="generated-id"
-      max="100"
-      min="0"
-      step="1"
-      tabindex="-1"
-      type="range"
-    />
-  </div>
-  <div
-    class="euiRange__horizontalSpacer"
-  />
 </div>
 `;
 

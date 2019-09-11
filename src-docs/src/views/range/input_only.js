@@ -56,7 +56,7 @@ export default class extends Component {
 
         <EuiSpacer size="xl" />
 
-        <DisplayToggles canAppend canPrepend>
+        <DisplayToggles canAppend canPrepend canLoading={false}>
           <EuiDualRange
             id={makeId()}
             value={this.state.dualValue}

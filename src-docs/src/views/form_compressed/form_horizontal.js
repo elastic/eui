@@ -11,48 +11,12 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import makeId from '../../../../src/components/form/form_row/make_id';
-
 export default class extends Component {
   constructor(props) {
     super(props);
 
-    const idPrefix = makeId();
-
     this.state = {
       isSwitchChecked: false,
-      checkboxes: [
-        {
-          id: `${idPrefix}0`,
-          label: 'Option one',
-        },
-        {
-          id: `${idPrefix}1`,
-          label: 'Option two is checked by default',
-        },
-        {
-          id: `${idPrefix}2`,
-          label: 'Option three',
-        },
-      ],
-      checkboxIdToSelectedMap: {
-        [`${idPrefix}1`]: true,
-      },
-      radios: [
-        {
-          id: `${idPrefix}4`,
-          label: 'Option one',
-        },
-        {
-          id: `${idPrefix}5`,
-          label: 'Option two is selected by default',
-        },
-        {
-          id: `${idPrefix}6`,
-          label: 'Option three',
-        },
-      ],
-      radioIdSelected: `${idPrefix}5`,
       comboBoxSelectionOptions: [],
       value: '20',
     };
@@ -67,25 +31,6 @@ export default class extends Component {
   onSwitchChange = () => {
     this.setState({
       isSwitchChecked: !this.state.isSwitchChecked,
-    });
-  };
-
-  onCheckboxChange = optionId => {
-    const newCheckboxIdToSelectedMap = {
-      ...this.state.checkboxIdToSelectedMap,
-      ...{
-        [optionId]: !this.state.checkboxIdToSelectedMap[optionId],
-      },
-    };
-
-    this.setState({
-      checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
-    });
-  };
-
-  onRadioChange = optionId => {
-    this.setState({
-      radioIdSelected: optionId,
     });
   };
 

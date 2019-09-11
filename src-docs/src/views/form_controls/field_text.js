@@ -27,7 +27,6 @@ export default class extends Component {
           value={this.state.value}
           onChange={this.onChange}
           aria-label="Use aria labels when no actual label is in use"
-          disabled={this.props.isDisabled}
         />
       </DisplayToggles>
     );

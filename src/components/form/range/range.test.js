@@ -101,7 +101,7 @@ describe('EuiRange', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('input only should render', () => {
+    test('slider should display in popover', () => {
       const component = render(
         <EuiRange
           name="name"

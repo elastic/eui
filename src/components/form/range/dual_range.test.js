@@ -88,7 +88,7 @@ describe('EuiDualRange', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('only input should render', () => {
+    test('slider should display in popover', () => {
       const component = render(
         <EuiDualRange
           name="name"

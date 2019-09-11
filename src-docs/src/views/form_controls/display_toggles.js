@@ -39,6 +39,7 @@ export class DisplayToggles extends Component {
 
   render() {
     const {
+      canIsDisabled,
       canDisabled,
       canReadOnly,
       canLoading,
@@ -49,12 +50,11 @@ export class DisplayToggles extends Component {
       canInvalid,
       children,
       extras,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      onUpdate,
     } = this.props;
 
     const canProps = {};
     if (canDisabled) canProps.disabled = this.state.disabled;
+    if (canIsDisabled) canProps.isDisabled = this.state.disabled;
     if (canReadOnly) canProps.readOnly = this.state.readOnly;
     if (canLoading) canProps.isLoading = this.state.loading;
     if (canFullWidth) canProps.fullWidth = this.state.fullWidth;
@@ -84,7 +84,7 @@ export class DisplayToggles extends Component {
           }>
           <div>
             <EuiFlexGroup wrap={true} direction="column" gutterSize="s">
-              {canDisabled && (
+              {(canDisabled || canIsDisabled) && (
                 <EuiFlexItem grow={false}>
                   <EuiSwitch
                     label={'disabled'}
@@ -198,6 +198,7 @@ export class DisplayToggles extends Component {
 }
 
 DisplayToggles.propTypes = {
+  canIsDisabled: PropTypes.bool,
   canDisabled: PropTypes.bool,
   canReadOnly: PropTypes.bool,
   canLoading: PropTypes.bool,
@@ -208,10 +209,10 @@ DisplayToggles.propTypes = {
   canAppend: PropTypes.bool,
   canInvalid: PropTypes.bool,
   extras: PropTypes.arrayOf(PropTypes.node),
-  onUpdate: PropTypes.func,
 };
 
 DisplayToggles.defaultProps = {
+  canIsDisabled: false,
   canDisabled: true,
   canReadOnly: true,
   canLoading: true,

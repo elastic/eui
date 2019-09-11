@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 
 import {
-  EuiFieldText,
-  EuiFormRow,
-  EuiSelect,
-  EuiPanel,
-  EuiIcon,
-  EuiFormControlLayoutDelimited,
-  EuiRange,
-  EuiSuperSelect,
-  EuiColorPicker,
-  EuiFieldNumber,
-  EuiToolTip,
-  EuiHorizontalRule,
   EuiButtonIcon,
-  EuiSpacer,
+  EuiColorPicker,
+  EuiColorPickerSwatch,
+  EuiFieldNumber,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiColorPickerSwatch,
+  EuiFormControlLayoutDelimited,
+  EuiFormLabel,
+  EuiFormRow,
+  EuiHorizontalRule,
+  EuiIcon,
+  EuiPanel,
+  EuiRange,
+  EuiScreenReaderOnly,
+  EuiSelect,
+  EuiSpacer,
+  EuiSuperSelect,
+  EuiToolTip,
 } from '../../../../src/components';
 import makeId from '../../../../src/components/form/form_row/make_id';
-import { EuiFormLabel } from '../../../../src/components/form/form_label';
-import { EuiScreenReaderOnly } from '../../../../src/components/accessibility';
 
 export default class extends Component {
   constructor(props) {

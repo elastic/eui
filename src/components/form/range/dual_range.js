@@ -310,8 +310,9 @@ export class EuiDualRange extends Component {
       showRange,
       value,
       style,
-      isLoading,
       isInvalid,
+      append,
+      prepend,
       ...rest
     } = this.props;
 
@@ -341,7 +342,6 @@ export class EuiDualRange extends Component {
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
-        isLoading={!!showInputOnly && isLoading}
         isInvalid={isInvalid}
         controlOnly={showInputOnly}
         onMouseDown={
@@ -372,7 +372,6 @@ export class EuiDualRange extends Component {
         readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
-        isLoading={!!showInputOnly && isLoading}
         controlOnly={showInputOnly}
         isInvalid={isInvalid}
         onMouseDown={
@@ -506,6 +505,8 @@ export class EuiDualRange extends Component {
             fullWidth={fullWidth}
             compressed={compressed}
             readOnly={readOnly}
+            append={append}
+            prepend={prepend}
           />
         }
         fullWidth={fullWidth}

@@ -39,21 +39,6 @@ export default class extends Component {
       checkboxIdToSelectedMap: {
         [`${idPrefix}1`]: true,
       },
-      radios: [
-        {
-          id: `${idPrefix}4`,
-          label: 'Option one',
-        },
-        {
-          id: `${idPrefix}5`,
-          label: 'Option two is selected by default',
-        },
-        {
-          id: `${idPrefix}6`,
-          label: 'Option three',
-        },
-      ],
-      radioIdSelected: `${idPrefix}5`,
       comboBoxSelectionOptions: [],
       value: '20',
     };
@@ -81,12 +66,6 @@ export default class extends Component {
 
     this.setState({
       checkboxIdToSelectedMap: newCheckboxIdToSelectedMap,
-    });
-  };
-
-  onRadioChange = optionId => {
-    this.setState({
-      radioIdSelected: optionId,
     });
   };
 
