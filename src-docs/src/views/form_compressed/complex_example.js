@@ -4,11 +4,11 @@ import {
   EuiButtonIcon,
   EuiColorPicker,
   EuiColorPickerSwatch,
+  EuiDualRange,
   EuiFieldNumber,
   EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiFormControlLayoutDelimited,
   EuiFormLabel,
   EuiFormRow,
   EuiHorizontalRule,
@@ -50,6 +50,7 @@ export default class extends Component {
       color: '#DB1374',
       borderValue: 3,
       popoverSliderValues: 16,
+      dualValue: [5, 10],
     };
 
     this.selectTooltipContent =
@@ -88,6 +89,12 @@ export default class extends Component {
     });
   };
 
+  onDualChange = value => {
+    this.setState({
+      dualValue: value,
+    });
+  };
+
   render() {
     return (
       <EuiPanel style={{ maxWidth: 432 }}>
@@ -96,23 +103,15 @@ export default class extends Component {
         </EuiFormRow>
 
         <EuiFormRow label="Visibility" display="columnCompressed">
-          <EuiFormControlLayoutDelimited
+          <EuiDualRange
+            value={this.state.dualValue}
+            onChange={this.onDualChange}
+            min={0}
+            max={26}
             compressed
+            showInput="inputWithPopover"
+            showLabels
             prepend="Zoom levels"
-            startControl={
-              <EuiFieldNumber
-                controlOnly
-                defaultValue={5}
-                aria-label="Visibility zoom level minimum"
-              />
-            }
-            endControl={
-              <EuiFieldNumber
-                controlOnly
-                defaultValue={10}
-                aria-label="Visibility zoom level maximum"
-              />
-            }
           />
         </EuiFormRow>
 

@@ -61,11 +61,9 @@ export default class extends Component {
             id={makeId()}
             value={this.state.dualValue}
             onChange={this.onDualChange}
-            compressed
             showInput="inputWithPopover"
             showLabels
             levels={this.levels}
-            readOnly
           />
         </DisplayToggles>
       </Fragment>
