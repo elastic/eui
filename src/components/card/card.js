@@ -265,6 +265,7 @@ EuiCard.propTypes = {
    * This should be used sparingly, consult the Kibana Design team before use.
    */
   bottomGraphic: PropTypes.node,
+  isDisabled: PropTypes.bool,
 };
 
 EuiCard.defaultProps = {
