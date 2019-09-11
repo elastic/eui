@@ -1,18 +1,17 @@
 .euiControlBar {
-  background: lighten($euiColorInk, 5%);
+  background: $euiControlBarBackground;
   width: 100%;
-  color: $controlBarText;
+  color: $euiControlBarText;
   display: flex;
   flex-direction: column;
   position: fixed;
   // This large box shadow helps prevent a flicker of dark
   // background when the content is shown and hidden
-  box-shadow: inset 0 $controlBarInitialHeight 0 $controlBarBackground, inset 0 600rem 0 $euiColorLightestShade;
-  z-index: 20000;
+  box-shadow: inset 0 $euiControlBarInitialHeight 0 $euiControlBarBackground, inset 0 600rem 0 $euiPageBackgroundColor;
+  z-index: $euiZMask;
   left: 0;
   bottom: 0;
   transform: translateY(0);
-  box-sizing: border-box;
 
   &.euiControlBar--navCollapsed {
     left: $euiNavDrawerWidthCollapsed;
@@ -48,44 +47,42 @@
     bottom: -25vh;
   }
 
-  &.euiControlBar--large {
-    height: $controlBarInitialHeight;
-  }
-
-  &.euiControlBar--medium {
-    height: $controlBarInitialHeight;
-  }
-
+  &.euiControlBar--large,
+  &.euiControlBar--medium,
   &.euiControlBar--small {
-    height: $controlBarInitialHeight;
+    height: $euiControlBarInitialHeight;
   }
 }
 
 .euiControlBar__controls {
-  height: $controlBarInitialHeight;
+  height: $euiControlBarInitialHeight;
   width: 100%;
   display: flex;
   align-items: center;
+  overflow-x: auto;
+
+  .euiBreadcrumbSeparator {
+    background: $euiControlBarBorderColor;
+  }
 }
 
 .euiControlBar__content {
   @include euiScrollBar;
+  overflow-y: auto;
   width: 100%;
-  height: calc(100% - #{$controlBarInitialHeight});
-  background-color: $euiColorLightestShade;
-  box-sizing: border-box;
+  height: calc(100% - #{$euiControlBarInitialHeight});
+  background-color: $euiPageBackgroundColor;
   animation-name: showContent;
   animation-duration: $euiAnimSpeedSlow;
   animation-iteration-count: 1;
   animation-timing-function: $euiAnimSlightResistance;
   color: $euiColorDarkestShade;
-  overflow-y: scroll;
 }
 
 @keyframes openPanelLarge {
   0% {
     // Accounts for the initial height offset from the top
-    transform: translateY(calc((#{$controlBarInitialHeight} * 3) * -1));
+    transform: translateY(calc((#{$euiControlBarInitialHeight} * 3) * -1));
   }
 
   100% {
@@ -95,7 +92,7 @@
 
 @keyframes openPanelMedium {
   0% {
-    transform: translateY(-$controlBarInitialHeight);
+    transform: translateY(-$euiControlBarInitialHeight);
   }
 
   100% {
@@ -105,7 +102,7 @@
 
 @keyframes openPanelSmall {
   0% {
-    transform: translateY(-$controlBarInitialHeight);
+    transform: translateY(-$euiControlBarInitialHeight);
   }
 
   100% {
@@ -124,16 +121,18 @@
 }
 
 .euiControlBar__buttonIcon {
-  min-width: $controlBarInitialHeight;
+  min-width: $euiControlBarInitialHeight;
+  min-height: $euiControlBarInitialHeight;
 }
 
 .euiControlBar__button {
-  border-radius: .125rem;
-  height: $euiSizeXL;
+  border-radius: $euiBorderRadius / 2;
   margin-left: $euiSizeXS;
+  flex-shrink: 0;
+  font-size: $euiFontSizeS;
 
   &:enabled:hover {
-    transform: translateY(0);
+    transform: none;
     box-shadow: none;
   }
 
@@ -144,7 +143,6 @@
 }
 
 .euiControlBar__spacer {
-  display: flex;
   flex-grow: 1;
   height: 100%;
 }
@@ -152,23 +150,22 @@
 .euiControlBar__divider {
   height: 100%;
   width: 1px;
-  background-color: $controlBarBorderColor;
+  background-color: $euiControlBarBorderColor;
 }
 
 .euiControlBar__euiText {
   padding: 0 $euiSizeS;
-  color: $controlBarText;
+  color: $euiControlBarText;
 }
 
 .euiControlBar__tab {
   padding: 0 $euiSize;
   text-align: center;
-  box-sizing: border-box;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $controlBarText;
+  word-wrap: none;
 
   &:hover {
     text-decoration: underline;
@@ -176,24 +173,24 @@
   }
 
   &.euiControlBar__tab--active {
-    background-color: $euiColorLightestShade;
+    background-color: $euiPageBackgroundColor;
     box-shadow: inset 0 4px 0 makeHighContrastColor($euiColorPrimary, $euiColorLightestShade);
     color: makeHighContrastColor($euiColorPrimary, $euiColorLightestShade);
   }
 }
 
 .euiControlBar__euiButton + .euiControlBar__tab--active {
-  box-shadow: inset 0 4px 0 makeHighContrastColor($euiColorPrimary, $euiColorLightestShade), -1px 0 0 $controlBarBackground;
+  box-shadow: inset 0 4px 0 makeHighContrastColor($euiColorPrimary, $euiColorLightestShade), -1px 0 0 $euiControlBarBackground;
 }
 
-@each $colorName, $colorValue in $buttonTypes {
+@each $colorName, $colorValue in $euiButtonTypes {
   .euiControlBar__controls {
     .euiText--#{$colorName} {
-      color: makeHighContrastColor($colorValue, $controlBarBackground);
+      color: makeHighContrastColor($colorValue, $euiControlBarBackground);
     }
 
     .euiLink.euiLink--#{$colorName} {
-      color: makeHighContrastColor($colorValue, $controlBarBackground);
+      color: makeHighContrastColor($colorValue, $euiControlBarBackground);
 
       &:hover {
         color: tintOrShade($colorValue, 30%, 30%);
@@ -201,13 +198,19 @@
     }
 
     .euiControlBar__button.euiButton--#{$colorName}:enabled {
-      color: makeHighContrastColor($colorValue, $controlBarBackground);
-      border-color: makeHighContrastColor($colorValue, $controlBarBackground);
+      color: makeHighContrastColor($colorValue, $euiControlBarBackground);
+      border-color: makeHighContrastColor($colorValue, $euiControlBarBackground);
       box-shadow: none;
     }
 
     .euiControlBar__buttonIcon .euiIcon--#{$colorName} {
-      color: makeHighContrastColor($colorValue, $controlBarBackground);
+      color: makeHighContrastColor($colorValue, $euiControlBarBackground);
     }
+  }
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiControlBar:not(.euiControlBar--showOnMobile) {
+    display: none;
   }
 }
