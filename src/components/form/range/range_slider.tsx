@@ -16,6 +16,7 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     min: number;
     max: number;
     step?: number;
+    compressed?: boolean;
     hasFocus?: boolean;
     showRange?: boolean;
     showTicks?: boolean;
@@ -43,6 +44,7 @@ export const EuiRangeSlider: FunctionComponent<
       showTicks,
       showRange,
       hasFocus,
+      compressed,
       ...rest
     },
     ref: Ref<HTMLInputElement>
@@ -53,6 +55,7 @@ export const EuiRangeSlider: FunctionComponent<
         'euiRangeSlider--hasTicks': showTicks,
         'euiRangeSlider--hasFocus': hasFocus,
         'euiRangeSlider--hasRange': showRange,
+        'euiRangeSlider--compressed': compressed,
       },
       className
     );

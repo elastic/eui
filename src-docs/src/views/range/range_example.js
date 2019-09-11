@@ -45,6 +45,10 @@ import StatesExample from './states';
 const statesSource = require('!!raw-loader!./states');
 const statesHtml = renderToHtml(StatesExample);
 
+import InputOnlyExample from './input_only';
+const inputOnlySource = require('!!raw-loader!./input_only');
+const inputOnlyHtml = renderToHtml(InputOnlyExample);
+
 export const RangeControlExample = {
   title: 'Range sliders',
   intro: (
@@ -112,16 +116,16 @@ export const RangeControlExample = {
         EuiRange,
       },
       demo: <RangeExample />,
-      snippet: `<EuiRange
+      snippet: [
+        `<EuiRange
   min={100}
   max={200}
   step={0.05}
   value={this.state.value}
   onChange={this.onChange}
   showLabels
-/>
-
-// Show tooltip
+/>`,
+        `// Show tooltip
 <EuiRange
   min={100}
   max={200}
@@ -129,9 +133,8 @@ export const RangeControlExample = {
   onChange={this.onChange}
   showLabels
   showValue
-/>
-
-// Show thickened range and prepend a string to the tooltip
+/>`,
+        `// Show thickened range and prepend a string to the tooltip
 <EuiRange
   min={100}
   max={200}
@@ -142,6 +145,7 @@ export const RangeControlExample = {
   showValue
   valuePrepend="100 - "
 />`,
+      ],
     },
     {
       title: 'Dual range',
@@ -224,9 +228,7 @@ export const RangeControlExample = {
       ],
       demo: <InputExample />,
       props: { EuiRangeInput },
-      snippet: `<EuiRange showInput />
-
-<EuiDualRange showInput />`,
+      snippet: ['<EuiRange showInput />', '<EuiDualRange showInput />'],
     },
     {
       title: 'Tick marks',
@@ -265,17 +267,17 @@ export const RangeControlExample = {
       ],
       demo: <TicksExample />,
       props: { EuiRangeTicks },
-      snippet: `<EuiRange step={10} showTicks />
-
-<EuiRange showTicks tickInterval={20} />
-
-<EuiDualRange
+      snippet: [
+        '<EuiRange step={10} showTicks />',
+        '<EuiRange showTicks tickInterval={20} />',
+        `<EuiDualRange
   showTicks
   ticks={[
     { label: '20kb', value: 20 },
     { label: '100kb', value: 100 }
   ]}
 />`,
+      ],
     },
     {
       title: 'Levels',
@@ -305,21 +307,60 @@ export const RangeControlExample = {
       ],
       demo: <LevelsExample />,
       props: { EuiRangeLevels },
-      snippet: `<EuiRange
-  levels={[
-    {min: 0, max: 20, color: 'danger'},
-    {min: 20, max: 100, color: 'success'}
-  ]}
-  aria-describedBy={replaceWithID}
-/>
-
-<EuiDualRange
+      snippet: [
+        `<EuiRange
   levels={[
     {min: 0, max: 20, color: 'danger'},
     {min: 20, max: 100, color: 'success'}
   ]}
   aria-describedBy={replaceWithID}
 />`,
+        `<EuiDualRange
+  levels={[
+    {min: 0, max: 20, color: 'danger'},
+    {min: 20, max: 100, color: 'success'}
+  ]}
+  aria-describedBy={replaceWithID}
+/>`,
+      ],
+    },
+    {
+      title: 'Inputs with range in a dropdown',
+      text: (
+        <Fragment>
+          <p>
+            Passing <EuiCode>showInput=&quot;inputWithPopover&quot;</EuiCode>{' '}
+            instead of a boolean will only display the inputs until the input is
+            interacted with in which case a dropdown will appear displaying the
+            actual slider.
+          </p>
+        </Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inputOnlySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inputOnlyHtml,
+        },
+      ],
+      demo: <InputOnlyExample />,
+      snippet: [
+        `<EuiRange
+  id=""
+  value={}
+  onChange={() => {}}
+  showInput="inputWithPopover"
+/>`,
+        `<EuiDualRange
+  id=""
+  value={}
+  onChange={() => {}}
+  showInput="inputWithPopover"
+/>`,
+      ],
     },
     {
       title: 'Kitchen sink',
@@ -327,8 +368,7 @@ export const RangeControlExample = {
         <Fragment>
           <p>
             Other alterations you can add to the range are{' '}
-            <EuiCode>compressed</EuiCode>, <EuiCode>fullWidth</EuiCode>, and{' '}
-            <EuiCode>disabled</EuiCode>.
+            <EuiCode>fullWidth</EuiCode>, and <EuiCode>disabled</EuiCode>.
           </p>
         </Fragment>
       ),
@@ -343,11 +383,11 @@ export const RangeControlExample = {
         },
       ],
       demo: <StatesExample />,
-      snippet: `<EuiRange
+      snippet: [
+        `<EuiRange
   id=""
   value={}
   onChange={() => {}}
-  compressed
   fullWidth
   disabled
   showTicks
@@ -358,13 +398,11 @@ export const RangeControlExample = {
   tickInterval={}
   levels={[]}
   aria-describedBy={replaceWithID}
-/>
-
-<EuiDualRange
+/>`,
+        `<EuiDualRange
   id=""
   value={}
   onChange={() => {}}
-  compressed
   fullWidth
   disabled
   showLabels
@@ -374,6 +412,7 @@ export const RangeControlExample = {
   levels={[]}
   aria-describedBy={replaceWithID}
 />`,
+      ],
     },
   ],
 };

@@ -182,7 +182,7 @@
     .euiSwitch__input:not(:checked) ~ .euiSwitch__body,
     .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
       .euiSwitch__thumb {
-        border-color: $euiFormBorderColor;
+        border-color: $euiFormCustomControlBorderColor;
       }
     }
 

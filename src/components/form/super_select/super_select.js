@@ -165,6 +165,7 @@ export class EuiSuperSelect extends Component {
       itemLayoutAlign,
       fullWidth,
       popoverClassName,
+      compressed,
       ...rest
     } = this.props;
 
@@ -206,6 +207,7 @@ export class EuiSuperSelect extends Component {
         className={buttonClasses}
         fullWidth={fullWidth}
         isInvalid={isInvalid}
+        compressed={compressed}
         {...rest}
       />
     );
@@ -222,7 +224,6 @@ export class EuiSuperSelect extends Component {
           onKeyDown={this.onItemKeyDown}
           layoutAlign={itemLayoutAlign}
           buttonRef={node => this.setItemNode(node, index)}
-          style={{ width: this.state.menuWidth }}
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}
@@ -256,8 +257,10 @@ export class EuiSuperSelect extends Component {
           </p>
         </EuiScreenReaderOnly>
         <div
+          className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}
+          style={{ width: this.state.menuWidth }}
           tabIndex="0">
           {items}
         </div>

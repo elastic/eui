@@ -4,13 +4,9 @@
  */
 
 .euiRangeWrapper {
-  @include euiFormControlSize;
+  @include euiFormControlSize($includeAlternates: true);
   display: flex;
   align-items: center;
-
-  &--fullWidth {
-    max-width: 100%;
-  }
 
   > .euiFormControlLayout { /* 1 */
     width: auto;

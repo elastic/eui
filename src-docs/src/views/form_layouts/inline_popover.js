@@ -10,6 +10,7 @@ import {
   EuiFlexItem,
   EuiFieldNumber,
   EuiRange,
+  EuiSpacer,
   EuiSwitch,
 } from '../../../../src/components';
 
@@ -125,6 +126,8 @@ export default class extends Component {
         <EuiFormRow label="Range" helpText="Some help text for the range">
           <EuiRange min={0} max={100} name="poprange" />
         </EuiFormRow>
+
+        <EuiSpacer />
         <EuiButton fullWidth>Save</EuiButton>
       </EuiForm>
     );

@@ -7,6 +7,7 @@ import {
   EuiFormRow,
   EuiTextArea,
   EuiFieldText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default class extends Component {
@@ -69,6 +70,8 @@ export default class extends Component {
               isInvalid={this.state.showErrors}
             />
           </EuiFormRow>
+
+          <EuiSpacer />
 
           {button}
         </EuiForm>

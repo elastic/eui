@@ -57,5 +57,11 @@ describe('EuiFieldText', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('controlOnly is rendered', () => {
+      const component = render(<EuiFieldText controlOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

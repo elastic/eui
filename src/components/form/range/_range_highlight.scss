@@ -2,13 +2,12 @@
   position: absolute;
   left: 0;
   width: 100%;
-  top: ($euiFormControlHeight / 2) - 2px;
-  z-index: $euiZLevel0;
+  top: calc(50% - #{($euiRangeHighlightHeight / 2)});
   overflow: hidden;
 
   &__progress {
-    height: 4px;
-    border-radius: 4px;
+    height: $euiRangeHighlightHeight;
+    border-radius: $euiRangeHighlightHeight;
     background-color: $euiRangeTrackColor;
 
     &--hasFocus {
@@ -17,7 +16,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) - 2px;
-    left: 0;
+    top: ($euiFormControlHeight / 4) - ($euiRangeHighlightHeight / 2);
+  }
+
+  &--hasTicks.euiRangeHighlight--compressed {
+    top: ($euiFormControlCompressedHeight / 4) - ($euiRangeHighlightHeight / 2);
   }
 }
