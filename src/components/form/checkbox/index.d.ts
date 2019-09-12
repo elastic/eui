@@ -24,6 +24,7 @@ declare module '@elastic/eui' {
     label?: ReactNode;
     type?: EuiCheckboxType;
     disabled?: boolean;
+    compressed?: boolean;
     indeterminate?: boolean;
   }
 
