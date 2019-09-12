@@ -11,7 +11,6 @@ const handleClick = () => {
 const controls: Control[] = [
   {
     id: 'current_file_path',
-    label: 'breadcrumbs',
     controlType: 'breadcrumbs',
     responsive: true,
     breadcrumbs: [

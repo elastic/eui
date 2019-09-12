@@ -54,7 +54,6 @@ export default class extends Component {
       },
       {
         id: 'current_file_path',
-        label: 'breadcrumbs',
         controlType: 'breadcrumbs',
         responsive: true,
         breadcrumbs: [
