@@ -31,9 +31,10 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
 };
 
 export const useStyleSelector = (
-  defaultStyles: EuiDataGridStyle
+  initialStyles: EuiDataGridStyle
 ): [FunctionComponent<{}>, EuiDataGridStyle] => {
-  const [gridStyles, setGridStyles] = useState(defaultStyles);
+  // track styles specified by the user at run time
+  const [userGridStyles, setUserGridStyles] = useState({});
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,15 +44,14 @@ export const useStyleSelector = (
   // Normal is the default density
   const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
   const setGridDensity = (density: string) => {
-    const previousStyles = gridStyles;
-
-    const nextStyles = {
-      ...previousStyles,
-      ...densityStyles[density],
-    };
-
     _setGridDensity(density);
-    setGridStyles(nextStyles);
+    setUserGridStyles(densityStyles[density]);
+  };
+
+  // merge the developer-specified styles with any user overrides
+  const gridStyles = {
+    ...initialStyles,
+    ...userGridStyles,
   };
 
   const StyleSelector = () => (

@@ -135,8 +135,8 @@ export default class DataGrid extends Component {
       borderSelected: 'none',
       fontSizeSelected: 's',
       cellPaddingSelected: 's',
-      stripesSelected: 'true',
-      rowHoverSelected: 'underline',
+      stripesSelected: true,
+      rowHoverSelected: 'highlight',
       isPopoverOpen: false,
       headerSelected: 'shade',
 
@@ -167,8 +167,7 @@ export default class DataGrid extends Component {
 
   onStripesChange = optionId => {
     this.setState({
-      stripesSelected: optionId,
-      stripes: !this.state.stripes,
+      stripesSelected: optionId === 'true',
     });
   };
 
@@ -259,7 +258,7 @@ export default class DataGrid extends Component {
               <EuiButtonGroup
                 legend="Stripes"
                 options={this.stripeOptions}
-                idSelected={this.state.stripesSelected}
+                idSelected={this.state.stripesSelected.toString()}
                 onChange={this.onStripesChange}
               />
             </EuiFormRow>
@@ -294,7 +293,7 @@ export default class DataGrid extends Component {
             border: this.state.borderSelected,
             fontSize: this.state.fontSizeSelected,
             cellPadding: this.state.cellPaddingSelected,
-            stripes: this.state.stripes,
+            stripes: this.state.stripesSelected,
             rowHover: this.state.rowHoverSelected,
             header: this.state.headerSelected,
           }}
