@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
-const paddingSizeToClassNameMap: {
+// Exported for testing
+export const paddingSizeToClassNameMap: {
   [value in BottomBarPaddingSize]: string | null
 } = {
   none: null,
@@ -16,8 +17,6 @@ const paddingSizeToClassNameMap: {
   m: 'euiBottomBar--paddingMedium',
   l: 'euiBottomBar--paddingLarge',
 };
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 interface Props extends CommonProps {
   /**

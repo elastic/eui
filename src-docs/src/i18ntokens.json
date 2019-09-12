@@ -85,15 +85,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 54,
+        "line": 70,
         "column": 12
       },
       "end": {
-        "line": 57,
+        "line": 73,
         "column": 14
       }
     },
-    "filepath": "src/components/bottom_bar/bottom_bar.js"
+    "filepath": "src/components/bottom_bar/bottom_bar.tsx"
   },
   {
     "token": "euiCardSelect.selected",
