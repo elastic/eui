@@ -56,7 +56,7 @@
  *  3. Be sure to hide/show the element initially
  */
 [class*='eui-hideFor'] {
-  display: inline !important; /* 3 */
+  display: inherit !important; /* 3 */
 }
 
 [class*='eui-showFor'] {
