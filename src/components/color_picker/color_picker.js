@@ -28,6 +28,7 @@ export const EuiColorPicker = ({
   disabled,
   fullWidth = false,
   id,
+  inline = false,
   isInvalid,
   mode = 'default',
   onBlur,
@@ -173,6 +174,51 @@ export const EuiColorPicker = ({
     handleFinalSelection();
   };
 
+  const composite = (
+    <React.Fragment>
+      {mode !== 'swatch' && (
+        <div onKeyDown={handleOnKeyDown}>
+          <EuiSaturation
+            id={id}
+            color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
+            hex={color}
+            onChange={handleColorSelection}
+            ref={satruationRef}
+          />
+          <EuiHue
+            id={id}
+            hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
+            hex={color}
+            onChange={handleHueSelection}
+          />
+        </div>
+      )}
+      {mode !== 'picker' && (
+        <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
+          {swatches.map((swatch, index) => (
+            <EuiFlexItem grow={false} key={swatch}>
+              <EuiI18n
+                token="euiColorPicker.swatchAriaLabel"
+                values={{ swatch }}
+                default="Select {swatch} as the color">
+                {swatchAriaLabel => (
+                  <EuiColorPickerSwatch
+                    className={swatchClass}
+                    color={swatch}
+                    onClick={() => handleSwatchSelection(swatch)}
+                    aria-label={swatchAriaLabel}
+                    role="option"
+                    ref={index === 0 ? swatchRef : undefined}
+                  />
+                )}
+              </EuiI18n>
+            </EuiFlexItem>
+          ))}
+        </EuiFlexGroup>
+      )}
+    </React.Fragment>
+  );
+
   let buttonOrInput;
   if (button) {
     buttonOrInput = cloneElement(button, {
@@ -234,7 +280,9 @@ export const EuiColorPicker = ({
     );
   }
 
-  return (
+  return inline ? (
+    <div className={classes}>{composite}</div>
+  ) : (
     <EuiPopover
       ownFocus={popoverShouldOwnFocus}
       button={buttonOrInput}
@@ -258,46 +306,7 @@ export const EuiColorPicker = ({
               />
             </p>
           </EuiScreenReaderOnly>
-          {mode !== 'swatch' && (
-            <div onKeyDown={handleOnKeyDown}>
-              <EuiSaturation
-                id={id}
-                color={typeof colorAsHsv === 'object' ? colorAsHsv : undefined}
-                hex={color}
-                onChange={handleColorSelection}
-                ref={satruationRef}
-              />
-              <EuiHue
-                id={id}
-                hue={typeof colorAsHsv === 'object' ? colorAsHsv.h : undefined}
-                hex={color}
-                onChange={handleHueSelection}
-              />
-            </div>
-          )}
-          {mode !== 'picker' && (
-            <EuiFlexGroup wrap responsive={false} gutterSize="s" role="listbox">
-              {swatches.map((swatch, index) => (
-                <EuiFlexItem grow={false} key={swatch}>
-                  <EuiI18n
-                    token="euiColorPicker.swatchAriaLabel"
-                    values={{ swatch }}
-                    default="Select {swatch} as the color">
-                    {swatchAriaLabel => (
-                      <EuiColorPickerSwatch
-                        className={swatchClass}
-                        color={swatch}
-                        onClick={() => handleSwatchSelection(swatch)}
-                        aria-label={swatchAriaLabel}
-                        role="option"
-                        ref={index === 0 ? swatchRef : undefined}
-                      />
-                    )}
-                  </EuiI18n>
-                </EuiFlexItem>
-              ))}
-            </EuiFlexGroup>
-          )}
+          {composite}
         </EuiFocusTrap>
       </div>
     </EuiPopover>
@@ -324,6 +333,10 @@ EuiColorPicker.propTypes = {
    *  Custom validation flag
    */
   isInvalid: PropTypes.bool,
+  /**
+   *  Renders inline, without an input element or popover
+   */
+  inline: PropTypes.bool,
   /**
    * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
    */
