@@ -15,9 +15,11 @@ import { cascadingMenuKeyCodes } from '../../services';
 
 interface EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
+  disableFocusTrap?: boolean;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['buttonRef'];
+  onPanelResize?: (width?: number) => void;
 }
 
 type Props = CommonProps &
@@ -27,8 +29,10 @@ type Props = CommonProps &
 export const EuiInputPopover: FunctionComponent<Props> = ({
   children,
   className,
+  disableFocusTrap = false,
   input,
   fullWidth = false,
+  onPanelResize,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState();
@@ -42,6 +46,9 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
     if (panelEl && (!!inputElWidth || !!width)) {
       const newWidth = !!width ? width : inputElWidth;
       panelEl.style.width = `${newWidth}px`;
+      if (onPanelResize) {
+        onPanelResize(newWidth);
+      }
     }
   };
   const onResize = () => {
@@ -68,8 +75,9 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
         );
       });
       if (
-        tabbableItems.length &&
-        tabbableItems[tabbableItems.length - 1] === document.activeElement
+        disableFocusTrap ||
+        (tabbableItems.length &&
+          tabbableItems[tabbableItems.length - 1] === document.activeElement)
       ) {
         props.closePopover();
       }
@@ -96,7 +104,7 @@ export const EuiInputPopover: FunctionComponent<Props> = ({
       panelRef={panelRef}
       className={classes}
       {...props}>
-      <EuiFocusTrap clickOutsideDisables={true}>
+      <EuiFocusTrap clickOutsideDisables={true} disabled={disableFocusTrap}>
         <div onKeyDown={onKeyDown}>{children}</div>
       </EuiFocusTrap>
     </EuiPopover>

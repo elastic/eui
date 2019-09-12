@@ -138,7 +138,7 @@
         @include euiBottomShadowSmall;
         margin-top: -$euiTableCellContentPadding * 2;
         position: relative;
-        z-index: 2; // on top of it's parent/previous row
+        z-index: 2; // on top of its parent/previous row
         border-top: none;
         border-top-left-radius: 0;
         border-top-right-radius: 0;

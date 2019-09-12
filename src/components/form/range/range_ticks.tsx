@@ -24,6 +24,7 @@ export type EuiRangeTicksProps = Omit<
   value?: number | string | Array<string | number>;
   min: number;
   max: number;
+  compressed?: boolean;
   interval?: number;
   disabled?: boolean;
   onChange?: MouseEventHandler<HTMLButtonElement>;
@@ -38,6 +39,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
   max,
   min,
   interval = 1,
+  compressed,
 }) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
@@ -48,8 +50,12 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = ({
     ? undefined
     : { margin: `0 ${percentageWidth / -2}%`, left: 0, right: 0 };
 
+  const classes = classNames('euiRangeTicks', {
+    'euiRangeTicks--compressed': compressed,
+  });
+
   return (
-    <div className="euiRangeTicks" style={ticksStyle}>
+    <div className={classes} style={ticksStyle}>
       {tickSequence.map(tickValue => {
         const tickStyle: { left?: string; width?: string } = {};
         let customTick;

@@ -125,6 +125,7 @@ export class EuiQuickSelectPopover extends Component {
         isOpen={this.state.isOpen}
         closePopover={this.closePopover}
         anchorPosition="downLeft"
+        anchorClassName="euiQuickSelectPopover__anchor"
         ownFocus>
         <div
           className="euiQuickSelectPopover__content"

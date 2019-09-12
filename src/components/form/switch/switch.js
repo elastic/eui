@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -54,13 +54,17 @@ export class EuiSwitch extends Component {
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
-            <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
+            {!compressed && (
+              <Fragment>
+                <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
-            <EuiIcon
-              type="check"
-              size="m"
-              className="euiSwitch__icon euiSwitch__icon--checked"
-            />
+                <EuiIcon
+                  type="check"
+                  size="m"
+                  className="euiSwitch__icon euiSwitch__icon--checked"
+                />
+              </Fragment>
+            )}
           </span>
         </span>
 

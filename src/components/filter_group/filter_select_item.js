@@ -106,6 +106,7 @@ EuiFilterSelectItem.propTypes = {
    * Applies an icon and visual styling to activated items
    */
   checked: PropTypes.oneOf([CHECKED_ON, CHECKED_OFF]),
+  onClick: PropTypes.func,
   showIcons: PropTypes.bool,
 };
 

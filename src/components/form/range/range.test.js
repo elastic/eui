@@ -4,6 +4,8 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiRange } from './range';
 
+jest.mock('../form_row/make_id', () => () => 'generated-id');
+
 describe('EuiRange', () => {
   test('is rendered', () => {
     const component = render(
@@ -92,6 +94,23 @@ describe('EuiRange', () => {
           value="8"
           onChange={() => {}}
           showInput
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('slider should display in popover', () => {
+      const component = render(
+        <EuiRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value="8"
+          onChange={() => {}}
+          showInput="inputWithPopover"
           {...requiredProps}
         />
       );

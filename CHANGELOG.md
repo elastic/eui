@@ -1,14 +1,71 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
+
+## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
+
+### Feature: Compressed Form Controls ([#2167](https://github.com/elastic/eui/pull/2167))
+
+- Altered the look of `compressed` form controls to look more subtle
+- Created `EuiFormControlLayoutDelimited` for dual inputs indicating a range
+- Added compressed and column style layouts to `EuiFormRow` via `display` prop
+- Reduced overall height of `compressed` `EuiRange` and `EuiDualRange`
+- Added `showInput = 'inputWithPopover'` option for `compressed` `EuiRange` and `EuiDualRange` to display the slider in a popover
+
+- Made all inputs in the `EuiSuperDatePicker` popover `compressed`
+- Added `controlOnly` prop to `EuiFieldText` and `EuiFieldNumber`
+- Allow `style` prop to be passed down in `EuiColorPickerSwatch`
+- `EuiFilePicker` now has `default` and `large` display sizes that both have `compressed` alternatives
+- Allow strings to be passed as `append`/`prepend` props and added a11y support
+- Added a max height with overflow to `EuiSuperSelect`
+
+**Bug fixes**
+
+- Fixed `EuiColorPicker` padding on right to accomodate down caret
+- Fixed sizings of `EuiComboBox` and pills
+- Fixed truncation on `EuiContextMenuItem`
+- Fixed style of more `append`/`prepend` options of `EuiFormControlLayout`
+
+**Deprecations**
+
+- `EuiFormRow`'s `compressed` prop deprecated in favor of `display: rowCompressed`
+- `EuiFormRow`'s `displayOnly` prop deprecated in favor of `display: center`
+
+**Breaking changes**
+
+- SASS mixin `euiTextOverflowWrap()` has been removed in favor of `euiTextBreakWord()`
+- `EuiFormLabel` no longer has a bottom margin
+- `EuiFormRow` no longer has bottom padding, nor does it add margin to any `+ *` siblings only sibling `EuiFormRow`s
+
+## [`13.8.2`](https://github.com/elastic/eui/tree/v13.8.2)
+
+**Bug fixes**
+
+- Corrected `EuiCodeBlock`'s proptype for `children` to be string or array of strings. ([#2324](https://github.com/elastic/eui/pull/2324))
+- Fixed `onClick` TypeScript definition for `EuiPanel` ([#2330](https://github.com/elastic/eui/pull/2330))
+- Fixed `EuiComboBox` list reopening after closing on option selection in IE11 ([#2326](https://github.com/elastic/eui/pull/2326))
+
+## [`13.8.1`](https://github.com/elastic/eui/tree/v13.8.1)
+
+**Bug fixes**
+
+- Updated TS def for `EuiFilterSelect` ([#2291](https://github.com/elastic/eui/pull/2291))
+- Fixed alignment of icons and label in `EuiSideNavItem` ([#2297](https://github.com/elastic/eui/pull/2297))
+- Fixed logic in `EuiContextMenu` to account for index of `0` ([#2304](https://github.com/elastic/eui/pull/2304))
+
+## [`13.8.0`](https://github.com/elastic/eui/tree/v13.8.0)
+
 - Added href prop to `EuiTab` and converted to TypeScript ([#2275](https://github.com/elastic/eui/pull/2275))
 - Created `EuiInputPopover` component (formally) ([#2269](https://github.com/elastic/eui/pull/2269))
 - Added docs for using [Elastic Charts](https://elastic.github.io/elastic-charts) with EUI ([#2209](https://github.com/elastic/eui/pull/2209))
+- Improved fix for `EuiSuperDatePicker` to update `asyncInterval.isStopped` on a `isPaused` prop change. ([#2298](https://github.com/elastic/eui/pull/2298))
 
 **Bug fixes**
 
 - Removed extra right side margin in `EuiSuperDatePicker` ([#2236](https://github.com/elastic/eui/pull/2236))
 - Fixed incorrect `onClick` type for `EuiButtonEmpty` ([#2282](https://github.com/elastic/eui/pull/2282))
 - Fixed compilation script to remove all TypeScript definition exports from built JS assets ([#2279](https://github.com/elastic/eui/pull/2279))
+- Fixed output extension for `dist` charts theme module ([#2294](https://github.com/elastic/eui/pull/2294))
 
 ## [`13.7.0`](https://github.com/elastic/eui/tree/v13.7.0)
 

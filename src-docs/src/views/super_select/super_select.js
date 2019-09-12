@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { EuiSuperSelect, EuiSpacer } from '../../../../src/components';
+import { EuiSuperSelect } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default class extends Component {
   constructor(props) {
@@ -19,8 +20,11 @@ export default class extends Component {
       },
       {
         value: 'option_three',
-        inputDisplay:
-          'Option three has a super long text to see if it will truncate or what',
+        inputDisplay: (
+          <span className="eui-textTruncate eui-displayBlock">
+            Option three has a super long text and added truncation
+          </span>
+        ),
       },
     ];
 
@@ -37,68 +41,14 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
+      /* DisplayToggles wrapper for Docs only */
+      <DisplayToggles>
         <EuiSuperSelect
           options={this.options}
           valueOfSelected={this.state.value}
           onChange={this.onChange}
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          disabled
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          isLoading
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          isLoading
-          disabled
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          compressed
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          isInvalid
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiSuperSelect
-          options={this.options}
-          valueOfSelected={this.state.value}
-          onChange={this.onChange}
-          fullWidth
-        />
-      </Fragment>
+      </DisplayToggles>
     );
   }
 }

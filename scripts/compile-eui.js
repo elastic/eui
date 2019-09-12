@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
 const glob = require('glob');
+const dtsGenerator = require('dts-generator').default;
 
 function compileLib() {
   shell.mkdir(
@@ -43,7 +44,7 @@ function compileLib() {
     stdio: 'inherit',
   });
   // validate the generated eui.d.ts doesn't contain errors
-  execSync(`tsc --noEmit -p tsconfig-builttypes.json`, { stdio: 'inherit' });
+  execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
   console.log(chalk.green('✔ Finished generating definitions'));
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
@@ -74,11 +75,21 @@ function compileBundle() {
 
   console.log('Building chart theme module...');
   execSync(
-    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.ts --output-library-target="commonjs" --config=src/webpack.config.js',
+    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
     {
       stdio: 'inherit',
     }
   );
+  dtsGenerator({
+    name: '@elastic/eui/dist/eui_charts_theme',
+    out: 'dist/eui_charts_theme.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/themes/charts/'),
+    files: ['themes.ts'],
+    resolveModuleId() {
+      return '@elastic/eui/dist/eui_charts_theme';
+    }
+  });
+  console.log(chalk.green('✔ Finished chart theme module'));
 }
 
 compileLib();
