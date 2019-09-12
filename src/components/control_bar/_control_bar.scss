@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   overflow-x: auto;
+  padding: 0 $euiSizeM;
 
   .euiBreadcrumbSeparator {
     background: $euiControlBarBorderColor;
@@ -96,7 +97,7 @@
   }
 
   100% {
-    transform: translateY(-50vh);
+    transform: translateY(-50.09vh);
   }
 }
 
@@ -106,7 +107,7 @@
   }
 
   100% {
-    transform: translateY(-25vh);
+    transform: translateY(-25.09vh);
   }
 }
 
@@ -156,6 +157,10 @@
 .euiControlBar__euiText {
   padding: 0 $euiSizeS;
   color: $euiControlBarText;
+
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 .euiControlBar__tab {

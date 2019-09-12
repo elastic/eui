@@ -12,6 +12,7 @@ import { GuideSectionTypes } from '../../components';
 
 import ControlBar from './control_bar';
 import { ControlBarWithTabs } from './tabs';
+import { ControlBarMobile } from './mobile';
 
 const controlBarSource = require('!!raw-loader!./control_bar');
 const controlBarHtml = renderToHtml(ControlBar);
@@ -59,6 +60,48 @@ const controlBarSnippet = `<EuiControlBar
 const tabsBarSource = require('!!raw-loader!./tabs');
 const tabsBarHtml = renderToHtml(ControlBarWithTabs);
 const tabsBarSnippet = '<EuiControlBar controls={items} size="m"/>';
+
+const mobileBarSource = require('!!raw-loader!./mobile');
+const mobileBarHtml = renderToHtml(ControlBarMobile);
+const mobileBarSnippet = `<EuiControlBar
+  showOnMobile
+  controls={[
+    {
+      id: 'icon',
+      controlType: 'icon',
+      label: 'folder',
+      iconType: 'folderClosed',
+      className: 'eui-hideFor--m eui-hideFor--l eui-hideFor--xl',
+    },
+    {
+      id: 'current_file_path',
+      label: 'breadcrumbs',
+      controlType: 'breadcrumbs',
+      responsive: true,
+      className: 'eui-hideFor--s eui-hideFor--xs',
+      breadcrumbs: [
+        {
+          text: 'src',
+        },
+        {
+          text: 'components',
+        },
+      ],
+    },
+    {
+      controlType: 'spacer',
+    },
+    {
+      id: 'github_icon',
+      controlType: 'icon',
+      iconType: 'logoGithub',
+    },
+    {
+      id: 'github_text',
+      controlType: 'text',
+      label: 'Open in Github',
+    },
+  ]}/>`;
 
 const buttonPropsTable = [
   {
@@ -237,14 +280,6 @@ export const ControlBarExample = {
             content well intended to provide additional view controls and
             actions.
           </p>
-          <h2>Mobile Usage</h2>
-          The <EuiCode>ControlBar</EuiCode> is responsive in the sense that it
-          utilizes flexbox. However, it makes no attempts to reorganize the
-          controls you provide. By default the <EuiCode>ControlBar</EuiCode> is
-          hidden on mobile devices, but this can be overridden with the
-          <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take smaller
-          screens into consideration when choosing to display on smaller
-          screens.
         </div>
       ),
       props: { EuiControlBar },
@@ -274,6 +309,41 @@ export const ControlBarExample = {
       props: { EuiControlBar },
       snippet: tabsBarSnippet,
       demo: <ControlBarWithTabs />,
+    },
+    {
+      title: 'Mobile Usage',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: mobileBarSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: mobileBarHtml,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            The <EuiCode>ControlBar</EuiCode> is responsive in the sense that it
+            utilizes flexbox. However, it makes no attempts to reorganize the
+            controls you provide. By default the <EuiCode>ControlBar</EuiCode>{' '}
+            is hidden on mobile devices, but this can be overridden with the
+            <EuiCode>showOnMobile</EuiCode> prop. You&apos;ll need to take the
+            layout of your <EuiCode>controlTypes</EuiCode> into consideration
+            when choosing to display on smaller screens.
+          </p>
+          <p>
+            A simple way of doing this is to pass in EUI responsive utility
+            classes into the <EuiCode>className</EuiCode> prop on any of the{' '}
+            <EuiCode>controlTypes</EuiCode>. View the snippet tab to see an
+            example.
+          </p>
+        </div>
+      ),
+      props: { EuiControlBar },
+      snippet: mobileBarSnippet,
+      demo: <ControlBarMobile />,
     },
     {
       title: 'ControlTypes',
