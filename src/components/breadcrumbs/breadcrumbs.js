@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -70,6 +70,7 @@ export const EuiBreadcrumbs = ({
   showPopover,
   ...rest
 }) => {
+  const [isPopOverOpen, setIsPopOverOpen] = useState(false);
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
