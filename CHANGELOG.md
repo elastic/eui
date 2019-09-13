@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a popover option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
