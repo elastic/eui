@@ -23,6 +23,7 @@
 
   &:disabled {
     pointer-events: none;
+    background-color: $euiColorLightestShade;
 
     .euiCard__title,
     .euiCard__description {

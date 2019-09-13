@@ -107,6 +107,12 @@ export const EuiCard = ({
     });
   }
 
+  console.log(selectable, 'selectable');
+
+  // if (selectable && selectable.isDisabled) {
+  //   isDisabled = true;
+  // }
+
   let OuterElement = 'div';
   if (!isDisabled && href) {
     OuterElement = 'a';
