@@ -12,6 +12,7 @@ exports[`EuiImage is rendered 1`] = `
     <img
       alt="alt"
       class="euiImage__img"
+      src="/cat.jpg"
     />
   </figure>
 </button>
