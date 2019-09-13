@@ -7,6 +7,7 @@ import React, {
   useEffect,
   Fragment,
   ReactChild,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
@@ -287,6 +288,151 @@ function useInMemoryValues(): [
   return [inMemoryValues, onCellRender];
 }
 
+const schemaDetectors = [
+  {
+    type: 'numeric' as 'numeric',
+    detector: (value: string) => {
+      const matchLength = (value.match(/[%-(]*[\d,]+(\.\d*)?[%)]*/) || [''])[0]
+        .length;
+      return matchLength / value.length;
+    },
+  },
+  {
+    type: 'currency' as 'currency',
+    detector: (value: string) => {
+      const matchLength = (value.match(/[$-(]*[\d,]+(\.\d*)?[$)]*/) || [''])[0]
+        .length;
+      return matchLength / value.length;
+    },
+  },
+  {
+    type: 'boolean' as 'boolean',
+    detector: (value: string) => {
+      return value === 'true' || value === 'false' ? 1 : 0;
+    },
+  },
+];
+
+export type EuiDataGridSchemaType = typeof schemaDetectors[number]['type'];
+
+export interface EuiDataGridSchema {
+  [columnId: string]: EuiDataGridSchemaType | null;
+}
+
+interface SchemaTypeScore {
+  type: EuiDataGridSchemaType;
+  score: number;
+}
+
+interface SchemaTypeScoreComposite {
+  type: EuiDataGridSchemaType;
+  minScore: number;
+  maxScore: number;
+}
+
+function scoreValueBySchemaType(value: string) {
+  const scores: SchemaTypeScore[] = [];
+
+  for (let i = 0; i < schemaDetectors.length; i++) {
+    const { type, detector } = schemaDetectors[i];
+    const score = detector(value);
+    scores.push({ type, score });
+  }
+
+  return scores;
+}
+
+// completely arbitrary minimum match I came up with
+// represents lowest score a type detector can have to be considered valid
+const MINIMUM_SCORE_MATCH = 0.2;
+
+function useDetectSchema(
+  inMemoryValues: EuiDataGridInMemoryValues,
+  autoDetectSchema: boolean
+) {
+  const schema = useMemo(() => {
+    const schema: EuiDataGridSchema = {};
+    if (autoDetectSchema === false) {
+      return schema;
+    }
+
+    const columnSchemas: {
+      [columnId: string]: { [type: string]: SchemaTypeScoreComposite };
+    } = {};
+
+    const rowIndices = Object.keys(inMemoryValues);
+    for (let i = 0; i < rowIndices.length; i++) {
+      const rowIndex = rowIndices[i];
+      const rowData = inMemoryValues[rowIndex];
+      const columnIds = Object.keys(rowData);
+
+      for (let j = 0; j < columnIds.length; j++) {
+        const columnId = columnIds[j];
+
+        const schemaColumn = (columnSchemas[columnId] =
+          columnSchemas[columnId] || {});
+
+        const columnValue = rowData[columnId].trim();
+        const valueScores = scoreValueBySchemaType(columnValue);
+
+        for (let k = 0; k < valueScores.length; k++) {
+          const valueScore = valueScores[k];
+          if (schemaColumn.hasOwnProperty(valueScore.type)) {
+            const existingScore = schemaColumn[valueScore.type];
+            existingScore.minScore = Math.min(
+              existingScore.minScore,
+              valueScore.score
+            );
+            existingScore.maxScore = Math.max(
+              existingScore.maxScore,
+              valueScore.score
+            );
+          } else {
+            // first entry for this column
+            schemaColumn[valueScore.type] = {
+              type: valueScore.type,
+              minScore: valueScore.score,
+              maxScore: valueScore.score,
+            };
+          }
+        }
+      }
+    }
+
+    return Object.keys(columnSchemas).reduce<EuiDataGridSchema>(
+      (schema, columnId) => {
+        const columnScores = columnSchemas[columnId];
+        const columnIds = Object.keys(columnScores);
+
+        let bestMatch: SchemaTypeScoreComposite | null = null;
+
+        for (let i = 0; i < columnIds.length; i++) {
+          const columnId = columnIds[i];
+          const columnScore = columnScores[columnId];
+
+          if (columnScore.minScore >= MINIMUM_SCORE_MATCH) {
+            if (bestMatch == null) {
+              bestMatch = columnScore;
+            } else if (bestMatch.minScore < columnScore.minScore) {
+              bestMatch = columnScore;
+            } else if (
+              bestMatch.minScore === columnScore.minScore &&
+              bestMatch.maxScore < columnScore.maxScore
+            ) {
+              bestMatch = columnScore;
+            }
+          }
+        }
+
+        schema[columnId] = bestMatch ? bestMatch.type : null;
+        return schema;
+      },
+      {}
+    );
+  }, [inMemoryValues]);
+  return schema;
+}
+
 function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
@@ -424,6 +570,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues();
 
+  const detectedSchema = useDetectSchema(inMemoryValues, true);
+
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
@@ -521,6 +669,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
                     columns={visibleColumns}
+                    schema={detectedSchema}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

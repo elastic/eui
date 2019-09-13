@@ -19,7 +19,7 @@ const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
-const inMemoryDataGridHtml = renderToHtml(DataGridStyling);
+const inMemoryDataGridHtml = renderToHtml(InMemoryDataGrid);
 
 export const DataGridExample = {
   title: 'Data grid',

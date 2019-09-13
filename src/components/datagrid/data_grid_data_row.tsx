@@ -4,11 +4,13 @@ import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
+import { EuiDataGridSchema } from './data_grid';
 
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     rowIndex: number;
     columns: EuiDataGridColumn[];
+    schema: EuiDataGridSchema;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     focusedCell: [number, number];
@@ -24,6 +26,7 @@ const EuiDataGridDataRow: FunctionComponent<
 > = props => {
   const {
     columns,
+    schema,
     columnWidths,
     defaultColumnWidth,
     className,
@@ -57,6 +60,7 @@ const EuiDataGridDataRow: FunctionComponent<
             rowIndex={rowIndex}
             colIndex={i}
             columnId={id}
+            columnType={schema[id]}
             width={width || undefined}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}

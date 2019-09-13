@@ -6,11 +6,13 @@ import React, {
   ReactNode,
   createRef,
 } from 'react';
+import classnames from 'classnames';
 // @ts-ignore
 import { EuiFocusTrap } from '../focus_trap';
 import { Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
+import { EuiDataGridSchemaType } from './data_grid';
 
 export interface CellValueElementProps {
   rowIndex: number;
@@ -21,6 +23,7 @@ export interface EuiDataGridCellProps {
   rowIndex: number;
   colIndex: number;
   columnId: string;
+  columnType?: EuiDataGridSchemaType | null;
   width?: number;
   isFocusable: boolean;
   onCellFocus: Function;
@@ -39,7 +42,7 @@ type EuiDataGridCellValueProps = Omit<
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
-  EuiDataGridCellValueProps
+  Omit<EuiDataGridCellValueProps, 'columnType'>
 > = memo(props => {
   const { renderCellValue, ...rest } = props;
 
@@ -179,6 +182,7 @@ export class EuiDataGridCell extends Component<
       isFocusable,
       isGridNavigationEnabled,
       interactiveCellId,
+      columnType,
       ...rest
     } = this.props;
     const { colIndex, rowIndex, onCellFocus } = rest;
@@ -187,13 +191,17 @@ export class EuiDataGridCell extends Component<
       [CELL_CONTENTS_ATTR]: isInteractive,
     };
 
+    const className = classnames('euiDataGridRowCell', {
+      [`euiDataGridRowCell__columnType--${columnType}`]: columnType,
+    });
+
     return (
       <div
         role="gridcell"
         {...isInteractive && { 'aria-describedby': interactiveCellId }}
         tabIndex={isFocusable ? 0 : -1}
         ref={this.cellRef}
-        className="euiDataGridRowCell"
+        className={className}
         data-test-subj="dataGridRowCell"
         onFocus={() => onCellFocus([colIndex, rowIndex])}
         style={width != null ? { width: `${width}px` } : {}}>

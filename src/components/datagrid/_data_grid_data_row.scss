@@ -41,6 +41,14 @@
     // Needed because the focus state adds a border, which needs to be subtracted from padding
     padding-left: $euiDataGridCellPaddingM - 1px;
   }
+
+  &.euiDataGridRowCell__columnType--numeric {
+    font-family: monospace;
+  }
+
+  &.euiDataGridRowCell__columnType--currency {
+    color: $euiCodeBlockRegexpColor;
+  }
 }
 
 .euiDataGridRowCell__content {
