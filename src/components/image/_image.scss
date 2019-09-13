@@ -11,10 +11,6 @@
   min-height: 1px; /* 1 */
   line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
-  .euiImage__img {
-    width: 100%;
-  }
-
   &.euiImage--hasShadow {
     .euiImage__img {
       @include euiBottomShadowMedium;
@@ -22,46 +18,39 @@
   }
 
   &.euiImage--allowFullScreen {
-    .euiImage__button {
-      position: absolute;
-      display: block;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .euiImage__icon {
-      // transition the shadow
-      transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
-    }
-
-    &:focus-within .euiImage__img {
-      border: 2px solid $euiFocusRingColor;
+    &:focus .euiImage__img {
+      outline: 2px solid $euiFocusRingColor;
     }
 
     &:hover .euiImage__icon {
       visibility: visible;
-      opacity: 1;
+      fill-opacity: 1;
     }
 
     &:hover .euiImage__caption,
-    &:focus-within .euiImage__caption {
+    &:focus .euiImage__caption {
       text-decoration: underline;
     }
 
     &:not(.euiImage--hasShadow):hover,
-    &:not(.euiImage--hasShadow):focus-within {
+    &:not(.euiImage--hasShadow):focus {
       .euiImage__img {
         @include euiBottomShadowMedium;
       }
     }
 
     &.euiImage--hasShadow:hover,
-    &.euiImage--hasShadow:focus-within {
+    &.euiImage--hasShadow:focus {
       .euiImage__img {
         @include euiBottomShadow;
       }
+    }
+
+    .euiImage__img {
+      cursor: pointer;
+
+      // transition the shadow
+      transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
     }
   }
 
@@ -87,19 +76,24 @@
   }
 }
 
+// The image itself is full width within the container.
+.euiImage__img {
+  width: 100%;
+}
+
 .euiImage__caption {
   @include euiFontSizeS;
   text-align: center;
-  transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  transition: all $euiAnimSpeedSlow $euiAnimSlightResistance;
 }
 
 .euiImage__icon {
   visibility: hidden;
-  opacity: 0;
+  fill-opacity: 0;
   position: absolute;
   right: $euiSize;
   top: $euiSize;
-  transition: opacity $euiAnimSpeedSlow $euiAnimSlightResistance ;
+  transition: fill-opacity $euiAnimSpeedSlow $euiAnimSlightResistance;
   cursor: pointer;
 }
 
@@ -110,35 +104,26 @@
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  .euiImage-isFullScreen____button {
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
-
   .euiImage-isFullScreen__icon {
     position: absolute;
     right: $euiSize;
     top: $euiSize;
   }
 
-  .euiImage__img {
+  .euiImage-isFullScreen__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
     transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 
-  &:hover .euiImage__img {
+  &:hover .euiImage-isFullScreen__img {
     @include euiBottomShadow;
     cursor: pointer;
   }
 
-  &:focus-within .euiImage__img {
-    border: 2px solid $euiFocusRingColor;
+  &:focus .euiImage-isFullScreen__img {
+    outline: 2px solid $euiFocusRingColor;
   }
 
   &:hover .euiImage__caption,
@@ -146,7 +131,6 @@
     text-decoration: underline;
   }
 }
-
 
 @keyframes euiImageFullScreen {
   0% {
