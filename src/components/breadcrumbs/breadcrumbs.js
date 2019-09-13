@@ -36,6 +36,7 @@ const limitBreadcrumbs = (breadcrumbs, max, showPopover, allBreadcrumbs) => {
 
     const ellipsisButton = (
       <button
+        aria-label="Show all breadcrumbs"
         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
         className="euiBreadcrumb euiBreadcrumb--collapsed">
         &#8230;
