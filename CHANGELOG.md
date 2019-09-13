@@ -1,7 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
+- Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
+- Migrate `EuiBottomBar`, `EuiHealth` and `EuiImage` to TS ([#2328](https://github.com/elastic/eui/pull/2328))
+- Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 

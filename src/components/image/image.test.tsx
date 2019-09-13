@@ -7,7 +7,7 @@ import { EuiImage } from './image';
 describe('EuiImage', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiImage alt="alt" size="l" {...requiredProps} />
+      <EuiImage alt="alt" size="l" url="/cat.jpg" {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -15,7 +15,13 @@ describe('EuiImage', () => {
 
   test('is rendered and allows full screen', () => {
     const component = render(
-      <EuiImage alt="alt" size="l" allowFullScreen {...requiredProps} />
+      <EuiImage
+        alt="alt"
+        size="l"
+        url="/cat.jpg"
+        allowFullScreen
+        {...requiredProps}
+      />
     );
 
     expect(component).toMatchSnapshot();

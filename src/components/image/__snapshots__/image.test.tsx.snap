@@ -9,6 +9,7 @@ exports[`EuiImage is rendered 1`] = `
   <img
     alt="alt"
     class="euiImage__img"
+    src="/cat.jpg"
   />
 </figure>
 `;
@@ -25,6 +26,7 @@ exports[`EuiImage is rendered and allows full screen 1`] = `
     <img
       alt="alt"
       class="euiImage__img"
+      src="/cat.jpg"
     />
     <svg
       class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoading euiImage__icon"
