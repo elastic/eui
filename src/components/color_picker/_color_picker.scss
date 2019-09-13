@@ -1,9 +1,24 @@
+@import '../form/mixins';
 
 .euiColorPicker {
   position: relative;
   // 5 columns of swatches + margins + border
   width: ($euiSizeL * 5) + ($euiSizeS * 4);
+
 }
+
+.euiColorPicker__popoverAnchor {
+  // Nested needed for specificity of overriding .euiFieldText
+  .euiColorPicker__input {
+    @include euiFormControlWithIcon($isIconOptional: false, $side: 'right');
+
+    &[class*='--compressed'] {
+      @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: true);
+    }
+  }
+}
+
+
 
 // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
 .euiSwatchInput__stroke {

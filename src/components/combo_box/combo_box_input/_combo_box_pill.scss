@@ -1,9 +1,21 @@
-// Overwrites the base styling of EuiBadge, to give it a larger size and margins
-// that make sense in the input wrap.
+/*
+ * 1. Overwrites the base styling of EuiBadge, to give it a larger size and margins
+ * that make sense in the input wrap.
+ */
 .euiComboBoxPill {
-  margin: $euiSizeXS !important; // sass-lint:disable-line no-important
+  height: $euiSizeL - 2px;
   line-height: $euiSizeL - 2px;
   vertical-align: baseline;
+
+  &,
+  & + & /* 1 */ {
+    margin: $euiSizeXS;
+  }
+
+  .euiComboBox--compressed &,
+  .euiComboBox--compressed & + & /* 1 */ {
+    margin: ($euiSizeXS + 1px) $euiSizeXS 0 0;
+  }
 
   &--plainText {
     @include euiFont;
