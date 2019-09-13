@@ -177,8 +177,9 @@ export const BreadcrumbsExample = {
         <p>
           When the breadcrumbs need to be truncated, but you wish to still allow
           users to navigate to any item in the list, you can use the{' '}
-          <EuiCode>showPopover</EuiCode> prop. This will render the full,
-          untrancated list in a popover.
+          <EuiCode>showPopover</EuiCode> prop. When used with the{' '}
+          <EuiCode>max</EuiCode> prop, the entire list of breadcrumbs will be
+          rendered into an <EuiCode>EuiPopover</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
