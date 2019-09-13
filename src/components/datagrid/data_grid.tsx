@@ -5,7 +5,6 @@ import React, {
   useCallback,
   useState,
   useEffect,
-  useRef,
   Fragment,
   ReactChild,
 } from 'react';
@@ -103,6 +102,14 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 const ORIGIN: [number, number] = [0, 0];
+
+// returns whether or not this element is a gridcell with CELL_CONTENTS_ATTR
+const isInteractiveCell = (element: HTMLElement) => {
+  if (element.getAttribute('role') !== 'gridcell') {
+    return false;
+  }
+  return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
+};
 
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
@@ -213,62 +220,83 @@ function renderSorting(props: EuiDataGridProps) {
   );
 }
 
-export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [showGridControls, setShowGridControls] = useState(true);
-  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [interactiveCellId] = useState(htmlIdGenerator()());
+function useDefaultColumnWidth(
+  container: HTMLElement | null,
+  columns: EuiDataGridProps['columns']
+): number | null {
+  const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (container != null) {
+      const gridWidth = container.clientWidth;
+      const columnWidth = Math.max(gridWidth / columns.length, 100);
+      setDefaultColumnWidth(columnWidth);
+    }
+  }, [container, columns]);
+
+  return defaultColumnWidth;
+}
+
+function useColumnWidths(): [
+  EuiDataGridColumnWidths,
+  (columnId: string, width: number) => void
+] {
   const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>({});
   const setColumnWidth = (columnId: string, width: number) => {
     setColumnWidths({ ...columnWidths, [columnId]: width });
   };
+  return [columnWidths, setColumnWidth];
+}
 
-  useEffect(() => {
-    if (containerRef.current != null) {
-      const gridWidth = containerRef.current.clientWidth;
-      const columnWidth = Math.max(gridWidth / props.columns.length, 100);
-      const columnWidths = props.columns.reduce(
-        (columnWidths: EuiDataGridColumnWidths, column) => {
-          columnWidths[column.id] = columnWidth;
-          return columnWidths;
-        },
-        {}
+function useOnResize(
+  setShowGridControls: (showGridControls: boolean) => void,
+  isFullScreen: boolean
+) {
+  return useCallback(
+    ({ width }: { width: number }) => {
+      setShowGridControls(
+        width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
       );
-      setColumnWidths(columnWidths);
-    }
-    // @TODO: come back to this hook lifecycle
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    },
+    [setShowGridControls, isFullScreen]
+  );
+}
 
-  const onResize = ({ width }: { width: number }) => {
-    setShowGridControls(
-      width > MINIMUM_WIDTH_FOR_GRID_CONTROLS || isFullScreen
-    );
-  };
+function useInMemoryValues(): [
+  EuiDataGridInMemoryValues,
+  (rowIndex: number, column: EuiDataGridColumn, value: string) => void
+] {
+  const [inMemoryValues, setInMemoryValues] = useState<
+    EuiDataGridInMemoryValues
+  >({});
 
-  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
-    boolean
-  >(true);
+  const onCellRender = useCallback(
+    (rowIndex, column, value) => {
+      setInMemoryValues(inMemoryValues => {
+        const nextInMemoryVaues = { ...inMemoryValues };
+        nextInMemoryVaues[rowIndex] = nextInMemoryVaues[rowIndex] || {};
+        nextInMemoryVaues[rowIndex][column.id] = value;
+        return nextInMemoryVaues;
+      });
+    },
+    [inMemoryValues, setInMemoryValues]
+  );
 
-  const isInteractiveCell = (element: HTMLElement) => {
-    if (element.getAttribute('role') !== 'gridcell') {
-      return false;
-    }
+  return [inMemoryValues, onCellRender];
+}
 
-    return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
-  };
-
-  const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    switch (e.keyCode) {
-      case keyCodes.ESCAPE:
-        e.preventDefault();
-        setIsFullScreen(false);
-        break;
-    }
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const colCount = props.columns.length - 1;
+function createKeyDownHandler(
+  props: EuiDataGridProps,
+  visibleColumns: EuiDataGridProps['columns'],
+  focusedCell: [number, number],
+  setFocusedCell: (focusedCell: [number, number]) => void,
+  isGridNavigationEnabled: boolean,
+  setIsGridNavigationEnabled: (isGridNavigationEnabled: boolean) => void
+) {
+  return (event: KeyboardEvent<HTMLDivElement>) => {
+    const colCount = visibleColumns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
     const { keyCode, target } = event;
@@ -317,39 +345,58 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
       }
     }
   };
+}
+
+export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showGridControls, setShowGridControls] = useState(true);
+  const [focusedCell, setFocusedCell] = useState<[number, number]>(ORIGIN);
+  const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
+  const [interactiveCellId] = useState(htmlIdGenerator()());
+
+  const [columnWidths, setColumnWidth] = useColumnWidths();
+
+  // enables/disables grid controls based on available width
+  const onResize = useOnResize(setShowGridControls, isFullScreen);
+
+  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
+    boolean
+  >(true);
+
+  const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    switch (e.keyCode) {
+      case keyCodes.ESCAPE:
+        if (isFullScreen) {
+          e.preventDefault();
+          setIsFullScreen(false);
+        }
+        break;
+    }
+  };
 
   const {
     columns,
     rowCount,
     renderCellValue,
     className,
-    gridStyle = startingStyles,
+    gridStyle,
     pagination,
     sorting,
     inMemory = false,
     ...rest
   } = props;
 
-  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
-  const [StyleSelector, gridStyles, setGridStyles] = useStyleSelector();
+  // apply style props on top of defaults
+  const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
-  useEffect(() => {
-    if (gridStyle) {
-      const oldStyles = gridStyles;
-      /*eslint-disable */
-      const mergedStyle = Object.assign(
-        /*eslint-enable */
-        {},
-        oldStyles,
-        // @ts-ignore
-        gridStyle
-      );
-      setGridStyles(mergedStyle);
-    } else {
-      setGridStyles(startingStyles);
-    }
-    // @TODO: come back to this hook lifecycle
-  }, [gridStyle]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
+  const [StyleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
+
+  // compute the default column width from the container's clientWidth and count of visible columns
+  const defaultColumnWidth = useDefaultColumnWidth(
+    containerRef,
+    visibleColumns
+  );
 
   const classes = classNames(
     'euiDataGrid',
@@ -375,21 +422,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
-  const [inMemoryValues, setInMemoryValues] = useState<
-    EuiDataGridInMemoryValues
-  >({});
+  const [inMemoryValues, onCellRender] = useInMemoryValues();
 
-  const onCellRender = useCallback(
-    (rowIndex, column, value) => {
-      setInMemoryValues(inMemoryValues => {
-        const nextInMemoryVaues = { ...inMemoryValues };
-        nextInMemoryVaues[rowIndex] = nextInMemoryVaues[rowIndex] || {};
-        nextInMemoryVaues[rowIndex][column.id] = value;
-        return nextInMemoryVaues;
-      });
-    },
-    [inMemoryValues, setInMemoryValues]
-  );
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
@@ -404,8 +438,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   } else {
     document.body.classList.remove('euiDataGrid__restrictBody');
   }
-
-  const onCellFocus = useCallback(setFocusedCell, [setFocusedCell]);
 
   // extract aria-label and/or aria-labelledby from `rest`
   const gridAriaProps: {
@@ -423,7 +455,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   return (
     <EuiFocusTrap disabled={!isFullScreen} style={{ height: '100%' }}>
-      <div className={classes} onKeyDown={handleGridKeyDown} ref={containerRef}>
+      <div
+        className={classes}
+        onKeyDown={handleGridKeyDown}
+        ref={setContainerRef}>
         <div className="euiDataGrid__controls">
           {showGridControls ? gridControls : null}
           <EuiI18n
@@ -450,7 +485,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
         <EuiResizeObserver onResize={onResize}>
           {resizeRef => (
             <div
-              onKeyDown={handleKeyDown}
+              onKeyDown={createKeyDownHandler(
+                props,
+                visibleColumns,
+                focusedCell,
+                setFocusedCell,
+                isGridNavigationEnabled,
+                setIsGridNavigationEnabled
+              )}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
               {...rest}>
@@ -470,15 +512,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   <EuiDataGridHeaderRow
                     columns={visibleColumns}
                     columnWidths={columnWidths}
+                    defaultColumnWidth={defaultColumnWidth}
                     setColumnWidth={setColumnWidth}
                   />
                   <EuiDataGridBody
                     columnWidths={columnWidths}
+                    defaultColumnWidth={defaultColumnWidth}
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
                     columns={visibleColumns}
                     focusedCell={focusedCell}
-                    onCellFocus={onCellFocus}
+                    onCellFocus={setFocusedCell}
                     pagination={pagination}
                     sorting={sorting}
                     renderCellValue={renderCellValue}

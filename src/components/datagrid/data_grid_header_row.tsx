@@ -14,6 +14,7 @@ type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     columnWidths: EuiDataGridColumnWidths;
+    defaultColumnWidth?: number | null;
     setColumnWidth: (columnId: string, width: number) => void;
     sorting?: EuiDataGridSorting;
   };
@@ -24,6 +25,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
   const {
     columns,
     columnWidths,
+    defaultColumnWidth,
     className,
     setColumnWidth,
     sorting,
@@ -39,7 +41,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
       {columns.map(props => {
         const { id } = props;
 
-        const width = columnWidths[id];
+        const width = columnWidths[id] || defaultColumnWidth;
 
         const ariaProps: {
           'aria-sort'?: HTMLAttributes<HTMLDivElement>['aria-sort'];
@@ -82,7 +84,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
             key={id}
             className="euiDataGridHeaderCell"
             data-test-subj={`dataGridHeaderCell-${id}`}
-            style={{ width: `${width}px` }}>
+            style={width != null ? { width: `${width}px` } : {}}>
             {width ? (
               <EuiDataGridColumnResizer
                 columnId={id}

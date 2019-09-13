@@ -196,7 +196,7 @@ export class EuiDataGridCell extends Component<
         className="euiDataGridRowCell"
         data-test-subj="dataGridRowCell"
         onFocus={() => onCellFocus([colIndex, rowIndex])}
-        style={{ width: `${width}px` }}>
+        style={width != null ? { width: `${width}px` } : {}}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
           <EuiMutationObserver
             onMutation={() => {

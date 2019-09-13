@@ -289,7 +289,6 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
-                style="width:undefinedpx"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
@@ -301,7 +300,6 @@ Array [
                 class="euiDataGridHeaderCell"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
-                style="width:undefinedpx"
               >
                 <div
                   class="euiDataGridHeaderCell__content"
@@ -319,7 +317,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="0"
               >
                 <div
@@ -354,7 +351,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="-1"
               >
                 <div
@@ -395,7 +391,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="-1"
               >
                 <div
@@ -430,7 +425,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="-1"
               >
                 <div
@@ -471,7 +465,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="-1"
               >
                 <div
@@ -506,7 +499,6 @@ Array [
                 class="euiDataGridRowCell"
                 data-test-subj="dataGridRowCell"
                 role="gridcell"
-                style="width:undefinedpx"
                 tabindex="-1"
               >
                 <div
