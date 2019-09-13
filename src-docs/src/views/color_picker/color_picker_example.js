@@ -87,8 +87,7 @@ const modesPickerSnippet = `// Gradient map only
 import { Inline } from './inline';
 const inlineSource = require('!!raw-loader!./inline');
 const inlineHtml = renderToHtml(Inline);
-const inlineSnippet = `// Gradient map only
-<EuiColorPicker
+const inlineSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
