@@ -15,16 +15,18 @@ export type EuiColorPickerSwatchProps = CommonProps &
 
 export const EuiColorPickerSwatch: FunctionComponent<
   EuiColorPickerSwatchProps
-> = forwardRef(({ className, color, ...rest }, ref: Ref<HTMLButtonElement>) => {
-  const classes = classNames('euiColorPickerSwatch', className);
+> = forwardRef(
+  ({ className, color, style, ...rest }, ref: Ref<HTMLButtonElement>) => {
+    const classes = classNames('euiColorPickerSwatch', className);
 
-  return (
-    <button
-      type="button"
-      className={classes}
-      style={{ background: color ? color : 'transparent' }}
-      ref={ref}
-      {...rest}
-    />
-  );
-});
+    return (
+      <button
+        type="button"
+        className={classes}
+        style={{ background: color ? color : 'transparent', ...style }}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);

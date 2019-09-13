@@ -11,12 +11,12 @@
    */
 
   &--compressed,
-  .euiFormControlLayout--compressed {
+  .euiFormControlLayout {
     height: auto;
   }
 
   .euiComboBox__inputWrap {
-    @include euiFormControlStyle($includeStates: false, $includeSizes: false);
+    @include euiFormControlStyle($includeStates: false, $includeSizes: true);
     @include euiFormControlWithIcon($isIconOptional: true);
     @include euiFormControlSize(auto, $includeAlternates: true);
     padding: $euiSizeXS $euiSizeS;
@@ -54,7 +54,7 @@
   .euiComboBox__input {
     // sass-lint:disable-block no-important
     display: inline-flex !important; /* 1 */
-    height: 32px; /* 2 */
+    height: $euiSizeXL; /* 2 */
     overflow: hidden; /* 5 */
 
     > input {
@@ -73,6 +73,10 @@
   &.euiComboBox-isOpen {
     .euiComboBox__inputWrap {
       @include euiFormControlFocusStyle;
+
+      &--compressed {
+        @include euiFormControlFocusStyle($borderOnly: true);
+      }
     }
   }
 
@@ -93,6 +97,10 @@
       line-height: $euiFormControlCompressedHeight; /* 2 */
       padding-top: 0;
       padding-bottom: 0;
+
+      &.euiComboBox__inputWrap-isClearable {
+        @include euiFormControlLayoutPadding(2, $compressed: true); /* 2 */
+      }
     }
   }
 }

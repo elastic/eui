@@ -1,3 +1,5 @@
+@import '../../tool_tip/variables';
+
 .euiRangeTooltip {
   // Keeps tooltip (value) aligned to percentage of actual slider
   display: block;
@@ -7,21 +9,21 @@
   bottom: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
   margin-left: $euiRangeThumbWidth / 2;
+  pointer-events: none;
 }
 
 .euiRangeTooltip__value {
   // Indentation for legibility in transition
   // sass-lint:disable-block indentation
   @include euiFontSizeS;
-  border: 1px solid transparentize($euiColorDarkestShade, .8);
+  border: 1px solid $euiTooltipBackgroundColor;
   position: absolute;
   border-radius: $euiBorderRadius;
   padding: ($euiSizeXS / 2) $euiSizeS;
-  background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+  background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   max-width: 256px;
-  z-index: $euiZLevel4;
-  top: ($euiFormControlHeight / 2) - 1px;
+  top: 50%;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
     transform $euiAnimSpeedNormal $euiAnimSlightResistance;
@@ -37,14 +39,14 @@
     bottom: -$arrowSize / 2;
     left: 50%;
     transform-origin: center;
-    background-color: tintOrShade($euiColorFullShade, 25%, 90%);
+    background-color: $euiTooltipBackgroundColor;
     width: $arrowSize;
     height: $arrowSize;
     border-radius: 2px;
   }
 
   &::before {
-    background-color: transparentize($euiColorDarkestShade, .8);
+    background-color: $euiTooltipBackgroundColor;
   }
 
   // Positions the arrow
@@ -87,6 +89,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) - 1px;
+    top: ($euiFormControlHeight / 4);
+
+    .euiRangeTooltip--compressed & {
+      top: ($euiFormControlCompressedHeight / 4);
+    }
   }
 }

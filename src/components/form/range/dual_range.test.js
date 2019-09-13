@@ -4,6 +4,8 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiDualRange } from './dual_range';
 
+jest.mock('../form_row/make_id', () => () => 'generated-id');
+
 describe('EuiDualRange', () => {
   test('is rendered', () => {
     const component = render(
@@ -79,6 +81,23 @@ describe('EuiDualRange', () => {
           value={['1', '8']}
           onChange={() => {}}
           showInput
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('slider should display in popover', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          min={1}
+          max={10}
+          value={['1', '8']}
+          onChange={() => {}}
+          showInput="inputWithPopover"
           {...requiredProps}
         />
       );

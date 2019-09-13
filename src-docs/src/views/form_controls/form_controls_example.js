@@ -18,6 +18,7 @@ import {
   EuiFieldText,
   EuiFilePicker,
   EuiFormControlLayout,
+  EuiFormControlLayoutDelimited,
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
@@ -78,26 +79,13 @@ import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
 const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
+import FormControlLayoutRange from './form_control_layout_range';
+const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
+const formControlLayoutRangeHtml = renderToHtml(FormControlLayoutRange);
+
 export const FormControlsExample = {
   title: 'Form controls',
   sections: [
-    {
-      title: 'Search field',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: fieldSearchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldSearchHtml,
-        },
-      ],
-      props: {
-        EuiFieldSearch,
-      },
-      demo: <FieldSearch />,
-    },
     {
       title: 'Text field',
       source: [
@@ -114,6 +102,23 @@ export const FormControlsExample = {
         EuiFieldText,
       },
       demo: <FieldText />,
+    },
+    {
+      title: 'Search field',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldSearchSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fieldSearchHtml,
+        },
+      ],
+      props: {
+        EuiFieldSearch,
+      },
+      demo: <FieldSearch />,
     },
     {
       title: 'Number field',
@@ -148,6 +153,34 @@ export const FormControlsExample = {
         EuiFieldPassword,
       },
       demo: <FieldPassword />,
+    },
+    {
+      title: 'Select',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: selectSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: selectHtml,
+        },
+      ],
+      text: (
+        <p>
+          This component renders a basic HTML <code>&lt;select&gt;</code>{' '}
+          element. If you need more customization for how the options and/or
+          selected values render, use the{' '}
+          <Link to="/forms/superselect">EuiSuperSelect</Link>. Another option is
+          to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has
+          search and multi-select capabilities, but also has restrictions on how
+          items are rendered.
+        </p>
+      ),
+      props: {
+        EuiSelect,
+      },
+      demo: <Select />,
     },
     {
       title: 'Textarea',
@@ -196,34 +229,6 @@ export const FormControlsExample = {
       components: { EuiFilePicker },
       demo: <FilePicker />,
       props: { EuiFilePicker },
-    },
-    {
-      title: 'Select',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: selectSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectHtml,
-        },
-      ],
-      text: (
-        <p>
-          This component renders a basic HTML <code>&lt;select&gt;</code>{' '}
-          element. If you need more customization for how the options and/or
-          selected values render, use the{' '}
-          <Link to="/forms/superselect">EuiSuperSelect</Link>. Another option is
-          to use the <Link to="/forms/combo-box">EuiComboBox</Link>, which has
-          search and multi-select capabilities, but also has restrictions on how
-          items are rendered.
-        </p>
-      ),
-      props: {
-        EuiSelect,
-      },
-      demo: <Select />,
     },
     {
       title: 'Checkbox',
@@ -350,6 +355,46 @@ export const FormControlsExample = {
         EuiFormControlLayout,
       },
       demo: <FormControlLayout />,
+    },
+    {
+      title: 'Form control layout delimited',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formControlLayoutRangeSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: formControlLayoutRangeHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            <EuiBadge color={'warning'}>Building block only</EuiBadge>
+          </p>
+
+          <p>
+            Like <EuiCode>EuiFormControlLayout</EuiCode>,{' '}
+            <EuiCode>EuiFormControlLayoutDelimited</EuiCode> is generally used
+            internally to consistently style form controls. This component
+            specifically lays out two form controls with center text or icon.
+          </p>
+          <p>
+            It takes all of the same props as{' '}
+            <EuiCode>EuiFormControlLayout</EuiCode> except for{' '}
+            <EuiCode>children</EuiCode>. Instead it requires both a{' '}
+            <strong>single</strong> <EuiCode>startControl</EuiCode> and a{' '}
+            <strong>single</strong> <EuiCode>endControl</EuiCode>. You can
+            optionally change the center content to a different string or node
+            (like an EuiIcon).
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiFormControlLayoutDelimited,
+      },
+      demo: <FormControlLayoutRange />,
     },
   ],
 };

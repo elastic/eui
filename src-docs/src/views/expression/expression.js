@@ -101,6 +101,7 @@ export default class extends Component {
       <div style={POPOVER_STYLE}>
         <EuiPopoverTitle>When</EuiPopoverTitle>
         <EuiSelect
+          compressed
           value={this.state.example1.value}
           onChange={this.changeExample1}
           options={[
@@ -119,9 +120,10 @@ export default class extends Component {
   renderPopover2() {
     return (
       <div style={POPOVER_STYLE}>
-        <EuiFlexGroup>
+        <EuiFlexGroup gutterSize="s">
           <EuiFlexItem grow={false} style={{ width: 150 }}>
             <EuiSelect
+              compressed
               value={this.state.example2.description}
               onChange={this.changeExample2Description}
               options={[
@@ -134,6 +136,7 @@ export default class extends Component {
 
           <EuiFlexItem grow={false} style={{ width: 100 }}>
             <EuiFieldNumber
+              compressed
               value={this.state.example2.value}
               onChange={this.changeExample2Value}
             />
@@ -160,7 +163,7 @@ export default class extends Component {
             isOpen={this.state.example1.isOpen}
             closePopover={this.closeExample1}
             ownFocus
-            withTitle
+            panelPaddingSize="s"
             anchorPosition="downLeft">
             {this.renderPopover1()}
           </EuiPopover>
@@ -169,6 +172,7 @@ export default class extends Component {
         <EuiFlexItem grow={false}>
           <EuiPopover
             id="popover2"
+            panelPaddingSize="s"
             button={
               <EuiExpression
                 description={this.state.example2.description}

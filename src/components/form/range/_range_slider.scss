@@ -13,13 +13,11 @@
 // to be more easily maintained / themeable going forward.
 
 .euiRangeSlider {
-  // Auto means the height isn't defined
   height: $euiFormControlHeight;
   appearance: none;
   background: transparent; // Otherwise white in Chrome
   width: 100%; // ensures the slider expands to fill flex display
   position: relative;
-  z-index: $euiZLevel2; // stay above tick marks
   cursor: pointer; // Keep cursor to full range bounds
 
   &:disabled {
@@ -110,6 +108,14 @@
   // States
   &--hasTicks {
     height: $euiFormControlHeight / 2; // Adjust vertical alignment based on extras
+  }
+
+  &--compressed {
+    height: $euiFormControlCompressedHeight;
+
+    &.euiRangeSlider--hasTicks {
+      height: $euiFormControlCompressedHeight / 2;
+    }
   }
 }
 

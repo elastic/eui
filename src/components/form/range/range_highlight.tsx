@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiRangeHighlightProps {
+  compressed?: boolean;
   hasFocus?: boolean;
   showTicks?: boolean;
   lowerValue: number;
@@ -17,6 +18,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   upperValue,
   max,
   min,
+  compressed,
 }) => {
   // Calculate the width the range based on value
   // const rangeWidth = (value - min) / (max - min);
@@ -29,6 +31,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
 
   const classes = classNames('euiRangeHighlight', {
     'euiRangeHighlight--hasTicks': showTicks,
+    'euiRangeHighlight--compressed': compressed,
   });
 
   const progressClasses = classNames('euiRangeHighlight__progress', {
