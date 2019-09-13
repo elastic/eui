@@ -1,6 +1,17 @@
+@import '../../form/variables';
+
 .euiButtonGroup {
   max-width: 100%;
   display: flex;
+}
+
+.euiButtonGroup__fieldset {
+  display: inline-block;
+  max-width: 100%;
+
+  &--fullWidth {
+    display: block;
+  }
 }
 
 .euiButtonGroup--fullWidth {
@@ -41,10 +52,6 @@
     &:enabled {
       @include euiSlightShadow;
     }
-
-    @include euiButtonToggleStates {
-      @include euiSlightShadowHover;
-    }
   }
 
   &:first-child {
@@ -61,12 +68,69 @@
     border-bottom-right-radius: $euiBorderRadius;
   }
 
-  @include euiBreakpoint('xs', 's') {
+}
+
+@include euiBreakpoint('xs', 's') {
+  .euiButtonGroup__fieldset {
+    display: block;
+  }
+
+  .euiButtonGroup__toggle {
     flex: 1;
     min-width: 0;
 
     .euiButtonGroup__button {
       min-width: 0;
+    }
+  }
+}
+
+.euiButtonGroup--compressed {
+  .euiButtonGroup__button {
+    // sass-lint:disable-block no-important
+    box-shadow: none !important;
+    font-size: $euiFontSizeS;
+    min-width: 0;
+    height: $euiFormControlCompressedHeight;
+    border-color: $euiButtonToggleBorderColor !important; // for all states as this color encompasses the whole group
+    border-width: 1px 0;
+    // Offset the background color from the border by 1px
+    padding: 1px;
+    background-clip: content-box;
+
+    &:not(.euiButtonGroup__button--selected) {
+      color: $euiTextColor;
+    }
+
+    &--selected {
+      font-weight: $euiFontWeightSemiBold;
+      background-color: $euiColorLightestShade;
+    }
+
+    .euiButton__content {
+      padding-left: $euiSizeS;
+      padding-right: $euiSizeS;
+    }
+  }
+
+  .euiButtonGroup__toggle {
+    flex: 1;
+    min-width: 0;
+
+    &:first-child {
+      .euiButtonGroup__button {
+        border-left-width: 1px;
+        border-top-left-radius: $euiFormControlCompressedBorderRadius;
+        border-bottom-left-radius: $euiFormControlCompressedBorderRadius;
+      }
+    }
+
+    &:last-child {
+      .euiButtonGroup__button {
+        border-right-width: 1px;
+        border-top-right-radius: $euiFormControlCompressedBorderRadius;
+        border-bottom-right-radius: $euiFormControlCompressedBorderRadius;
+      }
     }
   }
 }
