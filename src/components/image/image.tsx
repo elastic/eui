@@ -101,7 +101,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       );
     }
 
-    const allowFullScreeIcon = (
+    const allowFullScreenIcon = (
       <EuiIcon
         type="fullScreen"
         color={fullScreenIconColorMap[fullScreenIconColor]}
@@ -138,7 +138,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
           <figure {...rest}>
             <img src={url} className="euiImage__img" alt={alt} />
             {optionalCaption}
-            {allowFullScreeIcon}
+            {allowFullScreenIcon}
             {isFullScreenActive && fullScreenDisplay}
           </figure>
         </button>
