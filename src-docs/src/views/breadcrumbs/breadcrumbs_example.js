@@ -47,6 +47,15 @@ const maxSnippet = `<EuiBreadcrumbs
 />
 `;
 
+import Popover from './popover';
+const popoverSource = require('!!raw-loader!./popover');
+const popoverHtml = renderToHtml(Popover);
+const popoverSnippet = `<EuiBreadcrumbs
+  breadcrumbs={breadcrumbs}
+  showPopover
+/>
+`;
+
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   sections: [
@@ -151,6 +160,30 @@ export const BreadcrumbsExample = {
       props: { EuiBreadcrumbs },
       snippet: maxSnippet,
       demo: <Max />,
+    },
+    {
+      title: 'Show the full list in a popover',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverHtml,
+        },
+      ],
+      text: (
+        <p>
+          When the breadcrumbs need to be truncated, but you wish to still allow
+          users to navigate to any item in the list, you can use the{' '}
+          <EuiCode>showPopover</EuiCode> prop. This will render the full,
+          untrancated list in a popover.
+        </p>
+      ),
+      props: { EuiBreadcrumbs },
+      snippet: popoverSnippet,
+      demo: <Popover />,
     },
   ],
 };

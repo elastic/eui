@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { EuiLink } from '../link';
+import { EuiPopover } from '../popover';
 
-const limitBreadcrumbs = (breadcrumbs, max, showPopover) => {
+const limitBreadcrumbs = (breadcrumbs, max, showPopover, allBreadcrumbs) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
@@ -31,18 +32,35 @@ const limitBreadcrumbs = (breadcrumbs, max, showPopover) => {
   }
 
   const EuiBreadcrumbCollapsed = () => {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+    const ellipsisButton = (
+      <button
+        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+        className="euiBreadcrumb euiBreadcrumb--collapsed">
+        &#8230;
+      </button>
+    );
+
     if (showPopover) {
-      console.log(breadcrumbs.showPopover);
       return (
         <Fragment>
-          <button className="euiBreadcrumb euiBreadcrumb--collapsed">
-            &#8230;
-          </button>
+          <EuiPopover
+            id="popover"
+            button={ellipsisButton}
+            isOpen={isPopoverOpen}
+            closePopover={() => setIsPopoverOpen(false)}>
+            <EuiBreadcrumbs
+              breadcrumbs={allBreadcrumbs}
+              responsive={false}
+              max={0}
+              className="euiBreadcrumbs--wrap"
+            />
+          </EuiPopover>
           <EuiBreadcrumbSeparator />
         </Fragment>
       );
     } else {
-      console.log(breadcrumbs.showPopover);
       return (
         <Fragment>
           <div className="euiBreadcrumb euiBreadcrumb--collapsed">&#8230;</div>
@@ -70,7 +88,6 @@ export const EuiBreadcrumbs = ({
   showPopover,
   ...rest
 }) => {
-  const [isPopOverOpen, setIsPopOverOpen] = useState(false);
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
@@ -130,7 +147,7 @@ export const EuiBreadcrumbs = ({
   });
 
   const limitedBreadcrumbs = max
-    ? limitBreadcrumbs(breadcrumbElements, max, showPopover)
+    ? limitBreadcrumbs(breadcrumbElements, max, showPopover, breadcrumbs)
     : breadcrumbElements;
 
   const classes = classNames('euiBreadcrumbs', className, {
