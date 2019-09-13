@@ -67,6 +67,18 @@ test('renders disabled EuiColorPicker', () => {
   expect(colorPicker).toMatchSnapshot();
 });
 
+test('renders inline EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      inline={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
   const colorPicker = render(
     <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
