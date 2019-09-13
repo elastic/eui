@@ -25,13 +25,9 @@ function flattenPanelTree(tree, array = []) {
 export default class GlobalFilterOptions extends Component {
   static propTypes = {};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  state = {
+    isPopoverOpen: false,
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({
@@ -109,7 +105,7 @@ export default class GlobalFilterOptions extends Component {
           <EuiButtonIcon
             onClick={this.togglePopover}
             color="text"
-            iconType="gear"
+            iconType="filter"
             aria-label="Change all filters"
             title="Change all filters"
           />

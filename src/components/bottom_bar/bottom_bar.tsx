@@ -1,23 +1,40 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { CommonProps } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-const paddingSizeToClassNameMap = {
+type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
+
+// Exported for testing
+export const paddingSizeToClassNameMap: {
+  [value in BottomBarPaddingSize]: string | null
+} = {
   none: null,
   s: 'euiBottomBar--paddingSmall',
   m: 'euiBottomBar--paddingMedium',
   l: 'euiBottomBar--paddingLarge',
 };
 
-export const PADDING_SIZES = Object.keys(paddingSizeToClassNameMap);
+interface Props extends CommonProps {
+  /**
+   * Optional class applied to the body class
+   */
+  bodyClassName?: string;
 
-export class EuiBottomBar extends Component {
+  /**
+   * Padding applied to the bar
+   */
+  paddingSize?: BottomBarPaddingSize;
+}
+
+export class EuiBottomBar extends Component<Props> {
+  private bar: HTMLDivElement | null = null;
+
   componentDidMount() {
-    const height = this.bar.clientHeight;
+    const height = this.bar ? this.bar.clientHeight : -1;
     document.body.style.paddingBottom = `${height}px`;
     if (this.props.bodyClassName) {
       document.body.classList.add(this.props.bodyClassName);
@@ -35,8 +52,7 @@ export class EuiBottomBar extends Component {
     const {
       children,
       className,
-      paddingSize,
-      // eslint-disable-next-line no-unused-vars
+      paddingSize = 'm',
       bodyClassName,
       ...rest
     } = this.props;
@@ -69,23 +85,3 @@ export class EuiBottomBar extends Component {
     );
   }
 }
-
-EuiBottomBar.propTypes = {
-  children: PropTypes.node,
-  /**
-   * Optional class applied to the bar itself
-   */
-  className: PropTypes.string,
-  /**
-   * Optional class applied to the body class
-   */
-  bodyClassName: PropTypes.string,
-  /**
-   * Padding applied to the bar
-   */
-  paddingSize: PropTypes.oneOf(PADDING_SIZES),
-};
-
-EuiBottomBar.defaultProps = {
-  paddingSize: 'm',
-};
