@@ -18,6 +18,10 @@ No public interface changes since `14.1.1`.
 - Converted `EuiColorPicker` to TypeScript ([#2340](https://github.com/elastic/eui/pull/2340))
 - Added inline rendering option to `EuiColorPicker` ([#2340](https://github.com/elastic/eui/pull/2340))
 
+**Bug fixes**
+
+- Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))
+
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 
 ### Feature: Compressed Form Controls ([#2167](https://github.com/elastic/eui/pull/2167))
