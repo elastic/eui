@@ -2,7 +2,6 @@ import React, {
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent as ReactMouseEvent,
-  Ref,
   TouchEvent,
   forwardRef,
   useEffect,
@@ -46,7 +45,7 @@ export type EuiSaturationProps = Omit<
     hex?: string;
   };
 
-export const EuiSaturation = forwardRef(
+export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
   (
     {
       className,
@@ -57,8 +56,8 @@ export const EuiSaturation = forwardRef(
       onChange,
       tabIndex = 0,
       ...rest
-    }: EuiSaturationProps,
-    ref: Ref<HTMLDivElement>
+    },
+    ref
   ) => {
     const [indicator, setIndicator] = useState<SaturationPosition>({
       left: 0,
