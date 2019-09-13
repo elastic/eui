@@ -13,13 +13,9 @@ import GlobalFilterForm from './global_filter_form';
 export default class GlobalFilterAdd extends Component {
   static propTypes = {};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  state = {
+    isPopoverOpen: false,
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({

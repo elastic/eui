@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuggestInput is rendered 1`] = `
+<div
+  class="euiSuggestInput testClass1 testClass2"
+>
+  <div
+    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth"
+    id="popover"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <div>
+        <div
+          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        >
+          <div
+            class="euiFormControlLayout__childrenWrapper"
+          >
+            <input
+              aria-label="aria-label"
+              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+              data-test-subj="test subject string"
+              type="text"
+              value=""
+            />
+          </div>
+          <span
+            class="euiToolTipAnchor euiSuggestInput__statusIcon"
+          >
+            <svg
+              class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoading"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

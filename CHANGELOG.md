@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
