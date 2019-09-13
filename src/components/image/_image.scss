@@ -84,7 +84,6 @@
 .euiImage__caption {
   @include euiFontSizeS;
   text-align: center;
-  transition: all $euiAnimSpeedSlow $euiAnimSlightResistance;
 }
 
 .euiImage__icon {
