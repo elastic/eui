@@ -75,26 +75,22 @@ export default class GlobalFilterForm extends Component {
     selectedObject: PropTypes.object,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fieldOptions: fieldOptions,
-      operandOptions: operatorOptions,
-      valueOptions: valueOptions,
-      selectedField: this.props.selectedObject
-        ? this.props.selectedObject.field
-        : [],
-      selectedOperand: this.props.selectedObject
-        ? this.props.selectedObject.operand
-        : [],
-      selectedValues: this.props.selectedObject
-        ? this.props.selectedObject.values
-        : [],
-      useCustomLabel: false,
-      customLabel: '',
-    };
-  }
+  state = {
+    fieldOptions: fieldOptions,
+    operandOptions: operatorOptions,
+    valueOptions: valueOptions,
+    selectedField: this.props.selectedObject
+      ? this.props.selectedObject.field
+      : [],
+    selectedOperand: this.props.selectedObject
+      ? this.props.selectedObject.operand
+      : [],
+    selectedValues: this.props.selectedObject
+      ? this.props.selectedObject.values
+      : [],
+    useCustomLabel: false,
+    customLabel: '',
+  };
 
   onFieldChange = selectedOptions => {
     // We should only get back either 0 or 1 options.

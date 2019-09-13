@@ -36,13 +36,9 @@ export class GlobalFilterItem extends Component {
     isExcluded: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
+  state = {
+    isPopoverOpen: false,
+  };
 
   togglePopover = () => {
     this.setState(prevState => ({

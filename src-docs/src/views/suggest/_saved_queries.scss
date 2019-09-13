@@ -1,0 +1,31 @@
+.savedQueriesInput__hideDatepicker {
+  .euiSuperDatePicker__flexWrapper {
+    width: 100%;
+
+    > div:nth-of-type(1) {
+      display: none;
+    }
+  }
+}
+
+.savedQueriesInput {
+  padding-bottom: $euiSizeXL * 6;
+}
+
+.savedQueryManagement__text {
+  padding: $euiSizeM $euiSizeM ($euiSizeM / 2);
+}
+
+.savedQueryManagement__listWrapper {
+  // Addition height will ensure one item is "cutoff" to indicate more below the scroll
+  max-height: $euiFormMaxWidth + $euiSize;
+  overflow-y: hidden;
+}
+
+.savedQueryManagement__list {
+  @include euiYScrollWithShadows;
+  max-height: inherit; // Fixes overflow for applied max-height
+  // Left/Right padding is calculated to match the left alignment of the
+  // popover text and buttons
+  padding: ($euiSizeM / 2) $euiSizeXS !important; // sass-lint:disable-line no-important
+}
