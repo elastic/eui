@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../common';
 import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
@@ -10,7 +10,9 @@ import { EuiFocusTrap } from '../focus_trap';
 
 import { keyCodes } from '../../services';
 
-const sizeToClassNameMap = {
+type ImageSize = 's' | 'm' | 'l' | 'xl' | 'fullWidth' | 'original';
+
+const sizeToClassNameMap: { [size in ImageSize]: string } = {
   s: 'euiImage--small',
   m: 'euiImage--medium',
   l: 'euiImage--large',
@@ -21,21 +23,33 @@ const sizeToClassNameMap = {
 
 export const SIZES = Object.keys(sizeToClassNameMap);
 
-const fullScreenIconColorMap = {
+type FullScreenIconColor = 'light' | 'dark';
+
+const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
   light: 'ghost',
   dark: 'default',
 };
 
-export class EuiImage extends Component {
-  constructor(props) {
-    super(props);
+interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLElement> {
+  alt: string;
+  size?: ImageSize;
+  fullScreenIconColor?: FullScreenIconColor;
+  url: string;
+  caption?: string;
+  hasShadow?: boolean;
+  allowFullScreen?: boolean;
+}
 
-    this.state = {
-      isFullScreen: false,
-    };
-  }
+interface State {
+  isFullScreen: boolean;
+}
 
-  onKeyDown = event => {
+export class EuiImage extends Component<EuiImageProps, State> {
+  state: State = {
+    isFullScreen: false,
+  };
+
+  onKeyDown = (event: React.KeyboardEvent) => {
     if (event.keyCode === keyCodes.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
@@ -59,11 +73,11 @@ export class EuiImage extends Component {
     const {
       className,
       url,
-      size,
+      size = 'original',
       caption,
       hasShadow,
       allowFullScreen,
-      fullScreenIconColor,
+      fullScreenIconColor = 'light',
       alt,
       ...rest
     } = this.props;
@@ -107,11 +121,7 @@ export class EuiImage extends Component {
               type="button"
               onClick={this.closeFullScreen}
               onKeyDown={this.onKeyDown}>
-              <figure
-                ref={node => {
-                  this.figure = node;
-                }}
-                className="euiImageFullScreen">
+              <figure className="euiImageFullScreen">
                 <img src={url} className="euiImageFullScreen__img" alt={alt} />
                 {optionalCaption}
               </figure>
@@ -140,14 +150,3 @@ export class EuiImage extends Component {
     );
   }
 }
-
-EuiImage.propTypes = {
-  alt: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
-  fullScreenIconColor: PropTypes.string,
-};
-
-EuiImage.defaultProps = {
-  size: 'original',
-  fullScreenIconColor: 'light',
-};

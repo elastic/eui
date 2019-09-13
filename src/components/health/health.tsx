@@ -1,12 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import { CommonProps, Omit } from '../common';
 
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-export const EuiHealth = ({ children, className, color, ...rest }) => {
+type EuiHealthProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
+    color?: IconColor;
+  };
+
+export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
+  children,
+  className,
+  color,
+  ...rest
+}) => {
   const classes = classNames('euiHealth', className);
 
   return (
@@ -19,9 +29,4 @@ export const EuiHealth = ({ children, className, color, ...rest }) => {
       </EuiFlexGroup>
     </div>
   );
-};
-
-EuiHealth.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
 };
