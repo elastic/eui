@@ -91,7 +91,7 @@ const inlineSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
-  inline={true}
+  display="inline"
 />
 `;
 
@@ -240,8 +240,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Use the <EuiCode>inline</EuiCode> prop to display the color picker
-          without an input or popover.
+          Set the <EuiCode>display</EuiCode> prop to `inline` to display the
+          color picker without an input or popover. Note that the{' '}
+          <EuiCode>button</EuiCode> prop will be ignored in this case.
         </p>
       ),
       snippet: inlineSnippet,

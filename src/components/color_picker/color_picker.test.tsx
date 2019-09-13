@@ -72,7 +72,7 @@ test('renders inline EuiColorPicker', () => {
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
-      inline={true}
+      display="inline"
       {...requiredProps}
     />
   );

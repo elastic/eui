@@ -23,7 +23,7 @@ export class Inline extends Component {
         onChange={this.handleChange}
         color={this.state.color}
         isInvalid={hasErrors}
-        inline={true}
+        display="inline"
       />
     );
   }

@@ -33,6 +33,7 @@ import {
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
 
+type EuiColorPickerDisplay = 'default' | 'inline';
 type EuiColorPickerMode = 'default' | 'swatch' | 'picker';
 
 interface HTMLDivElementOverrides {
@@ -56,6 +57,7 @@ export interface EuiColorPickerProps
    *  Use the compressed style for EuiFieldText
    */
   compressed?: boolean;
+  display?: EuiColorPickerDisplay;
   disabled?: boolean;
   fullWidth?: boolean;
   id?: string;
@@ -94,9 +96,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   color,
   compressed = false,
   disabled,
+  display = 'default',
   fullWidth = false,
   id,
-  inline = false,
   isInvalid,
   mode = 'default',
   onBlur,
@@ -354,7 +356,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     );
   }
 
-  return inline ? (
+  return display === 'inline' ? (
     <div className={classes}>{composite}</div>
   ) : (
     <EuiPopover
