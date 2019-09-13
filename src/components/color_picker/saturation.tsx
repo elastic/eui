@@ -1,5 +1,4 @@
 import React, {
-  FunctionComponent,
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent as ReactMouseEvent,
@@ -36,6 +35,7 @@ export type SaturationPosition = Pick<SaturationClientRect, 'left' | 'top'>;
 
 interface HTMLDivElementOverrides {
   color?: HSV;
+  onChange: (color: HSV) => void;
 }
 export type EuiSaturationProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -44,10 +44,9 @@ export type EuiSaturationProps = Omit<
   CommonProps &
   HTMLDivElementOverrides & {
     hex?: string;
-    onChange: (color: HSV) => void;
   };
 
-export const EuiSaturation: FunctionComponent<EuiSaturationProps> = forwardRef(
+export const EuiSaturation = forwardRef(
   (
     {
       className,
@@ -58,7 +57,7 @@ export const EuiSaturation: FunctionComponent<EuiSaturationProps> = forwardRef(
       onChange,
       tabIndex = 0,
       ...rest
-    },
+    }: EuiSaturationProps,
     ref: Ref<HTMLDivElement>
   ) => {
     const [indicator, setIndicator] = useState<SaturationPosition>({

@@ -6,14 +6,11 @@ import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
+  // @ts-ignore
   EuiPortal: ({ children }) => children,
 }));
 
-let onChange;
-
-beforeEach(() => {
-  onChange = jest.fn();
-});
+const onChange = jest.fn();
 
 test('renders EuiColorPicker', () => {
   const colorPicker = render(
