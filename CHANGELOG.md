@@ -1,6 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.1.1`.
+- Added missing `compressed` TS definitions to `EuiComboBox`, `EuiCheckboxGroup`, `EuiCheckbox`, `EuiFieldSearch`, `EuiRadioGroup`, `EuiSwitch` ([#2338](https://github.com/elastic/eui/pull/2338))
+
+**Bug fixes**
+
+- Fixed styling for `prepend` and `append` nodes that may be popovers or tooltips ([#2338](https://github.com/elastic/eui/pull/2338))
 
 ## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
 
