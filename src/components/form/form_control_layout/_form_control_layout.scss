@@ -49,10 +49,7 @@
       padding: 0 $euiSizeS;
       width: $euiSizeXL;
       border-radius: 0;
-
-      &:not(:focus) {
-        background-color: $euiFormInputGroupLabelBackground;
-      }
+      background-color: $euiFormInputGroupLabelBackground;
     }
 
 
@@ -75,9 +72,10 @@
     padding: 0 $euiSizeS;
     width: $euiSizeXL;
     border-radius: 0;
+    background-color: $euiFormInputGroupLabelBackground;
 
-    &:not(:focus) {
-      background-color: $euiFormInputGroupLabelBackground;
+    &:focus {
+      box-shadow: inset 0 0 0 2px $euiFocusRingColor;
     }
   }
 
