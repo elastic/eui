@@ -7,7 +7,7 @@ import { EuiImage } from './image';
 describe('EuiImage', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiImage alt="alt" size="l" {...requiredProps} />
+      <EuiImage alt="alt" size="l" url="/cat.jpg" {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
