@@ -1,13 +1,13 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, Omit } from '../common';
 
 import { EuiIcon, IconColor } from '../icon';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
 type EuiHealthProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     color?: IconColor;
   };
 

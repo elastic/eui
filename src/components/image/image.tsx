@@ -32,7 +32,7 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
 
 interface EuiImageProps extends CommonProps {
   alt: string;
-  size: ImageSize;
+  size?: ImageSize;
   fullScreenIconColor?: FullScreenIconColor;
   url: string;
   caption?: string;
@@ -73,11 +73,11 @@ export class EuiImage extends Component<EuiImageProps, State> {
     const {
       className,
       url,
-      size,
+      size = 'original',
       caption,
       hasShadow,
       allowFullScreen,
-      fullScreenIconColor,
+      fullScreenIconColor = 'light',
       alt,
       ...rest
     } = this.props;
@@ -105,11 +105,7 @@ export class EuiImage extends Component<EuiImageProps, State> {
       optionalIcon = (
         <EuiIcon
           type="fullScreen"
-          color={
-            fullScreenIconColor
-              ? fullScreenIconColorMap[fullScreenIconColor]
-              : undefined
-          }
+          color={fullScreenIconColorMap[fullScreenIconColor]}
           className="euiImage__icon"
         />
       );
