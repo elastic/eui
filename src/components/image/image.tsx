@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -30,7 +30,7 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
   dark: 'default',
 };
 
-interface EuiImageProps extends CommonProps {
+interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLElement> {
   alt: string;
   size?: ImageSize;
   fullScreenIconColor?: FullScreenIconColor;
