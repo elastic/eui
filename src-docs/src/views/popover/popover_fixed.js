@@ -50,7 +50,7 @@ export default class PopoverContainer extends Component {
             button={button}
             isOpen={this.state.isPopoverOpen}
             closePopover={this.closePopover}
-            style={{ position: 'fixed', bottom: 50, right: 50 }}
+            style={{ position: 'fixed', bottom: 50, right: 50, zIndex: 10 }}
             repositionOnScroll={true}>
             <div>This popover scrolls with the button element!</div>
           </EuiPopover>
