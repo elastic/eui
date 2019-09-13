@@ -316,7 +316,7 @@ const schemaDetectors = [
 export type EuiDataGridSchemaType = typeof schemaDetectors[number]['type'];
 
 export interface EuiDataGridSchema {
-  [columnId: string]: EuiDataGridSchemaType | null;
+  [columnId: string]: { columnType: EuiDataGridSchemaType | null };
 }
 
 interface SchemaTypeScore {
@@ -424,13 +424,33 @@ function useDetectSchema(
           }
         }
 
-        schema[columnId] = bestMatch ? bestMatch.type : null;
+        schema[columnId] = { columnType: bestMatch ? bestMatch.type : null };
         return schema;
       },
       {}
     );
   }, [inMemoryValues]);
   return schema;
+}
+
+function getMergedSchema(
+  detectedSchema: EuiDataGridSchema,
+  columns: EuiDataGridColumn[]
+) {
+  const mergedSchema = { ...detectedSchema };
+
+  for (let i = 0; i < columns.length; i++) {
+    const { id, dataType } = columns[i];
+    if (dataType != null) {
+      if (detectedSchema.hasOwnProperty(id)) {
+        detectedSchema[id] = { ...detectedSchema[id], columnType: dataType };
+      } else {
+        mergedSchema[id] = { columnType: dataType };
+      }
+    }
+  }
+
+  return mergedSchema;
 }
 
 function createKeyDownHandler(
@@ -570,7 +590,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues();
 
-  const detectedSchema = useDetectSchema(inMemoryValues, true);
+  const detectedSchema = useDetectSchema(inMemoryValues, inMemory !== false);
+  const mergedSchema = getMergedSchema(detectedSchema, columns);
 
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
@@ -669,7 +690,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
                     columns={visibleColumns}
-                    schema={detectedSchema}
+                    schema={mergedSchema}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

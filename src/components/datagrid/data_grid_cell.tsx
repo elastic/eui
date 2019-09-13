@@ -42,7 +42,7 @@ type EuiDataGridCellValueProps = Omit<
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
-  Omit<EuiDataGridCellValueProps, 'columnType'>
+  EuiDataGridCellValueProps
 > = memo(props => {
   const { renderCellValue, ...rest } = props;
 
@@ -221,7 +221,7 @@ export class EuiDataGridCell extends Component<
                   {...isInteractiveCell}
                   ref={this.cellContentsRef}
                   className="euiDataGridRowCell__content">
-                  <EuiDataGridCellContent {...rest} />
+                  <EuiDataGridCellContent {...rest} columnType={columnType} />
                 </div>
               </div>
             )}

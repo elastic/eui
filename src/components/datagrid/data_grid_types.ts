@@ -1,5 +1,8 @@
+import { EuiDataGridSchema } from './data_grid';
+
 export interface EuiDataGridColumn {
   id: string;
+  dataType?: EuiDataGridSchema['schema']['columnType'];
 }
 
 export interface EuiDataGridColumnWidths {

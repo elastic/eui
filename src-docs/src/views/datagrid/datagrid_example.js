@@ -17,6 +17,10 @@ import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
+import DataGridSchema from './schema';
+const dataGridSchemaSource = require('!!raw-loader!./schema');
+const dataGridSchemaHtml = renderToHtml(DataGridSchema);
+
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
 const inMemoryDataGridHtml = renderToHtml(InMemoryDataGrid);
@@ -87,6 +91,24 @@ export const DataGridExample = {
       components: { DataGridStyling },
       demo: <DataGridStyling />,
       props: { EuiDataGrid },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridSchemaSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridSchemaHtml,
+        },
+      ],
+      title: 'Schema',
+      text: (
+        <p>Column type information can be included on the column definition.</p>
+      ),
+      components: { DataGridSchema },
+      demo: <DataGridSchema />,
     },
     {
       source: [

@@ -60,7 +60,7 @@ const EuiDataGridDataRow: FunctionComponent<
             rowIndex={rowIndex}
             colIndex={i}
             columnId={id}
-            columnType={schema[id]}
+            columnType={schema[id] ? schema[id].columnType : null}
             width={width || undefined}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}
