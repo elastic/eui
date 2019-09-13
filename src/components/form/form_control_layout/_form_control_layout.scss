@@ -105,6 +105,19 @@
     padding: $euiFormControlPadding;
     line-height: $euiFontSize !important;
     cursor: default !important; // pointer cursor on some form labels but not others is confusing
+
+    // If the next sibiling is not the input, pull it closer to the text to reduce space
+    + *:not(.euiFormControlLayout__childrenWrapper) {
+      margin-left: -$euiFormControlPadding;
+    }
+  }
+
+  // If any child that is not the input has a next sibling that is text, pull it closer to the text to reduce space
+  > *:not(.euiFormControlLayout__childrenWrapper) {
+    + .euiFormLabel,
+    + .euiText {
+      margin-left: -$euiFormControlPadding;
+    }
   }
 
   //
@@ -134,6 +147,19 @@
     .euiFormLabel,
     .euiText {
       padding: $euiFormControlCompressedPadding;
+
+      // If the next sibiling is not the input, pull it closer to the text to reduce space
+      + *:not(.euiFormControlLayout__childrenWrapper) {
+        margin-left: -$euiFormControlCompressedPadding;
+      }
+    }
+
+    // If any child that is not the input has a next sibling that is text, pull it closer to the text to reduce space
+    > *:not(.euiFormControlLayout__childrenWrapper) {
+      + .euiFormLabel,
+      + .euiText {
+        margin-left: -$euiFormControlCompressedPadding;
+      }
     }
   }
 

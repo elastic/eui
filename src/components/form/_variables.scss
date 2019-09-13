@@ -29,5 +29,5 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 $euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 18%, 30%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8) !default;
-$euiFormInputGroupLabelBackground: transparentize(lightOrDarkTheme($euiColorLightShade, $euiColorLightShade), .75) !default;
+$euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 65%, 40%) !default;
 $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackground, 6%, 8%) !default;
