@@ -10,8 +10,8 @@ import Image from './image';
 const imageSource = require('!!raw-loader!./image');
 const imageHtml = renderToHtml(Image);
 const imageSnippet = `<EuiImage
-  alt="Random nature image"
-  url="https://source.unsplash.com/300x300/?Nature"
+  alt={description}
+  url={someUrl}
 />
 `;
 
@@ -20,8 +20,8 @@ const imageSizesSource = require('!!raw-loader!./image_size');
 const imageSizesHtml = renderToHtml(ImageSizes);
 const imageSizesSnippet = `<EuiImage
   size="l"
-  alt="Random nature image"
-  url="https://source.unsplash.com/2000x1000/?Nature"
+  alt={description}
+  url={someUrl}
 />
 `;
 
@@ -30,8 +30,8 @@ const imageZoomSource = require('!!raw-loader!./image_zoom');
 const imageZoomHtml = renderToHtml(ImageZoom);
 const imageZoomSnippet = `<EuiImage
   allowFullScreen
-  alt="Random nature image"
-  url="https://source.unsplash.com/1000x1000/?Nature"
+  alt={description} 
+  url={someUrl}
 />
 `;
 
