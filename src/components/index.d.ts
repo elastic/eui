@@ -1,7 +1,6 @@
 /// <reference path="./call_out/index.d.ts" />
 /// <reference path="./code/index.d.ts" />
 /// <reference path="./card/index.d.ts" />
-/// <reference path="./color_picker/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
 /// <reference path="./date_picker/index.d.ts" />
 /// <reference path="./empty_prompt/index.d.ts" />
