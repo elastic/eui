@@ -3,6 +3,7 @@
 - Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 - Migrate `EuiBottomBar`, `EuiHealth` and `EuiImage` to TS ([#2328](https://github.com/elastic/eui/pull/2328))
+- Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
 - Converted `EuiColorPicker` to TypeScript ([#2340](https://github.com/elastic/eui/pull/2340))
 - Added inline rendering option to `EuiColorPicker` ([#2340](https://github.com/elastic/eui/pull/2340))
 
