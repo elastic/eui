@@ -6,14 +6,11 @@ import { VISUALIZATION_COLORS, keyCodes } from '../../services';
 import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
+  // @ts-ignore
   EuiPortal: ({ children }) => children,
 }));
 
-let onChange;
-
-beforeEach(() => {
-  onChange = jest.fn();
-});
+const onChange = jest.fn();
 
 test('renders EuiColorPicker', () => {
   const colorPicker = render(
@@ -64,6 +61,18 @@ test('renders disabled EuiColorPicker', () => {
       onChange={onChange}
       color="#ffeedd"
       disabled={true}
+      {...requiredProps}
+    />
+  );
+  expect(colorPicker).toMatchSnapshot();
+});
+
+test('renders inline EuiColorPicker', () => {
+  const colorPicker = render(
+    <EuiColorPicker
+      onChange={onChange}
+      color="#ffeedd"
+      display="inline"
       {...requiredProps}
     />
   );

@@ -517,6 +517,189 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
 </div>
 `;
 
+exports[`renders inline EuiColorPicker 1`] = `
+<div
+  class="euiColorPicker testClass1 testClass2"
+>
+  <div>
+    <div
+      aria-activedescendant="undefined-saturationIndicator"
+      aria-describedby="undefined-saturationDescription"
+      aria-roledescription="HSV color mode saturation and value selection"
+      class="euiSaturation"
+      data-test-subj="euiSaturation"
+      role="application"
+      style="background:hsl(30, 100%, 50%)"
+      tabindex="0"
+    >
+      <p
+        class="euiScreenReaderOnly"
+      >
+        Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
+      </p>
+      <p
+        aria-live="polite"
+        class="euiScreenReaderOnly"
+      >
+        #ffeedd
+      </p>
+      <div
+        class="euiSaturation__lightness"
+      >
+        <div
+          class="euiSaturation__saturation"
+        />
+      </div>
+      <div
+        class="euiSaturation__indicator"
+        id="undefined-saturationIndicator"
+        style="left:0;top:0"
+      />
+    </div>
+    <label
+      class="euiScreenReaderOnly"
+      for="undefined-hue"
+    >
+      Select the HSV color mode 'hue' value
+    </label>
+    <p
+      aria-live="polite"
+      class="euiScreenReaderOnly"
+    >
+      #ffeedd
+    </p>
+    <div
+      class="euiHue"
+    >
+      <input
+        class="euiHue__range"
+        id="undefined-hue"
+        max="360"
+        min="0"
+        step="1"
+        type="range"
+        value="30"
+      />
+    </div>
+  </div>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"
+    role="listbox"
+  >
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #00B3A4 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#00B3A4"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #3185FC as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#3185FC"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #DB1374 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#DB1374"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #490092 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#490092"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #FEB6DB as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#FEB6DB"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #E6C220 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#E6C220"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #F98510 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#F98510"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #BFA180 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#BFA180"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #461A0A as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#461A0A"
+        type="button"
+      />
+    </div>
+    <div
+      class="euiFlexItem euiFlexItem--flexGrowZero"
+    >
+      <button
+        aria-label="Select #920000 as the color"
+        class="euiColorPickerSwatch euiColorPicker__swatchSelect"
+        role="option"
+        style="background:#920000"
+        type="button"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders readOnly EuiColorPicker 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock"
