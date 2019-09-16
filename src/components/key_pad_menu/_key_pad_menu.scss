@@ -32,13 +32,11 @@
     border-color $euiAnimSpeedFast ease-in,
     box-shadow $euiAnimSpeedFast ease-in;
 
-  &:hover,
-  &:focus {
-    @include euiSlightShadow;
-    border-color: $euiBorderColor;
-
-    .euiKeyPadMenuItem__icon {
-      transform: translateY(0);
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include euiSlightShadow;
+      border-color: $euiBorderColor;
     }
   }
 
@@ -57,8 +55,6 @@
 
     &:hover,
     &:focus {
-      @include euiSlightShadow;
-      border-color: $euiButtonColorDisabled;
       text-decoration: none;
     }
   }

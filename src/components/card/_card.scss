@@ -39,9 +39,26 @@
 
     &:hover,
     &:focus {
-      @include euiSlightShadow;
-      border-color: $euiButtonColorDisabled;
+      transform: none;
+      box-shadow: none;
       text-decoration: none;
+    }
+  }
+
+  &.euiCard--isClickable {
+    display: flex;
+
+    &:disabled {
+      box-shadow: none;
+    }
+
+    &:not(:disabled) {
+      &:focus,
+      &:hover {
+        .euiCard__title {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -70,16 +87,6 @@
     align-items: flex-end;
   }
 
-  &.euiCard--isClickable {
-    display: flex;
-
-    &:focus,
-    &:hover {
-      .euiCard__title {
-        text-decoration: underline;
-      }
-    }
-  }
 
   &.euiCard--hasBottomGraphic,
   &.euiCard--isSelectable {

@@ -107,11 +107,9 @@ export const EuiCard = ({
     });
   }
 
-  console.log(selectable, 'selectable');
-
-  // if (selectable && selectable.isDisabled) {
-  //   isDisabled = true;
-  // }
+  if (selectable && isDisabled && selectable.isDisabled === undefined) {
+    selectable.isDisabled = isDisabled;
+  }
 
   let OuterElement = 'div';
   if (!isDisabled && href) {
@@ -177,7 +175,7 @@ export const EuiCard = ({
       onClick={onClick}
       className={classes}
       href={href}
-      disabled={isDisabled}
+      disabled={!selectable ? isDisabled : undefined}
       target={target}
       rel={secureRel}
       {...rest}>
