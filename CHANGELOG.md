@@ -5,6 +5,8 @@
 - Migrate `EuiBottomBar`, `EuiHealth` and `EuiImage` to TS ([#2328](https://github.com/elastic/eui/pull/2328))
 - Converted `EuiColorPicker` to TypeScript ([#2340](https://github.com/elastic/eui/pull/2340))
 - Added inline rendering option to `EuiColorPicker` ([#2340](https://github.com/elastic/eui/pull/2340))
+- Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
+ ([#2333](https://github.com/elastic/eui/pull/2340))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 
