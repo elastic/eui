@@ -294,7 +294,7 @@ const schemaDetectors = [
     detector: (value: string) => {
       const matchLength = (value.match(/[%-(]*[\d,]+(\.\d*)?[%)]*/) || [''])[0]
         .length;
-      return matchLength / value.length;
+      return matchLength / value.length || 0;
     },
   },
   {
@@ -302,7 +302,7 @@ const schemaDetectors = [
     detector: (value: string) => {
       const matchLength = (value.match(/[$-(]*[\d,]+(\.\d*)?[$)]*/) || [''])[0]
         .length;
-      return matchLength / value.length;
+      return matchLength / value.length || 0;
     },
   },
   {
@@ -322,12 +322,6 @@ export interface EuiDataGridSchema {
 interface SchemaTypeScore {
   type: EuiDataGridSchemaType;
   score: number;
-}
-
-interface SchemaTypeScoreComposite {
-  type: EuiDataGridSchemaType;
-  minScore: number;
-  maxScore: number;
 }
 
 function scoreValueBySchemaType(value: string) {
@@ -357,7 +351,7 @@ function useDetectSchema(
     }
 
     const columnSchemas: {
-      [columnId: string]: { [type: string]: SchemaTypeScoreComposite };
+      [columnId: string]: { [type: string]: number[] };
     } = {};
 
     const rowIndices = Object.keys(inMemoryValues);
@@ -379,52 +373,72 @@ function useDetectSchema(
           const valueScore = valueScores[k];
           if (schemaColumn.hasOwnProperty(valueScore.type)) {
             const existingScore = schemaColumn[valueScore.type];
-            existingScore.minScore = Math.min(
-              existingScore.minScore,
-              valueScore.score
-            );
-            existingScore.maxScore = Math.max(
-              existingScore.maxScore,
-              valueScore.score
-            );
+            existingScore.push(valueScore.score);
           } else {
             // first entry for this column
-            schemaColumn[valueScore.type] = {
-              type: valueScore.type,
-              minScore: valueScore.score,
-              maxScore: valueScore.score,
-            };
+            schemaColumn[valueScore.type] = [valueScore.score];
           }
         }
       }
     }
 
-    return Object.keys(columnSchemas).reduce<EuiDataGridSchema>(
+    return Object.keys(columnSchemas).reduce<EuiDataGridSchema | any>(
       (schema, columnId) => {
         const columnScores = columnSchemas[columnId];
-        const columnIds = Object.keys(columnScores);
+        const typeIds = Object.keys(columnScores);
 
-        let bestMatch: SchemaTypeScoreComposite | null = null;
+        //
+        const typeSummaries: {
+          [type: string]: {
+            minScore: number;
+            maxScore: number;
+            mean: number;
+            sd: number;
+          };
+        } = {};
 
-        for (let i = 0; i < columnIds.length; i++) {
-          const columnId = columnIds[i];
-          const columnScore = columnScores[columnId];
+        let bestType = null;
+        let bestScore = 0;
 
-          if (columnScore.minScore >= MINIMUM_SCORE_MATCH) {
-            if (bestMatch == null) {
-              bestMatch = columnScore;
-            } else if (bestMatch.minScore < columnScore.minScore) {
-              bestMatch = columnScore;
-            } else if (
-              bestMatch.minScore === columnScore.minScore &&
-              bestMatch.maxScore < columnScore.maxScore
-            ) {
-              bestMatch = columnScore;
+        for (let i = 0; i < typeIds.length; i++) {
+          const typeId = typeIds[i];
+
+          const typeScores = columnScores[typeId];
+
+          let minScore = 1;
+          let maxScore = 0;
+
+          let totalScore = 0;
+          for (let j = 0; j < typeScores.length; j++) {
+            const score = typeScores[j];
+            totalScore += score;
+            minScore = Math.min(minScore, score);
+            maxScore = Math.max(maxScore, score);
+          }
+          const mean = totalScore / typeScores.length;
+
+          let sdSum = 0;
+          for (let j = 0; j < typeScores.length; j++) {
+            const score = typeScores[j];
+            sdSum += (score - mean) * (score - mean);
+          }
+          // console.log(sdSum, typeScores.length - 1);
+          const sd = Math.sqrt(sdSum / typeScores.length);
+
+          const summary = { minScore, maxScore, mean, sd };
+
+          const score = summary.mean - summary.sd;
+          if (score > MINIMUM_SCORE_MATCH) {
+            if (bestType == null || score > bestScore) {
+              bestType = typeId;
+              bestScore = score;
             }
           }
-        }
 
-        schema[columnId] = { columnType: bestMatch ? bestMatch.type : null };
+          typeSummaries[typeId] = summary;
+        }
+        schema[columnId] = { columnType: bestType };
+
         return schema;
       },
       {}
@@ -443,7 +457,7 @@ function getMergedSchema(
     const { id, dataType } = columns[i];
     if (dataType != null) {
       if (detectedSchema.hasOwnProperty(id)) {
-        detectedSchema[id] = { ...detectedSchema[id], columnType: dataType };
+        mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
       } else {
         mergedSchema[id] = { columnType: dataType };
       }
