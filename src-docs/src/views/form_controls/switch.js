@@ -34,6 +34,25 @@ export default class extends Component {
           onChange={this.onChange}
           disabled
         />
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch
+          label="I am a compressed switch"
+          checked={this.state.checked}
+          onChange={this.onChange}
+          compressed
+        />
+
+        <EuiSpacer size="m" />
+
+        <EuiSwitch
+          label="I am a compressed, disabled switch"
+          checked={this.state.checked}
+          onChange={this.onChange}
+          compressed
+          disabled
+        />
       </Fragment>
     );
   }

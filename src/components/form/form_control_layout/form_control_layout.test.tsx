@@ -122,7 +122,7 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('one prepend is rendered', () => {
+    test('one prepend node is rendered', () => {
       const component = render(
         <EuiFormControlLayout prepend={<span>1</span>} />
       );
@@ -130,10 +130,22 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('one append is rendered', () => {
+    test('one prepend string is rendered', () => {
+      const component = render(<EuiFormControlLayout prepend="1" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('one append node is rendered', () => {
       const component = render(
         <EuiFormControlLayout append={<span>1</span>} />
       );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('one append string is rendered', () => {
+      const component = render(<EuiFormControlLayout append="1" />);
 
       expect(component).toMatchSnapshot();
     });

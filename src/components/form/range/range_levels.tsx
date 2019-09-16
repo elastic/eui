@@ -21,6 +21,7 @@ export interface EuiRangeLevelsProps {
   max: number;
   min: number;
   showTicks?: boolean;
+  compressed?: boolean;
 }
 
 export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
@@ -28,6 +29,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   max,
   min,
   showTicks,
+  compressed,
 }) => {
   const validateLevelIsInRange = (level: EuiRangeLevel) => {
     if (level.min < min) {
@@ -44,6 +46,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 
   const classes = classNames('euiRangeLevels', {
     'euiRangeLevels--hasTicks': showTicks,
+    'euiRangeLevels--compressed': compressed,
   });
 
   return (

@@ -104,6 +104,8 @@
 
     .euiSwitch__thumb {
       @include euiCustomControlDisabled;
+
+      border-color: $euiFormBorderColor;
       background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
     }
 
@@ -116,6 +118,11 @@
     }
   }
 
+  .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+    background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .7), transparentize($euiColorMediumShade, .4));
+  }
+
+  // Slightly darker background when in a checked state.
   .euiSwitch__input:not(:checked):not(:disabled) ~ .euiSwitch__body {
     background-color: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3));
   }
@@ -136,5 +143,54 @@
         left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
       }
     }
+  }
+
+  // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
+  &.euiSwitch--compressed {
+    min-height: $euiSwitchHeightCompressed;
+
+    .euiSwitch__label {
+      line-height: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__body {
+      width: $euiSwitchWidthCompressed;
+      height: $euiSwitchHeightCompressed;
+      border-radius: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__thumb {
+      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
+
+      left: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
+      top: 1px;
+      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
+    }
+
+    .euiSwitch__track {
+      border-radius: $euiSwitchHeightCompressed;
+    }
+
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        left: 1px;
+      }
+    }
+
+    // Compressed switches need slightly darker borders since they don't have icons
+    .euiSwitch__input:not(:checked) ~ .euiSwitch__body,
+    .euiSwitch__input:checked:disabled ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiFormCustomControlBorderColor;
+      }
+    }
+
+    // Similar additional treatment needed while checked
+    .euiSwitch__input:checked ~ .euiSwitch__body {
+      .euiSwitch__thumb {
+        border-color: $euiColorPrimary;
+      }
+    }
+
   }
 }

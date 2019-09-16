@@ -10,11 +10,20 @@
   > * + * {
     margin-left: $euiFormControlPadding / 2;
   }
+
+  .euiFormControlLayout--compressed & {
+    left: $euiFormControlCompressedPadding;
+  }
 }
 
 .euiFormControlLayoutIcons--right {
   left: auto;
   right: $euiFormControlPadding;
+
+  .euiFormControlLayout--compressed & {
+    left: auto;
+    right: $euiFormControlCompressedPadding;
+  }
 }
 
 // If the control is disabled, change the color of the icons

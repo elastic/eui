@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import {
-  EuiRange,
-  EuiSpacer,
-  EuiFormHelpText,
-  EuiDualRange,
-} from '../../../../src/components';
+import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
 
@@ -47,45 +43,38 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <EuiRange
-          id={makeId()}
-          value={this.state.value}
-          onChange={this.onChange}
-          compressed
-          fullWidth
-          disabled
-          showTicks
-          showInput
-          showLabels
-          showValue
-          showRange
-          tickInterval={20}
-          levels={this.levels}
-          aria-describedby="levelsHelp4"
-        />
-        <EuiFormHelpText id="levelsHelp4">
-          Recommended levels are {this.levels[1].min} and above.
-        </EuiFormHelpText>
+        <DisplayToggles canAppend canPrepend canLoading={false}>
+          <EuiRange
+            id={makeId()}
+            value={this.state.value}
+            onChange={this.onChange}
+            showTicks
+            showInput
+            showLabels
+            showValue
+            showRange
+            tickInterval={20}
+            levels={this.levels}
+          />
+        </DisplayToggles>
 
         <EuiSpacer size="xl" />
 
-        <EuiDualRange
-          id={makeId()}
-          value={this.state.dualValue}
-          onChange={this.onDualChange}
-          compressed
-          fullWidth
-          disabled
-          showLabels
-          showInput
-          showTicks
-          ticks={[{ label: '20kb', value: 20 }, { label: '100kb', value: 100 }]}
-          levels={this.levels}
-          aria-describedby="levelsHelp5"
-        />
-        <EuiFormHelpText id="levelsHelp5">
-          Recommended size is {this.levels[1].min}kb and above.
-        </EuiFormHelpText>
+        <DisplayToggles canAppend canPrepend canLoading={false}>
+          <EuiDualRange
+            id={makeId()}
+            value={this.state.dualValue}
+            onChange={this.onDualChange}
+            showLabels
+            showInput
+            showTicks
+            ticks={[
+              { label: '20kb', value: 20 },
+              { label: '100kb', value: 100 },
+            ]}
+            levels={this.levels}
+          />
+        </DisplayToggles>
       </Fragment>
     );
   }

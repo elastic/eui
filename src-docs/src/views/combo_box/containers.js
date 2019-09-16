@@ -161,6 +161,8 @@ export default class extends Component {
           {comboBox}
         </EuiFormRow>
 
+        <EuiSpacer />
+
         <EuiPopover
           id="popover"
           ownFocus
