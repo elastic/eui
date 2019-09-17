@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.1.1`.
+
+## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
+
 **Bug fixes**
 
 - Fixed accidental removal of Elastic Charts from dependencies ([#2348](https://github.com/elastic/eui/pull/2348))
