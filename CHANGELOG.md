@@ -1,8 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.1.0`.
+**Bug fixes**
+
+- Fixed accidental removal of Elastic Charts from dependencies ([#2348](https://github.com/elastic/eui/pull/2348))
+
 
 ## [`14.1.0`](https://github.com/elastic/eui/tree/v14.1.0)
+
+**NOTE: Use 14.1.1. This release accidentally removed Elastic Charts as a dependency **
 
 - Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
