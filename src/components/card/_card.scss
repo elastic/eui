@@ -28,8 +28,6 @@
     .euiCard__description,
     .euiCard__top {
       color: $euiButtonColorDisabled;
-      pointer-events: auto;
-      cursor: not-allowed;
     }
 
     .euiCard__top svg,
@@ -39,6 +37,7 @@
 
     &:hover,
     &:focus {
+      cursor: not-allowed;
       transform: none;
       box-shadow: none;
       text-decoration: none;

@@ -37,30 +37,26 @@
     &:focus {
       @include euiSlightShadow;
       border-color: $euiBorderColor;
+
+      .euiKeyPadMenuItem__icon { // sass-lint:disable-line nesting-depth
+        transform: translateY(0);
+      }
     }
 
-    .euiKeyPadMenuItem__icon {
-      transform: translateY(0);
-    }
   }
 
   &:disabled {
     color: $euiButtonColorDisabled;
-    pointer-events: none;
+
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+    }
 
     .euiIcon path {
       fill: $euiButtonColorDisabled;
     }
 
-    .euiKeyPadMenuItem__inner {
-      pointer-events: auto;
-      cursor: not-allowed;
-    }
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
   }
 }
 
