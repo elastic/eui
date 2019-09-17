@@ -22,11 +22,11 @@
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
   &:disabled {
-    pointer-events: none;
     background-color: $euiColorLightestShade;
 
     .euiCard__title,
-    .euiCard__description {
+    .euiCard__description,
+    .euiCard__top {
       color: $euiButtonColorDisabled;
       pointer-events: auto;
       cursor: not-allowed;

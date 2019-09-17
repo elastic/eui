@@ -38,6 +38,10 @@
       @include euiSlightShadow;
       border-color: $euiBorderColor;
     }
+
+    .euiKeyPadMenuItem__icon {
+      transform: translateY(0);
+    }
   }
 
   &:disabled {

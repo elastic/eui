@@ -67,7 +67,6 @@ export const EuiKeyPadMenuItem = ({
     'euiKeyPadMenuItem',
     {
       'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-      'euiKeyPadMenuItem-isDisabled': isDisabled,
     },
     className
   );
