@@ -23,6 +23,7 @@
 
   &:disabled {
     background-color: $euiColorLightestShade;
+    cursor: not-allowed;
 
     .euiCard__title,
     .euiCard__description,
