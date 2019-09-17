@@ -32,7 +32,6 @@
   // Ignore linting for legibility of transition property, and the mixin performs an overwrite
   // sass-lint:disable-block indentation, mixins-before-declarations
   position: absolute;
-  z-index: $euiZContentMenu;
   min-width: $euiButtonMinWidth; /* 1 */
   max-width: calc(100vw - #{$euiSizeXL}); /* 3 */
   backface-visibility: hidden;

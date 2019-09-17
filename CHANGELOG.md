@@ -6,6 +6,7 @@
 
 **Bug fixes**
 
+- Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))
 - Fixed styling for `prepend` and `append` nodes that may be popovers or tooltips ([#2338](https://github.com/elastic/eui/pull/2338))
 
 ## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
