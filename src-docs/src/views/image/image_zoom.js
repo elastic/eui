@@ -15,7 +15,7 @@ export default () => (
         allowFullScreen
         caption="Click me"
         alt="Accessible image alt goes here"
-        url="https://source.unsplash.com/iYPIx7VIh5g/2000x1000/"
+        url="https://source.unsplash.com/2000x1000/?Nature"
       />
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
@@ -26,7 +26,7 @@ export default () => (
         caption="Click me"
         alt="Accessible image alt goes here"
         fullScreenIconColor="dark"
-        url="https://source.unsplash.com/5D2af8aFE5k/1000x2000"
+        url="https://source.unsplash.com/1000x2000/?Nature"
       />
     </EuiFlexItem>
   </EuiFlexGroup>

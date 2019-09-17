@@ -1,9 +1,24 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added a popover option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
+
+No public interface changes since `14.1.1`.
+
+## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
+
+**Bug fixes**
+
+- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
+- Fixed accidental removal of Elastic Charts from dependencies ([#2348](https://github.com/elastic/eui/pull/2348))
+
+## [`14.1.0`](https://github.com/elastic/eui/tree/v14.1.0)
+
 - Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
 - Added missing `compressed` styling to `EuiSwitch` ([#2327](https://github.com/elastic/eui/pull/2327))
 - Migrate `EuiBottomBar`, `EuiHealth` and `EuiImage` to TS ([#2328](https://github.com/elastic/eui/pull/2328))
+- Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
+- Converted `EuiColorPicker` to TypeScript ([#2340](https://github.com/elastic/eui/pull/2340))
+- Added inline rendering option to `EuiColorPicker` ([#2340](https://github.com/elastic/eui/pull/2340))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 
