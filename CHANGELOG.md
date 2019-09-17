@@ -2,6 +2,10 @@
 
 No public interface changes since `14.1.0`.
 
+**Bug fixes**
+
+- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
+
 ## [`14.1.0`](https://github.com/elastic/eui/tree/v14.1.0)
 
 - Created `EuiSuggest` component ([#2270](https://github.com/elastic/eui/pull/2270))
