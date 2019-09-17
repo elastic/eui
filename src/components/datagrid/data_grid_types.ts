@@ -2,7 +2,8 @@ import { EuiDataGridSchema } from './data_grid';
 
 export interface EuiDataGridColumn {
   id: string;
-  dataType?: EuiDataGridSchema['schema']['columnType'];
+  // allow devs to pass arbitrary dataType strings, but internally keep the code matching against the known types
+  dataType?: EuiDataGridSchema['schema']['columnType'] | string;
 }
 
 export interface EuiDataGridColumnWidths {

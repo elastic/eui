@@ -12,7 +12,6 @@ import { EuiFocusTrap } from '../focus_trap';
 import { Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
-import { EuiDataGridSchemaType } from './data_grid';
 
 export interface CellValueElementProps {
   rowIndex: number;
@@ -23,7 +22,7 @@ export interface EuiDataGridCellProps {
   rowIndex: number;
   colIndex: number;
   columnId: string;
-  columnType?: EuiDataGridSchemaType | null;
+  columnType?: string | null;
   width?: number;
   isFocusable: boolean;
   onCellFocus: Function;

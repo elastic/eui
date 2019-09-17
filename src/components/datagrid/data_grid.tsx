@@ -313,14 +313,12 @@ const schemaDetectors = [
   },
 ];
 
-export type EuiDataGridSchemaType = typeof schemaDetectors[number]['type'];
-
 export interface EuiDataGridSchema {
-  [columnId: string]: { columnType: EuiDataGridSchemaType | null };
+  [columnId: string]: { columnType: string | null };
 }
 
 interface SchemaTypeScore {
-  type: EuiDataGridSchemaType;
+  type: string;
   score: number;
 }
 
@@ -427,6 +425,7 @@ function useDetectSchema(
 
           const summary = { minScore, maxScore, mean, sd };
 
+          // the mean-standard_deviation calculation is fairly arbitrary but fits the patterns I've thrown at it
           const score = summary.mean - summary.sd;
           if (score > MINIMUM_SCORE_MATCH) {
             if (bestType == null || score > bestScore) {
