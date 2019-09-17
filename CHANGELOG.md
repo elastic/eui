@@ -2,6 +2,7 @@
 
 - Added missing `compressed` TS definitions to `EuiComboBox`, `EuiCheckboxGroup`, `EuiCheckbox`, `EuiFieldSearch`, `EuiRadioGroup`, `EuiSwitch` ([#2338](https://github.com/elastic/eui/pull/2338))
 - Added auto-margin between `EuiFormRow` and `EuiButton` ([#2338](https://github.com/elastic/eui/pull/2338))
+- Added border to `[readOnly]` inputs ([#2338](https://github.com/elastic/eui/pull/2338))
 
 **Bug fixes**
 
