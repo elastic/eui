@@ -8,7 +8,6 @@ import {
   EuiText,
   EuiSpacer,
   EuiSwitch,
-  EuiCheckboxGroup,
 } from '../../../../src/components';
 
 export class FilePicker extends Component {
@@ -81,24 +80,6 @@ export class FilePicker extends Component {
             </EuiText>
           </EuiFlexItem>
         </EuiFlexGroup>
-
-        <EuiCheckboxGroup
-          options={[
-            {
-              id: '0',
-              label: 'Option one',
-            },
-            {
-              id: '1',
-              label: 'Option two is checked by default',
-            },
-            {
-              id: '2',
-              label: 'Option three',
-            },
-          ]}
-          onChange={() => {}}
-        />
       </Fragment>
     );
   }
