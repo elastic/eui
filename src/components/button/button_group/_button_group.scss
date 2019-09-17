@@ -103,7 +103,8 @@
     min-width: 0;
     border: none;
     border-radius: $euiBorderRadius;
-    // Offset the background color from the border by 1px
+    // Offset the background color from the border by 2px
+    // by clipping background to before the padding starts
     padding: 2px;
     background-clip: content-box;
 
