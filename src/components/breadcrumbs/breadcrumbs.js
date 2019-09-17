@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiBadge } from '../badge';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 
@@ -35,12 +36,12 @@ const limitBreadcrumbs = (breadcrumbs, max, showPopover, allBreadcrumbs) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
     const ellipsisButton = (
-      <button
+      <EuiBadge
         aria-label="Show all breadcrumbs"
         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-        className="euiBreadcrumb euiBreadcrumb--collapsed">
+        className="euiBreadcrumb euiBreadcrumbBadge">
         &#8230;
-      </button>
+      </EuiBadge>
     );
 
     if (showPopover) {

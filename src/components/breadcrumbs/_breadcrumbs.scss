@@ -33,6 +33,16 @@
   background: $euiColorLightShade;
 }
 
+.euiBreadcrumbBadge {
+  height: $euiSize;
+  margin-top: -.375rem;
+  background-color: transparentize($euiColorLightShade, .5);
+
+  .euiBadge__content {
+    margin-top: -.1275rem;
+  }
+}
+
 /**
  * 1. Can't target separator vs breadcrumb with -of-type because it takes
  *    the dom element into consideration too and there could be divs, or spans, or a's
