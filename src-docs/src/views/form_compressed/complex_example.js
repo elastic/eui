@@ -230,7 +230,6 @@ export default class extends Component {
             onChange={this.onGranularityChange}
             buttonSize="compressed"
             isFullWidth
-            color="primary"
           />
         </EuiFormRow>
 
@@ -350,7 +349,6 @@ export default class extends Component {
                   type="multi"
                   isIconOnly
                   buttonSize="compressed"
-                  color="primary"
                 />
               </EuiFlexItem>
             </EuiFlexGroup>

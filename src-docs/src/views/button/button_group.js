@@ -226,19 +226,19 @@ export default class extends Component {
         <EuiPanel style={{ maxWidth: 300 }}>
           <EuiTitle size="xxxs">
             <h3>
-              Compressed groups should always be primary and fullWidth so they
-              line up nicely in their small container.
+              Compressed groups should always be fullWidth so they line up
+              nicely in their small container.
             </h3>
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiButtonGroup
+            name="coarsness"
             legend="This is a basic group"
             options={this.toggleButtonsCompressed}
             idSelected={this.state.toggleCompressedIdSelected}
             onChange={this.onChangeCompressed}
             buttonSize="compressed"
             isFullWidth
-            color="primary"
           />
           <EuiSpacer />
           <EuiTitle size="xxxs">
@@ -246,15 +246,15 @@ export default class extends Component {
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiButtonGroup
+            name="textStyleCompressed"
             legend="Text style"
             className="eui-displayInlineBlock"
             options={this.toggleButtonsIconsMulti}
             idToSelectedMap={this.state.toggleIconIdToSelectedMap}
             onChange={this.onChangeIconsMulti}
             type="multi"
-            isIconOnly
             buttonSize="compressed"
-            color="primary"
+            isIconOnly
           />
         </EuiPanel>
       </Fragment>

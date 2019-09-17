@@ -43,6 +43,12 @@
     border-radius: 0;
     width: 100%;
 
+    // DO NOT Transform
+    // sass-lint:disable-block no-important
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+
     // always the same border color unless it's selected
     &:not([class*='fill']) {
       border-color: $euiButtonToggleBorderColor;
@@ -86,25 +92,23 @@
 }
 
 .euiButtonGroup--compressed {
+  border: 1px solid $euiFormBorderColor;
+  border-radius: $euiFormControlCompressedBorderRadius;
+
   .euiButtonGroup__button {
+    height: $euiFormControlCompressedHeight - 2px;
     // sass-lint:disable-block no-important
     box-shadow: none !important;
     font-size: $euiFontSizeS;
     min-width: 0;
-    height: $euiFormControlCompressedHeight;
-    border-color: $euiButtonToggleBorderColor !important; // for all states as this color encompasses the whole group
-    border-width: 1px 0;
+    border: none;
+    border-radius: $euiBorderRadius;
     // Offset the background color from the border by 1px
-    padding: 1px;
+    padding: 2px;
     background-clip: content-box;
 
-    &:not(.euiButtonGroup__button--selected) {
-      color: $euiTextColor;
-    }
-
-    &--selected {
-      font-weight: $euiFontWeightSemiBold;
-      background-color: $euiColorLightestShade;
+    &:not(.euiButtonGroup__button--selected):not(:disabled) {
+      color: $euiColorDarkShade;
     }
 
     .euiButton__content {
@@ -116,21 +120,19 @@
   .euiButtonGroup__toggle {
     flex: 1;
     min-width: 0;
+  }
 
-    &:first-child {
-      .euiButtonGroup__button {
-        border-left-width: 1px;
-        border-top-left-radius: $euiFormControlCompressedBorderRadius;
-        border-bottom-left-radius: $euiFormControlCompressedBorderRadius;
-      }
-    }
+  .euiButtonToggle__input:enabled:hover + .euiButtonGroup__button,
+  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
+    background-color: transparentize($euiFormInputGroupLabelBackground, .5);
+  }
 
-    &:last-child {
-      .euiButtonGroup__button {
-        border-right-width: 1px;
-        border-top-right-radius: $euiFormControlCompressedBorderRadius;
-        border-bottom-right-radius: $euiFormControlCompressedBorderRadius;
-      }
-    }
+  .euiButtonToggle__input:enabled:focus + .euiButtonGroup__button {
+    outline: 2px solid $euiFocusRingColor;
+  }
+
+  .euiButtonGroup__button--selected {
+    font-weight: $euiFontWeightSemiBold;
+    background-color: $euiFormInputGroupLabelBackground;
   }
 }

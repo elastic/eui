@@ -18,8 +18,8 @@ export type GroupButtonSize = 's' | 'm' | 'compressed';
 
 export interface EuiButtonGroupOption extends CommonProps {
   id: string;
-  name?: string;
   label: string;
+  name?: string;
   isDisabled?: boolean;
   value?: any;
   iconSide?: 'left' | 'right';
@@ -38,11 +38,11 @@ export interface EuiButtonGroupProps {
   isFullWidth?: boolean;
   isIconOnly?: boolean;
   idSelected?: string;
-  idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
   legend?: string;
   color?: ButtonColor;
-  type?: ToggleType;
   name?: string;
+  type?: ToggleType;
+  idToSelectedMap?: EuiButtonGroupIdToSelectedMap;
 }
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
