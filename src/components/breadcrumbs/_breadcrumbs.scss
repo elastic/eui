@@ -1,9 +1,5 @@
 .euiBreadcrumbs {
   @include euiFontSizeS;
-
-  &.euiBreadcrumbs--wrap {
-    flex-wrap: wrap;
-  }
 }
 
 .euiBreadcrumb {
