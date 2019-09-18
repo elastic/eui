@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Add `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
+
 **Bug fixes**
 
 - Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))

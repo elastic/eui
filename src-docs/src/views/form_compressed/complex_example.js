@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import {
+  EuiButtonGroup,
   EuiButtonIcon,
   EuiColorPicker,
   EuiColorPickerSwatch,
@@ -27,6 +28,8 @@ export default class extends Component {
   constructor(props) {
     super(props);
     const idPrefix = makeId;
+    const idPrefix2 = makeId;
+    const idPrefix3 = makeId;
 
     this.toggleButtons = [
       {
@@ -43,6 +46,48 @@ export default class extends Component {
       },
     ];
 
+    this.typeStyleToggleButtons = [
+      {
+        id: `${idPrefix3}3`,
+        label: 'Bold',
+        name: 'bold',
+        iconType: 'editorBold',
+      },
+      {
+        id: `${idPrefix3}4`,
+        label: 'Italic',
+        name: 'italic',
+        iconType: 'editorItalic',
+      },
+      {
+        id: `${idPrefix3}5`,
+        label: 'Underline',
+        name: 'underline',
+        iconType: 'editorUnderline',
+      },
+      {
+        id: `${idPrefix3}6`,
+        label: 'Strikethrough',
+        name: 'strikethrough',
+        iconType: 'editorStrike',
+      },
+    ];
+
+    this.granularityToggleButtons = [
+      {
+        id: `${idPrefix2}3`,
+        label: 'fine',
+      },
+      {
+        id: `${idPrefix2}4`,
+        label: 'rough',
+      },
+      {
+        id: `${idPrefix2}5`,
+        label: 'coarse',
+      },
+    ];
+
     this.state = {
       isSwitchChecked: false,
       opacityValue: '20',
@@ -51,6 +96,8 @@ export default class extends Component {
       borderValue: 3,
       popoverSliderValues: 16,
       dualValue: [5, 10],
+      typeStyleToggleButtonsIdToSelectedMap: {},
+      granularityToggleButtonsIdSelected: `${idPrefix2}4`,
     };
 
     this.selectTooltipContent =
@@ -92,6 +139,25 @@ export default class extends Component {
   onDualChange = value => {
     this.setState({
       dualValue: value,
+    });
+  };
+
+  onTypeStyleChange = optionId => {
+    const newTypeStyleToggleButtonsIdToSelectedMap = {
+      ...this.state.typeStyleToggleButtonsIdToSelectedMap,
+      ...{
+        [optionId]: !this.state.typeStyleToggleButtonsIdToSelectedMap[optionId],
+      },
+    };
+
+    this.setState({
+      typeStyleToggleButtonsIdToSelectedMap: newTypeStyleToggleButtonsIdToSelectedMap,
+    });
+  };
+
+  onGranularityChange = optionId => {
+    this.setState({
+      granularityToggleButtonsIdSelected: optionId,
     });
   };
 
@@ -153,6 +219,17 @@ export default class extends Component {
             ]}
             compressed
             aria-describedby="docsExampleSelectTooltipContent"
+          />
+        </EuiFormRow>
+
+        <EuiFormRow label="Granularity" display="columnCompressed">
+          <EuiButtonGroup
+            legend="Granulariy of zoom levels"
+            options={this.granularityToggleButtons}
+            idSelected={this.state.granularityToggleButtonsIdSelected}
+            onChange={this.onGranularityChange}
+            buttonSize="compressed"
+            isFullWidth
           />
         </EuiFormRow>
 
@@ -229,10 +306,8 @@ export default class extends Component {
 
         <EuiSpacer size="s" />
 
-        <EuiFormLabel htmlFor="docsExampleLabelFont">Label</EuiFormLabel>
-        <EuiSpacer size="xs" />
-        <EuiFlexGroup gutterSize="s" responsive={false} wrap>
-          <EuiFlexItem grow={3} style={{ minWidth: 160 }}>
+        <EuiFormRow label="Label" display="columnCompressed">
+          <div>
             <EuiSelect
               id="docsExampleLabelFont"
               options={[
@@ -242,21 +317,43 @@ export default class extends Component {
               ]}
               compressed
               prepend="Font"
+              aria-label="Label font family"
             />
-          </EuiFlexItem>
-          <EuiFlexItem style={{ minWidth: 80 }}>
-            <EuiRange
-              showInput="inputWithPopover"
-              min={7}
-              max={140}
-              value={this.state.popoverSliderValues}
-              onChange={this.onPopoverSliderValueChange}
-              compressed
-              append="px"
-              aria-label="Label font size in pixels"
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
+            <EuiSpacer size="xs" />
+            <EuiFlexGroup
+              gutterSize="s"
+              responsive={false}
+              wrap
+              justifyContent="flexEnd">
+              <EuiFlexItem>
+                <EuiRange
+                  showInput="inputWithPopover"
+                  min={7}
+                  max={140}
+                  value={this.state.popoverSliderValues}
+                  onChange={this.onPopoverSliderValueChange}
+                  compressed
+                  append="px"
+                  aria-label="Label font size in pixels"
+                />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonGroup
+                  legend="Label text style"
+                  className="eui-displayInlineBlock"
+                  options={this.typeStyleToggleButtons}
+                  idToSelectedMap={
+                    this.state.typeStyleToggleButtonsIdToSelectedMap
+                  }
+                  onChange={this.onTypeStyleChange}
+                  type="multi"
+                  isIconOnly
+                  buttonSize="compressed"
+                />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        </EuiFormRow>
 
         <EuiSpacer size="s" />
 
