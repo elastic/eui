@@ -8,7 +8,7 @@ export {
   EuiButtonIconPropsForButton,
 } from './button_icon';
 
-export { EuiButtonToggle } from './button_toggle';
+export { EuiButtonToggle, EuiButtonToggleProps } from './button_toggle';
 
 export {
   EuiButtonGroup,
