@@ -27,10 +27,10 @@ exports[`EuiSuggestInput is rendered 1`] = `
             />
           </div>
           <span
-            class="euiToolTipAnchor euiSuggestInput__statusIcon"
+            class="euiToolTipAnchor"
           >
             <svg
-              class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoading"
+              class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoading euiSuggestInput__statusIcon"
               focusable="false"
               height="16"
               viewBox="0 0 16 16"
