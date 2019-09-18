@@ -44,6 +44,7 @@ export class DefaultItemAction extends Component {
           onClick={onClick}
           href={action.href}
           target={action.target}
+          data-test-subj={action['data-test-subj']}
         />
       );
     } else {
@@ -57,6 +58,7 @@ export class DefaultItemAction extends Component {
           onClick={onClick}
           href={action.href}
           target={action.target}
+          data-test-subj={action['data-test-subj']}
           flush="right">
           {action.name}
         </EuiButtonEmpty>
