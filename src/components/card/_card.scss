@@ -23,7 +23,7 @@
 
   &:disabled {
     background-color: $euiColorLightestShade;
-    cursor: not-allowed;
+    cursor: not-allowed; // duplicate property due to Chrome bug
 
     .euiCard__title,
     .euiCard__description,
@@ -38,7 +38,7 @@
 
     &:hover,
     &:focus {
-      cursor: not-allowed;
+      cursor: not-allowed; // duplicate property due to Chrome bug
       transform: none;
       box-shadow: none;
       text-decoration: none;
