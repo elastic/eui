@@ -12,4 +12,18 @@ describe('EuiImage', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('is rendered and allows full screen', () => {
+    const component = render(
+      <EuiImage
+        alt="alt"
+        size="l"
+        url="/cat.jpg"
+        allowFullScreen
+        {...requiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -62,7 +62,9 @@ declare module '@elastic/eui' {
   }
 
   export const EuiRange: FunctionComponent<
-    CommonProps & InputHTMLAttributes<HTMLInputElement> & EuiRangeProps
+    CommonProps &
+      Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
+      EuiRangeProps
   >;
 
   /**

@@ -224,36 +224,36 @@
     "filepath": "src/components/code/_code_block.js"
   },
   {
-    "token": "euiColorPicker.screenReaderAnnouncement",
-    "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 253,
-        "column": 14
-      },
-      "end": {
-        "line": 258,
-        "column": 16
-      }
-    },
-    "filepath": "src/components/color_picker/color_picker.js"
-  },
-  {
     "token": "euiColorPicker.swatchAriaLabel",
     "defString": "Select {swatch} as the color",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 282,
-        "column": 18
+        "line": 276,
+        "column": 14
       },
       "end": {
-        "line": 285,
-        "column": 59
+        "line": 279,
+        "column": 55
       }
     },
-    "filepath": "src/components/color_picker/color_picker.js"
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
+    "token": "euiColorPicker.screenReaderAnnouncement",
+    "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 377,
+        "column": 14
+      },
+      "end": {
+        "line": 382,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
   },
   {
     "token": "euiHue.label",
@@ -277,11 +277,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
+        "line": 180,
         "column": 6
       },
       "end": {
-        "line": 184,
+        "line": 182,
         "column": 64
       }
     },
@@ -293,11 +293,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 207,
+        "line": 205,
         "column": 16
       },
       "end": {
-        "line": 210,
+        "line": 208,
         "column": 18
       }
     },
