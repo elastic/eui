@@ -6,13 +6,13 @@
 
 **Bug fixes**
 
+- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
 - Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))
 
 ## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
 
 **Bug fixes**
 
-- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
 - Fixed accidental removal of Elastic Charts from dependencies ([#2348](https://github.com/elastic/eui/pull/2348))
 
 ## [`14.1.0`](https://github.com/elastic/eui/tree/v14.1.0)
