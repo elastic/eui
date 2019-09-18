@@ -37,7 +37,9 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
     const ellipsisButton = (
-      <EuiI18n token="euiBreadcrumbs.collapsedBadge.ariaLabel" default="Show all breadcrumbs">
+      <EuiI18n
+        token="euiBreadcrumbs.collapsedBadge.ariaLabel"
+        default="Show all breadcrumbs">
         {ariaLabel => (
           <EuiBadge
             aria-label={ariaLabel}
@@ -54,7 +56,6 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
       return (
         <Fragment>
           <EuiPopover
-            id="showAllBreadcrumbsPopover"
             button={ellipsisButton}
             isOpen={isPopoverOpen}
             closePopover={() => setIsPopoverOpen(false)}>
