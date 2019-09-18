@@ -1,1 +1,1 @@
-export { EuiButtonToggle } from './button_toggle';
+export { EuiButtonToggle, EuiButtonToggleProps } from './button_toggle';
