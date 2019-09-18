@@ -71,9 +71,12 @@ export class EuiSuggestInput extends Component {
     const statusElement = (status === 'saved' || status === 'unsaved') && (
       <EuiToolTip
         position="left"
-        content={tooltipContent || statusMap[status].tooltip}
-        anchorClassName="euiSuggestInput__statusIcon">
-        <EuiIcon color={color} type={icon} />
+        content={tooltipContent || statusMap[status].tooltip}>
+        <EuiIcon
+          className="euiSuggestInput__statusIcon"
+          color={color}
+          type={icon}
+        />
       </EuiToolTip>
     );
 

@@ -75,6 +75,10 @@ import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchHtml = renderToHtml(Switch);
 
+import PrependAppend from './prepend_append';
+const PrependAppendSource = require('!!raw-loader!./prepend_append');
+const PrependAppendHtml = renderToHtml(PrependAppend);
+
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
 const formControlLayoutHtml = renderToHtml(FormControlLayout);
@@ -314,6 +318,59 @@ export const FormControlsExample = {
         EuiSwitch,
       },
       demo: <Switch />,
+    },
+    {
+      title: 'Prepend and Append',
+      text: (
+        <Fragment>
+          <p>
+            Most form controls accept a <EuiCode>prepend</EuiCode> and{' '}
+            <EuiCode>append</EuiCode> prop that allows passing a single
+            node/string or an array of nodes/strings. Strings will be converted
+            into form labels and connected to the input via{' '}
+            <EuiCode>htmlFor</EuiCode> for accessibility.
+          </p>
+          <p>
+            These are great for demarcating the input&apos;s metric like
+            &quot;px&quot; or &quot;ms&quot;. You can also pass buttons for
+            input settings or additional filters. Just be sure to use
+            <EuiCode>&lt;EuiButtonEmpty size=&quot;xs&quot; /&gt;</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PrependAppendSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: PrependAppendHtml,
+        },
+      ],
+      demo: <PrependAppend />,
+      snippet: [
+        `<EuiFieldText
+  prepend="Label"
+  append="px"
+/>`,
+        `<EuiFieldText
+  prepend={
+    <EuiPopover
+      button={
+        <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+          Popover
+        </EuiButtonEmpty>
+      }
+      closePopover={() => {}}
+    />
+  }
+  append={[
+    <EuiButtonIcon iconType="gear" />,
+    "Label",
+  ]}
+/>`,
+      ],
     },
     {
       title: 'Form control layout',

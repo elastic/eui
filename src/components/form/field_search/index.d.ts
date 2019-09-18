@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common';
 
-import { FunctionComponent, InputHTMLAttributes } from 'react';
+import { FunctionComponent, InputHTMLAttributes, Ref } from 'react';
 
 declare module '@elastic/eui' {
   /**
@@ -17,8 +17,10 @@ declare module '@elastic/eui' {
     isInvalid?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
-    incremental?: boolean;
     onSearch?: (value: string) => void;
+    incremental?: boolean;
+    compressed?: boolean;
+    inputRef?: Ref<HTMLInputElement>;
   }
 
   export const EuiFieldSearch: FunctionComponent<

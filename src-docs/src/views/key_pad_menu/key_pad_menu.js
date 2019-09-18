@@ -20,7 +20,7 @@ export default () => (
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
 
-    <EuiKeyPadMenuItem label="Dashboard" href="#">
+    <EuiKeyPadMenuItem isDisabled label="Dashboard" href="#">
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>
