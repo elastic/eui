@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.2.0`.
+
+## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
+
 - Add `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
 - Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
  ([#2333](https://github.com/elastic/eui/pull/2340))
