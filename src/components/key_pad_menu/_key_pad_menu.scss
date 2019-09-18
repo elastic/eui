@@ -32,14 +32,31 @@
     border-color $euiAnimSpeedFast ease-in,
     box-shadow $euiAnimSpeedFast ease-in;
 
-  &:hover,
-  &:focus {
-    @include euiSlightShadow;
-    border-color: $euiBorderColor;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include euiSlightShadow;
+      border-color: $euiBorderColor;
 
-    .euiKeyPadMenuItem__icon {
-      transform: translateY(0);
+      .euiKeyPadMenuItem__icon { // sass-lint:disable-line nesting-depth
+        transform: translateY(0);
+      }
     }
+
+  }
+
+  &:disabled {
+    color: $euiButtonColorDisabled;
+    cursor: not-allowed;
+
+    .euiKeyPadMenuItem__icon  {
+      filter: grayscale(100%);
+
+      svg * { // sass-lint:disable-line nesting-depth
+        fill: $euiButtonColorDisabled;
+      }
+    }
+
   }
 }
 
