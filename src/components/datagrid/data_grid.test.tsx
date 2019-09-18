@@ -434,6 +434,42 @@ Array [
 ]
 `);
       });
+
+      it('accepts extra detectors', () => {
+        const values: { [key: string]: string } = {
+          A: '-5.80',
+          B: '127.0.0.1',
+        };
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={Object.keys(values).map(id => ({ id }))}
+            schemaDetectors={[
+              {
+                type: 'ipaddress',
+                detector(value: string) {
+                  return value.match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)
+                    ? 1
+                    : 0;
+                },
+              },
+            ]}
+            inMemory="pagination"
+            rowCount={1}
+            renderCellValue={({ columnId }) => values[columnId]}
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--ipaddress",
+]
+`);
+      });
     });
   });
 

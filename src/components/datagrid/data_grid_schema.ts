@@ -4,7 +4,12 @@ import {
   EuiDataGridInMemoryValues,
 } from './data_grid_types';
 
-const schemaDetectors = [
+export interface SchemaDetector {
+  type: string;
+  detector: (value: string) => number;
+}
+
+const schemaDetectors: SchemaDetector[] = [
   {
     type: 'boolean',
     detector(value: string) {
@@ -68,11 +73,15 @@ interface SchemaTypeScore {
   score: number;
 }
 
-function scoreValueBySchemaType(value: string) {
+function scoreValueBySchemaType(
+  value: string,
+  extraSchemaDetectors: SchemaDetector[] = []
+) {
   const scores: SchemaTypeScore[] = [];
+  const detectors = [...schemaDetectors, ...extraSchemaDetectors];
 
-  for (let i = 0; i < schemaDetectors.length; i++) {
-    const { type, detector } = schemaDetectors[i];
+  for (let i = 0; i < detectors.length; i++) {
+    const { type, detector } = detectors[i];
     const score = detector(value);
     scores.push({ type, score });
   }
@@ -86,6 +95,7 @@ const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
   inMemoryValues: EuiDataGridInMemoryValues,
+  schemaDetectors: SchemaDetector[] | undefined,
   autoDetectSchema: boolean
 ) {
   const schema = useMemo(() => {
@@ -112,7 +122,10 @@ export function useDetectSchema(
           columnSchemas[columnId] || {});
 
         const columnValue = rowData[columnId].trim();
-        const valueScores = scoreValueBySchemaType(columnValue);
+        const valueScores = scoreValueBySchemaType(
+          columnValue,
+          schemaDetectors
+        );
 
         for (let k = 0; k < valueScores.length; k++) {
           const valueScore = valueScores[k];
