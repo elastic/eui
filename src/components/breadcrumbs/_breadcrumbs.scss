@@ -35,11 +35,11 @@
 
 .euiBreadcrumbBadge {
   height: $euiSize;
-  margin-top: -.375rem;
-  background-color: transparentize($euiColorLightShade, .5);
+  margin-top: -$euiSizeM / 2;
+  background-color: transparentize($euiColorDarkestShade, .85);
 
   .euiBadge__content {
-    margin-top: -.1275rem;
+    margin-top: -$euiSizeXS / 2;
   }
 }
 
@@ -109,6 +109,10 @@
   .euiBreadcrumbSeparator {
     // Align with flex versus inline-block misaligns the separator slightly
     transform: translateY(0) rotate(15deg);
+  }
+
+  .euiBreadcrumbBadge {
+    margin-top: -$euiSizeXS / 2;
   }
 }
 

@@ -55,8 +55,8 @@ export default () => {
       <EuiBreadcrumbs
         breadcrumbs={breadcrumbs}
         truncate={false}
-        max={2}
-        showPopover
+        max={4}
+        showMaxPopover
       />
     </Fragment>
   );
