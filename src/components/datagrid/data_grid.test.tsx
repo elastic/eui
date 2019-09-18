@@ -398,6 +398,42 @@ Array [
 ]
 `);
       });
+
+      it('detects all of the supported types', () => {
+        const values: { [key: string]: string } = {
+          A: '-5.80',
+          B: 'false',
+          C: '$-5.80',
+          E: '2019-09-18T12:31:28',
+          F: '2019-09-18T12:31:28Z',
+          G: '2019-09-18T12:31:28.234',
+          H: '2019-09-18T12:31:28.234+0300',
+        };
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={Object.keys(values).map(id => ({ id }))}
+            inMemory="pagination"
+            rowCount={1}
+            renderCellValue={({ columnId }) => values[columnId]}
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--boolean",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--currency",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
+  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
+]
+`);
+      });
     });
   });
 

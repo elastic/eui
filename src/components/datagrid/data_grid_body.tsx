@@ -17,7 +17,7 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
-import { EuiDataGridSchema } from './data_grid';
+import { EuiDataGridSchema } from './data_grid_schema';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;

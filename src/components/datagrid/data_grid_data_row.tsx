@@ -4,7 +4,7 @@ import { EuiDataGridColumn, EuiDataGridColumnWidths } from './data_grid_types';
 import { CommonProps } from '../common';
 
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
-import { EuiDataGridSchema } from './data_grid';
+import { EuiDataGridSchema } from './data_grid_schema';
 
 export type EuiDataGridDataRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

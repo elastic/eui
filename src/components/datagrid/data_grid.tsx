@@ -7,7 +7,6 @@ import React, {
   useEffect,
   Fragment,
   ReactChild,
-  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
@@ -41,6 +40,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
+import { getMergedSchema, useDetectSchema } from './data_grid_schema';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -286,184 +286,6 @@ function useInMemoryValues(): [
   );
 
   return [inMemoryValues, onCellRender];
-}
-
-const schemaDetectors = [
-  {
-    type: 'numeric' as 'numeric',
-    detector: (value: string) => {
-      const matchLength = (value.match(/[%-(]*[\d,]+(\.\d*)?[%)]*/) || [''])[0]
-        .length;
-      return matchLength / value.length || 0;
-    },
-  },
-  {
-    type: 'currency' as 'currency',
-    detector: (value: string) => {
-      const matchLength = (value.match(/[$-(]*[\d,]+(\.\d*)?[$)]*/) || [''])[0]
-        .length;
-      return matchLength / value.length || 0;
-    },
-  },
-  {
-    type: 'boolean' as 'boolean',
-    detector: (value: string) => {
-      return value === 'true' || value === 'false' ? 1 : 0;
-    },
-  },
-];
-
-export interface EuiDataGridSchema {
-  [columnId: string]: { columnType: string | null };
-}
-
-interface SchemaTypeScore {
-  type: string;
-  score: number;
-}
-
-function scoreValueBySchemaType(value: string) {
-  const scores: SchemaTypeScore[] = [];
-
-  for (let i = 0; i < schemaDetectors.length; i++) {
-    const { type, detector } = schemaDetectors[i];
-    const score = detector(value);
-    scores.push({ type, score });
-  }
-
-  return scores;
-}
-
-// completely arbitrary minimum match I came up with
-// represents lowest score a type detector can have to be considered valid
-const MINIMUM_SCORE_MATCH = 0.2;
-
-function useDetectSchema(
-  inMemoryValues: EuiDataGridInMemoryValues,
-  autoDetectSchema: boolean
-) {
-  const schema = useMemo(() => {
-    const schema: EuiDataGridSchema = {};
-    if (autoDetectSchema === false) {
-      return schema;
-    }
-
-    const columnSchemas: {
-      [columnId: string]: { [type: string]: number[] };
-    } = {};
-
-    const rowIndices = Object.keys(inMemoryValues);
-    for (let i = 0; i < rowIndices.length; i++) {
-      const rowIndex = rowIndices[i];
-      const rowData = inMemoryValues[rowIndex];
-      const columnIds = Object.keys(rowData);
-
-      for (let j = 0; j < columnIds.length; j++) {
-        const columnId = columnIds[j];
-
-        const schemaColumn = (columnSchemas[columnId] =
-          columnSchemas[columnId] || {});
-
-        const columnValue = rowData[columnId].trim();
-        const valueScores = scoreValueBySchemaType(columnValue);
-
-        for (let k = 0; k < valueScores.length; k++) {
-          const valueScore = valueScores[k];
-          if (schemaColumn.hasOwnProperty(valueScore.type)) {
-            const existingScore = schemaColumn[valueScore.type];
-            existingScore.push(valueScore.score);
-          } else {
-            // first entry for this column
-            schemaColumn[valueScore.type] = [valueScore.score];
-          }
-        }
-      }
-    }
-
-    return Object.keys(columnSchemas).reduce<EuiDataGridSchema | any>(
-      (schema, columnId) => {
-        const columnScores = columnSchemas[columnId];
-        const typeIds = Object.keys(columnScores);
-
-        //
-        const typeSummaries: {
-          [type: string]: {
-            minScore: number;
-            maxScore: number;
-            mean: number;
-            sd: number;
-          };
-        } = {};
-
-        let bestType = null;
-        let bestScore = 0;
-
-        for (let i = 0; i < typeIds.length; i++) {
-          const typeId = typeIds[i];
-
-          const typeScores = columnScores[typeId];
-
-          let minScore = 1;
-          let maxScore = 0;
-
-          let totalScore = 0;
-          for (let j = 0; j < typeScores.length; j++) {
-            const score = typeScores[j];
-            totalScore += score;
-            minScore = Math.min(minScore, score);
-            maxScore = Math.max(maxScore, score);
-          }
-          const mean = totalScore / typeScores.length;
-
-          let sdSum = 0;
-          for (let j = 0; j < typeScores.length; j++) {
-            const score = typeScores[j];
-            sdSum += (score - mean) * (score - mean);
-          }
-          // console.log(sdSum, typeScores.length - 1);
-          const sd = Math.sqrt(sdSum / typeScores.length);
-
-          const summary = { minScore, maxScore, mean, sd };
-
-          // the mean-standard_deviation calculation is fairly arbitrary but fits the patterns I've thrown at it
-          const score = summary.mean - summary.sd;
-          if (score > MINIMUM_SCORE_MATCH) {
-            if (bestType == null || score > bestScore) {
-              bestType = typeId;
-              bestScore = score;
-            }
-          }
-
-          typeSummaries[typeId] = summary;
-        }
-        schema[columnId] = { columnType: bestType };
-
-        return schema;
-      },
-      {}
-    );
-  }, [inMemoryValues]);
-  return schema;
-}
-
-function getMergedSchema(
-  detectedSchema: EuiDataGridSchema,
-  columns: EuiDataGridColumn[]
-) {
-  const mergedSchema = { ...detectedSchema };
-
-  for (let i = 0; i < columns.length; i++) {
-    const { id, dataType } = columns[i];
-    if (dataType != null) {
-      if (detectedSchema.hasOwnProperty(id)) {
-        mergedSchema[id] = { ...detectedSchema[id], columnType: dataType };
-      } else {
-        mergedSchema[id] = { columnType: dataType };
-      }
-    }
-  }
-
-  return mergedSchema;
 }
 
 function createKeyDownHandler(
