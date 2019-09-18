@@ -82,7 +82,7 @@ function scoreValueBySchemaType(value: string) {
 
 // completely arbitrary minimum match I came up with
 // represents lowest score a type detector can have to be considered valid
-const MINIMUM_SCORE_MATCH = 0.2;
+const MINIMUM_SCORE_MATCH = 0.5;
 
 export function useDetectSchema(
   inMemoryValues: EuiDataGridInMemoryValues,
@@ -98,6 +98,7 @@ export function useDetectSchema(
       [columnId: string]: { [type: string]: number[] };
     } = {};
 
+    // for each row, score each value by each detector and put the results on `columnSchemas`
     const rowIndices = Object.keys(inMemoryValues);
     for (let i = 0; i < rowIndices.length; i++) {
       const rowIndex = rowIndices[i];
@@ -126,16 +127,14 @@ export function useDetectSchema(
       }
     }
 
+    // for each column, reduce each detector type's score to a single value and find the best fit
     return Object.keys(columnSchemas).reduce<EuiDataGridSchema | any>(
       (schema, columnId) => {
         const columnScores = columnSchemas[columnId];
         const typeIds = Object.keys(columnScores);
 
-        //
         const typeSummaries: {
           [type: string]: {
-            minScore: number;
-            maxScore: number;
             mean: number;
             sd: number;
           };
@@ -149,29 +148,26 @@ export function useDetectSchema(
 
           const typeScores = columnScores[typeId];
 
-          let minScore = 1;
-          let maxScore = 0;
-
+          // find the mean
           let totalScore = 0;
           for (let j = 0; j < typeScores.length; j++) {
             const score = typeScores[j];
             totalScore += score;
-            minScore = Math.min(minScore, score);
-            maxScore = Math.max(maxScore, score);
           }
           const mean = totalScore / typeScores.length;
 
+          // compute standard deviation
           let sdSum = 0;
           for (let j = 0; j < typeScores.length; j++) {
             const score = typeScores[j];
             sdSum += (score - mean) * (score - mean);
           }
-          // console.log(sdSum, typeScores.length - 1);
           const sd = Math.sqrt(sdSum / typeScores.length);
 
-          const summary = { minScore, maxScore, mean, sd };
+          const summary = { mean, sd };
 
           // the mean-standard_deviation calculation is fairly arbitrary but fits the patterns I've thrown at it
+          // it is meant to represent the scores' average and distribution
           const score = summary.mean - summary.sd;
           if (score > MINIMUM_SCORE_MATCH) {
             if (bestType == null || score > bestScore) {
