@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Add `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
+- Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
+ ([#2333](https://github.com/elastic/eui/pull/2340))
 
 **Bug fixes**
 
@@ -21,8 +23,6 @@
 - Added hover and focus states when `allowFullScreen` is true in `EuiImage`([#2287](https://github.com/elastic/eui/pull/2287))
 - Converted `EuiColorPicker` to TypeScript ([#2340](https://github.com/elastic/eui/pull/2340))
 - Added inline rendering option to `EuiColorPicker` ([#2340](https://github.com/elastic/eui/pull/2340))
-- Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
- ([#2333](https://github.com/elastic/eui/pull/2340))
 
 ## [`14.0.0`](https://github.com/elastic/eui/tree/v14.0.0)
 
