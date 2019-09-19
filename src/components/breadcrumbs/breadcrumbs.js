@@ -63,6 +63,7 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
             aria-label={ariaLabel}
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
             onClickAriaLabel={ariaLabel}
+            title="View hidden breadcrumbs"
             className="euiBreadcrumb euiBreadcrumbBadge">
             &hellip;
           </EuiBadge>
@@ -145,7 +146,6 @@ export const EuiBreadcrumbs = ({
           {text}
         </span>
       );
-      // if limitedBreadcrumbs && displayHidden
     } else {
       link = (
         <EuiLink
