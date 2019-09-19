@@ -24,9 +24,9 @@ const schemaDetectors: SchemaDetector[] = [
 
       // if there is no currency symbol then reduce the score
       const hasCurrency = value.indexOf('$') !== -1;
-      const currencyAdjustment = hasCurrency ? 1 : 0.75;
+      const confidenceAdjustment = hasCurrency ? 1 : 0.95;
 
-      return (matchLength / value.length) * currencyAdjustment || 0;
+      return (matchLength / value.length) * confidenceAdjustment || 0;
     },
   },
   {

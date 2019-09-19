@@ -325,9 +325,18 @@ describe('EuiDataGrid', () => {
         );
 
         const gridCellClassNames = component
-          .find('[className*="euiDataGridRowCell__columnType--"]')
+          .find('[className*="euiDataGridRowCell--"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+]
+`);
       });
 
       it('automatically detects column types and applies classnames', () => {
