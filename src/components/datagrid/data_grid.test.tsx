@@ -327,16 +327,7 @@ describe('EuiDataGrid', () => {
         const gridCellClassNames = component
           .find('[className*="euiDataGridRowCell__columnType--"]')
           .map(x => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-Array [
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--customFormatName",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--customFormatName",
-]
-`);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`Array []`);
       });
 
       it('automatically detects column types and applies classnames', () => {
@@ -363,11 +354,11 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--boolean",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
   "euiDataGridRowCell",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--boolean",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
   "euiDataGridRowCell",
 ]
 `);
@@ -391,10 +382,10 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--alphanumeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--alphanumeric",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
 ]
 `);
       });
@@ -424,13 +415,13 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--boolean",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--currency",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
+  "euiDataGridRowCell euiDataGridRowCell--currency",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
 ]
 `);
       });
@@ -465,8 +456,8 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell__columnType--numeric",
-  "euiDataGridRowCell euiDataGridRowCell__columnType--ipaddress",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--ipaddress",
 ]
 `);
       });

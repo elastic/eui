@@ -14,6 +14,14 @@
   .euiDataGridHeaderCell__content {
     @include euiTextTruncate;
   }
+
+  &.euiDataGridHeaderCell--numeric {
+    text-align: right;
+  }
+
+  &.euiDataGridHeaderCell--currency {
+    text-align: right;
+  }
 }
 
 // Header alternates

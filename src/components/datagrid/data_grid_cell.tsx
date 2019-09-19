@@ -191,7 +191,7 @@ export class EuiDataGridCell extends Component<
     };
 
     const className = classnames('euiDataGridRowCell', {
-      [`euiDataGridRowCell__columnType--${columnType}`]: columnType,
+      [`euiDataGridRowCell--${columnType}`]: columnType,
     });
 
     return (
