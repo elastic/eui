@@ -2,9 +2,13 @@
 
 - Added a `showMaxPopover` option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
 
+**Bug fixes**
+
+- Fixed spacing of `EuiFormErrorText` to match `EuiFormHelpText` ([#2354](https://github.com/elastic/eui/pull/2354))
+
 ## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
 
-- Add `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
+- Added `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
 - Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
  ([#2333](https://github.com/elastic/eui/pull/2340))
 - Added missing `compressed` TS definitions to `EuiComboBox`, `EuiCheckboxGroup`, `EuiCheckbox`, `EuiFieldSearch`, `EuiRadioGroup`, `EuiSwitch` ([#2338](https://github.com/elastic/eui/pull/2338))
