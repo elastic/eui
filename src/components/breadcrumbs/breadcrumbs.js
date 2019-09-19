@@ -212,7 +212,7 @@ EuiBreadcrumbs.propTypes = {
   max: PropTypes.number,
 
   /**
-   * Allows the entire list of breadcrumbs to be shown when
+   * Allows the hidden breadcrumbs to be shown when
    * a `max` is set and the ellipsis is clicked in responsive mode.
    */
   showMaxPopover: PropTypes.bool,

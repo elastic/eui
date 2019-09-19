@@ -162,7 +162,7 @@ export const BreadcrumbsExample = {
       demo: <Max />,
     },
     {
-      title: 'Show the full list in a popover',
+      title: 'Show the hidden items in a popover',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -178,8 +178,8 @@ export const BreadcrumbsExample = {
           When the breadcrumbs need to be truncated, but you wish to still allow
           users to navigate to any item in the list, you can use the{' '}
           <EuiCode>showMaxPopover</EuiCode> prop. When used with the{' '}
-          <EuiCode>max</EuiCode> prop, the entire list of breadcrumbs will be
-          rendered into an <EuiCode>EuiPopover</EuiCode>.
+          <EuiCode>max</EuiCode> prop, the hidden breadcrumbs will be rendered
+          into an <EuiCode>EuiPopover</EuiCode>.
         </p>
       ),
       props: { EuiBreadcrumbs },
