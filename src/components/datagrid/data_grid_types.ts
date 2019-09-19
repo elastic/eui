@@ -54,7 +54,7 @@ service / in-memory boundary can be used. Thus there are four states for in-memo
 * "filtering" - all operations are performed in-memory, no service calls
  */
 export type EuiDataGridInMemory =
-  | false
+  | boolean
   | 'pagination'
   | 'sorting'
   | 'filtering';
