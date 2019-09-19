@@ -5,17 +5,19 @@ import React, {
   memo,
   ReactNode,
   createRef,
+  HTMLAttributes,
 } from 'react';
 import classnames from 'classnames';
 // @ts-ignore
 import { EuiFocusTrap } from '../focus_trap';
-import { Omit } from '../common';
+import { CommonProps, Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
 export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
+  setCellProps: (props: HTMLAttributes<HTMLDivElement>) => void;
 }
 
 export interface EuiDataGridCellProps {
@@ -33,7 +35,9 @@ export interface EuiDataGridCellProps {
     | ((props: CellValueElementProps) => ReactNode);
 }
 
-interface EuiDataGridCellState {}
+interface EuiDataGridCellState {
+  cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
+}
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
@@ -41,7 +45,9 @@ type EuiDataGridCellValueProps = Omit<
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
-  EuiDataGridCellValueProps
+  EuiDataGridCellValueProps & {
+    setCellProps: CellValueElementProps['setCellProps'];
+  }
 > = memo(props => {
   const { renderCellValue, ...rest } = props;
 
@@ -61,6 +67,9 @@ export class EuiDataGridCell extends Component<
 > {
   cellRef = createRef<HTMLDivElement>();
   cellContentsRef = createRef<HTMLDivElement>();
+  state: EuiDataGridCellState = {
+    cellProps: {},
+  };
 
   isInteractiveCell() {
     const cellContents = this.cellContentsRef.current;
@@ -175,6 +184,10 @@ export class EuiDataGridCell extends Component<
     return false;
   }
 
+  setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
+    this.setState({ cellProps });
+  };
+
   render() {
     const {
       width,
@@ -194,16 +207,31 @@ export class EuiDataGridCell extends Component<
       [`euiDataGridRowCell--${columnType}`]: columnType,
     });
 
+    const cellProps: CommonProps & HTMLAttributes<HTMLDivElement> = {
+      ...this.state.cellProps,
+      'data-test-subj': classnames(
+        'dataGridRowCell',
+        this.state.cellProps['data-test-subj']
+      ),
+      className: classnames(className, this.state.cellProps.className),
+    };
+
+    const widthStyle = width != null ? { width: `${width}px` } : {};
+    if (cellProps.hasOwnProperty('style')) {
+      cellProps.style = { ...cellProps.style, ...widthStyle };
+    } else {
+      cellProps.style = widthStyle;
+    }
+
     return (
       <div
         role="gridcell"
         {...isInteractive && { 'aria-describedby': interactiveCellId }}
         tabIndex={isFocusable ? 0 : -1}
         ref={this.cellRef}
-        className={className}
+        {...cellProps}
         data-test-subj="dataGridRowCell"
-        onFocus={() => onCellFocus([colIndex, rowIndex])}
-        style={width != null ? { width: `${width}px` } : {}}>
+        onFocus={() => onCellFocus([colIndex, rowIndex])}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
           <EuiMutationObserver
             onMutation={() => {
@@ -220,7 +248,11 @@ export class EuiDataGridCell extends Component<
                   {...isInteractiveCell}
                   ref={this.cellContentsRef}
                   className="euiDataGridRowCell__content">
-                  <EuiDataGridCellContent {...rest} columnType={columnType} />
+                  <EuiDataGridCellContent
+                    {...rest}
+                    columnType={columnType}
+                    setCellProps={this.setCellProps}
+                  />
                 </div>
               </div>
             )}

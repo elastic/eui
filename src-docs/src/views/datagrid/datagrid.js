@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useEffect } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -124,10 +124,25 @@ export default class DataGridContainer extends Component {
 
     return (
       <EuiDataGrid
-        aria-label="Top EUI contributors"
+        aria-label="Data grid demo"
         columns={columns}
         rowCount={data.length}
-        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+          useEffect(() => {
+            if (columnId === 'amount') {
+              const numeric = parseFloat(
+                data[rowIndex][columnId].match(/\d+\.\d+/)[0],
+                10
+              );
+              setCellProps({
+                style: {
+                  backgroundColor: `rgba(0, ${(numeric / 1000) * 255}, 0, 0.2)`,
+                },
+              });
+            }
+          }, [rowIndex, columnId, setCellProps]);
+          return data[rowIndex][columnId];
+        }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
         pagination={{
           ...pagination,
