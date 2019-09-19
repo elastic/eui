@@ -64,7 +64,7 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
             onClickAriaLabel={ariaLabel}
             title="View hidden breadcrumbs"
-            className="euiBreadcrumb euiBreadcrumbBadge">
+            className="euiBreadcrumb euiBreadcrumb__collapsedBadge">
             &hellip;
           </EuiBadge>
         )}
