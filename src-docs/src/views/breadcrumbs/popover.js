@@ -14,7 +14,7 @@ export default () => {
       'data-test-subj': 'breadcrumbsroot',
     },
     {
-      text: 'src',
+      text: 'item 2',
       href: '#',
       onClick: e => {
         e.preventDefault();
@@ -22,27 +22,99 @@ export default () => {
       },
     },
     {
-      text: 'components',
+      text: 'item 3',
       href: '#',
       onClick: e => {
         e.preventDefault();
-        console.log('You clicked components');
+        console.log('You clicked item 3');
       },
     },
     {
-      text: 'button',
+      text: 'item 4',
       href: '#',
       onClick: e => {
         e.preventDefault();
-        console.log('You clicked button');
+        console.log('You clicked item 4');
       },
     },
     {
-      text: 'button_empty',
+      text: 'item 5',
       href: '#',
       onClick: e => {
         e.preventDefault();
-        console.log('You clicked button_empty');
+        console.log('You clicked item 5');
+      },
+    },
+    {
+      text: 'item 6',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 6');
+      },
+    },
+    {
+      text: 'item 7',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 7');
+      },
+    },
+    {
+      text: 'item 8',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 8');
+      },
+    },
+    {
+      text: 'item 9',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 9');
+      },
+    },
+    {
+      text: 'item 10',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 10');
+      },
+    },
+    {
+      text: 'item 11',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 11');
+      },
+    },
+    {
+      text: 'item 12',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 12');
+      },
+    },
+    {
+      text: 'item 13',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 13');
+      },
+    },
+    {
+      text: 'item 14',
+      href: '#',
+      onClick: e => {
+        e.preventDefault();
+        console.log('You clicked item 14');
       },
     },
     {
@@ -55,7 +127,7 @@ export default () => {
       <EuiBreadcrumbs
         breadcrumbs={breadcrumbs}
         truncate={false}
-        max={4}
+        max={5}
         showMaxPopover
       />
     </Fragment>

@@ -29,6 +29,13 @@
   background: $euiColorLightShade;
 }
 
+.euiBreadcrumbs__inPopover {
+  .euiBreadcrumb--last.euiLink.euiLink--text {
+    font-weight: $euiFontWeightRegular;
+    color: $euiColorDarkShade;
+  }
+}
+
 .euiBreadcrumbBadge {
   height: $euiSize;
   margin-top: -$euiSizeM / 2;
