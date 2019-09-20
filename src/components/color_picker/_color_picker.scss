@@ -2,8 +2,7 @@
 
 .euiColorPicker {
   position: relative;
-  // 5 columns of swatches + margins + border
-  width: ($euiSizeL * 5) + ($euiSizeS * 4);
+  width: $euiColorPickerWidth;
 
 }
 

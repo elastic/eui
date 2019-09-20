@@ -29,6 +29,7 @@ export { EuiCodeEditor } from './code_editor';
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
+  EuiColorStops,
   EuiHue,
   EuiSaturation,
 } from './color_picker';

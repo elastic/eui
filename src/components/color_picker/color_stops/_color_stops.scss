@@ -1,0 +1,24 @@
+.euiColorStops {
+  &:focus {
+    outline: 2px solid $euiFocusRingColor;
+  }
+}
+
+.euiColorStop {
+  width: $euiColorPickerWidth;
+}
+
+.euiColorStopPopover.euiPopover {
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+}
+
+.euiColorStopThumb.euiRangeThumb {
+  position: static;
+  top: auto;
+  margin-top: 0;
+  pointer-events: auto;
+  cursor: pointer;
+}

@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiColorPicker, EuiText } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiColorPicker,
+  EuiColorStops,
+  EuiText,
+} from '../../../../src/components';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -118,6 +123,15 @@ const kitchenSinkSnippet = `<EuiColorPicker
     '#CCC',
     '#FFF',
   ]}
+/>
+`;
+
+import { ColorStops } from './color_stops';
+const colorStopsSource = require('!!raw-loader!./color_stops');
+const colorStopsHtml = renderToHtml(ColorStops);
+const colorStopsSnippet = `<EuiColorStops
+  onChange={handleChange}
+  colorStops={colorStops}
 />
 `;
 
@@ -283,6 +297,30 @@ export const ColorPickerExample = {
       ],
       snippet: kitchenSinkSnippet,
       demo: <KitchenSink />,
+    },
+    {
+      title: 'Color stops',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorStopsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorStopsHtml,
+        },
+      ],
+      props: { EuiColorStops },
+      text: (
+        <p>
+          Use <EuiCode>EuiColorStops</EuiCode> to define color stops for data
+          driven styling. Stops are numbers in strictly ascending order. The
+          range is from the given stop number (inclusive) to the next stop
+          number (exclusive).
+        </p>
+      ),
+      snippet: colorStopsSnippet,
+      demo: <ColorStops />,
     },
   ],
 };
