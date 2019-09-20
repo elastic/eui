@@ -17,7 +17,7 @@ import { EuiMutationObserver } from '../observer/mutation_observer';
 export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
-  setCellProps: (props: HTMLAttributes<HTMLDivElement>) => void;
+  setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
 }
 
 export interface EuiDataGridCellProps {
@@ -207,7 +207,7 @@ export class EuiDataGridCell extends Component<
       [`euiDataGridRowCell--${columnType}`]: columnType,
     });
 
-    const cellProps: CommonProps & HTMLAttributes<HTMLDivElement> = {
+    const cellProps = {
       ...this.state.cellProps,
       'data-test-subj': classnames(
         'dataGridRowCell',

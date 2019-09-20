@@ -308,6 +308,80 @@ describe('EuiDataGrid', () => {
       });
     });
 
+    it('renders and applies custom props', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            setCellProps({
+              className: 'customClass',
+              'data-test-subj': `cell-${rowIndex}-${columnId}`,
+              style: { color: columnId === 'A' ? 'red' : 'blue' },
+            });
+
+            return `${rowIndex}, ${columnId}`;
+          }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell').map(cell => {
+          const props = cell.props();
+          delete props.children;
+          return props;
+        })
+      ).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "red",
+      "width": "100px",
+    },
+    "tabIndex": 0,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "blue",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "red",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "blue",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+]
+`);
+    });
+
     describe('schema datatype classnames', () => {
       it('applies classnames from explicit datatypes', () => {
         const component = mount(
