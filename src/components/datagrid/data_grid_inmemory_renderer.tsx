@@ -66,7 +66,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
     }
 
     return rows;
-  }, [columns, rowCount, renderCellValue]);
+  }, [columns, rowCount, renderCellValue, onCellRender]);
 
   return createPortal(
     <Fragment>{rows}</Fragment>,

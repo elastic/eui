@@ -270,7 +270,9 @@ function useOnResize(
   );
 }
 
-function useInMemoryValues(): [
+function useInMemoryValues(
+  inMemory: EuiDataGridInMemory
+): [
   EuiDataGridInMemoryValues,
   (rowIndex: number, column: EuiDataGridColumn, value: string) => void
 ] {
@@ -287,8 +289,14 @@ function useInMemoryValues(): [
         return nextInMemoryVaues;
       });
     },
-    [inMemoryValues, setInMemoryValues]
+    [setInMemoryValues]
   );
+
+  useEffect(() => {
+    if (inMemory === false) {
+      setInMemoryValues({});
+    }
+  }, [inMemory]);
 
   return [inMemoryValues, onCellRender];
 }
@@ -324,27 +332,27 @@ function createKeyDownHandler(
     if (isGridNavigationEnabled) {
       switch (keyCode) {
         case keyCodes.DOWN:
-          if (y < rowCount) {
-            event.preventDefault();
+          event.preventDefault();
+          if (y < rowCount - 1) {
             setFocusedCell([x, y + 1]);
           }
           break;
         case keyCodes.LEFT:
+          event.preventDefault();
           if (x > 0) {
-            event.preventDefault();
             setFocusedCell([x - 1, y]);
           }
           break;
         case keyCodes.UP:
+          event.preventDefault();
           // TODO sort out when a user can arrow up into the column headers
           if (y > 0) {
-            event.preventDefault();
             setFocusedCell([x, y - 1]);
           }
           break;
         case keyCodes.RIGHT:
+          event.preventDefault();
           if (x < colCount) {
-            event.preventDefault();
             setFocusedCell([x + 1, y]);
           }
           break;
@@ -396,8 +404,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
-  const [ColumnSelector, visibleColumns] = useColumnSelector(columns);
-  const [StyleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
+  const [columnSelector, visibleColumns] = useColumnSelector(columns);
+  const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
   // compute the default column width from the container's clientWidth and count of visible columns
   const defaultColumnWidth = useDefaultColumnWidth(
@@ -429,7 +437,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
-  const [inMemoryValues, onCellRender] = useInMemoryValues();
+  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory);
 
   const detectedSchema = useDetectSchema(
     inMemoryValues,
@@ -441,8 +449,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
-      <ColumnSelector />
-      <StyleSelector />
+      {columnSelector}
+      {styleSelector}
     </Fragment>
   );
 
@@ -515,7 +523,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                   <EuiDataGridInMemoryRenderer
                     renderCellValue={renderCellValue}
                     columns={columns}
-                    rowCount={rowCount}
+                    rowCount={
+                      inMemory === true
+                        ? // if `inMemory === true` then we can only be sure the pagination's pageSize is available in memory
+                          (pagination && pagination.pageSize) || rowCount
+                        : // otherwise, all of the data is present and usable
+                          rowCount
+                    }
                     onCellRender={onCellRender}
                   />
                 ) : null}

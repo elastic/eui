@@ -87,11 +87,8 @@ export default class InMemoryDataGrid extends Component {
         aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
-        renderCellValue={({ rowIndex, columnId }) => {
-          const value = data[rowIndex][columnId];
-          return value;
-        }}
-        inMemory="sorting"
+        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        inMemory="pagination"
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
         pagination={{
           ...pagination,

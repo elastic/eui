@@ -1,9 +1,4 @@
-import React, {
-  Fragment,
-  FunctionComponent,
-  useState,
-  ReactChild,
-} from 'react';
+import React, { Fragment, useState, ReactChild, ReactElement } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
@@ -24,7 +19,7 @@ import { EuiIcon } from '../icon';
 
 export const useColumnSelector = (
   availableColumns: EuiDataGridColumn[]
-): [FunctionComponent<any>, EuiDataGridColumn[]] => {
+): [ReactElement, EuiDataGridColumn[]] => {
   const [sortedColumns, setSortedColumns] = useState(availableColumns);
 
   const [visibleColumns, setVisibleColumns] = useState(availableColumns);
@@ -59,7 +54,7 @@ export const useColumnSelector = (
     'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
   });
 
-  const ColumnSelector = () => (
+  const columnSelector = (
     <EuiPopover
       data-test-subj="dataGridColumnSelectorPopover"
       isOpen={isOpen}
@@ -158,5 +153,5 @@ export const useColumnSelector = (
     </EuiPopover>
   );
 
-  return [ColumnSelector, visibleColumns];
+  return [columnSelector, visibleColumns];
 };

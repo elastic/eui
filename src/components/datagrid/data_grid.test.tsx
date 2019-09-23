@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
 import { EuiDataGrid } from './';
 import {
@@ -315,11 +315,13 @@ describe('EuiDataGrid', () => {
           columns={[{ id: 'A' }, { id: 'B' }]}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId, setCellProps }) => {
-            setCellProps({
-              className: 'customClass',
-              'data-test-subj': `cell-${rowIndex}-${columnId}`,
-              style: { color: columnId === 'A' ? 'red' : 'blue' },
-            });
+            useEffect(() => {
+              setCellProps({
+                className: 'customClass',
+                'data-test-subj': `cell-${rowIndex}-${columnId}`,
+                style: { color: columnId === 'A' ? 'red' : 'blue' },
+              });
+            }, []);
 
             return `${rowIndex}, ${columnId}`;
           }}

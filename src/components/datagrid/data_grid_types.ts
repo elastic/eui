@@ -48,7 +48,8 @@ However, we cannot allow any service calls after an in-memory operation.
 E.g. if Pagination requires a service call the grid cannot perform
 in-memory Filtering or Sorting. This means a single value representing the
 service / in-memory boundary can be used. Thus there are four states for in-memory:
-* false - all service calls
+* false - all service calls, not all data is available
+* true - all service calls, enable additional functionality based on rendered content
 * "pagination" - only pagination is performed in-memory
 * "sorting" - sorting & pagination is performed in-memory
 * "filtering" - all operations are performed in-memory, no service calls

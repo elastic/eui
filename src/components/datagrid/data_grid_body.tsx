@@ -123,9 +123,14 @@ export const EuiDataGridBody: FunctionComponent<
           break;
         }
       }
+
+      // map the row into the visible rows
+      if (pagination) {
+        reverseMappedIndex -= pagination.pageIndex * pagination.pageSize;
+      }
       onCellFocus([colIndex, reverseMappedIndex]);
     },
-    [onCellFocus, rowMap]
+    [onCellFocus, rowMap, pagination]
   );
 
   const rows = useMemo(() => {
