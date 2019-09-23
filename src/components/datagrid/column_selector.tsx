@@ -7,13 +7,13 @@ import React, {
 import classNames from 'classnames';
 import { EuiDataGridColumn } from './data_grid_types';
 // @ts-ignore-next-line
-import { EuiPopover, EuiPopoverFooter } from '../popover';
+import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../popover';
 import { EuiI18n } from '../i18n';
 // @ts-ignore-next-line
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // @ts-ignore-next-line
-import { EuiSwitch } from '../form';
+import { EuiSwitch, EuiFieldText } from '../form';
 import {
   EuiDragDropContext,
   EuiDraggable,
@@ -89,52 +89,61 @@ export const useColumnSelector = (
           )}
         </EuiI18n>
       }>
-      <EuiDragDropContext onDragEnd={onDragEnd}>
-        <EuiDroppable
-          droppableId="columnOrder"
-          className="euiDataGridColumnSelector">
-          <Fragment>
-            {sortedColumns.map(({ id }, index) => (
-              <EuiDraggable key={id} draggableId={id} index={index}>
-                {(provided, state) => (
-                  <div
-                    className={`euiDataGridColumnSelector__item ${state.isDragging &&
-                      'euiDataGridColumnSelector__item-isDragging'}`}>
-                    <EuiFlexGroup gutterSize="m" alignItems="center">
-                      <EuiFlexItem>
-                        <EuiSwitch
-                          name={id}
-                          label={id}
-                          checked={visibleColumnIds.has(id)}
-                          compressed
-                          onChange={({
-                            currentTarget: { checked },
-                          }: React.FormEvent<HTMLInputElement>) => {
-                            const nextVisibleColumns = sortedColumns.filter(
-                              ({ id: columnId }) =>
-                                checked
-                                  ? visibleColumnIds.has(columnId) ||
-                                    id === columnId
-                                  : visibleColumnIds.has(columnId) &&
-                                    id !== columnId
-                            );
-                            setVisibleColumns(nextVisibleColumns);
-                          }}
-                        />
-                      </EuiFlexItem>
-                      <EuiFlexItem grow={false} {...provided.dragHandleProps}>
-                        <div {...provided.dragHandleProps}>
-                          <EuiIcon type="grab" color="subdued" />
-                        </div>
-                      </EuiFlexItem>
-                    </EuiFlexGroup>
-                  </div>
-                )}
-              </EuiDraggable>
-            ))}
-          </Fragment>
-        </EuiDroppable>
-      </EuiDragDropContext>
+      <EuiPopoverTitle>
+        <EuiFieldText
+          compressed
+          placeholder="Search"
+          aria-label="Search columns"
+        />
+      </EuiPopoverTitle>
+      <div className="euiDataGridColumnSelector__columnList">
+        <EuiDragDropContext onDragEnd={onDragEnd}>
+          <EuiDroppable
+            droppableId="columnOrder"
+            className="euiDataGridColumnSelector">
+            <Fragment>
+              {sortedColumns.map(({ id }, index) => (
+                <EuiDraggable key={id} draggableId={id} index={index}>
+                  {(provided, state) => (
+                    <div
+                      className={`euiDataGridColumnSelector__item ${state.isDragging &&
+                        'euiDataGridColumnSelector__item-isDragging'}`}>
+                      <EuiFlexGroup gutterSize="m" alignItems="center">
+                        <EuiFlexItem>
+                          <EuiSwitch
+                            name={id}
+                            label={id}
+                            checked={visibleColumnIds.has(id)}
+                            compressed
+                            onChange={({
+                              currentTarget: { checked },
+                            }: React.FormEvent<HTMLInputElement>) => {
+                              const nextVisibleColumns = sortedColumns.filter(
+                                ({ id: columnId }) =>
+                                  checked
+                                    ? visibleColumnIds.has(columnId) ||
+                                      id === columnId
+                                    : visibleColumnIds.has(columnId) &&
+                                      id !== columnId
+                              );
+                              setVisibleColumns(nextVisibleColumns);
+                            }}
+                          />
+                        </EuiFlexItem>
+                        <EuiFlexItem grow={false} {...provided.dragHandleProps}>
+                          <div {...provided.dragHandleProps}>
+                            <EuiIcon type="grab" color="subdued" />
+                          </div>
+                        </EuiFlexItem>
+                      </EuiFlexGroup>
+                    </div>
+                  )}
+                </EuiDraggable>
+              ))}
+            </Fragment>
+          </EuiDroppable>
+        </EuiDragDropContext>
+      </div>
       <EuiPopoverFooter>
         <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
           <EuiFlexItem>
