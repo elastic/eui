@@ -65,6 +65,7 @@ export const iconTypes = [
   'empty',
   'exit',
   'expand',
+  'expandMini',
   'exportAction',
   'eye',
   'eyeClosed',

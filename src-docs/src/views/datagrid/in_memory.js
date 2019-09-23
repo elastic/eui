@@ -23,7 +23,7 @@ const columns = [
     id: 'amount',
   },
   {
-    id: 'phone',
+    id: 'boolean',
   },
   {
     id: 'version',
@@ -46,8 +46,8 @@ for (let i = 1; i < 100; i++) {
     ),
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
-    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
-    phone: fake('{{phone.phoneNumber}}'),
+    amount: fake('${{finance.amount}}'),
+    boolean: fake('{{random.boolean}}'),
     version: fake('{{system.semver}}'),
   });
 }

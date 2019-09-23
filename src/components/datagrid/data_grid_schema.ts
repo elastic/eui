@@ -65,6 +65,17 @@ const schemaDetectors: SchemaDetector[] = [
       return matchLength / value.length || 0;
     },
   },
+  {
+    type: 'json',
+    detector(value: string) {
+      try {
+        JSON.parse(value);
+        return 1;
+      } catch (e) {
+        return 0;
+      }
+    },
+  },
 ];
 
 export interface EuiDataGridSchema {

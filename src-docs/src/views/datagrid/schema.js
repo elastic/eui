@@ -30,7 +30,7 @@ const columns = [
     dataType: 'currency',
   },
   {
-    id: 'phone',
+    id: 'json',
   },
   {
     id: 'version',
@@ -54,7 +54,32 @@ for (let i = 1; i < 5; i++) {
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
     amount: fake('${{finance.amount}}'),
-    phone: fake('{{phone.phoneNumber}}'),
+    json: JSON.stringify(
+      [
+        {
+          name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+          email: fake('{{internet.email}}'),
+          date: fake('{{date.past}}'),
+          account: fake('{{finance.account}}'),
+          amount: fake('${{finance.amount}}'),
+          version: fake('{{system.semver}}'),
+          friends: [
+            {
+              name: fake(
+                '{{name.lastName}}, {{name.firstName}} {{name.suffix}}'
+              ),
+              email: fake('{{internet.email}}'),
+              date: fake('{{date.past}}'),
+              account: fake('{{finance.account}}'),
+              amount: fake('${{finance.amount}}'),
+              version: fake('{{system.semver}}'),
+            },
+          ],
+        },
+      ],
+      null,
+      2
+    ),
     version: fake('{{system.semver}}'),
   });
 }
@@ -101,6 +126,7 @@ export default class InMemoryDataGrid extends Component {
         aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
+        inMemory="sorting"
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];
           return value;

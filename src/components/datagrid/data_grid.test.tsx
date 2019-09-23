@@ -498,7 +498,7 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--json",
   "euiDataGridRowCell euiDataGridRowCell--boolean",
   "euiDataGridRowCell euiDataGridRowCell--currency",
   "euiDataGridRowCell euiDataGridRowCell--datetime",
@@ -539,7 +539,7 @@ Array [
           .map(x => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
 Array [
-  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--json",
   "euiDataGridRowCell euiDataGridRowCell--ipaddress",
 ]
 `);

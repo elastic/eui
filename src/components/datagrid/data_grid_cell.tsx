@@ -6,11 +6,18 @@ import React, {
   ReactNode,
   createRef,
   HTMLAttributes,
+  useState,
 } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 // @ts-ignore
 import { EuiFocusTrap } from '../focus_trap';
+import { EuiPopover } from '../popover';
+// @ts-ignore
+import { EuiCodeBlock } from '../code';
 import { CommonProps, Omit } from '../common';
+// @ts-ignore
+import { EuiCode } from '../code';
+import { EuiButtonIcon } from '../button';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
 
@@ -50,13 +57,69 @@ const EuiDataGridCellContent: FunctionComponent<
   }
 > = memo(props => {
   const { renderCellValue, ...rest } = props;
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   // React is more permissable than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
     CellValueElementProps
   >;
 
-  return <CellElement {...rest} />;
+  const buttonIconClasses = classNames('euiDataGridRowCell__expandButtonIcon', {
+    'euiDataGridRowCell__expandButtonIcon-isActive': popoverIsOpen,
+  });
+
+  const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
+    'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
+  });
+
+  const expandButton = (
+    <EuiButtonIcon
+      className={buttonIconClasses}
+      color="text"
+      iconSize="s"
+      iconType="expandMini"
+      aria-label="Expand cell content"
+      onClick={() => setPopoverIsOpen(!popoverIsOpen)}
+      title="Expand cell content"
+    />
+  );
+
+  // TODO: This is temporary. It's mostly just to show that different schema likely will require different
+  // markup. We also likely will want a way to pass a custom render to the popup and the default cell
+  // content as part of the data config.
+  let cellElement;
+  if (props.columnType === 'json') {
+    cellElement = (
+      <EuiCodeBlock
+        isCopyable
+        transparentBackground
+        paddingSize="none"
+        language="json">
+        <CellElement {...rest} />
+      </EuiCodeBlock>
+    );
+  } else {
+    cellElement = <CellElement {...rest} />;
+  }
+
+  return (
+    <div className="euiDataGridRowCell__expand">
+      <div className="euiDataGridRowCell__expandCode">
+        <CellElement {...rest} />
+      </div>
+      <div className={buttonClasses}>
+        <EuiPopover
+          button={expandButton}
+          isOpen={popoverIsOpen}
+          ownFocus
+          panelClassName="euiDataGridRowCell__popover"
+          zIndex={2000}
+          closePopover={() => setPopoverIsOpen(false)}>
+          {cellElement}
+        </EuiPopover>
+      </div>
+    </div>
+  );
 });
 
 const IS_TABBABLE_ATTR = 'data-is-tabbable';
@@ -203,17 +266,17 @@ export class EuiDataGridCell extends Component<
       [CELL_CONTENTS_ATTR]: isInteractive,
     };
 
-    const className = classnames('euiDataGridRowCell', {
+    const className = classNames('euiDataGridRowCell', {
       [`euiDataGridRowCell--${columnType}`]: columnType,
     });
 
     const cellProps = {
       ...this.state.cellProps,
-      'data-test-subj': classnames(
+      'data-test-subj': classNames(
         'dataGridRowCell',
         this.state.cellProps['data-test-subj']
       ),
-      className: classnames(className, this.state.cellProps.className),
+      className: classNames(className, this.state.cellProps.className),
     };
 
     const widthStyle = width != null ? { width: `${width}px` } : {};
