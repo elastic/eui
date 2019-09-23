@@ -10,6 +10,7 @@ import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 // @ts-ignore
 import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
+import { EuiI18n } from '../../i18n';
 import { EuiRangeThumb } from '../../form/range/range_thumb';
 import { EuiPopover } from '../../popover';
 import { EuiSpacer } from '../../spacer';
@@ -66,7 +67,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
 
   const handleColorChange = (value: ColorStop['color']) => {
     setColorIsInvalid(isColorInvalid(value));
-    propagateChange({ stop, color: value });
+    onChange({ stop, color: value });
   };
 
   const handleStopChange = (
@@ -84,7 +85,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       }
     }
     setStopIsInvalid(isStopInvalid(value));
-    propagateChange({ stop: value, color });
+    onChange({ stop: value, color });
   };
 
   const handleStopInputChange = (value: ColorStop['stop']) => {
@@ -99,18 +100,14 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       }
     }
     setStopIsInvalid(isStopInvalid(value));
-    propagateChange({ stop: value, color });
+    onChange({ stop: value, color });
   };
 
-  const propagateChange = (newColor: ColorStop) => {
-    onChange(newColor);
-  };
-
-  const handleChange = (
+  const handlePointerChange = (
     location: { x: number; y: number },
     isFirstInteraction?: boolean
   ) => {
-    if (isFirstInteraction) return;
+    if (isFirstInteraction) return; // Prevents change on the inital MouseDown event
     if (parentRef == null) {
       return;
     }
@@ -136,7 +133,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   };
 
   const [handleMouseDown, handleInteraction] = useMouseMove<HTMLButtonElement>(
-    handleChange
+    handlePointerChange
   );
 
   return (
@@ -177,34 +174,52 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       <div className="euiColorStop">
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiFormRow
-              label="Stop value"
-              display="rowCompressed"
-              isInvalid={stopIsInvalid}
-              error={stopIsInvalid ? 'Value is out of range' : null}>
-              <EuiFieldNumber
-                inputRef={setNumberInputRef}
-                compressed={true}
-                min={min}
-                max={max}
-                value={isStopInvalid(stop) ? '' : stop}
-                isInvalid={stopIsInvalid}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleStopInputChange(parseFloat(e.target.value))
-                }
-              />
-            </EuiFormRow>
+            <EuiI18n
+              tokens={[
+                'euiColorStopThumb.stopLabel',
+                'euiColorStopThumb.stopErrorMessage',
+              ]}
+              defaults={['Stop value', 'Value is out of range']}>
+              {([stopLabel, stopErrorMessage]: React.ReactChild[]) => (
+                <EuiFormRow
+                  label={stopLabel}
+                  display="rowCompressed"
+                  isInvalid={stopIsInvalid}
+                  error={stopIsInvalid ? stopErrorMessage : null}>
+                  <EuiFieldNumber
+                    inputRef={setNumberInputRef}
+                    compressed={true}
+                    min={min}
+                    max={max}
+                    value={isStopInvalid(stop) ? '' : stop}
+                    isInvalid={stopIsInvalid}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      handleStopInputChange(parseFloat(e.target.value))
+                    }
+                  />
+                </EuiFormRow>
+              )}
+            </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFormRow grow="false" display="rowCompressed" hasEmptyLabelSpace>
-              <EuiButtonIcon
-                iconType="trash"
-                color="danger"
-                aria-label="Remove this stop"
-                title="Remove this stop"
-                disabled={!onRemove}
-                onClick={onRemove}
-              />
+            <EuiFormRow
+              grow="false"
+              display="rowCompressed"
+              hasEmptyLabelSpace={true}>
+              <EuiI18n
+                token="euiColorStopThumb.removeLabel"
+                default="Remove this stop">
+                {(removeLabel: string) => (
+                  <EuiButtonIcon
+                    iconType="trash"
+                    color="danger"
+                    aria-label={removeLabel}
+                    title={removeLabel}
+                    disabled={!onRemove}
+                    onClick={onRemove}
+                  />
+                )}
+              </EuiI18n>
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -219,20 +234,29 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         {colorPickerMode !== 'swatch' && (
           <React.Fragment>
             <EuiSpacer size="s" />
-            <EuiFormRow
-              label="Hex color"
-              display="rowCompressed"
-              isInvalid={colorIsInvalid}
-              error={colorIsInvalid ? 'Invalid hex value' : null}>
-              <EuiFieldText
-                compressed={true}
-                value={color}
-                isInvalid={colorIsInvalid}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleColorChange(e.target.value)
-                }
-              />
-            </EuiFormRow>
+            <EuiI18n
+              tokens={[
+                'euiColorStopThumb.hexLabel',
+                'euiColorStopThumb.hexErrorMessage',
+              ]}
+              defaults={['Hex color', 'Invalid hex value']}>
+              {([hexLabel, hexErrorMessage]: React.ReactChild[]) => (
+                <EuiFormRow
+                  label={hexLabel}
+                  display="rowCompressed"
+                  isInvalid={colorIsInvalid}
+                  error={colorIsInvalid ? hexErrorMessage : null}>
+                  <EuiFieldText
+                    compressed={true}
+                    value={color}
+                    isInvalid={colorIsInvalid}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      handleColorChange(e.target.value)
+                    }
+                  />
+                </EuiFormRow>
+              )}
+            </EuiI18n>
           </React.Fragment>
         )}
       </div>

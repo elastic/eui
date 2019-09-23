@@ -33,7 +33,7 @@ interface EuiColorStopsProps extends CommonProps {
 
 // Becuase of how the thumbs are rendered in the popover, using ref results in an infinite loop.
 // We'll instead use old fashioned namespaced DOM selectors to get references
-const STOP_ATTR = 'stop_';
+const STOP_ATTR = 'euiColorStop_';
 
 function isTargetAThumb(target: HTMLElement | EventTarget) {
   const element = target as HTMLElement;
@@ -52,7 +52,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   swatches,
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
-  const [focusedStop, setFocusedStop] = useState<number | null>(null);
+  const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<
     HTMLDivElement | null | undefined
   >(null);
@@ -79,7 +79,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
     if (toFocus) {
       setHasFocus(false);
-      setFocusedStop(index);
+      setFocusedStopIndex(index);
       toFocus.focus();
     }
   };
@@ -93,7 +93,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const onRemove = (index: number) => {
     const newColorStops = removeStop(colorStops, index);
 
-    setFocusedStop(null);
+    setFocusedStopIndex(null);
     if (wrapperRef) {
       wrapperRef.focus();
     }
@@ -117,21 +117,21 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
 
       case keyCodes.BACKSPACE:
-        if (hasFocus || focusedStop == null) return;
-        const index = sortedStops[focusedStop].id;
+        if (hasFocus || focusedStopIndex == null) return;
+        const index = sortedStops[focusedStopIndex].id;
         onRemove(index);
         break;
 
       case keyCodes.DOWN:
         if (e.target === wrapperRef || isTargetAThumb(e.target)) {
           e.preventDefault();
-          if (focusedStop == null) {
+          if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {
             const next =
-              focusedStop === sortedStops.length - 1
-                ? focusedStop
-                : focusedStop + 1;
+              focusedStopIndex === sortedStops.length - 1
+                ? focusedStopIndex
+                : focusedStopIndex + 1;
             onFocusStop(next);
           }
         }
@@ -140,10 +140,11 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       case keyCodes.UP:
         if (e.target === wrapperRef || isTargetAThumb(e.target)) {
           e.preventDefault();
-          if (focusedStop == null) {
+          if (focusedStopIndex == null) {
             onFocusStop(0);
           } else {
-            const next = focusedStop === 0 ? focusedStop : focusedStop - 1;
+            const next =
+              focusedStopIndex === 0 ? focusedStopIndex : focusedStopIndex - 1;
             onFocusStop(next);
           }
         }
@@ -176,7 +177,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         sortedStops.length > 1 ? () => onRemove(colorStop.id) : undefined
       }
       onChange={stop => handleStopChange(stop, colorStop.id)}
-      onFocus={() => setFocusedStop(index)}
+      onFocus={() => setFocusedStopIndex(index)}
       parentRef={wrapperRef}
       colorPickerMode={mode}
       colorPickerSwatches={swatches}
@@ -189,22 +190,23 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         calculateScale(wrapperRef ? wrapperRef.clientWidth : 100)
     )
   );
-  const gradientStops = (colorStop: ColorStop, index: number) => {
+  const gradientStop = (colorStop: ColorStop, index: number) => {
     return `${colorStop.color} ${positions[index]}%`;
   };
-  const fixedStops = (colorStop: ColorStop, index: number) => {
+  const fixedStop = (colorStop: ColorStop, index: number) => {
     if (index === 0) {
-      return `${colorStop.color}, ${colorStop.color} ${positions[index + 1]}%`;
+      return `${colorStop.color}, ${gradientStop(colorStop, index + 1)}`;
     } else if (index === sortedStops.length - 1) {
-      return `${colorStop.color} ${positions[index]}%`;
+      return gradientStop(colorStop, index);
     } else {
-      return `${colorStop.color} ${positions[index]}%, ${colorStop.color} ${
-        positions[index + 1]
-      }%`;
+      return `${gradientStop(colorStop, index)}, ${gradientStop(
+        colorStop,
+        index + 1
+      )}`;
     }
   };
   const linearGradient = sortedStops.map(
-    stopType === 'gradient' ? gradientStops : fixedStops
+    stopType === 'gradient' ? gradientStop : fixedStop
   );
   const background =
     sortedStops.length > 1
