@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiRangeHighlightProps {
+  color?: string;
   compressed?: boolean;
   hasFocus?: boolean;
   showTicks?: boolean;
@@ -19,12 +20,14 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   max,
   min,
   compressed,
+  color,
 }) => {
   // Calculate the width the range based on value
   // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
   const rangeWidthStyle = {
+    background: color,
     marginLeft: `${leftPosition * 100}%`,
     width: `${rangeWidth * 100}%`,
   };

@@ -15,6 +15,8 @@ import {
 
 import { EuiColorPickerProps } from '../';
 import { getEventPosition } from '../utils';
+import { EuiRangeHighlight } from '../../form/range/range_highlight';
+import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 interface EuiColorStopsProps extends CommonProps {
@@ -223,19 +225,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
       }}
       onBlur={() => setHasFocus(false)}>
-      {/* TODO: Use euiRangeHighlight / euiRangeTrack */}
-      <div className="euiRangeTrack">
-        <div className="euiRangeHighlight">
-          <div
-            className="euiRangeHighlight__progress"
-            style={{
-              width: '100%',
-              background: background,
-            }}
-          />
-        </div>
+      <EuiRangeTrack min={min} max={max}>
+        <EuiRangeHighlight
+          min={min}
+          max={max}
+          lowerValue={min}
+          upperValue={max}
+          color={background}
+        />
         {thumbs}
-      </div>
+      </EuiRangeTrack>
     </EuiRangeWrapper>
   );
 };
