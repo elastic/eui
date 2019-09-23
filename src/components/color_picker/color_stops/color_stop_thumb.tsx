@@ -1,13 +1,7 @@
-import React, {
-  FunctionComponent,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 
 import { CommonProps } from '../../common';
-import { isColorInvalid, isStopInvalid } from './utils';
+import { isColorInvalid, isStopInvalid, calculateScale } from './utils';
 import { getEventPosition, useMouseMove } from '../utils';
 
 import { EuiButtonIcon } from '../../button';
@@ -33,7 +27,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   globalMax: number;
   min: number;
   max: number;
-  parentRef: RefObject<HTMLDivElement>;
+  parentRef?: HTMLDivElement | null;
   colorPickerMode: EuiColorPickerProps['mode'];
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
 }
@@ -116,10 +110,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     isFirstInteraction?: boolean
   ) => {
     if (isFirstInteraction) return;
-    if (parentRef == null || parentRef.current == null) {
+    if (parentRef == null) {
       return;
     }
-    const box = getEventPosition(location, parentRef.current);
+    const box = getEventPosition(location, parentRef);
     const newStop = Math.round((box.left / box.width) * 100);
     handleStopChange(newStop, true);
   };
@@ -139,7 +133,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       initialFocus={numberInputRef}
       style={{
         left: `${Math.round(
-          ((stop - globalMin) / (globalMax - globalMin)) * 100
+          ((stop - globalMin) / (globalMax - globalMin)) *
+            calculateScale(parentRef ? parentRef.clientWidth : 100)
         )}%`,
       }}
       button={
@@ -161,7 +156,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         />
       }>
       <div className="euiColorStop">
-        <EuiFlexGroup gutterSize="s">
+        <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiFormRow
               label="Stop value"

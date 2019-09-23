@@ -1,10 +1,16 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 import { keyCodes } from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
-import { DEFAULT_COLOR, addStop, removeStop, isInvalid } from './utils';
+import {
+  DEFAULT_COLOR,
+  addStop,
+  removeStop,
+  isInvalid,
+  calculateScale,
+} from './utils';
 
 import { EuiColorPickerProps } from '../';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
@@ -34,7 +40,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStop, setFocusedStop] = useState<number | null>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [wrapperRef, setWrapperRef] = useState<
+    HTMLDivElement | null | undefined
+  >(null);
   const classes = classNames('euiColorStops', className);
 
   const handleOnChange = (colorStops: ColorStop[]) => {
@@ -50,10 +58,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const onFocusStop = (index: number) => {
     let toFocus;
     if (wrapperRef) {
-      if (wrapperRef.current != null) {
-        toFocus = wrapperRef.current.querySelector<HTMLElement>(
-          `#stop_${index}`
-        );
+      if (wrapperRef != null) {
+        toFocus = wrapperRef.querySelector<HTMLElement>(`#stop_${index}`);
       }
     }
     if (toFocus) {
@@ -73,8 +79,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     const newColorStops = removeStop(colorStops, index);
 
     setFocusedStop(null);
-    if (wrapperRef.current) {
-      wrapperRef.current.focus();
+    if (wrapperRef) {
+      wrapperRef.focus();
     }
     handleOnChange(newColorStops);
   };
@@ -97,7 +103,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
 
       case keyCodes.UP:
-        if (target === wrapperRef.current || target.id.indexOf('stop_') > -1) {
+        if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
           e.preventDefault();
           if (focusedStop == null) {
             onFocusStop(0);
@@ -112,7 +118,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
 
       case keyCodes.DOWN:
-        if (target === wrapperRef.current || target.id.indexOf('stop_') > -1) {
+        if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
           e.preventDefault();
           if (focusedStop == null) {
             onFocusStop(0);
@@ -127,7 +133,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const sortedStops = colorStops
     .map((el, index) => {
-      return { ...el, id: index };
+      return {
+        ...el,
+        id: index,
+      };
     })
     .sort((a, b) => a.stop - b.stop);
 
@@ -155,7 +164,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   ));
 
   const positions = sortedStops.map(colorStop =>
-    Math.round(((colorStop.stop - min) / (max - min)) * 100)
+    Math.round(
+      ((colorStop.stop - min) / (max - min)) *
+        calculateScale(wrapperRef ? wrapperRef.clientWidth : 100)
+    )
   );
   const gradientStops = (colorStop: ColorStop, index: number) => {
     return `${colorStop.color} ${positions[index]}%`;
@@ -181,14 +193,14 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   return (
     <EuiRangeWrapper
-      ref={wrapperRef}
+      ref={setWrapperRef}
       className={classes}
       fullWidth={fullWidth}
       tabIndex={0}
       onKeyDown={handleKeyDown}
       onClick={e => console.log(e)}
       onFocus={e => {
-        if (e.target === wrapperRef.current) {
+        if (e.target === wrapperRef) {
           setHasFocus(true);
         }
       }}

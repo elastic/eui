@@ -61,3 +61,9 @@ export const isInvalid = (colorStops: ColorStop[]) => {
     );
   });
 };
+
+export const calculateScale = (trackWidth: number) => {
+  const EUI_THUMB_SIZE = 16;
+  const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
+  return (1 - thumbToTrackRatio) * 100;
+};
