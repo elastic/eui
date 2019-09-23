@@ -16,7 +16,6 @@ import { EuiPopover } from '../popover';
 import { EuiCodeBlock } from '../code';
 import { CommonProps, Omit } from '../common';
 // @ts-ignore
-import { EuiCode } from '../code';
 import { EuiButtonIcon } from '../button';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
