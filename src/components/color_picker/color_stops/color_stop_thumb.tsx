@@ -3,6 +3,7 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { CommonProps } from '../../common';
 import { isColorInvalid, isStopInvalid, calculateScale } from './utils';
 import { getEventPosition, useMouseMove } from '../utils';
+import { keyCodes } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
@@ -70,11 +71,11 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
 
   const handleStopChange = (
     value: ColorStop['stop'],
-    isDrag: boolean = false
+    shouldRespectBoundaries: boolean = false
   ) => {
     const willBeInvalid = value > max || value < min;
 
-    if (isDrag && willBeInvalid) {
+    if (shouldRespectBoundaries && willBeInvalid) {
       if (value > max) {
         value = max;
       }
@@ -118,6 +119,20 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handleStopChange(newStop, true);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (e.keyCode) {
+      case keyCodes.LEFT:
+        e.preventDefault();
+        handleStopChange(stop - 1, true);
+        break;
+
+      case keyCodes.RIGHT:
+        e.preventDefault();
+        handleStopChange(stop + 1, true);
+        break;
+    }
+  };
+
   const [handleMouseDown, handleInteraction] = useMouseMove<HTMLButtonElement>(
     handleChange
   );
@@ -145,6 +160,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           value={stop}
           onClick={openPopover}
           onFocus={onFocus}
+          onKeyDown={handleKeyDown}
           onMouseDown={handleMouseDown}
           onTouchStart={handleInteraction}
           onTouchMove={handleInteraction}
