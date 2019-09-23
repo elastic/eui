@@ -8,9 +8,11 @@ import React, {
 import { fake } from 'faker';
 
 import {
+  EuiButton,
   EuiDataGrid,
   EuiButtonIcon,
   EuiLink,
+  EuiPopover,
 } from '../../../../src/components/';
 import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
@@ -80,6 +82,8 @@ for (let i = 1; i < 1000; i++) {
 }
 
 export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 25 });
   const onChangeItemsPerPage = useCallback(
@@ -170,33 +174,46 @@ export default () => {
 
   return (
     <div>
-      <EuiRadioGroup
-        compressed={true}
-        options={[
-          {
-            id: 'false',
-            label: 'off',
-            value: 'false',
-          },
-          {
-            id: 'true',
-            label: 'only enhancements',
-            value: 'true',
-          },
-          {
-            id: 'pagination',
-            label: 'only pagination',
-            value: 'pagination',
-          },
-          {
-            id: 'sorting',
-            label: 'sorting and pagination',
-            value: 'sorting',
-          },
-        ]}
-        idSelected={inMemoryLevel}
-        onChange={(id, value) => setInMemoryLevel(value)}
-      />
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        button={
+          <EuiButton onClick={() => setIsPopoverOpen(state => !state)}>
+            inMemory options
+          </EuiButton>
+        }
+        closePopover={() => setIsPopoverOpen(false)}>
+        <EuiRadioGroup
+          compressed={true}
+          options={[
+            {
+              id: 'false',
+              label: 'off',
+              value: 'false',
+            },
+            {
+              id: 'true',
+              label: 'only enhancements',
+              value: 'true',
+            },
+            {
+              id: 'pagination',
+              label: 'only pagination',
+              value: 'pagination',
+            },
+            {
+              id: 'sorting',
+              label: 'sorting and pagination',
+              value: 'sorting',
+            },
+          ]}
+          idSelected={inMemoryLevel}
+          onChange={(id, value) => {
+            setInMemoryLevel(value);
+            setIsPopoverOpen(false);
+          }}
+        />
+      </EuiPopover>
+
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
