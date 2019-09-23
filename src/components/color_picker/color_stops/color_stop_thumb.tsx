@@ -143,6 +143,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     <EuiPopover
       ref={popoverRef}
       className="euiColorStopPopover"
+      anchorClassName="euiColorStopPopover__anchor"
       panelPaddingSize="m"
       isOpen={isPopoverOpen}
       closePopover={closePopover}

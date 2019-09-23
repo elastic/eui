@@ -1,3 +1,5 @@
+@import '../../form/range/_variables';
+
 .euiColorStops {
   &:focus {
     outline: 2px solid $euiFocusRingColor;
@@ -11,13 +13,19 @@
 .euiColorStopPopover.euiPopover {
   position: absolute;
   top: 50%;
-  margin-top: -8px;
+  margin-top: $euiRangeThumbHeight * -.5;
+  width: $euiRangeThumbWidth;
+  height: $euiRangeThumbHeight;
+}
+
+.euiColorStopPopover__anchor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .euiColorStopThumb.euiRangeThumb {
-  position: static;
-  top: auto;
+  top: 0;
   margin-top: 0;
   pointer-events: auto;
-  cursor: pointer;
 }
