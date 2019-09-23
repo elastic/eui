@@ -10,6 +10,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 // @ts-ignore
+import { EuiText } from '../text';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover } from '../popover';
 // @ts-ignore
@@ -98,7 +99,11 @@ const EuiDataGridCellContent: FunctionComponent<
       </EuiCodeBlock>
     );
   } else {
-    cellElement = <CellElement {...rest} />;
+    cellElement = (
+      <EuiText>
+        <CellElement {...rest} />
+      </EuiText>
+    );
   }
 
   return (
