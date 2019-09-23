@@ -11,8 +11,10 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
-  const overflowBreadcrumbs = [...allBreadcrumbs];
-  const breadcrumbsToRemove = [];
+  const start = Math.floor(limit / 2);
+  const overflowBreadcrumbs = showMaxPopover
+    ? allBreadcrumbs.slice(start, start + breadcrumbs.length - limit)
+    : [];
 
   for (let i = 0; i < limit; i++) {
     // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
@@ -30,24 +32,8 @@ const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
 
     if (isEven) {
       breadcrumbsAtEnd.unshift(breadcrumb);
-      breadcrumbsToRemove.push(Number(breadcrumb.key));
     } else {
       breadcrumbsAtStart.push(breadcrumb);
-      breadcrumbsToRemove.push(Number(breadcrumb.key));
-    }
-  }
-
-  // Sort the indices from low to high
-  breadcrumbsToRemove.sort(function(a, b) {
-    return a - b;
-  });
-
-  // Work backwards and remove each index from the overflow
-  // array so that all we have left are the items that aren't
-  // visible on screen. Only do it when showMaxPopover is true
-  if (showMaxPopover) {
-    for (let i = breadcrumbsToRemove.length - 1; i >= 0; i--) {
-      overflowBreadcrumbs.splice(breadcrumbsToRemove[i], 1);
     }
   }
 
