@@ -446,13 +446,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
 
-  const detectedSchema = useDetectSchema(
-    inMemoryValues,
-    schemaDetectors,
-    inMemory !== false
-  );
-  const mergedSchema = getMergedSchema(detectedSchema, columns);
-
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
     <Fragment>
