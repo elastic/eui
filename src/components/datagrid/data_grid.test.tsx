@@ -307,6 +307,244 @@ describe('EuiDataGrid', () => {
         expect($element.children().length).toBe(allCells.length);
       });
     });
+
+    it('renders and applies custom props', () => {
+      const component = mount(
+        <EuiDataGrid
+          {...requiredProps}
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            setCellProps({
+              className: 'customClass',
+              'data-test-subj': `cell-${rowIndex}-${columnId}`,
+              style: { color: columnId === 'A' ? 'red' : 'blue' },
+            });
+
+            return `${rowIndex}, ${columnId}`;
+          }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell').map(cell => {
+          const props = cell.props();
+          delete props.children;
+          return props;
+        })
+      ).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "red",
+      "width": "100px",
+    },
+    "tabIndex": 0,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "blue",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "red",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+  Object {
+    "className": "euiDataGridRowCell customClass",
+    "data-test-subj": "dataGridRowCell",
+    "onFocus": [Function],
+    "role": "gridcell",
+    "style": Object {
+      "color": "blue",
+      "width": "100px",
+    },
+    "tabIndex": -1,
+  },
+]
+`);
+    });
+
+    describe('schema datatype classnames', () => {
+      it('applies classnames from explicit datatypes', () => {
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={[
+              { id: 'A', dataType: 'numeric' },
+              { id: 'B', dataType: 'customFormatName' },
+            ]}
+            rowCount={3}
+            renderCellValue={({ rowIndex, columnId }) =>
+              `${rowIndex}, ${columnId}`
+            }
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className*="euiDataGridRowCell--"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--customFormatName",
+]
+`);
+      });
+
+      it('automatically detects column types and applies classnames', () => {
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
+            inMemory="pagination"
+            rowCount={2}
+            renderCellValue={({ columnId }) => {
+              if (columnId === 'A') {
+                return 5.5;
+              } else if (columnId === 'B') {
+                return 'true';
+              } else {
+                return 'asdf';
+              }
+            }}
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
+  "euiDataGridRowCell",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
+  "euiDataGridRowCell",
+]
+`);
+      });
+
+      it('overrides automatically detected column types with supplied schema', () => {
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={[{ id: 'A' }, { id: 'B', dataType: 'alphanumeric' }]}
+            inMemory="pagination"
+            rowCount={2}
+            renderCellValue={({ columnId }) =>
+              columnId === 'A' ? 5.5 : 'true'
+            }
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--alphanumeric",
+]
+`);
+      });
+
+      it('detects all of the supported types', () => {
+        const values: { [key: string]: string } = {
+          A: '-5.80',
+          B: 'false',
+          C: '$-5.80',
+          E: '2019-09-18T12:31:28',
+          F: '2019-09-18T12:31:28Z',
+          G: '2019-09-18T12:31:28.234',
+          H: '2019-09-18T12:31:28.234+0300',
+        };
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={Object.keys(values).map(id => ({ id }))}
+            inMemory="pagination"
+            rowCount={1}
+            renderCellValue={({ columnId }) => values[columnId]}
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--boolean",
+  "euiDataGridRowCell euiDataGridRowCell--currency",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+  "euiDataGridRowCell euiDataGridRowCell--datetime",
+]
+`);
+      });
+
+      it('accepts extra detectors', () => {
+        const values: { [key: string]: string } = {
+          A: '-5.80',
+          B: '127.0.0.1',
+        };
+        const component = mount(
+          <EuiDataGrid
+            {...requiredProps}
+            columns={Object.keys(values).map(id => ({ id }))}
+            schemaDetectors={[
+              {
+                type: 'ipaddress',
+                detector(value: string) {
+                  return value.match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)
+                    ? 1
+                    : 0;
+                },
+              },
+            ]}
+            inMemory="pagination"
+            rowCount={1}
+            renderCellValue={({ columnId }) => values[columnId]}
+          />
+        );
+
+        const gridCellClassNames = component
+          .find('[className~="euiDataGridRowCell"]')
+          .map(x => x.props().className);
+        expect(gridCellClassNames).toMatchInlineSnapshot(`
+Array [
+  "euiDataGridRowCell euiDataGridRowCell--numeric",
+  "euiDataGridRowCell euiDataGridRowCell--ipaddress",
+]
+`);
+      });
+    });
   });
 
   describe('cell rendering', () => {

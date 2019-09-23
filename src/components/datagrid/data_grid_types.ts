@@ -1,5 +1,9 @@
+import { EuiDataGridSchema } from './data_grid_schema';
+
 export interface EuiDataGridColumn {
   id: string;
+  // allow devs to pass arbitrary dataType strings, but internally keep the code matching against the known types
+  dataType?: EuiDataGridSchema['*']['columnType'];
 }
 
 export interface EuiDataGridColumnWidths {
@@ -50,7 +54,7 @@ service / in-memory boundary can be used. Thus there are four states for in-memo
 * "filtering" - all operations are performed in-memory, no service calls
  */
 export type EuiDataGridInMemory =
-  | false
+  | boolean
   | 'pagination'
   | 'sorting'
   | 'filtering';

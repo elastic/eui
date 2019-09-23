@@ -22,6 +22,8 @@ interface EuiDataGridInMemoryRendererProps {
   ) => void;
 }
 
+function noop() {}
+
 export const EuiDataGridInMemoryRenderer: FunctionComponent<
   EuiDataGridInMemoryRendererProps
 > = ({ columns, rowCount, renderCellValue, onCellRender }) => {
@@ -48,7 +50,11 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
                   }, [text]);
                   return (
                     <div ref={ref}>
-                      <CellElement rowIndex={i} columnId={column.id} />
+                      <CellElement
+                        rowIndex={i}
+                        columnId={column.id}
+                        setCellProps={noop}
+                      />
                     </div>
                   );
                 }}

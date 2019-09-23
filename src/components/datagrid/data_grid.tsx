@@ -40,6 +40,11 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
+import {
+  getMergedSchema,
+  SchemaDetector,
+  useDetectSchema,
+} from './data_grid_schema';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -47,6 +52,7 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
+    schemaDetectors?: SchemaDetector[];
     rowCount: number;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     gridStyle?: EuiDataGridStyle;
@@ -376,6 +382,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   const {
     columns,
+    schemaDetectors,
     rowCount,
     renderCellValue,
     className,
@@ -423,6 +430,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   );
 
   const [inMemoryValues, onCellRender] = useInMemoryValues();
+
+  const detectedSchema = useDetectSchema(
+    inMemoryValues,
+    schemaDetectors,
+    inMemory !== false
+  );
+  const mergedSchema = getMergedSchema(detectedSchema, columns);
 
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
@@ -514,6 +528,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     columnWidths={columnWidths}
                     defaultColumnWidth={defaultColumnWidth}
                     setColumnWidth={setColumnWidth}
+                    schema={mergedSchema}
                   />
                   <EuiDataGridBody
                     columnWidths={columnWidths}
@@ -521,6 +536,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     inMemoryValues={inMemoryValues}
                     inMemory={inMemory}
                     columns={visibleColumns}
+                    schema={mergedSchema}
                     focusedCell={focusedCell}
                     onCellFocus={setFocusedCell}
                     pagination={pagination}

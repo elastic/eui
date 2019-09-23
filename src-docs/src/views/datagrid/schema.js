@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect } from 'react';
+import React, { Component, Fragment } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -6,7 +6,7 @@ import {
   EuiButtonIcon,
   EuiLink,
 } from '../../../../src/components/';
-import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
+import { iconTypes } from '../icon/icons';
 
 const columns = [
   {
@@ -20,12 +20,14 @@ const columns = [
   },
   {
     id: 'account',
+    dataType: 'numeric',
   },
   {
     id: 'date',
   },
   {
     id: 'amount',
+    dataType: 'currency',
   },
   {
     id: 'phone',
@@ -33,14 +35,11 @@ const columns = [
   {
     id: 'version',
   },
-  {
-    id: 'actions',
-  },
 ];
 
 const data = [];
 
-for (let i = 1; i < 100; i++) {
+for (let i = 1; i < 5; i++) {
   data.push({
     name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
     email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
@@ -54,53 +53,28 @@ for (let i = 1; i < 100; i++) {
     ),
     date: fake('{{date.past}}'),
     account: fake('{{finance.account}}'),
-    amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
+    amount: fake('${{finance.amount}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
-    actions: (
-      <Fragment>
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-      </Fragment>
-    ),
   });
 }
 
-export default class DataGridContainer extends Component {
+export default class InMemoryDataGrid extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sortingColumns: [],
       data,
+      sortingColumns: [{ id: 'contributions', direction: 'asc' }],
+
       pagination: {
         pageIndex: 0,
-        pageSize: 50,
+        pageSize: 10,
       },
     };
   }
 
-  setSorting = sortingColumns => {
-    const sortedData = [...data].sort((a, b) => {
-      for (let i = 0; i < sortingColumns.length; i++) {
-        const column = sortingColumns[i];
-        const aValue = a[column.id];
-        const bValue = b[column.id];
-
-        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
-      }
-
-      return 0;
-    });
-    this.setState({ sortingColumns, data: sortedData });
-  };
+  setSorting = sortingColumns => this.setState({ sortingColumns });
 
   setPageIndex = pageIndex =>
     this.setState(({ pagination }) => ({
@@ -124,24 +98,12 @@ export default class DataGridContainer extends Component {
 
     return (
       <EuiDataGrid
-        aria-label="Data grid demo"
+        aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
-        renderCellValue={({ rowIndex, columnId, setCellProps }) => {
-          useEffect(() => {
-            if (columnId === 'amount') {
-              const numeric = parseFloat(
-                data[rowIndex][columnId].match(/\d+\.\d+/)[0],
-                10
-              );
-              setCellProps({
-                style: {
-                  backgroundColor: `rgba(0, ${(numeric / 1000) * 255}, 0, 0.2)`,
-                },
-              });
-            }
-          }, [rowIndex, columnId, setCellProps]);
-          return data[rowIndex][columnId];
+        renderCellValue={({ rowIndex, columnId }) => {
+          const value = data[rowIndex][columnId];
+          return value;
         }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
         pagination={{

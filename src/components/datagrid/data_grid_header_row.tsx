@@ -9,11 +9,13 @@ import { CommonProps } from '../common';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiDataGridSchema } from './data_grid_schema';
 
 type EuiDataGridHeaderRowProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     columns: EuiDataGridColumn[];
     columnWidths: EuiDataGridColumnWidths;
+    schema: EuiDataGridSchema;
     defaultColumnWidth?: number | null;
     setColumnWidth: (columnId: string, width: number) => void;
     sorting?: EuiDataGridSorting;
@@ -24,6 +26,7 @@ const EuiDataGridHeaderRow: FunctionComponent<
 > = props => {
   const {
     columns,
+    schema,
     columnWidths,
     defaultColumnWidth,
     className,
@@ -77,12 +80,18 @@ const EuiDataGridHeaderRow: FunctionComponent<
           }
         }
 
+        const columnType = schema[id] ? schema[id].columnType : null;
+
+        const classes = classnames('euiDataGridHeaderCell', {
+          [`euiDataGridHeaderCell--${columnType}`]: columnType,
+        });
+
         return (
           <div
             role="columnheader"
             {...ariaProps}
             key={id}
-            className="euiDataGridHeaderCell"
+            className={classes}
             data-test-subj={`dataGridHeaderCell-${id}`}
             style={width != null ? { width: `${width}px` } : {}}>
             {width ? (

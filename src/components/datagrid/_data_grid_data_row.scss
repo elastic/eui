@@ -18,6 +18,7 @@
   // Hack to allow for all the focus guard stuff
   > * {
     max-width: 100%;
+    width: 100%;
   }
 
   &:first-of-type {
@@ -40,6 +41,14 @@
   &:focus:not(:first-of-type) {
     // Needed because the focus state adds a border, which needs to be subtracted from padding
     padding-left: $euiDataGridCellPaddingM - 1px;
+  }
+
+  &.euiDataGridRowCell--numeric {
+    text-align: right;
+  }
+
+  &.euiDataGridRowCell--currency {
+    text-align: right;
   }
 }
 
@@ -72,7 +81,8 @@
 // Border alternates
 @include euiDataGridStyles(bordersNone) {
   @include euiDataGridRowCell {
-    border-color: transparent;
+    // sass-lint:disable-block no-important
+    border-color: transparent !important;
   }
 }
 

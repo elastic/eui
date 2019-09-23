@@ -25,8 +25,10 @@
 
 .euiDataGrid__content {
   @include euiScrollBar;
-  @include euiYScrollWithShadows;
+  @include euiScrollBar;
 
+  height: 100%;
+  overflow-y: auto;
   font-feature-settings: 'tnum' 1; // Tabular numbers
   overflow-x: auto;
   scroll-padding: 0;

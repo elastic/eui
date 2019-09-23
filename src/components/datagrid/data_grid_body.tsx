@@ -17,11 +17,13 @@ import {
   EuiDataGridDataRow,
   EuiDataGridDataRowProps,
 } from './data_grid_data_row';
+import { EuiDataGridSchema } from './data_grid_schema';
 
 interface EuiDataGridBodyProps {
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
   columns: EuiDataGridColumn[];
+  schema: EuiDataGridSchema;
   focusedCell: EuiDataGridDataRowProps['focusedCell'];
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
@@ -41,6 +43,7 @@ export const EuiDataGridBody: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     columns,
+    schema,
     focusedCell,
     onCellFocus,
     rowCount,
@@ -137,6 +140,7 @@ export const EuiDataGridBody: FunctionComponent<
         <EuiDataGridDataRow
           key={rowIndex}
           columns={columns}
+          schema={schema}
           columnWidths={columnWidths}
           defaultColumnWidth={defaultColumnWidth}
           focusedCell={focusedCell}
