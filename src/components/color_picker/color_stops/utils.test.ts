@@ -34,14 +34,6 @@ describe('isInvalid', () => {
     // @ts-ignore
     expect(isInvalid(colorStops)).toBe(true);
   });
-
-  test('Should mark colorStops with descending stops as invalid', () => {
-    const colorStops = [
-      { stop: 10, color: '#FF0000' },
-      { stop: 0, color: '#00FF00' },
-    ];
-    expect(isInvalid(colorStops)).toBe(true);
-  });
 });
 
 describe('addStop', () => {

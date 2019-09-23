@@ -13,7 +13,7 @@ export const ColorStops = () => {
       color: '#FFFF00',
     },
     {
-      stop: 35,
+      stop: 45,
       color: '#008000',
     },
   ]);

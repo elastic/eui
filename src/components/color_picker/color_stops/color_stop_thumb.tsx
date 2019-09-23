@@ -115,7 +115,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       return;
     }
     const box = getEventPosition(location, parentRef);
-    const newStop = Math.round((box.left / box.width) * 100);
+    const newStop = Math.round(
+      (box.left / box.width) * (globalMax - globalMin) + globalMin
+    );
     handleStopChange(newStop, true);
   };
 

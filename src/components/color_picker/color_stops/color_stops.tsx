@@ -7,12 +7,14 @@ import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
   DEFAULT_COLOR,
   addStop,
+  addDefinedStop,
   removeStop,
   isInvalid,
   calculateScale,
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
+import { getEventPosition } from '../utils';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 interface EuiColorStopsProps extends CommonProps {
@@ -25,6 +27,15 @@ interface EuiColorStopsProps extends CommonProps {
   stopType?: 'fixed' | 'gradient';
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
+}
+
+// Becuase of how the thumbs are rendered in the popover, using ref results in an infinite loop.
+// We'll instead use old fashioned namespaced DOM selectors to get references
+const STOP_ATTR = 'stop_';
+
+function isTargetAThumb(target: HTMLElement | EventTarget) {
+  const element = target as HTMLElement;
+  return element.id.indexOf(STOP_ATTR) > -1;
 }
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
@@ -59,7 +70,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     let toFocus;
     if (wrapperRef) {
       if (wrapperRef != null) {
-        toFocus = wrapperRef.querySelector<HTMLElement>(`#stop_${index}`);
+        toFocus = wrapperRef.querySelector<HTMLElement>(
+          `#${STOP_ATTR}${index}`
+        );
       }
     }
     if (toFocus) {
@@ -85,12 +98,17 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    switch (e.keyCode) {
-      case keyCodes.TAB:
-        break;
+  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTargetAThumb(e.target)) return;
+    const box = getEventPosition({ x: e.pageX, y: e.pageY }, wrapperRef!); // event happens on `wrapperRef` element, so it must exist
+    const newStop = Math.round((box.left / box.width) * 100);
+    const newColorStops = addDefinedStop(colorStops, newStop);
 
+    handleOnChange(newColorStops);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (e.keyCode) {
       case keyCodes.ENTER:
         if (!hasFocus) return;
         onAdd();
@@ -103,7 +121,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
 
       case keyCodes.DOWN:
-        if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
+        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
           e.preventDefault();
           if (focusedStop == null) {
             onFocusStop(0);
@@ -118,7 +136,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
 
       case keyCodes.UP:
-        if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
+        if (e.target === wrapperRef || isTargetAThumb(e.target)) {
           e.preventDefault();
           if (focusedStop == null) {
             onFocusStop(0);
@@ -142,7 +160,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const thumbs = sortedStops.map((colorStop, index) => (
     <EuiColorStopThumb
-      id={`stop_${index}`}
+      id={`${STOP_ATTR}${index}`}
       key={colorStop.id}
       globalMin={min}
       globalMax={max}
@@ -198,7 +216,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       fullWidth={fullWidth}
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      onClick={e => console.log(e)}
+      onDoubleClick={handleDoubleClick}
       onFocus={e => {
         if (e.target === wrapperRef) {
           setHasFocus(true);

@@ -11,6 +11,17 @@ export const removeStop = (colorStops: ColorStop[], index: number) => {
   return [...colorStops.slice(0, index), ...colorStops.slice(index + 1)];
 };
 
+export const addDefinedStop = (
+  colorStops: ColorStop[],
+  stop: ColorStop['stop']
+) => {
+  const newStop = {
+    stop,
+    color: DEFAULT_COLOR,
+  };
+  return [...colorStops, newStop];
+};
+
 export const addStop = (colorStops: ColorStop[], index: number) => {
   const currentStop = colorStops[index].stop;
   let delta = 1;
@@ -46,19 +57,8 @@ export const isStopInvalid = (stop: ColorStop['stop']) => {
 };
 
 export const isInvalid = (colorStops: ColorStop[]) => {
-  return colorStops.some((colorStop, index) => {
-    // expect stops to be in ascending order
-    let isDescending = false;
-    if (index !== 0) {
-      const prevStop = colorStops[index - 1].stop;
-      isDescending = prevStop >= colorStop.stop;
-    }
-
-    return (
-      isColorInvalid(colorStop.color) ||
-      isStopInvalid(colorStop.stop) ||
-      isDescending
-    );
+  return colorStops.some(colorStop => {
+    return isColorInvalid(colorStop.color) || isStopInvalid(colorStop.stop);
   });
 };
 
