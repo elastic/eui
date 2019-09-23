@@ -138,7 +138,7 @@ export default () => {
     const rowEnd = Math.min(rowStart + pagination.pageSize, data.length);
     return data.slice(rowStart, rowEnd);
   }, [data, pagination, inMemoryLevel]);
-
+  
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId, setCellProps }) => {
       let adjustedRowIndex = rowIndex;
