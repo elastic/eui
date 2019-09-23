@@ -62,12 +62,14 @@ describe('EuiControlBar', () => {
   });
 });
 
-describe('mobile control bar', () =>{
+describe('mobile control bar', () => {
   test('is rendered', () => {
     const component = takeMountedSnapshot(
-      mount(<EuiControlBar controls={controls} showOnMobile {...requiredProps} />)
+      mount(
+        <EuiControlBar controls={controls} showOnMobile {...requiredProps} />
+      )
     );
 
     expect(component).toMatchSnapshot();
-  })
-})
+  });
+});

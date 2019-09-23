@@ -280,6 +280,16 @@ export const ControlBarExample = {
             content well intended to provide additional view controls and
             actions.
           </p>
+          <p>
+            The control bar provides an easy way to extend the navigation or
+            views of the current page by allowing you to place tabs, buttons,
+            text, or <EuiCode>children</EuiCode> within it. It can operate
+            similarly to a flyout, but (at full height) it covers most of the
+            current page; making it a fitting solution for verbose text or
+            additional controls. It can also be used without allowing it to
+            expand, which makes it an easy way to display status information or
+            fixed-position buttons.
+          </p>
         </div>
       ),
       props: { EuiControlBar },

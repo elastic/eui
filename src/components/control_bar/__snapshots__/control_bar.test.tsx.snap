@@ -12,7 +12,104 @@ exports[`EuiControlBar is rendered 1`] = `
     <nav
       aria-label="breadcrumb"
       class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
-      label="breadcrumbs"
+    >
+      <button
+        class="euiLink euiLink--subdued euiBreadcrumb"
+        title="src"
+        type="button"
+      >
+        src
+      </button>
+      <div
+        class="euiBreadcrumbSeparator"
+      />
+      <span
+        aria-current="page"
+        class="euiBreadcrumb euiBreadcrumb--last"
+        title="components"
+      >
+        components
+      </span>
+    </nav>
+    <button
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      type="button"
+    >
+      <span
+        class="euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          Sound the Alarm
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      type="button"
+    >
+      <span
+        class="euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          Close the Hatch
+        </span>
+      </span>
+    </button>
+    <button
+      aria-label="Sample Icon"
+      class="euiButtonIcon euiButtonIcon--ghost euiControlBar__buttonIcon"
+      data-test-subj="Sample Icon"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+    <div
+      class="euiControlBar__spacer"
+    />
+    <button
+      aria-label="Repo Status"
+      class="euiButtonIcon euiButtonIcon--warning euiControlBar__buttonIcon"
+      data-test-subj="Repo Status"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="euiIcon euiIcon--medium euiIcon-isLoading euiButtonIcon__icon"
+        focusable="false"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`mobile control bar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--showOnMobile"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiControlBar__controls"
+  >
+    <nav
+      aria-label="breadcrumb"
+      class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
     >
       <button
         class="euiLink euiLink--subdued euiBreadcrumb"
