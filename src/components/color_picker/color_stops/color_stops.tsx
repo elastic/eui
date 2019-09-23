@@ -102,7 +102,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         onRemove(index);
         break;
 
-      case keyCodes.UP:
+      case keyCodes.DOWN:
         if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
           e.preventDefault();
           if (focusedStop == null) {
@@ -117,7 +117,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
         break;
 
-      case keyCodes.DOWN:
+      case keyCodes.UP:
         if (target === wrapperRef || target.id.indexOf('stop_') > -1) {
           e.preventDefault();
           if (focusedStop == null) {
