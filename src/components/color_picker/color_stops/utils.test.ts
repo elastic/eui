@@ -22,7 +22,7 @@ describe('isInvalid', () => {
   });
 
   test('Should mark colorStops missing stop as invalid', () => {
-    const colorStops = [{ stop: '', color: '#FF0000' }];
+    const colorStops = [{ stop: null, color: '#FF0000' }];
     // Intentionally wrong
     // @ts-ignore
     expect(isInvalid(colorStops)).toBe(true);
