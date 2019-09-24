@@ -21,6 +21,7 @@ declare module '@elastic/eui' {
   export type EuiRadioGroupProps = CommonProps &
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
       disabled?: boolean;
+      compressed?: boolean;
       name?: string;
       options?: EuiRadioGroupOption[];
       idSelected?: string;

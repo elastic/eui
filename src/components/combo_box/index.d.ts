@@ -79,6 +79,7 @@ declare module '@elastic/eui' {
   export interface EuiComboBoxProps<T> {
     id?: string;
     isDisabled?: boolean;
+    compressed?: boolean;
     className?: string;
     placeholder?: string;
     isLoading?: boolean;

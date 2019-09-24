@@ -21,6 +21,47 @@
   // This creates a bunch of sub selectors for the beta badge
   @include hasBetaBadge($selector: 'euiCard', $spacing: $euiCardSpacing); // sass-lint:disable-line mixins-before-declarations
 
+  &:disabled {
+    background-color: $euiColorLightestShade;
+    cursor: not-allowed; // duplicate property due to Chrome bug
+
+    .euiCard__title,
+    .euiCard__description,
+    .euiCard__top {
+      color: $euiButtonColorDisabled;
+    }
+
+    .euiCard__top svg,
+    .euiCard__top img {
+      filter: grayscale(100%);
+    }
+
+    &:hover,
+    &:focus {
+      cursor: not-allowed; // duplicate property due to Chrome bug
+      transform: none;
+      box-shadow: none;
+      text-decoration: none;
+    }
+  }
+
+  &.euiCard--isClickable {
+    display: flex;
+
+    &:disabled {
+      box-shadow: none;
+    }
+
+    &:not(:disabled) {
+      &:focus,
+      &:hover {
+        .euiCard__title {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
   .euiCard__top,
   .euiCard__content,
   .euiCard__footer {
@@ -46,16 +87,6 @@
     align-items: flex-end;
   }
 
-  &.euiCard--isClickable {
-    display: flex;
-
-    &:focus,
-    &:hover {
-      .euiCard__title {
-        text-decoration: underline;
-      }
-    }
-  }
 
   &.euiCard--hasBottomGraphic,
   &.euiCard--isSelectable {

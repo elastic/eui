@@ -20,7 +20,6 @@ declare module '@elastic/eui' {
     label?: ReactNode;
     labelAppend?: ReactNode;
     describedByIds?: string[];
-    compressed?: boolean;
     display?:
       | 'row'
       | 'rowCompressed'
@@ -28,6 +27,9 @@ declare module '@elastic/eui' {
       | 'center'
       | 'centerCompressed'
       | 'columnCompressedSwitch';
+    // **DEPRECATED: use `display: rowCompressed` instead.**
+    compressed?: boolean;
+    // **DEPRECATED: use `display: center` instead.**
     displayOnly?: boolean;
   };
 

@@ -45,6 +45,7 @@ const cardLayout = (props, propName, componentName, ...rest) => {
 export const EuiCard = ({
   className,
   description,
+  isDisabled,
   title,
   titleElement,
   icon,
@@ -106,10 +107,14 @@ export const EuiCard = ({
     });
   }
 
+  if (selectable && isDisabled && selectable.isDisabled === undefined) {
+    selectable.isDisabled = isDisabled;
+  }
+
   let OuterElement = 'div';
-  if (href) {
+  if (!isDisabled && href) {
     OuterElement = 'a';
-  } else if (onClick) {
+  } else if (isDisabled || onClick) {
     OuterElement = 'button';
   }
 
@@ -170,6 +175,7 @@ export const EuiCard = ({
       onClick={onClick}
       className={classes}
       href={href}
+      disabled={!selectable ? isDisabled : undefined}
       target={target}
       rel={secureRel}
       {...rest}>
@@ -263,6 +269,7 @@ EuiCard.propTypes = {
    * This should be used sparingly, consult the Kibana Design team before use.
    */
   bottomGraphic: PropTypes.node,
+  isDisabled: PropTypes.bool,
 };
 
 EuiCard.defaultProps = {

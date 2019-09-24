@@ -83,8 +83,8 @@
 
 .euiFormControlLayoutDelimited__delimeter {
   // sass-lint:disable-block no-important
-  // Override EuiText line-height
-  line-height: 1 !important;
+  background-color: transparent !important; // Override .euiFormControlLayout--group > .euiFormLabel
+  line-height: 1 !important; // Override EuiText line-height
   flex: 0 0 auto;
   padding-left: $euiFormControlPadding / 2;
   padding-right: $euiFormControlPadding / 2;

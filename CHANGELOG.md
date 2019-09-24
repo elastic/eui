@@ -1,12 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.1.1`.
+**Bug fixes**
+
+- Fixed spacing of `EuiFormErrorText` to match `EuiFormHelpText` ([#2354](https://github.com/elastic/eui/pull/2354))
+
+## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
+
+- Added `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
+- Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
+ ([#2333](https://github.com/elastic/eui/pull/2340))
+- Added missing `compressed` TS definitions to `EuiComboBox`, `EuiCheckboxGroup`, `EuiCheckbox`, `EuiFieldSearch`, `EuiRadioGroup`, `EuiSwitch` ([#2338](https://github.com/elastic/eui/pull/2338))
+- Added auto-margin between `EuiFormRow` and `EuiButton` ([#2338](https://github.com/elastic/eui/pull/2338))
+- Added border to `[readOnly]` inputs ([#2338](https://github.com/elastic/eui/pull/2338))
+
+**Bug fixes**
+
+- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
+- Fixed default z-index of `EuiPopover` ([#2341](https://github.com/elastic/eui/pull/2341))
+- Fixed styling for `prepend` and `append` nodes that may be popovers or tooltips ([#2338](https://github.com/elastic/eui/pull/2338))
 
 ## [`14.1.1`](https://github.com/elastic/eui/tree/v14.1.1)
 
 **Bug fixes**
 
-- Fixed `onChange` TS defs for EuiRange ([#2349](https://github.com/elastic/eui/pull/2349))
 - Fixed accidental removal of Elastic Charts from dependencies ([#2348](https://github.com/elastic/eui/pull/2348))
 
 ## [`14.1.0`](https://github.com/elastic/eui/tree/v14.1.0)

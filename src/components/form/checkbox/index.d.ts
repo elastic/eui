@@ -24,6 +24,7 @@ declare module '@elastic/eui' {
     label?: ReactNode;
     type?: EuiCheckboxType;
     disabled?: boolean;
+    compressed?: boolean;
     indeterminate?: boolean;
   }
 
@@ -50,6 +51,7 @@ declare module '@elastic/eui' {
     options: EuiCheckboxGroupOption[];
     idToSelectedMap: EuiCheckboxGroupIdToSelectedMap;
     onChange: ChangeEventHandler<HTMLInputElement>;
+    compressed?: boolean;
   }
 
   export const EuiCheckboxGroup: FunctionComponent<

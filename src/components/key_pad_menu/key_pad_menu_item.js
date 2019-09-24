@@ -49,10 +49,12 @@ const commonPropTypes = {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent: PropTypes.node,
+  isDisabled: PropTypes.bool,
 };
 
 export const EuiKeyPadMenuItem = ({
   href,
+  isDisabled,
   label,
   children,
   className,
@@ -69,8 +71,22 @@ export const EuiKeyPadMenuItem = ({
     className
   );
 
+  if (!isDisabled) {
+    return (
+      <a href={href} className={classes} role="menuitem" {...rest}>
+        {renderContent(
+          children,
+          label,
+          betaBadgeLabel,
+          betaBadgeTooltipContent,
+          betaBadgeIconType
+        )}
+      </a>
+    );
+  }
+
   return (
-    <a href={href} className={classes} role="menuitem" {...rest}>
+    <button type="button" disabled={isDisabled} className={classes} {...rest}>
       {renderContent(
         children,
         label,
@@ -78,7 +94,7 @@ export const EuiKeyPadMenuItem = ({
         betaBadgeTooltipContent,
         betaBadgeIconType
       )}
-    </a>
+    </button>
   );
 };
 
@@ -97,6 +113,7 @@ export const EuiKeyPadMenuItemButton = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  isDisabled,
   ...rest
 }) => {
   const classes = classNames(
@@ -108,7 +125,12 @@ export const EuiKeyPadMenuItemButton = ({
   );
 
   return (
-    <button type="button" onClick={onClick} className={classes} {...rest}>
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={isDisabled}
+      className={classes}
+      {...rest}>
       {renderContent(
         children,
         label,

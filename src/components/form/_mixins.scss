@@ -149,9 +149,9 @@
 @mixin euiFormControlReadOnlyStyle {
   cursor: default;
   // Use transparency since there is no border and in case form is on a non-white background
-  background: transparentize(lightOrDarkTheme($euiColorLightShade, $euiColorInk), .88);
+  background: $euiFormBackgroundReadOnlyColor;
   border-color: transparent;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 }
 
 /**

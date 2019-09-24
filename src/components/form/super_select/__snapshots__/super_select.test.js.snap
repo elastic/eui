@@ -181,7 +181,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
       <div
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-        style="top: 8px; left: -22px; z-index: 0;"
+        style="top: 8px; left: -22px; z-index: 2000;"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -388,7 +388,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
       <div
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-        style="top: 8px; left: -22px; z-index: 0;"
+        style="top: 8px; left: -22px; z-index: 2000;"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -755,7 +755,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             <div
                               aria-live="assertive"
                               class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-                              style="top: 8px; left: -22px; z-index: 0;"
+                              style="top: 8px; left: -22px; z-index: 2000;"
                             >
                               <div
                                 class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -844,7 +844,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                               <div
                                 aria-live="assertive"
                                 class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-                                style="top: 8px; left: -22px; z-index: 0;"
+                                style="top: 8px; left: -22px; z-index: 2000;"
                               >
                                 <div
                                   class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -933,7 +933,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                           Object {
                             "left": -22,
                             "top": 8,
-                            "zIndex": 0,
+                            "zIndex": 2000,
                           }
                         }
                       >
@@ -944,7 +944,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 2`] = `
                             Object {
                               "left": -22,
                               "top": 8,
-                              "zIndex": 0,
+                              "zIndex": 2000,
                             }
                           }
                         >
@@ -1202,7 +1202,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
       <div
         aria-live="assertive"
         class="euiPanel euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiSuperSelect__popoverPanel"
-        style="top: 8px; left: -22px; z-index: 0;"
+        style="top: 8px; left: -22px; z-index: 2000;"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
