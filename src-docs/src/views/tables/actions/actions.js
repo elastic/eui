@@ -163,6 +163,7 @@ export class Table extends Component {
               description: 'Clone this user',
               icon: 'copy',
               onClick: this.cloneUser,
+              'data-test-subj': 'action-clone',
             },
             {
               name: 'Delete',
@@ -172,6 +173,7 @@ export class Table extends Component {
               type: 'icon',
               onClick: this.deleteUser,
               isPrimary: true,
+              'data-test-subj': 'action-delete',
             },
             {
               name: 'Edit',
@@ -180,6 +182,7 @@ export class Table extends Component {
               icon: 'pencil',
               type: 'icon',
               onClick: () => {},
+              'data-test-subj': 'action-edit',
             },
             {
               name: 'Share',
@@ -188,6 +191,7 @@ export class Table extends Component {
               icon: 'share',
               type: 'icon',
               onClick: () => {},
+              'data-test-subj': 'action-share',
             },
           ];
     } else {
@@ -212,6 +216,7 @@ export class Table extends Component {
               type: 'icon',
               href: 'https://elastic.co',
               target: '_blank',
+              'data-test-subj': 'action-outboundlink',
             },
           ];
     }
