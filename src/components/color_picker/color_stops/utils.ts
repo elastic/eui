@@ -13,16 +13,21 @@ export const removeStop = (colorStops: ColorStop[], index: number) => {
 
 export const addDefinedStop = (
   colorStops: ColorStop[],
-  stop: ColorStop['stop']
+  stop: ColorStop['stop'],
+  color: ColorStop['color'] = DEFAULT_COLOR
 ) => {
   const newStop = {
     stop,
-    color: DEFAULT_COLOR,
+    color,
   };
   return [...colorStops, newStop];
 };
 
-export const addStop = (colorStops: ColorStop[], index: number) => {
+export const addStop = (
+  colorStops: ColorStop[],
+  index: number,
+  color: ColorStop['color'] = DEFAULT_COLOR
+) => {
   const currentStop = colorStops[index].stop;
   let delta = 1;
   if (index === colorStops.length - 1) {
@@ -39,7 +44,7 @@ export const addStop = (colorStops: ColorStop[], index: number) => {
 
   const newStop = {
     stop: currentStop + delta,
-    color: DEFAULT_COLOR,
+    color,
   };
   return [
     ...colorStops.slice(0, index + 1),

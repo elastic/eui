@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { EuiColorStops, EuiFormRow } from '../../../../src/components';
 
 export const ColorStops = () => {
+  const generateRandomColor = () =>
+    // https://www.paulirish.com/2009/random-hex-color-code-snippets/
+    `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
+  const [addColor, setAddColor] = useState(generateRandomColor());
   const [colorStops, setColorStops] = useState([
     {
       stop: 0,
@@ -20,6 +25,7 @@ export const ColorStops = () => {
 
   const handleChange = colorStops => {
     setColorStops(colorStops);
+    setAddColor(generateRandomColor());
   };
 
   const [extendedColorStops, setExtendedColorStops] = useState([
@@ -49,6 +55,16 @@ export const ColorStops = () => {
           colorStops={colorStops}
           min={0}
           max={100}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Random new color">
+        <EuiColorStops
+          onChange={handleChange}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+          addColor={addColor}
         />
       </EuiFormRow>
 

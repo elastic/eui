@@ -10,6 +10,7 @@ export interface EuiRangeHighlightProps {
   upperValue: number;
   max: number;
   min: number;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
@@ -21,6 +22,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   min,
   compressed,
   color,
+  onClick,
 }) => {
   // Calculate the width the range based on value
   // const rangeWidth = (value - min) / (max - min);
@@ -42,7 +44,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   });
 
   return (
-    <div className={classes}>
+    <div className={classes} onClick={onClick}>
       <div className={progressClasses} style={rangeWidthStyle} />
     </div>
   );

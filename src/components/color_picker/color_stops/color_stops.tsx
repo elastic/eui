@@ -20,6 +20,7 @@ import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 interface EuiColorStopsProps extends CommonProps {
+  addColor?: ColorStop['color'];
   colorStops?: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
   fullWidth?: boolean;
@@ -41,10 +42,11 @@ function isTargetAThumb(target: HTMLElement | EventTarget) {
 }
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
+  addColor = DEFAULT_COLOR,
   max,
   min,
   mode = 'default',
-  colorStops = [{ stop: 0, color: DEFAULT_COLOR }],
+  colorStops = [{ stop: 0, color: addColor }],
   onChange,
   fullWidth,
   className,
@@ -53,9 +55,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
-  const [wrapperRef, setWrapperRef] = useState<
-    HTMLDivElement | null | undefined
-  >(null);
+  const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
+  const [addTargetPosition, setAddTargetPosition] = useState<number>(0);
+  const [isHoverDisabled, setIsHoverDisabled] = useState<boolean>(false);
   const classes = classNames('euiColorStops', className);
 
   const handleOnChange = (colorStops: ColorStop[]) => {
@@ -85,7 +87,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const onAdd = (index: number = colorStops.length - 1) => {
-    const newColorStops = addStop(colorStops, index);
+    const newColorStops = addStop(colorStops, index, addColor);
 
     handleOnChange(newColorStops);
   };
@@ -100,11 +102,25 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
+  const handleAddHover = (e: React.MouseEvent<HTMLDivElement>) => {
+    // reuse
+    const box = getEventPosition({ x: e.pageX, y: e.pageY }, wrapperRef!); // event happens on `wrapperRef` element, so it must exist
+    const stop = Math.round((box.left / box.width) * (max - min) + min);
+
+    //reuse
+    const position = Math.round(
+      ((stop - min) / (max - min)) *
+        calculateScale(wrapperRef ? wrapperRef.clientWidth : 100)
+    );
+
+    setAddTargetPosition(position);
+  };
+
   const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isTargetAThumb(e.target)) return;
     const box = getEventPosition({ x: e.pageX, y: e.pageY }, wrapperRef!); // event happens on `wrapperRef` element, so it must exist
-    const newStop = Math.round((box.left / box.width) * 100);
-    const newColorStops = addDefinedStop(colorStops, newStop);
+    const newStop = Math.round((box.left / box.width) * (max - min) + min);
+    const newColorStops = addDefinedStop(colorStops, newStop, addColor);
 
     handleOnChange(newColorStops);
   };
@@ -219,8 +235,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       className={classes}
       fullWidth={fullWidth}
       tabIndex={0}
+      onMouseDown={() => setIsHoverDisabled(true)}
+      onMouseUp={() => setIsHoverDisabled(false)}
+      onMouseLeave={() => setIsHoverDisabled(false)}
       onKeyDown={handleKeyDown}
-      onDoubleClick={handleDoubleClick}
       onFocus={e => {
         if (e.target === wrapperRef) {
           setHasFocus(true);
@@ -235,6 +253,19 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           upperValue={max}
           color={background}
         />
+        <div
+          className={classNames('euiColorStops__addContainer', {
+            isDisabled: isHoverDisabled,
+          })}
+          onClick={handleDoubleClick}
+          onMouseMove={handleAddHover}>
+          <div
+            className="euiColorStops__addTarget"
+            style={{
+              left: `${addTargetPosition}%`,
+            }}
+          />
+        </div>
         {thumbs}
       </EuiRangeTrack>
     </EuiRangeWrapper>

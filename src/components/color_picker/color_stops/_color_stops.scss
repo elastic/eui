@@ -6,6 +6,37 @@
   }
 }
 
+.euiColorStops__addContainer {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: $euiRangeThumbHeight;
+  margin-top: $euiRangeThumbHeight * -.5;
+
+  &:hover:not(.isDisabled) {
+    // TODO: copy? default? none?
+    cursor: copy;
+
+    .euiColorStops__addTarget {
+      display: block;
+    }
+  }
+}
+
+.euiColorStops__addTarget {
+  @include euiCustomControl($type: 'round');
+  @include euiRangeThumbStyle;
+  display: none;
+  position: absolute;
+  top: 0;
+  height: $euiRangeThumbHeight;
+  width: $euiRangeThumbHeight;
+  background-color: $euiColorLightestShade;
+  pointer-events: none;
+}
+
 .euiColorStop {
   width: $euiColorPickerWidth;
 }
@@ -13,9 +44,9 @@
 .euiColorStopPopover.euiPopover {
   position: absolute;
   top: 50%;
-  margin-top: $euiRangeThumbHeight * -.5;
   width: $euiRangeThumbWidth;
   height: $euiRangeThumbHeight;
+  margin-top: $euiRangeThumbHeight * -.5;
 }
 
 .euiColorStopPopover__anchor {
