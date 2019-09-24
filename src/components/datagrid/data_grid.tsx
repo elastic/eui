@@ -271,7 +271,7 @@ function useOnResize(
 }
 
 function useInMemoryValues(
-  inMemory: EuiDataGridInMemory
+  inMemory?: EuiDataGridInMemory
 ): [
   EuiDataGridInMemoryValues,
   (rowIndex: number, column: EuiDataGridColumn, value: string) => void
@@ -293,7 +293,7 @@ function useInMemoryValues(
   );
 
   useEffect(() => {
-    if (inMemory === false) {
+    if (inMemory == null) {
       setInMemoryValues({});
     }
   }, [inMemory]);
@@ -397,7 +397,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     gridStyle,
     pagination,
     sorting,
-    inMemory = false,
+    inMemory,
     ...rest
   } = props;
 
@@ -442,7 +442,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const detectedSchema = useDetectSchema(
     inMemoryValues,
     schemaDetectors,
-    inMemory !== false
+    inMemory != null
   );
   const mergedSchema = getMergedSchema(detectedSchema, columns);
 
@@ -521,11 +521,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
               <div className="euiDataGrid__overflow">
                 {inMemory ? (
                   <EuiDataGridInMemoryRenderer
+                    inMemory={inMemory}
                     renderCellValue={renderCellValue}
                     columns={columns}
                     rowCount={
-                      inMemory === true
-                        ? // if `inMemory === true` then we can only be sure the pagination's pageSize is available in memory
+                      inMemory.level === 'enhancements'
+                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
                           (pagination && pagination.pageSize) || rowCount
                         : // otherwise, all of the data is present and usable
                           rowCount

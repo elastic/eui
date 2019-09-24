@@ -104,7 +104,7 @@ export default () => {
     [setSortingColumns]
   );
 
-  const [inMemoryLevel, setInMemoryLevel] = useState('false');
+  const [inMemoryLevel, setInMemoryLevel] = useState('');
 
   // Sort data
   let data = useMemo(() => {
@@ -172,6 +172,14 @@ export default () => {
     };
   }, [data, inMemoryLevel]);
 
+  const inMemoryProps = {};
+  if (inMemoryLevel !== '') {
+    inMemoryProps.inMemory = {
+      level: inMemoryLevel,
+      skipColumns: ['actions'],
+    };
+  }
+
   return (
     <div>
       <EuiPopover
@@ -186,14 +194,14 @@ export default () => {
           compressed={true}
           options={[
             {
-              id: 'false',
+              id: '',
               label: 'off',
-              value: 'false',
+              value: '',
             },
             {
-              id: 'true',
+              id: 'enhancements',
               label: 'only enhancements',
-              value: 'true',
+              value: 'enhancements',
             },
             {
               id: 'pagination',
@@ -208,7 +216,7 @@ export default () => {
           ]}
           idSelected={inMemoryLevel}
           onChange={(id, value) => {
-            setInMemoryLevel(value);
+            setInMemoryLevel(value === '' ? undefined : value);
             setIsPopoverOpen(false);
           }}
         />
@@ -219,11 +227,7 @@ export default () => {
         columns={columns}
         rowCount={raw_data.length}
         renderCellValue={renderCellValue}
-        inMemory={
-          inMemoryLevel === 'true' || inMemoryLevel === 'false'
-            ? inMemoryLevel === 'true'
-            : inMemoryLevel
-        }
+        {...inMemoryProps}
         sorting={{ columns: sortingColumns, onSort }}
         pagination={{
           ...pagination,

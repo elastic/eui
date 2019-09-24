@@ -28,7 +28,7 @@ interface EuiDataGridBodyProps {
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
-  inMemory: EuiDataGridInMemory;
+  inMemory?: EuiDataGridInMemory;
   inMemoryValues: EuiDataGridInMemoryValues;
   isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
@@ -74,7 +74,8 @@ export const EuiDataGridBody: FunctionComponent<
     const rowMap: { [key: number]: number } = {};
 
     if (
-      inMemory === 'sorting' &&
+      inMemory &&
+      inMemory.level === 'sorting' &&
       sorting != null &&
       sorting.columns.length > 0
     ) {
