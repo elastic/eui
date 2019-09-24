@@ -15,7 +15,7 @@
   height: $euiRangeThumbHeight;
   margin-top: $euiRangeThumbHeight * -.5;
 
-  &:hover:not(.isDisabled) {
+  &:hover:not(.euiColorStops__addContainer-isDisabled) {
     // TODO: copy? default? none?
     cursor: copy;
 

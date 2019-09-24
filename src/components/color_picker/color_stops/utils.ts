@@ -1,3 +1,4 @@
+import { getEventPosition } from '../utils';
 import { isValidHex } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
@@ -71,4 +72,25 @@ export const calculateScale = (trackWidth: number) => {
   const EUI_THUMB_SIZE = 16;
   const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
   return (1 - thumbToTrackRatio) * 100;
+};
+
+export const getStopFromMouseLocation = (
+  location: { x: number; y: number },
+  ref: HTMLDivElement,
+  min: number,
+  max: number
+) => {
+  const box = getEventPosition(location, ref);
+  return Math.round((box.left / box.width) * (max - min) + min);
+};
+
+export const getPositionFromStop = (
+  stop: ColorStop['stop'],
+  ref: HTMLDivElement,
+  min: number,
+  max: number
+) => {
+  return Math.round(
+    ((stop - min) / (max - min)) * calculateScale(ref ? ref.clientWidth : 100)
+  );
 };

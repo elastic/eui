@@ -8,13 +8,13 @@ import {
   DEFAULT_COLOR,
   addStop,
   addDefinedStop,
-  removeStop,
+  getPositionFromStop,
+  getStopFromMouseLocation,
   isInvalid,
-  calculateScale,
+  removeStop,
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
-import { getEventPosition } from '../utils';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
@@ -60,6 +60,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const [isHoverDisabled, setIsHoverDisabled] = useState<boolean>(false);
   const classes = classNames('euiColorStops', className);
 
+  const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
+    // Guards against `null` ref in useage
+    return getStopFromMouseLocation(location, wrapperRef!, min, max);
+  };
+
+  const getPositionFromStopFn = (stop: ColorStop['stop']) => {
+    // Guards against `null` ref in useage
+    return getPositionFromStop(stop, wrapperRef!, min, max);
+  };
+
   const handleOnChange = (colorStops: ColorStop[]) => {
     onChange(colorStops, isInvalid(colorStops));
   };
@@ -103,23 +113,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const handleAddHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    // reuse
-    const box = getEventPosition({ x: e.pageX, y: e.pageY }, wrapperRef!); // event happens on `wrapperRef` element, so it must exist
-    const stop = Math.round((box.left / box.width) * (max - min) + min);
-
-    //reuse
-    const position = Math.round(
-      ((stop - min) / (max - min)) *
-        calculateScale(wrapperRef ? wrapperRef.clientWidth : 100)
-    );
+    if (!wrapperRef) return;
+    const stop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
+    const position = getPositionFromStopFn(stop);
 
     setAddTargetPosition(position);
   };
 
-  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTargetAThumb(e.target)) return;
-    const box = getEventPosition({ x: e.pageX, y: e.pageY }, wrapperRef!); // event happens on `wrapperRef` element, so it must exist
-    const newStop = Math.round((box.left / box.width) * (max - min) + min);
+  const handleAddClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTargetAThumb(e.target) || !wrapperRef) return;
+    const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
 
     handleOnChange(newColorStops);
@@ -200,12 +203,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     />
   ));
 
-  const positions = sortedStops.map(colorStop =>
-    Math.round(
-      ((colorStop.stop - min) / (max - min)) *
-        calculateScale(wrapperRef ? wrapperRef.clientWidth : 100)
-    )
-  );
+  const positions = sortedStops.map(({ stop }) => getPositionFromStopFn(stop));
   const gradientStop = (colorStop: ColorStop, index: number) => {
     return `${colorStop.color} ${positions[index]}%`;
   };
@@ -255,9 +253,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         />
         <div
           className={classNames('euiColorStops__addContainer', {
-            isDisabled: isHoverDisabled,
+            'euiColorStops__addContainer-isDisabled': isHoverDisabled,
           })}
-          onClick={handleDoubleClick}
+          onClick={handleAddClick}
           onMouseMove={handleAddHover}>
           <div
             className="euiColorStops__addTarget"

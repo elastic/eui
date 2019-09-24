@@ -1,8 +1,13 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 
 import { CommonProps } from '../../common';
-import { isColorInvalid, isStopInvalid, calculateScale } from './utils';
-import { getEventPosition, useMouseMove } from '../utils';
+import {
+  getPositionFromStop,
+  getStopFromMouseLocation,
+  isColorInvalid,
+  isStopInvalid,
+} from './utils';
+import { useMouseMove } from '../utils';
 import { keyCodes } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
@@ -61,6 +66,16 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     }
   }, [stop]);
 
+  const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
+    // Guards against `null` ref in useage
+    return getStopFromMouseLocation(location, parentRef!, globalMin, globalMax);
+  };
+
+  const getPositionFromStopFn = (stop: ColorStop['stop']) => {
+    // Guards against `null` ref in useage
+    return getPositionFromStop(stop, parentRef!, globalMin, globalMax);
+  };
+
   const openPopover = () => setIsPopoverOpen(true);
 
   const closePopover = () => setIsPopoverOpen(false);
@@ -111,10 +126,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     if (parentRef == null) {
       return;
     }
-    const box = getEventPosition(location, parentRef);
-    const newStop = Math.round(
-      (box.left / box.width) * (globalMax - globalMin) + globalMin
-    );
+    const newStop = getStopFromMouseLocationFn(location);
     handleStopChange(newStop, true);
   };
 
@@ -147,10 +159,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       ownFocus={true}
       initialFocus={numberInputRef}
       style={{
-        left: `${Math.round(
-          ((stop - globalMin) / (globalMax - globalMin)) *
-            calculateScale(parentRef ? parentRef.clientWidth : 100)
-        )}%`,
+        left: `${getPositionFromStopFn(stop)}%`,
       }}
       button={
         <EuiRangeThumb
