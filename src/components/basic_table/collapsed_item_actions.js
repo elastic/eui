@@ -114,7 +114,7 @@ export class CollapsedItemActions extends Component {
             isDisabled={allDisabled}
             onClick={this.togglePopover.bind(this)}
             onFocus={onFocus}
-            data-test-subj="euiCollapsedItemActions"
+            data-test-subj="euiCollapsedItemActionsButton"
           />
         )}
       </EuiI18n>
