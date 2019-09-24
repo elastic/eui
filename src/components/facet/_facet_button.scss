@@ -27,6 +27,8 @@
 
   &:focus {
     background-color: $euiFocusBackgroundColor;
+    // use box-shadow as a "faux outline" to apply left/right padding only
+    box-shadow: -4px 0 $euiFocusBackgroundColor, 4px 0 $euiFocusBackgroundColor;
   }
 
   &:disabled {
