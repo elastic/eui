@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed spacing of `EuiFormErrorText` to match `EuiFormHelpText` ([#2354](https://github.com/elastic/eui/pull/2354))
+- Fixed bug in `EuiPopover` where Array.prototype.slice() may have been called on 'undefined' ([#2369](https://github.com/elastic/eui/pull/2369))
 
 ## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
 
