@@ -47,17 +47,49 @@ export const ColorStops = () => {
     setExtendedColorStops(colorStops);
   };
 
+  const [emptyColorStops, setEmptyColorStops] = useState([]);
+
+  const handleEmptyChange = colorStops => {
+    setEmptyColorStops(colorStops);
+  };
+
+  const changeProps = () => {
+    setColorStops([
+      {
+        stop: 0,
+        color: '#ff0000',
+      },
+      {
+        stop: 25,
+        color: '#FFFF00',
+      },
+      {
+        stop: 45,
+        color: '#008000',
+      },
+    ]);
+  };
+
   return (
     <React.Fragment>
+      <button onClick={changeProps}>Prop Change</button>
+      <EuiFormRow label="Empty start">
+        <EuiColorStops
+          onChange={handleEmptyChange}
+          colorStops={emptyColorStops}
+          min={0}
+          max={100}
+        />
+      </EuiFormRow>
       <EuiFormRow label="Standard">
         <EuiColorStops
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
           max={100}
+          fullWidth={true}
         />
       </EuiFormRow>
-
       <EuiFormRow label="Random new color">
         <EuiColorStops
           onChange={handleChange}

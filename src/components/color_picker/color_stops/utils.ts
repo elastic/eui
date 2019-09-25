@@ -1,8 +1,6 @@
 import { getEventPosition } from '../utils';
-import { isValidHex } from '../../../services';
+import { isValidHex, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
-
-export const DEFAULT_COLOR = '#FF0000';
 
 export const removeStop = (colorStops: ColorStop[], index: number) => {
   if (colorStops.length === 1) {
@@ -15,7 +13,7 @@ export const removeStop = (colorStops: ColorStop[], index: number) => {
 export const addDefinedStop = (
   colorStops: ColorStop[],
   stop: ColorStop['stop'],
-  color: ColorStop['color'] = DEFAULT_COLOR
+  color: ColorStop['color'] = DEFAULT_VISUALIZATION_COLOR
 ) => {
   const newStop = {
     stop,
@@ -26,7 +24,7 @@ export const addDefinedStop = (
 
 export const addStop = (
   colorStops: ColorStop[],
-  color: ColorStop['color'] = DEFAULT_COLOR,
+  color: ColorStop['color'] = DEFAULT_VISUALIZATION_COLOR,
   max: number
 ) => {
   const index = colorStops.length - 1;

@@ -314,8 +314,8 @@ export const ColorPickerExample = {
       text: (
         <p>
           Use <EuiCode>EuiColorStops</EuiCode> to define color stops for data
-          driven styling. Stops are numbers in strictly ascending order. The
-          range is from the given stop number (inclusive) to the next stop
+          driven styling. Stops are numbers within the provided range. The color
+          segment spans from the given stop number (inclusive) to the next stop
           number (exclusive).
         </p>
       ),

@@ -2,10 +2,9 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { keyCodes } from '../../../services';
+import { keyCodes, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
-  DEFAULT_COLOR,
   addStop,
   addDefinedStop,
   getPositionFromStop,
@@ -21,7 +20,7 @@ import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 
 interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
-  colorStops?: ColorStop[];
+  colorStops: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
   fullWidth?: boolean;
   className?: string;
@@ -53,11 +52,11 @@ function sortStops(colorStops: ColorStop[]) {
 }
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
-  addColor = DEFAULT_COLOR,
+  addColor = DEFAULT_VISUALIZATION_COLOR,
   max,
   min,
   mode = 'default',
-  colorStops = [{ stop: 0, color: addColor }],
+  colorStops,
   onChange,
   fullWidth,
   className,
@@ -86,7 +85,11 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   }, [sortedStops]);
 
-  const classes = classNames('euiColorStops', className);
+  const classes = classNames(
+    'euiColorStops',
+    { 'euiColorStops-isDragging': isHoverDisabled },
+    className
+  );
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
     // Guards against `null` ref in usage
@@ -171,8 +174,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
       case keyCodes.BACKSPACE:
         if (hasFocus || focusedStopIndex == null) return;
-        const index = sortedStops[focusedStopIndex].id;
-        onRemove(index);
+        if (isTargetAThumb(e.target)) {
+          const index = sortedStops[focusedStopIndex].id;
+          onRemove(index);
+        }
         break;
 
       case keyCodes.DOWN:
@@ -247,10 +252,11 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const linearGradient = sortedStops.map(
     stopType === 'gradient' ? gradientStop : fixedStop
   );
+  const singleColor = sortedStops[0] ? sortedStops[0].color : undefined;
   const background =
     sortedStops.length > 1
       ? `linear-gradient(to right,${linearGradient})`
-      : sortedStops[0].color;
+      : singleColor;
 
   return (
     <EuiRangeWrapper
