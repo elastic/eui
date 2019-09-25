@@ -88,6 +88,12 @@
   }
 }
 
+.euiKeyPadMenuItem__betaBadge {
+  color: $euiTextColor;
+  background-color: tintOrShade($euiColorLightShade, 50%, 0%);
+  box-shadow: none;
+}
+
 .euiKeyPadMenuItem__icon {
   transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   transform: translateY(2px);
