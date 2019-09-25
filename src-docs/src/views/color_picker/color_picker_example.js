@@ -84,6 +84,17 @@ const modesPickerSnippet = `// Gradient map only
 />
 `;
 
+import { Inline } from './inline';
+const inlineSource = require('!!raw-loader!./inline');
+const inlineHtml = renderToHtml(Inline);
+const inlineSnippet = `<EuiColorPicker
+  onChange={handleChange}
+  color={chosenColor}
+  isInvalid={hasErrors}
+  display="inline"
+/>
+`;
+
 import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
 const containersHtml = renderToHtml(Containers);
@@ -214,6 +225,28 @@ export const ColorPickerExample = {
       ),
       snippet: [modesSwatchSnippet, modesPickerSnippet],
       demo: <Modes />,
+    },
+    {
+      title: 'Inline',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlineSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: inlineHtml,
+        },
+      ],
+      text: (
+        <p>
+          Set the <EuiCode>display</EuiCode> prop to `inline` to display the
+          color picker without an input or popover. Note that the{' '}
+          <EuiCode>button</EuiCode> prop will be ignored in this case.
+        </p>
+      ),
+      snippet: inlineSnippet,
+      demo: <Inline />,
     },
     {
       title: 'Containers',

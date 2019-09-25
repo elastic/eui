@@ -18,6 +18,7 @@ declare module '@elastic/eui' {
     prepend?: ReactNode | ReactNode[];
     append?: ReactNode | ReactNode[];
     inputRef?: Ref<HTMLInputElement>;
+    controlOnly?: boolean;
   }
 
   export const EuiFieldNumber: FunctionComponent<

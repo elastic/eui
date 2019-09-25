@@ -60,21 +60,6 @@ export default class extends Component {
           onChange={this.onChange}
           disabled
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiTitle size="xxs">
-          <h3>Compressed</h3>
-        </EuiTitle>
-
-        <EuiSpacer size="s" />
-
-        <EuiRadioGroup
-          options={this.radios}
-          idSelected={this.state.radioIdSelected}
-          onChange={this.onChange}
-          compressed
-        />
       </Fragment>
     );
   }

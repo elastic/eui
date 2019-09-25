@@ -1,13 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { EuiBadge } from '../badge';
+import { EuiI18n } from '../i18n';
 import { EuiLink } from '../link';
+import { EuiPopover } from '../popover';
 
-const limitBreadcrumbs = (breadcrumbs, max) => {
+const limitBreadcrumbs = (breadcrumbs, max, showMaxPopover, allBreadcrumbs) => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
+  const start = Math.floor(limit / 2);
+  const overflowBreadcrumbs = showMaxPopover
+    ? allBreadcrumbs.slice(start, start + breadcrumbs.length - limit)
+    : [];
 
   for (let i = 0; i < limit; i++) {
     // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
@@ -30,19 +37,60 @@ const limitBreadcrumbs = (breadcrumbs, max) => {
     }
   }
 
+  const EuiBreadcrumbCollapsed = () => {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+    const ellipsisButton = (
+      <EuiI18n
+        token="euiBreadcrumbs.collapsedBadge.ariaLabel"
+        default="Show all breadcrumbs">
+        {ariaLabel => (
+          <EuiBadge
+            aria-label={ariaLabel}
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+            onClickAriaLabel={ariaLabel}
+            title="View hidden breadcrumbs"
+            className="euiBreadcrumb euiBreadcrumb__collapsedBadge">
+            &hellip;
+          </EuiBadge>
+        )}
+      </EuiI18n>
+    );
+
+    if (showMaxPopover) {
+      return (
+        <Fragment>
+          <EuiPopover
+            button={ellipsisButton}
+            isOpen={isPopoverOpen}
+            closePopover={() => setIsPopoverOpen(false)}>
+            <EuiBreadcrumbs
+              className="euiBreadcrumbs__inPopover"
+              breadcrumbs={overflowBreadcrumbs}
+              responsive={false}
+              truncate={false}
+              max={0}
+            />
+          </EuiPopover>
+          <EuiBreadcrumbSeparator />
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <div className="euiBreadcrumb euiBreadcrumb--collapsed">&hellip;</div>
+          <EuiBreadcrumbSeparator />
+        </Fragment>
+      );
+    }
+  };
+
   if (max < breadcrumbs.length) {
     breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
   }
 
   return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
 };
-
-const EuiBreadcrumbCollapsed = () => (
-  <Fragment>
-    <div className="euiBreadcrumb euiBreadcrumb--collapsed">&#8230;</div>
-    <EuiBreadcrumbSeparator />
-  </Fragment>
-);
 
 const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
@@ -52,6 +100,7 @@ export const EuiBreadcrumbs = ({
   responsive,
   truncate,
   max,
+  showMaxPopover,
   ...rest
 }) => {
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
@@ -112,7 +161,7 @@ export const EuiBreadcrumbs = ({
   });
 
   const limitedBreadcrumbs = max
-    ? limitBreadcrumbs(breadcrumbElements, max)
+    ? limitBreadcrumbs(breadcrumbElements, max, showMaxPopover, breadcrumbs)
     : breadcrumbElements;
 
   const classes = classNames('euiBreadcrumbs', className, {
@@ -149,6 +198,12 @@ EuiBreadcrumbs.propTypes = {
   max: PropTypes.number,
 
   /**
+   * Allows the hidden breadcrumbs to be shown when
+   * a `max` is set and the ellipsis is clicked in responsive mode.
+   */
+  showMaxPopover: PropTypes.bool,
+
+  /**
    * The array of individual breadcrumbs, takes the following props.
    * `text` (node) (required): visible label of the breadcrumb,
    * `href` or `onClick`: provide only one (last breadcrumb will not apply either),
@@ -167,5 +222,6 @@ EuiBreadcrumbs.propTypes = {
 EuiBreadcrumbs.defaultProps = {
   responsive: true,
   truncate: true,
+  showMaxPopover: false,
   max: 5,
 };

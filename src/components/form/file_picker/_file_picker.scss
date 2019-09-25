@@ -5,12 +5,8 @@
   */
 
 .euiFilePicker {
-  @include euiFormControlSize;
+  @include euiFormControlSize($includeAlternates: true);
   position: relative;
-
-  &.euiFilePicker--fullWidth {
-    max-width: 100%;
-  }
 
   &.euiFilePicker--large {
     height: auto;
@@ -48,6 +44,7 @@
 
   .euiFilePicker--compressed & {
     top: $euiSizeS;
+    left: $euiSizeS;
   }
 
   .euiFilePicker--large & {
@@ -58,13 +55,13 @@
 
 /**
   * 1. Don't block the user from dropping files onto the filepicker.
-  * 3. Ensure space for import icon, loading spinner, and clear button (only if it has files)
-  * 4. Delay focus gradient or else it will only partially transition while file chooser opens
-  * 5. Static height so that it doesn't shift its surrounding contents around
+  * 2. Ensure space for import icon, loading spinner, and clear button (only if it has files)
+  * 3. Delay focus gradient or else it will only partially transition while file chooser opens
+  * 4. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
   @include euiFormControlDefaultShadow;
-  @include euiFormControlWithIcon; /* 3 */
+  @include euiFormControlWithIcon; /* 2 */
   height: $euiFormControlHeight;
   padding-top: $euiFormControlPadding;
   padding-right: $euiFormControlPadding;
@@ -76,22 +73,25 @@
     box-shadow $euiAnimSpeedFast ease-in,
     background-color $euiAnimSpeedFast ease-in,
     background-image $euiAnimSpeedFast ease-in,
-    background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 4 */
+    background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 3 */
 
   .euiFilePicker--compressed & {
+    @include euiFormControlStyleCompressed($includeStates: false);
+    @include euiFormControlWithIcon($compressed: true); /* 2 */
     height: $euiFormControlCompressedHeight;
-    padding-top: $euiFormControlCompressedPadding;
-    padding-right: $euiFormControlCompressedPadding;
-    padding-bottom: $euiFormControlCompressedPadding;
   }
 
   .euiFilePicker--large & {
-    height: $euiFilePickerTallHeight; /* 5 */
+    height: $euiFilePickerTallHeight; /* 4 */
     padding: 0 $euiSizeL;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .euiFilePicker--large.euiFilePicker--compressed & {
+    height: $euiFilePickerTallHeight - $euiSizeL; /* 4 */
   }
 
   .euiFilePicker-isInvalid & {
@@ -143,6 +143,10 @@
 .euiFilePicker__showDrop .euiFilePicker__prompt,
 .euiFilePicker__input:focus + .euiFilePicker__prompt {
   @include euiFormControlFocusStyle;
+
+  .euiFilePicker--compressed & {
+    @include euiFormControlFocusStyle($borderOnly: true);
+  }
 }
 
 // Disabled
@@ -154,7 +158,7 @@
 .euiFilePicker:not(.euiFilePicker--large) {
   &.euiFilePicker-isLoading .euiFilePicker__prompt,
   &.euiFilePicker-hasFiles .euiFilePicker__prompt {
-    @include euiFormControlWithIcon(false, 'right'); /* 3 */
+    @include euiFormControlWithIcon(false, 'right'); /* 2 */
   }
 }
 

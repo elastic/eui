@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { EuiSuperSelect, EuiSpacer, EuiText } from '../../../../src/components';
+import { EuiSuperSelect, EuiText } from '../../../../src/components';
 
 export default class extends Component {
   constructor(props) {
@@ -13,7 +13,6 @@ export default class extends Component {
         dropdownDisplay: (
           <Fragment>
             <strong>Option one</strong>
-            <EuiSpacer size="xs" />
             <EuiText size="s" color="subdued">
               <p className="euiTextColor--subdued">
                 Has a short description giving more detail to the option.
@@ -28,7 +27,6 @@ export default class extends Component {
         dropdownDisplay: (
           <Fragment>
             <strong>Option two</strong>
-            <EuiSpacer size="xs" />
             <EuiText size="s" color="subdued">
               <p className="euiTextColor--subdued">
                 Has a short description giving more detail to the option.
@@ -43,7 +41,6 @@ export default class extends Component {
         dropdownDisplay: (
           <Fragment>
             <strong>Option three</strong>
-            <EuiSpacer size="xs" />
             <EuiText size="s" color="subdued">
               <p className="euiTextColor--subdued">
                 Has a short description giving more detail to the option.

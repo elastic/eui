@@ -8,9 +8,20 @@ import { withRequiredProp } from '../../../utils/prop_types/with_required_prop';
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import makeId from './make_id';
+
+const displayToClassNameMap = {
+  row: null,
+  rowCompressed: 'euiFormRow--compressed',
+  columnCompressed: 'euiFormRow--compressed euiFormRow--horizontal',
+  center: null,
+  centerCompressed: 'euiFormRow--compressed',
+  columnCompressedSwitch:
+    'euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch',
+};
+
+export const DISPLAYS = Object.keys(displayToClassNameMap);
 
 export class EuiFormRow extends Component {
   constructor(props) {
@@ -63,19 +74,39 @@ export class EuiFormRow extends Component {
       className,
       describedByIds,
       compressed,
+      display,
       displayOnly,
       ...rest
     } = this.props;
 
     const { id } = this.state;
 
+    /**
+     * Remove when `compressed` is deprecated
+     */
+    let shimDisplay;
+    if (compressed && display === 'row') {
+      shimDisplay = 'rowCompressed';
+    } else {
+      shimDisplay = display;
+    }
+
+    /**
+     * Remove when `displayOnly` is deprecated
+     */
+    if (compressed && displayOnly) {
+      shimDisplay = 'centerCompressed';
+    } else if (displayOnly && display === 'row') {
+      shimDisplay = 'center';
+    }
+
     const classes = classNames(
       'euiFormRow',
       {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
-        'euiFormRow--compressed': compressed,
       },
+      displayToClassNameMap[shimDisplay],
       className
     );
 
@@ -110,11 +141,11 @@ export class EuiFormRow extends Component {
     const isLegend = label && labelType === 'legend' ? true : false;
     const labelID = isLegend ? `${id}-${labelType}` : undefined;
 
-    if (label) {
+    if (label || labelAppend) {
       optionalLabel = (
-        // Outer div ensures the label is inline-block (only takes up as much room as it needs)
-        <div>
+        <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
+            className="euiFormRow__label"
             isFocused={!isLegend && this.state.isFocused}
             isInvalid={isInvalid}
             aria-invalid={isInvalid}
@@ -123,20 +154,9 @@ export class EuiFormRow extends Component {
             id={labelID}>
             {label}
           </EuiFormLabel>
+          {labelAppend && ' '}
+          {labelAppend}
         </div>
-      );
-    }
-
-    if (labelAppend) {
-      optionalLabel = (
-        <EuiFlexGroup
-          responsive={false}
-          wrap={true}
-          gutterSize="xs"
-          justifyContent="spaceBetween">
-          <EuiFlexItem grow={false}>{optionalLabel}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{labelAppend}</EuiFlexItem>
-        </EuiFlexGroup>
       );
     }
 
@@ -155,17 +175,17 @@ export class EuiFormRow extends Component {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    let field = cloneElement(Children.only(children), {
+    const field = cloneElement(Children.only(children), {
       id,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      compressed: compressed,
       ...optionalProps,
     });
 
-    if (displayOnly) {
-      field = <div className="euiFormRow__displayOnlyWrapper">{field}</div>;
-    }
+    const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
+      euiFormRow__fieldWrapperDisplayOnly:
+        displayOnly || display.startsWith('center'),
+    });
 
     const Element = labelType === 'legend' ? 'fieldset' : 'div';
 
@@ -177,9 +197,11 @@ export class EuiFormRow extends Component {
         aria-labelledby={labelID} // Only renders a string if label type is 'legend'
       >
         {optionalLabel}
-        {field}
-        {optionalErrors}
-        {optionalHelpText}
+        <div className={fieldWrapperClasses}>
+          {field}
+          {optionalErrors}
+          {optionalHelpText}
+        </div>
       </Element>
     );
   }
@@ -219,11 +241,22 @@ EuiFormRow.propTypes = {
    */
   describedByIds: PropTypes.array,
   /**
-   * Tightens up the spacing and sends down the
-   * compressed prop to the input
+   * **DEPRECATED: use `display: rowCompressed` instead.**
+   * When `true`, tightens up the spacing.
    */
   compressed: PropTypes.bool,
   /**
+   * When `rowCompressed`, just tightens up the spacing;
+   * Set to `columnCompressed` if compressed
+   * and horizontal layout is needed.
+   * Set to `center` or `centerCompressed` to align non-input
+   * content better with inline rows.
+   * Set to `columnCompressedSwitch` if the form control being passed
+   * as the child is a switch.
+   */
+  display: PropTypes.oneOf(DISPLAYS),
+  /**
+   * **DEPRECATED: use `display: center` instead.**
    * Vertically centers non-input style content so it aligns
    * better with input style content.
    */
@@ -231,6 +264,7 @@ EuiFormRow.propTypes = {
 };
 
 EuiFormRow.defaultProps = {
+  display: 'row',
   hasEmptyLabelSpace: false,
   fullWidth: false,
   describedByIds: [],

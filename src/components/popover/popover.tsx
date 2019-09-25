@@ -358,7 +358,7 @@ export class EuiPopover extends Component<Props, State> {
 
       // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
       const { durationMatch, delayMatch } = Array.prototype.slice
-        .call(this.panel ? this.panel.children : undefined)
+        .call(this.panel ? this.panel.children : [])
         .reduce(
           ({ durationMatch, delayMatch }, element) => {
             const transitionTimings = getTransitionTimings(element);
@@ -458,7 +458,7 @@ export class EuiPopover extends Component<Props, State> {
     const { zIndex: zIndexProp } = this.props;
     const zIndex =
       zIndexProp == null
-        ? getElementZIndex(this.button, this.panel)
+        ? getElementZIndex(this.button, this.panel) + 2000
         : zIndexProp;
 
     const popoverStyles = {

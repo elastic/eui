@@ -4,7 +4,6 @@
   right: ($euiRangeThumbWidth / 2);
   top: $euiSizeS;
   display: flex;
-  z-index: $euiZLevel1;
 }
 
 .euiRangeTick {
@@ -42,5 +41,13 @@
 
   &:disabled {
     cursor: not-allowed;
+  }
+}
+
+.euiRangeTicks--compressed {
+  top: $euiSizeS - 2px;
+
+  .euiRangeTick {
+    padding-top: $euiSize - 2px;
   }
 }

@@ -104,5 +104,14 @@ describe('EuiBreadcrumbs', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('render a popover', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiBreadcrumbs breadcrumbs={breadcrumbs} max={2} showMaxPopover />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

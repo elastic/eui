@@ -4,7 +4,6 @@
 .euiFormLabel {
   @include euiFontSizeXS;
   display: inline-block;
-  margin-bottom: $euiSizeXS;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   color: $euiTitleColor;
   font-weight: $euiFontWeightSemiBold;

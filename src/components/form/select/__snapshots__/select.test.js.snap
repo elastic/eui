@@ -5,6 +5,7 @@ exports[`EuiSelect is rendered 1`] = `
   compressed="false"
   fullwidth="false"
   icon="[object Object]"
+  inputid="id"
   isloading="false"
 >
   <eui-validatable-control>

@@ -5,7 +5,7 @@ import { timeUnits, timeUnitsPlural } from '../time_units';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
-import { EuiFormRow, EuiSelect, EuiFieldNumber } from '../../../form';
+import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiButton } from '../../../button';
 
 const refreshUnitsOptions = Object.keys(timeUnits)
@@ -122,38 +122,34 @@ export class EuiRefreshInterval extends Component {
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiFormRow compressed>
-              <EuiFieldNumber
-                value={this.state.value}
-                onChange={this.onValueChange}
-                aria-label="Refresh interval value"
-                data-test-subj="superDatePickerRefreshIntervalInput"
-              />
-            </EuiFormRow>
+            <EuiFieldNumber
+              compressed
+              value={this.state.value}
+              onChange={this.onValueChange}
+              aria-label="Refresh interval value"
+              data-test-subj="superDatePickerRefreshIntervalInput"
+            />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow compressed>
-              <EuiSelect
-                aria-label="Refresh interval units"
-                value={this.state.units}
-                options={refreshUnitsOptions}
-                onChange={this.onUnitsChange}
-                data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
-              />
-            </EuiFormRow>
+            <EuiSelect
+              compressed
+              aria-label="Refresh interval units"
+              value={this.state.units}
+              options={refreshUnitsOptions}
+              onChange={this.onUnitsChange}
+              data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
+            />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFormRow>
-              <EuiButton
-                className="euiRefreshInterval__startButton"
-                iconType={this.props.isPaused ? 'play' : 'stop'}
-                size="s"
-                onClick={this.toogleRefresh}
-                disabled={this.state.value === '' || this.state.value <= 0}
-                data-test-subj="superDatePickerToggleRefreshButton">
-                {this.props.isPaused ? 'Start' : 'Stop'}
-              </EuiButton>
-            </EuiFormRow>
+            <EuiButton
+              className="euiRefreshInterval__startButton"
+              iconType={this.props.isPaused ? 'play' : 'stop'}
+              size="s"
+              onClick={this.toogleRefresh}
+              disabled={this.state.value === '' || this.state.value <= 0}
+              data-test-subj="superDatePickerToggleRefreshButton">
+              {this.props.isPaused ? 'Start' : 'Stop'}
+            </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
       </Fragment>

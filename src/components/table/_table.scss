@@ -138,7 +138,7 @@
 }
 
 .euiTableCellContent__text {
-  @include euiTextOverflowWrap; /* 4 */
+  @include euiTextBreakWord; /* 4 */
   min-width: 0;
   text-overflow: ellipsis;
 }

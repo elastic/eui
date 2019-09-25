@@ -5,6 +5,7 @@ exports[`EuiFieldText is rendered 1`] = `
   compressed="false"
   fullwidth="false"
   icon="foo"
+  inputid="1"
   isloading="false"
 >
   <eui-validatable-control>
@@ -20,6 +21,15 @@ exports[`EuiFieldText is rendered 1`] = `
     />
   </eui-validatable-control>
 </eui-form-control-layout>
+`;
+
+exports[`EuiFieldText props controlOnly is rendered 1`] = `
+<eui-validatable-control>
+  <input
+    class="euiFieldText"
+    type="text"
+  />
+</eui-validatable-control>
 `;
 
 exports[`EuiFieldText props fullWidth is rendered 1`] = `
