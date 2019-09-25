@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -41,6 +41,17 @@ function isTargetAThumb(target: HTMLElement | EventTarget) {
   return element.id.indexOf(STOP_ATTR) > -1;
 }
 
+function sortStops(colorStops: ColorStop[]) {
+  return colorStops
+    .map((el, index) => {
+      return {
+        ...el,
+        id: index,
+      };
+    })
+    .sort((a, b) => a.stop - b.stop);
+}
+
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   addColor = DEFAULT_COLOR,
   max,
@@ -53,20 +64,37 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   stopType = 'gradient',
   swatches,
 }) => {
+  const [sortedStops, setSortedStops] = useState(sortStops(colorStops));
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
   const [addTargetPosition, setAddTargetPosition] = useState<number>(0);
   const [isHoverDisabled, setIsHoverDisabled] = useState<boolean>(false);
+  const [focusStopOnUpdate, setFocusStopOnUpdate] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    setSortedStops(sortStops(colorStops));
+  }, [colorStops]);
+
+  useEffect(() => {
+    if (focusStopOnUpdate !== null) {
+      const toFocus = sortedStops.map(el => el.stop).indexOf(focusStopOnUpdate);
+      onFocusStop(toFocus);
+      setFocusStopOnUpdate(null);
+    }
+  }, [sortedStops]);
+
   const classes = classNames('euiColorStops', className);
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
-    // Guards against `null` ref in useage
+    // Guards against `null` ref in usage
     return getStopFromMouseLocation(location, wrapperRef!, min, max);
   };
 
   const getPositionFromStopFn = (stop: ColorStop['stop']) => {
-    // Guards against `null` ref in useage
+    // Guards against `null` ref in usage
     return getPositionFromStop(stop, wrapperRef!, min, max);
   };
 
@@ -81,14 +109,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const onFocusStop = (index: number) => {
-    let toFocus;
-    if (wrapperRef) {
-      if (wrapperRef != null) {
-        toFocus = wrapperRef.querySelector<HTMLElement>(
-          `#${STOP_ATTR}${index}`
-        );
-      }
-    }
+    if (!wrapperRef) return;
+    const toFocus = wrapperRef.querySelector<HTMLElement>(
+      `#${STOP_ATTR}${index}`
+    );
     if (toFocus) {
       setHasFocus(false);
       setFocusedStopIndex(index);
@@ -96,19 +120,24 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   };
 
-  const onAdd = (index: number = colorStops.length - 1) => {
-    const newColorStops = addStop(colorStops, index, addColor);
+  const onFocusWrapper = () => {
+    setFocusedStopIndex(null);
+    if (wrapperRef) {
+      wrapperRef.focus();
+    }
+  };
 
+  const onAdd = () => {
+    const newColorStops = addStop(colorStops, addColor, max);
+
+    setFocusStopOnUpdate(newColorStops[colorStops.length].stop);
     handleOnChange(newColorStops);
   };
 
   const onRemove = (index: number) => {
     const newColorStops = removeStop(colorStops, index);
 
-    setFocusedStopIndex(null);
-    if (wrapperRef) {
-      wrapperRef.focus();
-    }
+    onFocusWrapper();
     handleOnChange(newColorStops);
   };
 
@@ -125,11 +154,16 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
 
+    setFocusStopOnUpdate(newStop);
     handleOnChange(newColorStops);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
+      case keyCodes.ESCAPE:
+        onFocusWrapper();
+        break;
+
       case keyCodes.ENTER:
         if (!hasFocus) return;
         onAdd();
@@ -170,15 +204,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         break;
     }
   };
-
-  const sortedStops = colorStops
-    .map((el, index) => {
-      return {
-        ...el,
-        id: index,
-      };
-    })
-    .sort((a, b) => a.stop - b.stop);
 
   const thumbs = sortedStops.map((colorStop, index) => (
     <EuiColorStopThumb

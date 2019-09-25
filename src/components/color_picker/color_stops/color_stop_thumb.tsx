@@ -67,18 +67,25 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   }, [stop]);
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
-    // Guards against `null` ref in useage
+    // Guards against `null` ref in usage
     return getStopFromMouseLocation(location, parentRef!, globalMin, globalMax);
   };
 
   const getPositionFromStopFn = (stop: ColorStop['stop']) => {
-    // Guards against `null` ref in useage
+    // Guards against `null` ref in usage
     return getPositionFromStop(stop, parentRef!, globalMin, globalMax);
   };
 
   const openPopover = () => setIsPopoverOpen(true);
 
   const closePopover = () => setIsPopoverOpen(false);
+
+  const handleOnRemove = () => {
+    if (onRemove) {
+      closePopover();
+      onRemove();
+    }
+  };
 
   const handleColorChange = (value: ColorStop['color']) => {
     setColorIsInvalid(isColorInvalid(value));
@@ -156,7 +163,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       panelPaddingSize="m"
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      ownFocus={true}
+      ownFocus={isPopoverOpen}
       initialFocus={numberInputRef}
       style={{
         left: `${getPositionFromStopFn(stop)}%`,
@@ -225,7 +232,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     aria-label={removeLabel}
                     title={removeLabel}
                     disabled={!onRemove}
-                    onClick={onRemove}
+                    onClick={handleOnRemove}
                   />
                 )}
               </EuiI18n>

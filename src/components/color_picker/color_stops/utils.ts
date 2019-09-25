@@ -26,25 +26,31 @@ export const addDefinedStop = (
 
 export const addStop = (
   colorStops: ColorStop[],
-  index: number,
-  color: ColorStop['color'] = DEFAULT_COLOR
+  color: ColorStop['color'] = DEFAULT_COLOR,
+  max: number
 ) => {
-  const currentStop = colorStops[index].stop;
+  const index = colorStops.length - 1;
+  const stops = colorStops.map(el => el.stop);
+  const currentStop = stops[index];
   let delta = 1;
-  if (index === colorStops.length - 1) {
-    // Adding stop to end of list.
-    if (index !== 0) {
-      const prevStop = colorStops[index - 1].stop;
-      delta = currentStop - prevStop;
-    }
-  } else {
-    // Adding stop in middle of list.
-    const nextStop = colorStops[index + 1].stop;
-    delta = (nextStop - currentStop) / 2;
+  if (index !== 0) {
+    const prevStop = stops[index - 1];
+    delta = currentStop - prevStop;
+  }
+
+  let stop = currentStop + delta;
+
+  if (stop > max) {
+    stop = max;
+  }
+
+  // We've reached the max, so start working backwards
+  while (stops.indexOf(stop) > -1) {
+    stop--;
   }
 
   const newStop = {
-    stop: currentStop + delta,
+    stop,
     color,
   };
   return [

@@ -37,51 +37,45 @@ describe('isInvalid', () => {
 });
 
 describe('addStop', () => {
-  test('Should add row when there is only a single row', () => {
+  test('Should add stop when there is only a single stop', () => {
     const colorStops = [{ stop: 0, color: '#FF0000' }];
-    expect(addStop(colorStops, 0)).toEqual([
+    expect(addStop(colorStops, '#FF0000', 100)).toEqual([
       { stop: 0, color: '#FF0000' },
       { stop: 1, color: '#FF0000' },
     ]);
   });
 
-  describe('to middle of list', () => {
-    test('Should add row after first item', () => {
-      expect(addStop(colorStops, 0)).toEqual([
-        { stop: 0, color: '#FF0000' },
-        { stop: 12.5, color: '#FF0000' },
-        { stop: 25, color: '#00FF00' },
-        { stop: 35, color: '#0000FF' },
-      ]);
-    });
-
-    test('Should add row after second item', () => {
-      expect(addStop(colorStops, 1)).toEqual([
-        { stop: 0, color: '#FF0000' },
-        { stop: 25, color: '#00FF00' },
-        { stop: 30, color: '#FF0000' },
-        { stop: 35, color: '#0000FF' },
-      ]);
-    });
-  });
-
-  test('Should add row to end of list', () => {
-    expect(addStop(colorStops, 2)).toEqual([
+  test('Should add stop to end of list', () => {
+    expect(addStop(colorStops, '#FF0000', 100)).toEqual([
       { stop: 0, color: '#FF0000' },
       { stop: 25, color: '#00FF00' },
       { stop: 35, color: '#0000FF' },
       { stop: 45, color: '#FF0000' },
     ]);
   });
+
+  test('Should add stop below the max if max is taken', () => {
+    expect(
+      addStop(
+        [{ stop: 0, color: '#FF0000' }, { stop: 100, color: '#FF0000' }],
+        '#FF0000',
+        100
+      )
+    ).toEqual([
+      { stop: 0, color: '#FF0000' },
+      { stop: 100, color: '#FF0000' },
+      { stop: 99, color: '#FF0000' },
+    ]);
+  });
 });
 
 describe('removeStop', () => {
-  test('Should not remove last row', () => {
+  test('Should not remove only stop', () => {
     const colorStops = [{ stop: 0, color: '#FF0000' }];
     expect(removeStop(colorStops, 0)).toEqual(colorStops);
   });
 
-  test('Should remove row at index', () => {
+  test('Should remove stop at index', () => {
     const colorStops = [
       { stop: 0, color: '#FF0000' },
       { stop: 25, color: '#00FF00' },
