@@ -7,12 +7,12 @@
   }
 }
 
+// Because we only want this to scroll vertically, we need to offset inner euiFlexGroup negative padding by adding padding
 .euiDataGridColumnSelector__columnList {
   @include euiYScrollWithShadows;
   max-height: 400px;
-  // Because we only want this to scroll vertically, we need to offset inner euiFlexGroup negative padding by adding padding
   padding: $euiSizeS;
-  margin: 0 -$euiSizeS;
+  margin: 0 (-$euiSizeS);
 }
 
 .euiDataGridColumnSelectorPopover {

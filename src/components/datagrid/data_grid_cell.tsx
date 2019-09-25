@@ -37,6 +37,7 @@ export interface EuiDataGridCellProps {
   onCellFocus: Function;
   isGridNavigationEnabled: boolean;
   interactiveCellId: string;
+  isExpandable: boolean;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
     | ((props: CellValueElementProps) => ReactNode);
@@ -56,7 +57,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellProps: CellValueElementProps['setCellProps'];
   }
 > = memo(props => {
-  const { renderCellValue, ...rest } = props;
+  const { renderCellValue, isExpandable, ...rest } = props;
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
 
   // React is more permissable than the TS types indicate
@@ -87,7 +88,7 @@ const EuiDataGridCellContent: FunctionComponent<
   // TODO: This is temporary. It's mostly just to show that different schema likely will require different
   // markup. We also likely will want a way to pass a custom render to the popup and the default cell
   // content as part of the data config.
-  let cellElement;
+  let cellElement: ReactNode;
   if (props.columnType === 'json') {
     cellElement = (
       <EuiCodeBlock
@@ -111,17 +112,19 @@ const EuiDataGridCellContent: FunctionComponent<
       <div className="euiDataGridRowCell__expandCode">
         <CellElement {...rest} />
       </div>
-      <div className={buttonClasses}>
-        <EuiPopover
-          button={expandButton}
-          isOpen={popoverIsOpen}
-          ownFocus
-          panelClassName="euiDataGridRowCell__popover"
-          zIndex={2000}
-          closePopover={() => setPopoverIsOpen(false)}>
-          {cellElement}
-        </EuiPopover>
-      </div>
+      {isExpandable && (
+        <div className={buttonClasses}>
+          <EuiPopover
+            button={expandButton}
+            isOpen={popoverIsOpen}
+            ownFocus
+            panelClassName="euiDataGridRowCell__popover"
+            zIndex={2000}
+            closePopover={() => setPopoverIsOpen(false)}>
+            {cellElement}
+          </EuiPopover>
+        </div>
+      )}
     </div>
   );
 });

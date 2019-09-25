@@ -48,6 +48,8 @@ const EuiDataGridDataRow: FunctionComponent<
     <div role="row" className={classes} data-test-subj={dataTestSubj} {...rest}>
       {columns.map((props, i) => {
         const { id } = props;
+        const isExpandable =
+          props.isExpandable !== undefined ? props.isExpandable : true;
 
         const width = columnWidths[id] || defaultColumnWidth;
 
@@ -67,6 +69,7 @@ const EuiDataGridDataRow: FunctionComponent<
             isFocusable={isFocusable}
             isGridNavigationEnabled={isGridNavigationEnabled}
             interactiveCellId={interactiveCellId}
+            isExpandable={isExpandable}
           />
         );
       })}

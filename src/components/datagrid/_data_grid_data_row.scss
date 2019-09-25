@@ -72,9 +72,11 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
 .euiDataGridRowCell__popover {
   @include euiScrollBar;
   overflow: auto;
+  // sass-lint:disable-block no-important
   max-width: 400px !important;
   max-height: 400px !important;
 }
@@ -97,16 +99,15 @@
   display: flex;
   flex-grow: 0;
 
-  &-isActive, &:focus {
+  &-isActive,
+  &:focus {
     margin-left: $euiDataGridCellPaddingM;
   }
 }
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
-  width: $euiSizeM;
   min-height: $euiSizeM;
-  min-width: $euiSizeM;
   background: $euiColorPrimary;
   color: $euiColorGhost;
   border-radius: $euiBorderRadius / 2;
@@ -116,7 +117,8 @@
   overflow: hidden;
   visibility: hidden;
 
-  &-isActive, &:focus {
+  &-isActive,
+  &:focus {
     width: inherit;
     visibility: visible;
     background: $euiColorPrimary;

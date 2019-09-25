@@ -11,6 +11,7 @@ import { iconTypes } from '../icon/icons';
 const columns = [
   {
     id: 'name',
+    isExpandable: false,
   },
   {
     id: 'email',
@@ -21,6 +22,7 @@ const columns = [
   {
     id: 'account',
     dataType: 'numeric',
+    isExpandable: false,
   },
   {
     id: 'date',
@@ -28,6 +30,7 @@ const columns = [
   {
     id: 'amount',
     dataType: 'currency',
+    isExpandable: false,
   },
   {
     id: 'json',
