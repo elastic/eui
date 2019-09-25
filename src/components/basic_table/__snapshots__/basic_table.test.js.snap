@@ -1040,6 +1040,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         >
           <EuiTableRowCell
             colSpan={1}
+            textOnly={false}
           >
             <div>
               Expanded row

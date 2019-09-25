@@ -801,7 +801,7 @@ export class EuiBasicTable extends Component {
         id={expandedRowId}
         isExpandedRow={true}
         isSelectable={isSelectable}>
-        <EuiTableRowCell colSpan={expandedRowColSpan}>
+        <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
