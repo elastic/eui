@@ -4,6 +4,7 @@
 - Added a `showMaxPopover` option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
 - Added `data-test-subj` support for basic and in-memory tables' actions ([#2353](https://github.com/elastic/eui/pull/2353))
 - Added `ip` icon to glyph set ([#2371](https://github.com/elastic/eui/pull/2371))
+- Set `textOnly={true}` for expanded rows in `EuiBasicTable` ([#2376](https://github.com/elastic/eui/pull/2376))
 
 **Bug fixes**
 
