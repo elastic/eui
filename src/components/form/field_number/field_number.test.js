@@ -59,6 +59,12 @@ describe('EuiFieldNumber', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('controlOnly is rendered', () => {
+      const component = render(<EuiFieldNumber controlOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('value', () => {
       test('value is number', () => {
         const component = render(

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { DisplayToggles } from './display_toggles';
 
 import {
   EuiFilePicker,
@@ -6,6 +7,7 @@ import {
   EuiFlexItem,
   EuiText,
   EuiSpacer,
+  EuiSwitch,
 } from '../../../../src/components';
 
 export class FilePicker extends Component {
@@ -13,6 +15,7 @@ export class FilePicker extends Component {
     super(props);
     this.state = {
       files: {},
+      large: true,
     };
   }
 
@@ -45,15 +48,30 @@ export class FilePicker extends Component {
     return (
       <Fragment>
         <EuiFlexGroup>
-          <EuiFlexItem>
-            <EuiFilePicker
-              id="asdf2"
-              multiple
-              initialPromptText="Select or drag and drop multiple files"
-              onChange={files => {
-                this.onChange(files);
-              }}
-            />
+          <EuiFlexItem grow={2}>
+            {/* DisplayToggles wrapper for Docs only */}
+            <DisplayToggles
+              canReadOnly={false}
+              extras={[
+                <EuiSwitch
+                  label={'large'}
+                  checked={this.state.large}
+                  onChange={e => {
+                    this.setState({ large: e.target.checked });
+                  }}
+                />,
+              ]}>
+              <EuiFilePicker
+                id="asdf2"
+                multiple
+                initialPromptText="Select or drag and drop multiple files"
+                onChange={files => {
+                  this.onChange(files);
+                }}
+                display={this.state.large ? 'large' : 'default'}
+              />
+            </DisplayToggles>
+            <EuiSpacer />
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiText>
@@ -62,30 +80,6 @@ export class FilePicker extends Component {
             </EuiText>
           </EuiFlexItem>
         </EuiFlexGroup>
-
-        <EuiSpacer size="m" />
-
-        <EuiFilePicker disabled initialPromptText="Disabled" />
-
-        <EuiSpacer size="m" />
-
-        <EuiFilePicker
-          display="default"
-          initialPromptText="Select some files"
-          onChange={files => {
-            this.onChange(files);
-          }}
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiFilePicker
-          compressed
-          initialPromptText="Select some files"
-          onChange={files => {
-            this.onChange(files);
-          }}
-        />
       </Fragment>
     );
   }

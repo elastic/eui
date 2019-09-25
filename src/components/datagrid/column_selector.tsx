@@ -102,6 +102,7 @@ export const useColumnSelector = (
                           label={id}
                           checked={visibleColumnIds.has(id)}
                           compressed
+                          className="euiSwitch--mini"
                           onChange={({
                             currentTarget: { checked },
                           }: React.FormEvent<HTMLInputElement>) => {

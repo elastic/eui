@@ -35,10 +35,6 @@ import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
-import FormCompressed from './form_compressed';
-const formCompressedSource = require('!!raw-loader!./form_compressed');
-const formCompressedHtml = renderToHtml(FormCompressed);
-
 export const FormLayoutsExample = {
   title: 'Form layouts',
   sections: [
@@ -105,37 +101,6 @@ export const FormLayoutsExample = {
   helpText="Note that the fullWidth prop is not passed to the form row's child"
 >
   <EuiRange fullWidth />
-</EuiFormRow>`,
-    },
-    {
-      title: 'Compressed',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: formCompressedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formCompressedHtml,
-        },
-      ],
-      text: (
-        <p>
-          If the particular form is in an area with a small amount of real
-          estate, you can add the prop <EuiCode>compressed</EuiCode> to the{' '}
-          <EuiCode>EuiFormRow</EuiCode>s and it will pass down to the form
-          controls.
-        </p>
-      ),
-      props: {
-        EuiFormRow,
-      },
-      demo: <FormCompressed />,
-      snippet: `<EuiFormRow
-  label="Text field"
-  compressed
->
-  <EuiFieldText />
 </EuiFormRow>`,
     },
     {
@@ -224,12 +189,16 @@ export const FormLayoutsExample = {
           <p>
             When supplying children to an EuiFormRow that is{' '}
             <strong>not</strong> a form control, and you need to the content to
-            vertically center with the other form controls, add the prop{' '}
-            <EuiCode>displayOnly</EuiCode>.
+            vertically center with the other form controls, change the{' '}
+            <EuiCode>display</EuiCode> prop to <EuiCode>center</EuiCode> or{' '}
+            <EuiCode>centerCompressed</EuiCode>.
           </p>
         </Fragment>
       ),
       demo: <InlineSizing />,
+      snippet: `<EuiFormRow label="Avatar" display="centerCompressed">
+  <EuiAvatar name="John Doe" size="s" />
+</EuiFormRow>`,
     },
     {
       title: 'In a popover',

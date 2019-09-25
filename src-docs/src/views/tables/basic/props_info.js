@@ -404,6 +404,12 @@ export const propsInfo = {
           required: false,
           type: { name: 'string (must be one of the supported button colors)' },
         },
+        'data-test-subj': {
+          description:
+            "Applies a data-test-subj attribute to the action's DOM node",
+          required: false,
+          type: { name: 'string' },
+        },
       },
     },
   },

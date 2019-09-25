@@ -195,6 +195,7 @@ export class FlyoutComplicated extends Component {
                 <SuperSelectComplexExample />
               </EuiFormRow>
             </EuiForm>
+            <EuiSpacer />
             {flyoutContent}
             <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
           </EuiFlyoutBody>

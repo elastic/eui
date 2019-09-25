@@ -9,14 +9,31 @@ import { EuiCode, EuiImage } from '../../../../src/components';
 import Image from './image';
 const imageSource = require('!!raw-loader!./image');
 const imageHtml = renderToHtml(Image);
+const imageSnippet = `<EuiImage
+  alt={description}
+  url={someUrl}
+/>
+`;
 
 import ImageSizes from './image_size';
 const imageSizesSource = require('!!raw-loader!./image_size');
 const imageSizesHtml = renderToHtml(ImageSizes);
+const imageSizesSnippet = `<EuiImage
+  size="l"
+  alt={description}
+  url={someUrl}
+/>
+`;
 
 import ImageZoom from './image_zoom';
 const imageZoomSource = require('!!raw-loader!./image_zoom');
 const imageZoomHtml = renderToHtml(ImageZoom);
+const imageZoomSnippet = `<EuiImage
+  allowFullScreen
+  alt={description} 
+  url={someUrl}
+/>
+`;
 
 export const ImageExample = {
   title: 'Image',
@@ -73,6 +90,7 @@ export const ImageExample = {
       ),
       props: { EuiImage },
       demo: <Image />,
+      snippet: imageSnippet,
     },
     {
       title: 'Click an image for a full screen version',
@@ -96,6 +114,7 @@ export const ImageExample = {
         </p>
       ),
       demo: <ImageZoom />,
+      snippet: imageZoomSnippet,
     },
     {
       title: 'Images can be sized',
@@ -117,6 +136,7 @@ export const ImageExample = {
         </p>
       ),
       demo: <ImageSizes />,
+      snippet: imageSizesSnippet,
     },
   ],
 };

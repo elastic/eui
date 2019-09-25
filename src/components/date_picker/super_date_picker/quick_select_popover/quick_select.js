@@ -7,7 +7,7 @@ import { EuiButton, EuiButtonIcon } from '../../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
 import { EuiSpacer } from '../../../spacer';
-import { EuiFormRow, EuiSelect, EuiFieldNumber } from '../../../form';
+import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiToolTip } from '../../../tool_tip';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
@@ -145,46 +145,41 @@ export class EuiQuickSelect extends Component {
         <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
-            <EuiFormRow compressed>
-              <EuiSelect
-                aria-label="Quick time tense"
-                value={this.state.timeTense}
-                options={timeTenseOptions}
-                onChange={this.onTimeTenseChange}
-              />
-            </EuiFormRow>
+            <EuiSelect
+              compressed
+              aria-label="Quick time tense"
+              value={this.state.timeTense}
+              options={timeTenseOptions}
+              onChange={this.onTimeTenseChange}
+            />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow compressed>
-              <EuiFieldNumber
-                aria-label="Quick time value"
-                value={this.state.timeValue}
-                onChange={this.onTimeValueChange}
-              />
-            </EuiFormRow>
+            <EuiFieldNumber
+              compressed
+              aria-label="Quick time value"
+              value={this.state.timeValue}
+              onChange={this.onTimeValueChange}
+            />
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFormRow compressed>
-              <EuiSelect
-                aria-label="Quick time units"
-                value={this.state.timeUnits}
-                options={timeUnitsOptions}
-                onChange={this.onTimeUnitsChange}
-              />
-            </EuiFormRow>
+            <EuiSelect
+              compressed
+              aria-label="Quick time units"
+              value={this.state.timeUnits}
+              options={timeUnitsOptions}
+              onChange={this.onTimeUnitsChange}
+            />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFormRow>
-              <EuiButton
-                className="euiQuickSelect__applyButton"
-                size="s"
-                onClick={this.applyQuickSelect}
-                disabled={
-                  this.state.timeValue === '' || this.state.timeValue <= 0
-                }>
-                Apply
-              </EuiButton>
-            </EuiFormRow>
+            <EuiButton
+              className="euiQuickSelect__applyButton"
+              size="s"
+              onClick={this.applyQuickSelect}
+              disabled={
+                this.state.timeValue === '' || this.state.timeValue <= 0
+              }>
+              Apply
+            </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiHorizontalRule margin="s" />

@@ -36,6 +36,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -74,6 +75,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -121,6 +123,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="row"
         fullWidth={true}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -168,6 +171,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -215,6 +219,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     >
       <EuiFormRow
         describedByIds={Array []}
+        display="row"
         fullWidth={false}
         hasEmptyLabelSpace={false}
         labelType="label"
@@ -308,6 +313,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   "test-id",
                 ]
               }
+              display="row"
               error={
                 Array [
                   "Error one",
@@ -325,9 +331,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 className="euiFormRow"
                 id="generated-id-row"
               >
-                <div>
+                <div
+                  className="euiFormRow__labelWrapper"
+                >
                   <EuiFormLabel
                     aria-invalid={true}
+                    className="euiFormRow__label"
                     htmlFor="generated-id"
                     isFocused={false}
                     isInvalid={true}
@@ -335,56 +344,60 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   >
                     <label
                       aria-invalid={true}
-                      className="euiFormLabel euiFormLabel-isInvalid"
+                      className="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
                       htmlFor="generated-id"
                     >
                       Label
                     </label>
                   </EuiFormLabel>
                 </div>
-                <input
-                  aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
-                  id="generated-id"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                />
-                <EuiFormErrorText
-                  className="euiFormRow__text"
-                  id="generated-id-error-0"
-                  key="Error one"
+                <div
+                  className="euiFormRow__fieldWrapper"
                 >
-                  <div
-                    aria-live="polite"
-                    className="euiFormErrorText euiFormRow__text"
+                  <input
+                    aria-describedby="test-id generated-id-help generated-id-error-0 generated-id-error-1"
+                    id="generated-id"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                  />
+                  <EuiFormErrorText
+                    className="euiFormRow__text"
                     id="generated-id-error-0"
+                    key="Error one"
                   >
-                    Error one
-                  </div>
-                </EuiFormErrorText>
-                <EuiFormErrorText
-                  className="euiFormRow__text"
-                  id="generated-id-error-1"
-                  key="Error two"
-                >
-                  <div
-                    aria-live="polite"
-                    className="euiFormErrorText euiFormRow__text"
+                    <div
+                      aria-live="polite"
+                      className="euiFormErrorText euiFormRow__text"
+                      id="generated-id-error-0"
+                    >
+                      Error one
+                    </div>
+                  </EuiFormErrorText>
+                  <EuiFormErrorText
+                    className="euiFormRow__text"
                     id="generated-id-error-1"
+                    key="Error two"
                   >
-                    Error two
-                  </div>
-                </EuiFormErrorText>
-                <EuiFormHelpText
-                  className="euiFormRow__text"
-                  id="generated-id-help"
-                >
-                  <div
-                    className="euiFormHelpText euiFormRow__text"
+                    <div
+                      aria-live="polite"
+                      className="euiFormErrorText euiFormRow__text"
+                      id="generated-id-error-1"
+                    >
+                      Error two
+                    </div>
+                  </EuiFormErrorText>
+                  <EuiFormHelpText
+                    className="euiFormRow__text"
                     id="generated-id-help"
                   >
-                    Help text
-                  </div>
-                </EuiFormHelpText>
+                    <div
+                      className="euiFormHelpText euiFormRow__text"
+                      id="generated-id-help"
+                    >
+                      Help text
+                    </div>
+                  </EuiFormHelpText>
+                </div>
               </div>
             </EuiFormRow>
           </div>

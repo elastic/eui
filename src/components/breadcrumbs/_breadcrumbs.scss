@@ -29,6 +29,23 @@
   background: $euiColorLightShade;
 }
 
+.euiBreadcrumbs__inPopover {
+  .euiBreadcrumb--last.euiLink.euiLink--text {
+    font-weight: $euiFontWeightRegular;
+    color: $euiColorDarkShade;
+  }
+}
+
+.euiBreadcrumb__collapsedBadge {
+  height: $euiSize;
+  margin-top: -$euiSizeM / 2;
+  background-color: transparentize($euiColorDarkestShade, .85);
+
+  .euiBadge__content {
+    margin-top: -$euiSizeXS / 2;
+  }
+}
+
 /**
  * 1. Can't target separator vs breadcrumb with -of-type because it takes
  *    the dom element into consideration too and there could be divs, or spans, or a's
@@ -95,6 +112,10 @@
   .euiBreadcrumbSeparator {
     // Align with flex versus inline-block misaligns the separator slightly
     transform: translateY(0) rotate(15deg);
+  }
+
+  .euiBreadcrumbBadge {
+    margin-top: -$euiSizeXS / 2;
   }
 }
 

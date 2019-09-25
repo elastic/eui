@@ -10,3 +10,7 @@
     @include euiFormControlInvalidStyle;
   }
 }
+
+.euiFieldText--withIcon.euiFieldText--compressed {
+  @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
+}

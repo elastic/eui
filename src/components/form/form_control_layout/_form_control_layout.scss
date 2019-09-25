@@ -3,7 +3,7 @@
 
 .euiFormControlLayout {
   // Let the height expand as needed
-  @include euiFormControlSize(auto, $includeAlternates: true);
+  @include euiFormControlSize($includeAlternates: true);
 }
 
 .euiFormControlLayout__childrenWrapper {
@@ -18,8 +18,18 @@
   // Match just the regular drop shadow of inputs
   @include euiFormControlDefaultShadow;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   padding: 1px; /* 1 */
+
+  // Force the stretch of any children so they expand the full height of the control
+  > *,
+  .euiPopover__anchor,
+  .euiButtonEmpty,
+  .euiText,
+  .euiFormLabel,
+  .euiButtonIcon {
+    height: 100%;
+  }
 
   .euiFormControlLayout__childrenWrapper {
     flex-grow: 1;
@@ -27,51 +37,126 @@
 
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
+    @include euiTextTruncate;
     flex-shrink: 0;
-    height: $euiFormControlHeight - 2px; /* 1 */
-    line-height: $euiFontSize;
-    border: none; // remove any border in case it exists
+    height: 100%;
+    border-radius: 0;
 
-    &:disabled {
-      background-color: $euiFormBackgroundDisabledColor;
-      color: $euiFormControlDisabledColor; // ensures established contrast
+    // ICONS
+
+    &.euiIcon,
+    .euiIcon {
+      padding: 0 $euiSizeS;
+      width: $euiSizeXL;
+      border-radius: 0;
+      background-color: $euiFormInputGroupLabelBackground;
     }
 
-    // This is the only way to target specific components to override styling
-    &.euiFormLabel,
-    &.euiText {
-      white-space: nowrap;
-      margin-bottom: 0;
-      padding: $euiFormControlPadding;
-      border: none;
-      background-color: $euiFormInputGroupLabelBackground;
-      line-height: $euiFontSize;
+
+    &.euiButtonIcon,
+    &.euiButtonEmpty,
+    .euiButtonIcon,
+    .euiButtonEmpty {
+      transform: none !important;
+
+      // Undo sizing from icons inside buttons
+      .euiIcon {
+        background: none !important;
+        padding: 0;
+        width: $euiSize;
+      }
+    }
+  }
+
+  .euiButtonIcon {
+    padding: 0 $euiSizeS;
+    width: $euiSizeXL;
+    border-radius: 0;
+    background-color: $euiFormInputGroupLabelBackground;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px $euiFocusRingColor;
+    }
+  }
+
+  .euiToolTipAnchor > .euiIcon {
+    height: 100%;
+    background-color: $euiFormInputGroupLabelBackground;
+    padding: 0 $euiSizeS;
+    width: $euiSizeXL;
+    border-radius: 0;
+  }
+
+  > .euiFormControlLayout__prepend,
+  > .euiFormControlLayout__append {
+    max-width: 50%; // Make sure max-width only applies to the outer most append/prepend element
+  }
+
+  // sass-lint:disable-block no-important
+  // This is the only way to target specific components to override styling
+
+  // TEXT
+
+  .euiFormLabel,
+  .euiText {
+    background-color: $euiFormInputGroupLabelBackground;
+    padding: $euiFormControlPadding;
+    line-height: $euiFontSize !important;
+    cursor: default !important; // pointer cursor on some form labels but not others is confusing
+
+    // If the next sibiling is not the input, pull it closer to the text to reduce space
+    + *:not(.euiFormControlLayout__childrenWrapper) {
+      margin-left: -$euiFormControlPadding;
+    }
+  }
+
+  // If any child that is not the input has a next sibling that is text, pull it closer to the text to reduce space
+  > *:not(.euiFormControlLayout__childrenWrapper) {
+    + .euiFormLabel,
+    + .euiText {
+      margin-left: -$euiFormControlPadding;
     }
   }
 
   //
-  // Borders
+  // BORDERS on buttons only
 
-  .euiFormControlLayout__prepend {
-    border-right: 1px solid $euiFormBorderColor;
+  .euiButtonEmpty {
+    border-right: $euiFormInputGroupBorder;
   }
 
-  .euiFormControlLayout__append {
-    border-left: 1px solid $euiFormBorderColor;
+  // Any buttons after the children wrapper or inside any elements after the children wrapper
+  // Need to swap border sides
+  .euiFormControlLayout__childrenWrapper ~ .euiButtonEmpty,
+  .euiFormControlLayout__childrenWrapper ~ * .euiButtonEmpty {
+    border-right: none;
+    border-left: $euiFormInputGroupBorder;
   }
 
   //
   // Compressed alterations
 
   &.euiFormControlLayout--compressed {
-    .euiFormControlLayout__prepend,
-    .euiFormControlLayout__append {
-      height: $euiFormControlCompressedHeight - 2px; /* 1 */
+    @include euiFormControlDefaultShadow($borderOnly: true);
+    border-radius: $euiBorderRadius / 2;
+    overflow: hidden; // Keeps backgrounds inside border radius
 
-      &.euiFormLabel,
-      &.euiText {
-        padding-top: $euiFormControlCompressedPadding;
-        padding-bottom: $euiFormControlCompressedPadding;
+    // Padding
+    .euiFormLabel,
+    .euiText {
+      padding: $euiFormControlCompressedPadding;
+
+      // If the next sibiling is not the input, pull it closer to the text to reduce space
+      + *:not(.euiFormControlLayout__childrenWrapper) {
+        margin-left: -$euiFormControlCompressedPadding;
+      }
+    }
+
+    // If any child that is not the input has a next sibling that is text, pull it closer to the text to reduce space
+    > *:not(.euiFormControlLayout__childrenWrapper) {
+      + .euiFormLabel,
+      + .euiText {
+        margin-left: -$euiFormControlCompressedPadding;
       }
     }
   }
@@ -80,18 +165,9 @@
   // ReadOnly alterations
   &.euiFormControlLayout--readOnly {
     @include euiFormControlReadOnlyStyle;
-    padding: 0; /* 1 */
-    background-color: transparent; // Ensures the input and layout don't double up on background color
 
-    .euiFormControlLayout__prepend,
-    .euiFormControlLayout__append {
-      height: $euiFormControlHeight; // Matching input height, as euiFormControlSize() does not apply to the smaller height to readOnly states
+    input {
+      background-color: transparent; // Ensures the input and layout don't double up on background color
     }
   }
-}
-
-.euiFormControlLayout-isDisabled,
-.euiFormControlLayout-isDisabled .euiDatePickerRange--inGroup {
-  background-color: $euiFormBackgroundDisabledColor;
-  color: $euiColorDarkShade;
 }
