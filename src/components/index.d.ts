@@ -9,7 +9,6 @@
 /// <reference path="./flyout/index.d.ts" />
 /// <reference path="./form/index.d.ts" />
 /// <reference path="./header/index.d.ts" />
-/// <reference path="./key_pad_menu/index.d.ts" />
 /// <reference path="./link/index.d.ts" />
 /// <reference path="./modal/index.d.ts" />
 /// <reference path="./page/index.d.ts" />
