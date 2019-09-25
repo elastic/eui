@@ -96,6 +96,7 @@ const iconTypes = [
   'inputOutput',
   'inspect',
   'invert',
+  'ip',
   'kqlField',
   'kqlFunction',
   'kqlOperand',
