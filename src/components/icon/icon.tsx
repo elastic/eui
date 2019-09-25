@@ -446,7 +446,6 @@ export class EuiIcon extends Component<Props, State> {
   isMounted = true;
   constructor(props: Props) {
     super(props);
-    // console.log('constructing');
 
     const { type } = props;
     const initialIcon = getInitialIcon(type);

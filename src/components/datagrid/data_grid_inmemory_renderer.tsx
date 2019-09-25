@@ -27,6 +27,9 @@ function noop() {}
 const _queue: Function[] = [];
 
 function processQueue() {
+  // the queued functions trigger react setStates which, if unbatched,
+  // each cause a full update->render->dom pass _per function_
+  // instead, tell React to wait until all updates are finished before re-rendering
   unstable_batchedUpdates(() => {
     for (let i = 0; i < _queue.length; i++) {
       _queue[i]();
