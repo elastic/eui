@@ -1,10 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Modified `EuiFacetButton` to use `$euiFocusBackgroundColor` for `:focus` state ([2365](https://github.com/elastic/eui/pull/2365))
+- Added a `showMaxPopover` option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
+- Added `data-test-subj` support for basic and in-memory tables' actions ([#2353](https://github.com/elastic/eui/pull/2353))
 
 **Bug fixes**
 
 - Fixed spacing of `EuiFormErrorText` to match `EuiFormHelpText` ([#2354](https://github.com/elastic/eui/pull/2354))
+- Fixed bug in `EuiPopover` where Array.prototype.slice() may have been called on 'undefined' ([#2369](https://github.com/elastic/eui/pull/2369))
 
 ## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
 

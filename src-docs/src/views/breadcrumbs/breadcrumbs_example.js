@@ -47,6 +47,15 @@ const maxSnippet = `<EuiBreadcrumbs
 />
 `;
 
+import Popover from './popover';
+const popoverSource = require('!!raw-loader!./popover');
+const popoverHtml = renderToHtml(Popover);
+const popoverSnippet = `<EuiBreadcrumbs
+  breadcrumbs={breadcrumbs}
+  showPopover
+/>
+`;
+
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   sections: [
@@ -151,6 +160,31 @@ export const BreadcrumbsExample = {
       props: { EuiBreadcrumbs },
       snippet: maxSnippet,
       demo: <Max />,
+    },
+    {
+      title: 'Show the hidden items in a popover',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: popoverSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: popoverHtml,
+        },
+      ],
+      text: (
+        <p>
+          When the breadcrumbs need to be truncated, but you wish to still allow
+          users to navigate to any item in the list, you can use the{' '}
+          <EuiCode>showMaxPopover</EuiCode> prop. When used with the{' '}
+          <EuiCode>max</EuiCode> prop, the hidden breadcrumbs will be rendered
+          into an <EuiCode>EuiPopover</EuiCode>.
+        </p>
+      ),
+      props: { EuiBreadcrumbs },
+      snippet: popoverSnippet,
+      demo: <Popover />,
     },
   ],
 };
