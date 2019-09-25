@@ -271,7 +271,8 @@ function useOnResize(
 }
 
 function useInMemoryValues(
-  inMemory?: EuiDataGridInMemory
+  inMemory: EuiDataGridInMemory | undefined,
+  rowCount: number
 ): [
   EuiDataGridInMemoryValues,
   (rowIndex: number, column: EuiDataGridColumn, value: string) => void
@@ -283,20 +284,20 @@ function useInMemoryValues(
   const onCellRender = useCallback(
     (rowIndex, column, value) => {
       setInMemoryValues(inMemoryValues => {
-        const nextInMemoryVaues = { ...inMemoryValues };
-        nextInMemoryVaues[rowIndex] = nextInMemoryVaues[rowIndex] || {};
-        nextInMemoryVaues[rowIndex][column.id] = value;
-        return nextInMemoryVaues;
+        const nextInMemoryValues = { ...inMemoryValues };
+        nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
+        nextInMemoryValues[rowIndex][column.id] = value;
+        return nextInMemoryValues;
       });
     },
     [setInMemoryValues]
   );
 
+  // if `inMemory.level` or `rowCount` changes reset the values
+  const inMemoryLevel = inMemory && inMemory.level;
   useEffect(() => {
-    if (inMemory == null) {
-      setInMemoryValues({});
-    }
-  }, [inMemory]);
+    setInMemoryValues({});
+  }, [inMemoryLevel, rowCount]);
 
   return [inMemoryValues, onCellRender];
 }
@@ -437,7 +438,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     className
   );
 
-  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory);
+  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
   const detectedSchema = useDetectSchema(
     inMemoryValues,

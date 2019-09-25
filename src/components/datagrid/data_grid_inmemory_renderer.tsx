@@ -6,10 +6,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { createPortal } from 'react-dom';
+import { createPortal, unstable_batchedUpdates } from 'react-dom';
 import { CellValueElementProps, EuiDataGridCellProps } from './data_grid_cell';
 import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
-import { EuiInnerText } from '../inner_text';
 
 interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
@@ -25,6 +24,72 @@ interface EuiDataGridInMemoryRendererProps {
 
 function noop() {}
 
+const _queue: Function[] = [];
+
+function processQueue() {
+  unstable_batchedUpdates(() => {
+    for (let i = 0; i < _queue.length; i++) {
+      _queue[i]();
+    }
+    _queue.length = 0;
+  });
+}
+
+function enqueue(fn: Function) {
+  if (_queue.length === 0) {
+    setTimeout(processQueue);
+  }
+  _queue.push(fn);
+}
+
+function getElementText(element: HTMLElement) {
+  return 'innerText' in element
+    ? element.innerText
+    : // TS thinks element.innerText always exists, however it doesn't in jest/jsdom enviornment
+      // @ts-ignore-next-line
+      element.textContent || undefined;
+}
+
+const ObservedCell: FunctionComponent<{
+  renderCellValue: EuiDataGridInMemoryRendererProps['renderCellValue'];
+  onCellRender: EuiDataGridInMemoryRendererProps['onCellRender'];
+  i: number;
+  column: EuiDataGridColumn;
+}> = ({ renderCellValue, i, column, onCellRender }) => {
+  const [ref, setRef] = useState<HTMLDivElement | null>();
+
+  useEffect(() => {
+    if (ref) {
+      // this is part of React's component lifecycle, onCellRender->setState are automatically batched
+      onCellRender(i, column, getElementText(ref));
+      const observer = new MutationObserver(() => {
+        // onMutation callbacks aren't in the component lifecycle, intentionally batch any effects
+        enqueue(onCellRender.bind(null, i, column, getElementText(ref)));
+      });
+      observer.observe(ref, {
+        characterData: true,
+        subtree: true,
+        attributes: true,
+        childList: true,
+      });
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [ref]);
+
+  const CellElement = renderCellValue as JSXElementConstructor<
+    CellValueElementProps
+  >;
+
+  return (
+    <div ref={setRef}>
+      <CellElement rowIndex={i} columnId={column.id} setCellProps={noop} />
+    </div>
+  );
+};
+
 export const EuiDataGridInMemoryRenderer: FunctionComponent<
   EuiDataGridInMemoryRendererProps
 > = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
@@ -33,39 +98,29 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<
   const rows = useMemo(() => {
     const rows = [];
 
-    const CellElement = renderCellValue as JSXElementConstructor<
-      CellValueElementProps
-    >;
-
     for (let i = 0; i < rowCount; i++) {
       rows.push(
         <Fragment key={i}>
           {columns
-            .map(column =>
-              inMemory.skipColumns &&
-              inMemory.skipColumns.indexOf(column.id) !== -1 ? null : (
-                <Fragment key={column.id}>
-                  <EuiInnerText>
-                    {(ref, text) => {
-                      useEffect(() => {
-                        if (text != null) {
-                          onCellRender(i, column, text);
-                        }
-                      }, [text]);
-                      return (
-                        <div ref={ref}>
-                          <CellElement
-                            rowIndex={i}
-                            columnId={column.id}
-                            setCellProps={noop}
-                          />
-                        </div>
-                      );
-                    }}
-                  </EuiInnerText>
-                </Fragment>
-              )
-            )
+            .map(column => {
+              const skipThisColumn =
+                inMemory.skipColumns &&
+                inMemory.skipColumns.indexOf(column.id) !== -1;
+
+              if (skipThisColumn) {
+                return null;
+              }
+
+              return (
+                <ObservedCell
+                  key={column.id}
+                  i={i}
+                  renderCellValue={renderCellValue}
+                  column={column}
+                  onCellRender={onCellRender}
+                />
+              );
+            })
             .filter(cell => cell != null)}
         </Fragment>
       );
