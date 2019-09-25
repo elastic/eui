@@ -9,6 +9,7 @@ declare module '@elastic/eui' {
   export type EuiSwitchProps = CommonProps &
     InputHTMLAttributes<HTMLInputElement> & {
       label?: ReactNode;
+      compressed?: boolean;
     };
 
   export const EuiSwitch: FunctionComponent<EuiSwitchProps>;

@@ -195,6 +195,57 @@ exports[`EuiBreadcrumbs props max renders 3 items 1`] = `
 </nav>
 `;
 
+exports[`EuiBreadcrumbs props render a popover is rendered 1`] = `
+<nav
+  aria-label="breadcrumb"
+  class="euiBreadcrumbs euiBreadcrumbs--truncate euiBreadcrumbs--responsive"
+>
+  <button
+    class="euiLink euiLink--subdued euiBreadcrumb"
+    title="Animals"
+    type="button"
+  >
+    Animals
+  </button>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <div
+    class="euiPopover euiPopover--anchorDownCenter"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button
+        aria-label="Show all breadcrumbs"
+        class="euiBadge euiBadge-isClickable euiBadge--iconLeft euiBadge--default euiBreadcrumb euiBreadcrumb__collapsedBadge"
+        title="View hidden breadcrumbs"
+      >
+        <span
+          class="euiBadge__content"
+        >
+          <span
+            class="euiBadge__text"
+          >
+            …
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    class="euiBreadcrumbSeparator"
+  />
+  <span
+    aria-current="page"
+    class="euiBreadcrumb euiBreadcrumb--last"
+    title="Edit"
+  >
+    Edit
+  </span>
+</nav>
+`;
+
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 <nav
   aria-label="breadcrumb"

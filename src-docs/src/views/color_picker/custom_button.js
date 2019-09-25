@@ -5,6 +5,7 @@ import {
   EuiFormRow,
   EuiColorPickerSwatch,
   EuiBadge,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { isValidHex } from '../../../../src/services';
@@ -43,6 +44,7 @@ export class CustomButton extends Component {
             }
           />
         </EuiFormRow>
+        <EuiSpacer />
         <EuiColorPicker
           onChange={this.handleChange}
           color={this.state.color}

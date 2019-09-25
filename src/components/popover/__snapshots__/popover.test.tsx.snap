@@ -134,7 +134,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         <div
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-          style="top: 16px; left: -22px; z-index: 0;"
+          style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
             class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -181,7 +181,7 @@ exports[`EuiPopover props ownFocus defaults to false 1`] = `
         <div
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-          style="top: 16px; left: -22px; z-index: 0;"
+          style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
             class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -235,7 +235,7 @@ exports[`EuiPopover props ownFocus renders true 1`] = `
           aria-live="off"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
           data-autofocus="true"
-          style="top: 16px; left: -22px; z-index: 0;"
+          style="top: 16px; left: -22px; z-index: 2000;"
           tabindex="0"
         >
           <div
@@ -283,7 +283,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         <div
           aria-live="assertive"
           class="euiPanel euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
-          style="top: 16px; left: -22px; z-index: 0;"
+          style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
             class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -330,7 +330,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         <div
           aria-live="assertive"
           class="euiPanel euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
-          style="top: 16px; left: -22px; z-index: 0;"
+          style="top: 16px; left: -22px; z-index: 2000;"
         >
           <div
             class="euiPopover__panelArrow euiPopover__panelArrow--bottom"

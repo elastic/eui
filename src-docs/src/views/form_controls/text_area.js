@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { EuiTextArea, EuiSpacer } from '../../../../src/components';
+import { EuiTextArea } from '../../../../src/components';
+import { DisplayToggles } from './display_toggles';
 
 export default class extends Component {
   constructor(props) {
@@ -19,43 +20,15 @@ export default class extends Component {
 
   render() {
     return (
-      <Fragment>
+      /* DisplayToggles wrapper for Docs only */
+      <DisplayToggles canLoading={false}>
         <EuiTextArea
           placeholder="Placeholder text"
           aria-label="Use aria labels when no actual label is in use"
           value={this.state.value}
           onChange={this.onChange}
         />
-
-        <EuiSpacer size="m" />
-
-        <EuiTextArea
-          placeholder="Disabled"
-          aria-label="Use aria labels when no actual label is in use"
-          value={this.state.value}
-          onChange={this.onChange}
-          disabled
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiTextArea
-          placeholder="Read-only"
-          aria-label="Use aria labels when no actual label is in use"
-          value={this.state.value}
-          onChange={this.onChange}
-          readOnly
-        />
-
-        <EuiSpacer size="m" />
-
-        <EuiTextArea
-          placeholder="compressed has three rows"
-          value={this.state.value}
-          onChange={this.onChange}
-          compressed
-        />
-      </Fragment>
+      </DisplayToggles>
     );
   }
 }

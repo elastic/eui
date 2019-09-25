@@ -14,4 +14,8 @@
   &::-webkit-search-decoration {
     -webkit-appearance: none;  /* 1 */
   }
+
+  &.euiFieldSearch--compressed {
+    @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
+  }
 }

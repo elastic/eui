@@ -7,6 +7,7 @@ import {
 } from '../../../../src/components';
 
 import makeId from '../../../../src/components/form/form_row/make_id';
+import { EuiPanel } from '../../../../src/components/panel/panel';
 
 export default class extends Component {
   constructor(props) {
@@ -43,6 +44,21 @@ export default class extends Component {
       {
         id: `${idPrefix2}2`,
         label: 'Option 3',
+      },
+    ];
+
+    this.toggleButtonsCompressed = [
+      {
+        id: `${idPrefix2}3`,
+        label: 'fine',
+      },
+      {
+        id: `${idPrefix2}4`,
+        label: 'rough',
+      },
+      {
+        id: `${idPrefix2}5`,
+        label: 'coarse',
       },
     ];
 
@@ -98,6 +114,7 @@ export default class extends Component {
       },
       toggleIconIdSelected: `${idPrefix3}1`,
       toggleIconIdToSelectedMap: {},
+      toggleCompressedIdSelected: `${idPrefix2}4`,
     };
   }
 
@@ -123,6 +140,12 @@ export default class extends Component {
   onChangeIcons = optionId => {
     this.setState({
       toggleIconIdSelected: optionId,
+    });
+  };
+
+  onChangeCompressed = optionId => {
+    this.setState({
+      toggleCompressedIdSelected: optionId,
     });
   };
 
@@ -173,6 +196,7 @@ export default class extends Component {
           options={this.toggleButtons}
           idSelected={this.state.toggleIdSelected}
           onChange={this.onChange}
+          buttonSize="m"
           isDisabled
           isFullWidth
         />
@@ -184,7 +208,6 @@ export default class extends Component {
         <EuiButtonGroup
           legend="Text align"
           name="textAlign"
-          className="eui-displayInlineBlock"
           options={this.toggleButtonsIcons}
           idSelected={this.state.toggleIconIdSelected}
           onChange={this.onChangeIcons}
@@ -193,13 +216,47 @@ export default class extends Component {
         &nbsp;&nbsp;
         <EuiButtonGroup
           legend="Text style"
-          className="eui-displayInlineBlock"
           options={this.toggleButtonsIconsMulti}
           idToSelectedMap={this.state.toggleIconIdToSelectedMap}
           onChange={this.onChangeIconsMulti}
           type="multi"
           isIconOnly
         />
+        <EuiSpacer />
+        <EuiPanel style={{ maxWidth: 300 }}>
+          <EuiTitle size="xxxs">
+            <h3>
+              Compressed groups should always be fullWidth so they line up
+              nicely in their small container.
+            </h3>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiButtonGroup
+            name="coarsness"
+            legend="This is a basic group"
+            options={this.toggleButtonsCompressed}
+            idSelected={this.state.toggleCompressedIdSelected}
+            onChange={this.onChangeCompressed}
+            buttonSize="compressed"
+            isFullWidth
+          />
+          <EuiSpacer />
+          <EuiTitle size="xxxs">
+            <h3>Unless they are icon only</h3>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiButtonGroup
+            name="textStyleCompressed"
+            legend="Text style"
+            className="eui-displayInlineBlock"
+            options={this.toggleButtonsIconsMulti}
+            idToSelectedMap={this.state.toggleIconIdToSelectedMap}
+            onChange={this.onChangeIconsMulti}
+            type="multi"
+            buttonSize="compressed"
+            isIconOnly
+          />
+        </EuiPanel>
       </Fragment>
     );
   }

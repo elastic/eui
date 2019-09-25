@@ -12,7 +12,6 @@ export const GuideLocaleSelector = ({ selectedLocale, onToggleLocale }) => {
         onChange={() =>
           onToggleLocale(selectedLocale === 'en' ? 'en-xa' : 'en')
         }
-        compressed={true}
       />
     </EuiFormRow>
   );

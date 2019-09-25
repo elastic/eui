@@ -98,6 +98,8 @@ import { FormControlsExample } from './views/form_controls/form_controls_example
 
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
+import { FormCompressedExample } from './views/form_compressed/form_compressed_example';
+
 import { FormValidationExample } from './views/form_validation/form_validation_example';
 
 import { HeaderExample } from './views/header/header_example';
@@ -162,7 +164,7 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-// import { SuggestExample } from './views/suggest/suggest_example';
+import { SuggestExample } from './views/suggest/suggest_example';
 
 import { TableExample } from './views/tables/tables_example';
 
@@ -339,8 +341,9 @@ const navigation = [
   {
     name: 'Forms',
     items: [
-      FormLayoutsExample,
       FormControlsExample,
+      FormLayoutsExample,
+      FormCompressedExample,
       FormValidationExample,
       SuperSelectExample,
       ComboBoxExample,
@@ -352,7 +355,7 @@ const navigation = [
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-      // SuggestExample,
+      SuggestExample,
     ].map(example => createExample(example)),
   },
   {

@@ -91,6 +91,7 @@ export class CollapsedItemActions extends Component {
             key={key}
             disabled={!enabled}
             icon={action.icon}
+            data-test-subj={action['data-test-subj']}
             onClick={this.onClickItem.bind(
               null,
               action.onClick.bind(null, item)
@@ -113,6 +114,7 @@ export class CollapsedItemActions extends Component {
             isDisabled={allDisabled}
             onClick={this.togglePopover.bind(this)}
             onFocus={onFocus}
+            data-test-subj="euiCollapsedItemActionsButton"
           />
         )}
       </EuiI18n>

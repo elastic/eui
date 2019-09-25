@@ -6,7 +6,10 @@ export { EuiFieldSearch } from './field_search';
 export { EuiFieldText } from './field_text';
 export { EuiFilePicker } from './file_picker';
 export { EuiForm } from './form';
-export { EuiFormControlLayout } from './form_control_layout';
+export {
+  EuiFormControlLayout,
+  EuiFormControlLayoutDelimited,
+} from './form_control_layout';
 export { EuiFormErrorText } from './form_error_text';
 export { EuiFormHelpText } from './form_help_text';
 export { EuiFormLabel } from './form_label';

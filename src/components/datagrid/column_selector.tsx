@@ -89,14 +89,14 @@ export const useColumnSelector = (
           )}
         </EuiI18n>
       }>
-      <EuiPopoverTitle>
-        <EuiFieldText
-          compressed
-          placeholder="Search"
-          aria-label="Search columns"
-        />
-      </EuiPopoverTitle>
-      <div className="euiDataGridColumnSelector__columnList">
+      <div>
+        <EuiPopoverTitle>
+          <EuiFieldText
+            compressed
+            placeholder="Search"
+            aria-label="Search columns"
+          />
+        </EuiPopoverTitle>
         <EuiDragDropContext onDragEnd={onDragEnd}>
           <EuiDroppable
             droppableId="columnOrder"
@@ -115,6 +115,7 @@ export const useColumnSelector = (
                             label={id}
                             checked={visibleColumnIds.has(id)}
                             compressed
+                            className="euiSwitch--mini"
                             onChange={({
                               currentTarget: { checked },
                             }: React.FormEvent<HTMLInputElement>) => {

@@ -17,14 +17,40 @@
     }
   }
 
-  &.euiImage--allowFullScreen:hover {
-    .euiImage__img {
-      cursor: pointer;
+  &.euiImage--allowFullScreen {
+    &:focus .euiImage__img {
+      outline: 2px solid $euiFocusRingColor;
     }
 
-    .euiImage__icon {
+    &:hover .euiImage__icon {
       visibility: visible;
-      opacity: 1;
+      fill-opacity: 1;
+    }
+
+    &:hover .euiImage__caption,
+    &:focus .euiImage__caption {
+      text-decoration: underline;
+    }
+
+    &:not(.euiImage--hasShadow):hover,
+    &:not(.euiImage--hasShadow):focus {
+      .euiImage__img {
+        @include euiBottomShadowMedium;
+      }
+    }
+
+    &.euiImage--hasShadow:hover,
+    &.euiImage--hasShadow:focus {
+      .euiImage__img {
+        @include euiBottomShadow;
+      }
+    }
+
+    .euiImage__img {
+      cursor: pointer;
+
+      // transition the shadow
+      transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
     }
   }
 
@@ -62,31 +88,48 @@
 
 .euiImage__icon {
   visibility: hidden;
-  opacity: 0;
+  fill-opacity: 0;
   position: absolute;
   right: $euiSize;
   top: $euiSize;
-  transition: opacity $euiAnimSpeedSlow $euiAnimSlightResistance ;
+  transition: fill-opacity $euiAnimSpeedSlow $euiAnimSlightResistance;
   cursor: pointer;
 }
 
 // The FullScreen image that optionally pops up on click.
-.euiImageFullScreen {
+.euiImage-isFullScreen {
+  position: relative;
   max-height: 80vh;
   max-width: 80vw;
   animation: euiImageFullScreen $euiAnimSpeedExtraSlow $euiAnimSlightBounce;
 
-  .euiImageFullScreen__img {
+  .euiImage-isFullScreen__icon {
+    position: absolute;
+    right: $euiSize;
+    top: $euiSize;
+  }
+
+  .euiImage-isFullScreen__img {
     max-height: 80vh;
     max-width: 80vw;
     cursor: pointer;
+    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
   }
 
-  &:hover .euiImageFullScreen__img {
+  &:hover .euiImage-isFullScreen__img {
+    @include euiBottomShadow;
     cursor: pointer;
   }
-}
 
+  &:focus .euiImage-isFullScreen__img {
+    outline: 2px solid $euiFocusRingColor;
+  }
+
+  &:hover .euiImage__caption,
+  &:focus-within .euiImage__caption {
+    text-decoration: underline;
+  }
+}
 
 @keyframes euiImageFullScreen {
   0% {
