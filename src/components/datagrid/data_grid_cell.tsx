@@ -7,6 +7,8 @@ import React, {
   createRef,
   HTMLAttributes,
   useState,
+  KeyboardEvent,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 // @ts-ignore
@@ -20,6 +22,7 @@ import { CommonProps, Omit } from '../common';
 import { EuiButtonIcon } from '../button';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
+import { keyCodes } from '../../services';
 
 export interface CellValueElementProps {
   rowIndex: number;
@@ -38,6 +41,7 @@ export interface EuiDataGridCellProps {
   isGridNavigationEnabled: boolean;
   interactiveCellId: string;
   isExpandable: boolean;
+  isExpanded?: boolean;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
     | ((props: CellValueElementProps) => ReactNode);
@@ -45,6 +49,7 @@ export interface EuiDataGridCellProps {
 
 interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
+  popoverIsOpen: boolean;
 }
 
 type EuiDataGridCellValueProps = Omit<
@@ -57,8 +62,12 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellProps: CellValueElementProps['setCellProps'];
   }
 > = memo(props => {
-  const { renderCellValue, isExpandable, ...rest } = props;
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const { renderCellValue, isExpandable, isExpanded, ...rest } = props;
+  const [popoverIsOpen, setPopoverIsOpen] = useState(isExpanded);
+
+  useEffect(() => {
+    setPopoverIsOpen(isExpanded);
+  }, [isExpanded]);
 
   // React is more permissable than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
@@ -139,6 +148,7 @@ export class EuiDataGridCell extends Component<
   cellContentsRef = createRef<HTMLDivElement>();
   state: EuiDataGridCellState = {
     cellProps: {},
+    popoverIsOpen: false,
   };
 
   isInteractiveCell() {
@@ -262,6 +272,7 @@ export class EuiDataGridCell extends Component<
     const {
       width,
       isFocusable,
+      isExpandable,
       isGridNavigationEnabled,
       interactiveCellId,
       columnType,
@@ -293,6 +304,22 @@ export class EuiDataGridCell extends Component<
       cellProps.style = widthStyle;
     }
 
+    const handleCellKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+      if (isExpandable) {
+        switch (e.keyCode) {
+          case keyCodes.ENTER:
+            e.preventDefault();
+            this.setState({ popoverIsOpen: true });
+            console.log('hello');
+            break;
+          case keyCodes.F2:
+            e.preventDefault();
+            this.setState({ popoverIsOpen: true });
+            break;
+        }
+      }
+    };
+
     return (
       <div
         role="gridcell"
@@ -301,6 +328,7 @@ export class EuiDataGridCell extends Component<
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
+        onKeyDown={handleCellKeyDown}
         onFocus={() => onCellFocus([colIndex, rowIndex])}>
         <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
           <EuiMutationObserver
@@ -322,6 +350,8 @@ export class EuiDataGridCell extends Component<
                     {...rest}
                     columnType={columnType}
                     setCellProps={this.setCellProps}
+                    isExpandable={isExpandable}
+                    isExpanded={this.state.popoverIsOpen}
                   />
                 </div>
               </div>
