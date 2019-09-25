@@ -37,6 +37,8 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   parentRef?: HTMLDivElement | null;
   colorPickerMode: EuiColorPickerProps['mode'];
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
+  disabled?: boolean;
+  readOnly?: boolean;
 }
 
 export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
@@ -53,6 +55,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   parentRef,
   colorPickerMode,
   colorPickerSwatches,
+  disabled,
+  readOnly,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
@@ -176,15 +180,16 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           value={stop}
           onClick={openPopover}
           onFocus={onFocus}
-          onKeyDown={handleKeyDown}
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleInteraction}
-          onTouchMove={handleInteraction}
+          onKeyDown={readOnly ? undefined : handleKeyDown}
+          onMouseDown={readOnly ? undefined : handleMouseDown}
+          onTouchStart={readOnly ? undefined : handleInteraction}
+          onTouchMove={readOnly ? undefined : handleInteraction}
           className="euiColorStopThumb"
           tabIndex={-1}
           style={{
             background: color,
           }}
+          disabled={disabled}
         />
       }>
       <div className="euiColorStop">
@@ -200,11 +205,13 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 <EuiFormRow
                   label={stopLabel}
                   display="rowCompressed"
+                  readOnly={readOnly}
                   isInvalid={stopIsInvalid}
                   error={stopIsInvalid ? stopErrorMessage : null}>
                   <EuiFieldNumber
                     inputRef={setNumberInputRef}
                     compressed={true}
+                    readOnly={readOnly}
                     min={min}
                     max={max}
                     value={isStopInvalid(stop) ? '' : stop}
@@ -231,7 +238,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     color="danger"
                     aria-label={removeLabel}
                     title={removeLabel}
-                    disabled={!onRemove}
+                    disabled={!onRemove || readOnly}
                     onClick={handleOnRemove}
                   />
                 )}
@@ -239,14 +246,18 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             </EuiFormRow>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="m" />
-        <EuiColorPicker
-          onChange={handleColorChange}
-          color={color}
-          mode={colorPickerMode}
-          swatches={colorPickerSwatches}
-          display="inline"
-        />
+        {!readOnly && (
+          <React.Fragment>
+            <EuiSpacer size="m" />
+            <EuiColorPicker
+              onChange={handleColorChange}
+              color={color}
+              mode={colorPickerMode}
+              swatches={colorPickerSwatches}
+              display="inline"
+            />
+          </React.Fragment>
+        )}
         {colorPickerMode !== 'swatch' && (
           <React.Fragment>
             <EuiSpacer size="s" />
@@ -260,10 +271,12 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 <EuiFormRow
                   label={hexLabel}
                   display="rowCompressed"
+                  readOnly={readOnly}
                   isInvalid={colorIsInvalid}
                   error={colorIsInvalid ? hexErrorMessage : null}>
                   <EuiFieldText
                     compressed={true}
+                    readOnly={readOnly}
                     value={color}
                     isInvalid={colorIsInvalid}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

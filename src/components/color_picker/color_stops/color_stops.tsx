@@ -23,6 +23,10 @@ interface EuiColorStopsProps extends CommonProps {
   colorStops: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
   fullWidth?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  invalid?: boolean;
+  compressed?: boolean;
   className?: string;
   max: number;
   min: number;
@@ -58,6 +62,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   mode = 'default',
   colorStops,
   onChange,
+  disabled,
+  readOnly,
+  // invalid,
+  compressed,
   fullWidth,
   className,
   stopType = 'gradient',
@@ -85,9 +93,15 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   }, [sortedStops]);
 
+  const isNotInteractive = disabled || readOnly;
+
   const classes = classNames(
     'euiColorStops',
-    { 'euiColorStops-isDragging': isHoverDisabled },
+    {
+      'euiColorStops-isDragging': isHoverDisabled,
+      'euiColorStops-isDisabled': disabled,
+      'euiColorStops-isReadOnly': readOnly,
+    },
     className
   );
 
@@ -112,7 +126,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const onFocusStop = (index: number) => {
-    if (!wrapperRef) return;
+    if (disabled || !wrapperRef) return;
     const toFocus = wrapperRef.querySelector<HTMLElement>(
       `#${STOP_ATTR}${index}`
     );
@@ -145,7 +159,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const handleAddHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!wrapperRef) return;
+    if (isNotInteractive || !wrapperRef) return;
     const stop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const position = getPositionFromStopFn(stop);
 
@@ -153,7 +167,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const handleAddClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTargetAThumb(e.target) || !wrapperRef) return;
+    if (isNotInteractive || isTargetAThumb(e.target) || !wrapperRef) return;
     const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
 
@@ -162,18 +176,19 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
     switch (e.keyCode) {
       case keyCodes.ESCAPE:
         onFocusWrapper();
         break;
 
       case keyCodes.ENTER:
-        if (!hasFocus) return;
+        if (readOnly || !hasFocus) return;
         onAdd();
         break;
 
       case keyCodes.BACKSPACE:
-        if (hasFocus || focusedStopIndex == null) return;
+        if (readOnly || hasFocus || focusedStopIndex == null) return;
         if (isTargetAThumb(e.target)) {
           const index = sortedStops[focusedStopIndex].id;
           onRemove(index);
@@ -230,6 +245,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       parentRef={wrapperRef}
       colorPickerMode={mode}
       colorPickerSwatches={swatches}
+      disabled={disabled}
+      readOnly={readOnly}
     />
   ));
 
@@ -263,10 +280,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       ref={setWrapperRef}
       className={classes}
       fullWidth={fullWidth}
-      tabIndex={0}
-      onMouseDown={() => setIsHoverDisabled(true)}
-      onMouseUp={() => setIsHoverDisabled(false)}
-      onMouseLeave={() => setIsHoverDisabled(false)}
+      tabIndex={disabled ? -1 : 0}
+      onMouseDown={() => !disabled && setIsHoverDisabled(true)}
+      onMouseUp={() => !disabled && setIsHoverDisabled(false)}
+      onMouseLeave={() => !disabled && setIsHoverDisabled(false)}
       onKeyDown={handleKeyDown}
       onFocus={e => {
         if (e.target === wrapperRef) {
@@ -274,17 +291,23 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
       }}
       onBlur={() => setHasFocus(false)}>
-      <EuiRangeTrack min={min} max={max}>
+      <EuiRangeTrack
+        min={min}
+        max={max}
+        compressed={compressed}
+        disabled={disabled}>
         <EuiRangeHighlight
           min={min}
           max={max}
           lowerValue={min}
           upperValue={max}
           color={background}
+          compressed={compressed}
         />
         <div
           className={classNames('euiColorStops__addContainer', {
-            'euiColorStops__addContainer-isDisabled': isHoverDisabled,
+            'euiColorStops__addContainer-isDisabled':
+              isHoverDisabled || disabled || readOnly,
           })}
           onClick={handleAddClick}
           onMouseMove={handleAddHover}>

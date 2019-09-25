@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { EuiColorStops, EuiFormRow } from '../../../../src/components';
+import { DisplayToggles } from '../form_controls/display_toggles';
+import {
+  EuiColorStops,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export const ColorStops = () => {
   const generateRandomColor = () =>
@@ -99,7 +104,6 @@ export const ColorStops = () => {
           addColor={addColor}
         />
       </EuiFormRow>
-
       <EuiFormRow label="Extended range">
         <EuiColorStops
           onChange={handleExtendedChange}
@@ -108,7 +112,6 @@ export const ColorStops = () => {
           max={400}
         />
       </EuiFormRow>
-
       <EuiFormRow label="Swatch-only mode">
         <EuiColorStops
           onChange={handleChange}
@@ -118,7 +121,6 @@ export const ColorStops = () => {
           mode="swatch"
         />
       </EuiFormRow>
-
       <EuiFormRow label="Picker-only mode">
         <EuiColorStops
           onChange={handleChange}
@@ -128,7 +130,6 @@ export const ColorStops = () => {
           mode="picker"
         />
       </EuiFormRow>
-
       <EuiFormRow label="Custom swatches">
         <EuiColorStops
           onChange={handleChange}
@@ -138,7 +139,6 @@ export const ColorStops = () => {
           swatches={['#333', '#666', '#999', '#CCC']}
         />
       </EuiFormRow>
-
       <EuiFormRow label="Fixed color segments">
         <EuiColorStops
           onChange={handleChange}
@@ -148,6 +148,17 @@ export const ColorStops = () => {
           stopType="fixed"
         />
       </EuiFormRow>
+
+      <EuiSpacer size="xxl" />
+
+      <DisplayToggles canLoading={false}>
+        <EuiColorStops
+          onChange={handleChange}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+        />
+      </DisplayToggles>
     </React.Fragment>
   );
 };

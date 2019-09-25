@@ -1,6 +1,6 @@
 @import '../../form/range/_variables';
 
-.euiColorStops {
+.euiColorStops:not(.euiColorStops-isDisabled) {
   &:focus {
     outline: 2px solid $euiFocusRingColor;
   }
@@ -55,7 +55,7 @@
   height: 100%;
 }
 
-.euiColorStopThumb.euiRangeThumb {
+.euiColorStopThumb.euiRangeThumb:not(:disabled) {
   top: 0;
   margin-top: 0;
   pointer-events: auto;
@@ -66,6 +66,6 @@
   }
 }
 
-.euiColorStops.euiColorStops-isDragging {
+.euiColorStops.euiColorStops-isDragging:not(.euiColorStops-isDisabled):not(.euiColorStops-isReadOnly) {
   cursor: grabbing;
 }
