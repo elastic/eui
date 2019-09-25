@@ -16,11 +16,10 @@
   margin-top: $euiRangeThumbHeight * -.5;
 
   &:hover:not(.euiColorStops__addContainer-isDisabled) {
-    // TODO: copy? default? none?
-    cursor: copy;
+    cursor: pointer;
 
     .euiColorStops__addTarget {
-      display: block;
+      opacity: .7;
     }
   }
 }
@@ -28,13 +27,14 @@
 .euiColorStops__addTarget {
   @include euiCustomControl($type: 'round');
   @include euiRangeThumbStyle;
-  display: none;
   position: absolute;
   top: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbHeight;
   background-color: $euiColorLightestShade;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity $euiAnimSpeedFast;
 }
 
 .euiColorStop {
@@ -59,4 +59,9 @@
   top: 0;
   margin-top: 0;
   pointer-events: auto;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
