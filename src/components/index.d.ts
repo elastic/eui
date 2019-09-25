@@ -1,4 +1,3 @@
-/// <reference path="./call_out/index.d.ts" />
 /// <reference path="./code/index.d.ts" />
 /// <reference path="./card/index.d.ts" />
 /// <reference path="./combo_box/index.d.ts" />
