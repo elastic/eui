@@ -5058,6 +5058,21 @@ exports[`EuiIcon props type online is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type package is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14.49609,4.2121,8.49615.78351a1.00012,1.00012,0,0,0-.9923,0l-6,3.42859A1,1,0,0,0,1,5.08032v5.83936a.99989.99989,0,0,0,.50385.86822l6,3.42859a.99982.99982,0,0,0,.9923,0l5.99994-3.42859A1,1,0,0,0,15,10.91968V5.08032A1,1,0,0,0,14.49609,4.2121Zm-8.739,2.43042,5.48834-3.13623,2.2428,1.28161L8,7.92413ZM8,1.65173l2.23773,1.27869L4.74939,6.06659,2.51172,4.7879ZM2,5.64734,4.25,6.933V10a.5.5,0,0,0,1,0V7.50446L7.5,8.79016V14.0625L2,10.91968ZM8.5,14.0625V8.79016L14,5.64734v5.27234Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
