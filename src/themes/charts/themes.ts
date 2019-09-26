@@ -89,8 +89,9 @@ function createTheme(colors: any) {
           padding: 8,
         },
         tickLineStyle: {
-          stroke: 'rgba(0,0,0,0)', // transparent
-          strokeWidth: 0,
+          visible: false,
+          stroke: colors.euiColorChartLines.rgba,
+          strokeWidth: 1,
         },
         gridLineStyle: {
           horizontal: {
