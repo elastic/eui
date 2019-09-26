@@ -6599,6 +6599,21 @@ exports[`EuiIcon props type visArea is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type visAreaStacked is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M.5 1a.5.5 0 0 1 .5.5V15h13.5a.5.5 0 1 1 0 1H.5a.5.5 0 0 1-.5-.5v-14A.5.5 0 0 1 .5 1zm4.342 2.194L8.295 7.65l1.837-1.64a.5.5 0 0 1 .703.037l3.035 3.336a.5.5 0 0 1 .13.337v3.78a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V6.02a.5.5 0 0 1 .104-.305l1.947-2.52a.5.5 0 0 1 .791-.001zm-.394 1.123L3 6.191v4.101l1.146-1.146a.5.5 0 0 1 .493-.126l.085.033L8.5 10.94l1.776-.888a.5.5 0 0 1 .36-.034l.088.034L13 11.19V9.913l-2.571-2.826L8.56 8.753a.5.5 0 0 1-.728-.067L4.448 4.317z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type visBarHorizontal is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -6614,6 +6629,21 @@ exports[`EuiIcon props type visBarHorizontal is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type visBarHorizontalStacked is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M.5 0a.5.5 0 0 1 .5.5v14a.5.5 0 1 1-1 0V.5A.5.5 0 0 1 .5 0zm13 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H9v3h2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-9a.5.5 0 1 1 0-1H9v-3H2.5a.5.5 0 0 1 0-1H6V6H2.5a.5.5 0 0 1 0-1H10V2H2.5a.5.5 0 0 1 0-1h11z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type visBarVertical is rendered 1`] = `
 <svg
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
@@ -6625,6 +6655,21 @@ exports[`EuiIcon props type visBarVertical is rendered 1`] = `
 >
   <path
     d="M10 7.5v6a.5.5 0 1 1-1 0V8H6v5.5a.5.5 0 1 1-1 0V3H2v10.5a.5.5 0 1 1-1 0v-11a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5V7h3V4.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 1 1-1 0V5h-3v2.5zM.5 16a.5.5 0 1 1 0-1h14a.5.5 0 1 1 0 1H.5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type visBarVerticalStacked is rendered 1`] = `
+<svg
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14.5 15a.5.5 0 1 1 0 1H.5a.5.5 0 1 1 0-1h14zm-9-13a.5.5 0 0 1 .5.5L5.999 7H9V4.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 1 1-1 0V7h-3v6.5a.5.5 0 0 1-.41.492L9.5 14a.5.5 0 0 1-.5-.5V10H6v3.5a.5.5 0 0 1-.992.09L5 13.5V6H2v7.5a.5.5 0 1 1-1 0v-11a.5.5 0 0 1 .5-.5h4z"
   />
 </svg>
 `;
