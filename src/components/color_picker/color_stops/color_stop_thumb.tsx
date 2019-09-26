@@ -18,6 +18,7 @@ import { EuiFieldNumber, EuiFieldText, EuiFormRow } from '../../form';
 import { EuiI18n } from '../../i18n';
 import { EuiRangeThumb } from '../../form/range/range_thumb';
 import { EuiPopover } from '../../popover';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiSpacer } from '../../spacer';
 
 export interface ColorStop {
@@ -39,6 +40,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
   disabled?: boolean;
   readOnly?: boolean;
+  'aria-valuetext'?: string;
 }
 
 export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
@@ -57,6 +59,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   colorPickerSwatches,
   disabled,
   readOnly,
+  'aria-valuetext': ariaValueText,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
@@ -184,6 +187,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           onMouseDown={readOnly ? undefined : handleMouseDown}
           onTouchStart={readOnly ? undefined : handleInteraction}
           onTouchMove={readOnly ? undefined : handleInteraction}
+          aria-valuetext={ariaValueText}
+          aria-label="Press the Enter key to modify this stop. Press Escape to focus the group."
           className="euiColorStopThumb"
           tabIndex={-1}
           style={{
@@ -193,6 +198,16 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         />
       }>
       <div className="euiColorStop">
+        <EuiScreenReaderOnly>
+          <p aria-live="polite">
+            <EuiI18n
+              token="euiColorStopThumb.screenReaderAnnouncement"
+              default="A popup with a color stop edit form opened.
+            Tab forward to cycle through form controls or press
+            escape to close this popup."
+            />
+          </p>
+        </EuiScreenReaderOnly>
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiI18n

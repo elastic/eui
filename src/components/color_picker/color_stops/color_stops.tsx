@@ -14,9 +14,11 @@ import {
 } from './utils';
 
 import { EuiColorPickerProps } from '../';
+import { EuiI18n } from '../../i18n';
 import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
@@ -64,7 +66,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   onChange,
   disabled,
   readOnly,
-  // invalid,
   compressed,
   fullWidth,
   className,
@@ -247,6 +248,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       colorPickerSwatches={swatches}
       disabled={disabled}
       readOnly={readOnly}
+      aria-valuetext={`Stop: ${colorStop.stop}, Color: ${
+        colorStop.color
+      } (${index + 1} of ${colorStops.length})`}
     />
   ));
 
@@ -291,6 +295,14 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         }
       }}
       onBlur={() => setHasFocus(false)}>
+      <EuiScreenReaderOnly>
+        <p aria-live="polite">
+          <EuiI18n
+            token="euiColorStops.screenReaderAnnouncement"
+            default="Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop."
+          />
+        </p>
+      </EuiScreenReaderOnly>
       <EuiRangeTrack
         min={min}
         max={max}
