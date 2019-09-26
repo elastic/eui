@@ -176,26 +176,32 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         left: `${getPositionFromStopFn(stop)}%`,
       }}
       button={
-        <EuiRangeThumb
-          id={id}
-          min={min}
-          max={max}
-          value={stop}
-          onClick={openPopover}
-          onFocus={onFocus}
-          onKeyDown={readOnly ? undefined : handleKeyDown}
-          onMouseDown={readOnly ? undefined : handleMouseDown}
-          onTouchStart={readOnly ? undefined : handleInteraction}
-          onTouchMove={readOnly ? undefined : handleInteraction}
-          aria-valuetext={ariaValueText}
-          aria-label="Press the Enter key to modify this stop. Press Escape to focus the group."
-          className="euiColorStopThumb"
-          tabIndex={-1}
-          style={{
-            background: color,
-          }}
-          disabled={disabled}
-        />
+        <EuiI18n
+          token="euiColorStopThumb.buttonAriaLabel"
+          default="Press the Enter key to modify this stop. Press Escape to focus the group.">
+          {(buttonAriaLabel: string) => (
+            <EuiRangeThumb
+              id={id}
+              min={min}
+              max={max}
+              value={stop}
+              onClick={openPopover}
+              onFocus={onFocus}
+              onKeyDown={readOnly ? undefined : handleKeyDown}
+              onMouseDown={readOnly ? undefined : handleMouseDown}
+              onTouchStart={readOnly ? undefined : handleInteraction}
+              onTouchMove={readOnly ? undefined : handleInteraction}
+              aria-valuetext={ariaValueText}
+              aria-label={buttonAriaLabel}
+              className="euiColorStopThumb"
+              tabIndex={-1}
+              style={{
+                background: color,
+              }}
+              disabled={disabled}
+            />
+          )}
+        </EuiI18n>
       }>
       <div className="euiColorStop">
         <EuiScreenReaderOnly>
