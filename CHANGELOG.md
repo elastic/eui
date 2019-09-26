@@ -8,6 +8,7 @@
 - Set `textOnly={true}` for expanded rows in `EuiBasicTable` ([#2376](https://github.com/elastic/eui/pull/2376))
 - Added `visAreaStacked`, `visBarVerticalStacked`, and `visBarHorizontalStacked` icons to glyph set ([#2379](https://github.com/elastic/eui/pull/2379))
 - Adjusted style of beta badge on `EuiKeyPadMenuItem` ([#2375](https://github.com/elastic/eui/pull/2375))
+- Migrate `EuiFacetGroup`, `EuiKeyPadMenu` and `EuiCallOut` to TS ([#2382](https://github.com/elastic/eui/pull/2382))
 
 **Bug fixes**
 
