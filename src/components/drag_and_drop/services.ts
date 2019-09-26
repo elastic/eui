@@ -4,7 +4,7 @@ interface DropResult {
   [droppableId: string]: any[];
 }
 
-export const reorder = (
+export const euiDragDropReorder = (
   list: [],
   startIndex: number,
   endIndex: number
@@ -16,7 +16,7 @@ export const reorder = (
   return result;
 };
 
-export const move = (
+export const euiDragDropMove = (
   sourceList: any[],
   destinationList: any[],
   dropResultSource: DraggableLocation,
@@ -34,7 +34,7 @@ export const move = (
   };
 };
 
-export const copy = (
+export const euiDragDropCopy = (
   sourceList: any[],
   destinationList: any[],
   dropResultSource: DraggableLocation,

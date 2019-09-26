@@ -67,6 +67,9 @@ export {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  euiDragDropCopy,
+  euiDragDropMove,
+  euiDragDropReorder,
 } from './drag_and_drop';
 
 export { EuiEmptyPrompt } from './empty_prompt';
