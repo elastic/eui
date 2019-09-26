@@ -222,18 +222,18 @@
     min-width: 75%;
   }
 
-  &.euiText--small {
-    @include fontSize($euiFontSizeS);
-    @include euiScaleText($euiFontSizeS);
-  }
-
-  &.euiText--extraSmall {
-    @include fontSize($euiFontSizeXS);
-    @include euiScaleText($euiFontSizeXS);
-  }
-
   > :last-child,
   .euiTextColor > :last-child {
     margin-bottom: 0 !important; // sass-lint:disable-line no-important
   }
+}
+
+.euiText--small {
+  @include fontSize($euiFontSizeS);
+  @include euiScaleText($euiFontSizeS);
+}
+
+.euiText--extraSmall {
+  @include fontSize($euiFontSizeXS);
+  @include euiScaleText($euiFontSizeXS);
 }
