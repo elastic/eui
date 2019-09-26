@@ -5,6 +5,7 @@
 - Added `data-test-subj` support for basic and in-memory tables' actions ([#2353](https://github.com/elastic/eui/pull/2353))
 - Added `ip` icon to glyph set ([#2371](https://github.com/elastic/eui/pull/2371))
 - Set `textOnly={true}` for expanded rows in `EuiBasicTable` ([#2376](https://github.com/elastic/eui/pull/2376))
+- Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
 
 **Bug fixes**
 
