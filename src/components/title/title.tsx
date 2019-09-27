@@ -23,9 +23,9 @@ export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
 
 export type EuiTitleProps = CommonProps & {
   children: ReactElement<any>;
-  className?: string;
   size?: EuiTitleSize;
   textTransform?: EuiTitleTextTransform;
+  id?: string;
 };
 
 export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
