@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `14.3.0`.
+- Made `EuiKeyPadMenuItem` beta badge smaller ([#2388](https://github.com/elastic/eui/pull/2388))
 
 ## [`14.3.0`](https://github.com/elastic/eui/tree/v14.3.0)
 
