@@ -152,6 +152,7 @@ const typeToPathMap = {
   kqlOperand: 'kql_operand',
   kqlSelector: 'kql_selector',
   kqlValue: 'kql_value',
+  lensApp: 'app_lens',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
