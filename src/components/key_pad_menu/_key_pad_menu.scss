@@ -1,8 +1,4 @@
 /**
- * Dial menu is a phone like dial comprised of an svg icon and a title.
- */
-
-/**
  * 1. Default to grid of 3
  */
 .euiKeyPadMenu {
@@ -73,14 +69,13 @@
 
     .euiKeyPadMenuItem__betaBadgeWrapper {
       position: absolute;
-      top: $euiSizeS;
+      top: $euiSizeXS;
       right: $euiSizeS;
       z-index: 3;
 
       // sass-lint:disable-block nesting-depth
       .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
-        width: $euiSizeL;
-        padding: 0 (($euiSizeL - $euiFontSizeXS) / 1.5);  /* 2 */
+        padding: 0 ($euiSizeM / 2);  /* 2 */
         overflow: hidden;  /* 2 */
         letter-spacing: 3rem;  /* 2 */
       }
@@ -89,9 +84,15 @@
 }
 
 .euiKeyPadMenuItem__betaBadge {
-  color: $euiTextColor;
+  @include size($euiKeyPadMenuItemBetaBadgeSize);
+  line-height: $euiKeyPadMenuItemBetaBadgeSize;
+  color: $euiColorFullShade;
   background-color: tintOrShade($euiColorLightShade, 50%, 0%);
   box-shadow: none;
+
+  .euiBetaBadge__icon {
+    @include size($euiSizeM);
+  }
 }
 
 .euiKeyPadMenuItem__icon {
