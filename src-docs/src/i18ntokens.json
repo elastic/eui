@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 468,
+        "line": 469,
         "column": 12
       },
       "end": {
-        "line": 472,
+        "line": 473,
         "column": 14
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 506,
+        "line": 507,
         "column": 6
       },
       "end": {
-        "line": 506,
+        "line": 507,
         "column": 77
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 864,
+        "line": 865,
         "column": 8
       },
       "end": {
-        "line": 864,
+        "line": 865,
         "column": 79
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 106,
+        "line": 107,
         "column": 6
       },
       "end": {
-        "line": 106,
+        "line": 107,
         "column": 80
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 124,
         "column": 6
       },
       "end": {
-        "line": 122,
+        "line": 124,
         "column": 80
       }
     },
@@ -94,6 +94,22 @@
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
+  },
+  {
+    "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+    "defString": "Show all breadcrumbs",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 6
+      },
+      "end": {
+        "line": 46,
+        "column": 39
+      }
+    },
+    "filepath": "src/components/breadcrumbs/breadcrumbs.js"
   },
   {
     "token": "euiCardSelect.selected",

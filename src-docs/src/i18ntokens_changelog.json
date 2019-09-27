@@ -1,5 +1,15 @@
 [
   {
+    "version": "14.3.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "added",
+        "value": "Show all breadcrumbs"
+      }
+    ]
+  },
+  {
     "version": "13.3.0",
     "changes": [
       {
