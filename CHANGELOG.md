@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `14.3.0`.
+
+## [`14.3.0`](https://github.com/elastic/eui/tree/v14.3.0)
+
 - Added `package` icon to glyph set ([#2378](https://github.com/elastic/eui/pull/2378))
 - Modified `EuiFacetButton` to use `$euiFocusBackgroundColor` for `:focus` state ([2365](https://github.com/elastic/eui/pull/2365))
 - Added a `showMaxPopover` option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
