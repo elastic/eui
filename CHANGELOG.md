@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Migrate `EuiEmptyPrompt`and `EuiCard` to TS ([#2387](https://github.com/elastic/eui/pull/2387))
+- Added Lens app `lensApp` icon ([#2389](https://github.com/elastic/eui/pull/2389))
 
 ## [`14.3.0`](https://github.com/elastic/eui/tree/v14.3.0)
 
