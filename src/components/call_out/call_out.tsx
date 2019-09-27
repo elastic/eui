@@ -1,32 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
-import { IconPropType, EuiIcon } from '../icon';
+import { CommonProps, Omit, keysOf } from '../common';
+import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
 
-const colorToClassNameMap = {
+type Color = 'primary' | 'success' | 'warning' | 'danger';
+type Size = 's' | 'm';
+
+export type EuiCallOutProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+    title?: ReactNode;
+    iconType?: IconType;
+    color?: Color;
+    size?: Size;
+  };
+
+const colorToClassNameMap: { [color in Color]: string } = {
   primary: 'euiCallOut--primary',
   success: 'euiCallOut--success',
   warning: 'euiCallOut--warning',
   danger: 'euiCallOut--danger',
 };
 
-export const COLORS = Object.keys(colorToClassNameMap);
+export const COLORS = keysOf(colorToClassNameMap);
 
-const sizeToClassNameMap = {
+const sizeToClassNameMap: { [size in Size]: string } = {
   s: 'euiCallOut--small',
   m: '',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-export const EuiCallOut = ({
+export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   title,
-  color,
-  size,
+  color = 'primary',
+  size = 'm',
   iconType,
   children,
   className,
@@ -70,18 +79,4 @@ export const EuiCallOut = ({
       {optionalChildren}
     </div>
   );
-};
-
-EuiCallOut.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  title: PropTypes.node,
-  iconType: IconPropType,
-  color: PropTypes.oneOf(COLORS),
-  size: PropTypes.oneOf(SIZES),
-};
-
-EuiCallOut.defaultProps = {
-  color: 'primary',
-  size: 'm',
 };
