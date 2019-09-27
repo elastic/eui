@@ -117,15 +117,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 68,
         "column": 11
       },
       "end": {
-        "line": 74,
+        "line": 68,
         "column": 72
       }
     },
-    "filepath": "src/components/card/card_select.js"
+    "filepath": "src/components/card/card_select.tsx"
   },
   {
     "token": "euiCardSelect.unavailable",
@@ -133,15 +133,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 70,
         "column": 11
       },
       "end": {
-        "line": 76,
+        "line": 70,
         "column": 78
       }
     },
-    "filepath": "src/components/card/card_select.js"
+    "filepath": "src/components/card/card_select.tsx"
   },
   {
     "token": "euiCardSelect.select",
@@ -149,15 +149,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 78,
+        "line": 72,
         "column": 11
       },
       "end": {
-        "line": 78,
+        "line": 72,
         "column": 68
       }
     },
-    "filepath": "src/components/card/card_select.js"
+    "filepath": "src/components/card/card_select.tsx"
   },
   {
     "token": "euiCodeEditor.startInteracting",
