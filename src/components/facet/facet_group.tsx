@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiFlexGroup } from '../flex';
 
 type FacetGroupLayout = 'vertical' | 'horizontal';
@@ -11,15 +11,12 @@ const layoutToClassNameMap: { [layout in FacetGroupLayout]: string } = {
   horizontal: 'euiFacetGroup--horizontal',
 };
 
-export const LAYOUTS = keysOf(layoutToClassNameMap);
+export type EuiFacetGroupProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    layout?: FacetGroupLayout;
+  };
 
-export interface EuiFacetGroupProps {
-  layout?: FacetGroupLayout;
-}
-
-type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiFacetGroupProps;
-
-export const EuiFacetGroup: FunctionComponent<Props> = ({
+export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
   children,
   className,
   layout = 'vertical',

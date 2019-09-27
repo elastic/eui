@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-type Props = CommonProps & HTMLAttributes<HTMLDivElement>;
+export type EuiKeyPadMenuProps = CommonProps & HTMLAttributes<HTMLDivElement>;
 
-export const EuiKeyPadMenu: FunctionComponent<Props> = ({
+export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   children,
   className,
   ...rest

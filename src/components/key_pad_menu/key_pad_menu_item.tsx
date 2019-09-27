@@ -58,7 +58,7 @@ interface EuiKeyPadMenuItemCommonProps {
   betaBadgeTooltipContent?: ReactNode;
 }
 
-type EuiKeyPadMenuItemProps = CommonProps &
+export type EuiKeyPadMenuItemProps = CommonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> &
   EuiKeyPadMenuItemCommonProps;
 
@@ -113,7 +113,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   );
 };
 
-type EuiKeyPadMenuItemButtonProps = CommonProps &
+export type EuiKeyPadMenuItemButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> &
   EuiKeyPadMenuItemCommonProps;
 

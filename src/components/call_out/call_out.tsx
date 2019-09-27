@@ -10,16 +10,13 @@ import { EuiText } from '../text';
 type Color = 'primary' | 'success' | 'warning' | 'danger';
 type Size = 's' | 'm';
 
-export interface EuiCallOutProps {
-  title?: ReactNode;
-  iconType?: IconType;
-  color?: Color;
-  size?: Size;
-}
-
-type Props = CommonProps &
-  EuiCallOutProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'title'>;
+export type EuiCallOutProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+    title?: ReactNode;
+    iconType?: IconType;
+    color?: Color;
+    size?: Size;
+  };
 
 const colorToClassNameMap: { [color in Color]: string } = {
   primary: 'euiCallOut--primary',
@@ -35,9 +32,7 @@ const sizeToClassNameMap: { [size in Size]: string } = {
   m: '',
 };
 
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-export const EuiCallOut: FunctionComponent<Props> = ({
+export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
   title,
   color = 'primary',
   size = 'm',
