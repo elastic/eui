@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
 import { EuiDataGrid } from './';
 import {
@@ -315,11 +315,13 @@ describe('EuiDataGrid', () => {
           columns={[{ id: 'A' }, { id: 'B' }]}
           rowCount={2}
           renderCellValue={({ rowIndex, columnId, setCellProps }) => {
-            setCellProps({
-              className: 'customClass',
-              'data-test-subj': `cell-${rowIndex}-${columnId}`,
-              style: { color: columnId === 'A' ? 'red' : 'blue' },
-            });
+            useEffect(() => {
+              setCellProps({
+                className: 'customClass',
+                'data-test-subj': `cell-${rowIndex}-${columnId}`,
+                style: { color: columnId === 'A' ? 'red' : 'blue' },
+              });
+            }, []);
 
             return `${rowIndex}, ${columnId}`;
           }}
@@ -418,7 +420,7 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
-            inMemory="pagination"
+            inMemory={{ level: 'pagination' }}
             rowCount={2}
             renderCellValue={({ columnId }) => {
               if (columnId === 'A') {
@@ -452,7 +454,7 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B', dataType: 'alphanumeric' }]}
-            inMemory="pagination"
+            inMemory={{ level: 'pagination' }}
             rowCount={2}
             renderCellValue={({ columnId }) =>
               columnId === 'A' ? 5.5 : 'true'
@@ -487,7 +489,7 @@ Array [
           <EuiDataGrid
             {...requiredProps}
             columns={Object.keys(values).map(id => ({ id }))}
-            inMemory="pagination"
+            inMemory={{ level: 'pagination' }}
             rowCount={1}
             renderCellValue={({ columnId }) => values[columnId]}
           />
@@ -528,7 +530,7 @@ Array [
                 },
               },
             ]}
-            inMemory="pagination"
+            inMemory={{ level: 'pagination' }}
             rowCount={1}
             renderCellValue={({ columnId }) => values[columnId]}
           />
@@ -937,7 +939,7 @@ Array [
               // render A 0->4 and B 9->5
               columnId === 'A' ? rowIndex : 9 - rowIndex
             }
-            inMemory="sorting"
+            inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [{ id: 'A', direction: 'desc' }],
               onSort: () => {},
@@ -965,7 +967,7 @@ Array [
               // render A as 0, 1, 0, 1, 0 and B as 9->5
               columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
             }
-            inMemory="sorting"
+            inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [
                 { id: 'A', direction: 'desc' },
@@ -1001,7 +1003,7 @@ Array [
               // render A as 0, 1, 0, 1, 0 and B as 9->5
               columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
             }
-            inMemory="sorting"
+            inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [],
               onSort,

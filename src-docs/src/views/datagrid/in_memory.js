@@ -91,7 +91,7 @@ export default class InMemoryDataGrid extends Component {
           const value = data[rowIndex][columnId];
           return value;
         }}
-        inMemory="sorting"
+        inMemory={{ level: 'sorting' }}
         sorting={{ columns: sortingColumns, onSort: this.setSorting }}
         pagination={{
           ...pagination,

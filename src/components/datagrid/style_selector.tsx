@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { EuiDataGridStyle } from './data_grid_types';
 import { EuiI18n } from '../i18n';
 // @ts-ignore-next-line
@@ -32,7 +32,7 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
 
 export const useStyleSelector = (
   initialStyles: EuiDataGridStyle
-): [FunctionComponent<{}>, EuiDataGridStyle] => {
+): [ReactElement, EuiDataGridStyle] => {
   // track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
 
@@ -54,7 +54,7 @@ export const useStyleSelector = (
     ...userGridStyles,
   };
 
-  const StyleSelector = () => (
+  const styleSelector = (
     <EuiPopover
       data-test-subj="dataGridStyleSelectorPopover"
       isOpen={isOpen}
@@ -122,5 +122,5 @@ export const useStyleSelector = (
     </EuiPopover>
   );
 
-  return [StyleSelector, gridStyles];
+  return [styleSelector, gridStyles];
 };

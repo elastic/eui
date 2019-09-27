@@ -28,7 +28,7 @@ interface EuiDataGridBodyProps {
   onCellFocus: EuiDataGridDataRowProps['onCellFocus'];
   rowCount: number;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
-  inMemory: EuiDataGridInMemory;
+  inMemory?: EuiDataGridInMemory;
   inMemoryValues: EuiDataGridInMemoryValues;
   isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
@@ -74,7 +74,8 @@ export const EuiDataGridBody: FunctionComponent<
     const rowMap: { [key: number]: number } = {};
 
     if (
-      inMemory === 'sorting' &&
+      inMemory &&
+      inMemory.level === 'sorting' &&
       sorting != null &&
       sorting.columns.length > 0
     ) {
@@ -123,9 +124,14 @@ export const EuiDataGridBody: FunctionComponent<
           break;
         }
       }
+
+      // map the row into the visible rows
+      if (pagination) {
+        reverseMappedIndex -= pagination.pageIndex * pagination.pageSize;
+      }
       onCellFocus([colIndex, reverseMappedIndex]);
     },
-    [onCellFocus, rowMap]
+    [onCellFocus, rowMap, pagination]
   );
 
   const rows = useMemo(() => {

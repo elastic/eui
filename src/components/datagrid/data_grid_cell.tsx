@@ -8,8 +8,6 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import classnames from 'classnames';
-// @ts-ignore
-import { EuiFocusTrap } from '../focus_trap';
 import { CommonProps, Omit } from '../common';
 import { getTabbables, CELL_CONTENTS_ATTR } from './utils';
 import { EuiMutationObserver } from '../observer/mutation_observer';
@@ -41,7 +39,11 @@ interface EuiDataGridCellState {
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'isFocusable' | 'isGridNavigationEnabled' | 'interactiveCellId'
+  | 'width'
+  | 'isFocusable'
+  | 'isGridNavigationEnabled'
+  | 'interactiveCellId'
+  | 'onCellFocus'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -167,7 +169,10 @@ export class EuiDataGridCell extends Component<
     }
   }
 
-  shouldComponentUpdate(nextProps: EuiDataGridCellProps) {
+  shouldComponentUpdate(
+    nextProps: EuiDataGridCellProps,
+    nextState: EuiDataGridCellState
+  ) {
     if (nextProps.rowIndex !== this.props.rowIndex) return true;
     if (nextProps.colIndex !== this.props.colIndex) return true;
     if (nextProps.columnId !== this.props.columnId) return true;
@@ -181,6 +186,9 @@ export class EuiDataGridCell extends Component<
       return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
+
+    if (nextState.cellProps !== this.state.cellProps) return true;
+
     return false;
   }
 
@@ -195,9 +203,10 @@ export class EuiDataGridCell extends Component<
       isGridNavigationEnabled,
       interactiveCellId,
       columnType,
+      onCellFocus,
       ...rest
     } = this.props;
-    const { colIndex, rowIndex, onCellFocus } = rest;
+    const { colIndex, rowIndex } = rest;
     const isInteractive = this.isInteractiveCell();
     const isInteractiveCell = {
       [CELL_CONTENTS_ATTR]: isInteractive,
@@ -232,32 +241,30 @@ export class EuiDataGridCell extends Component<
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onFocus={() => onCellFocus([colIndex, rowIndex])}>
-        <EuiFocusTrap disabled={!(isFocusable && !isGridNavigationEnabled)}>
-          <EuiMutationObserver
-            onMutation={() => {
-              this.updateFocus();
-              this.setTabbablesTabIndex();
-            }}
-            observerOptions={{
-              childList: true,
-              subtree: true,
-            }}>
-            {ref => (
-              <div ref={ref}>
-                <div
-                  {...isInteractiveCell}
-                  ref={this.cellContentsRef}
-                  className="euiDataGridRowCell__content">
-                  <EuiDataGridCellContent
-                    {...rest}
-                    columnType={columnType}
-                    setCellProps={this.setCellProps}
-                  />
-                </div>
+        <EuiMutationObserver
+          onMutation={() => {
+            this.updateFocus();
+            this.setTabbablesTabIndex();
+          }}
+          observerOptions={{
+            childList: true,
+            subtree: true,
+          }}>
+          {ref => (
+            <div ref={ref}>
+              <div
+                {...isInteractiveCell}
+                ref={this.cellContentsRef}
+                className="euiDataGridRowCell__content">
+                <EuiDataGridCellContent
+                  {...rest}
+                  columnType={columnType}
+                  setCellProps={this.setCellProps}
+                />
               </div>
-            )}
-          </EuiMutationObserver>
-        </EuiFocusTrap>
+            </div>
+          )}
+        </EuiMutationObserver>
       </div>
     );
   }

@@ -319,33 +319,14 @@ Array [
                 role="gridcell"
                 tabindex="0"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      0, A
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    0, A
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -353,33 +334,14 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      0, B
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    0, B
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
             </div>
             <div
@@ -393,33 +355,14 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      1, A
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    1, A
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -427,33 +370,14 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      1, B
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    1, B
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
             </div>
             <div
@@ -467,33 +391,14 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      2, A
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    2, A
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
               <div
                 class="euiDataGridRowCell"
@@ -501,33 +406,14 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
-                <div
-                  data-focus-lock-disabled="disabled"
-                >
-                  <div>
-                    <div
-                      class="euiDataGridRowCell__content"
-                      data-js-cell-contents-container="false"
-                    >
-                      2, B
-                    </div>
+                <div>
+                  <div
+                    class="euiDataGridRowCell__content"
+                    data-js-cell-contents-container="false"
+                  >
+                    2, B
                   </div>
                 </div>
-                <div
-                  data-focus-guard="true"
-                  style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                  tabindex="-1"
-                />
               </div>
             </div>
           </div>

@@ -74,7 +74,22 @@ export default class InMemoryDataGrid extends Component {
     };
   }
 
-  setSorting = sortingColumns => this.setState({ sortingColumns });
+  setSorting = sortingColumns => {
+    const data = [...this.state.data].sort((a, b) => {
+      for (let i = 0; i < sortingColumns.length; i++) {
+        const column = sortingColumns[i];
+        const aValue = a[column.id];
+        const bValue = b[column.id];
+
+        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
+
+    this.setState({ data, sortingColumns });
+  };
 
   setPageIndex = pageIndex =>
     this.setState(({ pagination }) => ({
