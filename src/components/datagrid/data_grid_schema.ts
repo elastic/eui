@@ -124,6 +124,7 @@ export function useDetectSchema(
 
     // for each row, score each value by each detector and put the results on `columnSchemas`
     const rowIndices = Object.keys(inMemoryValues);
+
     for (let i = 0; i < rowIndices.length; i++) {
       const rowIndex = rowIndices[i];
       const rowData = inMemoryValues[rowIndex];
