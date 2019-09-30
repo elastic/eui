@@ -70,25 +70,16 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
           </EuiCodeBlock>
           <EuiCallOut title="Kibana engineers" iconType="logoKibana">
             <p>
-              We provide a plugin utility for ease of pulling in the correct
-              theme object. There is also a way to use this as an Observable.
-              Reference this{' '}
+              EUI provides a plugin utility for ease of pulling in the correct
+              theme object depending on the current Kibana theme. Learn more
+              from this{' '}
               <EuiLink
-                href="https://github.com/elastic/kibana/pull/45446"
+                href="https://github.com/elastic/kibana/blob/master/src/plugins/eui_utils/README.md#eui-plus-elastic-charts"
                 target="_blank">
-                pull request
-              </EuiLink>{' '}
-              for more information.
+                readme
+              </EuiLink>
+              .
             </p>
-            <EuiCodeBlock
-              language="javascript"
-              isCopyable
-              paddingSize="s"
-              fontSize="s">
-              {`import { npStart } from 'ui/new_platform';
-
-<Settings theme={npStart.plugins.eui_utils.useChartsTheme()} />`}
-            </EuiCodeBlock>
           </EuiCallOut>
           <EuiSpacer />
           <p>
