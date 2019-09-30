@@ -80,6 +80,7 @@ export const ColorStops = () => {
       <button onClick={changeProps}>Prop Change</button>
       <EuiFormRow label="Empty start">
         <EuiColorStops
+          label="Empty start"
           onChange={handleEmptyChange}
           colorStops={emptyColorStops}
           min={0}
@@ -88,6 +89,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Standard">
         <EuiColorStops
+          label="Standard"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -97,6 +99,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Random new color">
         <EuiColorStops
+          label="Random new color"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -106,6 +109,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Extended range">
         <EuiColorStops
+          label="Extended range"
           onChange={handleExtendedChange}
           colorStops={extendedColorStops}
           min={100}
@@ -114,6 +118,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Swatch-only mode">
         <EuiColorStops
+          label="Swatch-only mode"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -123,6 +128,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Picker-only mode">
         <EuiColorStops
+          label="Picker-only mode"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -132,6 +138,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Custom swatches">
         <EuiColorStops
+          label="Custom swatches"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -141,6 +148,7 @@ export const ColorStops = () => {
       </EuiFormRow>
       <EuiFormRow label="Fixed color segments">
         <EuiColorStops
+          label="Fixed color segments"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}
@@ -153,6 +161,7 @@ export const ColorStops = () => {
 
       <DisplayToggles canLoading={false}>
         <EuiColorStops
+          label="State options"
           onChange={handleChange}
           colorStops={colorStops}
           min={0}

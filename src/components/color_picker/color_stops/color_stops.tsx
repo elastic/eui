@@ -32,6 +32,7 @@ interface EuiColorStopsProps extends CommonProps {
   className?: string;
   max: number;
   min: number;
+  label: string;
   stopType?: 'fixed' | 'gradient';
   mode?: EuiColorPickerProps['mode'];
   swatches?: EuiColorPickerProps['swatches'];
@@ -69,6 +70,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   compressed,
   fullWidth,
   className,
+  label,
   stopType = 'gradient',
   swatches,
 }) => {
@@ -298,8 +300,13 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       <EuiScreenReaderOnly>
         <p aria-live="polite">
           <EuiI18n
+            values={{
+              label,
+              disabled: disabled ? 'Disabled.' : '',
+              readOnly: readOnly ? 'Read-only.' : '',
+            }}
             token="euiColorStops.screenReaderAnnouncement"
-            default="Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop."
+            default="{label}: {readOnly} {disabled} Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop."
           />
         </p>
       </EuiScreenReaderOnly>
