@@ -20,6 +20,8 @@ export function EuiDatePopoverContent({
   roundUp,
   onChange,
   dateFormat,
+  timeFormat,
+  locale,
   position,
 }) {
   const onTabClick = selectedTab => {
@@ -43,6 +45,8 @@ export function EuiDatePopoverContent({
         content: (
           <EuiAbsoluteTab
             dateFormat={dateFormat}
+            timeFormat={timeFormat}
+            locale={locale}
             value={value}
             onChange={onChange}
             roundUp={roundUp}
@@ -113,6 +117,8 @@ EuiDatePopoverContent.propTypes = {
   onChange: PropTypes.func.isRequired,
   roundUp: PropTypes.bool,
   dateFormat: PropTypes.string.isRequired,
+  timeFormat: PropTypes.string.isRequired,
+  locale: PropTypes.string,
   position: PropTypes.oneOf(['start', 'end']),
 };
 

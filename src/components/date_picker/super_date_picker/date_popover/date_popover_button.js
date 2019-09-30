@@ -17,7 +17,9 @@ export function EuiDatePopoverButton(props) {
     buttonProps,
     roundUp,
     onChange,
+    locale,
     dateFormat,
+    timeFormat,
     isOpen,
     onPopoverToggle,
     onPopoverClose,
@@ -50,7 +52,7 @@ export function EuiDatePopoverButton(props) {
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}>
-      {formatTimeString(value, dateFormat, roundUp)}
+      {formatTimeString(value, dateFormat, roundUp, locale)}
     </button>
   );
 
@@ -69,6 +71,8 @@ export function EuiDatePopoverButton(props) {
         roundUp={roundUp}
         onChange={onChange}
         dateFormat={dateFormat}
+        timeFormat={timeFormat}
+        locale={locale}
         position={position}
       />
     </EuiPopover>
@@ -83,6 +87,7 @@ EuiDatePopoverButton.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   dateFormat: PropTypes.string.isRequired,
+  timeFormat: PropTypes.string.isRequired,
   roundUp: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   onPopoverToggle: PropTypes.func.isRequired,

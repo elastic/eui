@@ -6,7 +6,7 @@ import {
   EuiSpacer,
   EuiFormRow,
   EuiFieldText,
-  EuiLink,
+  EuiLink, EuiDatePicker,
 } from '../../../../src/components';
 
 function MyCustomQuickSelectPanel({ applyTime }) {
