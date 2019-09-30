@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, {
+  FunctionComponent,
+  ReactChild,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { CommonProps } from '../../common';
 import {
@@ -177,30 +183,41 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       }}
       button={
         <EuiI18n
-          token="euiColorStopThumb.buttonAriaLabel"
-          default="Press the Enter key to modify this stop. Press Escape to focus the group.">
-          {(buttonAriaLabel: string) => (
-            <EuiRangeThumb
-              id={id}
-              min={min}
-              max={max}
-              value={stop}
-              onClick={openPopover}
-              onFocus={onFocus}
-              onKeyDown={readOnly ? undefined : handleKeyDown}
-              onMouseDown={readOnly ? undefined : handleMouseDown}
-              onTouchStart={readOnly ? undefined : handleInteraction}
-              onTouchMove={readOnly ? undefined : handleInteraction}
-              aria-valuetext={ariaValueText}
-              aria-label={buttonAriaLabel}
-              className="euiColorStopThumb"
-              tabIndex={-1}
-              style={{
-                background: color,
-              }}
-              disabled={disabled}
-            />
-          )}
+          tokens={[
+            'euiColorStopThumb.buttonAriaLabel',
+            'euiColorStopThumb.buttonTitle',
+          ]}
+          defaults={[
+            'Press the Enter key to modify this stop. Press Escape to focus the group',
+            'Click to edit, drag to reposition',
+          ]}>
+          {([buttonAriaLabel, buttonTitle]: ReactChild[]) => {
+            const ariaLabel = buttonAriaLabel as string;
+            const title = buttonTitle as string;
+            return (
+              <EuiRangeThumb
+                id={id}
+                min={min}
+                max={max}
+                value={stop}
+                onClick={openPopover}
+                onFocus={onFocus}
+                onKeyDown={readOnly ? undefined : handleKeyDown}
+                onMouseDown={readOnly ? undefined : handleMouseDown}
+                onTouchStart={readOnly ? undefined : handleInteraction}
+                onTouchMove={readOnly ? undefined : handleInteraction}
+                aria-valuetext={ariaValueText}
+                aria-label={ariaLabel}
+                title={title}
+                className="euiColorStopThumb"
+                tabIndex={-1}
+                style={{
+                  background: color,
+                }}
+                disabled={disabled}
+              />
+            );
+          }}
         </EuiI18n>
       }>
       <div className="euiColorStop">
