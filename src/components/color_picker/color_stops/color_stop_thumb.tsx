@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 import {
@@ -33,6 +34,7 @@ export interface ColorStop {
 }
 
 interface EuiColorStopThumbProps extends CommonProps, ColorStop {
+  className?: string;
   onChange: (colorStop: ColorStop) => void;
   onFocus?: () => void;
   onRemove?: () => void;
@@ -50,6 +52,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
 }
 
 export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
+  className,
   stop,
   color,
   onChange,
@@ -68,6 +71,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   'aria-valuetext': ariaValueText,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
   const [colorIsInvalid, setColorIsInvalid] = useState(isColorInvalid(color));
   const [stopIsInvalid, setStopIsInvalid] = useState(isStopInvalid(stop));
   const [numberInputRef, setNumberInputRef] = useState();
@@ -97,6 +101,13 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     if (onRemove) {
       closePopover();
       onRemove();
+    }
+  };
+
+  const handleFocus = () => {
+    setHasFocus(true);
+    if (onFocus) {
+      onFocus();
     }
   };
 
@@ -165,10 +176,18 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handlePointerChange
   );
 
+  const classes = classNames(
+    'euiColorStopPopover',
+    {
+      'euiColorStopPopover-hasFocus': hasFocus || isPopoverOpen,
+    },
+    className
+  );
+
   return (
     <EuiPopover
       ref={popoverRef}
-      className="euiColorStopPopover"
+      className={classes}
       anchorClassName="euiColorStopPopover__anchor"
       panelPaddingSize="s"
       isOpen={isPopoverOpen}
@@ -198,7 +217,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 max={max}
                 value={stop}
                 onClick={openPopover}
-                onFocus={onFocus}
+                onFocus={handleFocus}
+                onBlur={() => setHasFocus(false)}
+                onMouseOver={() => setHasFocus(true)}
+                onMouseOut={() => setHasFocus(false)}
                 onKeyDown={readOnly ? undefined : handleKeyDown}
                 onMouseDown={readOnly ? undefined : handleMouseDown}
                 onTouchStart={readOnly ? undefined : handleInteraction}

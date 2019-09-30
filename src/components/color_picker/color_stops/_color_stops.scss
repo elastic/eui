@@ -49,6 +49,10 @@
   margin-top: $euiRangeThumbHeight * -.5;
 }
 
+.euiColorStopPopover-hasFocus {
+  z-index: 1;
+}
+
 .euiColorStopPopover__anchor {
   position: absolute;
   width: 100%;
