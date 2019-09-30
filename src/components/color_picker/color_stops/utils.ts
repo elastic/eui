@@ -2,6 +2,8 @@ import { getEventPosition } from '../utils';
 import { isValidHex, DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
 
+const EUI_THUMB_SIZE = 16; // Same as $euiRangeThumbHeight & $euiRangeThumbWidth
+
 export const removeStop = (colorStops: ColorStop[], index: number) => {
   if (colorStops.length === 1) {
     return colorStops;
@@ -73,7 +75,6 @@ export const isInvalid = (colorStops: ColorStop[]) => {
 };
 
 export const calculateScale = (trackWidth: number) => {
-  const EUI_THUMB_SIZE = 16;
   const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
   return (1 - thumbToTrackRatio) * 100;
 };
@@ -94,7 +95,12 @@ export const getPositionFromStop = (
   min: number,
   max: number
 ) => {
-  return Math.round(
-    ((stop - min) / (max - min)) * calculateScale(ref ? ref.clientWidth : 100)
+  // For wide implementations, integer percentages can be visually off.
+  // Use 1 decimal place for more accuracy
+  return parseFloat(
+    (
+      ((stop - min) / (max - min)) *
+      calculateScale(ref ? ref.clientWidth : 100)
+    ).toFixed(1)
   );
 };

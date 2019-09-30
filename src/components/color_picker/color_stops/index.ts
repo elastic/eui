@@ -1,1 +1,1 @@
-export { EuiColorStops } from './color_stops';
+export { EuiColorStops, EuiColorStopsProps } from './color_stops';

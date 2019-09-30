@@ -10,7 +10,6 @@ interface BaseProps extends CommonProps {
   disabled?: boolean;
   showInput?: boolean;
   showTicks?: boolean;
-  thumbRef?: (node: HTMLButtonElement | null) => void;
 }
 
 interface ButtonLike extends BaseProps, HTMLAttributes<HTMLButtonElement> {}

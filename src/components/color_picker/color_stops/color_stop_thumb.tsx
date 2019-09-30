@@ -33,7 +33,6 @@ export interface ColorStop {
 }
 
 interface EuiColorStopThumbProps extends CommonProps, ColorStop {
-  id?: string;
   onChange: (colorStop: ColorStop) => void;
   onFocus?: () => void;
   onRemove?: () => void;
@@ -46,11 +45,11 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
   disabled?: boolean;
   readOnly?: boolean;
+  'data-index'?: string;
   'aria-valuetext'?: string;
 }
 
 export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
-  id,
   stop,
   color,
   onChange,
@@ -65,6 +64,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   colorPickerSwatches,
   disabled,
   readOnly,
+  'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -80,12 +80,12 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   }, [stop]);
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
-    // Guards against `null` ref in usage
+    // Guard against `null` ref in usage
     return getStopFromMouseLocation(location, parentRef!, globalMin, globalMax);
   };
 
   const getPositionFromStopFn = (stop: ColorStop['stop']) => {
-    // Guards against `null` ref in usage
+    // Guard against `null` ref in usage
     return getPositionFromStop(stop, parentRef!, globalMin, globalMax);
   };
 
@@ -105,13 +105,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     onChange({ stop, color: value });
   };
 
-  const handleStopChange = (
-    value: ColorStop['stop'],
-    shouldRespectBoundaries: boolean = false
-  ) => {
+  const handleStopChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > max || value < min;
 
-    if (shouldRespectBoundaries && willBeInvalid) {
+    if (willBeInvalid) {
       if (value > max) {
         value = max;
       }
@@ -147,19 +144,19 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
       return;
     }
     const newStop = getStopFromMouseLocationFn(location);
-    handleStopChange(newStop, true);
+    handleStopChange(newStop);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (e.keyCode) {
       case keyCodes.LEFT:
         e.preventDefault();
-        handleStopChange(stop - 1, true);
+        handleStopChange(stop - 1);
         break;
 
       case keyCodes.RIGHT:
         e.preventDefault();
-        handleStopChange(stop + 1, true);
+        handleStopChange(stop + 1);
         break;
     }
   };
@@ -196,7 +193,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             const title = buttonTitle as string;
             return (
               <EuiRangeThumb
-                id={id}
+                data-index={dataIndex}
                 min={min}
                 max={max}
                 value={stop}

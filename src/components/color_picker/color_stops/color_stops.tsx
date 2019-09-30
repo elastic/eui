@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -20,7 +20,7 @@ import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 import { EuiScreenReaderOnly } from '../../accessibility';
 
-interface EuiColorStopsProps extends CommonProps {
+export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
   colorStops: ColorStop[];
   onChange: (stops?: ColorStop[], isInvalid?: boolean) => void;
@@ -38,13 +38,14 @@ interface EuiColorStopsProps extends CommonProps {
   swatches?: EuiColorPickerProps['swatches'];
 }
 
-// Becuase of how the thumbs are rendered in the popover, using ref results in an infinite loop.
+// Because of how the thumbs are rendered in the popover, using ref results in an infinite loop.
 // We'll instead use old fashioned namespaced DOM selectors to get references
 const STOP_ATTR = 'euiColorStop_';
 
 function isTargetAThumb(target: HTMLElement | EventTarget) {
   const element = target as HTMLElement;
-  return element.id.indexOf(STOP_ATTR) > -1;
+  const attr = element.getAttribute('data-index');
+  return attr && attr.indexOf(STOP_ATTR) > -1;
 }
 
 function sortStops(colorStops: ColorStop[]) {
@@ -74,7 +75,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   stopType = 'gradient',
   swatches,
 }) => {
-  const [sortedStops, setSortedStops] = useState(sortStops(colorStops));
+  const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
@@ -83,10 +84,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const [focusStopOnUpdate, setFocusStopOnUpdate] = useState<number | null>(
     null
   );
-
-  useEffect(() => {
-    setSortedStops(sortStops(colorStops));
-  }, [colorStops]);
 
   useEffect(() => {
     if (focusStopOnUpdate !== null) {
@@ -109,12 +106,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   );
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
-    // Guards against `null` ref in usage
+    // Guard against `null` ref in usage
     return getStopFromMouseLocation(location, wrapperRef!, min, max);
   };
 
   const getPositionFromStopFn = (stop: ColorStop['stop']) => {
-    // Guards against `null` ref in usage
+    // Guard against `null` ref in usage
     return getPositionFromStop(stop, wrapperRef!, min, max);
   };
 
@@ -131,7 +128,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const onFocusStop = (index: number) => {
     if (disabled || !wrapperRef) return;
     const toFocus = wrapperRef.querySelector<HTMLElement>(
-      `#${STOP_ATTR}${index}`
+      `[data-index=${STOP_ATTR}${index}]`
     );
     if (toFocus) {
       setHasFocus(false);
@@ -230,7 +227,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const thumbs = sortedStops.map((colorStop, index) => (
     <EuiColorStopThumb
-      id={`${STOP_ATTR}${index}`}
+      data-index={`${STOP_ATTR}${index}`}
       key={colorStop.id}
       globalMin={min}
       globalMax={max}
@@ -256,7 +253,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     />
   ));
 
-  const positions = sortedStops.map(({ stop }) => getPositionFromStopFn(stop));
+  const positions = wrapperRef
+    ? sortedStops.map(({ stop }) => getPositionFromStopFn(stop))
+    : [];
   const gradientStop = (colorStop: ColorStop, index: number) => {
     return `${colorStop.color} ${positions[index]}%`;
   };
@@ -320,7 +319,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           max={max}
           lowerValue={min}
           upperValue={max}
-          color={background}
+          background={background}
           compressed={compressed}
         />
         <div
