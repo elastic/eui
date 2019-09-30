@@ -172,12 +172,6 @@ class _Sizes extends Component {
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
-    const gridHorizontalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
-    const gridVerticalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
     const lineAnnotationStyle = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.lineAnnotation
       : EUI_CHARTS_THEME_LIGHT.lineAnnotation;
@@ -239,13 +233,11 @@ class _Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
-                gridLineStyle={gridVerticalSettings}
               />
               <Axis
                 id="left-axis"
                 position="left"
                 showGridLines
-                gridLineStyle={gridHorizontalSettings}
                 tickFormat={yAxisFormatter}
               />
             </Chart>
