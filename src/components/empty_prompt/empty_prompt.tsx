@@ -1,17 +1,32 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  Fragment,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
-import { TITLE_SIZES } from '../title/title';
+import { CommonProps, Omit } from '../common';
+import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
-import { EuiIcon, COLORS, IconPropType } from '../icon/icon';
+import { EuiIcon, IconColor, IconType } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
-import { EuiTitle } from '../title';
 
-export const EuiEmptyPrompt = ({
+export type EuiEmptyPromptProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+    iconType?: IconType;
+    iconColor?: IconColor;
+    title?: ReactElement<any>;
+    titleSize?: EuiTitleSize;
+    body?: ReactNode;
+    actions?: ReactNode;
+  };
+
+export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   iconType,
-  iconColor,
+  iconColor = 'subdued',
   title,
   titleSize,
   body,
@@ -103,22 +118,4 @@ export const EuiEmptyPrompt = ({
       {actionsEl}
     </div>
   );
-};
-
-EuiEmptyPrompt.propTypes = {
-  iconType: IconPropType,
-
-  /**
-   * Pass `null` to use original icon color
-   */
-  iconColor: PropTypes.oneOf(COLORS),
-  title: PropTypes.node,
-  titleSize: PropTypes.oneOf(TITLE_SIZES),
-  body: PropTypes.node,
-  actions: PropTypes.node,
-  className: PropTypes.string,
-};
-
-EuiEmptyPrompt.defaultProps = {
-  iconColor: 'subdued',
 };

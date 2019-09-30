@@ -152,6 +152,7 @@ const typeToPathMap = {
   kqlOperand: 'kql_operand',
   kqlSelector: 'kql_selector',
   kqlValue: 'kql_value',
+  lensApp: 'app_lens',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
@@ -238,6 +239,7 @@ const typeToPathMap = {
   number: 'number',
   offline: 'offline',
   online: 'online',
+  package: 'package',
   packetbeatApp: 'app_packetbeat',
   partial: 'partial',
   pause: 'pause',
@@ -300,8 +302,11 @@ const typeToPathMap = {
   vector: 'vector',
   videoPlayer: 'videoPlayer',
   visArea: 'vis_area',
+  visAreaStacked: 'vis_area_stacked',
   visBarHorizontal: 'vis_bar_horizontal',
+  visBarHorizontalStacked: 'vis_bar_horizontal_stacked',
   visBarVertical: 'vis_bar_vertical',
+  visBarVerticalStacked: 'vis_bar_vertical_stacked',
   visControls: 'vis_controls',
   visGauge: 'vis_gauge',
   visGoal: 'vis_goal',
@@ -401,25 +406,22 @@ export const SIZES: IconSize[] = keysOf(sizeToClassNameMap);
 
 export type IconSize = keyof typeof sizeToClassNameMap;
 
-export interface EuiIconProps {
-  /**
-   * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
-   */
-  type: IconType;
-  /**
-   * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
-   * Note that coloring only works if your SVG is removed of fill attributes.
-   */
-  color?: IconColor;
-  /**
-   * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
-   */
-  size?: IconSize;
-}
-
-type Props = CommonProps &
-  Omit<SVGAttributes<SVGElement>, keyof EuiIconProps> &
-  EuiIconProps;
+export type EuiIconProps = CommonProps &
+  Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
+    /**
+     * `Enum` is any of the named icons listed in the docs, `Element` is any React SVG element, and `string` is usually a URL to an SVG file
+     */
+    type: IconType;
+    /**
+     * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
+     * Note that coloring only works if your SVG is removed of fill attributes.
+     */
+    color?: IconColor;
+    /**
+     * Note that every size other than `original` assumes the provided SVG sits on a square viewbox.
+     */
+    size?: IconSize;
+  };
 
 interface State {
   icon: undefined | ReactElement | string;
@@ -440,9 +442,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-export class EuiIcon extends Component<Props, State> {
+export class EuiIcon extends Component<EuiIconProps, State> {
   isMounted = true;
-  constructor(props: Props) {
+  constructor(props: EuiIconProps) {
     super(props);
 
     const { type } = props;
@@ -460,7 +462,7 @@ export class EuiIcon extends Component<Props, State> {
     };
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: EuiIconProps) {
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {

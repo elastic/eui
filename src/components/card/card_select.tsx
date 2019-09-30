@@ -1,15 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiButtonEmpty,
-  COLORS as BUTTON_EMPTY_COLORS,
-} from '../button/button_empty';
+import { CommonProps } from '../common';
+import { EuiButtonEmpty, EuiButtonEmptyColor } from '../button/button_empty';
 
 import { EuiI18n } from '../i18n';
 
-export const EuiCardSelect = ({
+export type EuiCardSelectProps = CommonProps & {
+  /**
+   * You must handle the click event in order to have a select button
+   */
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Is in the selected state
+   */
+  isSelected?: boolean;
+  isDisabled?: boolean;
+  /**
+   * Override the default color with one of the available colors from `EuiButtonEmpty`
+   */
+  color?: EuiButtonEmptyColor;
+};
+
+export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
   className,
   onClick,
   isSelected,
@@ -40,30 +53,11 @@ export const EuiCardSelect = ({
   );
 };
 
-export const EuiCardSelectProps = {
-  className: PropTypes.string,
-  /**
-   * You must handle the click event in order to have a select button
-   */
-  onClick: PropTypes.func.isRequired,
-  /**
-   * Is in the selected state
-   */
-  isSelected: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  /**
-   * Override the default color with one of the available colors from `EuiButtonEmpty`
-   */
-  color: PropTypes.oneOf(BUTTON_EMPTY_COLORS),
-  /**
-   * Override the content (text) of the button
-   */
-  children: PropTypes.node,
-};
-
-EuiCardSelect.propTypes = EuiCardSelectProps;
-
-function euiCardSelectableText(isSelected, isDisabled, children) {
+function euiCardSelectableText(
+  isSelected: boolean | undefined,
+  isDisabled: boolean | undefined,
+  children: ReactNode
+): ReactNode {
   if (children) {
     return children;
   }
@@ -81,7 +75,10 @@ function euiCardSelectableText(isSelected, isDisabled, children) {
   return text;
 }
 
-export function euiCardSelectableColor(color, isSelected) {
+export function euiCardSelectableColor(
+  color: EuiButtonEmptyColor | undefined,
+  isSelected: boolean | undefined
+): string {
   let calculatedColor;
   if (color) {
     calculatedColor = color;
