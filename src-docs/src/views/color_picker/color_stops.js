@@ -15,16 +15,16 @@ export const ColorStops = () => {
   const [addColor, setAddColor] = useState(generateRandomColor());
   const [colorStops, setColorStops] = useState([
     {
-      stop: 0,
-      color: '#ff0000',
+      stop: 20,
+      color: '#00B3A4',
     },
     {
-      stop: 25,
-      color: '#FFFF00',
+      stop: 50,
+      color: '#DB1374',
     },
     {
-      stop: 45,
-      color: '#008000',
+      stop: 65,
+      color: '#490092',
     },
   ]);
 
@@ -36,15 +36,15 @@ export const ColorStops = () => {
   const [extendedColorStops, setExtendedColorStops] = useState([
     {
       stop: 100,
-      color: '#ff0000',
+      color: '#00B3A4',
     },
     {
       stop: 250,
-      color: '#FFFF00',
+      color: '#DB1374',
     },
     {
       stop: 350,
-      color: '#008000',
+      color: '#490092',
     },
   ]);
 
