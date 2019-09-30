@@ -38,7 +38,6 @@ import { EuiTablePagination } from '../table/table_pagination';
 // @ts-ignore-next-line
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { CELL_CONTENTS_ATTR } from './utils';
 import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
 import {
   getMergedSchema,
@@ -110,12 +109,6 @@ const cellPaddingsToClassMap: {
 const ORIGIN: [number, number] = [0, 0];
 
 // returns whether or not this element is a gridcell with CELL_CONTENTS_ATTR
-const isInteractiveCell = (element: HTMLElement) => {
-  if (element.getAttribute('role') !== 'gridcell') {
-    return false;
-  }
-  return Boolean(element.querySelector(`[${CELL_CONTENTS_ATTR}="true"]`));
-};
 
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
@@ -314,11 +307,9 @@ function createKeyDownHandler(
     const colCount = visibleColumns.length - 1;
     const [x, y] = focusedCell;
     const rowCount = computeVisibleRows(props);
-    const { keyCode, target } = event;
+    const { keyCode } = event;
 
     if (
-      target instanceof HTMLElement &&
-      isInteractiveCell(target) &&
       isGridNavigationEnabled &&
       (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
     ) {
