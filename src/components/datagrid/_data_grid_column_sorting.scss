@@ -16,3 +16,22 @@
   // IE11 needs a min-width
   min-width: $euiSize * 12;
 }
+
+.euiDataGridColumnSorting__button {
+  height: $euiSize + $euiSizeXS !important;
+  width: $euiSize + $euiSizeXS !important;
+  padding: $euiSizeXS / 2 !important;
+}
+
+.euiDataGridColumnSorting__order {
+  @include euiFontSizeXS;
+  width: 40px;
+  display: inline-block;
+  border-radius: $euiSizeXS;
+
+  &-isActive {
+    font-weight: $euiFontWeightBold;
+    background: $euiColorDarkShade;
+    color: $euiColorEmptyShade;
+  }
+}
