@@ -3,6 +3,7 @@
 exports[`renders EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -24,6 +25,7 @@ exports[`renders EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -46,6 +48,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#FF0000"
           tabindex="-1"
@@ -70,6 +73,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#00FF00"
           tabindex="-1"
@@ -94,6 +98,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#0000FF"
           tabindex="-1"
@@ -109,6 +114,7 @@ exports[`renders EuiColorStops 1`] = `
 exports[`renders compressed EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -130,6 +136,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -152,6 +159,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#FF0000"
           tabindex="-1"
@@ -176,6 +184,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#00FF00"
           tabindex="-1"
@@ -200,6 +209,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#0000FF"
           tabindex="-1"
@@ -215,6 +225,7 @@ exports[`renders compressed EuiColorStops 1`] = `
 exports[`renders disabled EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="-1"
 >
   <p
@@ -236,6 +247,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer euiColorStops__addContainer-isDisabled"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -258,6 +270,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
           style="background:#FF0000"
@@ -283,6 +296,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
           style="background:#00FF00"
@@ -308,6 +322,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
           style="background:#0000FF"
@@ -324,6 +339,7 @@ exports[`renders disabled EuiColorStops 1`] = `
 exports[`renders empty EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -345,6 +361,7 @@ exports[`renders empty EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -358,6 +375,7 @@ exports[`renders empty EuiColorStops 1`] = `
 exports[`renders fixed stop EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -379,6 +397,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -401,6 +420,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#FF0000"
           tabindex="-1"
@@ -425,6 +445,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#00FF00"
           tabindex="-1"
@@ -449,6 +470,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#0000FF"
           tabindex="-1"
@@ -464,6 +486,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -485,6 +508,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -507,6 +531,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#FF0000"
           tabindex="-1"
@@ -531,6 +556,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#00FF00"
           tabindex="-1"
@@ -555,6 +581,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#0000FF"
           tabindex="-1"
@@ -570,6 +597,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 exports[`renders readOnly EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2"
+  data-test-subj="euiColorStops"
   tabindex="0"
 >
   <p
@@ -591,6 +619,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     </div>
     <div
       class="euiColorStops__addContainer euiColorStops__addContainer-isDisabled"
+      data-test-subj="euiColorStopsAdd"
     >
       <div
         class="euiColorStops__addTarget"
@@ -613,6 +642,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_0"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#FF0000"
           tabindex="-1"
@@ -637,6 +667,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_1"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#00FF00"
           tabindex="-1"
@@ -661,6 +692,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
           class="euiRangeThumb euiColorStopThumb"
           data-index="euiColorStop_2"
+          data-test-subj="euiColorStopThumb"
           role="slider"
           style="background:#0000FF"
           tabindex="-1"

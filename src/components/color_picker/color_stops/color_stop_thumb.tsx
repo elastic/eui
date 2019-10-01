@@ -212,6 +212,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             const title = buttonTitle as string;
             return (
               <EuiRangeThumb
+                data-test-subj="euiColorStopThumb"
                 data-index={dataIndex}
                 min={min}
                 max={max}
@@ -239,7 +240,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           }}
         </EuiI18n>
       }>
-      <div className="euiColorStop">
+      <div className="euiColorStop" data-test-subj="euiColorStopPopover">
         <EuiScreenReaderOnly>
           <p aria-live="polite">
             <EuiI18n

@@ -282,6 +282,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   return (
     <EuiRangeWrapper
+      data-test-subj="euiColorStops"
       ref={setWrapperRef}
       className={classes}
       fullWidth={fullWidth}
@@ -323,6 +324,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
           compressed={compressed}
         />
         <div
+          data-test-subj="euiColorStopsAdd"
           className={classNames('euiColorStops__addContainer', {
             'euiColorStops__addContainer-isDisabled':
               isHoverDisabled || disabled || readOnly,
