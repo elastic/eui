@@ -1,10 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
+- Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
 
 **Bug fixes**
 
-- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390)) 
+- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
 
 ## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
 
