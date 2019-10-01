@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
+
+## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
+
 - Migrate `EuiEmptyPrompt`and `EuiCard` to TS ([#2387](https://github.com/elastic/eui/pull/2387))
+- Added Lens app `lensApp` icon ([#2389](https://github.com/elastic/eui/pull/2389))
+- Made `EuiKeyPadMenuItem` beta badge smaller ([#2388](https://github.com/elastic/eui/pull/2388))
 
 ## [`14.3.0`](https://github.com/elastic/eui/tree/v14.3.0)
 

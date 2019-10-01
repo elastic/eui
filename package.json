@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "14.3.0",
+  "version": "14.4.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -73,7 +73,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@elastic/charts": "^11.2.0",
+    "@elastic/charts": "^13.0.0",
     "@elastic/datemath": "^5.0.2",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@svgr/core": "^4.1.0",
