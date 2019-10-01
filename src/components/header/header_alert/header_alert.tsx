@@ -1,14 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonIcon } from '../../button';
+import { CommonProps } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import { EuiI18n } from '../../i18n';
 
-export const EuiHeaderAlert = ({
+type EuiHeaderAlertProps = CommonProps & {
+  action?: ReactNode;
+  date: ReactNode;
+  text?: ReactNode;
+  title: ReactNode;
+};
+
+export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
   action,
   className,
   date,
@@ -20,7 +27,7 @@ export const EuiHeaderAlert = ({
 
   return (
     <EuiI18n token="euiHeaderAlert.dismiss" default="Dismiss">
-      {dismiss => (
+      {(dismiss: string) => (
         <div className={classes} {...rest}>
           <EuiButtonIcon
             aria-label={dismiss}
@@ -46,12 +53,4 @@ export const EuiHeaderAlert = ({
       )}
     </EuiI18n>
   );
-};
-
-EuiHeaderAlert.propTypes = {
-  action: PropTypes.node,
-  className: PropTypes.string,
-  date: PropTypes.node.isRequired,
-  text: PropTypes.node,
-  title: PropTypes.node.isRequired,
 };

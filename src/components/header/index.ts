@@ -6,7 +6,7 @@ export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 export { EuiHeaderLink, EuiHeaderLinks } from './header_links';
 
-export { EuiHeaderLogo } from './header_logo';
+export { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 
 export {
   EuiHeaderSection,

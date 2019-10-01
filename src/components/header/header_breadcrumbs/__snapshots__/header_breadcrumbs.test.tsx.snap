@@ -11,11 +11,9 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     data-test-subj="breadcrumbsAnimals"
     href="#"
     rel="noreferrer"
-    title="[object Object]"
+    title="Animals"
   >
-    <span>
-      Animals
-    </span>
+    Animals
   </a>
   <div
     class="euiBreadcrumbSeparator"

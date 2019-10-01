@@ -16,7 +16,7 @@ declare module '@elastic/eui' {
    * @see './filter_button.js'
    */
 
-  export interface EuiFilterButtonProps extends EuiButtonEmptyProps {
+  export type EuiFilterButtonProps = EuiButtonEmptyProps & {
     numFilters?: number;
     numActiveFilters?: number;
     hasActiveFilters?: boolean;
@@ -28,7 +28,8 @@ declare module '@elastic/eui' {
      * _DEPRECATED use `withNext`_
      */
     noDivider?: boolean;
-  }
+  };
+
   type EuiFilterButtonPropsForAnchor = PropsForAnchor<EuiFilterButtonProps>;
 
   type EuiFilterButtonPropsForButton = PropsForButton<EuiFilterButtonProps>;

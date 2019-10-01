@@ -5,6 +5,7 @@ import { EuiLink, COLORS } from './link';
 
 describe('EuiLink', () => {
   test('it errors if an invalid color is provided', () => {
+    // @ts-ignore as we're deliberately using a bogus value
     expect(() => render(<EuiLink href="#" color="phooey" />)).toThrow(/phooey/);
   });
 

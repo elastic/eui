@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
@@ -11,14 +10,14 @@ import {
   EuiHeaderSectionItem,
 } from '../header_section';
 
-export class EuiHeaderLinks extends Component {
-  constructor(props) {
-    super(props);
+interface State {
+  isOpen: boolean;
+}
 
-    this.state = {
-      isOpen: false,
-    };
-  }
+export class EuiHeaderLinks extends Component<CommonProps, State> {
+  state: State = {
+    isOpen: false,
+  };
 
   onMenuButtonClick = () => {
     this.setState({
@@ -42,7 +41,7 @@ export class EuiHeaderLinks extends Component {
         <EuiI18n
           token="euiHeaderLinks.openNavigationMenu"
           default="Open navigation menu">
-          {openNavigationMenu => (
+          {(openNavigationMenu: string) => (
             <EuiHeaderSectionItemButton
               aria-label={openNavigationMenu}
               onClick={this.onMenuButtonClick}>
@@ -55,7 +54,7 @@ export class EuiHeaderLinks extends Component {
 
     return (
       <EuiI18n token="euiHeaderLinks.appNavigation" default="App navigation">
-        {appNavigation => (
+        {(appNavigation: string) => (
           <nav className={classes} aria-label={appNavigation} {...rest}>
             <div className="euiHeaderLinks__list" role="navigation">
               {children}
@@ -78,8 +77,3 @@ export class EuiHeaderLinks extends Component {
     );
   }
 }
-
-EuiHeaderLinks.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
