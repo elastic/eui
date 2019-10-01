@@ -1,4 +1,4 @@
-import { addStop, removeStop, isInvalid } from './utils';
+import { addStop, addDefinedStop, removeStop, isInvalid } from './utils';
 
 const colorStops = [
   { stop: 0, color: '#FF0000' },
@@ -65,6 +65,23 @@ describe('addStop', () => {
       { stop: 0, color: '#FF0000' },
       { stop: 100, color: '#FF0000' },
       { stop: 99, color: '#FF0000' },
+    ]);
+  });
+});
+
+describe('addDefinedStop', () => {
+  const colorStops = [{ stop: 0, color: '#FF0000' }];
+  test('Should add stop', () => {
+    expect(addDefinedStop(colorStops, 1)).toEqual([
+      { stop: 0, color: '#FF0000' },
+      { stop: 1, color: '#3185FC' },
+    ]);
+  });
+
+  test('Should add stop with a specified color', () => {
+    expect(addDefinedStop(colorStops, 1, '#FFFFFF')).toEqual([
+      { stop: 0, color: '#FF0000' },
+      { stop: 1, color: '#FFFFFF' },
     ]);
   });
 });
