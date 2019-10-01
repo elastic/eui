@@ -1,37 +1,11 @@
 import React, { useState } from 'react';
 
-import { DisplayToggles } from '../form_controls/display_toggles';
-import {
-  EuiColorStops,
-  EuiFormRow,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiColorStops, EuiFormRow } from '../../../../src/components';
+
+import { useColorStop } from './utils';
 
 export const ColorStops = () => {
-  const generateRandomColor = () =>
-    // https://www.paulirish.com/2009/random-hex-color-code-snippets/
-    `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-
-  const [addColor, setAddColor] = useState(generateRandomColor());
-  const [colorStops, setColorStops] = useState([
-    {
-      stop: 20,
-      color: '#00B3A4',
-    },
-    {
-      stop: 50,
-      color: '#DB1374',
-    },
-    {
-      stop: 65,
-      color: '#490092',
-    },
-  ]);
-
-  const handleChange = colorStops => {
-    setColorStops(colorStops);
-    setAddColor(generateRandomColor());
-  };
+  const [colorStops, setColorStops, addColor] = useColorStop(true);
 
   const [extendedColorStops, setExtendedColorStops] = useState([
     {
@@ -58,26 +32,8 @@ export const ColorStops = () => {
     setEmptyColorStops(colorStops);
   };
 
-  const changeProps = () => {
-    setColorStops([
-      {
-        stop: 0,
-        color: '#ff0000',
-      },
-      {
-        stop: 25,
-        color: '#FFFF00',
-      },
-      {
-        stop: 45,
-        color: '#008000',
-      },
-    ]);
-  };
-
   return (
     <React.Fragment>
-      <button onClick={changeProps}>Prop Change</button>
       <EuiFormRow label="Empty start">
         <EuiColorStops
           label="Empty start"
@@ -90,17 +46,16 @@ export const ColorStops = () => {
       <EuiFormRow label="Standard">
         <EuiColorStops
           label="Standard"
-          onChange={handleChange}
+          onChange={setColorStops}
           colorStops={colorStops}
           min={0}
           max={100}
-          fullWidth={true}
         />
       </EuiFormRow>
       <EuiFormRow label="Random new color">
         <EuiColorStops
           label="Random new color"
-          onChange={handleChange}
+          onChange={setColorStops}
           colorStops={colorStops}
           min={0}
           max={100}
@@ -116,58 +71,16 @@ export const ColorStops = () => {
           max={400}
         />
       </EuiFormRow>
-      <EuiFormRow label="Swatch-only mode">
-        <EuiColorStops
-          label="Swatch-only mode"
-          onChange={handleChange}
-          colorStops={colorStops}
-          min={0}
-          max={100}
-          mode="swatch"
-        />
-      </EuiFormRow>
-      <EuiFormRow label="Picker-only mode">
-        <EuiColorStops
-          label="Picker-only mode"
-          onChange={handleChange}
-          colorStops={colorStops}
-          min={0}
-          max={100}
-          mode="picker"
-        />
-      </EuiFormRow>
-      <EuiFormRow label="Custom swatches">
-        <EuiColorStops
-          label="Custom swatches"
-          onChange={handleChange}
-          colorStops={colorStops}
-          min={0}
-          max={100}
-          swatches={['#333', '#666', '#999', '#CCC']}
-        />
-      </EuiFormRow>
       <EuiFormRow label="Fixed color segments">
         <EuiColorStops
           label="Fixed color segments"
-          onChange={handleChange}
+          onChange={setColorStops}
           colorStops={colorStops}
           min={0}
           max={100}
           stopType="fixed"
         />
       </EuiFormRow>
-
-      <EuiSpacer size="xxl" />
-
-      <DisplayToggles canLoading={false}>
-        <EuiColorStops
-          label="State options"
-          onChange={handleChange}
-          colorStops={colorStops}
-          min={0}
-          max={100}
-        />
-      </DisplayToggles>
     </React.Fragment>
   );
 };
