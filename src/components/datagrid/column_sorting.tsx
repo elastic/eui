@@ -71,11 +71,11 @@ export const useColumnSorting = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
-        <EuiI18n token="euiColumnSorting.button" default="Sort columns">
+        <EuiI18n token="euiColumnSorting.button" default="Sorting">
           {(button: ReactChild) => (
             <EuiButtonEmpty
               size="xs"
-              iconType="eyeClosed"
+              iconType="list"
               color="text"
               className={controlBtnClasses}
               onClick={() => setIsOpen(!isOpen)}>
@@ -89,7 +89,7 @@ export const useColumnSorting = (
           droppableId="columnSorting"
           className="euiDataGridColumnSorting">
           <Fragment>
-            {sorting.columns.map(({ id }, index) => (
+            {sorting.columns.map(({ id, direction }, index) => (
               <EuiDraggable key={id} draggableId={id} index={index}>
                 {(provided, state) => (
                   <div
@@ -112,6 +112,22 @@ export const useColumnSorting = (
                             sorting.onSort(nextColumns);
                           }}
                         />
+                      </EuiFlexItem>
+                      <EuiFlexItem>
+                        <EuiButtonEmpty
+                          onClick={() => {
+                            const nextColumns = [...sorting.columns];
+                            const columnIndex = nextColumns
+                              .map(({ id }) => id)
+                              .indexOf(id);
+                            nextColumns.splice(columnIndex, 1, {
+                              id,
+                              direction: direction === 'asc' ? 'desc' : 'asc',
+                            });
+                            sorting.onSort(nextColumns);
+                          }}>
+                          {direction === 'asc' ? '⬆️' : '⬇️'}
+                        </EuiButtonEmpty>
                       </EuiFlexItem>
                       <EuiFlexItem grow={false} {...provided.dragHandleProps}>
                         <div {...provided.dragHandleProps}>
