@@ -1,4 +1,10 @@
-import React, { Fragment, useState, ReactChild, ReactNode } from 'react';
+import React, {
+  Fragment,
+  useState,
+  ReactChild,
+  ReactNode,
+  useEffect,
+} from 'react';
 import classNames from 'classnames';
 import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
 // @ts-ignore-next-line
@@ -16,12 +22,34 @@ import {
 } from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
+import { EuiDataGridSchema } from './data_grid_schema';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
-  sorting?: EuiDataGridSorting
+  sorting: EuiDataGridSorting | undefined,
+  schema: EuiDataGridSchema
 ): [ReactNode] => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // prune any non-existant/hidden columns from sorting
+  useEffect(() => {
+    if (sorting) {
+      const nextSortingColumns: EuiDataGridSorting['columns'] = [];
+
+      const availableColumnIds = new Set(columns.map(({ id }) => id));
+      for (let i = 0; i < sorting.columns.length; i++) {
+        const column = sorting.columns[i];
+        if (availableColumnIds.has(column.id)) {
+          nextSortingColumns.push(column);
+        }
+      }
+
+      // if the column array lengths differ then the sorting columns have been pruned
+      if (nextSortingColumns.length !== sorting.columns.length) {
+        sorting.onSort(nextSortingColumns);
+      }
+    }
+  }, [columns, sorting]);
 
   if (sorting == null) return [null];
 
@@ -93,13 +121,19 @@ export const useColumnSorting = (
               <EuiDraggable key={id} draggableId={id} index={index}>
                 {(provided, state) => (
                   <div
+                    data-test-subj={`dataGrid-sortColumn-${id}-${direction}`}
                     className={`euiDataGridColumnSorting__item ${state.isDragging &&
                       'euiDataGridColumnSorting__item-isDragging'}`}>
                     <EuiFlexGroup gutterSize="m" alignItems="center">
                       <EuiFlexItem>
                         <EuiSwitch
                           name={id}
-                          label={id}
+                          label={`${id} (${
+                            schema.hasOwnProperty(id) &&
+                            schema[id].columnType != null
+                              ? schema[id].columnType
+                              : 'unknown'
+                          })`}
                           checked={activeColumnIds.has(id)}
                           compressed
                           className="euiSwitch--mini"
@@ -115,6 +149,7 @@ export const useColumnSorting = (
                       </EuiFlexItem>
                       <EuiFlexItem>
                         <EuiButtonEmpty
+                          data-test-subj="euiColumnSortingToggle"
                           onClick={() => {
                             const nextColumns = [...sorting.columns];
                             const columnIndex = nextColumns
@@ -143,7 +178,10 @@ export const useColumnSorting = (
         </EuiDroppable>
       </EuiDragDropContext>
       {inactiveColumns.map(({ id }) => (
-        <div key={id} className="euiDataGridColumnSorting__item">
+        <div
+          key={id}
+          className="euiDataGridColumnSorting__item"
+          data-test-subj={`dataGrid-sortColumn-${id}-off`}>
           <EuiFlexGroup gutterSize="m" alignItems="center">
             <EuiFlexItem>
               <EuiSwitch

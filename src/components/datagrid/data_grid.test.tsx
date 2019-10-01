@@ -89,20 +89,85 @@ function sortByColumn(
   columnId: string,
   direction: 'asc' | 'desc' | 'off'
 ) {
+  // open datagrid sorting options
+  let popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
+
+  let popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
   let [columnSorter, currentSortDirection] = getColumnSortDirection(
     datagrid,
     columnId
   );
+
+  // if this column isn't being sorted, enable it
+  if (currentSortDirection === 'off') {
+    act(() => {
+      // @ts-ignore-next-line
+      columnSorter
+        .find('EuiSwitch')
+        .props()
+        .onChange();
+    });
+
+    datagrid.update();
+
+    // inspect the column's new sort details
+    [columnSorter, currentSortDirection] = getColumnSortDirection(
+      datagrid,
+      columnId
+    );
+  }
+
+  // enable this column for sorting
   while (currentSortDirection !== direction) {
     /* eslint-disable no-loop-func */
     act(() => {
-      columnSorter.simulate('click');
+      // @ts-ignore-next-line
+      columnSorter
+        .find('button[data-test-subj="euiColumnSortingToggle"]')
+        .props()
+        .onClick();
     });
     [columnSorter, currentSortDirection] = getColumnSortDirection(
       datagrid,
       columnId
     );
   }
+
+  // close popover
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).euiPopoverToBeOpen();
+
+  popoverButton = popover
+    .find('div[className="euiPopover__anchor"]')
+    .find('[onClick]')
+    .first();
+  // @ts-ignore-next-line
+  act(() => popoverButton.props().onClick());
+
+  datagrid.update();
+
+  popover = datagrid.find(
+    'EuiPopover[data-test-subj="dataGridColumnSortingPopover"]'
+  );
+  expect(popover).not.euiPopoverToBeOpen();
 }
 
 expect.extend({

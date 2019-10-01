@@ -339,8 +339,21 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
 
+  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
+
+  const detectedSchema = useDetectSchema(
+    inMemoryValues,
+    schemaDetectors,
+    inMemory != null
+  );
+  const mergedSchema = getMergedSchema(detectedSchema, columns);
+
   const [columnSelector, visibleColumns] = useColumnSelector(columns);
-  const [columnSorting] = useColumnSorting(visibleColumns, sorting);
+  const [columnSorting] = useColumnSorting(
+    visibleColumns,
+    sorting,
+    detectedSchema
+  );
   const [styleSelector, gridStyles] = useStyleSelector(gridStyleWithDefaults);
 
   // compute the default column width from the container's clientWidth and count of visible columns
@@ -372,15 +385,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
     },
     className
   );
-
-  const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
-
-  const detectedSchema = useDetectSchema(
-    inMemoryValues,
-    schemaDetectors,
-    inMemory != null
-  );
-  const mergedSchema = getMergedSchema(detectedSchema, columns);
 
   // These grid controls will only show when there is room. Check the resize observer callback
   const gridControls = (
