@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-// @ts-ignore
-import { EuiLink } from '../../../../src/components/link';
+import { EuiButtonEmpty } from '../../../../src/components/button';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { Option } from '../../../../src/components/selectable/types';
@@ -27,7 +26,7 @@ export default class extends Component<{}, { options: Option[] }> {
 
     return (
       <Fragment>
-        <EuiLink
+        <EuiButtonEmpty
           onClick={() => {
             this.setState({
               options: Options.map(option => ({
@@ -36,8 +35,8 @@ export default class extends Component<{}, { options: Option[] }> {
               })),
             });
           }}>
-          De-select all
-        </EuiLink>
+          Deselect all
+        </EuiButtonEmpty>
         <EuiSelectable
           searchable
           searchProps={{
