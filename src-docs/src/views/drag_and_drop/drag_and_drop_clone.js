@@ -10,7 +10,10 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import { copy, reorder } from '../../../../src/components/drag_and_drop';
+import {
+  euiDragDropCopy,
+  euiDragDropReorder,
+} from '../../../../src/components/drag_and_drop';
 
 import { makeId, makeList } from './helper';
 
@@ -37,7 +40,7 @@ export default () => {
   const onDragEnd = ({ source, destination }) => {
     if (source && destination) {
       if (source.droppableId === destination.droppableId) {
-        const items = reorder(
+        const items = euiDragDropReorder(
           lists[destination.droppableId],
           source.index,
           destination.index
@@ -47,7 +50,7 @@ export default () => {
       } else {
         const sourceId = source.droppableId;
         const destinationId = destination.droppableId;
-        const result = copy(
+        const result = euiDragDropCopy(
           lists[sourceId],
           lists[destinationId],
           source,

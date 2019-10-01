@@ -1,10 +1,6 @@
 import { palettes } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
-import {
-  PartialTheme,
-  GridLineConfig,
-  LineAnnotationStyle,
-} from '@elastic/charts';
+import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
 
 // @ts-ignore
 import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
@@ -15,26 +11,12 @@ const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
-  gridHorizontalSettings: GridLineConfig;
-  gridVerticalSettings: GridLineConfig;
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
 }
 
 function createTheme(colors: any) {
   return {
-    gridHorizontalSettings: {
-      stroke: colors.euiColorChartLines.rgba,
-      strokeWidth: 1,
-      opacity: 1,
-      dash: [0, 0],
-    },
-    gridVerticalSettings: {
-      stroke: colors.euiColorChartLines.rgba,
-      strokeWidth: 1,
-      opacity: 1,
-      dash: [4, 4],
-    },
     lineAnnotation: {
       line: {
         strokeWidth: 1,
@@ -86,6 +68,10 @@ function createTheme(colors: any) {
           fill: colors.euiColorDarkShade.rgba,
         },
       },
+      scales: {
+        barsPadding: 0.25,
+        histogramPadding: 0.05,
+      },
       axes: {
         axisTitleStyle: {
           fontSize: 12,
@@ -103,8 +89,25 @@ function createTheme(colors: any) {
           padding: 8,
         },
         tickLineStyle: {
-          stroke: 'rgba(0,0,0,0)', // transparent
-          strokeWidth: 0,
+          visible: false,
+          stroke: colors.euiColorChartLines.rgba,
+          strokeWidth: 1,
+        },
+        gridLineStyle: {
+          horizontal: {
+            visible: true,
+            stroke: colors.euiColorChartLines.rgba,
+            strokeWidth: 1,
+            opacity: 1,
+            dash: [0, 0],
+          },
+          vertical: {
+            visible: true,
+            stroke: colors.euiColorChartLines.rgba,
+            strokeWidth: 1,
+            opacity: 1,
+            dash: [4, 4],
+          },
         },
       },
       colors: {

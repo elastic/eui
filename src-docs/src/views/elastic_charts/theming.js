@@ -47,13 +47,6 @@ class _Theming extends Component {
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
 
-    const gridHorizontalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
-    const gridVerticalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
-
     const customColors = {
       colors: {
         vizColors: colorPalette('#FFFFE0', '#017F75', 5),
@@ -92,18 +85,8 @@ class _Theming extends Component {
             yAccessors={['y']}
             customSeriesColors={data1CustomSeriesColors}
           />
-          <Axis
-            id="bottom-axis"
-            position="bottom"
-            showGridLines
-            gridLineStyle={gridVerticalSettings}
-          />
-          <Axis
-            id="left-axis"
-            position="left"
-            showGridLines
-            gridLineStyle={gridHorizontalSettings}
-          />
+          <Axis id="bottom-axis" position="bottom" showGridLines />
+          <Axis id="left-axis" position="left" showGridLines />
         </Chart>
       </Fragment>
     );

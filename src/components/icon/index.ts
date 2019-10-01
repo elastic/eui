@@ -1,5 +1,6 @@
 export {
   EuiIcon,
+  EuiIconProps,
   IconColor,
   IconSize,
   IconType,

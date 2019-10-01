@@ -19,6 +19,7 @@
     display: block;
     line-height: $euiLineHeight;
     font-weight: $euiFontWeightRegular;
+    font-size: inherit;
   }
 
   .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
