@@ -485,8 +485,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 iconType="fullScreen"
                 color="text"
                 className={controlBtnClasses}
-                onClick={() => setIsFullScreen(!isFullScreen)}
-                onKeyDown={() => handleGridKeyDown}>
+                onClick={() => setIsFullScreen(!isFullScreen)}>
                 {isFullScreen ? fullScreenButtonActive : fullScreenButton}
               </EuiButtonEmpty>
             )}
