@@ -66,10 +66,6 @@ export interface EuiColorPickerProps
    */
   isInvalid?: boolean;
   /**
-   *  Renders inline, without an input element or popover
-   */
-  inline?: boolean;
-  /**
    * Choose between swatches with gradient picker (default), swatches only, or gradient picker only.
    */
   mode?: EuiColorPickerMode;

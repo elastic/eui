@@ -1,39 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
-import { isValidHex } from '../../../../src/services';
+import {
+  EuiColorPicker,
+  EuiColorStops,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src/components';
 
-export class CustomSwatches extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: '',
-    };
-  }
+import { useColorPicker, useColorStop } from './utils';
 
-  handleChange = value => {
-    this.setState({ color: value });
-  };
+export const CustomSwatches = () => {
+  const [color, setColor, errors] = useColorPicker();
+  const [colorStops, setColorStops] = useColorStop();
 
-  render() {
-    const hasErrors = !isValidHex(this.state.color) && this.state.color !== '';
+  const customSwatches = ['#333', '#666', '#999', '#CCC'];
 
-    let errors;
-    if (hasErrors) {
-      errors = ['Provide a valid hex value'];
-    }
-
-    const customSwatches = ['#333', '#666', '#999', '#CCC'];
-
-    return (
-      <EuiFormRow label="Pick a color" isInvalid={hasErrors} error={errors}>
+  return (
+    <React.Fragment>
+      <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
         <EuiColorPicker
-          onChange={this.handleChange}
-          color={this.state.color}
-          isInvalid={hasErrors}
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
           swatches={customSwatches}
         />
       </EuiFormRow>
-    );
-  }
-}
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Set color stops">
+        <EuiColorStops
+          label="Set color stops"
+          onChange={setColorStops}
+          colorStops={colorStops}
+          min={0}
+          max={100}
+          swatches={customSwatches}
+        />
+      </EuiFormRow>
+    </React.Fragment>
+  );
+};

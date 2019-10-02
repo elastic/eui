@@ -4,7 +4,13 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiColorPicker, EuiText } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiColorPicker,
+  EuiColorStops,
+  EuiSpacer,
+  EuiText,
+} from '../../../../src/components';
 
 import { ColorPicker } from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -17,6 +23,36 @@ const colorPickerSnippet = `<EuiColorPicker
 />
 `;
 
+import { ColorStops } from './color_stops';
+const colorStopsSource = require('!!raw-loader!./color_stops');
+const colorStopsHtml = renderToHtml(ColorStops);
+const colorStopsSnippetStandard = `<EuiColorStops
+  label="Standard"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+/>`;
+
+const colorStopsSnippetAdd = `<EuiColorStops
+  label="Custom add color"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  addColor={colorToAddToNewStops}
+/>`;
+
+const colorStopsSnippetFixed = `<EuiColorStops
+  label="Fixed color segments"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  stopType="fixed"
+/>
+`;
+
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
 const customSwatchesHtml = renderToHtml(CustomSwatches);
@@ -25,6 +61,20 @@ const customSwatchesSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
   isInvalid={hasErrors}
+  swatches={[
+    '#333',
+    '#666',
+    '#999',
+    '#CCC',
+  ]}
+/>`;
+
+const stopCustomSwatchesSnippet = `<EuiColorStops
+  label="Swatches"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
   swatches={[
     '#333',
     '#666',
@@ -83,6 +133,26 @@ const modesPickerSnippet = `// Gradient map only
   mode="picker"
 />
 `;
+const stopModesSwatchSnippet = `// Swatches only
+<EuiColorStops
+  label="Swatch"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  mode="swatch"
+/>
+`;
+const stopModesPickerSnippet = `// Gradient map only
+<EuiColorStops
+  label="Picker"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  mode="picker"
+/>
+`;
 
 import { Inline } from './inline';
 const inlineSource = require('!!raw-loader!./inline');
@@ -120,30 +190,60 @@ const kitchenSinkSnippet = `<EuiColorPicker
   ]}
 />
 `;
+const stopKitchenSinkSnippet = `<EuiColorStops
+  label="All the things"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  mode="default"
+  addStop={#FFF}
+  swatches={[
+    '#333',
+    '#666',
+    '#999',
+    '#CCC',
+    '#FFF',
+  ]}
+/>
+`;
 
 export const ColorPickerExample = {
-  title: 'Color Picker',
+  title: 'Color Selection',
   intro: (
     <React.Fragment>
       <EuiText>
         <p>
-          Color input component allowing for multiple methods of entry and
-          selection.
-        </p>
-        <p>
-          Direct text entry will only match hexadecimal (hex) colors, and output
-          values only return hex values. Spatial selection involves HSV
-          manipulaton, which is converted to hex.
-        </p>
-        <p>
-          Swatches allow consumers to predefine preferred or suggested choices.
-          The swatches must also be entered in hex format.
+          Two components exist to aid color selection:{' '}
+          <EuiCode>EuiColorPicker</EuiCode> and <EuiCode>EuiColorStops</EuiCode>
+          .
         </p>
       </EuiText>
+      <EuiSpacer />
     </React.Fragment>
   ),
   sections: [
     {
+      title: 'Color picker',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Color input component allowing for multiple methods of entry and
+              selection.
+            </p>
+            <p>
+              Direct text entry will only match hexadecimal (hex) colors, and
+              output values only return hex values. Spatial selection involves
+              HSV manipulaton, which is converted to hex.
+            </p>
+            <p>
+              Swatches allow consumers to predefine preferred or suggested
+              choices. The swatches must also be entered in hex format.
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -157,6 +257,38 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+    },
+    {
+      title: 'Color stops',
+      text: (
+        <React.Fragment>
+          <EuiText>
+            <p>
+              Use <EuiCode>EuiColorStops</EuiCode> to define color stops for
+              data driven styling. Stops are numbers within the provided range.
+              The color segment spans from the given stop number (inclusive) to
+              the next stop number (exclusive).
+            </p>
+          </EuiText>
+        </React.Fragment>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorStopsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: colorStopsHtml,
+        },
+      ],
+      props: { EuiColorStops },
+      snippet: [
+        colorStopsSnippetStandard,
+        colorStopsSnippetAdd,
+        colorStopsSnippetFixed,
+      ],
+      demo: <ColorStops />,
     },
     {
       title: 'Custom color swatches',
@@ -177,31 +309,8 @@ export const ColorPickerExample = {
           the <EuiCode>swatches</EuiCode> prop.
         </p>
       ),
-      snippet: customSwatchesSnippet,
+      snippet: [customSwatchesSnippet, stopCustomSwatchesSnippet],
       demo: <CustomSwatches />,
-    },
-    {
-      title: 'Custom button',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: customButtonSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customButtonHtml,
-        },
-      ],
-      text: (
-        <p>
-          You can optionally use a custom button as the trigger for selection
-          using the <EuiCode>button</EuiCode> prop. Please remember to add
-          accessibility to this component, using proper button markup and aria
-          labeling.
-        </p>
-      ),
-      snippet: [customButtonSnippet, customBadgeSnippet],
-      demo: <CustomButton />,
     },
     {
       title: 'Limited selection modes',
@@ -223,8 +332,36 @@ export const ColorPickerExample = {
           slider selection without swatches.
         </p>
       ),
-      snippet: [modesSwatchSnippet, modesPickerSnippet],
+      snippet: [
+        modesSwatchSnippet,
+        modesPickerSnippet,
+        stopModesSwatchSnippet,
+        stopModesPickerSnippet,
+      ],
       demo: <Modes />,
+    },
+    {
+      title: 'Custom button',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: customButtonSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: customButtonHtml,
+        },
+      ],
+      text: (
+        <p>
+          Available only in <EuiCode>EuiColorPicker</EuiCode>. You can
+          optionally use a custom button as the trigger for selection using the{' '}
+          <EuiCode>button</EuiCode> prop. Please remember to add accessibility
+          to this component, using proper button markup and aria labeling.
+        </p>
+      ),
+      snippet: [customButtonSnippet, customBadgeSnippet],
+      demo: <CustomButton />,
     },
     {
       title: 'Inline',
@@ -240,8 +377,9 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Set the <EuiCode>display</EuiCode> prop to `inline` to display the
-          color picker without an input or popover. Note that the{' '}
+          Available only in <EuiCode>EuiColorPicker</EuiCode>. Set the{' '}
+          <EuiCode>display</EuiCode> prop to `inline` to display the color
+          picker without an input or popover. Note that the{' '}
           <EuiCode>button</EuiCode> prop will be ignored in this case.
         </p>
       ),
@@ -262,15 +400,15 @@ export const ColorPickerExample = {
       ],
       text: (
         <p>
-          Demonstrating that <EuiCode>EuiColorPicker</EuiCode> can exist in
-          portal containers and that its popover position works in nested
+          Demonstrating that both color selection components can exist in portal
+          containers and that their popover positioning works in nested
           contexts.
         </p>
       ),
       demo: <Containers />,
     },
     {
-      title: 'Kitchen sink',
+      title: 'Option toggling',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -281,7 +419,7 @@ export const ColorPickerExample = {
           code: kitchenSinkHtml,
         },
       ],
-      snippet: kitchenSinkSnippet,
+      snippet: [kitchenSinkSnippet, stopKitchenSinkSnippet],
       demo: <KitchenSink />,
     },
   ],
