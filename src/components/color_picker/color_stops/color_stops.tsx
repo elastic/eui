@@ -30,8 +30,8 @@ export interface EuiColorStopsProps extends CommonProps {
   invalid?: boolean;
   compressed?: boolean;
   className?: string;
-  max: number;
-  min: number;
+  max?: number;
+  min?: number;
   label: string;
   stopType?: 'fixed' | 'gradient';
   mode?: EuiColorPickerProps['mode'];
@@ -41,6 +41,9 @@ export interface EuiColorStopsProps extends CommonProps {
 // Because of how the thumbs are rendered in the popover, using ref results in an infinite loop.
 // We'll instead use old fashioned namespaced DOM selectors to get references
 const STOP_ATTR = 'euiColorStop_';
+
+const DEFAULT_MIN = 0;
+const DEFAULT_MAX = 100;
 
 function isTargetAThumb(target: HTMLElement | EventTarget) {
   const element = target as HTMLElement;
@@ -57,6 +60,18 @@ function sortStops(colorStops: ColorStop[]) {
       };
     })
     .sort((a, b) => a.stop - b.stop);
+}
+
+// https://johnresig.com/blog/fast-javascript-maxmin/
+function getRangeMin(colorStops: ColorStop[]) {
+  if (!colorStops.length) return DEFAULT_MIN;
+  const stops = colorStops.map(el => el.stop);
+  return Math.min.apply(Math, stops);
+}
+function getRangeMax(colorStops: ColorStop[]) {
+  if (!colorStops.length) return DEFAULT_MAX;
+  const stops = colorStops.map(el => el.stop);
+  return Math.max.apply(Math, stops);
 }
 
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
@@ -76,6 +91,14 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   swatches,
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
+  const rangeMin: number = useMemo(() => {
+    const result = min != null ? min : getRangeMin(colorStops);
+    return !isNaN(result) ? result : DEFAULT_MIN;
+  }, [colorStops, min]);
+  const rangeMax: number = useMemo(() => {
+    const result = max != null ? max : getRangeMax(colorStops);
+    return !isNaN(result) ? result : DEFAULT_MAX;
+  }, [colorStops, max]);
   const [hasFocus, setHasFocus] = useState(false);
   const [focusedStopIndex, setFocusedStopIndex] = useState<number | null>(null);
   const [wrapperRef, setWrapperRef] = useState<HTMLDivElement | null>(null);
@@ -84,6 +107,27 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const [focusStopOnUpdate, setFocusStopOnUpdate] = useState<number | null>(
     null
   );
+
+  useEffect(() => {
+    let newColorStops = [];
+    const needsMin = min == null;
+    const needsMax = max == null;
+    if (colorStops.length === 0) {
+      if (needsMin) {
+        newColorStops.push({ stop: DEFAULT_MIN, color: addColor });
+      }
+      if (needsMax) {
+        newColorStops.push({ stop: DEFAULT_MAX, color: addColor });
+      }
+      handleOnChange(newColorStops);
+    }
+    if (colorStops.length === 1 && (needsMax || needsMin)) {
+      const delta = needsMax ? DEFAULT_MAX : -DEFAULT_MAX;
+      const stop = colorStops[0].stop + delta;
+      newColorStops = addDefinedStop(colorStops, stop, addColor);
+      handleOnChange(newColorStops);
+    }
+  }, []);
 
   useEffect(() => {
     if (focusStopOnUpdate !== null) {
@@ -107,12 +151,22 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
     // Guard against `null` ref in usage
-    return getStopFromMouseLocation(location, wrapperRef!, min, max);
+    return getStopFromMouseLocation(
+      location,
+      wrapperRef!,
+      min || rangeMin,
+      max || rangeMax
+    );
   };
 
   const getPositionFromStopFn = (stop: ColorStop['stop']) => {
     // Guard against `null` ref in usage
-    return getPositionFromStop(stop, wrapperRef!, min, max);
+    return getPositionFromStop(
+      stop,
+      wrapperRef!,
+      min || rangeMin,
+      max || rangeMax
+    );
   };
 
   const handleOnChange = (colorStops: ColorStop[]) => {
@@ -151,7 +205,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         stop: el.stop,
       };
     });
-    const newColorStops = addStop(stops, addColor, max);
+    const newColorStops = addStop(stops, addColor, max || rangeMax);
 
     setFocusStopOnUpdate(newColorStops[colorStops.length].stop);
     handleOnChange(newColorStops);
@@ -196,6 +250,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       case keyCodes.BACKSPACE:
         if (readOnly || hasFocus || focusedStopIndex == null) return;
         if (isTargetAThumb(e.target)) {
+          if (
+            (min == null && focusedStopIndex === 0) ||
+            (max == null && focusedStopIndex === sortedStops.length - 1)
+          ) {
+            return;
+          }
           const index = sortedStops[focusedStopIndex].id;
           onRemove(index);
         }
@@ -233,13 +293,17 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const thumbs = sortedStops.map((colorStop, index) => (
     <EuiColorStopThumb
+      isRangeMin={min == null && colorStop.stop === rangeMin}
+      isRangeMax={max == null && colorStop.stop === rangeMax}
       data-index={`${STOP_ATTR}${index}`}
       key={colorStop.id}
-      globalMin={min}
-      globalMax={max}
-      min={index === 0 ? min : sortedStops[index - 1].stop + 1}
+      globalMin={min || rangeMin}
+      globalMax={max || rangeMax}
+      min={index === 0 ? min || rangeMin : sortedStops[index - 1].stop + 1}
       max={
-        index === sortedStops.length - 1 ? max : sortedStops[index + 1].stop - 1
+        index === sortedStops.length - 1
+          ? max || rangeMax
+          : sortedStops[index + 1].stop - 1
       }
       stop={colorStop.stop}
       color={colorStop.color}
@@ -317,15 +381,15 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         </p>
       </EuiScreenReaderOnly>
       <EuiRangeTrack
-        min={min}
-        max={max}
+        min={min || rangeMin}
+        max={max || rangeMax}
         compressed={compressed}
         disabled={disabled}>
         <EuiRangeHighlight
-          min={min}
-          max={max}
-          lowerValue={min}
-          upperValue={max}
+          min={min || rangeMin}
+          max={max || rangeMax}
+          lowerValue={min || rangeMin}
+          upperValue={max || rangeMax}
           background={background}
           compressed={compressed}
         />

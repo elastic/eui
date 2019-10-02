@@ -42,6 +42,8 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   globalMax: number;
   min: number;
   max: number;
+  isRangeMin?: boolean;
+  isRangeMax?: boolean;
   parentRef?: HTMLDivElement | null;
   colorPickerMode: EuiColorPickerProps['mode'];
   colorPickerSwatches?: EuiColorPickerProps['swatches'];
@@ -62,6 +64,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   globalMax,
   min,
   max,
+  isRangeMin = false,
+  isRangeMax = false,
   parentRef,
   colorPickerMode,
   colorPickerSwatches,
@@ -134,14 +138,25 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const handleStopInputChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > globalMax || value < globalMin;
 
-    if (willBeInvalid) {
-      if (value > globalMax) {
-        value = globalMax;
+    if (isRangeMin) {
+      if (value > max) {
+        value = max - 1;
       }
-      if (value < globalMin) {
-        value = globalMin;
+    } else if (isRangeMax) {
+      if (value < min) {
+        value = min + 1;
+      }
+    } else {
+      if (willBeInvalid) {
+        if (value > globalMax) {
+          value = globalMax;
+        }
+        if (value < globalMin) {
+          value = globalMin;
+        }
       }
     }
+
     setStopIsInvalid(isStopInvalid(value));
     onChange({ stop: value, color });
   };
@@ -270,8 +285,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
-                    min={min}
-                    max={max}
+                    min={isRangeMin ? null : min}
+                    max={isRangeMax ? null : max}
                     value={isStopInvalid(stop) ? '' : stop}
                     isInvalid={stopIsInvalid}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -296,7 +311,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     color="danger"
                     aria-label={removeLabel}
                     title={removeLabel}
-                    disabled={!onRemove || readOnly}
+                    disabled={!onRemove || readOnly || isRangeMin || isRangeMax}
                     onClick={handleOnRemove}
                   />
                 )}
