@@ -145,7 +145,13 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   };
 
   const onAdd = () => {
-    const newColorStops = addStop(colorStops, addColor, max);
+    const stops = sortedStops.map(el => {
+      return {
+        color: el.color,
+        stop: el.stop,
+      };
+    });
+    const newColorStops = addStop(stops, addColor, max);
 
     setFocusStopOnUpdate(newColorStops[colorStops.length].stop);
     handleOnChange(newColorStops);
