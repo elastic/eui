@@ -39,7 +39,7 @@ export interface LinkButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-type EuiLinkButtonProps = CommonProps &
+export type EuiLinkButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> &
   LinkButtonProps;
 
@@ -48,13 +48,16 @@ export interface LinkAnchorProps {
   color?: EuiLinkColor;
 }
 
-type EuiLinkAnchorProps = CommonProps &
+export type EuiLinkAnchorProps = CommonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> &
   LinkAnchorProps;
 
-type Props = ExclusiveUnion<EuiLinkButtonProps, EuiLinkAnchorProps>;
+export type EuiLinkProps = ExclusiveUnion<
+  EuiLinkButtonProps,
+  EuiLinkAnchorProps
+>;
 
-const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,

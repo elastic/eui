@@ -1,1 +1,6 @@
-export { EuiLink } from './link';
+export {
+  EuiLink,
+  EuiLinkProps,
+  EuiLinkAnchorProps,
+  EuiLinkButtonProps,
+} from './link';
