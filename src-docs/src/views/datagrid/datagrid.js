@@ -42,9 +42,6 @@ const columns = [
   {
     id: 'version',
   },
-  {
-    id: 'actions',
-  },
 ];
 
 const raw_data = [];
@@ -66,18 +63,6 @@ for (let i = 1; i < 1000; i++) {
     amount: fake('{{finance.currencySymbol}}{{finance.amount}}'),
     phone: fake('{{phone.phoneNumber}}'),
     version: fake('{{system.semver}}'),
-    actions: (
-      <Fragment>
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-        <EuiButtonIcon
-          aria-label="dummy icon"
-          iconType={iconTypes[Math.floor(Math.random() * iconTypes.length)]}
-        />
-      </Fragment>
-    ),
   });
 }
 
@@ -176,7 +161,6 @@ export default () => {
   if (inMemoryLevel !== '') {
     inMemoryProps.inMemory = {
       level: inMemoryLevel,
-      skipColumns: ['actions'],
     };
   }
 

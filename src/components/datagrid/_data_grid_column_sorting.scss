@@ -31,7 +31,21 @@
 
   &-isActive {
     font-weight: $euiFontWeightBold;
-    background: $euiColorDarkShade;
+    background: $euiColorPrimary;
     color: $euiColorEmptyShade;
   }
+}
+
+.euiDataGridColumnSorting__listGroupItem {
+  padding: 0;
+  margin-top: 0;
+
+  // TODO: Fix this hack because list group doesn't expose a class
+  button {
+    padding: $euiSizeXS / 2;
+  }
+}
+
+.euiDataGridColumnSorting__orderButtons {
+  margin-left: $euiSizeL;
 }
