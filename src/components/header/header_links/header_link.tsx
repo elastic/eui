@@ -1,17 +1,15 @@
-import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { IconType } from '../../icon';
 
-type Props = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    iconType?: IconType;
-    isActive?: boolean;
-  };
+export type EuiHeaderLinkProps = EuiButtonEmptyProps & {
+  iconType?: IconType;
+  isActive?: boolean;
+};
 
-export const EuiHeaderLink: FunctionComponent<Props> = ({
+export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
   isActive,
   className,
   ...rest

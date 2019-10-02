@@ -1,10 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
-import { Breadcrumb, EuiBreadcrumbs } from '../../breadcrumbs';
+import {
+  Breadcrumb,
+  EuiBreadcrumbs,
+  EuiBreadcrumbsProps,
+} from '../../breadcrumbs';
 
-type Props = CommonProps & {
+type Props = EuiBreadcrumbsProps & {
   breadcrumbs: Breadcrumb[];
 };
 

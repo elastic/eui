@@ -1,9 +1,9 @@
-import React, { AnchorHTMLAttributes, FunctionComponent } from 'react';
+import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
-type Props = CommonProps & AnchorHTMLAttributes<HTMLButtonElement>;
+type Props = CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const EuiHeaderSectionItemButton: FunctionComponent<Props> = ({
   onClick,

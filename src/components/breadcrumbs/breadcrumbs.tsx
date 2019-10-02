@@ -20,7 +20,7 @@ export type Breadcrumb = CommonProps & {
   truncate?: boolean;
 };
 
-type EuiBreadcrumbsProps = CommonProps & {
+export type EuiBreadcrumbsProps = CommonProps & {
   /**
    * Hides left most breadcrumbs as window gets smaller
    */

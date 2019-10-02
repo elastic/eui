@@ -1,19 +1,20 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonIcon } from '../../button';
-import { CommonProps } from '../../common';
+import { CommonProps, Omit } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 import { EuiI18n } from '../../i18n';
 
-type EuiHeaderAlertProps = CommonProps & {
-  action?: ReactNode;
-  date: ReactNode;
-  text?: ReactNode;
-  title: ReactNode;
-};
+export type EuiHeaderAlertProps = CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+    action?: ReactNode;
+    date: ReactNode;
+    text?: ReactNode;
+    title: ReactNode;
+  };
 
 export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
   action,

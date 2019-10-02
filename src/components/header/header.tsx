@@ -1,9 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-export const EuiHeader: FunctionComponent<CommonProps> = ({
+export type EuiHeaderProps = CommonProps & HTMLAttributes<HTMLDivElement>;
+
+export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
   ...rest

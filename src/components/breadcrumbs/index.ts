@@ -1,1 +1,1 @@
-export { Breadcrumb, EuiBreadcrumbs } from './breadcrumbs';
+export { Breadcrumb, EuiBreadcrumbs, EuiBreadcrumbsProps } from './breadcrumbs';

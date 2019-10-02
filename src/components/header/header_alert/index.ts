@@ -1,1 +1,1 @@
-export { EuiHeaderAlert } from './header_alert';
+export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';

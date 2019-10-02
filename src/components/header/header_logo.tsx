@@ -1,11 +1,15 @@
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  AnchorHTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon, IconType } from '../icon';
 import { CommonProps } from '../common';
 
 export type EuiHeaderLogoProps = CommonProps &
-  HTMLAttributes<HTMLAnchorElement> & {
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
     href?: string;
     iconType?: IconType;
     iconTitle?: string;

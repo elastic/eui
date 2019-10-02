@@ -1,6 +1,6 @@
-export { EuiHeader } from './header';
+export { EuiHeader, EuiHeaderProps } from './header';
 
-export { EuiHeaderAlert } from './header_alert';
+export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
 
 export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
