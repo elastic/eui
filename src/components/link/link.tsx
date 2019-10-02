@@ -1,8 +1,8 @@
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  FunctionComponent,
   MouseEventHandler,
+  forwardRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -54,40 +54,64 @@ type EuiLinkAnchorProps = CommonProps &
 
 type Props = ExclusiveUnion<EuiLinkButtonProps, EuiLinkAnchorProps>;
 
-export const EuiLink: FunctionComponent<Props> = ({
-  children,
-  color = 'primary',
-  className,
-  href,
-  target,
-  rel,
-  type = 'button',
-  onClick,
-  ...rest
-}) => {
-  const classes = classNames('euiLink', colorsToClassNameMap[color], className);
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
+  (
+    {
+      children,
+      color = 'primary',
+      className,
+      href,
+      target,
+      rel,
+      type = 'button',
+      onClick,
+      ...rest
+    },
+    ref
+  ) => {
+    const classes = classNames(
+      'euiLink',
+      colorsToClassNameMap[color],
+      className
+    );
 
-  if (href === undefined) {
-    const buttonProps = {
+    if (href === undefined) {
+      const buttonProps = {
+        className: classes,
+        type,
+        onClick,
+        ...rest,
+      };
+
+      return (
+        <button
+          ref={ref as React.Ref<HTMLButtonElement>}
+          {...buttonProps as EuiLinkButtonProps}>
+          {children}
+        </button>
+      );
+    }
+
+    const secureRel = getSecureRelForTarget({ href, target, rel });
+
+    const anchorProps = {
       className: classes,
-      type,
+      href,
+      target,
+      rel: secureRel,
       onClick,
       ...rest,
     };
 
-    return <button {...buttonProps as EuiLinkButtonProps}>{children}</button>;
+    return (
+      <a
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        {...anchorProps as EuiLinkAnchorProps}>
+        {children}
+      </a>
+    );
   }
+);
 
-  const secureRel = getSecureRelForTarget({ href, target, rel });
-
-  const anchorProps = {
-    className: classes,
-    href,
-    target,
-    rel: secureRel,
-    onClick,
-    ...rest,
-  };
-
-  return <a {...anchorProps as EuiLinkAnchorProps}>{children}</a>;
-};
+EuiLink.displayName = 'EuiLink';
+export { EuiLink };

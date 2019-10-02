@@ -11,7 +11,6 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     data-test-subj="breadcrumbsAnimals"
     href="#"
     rel="noreferrer"
-    title="Animals"
   >
     Animals
   </a>
@@ -20,7 +19,6 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   />
   <button
     class="euiLink euiLink--subdued euiBreadcrumb"
-    title="Reptiles"
     type="button"
   >
     Reptiles
@@ -32,7 +30,6 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     class="euiLink euiLink--subdued euiBreadcrumb"
     href="#"
     rel="noreferrer"
-    title="Boa constrictor"
   >
     Boa constrictor
   </a>
@@ -42,7 +39,6 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   <span
     aria-current="page"
     class="euiBreadcrumb euiBreadcrumb--last"
-    title="Edit"
   >
     Edit
   </span>

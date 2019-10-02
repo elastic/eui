@@ -10,11 +10,12 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiBadge } from '../badge';
 import { EuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 
 export type Breadcrumb = CommonProps & {
-  text: string;
+  text: ReactNode;
   href?: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
   truncate?: boolean;
@@ -173,12 +174,14 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     });
 
     let link;
+    const [setRef, innerText] = useInnerText();
 
     if (isLastBreadcrumb && !href) {
       link = (
         <span
+          ref={setRef}
           className={breadcrumbClasses}
-          title={text}
+          title={innerText}
           aria-current="page"
           {...breadcrumbRest}>
           {text}
@@ -187,11 +190,12 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     } else {
       link = (
         <EuiLink
+          ref={setRef}
           color={isLastBreadcrumb ? 'text' : 'subdued'}
           onClick={onClick}
           href={href}
           className={breadcrumbClasses}
-          title={text}
+          title={innerText}
           {...breadcrumbRest}>
           {text}
         </EuiLink>
