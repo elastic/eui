@@ -68,6 +68,11 @@ const schemaDetectors: SchemaDetector[] = [
   {
     type: 'json',
     detector(value: string) {
+      // does this look like it might be a JSON object?
+      const maybeArray = value[0] === '[' && value[value.length - 1] === ']';
+      const maybeObject = value[0] === '{' && value[value.length - 1] === '}';
+      if (!maybeArray && !maybeObject) return 0;
+
       try {
         JSON.parse(value);
         return 1;

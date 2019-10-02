@@ -84,7 +84,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
-  if (!rest['aria-label'] && !rest['aria-labelledby']) {
+  if (!rest['aria-label'] && !rest['aria-labelledby'] && !rest['aria-hidden']) {
     console.warn(
       `EuiButtonIcon requires aria-label or aria-labelledby to be specified because icon-only
       buttons are screen-reader-inaccessible without them.`

@@ -108,8 +108,6 @@ const cellPaddingsToClassMap: {
 };
 const ORIGIN: [number, number] = [0, 0];
 
-// returns whether or not this element is a gridcell with CELL_CONTENTS_ATTR
-
 function computeVisibleRows(props: EuiDataGridProps) {
   const { pagination, rowCount } = props;
 

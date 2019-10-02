@@ -322,7 +322,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -342,7 +341,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"
@@ -373,7 +372,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -393,7 +391,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"
@@ -430,7 +428,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -450,7 +447,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"
@@ -481,7 +478,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -501,7 +497,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"
@@ -538,7 +534,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -558,7 +553,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"
@@ -589,7 +584,6 @@ Array [
                 <div>
                   <div
                     class="euiDataGridRowCell__content"
-                    data-js-cell-contents-container="false"
                   >
                     <div
                       class="euiDataGridRowCell__expand"
@@ -609,7 +603,7 @@ Array [
                             class="euiPopover__anchor"
                           >
                             <button
-                              aria-label="Expand cell content"
+                              aria-hidden="true"
                               class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
                               title="Expand cell content"
                               type="button"

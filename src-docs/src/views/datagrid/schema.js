@@ -87,7 +87,7 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-export default class InMemoryDataGrid extends Component {
+export default class DataGridSchema extends Component {
   constructor(props) {
     super(props);
 
@@ -144,7 +144,7 @@ export default class InMemoryDataGrid extends Component {
         aria-label="Top EUI contributors"
         columns={columns}
         rowCount={data.length}
-        inMemory="sorting"
+        inMemory={{ level: 'sorting' }}
         renderCellValue={({ rowIndex, columnId }) => {
           const value = data[rowIndex][columnId];
           return value;

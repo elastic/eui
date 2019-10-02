@@ -15,7 +15,7 @@ import classNames from 'classnames';
 import { EuiText } from '../text';
 import { EuiPopover } from '../popover';
 // @ts-ignore
-import { EuiCodeBlock } from '../code';
+// import { EuiCodeBlock } from '../code';
 import { CommonProps, Omit } from '../common';
 // @ts-ignore
 import { EuiButtonIcon } from '../button';
@@ -102,13 +102,13 @@ const EuiDataGridCellContent: FunctionComponent<
   let cellElement: ReactNode;
   if (props.columnType === 'json') {
     cellElement = (
-      <EuiCodeBlock
+      /*<EuiCodeBlock
         isCopyable
         transparentBackground
         paddingSize="none"
-        language="json">
-        <CellElement {...rest} />
-      </EuiCodeBlock>
+        language="json">*/
+      <CellElement {...rest} />
+      // </EuiCodeBlock>
     );
   } else {
     cellElement = (
@@ -239,7 +239,6 @@ export class EuiDataGridCell extends Component<
           case keyCodes.ENTER:
             e.preventDefault();
             this.setState({ popoverIsOpen: true });
-            console.log('hello');
             break;
           case keyCodes.F2:
             e.preventDefault();
