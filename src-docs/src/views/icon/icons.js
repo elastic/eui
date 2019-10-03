@@ -55,6 +55,7 @@ const iconTypes = [
   'cross',
   'crosshairs',
   'crossInACircleFilled',
+  'currency',
   'cut',
   'database',
   'document',

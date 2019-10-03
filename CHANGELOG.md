@@ -2,6 +2,7 @@
 
 - Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
 - Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
+- Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
 
 **Bug fixes**
 
