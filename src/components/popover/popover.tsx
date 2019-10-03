@@ -10,6 +10,7 @@ import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback, RefCallback } from '../common';
 import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { Props as ReactFocusLockProps } from 'react-focus-lock'; // eslint-disable-line import/named
 
 import {
   cascadingMenuKeyCodes,
@@ -107,6 +108,11 @@ export interface EuiPopoverProps {
   /** By default, popover content inherits the z-index of the anchor
    * component; pass zIndex to override */
   zIndex?: number;
+
+  /**
+   * Function callback for when the focus trap is deactivated
+   */
+  onTrapDeactivation?: ReactFocusLockProps['onDeactivation'];
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -554,6 +560,7 @@ export class EuiPopover extends Component<Props, State> {
       initialFocus,
       attachToAnchor,
       display,
+      onTrapDeactivation,
       ...rest
     } = this.props;
 
@@ -621,6 +628,7 @@ export class EuiPopover extends Component<Props, State> {
             returnFocus={!this.state.isOpening} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
             initialFocus={initialFocus}
+            onDeactivation={onTrapDeactivation}
             disabled={!ownFocus}>
             {focusTrapScreenReaderText}
             <EuiPanel

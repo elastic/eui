@@ -78,14 +78,14 @@ export class EuiDataGridCell extends Component<
     popoverIsOpen: false,
   };
 
-  updateFocus() {
+  updateFocus = () => {
     const cell = this.cellRef.current;
     const { isFocused } = this.props;
 
     if (cell && isFocused) {
       cell.focus();
     }
-  }
+  };
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
     const didFocusChange = prevProps.isFocused !== this.props.isFocused;
@@ -257,7 +257,8 @@ export class EuiDataGridCell extends Component<
             ownFocus
             panelClassName="euiDataGridRowCell__popover"
             zIndex={2000}
-            closePopover={() => this.setState({ popoverIsOpen: false })}>
+            closePopover={() => this.setState({ popoverIsOpen: false })}
+            onTrapDeactivation={this.updateFocus}>
             {popoverContent}
           </EuiPopover>
         </div>
