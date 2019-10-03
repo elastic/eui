@@ -40,8 +40,10 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   onRemove?: () => void;
   globalMin: number;
   globalMax: number;
-  min: number;
-  max: number;
+  localMin: number;
+  localMax: number;
+  min?: number;
+  max?: number;
   isRangeMin?: boolean;
   isRangeMax?: boolean;
   parentRef?: HTMLDivElement | null;
@@ -62,6 +64,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   onRemove,
   globalMin,
   globalMax,
+  localMin,
+  localMax,
   min,
   max,
   isRangeMin = false,
@@ -121,14 +125,14 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   };
 
   const handleStopChange = (value: ColorStop['stop']) => {
-    const willBeInvalid = value > max || value < min;
+    const willBeInvalid = value > localMax || value < localMin;
 
     if (willBeInvalid) {
-      if (value > max) {
-        value = max;
+      if (value > localMax) {
+        value = localMax;
       }
-      if (value < min) {
-        value = min;
+      if (value < localMin) {
+        value = localMin;
       }
     }
     setStopIsInvalid(isStopInvalid(value));
@@ -138,22 +142,12 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const handleStopInputChange = (value: ColorStop['stop']) => {
     const willBeInvalid = value > globalMax || value < globalMin;
 
-    if (isRangeMin) {
-      if (value > max) {
-        value = max - 1;
+    if (willBeInvalid) {
+      if (value > globalMax && !!max) {
+        value = globalMax;
       }
-    } else if (isRangeMax) {
-      if (value < min) {
-        value = min + 1;
-      }
-    } else {
-      if (!isRangeMin && !isRangeMin && willBeInvalid) {
-        if (value > globalMax) {
-          value = globalMax;
-        }
-        if (value < globalMin) {
-          value = globalMin;
-        }
+      if (value < globalMin && !!min) {
+        value = globalMin;
       }
     }
 
@@ -229,8 +223,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               <EuiRangeThumb
                 data-test-subj="euiColorStopThumb"
                 data-index={dataIndex}
-                min={min}
-                max={max}
+                min={localMin}
+                max={localMax}
                 value={stop}
                 onClick={openPopover}
                 onFocus={handleFocus}
@@ -285,8 +279,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     inputRef={setNumberInputRef}
                     compressed={true}
                     readOnly={readOnly}
-                    min={isRangeMin ? null : min}
-                    max={isRangeMax ? null : max}
+                    min={isRangeMin || min == null ? null : localMin}
+                    max={isRangeMax || max == null ? null : localMax}
                     value={isStopInvalid(stop) ? '' : stop}
                     isInvalid={stopIsInvalid}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

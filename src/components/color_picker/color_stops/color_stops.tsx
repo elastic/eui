@@ -288,8 +288,10 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       key={colorStop.id}
       globalMin={min || rangeMin}
       globalMax={max || rangeMax}
-      min={index === 0 ? min || rangeMin : sortedStops[index - 1].stop + 1}
-      max={
+      min={min}
+      max={max}
+      localMin={index === 0 ? min || rangeMin : sortedStops[index - 1].stop + 1}
+      localMax={
         index === sortedStops.length - 1
           ? max || rangeMax
           : sortedStops[index + 1].stop - 1
