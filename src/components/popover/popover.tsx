@@ -310,19 +310,34 @@ export class EuiPopover extends Component<Props, State> {
 
       if (this.props.initialFocus != null) {
         focusTarget = getElementFromInitialFocus(this.props.initialFocus);
-        if (focusTarget) {
-          // there's a race condition between the popover content becoming visible and this function call
-          // if the element isn't visible yet (due to css styling) then it can't accept focus
-          // so wait for another render and try again
-          const visibility = window.getComputedStyle(focusTarget).visibility;
-          if (visibility === 'hidden') {
-            this.updateFocus();
-          }
-        }
       } else {
         const tabbableItems = tabbable(this.panel);
         if (tabbableItems.length) {
           focusTarget = tabbableItems[0];
+        }
+      }
+
+      // there's a race condition between the popover content becoming visible and this function call
+      // if the element isn't visible yet (due to css styling) then it can't accept focus
+      // so wait for another render and try again
+      if (focusTarget == null) {
+        // there isn't a focus target, one of two reasons:
+        // #1 is the whole panel hidden? If so, schedule another check
+        // #2 panel is visible but no tabbables exist, move focus to the panel
+        const panelVisibility = window.getComputedStyle(this.panel).visibility;
+        if (panelVisibility === 'hidden') {
+          // #1
+          this.updateFocus();
+        } else {
+          // #2
+          focusTarget = this.panel;
+        }
+      } else {
+        // found an element to focus, but is it visible?
+        const visibility = window.getComputedStyle(focusTarget).visibility;
+        if (visibility === 'hidden') {
+          // not visible, check again next render frame
+          this.updateFocus();
         }
       }
 

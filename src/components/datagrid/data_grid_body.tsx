@@ -30,7 +30,6 @@ interface EuiDataGridBodyProps {
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   inMemory?: EuiDataGridInMemory;
   inMemoryValues: EuiDataGridInMemoryValues;
-  isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   sorting?: EuiDataGridSorting;
@@ -50,7 +49,6 @@ export const EuiDataGridBody: FunctionComponent<
     renderCellValue,
     inMemory,
     inMemoryValues,
-    isGridNavigationEnabled,
     interactiveCellId,
     pagination,
     sorting,
@@ -154,7 +152,6 @@ export const EuiDataGridBody: FunctionComponent<
           renderCellValue={renderCellValue}
           rowIndex={rowIndex}
           visibleRowIndex={i}
-          isGridNavigationEnabled={isGridNavigationEnabled}
           interactiveCellId={interactiveCellId}
         />
       );
@@ -171,7 +168,6 @@ export const EuiDataGridBody: FunctionComponent<
     rowMap,
     visibleRowIndices,
     startRow,
-    isGridNavigationEnabled,
     interactiveCellId,
   ]);
 

@@ -319,44 +319,42 @@ Array [
                 role="gridcell"
                 tabindex="0"
               >
-                <div>
+                <div
+                  class="euiDataGridRowCell__content"
+                >
                   <div
-                    class="euiDataGridRowCell__content"
+                    class="euiPopover euiPopover--anchorDownCenter"
                   >
                     <div
-                      class="euiDataGridRowCell__expand"
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        0, A
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
+                        class="euiDataGridRowCell__expandInner"
                       >
                         <div
-                          class="euiPopover euiPopover--anchorDownCenter"
+                          class="euiDataGridRowCell__expandCode"
                         >
-                          <div
-                            class="euiPopover__anchor"
+                          0, A
+                        </div>
+                        <div
+                          class="euiDataGridRowCell__expandButton"
+                        >
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
                           >
-                            <button
+                            <svg
                               aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -369,150 +367,42 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  class="euiDataGridRowCell__content"
+                >
                   <div
-                    class="euiDataGridRowCell__content"
+                    class="euiPopover euiPopover--anchorDownCenter"
                   >
                     <div
-                      class="euiDataGridRowCell__expand"
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        0, B
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
+                        class="euiDataGridRowCell__expandInner"
                       >
                         <div
-                          class="euiPopover euiPopover--anchorDownCenter"
+                          class="euiDataGridRowCell__expandCode"
                         >
-                          <div
-                            class="euiPopover__anchor"
-                          >
-                            <button
-                              aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
+                          0, B
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiDataGridRow"
-              data-test-subj="dataGridRow"
-              role="row"
-            >
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                tabindex="-1"
-              >
-                <div>
-                  <div
-                    class="euiDataGridRowCell__content"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        1, A
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
-                      >
                         <div
-                          class="euiPopover euiPopover--anchorDownCenter"
+                          class="euiDataGridRowCell__expandButton"
                         >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
                           >
-                            <button
+                            <svg
                               aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="euiDataGridRowCell"
-                data-test-subj="dataGridRowCell"
-                role="gridcell"
-                tabindex="-1"
-              >
-                <div>
-                  <div
-                    class="euiDataGridRowCell__content"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expand"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        1, B
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
-                      >
-                        <div
-                          class="euiPopover euiPopover--anchorDownCenter"
-                        >
-                          <div
-                            class="euiPopover__anchor"
-                          >
-                            <button
-                              aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -531,44 +421,42 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  class="euiDataGridRowCell__content"
+                >
                   <div
-                    class="euiDataGridRowCell__content"
+                    class="euiPopover euiPopover--anchorDownCenter"
                   >
                     <div
-                      class="euiDataGridRowCell__expand"
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        2, A
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
+                        class="euiDataGridRowCell__expandInner"
                       >
                         <div
-                          class="euiPopover euiPopover--anchorDownCenter"
+                          class="euiDataGridRowCell__expandCode"
                         >
-                          <div
-                            class="euiPopover__anchor"
+                          1, A
+                        </div>
+                        <div
+                          class="euiDataGridRowCell__expandButton"
+                        >
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
                           >
-                            <button
+                            <svg
                               aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -581,44 +469,144 @@ Array [
                 role="gridcell"
                 tabindex="-1"
               >
-                <div>
+                <div
+                  class="euiDataGridRowCell__content"
+                >
                   <div
-                    class="euiDataGridRowCell__content"
+                    class="euiPopover euiPopover--anchorDownCenter"
                   >
                     <div
-                      class="euiDataGridRowCell__expand"
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
                     >
                       <div
-                        class="euiDataGridRowCell__expandCode"
-                      >
-                        2, B
-                      </div>
-                      <div
-                        class="euiDataGridRowCell__expandButton"
+                        class="euiDataGridRowCell__expandInner"
                       >
                         <div
-                          class="euiPopover euiPopover--anchorDownCenter"
+                          class="euiDataGridRowCell__expandCode"
                         >
-                          <div
-                            class="euiPopover__anchor"
+                          1, B
+                        </div>
+                        <div
+                          class="euiDataGridRowCell__expandButton"
+                        >
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
                           >
-                            <button
+                            <svg
                               aria-hidden="true"
-                              class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
-                              title="Expand cell content"
-                              type="button"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
-                                focusable="false"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                width="16"
-                                xmlns="http://www.w3.org/2000/svg"
-                              />
-                            </button>
-                          </div>
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRow"
+              data-test-subj="dataGridRow"
+              role="row"
+            >
+              <div
+                class="euiDataGridRowCell"
+                data-test-subj="dataGridRowCell"
+                role="gridcell"
+                tabindex="-1"
+              >
+                <div
+                  class="euiDataGridRowCell__content"
+                >
+                  <div
+                    class="euiPopover euiPopover--anchorDownCenter"
+                  >
+                    <div
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                    >
+                      <div
+                        class="euiDataGridRowCell__expandInner"
+                      >
+                        <div
+                          class="euiDataGridRowCell__expandCode"
+                        >
+                          2, A
+                        </div>
+                        <div
+                          class="euiDataGridRowCell__expandButton"
+                        >
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="euiDataGridRowCell"
+                data-test-subj="dataGridRowCell"
+                role="gridcell"
+                tabindex="-1"
+              >
+                <div
+                  class="euiDataGridRowCell__content"
+                >
+                  <div
+                    class="euiPopover euiPopover--anchorDownCenter"
+                  >
+                    <div
+                      class="euiPopover__anchor euiDataGridRowCell__expand"
+                    >
+                      <div
+                        class="euiDataGridRowCell__expandInner"
+                      >
+                        <div
+                          class="euiDataGridRowCell__expandCode"
+                        >
+                          2, B
+                        </div>
+                        <div
+                          class="euiDataGridRowCell__expandButton"
+                        >
+                          <button
+                            aria-hidden="true"
+                            class="euiButtonIcon euiButtonIcon--text euiDataGridRowCell__expandButtonIcon"
+                            title="Expand cell content"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="euiIcon euiIcon--small euiIcon-isLoading euiButtonIcon__icon"
+                              focusable="false"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>

@@ -297,9 +297,7 @@ function createKeyDownHandler(
   props: EuiDataGridProps,
   visibleColumns: EuiDataGridProps['columns'],
   focusedCell: [number, number],
-  setFocusedCell: (focusedCell: [number, number]) => void,
-  isGridNavigationEnabled: boolean,
-  setIsGridNavigationEnabled: (isGridNavigationEnabled: boolean) => void
+  setFocusedCell: (focusedCell: [number, number]) => void
 ) {
   return (event: KeyboardEvent<HTMLDivElement>) => {
     const colCount = visibleColumns.length - 1;
@@ -307,46 +305,32 @@ function createKeyDownHandler(
     const rowCount = computeVisibleRows(props);
     const { keyCode } = event;
 
-    if (
-      isGridNavigationEnabled &&
-      (keyCode === keyCodes.ENTER || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(false);
-    } else if (
-      !isGridNavigationEnabled &&
-      (keyCode === keyCodes.ESCAPE || keyCode === keyCodes.F2)
-    ) {
-      setIsGridNavigationEnabled(true);
-    }
-
-    if (isGridNavigationEnabled) {
-      switch (keyCode) {
-        case keyCodes.DOWN:
-          event.preventDefault();
-          if (y < rowCount - 1) {
-            setFocusedCell([x, y + 1]);
-          }
-          break;
-        case keyCodes.LEFT:
-          event.preventDefault();
-          if (x > 0) {
-            setFocusedCell([x - 1, y]);
-          }
-          break;
-        case keyCodes.UP:
-          event.preventDefault();
-          // TODO sort out when a user can arrow up into the column headers
-          if (y > 0) {
-            setFocusedCell([x, y - 1]);
-          }
-          break;
-        case keyCodes.RIGHT:
-          event.preventDefault();
-          if (x < colCount) {
-            setFocusedCell([x + 1, y]);
-          }
-          break;
-      }
+    switch (keyCode) {
+      case keyCodes.DOWN:
+        event.preventDefault();
+        if (y < rowCount - 1) {
+          setFocusedCell([x, y + 1]);
+        }
+        break;
+      case keyCodes.LEFT:
+        event.preventDefault();
+        if (x > 0) {
+          setFocusedCell([x - 1, y]);
+        }
+        break;
+      case keyCodes.UP:
+        event.preventDefault();
+        // TODO sort out when a user can arrow up into the column headers
+        if (y > 0) {
+          setFocusedCell([x, y - 1]);
+        }
+        break;
+      case keyCodes.RIGHT:
+        event.preventDefault();
+        if (x < colCount) {
+          setFocusedCell([x + 1, y]);
+        }
+        break;
     }
   };
 }
@@ -362,10 +346,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
 
   // enables/disables grid controls based on available width
   const onResize = useOnResize(setShowGridControls, isFullScreen);
-
-  const [isGridNavigationEnabled, setIsGridNavigationEnabled] = useState<
-    boolean
-  >(true);
 
   const handleGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     switch (e.keyCode) {
@@ -500,9 +480,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                 props,
                 visibleColumns,
                 focusedCell,
-                setFocusedCell,
-                isGridNavigationEnabled,
-                setIsGridNavigationEnabled
+                setFocusedCell
               )}
               className="euiDataGrid__verticalScroll"
               ref={resizeRef}
@@ -547,7 +525,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
                     sorting={sorting}
                     renderCellValue={renderCellValue}
                     rowCount={rowCount}
-                    isGridNavigationEnabled={isGridNavigationEnabled}
                     interactiveCellId={interactiveCellId}
                   />
                 </div>

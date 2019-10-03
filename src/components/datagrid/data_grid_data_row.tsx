@@ -15,7 +15,6 @@ export type EuiDataGridDataRowProps = CommonProps &
     defaultColumnWidth?: number | null;
     focusedCell: [number, number];
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
-    isGridNavigationEnabled: EuiDataGridCellProps['isGridNavigationEnabled'];
     onCellFocus: Function;
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex: number;
@@ -34,7 +33,6 @@ const EuiDataGridDataRow: FunctionComponent<
     rowIndex,
     focusedCell,
     onCellFocus,
-    isGridNavigationEnabled,
     interactiveCellId,
     'data-test-subj': _dataTestSubj,
     visibleRowIndex,
@@ -53,7 +51,7 @@ const EuiDataGridDataRow: FunctionComponent<
 
         const width = columnWidths[id] || defaultColumnWidth;
 
-        const isFocusable =
+        const isFocused =
           focusedCell[0] === i && focusedCell[1] === visibleRowIndex;
 
         return (
@@ -66,8 +64,7 @@ const EuiDataGridDataRow: FunctionComponent<
             width={width || undefined}
             renderCellValue={renderCellValue}
             onCellFocus={onCellFocus}
-            isFocusable={isFocusable}
-            isGridNavigationEnabled={isGridNavigationEnabled}
+            isFocused={isFocused}
             interactiveCellId={interactiveCellId}
             isExpandable={isExpandable}
           />

@@ -6,9 +6,7 @@ import React, {
   ReactNode,
   createRef,
   HTMLAttributes,
-  useState,
   KeyboardEvent,
-  useEffect,
 } from 'react';
 import classNames from 'classnames';
 // @ts-ignore
@@ -19,13 +17,14 @@ import { EuiPopover } from '../popover';
 import { CommonProps, Omit } from '../common';
 // @ts-ignore
 import { EuiButtonIcon } from '../button';
-import { EuiMutationObserver } from '../observer/mutation_observer';
 import { keyCodes } from '../../services';
 
 export interface CellValueElementProps {
   rowIndex: number;
   columnId: string;
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  isExpandable: boolean;
+  isExpanded: boolean;
 }
 
 export interface EuiDataGridCellProps {
@@ -34,12 +33,10 @@ export interface EuiDataGridCellProps {
   columnId: string;
   columnType?: string | null;
   width?: number;
-  isFocusable: boolean;
+  isFocused: boolean;
   onCellFocus: Function;
-  isGridNavigationEnabled: boolean;
   interactiveCellId: string;
   isExpandable: boolean;
-  isExpanded?: boolean;
   renderCellValue:
     | JSXElementConstructor<CellValueElementProps>
     | ((props: CellValueElementProps) => ReactNode);
@@ -52,125 +49,23 @@ interface EuiDataGridCellState {
 
 type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  | 'width'
-  | 'isFocusable'
-  | 'isGridNavigationEnabled'
-  | 'interactiveCellId'
-  | 'onCellFocus'
+  'width' | 'isFocused' | 'interactiveCellId' | 'onCellFocus'
 >;
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: CellValueElementProps['setCellProps'];
+    isExpanded: boolean;
   }
 > = memo(props => {
-  const { renderCellValue, isExpandable, isExpanded, ...rest } = props;
-  const [popoverIsOpen, setPopoverIsOpen] = useState(isExpanded);
+  const { renderCellValue, ...rest } = props;
 
-  useEffect(() => {
-    setPopoverIsOpen(isExpanded);
-  }, [isExpanded]);
-
-  // React is more permissable than the TS types indicate
+  // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
     CellValueElementProps
   >;
 
-  const buttonIconClasses = classNames('euiDataGridRowCell__expandButtonIcon', {
-    'euiDataGridRowCell__expandButtonIcon-isActive': popoverIsOpen,
-  });
-
-  const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
-    'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
-  });
-
-  const expandButton = (
-    <EuiButtonIcon
-      className={buttonIconClasses}
-      color="text"
-      iconSize="s"
-      iconType="expandMini"
-      aria-hidden
-      onClick={() => setPopoverIsOpen(!popoverIsOpen)}
-      title="Expand cell content"
-    />
-  );
-
-  // TODO: This is temporary. It's mostly just to show that different schema likely will require different
-  // markup. We also likely will want a way to pass a custom render to the popup and the default cell
-  // content as part of the data config.
-  let cellElement: ReactNode;
-  if (props.columnType === 'json') {
-    cellElement = (
-      /*<EuiCodeBlock
-        isCopyable
-        transparentBackground
-        paddingSize="none"
-        language="json">*/
-      <CellElement {...rest} />
-      // </EuiCodeBlock>
-    );
-  } else {
-    cellElement = (
-      <EuiText>
-        <CellElement {...rest} />
-      </EuiText>
-    );
-  }
-
-  if (isExpandable) {
-    const content = (
-      <div className="euiDataGridRowCell__expandInner">
-        <div className="euiDataGridRowCell__expandCode">
-          <CellElement {...rest} />
-        </div>
-        <div className={buttonClasses}>
-          {expandButton}
-        </div>
-      </div>
-    );
-    return (
-      <EuiPopover
-        anchorClassName="euiDataGridRowCell__expand"
-        button={content}
-        isOpen={popoverIsOpen}
-        ownFocus
-        panelClassName="euiDataGridRowCell__popover"
-        zIndex={2000}
-        closePopover={() => setPopoverIsOpen(false)}>
-        {cellElement}
-      </EuiPopover>
-    );
-  }
-
-  return (
-    <div className="euiDataGridRowCell__expand">
-      <div className="euiDataGridRowCell__expandCode">
-        <CellElement {...rest} />
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="euiDataGridRowCell__expand">
-      <div className="euiDataGridRowCell__expandCode">
-        <CellElement {...rest} />
-      </div>
-      {isExpandable && (
-        <div className={buttonClasses}>
-          <EuiPopover
-            button={expandButton}
-            isOpen={popoverIsOpen}
-            ownFocus
-            panelClassName="euiDataGridRowCell__popover"
-            zIndex={2000}
-            closePopover={() => setPopoverIsOpen(false)}>
-            {cellElement}
-          </EuiPopover>
-        </div>
-      )}
-    </div>
-  );
+  return <CellElement {...rest} />;
 });
 
 export class EuiDataGridCell extends Component<
@@ -185,19 +80,17 @@ export class EuiDataGridCell extends Component<
 
   updateFocus() {
     const cell = this.cellRef.current;
-    const { isFocusable, isGridNavigationEnabled } = this.props;
+    const { isFocused } = this.props;
 
-    if (cell && isFocusable && isGridNavigationEnabled) {
+    if (cell && isFocused) {
       cell.focus();
     }
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    const didFocusChange = prevProps.isFocusable !== this.props.isFocusable;
-    const didNavigationChange =
-      prevProps.isGridNavigationEnabled !== this.props.isGridNavigationEnabled;
+    const didFocusChange = prevProps.isFocused !== this.props.isFocused;
 
-    if (didFocusChange || didNavigationChange) {
+    if (didFocusChange) {
       this.updateFocus();
     }
   }
@@ -212,15 +105,12 @@ export class EuiDataGridCell extends Component<
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.onCellFocus !== this.props.onCellFocus) return true;
-    if (nextProps.isFocusable !== this.props.isFocusable) return true;
-    if (
-      nextProps.isGridNavigationEnabled !== this.props.isGridNavigationEnabled
-    )
-      return true;
+    if (nextProps.isFocused !== this.props.isFocused) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
 
     if (nextState.cellProps !== this.state.cellProps) return true;
+    if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
 
     return false;
   }
@@ -232,9 +122,8 @@ export class EuiDataGridCell extends Component<
   render() {
     const {
       width,
-      isFocusable,
+      isFocused,
       isExpandable,
-      isGridNavigationEnabled,
       interactiveCellId,
       columnType,
       onCellFocus,
@@ -277,37 +166,114 @@ export class EuiDataGridCell extends Component<
       }
     };
 
+    const cellContentProps = {
+      ...rest,
+      setCellProps: this.setCellProps,
+      columnType: columnType,
+      isExpandable,
+      isExpanded: this.state.popoverIsOpen,
+    };
+
+    const buttonIconClasses = classNames(
+      'euiDataGridRowCell__expandButtonIcon',
+      {
+        'euiDataGridRowCell__expandButtonIcon-isActive': this.state
+          .popoverIsOpen,
+      }
+    );
+
+    const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
+      'euiDataGridRowCell__expandButton-isActive': this.state.popoverIsOpen,
+    });
+
+    const expandButton = (
+      <EuiButtonIcon
+        className={buttonIconClasses}
+        color="text"
+        iconSize="s"
+        iconType="expandMini"
+        aria-hidden
+        onClick={() =>
+          this.setState(({ popoverIsOpen }) => ({
+            popoverIsOpen: !popoverIsOpen,
+          }))
+        }
+        title="Expand cell content"
+      />
+    );
+
+    let anchorContent = (
+      <div className="euiDataGridRowCell__expandInner">
+        <div className="euiDataGridRowCell__expandCode">
+          <EuiDataGridCellContent {...cellContentProps} />
+        </div>
+      </div>
+    );
+
+    if (isExpandable) {
+      anchorContent = (
+        <div className="euiDataGridRowCell__expandInner">
+          <div className="euiDataGridRowCell__expandCode">
+            <EuiDataGridCellContent {...cellContentProps} />
+          </div>
+          <div className={buttonClasses}>{expandButton}</div>
+        </div>
+      );
+    }
+
+    let innerContent = anchorContent;
+    if (isExpandable) {
+      // TODO: This is temporary. It's mostly just to show that different schema likely will require different
+      // markup. We also likely will want a way to pass a custom render to the popup and the default cell
+      // content as part of the data config.
+      const CellElement = rest.renderCellValue as JSXElementConstructor<
+        CellValueElementProps
+      >;
+      let popoverContent: ReactNode;
+      if (columnType === 'json') {
+        popoverContent = (
+          /*<EuiCodeBlock
+            isCopyable
+            transparentBackground
+            paddingSize="none"
+            language="json">*/
+          <CellElement {...cellContentProps} />
+          // </EuiCodeBlock>
+        );
+      } else {
+        popoverContent = (
+          <EuiText>
+            <CellElement {...cellContentProps} />
+          </EuiText>
+        );
+      }
+
+      innerContent = (
+        <div className="euiDataGridRowCell__content">
+          <EuiPopover
+            anchorClassName="euiDataGridRowCell__expand"
+            button={anchorContent}
+            isOpen={this.state.popoverIsOpen}
+            ownFocus
+            panelClassName="euiDataGridRowCell__popover"
+            zIndex={2000}
+            closePopover={() => this.setState({ popoverIsOpen: false })}>
+            {popoverContent}
+          </EuiPopover>
+        </div>
+      );
+    }
+
     return (
       <div
         role="gridcell"
-        tabIndex={isFocusable ? 0 : -1}
+        tabIndex={isFocused ? 0 : -1}
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
         onFocus={() => onCellFocus([colIndex, rowIndex])}>
-        <EuiMutationObserver
-          onMutation={() => {
-            this.updateFocus();
-          }}
-          observerOptions={{
-            childList: true,
-            subtree: true,
-          }}>
-          {ref => (
-            <div
-              ref={ref}
-              className="euiDataGridRowCell__content">
-              <EuiDataGridCellContent
-                {...rest}
-                columnType={columnType}
-                setCellProps={this.setCellProps}
-                isExpandable={isExpandable}
-                isExpanded={this.state.popoverIsOpen}
-              />
-            </div>
-          )}
-        </EuiMutationObserver>
+        {innerContent}
       </div>
     );
   }
