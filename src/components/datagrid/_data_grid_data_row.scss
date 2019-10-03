@@ -84,6 +84,9 @@
 .euiDataGridRowCell__expand {
   width: 100%;
   max-width: 100%;
+}
+
+.euiDataGridRowCell__expandInner {
   display: flex;
   align-items: center;
 }
