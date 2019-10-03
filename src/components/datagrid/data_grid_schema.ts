@@ -20,7 +20,7 @@ const schemaDetectors: SchemaDetector[] = [
       return value === 'true' || value === 'false' ? 1 : 0;
     },
     icon: 'invert',
-    color: 'primary',
+    color: 'secondary',
     sortTextAsc: 'False-True',
     sortTextDesc: 'True-False',
   },
@@ -39,8 +39,8 @@ const schemaDetectors: SchemaDetector[] = [
 
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
-    icon: 'heart',
-    color: 'primary',
+    icon: 'currency',
+    color: 'secondary',
     sortTextAsc: 'Low-High',
     sortTextDesc: 'High-Low',
   },
@@ -81,7 +81,7 @@ const schemaDetectors: SchemaDetector[] = [
       return matchLength / value.length || 0;
     },
     icon: 'number',
-    color: 'primary',
+    color: 'subdued',
     sortTextAsc: 'Low-High',
     sortTextDesc: 'High-Low',
   },
