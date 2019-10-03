@@ -10,11 +10,10 @@ import { fake } from 'faker';
 import {
   EuiButton,
   EuiDataGrid,
-  EuiButtonIcon,
   EuiLink,
   EuiPopover,
+  EuiSpacer,
 } from '../../../../src/components/';
-import { iconTypes } from '../../../../src-docs/src/views/icon/icons';
 import { EuiRadioGroup } from '../../../../src/components/form/radio';
 
 const columns = [
@@ -205,6 +204,7 @@ export default () => {
           }}
         />
       </EuiPopover>
+      <EuiSpacer />
 
       <EuiDataGrid
         aria-label="Data grid demo"

@@ -7,6 +7,10 @@ import {
 export interface SchemaDetector {
   type: string;
   detector: (value: string) => number;
+  icon: string;
+  color: string;
+  sortTextAsc: string;
+  sortTextDesc: string;
 }
 
 const schemaDetectors: SchemaDetector[] = [
@@ -15,6 +19,10 @@ const schemaDetectors: SchemaDetector[] = [
     detector(value: string) {
       return value === 'true' || value === 'false' ? 1 : 0;
     },
+    icon: 'invert',
+    color: 'primary',
+    sortTextAsc: 'True-False',
+    sortTextDesc: 'False-True',
   },
   {
     type: 'currency',
@@ -31,6 +39,10 @@ const schemaDetectors: SchemaDetector[] = [
 
       return (matchLength / value.length) * confidenceAdjustment || 0;
     },
+    icon: 'heart',
+    color: 'primary',
+    sortTextAsc: 'High-Low',
+    sortTextDesc: 'Low-High',
   },
   {
     type: 'datetime',
@@ -56,6 +68,10 @@ const schemaDetectors: SchemaDetector[] = [
 
       return Math.max(isoMatchLength, unixMatchLength) / value.length || 0;
     },
+    icon: 'calendar',
+    color: 'primary',
+    sortTextAsc: 'Old-New',
+    sortTextDesc: 'New-Old',
   },
   {
     type: 'numeric',
@@ -64,6 +80,10 @@ const schemaDetectors: SchemaDetector[] = [
         .length;
       return matchLength / value.length || 0;
     },
+    icon: 'number',
+    color: 'primary',
+    sortTextAsc: 'High-Low',
+    sortTextDesc: 'Low-High',
   },
 ];
 
@@ -223,4 +243,14 @@ export function getMergedSchema(
   }
 
   return mergedSchema;
+}
+
+// Given a provided schema, return the details for the schema
+// Useful for grabbing the color or icon
+export function getDetailsForSchema(providedSchema: string | null) {
+  const results = schemaDetectors.filter(matches => {
+    return matches.type === providedSchema;
+  });
+
+  return results[0];
 }

@@ -1,5 +1,4 @@
 .euiDataGridColumnSorting__item {
-  padding: $euiSizeXS;
 
   &-isDragging {
     @include euiBottomShadow;
@@ -25,24 +24,41 @@
 
 .euiDataGridColumnSorting__order {
   @include euiFontSizeXS;
-  width: 40px;
+  width: 80px;
   display: inline-block;
   border-radius: $euiSizeXS;
+  white-space: nowrap;
+
+  &:focus {
+    text-decoration: underline;
+    background: $euiFocusBackgroundColor;
+  }
 
   &-isActive {
     font-weight: $euiFontWeightBold;
     background: $euiColorPrimary;
     color: $euiColorEmptyShade;
+
+    &:focus {
+      background: darken($euiColorPrimary, 5%);
+    }
   }
+
 }
 
-.euiDataGridColumnSorting__listGroupItem {
-  padding: 0;
-  margin-top: 0;
+.euiDataGridColumnSorting__fieldList {
+  @include euiYScrollWithShadows;
+  max-height: 300px;
+}
 
-  // TODO: Fix this hack because list group doesn't expose a class
-  button {
-    padding: $euiSizeXS / 2;
+.euiDataGridColumnSorting__field {
+  display: block;
+  padding: $euiSizeXS;
+  width: 100%;
+
+  &:focus {
+    background: $euiFocusBackgroundColor;
+    text-decoration: underline;
   }
 }
 

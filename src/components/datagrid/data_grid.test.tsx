@@ -593,6 +593,10 @@ Array [
                     ? 1
                     : 0;
                 },
+                icon: 'alert',
+                color: 'primary',
+                sortTextAsc: 'a-z',
+                sortTextDesc: 'z-a',
               },
             ]}
             inMemory={{ level: 'pagination' }}

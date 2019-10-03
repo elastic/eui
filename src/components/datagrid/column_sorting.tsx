@@ -12,10 +12,9 @@ import { EuiPopover, EuiPopoverFooter } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
 // @ts-ignore-next-line
-import { EuiButtonEmpty, EuiButtonToggle } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // @ts-ignore-next-line
-import { EuiListGroupItem, EuiListGroup } from '../list_group';
 import {
   EuiDragDropContext,
   EuiDraggable,
@@ -23,7 +22,8 @@ import {
 } from '../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../icon';
-import { EuiDataGridSchema } from './data_grid_schema';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiDataGridSchema, getDetailsForSchema } from './data_grid_schema';
 
 export const useColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -32,27 +32,6 @@ export const useColumnSorting = (
 ): [ReactNode] => {
   const [isOpen, setIsOpen] = useState(false);
   const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
-
-  // TODO: change this from any
-  const getIconTypeFromSchema = (schema: any) => {
-    switch (schema) {
-      case undefined:
-        return 'string';
-        break;
-      case 'numeric':
-        return 'number';
-        break;
-      case 'location':
-        return 'mapMarker';
-        break;
-      case 'currency':
-        return 'heart';
-        break;
-      case 'boolean':
-        return 'invert';
-        break;
-    }
-  };
 
   // prune any non-existant/hidden columns from sorting
   useEffect(() => {
@@ -112,6 +91,8 @@ export const useColumnSorting = (
     'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
   });
 
+  const numberOfSortedFields = sorting.columns.length;
+
   const columnSorting = (
     <EuiPopover
       data-test-subj="dataGridColumnSortingPopover"
@@ -122,137 +103,182 @@ export const useColumnSorting = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
-        <EuiI18n token="euiColumnSorting.button" default="Sorting">
-          {(button: ReactChild) => (
+        <EuiI18n
+          tokens={['euiColumnSorting.button', 'euiColumnSorting.buttonActive']}
+          defaults={['Sort fields', 'fields sorted']}>
+          {([button, buttonActive]: ReactChild[]) => (
             <EuiButtonEmpty
               size="xs"
               iconType="sortable"
               color="text"
               className={controlBtnClasses}
               onClick={() => setIsOpen(!isOpen)}>
-              {button}
+              {numberOfSortedFields > 0
+                ? `${numberOfSortedFields} ${buttonActive}`
+                : button}
             </EuiButtonEmpty>
           )}
         </EuiI18n>
       }>
       {sorting.columns.length > 0 ? (
-        <EuiDragDropContext onDragEnd={onDragEnd}>
-          <EuiDroppable
-            droppableId="columnSorting"
-            className="euiDataGridColumnSorting">
-            <Fragment>
-              {sorting.columns.map(({ id, direction }, index) => (
-                <EuiDraggable key={id} draggableId={id} index={index}>
-                  {(provided, state) => (
-                    <div
-                      data-test-subj={`dataGrid-sortColumn-${id}-${direction}`}
-                      className={`euiDataGridColumnSorting__item ${state.isDragging &&
-                        'euiDataGridColumnSorting__item-isDragging'}`}>
-                      <EuiFlexGroup
-                        gutterSize="xs"
-                        alignItems="center"
-                        responsive={false}>
-                        <EuiFlexItem grow={false}>
-                          <EuiButtonToggle
-                            color="text"
-                            isIconOnly
-                            className="euiDataGridColumnSorting__button"
-                            label={`${id} (${
-                              schema.hasOwnProperty(id) &&
-                              schema[id].columnType != null
-                                ? schema[id].columnType
-                                : 'unknown'
-                            })`}
-                            iconType={
-                              activeColumnIds.has(id) ? 'cross' : 'empty'
-                            }
-                            isSelected={activeColumnIds.has(id)}
-                            isEmpty
-                            onChange={() => {
-                              const nextColumns = [...sorting.columns];
-                              const columnIndex = nextColumns
-                                .map(({ id }) => id)
-                                .indexOf(id);
-                              nextColumns.splice(columnIndex, 1);
-                              sorting.onSort(nextColumns);
-                            }}
-                          />
-                        </EuiFlexItem>
-                        <EuiFlexItem>
-                          <EuiText size="s">
-                            <p>{id}</p>
-                          </EuiText>
-                        </EuiFlexItem>
-                        <EuiFlexItem grow={false}>
-                          <EuiFlexGroup
-                            gutterSize="none"
-                            alignItems="center"
-                            responsive={false}>
-                            <EuiFlexItem
-                              grow={false}
-                              className="euiDataGridColumnSorting__orderButtons">
-                              <button
-                                className={`euiDataGridColumnSorting__order ${
-                                  direction === 'asc'
-                                    ? 'euiDataGridColumnSorting__order-isActive'
-                                    : ''
-                                }`}
-                                onClick={() => {
-                                  const nextColumns = [...sorting.columns];
-                                  const columnIndex = nextColumns
-                                    .map(({ id }) => id)
-                                    .indexOf(id);
-                                  nextColumns.splice(columnIndex, 1, {
-                                    id,
-                                    direction: 'asc',
-                                  });
-                                  sorting.onSort(nextColumns);
-                                }}>
-                                A-Z
-                              </button>
-                            </EuiFlexItem>
-                            <EuiFlexItem grow={false}>
-                              <button
-                                className={`euiDataGridColumnSorting__order ${
-                                  direction === 'desc'
-                                    ? 'euiDataGridColumnSorting__order-isActive'
-                                    : ''
-                                }`}
-                                onClick={() => {
-                                  const nextColumns = [...sorting.columns];
-                                  const columnIndex = nextColumns
-                                    .map(({ id }) => id)
-                                    .indexOf(id);
-                                  nextColumns.splice(columnIndex, 1, {
-                                    id,
-                                    direction: 'desc',
-                                  });
-                                  sorting.onSort(nextColumns);
-                                }}>
-                                Z-A
-                              </button>
-                            </EuiFlexItem>
-                          </EuiFlexGroup>
-                        </EuiFlexItem>
-                        <EuiFlexItem grow={false} {...provided.dragHandleProps}>
-                          <div {...provided.dragHandleProps}>
-                            <EuiIcon type="grab" color="subdued" />
-                          </div>
-                        </EuiFlexItem>
-                      </EuiFlexGroup>
-                    </div>
-                  )}
-                </EuiDraggable>
-              ))}
-            </Fragment>
-          </EuiDroppable>
-        </EuiDragDropContext>
+        <div role="region" aria-live="assertive">
+          <EuiDragDropContext onDragEnd={onDragEnd}>
+            <EuiDroppable
+              droppableId="columnSorting"
+              className="euiDataGridColumnSorting">
+              <Fragment>
+                {sorting.columns.map(({ id, direction }, index) => (
+                  <EuiDraggable key={id} draggableId={id} index={index}>
+                    {(provided, state) => (
+                      <div
+                        data-test-subj={`dataGrid-sortColumn-${id}-${direction}`}
+                        className={`euiDataGridColumnSorting__item ${state.isDragging &&
+                          'euiDataGridColumnSorting__item-isDragging'}`}>
+                        <EuiScreenReaderOnly>
+                          <p>
+                            <EuiI18n
+                              token="euiColumnSorting.activeSortLabel"
+                              default="is sorting this data grid">
+                              {(activeSortLabel: ReactChild) => (
+                                <span>
+                                  {id} {activeSortLabel}
+                                </span>
+                              )}
+                            </EuiI18n>
+                          </p>
+                        </EuiScreenReaderOnly>
+                        <EuiFlexGroup
+                          gutterSize="xs"
+                          alignItems="center"
+                          responsive={false}>
+                          <EuiFlexItem grow={false}>
+                            <EuiI18n
+                              token="euiColumnSorting.removeSortLabel"
+                              default="Remove from data grid sort:">
+                              {(removeSortLabel: ReactChild) => (
+                                <EuiButtonIcon
+                                  color="text"
+                                  size="s"
+                                  className="euiDataGridColumnSorting__button"
+                                  aria-label={`${removeSortLabel} ${id}`}
+                                  iconType="cross"
+                                  onClick={() => {
+                                    const nextColumns = [...sorting.columns];
+                                    const columnIndex = nextColumns
+                                      .map(({ id }) => id)
+                                      .indexOf(id);
+                                    nextColumns.splice(columnIndex, 1);
+                                    sorting.onSort(nextColumns);
+                                  }}
+                                />
+                              )}
+                            </EuiI18n>
+                          </EuiFlexItem>
+
+                          <EuiFlexItem grow={false}>
+                            <EuiIcon
+                              color={
+                                schema.hasOwnProperty(id) &&
+                                schema[id].columnType != null
+                                  ? getDetailsForSchema(schema[id].columnType)
+                                      .color
+                                  : 'text'
+                              }
+                              type={
+                                schema.hasOwnProperty(id) &&
+                                schema[id].columnType != null
+                                  ? getDetailsForSchema(schema[id].columnType)
+                                      .icon
+                                  : 'string'
+                              }
+                            />
+                          </EuiFlexItem>
+                          <EuiFlexItem aria-hidden>
+                            <EuiText size="s">
+                              <p>{id}</p>
+                            </EuiText>
+                          </EuiFlexItem>
+                          <EuiFlexItem grow={false}>
+                            <EuiFlexGroup
+                              gutterSize="none"
+                              alignItems="center"
+                              responsive={false}>
+                              <EuiFlexItem
+                                grow={false}
+                                className="euiDataGridColumnSorting__orderButtons">
+                                <button
+                                  className={`euiDataGridColumnSorting__order ${
+                                    direction === 'asc'
+                                      ? 'euiDataGridColumnSorting__order-isActive'
+                                      : ''
+                                  }`}
+                                  onClick={() => {
+                                    const nextColumns = [...sorting.columns];
+                                    const columnIndex = nextColumns
+                                      .map(({ id }) => id)
+                                      .indexOf(id);
+                                    nextColumns.splice(columnIndex, 1, {
+                                      id,
+                                      direction: 'asc',
+                                    });
+                                    sorting.onSort(nextColumns);
+                                  }}>
+                                  {schema.hasOwnProperty(id) &&
+                                  schema[id].columnType != null
+                                    ? getDetailsForSchema(schema[id].columnType)
+                                        .sortTextAsc
+                                    : 'A-Z'}
+                                </button>
+                              </EuiFlexItem>
+                              <EuiFlexItem grow={false}>
+                                <button
+                                  className={`euiDataGridColumnSorting__order ${
+                                    direction === 'desc'
+                                      ? 'euiDataGridColumnSorting__order-isActive'
+                                      : ''
+                                  }`}
+                                  onClick={() => {
+                                    const nextColumns = [...sorting.columns];
+                                    const columnIndex = nextColumns
+                                      .map(({ id }) => id)
+                                      .indexOf(id);
+                                    nextColumns.splice(columnIndex, 1, {
+                                      id,
+                                      direction: 'desc',
+                                    });
+                                    sorting.onSort(nextColumns);
+                                  }}>
+                                  {schema.hasOwnProperty(id) &&
+                                  schema[id].columnType != null
+                                    ? getDetailsForSchema(schema[id].columnType)
+                                        .sortTextDesc
+                                    : 'Z-A'}
+                                </button>
+                              </EuiFlexItem>
+                            </EuiFlexGroup>
+                          </EuiFlexItem>
+                          <EuiFlexItem
+                            grow={false}
+                            {...provided.dragHandleProps}>
+                            <div {...provided.dragHandleProps}>
+                              <EuiIcon type="grab" color="subdued" />
+                            </div>
+                          </EuiFlexItem>
+                        </EuiFlexGroup>
+                      </div>
+                    )}
+                  </EuiDraggable>
+                ))}
+              </Fragment>
+            </EuiDroppable>
+          </EuiDragDropContext>
+        </div>
       ) : (
         <EuiText size="s" color="subdued">
-          <p>
+          <p role="alert">
             <EuiI18n
               token="euiColumnSorting.emptySorting"
-              default="No fields are being sorted"
+              default="Currently no fields are sorted"
             />
           </p>
         </EuiText>
@@ -280,30 +306,54 @@ export const useColumnSorting = (
                   }>
                   <EuiI18n
                     token="euiColumnSorting.clearAll"
-                    default="Pick a field to sort"
+                    default="Pick fields to sort by"
                   />
                 </EuiButtonEmpty>
               }>
-              <EuiListGroup flush>
+              <div
+                className="euiDataGridColumnSorting__fieldList"
+                role="listbox">
                 {inactiveColumns.map(({ id }) => (
-                  <EuiListGroupItem
+                  <button
                     key={id}
-                    label={id}
-                    size="xs"
-                    className="euiDataGridColumnSorting__listGroupItem"
-                    iconType={`${
-                      schema.hasOwnProperty(id) && schema[id].columnType != null
-                        ? getIconTypeFromSchema(schema[id].columnType)
-                        : 'string'
-                    }`}
+                    className="euiDataGridColumnSorting__field"
+                    aria-label={`Sort by ${id}`}
+                    role="option"
+                    aria-selected="false"
                     onClick={() => {
                       const nextColumns = [...sorting.columns];
                       nextColumns.push({ id, direction: 'asc' });
                       sorting.onSort(nextColumns);
-                    }}
-                  />
+                    }}>
+                    <EuiFlexGroup
+                      alignItems="center"
+                      gutterSize="s"
+                      component="span">
+                      <EuiFlexItem grow={false}>
+                        <EuiIcon
+                          color={
+                            schema.hasOwnProperty(id) &&
+                            schema[id].columnType != null
+                              ? getDetailsForSchema(schema[id].columnType).color
+                              : 'text'
+                          }
+                          type={
+                            schema.hasOwnProperty(id) &&
+                            schema[id].columnType != null
+                              ? getDetailsForSchema(schema[id].columnType).icon
+                              : 'string'
+                          }
+                        />
+                      </EuiFlexItem>
+                      <EuiFlexItem grow={false}>
+                        <EuiText size="xs">
+                          <span>{id}</span>
+                        </EuiText>
+                      </EuiFlexItem>
+                    </EuiFlexGroup>
+                  </button>
                 ))}
-              </EuiListGroup>
+              </div>
             </EuiPopover>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>

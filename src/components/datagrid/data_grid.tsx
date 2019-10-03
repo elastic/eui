@@ -390,8 +390,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = props => {
   const gridControls = (
     <Fragment>
       {columnSelector}
-      {columnSorting}
       {styleSelector}
+      {columnSorting}
     </Fragment>
   );
 
