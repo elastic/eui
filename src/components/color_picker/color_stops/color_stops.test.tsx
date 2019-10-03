@@ -41,6 +41,44 @@ test('renders EuiColorStops', () => {
   expect(colorStops).toMatchSnapshot();
 });
 
+test('renders free-range EuiColorStops', () => {
+  const colorStops = render(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={[]}
+      {...requiredProps}
+    />
+  );
+  expect(colorStops).toMatchSnapshot();
+});
+
+test('renders min-only EuiColorStops', () => {
+  const colorStops = render(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={[]}
+      min={0}
+      {...requiredProps}
+    />
+  );
+  expect(colorStops).toMatchSnapshot();
+});
+
+test('renders max-only EuiColorStops', () => {
+  const colorStops = render(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={[]}
+      max={100}
+      {...requiredProps}
+    />
+  );
+  expect(colorStops).toMatchSnapshot();
+});
+
 test('renders compressed EuiColorStops', () => {
   const colorStops = render(
     <EuiColorStops

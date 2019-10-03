@@ -483,6 +483,42 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 </div>
 `;
 
+exports[`renders free-range EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
   class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2"
@@ -589,6 +625,78 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           type="button"
         />
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders max-only EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders min-only EuiColorStops 1`] = `
+<div
+  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  data-test-subj="euiColorStops"
+  tabindex="0"
+>
+  <p
+    aria-live="polite"
+    class="euiScreenReaderOnly"
+  >
+    Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
+  </p>
+  <div
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:100%"
+      />
+    </div>
+    <div
+      class="euiColorStops__addContainer"
+      data-test-subj="euiColorStopsAdd"
+    >
+      <div
+        class="euiColorStops__addTarget"
+        style="left:0%"
+      />
     </div>
   </div>
 </div>
