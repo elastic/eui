@@ -147,7 +147,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         value = min + 1;
       }
     } else {
-      if (willBeInvalid) {
+      if (!isRangeMin && !isRangeMin && willBeInvalid) {
         if (value > globalMax) {
           value = globalMax;
         }
@@ -311,7 +311,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                     color="danger"
                     aria-label={removeLabel}
                     title={removeLabel}
-                    disabled={!onRemove || readOnly || isRangeMin || isRangeMax}
+                    disabled={!onRemove || readOnly}
                     onClick={handleOnRemove}
                   />
                 )}

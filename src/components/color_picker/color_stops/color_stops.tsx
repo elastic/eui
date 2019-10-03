@@ -63,13 +63,23 @@ function sortStops(colorStops: ColorStop[]) {
 }
 
 // https://johnresig.com/blog/fast-javascript-maxmin/
-function getRangeMin(colorStops: ColorStop[]) {
-  if (!colorStops.length) return DEFAULT_MIN;
+function getRangeMin(colorStops: ColorStop[], max?: number) {
+  if (!colorStops.length) {
+    return DEFAULT_MIN;
+  } else if (colorStops.length === 1 && max) {
+    colorStops[0].stop;
+  } else if (colorStops.length === 1 && colorStops[0].stop > 0) {
+    return DEFAULT_MIN;
+  }
   const stops = colorStops.map(el => el.stop);
   return Math.min.apply(Math, stops);
 }
 function getRangeMax(colorStops: ColorStop[]) {
-  if (!colorStops.length) return DEFAULT_MAX;
+  if (!colorStops.length) {
+    return DEFAULT_MAX;
+  } else if (colorStops.length === 1 && colorStops[0].stop <= 0) {
+    return DEFAULT_MAX;
+  }
   const stops = colorStops.map(el => el.stop);
   return Math.max.apply(Math, stops);
 }
@@ -92,7 +102,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
   const rangeMin: number = useMemo(() => {
-    const result = min != null ? min : getRangeMin(colorStops);
+    const result = min != null ? min : getRangeMin(colorStops, max);
     return !isNaN(result) ? result : DEFAULT_MIN;
   }, [colorStops, min]);
   const rangeMax: number = useMemo(() => {
@@ -107,27 +117,6 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const [focusStopOnUpdate, setFocusStopOnUpdate] = useState<number | null>(
     null
   );
-
-  useEffect(() => {
-    let newColorStops = [];
-    const needsMin = min == null;
-    const needsMax = max == null;
-    if (colorStops.length === 0) {
-      if (needsMin) {
-        newColorStops.push({ stop: DEFAULT_MIN, color: addColor });
-      }
-      if (needsMax) {
-        newColorStops.push({ stop: DEFAULT_MAX, color: addColor });
-      }
-      handleOnChange(newColorStops);
-    }
-    if (colorStops.length === 1 && (needsMax || needsMin)) {
-      const delta = needsMax ? DEFAULT_MAX : -DEFAULT_MAX;
-      const stop = colorStops[0].stop + delta;
-      newColorStops = addDefinedStop(colorStops, stop, addColor);
-      handleOnChange(newColorStops);
-    }
-  }, []);
 
   useEffect(() => {
     if (focusStopOnUpdate !== null) {
