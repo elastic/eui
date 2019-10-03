@@ -1,16 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
 import { EuiFlexGroup } from '../flex';
 
-const layoutToClassNameMap = {
+type FacetGroupLayout = 'vertical' | 'horizontal';
+
+const layoutToClassNameMap: { [layout in FacetGroupLayout]: string } = {
   vertical: 'euiFacetGroup--vertical',
   horizontal: 'euiFacetGroup--horizontal',
 };
 
-export const LAYOUTS = Object.keys(layoutToClassNameMap);
+export type EuiFacetGroupProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    layout?: FacetGroupLayout;
+  };
 
-export const EuiFacetGroup = ({ children, className, layout, ...rest }) => {
+export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
+  children,
+  className,
+  layout = 'vertical',
+  ...rest
+}) => {
   const classes = classNames(
     'euiFacetGroup',
     layoutToClassNameMap[layout],
@@ -29,14 +40,4 @@ export const EuiFacetGroup = ({ children, className, layout, ...rest }) => {
       {children}
     </EuiFlexGroup>
   );
-};
-
-EuiFacetGroup.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  layout: PropTypes.oneOf(LAYOUTS),
-};
-
-EuiFacetGroup.defaultProps = {
-  layout: 'vertical',
 };

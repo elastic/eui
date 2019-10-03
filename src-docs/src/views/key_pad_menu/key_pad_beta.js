@@ -23,9 +23,9 @@ export default () => (
     <EuiKeyPadMenuItem
       label="Dashboard"
       href="#"
-      betaBadgeLabel="Lab"
-      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
-      betaBadgeIconType="bolt">
+      betaBadgeLabel="External"
+      betaBadgeTooltipContent="This module is an external app."
+      betaBadgeIconType="popout">
       <EuiIcon type="dashboardApp" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>

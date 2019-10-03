@@ -1,12 +1,36 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Update Elastic-Charts to version 13.0.0 and updated the theme object accordingly ([#2381](https://github.com/elastic/eui/pull/2381))
+- Added new `EuiColorStops` component ([#2360](https://github.com/elastic/eui/pull/2360))
+- Added `currency` glyph to 'EuiIcon' ([#2398](https://github.com/elastic/eui/pull/2398))
+
+**Bug fixes**
+
+- Fix `EuiSelectable` to accept programmatic updates to its `options` prop ([#2390](https://github.com/elastic/eui/pull/2390))
+
+## [`14.4.0`](https://github.com/elastic/eui/tree/v14.4.0)
+
+- Migrate `EuiEmptyPrompt`and `EuiCard` to TS ([#2387](https://github.com/elastic/eui/pull/2387))
+- Added Lens app `lensApp` icon ([#2389](https://github.com/elastic/eui/pull/2389))
+- Made `EuiKeyPadMenuItem` beta badge smaller ([#2388](https://github.com/elastic/eui/pull/2388))
+
+## [`14.3.0`](https://github.com/elastic/eui/tree/v14.3.0)
+
+- Added `package` icon to glyph set ([#2378](https://github.com/elastic/eui/pull/2378))
+- Modified `EuiFacetButton` to use `$euiFocusBackgroundColor` for `:focus` state ([2365](https://github.com/elastic/eui/pull/2365))
 - Added a `showMaxPopover` option for `EuiBreadcrumbs` to display all items when a `max` is set. ([#2342](https://github.com/elastic/eui/pull/2342))
 - Added `data-test-subj` support for basic and in-memory tables' actions ([#2353](https://github.com/elastic/eui/pull/2353))
+- Added `ip` icon to glyph set ([#2371](https://github.com/elastic/eui/pull/2371))
+- Set `textOnly={true}` for expanded rows in `EuiBasicTable` ([#2376](https://github.com/elastic/eui/pull/2376))
+- Added `visAreaStacked`, `visBarVerticalStacked`, and `visBarHorizontalStacked` icons to glyph set ([#2379](https://github.com/elastic/eui/pull/2379))
+- Adjusted style of beta badge on `EuiKeyPadMenuItem` ([#2375](https://github.com/elastic/eui/pull/2375))
+- Migrate `EuiFacetGroup`, `EuiKeyPadMenu` and `EuiCallOut` to TS ([#2382](https://github.com/elastic/eui/pull/2382))
 
 **Bug fixes**
 
 - Fixed spacing of `EuiFormErrorText` to match `EuiFormHelpText` ([#2354](https://github.com/elastic/eui/pull/2354))
 - Fixed bug in `EuiPopover` where Array.prototype.slice() may have been called on 'undefined' ([#2369](https://github.com/elastic/eui/pull/2369))
+- Properly exported `copy`, `move`, and `reorder` drag-and-drop service methods ([#2377](https://github.com/elastic/eui/pull/2377))
 
 ## [`14.2.0`](https://github.com/elastic/eui/tree/v14.2.0)
 
