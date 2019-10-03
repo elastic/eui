@@ -14,15 +14,15 @@
   white-space: nowrap;
 
   cursor: default;
+}
 
-  // When it's just an icon, make it a circle
-  &.euiBetaBadge--iconOnly {
-    padding: 0;
-    width: $euiSizeL;
+// When it's just an icon, make it a circle
+.euiBetaBadge--iconOnly {
+  padding: 0;
+  width: $euiSizeL;
 
-    .euiBetaBadge__icon {
-      position: relative;
-      margin-top: -1px;
-    }
+  .euiBetaBadge__icon {
+    position: relative;
+    margin-top: -1px;
   }
 }

@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
-import { getSecureRelForTarget } from '../../services';
 
+import { CommonProps, keysOf } from '../common';
+import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiIconProps } from '../icon';
 import {
   EuiCardSelect,
   EuiCardSelectProps,
@@ -13,41 +14,100 @@ import {
 } from './card_select';
 import makeId from '../form/form_row/make_id';
 
-const textAlignToClassNameMap = {
+type CardAlignment = 'left' | 'center' | 'right';
+
+const textAlignToClassNameMap: { [alignment in CardAlignment]: string } = {
   left: 'euiCard--leftAligned',
   center: 'euiCard--centerAligned',
   right: 'euiCard--rightAligned',
 };
 
-export const ALIGNMENTS = Object.keys(textAlignToClassNameMap);
+export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
 
-const layoutToClassNameMap = {
+type CardLayout = 'vertical' | 'horizontal';
+
+const layoutToClassNameMap: { [layout in CardLayout]: string } = {
   vertical: '',
   horizontal: 'euiCard--horizontal',
 };
 
-export const LAYOUT_ALIGNMENTS = Object.keys(layoutToClassNameMap);
-const oneOfLayouts = PropTypes.oneOf(LAYOUT_ALIGNMENTS);
+export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
-const cardLayout = (props, propName, componentName, ...rest) => {
-  const oneOfResult = oneOfLayouts(props, propName, componentName, ...rest);
-  if (oneOfResult) return oneOfResult;
+type EuiCardProps = CommonProps & {
+  title: NonNullable<ReactNode>;
+  /**
+   * Determines the title's heading element. Will force to 'span' if
+   * the card is a button.
+   */
+  titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+  description: NonNullable<ReactNode>;
 
-  if (props[propName] === 'horizontal') {
-    if (props.image || props.footer) {
-      return new Error(
-        `${componentName}: '${propName} = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'.`
-      );
-    }
-  }
+  /**
+   * Requires a <EuiIcon> node
+   */
+  icon?: ReactElement<EuiIconProps>;
+
+  /**
+   * Accepts a url in string form
+   */
+  image?: string;
+
+  /**
+   * Accepts any combination of elements
+   */
+  footer?: ReactNode;
+
+  /**
+   * Use only if you want to forego a button in the footer and make the whole card clickable
+   */
+  onClick?: Function;
+  href?: string;
+  target?: string;
+  rel?: string;
+  textAlign?: CardAlignment;
+
+  /**
+   * Change to "horizontal" if you need the icon to be left of the content
+   */
+  layout?: CardLayout;
+
+  /**
+   * Add a badge to the card to label it as "Beta" or other non-GA state
+   */
+  betaBadgeLabel?: string;
+
+  /**
+   * Add a description to the beta badge (will appear in a tooltip)
+   */
+  betaBadgeTooltipContent?: ReactNode;
+
+  /**
+   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+   */
+  betaBadgeTitle?: string;
+
+  /**
+   * Adds a button to the bottom of the card to allow for in-place selection.
+   */
+  selectable?: EuiCardSelectProps;
+
+  /**
+   * Add a decorative bottom graphic to the card.
+   * This should be used sparingly, consult the Kibana Design team before use.
+   */
+  bottomGraphic?: ReactNode;
+
+  isClickable?: boolean;
+
+  isDisabled?: boolean;
 };
 
-export const EuiCard = ({
+export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
   description,
   isDisabled,
   title,
-  titleElement,
+  titleElement = 'span',
   icon,
   image,
   footer,
@@ -55,16 +115,24 @@ export const EuiCard = ({
   href,
   rel,
   target,
-  textAlign,
+  textAlign = 'center',
   isClickable,
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
-  layout,
+  layout = 'vertical',
   bottomGraphic,
   selectable,
   ...rest
 }) => {
+  if (layout === 'horizontal') {
+    if (image || footer) {
+      throw new Error(
+        "EuiCard: layout = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'."
+      );
+    }
+  }
+
   const selectableColorClass = selectable
     ? `euiCard--isSelectable--${euiCardSelectableColor(
         selectable.color,
@@ -171,6 +239,7 @@ export const EuiCard = ({
   }
 
   return (
+    // @ts-ignore
     <OuterElement
       onClick={onClick}
       className={classes}
@@ -203,73 +272,6 @@ export const EuiCard = ({
       {optionalSelectButton || optionalBottomGraphic}
     </OuterElement>
   );
-};
-
-EuiCard.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.node.isRequired,
-  /**
-   * Determines the title's heading element. Will force to 'span' if
-   * the card is a button.
-   */
-  titleElement: PropTypes.oneOf(['h2', 'h3', 'h4', 'h5', 'h6', 'span']),
-  description: PropTypes.node.isRequired,
-
-  /**
-   * Requires a <EuiIcon> node
-   */
-  icon: PropTypes.node,
-
-  /**
-   * Accepts a url in string form
-   */
-  image: PropTypes.string,
-
-  /**
-   * Accepts any combination of elements
-   */
-  footer: PropTypes.node,
-
-  /**
-   * Use only if you want to forego a button in the footer and make the whole card clickable
-   */
-  onClick: PropTypes.func,
-  href: PropTypes.string,
-  target: PropTypes.string,
-  rel: PropTypes.string,
-  textAlign: PropTypes.oneOf(ALIGNMENTS),
-
-  /**
-   * Change to "horizontal" if you need the icon to be left of the content
-   */
-  layout: cardLayout,
-
-  /**
-   * Add a badge to the card to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel: PropTypes.string,
-
-  /**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent: PropTypes.node,
-
-  /**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle: PropTypes.string,
-
-  /**
-   * Adds a button to the bottom of the card to allow for in-place selection.
-   */
-  selectable: PropTypes.shape(EuiCardSelectProps),
-
-  /**
-   * Add a decorative bottom graphic to the card.
-   * This should be used sparingly, consult the Kibana Design team before use.
-   */
-  bottomGraphic: PropTypes.node,
-  isDisabled: PropTypes.bool,
 };
 
 EuiCard.defaultProps = {

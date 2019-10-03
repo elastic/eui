@@ -9,7 +9,7 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import { reorder } from '../../../../src/components/drag_and_drop';
+import { euiDragDropReorder } from '../../../../src/components/drag_and_drop';
 
 import { makeList } from './helper';
 
@@ -17,7 +17,7 @@ export default () => {
   const [list, setList] = useState(makeList(3));
   const onDragEnd = ({ source, destination }) => {
     if (source && destination) {
-      const items = reorder(list, source.index, destination.index);
+      const items = euiDragDropReorder(list, source.index, destination.index);
 
       setList(items);
     }

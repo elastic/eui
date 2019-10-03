@@ -29,6 +29,7 @@ export { EuiCodeEditor } from './code_editor';
 export {
   EuiColorPicker,
   EuiColorPickerSwatch,
+  EuiColorStops,
   EuiHue,
   EuiSaturation,
 } from './color_picker';
@@ -69,6 +70,9 @@ export {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  euiDragDropCopy,
+  euiDragDropMove,
+  euiDragDropReorder,
 } from './drag_and_drop';
 
 export { EuiEmptyPrompt } from './empty_prompt';

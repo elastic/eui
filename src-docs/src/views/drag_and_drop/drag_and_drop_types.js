@@ -8,7 +8,10 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import { move, reorder } from '../../../../src/components/drag_and_drop';
+import {
+  euiDragDropMove,
+  euiDragDropReorder,
+} from '../../../../src/components/drag_and_drop';
 
 import { makeList } from './helper';
 
@@ -29,7 +32,7 @@ export default () => {
     };
     if (source && destination) {
       if (source.droppableId === destination.droppableId) {
-        const items = reorder(
+        const items = euiDragDropReorder(
           lists[destination.droppableId],
           source.index,
           destination.index
@@ -39,7 +42,7 @@ export default () => {
       } else {
         const sourceId = source.droppableId;
         const destinationId = destination.droppableId;
-        const result = move(
+        const result = euiDragDropMove(
           lists[sourceId],
           lists[destinationId],
           source,

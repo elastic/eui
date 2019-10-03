@@ -1,3 +1,5 @@
+import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
+
 export const getEventPosition = (
   location: { x: number; y: number },
   container: HTMLElement
@@ -31,3 +33,50 @@ export const throttle = (fn: (...args: any[]) => void, wait = 50) => {
     }
   };
 };
+
+export function isMouseEvent<T = HTMLDivElement>(
+  event: ReactMouseEvent<T> | TouchEvent<T>
+): event is ReactMouseEvent<T> {
+  return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
+}
+
+export function useMouseMove<T = HTMLDivElement>(
+  handleChange: (
+    location: { x: number; y: number },
+    isFirstInteraction?: boolean
+  ) => void,
+  interactionConditional: any = true
+): [
+  (e: ReactMouseEvent<T>) => void,
+  (e: ReactMouseEvent<T> | TouchEvent<T>, isFirstInteraction?: boolean) => void
+] {
+  useEffect(() => {
+    return unbindEventListeners;
+  }, []);
+  const handleInteraction = (
+    e: ReactMouseEvent<T> | TouchEvent<T>,
+    isFirstInteraction?: boolean
+  ) => {
+    if (e) {
+      if (interactionConditional) {
+        const x = isMouseEvent<T>(e) ? e.pageX : e.touches[0].pageX;
+        const y = isMouseEvent<T>(e) ? e.pageY : e.touches[0].pageY;
+        handleChange({ x, y }, isFirstInteraction);
+      }
+    }
+  };
+  const handleMouseMove = throttle((e: ReactMouseEvent) => {
+    handleChange({ x: e.pageX, y: e.pageY }, false);
+  });
+  const handleMouseDown = (e: ReactMouseEvent<T>) => {
+    handleInteraction(e, true);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', unbindEventListeners);
+  };
+  const unbindEventListeners = () => {
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', unbindEventListeners);
+  };
+
+  return [handleMouseDown, handleInteraction];
+}

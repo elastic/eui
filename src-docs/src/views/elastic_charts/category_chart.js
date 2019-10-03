@@ -78,12 +78,6 @@ class _CategoryChart extends Component {
     const theme = isDarkTheme
       ? EUI_CHARTS_THEME_DARK.theme
       : EUI_CHARTS_THEME_LIGHT.theme;
-    const gridHorizontalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridHorizontalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridHorizontalSettings;
-    const gridVerticalSettings = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.gridVerticalSettings
-      : EUI_CHARTS_THEME_LIGHT.gridVerticalSettings;
 
     const ChartType = CHART_COMPONENTS[this.state.chartType];
 
@@ -123,7 +117,6 @@ class _CategoryChart extends Component {
           <Axis
             id="bottom-axis"
             position={this.state.rotated ? 'left' : 'bottom'}
-            gridLineStyle={gridVerticalSettings}
           />
           <Axis
             id="left-axis"
@@ -134,7 +127,6 @@ class _CategoryChart extends Component {
                 : undefined
             }
             showGridLines
-            gridLineStyle={gridHorizontalSettings}
           />
         </Chart>
 

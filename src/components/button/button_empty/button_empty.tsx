@@ -12,7 +12,14 @@ import { EuiLoadingSpinner } from '../../loading';
 import { getSecureRelForTarget } from '../../../services';
 import { IconType, EuiIcon } from '../../icon';
 
-const colorToClassNameMap = {
+export type EuiButtonEmptyColor =
+  | 'primary'
+  | 'danger'
+  | 'disabled'
+  | 'text'
+  | 'ghost';
+
+const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
   disabled: 'euiButtonEmpty--disabled',
@@ -47,7 +54,7 @@ export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
 export interface EuiButtonEmptyProps extends CommonProps {
   iconType?: IconType;
   iconSide?: keyof typeof iconSideToClassNameMap;
-  color?: keyof typeof colorToClassNameMap;
+  color?: EuiButtonEmptyColor;
   size?: keyof typeof sizeToClassNameMap;
   flush?: keyof typeof flushTypeToClassNameMap;
   isDisabled?: boolean;
