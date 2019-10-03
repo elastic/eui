@@ -56,6 +56,12 @@ const colorStopsSnippetFixed = `<EuiColorStops
 import { ColorStopsRange } from './color_stops_range';
 const colorStopsRangeSource = require('!!raw-loader!./color_stops');
 const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
+const colorPickerRangeSnippet = `<EuiColorStops
+  label="Free-range color stops"
+  onChange={handleChange}
+  colorStops={colorStops}
+/>
+`;
 
 import { CustomSwatches } from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
@@ -295,11 +301,18 @@ export const ColorPickerExample = {
       demo: <ColorStops />,
     },
     {
-      title: 'Color stops range',
+      title: 'Free-range color stops',
       text: (
         <React.Fragment>
           <EuiText>
-            <p>Temporary</p>
+            <p>
+              Typical use of <EuiCode>EuiColorStops</EuiCode> (as above) will
+              have defined `min` and `max` range values. It is also possible to
+              leave the range open-ended for cases where the target data set is
+              unknown or maleable. In this case, a user{"'"}s added values will
+              define `min` and `max` and users will have more freedom over
+              resetting the values on the fly.
+            </p>
           </EuiText>
         </React.Fragment>
       ),
@@ -313,6 +326,7 @@ export const ColorPickerExample = {
           code: colorStopsRangeHtml,
         },
       ],
+      snippet: colorPickerRangeSnippet,
       demo: <ColorStopsRange />,
     },
     {
